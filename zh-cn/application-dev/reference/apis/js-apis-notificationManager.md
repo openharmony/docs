@@ -31,15 +31,20 @@ publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| 错误码ID | 错误信息                                              |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **示例：**
 
@@ -58,7 +63,7 @@ let publishCallback = (err: Base.BusinessError): void => {
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -93,15 +98,20 @@ publish(request: NotificationRequest): Promise\<void\>
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| 错误码ID | 错误信息                                              |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **示例：**
 
@@ -112,7 +122,7 @@ import Base from '@ohos.base';
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -138,7 +148,7 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -152,16 +162,21 @@ publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<v
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| 错误码ID | 错误信息                                              |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600008  | The user is not exist.                               |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **示例：**
 
@@ -182,7 +197,7 @@ let userId: number = 1;
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -203,7 +218,7 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -222,16 +237,21 @@ publish(request: NotificationRequest, userId: number): Promise\<void\>
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 1600001  | Internal error.                           |
-| 1600002  | Marshalling or unmarshalling error.       |
-| 1600003  | Failed to connect service.                |
-| 1600004  | Notification is not enabled.              |
-| 1600005  | Notification slot is not enabled.         |
-| 1600008  | The user is not exist.                    |
-| 1600009  | Over max number notifications per second. |
-| 1600012  | No memory space.                          |
+| 错误码ID | 错误信息                                              |
+| -------- | ---------------------------------------------------- |
+| 1600001  | Internal error.                                      |
+| 1600002  | Marshalling or unmarshalling error.                  |
+| 1600003  | Failed to connect service.                           |
+| 1600004  | Notification is not enabled.                         |
+| 1600005  | Notification slot is not enabled.                    |
+| 1600007  | The notification is not exist.                       |
+| 1600008  | The user is not exist.                               |
+| 1600009  | Over max number notifications per second.            |
+| 1600012  | No memory space.                                     |
+| 1600014  | No relevant right.                                   |
+| 1600015  | The current notification status does not support duplicate configurations. |
+| 1600016  | The notification version for this update is too low. |
+| 2300007  | Network is unreachable.                              |
 
 **示例：**
 
@@ -241,7 +261,7 @@ import Base from '@ohos.base';
 let notificationRequest: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -274,7 +294,7 @@ cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 | -------- | --------------------- | ---- | -------------------- |
 | id       | number                | 是   | 通知ID。               |
 | label    | string                | 是   | 通知标签。             |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通知的回调方法。 |
 
 **错误码：**
 
@@ -298,7 +318,7 @@ let cancelCallback = (err: Base.BusinessError): void => {
         console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
     } else {
         console.info("cancel success");
-    }
+    } 
 }
 notificationManager.cancel(0, "label", cancelCallback);
 ```
@@ -307,7 +327,7 @@ notificationManager.cancel(0, "label", cancelCallback);
 
 cancel(id: number, label?: string): Promise\<void\>
 
-取消与指定通知ID相匹配的已发布通知，label可以指定也可以不指定（Promise形式）。
+通过通知ID和通知标签取消已发布的通知，若label为空表示取消与指定通知ID相匹配的已发布通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -360,7 +380,7 @@ cancel(id: number, callback: AsyncCallback\<void\>): void
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | id       | number                | 是   | 通知ID。               |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通知的回调方法。 |
 
 **错误码：**
 
@@ -393,7 +413,7 @@ notificationManager.cancel(0, cancelCallback);
 
 cancelAll(callback: AsyncCallback\<void\>): void
 
-取消所有已发布的通知（callback形式）。
+取消当前应用所有已发布的通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -411,7 +431,7 @@ cancelAll(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通知的回调方法。 |
 
 **示例：**
 
@@ -433,7 +453,7 @@ notificationManager.cancelAll(cancelAllCallback);
 
 cancelAll(): Promise\<void\>
 
-取消所有已发布的通知（Promise形式）。
+取消当前应用所有已发布的通知（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -475,14 +495,14 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | 是   | 要创建的通知通道对象。 |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。 |
 
 **错误码：**
 
@@ -510,7 +530,7 @@ let addSlotCallBack = (err: Base.BusinessError): void => {
 }
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot, addSlotCallBack);
 ```
@@ -525,7 +545,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -557,7 +577,7 @@ import Base from '@ohos.base';
 
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
@@ -579,7 +599,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 | 参数名     | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | [SlotType](#slottype)              | 是   | 要创建的通知通道的类型。 |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。   |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。   |
 
 **错误码：**
 
@@ -661,14 +681,14 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型                      | 必填 | 说明                     |
 | -------- | ------------------------- | ---- | ------------------------ |
 | slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知通道对象数组。 |
-| callback | AsyncCallback\<void\>     | 是   | 表示被指定的回调方法。     |
+| callback | AsyncCallback\<void\>     | 是   | 表示被指定通道的回调方法。     |
 
 **错误码：**
 
@@ -696,7 +716,7 @@ let addSlotsCallBack = (err: Base.BusinessError): void => {
 }
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // 通知slot array 对象
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
@@ -715,7 +735,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -747,7 +767,7 @@ import Base from '@ohos.base';
 
 // 通知slot对象
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 // 通知slot array 对象
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
@@ -773,7 +793,7 @@ getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 | 参数名     | 类型                              | 必填 | 说明                                                        |
 | -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype)                          | 是   | 通知渠道类型，目前分为社交通信、服务提醒、内容咨询和其他类型。 |
-| callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 表示被指定的回调方法。                                        |
+| callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 表示被指定通道的回调方法。                                        |
 
 **错误码：**
 
@@ -856,13 +876,14 @@ getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 **参数：**
 
-错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
-
 | 参数名     | 类型                              | 必填 | 说明                 |
 | -------- | --------------------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | 是   | 以callback形式返回获取此应用程序的所有通知通道的结果。 |
 
 **错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
@@ -926,7 +947,7 @@ notificationManager.getSlots().then((data: Array<notificationManager.Notificatio
 
 removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
-删除指定类型的通知通道（callback形式）。
+删除此应用程序指定类型的通知通道（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -935,7 +956,7 @@ removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 | 参数名     | 类型                  | 必填 | 说明                                                        |
 | -------- | --------------------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype)              | 是   | 通知渠道类型,目前分为社交通信、服务提醒、内容咨询和其他类型。 |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。                                        |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。                                        |
 
 **错误码：**
 
@@ -968,7 +989,7 @@ notificationManager.removeSlot(slotType, removeSlotCallback);
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
-删除指定类型的通知通道（Promise形式）。
+删除此应用程序指定类型的通知通道（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1011,7 +1032,7 @@ notificationManager.removeSlot(slotType).then(() => {
 
 removeAllSlots(callback: AsyncCallback\<void\>): void
 
-删除所有通知通道（callback形式）。
+删除此应用程序所有通知通道（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1019,7 +1040,7 @@ removeAllSlots(callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。 |
 
 **错误码：**
 
@@ -1050,7 +1071,7 @@ notificationManager.removeAllSlots(removeAllCallBack);
 
 removeAllSlots(): Promise\<void\>
 
-删除所有通知通道（Promise形式）。
+删除此应用程序所有通知通道（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1086,13 +1107,13 @@ notificationManager.removeAllSlots().then(() => {
 
 setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-设定指定应用的通知使能状态（Callback形式）。
+设定指定应用的通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1141,7 +1162,7 @@ setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1186,11 +1207,11 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的通知使能状态（Callback形式）。
+获取指定应用的通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -1242,7 +1263,7 @@ isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1286,13 +1307,13 @@ notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
-获取通知使能状态（Callback形式）。
+获取通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1304,11 +1325,13 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect service.          |
+| 错误码ID | 错误信息                                  |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600008  | The user is not exist.                   |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -1336,7 +1359,7 @@ isNotificationEnabled(): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -1353,6 +1376,8 @@ isNotificationEnabled(): Promise\<boolean\>
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600008  | The user is not exist.                   |
+| 17700001 | The specified bundle name was not found. |
 
 **示例：**
 
@@ -1370,13 +1395,13 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 
 isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
-获取制定用户ID下的通知使能状态（Callback形式）。
+获取指定用户ID下的通知使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1424,7 +1449,7 @@ isNotificationEnabled(userId: number): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1467,13 +1492,13 @@ notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 
 displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-设定指定应用的角标使能状态（Callback形式）。
+设定指定应用的角标使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1522,7 +1547,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1567,13 +1592,13 @@ notificationManager.displayBadge(bundle, false).then(() => {
 
 isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的角标使能状态（Callback形式）。
+获取指定应用的角标使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1621,7 +1646,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1709,7 +1734,7 @@ notificationManager.setBadgeNumber(badgeNumber).then(() => {
 
 setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
-设定角标个数，在应用的桌面图标上呈现（Callback形式）。
+设定角标个数，在应用的桌面图标上呈现（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1748,17 +1773,71 @@ let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
 
-## notificationManager.setSlotByBundle
+## notificationManager.setSlotFlagsByBundle<sup>11+</sup>
 
-setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
+setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
-设定指定应用的通知通道（Callback形式）。
+设定指定应用的通知通道（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+| slotFlags   | number | 是   | 通知通道标识位。 |
+
+**返回值：**
+
+| 类型      | 说明        | 
+|---------|-----------|
+| Promise\<void\> | 无返回结果的Promise对象。 | 
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+
+let slotFlags: number = 1;
+
+notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
+	console.info("setSlotFlagsByBundle success");
+}).catch((err: Base.BusinessError) => {
+    console.error(`setSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.setSlotByBundle
+
+setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
+
+设定指定应用的通知通道（callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1795,7 +1874,7 @@ let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCallback);
 ```
@@ -1810,7 +1889,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1846,7 +1925,7 @@ let bundle: notificationManager.BundleOption = {
 };
 
 let notificationSlot: notificationManager.NotificationSlot = {
-    type: notificationManager.SlotType.SOCIAL_COMMUNICATION
+    notificationType: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
 
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
@@ -1856,17 +1935,67 @@ notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 });
 ```
 
-## notificationManager.getSlotsByBundle
+## notificationManager.getSlotFlagsByBundle<sup>11+</sup>
 
-getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
+getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
-获取指定应用的所有通知通道（Callback形式）。
+获取指定应用的通知通道标识位（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型         | 必填 | 说明       |
+| ------ | ------------ | ---- | ---------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+|  Promise\<number\>| 以Promise形式返回获取指定应用的通知通道标识位。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundle: notificationManager.BundleOption = {
+    bundle: "bundleName1",
+};
+notificationManager.getSlotFlagsByBundle(bundle).then(() => {
+	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
+});
+```
+
+## notificationManager.getSlotsByBundle
+
+getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
+
+获取指定应用的所有通知通道（callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1914,7 +2043,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -1959,13 +2088,13 @@ notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManag
 
 getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): void
 
-获取指定应用的通知通道数量（Callback形式）。
+获取指定应用的通知通道数量（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2015,7 +2144,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2061,13 +2190,13 @@ notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 
 getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
-获取当前未删除的所有通知（Callback形式）。
+获取当前未删除的所有通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2111,7 +2240,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -2145,7 +2274,7 @@ notificationManager.getAllActiveNotifications().then((data: Array<notificationMa
 
 getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
-获取当前应用未删除的通知数（Callback形式）。
+获取当前应用未删除的通知数（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2221,7 +2350,7 @@ notificationManager.getActiveNotificationCount().then((data: number) => {
 
 getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
-获取当前应用未删除的通知列表（Callback形式）。
+获取当前应用未删除的通知列表（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2293,11 +2422,132 @@ notificationManager.getActiveNotifications().then((data: Array<notificationManag
 });
 ```
 
+## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+
+getActiveNotificationByFilter(filter: NotificationFilter, callback: AsyncCallback\<NotificationRequest\>): void
+
+获取满足条件的普通实况通知信息。使用callback异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                           |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取满足条件的普通实况通知信息的回调函数。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ---------------------------------------- |
+| 1600007  | The notification is not exist.           |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundleOption: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+
+let notificationKey: notificationSubscribe.NotificationKey = {
+    id: 11,
+    label: ""
+};
+
+let filter = {
+    bundle: bundleOption,
+    key: notificationKey,
+    extraInfoKeys: ['event']
+}
+
+let getActiveNotificationByFilterCallback = (err: Base.BusinessError, data: notificationManager.NotificationRequest): void => {
+    if (err) {
+        console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("getActiveNotificationByFilter success");
+    }
+}
+
+notificationManager.getActiveNotificationByFilter(filter, getActiveNotificationByFilterCallback);
+```
+
+## notificationManager.getActiveNotificationByFilter<sup>11+<sup>
+
+getActiveNotificationByFilter(filter: NotificationFilter): Promise\<NotificationRequest\>
+
+获取满足条件的普通实况通知信息。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统接口**: 此接口为系统接口。
+
+
+**参数：**
+
+| 参数名     | 类型                                                         | 必填 | 说明                           |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
+| filter   | [NotificationFilter](js-apis-inner-notification-notificationRequest.md#notificationfilter11) | 是   | 查询普通实况窗的过滤条件。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                    |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\> | 以Promise形式返回获取的满足条件的普通实况通知信息。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ---------------------------------------- |
+| 1600007  | The notification is not exist.           |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let bundleOption: notificationManager.BundleOption = {
+  bundle: "bundleName1",
+};
+
+let notificationKey: notificationSubscribe.NotificationKey = {
+    id: 11,
+    label: ""
+};
+
+let filter = {
+    bundle: bundleOption,
+    key: notificationKey,
+    extraInfoKeys: ['event']
+}
+
+notificationManager.getActiveNotificationByFilter().then((filter: notificationRequest.NotificationFilter, data: notificationManager.NotificationRequest) => {
+	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
+}).catch((err: Base.BusinessError) => {
+    console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);
+});
+```
+
 ## notificationManager.cancelGroup
 
 cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
-取消本应用指定组下的通知（Callback形式）。
+取消本应用指定组下的通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2383,13 +2633,13 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
-删除指定应用的指定组下的通知（Callback形式）。
+删除指定应用的指定组下的通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2439,7 +2689,7 @@ removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2484,13 +2734,13 @@ notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 
 setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): void
 
-设置免打扰时间（Callback形式）。
+设置免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2542,7 +2792,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2590,13 +2840,13 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback\<void\>): void
 
-指定用户设置免打扰时间（Callback形式）。
+指定用户设置免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2652,7 +2902,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2704,13 +2954,13 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 
 getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
-查询免打扰时间（Callback形式）。
+查询免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2755,7 +3005,7 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -2791,13 +3041,13 @@ notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotD
 
 getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>): void
 
-查询指定用户的免打扰时间（Callback形式）。
+查询指定用户的免打扰时间（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2846,7 +3096,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -2891,25 +3141,25 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
  isSupportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
-查询是否支持免打扰功能（Callback形式）。
+查询是否支持免打扰功能（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型                     | 必填 | 说明                             |
 | -------- | ------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback\<boolean\> | 是   | 查询是否支持免打扰功能回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 查询是否支持免打扰功能回调函数（true：支持，false：不支持）。 |
 
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                            |
+| 错误码ID | 错误信息                             |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -2941,13 +3191,13 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取是否支持免打扰功能的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取是否支持免打扰功能的结果（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -2975,7 +3225,7 @@ notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-查询模板是否存在（Callback形式）。
+查询模板是否存在（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2984,7 +3234,7 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 | 参数名       | 类型                     | 必填 | 说明                       |
 | ------------ | ------------------------ | ---- | -------------------------- |
 | templateName | string                   | 是   | 模板名称。                   |
-| callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数。 |
+| callback     | AsyncCallback\<boolean\> | 是   | 查询模板是否存在的回调函数（true：存在，false：不存在）。 |
 
 **错误码：**
 
@@ -3031,7 +3281,7 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 
 | 类型               | 说明            |
 | ------------------ | --------------- |
-| Promise\<boolean\> | Promise方式返回模板是否存在的结果。 |
+| Promise\<boolean\> | Promise方式返回模板是否存在的结果（true：存在，false：不存在）。 |
 
 **错误码：**
 
@@ -3049,7 +3299,6 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 import Base from '@ohos.base';
 
 let templateName: string = 'process';
-
 notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
     console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -3061,7 +3310,7 @@ notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
-应用请求通知使能（Callback形式）。
+应用请求通知使能（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3080,6 +3329,8 @@ requestEnableNotification(callback: AsyncCallback\<void\>): void
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600004  | Notification is not enabled.          |
+| 1600013  | Enable Notification Dialog has been popping already.          |
 
 **示例：**
 
@@ -3093,7 +3344,6 @@ let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
         console.info("requestEnableNotification success");
     }
 };
-
 notificationManager.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
@@ -3120,6 +3370,8 @@ requestEnableNotification(): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600004  | Notification is not enabled.          |
+| 1600013  | Enable Notification Dialog has been popping already.          |
 
 **示例：**
 
@@ -3137,7 +3389,7 @@ notificationManager.requestEnableNotification().then(() => {
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
-应用请求通知使能模态弹窗（Callback形式）。
+应用请求通知使能模态弹窗（callback形式）。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -3159,6 +3411,8 @@ requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<vo
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600004  | Notification is not enabled.          |
+| 1600013  | Enable Notification Dialog has been popping already.          |
 
 **示例：**
 
@@ -3177,7 +3431,6 @@ class MyAbility extends UIAbility {
         console.info("requestEnableNotification success");
       }
     };
-
     notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
   }
 }
@@ -3214,6 +3467,8 @@ requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600004  | Notification is not enabled.          |
+| 1600013  | Enable Notification Dialog has been popping already.          |
 
 **示例：**
 
@@ -3238,19 +3493,19 @@ class MyAbility extends UIAbility {
 
 setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
-设置设备是否支持分布式通知（Callback形式）。
+设置设备是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | 是   | 是否支持。 |
+| enable   | boolean                  | 是   | 是否支持（true：支持，false：不支持）。 |
 | callback | AsyncCallback\<void\> | 是   | 设置设备是否支持分布式通知的回调函数。 |
 
 **错误码：**
@@ -3276,9 +3531,7 @@ let setDistributedEnableCallback = (err: Base.BusinessError): void => {
         console.info("setDistributedEnable success");
     }
 };
-
 let enable: boolean = true;
-
 notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 ```
 
@@ -3292,13 +3545,13 @@ setDistributedEnable(enable: boolean): Promise\<void>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | 是   | 是否支持。 |
+| enable   | boolean                  | 是   | 是否支持（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3317,7 +3570,6 @@ setDistributedEnable(enable: boolean): Promise\<void>
 import Base from '@ohos.base';
 
 let enable: boolean = true;
-
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: Base.BusinessError) => {
@@ -3330,7 +3582,7 @@ notificationManager.setDistributedEnable(enable).then(() => {
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-查询设备是否支持分布式通知（Callback形式）。
+查询设备是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3338,7 +3590,7 @@ isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean\> | 是   | 设备是否支持分布式通知的回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 设备是否支持分布式通知的回调函数（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3363,7 +3615,6 @@ let isDistributedEnabledCallback = (err: Base.BusinessError, data: boolean): voi
         console.info("isDistributedEnabled success " + JSON.stringify(data));
     }
 };
-
 notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 ```
 
@@ -3381,7 +3632,7 @@ isDistributedEnabled(): Promise\<boolean>
 
 | 类型               | 说明                                          |
 | ------------------ | --------------------------------------------- |
-| Promise\<boolean\> | Promise方式返回设备是否支持分布式通知的结果。 |
+| Promise\<boolean\> | Promise方式返回设备是否支持分布式通知的结果（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3412,20 +3663,20 @@ notificationManager.isDistributedEnabled()
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用是否支持分布式通知（Callback形式）。
+设置指定应用是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包信息。                   |
-| enable   | boolean                  | 是   | 是否支持。                       |
+| enable   | boolean                  | 是   | 指定应用是否支持分布式通知（true：支持，false：不支持）。|
 | callback | AsyncCallback\<void\> | 是   | 应用程序是否支持分布式通知的回调函数。 |
 
 **错误码：**
@@ -3452,13 +3703,10 @@ let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
         console.info("enableDistributedByBundle success");
     }
 };
-
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 let enable: boolean = true;
-
 notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
 ```
 
@@ -3474,14 +3722,14 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                |
-| enable   | boolean                  | 是   | 是否支持。                  |
+| enable   | boolean                  | 是   | 指定应用是否支持分布式通知（true：支持，false：不支持）。                  |
 
 **错误码：**
 
@@ -3503,9 +3751,7 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 let enable: boolean = true;
-
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -3517,20 +3763,20 @@ notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
-根据应用的包获取应用程序是否支持分布式通知（Callback形式）。
+根据应用的包获取应用程序是否支持分布式通知（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
 | 参数名   | 类型                     | 必填 | 说明                       |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | 是   | 应用的包。                     |
-| callback | AsyncCallback\<boolean\> | 是   | 查询指定应用是否支持分布式通知的回调函数。 |
+| callback | AsyncCallback\<boolean\> | 是   | 查询指定应用是否支持分布式通知的回调函数（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3556,11 +3802,9 @@ let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boole
         console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
     }
 };
-
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
 
@@ -3574,7 +3818,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3586,7 +3830,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 | 类型               | 说明                                              |
 | ------------------ | ------------------------------------------------- |
-| Promise\<boolean\> | Promise方式返回指定应用是否支持分布式通知的结果。 |
+| Promise\<boolean\> | Promise方式返回指定应用是否支持分布式通知的结果（true：支持，false：不支持）。 |
 
 **错误码：**
 
@@ -3608,7 +3852,6 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -3621,13 +3864,13 @@ notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) =>
 
 getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
-获取通知的提醒方式（Callback形式）。
+获取通知的提醒方式（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3657,7 +3900,6 @@ let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: notificationMa
         console.info(`getDeviceRemindType success, data is ${JSON.stringify(data)}`);
     }
 };
-
 notificationManager.getDeviceRemindType(getDeviceRemindTypeCallback);
 ```
 
@@ -3671,7 +3913,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -3712,7 +3954,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3721,7 +3963,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 | request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
 | representativeBundle | string                                      | 是   | 被代理应用的包名。                       |
 | userId               | number                                      | 是   | 用户ID。                                 |
-| callback             | AsyncCallback                               | 是   | 发布代理通知的回调方法。                 |
+| callback             | AsyncCallback\<void\>                        | 是   | 发布代理通知的回调方法。                 |
 
 **错误码：**
 
@@ -3759,7 +4001,7 @@ let userId: number = 100;
 let request: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -3767,7 +4009,6 @@ let request: notificationManager.NotificationRequest = {
         }
     }
 };
-
 notificationManager.publishAsBundle(request, representativeBundle, userId, callback);
 ```
 
@@ -3781,7 +4022,7 @@ publishAsBundle(request: NotificationRequest, representativeBundle: string, user
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3826,7 +4067,7 @@ let userId: number = 100;
 let request: notificationManager.NotificationRequest = {
     id: 1,
     content: {
-        contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
         normal: {
             title: "test_title",
             text: "test_text",
@@ -3834,7 +4075,6 @@ let request: notificationManager.NotificationRequest = {
         }
     }
 };
-
 notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -3852,7 +4092,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3892,7 +4132,6 @@ let cancelAsBundleCallback = (err: Base.BusinessError): void => {
 let representativeBundle: string = "com.example.demo";
 // 用户ID
 let userId: number = 100;
-
 notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
 
@@ -3906,7 +4145,7 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 **参数：**
 
@@ -3943,7 +4182,6 @@ import Base from '@ohos.base';
 let representativeBundle: string = "com.example.demo";
 // 用户ID
 let userId: number = 100;
-
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -3955,11 +4193,11 @@ notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用的指定渠道类型的使能状态（Callback形式）。
+设置指定应用的指定渠道类型的使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -3969,7 +4207,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
-| enable   | boolean                       | 是   | 使能状态。             |
+| enable   | boolean                       | 是   | 使能状态（true：使能，false：禁止）。             |
 | callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。 |
 
 **错误码：**
@@ -3981,6 +4219,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -3996,7 +4235,6 @@ let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
         console.info("setNotificationEnableSlot success");
     }
 };
-
 notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
@@ -4004,25 +4242,27 @@ notificationManager.setNotificationEnableSlot(
     setNotificationEnableSlotCallback);
 ```
 
-## notificationManager.setNotificationEnableSlot
+## notificationManager.setNotificationEnableSlot<sup>11+</sup>
 
-setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
+setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, isForceControl: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用的指定渠道类型的使能状态（Promise形式）。
+设置指定应用的指定渠道类型的使能状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
 **参数：**
 
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
-| type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
-| enable | boolean                       | 是   | 使能状态。     |
+| 参数名   | 类型                          | 必填 | 说明                     |
+| -------- | ----------------------------- | ---- | ----------------------- |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。|
+| type     | [SlotType](#slottype)         | 是   | 指定渠道类型。           |
+| enable   | boolean                       | 是   | 使能状态。               |
+| isForceControl<sup>11+</sup> | boolean                 | 是   | 渠道开关是否受通知总开关影响（false：受总开关影响，true：不受总开关影响）。 |
+| callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。    |
 
 **错误码：**
 
@@ -4033,6 +4273,61 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean)
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
+| 17700001 | The specified bundle name was not found. |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
+    if (err) {
+        console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("setNotificationEnableSlot success");
+    }
+};
+
+notificationManager.setNotificationEnableSlot(
+    { bundle: "ohos.samples.notification", },
+    notificationManager.SlotType.SOCIAL_COMMUNICATION,
+    true,
+    false,
+    setNotificationEnableSlotCallback);
+```
+
+## notificationManager.setNotificationEnableSlot
+
+setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, isForceControl?: boolean): Promise\<void>
+
+设置指定应用的指定渠道类型的使能状态。使用promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。   |
+| type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
+| enable | boolean                       | 是   | 使能状态（true：使能，false：禁止）。     |
+| isForceControl<sup>11+</sup> | boolean               | 否   | 渠道开关是否受通知总开关影响（false：受总开关影响，true：不受总开关影响）。默认为false。     |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+| 1600012  | No memory space.                         |
 | 17700001 | The specified bundle name was not found. |
 
 **示例：**
@@ -4055,11 +4350,11 @@ notificationManager.setNotificationEnableSlot(
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的指定渠道类型的使能状态（Callback形式）。
+获取指定应用的指定渠道类型的使能状态（callback形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4069,7 +4364,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 应用的包信息。           |
 | type     | [SlotType](#slottype)         | 是   | 渠道类型。         |
-| callback | AsyncCallback\<boolean\>         | 是   | 获取渠道使能状态回调函数。 |
+| callback | AsyncCallback\<boolean\>         | 是   | 获取渠道使能状态回调函数（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -4110,7 +4405,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4125,7 +4420,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回指定类型的渠道使能状态。 |
+| Promise\<boolean\> | 以Promise形式返回指定类型的渠道使能状态（true：使能，false：禁止）。 |
 
 **错误码：**
 
@@ -4161,7 +4456,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4170,7 +4465,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户ID。   |
-| enable | boolean | 是   | 是否启用。   |
+| enable | boolean | 是   | 是否启用（true：使能，false：禁止）。   |
 | callback | AsyncCallback\<void\>    | 是   | 设置是否将通知同步到未安装应用程序的设备的回调函数。 |
 
 **错误码：**
@@ -4191,7 +4486,6 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 let enable: boolean = true;
-
 let callback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
@@ -4199,7 +4493,6 @@ let callback = (err: Base.BusinessError): void => {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
 }
-
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
 ```
 
@@ -4212,7 +4505,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4221,7 +4514,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户ID。   |
-| enable | boolean | 是   | 是否启用。   |
+| enable | boolean | 是   | 是否启用（true：使能，false：禁止）。   |
 
 **返回值：**
 
@@ -4247,7 +4540,6 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 let enable: boolean = true;
-
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err: Base.BusinessError) => {
@@ -4264,7 +4556,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4273,7 +4565,7 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | 是   | 用户ID。   |
-| callback | AsyncCallback\<boolean\>         | 是   | 获取同步通知到未安装应用程序设备的开关是否开启的回调函数。 |
+| callback | AsyncCallback\<boolean\>         | 是   | 获取同步通知到未安装应用程序设备的开关是否开启的回调函数（true：开启，false：未开启）。 |
 
 **错误码：**
 
@@ -4292,7 +4584,6 @@ getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<bo
 import Base from '@ohos.base';
 
 let userId: number = 100;
-
 let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
@@ -4300,7 +4591,6 @@ let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, dat
         console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
     }
 }
-
 notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
 ```
 
@@ -4313,7 +4603,7 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
 
@@ -4327,7 +4617,7 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 
 | 类型               | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取同步通知到未安装应用程序设备的开关是否开启的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取同步通知到未安装应用程序设备的开关是否开启的结果（true：开启，false：未开启）。 |
 
 **错误码：**
 
@@ -4346,7 +4636,6 @@ getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
 import Base from '@ohos.base';
 
 let userId: number = 100;
-
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
   console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
 }).catch((err: Base.BusinessError) => {
@@ -4362,7 +4651,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -4386,7 +4675,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 ```ts
 import Base from '@ohos.base';
 
-let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
+let onCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
     console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
     if(info.notificationId == 1){
         let result: notificationManager.NotificationCheckResult =  { code: 1, message: "testMsg1"};
@@ -4397,8 +4686,70 @@ let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): no
     }
 }
 try{
-    notificationManager.on("checkNotification", OnCheckNotification);
+    notificationManager.on("checkNotification", onCheckNotification);
 } catch (error){
+    console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+}
+```
+
+## notificationManager.on<sup>11+</sup>
+
+on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: (checkInfo: NotificationCheckInfo) => Promise\<NotificationCheckResult\>): void
+
+注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                                                                                                             | 必填 | 说明           |
+| ------ |-----------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                            | 是   | 回调函数类型名，固定为'checkNotification'。 |
+| checkRequest | [NotificationCheckRequest](js-apis-inner-notification-notificationRequest.md#notificationcheckrequest11)    | 是   | 通知请求验证内容。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  Promise\<[NotificationCheckResult](#notificationcheckresult10)\> | 是   | 消息验证函数指针。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+
+**示例：**
+
+```ts
+import Base from '@ohos.base';
+
+public static async check(checkInfo : notificationManager.NotificationCheckInfo): Promise<NotificationCheckResult> {
+    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
+    const { contentType, slotType, bundleName, userId, extraInfos } = checkInfo;
+    if(contentType != NOTIFICATION_CONTENT_LIVE_VIEW){
+        let result: notificationManager.NotificationCheckResult =  { code: 1, message: "INVALID_PARAMETERS"};
+        return result;
+    } else {
+        let result: notificationManager.NotificationCheckResult =  { code: 0, message: "SUCCESS"};
+        return result;
+    }
+}
+
+try {
+    notificationManager.on(
+      "checkNotification",
+      {
+        contentType: ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+        slotType: SlotType.LIVE_VIEW ,
+        extraInfoKeys: ["event"],
+      },
+      check
+    );
+} catch (error) {
     console.info(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
@@ -4411,7 +4762,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -4420,7 +4771,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 | 参数名 | 类型                                                                                                                      | 必填 | 说明           |
 | ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
 | type | string                                                                                                                  | 是   | 回调函数类型名，固定为'checkNotification'。 |
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | 否   | 消息验证函数指针，默认为空。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | 否   | 消息验证函数指针。 |
 
 **错误码：**
 
@@ -4438,7 +4789,7 @@ import Base from '@ohos.base';
 try{
     notificationManager.off("checkNotification");
 } catch (error){
-    console.info(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.off error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
@@ -4483,6 +4834,8 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 // 包信息
 let bundle = {
     bundle: "bundleName1",
@@ -4537,6 +4890,8 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>;
 **示例：**
 
 ```ts
+import Base from '@ohos.base';
+
 let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
     console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
 }
@@ -4556,7 +4911,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称  | 类型                                  | 必填 | 说明                   |
 | ----- | ------------------------------------- | ---- | ---------------------- |
@@ -4568,14 +4923,14 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 | 名称         | 值               | 说明                                       |
 | ------------ | ---------------- | ------------------------------------------ |
 | TYPE_NONE    | 0 | 非通知勿扰类型。                           |
 | TYPE_ONCE    | 1 | 以设置时间段(只看小时和分钟)一次执行勿扰。 |
 | TYPE_DAILY   | 2 | 以设置时间段(只看小时和分钟)每天执行勿扰。 |
-| TYPE_CLEARLY | 3 | 以设置时间段(明确年月日时分)执行勿扰。     |
+| TYPE_CLEARLY | 3 | 以设置时间段(明确月日时)执行勿扰。     |
 
 
 ## ContentType
@@ -4584,12 +4939,13 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- |------------------|
-| NOTIFICATION_CONTENT_BASIC_TEXT   | NOTIFICATION_CONTENT_BASIC_TEXT | 普通类型通知。          |
-| NOTIFICATION_CONTENT_LONG_TEXT    | NOTIFICATION_CONTENT_LONG_TEXT | 长文本类型通知。         |
-| NOTIFICATION_CONTENT_PICTURE      | NOTIFICATION_CONTENT_PICTURE | 图片类型通知。          |
-| NOTIFICATION_CONTENT_CONVERSATION | NOTIFICATION_CONTENT_CONVERSATION | 社交类型通知（暂不支持该类型）。 |
-| NOTIFICATION_CONTENT_MULTILINE    | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型通知。        |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW    | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 实况窗类型通知（仅对系统应用开放）。        |
+| NOTIFICATION_CONTENT_BASIC_TEXT   | 0          | 普通类型通知。          |
+| NOTIFICATION_CONTENT_LONG_TEXT    | 1          | 长文本类型通知。         |
+| NOTIFICATION_CONTENT_PICTURE      | 2          | 图片类型通知。          |
+| NOTIFICATION_CONTENT_CONVERSATION | 3          | 社交类型通知（暂不支持该类型）。 |
+| NOTIFICATION_CONTENT_MULTILINE    | 4          | 多行文本类型通知。        |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | 实况窗类型通知（仅对系统应用开放）。        |
+| NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>    | 6 | 普通实况窗类型通知。  |
 
 ## SlotLevel
 
@@ -4614,7 +4970,8 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 | SOCIAL_COMMUNICATION | 1 | 社交类型。 |
 | SERVICE_INFORMATION  | 2 | 服务类型。 |
 | CONTENT_INFORMATION  | 3 | 内容类型。 |
-| LIVE_VIEW            | 4 | 实况窗类型（仅对系统应用开放）。 |
+| LIVE_VIEW<sup>11+</sup>            | 4 | 实况窗类型（仅对系统应用开放）。 |
+| CUSTOMER_SERVICE<sup>11+</sup>     | 5 | 客户服务类型。该类型用于用户与商家之间的客服消息，需由用户主动发起。  |
 | OTHER_TYPES          | 0xFFFF | 其他类型。 |
 
 
@@ -4624,7 +4981,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
@@ -4638,7 +4995,7 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 | 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |
@@ -4650,21 +5007,25 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-| 名称  | 类型                                  | 必填 | 说明                   |
-| ----- | ------------------------------------- | --- | ---------------------- |
-| bundleName  | string                          | 是   | bundle名称。 |
-| notificationId | number                       | 是   | 通知Id。     |
-| contentType   | [ContentType](#contenttype)   | 是   | 通知类型。   |
+| 名称                         | 类型                         | 必填 | 说明            |
+| ---------------------------- | ---------------------------- | --- | --------------- |
+| bundleName                   | string                       | 是   | Bundle名称。    |
+| notificationId               | number                       | 是   | 通知ID。        |
+| label<sup>11+</sup>          | string                       | 否   | 通知标签。      |
+| contentType                  | [ContentType](#contenttype)  | 是   | 通知类型。      |
+| creatorUserId<sup>11+</sup>  | number                       | 是   | 通知的user ID。 |
+| slotType<sup>11+</sup>       | [SlotType](#slottype)        | 是   | 渠道类型。      |
+| extraInfos<sup>11+</sup>     | [key: string]: object        | 否   | 通知的附加信息。 |
 
 ## NotificationCheckResult<sup>10+</sup>
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -4681,6 +5042,8 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 
 | 名称    | 类型                                  | 必填 | 说明                   |

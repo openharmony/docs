@@ -5,7 +5,7 @@
 
 As the all-scenario, multi-device lifestyle becomes popular, users have an increasing number of devices. Each device provides users with what they need in a certain scenario. For example, watches allow users to view information in a timely manner, and smart TVs deliver an immersive watching experience. However, each device has its limitations. For example, typing text on a smart TV is frustrating as it is much more difficult than on a mobile device. If multiple devices can sense each other through a distributed OS and together form a super device, the strengths of each device can be fully exerted, thereby providing a more natural and smoother distributed experience for users.
 
-In OpenHarmony, distributed operations across devices are called continuation (also named hopping), which is further classified into [cross-device migration](hop-cross-device-migration.md) and [multi-device collaboration](hop-multi-device-collaboration.md). To implement continuation, cross-device interaction capabilities of application components are required. Currently, these capabilities are open only to system applications.
+Distributed operations across devices are called continuation (also named hopping), which is further classified into [cross-device migration](hop-cross-device-migration.md) and [multi-device collaboration](hop-multi-device-collaboration.md). To implement continuation, cross-device interaction capabilities of application components are required. Currently, these capabilities are open only to system applications.
 
 
 ## Basic Concepts
@@ -28,7 +28,7 @@ In OpenHarmony, distributed operations across devices are called continuation (a
 
 ## Continuation Architecture
 
-OpenHarmony provides APIs for you to implement continuation in your applications. The continuation architecture has the following advantages:
+The system provides APIs for you to implement continuation in your applications. The continuation architecture has the following advantages:
 
 - Capabilities such as remote service invocation to facilitate service design
 

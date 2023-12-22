@@ -1,4 +1,4 @@
-# Using AudioCapturer for Audio Recording
+# Using AudioCapturer for Audio Recording (ArkTS)
 
 The AudioCapturer is used to record Pulse Code Modulation (PCM) audio data. It is suitable if you have extensive audio development experience and want to implement more flexible recording features.
 
@@ -8,7 +8,8 @@ The full recording process involves creating an **AudioCapturer** instance, conf
 
 The figure below shows the state changes of the AudioCapturer. After an **AudioCapturer** instance is created, different APIs can be called to switch the AudioCapturer to different states and trigger the required behavior. If an API is called when the AudioCapturer is not in the given state, the system may throw an exception or generate other undefined behavior. Therefore, you are advised to check the AudioCapturer state before triggering state transition.
 
-**Figure 1** AudioCapturer state transition 
+**Figure 1** AudioCapturer state transition
+
 ![AudioCapturer state change](figures/audiocapturer-status-change.png)
 
 You can call **on('stateChange')** to listen for state changes. For details about each state, see [AudioState](../reference/apis/js-apis-audio.md#audiostate8).
@@ -16,94 +17,94 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 ### How to Develop
 
 1. Set audio recording parameters and create an **AudioCapturer** instance. For details about the parameters, see [AudioCapturerOptions](../reference/apis/js-apis-audio.md#audiocaptureroptions8).
-   
+     
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   
-   let audioStreamInfo: audio.AudioStreamInfo = {
-     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-     channels: audio.AudioChannel.CHANNEL_2,
-     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-   };
-   
-   let audioCapturerInfo: audio.AudioCapturerInfo = {
-     source: audio.SourceType.SOURCE_TYPE_MIC,
-     capturerFlags: 0
-   };
-   
-   let audioCapturerOptions: audio.AudioCapturerOptions = {
-     streamInfo: audioStreamInfo,
-     capturerInfo: audioCapturerInfo
-   };
-   
-   audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
-     if (err) {
-       console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('Invoke createAudioCapturer succeeded.');
-       let audioCapturer = data;
-     }
-   });
+    import audio from '@ohos.multimedia.audio';
+    
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+      channels: audio.AudioChannel.CHANNEL_2,
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+    };
+    
+    let audioCapturerInfo: audio.AudioCapturerInfo = {
+      source: audio.SourceType.SOURCE_TYPE_MIC,
+      capturerFlags: 0
+    };
+    
+    let audioCapturerOptions: audio.AudioCapturerOptions = {
+      streamInfo: audioStreamInfo,
+      capturerInfo: audioCapturerInfo
+    };
+    
+    audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
+      if (err) {
+        console.error(`Invoke createAudioCapturer failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Invoke createAudioCapturer succeeded.');
+        let audioCapturer = data;
+      }
+    });
    ```
-   
-2. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
 
+2. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
+     
    ```ts
-   audioCapturer.start((err: BusinessError) => {
-     if (err) {
-       console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('Capturer start success.');
-     }
-   });
+    audioCapturer.start((err: BusinessError) => {
+      if (err) {
+        console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Capturer start success.');
+      }
+    });
    ```
 
 3. Specify the recording file path and call **read()** to read the data in the buffer.
-
+     
    ```ts
-   import fs from '@ohos.file.fs';
-   
-   let context = getContext(this);
-   async function read() {
-     let path = context.filesDir;
-     const filePath = path + '/voice_call_data.wav';
-     let file: fs.File = fs.openSync(filePath, 0o2 | 0o100);
-     let bufferSize: number = await audioCapturer.getBufferSize();
-     let buffer: ArrayBuffer = await audioCapturer.read(bufferSize, true);
-     fs.writeSync(file.fd, buffer);
-   }
+    import fs from '@ohos.file.fs';
+    
+    let context = getContext(this);
+    async function read() {
+      let path = context.filesDir;
+      const filePath = path + '/voice_call_data.wav';
+      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      let bufferSize: number = await audioCapturer.getBufferSize();
+      let buffer: ArrayBuffer = await audioCapturer.read(bufferSize, true);
+      fs.writeSync(file.fd, buffer);
+    }
    ```
 
 4. Call **stop()** to stop recording.
-
+     
    ```ts
-   audioCapturer.stop((err: BusinessError) => {
-     if (err) {
-       console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('Capturer stopped.');
-     }
-   });
+    audioCapturer.stop((err: BusinessError) => {
+      if (err) {
+        console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Capturer stopped.');
+      }
+    });
    ```
 
 5. Call **release()** to release the instance.
-
+     
    ```ts
-   audioCapturer.release((err: BusinessError) => {
-     if (err) {
-       console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('capturer released.');
-     }
-   });
+    audioCapturer.release((err: BusinessError) => {
+      if (err) {
+        console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('capturer released.');
+      }
+    });
    ```
 
 
 ### Sample Code
 
 Refer to the sample code below to record audio using AudioCapturer.
-
+  
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
@@ -161,7 +162,7 @@ async function start() {
     }
     await (audioCapturer as audio.AudioCapturer).start(); // Start recording.
     const path = context.filesDir + '/test.wav'; // Path for storing the recorded audio file.
-    let file = fs.openSync(path, 0o2 | 0o100); // Create the file if it does not exist.
+    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE); // Create the file if it does not exist.
     let fd = file.fd;
     let numBuffersToCapture = 150; // Write data for 150 times.
     let count = 0;

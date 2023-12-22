@@ -14,16 +14,68 @@ AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，�
 在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContex的实例。
 
 ```ts
-import AccessibilityExtensionAbility, {
-  AccessibilityExtensionContext,
-} from '@ohos.application.AccessibilityExtensionAbility';
-
-let axContext: AccessibilityExtensionContext;
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 
 class EntryAbility extends AccessibilityExtensionAbility {
-  axContext = this.context;
+  onConnect(): void {
+    let axContext = this.context; 
+  } 
 }
 ```
+
+## ElementAttributeValues
+
+| key            | value            | 说明                  |
+| ------------- | ------------- | ------------------- |
+| accessibilityFocused | boolean          |   accessibility焦点状态   |
+| bundleName | string          | 应用包名 |
+| checkable    | boolean          | 元素是否可查 |
+| checked  | boolean          | 元素是否被检查 |
+| children  | Array<AccessibilityElement>          | 所有子元素 |
+| clickable  | boolean          | 是否可点击 |
+| componentId  | number          | 元素所属的组件ID |
+| componentType  | string          | 元素所属的组件类型 |
+| contents  | Array<string>          | 内容 |
+| currentIndex  | number          | 当前项的索引 |
+| description  | string          | 元素的描述信息 |
+| editable  | boolean          | 元素是否可编辑 |
+| endIndex  | number          | 屏幕最后显示项的列表索引 |
+| error  | string          | 错误状态字符串 |
+| focusable  | boolean          | 元素是否可聚焦 |
+| hintText  | string          | 提示文本 |
+| inputType  | number          | 输入文本的类型 |
+| inspectorKey  | string          | 检查键 |
+| isActive  | boolean          | 元素是否处于活动状态 |
+| isEnable  | boolean          | 元素是否启用 |
+| isHint  | boolean          | 元素是否为提示状态 |
+| isFocused  | boolean          | 元素是否聚焦 |
+| isPassword  | boolean          | 元素是否为密码 |
+| isVisible  | boolean          | 元素是否可见 |
+| itemCount  | number          | 项目的总数 |
+| lastContent  | string          | 最后的内容 |
+| layer  | number          | 该元素的显示层 |
+| longClickable  | boolean          | 元素是否可长单击 |
+| pageId  | number          | 页码id |
+| parent  | AccessibilityElement          | 元素的父元素 |
+| pluralLineSupported  | boolean          | 元素是否支持多行文本。 |
+| rect  | Rect          | 元素的面积 |
+| resourceName  | string          | 元素的资源名称 |
+| rootElement  | AccessibilityElement          | 窗口元素的根元素 |
+| screenRect  | Rect          | 元素的显示区域 |
+| scrollable  | boolean          | 元素是否可滚动 |
+| selected  | boolean          | 元素是否被选中 |
+| startIndex  | number          | 在屏幕上的第一个项目的列表索引 |
+| text  | string          | 元素的文本 |
+| textLengthLimit  | string          | 元素文本的最大长度限制 |
+| textMoveUnit  | accessibility.TextMoveUnit          | 文本被读取时的移动单位 |
+| triggerAction  | accessibility.Action          | 触发元素事件的动作 |
+| type  | WindowType          | 元素的窗口类型 |
+| valueMax  | number          | 最大值 |
+| valueMin  | number          | 最小值 |
+| valueNow  | number          | 当前值 |
+| windowId  | number          | 窗口id |
+
+
 
 ## FocusDirection
 
@@ -87,7 +139,7 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 | 参数名         | 类型                  | 必填   | 说明       |
 | ----------- | ------------------- | ---- | -------- |
-| targetNames | Array&lt;string&gt; | 是    | 关注的目标包名。 |
+| targetNames | Array&lt;string&gt; | 是    | 设置关注应用的包名，服务接收关注应用的无障碍事件，默认接收所有应用的无障碍事件，取消关注应用则传空数组。 |
 
 **返回值：**
 
@@ -98,17 +150,14 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 **示例：**
 
 ```ts
-let targetNames = ['com.ohos.xyz'];
+import { BusinessError } from '@ohos.base';
 
-try {
-  axContext.setTargetBundleName(targetNames).then(() => {
-    console.info('set target bundle names success');
-  }).catch((err: object) => {
-    console.error(`failed to set target bundle names, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to set target bundle names, because ${JSON.stringify(exception)}`);
-}
+let targetNames = ['com.ohos.xyz'];
+axContext.setTargetBundleName(targetNames).then(() => {
+  console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
+})
 ```
 
 ## AccessibilityExtensionContext.setTargetBundleName
@@ -123,7 +172,7 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 
 | 参数名         | 类型                        | 必填   | 说明                                       |
 | ----------- | ------------------------- | ---- | ---------------------------------------- |
-| targetNames | Array&lt;string&gt;       | 是    | 关注的目标包名。                                 |
+| targetNames | Array&lt;string&gt;       | 是    | 设置关注应用的包名，服务接收关注应用的无障碍事件，默认接收所有应用的无障碍事件，取消关注应用则传空数组。                                 |
 | callback    | AsyncCallback&lt;void&gt; | 是    | 回调函数，如果设置关注的目标包名失败，则AsyncCallback中err有数据返回。 |
 
 **示例：**
@@ -133,15 +182,15 @@ import { BusinessError } from '@ohos.base';
 
 let targetNames = ['com.ohos.xyz'];
 try {
-  axContext.setTargetBundleName(targetNames, (err: BusinessError<void>) => {
-    if (err) {
-      console.error(`failed to set target bundle names, because ${JSON.stringify(err)}`);
+  axContext.setTargetBundleName(targetNames, (err: BusinessError) => {
+    if (err && err.code) {
+      console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
       return;
     }
-    console.info('set target bundle names success');
+    console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
   });
-} catch (exception) {
-  console.error(`failed to set target bundle names, because ${JSON.stringify(exception)}`);
+} catch (error) {
+  console.error(`failed to set target bundle names, Because ${JSON.stringify(error)}`);
 }
 ```
 
@@ -157,53 +206,12 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 | 参数名                  | 类型      | 必填   | 说明                  |
 | -------------------- | ------- | ---- | ------------------- |
-| isAccessibilityFocus | boolean | 否    | 获取的是否是无障碍焦点元素，默认为否。 |
+| isAccessibilityFocus | boolean | 否    | 获取的是否是无障碍焦点元素，True表示是，False表示否，默认为否。 |
 
 **返回值：**
-
 | 类型                                  | 说明                     |
 | ----------------------------------- | ---------------------- |
-| Promise&lt;AccessibilityElement&gt; | Promise对象，返回当前对应的焦点元素。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
-
-| 错误码ID   | 错误信息                                     |
-| ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
-
-**示例：**
-
-```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-
-let focusElement: AccessibilityElement;
-try {
-  axContext.getFocusElement().then((data: AccessibilityElement) => {
-    focusElement = data;
-    console.log('get focus element success');
-  }).catch((err: object) => {
-    console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
-}
-```
-
-## AccessibilityExtensionContext.getFocusElement
-
-getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
-
-获取焦点元素, 使用callback异步回调。
-
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
-
-**参数：**
-
-| 参数名      | 类型                                       | 必填   | 说明                |
-| -------- | ---------------------------------------- | ---- | ----------------- |
-| callback | AsyncCallback&lt;AccessibilityElement&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
+| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回当前对应的焦点元素。 |
 
 **错误码：**
 
@@ -219,19 +227,48 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let focusElement: AccessibilityElement;
-try {
-  axContext.getFocusElement((err: BusinessError<void>, data: AccessibilityElement) => {
-    if (err) {
-      console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
-      return;
-    }
-    focusElement = data;
-    console.info('get focus element success');
-  });
-} catch (exception) {
-  console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
-}
+axContext.getFocusElement().then((data: AccessibilityElement) => {
+  console.log(`Succeeded in get focus element,${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
+})
+```
+
+## AccessibilityExtensionContext.getFocusElement
+
+getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
+
+获取焦点元素, 使用callback异步回调。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| callback | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 9300003 | Do not have accessibility right for this operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+axContext.getFocusElement((err: BusinessError, data: AccessibilityElement) => {
+  if (err) {
+    console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get focus element, ${JSON.stringify(data)}`);
+});
 ```
 
 ## AccessibilityExtensionContext.getFocusElement
@@ -247,7 +284,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 | 参数名                  | 类型                                       | 必填   | 说明                |
 | -------------------- | ---------------------------------------- | ---- | ----------------- |
 | isAccessibilityFocus | boolean                                  | 是    | 获取的是否是无障碍焦点元素。    |
-| callback             | AsyncCallback&lt;AccessibilityElement&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
+| callback             | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回当前对应的焦点元素。 |
 
 **错误码：**
 
@@ -263,22 +300,17 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let focusElement: AccessibilityElement;
 let isAccessibilityFocus = true;
 
-try {
-  axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError<void>, data: AccessibilityElement) => {
-    if (err) {
-      console.error(`failed to get focus element, because ${JSON.stringify(err)}`);
-      return;
-    }
-    focusElement = data;
-    console.info('get focus element success');
-  });
-} catch (exception) {
-  console.error(`failed to get focus element, because ${JSON.stringify(exception)}`);
-}
+axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError, data: AccessibilityElement)=> {
+  if (err) {
+    console.error(`failed to get focus element, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get focus element, ${JSON.stringify(data)}`);
+});
 ```
+
 ## AccessibilityExtensionContext.getWindowRootElement
 
 getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
@@ -297,47 +329,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 类型                                  | 说明                     |
 | ----------------------------------- | ---------------------- |
-| Promise&lt;AccessibilityElement&gt; | Promise对象，返回指定窗口的根节点元素。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
-
-| 错误码ID   | 错误信息                                     |
-| ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
-
-**示例：**
-
-```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-
-let rootElement: AccessibilityElement;
-try {
-  axContext.getWindowRootElement().then((data: AccessibilityElement) => {
-    rootElement = data;
-    console.log('get root element of the window success');
-  }).catch((err: object) => {
-    console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to get root element of the window, ${JSON.stringify(exception)}`);
-}
-```
-
-## AccessibilityExtensionContext.getWindowRootElement
-
-getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
-
-获取指定窗口的根节点元素, 使用callback异步回调。
-
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
-
-**参数：**
-
-| 参数名      | 类型                                       | 必填   | 说明                 |
-| -------- | ---------------------------------------- | ---- | ------------------ |
-| callback | AsyncCallback&lt;AccessibilityElement&gt; | 是    | 回调函数，返回指定窗口的根节点元素。 |
+| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回指定窗口的根节点元素。 |
 
 **错误码：**
 
@@ -353,20 +345,48 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let rootElement: AccessibilityElement;
-try {
-  axContext.getWindowRootElement((err: BusinessError<void>
-                                  , data: AccessibilityElement) => {
-    if (err) {
-      console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
-      return;
-    }
-    rootElement = data;
-    console.info('get root element of the window success');
-  });
-} catch (exception) {
-  console.error(`failed to get root element of the window, because ${JSON.stringify(exception)}`);
-}
+axContext.getWindowRootElement().then((data: AccessibilityElement) => {
+  console.log(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## AccessibilityExtensionContext.getWindowRootElement
+
+getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
+
+获取指定窗口的根节点元素, 使用callback异步回调。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                 |
+| -------- | ---------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回指定窗口的根节点元素。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 9300003 | Do not have accessibility right for this operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+axContext.getWindowRootElement((err: BusinessError, data: AccessibilityElement) => {
+  if (err) {
+    console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
+});
 ```
 
 ## AccessibilityExtensionContext.getWindowRootElement
@@ -382,7 +402,7 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 | 参数名      | 类型                                       | 必填   | 说明                     |
 | -------- | ---------------------------------------- | ---- | ---------------------- |
 | windowId | number                                   | 是    | 指定窗口的编号，未指定则从当前活跃窗口获取。 |
-| callback | AsyncCallback&lt;AccessibilityElement&gt; | 是    | 回调函数，返回指定窗口的根节点元素。     |
+| callback | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回指定窗口的根节点元素。     |
 
 **错误码：**
 
@@ -398,21 +418,15 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let rootElement: AccessibilityElement;
 let windowId = 10;
 
-try {
-  axContext.getWindowRootElement(windowId, (err: BusinessError<void>, data: AccessibilityElement) => {
-    if (err) {
-      console.error(`failed to get root element of the window, because ${JSON.stringify(err)}`);
-      return;
-    }
-    rootElement = data;
-    console.info('get root element of the window success');
-  });
-} catch (exception) {
-  console.error(`failed to get root element of the window, because ${JSON.stringify(exception)}`);
-}
+axContext.getWindowRootElement(windowId, (err: BusinessError, data: AccessibilityElement) => {
+  if (err) {
+    console.error(`failed to get root element of the window, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get root element of the window, ${JSON.stringify(data)}`);
+});
 ```
 
 ## AccessibilityExtensionContext.getWindows
@@ -433,47 +447,7 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 | 类型                                       | 说明                     |
 | ---------------------------------------- | ---------------------- |
-| Promise&lt;Array&lt;AccessibilityElement&gt;&gt; | Promise对象，返回指定屏幕的所有窗口。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
-
-| 错误码ID   | 错误信息                                     |
-| ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
-
-**示例：**
-
-```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-
-let windows: AccessibilityElement[];
-try {
-  axContext.getWindows().then((data: AccessibilityElement[]) => {
-    windows = data;
-    console.log('get windows success');
-  }).catch((err: object) => {
-    console.error(`failed to get windows, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
-}
-```
-
-## AccessibilityExtensionContext.getWindows
-
-getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
-
-获取指定屏幕中的所有窗口, 使用callback异步回调。
-
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
-
-**参数：**
-
-| 参数名      | 类型                                       | 必填   | 说明                |
-| -------- | ---------------------------------------- | ---- | ----------------- |
-| callback | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | 是    | 回调函数，返回指定屏幕的所有窗口。 |
+| Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回指定屏幕的所有窗口。 |
 
 **错误码：**
 
@@ -489,19 +463,48 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let windows: AccessibilityElement[];
-try {
-  axContext.getWindows((err: BusinessError<void>, data: AccessibilityElement[]) => {
-    if (err) {
-      console.error(`failed to get windows, because ${JSON.stringify(err)}`);
-      return;
-    }
-    windows = data;
-    console.info('get windows success');
-  });
-} catch (exception) {
-  console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
-}
+axContext.getWindows().then((data: AccessibilityElement[]) => {
+  console.log(`Succeeded in get windows, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get windows, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## AccessibilityExtensionContext.getWindows
+
+getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
+
+获取指定屏幕中的所有窗口, 使用callback异步回调。
+
+**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名      | 类型                                       | 必填   | 说明                |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| callback | AsyncCallback&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | 是    | 回调函数，返回指定屏幕的所有窗口。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](../errorcodes/errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 9300003 | Do not have accessibility right for this operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
+
+axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
+  if (err) {
+    console.error(`failed to get windows, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get windows, ${JSON.stringify(data)}`);
+});
 ```
 
 ## AccessibilityExtensionContext.getWindows
@@ -517,7 +520,7 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 | 参数名       | 类型                                       | 必填   | 说明                    |
 | --------- | ---------------------------------------- | ---- | --------------------- |
 | displayId | number                                   | 是    | 指定的屏幕编号，未指定则从默认主屏幕获取。 |
-| callback  | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | 是    | 回调函数，返回指定屏幕的所有窗口。     |
+| callback  | AsyncCallback&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | 是    | 回调函数，返回指定屏幕的所有窗口。     |
 
 **错误码：**
 
@@ -533,25 +536,25 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let windows: AccessibilityElement[];
 let displayId = 10;
-try {
-  axContext.getWindows(displayId, (err: BusinessError<void>, data: AccessibilityElement[]) => {
-    if (err) {
-      console.error(`failed to get windows, because ${JSON.stringify(err)}`);
-      return;
-    }
-    windows = data;
-    console.info('get windows success');
-  });
-} catch (exception) {
-  console.error(`failed to get windows, because ${JSON.stringify(exception)}`);
-}
+axContext.getWindows(displayId, (err: BusinessError, data: AccessibilityElement[]) => {
+  if (err) {
+    console.error(`failed to get windows, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get windows, ${JSON.stringify(data)}`);
+});
 ```
 
 ## AccessibilityExtensionContext.injectGesture<sup>(deprecated)</sup>
 
 injectGesture(gesturePath: GesturePath): Promise\<void>;
+
+> **说明：**
+>
+> 从API version 10开始废弃。
+>
+> 推荐使用[injectGestureSync<sup>10+</sup>](#accessibilityextensioncontextinjectgesturesync10)。
 
 注入手势，使用Promise异步回调。
 
@@ -582,25 +585,29 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 ```ts
 import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { BusinessError } from '@ohos.base';
 
 let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
-try {
-  for (let i = 0; i < 10; i++) {
-    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
-    gesturePath.points.push(gesturePoint);
-  }
-  axContext.injectGesture(gesturePath).then(() => {
-    console.info('inject gesture success');
-  }).catch((err: object) => {
-    console.error(`failed to inject gesture, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
+
+for (let i = 0; i < 10; i++) {
+  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  gesturePath.points.push(gesturePoint);
 }
+axContext.injectGesture(gesturePath).then(() => {
+  console.info(`Succeeded in inject gesture,gesturePath is ${gesturePath}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to inject gesture, Code is ${err.code}, message is ${err.message}`);
+});
 ```
 ## AccessibilityExtensionContext.injectGesture<sup>(deprecated)</sup>
 
 injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
+
+> **说明：**
+>
+> 从API version 10开始废弃。
+>
+> 推荐使用[injectGestureSync<sup>10+</sup>](#accessibilityextensioncontextinjectgesturesync10)。
 
 注入手势，使用callback异步回调。
 
@@ -626,23 +633,20 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 ```ts
 import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { BusinessError } from '@ohos.base';
 
 let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
-try {
-  for (let i = 0; i < 10; i++) {
-    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
-    gesturePath.points.push(gesturePoint);
-  }
-  axContext.injectGesture(gesturePath, (err) => {
-    if (err) {
-      console.error(`failed to inject gesture, because ${JSON.stringify(err)}`);
-      return;
-    }
-    console.info('inject gesture success');
-  });
-} catch (exception) {
-  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
+for (let i = 0; i < 10; i++) {
+  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  gesturePath.points.push(gesturePoint);
 }
+axContext.injectGesture(gesturePath, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to inject gesture, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in inject gesture,gesturePath is ${gesturePath}`);
+});
 ```
 ## AccessibilityExtensionContext.injectGestureSync<sup>10+</sup>
 
@@ -673,26 +677,22 @@ import GesturePath from '@ohos.accessibility.GesturePath';
 import GesturePoint from '@ohos.accessibility.GesturePoint';
 
 let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
-try {
-  for (let i = 0; i < 10; i++) {
-    let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
-    gesturePath.points.push(gesturePoint);
-  }
-  axContext.injectGestureSync(gesturePath);
-} catch (exception) {
-  console.error(`failed to inject gesture, because ${JSON.stringify(exception)}`);
+for (let i = 0; i < 10; i++) {
+  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  gesturePath.points.push(gesturePoint);
 }
+axContext.injectGestureSync(gesturePath);
 ```
 
 ## AccessibilityElement<sup>9+</sup>
 
-无障碍节点元素, 在调用AccessibilityElement的方法前，需要先通过[AccessibilityExtensionContext.getFocusElement()](#accessibilityextensioncontextgetfocuselement)或者[AccessibilityExtensionContext.getWindowRootElement()](#accessibilityextensioncontextgetwindowrootelement)获取AccessibilityElement实例。
+无障碍节点元素, 在调用AccessibilityElement的方法前，需要先通过[AccessibilityExtensionContext.getFocusElement() ](#accessibilityextensioncontextgetfocuselement)或者[AccessibilityExtensionContext.getWindowRootElement() ](#accessibilityextensioncontextgetwindowrootelement)获取AccessibilityElement实例。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Core
 
 ### attributeNames
 
-attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
+attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 
 获取节点元素的所有属性名称，使用Promise异步回调。
 
@@ -708,15 +708,17 @@ attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
 
 ```ts
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
 
-let attributeNames: ElementAttributeKeys;
-rootElement.attributeNames().then((data: ElementAttributeKeys) => {
-  console.log('get attribute names success');
-  attributeNames = data;
-}).catch((err: object) => {
-  console.log(`failed to get attribute names, because ${JSON.stringify(err)}`);
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
+  console.log(`Succeeded in get attribute names, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.log(`failed to get attribute names, Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
 ### attributeNames
 
 attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\<Array\<T>>): void;
@@ -737,16 +739,17 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
-let attributeNames: ElementAttributeKeys[];
-rootElement.attributeNames((err: BusinessError<void>, data: ElementAttributeKeys[]) => {
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) => {
   if (err) {
-    console.error(`failed to get attribute names, because ${JSON.stringify(err)}`);
+    console.error(`failed to get attribute names, Code is ${err.code}, message is ${err.message}`);
     return;
   }
-  attributeNames = data;
-  console.info('get attribute names success');
+  console.info(`Succeeded in get attribute names, ${JSON.stringify(data)}`);
 });
 ```
+
 ### attributeValue
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promise\<ElementAttributeValues[T]>;
@@ -754,6 +757,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 根据属性名称获取属性值，使用Promise异步回调。
 
 **系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+
 
 **参数：**
 
@@ -775,24 +779,23 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 | ------- | ----------------------------- |
 | 9300004 | This property does not exist. |
 
+
 **示例：**
 
 ```ts
 import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-let attributeValue: string;
-try {
-  rootElement.attributeValue(attributeName).then((data: string) => {
-    console.log('get attribute value by name success');
-    attributeValue = data;
-  }).catch((err: object) => {
-    console.error(`failed to get attribute value, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to get attribute value, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.attributeValue(attributeName).then((data: string) => {
+  console.log(`Succeeded in get attribute value by name, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get attribute value, Code is ${err.code}, message is ${err.message}`);
+});
 ```
+
 ### attributeValue
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T, 
@@ -824,20 +827,17 @@ import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAb
 import { BusinessError } from '@ohos.base';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
-let attributeValue: string;
-try {
-  rootElement.attributeValue(attributeName, (err: BusinessError<void>, data: string) => {
-    if (err) {
-      console.error(`failed to get attribute value, because ${JSON.stringify(err)}`);
-      return;
-    }
-    attributeValue = data;
-    console.info('get attribute value success');
-  });
-} catch (exception) {
-  console.error(`failed to get attribute value, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.attributeValue(attributeName, (err: BusinessError, data: string) => {
+  if (err) {
+    console.error(`failed to get attribute value, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in get attribute value, ${JSON.stringify(data)}`);
+});
 ```
+
 ### actionNames
 
 actionNames(): Promise\<Array\<string>>;
@@ -855,14 +855,17 @@ actionNames(): Promise\<Array\<string>>;
 **示例：**
 
 ```ts
-let actionNames: string[];
+import { BusinessError } from '@ohos.base';
+
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
 rootElement.actionNames().then((data: string[]) => {
-  console.log('get action names success');
-  actionNames = data;
-}).catch((err: object) => {
-  console.error(`failed to get action names because ${JSON.stringify(err)}`);
+  console.log(`Succeeded in get action names, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get action names, Code is ${err.code}, message is ${err.message}`);
 })
 ```
+
 ### actionNames
 
 actionNames(callback: AsyncCallback\<Array\<string>>): void;
@@ -880,16 +883,17 @@ actionNames(callback: AsyncCallback\<Array\<string>>): void;
 **示例：**
 
 ```ts
-let actionNames: string[];
-rootElement.actionNames((err: BusinessError<void>, data: string[]) => {
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.actionNames((err: BusinessError, data: string[]) => {
   if (err) {
-    console.error(`failed to get action names, because ${JSON.stringify(err)}`);
+    console.error(`failed to get action names, Code is ${err.code}, message is ${err.message}`);
     return;
   }
-  actionNames = data;
-  console.info('get action names success');
+  console.info(`Succeeded in get action names, ${JSON.stringify(data)}`);
 })
 ```
+
 ### performAction
 
 performAction(actionName: string, parameters?: object): Promise\<void>;
@@ -900,10 +904,10 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 **参数：**
 
-| 参数名         | 类型                                     | 必填   | 说明             |
-| ----------- | ---------------------------------------- | ---- | -------------- |
+| 参数名         | 类型                                     | 必填   | 说明                                                       |
+| ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
 | actionName | string | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 
-| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空；当前版本暂不支持。     |
+| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                             |
 
 **返回值：**
 
@@ -922,17 +926,18 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let actionName = 'action';
-try {
-  rootElement.performAction(actionName).then(() => {
-    console.info('perform action success');
-  }).catch((err: object) => {
-    console.error(`failed to perform action, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.performAction(actionName).then(() => {
+  console.info(`Succeeded in perform action,actionName is ${actionName}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
 ```
+
 ### performAction
 
 performAction(actionName: string, callback: AsyncCallback\<void>): void;
@@ -962,18 +967,17 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
-try {
-  rootElement.performAction(actionName, (err:BusinessError) => {
-    if (err) {
-      console.error(`failed to perform action, because ${JSON.stringify(err)}`);
-      return;
-    }
-    console.info('perform action success');
-  });
-} catch (exception) {
-  console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.performAction(actionName, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in perform action, actionName is ${actionName}`);
+});
 ```
+
 ### performAction
 
 performAction(actionName: string, parameters: object, callback: AsyncCallback\<void>): void;
@@ -984,11 +988,11 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 **参数：**
 
-| 参数名        | 类型                        | 必填   | 说明                                       |
-| ---------- | ------------------------- | ---- | ---------------------------------------- |
+| 参数名        | 类型                        | 必填   | 说明                                                       |
+| ---------- | ------------------------- | ---- |----------------------------------------------------------|
 | actionName | string                    | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 |
-| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空；当前版本暂不支持。                  |
-| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。                        |
+| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                             |
+| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。                                        |
 
 **错误码：**
 
@@ -1005,18 +1009,17 @@ import { BusinessError } from '@ohos.base';
 
 let actionName = 'action';
 let parameters: object = [];
-try {
-  rootElement.performAction(actionName, parameters, (err: BusinessError<void>) => {
-    if (err) {
-      console.error(`failed to perform action, because ${JSON.stringify(err)}`);
-      return;
-    }
-    console.info('perform action success');
-  });
-} catch (exception) {
-  console.error(`failed to perform action, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.performAction(actionName, parameters, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in perform action,actionName is ${actionName}, parameters is ${parameters}`);
+});
 ```
+
 ### findElement('content')
 
 findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
@@ -1036,24 +1039,23 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 
 | 类型                                       | 说明                            |
 | ---------------------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;AccessibilityElement&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
+| Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
 
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let condition = 'keyword';
-let elements: AccessibilityElement[];
-try {
-  rootElement.findElement('content', condition).then((data: AccessibilityElement[]) => {
-    elements = data;
-    console.log('find element success');
-  }).catch((err: object) => {
-    console.error(`failed to find element, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.findElement('content', condition).then((data: AccessibilityElement[]) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
 ```
+
 ### findElement('content')
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
@@ -1068,7 +1070,7 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 | --------- | ---------------------------------------- | ---- | ---------------------------- |
 | type      | string                                   | 是    | 固定为'content',表示查找的类型为节点元素内容。 |
 | condition | string                                   | 是    | 表示查找的条件。                     |
-| callback  | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | 是    | 回调函数，返回满足指定查询关键字的所有节点元素。     |
+| callback  | AsyncCallback&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | 是    | 回调函数，返回满足指定查询关键字的所有节点元素。     |
 
 **示例：**
 
@@ -1076,20 +1078,17 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 import { BusinessError } from '@ohos.base';
 
 let condition = 'keyword';
-let elements: AccessibilityElement[];
-try {
-  rootElement.findElement('content', condition, (err: BusinessError<void>, data: AccessibilityElement[]) => {
-    if (err) {
-      console.error(`failed to find element, because ${JSON.stringify(err)}`);
-      return;
-    }
-    elements = data;
-    console.info('find element success');
-  });
-} catch (exception) {
-  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.findElement('content', condition, (err: BusinessError, data: AccessibilityElement[])=>{
+  if (err) {
+    console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in find element, ${JSON.stringify(data)}`);
+});
 ```
+
 ### findElement('focusType')
 
 findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElement>;
@@ -1109,26 +1108,24 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 
 | 类型                                  | 说明                             |
 | ----------------------------------- | ------------------------------ |
-| Promise&lt;AccessibilityElement&gt; | Promise对象，返回满足指定查询焦点元素类型的节点元素。 |
+| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询焦点元素类型的节点元素。 |
 
 **示例：**
 
 ```ts
 import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
 
 let condition: FocusType = 'normal';
-let element: AccessibilityElement;
-try {
-  rootElement.findElement('focusType', condition).then((data: AccessibilityElement) => {
-    element = data;
-    console.log('find element success');
-  }).catch((err: object) => {
-    console.error(`failed to find element, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.findElement('focusType', condition).then((data: AccessibilityElement) => {
+  console.log(`Succeeded in find element,${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
 ```
+
 ### findElement('focusType')
 
 findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<AccessibilityElement>): void;
@@ -1143,7 +1140,7 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 | --------- | ---------------------------------------- | ---- | ---------------------------------- |
 | type      | string                                   | 是    | 固定为'focusType', 表示查询的类型为节点的焦点元素类型。 |
 | condition | [FocusType](#focustype)                  | 是    | 表示查询焦点元素的类型。                       |
-| callback  | AsyncCallback&lt;AccessibilityElement&gt; | 是    | 回调函数，返回满足指定查询焦点元素类型的节点元素。          |
+| callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回满足指定查询焦点元素类型的节点元素。          |
 
 **示例：**
 
@@ -1152,20 +1149,17 @@ import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusType = 'normal';
-let element: AccessibilityElement;
-try {
-  rootElement.findElement('focusType', condition, (err: BusinessError<void>, data: AccessibilityElement) => {
-    if (err) {
-      console.error(`failed to find element, because ${JSON.stringify(err)}`);
-      return;
-    }
-    element = data;
-    console.info('find element success');
-  });
-} catch (exception) {
-  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.findElement('focusType', condition, (err: BusinessError, data: AccessibilityElement)=>{
+  if (err) {
+    console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in find element, ${JSON.stringify(data)}`);
+});
 ```
+
 ### findElement('focusDirection')
 
 findElement(type: 'focusDirection', condition: FocusDirection): Promise\<AccessibilityElement>;
@@ -1185,26 +1179,24 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 
 | 类型                                  | 说明                               |
 | ----------------------------------- | -------------------------------- |
-| Promise&lt;AccessibilityElement&gt; | Promise对象，返回满足指定查询下一焦点元素方向的节点元素。 |
+| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询下一焦点元素方向的节点元素。 |
 
 **示例：**
 
 ```ts
 import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
+import { BusinessError } from '@ohos.base';
 
 let condition: FocusDirection = 'up';
-let element: AccessibilityElement;
-try {
-  rootElement.findElement('focusDirection', condition).then((data: AccessibilityElement) => {
-    element = data;
-    console.log('find element success');
-  }).catch((err: object) => {
-    console.error(`failed to find element, because ${JSON.stringify(err)}`);
-  });
-} catch (exception) {
-  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.findElement('focusDirection', condition).then((data: AccessibilityElement) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
 ```
+
 ### findElement('focusDirection')
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement>): void;
@@ -1219,7 +1211,7 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type      | string                                   | 是    | 固定为'focusDirection', 表示查询的类型为节点的下一焦点元素方向。 |
 | condition | [FocusDirection](#focusdirection)        | 是    | 表示下一查询焦点元素的方向。                           |
-| callback  | AsyncCallback&lt;AccessibilityElement&gt; | 是    | 回调函数，返回满足指定查询下一焦点元素方向的节点元素。              |
+| callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回满足指定查询下一焦点元素方向的节点元素。              |
 
 **示例：**
 
@@ -1228,17 +1220,13 @@ import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility'
 import { BusinessError } from '@ohos.base';
 
 let condition: FocusDirection = 'up';
-let elements: AccessibilityElement;
-try {
-  rootElement.findElement('focusDirection', condition, (err: BusinessError<void>, data: AccessibilityElement) => {
-    if (err) {
-      console.error(`failed to find element, because ${JSON.stringify(err)}`);
-      return;
-    }
-    elements = data;
-    console.info('find element success');
-  });
-} catch (exception) {
-  console.error(`failed to find element, because ${JSON.stringify(exception)}`);
-}
+let rootElement: AccessibilityElement;// rootElement是AccessibilityElement的实例
+
+rootElement.findElement('focusDirection', condition, (err: BusinessError, data: AccessibilityElement) =>{
+  if (err) {
+    console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in find element, ${JSON.stringify(data)}`);
+});
 ```

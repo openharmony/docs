@@ -1,18 +1,20 @@
 # 安全区域
 
-通过expandSafeArea属性支持组件扩展其安全区域，通过设置setKeyboardAvoidMode来配置虚拟键盘弹出时页面的避让模式。
+安全区域是指页面的显示区域，默认不与系统设置的非安全区域比如状态栏、导航栏区域重叠，默认情况下开发者开发的界面都被布局在安全区域内。提供属性方法允许开发者设置图片安全区域的限制，通过expandSafeArea属性支持组件扩展其安全区域，通过设置setKeyboardAvoidMode来配置虚拟键盘弹出时页面的避让模式。
 
 > **说明：**
 >
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 为了达到沉浸式的效果，Tabs和Navigation组件的expandSafeArea属性默认值为(type:[SafeAreaType.SYSTEM,], edges:[SafeAreaEdge.BOTTOM])。
 
 ## 属性
 
 | 名称           | 参数                           | 参数描述                                |
 | -------------- | ----------------------------- | --------------------------------------- |
 | expandSafeArea | type?: Array <[SafeAreaType](ts-types.md#safeareatype10)>,<br />edges?: Array <[SafeAreaEdge](ts-types.md#safeareaedge10)> | 控制组件扩展其安全区域。<br />默认值: <br />type: [SafeAreaType.SYSTEM, SafeAreaType.CUTOUT, SafeAreaType.KEYBOARD],<br />edges: [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM, SafeAreaEdge.START, SafeAreaEdge.END]<br />扩展至所有非安全区域。<br />type: 非必填，配置扩展安全区域的类型。<br />edges: 非必填，配置扩展安全区域的方向。 |
-| setKeyboardAvoidMode | value?: [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 控制虚拟键盘抬起时页面的避让模式。<br />默认值: KeyboardAvoidMode.OFFSET <br />键盘抬起时默认页面避让模式为上抬模式。<br />必填，配置虚拟键盘避让时的页面避让模式。 |
-| getKeyboardAvoidMode | NULL| 返回虚拟键盘抬起时的页面避让模式。 |
+| setKeyboardAvoidMode<sup>11+</sup> | value?: [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 控制虚拟键盘抬起时页面的避让模式。<br />默认值: KeyboardAvoidMode.OFFSET <br />键盘抬起时默认页面避让模式为上抬模式。<br />必填，配置虚拟键盘避让时的页面避让模式。 |
+| getKeyboardAvoidMode<sup>11+</sup> | NULL| 返回虚拟键盘抬起时的页面避让模式。 |
 
 ## 示例
 

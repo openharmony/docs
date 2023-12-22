@@ -259,7 +259,7 @@ networkManager.getMac(wantTemp, 'eth0', (err, result) => {
 
 ## networkManager.getMac
 
-getMac(admin: Want, networkInterface: string): Promise\<string>;
+getMac(admin: Want, networkInterface: string): Promise\<string>
 
 Obtains the device MAC address based on the network port through the specified device administrator application. This API uses a promise to return the result.
 
@@ -579,7 +579,6 @@ Sets the global network proxy through the specified device administrator applica
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
 | httpProxy    | [connection.HttpProxy](js-apis-net-connection.md#httpproxy10)     | Yes   | Global HTTP proxy to set.                 |
-| isDisabled    | boolean     | Yes   | Network port status to set. The value **true** means to disable the network port, and **false** means to enable the network port.                 |
 
 **Return value**
 
@@ -756,7 +755,7 @@ let wantTemp: Want = {
 };
 let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -821,7 +820,7 @@ let wantTemp: Want = {
 };
 let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -877,7 +876,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let filterRule: networkManager.RemoveFilterRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -940,7 +939,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let filterRule: networkManager.RemoveFilterRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -1053,6 +1052,302 @@ networkManager.listIptablesFilterRules(wantTemp).then((result) => {
 });
 ```
 
+## networkManager.addFirewallRule<sup>11+</sup>
+
+addFirewallRule(admin: Want, firewallRule: FirewallRule): void
+
+Adds a firewall rule for devices through the specified device administrator application.<br>
+After a rule with [Action](#action) set to **ALLOW** is added, a rule with **Action** set to **DENY** is added by default to discard or intercept all network data packets that do not meet the **ALLOW** rule.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name         | Type                                 | Mandatory  | Description        |
+|--------------|-------------------------------------| ---- |------------|
+| admin        | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.   |
+| firewallRule | [FirewallRule](#firewallrule11)       | Yes   | Firewall rule to add.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let firewallRule: networkManager.FirewallRule = {
+  "srcAddr": "192.168.1.1-192.188.22.66",
+  "destAddr": "10.1.1.1",
+  "srcPort": "8080",
+  "destPort": "8080",
+  "appUid": "9696",
+  "direction": networkManager.Direction.OUTPUT,
+  "action": networkManager.Action.DENY,
+  "protocol": networkManager.Protocol.UDP,
+}
+
+networkManager.addFirewallRule(wantTemp, firewallRule);
+```
+
+## networkManager.removeFirewallRule<sup>11+</sup>
+
+removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
+
+Removes a firewall rule for devices through the specified device administrator application.<br>
+If there is no rule with [Action](#action) being **ALLOW** after the rule is removed, the **DENY** rules that are added by default with [addFirewallRule](#networkmanageraddfirewallrule11) will be removed.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name         | Type                                 | Mandatory| Description                         |
+|--------------|-------------------------------------|----|-----------------------------|
+| admin        | [Want](js-apis-app-ability-want.md) | Yes | Device administrator application.                    |
+| firewallRule | [FirewallRule](#firewallrule11)       | No | Firewall rule to remove. If the value is empty, all firewall rules will be removed.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+// Remove the specified firewall rule.
+let firewallRule: networkManager.FirewallRule = {
+  "srcAddr": "192.168.1.1-192.188.22.66",
+  "destAddr": "10.1.1.1",
+  "srcPort": "8080",
+  "destPort": "8080",
+  "appUid": "9696",
+  "direction": networkManager.Direction.OUTPUT,
+  "action": networkManager.Action.DENY,
+  "protocol": networkManager.Protocol.UDP,
+}
+networkManager.removeFirewallRule(wantTemp, firewallRule);
+
+// Remove all firewall rules.
+networkManager.removeFirewallRule(wantTemp);
+```
+
+## networkManager.getFirewallRules<sup>11+</sup>
+
+getFirewallRules(admin: Want): Array\<FirewallRule>
+
+Obtains firewall rules through the specified device administrator application.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name         | Type                                 | Mandatory| Description                         |
+|--------------|-------------------------------------|----|-----------------------------|
+| admin        | [Want](js-apis-app-ability-want.md) | Yes | Device administrator application.                    |
+
+**Return value**
+
+| Type                                   | Description                               |
+|---------------------------------------|-----------------------------------|
+| Array\<[FirewallRule](#firewallrule11)> | A list of firewall rules configured for the device is returned. If the operation fails, an exception will be thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let firewallRule: Array<networkManager.FirewallRule>;
+firewallRule = networkManager.getFirewallRules(wantTemp);
+```
+
+## networkManager.addDomainFilterRule<sup>11+</sup>
+
+addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
+
+Adds a domain name filtering rule for the device through the specified device administrator application.<br>
+After a rule with [Action](#action) set to **ALLOW** is added, a rule with **Action** set to **DENY** is added by default to discard or intercept all packets for domain name resolution that do not meet the **ALLOW** rule.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name         | Type                                   | Mandatory  | Description        |
+|--------------|---------------------------------------| ---- |------------|
+| admin        | [Want](js-apis-app-ability-want.md)   | Yes   | Device administrator application.   |
+| domainFilterRule | [DomainFilterRule](#domainfilterrule11) | Yes   | Domain name filtering rule to add.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let domainFilterRule: networkManager.DomainFilterRule = {
+  "domainName": "www.example.com",
+  "appUid": "9696",
+  "action": networkManager.Action.DENY,
+}
+
+networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
+```
+
+## networkManager.removeDomainFilterRule<sup>11+</sup>
+
+removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
+
+Removes a domain name filtering rule through the specified device administrator application.<br>
+If there is no rule with [Action](#action) being **ALLOW** after the rule is removed, the **DENY** rules that are added by default with [addDomainFilterRule](#networkmanageradddomainfilterrule11) will be removed.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name         | Type                                   | Mandatory| Description                      |
+|--------------|---------------------------------------|----|--------------------------|
+| admin        | [Want](js-apis-app-ability-want.md)   | Yes | Device administrator application.                 |
+| domainFilterRule | [DomainFilterRule](#domainfilterrule11) | No | Domain name filtering rule to remove. If the value is empty, all domain name filtering rules will be removed.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+// Remove the specified domain name filtering rule.
+let domainFilterRule: networkManager.DomainFilterRule = {
+  "domainName": "www.example.com",
+  "appUid": "9696",
+  "action": networkManager.Action.DENY,
+}
+networkManager.removeDomainFilterRule(wantTemp, domainFilterRule);
+
+// Remove all domain name filtering rules.
+networkManager.removeDomainFilterRule(wantTemp);
+```
+
+## networkManager.getDomainFilterRules<sup>11+</sup>
+
+getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
+
+Obtains domain name filtering rules through the specified device administrator application.
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name         | Type                                 | Mandatory| Description                         |
+|--------------|-------------------------------------|----|-----------------------------|
+| admin        | [Want](js-apis-app-ability-want.md) | Yes | Device administrator application.                    |
+
+**Return value**
+
+| Type                                           | Description                              |
+|-----------------------------------------------|----------------------------------|
+| Array\<[DomainFilterRule](#domainfilterrule11)> | A list of domain name filtering rules configured for the device is returned. If the operation fails, an exception will be thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                    |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device.                      |
+| 9200002 | The administrator application does not have permission to manage the device.|
+
+**Example**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let domainFilterRule: Array<networkManager.DomainFilterRule>;
+domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
+```
+
 ## AddFilterRule
 
 Defines the network packet filtering rule to add.
@@ -1070,7 +1365,7 @@ Defines the network packet filtering rule to add.
 | destPort        | string    | No  | Port of the destination IP address.|
 | uid | string   | No  | UID of the application.|
 | method        | [AddMethod](#addmethod)    | Yes  | Method used to add the data packets.|
-| direction | [Direction](#direction)    | Yes  | Direction for which the rule applies.|
+| direction | [Direction](#direction)    | Yes  | Direction chains to which the rule applies.|
 | action        | [Action](#action)    | Yes  | Action to take, that is, receive or discard the data packets.|
 | protocol | [Protocol](#protocol)   | No  | Network protocol.|
 
@@ -1089,7 +1384,7 @@ Defines the network packet filtering rule to remove.
 | srcPort | string   | No  | Port of the source IP address.|
 | destPort        | string    | No   | Port of the destination IP address.|
 | uid | string   | No   | UID of the application.|
-| direction | [Direction](#direction)    | Yes   | Direction for which the rule applies.|
+| direction | [Direction](#direction)    | Yes   | Direction chains to which the rule applies.|
 | action        | [Action](#action)    | No   | Action to take, that is, receive or discard the data packets.|
 | protocol | [Protocol](#protocol)   | No   | Network protocol.|
 
@@ -1108,7 +1403,7 @@ Enumerates the methods used to add the network packets.
 
 ## Direction
 
-Enumerates the directions to which the rule applies.
+Enumerates the direction chains to which the rule applies.
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -1116,8 +1411,8 @@ Enumerates the directions to which the rule applies.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| INPUT | 0 | Input.|
-| OUTPUT | 1 | Output.|
+| INPUT | 0 | Input chain.|
+| OUTPUT | 1 | Output chain.|
 
 ## Action
 
@@ -1146,3 +1441,36 @@ Enumerates the network protocols supported.
 | TCP | 1 | TCP.|
 | UDP | 2 | UDP.|
 | ICMP | 3 | ICMP.|
+
+## FirewallRule<sup>11+</sup>
+
+Represents a firewall rule.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+| Name       | Type                     | Mandatory| Description                                                                                                                   |
+|-----------|-------------------------|----|-----------------------------------------------------------------------------------------------------------------------|
+| srcAddr   | string                  | No | Source IP address. Source IP address segment supported, for example, **192.168.0.0/22** or **192.168.1.100-192.168.1.200**.                                                           |
+| destAddr  | string                  | No | Destination IP address. Destination IP address segment supported, for example, **192.168.0.0/22** or **192.168.1.100-192.168.1.200**.                                                          |
+| srcPort   | string                  | No | Source port.                                                                                                                 |
+| destPort  | string                  | No | Destination port.                                                                                                                |
+| appUid    | string                  | No | UID of the application.                                                                                                               |
+| direction | [Direction](#direction) | No | Direction chains to which the rule applies.<br>This parameter is mandatory when you add a firewall rule. If it is not specified when you remove a firewall rule, all [direction](#direction) chains will be removed.<br>If this parameter is empty, **srcAddr**, **destAddr**, **srcPort**, **destPort**, and **appUid** must also be empty.     |
+| action    | [Action](#action)       | No | Action to take, that is, receive or discard the data packets.<br>This parameter is mandatory when you add a firewall rule. If it is not specified when you remove a firewall rule, all chains that match the [Action](#action) rule will be removed.<br>If this parameter is empty, **srcAddr**, **destAddr**, **srcPort**, **destPort**, and **appUid** must also be empty.|
+| protocol  | [Protocol](#protocol)   | No | Network protocol. If this parameter is set to **ALL** or **ICMP**, **srcPort** and **destPort** cannot be set.                                                                            |
+
+## DomainFilterRule<sup>11+</sup>
+
+Represents a domain name filtering rule.
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+| Name        | Type               | Mandatory| Description                                                                                               |
+|------------|-------------------|----|---------------------------------------------------------------------------------------------------|
+| domainName | string            | No | Domain name. This parameter is mandatory when you add a domain name filtering rule.                                                                                  |
+| appUid     | string            | No | UID of the application.                                                                                           |
+| action     | [Action](#action) | No | Action to take, that is, receive or discard the data packets.<br>This parameter is mandatory when you add a domain name filtering rule. If it is not specified when you remove a domain name filtering rule, all chains that match the [Action](#action) rule will be removed.<br>If this parameter is empty, **domainName** and **appUid** must also be empty.|

@@ -1,6 +1,5 @@
 # OAID Service
 
-
 ## When to Use
 
 The Open Anonymous Device Identifier (OAID) is a non-permanent device identifier. The OAID service provides personalized ads for users while protecting their personal data privacy. It can also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
@@ -32,13 +31,14 @@ No matter whether you are running a media application, an ad platform, or a trac
     }
    ```
 
-2. Request authorization from the user by displaying a dialog box when the application is started. The sample code is as follows:
+2. Request authorization from the user by displaying a dialog box when the application is started. For details about how to obtain the context, see [Context](../../application-models/application-context-stage.md). The sample code is as follows:
    ```
    import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
    import { BusinessError } from '@ohos.base';
    import hilog from '@ohos.hilog';
+   import common from '@ohos.app.ability.common';
    
-   private requestOAIDTrackingConsentPermissions2(context: common.Context): void {
+   function requestOAIDTrackingConsentPermissions(context: common.Context): void {
      // Display a dialog box when the page is displayed to request the user to grant the ad tracking permission.
      const atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       try {
@@ -46,17 +46,17 @@ No matter whether you are running a media application, an ad platform, or a trac
           if (data.authResults[0] == 0) {
             hilog.info(0x0000, 'testTag', '%{public}s', 'request permission success');
           } else {
-            hilog.info(0x0000, 'testTag', '%{public}s', `user rejected`);
+            hilog.info(0x0000, 'testTag', '%{public}s', 'user rejected');
           }
         }).catch((err: BusinessError) => {
-          hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error message: ${err.message}`);
+          hilog.error(0x0000, 'testTag', '%{public}s', `request permission failed, error: ${err.code} ${err.message}`);
         })
       } catch(err) {
-        hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${JSON.stringify(err)}`);
+        hilog.error(0x0000, 'testTag', '%{public}s', `catch err->${err.code}, ${err.message}`);
       }
     }
    ```
-   
+
 3. Call **getOAID()** to obtain OAID information. The sample code is as follows:
    ```
    import identifier from '@ohos.identifier.oaid';
@@ -64,16 +64,16 @@ No matter whether you are running a media application, an ad platform, or a trac
    import { BusinessError } from '@ohos.base';
     
    try {
-     identifier.getOAID((err: BusinessError, data) => {
+     identifier.getOAID((err: BusinessError, data: string) => {
        if (err.code) {
-         hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${err.message}`);
+         hilog.error(0x0000, 'testTag', '%{public}s', `get oaid failed, error: ${err.code} ${err.message}`);
        } else {
          const oaid: string = data;
-         hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
+         hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success, oaid: ${oaid}`);
        }
       });
    } catch (err) {
-     hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
+     hilog.error(0x0000, 'testTag', '%{public}s', `get oaid catch error: ${err.code} ${err.message}`);
    }
    ```
    
@@ -86,6 +86,6 @@ No matter whether you are running a media application, an ad platform, or a trac
    try {
      identifier.resetOAID();
    } catch (err) {
-     hilog.error(0x0000, 'testTag', 'reset oaid catch error: %{public}d %{public}s', err.code, err.message);
+     hilog.error(0x0000, 'testTag', '%{public}s', `reset oaid catch error: ${err.code} ${err.message}`);
    }
    ```

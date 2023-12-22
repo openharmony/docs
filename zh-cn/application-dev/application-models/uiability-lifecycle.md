@@ -20,12 +20,12 @@ Create状态为在应用加载过程中，UIAbility实例创建完成时触发�
 
 
 ```ts
+import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import type Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 应用初始化
   }
   // ...
@@ -46,37 +46,37 @@ UIAbility实例创建完成之后，在进入Foreground之前，系统会创建�
 在onWindowStageCreate()回调中通过[`loadContent()`](../reference/apis/js-apis-window.md#loadcontent9-2)方法设置应用要加载的页面，并根据需要调用[`on('windowStageEvent')`](../reference/apis/js-apis-window.md#onwindowstageevent9)方法订阅WindowStage的[事件](../reference/apis/js-apis-window.md#windowstageeventtype9)（获焦/失焦、可见/不可见）。
 
 ```ts
+import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
   // ...
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // 设置WindowStage的事件订阅（获焦/失焦、可见/不可见）
     try {
       windowStage.on('windowStageEvent', (data) => {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // 切到前台
-            console.info('windowStage foreground.');
+            Logger.info('windowStage foreground.');
             break;
           case window.WindowStageEventType.ACTIVE: // 获焦状态
-            console.info('windowStage active.');
+            Logger.info('windowStage active.');
             break;
           case window.WindowStageEventType.INACTIVE: // 失焦状态
-            console.info('windowStage inactive.');
+            Logger.info('windowStage inactive.');
             break;
           case window.WindowStageEventType.HIDDEN: // 切到后台
-            console.info('windowStage background.');
+            Logger.info('windowStage background.');
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      console.error('Failed to enable the listener for window stage event changes. Cause:' +
-      JSON.stringify(exception));
+      Logger.error('Failed to enable the listener for window stage event changes. Cause:' + 		               JSON.stringify(exception));
     }
 
     // 设置UI加载
@@ -95,15 +95,16 @@ export default class EntryAbility extends UIAbility {
 
 
 ```ts
+import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import type { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
   // ...
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     this.windowStage = windowStage;
     // ...
   }
@@ -118,7 +119,7 @@ export default class EntryAbility extends UIAbility {
     } catch (err) {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
+      Logger.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
     };
   }
 }
@@ -144,11 +145,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class EntryAbility extends UIAbility {
   // ...
 
-  onForeground() {
+  onForeground(): void {
     // 申请系统需要的资源，或者重新申请在onBackground()中释放的资源
   }
 
-  onBackground() {
+  onBackground(): void {
     // 释放UI不可见时无用的资源，或者在此回调中执行较为耗时的操作
     // 例如状态保存等
   }

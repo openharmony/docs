@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```
-import { SwipeRefresher } from '@ohos.arkui.advacned.SwipeRefresher'
+import { SwipeRefresher } from '@ohos.arkui.advanced.SwipeRefresher'
 ```
 
 
@@ -45,7 +45,7 @@ SwipeRefresher ({content: string, isLoading: boolean})
 
 ## 示例
 ```ts
-import { SwipeRefresher } from '@ohos.arkui.advaned.SwipeRefresher';
+import { SwipeRefresher } from '@ohos.arkui.advanced.SwipeRefresher';
 
 @Entry
 @Component
@@ -56,6 +56,7 @@ struct Index {
         content: '正在加载中',
         isLoading: true })
       SwipeRefresher({
+        content: '',
         isLoading: true })
       SwipeRefresher({
         content: '正在加载中',

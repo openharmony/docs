@@ -189,7 +189,7 @@ The procedure is as follows:
 **CAUTION**
 
 - Each time before the operation that requires the target permission is performed, the application must check whether the permission is available.
-- To check whether a user has granted a permission to your application, use [checkAccessToken()](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9). This API returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md). For details about the sample code, see [Requesting User Authorization](accesstoken-guidelines.md#requesting-user-authorization).
+- To check whether a user has granted a permission to your application, use [checkAccessToken()](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9). This API returns [PERMISSION_GRANTED](../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus) or [PERMISSION_DENIED](../reference/apis/js-apis-abilityAccessCtrl.md#grantstatus). For details about the sample code, see [Requesting User Authorization] (accesstoken-guidelines.md#requesting-user-authorization).
 - Users must be able to understand and control the authorization of user_grant permissions. For a user_grant permission, the application must proactively call an API to dynamically request user authorization. Then, the system displays a dialog box asking the user to grant the permission. The user then determines whether to grant the permission.
 - The user may revoke the permission authorization at any time. Therefore, each time before an API associated with a user_grant permission is called, the application must check whether the permission is available.
 

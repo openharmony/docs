@@ -25,10 +25,12 @@ import DataShareResultSet from '@ohos.data.DataShareResultSet';
 import dataShare from '@ohos.data.dataShare';
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility'
 
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
-dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+let context = getContext(UIAbility);
+dataShare.createDataShareHelper(context, uri, (err, data) => {
   if (err != undefined) {
     console.error("createDataShareHelper fail, error message : " + err);
   } else {
@@ -53,6 +55,8 @@ if (dataShareHelper != undefined) {
 
 ## DataShareResultSet
 提供通过查询数据库生成的结果集的相关访问方法。
+
+列或键名称作为字符串数组返回，其中字符串的顺序与结果集中的列或键的顺序相同。
 
 ### 属性
 
@@ -82,6 +86,7 @@ goToFirstRow(): boolean
 **示例：**
 
 ```ts
+// resultSet需依照本页的使用说明进行创建。
 if (resultSet != undefined) {
   let isGoToFirstRow = (resultSet as DataShareResultSet).goToFirstRow();
   console.info('resultSet.goToFirstRow: ' + isGoToFirstRow);
@@ -159,7 +164,7 @@ if (resultSet != undefined) {
 
 ### goTo
 
-goTo(offset:number): boolean
+goTo(offset: number): boolean
 
 相对于当前位置向前或向后移动指定行数。
 
@@ -223,6 +228,8 @@ getBlob(columnIndex: number): Uint8Array
 
 以字节数组的形式获取当前行中指定列的值。
 
+如果当前行中指定的列或键的值为空，或者指定的列或键不是Blob类型，则使用方需要确定是否抛出此异常。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -253,6 +260,8 @@ if (resultSet != undefined) {
 getString(columnIndex: number): string
 
 以字符串形式获取当前行中指定列的值。
+
+如果当前行中指定的列或键的值为空，或者指定的列或键不是string类型，则使用方需要确定是否抛出此异常。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -285,6 +294,8 @@ getLong(columnIndex: number): number
 
 以长整数值形式获取当前行中指定列的值。
 
+如果当前行中指定的列或键的值为空，或者指定的列或键不是long类型，则使用方需要确定是否抛出此异常。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -315,6 +326,8 @@ if (resultSet != undefined) {
 getDouble(columnIndex: number): number
 
 以值类型为双浮点数形式获取当前行中指定列的值。
+
+如果当前行中指定的列或键的值为空，或者指定的列或键不是double类型，则使用方需要确定是否抛出此异常。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -347,6 +360,8 @@ close(): void
 
 关闭结果集。
 
+对结果集调用此方法将释放其所有资源并使其无效。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **示例：**
@@ -362,6 +377,8 @@ if (resultSet != undefined) {
 getColumnIndex(columnName: string): number
 
 根据指定的列名获取列索引。
+
+列名作为输入参数传递。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -393,6 +410,8 @@ getColumnName(columnIndex: number): string
 
 根据指定的列索引获取列名。
 
+列索引作为输入参数传递。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -422,6 +441,8 @@ if (resultSet != undefined) {
 getDataType(columnIndex: number): DataType
 
 指定列索引获取该列的数据类型。
+
+如果当前行中指定的列或键的值为空，或者指定的列或键不是DataType类型，则使用方需要确定是否抛出此异常。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 

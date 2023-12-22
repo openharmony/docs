@@ -34,12 +34,74 @@ Formats the specified values and inserts them into the string by replacing the w
 | ------ | ---------------------------- |
 | string | String containing the formatted values.|
 
+
+**Format Specifiers**
+
+| Specifier| Description                         |
+| ------ | -------------------------------- |
+| %s     | Converts a parameter into a string for all values except **Object**, **BigInt**, and **-0**.|
+| %d     | Converts a parameter into a decimal integer for all values except **Symbol** and **BigInt**.|
+| %i     | Converts a string into a decimal integer for all values except **Symbol** and **BigInt**.|
+| %f     | Converts a string into a floating point number for all values except **Symbol** and **BigInt**.|
+| %j     | Converts a JavaScript object into a JSON string.|
+| %o     | Converts a JavaScript object into a string, without containing the prototype chain information of the object.|
+| %O     | Converts a JavaScript object into a string.|
+| %c     | Valid only in the browser. It is ignored in other environments.|
+| %%     | Placeholder for escaping the percent sign.|
+
 **Example**
 
-  ```ts
-  let res = util.format("%s", "hello world!");
-  console.log(res);
-  ```
+```ts
+let name = 'John';
+let age = 20;
+let formattedString = util.format('My name is %s and I am %s years old', name, age);
+console.log(formattedString);
+// Output: My name is John and I am 20 years old
+let num = 10.5;
+formattedString = util.format('The number is %d', num);
+console.log(formattedString);
+// Output: The number is 10.5.
+num = 100.5;
+formattedString = util.format('The number is %i', num);
+console.log(formattedString);
+// Output: The number is 100.
+const pi = 3.141592653;
+formattedString = util.format('The value of pi is %f', pi);
+console.log(formattedString);
+// Output: The value of pi is 3.141592653
+const obj = { name: 'John', age: 20 };
+formattedString = util.format('The object is %j', obj);
+console.log(formattedString);
+// Output: The object is {"name":"John","age":20}.
+const person = {
+  name: 'John',
+  age: 20,
+  address: {
+    city: 'New York',
+    country: 'USA'
+  }
+};
+console.log(util.format('Formatted object using %%O: %O', person));
+console.log(util.format('Formatted object using %%o: %o', person));
+/*
+Output:
+Formatted object using %O: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+Formatted object using %o: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+*/
+const percentage = 80;
+let arg = 'homework';
+formattedString = util.format('John finished %d%% of the %s', percentage, arg);
+console.log(formattedString);
+// Output: John finished 80% of the homework
+```
 
 ## util.errnoToString<sup>9+</sup>
 
@@ -64,9 +126,9 @@ Obtains detailed information about a system error code.
 **Example**
 
 ```ts
-  let errnum = -1; // -1 is a system error code.
-  let result = util.errnoToString(errnum);
-  console.log("result = " + result);
+let errnum = -1; // -1 is a system error code.
+let result = util.errnoToString(errnum);
+console.log("result = " + result);
 ```
 
 **Some error code and message examples**
@@ -105,16 +167,16 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 
 **Example**
 
-  ```ts
-  async function fn() {
-    return 'hello world';
-  }
-  let cb = util.callbackWrapper(fn);
-  cb(1, (err : Object, ret : string) => {
-    if (err) throw new Error;
-    console.log(ret);
-  });
-  ```
+```ts
+async function fn() {
+  return 'hello world';
+}
+let cb = util.callbackWrapper(fn);
+cb(1, (err : Object, ret : string) => {
+  if (err) throw new Error;
+  console.log(ret);
+});
+```
 
 ## util.promisify<sup>9+</sup>
 
@@ -138,25 +200,20 @@ Processes an asynchronous function and returns a promise.
 
 **Example**
 
-  ```ts
-  function fun(num, callback) {
-    if (typeof num === 'number') {
-        callback(null, num + 3);
-    } else {
-        callback("type err");
-    }
+```ts
+async function fn() {
+  return 'hello world';
+}
+const addCall = util.promisify(util.callbackWrapper(fn));
+(async () => {
+  try {
+    let res: string = await addCall();
+    console.log(res);
+  } catch (err) {
+    console.log(err);
   }
-
-  const addCall = util.promisify(fun);
-  (async () => {
-    try {
-        let res = await addCall(2);
-        console.log(res);
-    } catch (err) {
-        console.log(err);
-    }
-  })();
-  ```
+})();
+```
 
 ## util.generateRandomUUID<sup>9+</sup>
 
@@ -180,12 +237,12 @@ Uses a secure random number generator to generate a random universally unique id
 
 **Example**
 
-  ```ts
-  let uuid = util.generateRandomUUID(true);
-  console.log("RFC 4122 Version 4 UUID:" + uuid);
-  // Output:
-  // RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
-  ```
+```ts
+let uuid = util.generateRandomUUID(true);
+console.log("RFC 4122 Version 4 UUID:" + uuid);
+// Output:
+// RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
+```
 
 ## util.generateRandomBinaryUUID<sup>9+</sup>
 
@@ -209,12 +266,12 @@ Uses a secure random number generator to generate a random UUID of the Uint8Arra
 
 **Example**
 
-  ```ts
-  let uuid = util.generateRandomBinaryUUID(true);
-  console.log(JSON.stringify(uuid));
-  // Output:
-  // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
-  ```
+```ts
+let uuid = util.generateRandomBinaryUUID(true);
+console.log(JSON.stringify(uuid));
+// Output:
+// 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+```
 
 ## util.parseUUID<sup>9+</sup>
 
@@ -238,12 +295,12 @@ Converts the UUID of the string type generated by **generateRandomUUID** to the 
 
 **Example**
 
-  ```ts
-  let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-  console.log(JSON.stringify(uuid));
-  // Output:
-  // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
-  ```
+```ts
+let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
+console.log(JSON.stringify(uuid));
+// Output:
+// 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+```
 
 ## util.printf<sup>(deprecated)</sup>
 
@@ -272,10 +329,10 @@ Formats the specified values and inserts them into the string by replacing the w
 
 **Example**
 
-  ```ts
-  let res = util.printf("%s", "hello world!");
-  console.log(res);
-  ```
+```ts
+let res = util.printf("%s", "hello world!");
+console.log(res);
+```
 
 
 ## util.getErrorString<sup>(deprecated)</sup>
@@ -304,11 +361,11 @@ Obtains detailed information about a system error code.
 
 **Example**
 
-  ```ts
-  let errnum = -1; // -1 is a system error code.
-  let result = util.getErrorString(errnum);
-  console.log("result = " + result);
-  ```
+```ts
+let errnum = -1; // -1 is a system error code.
+let result = util.getErrorString(errnum);
+console.log("result = " + result);
+```
 
 ## util.promiseWrapper<sup>(deprecated)</sup>
 
@@ -357,9 +414,15 @@ A constructor used to create a **TextDecoder** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Example**
+
+```ts
+let result = new util.TextDecoder();
+let retStr = result.encoding;
+```
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder;
+create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
 
 Creates a **TextDecoder** object. It provides the same function as the deprecated argument constructor.
 
@@ -382,8 +445,8 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 **Example**
 
 ```ts
-  let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
-  let retStr = result.encoding
+let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
+let retStr = result.encoding
 ```
 
 ### decodeWithStream<sup>9+</sup>
@@ -415,19 +478,19 @@ Decodes the input content.
 
 **Example**
 
-  ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  let result = new Uint8Array(6);
-  result[0] = 0xEF;
-  result[1] = 0xBB;
-  result[2] = 0xBF;
-  result[3] = 0x61;
-  result[4] = 0x62;
-  result[5] = 0x63;
-  console.log("input num:");
-  let retStr = textDecoder.decodeWithStream( result , {stream: false});
-  console.log("retStr = " + retStr);
-  ```
+```ts
+let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+let result = new Uint8Array(6);
+result[0] = 0xEF;
+result[1] = 0xBB;
+result[2] = 0xBF;
+result[3] = 0x61;
+result[4] = 0x62;
+result[5] = 0x63;
+console.log("input num:");
+let retStr = textDecoder.decodeWithStream( result , {stream: false});
+console.log("retStr = " + retStr);
+```
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -457,9 +520,9 @@ A constructor used to create a **TextDecoder** object.
 
 **Example**
 
-  ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  ```
+```ts
+let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+```
 
 ### decode<sup>(deprecated)</sup>
 
@@ -494,19 +557,19 @@ Decodes the input content.
 
 **Example**
 
-  ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  let result = new Uint8Array(6);
-  result[0] = 0xEF;
-  result[1] = 0xBB;
-  result[2] = 0xBF;
-  result[3] = 0x61;
-  result[4] = 0x62;
-  result[5] = 0x63;
-  console.log("input num:");
-  let retStr = textDecoder.decode( result , {stream: false});
-  console.log("retStr = " + retStr);
-  ```
+```ts
+let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+let result = new Uint8Array(6);
+result[0] = 0xEF;
+result[1] = 0xBB;
+result[2] = 0xBF;
+result[3] = 0x61;
+result[4] = 0x62;
+result[5] = 0x63;
+console.log("input num:");
+let retStr = textDecoder.decode( result , {stream: false});
+console.log("retStr = " + retStr);
+```
 
 ## TextEncoder
 
@@ -531,9 +594,9 @@ A constructor used to create a **TextEncoder** object.
 
 **Example**
 
-  ```ts
-  let textEncoder = new util.TextEncoder();
-  ```
+```ts
+let textEncoder = new util.TextEncoder();
+```
 
 ### constructor<sup>9+</sup>
 
@@ -551,9 +614,9 @@ A constructor used to create a **TextEncoder** object.
 
 **Example**
 
-  ```ts
-  let textEncoder = new util.TextEncoder("utf-8");
-  ```
+```ts
+let textEncoder = new util.TextEncoder("utf-8");
+```
 
 ### encodeInto<sup>9+</sup>
 
@@ -577,12 +640,12 @@ Encodes the input content.
 
 **Example**
 
-  ```ts
-  let textEncoder = new util.TextEncoder();
-  let buffer = new ArrayBuffer(20);
-  let result = new Uint8Array(buffer);
-  result = textEncoder.encodeInto("\uD800¥¥");
-  ```
+```ts
+let textEncoder = new util.TextEncoder();
+let buffer = new ArrayBuffer(20);
+let result = new Uint8Array(buffer);
+result = textEncoder.encodeInto("\uD800¥¥");
+```
 
 ### encodeIntoUint8Array<sup>9+</sup>
 
@@ -607,13 +670,13 @@ Stores the UTF-8 encoded text.
 
 **Example**
 
-  ```ts
-  let that = new util.TextEncoder()
-  let buffer = new ArrayBuffer(4)
-  let dest = new Uint8Array(buffer)
-  let result = new Object()
-  result = that.encodeIntoUint8Array('abcd', dest)
-  ```
+```ts
+let that = new util.TextEncoder()
+let buffer = new ArrayBuffer(4)
+let dest = new Uint8Array(buffer)
+let result = new Object()
+result = that.encodeIntoUint8Array('abcd', dest)
+```
 
 ### encodeInto<sup>(deprecated)</sup>
 
@@ -641,13 +704,14 @@ Stores the UTF-8 encoded text.
 | Uint8Array | Encoded text.|
 
 **Example**
-  ```ts
-  let that = new util.TextEncoder()
-  let buffer = new ArrayBuffer(4)
-  let dest = new Uint8Array(buffer)
-  let result = new Object()
-  result = that.encodeInto('abcd', dest)
-  ```
+
+```ts
+let that = new util.TextEncoder()
+let buffer = new ArrayBuffer(4)
+let dest = new Uint8Array(buffer)
+let result = new Object()
+result = that.encodeInto('abcd', dest)
+```
 
 ### encode<sup>(deprecated)</sup>
 
@@ -674,12 +738,13 @@ Encodes the input content.
 | Uint8Array | Encoded text.|
 
 **Example**
-  ```ts
-  let textEncoder = new util.TextEncoder();
-  let buffer = new ArrayBuffer(20);
-  let result = new Uint8Array(buffer);
-  result = textEncoder.encode("\uD800¥¥");
-  ```
+
+```ts
+let textEncoder = new util.TextEncoder();
+let buffer = new ArrayBuffer(20);
+let result = new Uint8Array(buffer);
+result = textEncoder.encode("\uD800¥¥");
+```
 
 ## RationalNumber<sup>8+</sup>
 
@@ -696,14 +761,14 @@ A constructor used to create a **RationalNumber** object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber();
+let rationalNumber = new util.RationalNumber();
 ```
 
 ### parseRationalNumber<sup>9+</sup>
 
 parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
-Parses a rational number. Previously, this processing is an internal action of the deprecated constructor.
+Create a **RationalNumber** instance with a given numerator and denominator.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -717,7 +782,7 @@ Parses a rational number. Previously, this processing is an internal action of t
 **Example**
 
 ```ts
-  let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 ```
 
 ### createRationalFromString<sup>8+</sup>
@@ -743,8 +808,7 @@ Creates a **RationalNumber** object based on the given string.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
+let rational = util.RationalNumber.createRationalFromString("3/4");
 ```
 
 ### compare<sup>9+</sup>
@@ -759,7 +823,7 @@ Compares this **RationalNumber** object with a given object.
 
 | Name | Type          | Mandatory| Description              |
 | ------- | -------------- | ---- | ------------------ |
-| another | RationalNumber | Yes  | Object used to compare with this **RationalNumber** object.|
+| another | [RationalNumber](#rationalnumber8) | Yes  | Object used to compare with this **RationalNumber** object.|
 
 **Return value**
 
@@ -769,11 +833,13 @@ Compares this **RationalNumber** object with a given object.
 
 **Example**
 
-  ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.compare(rational);
-  ```
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compare(rational);
+console.log("result = " + result);
+// Output: result = -1
+```
 
 ### valueOf<sup>8+</sup>
 
@@ -792,8 +858,17 @@ Obtains the value of this **RationalNumber** object as an integer or a floating-
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.valueOf();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.valueOf();
+console.log("result = " + result);
+// Output: result = 0.5
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.valueOf();
+console.log("result = " + result);
+// Output: result = 0.5
 ```
 
 ### equals<sup>8+</sup>
@@ -819,9 +894,19 @@ Checks whether this **RationalNumber** object equals the given object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.equals(rational);
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.equals(rational);
+console.log("result = " + result);
+// Output: result = false
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.equals(rational);
+console.log("result = " + result);
+// Output: result = false
 ```
 
 ### getCommonFactor<sup>9+</sup>
@@ -848,8 +933,9 @@ Obtains the greatest common divisor of two specified integers.
 **Example**
 
 ```ts
-let rationalNumber = new util.RationalNumber(1,2);
 let result = util.RationalNumber.getCommonFactor(4,6);
+console.log("result = " + result);
+// Output: result = 2
 ```
 
 ### getNumerator<sup>8+</sup>
@@ -869,8 +955,17 @@ Obtains the numerator of this **RationalNumber** object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.getNumerator();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.getNumerator();
+console.log("result = " + result);
+// Output: result = 1
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.getNumerator();
+console.log("result = " + result);
+// Output: result = 1
 ```
 
 ### getDenominator<sup>8+</sup>
@@ -890,8 +985,17 @@ Obtains the denominator of this **RationalNumber** object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.getDenominator();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.getDenominator();
+console.log("result = " + result);
+// Output: result = 2
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
+let result = rationalNumber.getDenominator();
+console.log("result = " + result);
+// Output: result = 2
 ```
 
 ### isZero<sup>8+</sup>
@@ -911,8 +1015,17 @@ Checks whether this **RationalNumber** object is **0**.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isZero();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isZero();
+console.log("result = " + result);
+// Output: result = false
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isZero();
+console.log("result = " + result);
+// Output: result = false
 ```
 
 ### isNaN<sup>8+</sup>
@@ -932,8 +1045,17 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isNaN();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isNaN();
+console.log("result = " + result);
+// Output: result = false
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isNaN();
+console.log("result = " + result);
+// Output: result = false
 ```
 
 ### isFinite<sup>8+</sup>
@@ -953,8 +1075,17 @@ Checks whether this **RationalNumber** object represents a finite value.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isFinite();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isFinite();
+console.log("result = " + result);
+// Output: result = true
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isFinite();
+console.log("result = " + result);
+// Output: result = true
 ```
 
 ### toString<sup>8+</sup>
@@ -974,8 +1105,17 @@ Obtains the string representation of this **RationalNumber** object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.toString();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.toString();
+console.log("result = " + result);
+// Output: result = 1/2
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.toString();
+console.log("result = " + result);
+// Output: result = 1/2
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -986,7 +1126,7 @@ A constructor used to create a **RationalNumber** object.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [constructor<sup>9+</sup>](#constructor9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [parserationalnumber<sup>9+</sup>](#parserationalnumber9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1000,7 +1140,7 @@ A constructor used to create a **RationalNumber** object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
+let rationalNumber = new util.RationalNumber(1,2);
 ```
 
 ### compareTo<sup>(deprecated)</sup>
@@ -1030,9 +1170,9 @@ Compares this **RationalNumber** object with a given object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.compareTo(rational);
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compareTo(rational);
 ```
 
 ### getCommonDivisor<sup>(deprecated)</sup>
@@ -1063,8 +1203,8 @@ Obtains the greatest common divisor of two specified integers.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = util.RationalNumber.getCommonDivisor(4,6);
+let rationalNumber = new util.RationalNumber(1,2);
+let result = util.RationalNumber.getCommonDivisor(4,6);
 ```
 
 ## LRUCache<sup>9+</sup>
@@ -1082,10 +1222,10 @@ Provides APIs to discard the least recently used data to make rooms for new elem
 **Example**
 
 ```ts
-  let  pro : util.LRUCache<number, number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.put(1,8);
-  let result = pro.length;
+let  pro : util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.put(1,8);
+let result = pro.length;
 ```
 
 ### constructor<sup>9+</sup>
@@ -1105,7 +1245,7 @@ A constructor used to create a **LruCache** instance. The default capacity of th
 **Example**
 
 ```ts
-  let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
+let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 ```
 
 
@@ -1126,10 +1266,9 @@ Changes the **LruCache** capacity. If the new capacity is less than or equal to 
 **Example**
 
 ```ts
-  let pro : util.LRUCache<number,number>= new util.LRUCache();
-  pro.updateCapacity(100);
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.updateCapacity(100);
 ```
-
 
 ### toString<sup>9+</sup>
 
@@ -1148,13 +1287,14 @@ Obtains the string representation of this **LruCache** object.
 **Example**
 
 ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.get(2);
-  pro.remove(20);
-  let result = pro.toString();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+pro.get(3);
+console.log(pro.toString());
+// Output: LRUCache[ maxSize = 64, hits = 1, misses = 1, hitRate = 50% ]
+// maxSize: maximum size of the buffer. hits: number of matched queries. misses: number of mismatched queries. hitRate: matching rate.
 ```
-
 
 ### getCapacity<sup>9+</sup>
 
@@ -1172,11 +1312,10 @@ Obtains the capacity of this cache.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  let result = pro.getCapacity();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+let result = pro.getCapacity();
+```
 
 ### clear<sup>9+</sup>
 
@@ -1188,36 +1327,46 @@ Clears key-value pairs from this cache. The **afterRemoval()** method will be ca
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.length;
-  pro.clear();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.length;
+pro.clear();
+```
 
 ### getCreateCount<sup>9+</sup>
 
 getCreateCount(): number
 
-Obtains the number of return values for **createDefault()**.
+Obtains the number of times that an object is created.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type  | Description                             |
-| ------ | --------------------------------- |
-| number | Number of return values for **createDefault()**.|
+| Type  | Description               |
+| ------ | -------------------|
+| number | Number of times that objects are created.|
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(1,8);
-  let result = pro.getCreateCount();
-  ```
+```ts
+// Create the ChildLruBuffer class that inherits LruCache, and override createDefault() to return a non-undefined value.
+class ChildLruBuffer extends util.LRUCache<number, number> {
+  constructor() {
+    super();
+  }
 
+  createDefault(key: number): number {
+    return key;
+  }
+}
+let lru = new ChildLruBuffer();
+lru.put(2,10);
+lru.get(3);
+lru.get(5);
+let res = lru.getCreateCount();
+```
 
 ### getMissCount<sup>9+</sup>
 
@@ -1235,19 +1384,18 @@ Obtains the number of times that the queried values are mismatched.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.get(2);
-  let result = pro.getMissCount();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+let result = pro.getMissCount();
+```
 
 ### getRemovalCount<sup>9+</sup>
 
 getRemovalCount(): number
 
-Obtains the number of removals from this cache.
+Obtains the number of times that key-value pairs in the cache are recycled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1255,18 +1403,17 @@ Obtains the number of removals from this cache.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Number of removals from the cache.|
+| number | Number of times that key-value pairs in the cache are recycled.|
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.updateCapacity(2);
-  pro.put(50,22);
-  let result = pro.getRemovalCount();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.updateCapacity(2);
+pro.put(50,22);
+let result = pro.getRemovalCount();
+```
 
 ### getMatchCount<sup>9+</sup>
 
@@ -1285,12 +1432,11 @@ Obtains the number of times that the queried values are matched.
 **Example**
 
   ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  let pro: util.LRUCache<number, number> = new util.LRUCache();
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
   ```
-
 
 ### getPutCount<sup>9+</sup>
 
@@ -1308,12 +1454,11 @@ Obtains the number of additions to this cache.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.getPutCount();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.getPutCount();
+```
 
 ### isEmpty<sup>9+</sup>
 
@@ -1331,12 +1476,11 @@ Checks whether this cache is empty.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.isEmpty();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.isEmpty();
+```
 
 ### get<sup>9+</sup>
 
@@ -1360,12 +1504,11 @@ Obtains the value of the specified key.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result  = pro.get(2);
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result  = pro.get(2);
+```
 
 ### put<sup>9+</sup>
 
@@ -1390,10 +1533,10 @@ Adds a key-value pair to this cache.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  let result = pro.put(2,10);
-  ```
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+let result = pro.put(2,10);
+```
 
 ### values<sup>9+</sup>
 
@@ -1411,14 +1554,13 @@ Obtains all values in this cache, listed from the most to the least recently acc
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number|string,number|string> = new util.LRUCache();
-  pro.put(2,10);
-  pro.put(2,"anhu");
-  pro.put("afaf","grfb");
-  let result = pro.values();
-  ```
-
+```ts
+let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
+pro.put(2,10);
+pro.put(2,"anhu");
+pro.put("afaf","grfb");
+let result = pro.values();
+```
 
 ### keys<sup>9+</sup>
 
@@ -1436,12 +1578,11 @@ Obtains all keys in this cache, listed from the most to the least recently acces
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number>= new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.keys();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.keys();
+```
 
 ### remove<sup>9+</sup>
 
@@ -1465,12 +1606,11 @@ Removes the specified key and its value from this cache.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number>= new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.remove(20);
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.remove(20);
+```
 
 ### afterRemoval<sup>9+</sup>
 
@@ -1491,24 +1631,23 @@ Performs subsequent operations after a value is removed.
 
 **Example**
 
-  ```ts
-  let arr : Object[] = [];
-  class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
-    constructor() {
-      super();
-    }
+```ts
+let arr : Object[] = [];
+class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
+  constructor() {
+    super();
+  }
 
-    afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
-    {
-      if (isEvict === false) {
-        arr = [key, value, newValue];
-      }
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
+  {
+    if (isEvict === false) {
+      arr = [key, value, newValue];
     }
   }
-  let lru : ChildLruBuffer<number,number|null>= new ChildLruBuffer();
-  lru.afterRemoval(false,10,30,null);
-  ```
-
+}
+let lru : ChildLruBuffer<number,number|null>= new ChildLruBuffer();
+lru.afterRemoval(false,10,30,null);
+```
 
 ### contains<sup>9+</sup>
 
@@ -1532,16 +1671,15 @@ Checks whether this cache contains the specified key.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number|object,number> = new util.LRUCache();
-  pro.put(2,10);
-  class Lru{
-  s : string = ""
-  }
-  let obj : Lru = {s : "key" }
-  let result = pro.contains(obj);
-  ```
-
+```ts
+let pro : util.LRUCache<number|object,number> = new util.LRUCache();
+pro.put(2,10);
+class Lru{
+s : string = ""
+}
+let obj : Lru = {s : "key" }
+let result = pro.contains(obj);
+```
 
 ### createDefault<sup>9+</sup>
 
@@ -1565,11 +1703,10 @@ Creates a value if the value of the specified key is not available.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  let result = pro.createDefault(50);
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+let result = pro.createDefault(50);
+```
 
 ### entries<sup>9+</sup>
 
@@ -1587,17 +1724,26 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.entries();
-  ```
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro.entries();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
+```
 
 ### [Symbol.iterator]<sup>9+</sup>
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 Obtains a two-dimensional array in key-value pairs.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1609,11 +1755,16 @@ Obtains a two-dimensional array in key-value pairs.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro[Symbol.iterator]();
-  ```
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro[Symbol.iterator]();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
+```
 
 ## ScopeComparable<sup>8+</sup>
 
@@ -1623,7 +1774,7 @@ The values of the **ScopeComparable** type are used to implement the **compareTo
 
 ### compareTo<sup>8+</sup>
 
-compareTo(other: ScopeComparable): boolean;
+compareTo(other: ScopeComparable): boolean
 
 Compares two values and returns a Boolean value.
 
@@ -1646,21 +1797,21 @@ Compares two values and returns a Boolean value.
 Create a class to implement the **compareTo** method. The **Temperature** class is used as an example in the following sample code.
 
 ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 ```
 
 ## ScopeType<sup>8+</sup>
@@ -1695,27 +1846,26 @@ A constructor used to create a **ScopeHelper** object with the specified upper a
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  ```
-
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+```
 
 ### toString<sup>9+</sup>
 
@@ -1733,29 +1883,28 @@ Obtains a string representation that contains this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.toString();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.toString();
+```
 
 ### intersect<sup>9+</sup>
 
@@ -1775,36 +1924,35 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 | Type                          | Description                          |
 | ------------------------------ | ------------------------------ |
-| [ScopeHelper9+](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
+| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-  range.intersect(rangeFir);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+range.intersect(rangeFir);
+```
 
 ### intersect<sup>9+</sup>
 
@@ -1829,31 +1977,30 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.intersect(tempMiDF, tempMidS);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.intersect(tempMiDF, tempMidS);
+```
 
 ### getUpper<sup>9+</sup>
 
@@ -1871,29 +2018,28 @@ Obtains the upper limit of this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.getUpper();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getUpper();
+```
 
 ### getLower<sup>9+</sup>
 
@@ -1911,29 +2057,28 @@ Obtains the lower limit of this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.getLower();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getLower();
+```
 
 ### expand<sup>9+</sup>
 
@@ -1958,31 +2103,30 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.expand(tempMiDF, tempMidS);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF, tempMidS);
+```
 
 ### expand<sup>9+</sup>
 
@@ -2006,32 +2150,31 @@ Obtains the union set of this **Scope** and the given **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-  let result = range.expand(rangeFir);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+let result = range.expand(rangeFir);
+```
 
 ### expand<sup>9+</sup>
 
@@ -2055,30 +2198,29 @@ Obtains the union set of this **Scope** and the given value.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.expand(tempMiDF);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF);
+```
 
 ### contains<sup>9+</sup>
 
@@ -2102,30 +2244,29 @@ Checks whether a value is within this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.contains(tempMiDF);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.contains(tempMiDF);
+```
 
 ### contains<sup>9+</sup>
 
@@ -2149,32 +2290,31 @@ Checks whether a range is within this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let tempLess = new Temperature(20);
-  let tempMore = new Temperature(45);
-  let rangeSec = new util.ScopeHelper(tempLess, tempMore);
-  let result = range.contains(rangeSec);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempLess = new Temperature(20);
+let tempMore = new Temperature(45);
+let rangeSec = new util.ScopeHelper(tempLess, tempMore);
+let result = range.contains(rangeSec);
+```
 
 ### clamp<sup>9+</sup>
 
@@ -2198,29 +2338,29 @@ Limits a value to this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.clamp(tempMiDF);
-  ```
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.clamp(tempMiDF);
+```
 
 ## Base64Helper<sup>9+</sup>
 
@@ -2806,6 +2946,10 @@ isGeneratorFunction(value: Object): boolean
 
 Checks whether the input value is a generator function.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -2833,6 +2977,10 @@ Checks whether the input value is a generator function.
 isGeneratorObject(value: Object): boolean
 
 Checks whether the input value is a generator object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3235,6 +3383,10 @@ Checks whether the input value is a string object.
 isSymbolObject(value: Object): boolean
 
 Checks whether the input value is a symbol object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3639,7 +3791,7 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
 
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
-  let result = pro.updateCapacity(100);
+  pro.updateCapacity(100);
   ```
 
 ### toString<sup>(deprecated)</sup>

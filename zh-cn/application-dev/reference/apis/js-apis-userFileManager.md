@@ -1412,12 +1412,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 | photoUri | string | 是   | 所查询的图库资源的uri。 |
 | albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
 | options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
-
-**返回值：**
-
-| 类型                                    | 说明              |
-| --------------------------------------- | ----------------- |
-| AsyncCallback&lt;number&gt;| 返回相册中资源的索引。 |
+| callback | AsyncCallback&lt;number&gt;| 是   | callback返回相册中资源的索引。 |
 
 **错误码：**
 
@@ -1542,7 +1537,7 @@ async function example() {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-释放UserFileManager实例。
+释放UserFileManager实例，使用callback方式返回结果。
 当后续不需要使用UserFileManager实例中的方法时调用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -1572,7 +1567,7 @@ async function example() {
 
 release(): Promise&lt;void&gt;
 
-释放UserFileManager实例。
+释放UserFileManager实例，使用Promise方式返回结果。
 当后续不需要使用UserFileManager 实例中的方法时调用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -2510,7 +2505,7 @@ getExif(): Promise&lt;string&gt;
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与ImageVideoKey.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[ImageVideoKey.USER_COMMENT](#imagevideokey)组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2600,7 +2595,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与ImageVideoKey.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[ImageVideoKey.USER_COMMENT](#imagevideokey)组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2962,9 +2957,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(callback: AsyncCallback&lt;T&gt;): void
+getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
+在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2972,7 +2968,7 @@ async function example() {
 
 | 参数名    | 类型                                          | 必填 | 说明                                      |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;T&gt; | 是   | 异步返回结果集中下一个之后的回调。 |
+| callback | AsyncCallback&lt;T&gt; | 是   | 异步返回结果集中下一个之后的回调。 |
 
 **示例：**
 
@@ -3002,9 +2998,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(): Promise&lt;T&gt;
+getNextObject(): Promise&lt;T&gt;
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回。
+在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 

@@ -283,7 +283,7 @@ Calling the **uninstall** API of the **installer** module to uninstall a preinst
 
 **Solution**
 1. Check whether the bundle name is correct.
-1. Check whether the preinstalled application can be uninstalled.
+2. Check whether the preinstalled application can be uninstalled.
 
 ## 17700021 Invalid UID
 
@@ -347,7 +347,7 @@ Failed to get the profile because the specified profile is not found in the HAP.
 
 **Description**
 
-When an API for querying the profile is called, the configuration file does not exist 
+When an API for querying the profile is called, the profile does not exist.
 
 **Possible Causes**
 
@@ -703,7 +703,7 @@ During application installation, the permission level of the data proxy of a non
 **Possible Causes**
 
 1. No permission is configured for the data proxy of a non-system application.
-1. The permission level of the data proxy of a non-system application is too low.
+2. The permission level of the data proxy of a non-system application is too low.
 
 **Solution**
 
@@ -842,3 +842,57 @@ The distribution type of the caller is not enterprise MDM.
 **Solution**
 
 Ensure that the signature file of the application is correctly configured.
+
+## 17700052 Installation of Debugging Applications Allowed Only in Developer Mode
+
+**Error Message**
+
+Failed to install the HAP because debug bundle cannot be installed under non-developer mode.
+
+**Description**
+
+A debugging application can be installed only in the developer mode.
+
+**Possible Causes**
+
+The application is a debugging application, but the device is not in developer mode.
+
+**Solution**
+
+Run the **hdc shell param get const.security.developermode.state** command. If **false** is returned, a debugging application cannot be installed on the device.
+
+## 17700053 Not Invoked by AppGallery
+
+**Error Message**
+
+Not app gallery call.
+
+**Description**
+
+This API is called by AppGallery.
+
+**Possible Causes**
+
+The caller is not AppGallery.
+
+**Solution**
+
+Use AppGallery to call the API.
+
+## 17700201 .abc File Verification Failure
+
+**Error Message**
+
+Failed to verify abc.
+
+**Description**
+
+Failed to verify the .abc file.
+
+**Possible Causes**
+
+The .abc file is untrusted.
+
+**Solution**
+
+Pass in the path of a trusted .abc file.

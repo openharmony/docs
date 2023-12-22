@@ -19,34 +19,33 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
     build() {
       Column() {
         Button ('Feature A')
-          .margin('20%')
           .onClick(() => {
             console.info('call EntryAbility funA');
             postCardAction(this, {
-              'action': 'call',
-              'abilityName': 'EntryAbility', // Only the UIAbility of the current application is allowed.
-              'params': {
-                'method': 'funA' // Set the name of the method to call in the EntryAbility.
+              action: 'call',
+              abilityName: 'EntryAbility', // Only the UIAbility of the current application is allowed.
+              params: {
+                method: 'funA' // Set the name of the method to call in the EntryAbility.
               }
             });
           })
   
         Button ('Feature B')
-          .margin('20%')
           .onClick(() => {
             console.info('call EntryAbility funB');
             postCardAction(this, {
-              'action': 'call',
-              'abilityName': 'EntryAbility', // Only the UIAbility of the current application is allowed.
-              'params': {
-                'method': 'funB', // Set the name of the method to call in the EntryAbility.
-                'num': 1 // Set other parameters to be passed in.
+              action: 'call',
+              abilityName: 'EntryAbility', // Only the UIAbility of the current application is allowed.
+              params: {
+                method: 'funB', // Set the name of the method to call in the EntryAbility.
+                num: 1 // Set other parameters to be passed in.
               }
             });
           })
       }
       .width('100%')
       .height('100%')
+      .justifyContent(FlexAlign.SpaceAround)
     }
   }
   ```
@@ -92,7 +91,7 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
         });
         this.callee.on('funB', (data: rpc.MessageSequence) => {
           // Obtain all parameters passed in the call event.
-          console.info('FunACall param:' + JSON.stringify(data.readString()));
+          console.info('FunBCall param:' + JSON.stringify(data.readString()));
           return new MyParcelable(2, 'bbb');
         });
       } catch (err) {

@@ -3,7 +3,7 @@
 The **wantConstant** module provides the actions, entities, and flags used in **Want** objects.
 
 > **NOTE**
-> 
+>
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -44,5 +44,5 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | ------------------------------------ | ---------- | ------------------------------------------------------------ |
 | FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | Indicates the permission to read the URI.                                 |
 | FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | Indicates the permission to write data to the URI.                                 |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>10+</sup> | 0x00000040 | Indicates the permanent permission of the URI. This flag is valid only for PC applications.<br>**System API**: This is a system API and cannot be called by third-party applications.<br>If this flag is used together with **FLAG_AUTH_READ_URI_PERMISSION**, the permanent read permission is granted.<br>If this flag is used together with **FLAG_AUTH_WRITE_URI_PERMISSION**, the permanent write permission is granted.<br>The flag takes effect only when the **PERMISSION_PROXY_AUTHORIZATION_URI** permission is configured for the application.|
+| FLAG_AUTH_PERSISTABLE_URI_PERMISSION<sup>10+</sup> | 0x00000040 | Indicates the permanent permission of the URI. This flag is valid only for 2-in-1 applications.<br>**System API**: This is a system API and cannot be called by third-party applications.<br>If this flag is used together with **FLAG_AUTH_READ_URI_PERMISSION**, the permanent read permission is granted.<br>If this flag is used together with **FLAG_AUTH_WRITE_URI_PERMISSION**, the permanent write permission is granted.<br>The flag takes effect only when the **PERMISSION_PROXY_AUTHORIZATION_URI** permission is configured for the application.|
 | FLAG_INSTALL_ON_DEMAND               | 0x00000800 | Indicates that the specific ability will be installed if it has not been installed.                             |

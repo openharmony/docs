@@ -39,18 +39,6 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | [UsbRequestPipe](_usb_request_pipe.md) | Request pipe.|
 | [UsbDeviceMemMap](_usb_device_mem_map.md) | Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.|
 
-
-### Types
-
-| Name| Description|
-| -------- | -------- |
-| [UsbDdkEndpointDescriptor](#usbddkendpointdescriptor) | Endpoint descriptor.|
-| [UsbDdkInterfaceDescriptor](#usbddkinterfacedescriptor) | Interface descriptor.|
-| [UsbDdkInterface](#usbddkinterface) | USB DDK interface, which is a collection of alternate settings for a particular USB interface.|
-| [UsbDdkConfigDescriptor](#usbddkconfigdescriptor) | Configuration descriptor.|
-| [UsbDeviceMemMap](#usbdevicememmap) | Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.|
-
-
 ### Enums
 
 | Name| Description|
@@ -76,70 +64,6 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | [OH_Usb_SendPipeRequest](#oh_usb_sendpiperequest) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Sends a pipe request. This API works in a synchronous manner. It applies to interrupt transfer and bulk transfer.|
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap) to destroy a buffer after use.|
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
-
-
-## Type Description
-
-
-### UsbDdkConfigDescriptor
-
-
-```
-typedef struct UsbDdkConfigDescriptor UsbDdkConfigDescriptor
-```
-
-**Description**
-
-Configuration descriptor.
-
-
-### UsbDdkEndpointDescriptor
-
-
-```
-typedef struct UsbDdkEndpointDescriptor UsbDdkEndpointDescriptor
-```
-
-**Description**
-
-Endpoint descriptor.
-
-
-### UsbDdkInterface
-
-
-```
-typedef struct UsbDdkInterface UsbDdkInterface
-```
-
-**Description**
-
-USB DDK interface, which is a collection of alternate settings for a particular USB interface.
-
-
-### UsbDdkInterfaceDescriptor
-
-
-```
-typedef struct UsbDdkInterfaceDescriptor UsbDdkInterfaceDescriptor
-```
-
-**Description**
-
-Interface descriptor.
-
-
-### UsbDeviceMemMap
-
-
-```
-typedef struct UsbDeviceMemMap UsbDeviceMemMap
-```
-
-**Description**
-
-Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.
-
 
 ## Enum Description
 
@@ -246,7 +170,7 @@ Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use
 
 
 ```
-void OH_Usb_FreeConfigDescriptor (const struct UsbDdkConfigDescriptor *const config)
+void OH_Usb_FreeConfigDescriptor (struct UsbDdkConfigDescriptor *const config)
 ```
 
 **Description**

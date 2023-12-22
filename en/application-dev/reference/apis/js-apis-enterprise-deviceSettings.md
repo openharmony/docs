@@ -77,7 +77,7 @@ Obtains the device screen-off time through the specified device administrator ap
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;number&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the device screen-off time obtained. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;number&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the screen-off time in ms. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -128,7 +128,7 @@ Obtains the device screen-off time through the specified device administrator ap
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise used to return the device screen-off time. |
+| Promise&lt;number&gt; | Promise used to return the screen-off time, in ms. |
 
 **Error codes**
 
@@ -431,7 +431,7 @@ try {
   let powerPolicy: deviceSettings.PowerPolicy = {powerPolicyAction, delayTime};
   deviceSettings.setPowerPolicy(wantTemp, powerScene, powerPolicy);
   console.info(`Succeeded in setting power polilcy`);
-} catch (error) {
+} catch (err) {
   console.error(`Failed to set power policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -482,7 +482,7 @@ try {
   let powerScene: deviceSettings.PowerScene = deviceSettings.PowerScene.TIME_OUT;
   let powerPolicy: deviceSettings.PowerPolicy = deviceSettings.getPowerPolicy(wantTemp, powerScene);
   console.info(`Succeeded in getting power polilcy ${JSON.stringify(powerPolicy)}`);
-} catch (error) {
+} catch (err) {
   console.error(`Failed to get power policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```

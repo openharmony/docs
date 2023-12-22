@@ -23,7 +23,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| start | boolean | Yes| Whether to start scrolling.|
+| start | boolean | Yes| Whether to start scrolling.<br>**NOTE**<br>This parameter cannot be used to restart scrolling that has been completed.|
 | step | number | No| Scrolling step.<br>Default value: **6**, in vp|
 | loop | number | No| Number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.<br>Default value: **-1**<br>**NOTE**<br>Regardless of the value, the marquee scrolls only once on an ArkTS widget.|
 | fromStart | boolean | No| Whether the text scrolls from the start.<br>Default value: **true**|

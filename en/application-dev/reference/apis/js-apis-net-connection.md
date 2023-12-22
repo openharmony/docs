@@ -15,7 +15,7 @@ import connection from '@ohos.net.connection'
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
-Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout duration in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.
+Creates a **NetConnection** object, where [netSpecifier](#netspecifier8) specifies the network, and **timeout** specifies the timeout duration in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -23,7 +23,7 @@ Creates a **NetConnection** object. **netSpecifier** specifies the network, and 
 
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| netSpecifier | [NetSpecifier](#netspecifier) | No  | Network specifier, which specifies the characteristics of a network. If this parameter is not set or is set to **undefined**, the default network is used.                  |
+| netSpecifier | [NetSpecifier](#netspecifier8) | No  | Network specifier, which specifies the characteristics of a network. If this parameter is not set or is set to **undefined**, the default network is used.                  |
 | timeout      | number                        | No  | Timeout duration for obtaining the network specified by **netSpecifier**. This parameter is valid only when **netSpecifier** is specified. The default value is **0** if **netSpecifier** is **undefined**.|
 
 **Return value**
@@ -1705,7 +1705,11 @@ netCon.register((error: BusinessError) => {
 })
 
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+class Value {
+    netHandle: NetHandle = connection.NetHandle
+    blocked: boolean = false
+}
+netCon.on('netBlockStatusChange', (data: Value) => {
   console.log(JSON.stringify(data))
 })
 
@@ -1789,8 +1793,13 @@ netCon.register((error: BusinessError) => {
   console.log(JSON.stringify(error))
 })
 
+class Value {
+    netHandle: NetHandle = connection.NetHandle
+    connectionProperties: ConnectionProperties = connection.ConnectionProperties
+}
+
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+netCon.on('netConnectionPropertiesChange', (data: Value) => {
   console.log(JSON.stringify(data))
 })
 
@@ -1832,7 +1841,7 @@ netCon.register((error: BusinessError) => {
 })
 
 // Subscribe to netAvailable events. Event notifications can be received only after register is called.
-netCon.on('netAvailable', (data: connection.NetHandle) => {
+netCon.on('netLost', (data: connection.NetHandle) => {
   console.log(JSON.stringify(data))
 })
 

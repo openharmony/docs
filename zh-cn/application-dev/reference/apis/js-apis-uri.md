@@ -15,6 +15,8 @@ import uri from '@ohos.uri'
 
 ## URI
 
+构造URI对象，提供判断对象相等、规范路径等方法。
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
@@ -62,8 +64,8 @@ console.log(result1.query) // null
 const result2 = new uri.URI("gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles#fragment");
 console.log(result2.host) // spinaltap.micro.umn.edu
 console.log(result2.fragment) // fragment
-console.log(result2.path) // /dddd/eee.txt
-console.log(result2.scheme) // ftp
+console.log(result2.path) // /00/Weather/California/Los Angeles
+console.log(result2.scheme) // gopher
 console.log(result2.userInfo) // null
 console.log(result2.port) //-1
 console.log(result2.query) // null

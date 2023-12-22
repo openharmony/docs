@@ -1,4 +1,4 @@
-# CanvasRenderingContext2D对象
+# CanvasRenderingContext2D
 
 使用RenderingContext在Canvas组件上进行绘制，绘制对象可以是矩形、文本、图片等。
 
@@ -41,7 +41,7 @@ RenderingContextSettings(antialias?: boolean)
 | 名称                                       | 类型                                       | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | [fillStyle](#fillstyle)                  | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置填充区域的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [lineWidth](#linewidth)                  | number                                   | 设置绘制线条的宽度。<br/>默认值：1(px)                               |
+| [lineWidth](#linewidth)                  | number                                   | 设置绘制线条的宽度。<br/>默认值：1(px)                 |
 | [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 设置描边的颜色。<br/>-&nbsp;类型为string时，表示设置描边使用的颜色。<br/>默认值：'black'<br/>- 类型为number时，表示设置描边使用的颜色。<br/>默认值：'#000000'<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [lineCap](#linecap)                      | CanvasLineCap                            | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [lineJoin](#linejoin)                    | CanvasLineJoin                           | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -59,8 +59,8 @@ RenderingContextSettings(antialias?: boolean)
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [height](#height)                        | number                                   | 组件高度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [width](#width)                          | number                                   | 组件宽度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [imageSmoothingQuality](#imagesmoothingquality)       |[ImageSmoothingQuality](ts-appendix-enums.md#imagesmoothingquality8)     | imageSmoothingEnabled为true时，用于设置图像平滑度。<br/>默认值：ImageSmoothingQuality.low<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [direction](#direction)       | [CanvasDirection](ts-appendix-enums.md#canvasdirection8)    | 用于设置绘制文字时使用的文字方向。<br/>默认值：CanvasDirection.inherit<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](ts-appendix-enums.md#imagesmoothingquality8) | imageSmoothingEnabled为true时，用于设置图像平滑度。<br/>默认值：ImageSmoothingQuality.low<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [direction](#direction)                  | [CanvasDirection](ts-appendix-enums.md#canvasdirection8) | 用于设置绘制文字时使用的文字方向。<br/>默认值：CanvasDirection.inherit<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [filter](#filter)                        | string                                   | 用于设置图像的滤镜。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 > **说明：**
@@ -1679,7 +1679,10 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .backgroundColor('#ffff00')
           .onReady(() =>{
             this.context.beginPath()
-            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2)
+            this.context.ellipse(200, 200, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2, false)
+            this.context.stroke()
+            this.context.beginPath()
+            this.context.ellipse(200, 300, 50, 100, Math.PI * 0.25, Math.PI * 0.5, Math.PI * 2, true)
             this.context.stroke()
           })
       }
@@ -2660,10 +2663,10 @@ toDataURL(type?: string, quality?: number): string
 
 **参数：** 
 
-| 参数名     | 参数类型   | 必填   | 描述                                       |
-| ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | 否    | 可选参数，用于指定图像格式，默认格式为image/png。            |
-| quality | number | 否    | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。 |
+| 参数名     | 参数类型   | 必填   | 默认值         | 描述                                       |
+| ------- | ------ | ---- | ----------- | ---------------------------------------- |
+| type    | string | 否    | "image/png" | 可选参数，用于指定图像格式，默认格式为image/png。            |
+| quality | number | 否    | 0.92        | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。 |
 
 **返回值：** 
 
@@ -2677,25 +2680,30 @@ toDataURL(type?: string, quality?: number): string
   // xxx.ets
   @Entry
   @Component
-  struct ToDataURL {
+  struct CanvasExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    @State toDataURL: string = ""
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
-          .width('100%')
-          .height('100%')
-          .backgroundColor('#ffff00')
+          .width(100)
+          .height(100)
           .onReady(() =>{
-            let dataURL = this.context.toDataURL()
+            this.context.fillStyle = "#00ff00"
+            this.context.fillRect(0,0,100,100)
+            this.toDataURL = this.context.toDataURL("image/png", 0.92)
           })
+        Text(this.toDataURL)
       }
       .width('100%')
       .height('100%')
+      .backgroundColor('#ffff00')
     }
   }
   ```
+  ![zh-cn_image_0000001238952387](figures/zh-cn_image_0000001194192441.png)  
 
 
 ### restore
@@ -2933,27 +2941,27 @@ struct CanvasExample {
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称        | 描述             |
-| -------- | -------------- |
+| 名称      | 描述                  |
+| ------- | ------------------- |
 | inherit | 继承canvas组件已设定的文本方向。 |
-| ltr     | 从左往右。 |
-| rtl     | 从右往左。 |
+| ltr     | 从左往右。               |
+| rtl     | 从右往左。               |
 
 ## CanvasFillRule
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称        | 描述             |
-| -------- | -------------- |
-| evenodd  | 奇偶规则。 |
-| nonzero   | 非零规则。 |
+| 名称      | 描述    |
+| ------- | ----- |
+| evenodd | 奇偶规则。 |
+| nonzero | 非零规则。 |
 
 ## CanvasLineCap
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称        | 描述             |
-| -------- | -------------- |
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
 | butt   | 线条两端为平行线，不额外扩展。               |
 | round  | 在线条两端延伸半个圆，直径等于线宽。            |
 | square | 在线条两端延伸一个矩形，宽度等于线宽的一半，高度等于线宽。 |
@@ -2962,43 +2970,43 @@ struct CanvasExample {
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称        | 描述             |
-| -------- | -------------- |
-| bevel  | 在线段相连处使用三角形为底填充， 每个部分矩形拐角独立。 |
-| miter   | 在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
-| round   | 在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。 |
+| 名称    | 描述                                       |
+| ----- | ---------------------------------------- |
+| bevel | 在线段相连处使用三角形为底填充， 每个部分矩形拐角独立。             |
+| miter | 在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
+| round | 在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。              |
 
 ## CanvasTextAlign
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称        | 描述             |
-| -------- | -------------- |
-| center  | 文本居中对齐。 |
-| start   | 文本对齐界线开始的地方。 |
-| end   | 文本对齐界线结束的地方。 |
-| left  | 文本左对齐。 |
-| right   | 文本右对齐。 |
+| 名称     | 描述           |
+| ------ | ------------ |
+| center | 文本居中对齐。      |
+| start  | 文本对齐界线开始的地方。 |
+| end    | 文本对齐界线结束的地方。 |
+| left   | 文本左对齐。       |
+| right  | 文本右对齐。       |
 
 ## CanvasTextBaseline
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称        | 描述             |
-| -------- | -------------- |
-| alphabetic  | 文本基线是标准的字母基线。 |
-| bottom   | 文本基线在文本块的底部。 与ideographic基线的区别在于ideographic基线不需要考虑下行字母。 |
-| hanging  | 文本基线是悬挂基线。 |
-| ideographic   | 文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。 |
-| middle   | 文本基线在文本块的中间。 |
-| top   | 文本基线在文本块的顶部。 |
+| 名称          | 描述                                       |
+| ----------- | ---------------------------------------- |
+| alphabetic  | 文本基线是标准的字母基线。                            |
+| bottom      | 文本基线在文本块的底部。 与ideographic基线的区别在于ideographic基线不需要考虑下行字母。 |
+| hanging     | 文本基线是悬挂基线。                               |
+| ideographic | 文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。 |
+| middle      | 文本基线在文本块的中间。                             |
+| top         | 文本基线在文本块的顶部。                             |
 
 ## ImageSmoothingQuality
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称        | 描述             |
-| -------- | -------------- |
-| low      | 低画质 |
-| medium   | 中画质 |
-| high     | 高画质 |
+| 名称     | 描述   |
+| ------ | ---- |
+| low    | 低画质  |
+| medium | 中画质  |
+| high   | 高画质  |

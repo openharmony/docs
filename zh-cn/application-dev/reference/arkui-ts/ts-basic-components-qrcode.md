@@ -34,7 +34,7 @@ QRCode(value: string)
 | -------- | -------- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码颜色。<br/>默认值：Color.Black <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>从API version 11开始，默认值改为'#ff182431'。|
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 设置二维码背景颜色。<br/>默认值：Color.White <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>从API version 11开始，默认值改为'#ffffffff'。 |
-| contentOpacity<sup>11+<sup> | [number](ts-types.md#number) \| [Resource](ts-types.md#resource) | 设置二维码内容颜色的不透明度。不透明度最小值为0，最大值为1。<br/>默认值：1 |
+| contentOpacity<sup>11+<sup> | number \| [Resource](ts-types.md#resource) | 设置二维码内容颜色的不透明度。不透明度最小值为0，最大值为1。<br/>默认值：1 |
 
 
 ## 事件

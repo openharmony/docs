@@ -24,7 +24,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | runningState | number | Yes| Yes| Running state of the mission.|
 | lockedState | boolean | Yes| Yes| Locked state of the mission.|
 | timestamp | string | Yes| Yes| Latest time when the mission was created or updated.|
-| want | [Want](js-apis-application-want.md) | Yes| Yes| Want information of the mission.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Yes| Want information of the mission.|
 | label | string | Yes| Yes| Label of the mission.|
 | iconPath | string | Yes| Yes| Path of the mission icon.|
 | continuable | boolean | Yes| Yes| Whether the mission can be continued on another device.|

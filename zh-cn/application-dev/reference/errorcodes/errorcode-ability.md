@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Incorrect Ability name. The specified Ability name does not exist.
+The specified ability does not exist.
 
 **错误描述**
 
@@ -53,7 +53,7 @@ Incorrect Ability type.
 
 **错误信息**
 
-Input error. The specified ID does not exist.
+Id does not exist.
 
 **错误描述**
 
@@ -71,7 +71,7 @@ Input error. The specified ID does not exist.
 
 **错误信息**
 
-Visibility verification failed.
+Can not start invisible component.
 
 **错误描述**
 
@@ -108,7 +108,7 @@ Cross-user operations are not allowed.
 
 **错误信息**
 
-Service busy, please wait and try again.
+Service busy, there are concurrent tasks, waiting for retry.
 
 **错误描述**
 
@@ -126,7 +126,7 @@ Service busy, please wait and try again.
 
 **错误信息**
 
-Crowdtest App Expired.
+The crowdtesting application expires.
 
 **错误描述**
 
@@ -144,7 +144,7 @@ Crowdtest App Expired.
 
 **错误信息**
 
-Ability cannot be started or sotpped in Wukong mode.
+An ability cannot be started or stopped in Wukong mode.
 
 **错误描述**
 
@@ -230,6 +230,24 @@ The application is controlled by EDM.
 
 请联系企业设备管理相关人员。
 
+## 16000015 服务超时
+
+**错误信息**
+
+Service timeout.
+
+**错误描述**
+
+当服务超时时，方法将返回该错误码。
+
+**可能原因**
+
+服务超时。
+
+**处理步骤**
+
+服务超时，请稍后重试。
+
 ## 16000017 上一个Ability未启动完成，先缓存在队列中等待后续启动。
 
 **错误信息**
@@ -308,7 +326,7 @@ Installation-free is not supported.
 
 **错误信息**
 
-The ability is not on the top of UI.
+The ability is not on the top of the UI.
 
 **错误描述**
 
@@ -344,7 +362,7 @@ Installation-free service is busy, please wait and try again later.
 
 **错误信息**
 
-Installation-free time out.
+Installation-free timed out.
 
 **错误描述**
 
@@ -617,7 +635,7 @@ The caller has been released.
 
 **错误信息**
 
-The callee does not exist.
+Callee invalid. The callee does not exist.
 
 **错误描述**
 
@@ -653,7 +671,7 @@ Release error. The caller does not call any callee.
 
 **错误信息**
 
-The method has registered.
+Method registered. The method has registered.
 
 **错误描述**
 
@@ -671,7 +689,7 @@ The method has registered.
 
 **错误信息**
 
-The method is not registered.
+Method not registered. The method has not registered.
 
 **错误描述**
 
@@ -689,7 +707,7 @@ The method is not registered.
 
 **错误信息**
 
-The specified mission id does not exist.
+Mission not found.
 
 **错误描述**
 
@@ -707,7 +725,7 @@ The specified mission id does not exist.
 
 **错误信息**
 
-The specified mission listener does not exist.
+Input error. The specified mission listener does not exist.
 
 **错误描述**
 
@@ -743,7 +761,7 @@ The target application is not self application.
 
 **错误信息**
 
-Invalid bundle name.
+The bundle is not exist or no patch has applied.
 
 **错误描述**
 

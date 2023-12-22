@@ -25,14 +25,15 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 **参数：**
 
-| 参数名        | 参数类型                                     | 必填   | 参数描述    |
-| ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md#resourcestr)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
+| 参数名        | 参数类型                                     | 必填   | 参数描述                                     |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| src        | [ResourceStr](ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
 
-  加载在线网页
+加载在线网页。
+
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -49,7 +50,8 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  加载本地网页
+加载本地网页。
+
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
@@ -84,86 +86,90 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  加载沙箱路径下的本地资源文件
+加载沙箱路径下的本地资源文件。
 
-  1.通过构造的单例对象GlobalContext获取沙箱路径。
-  ```ts
-  // GlobalContext.ts
-  export class GlobalContext {
-    private constructor() {}
-    private static instance: GlobalContext;
-    private _objects = new Map<string, Object>();
+1. 通过构造的单例对象GlobalContext获取沙箱路径。
 
-    public static getContext(): GlobalContext {
-      if (!GlobalContext.instance) {
-        GlobalContext.instance = new GlobalContext();
-      }
-      return GlobalContext.instance;
-    }
+   ```ts
+   // GlobalContext.ts
+   export class GlobalContext {
+     private constructor() {}
+     private static instance: GlobalContext;
+     private _objects = new Map<string, Object>();
 
-    getObject(value: string): Object | undefined {
-      return this._objects.get(value);
-    }
+     public static getContext(): GlobalContext {
+       if (!GlobalContext.instance) {
+         GlobalContext.instance = new GlobalContext();
+       }
+       return GlobalContext.instance;
+     }
 
-    setObject(key: string, objectClass: Object): void {
-      this._objects.set(key, objectClass);
-    }
-  }
-  ```
+     getObject(value: string): Object | undefined {
+       return this._objects.get(value);
+     }
 
-  ```ts
-  // xxx.ets
-  import web_webview from '@ohos.web.webview'
-  import { GlobalContext } from '../GlobalContext.ts'
+     setObject(key: string, objectClass: Object): void {
+       this._objects.set(key, objectClass);
+     }
+   }
+   ```
 
-  let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
+   ```ts
+   // xxx.ets
+   import web_webview from '@ohos.web.webview'
+   import { GlobalContext } from '../GlobalContext'
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    build() {
-      Column() {
-        // 加载沙箱路径文件。
-        Web({ src: url, controller: this.controller })
-      }
-    }
-  }
-  ```
+   let url = 'file://' + GlobalContext.getContext().getObject("filesDir") + '/index.html'
 
-  2.修改EntryAbility.ts。
-  以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
-  ```ts
-  // xxx.ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  import web_webview from '@ohos.web.webview';
-  import { GlobalContext } from '../GlobalContext'
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: web_webview.WebviewController = new web_webview.WebviewController()
+     build() {
+       Column() {
+         // 加载沙箱路径文件。
+         Web({ src: url, controller: this.controller })
+       }
+     }
+   }
+   ```
 
-  export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
-          GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
-          console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
-      }
-  }
-  ```
+2. 修改EntryAbility.ts。
 
-  加载的html文件。
-  ```html
-  <!-- index.html -->
-  <!DOCTYPE html>
-  <html>
-      <body>
-          <p>Hello World</p>
-      </body>
-  </html>
-  ```
+   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。
+
+   ```ts
+   // xxx.ts
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
+   import web_webview from '@ohos.web.webview';
+   import { GlobalContext } from '../GlobalContext'
+
+   export default class EntryAbility extends UIAbility {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+           // 通过在GlobalContext对象上绑定filesDir，可以实现UIAbility组件与UI之间的数据同步。
+           GlobalContext.getContext().setObject("filesDir", this.context.filesDir);
+           console.log("Sandbox path is " + GlobalContext.getContext().getObject("filesDir"))
+       }
+   }
+   ```
+
+   加载的html文件。
+
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html>
+       <body>
+           <p>Hello World</p>
+       </body>
+   </html>
+   ```
 
 ## 属性
 
-通用属性仅支持[width](ts-universal-attributes-size.md#属性)、[height](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[border](ts-universal-attributes-border.md#属性)。
+通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#属性)、[backdropBlur](ts-universal-attributes-image-effect.md#属性)、[backgroundColor](ts-universal-attributes-attribute-modifier.md#属性)、[bindContentCover](ts-universal-attributes-modal-transition.md#属性)、[bindContextMenu](ts-universal-attributes-menu.md#属性)、[bindMenu ](ts-universal-attributes-menu.md#属性)、[bindSheet](ts-universal-attributes-sheet-transition.md#属性)、[blur](ts-universal-attributes-image-effect.md#属性)、[border](ts-universal-attributes-border.md#属性)、[borderColor](ts-universal-attributes-border.md#属性)、[borderRadius](ts-universal-attributes-border.md#属性)、[borderStyle](ts-universal-attributes-border.md#属性)、[borderWidth](ts-universal-attributes-border.md#属性)、[clip](ts-universal-attributes-sharp-clipping.md#属性)、[constraintSize](ts-universal-attributes-size.md#属性)、[defaultFocus](ts-universal-attributes-focus.md#属性)、[focusable](ts-universal-attributes-focus.md#属性)、[tabIndex](ts-universal-attributes-focus.md#属性)、[groupDefaultFocus](ts-universal-attributes-focus.md#属性)、[focusOnTouch](ts-universal-attributes-focus.md#属性)、[displayPriority](ts-universal-attributes-layout-constraints.md#属性)、[draggable](ts-universal-attributes-drag-drop.md#属性)、[enabled](ts-universal-attributes-enable.md#属性)、[flexBasis](ts-universal-attributes-flex-layout.md#属性)、[flexGrow](ts-universal-attributes-flex-layout.md#属性)、[flexShrink](ts-universal-attributes-flex-layout.md#属性)、[layoutWeight](ts-universal-attributes-flex-layout.md#属性)、[id](ts-universal-attributes-component-id.md#属性)、[gridOffset](ts-universal-attributes-grid.md#属性)、[gridSpan](ts-universal-attributes-grid.md#属性)、[useSizeType](ts-universal-attributes-grid.md#属性)、[height](ts-universal-attributes-size.md#属性)、[touchable](ts-universal-attributes-click.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[markAnchor](ts-universal-attributes-location.md#属性)、[mask](ts-universal-attributes-sharp-clipping.md#属性)、[offset](ts-universal-attributes-location.md#属性)、[width](ts-universal-attributes-size.md#属性)、[zIndex](ts-universal-attributes-z-order.md#属性)、[visibility](ts-universal-attributes-visibility.md#属性)、[rotate](ts-universal-attributes-transformation.md#属性)、[scale](ts-universal-attributes-transformation.md#属性)、[transform](ts-universal-attributes-transformation.md#属性)、[responseRegion](ts-universal-attributes-touch-target.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[size](ts-universal-attributes-size.md#属性)、[stateStyles](ts-universal-attributes-polymorphic-style.md#属性)、[opacity](ts-universal-attributes-opacity.md#属性)、[shadow](ts-universal-attributes-image-effect.md#属性)、[gesture](ts-gesture-settings.md#绑定手势识别)、[sharedTransition](ts-transition-animation-shared-elements.md#属性)、[transition](ts-transition-animation-component.md#属性)。
 
 ### domStorageAccess
 
@@ -268,11 +274,11 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 
 **参数：**
 
-| 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                      |
-| ---------- | ---------------------------------------- | ---- | ---- | ------------------------- |
-| object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
-| name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
-| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
+| 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。                   |
+| name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。                |
+| methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。                 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
@@ -343,6 +349,37 @@ javaScriptAccess(javaScriptAccess: boolean)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
+      }
+    }
+  }
+  ```
+
+### overScrollMode<sup>11+</sup>
+
+overScrollMode(mode: OverScrollMode)
+
+设置Web过滚动模式，默认关闭。当过滚动模式开启时，当用户在Web界面上滑动到边缘时，Web会通过弹性动画弹回界面。
+
+**参数：**
+
+| 参数名  | 参数类型                                    | 必填   | 默认值                  | 参数描述               |
+| ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
+| mode | [OverScrollMode](#overscrollmode11枚举说明) | 是    | OverScrollMode.NEVER | 设置Web的过滚动模式为关闭或开启。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: OverScrollMode = OverScrollMode.ALWAYS
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .overScrollMode(this.mode)
       }
     }
   }
@@ -543,8 +580,8 @@ mediaPlayGestureAccess(access: boolean)
 
 **参数：**
 
-| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述              |
-| ------ | ------- | ---- | ---- | ----------------- |
+| 参数名    | 参数类型    | 必填   | 默认值  | 参数描述                |
+| ------ | ------- | ---- | ---- | ------------------- |
 | access | boolean | 是    | true | 设置有声视频播放是否需要用户手动点击。 |
 
 **示例：**
@@ -607,8 +644,8 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
 
 **参数：**
 
-| 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
-| ----------- | ------- | ---- | ----- | ------------ |
+| 参数名                 | 参数类型    | 必填   | 默认值  | 参数描述         |
+| ------------------- | ------- | ---- | ---- | ------------ |
 | horizontalScrollBar | boolean | 是    | true | 设置是否显示横向滚动条。 |
 
 **示例：**
@@ -661,8 +698,8 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
 
 **参数：**
 
-| 参数名         | 参数类型    | 必填   | 默认值   | 参数描述         |
-| ----------- | ------- | ---- | ----- | ------------ |
+| 参数名               | 参数类型    | 必填   | 默认值  | 参数描述         |
+| ----------------- | ------- | ---- | ---- | ------------ |
 | verticalScrollBar | boolean | 是    | true | 设置是否显示纵向滚动条。 |
 
 **示例：**
@@ -759,8 +796,8 @@ textZoomAtio(textZoomAtio: number)
 
 **参数：**
 
-| 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
-| ------------- | ------ | ---- | ---- | --------------- |
+| 参数名          | 参数类型   | 必填   | 默认值  | 参数描述                             |
+| ------------ | ------ | ---- | ---- | -------------------------------- |
 | textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。 |
 
 **示例：**
@@ -789,8 +826,8 @@ textZoomRatio(textZoomRatio: number)
 
 **参数：**
 
-| 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
-| ------------- | ------ | ---- | ---- | --------------- |
+| 参数名           | 参数类型   | 必填   | 默认值  | 参数描述                             |
+| ------------- | ------ | ---- | ---- | -------------------------------- |
 | textZoomRatio | number | 是    | 100  | 要设置的页面的文本缩放百分比。取值为整数，范围为(0, +∞)。 |
 
 **示例：**
@@ -821,8 +858,8 @@ initialScale(percent: number)
 
 **参数：**
 
-| 参数名     | 参数类型   | 必填   | 默认值  | 参数描述            |
-| ------- | ------ | ---- | ---- | --------------- |
+| 参数名     | 参数类型   | 必填   | 默认值  | 参数描述                          |
+| ------- | ------ | ---- | ---- | ----------------------------- |
 | percent | number | 是    | 100  | 要设置的整体页面的缩放百分比。<br>取值范围：1-100 |
 
 **示例：**
@@ -889,9 +926,9 @@ blockNetwork(block: boolean)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                            |
-| ------ | -------- | ---- | ------ | ----------------------------------- |
-| block  | boolean  | 是   | false  | 设置Web组件是否阻止从网络加载资源。 |
+| 参数名   | 参数类型    | 必填   | 默认值   | 参数描述                |
+| ----- | ------- | ---- | ----- | ------------------- |
+| block | boolean | 是    | false | 设置Web组件是否阻止从网络加载资源。 |
 
 **示例：**
 
@@ -920,9 +957,9 @@ defaultFixedFontSize(size: number)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                     |
-| ------ | -------- | ---- | ------ | ---------------------------- |
-| size   | number   | 是   | 13     | 设置网页的默认等宽字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| size | number | 是    | 13   | 设置网页的默认等宽字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。 |
 
 **示例：**
 
@@ -951,9 +988,9 @@ defaultFontSize(size: number)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
-| ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | 是   | 16     | 设置网页的默认字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| size | number | 是    | 16   | 设置网页的默认字体大小，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。 |
 
 **示例：**
 
@@ -982,9 +1019,9 @@ minFontSize(size: number)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
-| ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | 是   | 8      | 设置网页字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| size | number | 是    | 8    | 设置网页字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。 |
 
 **示例：**
 
@@ -1013,9 +1050,9 @@ minLogicalFontSize(size: number)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                 |
-| ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | 是   | 8      | 设置网页逻辑字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。  |
+| 参数名  | 参数类型   | 必填   | 默认值  | 参数描述                                     |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| size | number | 是    | 8    | 设置网页逻辑字体大小最小值，单位px。输入值的范围为-2^31到2^31-1，实际渲染时超过72的值按照72进行渲染，低于1的值按照1进行渲染。 |
 
 **示例：**
 
@@ -1044,9 +1081,9 @@ webFixedFont(family: string)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值    | 参数描述                     |
-| ------ | -------- | ---- | --------- | ---------------------------- |
-| family | string   | 是   | monospace | 设置网页的fixed font字体库。 |
+| 参数名    | 参数类型   | 必填   | 默认值       | 参数描述                |
+| ------ | ------ | ---- | --------- | ------------------- |
+| family | string | 是    | monospace | 设置网页的fixed font字体库。 |
 
 **示例：**
 
@@ -1075,9 +1112,9 @@ webSansSerifFont(family: string)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值     | 参数描述                          |
-| ------ | -------- | ---- | ---------- | --------------------------------- |
-| family | string   | 是   | sans-serif | 设置网页的sans serif font字体库。 |
+| 参数名    | 参数类型   | 必填   | 默认值        | 参数描述                     |
+| ------ | ------ | ---- | ---------- | ------------------------ |
+| family | string | 是    | sans-serif | 设置网页的sans serif font字体库。 |
 
 **示例：**
 
@@ -1106,9 +1143,9 @@ webSerifFont(family: string)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                     |
-| ------ | -------- | ---- | ------ | ---------------------------- |
-| family | string   | 是   | serif  | 设置网页的serif font字体库。 |
+| 参数名    | 参数类型   | 必填   | 默认值   | 参数描述                |
+| ------ | ------ | ---- | ----- | ------------------- |
+| family | string | 是    | serif | 设置网页的serif font字体库。 |
 
 **示例：**
 
@@ -1137,9 +1174,9 @@ webStandardFont(family: string)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值     | 参数描述                        |
-| ------ | -------- | ---- | ---------- | ------------------------------- |
-| family | string   | 是   | sans serif | 设置网页的standard font字体库。 |
+| 参数名    | 参数类型   | 必填   | 默认值        | 参数描述                   |
+| ------ | ------ | ---- | ---------- | ---------------------- |
+| family | string | 是    | sans serif | 设置网页的standard font字体库。 |
 
 **示例：**
 
@@ -1168,9 +1205,9 @@ webFantasyFont(family: string)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
-| ------ | -------- | ---- | ------- | ------------------------------ |
-| family | string   | 是   | fantasy | 设置网页的fantasy font字体库。 |
+| 参数名    | 参数类型   | 必填   | 默认值     | 参数描述                  |
+| ------ | ------ | ---- | ------- | --------------------- |
+| family | string | 是    | fantasy | 设置网页的fantasy font字体库。 |
 
 **示例：**
 
@@ -1199,9 +1236,9 @@ webCursiveFont(family: string)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
-| ------ | -------- | ---- | ------- | ------------------------------ |
-| family | string   | 是   | cursive | 设置网页的cursive font字体库。 |
+| 参数名    | 参数类型   | 必填   | 默认值     | 参数描述                  |
+| ------ | ------ | ---- | ------- | --------------------- |
+| family | string | 是    | cursive | 设置网页的cursive font字体库。 |
 
 **示例：**
 
@@ -1230,9 +1267,9 @@ darkMode(mode: WebDarkMode)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
-| ------ | ----------- | ---- | --------------- | ------------------ |
-|  mode  | [WebDarkMode](#webdarkmode9枚举说明) | 是   | WebDarkMode.Off | 设置Web的深色模式为关闭、开启或跟随系统。 |
+| 参数名  | 参数类型                             | 必填   | 默认值             | 参数描述                   |
+| ---- | -------------------------------- | ---- | --------------- | ---------------------- |
+| mode | [WebDarkMode](#webdarkmode9枚举说明) | 是    | WebDarkMode.Off | 设置Web的深色模式为关闭、开启或跟随系统。 |
 
 **示例：**
 
@@ -1261,9 +1298,9 @@ forceDarkAccess(access: boolean)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
-| ------ | ------- | ---- | ----- | ------------------ |
-| access | boolean | 是   | false | 设置网页是否开启强制深色模式。 |
+| 参数名    | 参数类型    | 必填   | 默认值   | 参数描述            |
+| ------ | ------- | ---- | ----- | --------------- |
+| access | boolean | 是    | false | 设置网页是否开启强制深色模式。 |
 
 **示例：**
 
@@ -1314,9 +1351,9 @@ pinchSmooth(isEnabled: boolean)
 
 **参数：**
 
-| 参数名    | 参数类型 | 必填 | 默认值 | 参数描述                   |
-| --------- | -------- | ---- | ------ | -------------------------- |
-| isEnabled | boolean  | 是   | false  | 网页是否开启捏合流畅模式。 |
+| 参数名       | 参数类型    | 必填   | 默认值   | 参数描述          |
+| --------- | ------- | ---- | ----- | ------------- |
+| isEnabled | boolean | 是    | false | 网页是否开启捏合流畅模式。 |
 
 **示例：**
 
@@ -1357,9 +1394,9 @@ allowWindowOpenMethod(flag: boolean)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
-| ------ | ------- | ---- | ----- | ------------------ |
-| flag | boolean | 是   | 默认值与系统参数关联，当系统参数persist.web.allowWindowOpenMethod.enabled为true时，默认值为true, 否则为false  | 网页是否可以通过JavaScript自动打开窗口。 |
+| 参数名  | 参数类型    | 必填   | 默认值                                      | 参数描述                      |
+| ---- | ------- | ---- | ---------------------------------------- | ------------------------- |
+| flag | boolean | 是    | 默认值与系统参数关联，当系统参数persist.web.allowWindowOpenMethod.enabled为true时，默认值为true, 否则为false | 网页是否可以通过JavaScript自动打开窗口。 |
 
 **示例：**
 
@@ -1432,9 +1469,9 @@ mediaOptions(options: WebMediaOptions)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值  | 参数描述                       |
-| ------ | ----------- | ---- | --------------- | ------------------ |
-| options | [WebMediaOptions](#webmediaoptions10) | 是   | {resumeInterval: 0, audioExclusive: true} | 设置Web的媒体策略。其中，resumeInterval的默认值为0表示不自动续播。 |
+| 参数名     | 参数类型                                  | 必填   | 默认值                                      | 参数描述                                     |
+| ------- | ------------------------------------- | ---- | ---------------------------------------- | ---------------------------------------- |
+| options | [WebMediaOptions](#webmediaoptions10) | 是    | {resumeInterval: 0, audioExclusive: true} | 设置Web的媒体策略。其中，resumeInterval的默认值为0表示不自动续播。 |
 
 **示例：**
 
@@ -1455,9 +1492,154 @@ mediaOptions(options: WebMediaOptions)
   }
   ```
 
+### javaScriptOnDocumentStart<sup>11+</sup>
+
+javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+
+**参数：**
+
+| 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述               |
+| ------- | ----------------------------------- | ---- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的的ScriptItem数组 |
+
+**ets示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct Index {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    private localStorage: string =
+        "if (typeof(Storage) !== 'undefined') {" +
+        "   localStorage.setItem('color', 'Red');" +
+        "}";
+    @State scripts: Array<ScriptItem> = [
+        { script: this.localStorage, scriptRules: ["*"] }
+    ];
+    build() {
+        Column({ space: 20 }) {
+            Web({ src: $rawfile('index.html'), controller: this.controller })
+                .javaScriptAccess(true)
+                .domStorageAccess(true)
+                .backgroundColor(Color.Grey)
+                .javaScriptOnDocumentStart(this.scripts)
+                .width('100%')
+                .height('100%')
+        }
+    }
+}
+  ```
+**HTML示例：**
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
+      Hello world!
+      <div id="result"></div>
+  </body>
+  <script type="text/javascript">
+    function bodyOnLoadLocalStorage() {
+      if (typeof(Storage) !== 'undefined') {
+        document.getElementById('result').innerHTML = localStorage.getItem('color');
+      } else {
+        document.getElementById('result').innerHTML = 'Your browser does not support localStorage.';
+      }
+    }
+  </script>
+</html>
+```
+
+### layoutMode<sup>11+</sup>
+
+layoutMode(mode: WebLayoutMode)
+
+设置Web布局模式。
+
+> **说明：**
+>
+> 目前只支持两种web布局模式，分别为Web布局跟随系统WebLayoutMode.NONE和Web基于页面大小的自适应网页布局WebLayoutMode.FIT_CONTENT。默认为WebLayoutMode.NONE模式。
+
+**参数：**
+
+| 参数名  | 参数类型                                  | 必填   | 默认值                | 参数描述                  |
+| ---- | ------------------------------------- | ---- | ------------------ | --------------------- |
+| mode | [WebLayoutMode](#weblayoutmode11枚举说明) | 是    | WebLayoutMode.NONE | 设置web布局模式，跟随系统或自适应布局。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .layoutMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### nestedScroll<sup>11+</sup>
+
+nestedScroll(value: NestedScrollOptions)
+
+调用以设置嵌套滚动选项。
+
+> **说明：**
+>
+> - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+> - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
+> - 默认模式为NestedScrollOptions.SELF_FIRST。
+
+**参数：**
+
+| 参数名   | 参数类型                                     | 必填   | 参数描述             |
+| ----- | ---------------------------------------- | ---- | ---------------- |
+| value | [NestedScrollOptions](#nestedscrolloptions11对象说明) | 是    | 可滚动组件滚动时的嵌套滚动选项。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .nestedScroll({
+            scrollForward: NestedScrollMode.SELF_FIRST,
+            scrollBackward: NestedScrollMode.SELF_FIRST,
+          })
+      }
+    }
+  }
+  ```
+
 ## 事件
 
-不支持[通用事件](ts-universal-events-click.md)。
+通用事件仅支持[onAppear](ts-universal-events-show-hide.md#事件)、[onDisAppear](ts-universal-events-show-hide.md#事件)、[onBlur](ts-universal-focus-event.md#事件)、[onFocus](ts-universal-focus-event.md#事件)、[onDragEnd](ts-universal-events-drag-drop.md#事件)、[onDragEnter](ts-universal-events-drag-drop.md#事件)、[onDragStart](ts-universal-events-drag-drop.md#事件)、[onDragMove](ts-universal-events-drag-drop.md#事件)、[onDragLeave](ts-universal-events-drag-drop.md#事件)、[onDrop](ts-universal-events-drag-drop.md#事件)、[onHover](ts-universal-mouse-key.md#事件)、[onMouse](ts-universal-mouse-key.md#事件)、[onKeyEvent](ts-universal-events-key.md#事件)、[onTouch](ts-universal-events-touch.md#事件)、[onVisibleAreaChange](ts-universal-component-visible-area-change-event.md#事件)。
 
 ### onAlert
 
@@ -1477,7 +1659,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1561,7 +1743,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1646,7 +1828,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1726,6 +1908,8 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
 onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
 
+网页调用prompt()告警时触发此回调。
+
 **参数：**
 
 | 参数名     | 参数类型                  | 参数描述            |
@@ -1738,7 +1922,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当回调返回true时，应用可以调用系统弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -1865,12 +2049,12 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 
 **参数：**
 
-| 参数名                | 参数类型          | 参数描述                                |
-| ------------------ | ------------- | ----------------------------------- |
-| url                | string        | 文件下载的URL。                           |
-| userAgent          | string        | 用于下载的用户代理。                           |
-| contentDisposition | string        | 服务器返回的 Content-Disposition响应头，可能为空。 |
-| mimetype           | string        | 服务器返回内容媒体类型（MIME）信息。                |
+| 参数名                | 参数类型   | 参数描述                                |
+| ------------------ | ------ | ----------------------------------- |
+| url                | string | 文件下载的URL。                           |
+| userAgent          | string | 用于下载的用户代理。                          |
+| contentDisposition | string | 服务器返回的 Content-Disposition响应头，可能为空。 |
+| mimetype           | string | 服务器返回内容媒体类型（MIME）信息。                |
 | contentLength      | number | 服务器返回文件的长度。                         |
 
 **示例：**
@@ -1957,10 +2141,10 @@ onHttpErrorReceive(callback: (event?: { request: WebResourceRequest, response: W
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 参数描述            |
-| ------- | ---------------------------------------- | --------------- |
-| request | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。      |
-| response | [WebResourceResponse](#webresourceresponse)    | 资源响应的封装信息。 |
+| 参数名      | 参数类型                                     | 参数描述       |
+| -------- | ---------------------------------------- | ---------- |
+| request  | [WebResourceRequest](#webresourcerequest) | 网页请求的封装信息。 |
+| response | [WebResourceResponse](#webresourceresponse) | 资源响应的封装信息。 |
 
 **示例：**
 
@@ -2258,7 +2442,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，web组件暂不支持触发默认弹窗。 |
+| boolean | 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，函数中绘制的自定义弹窗无效。 |
 
 **示例：**
 
@@ -2296,7 +2480,7 @@ onShowFileSelector(callback: (event?: { result: FileSelectorResult, fileSelector
     }
   }
   ```
-  
+
   加载的html文件。
   ```html
   <!DOCTYPE html>
@@ -2630,11 +2814,13 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
 | handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | 通知Web组件用户操作行为。  |
 | host     | string                                   | 请求证书服务器的主机名。    |
 | port     | number                                   | 请求证书服务器的端口号。    |
-| keyTypes | Array<string\>                            | 可接受的非对称秘钥类型。    |
-| issuers  | Array<string\>                            | 与私钥匹配的证书可接受颁发者。 |
+| keyTypes | Array<string\>                           | 可接受的非对称秘钥类型。    |
+| issuers  | Array<string\>                           | 与私钥匹配的证书可接受颁发者。 |
 
   **示例：**
-  未对接证书管理的双向认证
+
+  未对接证书管理的双向认证。
+
   ```ts
   // xxx.ets API9
   import web_webview from '@ohos.web.webview'
@@ -2672,150 +2858,153 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
   }
   ```
 
-  对接证书管理的双向认证
+  对接证书管理的双向认证。
 
   1. 构造单例对象GlobalContext。
-  ```ts
-  // GlobalContext.ts
-  export class GlobalContext {
-    private constructor() {}
-    private static instance: GlobalContext;
-    private _objects = new Map<string, Object>();
 
-    public static getContext(): GlobalContext {
-      if (!GlobalContext.instance) {
-        GlobalContext.instance = new GlobalContext();
-      }
-      return GlobalContext.instance;
-    }
+     ```ts
+     // GlobalContext.ts
+     export class GlobalContext {
+       private constructor() {}
+       private static instance: GlobalContext;
+       private _objects = new Map<string, Object>();
 
-    getObject(value: string): Object | undefined {
-      return this._objects.get(value);
-    }
+       public static getContext(): GlobalContext {
+         if (!GlobalContext.instance) {
+           GlobalContext.instance = new GlobalContext();
+         }
+         return GlobalContext.instance;
+       }
 
-    setObject(key: string, objectClass: Object): void {
-      this._objects.set(key, objectClass);
-    }
-  }
-  ```
+       getObject(value: string): Object | undefined {
+         return this._objects.get(value);
+       }
+
+       setObject(key: string, objectClass: Object): void {
+         this._objects.set(key, objectClass);
+       }
+     }
+     ```
+
 
   2. 实现双向认证。
-  ```ts
-  // xxx.ets API10
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  import web_webview from '@ohos.web.webview'
-  import { BusinessError } from '@ohos.base';
-  import bundleManager from '@ohos.bundle.bundleManager'
-  import { GlobalContext } from '../GlobalContext'
 
-  let uri = "";
+     ```ts
+     // xxx.ets API10
+     import common from '@ohos.app.ability.common';
+     import Want from '@ohos.app.ability.Want';
+     import web_webview from '@ohos.web.webview'
+     import { BusinessError } from '@ohos.base';
+     import bundleManager from '@ohos.bundle.bundleManager'
+     import { GlobalContext } from '../GlobalContext'
 
-  export default class CertManagerService {
-    private static sInstance: CertManagerService;
-    private authUri = "";
-    private appUid = "";
+      let uri = "";
 
-    public static getInstance(): CertManagerService {
-      if (CertManagerService.sInstance == null) {
-        CertManagerService.sInstance = new CertManagerService();
-      }
-      return CertManagerService.sInstance;
-    }
+      export default class CertManagerService {
+        private static sInstance: CertManagerService;
+        private authUri = "";
+        private appUid = "";
 
-    async grantAppPm(callback: (message: string) => void) {
-      let message = '';
-      let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-      //注：com.example.myapplication需要写实际应用名称
-      try {
-        bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-          this.appUid = data.appInfo.uid.toString();
-        }).catch((err: BusinessError) => {
-          console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-        });
-      } catch (err) {
-        let message = (err as BusinessError).message;
-        console.error('getBundleInfoForSelf failed: %{public}s', message);
-      }
-
-      //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
-      let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-      await abilityContext.startAbilityForResult(
-        {
-          bundleName: "com.ohos.certmanager",
-          abilityName: "MainAbility",
-          uri: "requestAuthorize",
-          parameters: {
-            appUid: this.appUid, //传入申请应用的appUid
+        public static getInstance(): CertManagerService {
+          if (CertManagerService.sInstance == null) {
+            CertManagerService.sInstance = new CertManagerService();
           }
-        } as Want)
-        .then((data: common.AbilityResult) => {
-          if (!data.resultCode && data.want) {
-            if (data.want.parameters) {
-              this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
-            }
-          }
-        })
-      message += "after grantAppPm authUri: " + this.authUri;
-      uri = this.authUri;
-      callback(message)
-    }
-  }
+          return CertManagerService.sInstance;
+        }
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
-    @State message: string = 'Hello World' //message主要是调试观察使用
-    certManager = CertManagerService.getInstance();
-
-    build() {
-      Row() {
-        Column() {
-          Row() {
-            //第一步：需要先进行授权，获取到uri
-            Button('GrantApp')
-              .onClick(() => {
-                this.certManager.grantAppPm((data) => {
-                  this.message = data;
-                });
-              })
-            //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
-            Button("ClientCertAuth")
-              .onClick(() => {
-                this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
-              })
+        async grantAppPm(callback: (message: string) => void) {
+          let message = '';
+          let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+          //注：com.example.myapplication需要写实际应用名称
+          try {
+            bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+              console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+              this.appUid = data.appInfo.uid.toString();
+            }).catch((err: BusinessError) => {
+              console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+            });
+          } catch (err) {
+            let message = (err as BusinessError).message;
+            console.error('getBundleInfoForSelf failed: %{public}s', message);
           }
 
-          Web({ src: 'https://www.example1.com', controller: this.controller })
-            .fileAccess(true)
-            .javaScriptAccess(true)
-            .domStorageAccess(true)
-            .onlineImageAccess(true)
-
-          .onClientAuthenticationRequest((event) => {
-            AlertDialog.show({
-              title: 'ClientAuth',
-              message: 'Text',
-              confirm: {
-                value: 'Confirm',
-                action: () => {
-                  event.handler.confirm(uri);
+          //注：需要在MainAbility.ts文件的onCreate函数里添加GlobalContext.getContext().setObject("AbilityContext", this.context)
+          let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+          await abilityContext.startAbilityForResult(
+            {
+              bundleName: "com.ohos.certmanager",
+              abilityName: "MainAbility",
+              uri: "requestAuthorize",
+              parameters: {
+                appUid: this.appUid, //传入申请应用的appUid
+              }
+            } as Want)
+            .then((data: common.AbilityResult) => {
+              if (!data.resultCode && data.want) {
+                if (data.want.parameters) {
+                  this.authUri = data.want.parameters.authUri as string; //授权成功后获取返回的authUri
                 }
-              },
-              cancel: () => {
-                event.handler.cancel();
               }
             })
-          })
+          message += "after grantAppPm authUri: " + this.authUri;
+          uri = this.authUri;
+          callback(message)
         }
       }
-      .width('100%')
-      .height('100%')
-    }
-  }
-  ```
+
+      @Entry
+      @Component
+      struct WebComponent {
+        controller: web_webview.WebviewController = new web_webview.WebviewController();
+        @State message: string = 'Hello World' //message主要是调试观察使用
+        certManager = CertManagerService.getInstance();
+
+        build() {
+          Row() {
+            Column() {
+              Row() {
+                //第一步：需要先进行授权，获取到uri
+                Button('GrantApp')
+                  .onClick(() => {
+                    this.certManager.grantAppPm((data) => {
+                      this.message = data;
+                    });
+                  })
+                //第二步：授权后，双向认证会通过onClientAuthenticationRequest回调将uri传给web进行认证
+                Button("ClientCertAuth")
+                  .onClick(() => {
+                    this.controller.loadUrl('https://www.example2.com'); //支持双向认证的服务器网站
+                  })
+              }
+
+              Web({ src: 'https://www.example1.com', controller: this.controller })
+                .fileAccess(true)
+                .javaScriptAccess(true)
+                .domStorageAccess(true)
+                .onlineImageAccess(true)
+
+              .onClientAuthenticationRequest((event) => {
+                AlertDialog.show({
+                  title: 'ClientAuth',
+                  message: 'Text',
+                  confirm: {
+                    value: 'Confirm',
+                    action: () => {
+                      event.handler.confirm(uri);
+                    }
+                  },
+                  cancel: () => {
+                    event.handler.cancel();
+                  }
+                })
+              })
+            }
+          }
+          .width('100%')
+          .height('100%')
+        }
+      }
+     ```
 
 ### onPermissionRequest<sup>9+</sup>
 
@@ -2903,7 +3092,7 @@ onPermissionRequest(callback: (event?: { request: PermissionRequest }) => void)
   </script>
   </body>
   </html>
-  ```
+ ```
 
 ### onContextMenuShow<sup>9+</sup>
 
@@ -2934,8 +3123,15 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    result: WebContextMenuResult | null = null;
     build() {
       Column() {
+        Button('copyImage')
+        .onClick(() => {
+          if (this.result) {
+            this.result.copyImage()
+          }
+        })
         Web({ src: 'www.example.com', controller: this.controller })
           .onContextMenuShow((event) => {
             if (event) {
@@ -2957,8 +3153,8 @@ onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 **参数：**
 
-| 参数名     | 参数类型   | 参数描述         |
-| ------- | ------ | ------------ |
+| 参数名     | 参数类型   | 参数描述                   |
+| ------- | ------ | ---------------------- |
 | xOffset | number | 以网页最左端为基准，水平滚动条滚动所在位置。 |
 | yOffset | number | 以网页最上端为基准，竖直滚动条滚动所在位置。 |
 
@@ -3034,34 +3230,23 @@ onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocatio
   ```
 
   加载的html文件。
- ```html
-  <!-- index.html -->
+  ```html
   <!DOCTYPE html>
   <html>
-  <head>
-    <meta charset="UTF-8">
-  </head>
   <body>
-  <p id="demo">点击按钮获取您当前坐标 （可能需要比较长的时间获取）：</p>
-  <button onclick="getLocation()">点我</button>
+  <p id="locationInfo">位置信息</p>
+  <button onclick="getLocation()">获取位置</button>
   <script>
-    var x=document.grtElementByld("demo");
-    function getLocation()
-    {
-      if (navigator.geolocation)
-      {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      }
-      else
-      {
-        x.innerHTML="该浏览器不支持获取地理位置。";
-      }
+  var locationInfo=document.getElementById("locationInfo");
+  function getLocation(){
+    if (navigator.geolocation) {
+      <!-- 前端页面访问设备地理位置 -->
+      navigator.geolocation.getCurrentPosition(showPosition);
     }
-
-    function showPosition(position)
-    {
-      x.innerHTML="纬度：" + position.coords.latitude + "经度：" + position.coords.longitude;
-    }
+  }
+  function showPosition(position){
+    locationInfo.innerHTML="Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
+  }
   </script>
   </body>
   </html>
@@ -3186,12 +3371,12 @@ onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetU
 
 **参数：**
 
-| 参数名           | 参数类型                                     | 参数描述                       |
-| ------------- | ---------------------------------------- | -------------------------- |
-| isAlert       | boolean                                  | true代表请求创建对话框，false代表新标签页。 |
-| isUserTrigger | boolean                                  | true代表用户触发，false代表非用户触发。   |
-| targetUrl     | string                                   | 目标url。                     |
-| handler       | [ControllerHandler](#controllerhandler9) | 用于设置新建窗口的WebviewController实例。  |
+| 参数名           | 参数类型                                     | 参数描述                          |
+| ------------- | ---------------------------------------- | ----------------------------- |
+| isAlert       | boolean                                  | true代表请求创建对话框，false代表新标签页。    |
+| isUserTrigger | boolean                                  | true代表用户触发，false代表非用户触发。      |
+| targetUrl     | string                                   | 目标url。                        |
+| handler       | [ControllerHandler](#controllerhandler9) | 用于设置新建窗口的WebviewController实例。 |
 
 **示例：**
 
@@ -3330,8 +3515,8 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
 
 **参数：**
 
-| 参数名  | 参数类型                                             | 参数描述               |
-| ------- | ---------------------------------------------------- | ---------------------- |
+| 参数名     | 参数类型                                     | 参数描述        |
+| ------- | ---------------------------------------- | ----------- |
 | handler | [DataResubmissionHandler](#dataresubmissionhandler9) | 表单数据重新提交句柄。 |
 
 **示例：**
@@ -3381,7 +3566,7 @@ onDataResubmitted(callback: (event: {handler: DataResubmissionHandler}) => void)
     </form>
   </body>
   </html>
-  ```
+ ```
 
 ### onPageVisible<sup>9+</sup>
 
@@ -3391,9 +3576,9 @@ onPageVisible(callback: (event: {url: string}) => void)
 
 **参数：**
 
-| 参数名 | 参数类型 | 参数描述                                          |
-| ------ | -------- | ------------------------------------------------- |
-| url    | string   | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
+| 参数名  | 参数类型   | 参数描述                       |
+| ---- | ------ | -------------------------- |
+| url  | string | 旧页面不再呈现，新页面即将可见时新页面的url地址。 |
 
 **示例：**
 
@@ -3423,14 +3608,14 @@ onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
 **参数：**
 
-| 参数名 | 参数类型                                                | 参数描述             |
-| ------ | ------------------------------------------------------- | -------------------- |
-| event  | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
+| 参数名   | 参数类型                                     | 参数描述           |
+| ----- | ---------------------------------------- | -------------- |
+| event | [KeyEvent](ts-universal-events-key.md#keyevent对象说明) | 触发的KeyEvent事件。 |
 
 **返回值：**
 
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
+| 类型      | 说明                                       |
+| ------- | ---------------------------------------- |
 | boolean | 回调函数通过返回boolean类型值来决定是否继续将该KeyEvent传入Webview内核。 |
 
 **示例：**
@@ -3465,10 +3650,10 @@ onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) =>
 
 **参数：**
 
-| 参数名      | 参数类型 | 参数描述                           |
-| ----------- | -------- | ---------------------------------- |
-| url         | string   | 接收到的apple-touch-icon url地址。 |
-| precomposed | boolean  | 对应apple-touch-icon是否为预合成。 |
+| 参数名         | 参数类型    | 参数描述                        |
+| ----------- | ------- | --------------------------- |
+| url         | string  | 接收到的apple-touch-icon url地址。 |
+| precomposed | boolean | 对应apple-touch-icon是否为预合成。   |
 
 **示例：**
 
@@ -3498,8 +3683,8 @@ onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
 
 **参数：**
 
-| 参数名  | 参数类型                                       | 参数描述                            |
-| ------- | ---------------------------------------------- | ----------------------------------- |
+| 参数名     | 参数类型                                     | 参数描述                      |
+| ------- | ---------------------------------------- | ------------------------- |
 | favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 接收到的favicon图标的PixelMap对象。 |
 
 **示例：**
@@ -3533,8 +3718,8 @@ onAudioStateChanged(callback: (event: { playing: boolean }) => void)
 
 **参数：**
 
-| 参数名  | 参数类型                                       | 参数描述                            |
-| ------- | ---------------------------------------------- | ----------------------------------- |
+| 参数名     | 参数类型    | 参数描述                               |
+| ------- | ------- | ---------------------------------- |
 | playing | boolean | 当前页面的音频播放状态，true表示正在播放，false表示未播放。 |
 
 **示例：**
@@ -3567,10 +3752,10 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
 
 **参数：**
 
-| 参数名                 |  参数类型  | 参数描述                            |
-| -----------------------| -------- | ----------------------------------- |
-| navigationStartTick    | number   | navigation开始的时间，单位以微秒表示。|
-| firstContentfulPaintMs | number   | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。|
+| 参数名                    | 参数类型   | 参数描述                              |
+| ---------------------- | ------ | --------------------------------- |
+| navigationStartTick    | number | navigation开始的时间，单位以微秒表示。          |
+| firstContentfulPaintMs | number | 从navigation开始第一次绘制内容的时间，单位是以毫秒表示。 |
 
 **示例：**
 
@@ -3605,8 +3790,8 @@ onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
 
 **参数：**
 
-| 参数名  | 参数类型                                     | 参数描述      |
-| ------- | ---------------------------------------- | --------- |
+| 参数名     | 参数类型                                     | 参数描述        |
+| ------- | ---------------------------------------- | ----------- |
 | request | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
 
 **返回值：**
@@ -3729,8 +3914,8 @@ onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 **参数：**
 
-| 参数名     | 参数类型   | 参数描述         |
-| ------- | ------ | ------------ |
+| 参数名     | 参数类型   | 参数描述                |
+| ------- | ------ | ------------------- |
 | xOffset | number | 以网页最左端为基准，水平过滚动偏移量。 |
 | yOffset | number | 以网页最上端为基准，竖直过滚动偏移量。 |
 
@@ -3760,7 +3945,7 @@ onOverScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
 
 onControllerAttached(callback: () => void)
 
-当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，  
+当Controller成功绑定到Web组件时触发该回调，并且该Controller必须为WebviewController，
 因该回调调用时网页还未加载，无法在回调中使用有关操作网页的接口，例如[zoomIn](../apis/js-apis-webview.md#zoomin)、[zoomOut](../apis/js-apis-webview.md#zoomout)等，可以使用[loadUrl](../apis/js-apis-webview.md#loadurl)、[getWebId](../apis/js-apis-webview.md#getwebid)等操作网页不相关的接口。
 
 **示例：**
@@ -3823,6 +4008,44 @@ onControllerAttached(callback: () => void)
       </body>
   </html>
   ```
+
+### onNavigationEntryCommitted<sup>11+</sup>
+
+onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11))
+
+当网页跳转提交时触发该回调。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | 网页跳转提交时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onNavigationEntryCommitted((details) => {
+            console.log("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
+              ", [isSameDocument]=" + details.isSameDocument +
+              ", [didReplaceEntry]=" + details.didReplaceEntry +
+              ", [navigationType]=" + details.navigationType +
+              ", [url]=" + details.url);
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -3925,8 +4148,8 @@ setWebController(controller: WebviewController): void
 
 **参数：**
 
-| 参数名        | 参数类型          | 必填   | 默认值  | 参数描述                      |
-| ---------- | ------------- | ---- | ---- | ------------------------- |
+| 参数名        | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | 是    | -    | 新建web组件的WebviewController对象，如果不需要打开新窗口请设置为null。 |
 
 ## WebResourceError
@@ -4029,8 +4252,8 @@ getRequestMethod(): string
 
 **返回值：**
 
-| 类型      | 说明                   |
-| ------- | -------------------- |
+| 类型     | 说明      |
+| ------ | ------- |
 | string | 返回请求方法。 |
 
 ## Header
@@ -4126,9 +4349,9 @@ setResponseData(data: string | number \| Resource)
 
 **参数：**
 
-| 参数名 | 参数类型         | 必填 | 默认值 | 参数描述                                                     |
-| ------ | ---------------- | ---- | ------ | ------------------------------------------------------------ |
-| data   | string \| number \| [Resource](ts-types.md)<sup>10+</sup>| 是   | -      | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。|
+| 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
+| ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| data | string \| number \| [Resource](ts-types.md)<sup>10+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 |
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -4198,9 +4421,9 @@ setResponseIsReady(IsReady: boolean)
 
 **参数：**
 
-| 参数名  | 参数类型 | 必填 | 默认值 | 参数描述                   |
-| ------- | -------- | ---- | ------ | -------------------------- |
-| IsReady | boolean  | 是   | true   | 资源响应数据是否已经就绪。 |
+| 参数名     | 参数类型    | 必填   | 默认值  | 参数描述          |
+| ------- | ------- | ---- | ---- | ------------- |
+| IsReady | boolean | 是    | true | 资源响应数据是否已经就绪。 |
 
 ## FileSelectorResult<sup>9+</sup>
 
@@ -4230,8 +4453,8 @@ getTitle(): string
 
 **返回值：**
 
-| 类型     | 说明       |
-| ------ | -------- |
+| 类型     | 说明         |
+| ------ | ---------- |
 | string | 返回文件选择器标题。 |
 
 ### getMode<sup>9+</sup>
@@ -4354,9 +4577,9 @@ confirm(authUri : string): void
 
 **参数：**
 
-| 参数名   | 参数类型  | 必填  | 参数描述  |
-| ------- | ------ | ----  | ------------- |
-| authUri | string | 是    | 凭据的关键值。  |
+| 参数名     | 参数类型   | 必填   | 参数描述    |
+| ------- | ------ | ---- | ------- |
+| authUri | string | 是    | 凭据的关键值。 |
 
 ### cancel<sup>9+</sup>
 
@@ -4412,8 +4635,8 @@ grant(resources: Array\<string\>): void
 
 **参数：**
 
-| 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
-| --------- | --------------- | ---- | ---- | ------------- |
+| 参数名       | 参数类型            | 必填   | 默认值  | 参数描述            |
+| --------- | --------------- | ---- | ---- | --------------- |
 | resources | Array\<string\> | 是    | -    | 授予网页请求的权限的资源列表。 |
 
 ## ScreenCaptureHandler<sup>10+</sup>
@@ -4448,44 +4671,44 @@ grant(config: ScreenCaptureConfig): void
 
 **参数：**
 
-| 参数名       | 参数类型            | 必填   | 默认值  | 参数描述          |
-| --------- | --------------- | ---- | ---- | ------------- |
+| 参数名    | 参数类型                                     | 必填   | 默认值  | 参数描述    |
+| ------ | ---------------------------------------- | ---- | ---- | ------- |
 | config | [ScreenCaptureConfig](#screencaptureconfig10) | 是    | -    | 屏幕捕获配置。 |
 
 ## ContextMenuSourceType<sup>9+</sup>枚举说明
-| 名称                   | 描述         |
-| -------------------- | ---------- |
-| None        | 其他事件来源。  |
-| Mouse       | 鼠标事件。  |
-| LongPress   | 长按事件。  |
+| 名称        | 描述      |
+| --------- | ------- |
+| None      | 其他事件来源。 |
+| Mouse     | 鼠标事件。   |
+| LongPress | 长按事件。   |
 
 ## ContextMenuMediaType<sup>9+</sup>枚举说明
 
-| 名称           | 描述          |
-| ------------ | ----------- |
-| None      | 非特殊媒体或其他媒体类型。 |
-| Image     | 图片。     |
+| 名称    | 描述            |
+| ----- | ------------- |
+| None  | 非特殊媒体或其他媒体类型。 |
+| Image | 图片。           |
 
 ## ContextMenuInputFieldType<sup>9+</sup>枚举说明
 
-| 名称           | 描述          |
-| ------------ | ----------- |
-| None      | 非输入框。       |
-| PlainText | 纯文本类型，包括text、search、email等。   |
-| Password  | 密码类型。     |
-| Number    | 数字类型。     |
-| Telephone | 电话号码类型。 |
-| Other     | 其他类型。     |
+| 名称        | 描述                          |
+| --------- | --------------------------- |
+| None      | 非输入框。                       |
+| PlainText | 纯文本类型，包括text、search、email等。 |
+| Password  | 密码类型。                       |
+| Number    | 数字类型。                       |
+| Telephone | 电话号码类型。                     |
+| Other     | 其他类型。                       |
 
 ## ContextMenuEditStateFlags<sup>9+</sup>枚举说明
 
-| 名称         | 描述         |
-| ------------ | ----------- |
-| NONE         | 不可编辑。   |
-| CAN_CUT      | 支持剪切。   |
-| CAN_COPY     | 支持拷贝。   |
-| CAN_PASTE    | 支持粘贴。   |
-| CAN_SELECT_ALL  | 支持全选。 |
+| 名称             | 描述    |
+| -------------- | ----- |
+| NONE           | 不可编辑。 |
+| CAN_CUT        | 支持剪切。 |
+| CAN_COPY       | 支持拷贝。 |
+| CAN_PASTE      | 支持粘贴。 |
+| CAN_SELECT_ALL | 支持全选。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -4571,8 +4794,8 @@ getMediaType(): ContextMenuMediaType
 
 **返回值：**
 
-| 类型                                       | 说明          |
-| ---------------------------------------- | ----------- |
+| 类型                                       | 说明        |
+| ---------------------------------------- | --------- |
 | [ContextMenuMediaType](#contextmenumediatype9枚举说明) | 网页元素媒体类型。 |
 
 ### getSelectionText<sup>9+</sup>
@@ -4583,8 +4806,8 @@ getSelectionText(): string
 
 **返回值：**
 
-| 类型      | 说明                        |
-| ------- | ------------------------- |
+| 类型     | 说明                   |
+| ------ | -------------------- |
 | string | 菜单上下文选中文本内容，不存在则返回空。 |
 
 ### getSourceType<sup>9+</sup>
@@ -4595,8 +4818,8 @@ getSourceType(): ContextMenuSourceType
 
 **返回值：**
 
-| 类型                                       | 说明          |
-| ---------------------------------------- | ----------- |
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
 | [ContextMenuSourceType](#contextmenusourcetype9枚举说明) | 菜单事件来源。 |
 
 ### getInputFieldType<sup>9+</sup>
@@ -4607,8 +4830,8 @@ getInputFieldType(): ContextMenuInputFieldType
 
 **返回值：**
 
-| 类型                                       | 说明          |
-| ---------------------------------------- | ----------- |
+| 类型                                       | 说明     |
+| ---------------------------------------- | ------ |
 | [ContextMenuInputFieldType](#contextmenuinputfieldtype9枚举说明) | 输入框类型。 |
 
 ### isEditable<sup>9+</sup>
@@ -4619,8 +4842,8 @@ isEditable(): boolean
 
 **返回值：**
 
-| 类型      | 说明                        |
-| ------- | ------------------------- |
+| 类型      | 说明                         |
+| ------- | -------------------------- |
 | boolean | 网页元素可编辑返回true，不可编辑返回false。 |
 
 ### getEditStateFlags<sup>9+</sup>
@@ -4631,8 +4854,8 @@ getEditStateFlags(): number
 
 **返回值：**
 
-| 类型      | 说明                        |
-| ------- | ------------------------- |
+| 类型     | 说明                                       |
+| ------ | ---------------------------------------- |
 | number | 网页元素可编辑标识，参照[ContextMenuEditStateFlags](#contextmenueditstateflags9枚举说明)。 |
 
 ## WebContextMenuResult<sup>9+</sup>
@@ -4752,6 +4975,13 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Phone         | 电话号码。                    |
 | Unknown       | 未知内容。                    |
 
+ ## OverScrollMode<sup>11+</sup>枚举说明
+
+| 名称     | 描述          |
+| ------ | ----------- |
+| NEVER  | Web过滚动模式关闭。 |
+| ALWAYS | Web过滚动模式开启。 |
+
 ## SslError<sup>9+</sup>枚举说明
 
 onSslErrorEventReceive接口返回的SSL错误的具体原因。
@@ -4765,41 +4995,61 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 
 ## ProtectedResourceType<sup>9+</sup>枚举说明
 
-| 名称        | 描述            | 备注                         |
-| --------- | ------------- | -------------------------- |
-| MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
-| VIDEO_CAPTURE<sup>10+</sup> | 视频捕获资源，例如相机。 | |
-| AUDIO_CAPTURE<sup>10+</sup> | 音频捕获资源，例如麦克风。 | |
+| 名称                          | 描述            | 备注                         |
+| --------------------------- | ------------- | -------------------------- |
+| MidiSysex                   | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
+| VIDEO_CAPTURE<sup>10+</sup> | 视频捕获资源，例如相机。  |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | 音频捕获资源，例如麦克风。 |                            |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
-| 名称      | 描述                                   |
-| ------- | ------------------------------------ |
-| Off     | Web深色模式关闭。                     |
-| On      | Web深色模式开启。                     |
-| Auto    | Web深色模式跟随系统。                 |
+| 名称   | 描述           |
+| ---- | ------------ |
+| Off  | Web深色模式关闭。   |
+| On   | Web深色模式开启。   |
+| Auto | Web深色模式跟随系统。 |
 
 ## WebCaptureMode<sup>10+</sup>枚举说明
 
-| 名称        | 描述            |
-| --------- | ------------- |
+| 名称          | 描述      |
+| ----------- | ------- |
 | HOME_SCREEN | 主屏捕获模式。 |
 
 ## WebMediaOptions<sup>10+</sup>
 
 Web媒体策略的配置。
 
-| 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
-| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
-| resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒，由于近似值原因，该有效期可能存在一秒内的误差。 |
-| audioExclusive |  boolean  |  是  | 是   |  否  | 应用内多个Web实例的音频是否独占。    |
+| 名称             | 类型      | 可读   | 可写   | 必填   | 说明                                       |
+| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
+| resumeInterval | number  | 是    | 是    | 否    | 被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒，由于近似值原因，该有效期可能存在一秒内的误差。 |
+| audioExclusive | boolean | 是    | 是    | 否    | 应用内多个Web实例的音频是否独占。                       |
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
 Web屏幕捕获的配置。
 
-| 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
-| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
-| captureMode |  [WebCaptureMode](#webcapturemode10枚举说明)  |  是  | 是  |  是  | Web屏幕捕获模式。 |
+| 名称          | 类型                                      | 可读   | 可写   | 必填   | 说明         |
+| ----------- | --------------------------------------- | ---- | ---- | ---- | ---------- |
+| captureMode | [WebCaptureMode](#webcapturemode10枚举说明) | 是    | 是    | 是    | Web屏幕捕获模式。 |
+
+## WebLayoutMode<sup>11+</sup>枚举说明
+| 名称          | 描述                 |
+| ----------- | ------------------ |
+| NONE        | Web布局跟随系统。         |
+| FIT_CONTENT | Web基于页面大小的自适应网页布局。 |
+
+## NestedScrollOptions<sup>11+</sup>对象说明
+| 名称             | 类型               | 描述                   |
+| -------------- | ---------------- | -------------------- |
+| scrollForward  | NestedScrollMode | 可滚动组件往末尾端滚动时的嵌套滚动选项。 |
+| scrollBackward | NestedScrollMode | 可滚动组件往起始端滚动时的嵌套滚动选项。 |
+
+## NestedScrollMode<sup>11+</sup>枚举说明
+| 名称           | 描述                                       |
+| ------------ | ---------------------------------------- |
+| SELF_ONLY    | 只自身滚动，不与父组件联动。                           |
+| SELF_FIRST   | 自身先滚动，自身滚动到边缘以后父组件滚动。父组件滚动到边缘以后，如果父组件有边缘效果，则父组件触发边缘效果，否则子组件触发边缘效果。 |
+| PARENT_FIRST | 父组件先滚动，父组件滚动到边缘以后自身滚动。自身滚动到边缘后，如果有边缘效果，会触发自身的边缘效果，否则触发父组件的边缘效果。 |
+| PARALLEL     | 自身和父组件同时滚动，自身和父组件都到达边缘以后，如果自身有边缘效果，则自身触发边缘效果，否则父组件触发边缘效果。 |
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -5493,15 +5743,15 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(() => {
+        .onPageEnd((event) => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
               this.webResult = result
               console.info(`The test() return value is: ${result}`)
             }})
-          if (e) {
-            console.info('url: ', e.url)
+          if (event) {
+            console.info('url: ', event.url)
           }
         })
       }
@@ -5615,3 +5865,46 @@ saveCookie(): boolean
 | 类型      | 说明                   |
 | ------- | -------------------- |
 | boolean | 同步内存cookie到磁盘操作是否成功。 |
+
+## ScriptItem<sup>11+</sup>
+
+通过[javaScriptOnDocumentStart](#javascriptondocumentstart11)属性注入到Web组件的ScriptItem对象。
+
+| 名称          | 类型             | 必填   | 描述                    |
+| ----------- | -------------- | ---- | --------------------- |
+| script      | string         | 是    | 需要注入、执行的JavaScript脚本。 |
+| scriptRules | Array\<string> | 是    | 一组允许来源的匹配规则。          |
+
+## NavigationType<sup>11+</sup>
+
+定义navigation类型。
+
+| 名称                           | 描述           |
+| ----------------------------- | ------------ |
+| UNKNOWN                       | 未知类型。   |
+| MAIN_FRAME_NEW_ENTRY          | 主文档上产生的新的历史节点跳转。   |
+| MAIN_FRAME_EXISTING_ENTRY     | 主文档上产生的到已有的历史节点的跳转。 |
+| NAVIGATION_TYPE_NEW_SUBFRAME  | 子文档上产生的用户触发的跳转。 |
+| NAVIGATION_TYPE_AUTO_SUBFRAME | 子文档上产生的非用户触发的跳转。 |
+
+## LoadCommittedDetails<sup>11+</sup>
+
+提供已提交跳转的网页的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| isMainFrame     | boolean                              | 是    | 是否是主文档。 |
+| isSameDocument  | boolean                              | 是    | 是否在不更改文档的情况下进行的网页跳转。在同文档跳转的示例：1.参考片段跳转；2.pushState或replaceState触发的跳转；3.同一页面历史跳转。  |
+| didReplaceEntry | boolean                              | 是    | 是否提交的新节点替换了已有的节点。另外在一些子文档跳转的场景，虽然没有实际替换已有节点，但是有一些属性发生了变更。  |
+| navigationType  | [NavigationType](#navigationtype11)  | 是    | 网页跳转的类型。       |
+| url             | string                               | 是    | 当前跳转网页的URL。          |
+
+## OnNavigationEntryCommittedCallback<sup>11+</sup>
+
+type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedDetails](#loadcommitteddetails11)) => void
+
+导航条目提交时触发的回调。
+
+| 参数名                | 参数类型                                           | 参数描述                |
+| -------------------- | ------------------------------------------------ | ------------------- |
+| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | 提供已提交跳转的网页的详细信息。 |

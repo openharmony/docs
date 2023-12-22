@@ -15,7 +15,7 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
 
 2. In **EntryFormAbility.ets**, implement the [[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md) lifecycle APIs, including **onAddForm**, whose **want** parameter can be used to obtain the widget information through [FormParam](../reference/apis/js-apis-app-form-formInfo.md#formparam).
    
-   ```ts
+   ```typescript
    import formInfo from '@ohos.app.form.formInfo';
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
@@ -75,7 +75,8 @@ When creating an ArkTS widget, you need to implement the [FormExtensionAbility](
     }
 
     onConfigurationUpdate(config: Configuration) {
-      // Called when the system configuration is updated.
+      // Called when the configuration of the environment where the formExtensionAbility is running is being updated.
+      // is running is being updated. The formExtensionAbility is cleared after 5 seconds of inactivity.
       console.info('[EntryFormAbility] onConfigurationUpdate:' + JSON.stringify(config));
     }
 

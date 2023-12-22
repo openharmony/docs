@@ -79,6 +79,64 @@ try {
 }
 ```
 
+## inputMonitor.on('mouse')<sup>11+</sup>
+
+on(type: 'mouse', rect: display.Rect[], receiver: Callback&lt;MouseEvent&gt;): void
+
+监听鼠标事件，当鼠标移动至指定矩形区域内时，触发回调任务。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：** 
+
+| 参数名       | 类型                         | 必填   | 说明                  |
+| -------- | -------------------------- | ---- | ------------------- |
+| type     | string                     | 是    | 输入设备事件类型，取值'mouse'。 |
+| rect     | display.Rect[]             | 是    | 可以触发回调任务的矩形区域，可传入1至2个。 |
+| receiver | Callback&lt;[MouseEvent](./js-apis-mouseevent.md)&gt; | 是    | 回调函数，异步上报鼠标输入事件。  |
+
+  **示例：**
+
+```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+import promptAction from '@ohos.promptAction'
+import display from '@ohos.display';
+
+/**
+ * 鼠标在矩形区域内时，触发的回调任务。
+ */
+function callback(mouseEvent : MouseEvent) {
+  promptAction.showToast({
+    message: `监听成功：${JSON.stringify(mouseEvent)}`
+  })
+  console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+  return false;
+};
+
+/**
+ * 触发回调事件矩形区域。
+ */
+let rect: display.Rect[] = [{
+  left: 100,
+  top: 100,
+  width: 100,
+  height: 100
+}, {
+  left: 600,
+  top: 100,
+  width: 100,
+  height: 100
+}];
+
+try {
+  inputMonitor.on('mouse', rect, callback);
+} catch (error) {
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## inputMonitor.off('touch')
 
 off(type: 'touch', receiver?: TouchEventReceiver): void
@@ -638,3 +696,87 @@ try {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## inputMonitor.on('threeFingersTap')<sup>11+</sup>
+
+on(type: 'threeFingersTap', receiver: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt;): void
+
+监听全局触控板的三指轻点事件。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 输入设备事件类型，取值'threeFingersTap'。 |
+| receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | 是   | 回调函数，异步上报三指轻点输入事件。      |
+
+  **示例：**
+
+```js
+try {
+  inputMonitor.on('threeFingersTap', (threeFingersTap) => {
+    console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
+    return false;
+  });
+} catch (error) {
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('threeFingersTap')<sup>11+</sup>
+
+off(type: 'threeFingersTap', receiver?: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt;): void
+
+取消监听全局触控板的三指轻点事件。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 输入设备事件类型，取值'threeFingersTap'。                    |
+| receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | 否   | 需要取消监听的回调函数。若不填，则取消当前应用监听的所有回调函数。 |
+
+**示例：**
+
+```js
+// 取消监听单个回调函数
+import { ThreeFingersTap } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (threeFingersTap: ThreeFingersTap) => {
+  console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
+  return false;
+};
+try {
+  inputMonitor.on('threeFingersTap', callback);
+  inputMonitor.off("threeFingersTap", callback);
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// 取消监听所有回调函数
+import { ThreeFingersTap } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (threeFingersTap: ThreeFingersTap) => {
+  console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
+  return false;
+};
+try {
+  inputMonitor.on('threeFingersTap', callback);
+  inputMonitor.off("threeFingersTap");
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+

@@ -1,4 +1,6 @@
-# Camera Recording Sample
+# Sample Implementation of Camera Recording (ArkTS)
+
+This topic provides sample code that covers the complete recording process and the API calling sequence. For details about a single process (such as device input, session management, and recording), see the corresponding ArkTS development guide links provided in [Camera Development Preparations](camera-preparation.md).
 
 ## Development Process
 
@@ -195,7 +197,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     console.error(`Failed to add cameraInput. error: ${JSON.stringify(err)}`);
   }
 
-  // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream is the surface provided by the XComponent.
+  // Create a preview output stream. For details about the surfaceId parameter, see the <XComponent>. The preview stream is the surface provided by the <XComponent>.
   let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);

@@ -30,6 +30,14 @@
 - [像素单位转换](pixel-format-transfer.md)
 - [如何在UIAbility间进行跳转](jump-between-UIAbilities.md)
 - [转场动画](transition-animation.md)
+- [如何为组件的不同触摸区域添加不同交互动作](different-touch-target-event.md)
+- [组件布局中相对定位的分类和使用](relative-position.md)
+- [导航栏的使用编辑](Editing-with-the-navigation-bar.md)
+- [如何通过上下滑动实现亮度和音量调节](set-volume-brightness-through-gesture.md)
+- [搜索框与文字轮播的巧用](Search-box-and-text-carousel.md)
+- [如何控制循环动画的播放停止](how-to-control-the-pause-of-playback-of-looping-animations.md)
+- [自定义输入框](customize-the-input-box.md)
+- [如何实现内容的下拉变化](realization-of-collapsible-title-effect.md)
 
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
@@ -38,22 +46,36 @@
 ### 网络管理
 - [如何请求并加载网络图片](how-to-load-images-from-internet.md)
 
+### 文件管理
+- [获取用户图库中的图片并显示在Image组件中](photo-pixelmap-transfer.md)
+
 ### 窗口管理
 - [如何实现沉浸模式](immersion-mode.md)
 - [如何创建悬浮窗](float-window.md)
 - [保持屏幕常亮](keep-screen-on.md)
 - [如何创建子窗口并与主窗口通信](subwindow-mainwindow-communication.md)
+- [如何实现横竖屏切换](horizontal-vertical-switch.md)
 
 ### 数据管理
 - [用户首选项的基本使用](preferences-data-process.md)
 
+### 通信与连接
+- [如何实现WLAN网络扫描、连接、断开](wlan-search-connect-disconnect.md)
+- [如何实现蓝牙扫描、连接、断开](how-to-connect-to-bluetooth.md)
+
 ### 媒体
 - [常见图片编辑](image-edit.md)
 - [图片格式转换](image-format-transfer.md)
+- [如何调用设备摄像头进行拍照、预览并将拍摄结果保存在媒体库中](take-picture-and-preview.md)
 
 ### 一次开发，多端部署
 - [Navigation如何实现多场景UI适配](multi-device-app-dev.md)
+- [如何用GridRow和GridCol组件开发自适应布局](adaptive-ui-development.md)
 
+### 分布式能力应用
+- [如何实现文件分布式同步编辑](distributed-file.md)
+- [如何实现分布式画布](distributed-canvas.md)
 
-
-
+### 问题分析案例
+- [稳定性测试常见JS_ERROR问题分析与定位](app_quality_improvement_cases_about_jserror.md)
+- [应用Crash闪退问题分析](app_quality_improvement_cases_about_crash.md)

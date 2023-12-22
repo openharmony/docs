@@ -49,6 +49,7 @@
 | X509Cert        | getSubjectAltNames() : DataArray                             | 获取证书主体可选名称                         |
 | X509Cert        | getIssuerAltNames() : DataArray                              | 获取证书颁发者可选名称                       |
 | X509Cert        | getItem(itemType: CertItemType) : DataBlob<sup>10+</sup>          | 获取X509证书对应的字段                       |
+
 **开发步骤**
 
 示例：解析X509证书数据生成证书对象，并调用对象方法（包含场景1-6）
@@ -172,6 +173,7 @@ function certSample(): void {
 | CertExtension | getOidList(valueType : ExtensionOidType) : DataArray         | 获取证书扩展域段对象标识符列表         |
 | CertExtension | getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob | 获取证书扩展域段对象信息               |
 | CertExtension | checkCA() : number                                           | 校验证书是否为CA证书                   |
+| CertExtension | hasUnsupportedCriticalExtension(): boolean<sup>11+</sup>                | 判断证书是否存在不支持的关键扩展                   |
 
 **开发步骤**
 
@@ -237,6 +239,8 @@ function certExtensionSample(): void {
 
       // Check whether the certificate is a CA certificate.
       let pathLen = certExtension.checkCA();
+
+      let hasUnsupportedCriticalExtension = certExtension.hasUnsupportedCriticalExtension();
       console.log('test cert extension success');
     } catch (err) {
       let e: BusinessError = err as BusinessError;
@@ -267,27 +271,28 @@ function certExtensionSample(): void {
 
 | 实例名          | 接口名                                                       | 描述                                                         |
 | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| cryptoCert | createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void | 使用callback方式解析X509证书吊销列表数据生成证书吊销列表对象 |
-| cryptoCert | createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>    | 使用promise方式解析X509证书吊销列表数据生成证书吊销列表对象  |
-| X509Crl         | isRevoked(cert : X509Cert) : boolean                     |  检查证书是否被吊销                            |
-| X509Crl         | getType() : string                                           | 获取证书吊销列表类型                                        |
-| X509Crl         | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void    | 使用callback方式获取证书吊销列表序列化数据                   |
-| X509Crl         | getEncoded() : Promise\<EncodingBlob>                         | 使用promise方式获取证书吊销列表序列化数据                    |
-| X509Crl         | verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void  | 使用callback方式进行证书吊销列表验签        |
-| X509Crl         | verify(key : cryptoFramework.PubKey) : Promise\<void>                         | 使用Promise方式进行证书吊销列表验签         |
-| X509Crl         | getVersion() : number                                        | 获取证书吊销列表版本                                        |
-| X509Crl         | getIssuerName() : DataBlob                                   | 获取证书吊销列表颁发者名称                                   |
-| X509Crl         | getLastUpdate() : string                                     | 获取证书吊销列表lastUpdate日期                               |
-| X509Crl         | getNextUpdate() : string                                     | 获取证书吊销列表nextUpdate日期                               |
-| X509Crl         | getRevokedCert(serialNumber : number) : X509CrlEntry         | 通过序列号获取证书吊销列表中的被吊销证书                       |
-| X509Crl         | getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry         | 通过X509证书获取证书吊销列表中的被吊销证书                   |
-| X509Crl         | getRevokedCerts(callback : AsyncCallback\<Array\<X509CrlEntry>>) : void | 使用callback方式获取证书吊销列表的所有被吊销证书    |
-| X509Crl         | getRevokedCerts() : Promise\<Array\<X509CrlEntry>>             | 使用Promise方式获取证书吊销列表的所有被吊销证书              |
-| X509Crl         | getTbsInfo() : DataBlob                                      | 获取证书吊销列表的tbsCertList                                |
-| X509Crl         | getSignature() : DataBlob                                    | 获取证书吊销列表的签名                                       |
-| X509Crl         | getSignatureAlgName() : string                               | 获取证书吊销列表的签名算法名称                                |
-| X509Crl         | getSignatureAlgOid() : string                                | 获取证书吊销列表的签名算法OID                                 |
-| X509Crl         | getSignatureAlgParams() : DataBlob                           | 获取证书吊销列表的签名算法参数                                |
+| cryptoCert | createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : void<sup>11+</sup> | 使用callback方式解析X509证书吊销列表数据生成证书吊销列表对象 |
+| cryptoCert | createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL><sup>11+</sup>    | 使用promise方式解析X509证书吊销列表数据生成证书吊销列表对象  |
+| X509CRL         | isRevoked(cert : X509Cert) : boolean<sup>11+</sup>                     |  检查证书是否被吊销                            |
+| X509CRL         | getType() : string<sup>11+</sup>                                           | 获取证书吊销列表类型                                        |
+| X509CRL         | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void<sup>11+</sup>    | 使用callback方式获取证书吊销列表序列化数据                   |
+| X509CRL         | getEncoded() : Promise\<EncodingBlob><sup>11+</sup>                         | 使用promise方式获取证书吊销列表序列化数据                    |
+| X509CRL         | verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void<sup>11+</sup>  | 使用callback方式进行证书吊销列表验签        |
+| X509CRL         | verify(key : cryptoFramework.PubKey) : Promise\<void><sup>11+</sup>                         | 使用Promise方式进行证书吊销列表验签         |
+| X509CRL         | getVersion() : number<sup>11+</sup>                                        | 获取证书吊销列表版本                                        |
+| X509CRL         | getIssuerName() : DataBlob<sup>11+</sup>                                   | 获取证书吊销列表颁发者名称                                   |
+| X509CRL         | getLastUpdate() : string<sup>11+</sup>                                     | 获取证书吊销列表lastUpdate日期                               |
+| X509CRL         | getNextUpdate() : string<sup>11+</sup>                                     | 获取证书吊销列表nextUpdate日期                               |
+| X509CRL         | getRevokedCert(serialNumber : bigint) : X509CRLEntry<sup>11+</sup>         | 通过序列号获取证书吊销列表中的被吊销证书                       |
+| X509CRL         | getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry<sup>11+</sup>         | 通过X509证书获取证书吊销列表中的被吊销证书                   |
+| X509CRL         | getRevokedCerts(callback : AsyncCallback\<Array\<X509CRLEntry>>) : void<sup>11+</sup> | 使用callback方式获取证书吊销列表的所有被吊销证书    |
+| X509CRL         | getRevokedCerts() : Promise\<Array\<X509CRLEntry>><sup>11+</sup>             | 使用Promise方式获取证书吊销列表的所有被吊销证书              |
+| X509CRL         | getTBSInfo() : DataBlob<sup>11+</sup>                                      | 获取证书吊销列表的tbsCertList                                |
+| X509CRL         | getSignature() : DataBlob<sup>11+</sup>                                    | 获取证书吊销列表的签名                                       |
+| X509CRL         | getSignatureAlgName() : string<sup>11+</sup>                               | 获取证书吊销列表的签名算法名称                                |
+| X509CRL         | getSignatureAlgOid() : string<sup>11+</sup>                                | 获取证书吊销列表的签名算法OID                                 |
+| X509CRL         | getSignatureAlgParams() : DataBlob<sup>11+</sup>                           | 获取证书吊销列表的签名算法参数                                |
+| X509CRL         | getExtensions(): DataBlob<sup>11+</sup>                                    | 获取CRL的扩展                                |
 
 **开发步骤**
 
@@ -385,8 +390,8 @@ function stringToUint8Array(str: string): Uint8Array {
   return new Uint8Array(arr);
 }
 
-// Example of a CRL.
-function crlSample(): void {
+// Example of a X509CRL.
+function sampleCRL(): void {
   let encodingBlob: certFramework.EncodingBlob = {
     // Convert the CRL data from a string to a Uint8Array.
     data: stringToUint8Array(crlData),
@@ -395,20 +400,20 @@ function crlSample(): void {
   };
 
   // Create an X509Crl instance.
-  certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+  certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
     if (err != null) {
       // Failed to create the X509Crl instance.
-      console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+      console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
       return;
     }
     // The X509Crl instance is successfully created.
-    console.log('createX509Crl success');
+    console.log('createX509CRL success');
 
     // Obtain the CRL version.
-    let version = x509Crl.getVersion();
+    let version = x509CRL.getVersion();
 
     // Obtain the serialized data of the CRL.
-    x509Crl.getEncoded((err, data) => {
+    x509CRL.getEncoded((err, data) => {
       if (err != null) {
         // Failed to obtain the serialized data of the certificate.
         console.error('getEncoded failed, errCode: ' + err.code + ', errMsg: ' + err.message);
@@ -427,7 +432,7 @@ function crlSample(): void {
       if (err == null) {
         try {
           // Check whether the certificate is revoked.
-          let revokedFlag = x509Crl.isRevoked(cert);
+          let revokedFlag = x509CRL.isRevoked(cert);
           console.log('revokedFlag is: ' + revokedFlag);
         } catch (error) {
           let e: BusinessError = error as BusinessError;
@@ -451,7 +456,7 @@ function crlSample(): void {
       keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob, (e, keyPair) => {
         if (e == null) {
           console.log('convert key success');
-          x509Crl.verify(keyPair.pubKey, (err, data) => {
+          x509CRL.verify(keyPair.pubKey, (err, data) => {
             if (err == null) {
               // The signature verification is successful.
               console.log('verify success');
@@ -470,11 +475,11 @@ function crlSample(): void {
     }
 
     // Certificate serial number, which must be set based on the service.
-    let serialNumber = 1000;
+    let serialNumber = BigInt(1000);
 
     // Obtain the revoked certificate based on the serial number.
     try {
-      let entry = x509Crl.getRevokedCert(serialNumber);
+      let entry = x509CRL.getRevokedCert(serialNumber);
       console.log('get getRevokedCert success');
     } catch (error) {
       let e: BusinessError = error as BusinessError;
@@ -610,11 +615,14 @@ function certChainValidatorSample(): void {
 
 | 实例名       | 接口名                                                      | 描述                                      |
 | ------------ | ----------------------------------------------------------- | ---------------------------------------- |
-| X509CrlEntry | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void;  | 使用callback方式获取被吊销证书的序列化数据 |
-| X509CrlEntry | getEncoded() : Promise\<EncodingBlob>;                       | 使用promise方式获取被吊销证书的序列化数据  |
-| X509CrlEntry | getSerialNumber() : number;                                  | 获取被吊销证书的序列号                    |
-| X509CrlEntry | getCertIssuer() : DataBlob;                                  | 获取被吊销证书颁发者                     |
-| X509CrlEntry | getRevocationDate() : string;                                | 获取被吊销证书的吊销日期                  |
+| X509CRLEntry | getEncoded(callback : AsyncCallback\<EncodingBlob>) : void<sup>11+</sup>;  | 使用callback方式获取被吊销证书的序列化数据 |
+| X509CRLEntry | getEncoded() : Promise\<EncodingBlob><sup>11+</sup>;                       | 使用promise方式获取被吊销证书的序列化数据  |
+| X509CRLEntry | getSerialNumber() : bigint<sup>11+</sup>;                                  | 获取被吊销证书的序列号                    |
+| X509CRLEntry | getCertIssuer() : DataBlob<sup>11+</sup>;                                  | 获取被吊销证书颁发者                     |
+| X509CRLEntry | getRevocationDate() : string<sup>11+</sup>;                                | 获取被吊销证书的吊销日期                  |
+| X509CRLEntry | hasExtensions(): boolean<sup>11+</sup>;                                  | 判断CRLEntry是否有扩展                      |
+| X509CRLEntry | getExtensions(): DataBlob<sup>11+</sup>;                                | 获取CRLEntry的扩展                  |
+
 
 **开发步骤**
 
@@ -643,7 +651,7 @@ function stringToUint8Array(str: string): Uint8Array {
 }
 
 // Example of a revoked certificate.
-function crlEntrySample(): void {
+function sampleCrlEntry(): void {
   // Create an **X509Crl** instance by using createX509Crl() of certFramework.
   let encodingBlob: certFramework.EncodingBlob = {
     // Convert the CRL data from a string to a Uint8Array.
@@ -653,18 +661,18 @@ function crlEntrySample(): void {
   };
 
   // Create an X509Crl instance.
-  certFramework.createX509Crl(encodingBlob, (err, x509Crl) => {
+  certFramework.createX509CRL(encodingBlob, (err, x509CRL) => {
     if (err != null) {
       // Failed to create the X509Crl instance.
-      console.error('createX509Crl failed, errCode: ' + err.code + ', errMsg: ' + err.message);
+      console.error('createX509CRL failed, errCode: ' + err.code + ', errMsg: ' + err.message);
       return;
     }
-    console.log('create x509 crl success');
+    console.log('create x509 CRL success');
 
     // Obtain a revoked certificate instance. In this example, the instance is obtained by using getRevokedCert().
     try {
-      let serialNumber = 1000;
-      let crlEntry = x509Crl.getRevokedCert(serialNumber);
+      let serialNumber = BigInt(1000);
+      let crlEntry = x509CRL.getRevokedCert(serialNumber);
 
       // Obtain the serial number of the revoked certificate.
       serialNumber = crlEntry.getSerialNumber();
@@ -689,6 +697,268 @@ function crlEntrySample(): void {
       console.error('getRevokedCert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
     }
   })
+}
+```
+## 使用证书集合及证书吊销列表集合操作
+
+> **说明**
+>
+> 本场景基于API version 11，OH SDK版本4.1.5.3及以上。
+
+
+**场景说明**
+
+使用证书集合及证书吊销列表集合操作中，典型的场景：从输入的证书集合和证书吊销列表集合中选择满足条件的证书或者证书吊销列表。
+
+**接口及参数说明**
+
+详细接口说明可参考[API参考](../reference/apis/js-apis-cert.md)。
+
+以上场景涉及的常用接口如下表所示：
+
+| 实例名             | 接口名                                                       | 描述                             |
+| ------------------ | ------------------------------------------------------------ | -------------------------------- |
+| cryptoCert | createCertCRLCollection(certs: Array\<X509Cert>, crls?: Array\<X509CRL>): CertCRLCollection | 表示创建CertCRLCollection的对象，并返回相应的结果 |
+| CertCRLCollection | selectCerts(param: X509CertMatchParameters): Promise\<Array\<X509Cert>> | 查找所有与X509CertMatchParameters匹配的证书对象数组, 使用Promise方式异步返回结果 |
+| CertCRLCollection | selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509Cert>>): void          | 查找所有与X509CertMatchParameters匹配的证书对象数组, 使用Callback回调异步返回结果 |
+| CertCRLCollection | selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>> | 查找所有与X509CRLMatchParameters匹配的证书吊销列表数组, 使用Promise方式异步返回结果 |
+| CertCRLCollection | selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CRL>>): void         | 查找所有与X509CRLMatchParameters匹配的证书吊销列表数组, 使用Callback回调异步返回结果 |
+
+**开发步骤**
+
+示例：创建证书及证书吊销列表集合对象，从中选择满足条件的证书或者证书吊销列表。
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+async function createX509CRL(): Promise<certFramework.X509CRL> {
+  let crlData = '-----BEGIN X509 CRL-----\n' +
+    'MIHzMF4CAQMwDQYJKoZIhvcNAQEEBQAwFTETMBEGA1UEAxMKQ1JMIGlzc3VlchcN\n' +
+    'MTcwODA3MTExOTU1WhcNMzIxMjE0MDA1MzIwWjAVMBMCAgPoFw0zMjEyMTQwMDUz\n' +
+    'MjBaMA0GCSqGSIb3DQEBBAUAA4GBACEPHhlaCTWA42ykeaOyR0SGQIHIOUR3gcDH\n' +
+    'J1LaNwiL+gDxI9rMQmlhsUGJmPIPdRs9uYyI+f854lsWYisD2PUEpn3DbEvzwYeQ\n' +
+    '5SqQoPDoM+YfZZa23hoTLsu52toXobP74sf/9K501p/+8hm4ROMLBoRT86GQKY6g\n' +
+    'eavsH0Q3\n' +
+    '-----END X509 CRL-----\n';
+
+  // 证书吊销列表二进制数据，需业务自行赋值
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(crlData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+  let x509CRL: certFramework.X509CRL = {} as certFramework.X509CRL;
+  try {
+    x509CRL = await certFramework.createX509CRL(encodingBlob);
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CRL failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+  return x509CRL;
+}
+
+async function createX509Cert(): Promise<certFramework.X509Cert> {
+  let certData = '-----BEGIN CERTIFICATE-----\n' +
+    'MIIBHTCBwwICA+gwCgYIKoZIzj0EAwIwGjEYMBYGA1UEAwwPRXhhbXBsZSBSb290\n' +
+    'IENBMB4XDTIzMDkwNTAyNDgyMloXDTI2MDUzMTAyNDgyMlowGjEYMBYGA1UEAwwP\n' +
+    'RXhhbXBsZSBSb290IENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEHjG74yMI\n' +
+    'ueO7z3T+dyuEIrhxTg2fqgeNB3SGfsIXlsiUfLTatUsU0i/sePnrKglj2H8Abbx9\n' +
+    'PK0tsW/VgqwDIDAKBggqhkjOPQQDAgNJADBGAiEApVZno/Z7WyDc/muRN1y57uaY\n' +
+    'Mjrgnvp/AMdE8qmFiDwCIQCrIYdHVO1awaPgcdALZY+uLQi6mEs/oMJLUcmaag3E\n' +
+    'Qw==\n' +
+    '-----END CERTIFICATE-----\n';
+
+  let encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM和FORMAT_DER
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+
+  let x509Cert: certFramework.X509Cert = {} as certFramework.X509Cert;
+  try {
+    x509Cert = await certFramework.createX509Cert(encodingBlob);
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509Cert failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+  return x509Cert;
+}
+
+async function sample() {
+  const x509Cert = await createX509Cert();
+  const x509CRL = await createX509CRL();
+  let collection: certFramework.CertCRLCollection = {} as certFramework.CertCRLCollection;
+  try {
+    collection = certFramework.createCertCRLCollection([x509Cert], [x509CRL]);
+    console.log('createCertCRLCollection success');
+  } catch (err) {
+    console.error('createCertCRLCollection failed');
+  }
+
+  const certParam: certFramework.X509CertMatchParameters = {
+    validDate: '231128000000Z'
+  }
+  try {
+    let certs: certFramework.X509Cert[] = await collection.selectCerts(certParam);
+  } catch (err) {
+    console.error('selectCerts failed');
+  }
+
+  const crlParam: certFramework.X509CRLMatchParameters = {
+    x509Cert: x509Cert
+  }
+  try {
+    let crls: certFramework.X509CRL[] = await collection.selectCRLs(crlParam);
+    console.error('selectCRLs success');
+  } catch (err) {
+    console.error('selectCRLs failed');
+  }
+}
+```
+
+## 使用证书链操作
+
+> **说明**
+>
+> 本场景基于API version 11，OH SDK版本4.1.5.5及以上。
+
+**场景说明**
+
+使用证书链操作中，典型的场景：创建证书链对象，获取证书链中的证书列表以及使用信任锚对证书链进行校验。
+
+**接口及参数说明**
+
+详细接口说明可参考[API参考](../reference/apis/js-apis-cert.md)。
+
+以上场景涉及的常用接口如下表所示：
+
+| 实例名             | 接口名                                                       | 描述                             |
+| ------------------ | ------------------------------------------------------------ | -------------------------------- |
+| cryptoCert | createX509CertChain(inStream: EncodingBlob): Promise\<X509CertChain> | 创建X509证书链对象，使用Promise方式异步返回结果 |
+| cryptoCert | createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertChain>): void | 表示创建X509证书链对象，使用Callback回调异步返回结果 |
+| cryptoCert | createX509CertChain(certs: Array\<X509Cert>): X509CertChain | 表示使用X509Cert对象数组创建X509证书链对象，并同步返回结果 |
+| x509CertChain | getCertList(): Array\<X509Cert> | 获取证书链中的X509证书列表 |
+| x509CertChain | validate(param: CertChainValidationParameters): Promise\<CertChainValidationResult>   | 使用校验参数校验证书链并使用Promise方式异步返回结果 |
+| x509CertChain | validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChainValidationResult>): void | 使用校验参数校验证书链并使用callback方式异步返回结果 |
+
+**开发步骤**
+
+示例：创建证书链对象，获取证书链中的证书列表以及使用信任锚对证书链进行校验。
+
+```ts
+import certFramework from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
+
+// string转Uint8Array
+function stringToUint8Array(str: string): Uint8Array {
+  let arr: Array<number> = [];
+  for (let i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+let certChainData = "-----BEGIN CERTIFICATE-----\n" +
+  "MIID6jCCAtKgAwIBAgIIIM2q/TmRoLcwDQYJKoZIhvcNAQELBQAwWjELMAkGA1UE\n" +
+  "BhMCRU4xEDAOBgNVBAgTB0VuZ2xhbmQxDzANBgNVBAcTBkxvbmRvbjEMMAoGA1UE\n" +
+  "ChMDdHMyMQwwCgYDVQQLEwN0czIxDDAKBgNVBAMTA3RzMjAeFw0yMzEyMDUwNzM5\n" +
+  "MDBaFw0yNDEwMzEyMzU5MDBaMGExCzAJBgNVBAYTAkNOMRAwDgYDVQQIEwdKaWFu\n" +
+  "Z3N1MRAwDgYDVQQHEwdOYW5qaW5nMQwwCgYDVQQKEwN0czMxDDAKBgNVBAsTA3Rz\n" +
+  "MzESMBAGA1UEAxMJMTI3LjAuMC4xMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\n" +
+  "CgKCAQEAtt+2QxUevbolYLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLR\n" +
+  "p26LFV/F8ebwPyo8YEBKSwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmc\n" +
+  "rVvLBNMeVnxY86xHpo0MTNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0j\n" +
+  "zT9GjeUP6JLdLFUZJKUPSTK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/U\n" +
+  "T+p5ThAMH593zszlz330nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI3\n" +
+  "8MFQFJKvRHfgTAvVsvAvpBUM2DuBKwIDAQABo4GsMIGpMAkGA1UdEwQCMAAwHQYD\n" +
+  "VR0OBBYEFDfsHTMZwoA6eaDFlBUyDpka+sYtMAsGA1UdDwQEAwID+DAnBgNVHSUE\n" +
+  "IDAeBggrBgEFBQcDAQYIKwYBBQUHAwIGCCsGAQUFBwMEMBQGA1UdEQQNMAuCCTEy\n" +
+  "Ny4wLjAuMTARBglghkgBhvhCAQEEBAMCBkAwHgYJYIZIAYb4QgENBBEWD3hjYSBj\n" +
+  "ZXJ0aWZpY2F0ZTANBgkqhkiG9w0BAQsFAAOCAQEAp5vTvXrt8ZpgRJVtzv9ss0lJ\n" +
+  "izp1fJf+ft5cDXrs7TSD5oHrSW2vk/ZieIMhexU4LFwhs4OE7jK6pgI48Dseqxx7\n" +
+  "B/KktxhVMJUmVXd9Ayjp6f+BtZlIk0cArPuoXToXjsV8caTGBXHRdzxpAk/w9syc\n" +
+  "GYrbH9TrdNMuTizOb+k268oKXUageZNxHmd7YvOXkcNgrd29jzwXKDYYiUa1DISz\n" +
+  "DnYaJOgPt0B/5izhoWNK7GhJDy9KEuLURcTSWFysbbnljwO9INPT9MmlS83PdAgN\n" +
+  "iS8VXF4pce1W9U5jH7d7k0JDVSXybebe1iPFphsZpYM/NE+jap+mPy1nTCbf9g==\n" +
+  "-----END CERTIFICATE-----\n" +
+  "-----BEGIN CERTIFICATE-----\n" +
+  "MIIC0zCCAoWgAwIBAgIIXpLoPpQVWnkwBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
+  "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
+  "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDczNzAwWhcNMjQw\n" +
+  "OTAxMjM1OTAwWjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
+  "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czIxDDAKBgNVBAsTA3RzMjEMMAoGA1UE\n" +
+  "AxMDdHMyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtt+2QxUevbol\n" +
+  "YLp51QGcUpageI4fwGLIqv4fj4aoVnHFOOBqVOVpfCLRp26LFV/F8ebwPyo8YEBK\n" +
+  "SwXzMD1573rMSbaH9BalscH5lZYAbetXoio6YRvzlcmcrVvLBNMeVnxY86xHpo0M\n" +
+  "TNyP7W024rZsxWO98xFQVdoiaBC+7+midlisx2Y+7u0jzT9GjeUP6JLdLFUZJKUP\n" +
+  "STK3jVzw9v1eZQZKYoNfU6vFMd6ndtwW6qEnwpzmmX/UT+p5ThAMH593zszlz330\n" +
+  "nTSXBjIsGkyvOz9gSB0Z0LAuJj06XUNhGL5xKJYKbdI38MFQFJKvRHfgTAvVsvAv\n" +
+  "pBUM2DuBKwIDAQABo28wbTAMBgNVHRMEBTADAQH/MB0GA1UdDgQWBBQ37B0zGcKA\n" +
+  "OnmgxZQVMg6ZGvrGLTALBgNVHQ8EBAMCAQYwEQYJYIZIAYb4QgEBBAQDAgAHMB4G\n" +
+  "CWCGSAGG+EIBDQQRFg94Y2EgY2VydGlmaWNhdGUwBQYDK2VwA0EAuasLBe55YgvF\n" +
+  "b4wmHeohylc9r8cFGS1LNQ5UcSn3sGqMYf6ehnef16NLuCW6upHCs8Sui4iAMvsP\n" +
+  "uKPWR9dKBA==\n" +
+  "-----END CERTIFICATE-----\n" +
+  "-----BEGIN CERTIFICATE-----\n"  +
+  "MIIB3zCCAZGgAwIBAgIIWQvOEDl+ya4wBQYDK2VwMFoxCzAJBgNVBAYTAkVOMRAw\n" +
+  "DgYDVQQIEwdFbmdsYW5kMQ8wDQYDVQQHEwZMb25kb24xDDAKBgNVBAoTA3RzMTEM\n" +
+  "MAoGA1UECxMDdHMxMQwwCgYDVQQDEwN0czEwHhcNMjMxMjA1MDAwMDAwWhcNMjQx\n" +
+  "MjA0MjM1OTU5WjBaMQswCQYDVQQGEwJFTjEQMA4GA1UECBMHRW5nbGFuZDEPMA0G\n" +
+  "A1UEBxMGTG9uZG9uMQwwCgYDVQQKEwN0czExDDAKBgNVBAsTA3RzMTEMMAoGA1UE\n" +
+  "AxMDdHMxMCowBQYDK2VwAyEAuxadj1ww0LqPN24zr28jcSOlSWAe0QdLyRF+ZgG6\n" +
+  "klKjdTBzMBIGA1UdEwEB/wQIMAYBAf8CARQwHQYDVR0OBBYEFNSgpoQvfxR8A1Y4\n" +
+  "St8NjOHkRpm4MAsGA1UdDwQEAwIBBjARBglghkgBhvhCAQEEBAMCAAcwHgYJYIZI\n" +
+  "AYb4QgENBBEWD3hjYSBjZXJ0aWZpY2F0ZTAFBgMrZXADQQAblBgoa72X/K13WOvc\n" +
+  "KW0fqBgFKvLy85hWD6Ufi61k4ProQiZzMK+0+y9jReKelPx/zRdCCgSbQroAR2mV\n" +
+  "xjoE\n" +
+  "-----END CERTIFICATE-----\n";
+
+async function sample() {
+  // 证书链二进制数据，需业务自行赋值
+  const encodingBlob: certFramework.EncodingBlob = {
+    data: stringToUint8Array(certChainData),
+    // 根据encodingData的格式进行赋值，支持FORMAT_PEM、FORMAT_DER和FORMAT_PKCS7
+    encodingFormat: certFramework.EncodingFormat.FORMAT_PEM
+  };
+  let x509CertChain: certFramework.X509CertChain = {} as certFramework.X509CertChain;
+  try {
+    x509CertChain = await certFramework.createX509CertChain(encodingBlob);
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('createX509CertChain failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+
+  try {
+    let certList = x509CertChain.getCertList();
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('X509CertChain getCertList failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+
+  // 证书链校验数据，需业务自行赋值
+  const param: certFramework.CertChainValidationParameters = {
+    date: '20231212080000Z',
+    trustAnchors: [{
+      CAPubKey: new Uint8Array([0x30, 0x2a, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70, 0x03, 0x21, 0x00, 0xbb, 0x16,0x9d, 0x8f, 0x5c, 0x30, 0xd0, 0xba, 0x8f, 0x37, 0x6e, 0x33, 0xaf, 0x6f, 0x23, 0x71, 0x23, 0xa5, 0x49, 0x60,0x1e, 0xd1, 0x07, 0x4b, 0xc9, 0x11, 0x7e, 0x66, 0x01, 0xba, 0x92, 0x52]),
+      CASubject: new Uint8Array([0x30, 0x5a, 0x31, 0x0b, 0x30, 0x09, 0x06, 0x03, 0x55, 0x04, 0x06, 0x13, 0x02, 0x45,0x4e, 0x31, 0x10, 0x30, 0x0e, 0x06, 0x03, 0x55, 0x04, 0x08, 0x13, 0x07, 0x45, 0x6e, 0x67, 0x6c, 0x61, 0x6e,0x64, 0x31, 0x0f, 0x30, 0x0d, 0x06, 0x03, 0x55, 0x04, 0x07, 0x13, 0x06, 0x4c, 0x6f, 0x6e, 0x64, 0x6f, 0x6e,0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04, 0x0a, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a,0x06, 0x03, 0x55, 0x04, 0x0b, 0x13, 0x03, 0x74, 0x73, 0x31, 0x31, 0x0c, 0x30, 0x0a, 0x06, 0x03, 0x55, 0x04,0x03, 0x13, 0x03, 0x74, 0x73, 0x31]),
+    }]
+  };
+  try {
+    const validationRes = await x509CertChain.validate(param);
+    console.log('X509CertChain validate success');
+  } catch (err) {
+    console.error('X509CertChain validate failed');
+  }
 }
 ```
 

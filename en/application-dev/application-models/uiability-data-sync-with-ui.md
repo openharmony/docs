@@ -1,7 +1,7 @@
 # Data Synchronization Between UIAbility and UI Page
 
 
-Based on the OpenHarmony application model, you can use any of the following ways to implement data synchronization between UIAbility components and UI pages:
+Based on the application model, you can use any of the following ways to implement data synchronization between UIAbility components and UI pages:
 
 - [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The **EventHub** object is provided by the base class **Context**. It allows events to be transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
 - [Using AppStorage or LocalStorage for Data Synchronization](#using-appstorage-or-localstorage-for-data-synchronization): ArkUI provides two application-level state management solutions: AppStorage and LocalStorage, which implement application- and UIAbility-level data synchronization, respectively.

@@ -1,10 +1,10 @@
 # \@Builder Decorator: Custom Builder Function
 
 
-As previously described, you can reuse UI elements by creating a custom component, which comes with a fixed internal UI structure and allows for data transfer only with its caller. ArkUI also provides a more lightweight mechanism for reusing UI elements: \@Builder. An \@Builder decorated function is a special function that serves similar purpose as the build function. The \@Builder function body follows the same syntax rules as the **build** function. You can abstract reusable UI elements into a method and call the method in **build**.
+As previously described, you can reuse UI elements by creating a custom component, which comes with a fixed internal UI structure and allows for data transfer only with its caller. ArkUI also provides a more lightweight mechanism for reusing UI elements: \@Builder. An \@Builder decorated function is a special function that serves similar purposes as the **build** function. The \@Builder decorated function follows the same syntax rules as the **build()** function. You can abstract reusable UI elements into a method and call the method in **build**.
 
 
-To simplify language, here we refer to an \@Builder decorated function also as a custom builder function.
+For simplicity, here we refer to an \@Builder decorated function also as a custom builder function.
 
 
 > **NOTE**
@@ -15,7 +15,7 @@ To simplify language, here we refer to an \@Builder decorated function also as a
 ## Rules of Use
 
 
-### Custom Builder Function
+### Local Custom Builder Function
 
 Syntax:
 
@@ -31,11 +31,11 @@ Usage:
 this.MyBuilderFunction() { ... }
 ```
 
-- Defining one or more custom builder (\@Builder decorated) functions inside a custom component is allowed. Such a custom builder function can be considered as a private, special type of member functions of that component.
+- You can define one or more @Builder decorated methods in a custom component. Such a method is considered as a private, special type of member function of the component.
 
-- The custom builder function can be called from the owning component's **build** or another custom builder (within that custom component) function only.
+- The custom builder function can be called from the **build** method or another custom builder function in the same component only.
 
-- Inside the custom builder function body, **this** refers to the owning component. Component state variables are accessible from within the custom builder function implementation. Using the custom components' state variables is recommended over parameter passing.
+- Inside the custom builder function body, **this** refers to the owning component. Component state variables are accessible from within the custom builder function implementation. Using **this** to access the custom components' state variables is recommended over parameter passing.
 
 
 ### Global Custom Builder Function
@@ -57,23 +57,25 @@ MyGlobalBuilderFunction()
 
 - A global custom builder function is accessible from the entire application. **this** and the **bind** method are not allowed.
 
-- Use of a global custom builder function is recommended if no own state is required.
+- Use of a global custom builder function is recommended if no own state is involved.
 
 
 ## Parameter Passing Rules
 
-There are two types of parameter passing for custom builder functions: [by-value parameter passing](#by-value-parameter-passing) and [by-reference parameter passing](#by-reference-parameter-passing). Both of them must comply with the following rules:
+For custom builder functions, parameters can be passed [by value](#by-value-parameter-passing) and [by reference](#by-reference-parameter-passing). Both of them must comply with the following rules:
 
 - The parameter type must be the same as the declared parameter type. The **undefined** or **null** constants as well as expressions evaluating to these values are not allowed.
 
-- All parameters are immutable inside the @Builder decorated function.
+- All parameters must be immutable inside the custom builder function.
 
-- The \@Builder function body follows the same [syntax rules](arkts-create-custom-components.md#build-function) as the **build** function.
+- The custom builder function body follows the same [syntax rules](arkts-create-custom-components.md#build-function) as the **build()** function.
+
+- Parameters are passed by value in all cases except when only one parameter is passed in and the parameter needs to be directly passed to the object literal.
 
 
 ### By-Reference Parameter Passing
 
-In by-reference parameter passing, the passed parameters can be state variables, and the change of these state variables causes the UI re-rendering in the \@Builder method. ArkUI provides $$ as a paradigm for by-reference parameter passing.
+In by-reference parameter passing, state variables can be passed, and the change of these state variables causes the UI re-rendering in the \@Builder decorated method. ArkUI provides $$ as a paradigm for by-reference parameter passing.
 
 
 ```ts
@@ -117,7 +119,7 @@ struct Parent {
 
 ### By-Value Parameter Passing
 
-By default, parameters in the \@Builder decorated functions are passed by value. When the passed parameter is a state variable, the change of the state variable does not cause the UI re-rendering in the \@Builder method. Therefore, when using state variables, you are advised to use [by-reference parameter passing](#by-reference-parameter-passing).
+By default, parameters in the \@Builder decorated functions are passed by value. In this case, when the passed parameter is a state variable, the change of the state variable does not cause UI re-rendering in the \@Builder decorated function. Therefore, when passing state variables, you are advised to use [by-reference parameter passing](#by-reference-parameter-passing).
 
 
 ```ts

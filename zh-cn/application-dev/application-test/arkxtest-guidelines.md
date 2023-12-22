@@ -1,9 +1,9 @@
-# 自动化测试框架使用指导
+# 自动化测试框架使用指导 
 
 
 ## 概述
 
-OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架(JsUnit)及UI测试框架(UiTest)。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行等内容。
+自动化测试框架arkxtest，作为工具集的重要组成部分，支持JS/TS语言的单元测试框架(JsUnit)及UI测试框架(UiTest)。<br>JsUnit提供单元测试用例执行能力，提供用例编写基础接口，生成对应报告，用于测试系统或应用接口。<br>UiTest通过简洁易用的API提供查找和操作界面控件能力，支持用户开发基于界面操作的自动化测试脚本。本指南介绍了测试框架的主要功能、实现原理、环境准备，以及测试脚本编写和执行等内容。
 
 
 ## 实现原理
@@ -20,9 +20,6 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
 
   ![](figures/TestFlow.PNG)
 
-> **说明：**
->
-> 单元测试框架中的函数具体含义请参考[函数定义](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
 
 ### UI测试框架
 
@@ -35,16 +32,13 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
 
 - UI测试框架的能力在OpenHarmony 3.1 release版本之后方可使用，历史版本不支持使用。
 
-- 单元测试框架的部分能力与其版本有关，具体能力与版本匹配信息可见代码仓中的[文档介绍](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md)。
-
-
 ## 环境准备
 
 ### 环境要求
 
-OpenHarmony自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
+自动化脚本的编写主要基于DevEco Studio，并建议使用3.0之后的版本进行脚本编写。
 
-脚本执行需要PC连接OpenHarmony设备，如RK3568开发板等。
+脚本执行需要PC连接硬件设备，如开发板等。
 
 ### 搭建环境
 
@@ -74,7 +68,6 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 ```ts
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 
@@ -92,9 +85,7 @@ export default function abilityTest() {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
       }
-      await delegator.startAbility(want, (err: BusinessError, data: void) => {
-        console.info('Uitest, start ability failed: ' + err)
-      });
+      await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -153,7 +144,6 @@ struct Index {
 import { describe, it, expect } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest'
-import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import UIAbility from '@ohos.app.ability.UIAbility';
 
@@ -171,9 +161,7 @@ export default function abilityTest() {
         bundleName: bundleName,
         abilityName: 'EntryAbility'
       }
-      await delegator.startAbility(want, (err: BusinessError, data: void) => {
-        console.info('Uitest, start ability failed: ' + err)
-      });
+      await delegator.startAbility(want);
       await sleep(1000);
       //check top display ability
       await delegator.getCurrentTopAbility().then((Ability: UIAbility)=>{
@@ -182,7 +170,7 @@ export default function abilityTest() {
       })
       //ui test code
       //init driver
-      let driver = await Driver.create();
+      let driver = Driver.create();
       await driver.delayMs(1000);
       //find button on text 'Next'
       let button = await driver.findComponent(ON.text('Next'));
@@ -220,7 +208,7 @@ export default function abilityTest() {
 
 **查看测试用例覆盖率**
 
-执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[OpenHarmony Test代码覆盖率统计](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section1989615417457)
+执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[Test代码覆盖率统计](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section1989615417457)
 
 ### CMD执行
 
@@ -293,37 +281,37 @@ export default function abilityTest() {
 示例代码6：用例执行超时时长配置。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner  -s timeout 15000
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s timeout 15000
 ```
 
 示例代码7：用例以breakOnError模式执行用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s breakOnError true
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s breakOnError true
 ```
 
 示例代码8：执行测试类型匹配的测试用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s testType function
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s testType function
 ```
 
 示例代码9：执行测试级别匹配的测试用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s level 0
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s level 0
 ```
 
 示例代码10：执行测试规模匹配的测试用例。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s size small
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s size small
 ```
 
 示例代码11：执行测试用例指定次数。
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s stress 1000
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s stress 1000
 ```
 
 **查看测试结果**
@@ -500,15 +488,15 @@ hdc shell uitest uiInput dircFling 3
 hdc shell uitest uiInput inputText 100 100 hello
 ```
 
-示例代码12：执行返回主页操作。
+示例代码11：执行返回主页操作。
 ```shell  
 hdc shell uitest uiInput keyEvent home
 ```
-示例代码13：执行返回上一步操作。
+示例代码12：执行返回上一步操作。
 ```shell  
 hdc shell uitest uiInput keyEvent back
 ```
-示例代码14：执行组合键复制粘贴操作。
+示例代码13：执行组合键复制粘贴操作。
 ```shell  
 hdc shell uitest uiInput keyEvent 2072 2038
 ```

@@ -1,6 +1,5 @@
 # 发布基础类型通知
 
-
 基础类型通知主要应用于发送短信息、提示信息、广告推送等，支持普通文本类型、长文本类型、多行文本类型、图片类型和实况窗类型。
 
 **表1** 基础类型通知中的内容分类
@@ -12,9 +11,13 @@
 | NOTIFICATION_CONTENT_MULTILINE | 多行文本类型。 |
 | NOTIFICATION_CONTENT_PICTURE | 图片类型。 |
 | NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW | 实况窗类型（仅对系统应用开放）。|
+| NOTIFICATION_CONTENT_LIVE_VIEW | 普通实况窗类型。|
 
 
 目前，系统仅支持通知栏订阅通知，将通知显示在通知栏中。基本类型通知的效果示意如下图所示。
+> **说明：**
+> 
+> 根据设计样式的不同，通知的实际显示效果可能有所差异。本文中所涉及的通知效果图仅供参考，请以实际运行结果为准。
 
 **图1** 基础类型通知呈现效果示意图  
 ![zh-cn_image_0000001466462305](figures/zh-cn_image_0000001466462305.png)
@@ -49,7 +52,7 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // 普通文本类型通知
           normal: {
             title: 'test_title',
             text: 'test_text',
@@ -57,7 +60,6 @@
           }
         }
       };
-      
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
           console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
@@ -75,7 +77,7 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
           longText: {
             title: 'test_title',
             text: 'test_text',
@@ -86,7 +88,6 @@
           }
         }
       };
-      
       // 发布通知
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
@@ -105,17 +106,16 @@
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
           multiLine: {
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'test_longTitle',
+            longTitle: 'longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
       };
-      
       // 发布通知
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
@@ -134,23 +134,22 @@
       import image from '@ohos.multimedia.image';
 
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
-      let color = new ArrayBuffer(0);
+      let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
         size: {
-          height: 0,
-          width: 0
+          height: 1,
+          width: 1
         }
       }).then((data: image.PixelMap) => {
         imagePixelMap = data;
       }).catch((err: Base.BusinessError) => {
         console.log(`createPixelMap failed, error: ${err}`);
       })
-      
       if (imagePixelMap !== undefined) {
         let notificationRequest: notificationManager.NotificationRequest = {
           id: 1,
           content: {
-            contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+            notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
             picture: {
               title: 'test_title',
               text: 'test_text',
@@ -161,7 +160,6 @@
             }
           }
         };
-
         // 发布通知
         notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
           if (err) {
@@ -175,98 +173,172 @@
    
       运行效果如下图所示。  
      ![zh-cn_image_0000001466582045](figures/zh-cn_image_0000001466582045.png)
-   - 实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，类型描述参考[NotificationSystemLiveViewContent](../../application-dev/reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent11)。
+   - 系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，类型描述参考[NotificationSystemLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
      
       ```ts
       import image from '@ohos.multimedia.image';
+      import notificationSubscribe from '@ohos.notificationSubscribe';
 
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
-      let color = new ArrayBuffer(0);
+      let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
         size: {
-          height: 0,
-          width: 0
+          height: 1,
+          width: 1
         }
       }).then((data: image.PixelMap) => {
         imagePixelMap = data;
       }).catch((err: Base.BusinessError) => {
         console.log(`createPixelMap failed, error: ${err}`);
       })
-      let notificationRequest: notificationManager.NotificationRequest = {
-        slotType: LIVE_VIEW, // 实况窗类型
-        id: 0, // 通知id，默认为0
-        content: {
-          contentType = notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
-          systemLiveView: {
-            title: "test_title",
-            text:"test_text",
-            typeCode: 1, // 调用方的类型
-            // 按钮
-            button: {
-              names: ["buttonName1"],
-              icons: [imagePixelMap],
-            },
-            // 胶囊
-            capsule: {
-              title: "testTitle",
-              icon: imagePixelMap,
-              backgroundColor: "testColor",
-            },
-            // 进度，更新进度时，只需修改progress，重复publish即可
-            progress: {
-              maxValue: 100,
-              currentValue: 21,
-              isPercentage: false,
-            },
-            // 时间
-            time: {
-              initialTime: 12,
-              isCountDown: true,
-              isPaused: true,
-              isInTitle: false,
+      if(imagePixelMap !== undefined) {
+        let notificationRequest: notificationManager.NotificationRequest = {
+          notificationSlotType: notificationManager.SlotType.LIVE_VIEW, // 实况窗类型
+          id: 0, // 通知id，默认为0
+          content: {
+            notificationContentType : notificationManager.ContentType.NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW,
+            systemLiveView: {
+              title: "test_title",
+              text:"test_text",
+              typeCode: 1, // 调用方的类型
+              // 按钮
+              button: {
+                names: ["buttonName1"],
+                icons: [imagePixelMap],
+              },
+              // 胶囊
+              capsule: {
+                title: "testTitle",
+                icon: imagePixelMap,
+                backgroundColor: "testColor",
+              },
+              // 进度，更新进度时，只需修改progress，重复publish即可
+              progress: {
+                maxValue: 100,
+                currentValue: 21,
+                isPercentage: false,
+              },
+              // 时间
+              time: {
+                initialTime: 12,
+                isCountDown: true,
+                isPaused: true,
+                isInTitle: false,
+              }
             }
           }
+        };
+        // subscribe回调
+        let subscribeCallback = (err: Base.BusinessError): void => {
+          if (err) {
+            console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+          } else {
+            console.info("subscribe success");
+          }
+        };
+        // publish回调
+        let publishCallback = (err: Base.BusinessError): void => {
+          if (err) {
+            console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+          } else {
+            console.info("publish success");
+          }
+        };
+        // 按钮回调(用户点击按钮，会返回这个回调，业务自己决定如何处理)
+        let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
+          console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
         }
-      };
-      // publish回调
-      let publishCallback = (err: Base.BusinessError): void => {
-        if (err) {
-          console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-          console.info("publish success");
+        let systemLiveViewSubscriber: notificationManager.SystemLiveViewSubscriber  = {
+          onResponse: onResponseCallback
+        };
+        // subscriber取消通知回调
+        let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
+          console.info("Cancel callback: " + JSON.stringify(data));
         }
-      };
-      // 按钮回调(用户点击按钮，会返回这个回调，业务自己决定如何处理)
-      let onResponseCallback = (id:number, option:notificationManager.ButtonOptions) => {
-        console.info("response callback: " + JSON.stringify(option) + "notificationId" + id);
+        let notificationSubscriber: notificationSubscribe.NotificationSubscriber = {
+          onCancel: onCancelCallback
+        };
+        let info: notificationSubscribe.NotificationSubscribeInfo = {
+          bundleNames: ["bundleName1"],
+          userId: 123
+        };
+        // 订阅通知，此接口为系统接口，三方应用不支持调用。
+        notificationSubscribe.subscribe(notificationSubscriber, info, subscribeCallback);
+        // 订阅系统实况窗(按钮)，此接口为系统接口，三方应用不支持调用。
+        notificationManager.subscribeSystemLiveView(systemLiveViewSubscriber);
+        // 发布通知
+        notificationManager.publish(notificationRequest, publishCallback);
       }
-      let subscriber: notificationManager.SystemLiveViewSubscriber  = {
-        onResponse: onResponseCallback
-      };
-      // subscriber回调
-      let subscriber = (err: Base.BusinessError): void => {
-        if (err) {
-         console.error(`subscriber failed, code is ${err.code}, message is ${err.message}`);
-        } else {
-         console.info("subscriber success");
-        }
-      };
-      // subscriber取消通知回调
-      let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
-        console.info("Cancel callback: " + JSON.stringify(data));
-      }
-      let subscriber: notificationSubscribe.NotificationSubscriber = {
-        onCancel: onCancelCallback
-      };
-      let info: notificationSubscribe.NotificationSubscribeInfo = {
-        bundleNames: ["bundleName1"],
-        userId: 123
-      };
-      // 订阅通知，此接口为系统接口，三方应用不支持调用。
-      notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
-      // 订阅系统实况窗(按钮)，此接口为系统接口，三方应用不支持调用。
-      notificationManager.subscribeSystemLiveView(subscriber);
-      // 发布通知
-      notificationManager.publish(notificationRequest, publishCallback);
       ```
 
+   - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，类型描述参考[NotificationLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationliveviewcontent11)。
+
+      ```ts
+      import Want from '@ohos.app.ability.Want';
+      import wantAgent, {WantAgent as _wantAgent} from '@ohos.app.ability.wantAgent';
+
+      let wantAgentInfo: wantAgent.WantAgentInfo = {
+        wants: [
+            {
+                deviceId: '',
+                bundleName: 'com.example.myapplication',
+                abilityName: 'EntryAbility',
+                action: '',
+                entities: [],
+                uri: '',
+                parameters: {}
+            }
+        ],
+        operationType: wantAgent.OperationType.START_ABILITY,
+        requestCode: 0,
+        wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG]
+      }
+      let notificationRequest: notificationManager.NotificationRequest = {
+        id: 1,
+        content: {
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LIVE_VIEW,
+          liveView: {
+            status: notificationManager.LiveViewStatus.LIVE_VIEW_CREATE,
+            version: 1,
+            extraInfo: {
+              "event": "TAXI",
+              "isMute": false,
+              "primaryData.title": "primary title",
+              "primaryData.content": [{ text: "text1", textColor: "#FFFFFFFF"}, { text: "text2", textColor: "#FFFFFFFF"}],
+              "primaryData.keepTime": 60,
+              "primaryData.extend.text": "extendData text",
+              "primaryData.extend.type": 1,
+              "PickupLayout.layoutType": 4,
+              "PickupLayout.title": "layout title",
+              "PickupLayout.content": "layout content",
+              "PickupLayout.underlineColor": "#FFFFFFFF",
+              "CapsuleData.status": 1,
+              "CapsuleData.type": 1,
+              "CapsuleData.backgroundColor": "#FFFFFFFF",
+              "CapsuleData.title": "capsule title",
+              "CapsuleData.content": "capsule content",
+              "TimerCapsule.content": "capsule title",
+              "TimerCapsule.initialtime": 7349485944,
+              "TimerCapsule.isCountdown": false,
+              "TimerCapsule.isPause": true
+            }
+          }
+        },
+        notificationSlotType: notificationManager.SlotType.LIVE_VIEW,
+        isOngoing: true,
+        isUnremovable: false,
+        autoDeletedTime: 500,
+        wantAgent: await WantAgent.getWantAgent(WantAgentInfo),
+        extraInfo: {
+          'testKey': 'testValue'
+        },
+      }
+
+      notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
+      });
+      ```

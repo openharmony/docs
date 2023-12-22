@@ -14,7 +14,7 @@
 
 ### 初始化\@BuilderParam装饰的方法
 
-\@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
+\@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。
 
 - 使用所属自定义组件的自定义构建函数或者全局的自定义构建函数，在本地初始化\@BuilderParam。
 
@@ -66,7 +66,7 @@
 
 - 需注意this指向正确。
 
-  以下示例中，Parent组件在调用this.componentBuilder()时，this.label指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this.label指向在Child的label，即“Child”。对于\@BuilderParam aBuilder1，在将this.componentBuilder传给aBuilder1时，调用bind绑定了this，因此其this.label指向Parent的label。
+  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this指向在Child的label，即“Child”。对于\@BuilderParam aBuilder1，在将this.componentBuilder传给aBuilder1时，调用bind绑定了this，因此其this.label指向Parent的label。
 
    >  **说明：**
    >
@@ -126,7 +126,7 @@ class Tmp{
   Text($$.label)
     .width(400)
     .height(50)
-    .backgroundColor(Color.Blue)
+    .backgroundColor(Color.Green)
 }
 
 @Component

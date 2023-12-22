@@ -19,6 +19,6 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | 名称       | 类型                 | 必填 | 说明        |
 | ---------- | --- |-------------------- | ----------- |
 | code       | number               | 是   | 提供给目标wantAgent的自定义结果码。 |
-| want       | Want                 | 否   | Want。        |
+| want       | Want                 | 否   | 对象间信息传递的载体，可以用于应用组件间的信息传递。    |
 | permission | string               | 否   | 权限定义。    |
 | extraInfo  | {[key: string]: any} | 否   | 额外数据。    |

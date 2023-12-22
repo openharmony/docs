@@ -52,6 +52,18 @@
 
 **起始版本**：10
 
+## ohos.permission.GET_BLUETOOTH_LOCAL_MAC
+
+允许应用获取本机的蓝牙MAC地址。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.INTERNET
 
 允许使用Internet网络。
@@ -260,7 +272,7 @@
 
 允许应用将窗口设置为隐私窗口，禁止截屏录屏。
 
-**权限级别**：system_basic
+**权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
 
 **授权方式**：system_grant
 
@@ -351,6 +363,18 @@
 **ACL使能**：TRUE
 
 **起始版本**：7
+
+## ohos.permission.SYSTEM_LIGHT_CONTROL
+
+允许应用控制灯，包括打开、关闭等操作。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
 
 ## ohos.permission.CONNECT_IME_ABILITY
 
@@ -890,7 +914,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：8
 
@@ -902,7 +926,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：8
 
@@ -938,7 +962,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：8
 
@@ -1485,6 +1509,18 @@
 ## ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
 允许设备管理系统的设置参数。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+允许设备管理应用设置WIFI策略。
 
 **权限级别**：system_basic
 
@@ -2456,7 +2492,7 @@
 
 **ACL使能**：TRUE
 
-**起始版本**：11
+**起始版本**：10
 
 ## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
 
@@ -2730,7 +2766,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 **起始版本**：10
 
@@ -2894,7 +2930,7 @@
 
 允许系统应用设置主题内容，包括壁纸、图标、皮肤、AOD和字体等。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
@@ -2935,6 +2971,18 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.RUN_DYN_CODE
+
+允许应用运行动态代码。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
 
 **起始版本**：11
 
@@ -3202,9 +3250,489 @@
 
 **起始版本**：11
 
+## ohos.permission.TRUSTED_RING_HASH_DATA_PERMISSION
+
+允许应用向关键资产信任环发送数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
 ## ohos.permission.INPUT_CONTROL_DISPATCHING
 
-允许系统应用控制事件分发流程
+允许系统应用屏蔽快捷键分发逻辑。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.INTERCEPT_INPUT_EVENT
+
+允许系统应用拦截输入事件。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_TRUSTED_RING
+
+允许使用关键资产信任环服务提供的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.USE_TRUSTED_RING
+
+允许应用或服务使用关键资产信任环加环能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_WRITE_DOWNLOAD_DIRECTORY
+
+允许应用访问公共目录下的Download目录。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
+
+允许应用访问公共目录下的Documents目录。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_WRITE_DESKTOP_DIRECTORY
+
+允许应用访问公共目录下的Desktop目录。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.FILE_ACCESS_PERSIST
+
+允许应用支持持久化访问文件Uri。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.SET_SANDBOX_POLICY
+
+允许系统应用设置动态沙箱策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_APP_INSTALL_INFO
+
+允许应用创建、管理应用安装任务。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.RECEIVE_APP_INSTALL_INFO_CHANGE
+
+允许应用监听其他应用的安装进度。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER
+
+允许业务接入安全隐私中心。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.GET_SECURITY_PRIVACY_ADVICE
+
+允许系统应用获取安全隐私中心建议相关数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.SET_SECURITY_PRIVACY_ADVICE
+
+允许系统应用处理安全隐私中心保护建议。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.USE_SECURITY_PRIVACY_MESSAGER
+
+允许系统服务调用权限管理相关接口。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.RECORD_VOICE_CALL
+
+允许应用录制通话内容。
+
+**授权级别**: system_core
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
+
+允许系统应用打开高级安全模式配置界面。
+
+**授权级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.STORE_PERSISTENT_DATA
+
+允许应用存储持久化的数据，该数据直到设备恢复出厂设置或重装系统才会被清除。
+
+**授权级别**: normal
+
+**授权方式**: system_grant
+
+**ACL使能**: FALSE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_HIVIEWX
+
+允许系统应用拉起“用户体验改进计划”。
+
+**授权级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
+
+允许系统应用或系统服务拉起密码保险箱能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_LOWPOWER_MANAGER
+
+允许系统应用或系统服务向lowpowermanager发送消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**: 11
+
+## ohos.permission.MANAGE_APP_BOOT
+
+允许系统应用设置其他应用开机自启配置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.CONNECT_UI_EXTENSION_ABILITY
+
+允许系统服务连接UIExtensionAbility。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_HIVIEWCARE
+
+允许系统应用拉起智能检测能力。
+
+**授权级别**: system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**: TRUE
+
+**起始版本**：11
+
+## ohos.permission.START_ABILITY_WITH_ANIMATION
+
+允许应用取消Ability启动动效。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**: 11
+
+## ohos.permission.ACCESS_DDK_USB
+
+允许扩展外设驱动访问USB DDK接口开发USB总线扩展外设驱动。
+
+**权限级别**：system_basic
+
+**授权方式**: system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+允许应用使用外接设备增强功能。
+
+**权限级别**：normal
+
+**授权方式**: system_grant
+
+**ACL使能**：FALSE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_DDK_HID
+
+允许扩展外设驱动访问HID DDK接口开发HID类扩展外设驱动。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_ACCOUNT_KIT_SERVICE
+
+允许账号服务查询、修改账号数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.REQUEST_ANONYMOUS_ATTEST
+
+允许系统应用使用设备匿名证明能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_ACCOUNT_KIT_UI
+
+允许系统应用拉起账号用户认证界面。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.START_RECENT_ABILITY
+
+允许应用启动指定的UIAbility，如果该UIAbility有多个实例，将启动最近启动的实例。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.READ_CLOUD_SYNC_CONFIG
+
+允许接入云空间的应用查询应用云同步相关配置信息。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_CLOUD_SYNC_CONFIG
+
+允许接入云空间的应用管理应用云同步相关配置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.ACCESS_FINDDEVICE
+
+允许应用拉起“查找设备”应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_FINDSERVICE
+
+允许系统应用获取“查找我的设备”开关状态和打开开关。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.TRIGGER_ACTIVATIONLOCK
+
+允许系统SA调用“查找设备”。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.MANAGE_USB_CONFIG
+
+允许应用管理USB设备功能和端口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.WRITE_PRIVACY_PUSH_DATA
+
+允许应用往另一个应用中写入隐私Push数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11
+
+## ohos.permission.START_SYSTEM_DIALOG
+
+允许应用拉起模系统弹窗。
 
 **权限级别**：system_basic
 

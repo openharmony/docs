@@ -1370,12 +1370,6 @@ interface ExtendedStyle extends Style {
 
 继承接口包含被继承接口的所有属性和方法，还可以添加自己的属性和方法。
 
-### 接口可见性修饰符
-
-属性和方法是公共（`public`）的。
-
-只有具有默认实现的方法才能定义为私有（`private`）。
-
 ## 泛型类型和函数
 
 泛型类型和函数允许创建的代码在各种类型上运行，而不仅支持单一类型。
@@ -1590,6 +1584,8 @@ console.log(p.spouse?.nick) // 打印undefined
 可以使用关键字`export`导出顶层的声明。
 
 未导出的声明名称被视为私有名称，只能在声明该名称的模块中使用。
+
+**注意**：通过export方式导出，在导入时要加{}。
 
 ```typescript
 export class Point {

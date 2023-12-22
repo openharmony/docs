@@ -1,6 +1,7 @@
 # @ohos.data.relationalStore (关系型数据库)
 
 关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Worker线程。
+ArkTS侧支持的基本数据类型：number、string、二进制类型数据、boolean。为保证插入并读取数据成功，建议一条数据不要超过2M。超出该大小，插入成功，读取失败。
 
 该模块提供以下关系型数据库相关的常用功能：
 
@@ -68,7 +69,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, (err: BusinessError, rdbStore
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Get RdbStore successfully.`);
+  console.info('Get RdbStore successfully.');
 })
 ```
 
@@ -94,7 +95,7 @@ class EntryAbility extends UIAbility {
         console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
-      console.info(`Get RdbStore successfully.`);
+      console.info('Get RdbStore successfully.');
     })
   }
 }
@@ -151,7 +152,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.getRdbStore(context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
-  console.info(`Get RdbStore successfully.`)
+  console.info('Get RdbStore successfully.')
 }).catch((err: BusinessError) => {
   console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -175,7 +176,7 @@ class EntryAbility extends UIAbility {
 
     relationalStore.getRdbStore(this.context, STORE_CONFIG).then(async (rdbStore: relationalStore.RdbStore) => {
       store = rdbStore;
-      console.info(`Get RdbStore successfully.`)
+      console.info('Get RdbStore successfully.')
     }).catch((err: BusinessError) => {
       console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -227,7 +228,7 @@ relationalStore.deleteRdbStore(context, "RdbTest.db", (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -248,7 +249,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -299,7 +300,7 @@ let context = getContext(this);
 
 relationalStore.deleteRdbStore(context, "RdbTest.db").then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -318,7 +319,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db").then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -377,7 +378,7 @@ relationalStore.deleteRdbStore(context, STORE_CONFIG, (err: BusinessError) => {
     return;
   }
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 })
 ```
 
@@ -402,7 +403,7 @@ class EntryAbility extends UIAbility {
         return;
       }
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     })
   }
 }
@@ -461,7 +462,7 @@ const STORE_CONFIG: relationalStore.StoreConfig = {
 
 relationalStore.deleteRdbStore(context, STORE_CONFIG).then(()=>{
   store = undefined;
-  console.info(`Delete RdbStore successfully.`);
+  console.info('Delete RdbStore successfully.');
 }).catch((err: BusinessError) => {
   console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
@@ -484,7 +485,7 @@ class EntryAbility extends UIAbility {
     };
     relationalStore.deleteRdbStore(this.context, STORE_CONFIG).then(()=>{
       store = undefined;
-      console.info(`Delete RdbStore successfully.`);
+      console.info('Delete RdbStore successfully.');
     }).catch((err: BusinessError) => {
       console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
@@ -496,19 +497,19 @@ class EntryAbility extends UIAbility {
 
 管理关系数据库配置。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| name          | string        | 是   | 数据库文件名。                                            |
-| securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
-| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
-| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
-| customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。 |
+| name          | string        | 是   | 数据库文件名。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core   |
+| securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core|
+| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| dataGroupId<sup>10+</sup> | string | 否 | 应用组ID，需要向应用市场获取。<br/>**模型约束：** 此属性仅在Stage模型下可用。<br/>从API version 10开始，支持此可选参数。指定在此dataGroupId对应的沙箱路径下创建RdbStore实例，当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| customDir<sup>11+</sup> | string | 否 | 数据库自定义路径。<br/>**使用约束：** 数据库路径大小限制为128字节，如果超过该大小会开库失败，返回错误。<br/>从API version 11开始，支持此可选参数。数据库将在如下的目录结构中被创建：context.databaseDir + "/rdb/" + customDir，其中context.databaseDir是应用沙箱对应的路径，"/rdb/"表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| autoCleanDirtyData<sup>11+<sup> | boolean | 否 | 指定是否自动清理云端删除后同步到本地的数据，true表示自动清理，false表示手动清理，默认自动清理。<br/>对于端云协同的数据库，当云端删除的数据同步到设备端时，可通过该参数设置设备端是否自动清理。手动清理可以通过[cleanDirtyData<sup>11+</sup>](#cleandirtydata11)接口清理。<br/>从API version 11开始，支持此可选参数。<br/>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## SecurityLevel
 
-数据库的安全级别枚举。
+数据库的安全级别枚举。请使用枚举名称而非枚举值。
 
 > **说明：**
 >
@@ -531,12 +532,12 @@ class EntryAbility extends UIAbility {
 
 | 名称                              | 值   | 说明             |
 | ------------------------------- | --- | -------------- |
-| ASSET_NORMAL     | -   | 表示资产状态正常。      |
-| ASSET_INSERT | - | 表示资产需要插入到云端。 |
-| ASSET_UPDATE | - | 表示资产需要更新到云端。 |
-| ASSET_DELETE | - | 表示资产需要在云端删除。 |
-| ASSET_ABNORMAL    | -   | 表示资产状态异常。      |
-| ASSET_DOWNLOADING | -   | 表示资产正在下载到本地设备。 |
+| ASSET_NORMAL     | 1  | 表示资产状态正常。      |
+| ASSET_INSERT | 2 | 表示资产需要插入到云端。 |
+| ASSET_UPDATE | 3 | 表示资产需要更新到云端。 |
+| ASSET_DELETE | 4 | 表示资产需要在云端删除。 |
+| ASSET_ABNORMAL    | 5   | 表示资产状态异常。      |
+| ASSET_DOWNLOADING | 6   | 表示资产正在下载到本地设备。 |
 
 ## Asset<sup>10+</sup>
 
@@ -566,7 +567,7 @@ class EntryAbility extends UIAbility {
 
 ## ValueType
 
-用于表示允许的数据字段类型。
+用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -624,27 +625,54 @@ class EntryAbility extends UIAbility {
 
 ## SyncMode
 
-指数据库同步模式。
+指数据库同步模式。请使用枚举名称而非枚举值。
 
 | 名称           | 值   | 说明                               |
 | -------------- | ---- | ---------------------------------- |
-| SYNC_MODE_PUSH                       | 0   | 表示数据从本地设备推送到远程设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                     |
-| SYNC_MODE_PULL                       | 1   | 表示数据从远程设备拉至本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                      |
-| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
-| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+| SYNC_MODE_PUSH                       | 0   | 表示数据从本地设备推送到远程设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SYNC_MODE_PULL                       | 1   | 表示数据从远程设备拉至本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | 4   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | 5   | 表示数据从本地设备同步到云端。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | 6   | 表示数据从云端同步到本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+
+## Origin<sup>11+</sup>
+
+表示数据来源。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+| 名称           | 值   | 说明                               |
+| -------------- | ---- | ---------------------------------- |
+| LOCAL       | 0   | 表示本地数据。      |
+| CLOUD       | 1   | 表示云端同步的数据。     |
+| REMOTE      | 2   | 表示端端同步的数据。 |
+
+## Field<sup>11+</sup>
+
+用于谓词查询条件的特殊字段。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+| 名称           | 值   | 说明                               |
+| -------------- | ---- | ---------------------------------- |
+| CURSOR_FIELD        | '#_cursor'     | 用于cursor查找的字段名。|
+| ORIGIN_FIELD        | '#_origin'     | 用于cursor查找时指定数据来源的字段名。    |
+| DELETED_FLAG_FIELD  | '#_deleted_flag' | 用于cursor查找的结果集返回时填充的字段，表示云端删除的数据同步到本地后数据是否清理。<br>返回的结果集中，该字段对应的value为false表示数据未清理，true表示数据已清理。|
+| OWNER_FIELD  | '#_cloud_owner' | 用于共享表中查找owner时返回的结果集中填充的字段，表示当前共享记录的共享发起者。|
+| PRIVILEGE_FIELD  | '#_cloud_privilege' | 用于共享表中查找共享数据权限时返回的结果集中填充的字段，表示当前共享记录的允许的操作权限。|
+| SHARING_RESOURCE_FIELD   | '#_sharing_resource_field' | 用于数据共享时查找共享数据的共享资源时返回的结果集中填充的字段，表示共享数据的共享资源标识。|
 
 ## SubscribeType
 
-描述订阅类型。
+描述订阅类型。请使用枚举名称而非枚举值。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
 | 名称                  | 值   | 说明               |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -  | 订阅云端数据更改。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | -  | 订阅云端数据更改详情。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | 订阅云端数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | 订阅云端数据更改详情。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## ChangeType<sup>10+</sup>
 
@@ -656,8 +684,8 @@ class EntryAbility extends UIAbility {
 
 | 名称                         | 值   | 说明                         |
 | -------------------------- | --- | -------------------------- |
-| DATA_CHANGE  | -   | 表示是数据发生变更。   |
-| ASSET_CHANGE | -   | 表示是资产附件发生了变更。 |
+| DATA_CHANGE  | 0   | 表示是数据发生变更。   |
+| ASSET_CHANGE | 1   | 表示是资产附件发生了变更。 |
 
 ## ChangeInfo<sup>10+</sup>
 
@@ -681,8 +709,22 @@ class EntryAbility extends UIAbility {
 
 | 名称                | 值   | 说明                                                                                                 |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | -  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
-| DISTRIBUTED_CLOUD  | -   | 表示在设备和云端之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| DISTRIBUTED_DEVICE | 0  | 表示在不同设备之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
+| DISTRIBUTED_CLOUD  | 1   | 表示在设备和云端之间分布式的数据库表。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+
+## Reference<sup>11+</sup>
+
+记录表之间通过表字段指定的关联关系。其中表a关联到表b，称a为b关联的子表，b为a关联的父表。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**系统接口：** 此接口为系统接口。
+
+| 名称       | 类型   | 必填 | 说明                                     |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| sourceTable | string | 是   | 关联的子表。   |
+| targetTable | string | 是   | 关联的父表。   |
+| refFields   | {[src: string]: string} | 是   | 表示关联表的关联字段。键值数据中键为子表字段，值为父表字段。       |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -692,11 +734,12 @@ class EntryAbility extends UIAbility {
 
 | 名称     | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| autoSync | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
+| autoSync   | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
+| references<sup>11+</sup> | Array&lt;[Reference](#reference11)&gt; | 否   | 设置表之间的关联关系，可以设置多个字段的关联，子表和父表关联字段的值必须相同。默认数据库表之间无关联关系。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。|
 
 ## ConflictResolution<sup>10+</sup>
 
-插入和修改接口的冲突解决方式。
+插入和修改接口的冲突解决方式。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -717,9 +760,9 @@ class EntryAbility extends UIAbility {
 
 | 名称             | 值   | 说明                     |
 | ---------------- | ---- | ------------------------ |
-| SYNC_BEGIN       | -    | 表示端云同步过程开始。   |
-| SYNC_IN_PROGRESS | -    | 表示正在端云同步过程中。 |
-| SYNC_FINISH      | -    | 表示端云同步过程已完成。 |
+| SYNC_BEGIN       | 0    | 表示端云同步过程开始。   |
+| SYNC_IN_PROGRESS | 1    | 表示正在端云同步过程中。 |
+| SYNC_FINISH      | 2    | 表示端云同步过程已完成。 |
 
 ## Statistic<sup>10+</sup>
 
@@ -753,13 +796,13 @@ class EntryAbility extends UIAbility {
 
 | 名称                  | 值   | 说明                                                         |
 | --------------------- | ---- | ------------------------------------------------------------ |
-| SUCCESS               | -    | 表示端云同步过程成功。                                       |
-| UNKNOWN_ERROR         | -    | 表示端云同步过程遇到未知错误。                               |
-| NETWORK_ERROR         | -    | 表示端云同步过程遇到网络错误。                               |
-| CLOUD_DISABLED        | -    | 表示云端不可用。                                             |
-| LOCKED_BY_OTHERS      | -    | 表示有其他设备正在端云同步，本设备无法进行端云同步。<br>请确保无其他设备占用云端资源后，再使用本设备进行端云同步任务。 |
-| RECORD_LIMIT_EXCEEDED | -    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
-| NO_SPACE_FOR_ASSET    | -    | 表示云空间剩余空间小于待同步的资产大小。                     |
+| SUCCESS               | 0    | 表示端云同步过程成功。                                       |
+| UNKNOWN_ERROR         | 1    | 表示端云同步过程遇到未知错误。                               |
+| NETWORK_ERROR         | 2    | 表示端云同步过程遇到网络错误。                               |
+| CLOUD_DISABLED        | 3    | 表示云端不可用。                                             |
+| LOCKED_BY_OTHERS      | 4    | 表示有其他设备正在端云同步，本设备无法进行端云同步。<br>请确保无其他设备占用云端资源后，再使用本设备进行端云同步任务。 |
+| RECORD_LIMIT_EXCEEDED | 5    | 表示本次端云同步需要同步的条目或大小超出最大值。由云端配置最大值。 |
+| NO_SPACE_FOR_ASSET    | 6    | 表示云空间剩余空间小于待同步的资产大小。                     |
 
 ## ProgressDetails<sup>10+</sup>
 
@@ -881,7 +924,7 @@ predicates.inAllDevices();
 equalTo(field: string, value: ValueType): RdbPredicates
 
 
-配置谓词以匹配数据字段为ValueType且值等于指定值的字段。
+配置谓词以匹配数据表的field列中值为value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -901,8 +944,9 @@ equalTo(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值为"Lisa"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi");
+predicates.equalTo("NAME", "Lisa");
 ```
 
 
@@ -911,7 +955,7 @@ predicates.equalTo("NAME", "lisi");
 notEqualTo(field: string, value: ValueType): RdbPredicates
 
 
-配置谓词以匹配数据字段为ValueType且值不等于指定值的字段。
+配置谓词以匹配数据表的field列中值不为value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -931,8 +975,9 @@ notEqualTo(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值不为"Lisa"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.notEqualTo("NAME", "lisi");
+predicates.notEqualTo("NAME", "Lisa");
 ```
 
 
@@ -955,7 +1000,7 @@ beginWrap(): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -981,7 +1026,7 @@ endWrap(): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -1006,6 +1051,7 @@ or(): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值为"Lisa"或"Rose"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .or()
@@ -1029,6 +1075,7 @@ and(): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值为"Lisa"且"SALARY"列中值为"200.5"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .and()
@@ -1039,7 +1086,7 @@ predicates.equalTo("NAME", "Lisa")
 
 contains(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且value包含指定值的字段。
+配置谓词以匹配数据表的field列中包含value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1059,6 +1106,7 @@ contains(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中包含"os"的字段，如"Rose"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
@@ -1067,7 +1115,7 @@ predicates.contains("NAME", "os");
 
 beginsWith(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且值以指定字符串开头的字段。
+配置谓词以匹配数据表的field列中以value开头的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1087,15 +1135,16 @@ beginsWith(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中以"Li"开头的字段，如"Lisa"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.beginsWith("NAME", "os");
+predicates.beginsWith("NAME", "Li");
 ```
 
 ### endsWith
 
 endsWith(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且值以指定字符串结尾的字段。
+配置谓词以匹配数据表的field列中以value结尾的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1115,6 +1164,7 @@ endsWith(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中以"se"结尾的字段，如"Rose"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
@@ -1123,7 +1173,7 @@ predicates.endsWith("NAME", "se");
 
 isNull(field: string): RdbPredicates
 
-配置谓词以匹配值为null的字段。
+配置谓词以匹配数据表的field列中值为null的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1150,7 +1200,7 @@ predicates.isNull("NAME");
 
 isNotNull(field: string): RdbPredicates
 
-配置谓词以匹配值不为null的指定字段。
+配置谓词以匹配数据表的field列中值不为null的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1177,7 +1227,7 @@ predicates.isNotNull("NAME");
 
 like(field: string, value: string): RdbPredicates
 
-配置谓词以匹配数据字段为string且值类似于指定字符串的字段。
+配置谓词以匹配数据表的field列中值类似于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1197,6 +1247,7 @@ like(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中值类似于"os"的字段，如"Rose"
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
@@ -1205,7 +1256,7 @@ predicates.like("NAME", "%os%");
 
 glob(field: string, value: string): RdbPredicates
 
-配置RdbPredicates匹配数据字段为string的指定字段。
+配置谓词匹配数据字段为string的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1225,6 +1276,7 @@ glob(field: string, value: string): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中类型为string且值为"?h*g"的字段
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
@@ -1233,7 +1285,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-将谓词配置为匹配数据字段为ValueType且value在给定范围内的指定字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段（包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1243,7 +1295,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | 是   | 数据库表中的列名。         |
 | low    | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最小值。   |
-| high   | [ValueType](#valuetype) | 是   | 指示要与谓词匹配的最大值。 |
+| high   | [ValueType](#valuetype) | 是   | 指示与谓词匹配的最大值。 |
 
 **返回值**：
 
@@ -1254,6 +1306,7 @@ between(field: string, low: ValueType, high: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中大于等于10且小于等于50的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
@@ -1262,7 +1315,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-配置RdbPredicates以匹配数据字段为ValueType且value超出给定范围的指定字段。
+配置谓词以匹配数据表的field列中值超出给定范围的字段（不包含范围边界）。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1283,6 +1336,7 @@ notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中小于10或大于50的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
@@ -1291,7 +1345,7 @@ predicates.notBetween("AGE", 10, 50);
 
 greaterThan(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为ValueType且值大于指定值的字段。
+配置谓词以匹配数据表的field列中值大于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1311,6 +1365,7 @@ greaterThan(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中大于18的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
@@ -1319,7 +1374,7 @@ predicates.greaterThan("AGE", 18);
 
 lessThan(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为valueType且value小于指定值的字段。
+配置谓词以匹配数据表的field列中值小于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1339,6 +1394,7 @@ lessThan(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中小于20的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
@@ -1347,7 +1403,7 @@ predicates.lessThan("AGE", 20);
 
 greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为ValueType且value大于或等于指定值的字段。
+配置谓词以匹配数据表的field列中值大于或者等于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1367,6 +1423,7 @@ greaterThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中大于等于18的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
@@ -1375,7 +1432,7 @@ predicates.greaterThanOrEqualTo("AGE", 18);
 
 lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 
-配置谓词以匹配数据字段为ValueType且value小于或等于指定值的字段。
+配置谓词以匹配数据表的field列中值小于或者等于value的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1395,6 +1452,7 @@ lessThanOrEqualTo(field: string, value: ValueType): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中小于等于20的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
@@ -1403,7 +1461,7 @@ predicates.lessThanOrEqualTo("AGE", 20);
 
 orderByAsc(field: string): RdbPredicates
 
-配置谓词以匹配其值按升序排序的列。
+配置谓词以匹配数据表的field列中值按升序排序的列。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1430,7 +1488,7 @@ predicates.orderByAsc("NAME");
 
 orderByDesc(field: string): RdbPredicates
 
-配置谓词以匹配其值按降序排序的列。
+配置谓词以匹配数据表的field列中值按降序排序的列。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1505,7 +1563,7 @@ predicates.equalTo("NAME", "Rose").limitAs(3);
 
 offsetAs(rowOffset: number): RdbPredicates
 
-配置RdbPredicates以指定返回结果的起始位置。
+配置谓词以指定返回结果的起始位置。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1532,7 +1590,7 @@ predicates.equalTo("NAME", "Rose").offsetAs(3);
 
 groupBy(fields: Array&lt;string&gt;): RdbPredicates
 
-配置RdbPredicates按指定列分组查询结果。
+配置谓词按指定列分组查询结果。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1559,7 +1617,7 @@ predicates.groupBy(["AGE", "NAME"]);
 
 indexedBy(field: string): RdbPredicates
 
-配置RdbPredicates以指定索引列。
+配置谓词以指定索引列。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1587,7 +1645,7 @@ predicates.indexedBy("SALARY_INDEX");
 
 in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-配置RdbPredicates以匹配数据字段为ValueType数组且值在给定范围内的指定字段。
+配置谓词以匹配数据表的field列中值在给定范围内的字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1607,6 +1665,7 @@ in(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"AGE"列中在[18，20]中的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
@@ -1615,7 +1674,7 @@ predicates.in("AGE", [18, 20]);
 
 notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 
-将RdbPredicates配置为匹配数据字段为ValueType且值超出给定范围的指定字段。
+将谓词配置为匹配数据字段为ValueType且值超出给定范围的指定字段。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1635,6 +1694,7 @@ notIn(field: string, value: Array&lt;ValueType&gt;): RdbPredicates
 **示例：**
 
 ```ts
+// 匹配数据表的"NAME"列中不在["Lisa", "Rose"]中的值
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
@@ -3263,7 +3323,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3303,7 +3363,7 @@ if(store != undefined) {
       console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   })
 }
 ```
@@ -3346,7 +3406,7 @@ import { BusinessError } from "@ohos.base";
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
 if(store != undefined) {
   (store as relationalStore.RdbStore).executeSql(SQL_DELETE_TABLE).then(() => {
-    console.info(`Delete table done.`);
+    console.info('Delete table done.');
   }).catch((err: BusinessError) => {
     console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3445,6 +3505,7 @@ if(store != undefined) {
 beginTransaction():void
 
 在开始执行SQL语句之前，开始事务。
+此接口不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3469,7 +3530,7 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
@@ -3499,6 +3560,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 commit():void
 
 提交已执行的SQL语句。
+此接口不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3513,7 +3575,7 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
@@ -3543,6 +3605,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
 rollBack():void
 
 回滚已经执行的SQL语句。
+此接口不支持在多进程或多线程中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3557,7 +3620,7 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
@@ -3621,7 +3684,7 @@ if(store != undefined) {
       console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   })
 }
 ```
@@ -3662,7 +3725,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseBackup = (store as relationalStore.RdbStore).backup("dbBackup.db");
   promiseBackup.then(() => {
-    console.info(`Backup success.`);
+    console.info('Backup success.');
   }).catch((err: BusinessError) => {
     console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3701,7 +3764,7 @@ if(store != undefined) {
       console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   })
 }
 ```
@@ -3742,7 +3805,7 @@ import { BusinessError } from "@ohos.base";
 if(store != undefined) {
   let promiseRestore = (store as relationalStore.RdbStore).restore("dbBackup.db");
   promiseRestore.then(() => {
-    console.info(`Restore success.`);
+    console.info('Restore success.');
   }).catch((err: BusinessError) => {
     console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3783,7 +3846,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3825,7 +3888,7 @@ import { BusinessError } from "@ohos.base";
 
 if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"]).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -3868,7 +3931,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3914,7 +3977,7 @@ if(store != undefined) {
       console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   })
 }
 ```
@@ -3961,7 +4024,7 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, {
     autoSync: true
   }).then(() => {
-    console.info(`SetDistributedTables successfully.`);
+    console.info('SetDistributedTables successfully.');
   }).catch((err: BusinessError) => {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
   })
@@ -4144,7 +4207,7 @@ if(store != undefined) {
       console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
       return;
     }
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -4208,7 +4271,7 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 if(store != undefined) {
   (store as relationalStore.RdbStore).sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates).then((result: Object[][]) => {
-    console.info(`Sync done.`);
+    console.info('Sync done.');
     for (let i = 0; i < result.length; i++) {
       console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
     }
@@ -4792,6 +4855,277 @@ if(store != undefined) {
 }
 ```
 
+### cleanDirtyData<sup>11+</sup>
+
+cleanDirtyData(table: string, cursor: number, callback: AsyncCallback&lt;void&gt;): void
+
+清理云端删除的数据同步到本地后，未自动清理的，且数据的游标（cursor）小于指定游标的数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| table     | string                        | 是   | 表示当前数据库的表的名称。                             |
+| cursor    | number                        | 是   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。     |
+| callback  | AsyncCallback&lt;void&gt;     | 是   | 指定的callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+if(store != undefined) {
+ (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100, (err) => {
+    if (err) {
+      console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('clean dirty data succeeded');
+  })
+}
+```
+
+### cleanDirtyData<sup>11+</sup>
+
+cleanDirtyData(table: string, callback: AsyncCallback&lt;void&gt;): void
+
+清理云端删除的数据同步到本地后，未自动清理的所有数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| table     | string                        | 是   | 表示当前数据库的表的名称。 |
+| callback  | AsyncCallback&lt;void&gt;     | 是   | 指定的callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cleanDirtyData('test_table', (err) => {
+    if (err) {
+      console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    console.info('clean dirty data succeeded');
+  })
+}
+```
+
+### cleanDirtyData<sup>11+</sup>
+
+cleanDirtyData(table: string, cursor?: number): Promise&lt;void&gt;
+
+清理云端删除的数据同步到本地后，未自动清理的，且数据的游标（cursor）小于指定游标的数据。若无cursor参数，将全部清理。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| table     | string           | 是   | 表示当前数据库的表的名称。           |
+| cursor    | number           | 否   | 整数类型，表示数据游标，小于此游标的脏数据将被清理。当此参数不填时，清理当前表的所有脏数据。 |
+
+**返回值：**
+| 参数名    | 说明                                               |
+| -------- | ------------------------------------------------- |
+| Promise<void> | 无返回结果的Promise对象。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+if(store != undefined) {
+    (store as relationalStore.RdbStore).cleanDirtyData('test_table', 100).then(() => {
+        console.info('clean dirty data  succeeded');
+    }).catch ((err: BusinessError) => {
+        console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
+    })
+}
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
+
+根据谓词条件匹配的数据记录查找对应记录的共享资源标识，返回查找的结果集。 如果指定了列字段，则返回结果集中同时包含对应列的字段值，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。    |
+| columns    | Array&lt;string&gt;      | 否   | 表示要查找的列字段名。此参数不填时，返回的结果集中只包含共享资源标识字段。 |
+
+**返回值：**
+
+| 参数名    | 说明                                               |
+| -------- | ------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise对象，返回查询的结果集。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data']).then((resultSet) => {
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  }).catch((err: BusinessError) => {
+    console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;): void
+
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找的结果集，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates)              | 是   | 表示查询的谓词条件。           |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 回调函数。返回查询的结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates,(err, resultSet) => {
+    if (err) {
+      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  })
+}
+
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;): void
+
+根据谓词条件匹配的数据记录查找对应记录的共享资源，返回查找到的共享资源的结果集，同时在结果集中返回谓词条件匹配的指定列名的字段值，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                               |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | 是   | 表示查询的谓词条件。           |
+| columns    | Array&lt;string&gt;              | 是   | 表示要查找的列字段名。           |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | 是   | 回调函数。返回查询的结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                           |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**示例：**
+
+```ts
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data'], (err, resultSet) => {
+    if (err) {
+      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  })
+}
+
+```
+
 ## ResultSet
 
 提供通过查询数据库生成的数据库结果集的访问方法。结果集是指用户调用关系型数据库查询接口之后返回的结果集合，提供了多种灵活的数据访问方式，以便用户获取各项数据。
@@ -4902,9 +5236,9 @@ getColumnName(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
-const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
-const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+  const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
+  const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
+  const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
 }
 ```
 
@@ -4940,7 +5274,7 @@ goTo(offset:number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goTo(1);
+  (resultSet as relationalStore.ResultSet).goTo(1);
 }
 ```
 
@@ -4976,7 +5310,7 @@ goToRow(position: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToRow(5);
+  (resultSet as relationalStore.ResultSet).goToRow(5);
 }
 ```
 
@@ -5007,7 +5341,7 @@ goToFirstRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToFirstRow();
+  (resultSet as relationalStore.ResultSet).goToFirstRow();
 }
 ```
 
@@ -5037,7 +5371,7 @@ goToLastRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToLastRow();
+  (resultSet as relationalStore.ResultSet).goToLastRow();
 }
 ```
 
@@ -5067,7 +5401,7 @@ goToNextRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToNextRow();
+  (resultSet as relationalStore.ResultSet).goToNextRow();
 }
 ```
 
@@ -5097,7 +5431,7 @@ goToPreviousRow(): boolean
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToPreviousRow();
+  (resultSet as relationalStore.ResultSet).goToPreviousRow();
 }
 ```
 
@@ -5133,7 +5467,7 @@ getBlob(columnIndex: number): Uint8Array
 
 ```ts
 if(resultSet != undefined) {
-const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5169,7 +5503,7 @@ getString(columnIndex: number): string
 
 ```ts
 if(resultSet != undefined) {
-const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
 }
 ```
 
@@ -5205,7 +5539,7 @@ getLong(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
  }
 ```
 
@@ -5241,7 +5575,7 @@ getDouble(columnIndex: number): number
 
 ```ts
 if(resultSet != undefined) {
-const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
 ```
 
@@ -5277,7 +5611,7 @@ getAsset(columnIndex: number): Asset
 
 ```ts
 if(resultSet != undefined) {
-const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
+  const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
 }
 ```
 
@@ -5313,7 +5647,7 @@ getAssets(columnIndex: number): Assets
 
 ```ts
 if(resultSet != undefined) {
-const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
+  const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
 }
 ```
 
@@ -5350,7 +5684,7 @@ isColumnNull(columnIndex: number): boolean
 
 ```ts
 if(resultSet != undefined) {
-const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5366,7 +5700,7 @@ close(): void
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).close();
+  (resultSet as relationalStore.ResultSet).close();
 }
 ```
 

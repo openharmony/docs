@@ -537,6 +537,51 @@ try {
 ```
 
 
+## connection.getPairState<sup>11+</sup><a name="getPairState"></a>
+
+getPairState(deviceId: string): BondState
+
+Obtains the Bluetooth pairing state.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                               |
+| -------- | ------ | ---- | --------------------------------- |
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+
+**Return value**
+
+| Type                         | Description      |
+| --------------------------- | -------- |
+| [BondState](#bondstate) | Bluetooth pairing state obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let res: BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
+    console.log('getPairState: ' + res);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## connection.getProfileConnectionState<a name="getProfileConnectionState"></a>
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
@@ -905,6 +950,45 @@ try {
 ```
 
 
+## connection.isBluetoothDiscovering<sup>11+</sup><a name="isBluetoothDiscovering"></a>
+
+isBluetoothDiscovering(): boolean
+
+Checks whether Bluetooth discovery is enabled.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Return value**
+
+| Type                 | Description           |
+| ------------------- | ------------- |
+|   boolean           | Returns **true** if Bluetooth discovery is enabled; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let res: boolean = connection.isBluetoothDiscovering();
+    console.log('isBluetoothDiscovering: ' + res);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## connection.getLocalProfileUuids<a name="getLocalProfileUuids"></a>
 
 getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
@@ -1078,6 +1162,216 @@ try {
         console.info('getRemoteProfileUuids');
     }, (err: BusinessError) => {
         console.error('getRemoteProfileUuids: errCode' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.connectAllowedProfiles
+
+connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
+
+Connects all profiles allowed for a remote device. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|202     | Non-system applications are not allowed to use system APIs.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    connection.connectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
+        if (err) {
+            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            return;
+        }
+        console.info('connectAllowedProfiles, err: ' + JSON.stringify(err));
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.connectAllowedProfiles
+
+connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
+
+Connects all profiles allowed for a remote device. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
+
+**Return value**
+
+| Type                                             | Description               |
+| ------------------------------------------------- | ------------------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|202     | Non-system applications are not allowed to use system APIs.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    connection.connectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
+        console.info('connectAllowedProfiles');
+    }, (err: BusinessError) => {
+        console.error('connectAllowedProfiles:errCode' + err.code + ', errMessage: ' + err.message);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.disconnectAllowedProfiles
+
+disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
+
+Disconnects all connected profiles for a remote device.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. This API uses an asynchronous callback to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|202     | Non-system applications are not allowed to use system APIs.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    connection.disconnectAllowedProfiles('68:13:24:79:4C:8C', (err: BusinessError) => {
+        if (err) {
+            console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+            return;
+        }
+        console.info('disconnectAllowedProfiles, err: ' + JSON.stringify(err));
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.disconnectAllowedProfiles
+
+disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
+
+Disconnects all connected profiles for a remote device. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes   | Address of the target remote device, for example, XX:XX:XX:XX:XX.|
+
+**Return value**
+
+| Type                                             | Description               |
+| ------------------------------------------------- | ------------------- |
+| Promise&lt;void&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201     | Permission denied.                       |
+|202     | Non-system applications are not allowed to use system APIs.                       |
+|401     | Invalid parameter.                       |
+|801     | Capability not supported.                |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    connection.disconnectAllowedProfiles('68:13:24:79:4C:8C').then(() => {
+        console.info('disconnectAllowedProfiles');
+    }, (err: BusinessError) => {
+        console.error('disconnectAllowedProfiles:errCode' + err.code + ', errMessage: ' + err.message);
     });
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);

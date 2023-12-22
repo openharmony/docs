@@ -1,6 +1,6 @@
-# Video Recording
+# Video Recording (ArkTS)
 
-OpenHarmony provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
+The system provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
 You will learn how to use the AVRecorder to complete the process of starting, pausing, resuming, and stopping recording.
 
@@ -21,7 +21,7 @@ For details about the state, see [AVRecorderState](../reference/apis/js-apis-med
 Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
-     
+   
    ```ts
    import media from '@ohos.multimedia.media'
    let avRecorder: media.AVRecorder;
@@ -33,10 +33,10 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 2. Set the events to listen for.
-   | Event Type| Description| 
+   | Event Type| Description|
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.| 
-   | error | Mandatory; used to listen for AVRecorder errors.| 
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.|
+   | error | Mandatory; used to listen for AVRecorder errors.|
 
    ```ts
    // Callback function for state changes.
@@ -65,7 +65,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    let avProfile: media.AVRecorderProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
      videoBitrate: 200000, // Video bit rate.
-     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
+     videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
      videoFrameWidth: 640, // Video frame width.
      videoFrameHeight: 480, // Video frame height.
      videoFrameRate: 30 // Video frame rate.
@@ -84,10 +84,11 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    ```
 
 4. Obtain the surface ID required for video recording.
+
    Call **getInputSurface()**. The returned surface ID is transferred to the video data collection module (video input source), which is the camera module in the sample code.
 
-     The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
-     
+   The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
+   
    ```ts
    avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success')
@@ -98,7 +99,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 5. Initialize the video data input source.
 
-   This step is performed in the video data collection module. For the camera module, you need to create a **Camera** instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Recording](camera-recording-case.md).
+   This step is performed in the video data collection module. For the camera module, you need to create a **Camera** instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Camera Recording](camera-recording.md).
 
 6. Start recording. 
 
@@ -119,7 +120,7 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
-  
+
 ```ts
 import media from '@ohos.multimedia.media'
 import { BusinessError } from '@ohos.base';
@@ -130,7 +131,7 @@ export class VideoRecorderDemo {
   private avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
     videoBitrate : 100000, // Video bit rate.
-    videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
+    videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
     videoFrameRate: 30 // Video frame rate.

@@ -57,7 +57,7 @@ let server: string = "ntpserver.com";
 try {
   systemManager.setNTPServer(wantTemp, server);
   console.info('Succeeded in setting NTPserver');
-} catch (error) {
+} catch (err) {
   console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -105,12 +105,23 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-
-systemManager.getNTPServer(wantTemp).then((result) => {
-  console.info(`Succeeded in get NTP server, result : ${result}`);
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get NTP server. Code: ${err.code}, message: ${err.message}`);
-});
+try {
+  systemManager.getNTPServer(wantTemp);
+  console.info('Succeeded in getting NTP server');
+} catch (err) {
+  console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
+}
 ```
+## SystemUpdateInfo<sup>11+</sup>
 
-## 
+Represents information about the system version to update.
+
+ **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+ **System API**: This is a system API.
+
+| Name               | Type    | Mandatory | Description           |
+| ----------------- | ------ | --- | ------------- |
+| versionName       | string | Yes  | System version to update.  |
+| firstReceivedTime | number | Yes  | Time when the system update package is received for the first time.|
+| packageType       | string | Yes  | Type of the system update package to update. |

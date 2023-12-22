@@ -7,7 +7,7 @@ As a drawing component, the \<[XComponent](../reference/arkui-ts/ts-basic-compon
 You can specify the **type** parameter to implement different features. Two options are mainly available for this parameter: **surface** and **component**.
 
 
-With the **\<XComponent>** of the **surface** type, you can pass data to the surface independently owned by it to render the image.
+With the **\<XComponent>** of the **surface** type, you can pass data to the [NativeWindow](../napi/native-window-guidelines.md) object independently owned by it to render the image.
 
 
 With the **\<XComponent>** of the **component** type, you can dynamically load the displayed content.
@@ -19,9 +19,9 @@ When the **\<XComponent>** is set to the **surface** type, you can write EGL/Ope
 
 You can also have the **\<XComponent>** laid out and rendered together with other components.
 
-The **\<XComponent>** has an independent surface, which provides a native window for you to create the EGL/OpenGL ES environment on the native (C/C++) side and use the standard OpenGL ES for development.
+The **\<XComponent>** has an independent **NativeWindow** object, which provides a native window for you to create the EGL/OpenGL ES environment on the native (C/C++) side and use the standard OpenGL ES for development.
 
-In addition, media-related applications (such as videos and cameras) can write data to the surface provided by the **\<XComponent>** to present the corresponding image.
+In addition, media-related applications (such as videos and cameras) can write data to the **NativeWindow** object provided by the **\<XComponent>** to present the corresponding image.
 
 
 ## Using EGL/OpenGL ES for Rendering
@@ -29,7 +29,7 @@ In addition, media-related applications (such as videos and cameras) can write d
 
 ### Key Points of Native Code Development
 
-OpenHarmony applications use native APIs to implement interactions between JS and C/C++ code. This is also the case with the **\<XComponent>**. For details, see [Using N-APIs in Application Projects](../napi/napi-guidelines.md).
+Applications use native APIs to implement interactions between JS and C/C++ code. This is also the case with the **\<XComponent>**. For details, see [Using N-APIs in Application Projects](../napi/napi-guidelines.md).
 
 The type of the file for processing the JS logic on the native side is .so.
 
@@ -158,7 +158,7 @@ Based on the NativeXComponent pointer obtained by [parsing the NativeXComponent 
 
 ### Creating the EGL/OpenGL ES Environment
 
-In the registered **OnSurfaceCreated** callback, you can obtain the handle to the native window (which is essentially the surface independently owned by the **\<XComponent>**). Therefore, you can create the EGL/OpenGL ES environment for your application to start the development of the rendering logic.
+In the registered **OnSurfaceCreated** callback, you can obtain the handle to the native window (which is essentially the **NativeWindow** object independently owned by the **\<XComponent>**). Therefore, you can create the EGL/OpenGL ES environment for your application to start the development of the rendering logic.
 
 
 ```c++
@@ -201,28 +201,27 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
   > ```
   >
   > 2. Use the **\<XComponent>**.
-  >
   >    While this mode also uses the NAPI mechanism as the **import** mode, it enables you to use the NDK APIs of the **\<XComponent>**, by having the **NativeXComponent** instance of the **\<XComponent>** exposed to the native layer of the application when the dynamic library is loaded.
 
 - **onLoad** event
   - Trigger time: when the surface of the **\<XComponent>** is ready.
   - **context** parameter: where the native API exposed on the module is mounted. Its usage is similar to the usage of the **context2** instance obtained after the module is directly loaded using **import context2 from "libnativerender.so"**.
-  - Time sequence: subject to the surface. The figure below shows the time sequence of the **onLoad** event and the **OnSurfaceCreated** event at the native layer.
+  - Time sequence: subject to the surface. The figure below shows the timing of the **onLoad** event and the **OnSurfaceCreated** event at the native layer.
 
      ![onLoad](figures/onLoad.png)
 
 - **onDestroy** event
 
-  Trigger time: when the **\<XComponent>** is destroyed, in the same manner as that when an ArkUI component is destroyed. The figure below shows the time sequence of the **onDestroy** event and the **OnSurfaceDestroyed** event at the native layer.
+  Trigger time: when the **\<XComponent>** is destroyed, in the same manner as that when an ArkUI component is destroyed. The figure below shows the timing of the **onDestroy** event and the **OnSurfaceDestroyed** event at the native layer.
 
   ![onDestroy](figures/onDestroy.png)
 
 
 ### Writing Media Data
 
-The surface held by the **\<XComponent>** complies with the producer-consumer model.
+The **NativeWindow** object held by the **\<XComponent>** complies with the producer-consumer model.
 
-In OpenHarmony, components that comply with the producer design, such as the Camera and AVPlayer components, can write data to the surface held by the **\<XComponent>** and display the data through the **\<XComponent>**.
+Components that comply with the producer design, such as the Camera and AVPlayer components, can write data to the **NativeWindow** object held by the **\<XComponent>** and display the data through the **\<XComponent>**.
 
 ![picture-1](figures/picture-1.png)
 

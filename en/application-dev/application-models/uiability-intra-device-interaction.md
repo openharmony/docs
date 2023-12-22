@@ -94,7 +94,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
    >
    > When [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called to stop the **UIAbility** instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in Recents. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
 
-4. To stop all UIAbility instances of the application, call [killProcessBySelf()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses9) of [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md).
+4. To stop all UIAbility instances of the application, call [killAllProcesses()](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses) of [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md).
 
 
 ## Starting UIAbility in the Same Application and Obtaining the Return Result
@@ -397,7 +397,8 @@ The window mode is specified by the **windowMode** field in the [StartOptions](.
 The following describes how to start the FuncAbility from the EntryAbility page and display it in floating window mode.
 
 1. Add the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter in [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
-2. Set the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter to **WINDOW_MODE_FLOATING**.
+2. Set the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter to **WINDOW_MODE_FLOATING**. This setting applies only to a system application.
+3. In the case of a third-party application, set the **displayId** field instead.
 
 For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -520,7 +521,8 @@ An example scenario is as follows:
 4. The user touches the SMS button next to the contact. The UIAbility instance of the SMS application is restarted.
 5. Since the UIAbility instance of the SMS application has been started, the **onNewWant()** callback of the UIAbility is triggered, and the initialization logic such as **onCreate()** and **onWindowStageCreate()** is skipped.
 
-Figure 1 Hot starting the target UIAbility 
+**Figure 1** Hot starting the target UIAbility
+
 ![](figures/uiability-hot-start.png)
 
 The development procedure is as follows:
@@ -718,55 +720,55 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 4. Implement **Callee.on** and **Callee.off**.
 
    The time to register a listener for the CalleeAbility depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the UIAbility and deregistered in **onDestroy**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
-
-
-      ```ts
-      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-      import UIAbility from '@ohos.app.ability.UIAbility';
-      import Want from '@ohos.app.ability.Want';
-      import rpc from '@ohos.rpc';
-      import { BusinessError } from '@ohos.base';
-      import MyParcelable from './MyParcelable';
-       
-      const TAG: string = '[CalleeAbility]';
-      const MSG_SEND_METHOD: string = 'CallSendMsg';
-       
-      function sendMsgCallback(data: rpc.MessageSequence) {
-        console.info('CalleeSortFunc called');
-       
-        // Obtain the parcelable data sent by the CallerAbility.
-        let receivedData: MyParcelable = new MyParcelable(0, '');
-        data.readParcelable(receivedData);
-        console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
-        let num: number = receivedData.num;
-       
-        // Process the data.
-        // Return the parcelable data result to the CallerAbility.
-        return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
-      }
-       
-      export default class CalleeAbility extends UIAbility {
-        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-          try {
-            this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-          } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error(`Failed to register. Code is ${code}, message is ${message}`);
-          }
-        }
-       
-        onDestroy() {
-          try {
-            this.callee.off(MSG_SEND_METHOD);
-          } catch (err) {
-            let code = (err as BusinessError).code;
-            let message = (err as BusinessError).message;
-            console.error(`Failed to unregister. Code is ${code}, message is ${message}`);
-          }
-        }
-      }
-      ```
+   
+   
+         ```ts
+         import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+         import UIAbility from '@ohos.app.ability.UIAbility';
+         import Want from '@ohos.app.ability.Want';
+         import rpc from '@ohos.rpc';
+         import { BusinessError } from '@ohos.base';
+         import MyParcelable from './MyParcelable';
+          
+         const TAG: string = '[CalleeAbility]';
+         const MSG_SEND_METHOD: string = 'CallSendMsg';
+          
+         function sendMsgCallback(data: rpc.MessageSequence) {
+           console.info('CalleeSortFunc called');
+          
+           // Obtain the parcelable data sent by the CallerAbility.
+           let receivedData: MyParcelable = new MyParcelable(0, '');
+           data.readParcelable(receivedData);
+           console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
+           let num: number = receivedData.num;
+          
+           // Process the data.
+           // Return the parcelable data result to the CallerAbility.
+           return new MyParcelable(num + 1, `send ${receivedData.str} succeed`) as rpc.Parcelable;
+         }
+          
+         export default class CalleeAbility extends UIAbility {
+           onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+             try {
+               this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
+             } catch (err) {
+               let code = (err as BusinessError).code;
+               let message = (err as BusinessError).message;
+               console.error(`Failed to register. Code is ${code}, message is ${message}`);
+             }
+           }
+          
+           onDestroy() {
+             try {
+               this.callee.off(MSG_SEND_METHOD);
+             } catch (err) {
+               let code = (err as BusinessError).code;
+               let message = (err as BusinessError).message;
+               console.error(`Failed to unregister. Code is ${code}, message is ${message}`);
+             }
+           }
+         }
+         ```
 
 
 ### Accessing the CalleeAbility
@@ -782,7 +784,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
    The **UIAbilityContext** attribute implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **UIAbilityContext**, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** listener of the CallerAbility. You need to implement processing based on service requirements.
    
    
-      ```ts
+   ```ts
       import UIAbility from '@ohos.app.ability.UIAbility';
       import { Caller } from '@ohos.app.ability.UIAbility';
       import { BusinessError } from '@ohos.base';
@@ -823,4 +825,5 @@ For the CalleeAbility, implement the callback to receive data and the methods to
           }
         }
       }
-      ```
+   ```
+

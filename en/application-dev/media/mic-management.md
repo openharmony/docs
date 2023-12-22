@@ -1,4 +1,4 @@
-# Microphone Management
+# Microphone Management (ArkTS)
 
 The microphone is used to record audio data. To deliver an optimal recording effect, you are advised to query the microphone state before starting recording and listen for state changes during recording.
 
@@ -21,11 +21,10 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
    }
    ```
 
-2. Call **on('micStateChange')** to listen for microphone state changes. When the microphone state changes, the application will be notified of the change.
+2. **(Optional; for system applications only)** Call **on('micStateChange')** to listen for microphone state changes. When the microphone state changes, the application will be notified of the change.
    
    Currently, when multiple **AudioManager** instances are used in a single process, only the subscription of the last instance takes effect, and the subscription of other instances is overwritten (even if the last instance does not initiate a subscription). Therefore, you are advised to use a single **AudioManager** instance.
 
-     
    ```ts
    async function on() {   // Subscribe to microphone state changes.
      audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChangeEvent) => {
@@ -35,7 +34,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
    ```
 
 3. Call **isMicrophoneMute** to check whether the microphone is muted. If the return value is **true**, the microphone is muted; otherwise, the microphone is not muted.
-   
+     
    ```ts
    async function isMicrophoneMute() { // Check whether the microphone is muted.
      await audioVolumeGroupManager.isMicrophoneMute().then((value: boolean) => {
@@ -44,7 +43,7 @@ The **AudioVolumeGroupManager** class provides APIs for managing the microphone 
    }
    ```
 
-4. Call **setMicrophoneMute** to mute or unmute the microphone. To mute the microphone, pass in **true**. To unmute the microphone, pass in **false**.
+4. **(Optional; for system applications only)** Call **setMicrophoneMute** to mute or unmute the microphone. To mute the microphone, pass in **true**. To unmute the microphone, pass in **false**.
      
    ```ts
    async function setMicrophoneMuteTrue() { // Pass in true to mute the microphone.

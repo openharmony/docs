@@ -16,14 +16,16 @@
 | backgroundImageSize              | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按值为0显示。当设置了height未设置width时，width根据图片原始宽高比进行调整。 |
 | backgroundImagePosition          | [Position](ts-types.md#position8)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | backgroundBlurStyle<sup>9+</sup> | value:[BlurStyle](ts-appendix-enums.md#blurstyle9),<br/>options<sup>10+</sup>?:[BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 为当前组件提供一种在背景和内容之间的模糊能力。<br/>value: 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。<br/>options: 可选参数，背景模糊选项。<br/>该接口支持在ArkTS卡片中使用。 |
+| backgroundEffect<sup>11+</sup>  | blurOptions:[BackgroundBrightnessOptions](ts-appendix-enums.md#backgroundbrightnessoptions11)  |  设置组件背景属性包括：饱和度，亮度，颜色。  |
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 
 | 名称            | 参数类型                                     | 必填   | 描述                                       |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否    | 背景模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System |
-| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | 否    | 背景模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.Default |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) | 否    | 背景模糊效果使用的取色模式。<br/ > 默认值：AdaptiveColor.Default |
 | scale         | number                                   | 否    | 背景材质模糊效果程度。此参数为系统接口。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0]<br/> |
+| blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。           |
 
 ## 示例
 
@@ -64,7 +66,7 @@ struct BackgroundExample {
         .border({ width: 1 })
 
       Text('background fill the box(Cover)').fontSize(9).width('90%').fontColor(0xCCCCCC)
-      // 不保准图片完整的情况下占满盒子
+      // 不保证图片完整的情况下占满盒子
       Row()
         .width(200)
         .height(50)
@@ -73,7 +75,7 @@ struct BackgroundExample {
         .border({ width: 1 })
 
       Text('background fill the box(Contain)').fontSize(9).width('90%').fontColor(0xCCCCCC)
-      // 保准图片完整的情况下放到最大
+      // 保证图片完整的情况下放到最大
       Row()
         .width(200)
         .height(50)

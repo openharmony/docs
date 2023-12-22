@@ -37,18 +37,37 @@ PageAbility的图标和标签配置请参见[PageAbility组件配置](pageabilit
 
 ```json
 {
-  "abilities": [
-    {
-      "icon": "$media:icon",
-      "label": "$string:MainAbility_label",
-      "skills": [
-        {
-          "entities": ["entity.system.home"],
-          "actions": ["action.system.home"]
-        }
-      ]
-    }
-  ]
+  ...
+  "module": {
+    ...
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      ...
+    ]
+    ...
+  }
 }
 ```
 #### 入口图标和标签管控规则
@@ -79,12 +98,12 @@ PageAbility的图标和标签配置请参见[PageAbility组件配置](pageabilit
 
 ## 应用版本声明配置
 
-应用版本声明配置需在config.json中的app标签下配置version字段，以说明应用当前的版本号和版本名称以及应用能够兼容的最低历史版本号。应用版本配置说明可以参考[version标签说明](../quick-start/module-structure.md)。
+应用版本声明配置需在config.json中的app标签下配置version字段，以说明应用当前的版本号和版本名称以及应用能够兼容的最低历史版本号。应用版本配置说明可以参考[version对象内部结构](../quick-start/app-structure.md#version对象内部结构)。
 
 ## Module支持的设备类型配置
 
-Module支持的设备类型需要在config.json文件中配置deviceType字段，如果deviceType标签中添加了某种设备，则表明当前的module支持在该设备上运行。具体的deviceType配置规则可以参考[deviceType标签说明](../quick-start/module-structure.md)。
+Module支持的设备类型需要在config.json文件中配置deviceType字段，如果deviceType标签中添加了某种设备，则表明当前的module支持在该设备上运行。具体的deviceType配置规则可以参考[deviceType标签](../quick-start/module-structure.md#devicetype标签)。
 
 ## 组件权限申请配置
 
-组件权限申请配置需在config.json中的module标签下配置reqPermissions字段。来声明需要申请权限的名称，申请权限的原因以及权限使用的场景。组件权限申请可以参考[reqPermissions标签说明](../quick-start/module-structure.md)。
+组件权限申请配置需在config.json中的module标签下配置reqPermissions字段。来声明需要申请权限的名称，申请权限的原因以及权限使用的场景。组件权限申请可以参考[reqPermissions权限申请](../quick-start/module-structure.md#reqpermissions权限申请)。

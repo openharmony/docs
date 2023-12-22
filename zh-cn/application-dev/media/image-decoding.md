@@ -1,4 +1,4 @@
-# 图片解码
+# 图片解码(ArkTS)
 
 图片解码指将所支持格式的存档图片解码成统一的[PixelMap](image-overview.md)，以便在应用或系统中进行图片显示或[图片处理](image-transformation.md)。当前支持的存档图片格式包括JPEG、PNG、GIF、RAW、WebP、BMP、SVG。
 
@@ -67,16 +67,58 @@
       // FA模型
       // 导入resourceManager资源管理器
       import resourceManager from '@ohos.resourceManager';
-      const resourceMgr = await resourceManager.getResourceManager();
+      import {BusinessError} from '@ohos.base';
+      resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
+         console.log("Succeeded in getting resourceManager")
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get resourceManager")
+      });
       ```
 
       不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFileContent()获取资源文件的ArrayBuffer。
 
       ```ts
-      const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-      // 获取图片的ArrayBuffer
-      const buffer = fileData.buffer;
+      resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
+         console.log("Succeeded in getting RawFileContent")
+         // 获取图片的ArrayBuffer
+         const buffer = fileData.buffer;
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get RawFileContent")
+      });
+      
       ```
+   - 方法四：通过资源管理器获取资源文件的RawFileDescriptor。具体请参考[ResourceManager API参考文档](../reference/apis/js-apis-resource-manager.md#getrawfd9-1)。
+        
+      ```ts
+      // Stage模型
+      const context : Context = getContext(this);
+      // 获取resourceManager资源管理器
+      const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
+      ```
+
+      ```ts
+      // FA模型
+      // 导入resourceManager资源管理器
+      import resourceManager from '@ohos.resourceManager';
+      import {BusinessError} from '@ohos.base';
+      resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
+         console.log("Succeeded in getting resourceManager")
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get resourceManager")
+      });
+      ```
+
+      不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFd()获取资源文件的RawFileDescriptor。
+
+      ```ts
+      
+      resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
+         console.log("Succeeded in getting resourceManager")
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get resourceManager")
+      });
+      ```
+
 
 3. 创建ImageSource实例。
    - 方法一：通过沙箱路径创建ImageSource。沙箱路径可以通过步骤2的方法一获取。
@@ -96,16 +138,26 @@
       ```ts
       const imageSource : image.ImageSource = image.createImageSource(buffer);
       ```
+   - 方法四：通过资源文件的RawFileDescriptor创建ImageSource。RawFileDescriptor可以通过步骤2的方案四获取。
+        
+      ```ts
+      const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
+      ```
 
 4. 设置解码参数DecodingOptions，解码获取PixelMap图片对象。
      
    ```ts
+   import {BusinessError} from '@ohos.base';
    let decodingOptions : image.DecodingOptions = {
        editable: true,
        desiredPixelFormat: 3,
    }
    // 创建pixelMap并进行简单的旋转和缩放 
-   const pixelMap : image.PixelMap = await imageSource.createPixelMap(decodingOptions);
+   imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
+      console.log("Succeeded in creating PixelMap")
+   }).catch((err : BusinessError) => {
+      console.error("Failed to create PixelMap")
+   });
    ```
 
    解码完成，获取到PixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
@@ -125,27 +177,40 @@
    const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
    ```
 
-2. 获取rawfile文件夹下test.jpg的ArrayBuffer。
+2. 创建ImageSource。
+   - 通过rawfile文件夹下test.jpg的ArrayBuffer创建。
+     ```ts
+      resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
+         console.log("Succeeded in getting RawFileContent")
+         // 获取图片的ArrayBuffer
+         const buffer = fileData.buffer;
+         const imageSource : image.ImageSource = image.createImageSource(buffer);
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get RawFileContent")
+      });
+     ```
+
+   - 通过rawfile文件夹下test.jpg的RawFileDescriptor创建。
+     ```ts
+      resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
+         console.log("Succeeded in getting RawFd")
+         const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get RawFd")
+      });
+     ```
+3. 创建PixelMap。
      
    ```ts
-   const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-   // 获取图片的ArrayBuffer
-   const buffer = fileData.buffer;
+   imageSource.createPixelMap().then((image.PixelMap) => {
+      console.log("Succeeded in creating PixelMap")
+      const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
+   }).catch((err : BusinessError) => {
+      console.error("Failed to creating PixelMap")
+   });
    ```
 
-3. 创建imageSource。
-     
-   ```ts
-   const imageSource : image.ImageSource = image.createImageSource(buffer);
-   ```
-
-4. 创建PixelMap。
-     
-   ```ts
-   const pixelMap : image.PixelMap = await imageSource.createPixelMap();
-   ```
-
-5. 释放pixelMap。
+4. 释放pixelMap。
    ```ts
    pixelMap.release();
    ```

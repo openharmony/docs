@@ -34,14 +34,16 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | placeholderFont         | [Font](ts-types.md#font)                         | 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                         |
 | textFont                | [Font](ts-types.md#font)                         | 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。                           |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | 设置文本在搜索框中的对齐方式。目前支持的对齐方式有：Start、Center、End。<br/>默认值：TextAlign.Start    |
-| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。 |
+| copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置输入的文本是否可复制。<br />默认值：CopyOptions.LocalDevice，支持设备内复制。<br/>设置CopyOptions.None时，当前Search中的文字无法被复制或剪切，仅支持粘贴。<br> |
 | searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10对象说明)                                                  | 设置左侧搜索图标样式。                                       |
 | cancelButton<sup>10+</sup> | {<br/>style? : [CancelButtonStyle](#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](#iconoptions10对象说明) <br/>} | 设置右侧清除按钮样式。<br />默认值：<br />{<br />style：CancelButtonStyle.INPUT<br />} |
 | fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | 设置输入文本的字体颜色。<br />默认值：'#FF182431'。<br />**说明：**<br />[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在textFont属性中设置。 |
-| caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10对象说明)                                                  | 设置光标样式。<br />默认值：<br />{<br />width：1.5vp<br />color：'#007DFF'<br />} |
+| caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10对象说明)                                                  | 设置光标样式。<br />默认值：<br />{<br />width: '1.5vp',<br />color: '#007DFF'<br />} |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Search获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
-| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。 | 
+| customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[stopEditing](#stopediting10)方法控制键盘关闭。 |
+| type<sup>11+</sup>                     | [SearchType](#searchtype11枚举说明)     | 设置输入框类型。<br/>默认值：SearchType.Normal        |
+| maxLength<sup>11+</sup>   | number                                                       | 设置文本的最大输入字符数。<br/>默认不设置最大输入字符数限制。<br/>到达文本最大字符限制，将无法继续输入字符。 |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -73,6 +75,15 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | INVISIBLE | 清除按钮常隐样式。 |
 | INPUT     | 清除按钮输入样式。 |
 
+## SearchType<sup>11+</sup>枚举说明
+
+| 名称                 | 描述            |
+| ------------------ | ------------- |
+| Normal   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
+| Email    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
+| Number   | 纯数字输入模式。      |
+| PhoneNumber | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -83,7 +94,7 @@ Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, con
 | onChange(callback: (value: string) => void)                  | 输入内容发生变化时，触发该回调。<br> -value: 当前搜索框中输入的文本内容。 |
 | onCopy(callback: (value: string) => void)                    | 长按搜索框弹出剪切板之后，点击剪切板的复制按钮触发该回调。<br> -value: 复制的文本内容。 |
 | onCut(callback: (value: string) => void)                     | 长按搜索框弹出剪切板之后，点击剪切板的剪切按钮触发该回调。<br> -value: 剪切的文本内容。 |
-| onPaste(callback: (value: string) => void)                   | 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。<br> -value: 粘贴的文本内容。 |
+| onPaste(callback: (value: string, event<sup>11+</sup>: [PasteEvent](ts-basic-components-richeditor.md#pasteevent11)) => void) | 长按搜索框弹出剪切板之后，点击剪切板的粘贴按钮触发该回调。<br> - value: 粘贴的文本内容。<br/> - event: 用户自定义的粘贴事件。|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
 | onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移。<br />totalOffsetY：文本在内容区的纵坐标偏移。 |
 
@@ -115,7 +126,7 @@ stopEditing(): void
 
 ### getTextContentRect<sup>10+</sup>
 
-getTextContentRect(): [RectResult](#rectresult)
+getTextContentRect(): RectResult
 
 获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
@@ -123,7 +134,7 @@ getTextContentRect(): [RectResult](#rectresult)
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](#rectresult) | 已编辑文本内容的相对组件的位置和大小。 |
+| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
 
 > **说明：**
 >
@@ -155,6 +166,25 @@ getTextContentLineCount(): number
 | ----- | -------- |
 | number| 已编辑文本内容行数。 |
 
+### getCaretOffset<sup>11+</sup>
+
+getCaretOffset(): CaretOffset
+
+返回当前光标所在位置信息。
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
+
+> **说明：**
+>
+> - 返回的位置信息是相对Search组件中搜索图标的偏移值。
+> - 不输入文本时，返回值中有相对Search组件的位置信息。
+> - 返回值中的位置信息是光标相对于可编辑组件的位置。
+> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+
 ##  示例
 
 ### 示例1
@@ -166,10 +196,11 @@ getTextContentLineCount(): number
 struct SearchExample {
   @State changeValue: string = ''
   @State submitValue: string = ''
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
   controller: SearchController = new SearchController()
 
   build() {
-    Column() {
+    Column({space: 10}) {
       Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
       Text('onChange:' + this.changeValue).fontSize(18).margin(15)
       Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
@@ -192,6 +223,10 @@ struct SearchExample {
           // 设置光标位置到输入的第一个字符后
           this.controller.caretPosition(1)
         })
+      Button('Get CaretOffset')
+        .onClick(() => {
+          this.positionInfo = this.controller.getCaretOffset()
+        })
     }.width('100%')
   }
 }
@@ -205,7 +240,7 @@ struct SearchExample {
 // xxx.ets
 @Entry
 @Component
-struct SearchButtoonExample {
+struct SearchExample {
   @State submitValue: string = ''
 
   build() {
@@ -224,6 +259,7 @@ struct SearchButtoonExample {
         })
         .width('90%')
         .height(40)
+        .maxLength(20)
         .backgroundColor('#F5F5F5')
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })

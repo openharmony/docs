@@ -19,6 +19,7 @@ import window from '@ohos.window';
 
 ## WindowType<sup>7+</sup>
 
+
 Enumerates the window types.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -44,7 +45,7 @@ Enumerates the window types.
 | TYPE_DIALOG<sup>10+</sup>           | 16      | Modal window.<br>**Model restriction**: This API can be used only in the stage model.                                                |
 | TYPE_SCREENSHOT<sup>9+</sup>        | 17      | Screenshot window.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                         |
 | TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | Toast displayed at the top.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                       |
-
+| TYPE_DIVIDER<sup>11+</sup>          | 19      | Divider.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.                |
 ## Configuration<sup>9+</sup>
 
 Defines the parameters for creating a subwindow or system window.
@@ -71,6 +72,7 @@ Enumerates the types of the area where the window cannot be displayed.
 | TYPE_CUTOUT                      | 1    | Notch.                                            |
 | TYPE_SYSTEM_GESTURE<sup>9+</sup> | 2    | Gesture area.                                              |
 | TYPE_KEYBOARD<sup>9+</sup>       | 3    | Soft keyboard area.                                            |
+| TYPE_NAVIGATION_INDICATOR<sup>11+</sup> | 4    | Navigation bar area.                                     |
 
 ## WindowMode<sup>7+</sup>
 
@@ -310,6 +312,34 @@ Enumerates the window lifecycle states.
 | WINDOW_INACTIVE   | 3      | The window loses focus.|
 | WINDOW_HIDDEN     | 4      | The window is running in the background.|
 
+## WindowLimits<sup>11+</sup>
+
+Defines the window size limits.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name     | Type  | Readable| Writable| Mandatory| Description                                                        |
+| :-------- | :----- | :--- | :--- | :--- | :----------------------------------------------------------- |
+| maxWidth  | number | Yes  | Yes  | No  | Maximum window width, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum width specified by the system. |
+| maxHeight | number | Yes  | Yes  | No  | Maximum window height, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum height specified by the system. |
+| minWidth  | number | Yes  | Yes  | No  | Minimum window width, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum width specified by the system. |
+| minHeight | number | Yes  | Yes  | No  | Minimum window height, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum height specified by the system. |
+
+## WindowStatusType<sup>11+</sup>
+
+Enumerates the window modes.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name      | Value  | Description                         |
+| ---------- | ---- | ----------------------------- |
+| UNDEFINED  | 0    | The window mode is not defined by the application.      |
+| FULL_SCREEN | 1    | The application is displayed in full screen.            |
+| MAXIMIZE    | 2    | The application window is maximized.  |
+| MINIMIZE    | 3    | The application window is minimized.  |
+| FLOATING    | 4    | The application is displayed in a floating window.  |
+| SPLIT_SCREEN  | 5    | The application is displayed in split-screen mode.  |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -341,7 +371,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -355,7 +385,7 @@ try {
     }
     windowClass = data;
     console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-    windowClass.resetSize(500, 1000);
+    windowClass.resize(500, 1000);
   });
 } catch (exception) {
   console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
@@ -398,7 +428,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -447,7 +477,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 try {
   windowClass = window.findWindow('alertWindow');
 } catch (exception) {
@@ -484,7 +514,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 try {
   class BaseContext {
       stageMode: boolean = false;
@@ -538,7 +568,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 class BaseContext {
   stageMode: boolean = false;
 }
@@ -1263,7 +1293,7 @@ Creates a subwindow. This API uses an asynchronous callback to return the result
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('first', window.WindowType.TYPE_APP, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1307,7 +1337,7 @@ Creates a subwindow. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('first', window.WindowType.TYPE_APP);
 promise.then((data) => {
   windowClass = data;
@@ -1343,7 +1373,7 @@ Creates a system window. This API uses an asynchronous callback to return the re
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1387,7 +1417,7 @@ Creates a system window. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data) => {
   windowClass = data;
@@ -1421,7 +1451,7 @@ Finds a window based on the ID. This API uses an asynchronous callback to return
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.find('alertWindow', (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1462,7 +1492,7 @@ Finds a window based on the ID. This API uses a promise to return the result.
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.find('alertWindow');
 promise.then((data) => {
   windowClass = data;
@@ -1497,7 +1527,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.getTopWindow((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1534,7 +1564,7 @@ Obtains the top window of the current application. This API uses a promise to re
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data)=> {
     windowClass = data;
@@ -1568,7 +1598,7 @@ Obtains the top window of the current application. This API uses an asynchronous
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -1607,7 +1637,7 @@ Obtains the top window of the current application. This API uses a promise to re
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -1616,6 +1646,18 @@ promise.then((data) => {
   console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
 });
 ```
+
+## SpecificSystemBar<sup>11+</sup>
+
+Enumerates the types of system bars that can be displayed or hidden.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name                 | Type      | Description    |
+|---------------------|----------|--------|
+| status              | string   | Status bar.  |
+| navigation          | string   | Navigation bar.  |
+| navigationIndicator | string   | Bottom navigation bar.|
 
 ## Window
 
@@ -2029,8 +2071,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
-| y        | number                    | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
+| x        | number                    | Yes| Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y        | number                    | Yes| Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.                                    |
 
 **Error codes**
@@ -2076,8 +2118,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer.|
+| x | number | Yes| Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer.|
+| y | number | Yes| Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer.|
 
 **Return value**
 
@@ -2136,8 +2178,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | Yes| New width of the window, in px. The value must be an integer.|
-| height   | number                    | Yes| New height of the window, in px. The value must be an integer.|
+| width    | number                    | Yes| New width of the window, in pixels. The value must be an integer.|
+| height   | number                    | Yes| New height of the window, in pixels. The value must be an integer.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.               |
 
 **Error codes**
@@ -2182,7 +2224,6 @@ The minimum width and height of the main window and subwindow of the application
 The system window has the following size limits: [0, 2560] in width and [0, 2560] in height, both in units of vp.
 
 The window width and height you set must meet the limits. The rules are as follows:
-
 - If the window width or height you set is less than the minimum width or height limit, then the minimum width or height limit takes effect.
 - If the window width or height you set is greater than the maximum width or height limit, then the maximum width or height limit takes effect.
 
@@ -2194,8 +2235,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name| Type| Mandatory| Description|
 | ------ | ------ | -- | ------------------------ |
-| width  | number | Yes| New width of the window, in px. The value must be an integer.|
-| height | number | Yes| New height of the window, in px. The value must be an integer.|
+| width  | number | Yes| New width of the window, in pixels. The value must be an integer.|
+| height | number | Yes| New height of the window, in pixels. The value must be an integer.|
 
 **Return value**
 
@@ -2596,6 +2637,55 @@ try {
 }
 ```
 
+### setSpecificSystemBarEnabled<sup>11+</sup>
+
+setSpecificSystemBarEnabled(name: SpecificSystemBar, enable: boolean): Promise&lt;void&gt;
+
+Sets whether to show the navigation bar, status bar, or bottom navigation bar in full-screen mode. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name| Type | Mandatory| Description|
+| ----- | ---------------------------- | -- | --------------------------------- |
+| name  | [SpecificSystemBar](#specificsystembar11) | Yes| Type of the system bar to be shown or hidden.|
+| enable  | boolean | Yes| Whether to show the status bar, navigation bar, or bottom navigation bar. The value **true** means to show them, and **false** means to hide them.|
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+// Hide the bottom navigation bar.
+import { BusinessError } from '@ohos.base';
+
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  let promise = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
+  promise.then(() => {
+    console.info('Succeeded in setting the system bar to be invisible.');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the system bar to be invisible. Cause:' + JSON.stringify(exception));
+}
+```
+
 ### setWindowSystemBarProperties<sup>9+</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
@@ -2857,7 +2947,7 @@ export default class EntryAbility extends UIAbility {
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from a page to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to this window. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2865,7 +2955,7 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | -------------------- |
-| path     | string                    | Yes| Path of the page from which the content will be loaded.|
+| path     | string                    | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.         |
 
 **Error codes**
@@ -2901,7 +2991,7 @@ try {
 
 setUIContent(path: string): Promise&lt;void&gt;
 
-Loads content from a page to this window. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to this window. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2909,7 +2999,7 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 | Name| Type| Mandatory| Description|
 | ---- | ------ | -- | ------------------ |
-| path | string | Yes| Path of the page from which the content will be loaded.|
+| path | string | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 
 **Return value**
 
@@ -2948,7 +3038,7 @@ try {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from a page associated with a local storage to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to this window, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -2958,8 +3048,8 @@ Loads content from a page associated with a local storage to this window. This A
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| path     | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -3011,7 +3101,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
-Loads content from a page associated with a local storage to this window. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to this window, and transfers the status attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3021,8 +3111,8 @@ Loads content from a page associated with a local storage to this window. This A
 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| path    | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 
 **Return value**
 
@@ -3077,7 +3167,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page associated with a local storage to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3088,7 +3178,7 @@ Loads content from the [named route](../../ui/arkts-routing.md#named-route) page
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name     | string                                                  | Yes  | Name of the named route page.                                            |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 | callback | AsyncCallback&lt;void&gt;                               | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
@@ -3161,7 +3251,7 @@ export struct Index {
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page to this window. This API uses an asynchronous callback to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3242,7 +3332,7 @@ export struct Index {
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page associated with a local storage to this window. This API uses a promise to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3253,7 +3343,7 @@ Loads content from the [named route](../../ui/arkts-routing.md#named-route) page
 | Name | Type                                                   | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | name    | string                                                  | Yes  | Name of the named route page.                                            |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | Page-level UI state storage unit, which is used to transfer the state attribute for the page.|
 
 **Return value**
 
@@ -3748,6 +3838,132 @@ try {
 }
 ```
 
+### on('windowVisibilityChange')<sup>11+</sup>
+
+on(type: 'windowVisibilityChange', callback: Callback&lt;boolean&gt;): void
+
+Subscribes to the visibility status change event of this window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                                        |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | Yes  | Event type. The value is fixed at **'windowVisibilityChange'**, indicating the visibility status change event.|
+| callback | Callback&lt;boolean&gt;   | Yes  | Callback used to Callback used to return the visibility status of the window, which is a Boolean value. The value **true** means that the window is visible, and **false** means the opposite.                              |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowVisibilityChange', (boolean) => {
+    console.info('Window visibility changed, isVisible=' + boolean);
+  });
+} catch (exception) {
+  console.error('Failed to register callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowVisibilityChange')<sup>11+</sup>
+
+off(type: 'windowVisibilityChange', callback?: Callback&lt;boolean&gt;): void
+
+Unsubscribes from the visibility status change event of this window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                  |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | Yes  | Event type. The value is fixed at **'windowVisibilityChange'**, indicating the visibility status change event.|
+| callback | Callback&lt;boolean&gt;    | No  | Callback used to Callback used to return the visibility status of the window. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.           |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowVisibilityChange');
+} catch (exception) {
+  console.error('Failed to unregister callback. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### on('windowStatusChange')<sup>11+</sup>
+
+on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): void
+
+Subscribes to the window status change event.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                          | Mandatory| Description                                                    |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | Yes  | Event type. The value is fixed at **'windowStatusChange'**, indicating the window status change event.|
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | Yes  | Callback used to return the window status.                          |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowStatusChange', (WindowStatusType) => {
+      console.info('Succeeded in enabling the listener for window status changes. Data: ' + JSON.stringify(WindowStatusType));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for window status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowStatusChange')<sup>11+</sup>
+
+off(type: 'windowStatusChange', callback?: Callback&lt;WindowStatusType&gt;): void
+
+Unsubscribes from the window status change event.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                         | Mandatory| Description                                                    |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                        | Yes  | Event type. The value is fixed at **'windowStatusChange'**, indicating the window status change event.|
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | No  | Callback used to return the window status. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.                          |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowStatusChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for window status changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### bindDialogTarget<sup>9+</sup>
 
 bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -3806,7 +4022,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = { name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
@@ -3895,7 +4111,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "dialogWindow",
   windowType: window.WindowType.TYPE_DIALOG
@@ -3960,7 +4176,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -4034,7 +4250,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -4251,6 +4467,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```ts
+let windowClass: window.Window = window.findWindow("test");
 let colorSpace = windowClass.getWindowColorSpace();
 ```
 
@@ -4372,6 +4589,7 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 import { BusinessError } from '@ohos.base';
 
 let brightness: number = 1;
+let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowBrightness(brightness);
   promise.then(() => {
@@ -4929,22 +5147,44 @@ try {
 }
 ```
 
+### snapshot<sup>9+</sup>
+
+snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
+
+Captures this window. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name     | Type                                                         | Mandatory | Description                         |
+| -------- | ------------------------------------------------------------ | --------- | ----------------------------------- |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes       | Callback used to return the result. |
+
+**Error codes**
+
 For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
 
-| ID| Error Message                                     |
-| -------- | --------------------------------------------- |
-| 1300002  | This window state is abnormal.                |
-| 1300003  | This window manager service works abnormally. |
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
 
 **Example**
 
 ```ts
-// ets/entryability/EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-import * as Index from '../pages/Index'; // Import the named route page.
+import image from '@ohos.multimedia.image';
 
+let windowClass: window.Window = window.findWindow("test");
+windowClass.snapshot((err: BusinessError, pixelMap: image.PixelMap) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to snapshot window. Cause:' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in snapshotting window. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // Release the memory in time after the PixelMap is used.
+});
 ```
 
 ### snapshot<sup>9+</sup>
@@ -5282,6 +5522,7 @@ try {
 } catch (exception) {
   console.error('Failed to set backdrop blur. Cause: ' + JSON.stringify(exception));
 }
+
 ```
 
 ### setBackdropBlurStyle<sup>9+</sup>
@@ -5806,9 +6047,10 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 // Raise windowClass above targetWindow.
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
-let windowClass: window.Window = window.findWindow("test");
 windowClass.raiseAboveTarget(targetId, (err) => {
     if (err.code) {
         console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
@@ -5856,6 +6098,8 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 
 ```js
 // Raise windowClass above targetWindow.
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 let promise = windowClass.raiseAboveTarget(targetId);
@@ -5961,13 +6205,17 @@ promise.then(()=> {
 
 ```
 
-### minimize<sup>10+</sup>
+### minimize<sup>11+</sup>
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
-Minimizes the main window. This API uses an asynchronous callback to return the result.
+Implements different functionalities based on the caller:
 
-**System API**: This is a system API.
+Minimizes the main window if the caller is a main window. The main window can be restored in the dock bar.
+
+Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+
+This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -5989,49 +6237,31 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // Call minimize.
-            mainWindow.minimize((err) => {
-                if (err.code) {
-                    console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Successfully minimized app main window.');
-            });
-        })
-    }
-};
+let windowClass: window.Window = window.findWindow("test");
+windowClass.minimize((err: BusinessError) => {
+  const errCode: number = err.code;
+  if (errCode) {
+    console.error('Failed to minimize the window. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in minimizing the window.');
+});
 
 ```
 
-### minimize<sup>10+</sup>
+### minimize<sup>11+</sup>
 
 minimize(): Promise&lt;void&gt;
 
-Minimizes the main window. This API uses a promise to return the result.
+Implements different functionalities based on the caller:
 
-**System API**: This is a system API.
+Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
+
+Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+
+This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -6053,38 +6283,15 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // Load content for the main window.
-        windowStage.loadContent("pages/page2", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // Obtain the main window.
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-            // Promise object of the minimize API.
-            let promise = mainWindow.minimize();
-            promise.then(()=> {
-                console.info('Successfully minimized app main window.');
-            }).catch((err)=>{
-                console.error('Failed to minimize the app main window. Cause: ' + JSON.stringify(err));
-            });
-        })
-    }
-};
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.minimize();
+promise.then(() => {
+  console.info('Succeeded in minimizing the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to minimize the window. Cause: ' + JSON.stringify(err));
+});
 
 ```
 
@@ -6113,7 +6320,6 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 | ------- | --------------------------------------------- |
 | 1300002 | This window state is abnormal.                |
 | 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation.                       |
 
 **Example**
 
@@ -6373,6 +6579,128 @@ export default class EntryAbility extends UIAbility {
 
 ```
 
+### getWindowLimits<sup>11+</sup>
+
+getWindowLimits(): WindowLimits
+
+Obtains the size limits of this window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type                            | Description         |
+| ------------------------------- | ------------------- |
+| [WindowLimits](#windowlimits11) | Window size limits. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| :------ | :----------------------------- |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  let windowLimits = windowClass.getWindowLimits();
+} catch (exception) {
+  console.error('Failed to obtain the window limits of window. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
+###  setWindowLimits<sup>11+</sup>
+
+setWindowLimits(windowLimits: WindowLimits): Promise&lt;WindowLimits&gt;
+
+Sets the size limits for this window. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name         | Type                            | Mandatory | Description                    |
+| :----------- | :------------------------------ | :-------- | :----------------------------- |
+| windowLimits | [WindowLimits](#windowlimits11) | Yes       | Target size limits, in pixels. |
+
+**Return value**
+
+| Type                                           | Description                                 |
+| :--------------------------------------------- | :------------------------------------------ |
+| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise used to return the new size limits. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                                 |
+| :------ | :-------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+try {
+  let windowLimits: window.WindowLimits = {
+    maxWidth: 1500,
+    maxHeight: 1000,
+    minWidth: 500,
+    minHeight: 400
+  };
+  let windowClass: window.Window = window.findWindow("test");
+  let promise = windowClass.setWindowLimits(windowLimits);
+    promise.then((data) => {
+    console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error('Failed to change the window limits. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
+}
+
+```
+
+### keepKeyboardOnFocus<sup>11+</sup>
+
+keepKeyboardOnFocus(keepKeyboardFlag: boolean): void
+
+Sets whether to keep the soft keyboard created by others when a window has focus. This API can be called only by a system window or an application subwindow.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name             | Type    | Mandatory | Description                                                  |
+| ---------------- | ------- | --------- | ------------------------------------------------------------ |
+| keepKeyboardFlag | boolean | Yes       | Whether to keep the soft keyboard created by others. The value **true** means to keep the soft keyboard, and **false** means the opposite. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.        |
+
+**Example**
+
+```ts
+try {
+  windowClass.keepKeyboardOnFocus(true);
+} catch (exception) {
+  console.error('Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
+}
+
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -6527,8 +6855,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| x        | number                    | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. |
-| y        | number                    | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. |
+| x        | number                    | Yes       | Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer. |
+| y        | number                    | Yes       | Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -6566,8 +6894,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name | Type   | Mandatory | Description                                                  |
 | ---- | ------ | --------- | ------------------------------------------------------------ |
-| x    | number | Yes       | Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. |
-| y    | number | Yes       | Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. |
+| x    | number | Yes       | Distance that the window moves along the x-axis, in pixels. A positive value indicates that the window moves to the right. The value must be an integer. |
+| y    | number | Yes       | Distance that the window moves along the y-axis, in pixels. A positive value indicates that the window moves downwards. The value must be an integer. |
 
 **Return value**
 
@@ -6618,8 +6946,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name     | Type                      | Mandatory | Description                                                  |
 | -------- | ------------------------- | --------- | ------------------------------------------------------------ |
-| width    | number                    | Yes       | New width of the window, in px. The value must be an integer. |
-| height   | number                    | Yes       | New height of the window, in px. The value must be an integer. |
+| width    | number                    | Yes       | New width of the window, in pixels. The value must be an integer. |
+| height   | number                    | Yes       | New height of the window, in pixels. The value must be an integer. |
 | callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
@@ -6667,8 +6995,8 @@ This operation is not supported in a window in full-screen mode.
 
 | Name   | Type   | Mandatory | Description                                                  |
 | ------ | ------ | --------- | ------------------------------------------------------------ |
-| width  | number | Yes       | New width of the window, in px. The value must be an integer. |
-| height | number | Yes       | New height of the window, in px. The value must be an integer. |
+| width  | number | Yes       | New width of the window, in pixels. The value must be an integer. |
+| height | number | Yes       | New height of the window, in pixels. The value must be an integer. |
 
 **Return value**
 
@@ -7269,10 +7597,10 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                             |
-| -------- | ------------------------- | --------- | ------------------------------------------------------- |
-| path     | string                    | Yes       | Path of the page from which the content will be loaded. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                     |
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| path     | string                    | Yes       | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Example**
 
@@ -7305,9 +7633,9 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 **Parameters**
 
-| Name | Type   | Mandatory | Description                                             |
-| ---- | ------ | --------- | ------------------------------------------------------- |
-| path | string | Yes       | Path of the page from which the content will be loaded. |
+| Name | Type   | Mandatory | Description                                                  |
+| ---- | ------ | --------- | ------------------------------------------------------------ |
+| path | string | Yes       | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project. |
 
 **Return value**
 
@@ -8318,6 +8646,18 @@ Describes the lifecycle of a window stage.
 | RESUMED<sup>11+</sup> | 5     | The window stage is interactive in the foreground. If the user opens the Recents screen when an application is running in the foreground, the application becomes non-interactive. When the user switches back to the application, the application becomes interactive. |
 | PAUSED<sup>11+</sup>  | 6     | The window stage is non-interactive in the foreground. If the user opens the Recents screen when an application is running in the foreground, the application becomes non-interactive. When the user switches back to the application, the application becomes interactive. |
 
+## SubWindowOptions<sup>11+</sup>
+
+Defines the parameters used for creating a subwindow.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name         | Type    | Readable | Writable | Description                                                  |
+| ------------ | ------- | -------- | -------- | ------------------------------------------------------------ |
+| title        | string  | No       | Yes      | Title of the subwindow.                                      |
+| decorEnabled | boolean | No       | Yes      | Whether to display decorations in the subwindow. The value **true** means to display decorations, and **false** means the opposite. |
+
+
 ## WindowStage<sup>9+</sup>
 
 Implements a window manager, which manages each basic window unit, that is, [Window](#window) instance.
@@ -8361,7 +8701,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
@@ -8413,7 +8753,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let promise = windowStage.getMainWindow();
     promise.then((data) => {
       windowClass = data;
@@ -8510,7 +8850,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
         const errCode: number = err.code;
@@ -8524,7 +8864,7 @@ export default class EntryAbility extends UIAbility {
           console.info('Failed to load the content. Cause: windowClass is null');
         }
         else {
-          (windowClass as window.Window).resetSize(500, 1000);
+          (windowClass as window.Window).resize(500, 1000);
         }
       });
 
@@ -8579,9 +8919,74 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       let promise = windowStage.createSubWindow('mySubWindow');
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
+    }
+  }
+};
+
+```
+
+### createSubWindowWithOptions<sup>11+</sup>
+
+createSubWindowWithOptions(name: string, options: SubWindowOptions): Promise&lt;Window&gt;
+
+Creates a subwindow for this window stage. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name    | Type                                    | Mandatory | Description                                 |
+| ------- | --------------------------------------- | --------- | ------------------------------------------- |
+| name    | string                                  | Yes       | Name of the subwindow.                      |
+| options | [SubWindowOptions](#subwindowoptions11) | Yes       | Parameters used for creating the subwindow. |
+
+**Return value**
+
+| Type                             | Description                                   |
+| -------------------------------- | --------------------------------------------- |
+| Promise&lt;[Window](#window)&gt; | Promise used to return the subwindow created. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      let options : window.SubWindowOptions = {
+        title: 'title',
+        decorEnabled: true
+      };
+      let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
       promise.then((data) => {
         windowClass = data;
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
@@ -8700,7 +9105,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from a page associated with a local storage to the main window in this window stage. This API uses an asynchronous callback to return the result.
+Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the status attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -8710,8 +9115,8 @@ Loads content from a page associated with a local storage to the main window in 
 
 | Name     | Type                                                    | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| path     | string                                                  | Yes       | Path of the page from which the content will be loaded.      |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| path     | string                                                  | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 | callback | AsyncCallback&lt;void&gt;                               | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -8759,7 +9164,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-Loads content from a page associated with a local storage to the main window in this window stage. This API uses a promise to return the result.
+Loads the content of a page, with its path in the current project specified, to the main window of this window stage, and transfers the status attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -8769,8 +9174,8 @@ Loads content from a page associated with a local storage to the main window in 
 
 | Name    | Type                                                    | Mandatory | Description                                                  |
 | ------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| path    | string                                                  | Yes       | Path of the page from which the content will be loaded.      |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No        | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| path    | string                                                  | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No        | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 
 **Return value**
 
@@ -8830,10 +9235,10 @@ Loads content from a page to this window stage. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name     | Type                      | Mandatory | Description                                             |
-| -------- | ------------------------- | --------- | ------------------------------------------------------- |
-| path     | string                    | Yes       | Path of the page from which the content will be loaded. |
-| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                     |
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| path     | string                    | Yes       | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback used to return the result.                          |
 
 **Error codes**
 
@@ -8877,7 +9282,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page associated with a local storage to this window stage. This API uses an asynchronous callback to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window stage, and transfers the state attribute to the page through a local storage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -8888,7 +9293,7 @@ Loads content from the [named route](../../ui/arkts-routing.md#named-route) page
 | Name     | Type                                                    | Mandatory | Description                                                  |
 | -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | name     | string                                                  | Yes       | Name of the named route page.                                |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes       | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 | callback | AsyncCallback&lt;void&gt;                               | Yes       | Callback used to return the result.                          |
 
 **Error codes**
@@ -8960,7 +9365,7 @@ export struct Index {
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page to this window stage. This API uses an asynchronous callback to return the result.
+Loads the content of a [named route](../../ui/arkts-routing.md#named-route) page to this window stage. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -9039,7 +9444,7 @@ export struct Index {
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 
-Loads content from the [named route](../../ui/arkts-routing.md#named-route) page to this window stage. This API uses a promise to return the result.
+Loads the content a [named route](../../ui/arkts-routing.md#named-route) page to this window stage, and transfers the state attribute to the page through a local storage. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -9050,7 +9455,7 @@ Loads content from the [named route](../../ui/arkts-routing.md#named-route) page
 | Name    | Type         | Mandatory | Description                                                  |
 | ------- | ------------ | --------- | ------------------------------------------------------------ |
 | name    | string       | Yes       | Name of the named route page.                                |
-| storage | LocalStorage | No        | A storage unit, which provides storage for variable state properties and non-variable state properties of an application. |
+| storage | LocalStorage | No        | Page-level UI state storage unit, which is used to transfer the state attribute for the page. |
 
 **Error codes**
 
@@ -9333,7 +9738,7 @@ Completes the transition. This API can be called only after [animateTo()](../ark
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -9386,7 +9791,7 @@ Customizes the animation for the scenario when the window is shown.
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context : window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -9411,6 +9816,7 @@ let windowClass: window.Window = window.findWindow("test");
   );
   console.info('complete transition end');
 };
+
 ```
 
 ### animationForHidden<sup>9+</sup>
@@ -9432,7 +9838,7 @@ Customizes the animation for the scenario when the window is hidden.
 **Example**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({

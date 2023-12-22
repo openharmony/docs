@@ -7,7 +7,7 @@
 
 【描述】
 
-文档的示例代码需要遵循[JavaScript语言编程规范](../OpenHarmony-JavaScript-coding-style-guide.md)、[C语言编程规范](../OpenHarmony-c-coding-style-guide.md)和[C++语言编程规范](../OpenHarmony-cpp-coding-style-guide.md)基本的编码规范，包括命名规范、代码格式和代码规范等。
+文档的示例代码需要遵循[OpenHarmony应用TS&JS编程指南](../OpenHarmony-Application-Typescript-JavaScript-coding-guide.md)、[TS&JS高性能编程规范](../../application-dev/performance/high-performance-programming.md)、[JavaScript语言编程规范](../OpenHarmony-JavaScript-coding-style-guide.md)、[C语言编程规范](../OpenHarmony-c-coding-style-guide.md)和[C++语言编程规范](../OpenHarmony-cpp-coding-style-guide.md)基本的编码规范，包括命名规范、代码格式和代码规范等。
 
 ### 【规则】每个接口（包括方法和组件）均需要提供示例代码
 

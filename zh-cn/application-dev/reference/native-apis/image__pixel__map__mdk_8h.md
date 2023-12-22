@@ -3,15 +3,11 @@
 
 ## 概述
 
-声明可以锁定并访问pixelmap数据的方法，声明解锁的方法。 Need link **libpixelmapndk.z.so**
+声明可以锁定并访问PixelMap数据的方法，声明解锁的方法。
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总
@@ -21,24 +17,24 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | 用于定义 pixel map 的相关信息。 | 
-| [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | 用于定义创建 pixel map 设置选项的相关信息。 | 
+| [OhosPixelMapInfos](_ohos_pixel_map_infos.md) | 用于定义PixelMap的相关信息。 | 
+| [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md) | 用于定义创建PixelMap设置选项的相关信息。 | 
 
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [NativePixelMap](image.md#nativepixelmap) | 定义native层pixelmap数据类型名称。 | 
-| [OhosPixelMapInfos](image.md#ohospixelmapinfos) | 用于定义 pixel map 的相关信息。 | 
+| [NativePixelMap](image.md#nativepixelmap) | 定义native层PixelMap数据类型名称。 | 
+| [OhosPixelMapInfos](image.md#ohospixelmapinfos) | 用于定义PixelMap的相关信息。 | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md) = 0,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md) = 1,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md) = 2,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL](image.md) = 3 } | PixelMap 透明度类型的枚举。 | 
-| { [OHOS_PIXEL_MAP_READ_ONLY](image.md) = 0,<br/>[OHOS_PIXEL_MAP_EDITABLE](image.md) = 1 } | PixelMap 编辑类型的枚举。 | 
+| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md#anonymous-enum-23) = 0,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md#anonymous-enum-23) = 1,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md#anonymous-enum-23) = 2,<br/>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL](image.md#anonymous-enum-23) = 3 } | PixelMap透明度类型的枚举。 | 
+| { [OHOS_PIXEL_MAP_READ_ONLY](image.md#anonymous-enum-23-1) = 0,<br/>[OHOS_PIXEL_MAP_EDITABLE](image.md#anonymous-enum-23-1) = 1 } | PixelMap编辑类型的枚举。 | 
 
 
 ### 函数
@@ -62,4 +58,6 @@
 | [OH_PixelMap_Crop](image.md#oh_pixelmap_crop) (const [NativePixelMap](image.md#nativepixelmap) \*native, int32_t x, int32_t y, int32_t width, int32_t height) | 设置**PixelMap**对象的裁剪。 | 
 | [OH_PixelMap_GetImageInfo](image.md#oh_pixelmap_getimageinfo) (const [NativePixelMap](image.md#nativepixelmap) \*native, [OhosPixelMapInfos](_ohos_pixel_map_infos.md) \*info) | 获取**PixelMap**对象图像信息。 | 
 | [OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native, void \*\*addr) | 获取native **PixelMap** 对象数据的内存地址，并锁定该内存。 | 
-| [OH_PixelMap_UnAccessPixels](image.md#oh_pixelmap_unaccesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native) | 释放native **PixelMap**对象数据的内存锁，用于匹配方法 [OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels)。 | 
+| [OH_PixelMap_UnAccessPixels](image.md#oh_pixelmap_unaccesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native) | 释放native **PixelMap**对象数据的内存锁，用于匹配方法[OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels)。 | 
+
+<!--no_check-->

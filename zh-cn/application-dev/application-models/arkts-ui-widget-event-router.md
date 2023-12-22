@@ -17,81 +17,106 @@
   ```ts
   @Entry
   @Component
-  struct WidgetCard {
+  struct WidgetEventRouterCard {
     build() {
       Column() {
-        Button('功能A')
-          .margin('20%')
-          .onClick(() => {
-            console.info('Jump to EntryAbility funA');
-            postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'targetPage': 'funA' // 在EntryAbility中处理这个信息
-              }
-            });
-          })
+        Text($r('app.string.JumpLabel'))
+          .fontColor('#FFFFFF')
+          .opacity(0.9)
+          .fontSize(14)
+          .margin({ top: '8%', left: '10%' })
+        Row() {
+          Column() {
+            Button() {
+              Text($r('app.string.ButtonA_label'))
+                .fontColor('#45A6F4')
+                .fontSize(12)
+            }
+            .width(120)
+            .height(32)
+            .margin({ top: '20%' })
+            .backgroundColor('#FFFFFF')
+            .borderRadius(16)
+            .onClick(() => {
+              postCardAction(this, {
+                action: 'router',
+                abilityName: 'EntryAbility',
+                params: { targetPage: 'funA' }
+              });
+            })
   
-        Button('功能B')
-          .margin('20%')
-          .onClick(() => {
-            console.info('Jump to EntryAbility funB');
-            postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'targetPage': 'funB' // 在EntryAbility中处理这个信息
-              }
-            });
-          })
+            Button() {
+              Text($r('app.string.ButtonB_label'))
+                .fontColor('#45A6F4')
+                .fontSize(12)
+            }
+            .width(120)
+            .height(32)
+            .margin({ top: '8%', bottom: '15vp' })
+            .backgroundColor('#FFFFFF')
+            .borderRadius(16)
+            .onClick(() => {
+              postCardAction(this, {
+                action: 'router',
+                abilityName: 'EntryAbility',
+                params: { targetPage: 'funB' }
+              });
+            })
+          }
+        }.width('100%').height('80%')
+        .justifyContent(FlexAlign.Center)
       }
       .width('100%')
       .height('100%')
+      .alignItems(HorizontalAlign.Start)
+      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImageSize(ImageSize.Cover)
     }
   }
   ```
-
+  
 - 在UIAbility中接收router事件并获取参数，根据传递的params不同，选择拉起不同的页面。
   
   ```ts
+  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import hilog from '@ohos.hilog';
   import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
-  import Want from '@ohos.app.ability.Want';
-  import Base from '@ohos.base';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import type Want from '@ohos.app.ability.Want';
+  import type window from '@ohos.window';
   
-  let selectPage: string = "";
-  let currentWindowStage: window.WindowStage | null = null;
+  const TAG: string = 'EntryAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
 
   export default class EntryAbility extends UIAbility {
-    // 如果UIAbility第一次启动，在收到Router事件后会触发onCreate生命周期回调
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    private selectPage: string = '';
+    private currentWindowStage: window.WindowStage | null = null;
+  
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // 获取router事件中传递的targetPage参数
-      console.info("onCreate want:" + JSON.stringify(want));
-      if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
-        console.info("onCreate router targetPage:" + params.targetPage);
-        selectPage = params.targetPage;
+      hilog.info(DOMAIN_NUMBER, TAG, `Ability onCreate, ${JSON.stringify(want)}`);
+      if (want.parameters !== undefined) {
+        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters));
+        this.selectPage = params.targetPage;
       }
     }
+  
     // 如果UIAbility已在后台运行，在收到Router事件后会触发onNewWant生命周期回调
-    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      console.info("onNewWant want:" + JSON.stringify(want));
+    onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+      hilog.info(DOMAIN_NUMBER, TAG, `onNewWant Want: ${JSON.stringify(want)}`);
       if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
-        console.info("onNewWant router targetPage:" + params.targetPage);
-        selectPage = params.targetPage;
+        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
+        this.selectPage = params.targetPage;
       }
-      if (currentWindowStage != null) {
-        this.onWindowStageCreate(currentWindowStage);
+      if (this.currentWindowStage !== null) {
+        this.onWindowStageCreate(this.currentWindowStage);
       }
     }
-
-    onWindowStageCreate(windowStage: window.WindowStage) {
+  
+    onWindowStageCreate(windowStage: window.WindowStage): void {
+      // Main window is created, set main page for this ability
       let targetPage: string;
       // 根据传递的targetPage不同，选择拉起不同的页面
-      switch (selectPage) {
+      switch (this.selectPage) {
         case 'funA':
           targetPage = 'pages/FunA';
           break;
@@ -101,15 +126,16 @@
         default:
           targetPage = 'pages/Index';
       }
-      if (currentWindowStage === null) {
-        currentWindowStage = windowStage;
+      if (this.currentWindowStage === null) {
+        this.currentWindowStage = windowStage;
       }
-      windowStage.loadContent(targetPage, (err: Base.BusinessError) => {
-        if (err && err.code) {
-          console.info('Failed to load the content. Cause: %{public}s', JSON.stringify(err));
+      windowStage.loadContent(targetPage, (err, data) => {
+        if (err.code) {
+          hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
           return;
         }
+        hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
       });
     }
-  };
+  }
   ```

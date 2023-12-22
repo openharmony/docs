@@ -1,4 +1,4 @@
-# 开发音频通话功能
+# 开发音频通话功能(ArkTS)
 
 在音频通话场景下，音频输出（播放对端声音）和音频输入（录制本端声音）会同时进行，应用可以通过使用AudioRenderer来实现音频输出，通过使用AudioCapturer来实现音频输入，同时使用AudioRenderer和AudioCapturer即可实现音频通话功能。
 
@@ -27,7 +27,6 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
   // 需使用通话场景相应的参数
-  content: audio.ContentType.CONTENT_TYPE_SPEECH, // 音频内容类型：语音
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // 音频流使用类型：语音通信
   rendererFlags: 0 // 音频渲染器标志：默认为0即可
 }

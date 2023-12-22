@@ -73,6 +73,26 @@ getUIInspector(): UIInspector
 uiContext.getUIInspector();
 ```
 
+### getUIObserver<sup>11+</sup>
+
+getUIObserver(): UIObserver
+
+获取UIObserver对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                          | 说明                 |
+| --------------------------- | ------------------ |
+| [UIObserver](#uiobserver11) | 返回UIObserver实例对象。 |
+
+**示例：**
+
+```ts
+uiContext.getUIObserver();
+```
+
 ### getMediaQuery
 
 getMediaQuery(): MediaQuery
@@ -140,8 +160,6 @@ animateTo(value: AnimateParam, event: () => void): void
 提供animateTo接口来指定由于闭包代码导致的状态变化插入过渡动效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -550,7 +568,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 | 参数名      | 类型         | 必填   | 说明   |
 | -------- | ---------- | ---- | ---- |
-| value | [KeyboardAvoidMode](../arkui-ts/ts-types.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
+| value | [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 是    | 键盘避让时的页面避让模式。<br />默认值:KeyboardAvoidMode.OFFSET |
 
 **示例：**
 
@@ -584,7 +602,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 | 类型         | 说明   |
 | ---------- | ---- |
-| [KeyboardAvoidMode](../arkui-ts/ts-types.md#keyboardavoidmode11)| 返回当前的页面避让模式。|
+| [KeyboardAvoidMode](../apis/js-apis-arkui-UIContext.md#keyboardavoidmode11)| 返回当前的页面避让模式。|
 
 **示例：**
 
@@ -605,7 +623,87 @@ onWindowStageCreate(windowStage: window.WindowStage) {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
+
 ```
+
+### getAtomicServiceBar<sup>11+</sup>
+
+getAtomicServiceBar(): Nullable\<AtomicServiceBar>
+
+获取AtomicServiceBar对象，通过该对象设置原子化服务menuBar的属性。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|Nullable<[AtomicServiceBar](#atomicservicebar)>| 如果是原子化服务则返回AtomicServerBar类型，否则返回undefined。|
+
+**示例：**
+
+```ts
+import {UIContext, AtomicServiceBar} from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+### getDragController<sup>11+</sup>
+
+getDragController(): DragController
+
+获取DragController对象，可通过该对象创建并发起拖拽。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[DragController](js-apis-arkui-dragController.md#dragController)| 获取DragController对象。|
+
+**示例：**
+
+```ts
+uiContext.getDragController();
+```
+
+### getDragPreview<sup>11+</sup>
+
+getDragPreview(): DragPreview
+
+返回一个代表拖拽背板的对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型        | 说明                                            |
+| ------------| ------------------------------------------------|
+| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | Internal error |
+
+**示例：**
+
+请参考[animate](js-apis-arkui-dragController.md#animate11)
 
 ## Font
 
@@ -635,7 +733,7 @@ font.registerFont({
   familySrc: '/font/medium.ttf'
 });
 ```
-### getStstemFontList
+### getSystemFontList
 
 getSystemFontList(): Array\<string> 
 
@@ -753,6 +851,108 @@ createComponentObserver(id: string): inspector.ComponentObserver
 import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
 let inspector:UIInspector = uiContext.getUIInspector();
 let listener = inspector.createComponentObserver('COMPONENT_ID');
+```
+
+## UIObserver<sup>11+</sup>
+
+以下API需先使用UIContext中的[getUIObserver()](#getuiobserver11)方法获取到UIObserver对象，再通过该对象调用对应方法。
+
+### on('navDestinationUpdate')<sup>11+</sup>
+
+on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
+
+监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('navDestinationUpdate', (info) => {
+    console.info('NavDestination state update', JSON.stringify(info));
+});
+```
+
+### off('navDestinationUpdate')<sup>11+</sup>
+
+off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): void
+
+取消监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('navDestinationUpdate');
+```
+
+### on('navDestinationUpdate')<sup>11+</sup>
+
+on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback<NavDestinationInfo>): void
+
+监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
+    console.info('NavDestination state update', JSON.stringify(info));
+});
+```
+
+### off('navDestinationUpdate')<sup>11+</sup>
+
+off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback<NavDestinationInfo>): void
+
+取消监听NavDestination组件的状态变化。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
+| callback | Callback\<[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+
+**示例：**
+
+```ts
+import { UIObserver } from '@ohos.arkui.UIContext';
+let observer:UIObserver = uiContext.getUIObserver();
+observer.off('navDestinationUpdate', { navigationId: "testId" });
 ```
 
 ## MediaQuery
@@ -1969,7 +2169,7 @@ try {
 
 ### showActionMenu
 
-showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.ActionMenuSuccessResponse):void
+showActionMenu(options: promptAction.ActionMenuOptions, callback: AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt;):void
 
 创建并显示操作菜单，菜单响应结果异步返回。
 
@@ -1980,7 +2180,7 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.Ac
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
 | options  | [promptAction.ActionMenuOptions](js-apis-promptAction.md#actionmenuoptions) | 是    | 操作菜单选项。   |
-| callback | [promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse) | 是    | 菜单响应结果回调。 |
+| callback | AsyncCallback&lt;[promptAction.ActionMenuSuccessResponse](js-apis-promptAction.md#actionmenusuccessresponse)&gt; | 是    | 菜单响应结果回调。 |
 
 **错误码：**
 
@@ -1993,40 +2193,31 @@ showActionMenu(options: promptAction.ActionMenuOptions, callback:promptAction.Ac
 **示例：**
 
 ```ts
-import { ComponentUtils, Font, PromptAction, Router, UIInspector, MediaQuery } from '@ohos.arkui.UIContext';
+import { PromptAction } from '@ohos.arkui.UIContext';
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
-class buttonsMoabl {
-  text: string = ""
-  color: string = ""
-}
-class dataR{
-  err:Error = new Error;
-  data:promptAction.ActionMenuSuccessResponse | undefined = undefined;
-}
-let dataAMSR:dataR = new dataR()
+
 let promptActionF: PromptAction = uiContext.getPromptAction();
 try {
-  if(dataAMSR.data){
-    promptActionF.showActionMenu({
-      title: 'Title Info',
-      buttons: [
-        {
-          text: 'item1',
-          color: '#666666'
-        } as buttonsMoabl,
-        {
-          text: 'item2',
-          color: '#000000'
-        } as buttonsMoabl
-      ]
-    }, (dataAMSR.data))
-    if (dataAMSR.err) {
-      console.info('showActionMenu err: ' + dataAMSR.err);
-    }else{
-      console.info('showActionMenu success callback, click button: ' + dataAMSR.data.index);
+  promptActionF.showActionMenu({
+    title: 'Title Info',
+    buttons: [
+      {
+        text: 'item1',
+        color: '#666666'
+      },
+      {
+        text: 'item2',
+        color: '#000000'
+      }
+    ]
+  }, (err:BusinessError, data:promptAction.ActionMenuSuccessResponse) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
     }
-  }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
 } catch (error) {
   let message = (error as BusinessError).message;
   let code = (error as BusinessError).code;
@@ -2094,3 +2285,495 @@ try {
   console.error(`showActionMenu args error code is ${code}, message is ${message}`);
 };
 ```
+## DragController<sup>11+</sup>
+以下API需先使用UIContext中的[getDragController()](./js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
+
+### executeDrag
+
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo, callback: AsyncCallback&lt; {event: DragEvent, extraParams: string}&gt;): void
+
+主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过回调返回拖拽事件结果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                             |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
+| callback | [AsyncCallback](./js-apis-base.md#asynccallback)&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 是   | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。          |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | If some internal handing failed. |
+
+**示例：**
+
+```ts
+import dragController from "@ohos.arkui.dragController"
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text = new UDC.Text()
+              let unifiedData = new UDC.UnifiedData(text)
+
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
+              }
+              class tmp{
+                event:DragEvent|undefined = undefined
+                extraParams:string = ''
+              }
+              let eve:tmp = new tmp()
+              dragController.executeDrag(()=>{this.DraggingBuilder()}, dragInfo, (err, eve) => {
+                if(eve.event){
+                  if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                  // ...
+                  } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                  // ...
+                  }
+                }
+              })
+            }
+          }
+        })
+    }
+  }
+}
+```
+
+### executeDrag
+
+executeDrag(custom: CustomBuilder | DragItemInfo, dragInfo: dragController.DragInfo): Promise&lt;{event: DragEvent, extraParams: string}&gt;
+
+主动发起拖拽能力，传入拖拽发起后跟手效果所拖拽的对象以及携带拖拽信息。通过Promise返回拖拽事件结果。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                             |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------- |
+| custom   | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#draginfo)                                        | 是   | 拖拽信息。                       |
+
+**返回值：**
+
+| 类型                                                   | 说明               |
+| ------------------------------------------------------ | ------------------ |
+| Promise&lt;{event: [DragEvent](../arkui-ts/ts-universal-events-drag-drop.md#dragevent说明), extraParams: string}&gt; | 拖拽结束返回结果的回调<br/>- event：拖拽事件信息，仅包括拖拽结果。<br/>- extraParams：拖拽事件额外信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | If some internal handing failed. |
+
+**示例：**
+
+```ts
+import dragController from "@ohos.arkui.dragController"
+import componentSnapshot from '@ohos.arkui.componentSnapshot';
+import image from '@ohos.multimedia.image';
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  @State pixmap: image.PixelMap|null = null
+
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  @Builder PixmapBuilder() {
+    Column() {
+      Text("PixmapBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  build() {
+    Column() {
+      Button('touch to execute drag')
+        .onTouch((event?:TouchEvent) => {
+          if(event){
+            if (event.type == TouchType.Down) {
+              let text = new UDC.Text()
+              let unifiedData = new UDC.UnifiedData(text)
+
+              let dragInfo: dragController.DragInfo = {
+                pointerId: 0,
+                data: unifiedData,
+                extraParams: ''
+              }
+              let pb:CustomBuilder = ():void=>{this.PixmapBuilder()}
+              componentSnapshot.createFromBuilder(pb).then((pix: image.PixelMap) => {
+                this.pixmap = pix;
+                let dragItemInfo: DragItemInfo = {
+                  pixelMap: this.pixmap,
+                  builder: ()=>{this.DraggingBuilder()},
+                  extraInfo: "DragItemInfoTest"
+                }
+
+                class tmp{
+                  event:DragResult|undefined = undefined
+                  extraParams:string = ''
+                }
+                let eve:tmp = new tmp()
+                dragController.executeDrag(dragItemInfo, dragInfo)
+                  .then((eve) => {
+                    if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
+                      // ...
+                    } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
+                      // ...
+                    }
+                  })
+                  .catch((err:Error) => {
+                  })
+              })
+            }
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### createDragAction
+
+createDragAction(customArray: Array&lt;CustomBuilder \| DragItemInfo&gt;, dragInfo: dragController.DragInfo): DragAction
+
+创建拖拽的Action对象，需要显式指定拖拽背板图(可多个)，以及拖拽的数据，跟手点等信息；当通过一个已创建的 Action 对象发起的拖拽未结束时，无法再次创建新的 Action 对象，接口会抛出异常。
+
+**说明：** 建议控制传递的拖拽背板数量，传递过多容易导致拖起的效率问题。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                             |
+| --------      | ------------------------------------------------------------ | ---- | -------------------------------- |
+| customArray  | Array&lt;[CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \| [DragItemInfo](../arkui-ts/ts-universal-events-drag-drop.md#dragiteminfo说明)&gt; | 是   | 拖拽发起后跟手效果所拖拽的对象。 |
+| dragInfo | [dragController.DragInfo](js-apis-arkui-dragController.md#dragInfo)                                        | 是   | 拖拽信息。                       |
+
+**返回值：**
+
+| 类型                                                   | 说明               |
+| ------------------------------------------------------ | ------------------ |
+| [DragAction](js-apis-arkui-dragController.md#dragaction11)| 创建拖拽Action对象，主要用于后面实现注册监听拖拽状态改变事件和启动拖拽服务。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401      | Invalid input parameter |
+| 100001   | If some internal handing failed. |
+
+**示例：**
+
+```ts
+import dragController from "@ohos.arkui.dragController"
+import componentSnapshot from '@ohos.arkui.componentSnapshot';
+import image from '@ohos.multimedia.image';
+import UDC from '@ohos.data.unifiedDataChannel';
+
+@Entry
+@Component
+struct DragControllerPage {
+  @State pixmap: image.PixelMap|null = null
+  private dragAction: dragController.DragAction|null = null;
+  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
+  build() {
+    Column() {
+
+      Column() {
+        Text("测试")
+      }
+      .width(100)
+      .height(100)
+      .backgroundColor(Color.Red)
+
+      Button('多对象dragAction customBuilder拖拽').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            console.log("muti drag Down by listener");
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            let text = new UDC.Text()
+            let unifiedData = new UDC.UnifiedData(text)
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
+            }
+            try{
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo)
+            if(!this.dragAction){
+              console.log("listener dragAction is null");
+              return
+            }
+            this.dragAction.on('statusChange', (dragAndDropInfo)=>{
+              if (dragAndDropInfo.status == dragController.DragStatus.STARTED) {
+                console.log("drag has start");
+              } else if (dragAndDropInfo.status == dragController.DragStatus.ENDED){
+                console.log("drag has end");
+                if (!this.dragAction) {
+                  return
+                }
+                this.customBuilders.splice(0, this.customBuilders.length)
+                this.dragAction.off('statusChange')
+              }
+            })
+            this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+              console.log("start drag Error:" + err.message);
+            })
+            } catch(err) {
+              console.log("create dragAction Error:" + err.message);
+            }
+          }
+        }
+      }).margin({top:20})
+    }
+  }
+}
+```
+
+## AtomicServiceBar<sup>11+</sup>
+
+以下接口需要先使用UIContext中的getAtomicServiceBar方法获取到AtomicServiceBar对象，再通过该对象调用对应方法。
+
+### setVisible<sup>11+</sup>
+
+setVisible(visible: boolean): void
+
+通过该方法设置原子化服务menuBar是否可见。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| visiable | boolean | 是 | 原子化服务menuBar是否可见。|
+
+
+**示例：**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setVisible(false);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setBackgroundColor<sup>11+</sup>
+
+setBackgroundColor(color:Nullable<Color | number | string>): void
+
+通过该方法设置原子化服务menuBar的背景颜色。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------ |
+| color | color:Nullable\<[Color](../arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 通过该方法设置原子化服务menuBar的背景颜色，undefined代表使用默认颜色。|
+
+**示例：**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setBackgroundColor(0x88888888);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setTitleContent<sup>11+</sup>
+
+setTitleContent(content:string): void
+
+通过该方法设置原子化服务menuBar的标题内容。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+|参数名|类型|必填|说明 |
+| ------- | ------- | ------- | ------- |
+| content | string | 是 | 原子化服务menuBar中的标题内容。|
+
+**示例：**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setTitleContent('text2');
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setTitleFontStyle<sup>11+</sup>
+
+setTitleFontStyle(font:FontStyle):void
+
+通过该方法设置原子化服务menuBar的字体样式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------ |
+| font | [FontStyle](../arkui-ts/ts-appendix-enums.md#fontstyle) | 是 | 原子化服务menuBar中的字体样式。 |
+
+**示例：**
+
+```ts
+import { UIContext, Font, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setTitleFontStyle(FontStyle.Normal);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+
+### setIconColor<sup>11+</sup>
+
+setIconColor(color:Nullable<Color | number | string>): void
+
+通过该方法设置原子化服务图标的颜色。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| color | Nullable\<[Color](../arkui-ts/ts-appendix-enums.md#color) \| number \| string> | 是 | 原子化服务图标的颜色，undefined代表使用默认颜色。 |
+
+
+**示例：**
+
+```ts
+import { UIContext, AtomicServiceBar } from '@ohos.arkui.UIContext';
+import hilog from '@ohos.hilog';
+import window from "@ohos.window";
+onWindowStageCreate(windowStage: window.WindowStage) {
+  // Main window is created, set main page for this ability
+  hilog.info(0x0000, 'testTag', 'Ability onWindowStageCreate');
+  windowStage.loadContent('pages/Index', (err, data) => {
+    let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+    let atomicServiceBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+    if (atomicServiceBar != undefined) {
+      hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully.');
+      atomicServiceBar.setIconColor(0x12345678);
+    } else {
+      hilog.error(0x0000, 'testTag', 'Get AtomicServiceBar failed.');
+    }
+  });
+}
+```
+## KeyboardAvoidMode<sup>11+</sup>
+
+配置键盘避让时页面的避让模式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明       |
+| ------ | ---------- |
+| OFFSET | 上抬模式。 |
+| RESIZE | 压缩模式。 |

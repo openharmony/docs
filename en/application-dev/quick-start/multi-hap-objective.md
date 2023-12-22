@@ -1,8 +1,18 @@
 # Multi-HAP Design Objectives
 
+The multi-HAP mechanism is designed for the following purposes:
 
-- Modular management: A well-designed application is generally managed in a modular manner, where modules are loosely coupled. In light of this, the multi-HAP mechanism is designed, allowing you to divide services into multiple modules and store each module in an independent HAP file. For example, if you are developing a payment application whose home screen consists of multiple modules, such as the scan, pay, messaging, and finance modules, you can implement the HAP files as follows: (1) In the entry-type HAP file, implement the home screen logic for managing modules; (2) in feature-type HAP files, implement specific modules. The feature-type HAP files are independent of each other. You can develop and test each of them separately, and then integrate them with the entry-type HAP file.
 
-- Flexible deployment: You can flexibly combine HAP files for device-specific deployment. Assume that an application contains one entry-type HAP file (**entry.hap**) and two feature-type HAP files (**Feature1.hap** and **Feature2.hap**). The **Entry.hap** file can be deployed on device A and device B, the **Feature1.hap** file can be deployed only on device A, and the **Feature2.hap** can be deployed only on device B. This means that you can combine the **Entry.hap** and **Feature1.hap** files and deploy them on device A, and combine the **Entry.hap** and **Feature2.hap** files and deploy them on device B.
+- Modular management
+
+  A well-designed application is generally managed in a modular manner, where modules are loosely coupled. The multi-HAP mechanism allows you to divide services into multiple modules and store each module in an independent HAP file.
+
+  For example, if you are developing a payment application whose home screen consists of multiple modules, such as the scan, pay, messaging, and finance modules, you can implement the HAP files as follows: (1) In the entry HAP file, implement the home screen logic for managing these modules; (2) in feature HAP files, implement specific modules. The feature HAP files are independent of each other. You can develop and test each of them separately, and then integrate them with the entry HAP file.
+
+- Flexible deployment
+
+  You can flexibly combine HAP files for device-specific deployment.
+
+  Assume that an application contains one entry HAP file (**entry.hap**) and two feature HAP files (**Feature1.hap** and **Feature2.hap**). The **Entry.hap** file can be deployed on device A and device B, the **Feature1.hap** file can be deployed only on device A, and the **Feature2.hap** file can be deployed only on device B. This means that you can combine the **Entry.hap** and **Feature1.hap** files and deploy them on device A, and combine the **Entry.hap** and **Feature2.hap** files and deploy them on device B.
 
 

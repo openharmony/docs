@@ -608,7 +608,7 @@ Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful; returns an
 
 **See**
 
-UnAccessPixels
+[UnAccessPixels](image.md#oh_unaccesspixels)
 
 
 ### OH_GetImageInfo()
@@ -825,9 +825,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
-
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if parameters fail to be obtained from the surface.
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid or a parameter fails to be obtained from the surface.
 
 Returns **IMAGE_RESULT_CREATE_SURFACE_FAILED** if the surface fails to be created.
 
@@ -958,9 +956,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
-
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if parameters fail to be obtained from the surface.
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid or a parameter fails to be obtained from the surface.
 
 Returns **IMAGE_RESULT_GET_SURFACE_FAILED** if the surface fails to be obtained.
 
@@ -1074,9 +1070,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
-
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if parameters fail to be obtained from the surface.
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid or a parameter fails to be obtained from the surface.
 
 Returns **IMAGE_RESULT_GET_SURFACE_FAILED** if the surface fails to be obtained.
 
@@ -1120,9 +1114,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
-
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if parameters fail to be obtained from the surface.
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid or a parameter fails to be obtained from the surface.
 
 Returns **IMAGE_RESULT_CREATE_SURFACE_FAILED** if the surface fails to be created.
 
@@ -1172,9 +1164,7 @@ Returns **IMAGE_RESULT_BAD_PARAMETER** if a parameter is incorrect.
 
 Returns **IMAGE_RESULT_JNI_ENV_ABNORMAL** if the JNI environment is abnormal.
 
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
-
-Returns **IMAGE_RESULT_INVALID_PARAMETER** if parameters fail to be obtained from the surface.
+Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid or a parameter fails to be obtained from the surface.
 
 Returns **IMAGE_RESULT_CREATE_SURFACE_FAILED** if the surface fails to be created.
 
@@ -1505,11 +1495,11 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
-Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if the image is incorrect.
+Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if an error occurs during image initialization.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
-Returns **IMAGE_RESULT_INIT_ABNORMAL** if the input image data is incorrect.
+Returns **IMAGE_RESULT_INIT_ABNORMAL** if the image fails to be initialized.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -1517,9 +1507,9 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the pixel map fails to be added.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
 Returns **IMAGE_RESULT_HW_DECODE_UNSUPPORT** if hardware decoding is not supported.
 
@@ -1596,11 +1586,11 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
-Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if the image is incorrect.
+Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if an error occurs during image initialization.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
-Returns **IMAGE_RESULT_INIT_ABNORMAL** if the input image data is incorrect.
+Returns **IMAGE_RESULT_INIT_ABNORMAL** if the image fails to be initialized.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -1608,9 +1598,9 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the pixel map fails to be added.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
 Returns **IMAGE_RESULT_HW_DECODE_UNSUPPORT** if hardware decoding is not supported.
 
@@ -1682,13 +1672,13 @@ Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
 Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if an error occurs during image initialization.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1750,13 +1740,13 @@ Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
 Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if an error occurs during image initialization.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1819,13 +1809,13 @@ Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
 Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if an error occurs during image initialization.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1888,13 +1878,13 @@ Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
 Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if an error occurs during image initialization.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -2032,13 +2022,13 @@ Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
 Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if an error occurs during image initialization.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -2151,11 +2141,11 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
-Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if the image is incorrect.
+Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if an error occurs during image initialization.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
-Returns **IMAGE_RESULT_INIT_ABNORMAL** if the input image data is incorrect.
+Returns **IMAGE_RESULT_INIT_ABNORMAL** if the image fails to be initialized.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -2163,9 +2153,9 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the pixel map fails to be added.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
 Returns **IMAGE_RESULT_HW_DECODE_UNSUPPORT** if hardware decoding is not supported.
 
@@ -2233,7 +2223,7 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -2242,8 +2232,6 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
-
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -2255,7 +2243,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-AccessPixels
+[AccessPixels](image.md#oh_pixelmap_accesspixels)
 
 
 ### OH_PixelMap_CreateAlphaPixelMap()
@@ -2312,7 +2300,7 @@ Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_INIT_ABNORMAL** if the image fails to be initialized.
 
@@ -2324,15 +2312,13 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the pixel map fails to be added to the image.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
 Returns **IMAGE_RESULT_HW_DECODE_UNSUPPORT** if hardware decoding is not supported.
 
 Returns **IMAGE_RESULT_HW_DECODE_FAILED** if hardware decoding fails.
 
-Returns **IMAGE_RESULT_INDEX_INVALID** if IPC fails.
-
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -2344,7 +2330,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-CreateAlphaPixelMap
+[CreateAlphaPixelMap](image.md#oh_pixelmap_createalphapixelmap)
 
 
 ### OH_PixelMap_CreatePixelMap()
@@ -2401,11 +2387,9 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_DECODE_ABNORMAL** if image decoding fails.
 
-Returns **IMAGE_RESULT_DECODE_FAILED** if decoding fails.
-
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_INIT_ABNORMAL** if the image fails to be initialized.
 
@@ -2417,15 +2401,13 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
-Returns **IMAGE_RESULT_ENCODE_FAILED** if the pixel map fails to be added to the image.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
 Returns **IMAGE_RESULT_HW_DECODE_UNSUPPORT** if hardware decoding is not supported.
 
 Returns **IMAGE_RESULT_HW_DECODE_FAILED** if hardware decoding fails.
 
-Returns **IMAGE_RESULT_INDEX_INVALID** if IPC fails.
-
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
+Returns **IMAGE_RESULT_INDEX_INVALID** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -2437,7 +2419,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-CreatePixelMap
+[CreatePixelMap](image.md#oh_pixelmap_createpixelmap)
 
 
 ### OH_PixelMap_Crop()
@@ -2488,7 +2470,7 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -2497,8 +2479,6 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
-
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -2510,7 +2490,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Crop
+[Crop](image.md#oh_pixelmap_crop)
 
 
 ### OH_PixelMap_Flip()
@@ -2559,7 +2539,7 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -2568,8 +2548,6 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
-
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -2581,7 +2559,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Flip
+[Flip](image.md#oh_pixelmap_flip)
 
 
 ### OH_PixelMap_GetBytesNumberPerRow()
@@ -2615,7 +2593,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **Since**
 
@@ -2623,7 +2601,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 **See**
 
-GetBytesNumberPerRow
+[GetBytesNumberPerRow](image.md#oh_pixelmap_getbytesnumberperrow)
 
 
 ### OH_PixelMap_GetDensity()
@@ -2657,7 +2635,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **Since**
 
@@ -2665,7 +2643,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 **See**
 
-GetDensity
+[GetDensity](image.md#oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_GetImageInfo()
@@ -2713,7 +2691,7 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -2722,8 +2700,6 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
-
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -2769,7 +2745,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **Since**
 
@@ -2777,7 +2753,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 **See**
 
-GetIsEditable
+[GetIsEditable](image.md#oh_pixelmap_getiseditable)
 
 
 ### OH_PixelMap_InitNativePixelMap()
@@ -2807,7 +2783,7 @@ Returns a pointer to the **NativePixelMap** object if the operation is successfu
 
 **See**
 
-InitNativePixelMap
+[InitNativePixelMap](image.md#oh_pixelmap_initnativepixelmap)
 
 
 ### OH_PixelMap_IsSupportAlpha()
@@ -2841,7 +2817,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **Since**
 
@@ -2849,7 +2825,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 **See**
 
-IsSupportAlpha
+[IsSupportAlpha](image.md#oh_pixelmap_issupportalpha)
 
 
 ### OH_PixelMap_Rotate()
@@ -2897,7 +2873,7 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -2906,8 +2882,6 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
-
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -2919,7 +2893,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Rotate
+[Rotate](image.md#oh_pixelmap_rotate)
 
 
 ### OH_PixelMap_Scale()
@@ -2968,7 +2942,7 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_INIT_ABNORMAL** if the image fails to be initialized.
 
@@ -2980,8 +2954,6 @@ Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be regis
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
-
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
 Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is incorrect.
@@ -2992,7 +2964,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Scale
+[Scale](image.md#oh_pixelmap_scale)
 
 
 ### OH_PixelMap_SetAlphaAble()
@@ -3026,7 +2998,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **Since**
 
@@ -3034,7 +3006,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 **See**
 
-SetAlphaAble
+[SetAlphaAble](image.md#oh_pixelmap_setalphaable)
 
 
 ### OH_PixelMap_SetDensity()
@@ -3069,7 +3041,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **Since**
 
@@ -3077,7 +3049,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 **See**
 
-GetDensity
+[GetDensity](oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_SetOpacity()
@@ -3111,7 +3083,7 @@ Returns **IMAGE_RESULT_INVALID_PARAMETER** if a parameter is invalid.
 
 Returns **IMAGE_RESULT_DATA_ABNORMAL** if the input image data is incorrect.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **Since**
 
@@ -3119,7 +3091,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 **See**
 
-SetOpacity
+[SetOpacity](image.md#oh_pixelmap_setopacity)
 
 
 ### OH_PixelMap_Translate()
@@ -3168,7 +3140,7 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -3177,8 +3149,6 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
-
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -3190,7 +3160,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Translate
+[Translate](image.md#oh_pixelmap_translate)
 
 
 ### OH_PixelMap_UnAccessPixels()
@@ -3237,7 +3207,7 @@ Returns **IMAGE_RESULT_ERR_SHAMEM_DATA_ABNORMAL** if the data in the shared memo
 
 Returns **IMAGE_RESULT_MALLOC_ABNORMAL** if an error occurs during memory allocation.
 
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
+Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the attribute is invalid or the image data is not supported.
 
 Returns **IMAGE_RESULT_CROP** if cropping fails.
 
@@ -3246,8 +3216,6 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
 Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
-
-Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the property is invalid.
 
 Returns **IMAGE_RESULT_ALPHA_TYPE_ERROR** if the alpha type is incorrect.
 
@@ -3259,7 +3227,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-UnAccessPixels
+[UnAccessPixels](image.md#oh_pixelmap_unaccesspixels)
 
 
 ### OH_UnAccessPixels()
@@ -3293,7 +3261,7 @@ Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful; returns an
 
 **See**
 
-AccessPixels
+[AccessPixels](image.md#oh_accesspixels)
 
 
 ## Variable Description

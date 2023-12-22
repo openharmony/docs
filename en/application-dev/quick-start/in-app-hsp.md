@@ -1,11 +1,12 @@
-# In-Application HSP Development
+# HSP
 
-An in-application Harmony Shared Package (HSP) is a file used for code and resource sharing within an application (called the host application) and can only be invoked by a HAP or HSP of the same application.
-The in-application HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
+A Harmony Shared Package (HSP) is a dynamic shared package. It can be classified as intra-application HSP or inter-application HSP (not supported yet). An intra-application Harmony Shared Package (HSP) is a file used for code and resource sharing within an application (called the host application) and can only be invoked by a HAP or HSP of the same application. The intra-application HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
+> **NOTE**
+> 
+> As the inter-application HSP is not supported yet, unless otherwise specified, the HSP refers to the intra-application HSP.
 
-## Developing an In-Application HSP
-
-[Create an HSP module in DevEco Studio](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546). In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
+## Creating an HSP Module
+Create an HSP module in DevEco Studio. In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
 ```
 library
 ├── src
@@ -18,29 +19,7 @@ library
 └── oh-package.json5
 ```
 
-### Exporting TS Classes and Methods
-Use **export** to export TS classes and methods. The sample code is as follows:
-```ts
-// library/src/main/ets/utils/test.ts
-export class Log {
-    static info(msg: string) {
-        console.info(msg);
-    }
-}
-
-export function add(a: number, b: number) {
-  return a + b;
-}
-
-export function minus(a: number, b: number) {
-  return a - b;
-}
-```
-In the entry point file **index.ets**, declare the APIs to be exposed.
-```ts
-// library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test'
-```
+## Exporting ArkUI Components, APIs, and Resources from HSP
 
 ### Exporting ArkUI Components
 Use **export** to export ArkUI components. The sample code is as follows:
@@ -68,49 +47,30 @@ In the entry point file **index.ets**, declare the APIs to be exposed.
 export { MyTitleBar } from './components/MyTitleBar'
 ```
 
-### Accessing Resources in an HSP Through $r
-More often than not, you may need to use resources, such as strings and images, in components. For components in an HSP, such resources are typically placed in the HSP package, rather than in the package where the HSP is invoked, for the purpose of complying with the principle of high cohesion and low coupling.
 
-In a project, application resources are referenced in the $r/$rawfile format. You can use **$r**/**$rawfile** to access resources in the **resources** directory of the current module. For example, you can use **$r("app.media.example")** to access the **src/main/resources/base/media/example.png** image stored in the **resources** directory. For details about how to use **$r**/**$rawfile**, see [Resource Access: Application Resources](./resource-categories-and-access.md#application-resources).
-
-To avoid reference errors, do not use relative paths. For example, if you use **Image("../../resources/base/media/example.png")**, the image actually used will be the one in the directory of the module that invokes the HSP. That is, if the module that invokes the HSP is **entry**, then the image used will be **entry/src/main/resources/base/media/example.png**.
-
+### Exporting TS Classes and Methods
+Use **export** to export TS classes and methods. The sample code is as follows:
 ```ts
-// library/src/main/ets/pages/Index.ets
-// Correct
-Image($r("app.media.example"))
-  .width("100%")
-// Incorrect
-Image("../../resources/base/media/example.png")
-  .width("100%")
-```
+// library/src/main/ets/utils/test.ts
+export class Log {
+    static info(msg: string) {
+        console.info(msg);
+    }
+}
 
-### Exporting Resources from an HSP
-When resources in an HSP need to be exported for cross-package access, it is recommended that a resource manager class be implemented to encapsulate the exported resources. In this way:
-- You can keep resources well under your control, eliminating the need for exporting resources that do not need to be exposed.
-- The invoking module does not need to be aware of the internal resource names of the HSP, or make adaptation to changes in these internal resource names.
+export function add(a: number, b: number) {
+  return a + b;
+}
 
-The implementation is as follows:
-
-Implement the **ResManager** class for encapsulating resources to be exported.  
-```ts
-// library/src/main/ets/ResManager.ets
-export class ResManager{
-  static getPic(): Resource{
-    return $r("app.media.pic");
-  }
-  static getDesc(): Resource{
-    return $r("app.string.shared_desc");
-  }
+export function minus(a: number, b: number) {
+  return a - b;
 }
 ```
-
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
 // library/src/main/ets/index.ets
-export { ResManager } from './ResManager'
+export { Log, add, minus } from './utils/test'
 ```
-
 ### Exporting Native Methods
 The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **libnative.so** file is exported.
 ```ts
@@ -129,8 +89,53 @@ In the entry point file **index.ets**, declare the APIs to be exposed.
 export { nativeMulti } from './utils/nativeTest'
 ```
 
-## Using the In-Application HSP
-To use APIs in the HSP, first [configure the dependency](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195) on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module).
+### Accessing Resources in an HSP Through $r
+More often than not, you may need to use resources, such as strings and images, in components. For components in an HSP, such resources are typically placed in the HSP package, rather than in the package where the HSP is invoked, for the purpose of complying with the principle of high cohesion and low coupling.
+
+In a project, application resources are referenced in the $r/$rawfile format. You can use **$r**/**$rawfile** to access resources in the **resources** directory of the current module. For example, you can use **$r("app.media.example")** to access the **src/main/resources/base/media/example.png** image stored in the **resources** directory. For details about how to use **$r**/**$rawfile**, see [Resource Access: Application Resources](./resource-categories-and-access.md#application-resources).
+
+To avoid reference errors, do not use relative paths. For example,
+if you use **Image("../../resources/base/media/example.png")**, the image actually used will be the one in the directory of the module that invokes the HSP. That is, if the module that invokes the HSP is **entry**, then the image used will be **entry/src/main/resources/base/media/example.png**.
+
+```ts
+// library/src/main/ets/pages/Index.ets
+// Correct
+Image($r("app.media.example"))
+  .width("100%")
+// Incorrect
+Image("../../resources/base/media/example.png")
+  .width("100%")
+```
+
+### Exporting Resources from HSP
+When resources in an HSP need to be exported for cross-package access, it is recommended that a resource manager class be implemented to encapsulate the exported resources. In this way:
+- You can keep resources well under your control, eliminating the need for exporting resources that do not need to be exposed.
+- The invoking module does not need to be aware of the internal resource names of the HSP, or make adaptation to changes in these internal resource names.
+
+The implementation is as follows:
+
+The implementation is as follows:  
+```ts
+// library/src/main/ets/ResManager.ets
+export class ResManager{
+  static getPic(): Resource{
+    return $r("app.media.pic");
+  }
+  static getDesc(): Resource{
+    return $r("app.string.shared_desc");
+  }
+}
+```
+
+In the entry point file **index.ets**, declare the APIs to be exposed.
+```ts
+// library/src/main/ets/index.ets
+export { ResManager } from './ResManager'
+```
+
+
+## Referencing HSP
+To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module).
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
@@ -244,5 +249,67 @@ The input parameter **url** of the **router.pushUrl** API is as follows:
 ```
 The **url** content template is as follows:
 ```ets
-'@bundle:bundle name/module name/path/page file name (without the extension .ets)'
+'@bundle:bundleName/moduleName/path/page file name (without the extension .ets)'
 ```
+### Going Back to Previous Page with Router
+You can use the **router.back** method to go back, from a page in the HSP, to the previous page, under the prerequisite that the target page is in the redirection path of the source page.
+```ts
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct Index3 {// The path is `library/src/main/ets/pages/Index3.ets.
+  @State message: string = 'Hello World'
+
+  build() {
+    Row() {
+        Column() {
+        Button('back to HAP page')
+        .width('40%')
+        .height('5%')
+        // Bind click events.
+        .onClick(() => {
+          router.back({ // Go back to the HAP page.
+            url: 'pages/Index'    // The path is `entry/src/main/ets/pages/Index.ets`.
+          })
+        })
+        .width('100%')
+
+        Button('back to HSP page')
+        .width('40%')
+        .height('5%')
+        // Bind click events.
+        .onClick(() => {
+          router.back({ // Go back to the HSP page.
+            url: '@bundle:com.example.hmservice/library/ets/pages/Index2'  // The path is `library/src/main/ets/pages/Index2.ets.
+          })
+        })
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
+}
+```
+
+The **url** parameter in the **router.back** method is described as follows:
+
+* In this example, the URL for going back from the HSP page to the HAP page is as follows:
+
+    ```ets
+    'pages/Index'
+    ```
+    The **url** content template is as follows:
+    ```ets
+    'Page file name (without the extension .ets)
+    ```
+
+* In this example, the URL for going back from the HSP page to the HSP page is as follows:
+
+    ```ets
+    '@bundle:com.example.hmservice/library/ets/pages/Index2'
+    ```
+    The **url** content template is as follows:
+    ```ets
+    '@bundle:bundleName/moduleName/path/page file name (without the extension .ets)'
+    ```

@@ -9,75 +9,76 @@
 对于同一个容器展开，容器内兄弟组件消失或者出现的场景，可通过对同一个容器展开前后进行宽高位置变化并配置属性动画，对兄弟组件配置出现消失转场动画实现共享元素转场。
 
 1. 构建需要展开的页面，并通过状态变量构建好普通状态和展开状态的界面。
-  
-  ```ts
-  class Tmp{
-    set(item:CradData):CradData{
-      return item
-    }
-  }
-  // 通过状态变量的判断，在同一个组件内构建普通状态和展开状态的界面
-  @Component
-  export struct MyExtendView {
-    // 声明与父组件进行交互的是否展开状态变量
-    @Link isExpand: boolean;
-    @State cardList: Array<CardData> = xxxx;
-  
-    build() {
-      List() {
-        // 根据需要定制展开后的组件
-        if (this.isExpand) {
-          Text('expand')
-            .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.8) }))
+
+      ```ts
+      class Tmp{
+        set(item:CradData):CradData{
+          return item
         }
-  
-        ForEach(this.cardList, (item: CradData) => {
-          let Item:Tmp = new Tmp()
-          let Imp:Tmp = Item.set(item)
-          let Mc:Record<string,Tmp> = {'cardData':Imp}
-          MyCard(Mc)
-        })
       }
-      .width(this.isExpand ? 200 : 500) // 根据组要定义展开后的组件的属性
-      .animation({ curve: curves.springMotion() }) // 为组件属性绑定动画
-    }
-  }
-  ```
+      // 通过状态变量的判断，在同一个组件内构建普通状态和展开状态的界面
+      @Component
+      export struct MyExtendView {
+        // 声明与父组件进行交互的是否展开状态变量
+        @Link isExpand: boolean;
+        @State cardList: Array<CardData> = xxxx;
+      
+        build() {
+          List() {
+            // 根据需要定制展开后的组件
+            if (this.isExpand) {
+              Text('expand')
+                .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.8) }))
+            }
+      
+            ForEach(this.cardList, (item: CradData) => {
+              let Item:Tmp = new Tmp()
+              let Imp:Tmp = Item.set(item)
+              let Mc:Record<string,Tmp> = {'cardData':Imp}
+              MyCard(Mc) // 封装的卡片组件，需自行实现
+            })
+          }
+          .width(this.isExpand ? 200 : 500) // 根据需要定义展开后组件的属性
+          .animation({ curve: curves.springMotion() }) // 为组件属性绑定动画
+        }
+      }
+      ... 
+      ```
 
 2. 将需要展开的页面展开，通过状态变量控制兄弟组件消失或出现，并通过绑定出现消失转场实现兄弟组件转场效果。
-  
-  ```ts
-  class Tmp{
-    isExpand: boolean = false;
-    set(){
-      this.isExpand = !this.isExpand;
-    }
-  }
-  let Exp:Record<string,boolean> = {'isExpand': false}
-    @State isExpand: boolean = false
-    
-    ...
-    List() {
-      // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
-      if (!this.isExpand) {
-        Text('收起')
-          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
+
+      ```ts
+      class Tmp{
+        isExpand: boolean = false;
+        set(){
+          this.isExpand = !this.isExpand;
+        }
       }
-    
-      MyExtendView(Exp)
-        .onClick(() => {
-          let Epd:Tmp = new Tmp()
-          Epd.set()
-        })
-    
-      // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
-      if (this.isExpand) {
-        Text('展开')
-          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
-      }
-    }
-  ...
-  ```
+      let Exp:Record<string,boolean> = {'isExpand': false}
+        @State isExpand: boolean = false
+        
+        ...
+        List() {
+          // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
+          if (!this.isExpand) {
+            Text('收起')
+              .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.9) }))
+          }
+        
+          MyExtendView(Exp)
+            .onClick(() => {
+              let Epd:Tmp = new Tmp()
+              Epd.set()
+            })
+        
+          // 通过是否展开状态变量控制兄弟组件的出现或者消失，并配置出现消失转场动画
+          if (this.isExpand) {
+            Text('展开')
+              .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion() }))
+          }
+        }
+      ...
+      ```
 
 
 完整示例和效果如下。
@@ -142,7 +143,7 @@ export struct share_transition_expand {
               .onClick(() => {
                 // 定义展开收起的动画参数
                 animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  if(index){
+                  if(index != undefined){
                     this.curIndex = index;
                   }
                   this.isExpand = !this.isExpand;
@@ -289,7 +290,7 @@ export struct share_zIndex_expand {
             .onClick(() => {
               // 定义展开收起的动画参数
               animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                if(index){
+                if(index != undefined){
                   this.curIndex = index;
                 }
                 this.isExpand = !this.isExpand;
@@ -415,17 +416,11 @@ import curves from '@ohos.curves';
 struct GeometryTransitionDemo {
   // 用于控制模态转场的状态变量
   @State isPresent: boolean = false;
-
+  @State alpha: boolean = false;
   // 通过@Builder构建模态展示界面
   @Builder
   MyBuilder() {
     Column() {
-      Text(this.isPresent ? 'Page 2' : 'Page 1')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .margin(20)
-
       Row() {
         Text('共享组件一')
           .fontWeight(FontWeight.Bold)
@@ -437,7 +432,7 @@ struct GeometryTransitionDemo {
       .backgroundColor(0xf56c6c)
       .width('100%')
       .aspectRatio(1)
-      .margin({ bottom: 20 })
+      .margin({ bottom: 20, top: 20})
       // 新增的共享元素Row组件，ID是share1
       .geometryTransition('share1')
 
@@ -457,14 +452,20 @@ struct GeometryTransitionDemo {
       .transition(TransitionEffect.OPACITY.animation({ curve: curves.springMotion(0.6, 1.2) }))
 
     }
+    .onAppear(()=> {
+      animateTo({}, ()=>{
+        this.alpha = ! this.alpha;
+      })
+    })
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Start)
     .transition(TransitionEffect.opacity(0.99))
-    .backgroundColor(this.isPresent ? 0x909399 : Color.Transparent)
+    .backgroundColor(this.alpha ? 0x909399 : Color.Transparent)
     .clip(true)
     .onClick(() => {
       animateTo({ duration: 1000 }, () => {
+        this.alpha = ! this.alpha;
         this.isPresent = !this.isPresent;
       })
     })
@@ -472,12 +473,6 @@ struct GeometryTransitionDemo {
 
   build() {
     Column() {
-      Text('Page 1')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .margin(20)
-
       Row() {
         Text('共享组件一')
           .fontWeight(FontWeight.Bold)
@@ -520,7 +515,7 @@ struct GeometryTransitionDemo {
 }
 ```
 
-![zh-cn_image_0000001597320326](figures/zh-cn_image_0000001597320326.gif)
+![zh-cn_image_0000001597320326](figures/zh-cn_image_0000001597320327.gif)
 
 
 
@@ -539,6 +534,7 @@ struct AutoAchieveShareTransitionDemo {
 
   // 卡片是否展开
   @State expand: boolean = false;
+  @State scrollState: boolean = true; // 滚动条状态
 
   // 共享元素相关属性
   @State rect_top: number = 0; // 共享元素position
@@ -547,6 +543,7 @@ struct AutoAchieveShareTransitionDemo {
   @State rect_right: number = 0;
 
   // 新建元素相关属性
+  @State rootPosition: number = 0; // 父组件位置
   @State item: string = ''; // 记录展开元素
   @State cardHeight: number = 300; // 卡片高度
   @State cardOpacity: number = 1; // 卡片透明度
@@ -587,6 +584,11 @@ struct AutoAchieveShareTransitionDemo {
             // 设置唯一ID，获取该ID对应组件的属性信息
             .id(item)
             .onClick(() => {
+              let rootStrJson = getInspectorByKey('root');
+              let rootRect: itTmp = JSON.parse(rootStrJson);
+              let rootRectInfo: Array<object> = JSON.parse('[' + rootRect.$rect + ']');
+              let root_rect_top: string = JSON.parse('[' + rootRectInfo[0] + ']')[1];
+              this.rootPosition = Number(root_rect_top);
               // 获取对应组件的位置、大小信息
               let strJson = getInspectorByKey(item);
               let rect:itTmp = JSON.parse(strJson);
@@ -604,11 +606,12 @@ struct AutoAchieveShareTransitionDemo {
               this.item = item;
               this.expand = true;
               this.count += 1;
+              this.scrollState = false;
 
               animateTo({ curve: curves.springMotion() }, () => {
-                this.layoutHeight = 2772 / 3.5;
+                this.layoutHeight = px2vp(2772);
                 this.layoutWidth = '100%';
-                this.layoutOffset = -((Number(rect_top) - 136) / 3.5);
+                this.layoutOffset = -px2vp(this.rect_top - this.rootPosition);
               })
             })
           })
@@ -616,6 +619,7 @@ struct AutoAchieveShareTransitionDemo {
         .width('100%')
         .margin({ top: 20 })
       }
+      .enabled(this.scrollState)
       .height('100%')
 
       // 根据获取的组件信息新建与该组件相同的元素
@@ -658,17 +662,19 @@ struct AutoAchieveShareTransitionDemo {
         // 计算新建组件绝对位置
         .position({
           x: this.layoutWidth == '90%' ? '5%' : 0,
-          y: (this.rect_top - 136) / 3.5
+          y: px2vp(this.rect_top - this.rootPosition)
         })
         .translate({
           y: this.layoutOffset
         })
         .onClick(() => {
           this.count -= 1;
+          this.scrollState = false;
 
           animateTo({
             curve: curves.springMotion(),
             onFinish: (() => {
+              this.scrollState = true;
               if (this.count == 0) {
                 this.expand = false;
               }
@@ -681,6 +687,7 @@ struct AutoAchieveShareTransitionDemo {
         })
       }
     }
+    .id('root')
   }
 }
 ```

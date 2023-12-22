@@ -34,13 +34,17 @@
 | getOriginalFileName(fileName: string): string | 获取dlp文件原始文件名 |
 | getDLPSuffix(): string | 获取dlp文件dlp后缀名 |
 | on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void | 注册dlp文件打开事件监听，用于原始应用获取dlp文件打开事件 |
-| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | 取消dlp文件打开事件监听 | 
+| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | 取消dlp文件打开事件监听 |
 | isInSandbox(): Promise&lt;boolean&gt; <br>isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void | 判断当前是否是dlp沙箱应用 |
 | getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;<br>getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void | 获取当前系统支持添加权限保护的文件格式类型 |
 | setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br> setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | 设置dlp分身应用保留状态 |
 | cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br> cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | 取消dlp分享应用保留状态 |
 | getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br> getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br> getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| 获取当前保留沙箱列表 |
 | getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br> getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | 获取dlp文件访问记录 |
+|setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|设置沙箱应用配置信息|
+|getSandboxAppConfig(): Promise&lt;string&gt;|查询沙箱应用配置信息|
+|cleanSandboxAppConfig(): Promise&lt;void&gt;|清理沙箱应用配置信息|
+| startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br> | 在当前UIAbility界面以无边框形式打开DLP权限管理应用（只支持Stage模式） |
 
 ## 开发步骤
 
@@ -52,7 +56,7 @@
    import dlpPermission from '@ohos.dlpPermission';
    ```
 
-2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。
+2. 打开DLP文件，系统会自动安装应用的DLP沙箱分身应用。以下代码应在应用页Ability中使用。
 
     ```ts
     async OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
@@ -71,18 +75,18 @@
           }
         }
       }
-      
+
       try {
-        console.log("openDLPFile:" + JSON.stringify(want));
-        console.log("openDLPFile: delegator:" + JSON.stringify(CustomGlobal.context));
-        CustomGlobal.context.startAbility(want);
+        console.log('openDLPFile:' + JSON.stringify(want));
+        console.log('openDLPFile: delegator:' + JSON.stringify(this.context));
+        this.context.startAbility(want);
       } catch (err) {
         console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
         return;
       }
     }
     ```
-    
+
     以上代码需要在module.json5文件中增加ohos.want.action.viewData：
 
     ```json
@@ -102,38 +106,43 @@
 3. 查询当前应用是否在沙箱中。
 
    ```ts
-   dlpPermission.isInSandbox().then((data)=> { 
+   dlpPermission.isInSandbox().then((data)=> {
      console.log('isInSandbox, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("isInSandbox: "  + JSON.stringify(err));
+     console.log('isInSandbox: ' + JSON.stringify(err));
    });
    ```
 
 4. 查询当前编辑的文档权限，根据文档授权的不同，DLP沙箱被限制的权限有所不同，参考[沙箱限制](#沙箱限制)。
 
    ```ts
-   dlpPermission.getDLPPermissionInfo().then((data)=> { 
+   dlpPermission.getDLPPermissionInfo().then((data)=> {
      console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("getDLPPermissionInfo: "  + JSON.stringify(err));
+     console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
    });
    ```
 
 5. 获取当前可支持DLP方案的文件扩展名类型列表，用于应用判断能否生成DLP文档，可用在实现类似文件管理器设置DLP权限的场景。
 
    ```ts
-   dlpPermission.getDLPSupportedFileTypes((err, result) => { 
-     console.log("getDLPSupportedFileTypes: " + JSON.stringify(err));
+   dlpPermission.getDLPSupportedFileTypes((err, result) => {
+     console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
      console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
    });
    ```
 
 6. 判断当前打开文件是否是dlp文件。
-  
+
    ```ts
+   import dlpPermission from '@ohos.dlpPermission';
+   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
+   
+   let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
    let file = fs.openSync(uri);
    try {
-     let res = await dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
+     let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
      console.info('res', res);
    } catch (err) {
      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -172,7 +181,7 @@
 8. 获取DLP文件打开记录。
 
    ```ts
-   async func() {
+   async getDLPFileAccessRecords() {
      try {
        let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
        console.info('res', JSON.stringify(res))
@@ -183,14 +192,74 @@
    ```
 
 9. 获取DLP文件保留沙箱记录。
+    ```ts
+    async getRetentionSandboxList() {
+      try {
+        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
+        console.info('res', JSON.stringify(res))
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
+    }
+    ```
 
-   ```ts
-   async func() {
-     try {
-       let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
-       console.info('res', JSON.stringify(res))
-     } catch (err) {
-       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-     }
-   }
-   ```
+10. 设置沙箱应用配置信息。
+    ```ts
+    async setSandboxAppConfig() {
+      try {
+        await dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
+    }
+    ```
+
+11. 清理沙箱应用配置信息。
+    ```ts
+    async cleanSandboxAppConfig() {
+      try {
+        await dlpPermission.cleanSandboxAppConfig(); // 清理沙箱应用配置信息
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
+    }
+    ```
+
+12. 查询沙箱应用配置信息。
+    ```ts
+    async getSandboxAppConfig() {
+      try {
+        let res:string = await dlpPermission.getSandboxAppConfig(); // 查询沙箱应用配置信息
+        console.info('res', JSON.stringify(res))
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
+    }
+    ```
+
+13. 以无边框形式打开DLP权限管理应用。此方法只能在UIAbility上下文中调用，只支持Stage模式。
+
+    ```ts
+    import dlpPermission from '@ohos.dlpPermission';
+    import common from '@ohos.app.ability.common';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+    import UIAbility from '@ohos.app.ability.UIAbility'
+    import Want from '@ohos.app.ability.Want';
+    import { BusinessError } from '@ohos.base';
+    
+    try {
+      let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext
+      let want: Want = {
+        "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+        "parameters": {
+          "displayName": "1.txt"
+        }
+      }; // 请求参数
+      dlpPermission.startDLPManagerForResult(context, want).then((res) => {
+        console.info('res.resultCode', res.resultCode);
+        console.info('res.want', JSON.stringifg(res.want));
+      }); // 打开DLP权限管理应用
+    } catch (err) {
+      console.error('error', err.code, err.message); // 失败报错
+    }
+    ```

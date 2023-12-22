@@ -1,27 +1,11 @@
 # @ohos.resourceschedule.usageStatistics (设备使用信息统计)
 
-本模块提供设备使用信息统计能力。
-
-设备使用信息统计，系统应用可调用接口实现如下功能：
-
-- 查询设备上各应用在不同时间段的使用时长、各应用的事件（前台、后台、长时任务开始、长时任务结束）信息及各应用的通知次数信息。
-- 查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。
-- 查询应用分组信息（其他应用和自身应用）。
-- 查询应用空闲状态（其他应用和自身应用）。
-- 设置应用分组信息（其他应用）。
-- 注册和解除注册应用分组变化监听。
-
-三方应用可调用接口实现如下功能：
-
-- 查询应用空闲状态（仅限自身应用）。
-- 查询应用分组信息（仅限自身应用）。
-- 查询应用事件（仅限自身应用）。
+本模块提供设备使用信息统计能力，包括查询应用是否为常用应用、优先级分组、使用时长、系统事件（休眠、唤醒、解锁、锁屏）信息、应用事件（前台、后台、长时任务开始和结束）信息、通知次数等不同类型信息。
 
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-
 
 ## 导入模块
 
@@ -33,7 +17,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics'
 
 isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Callback形式返回。
+查询指定的应用是否为常用应用（GroupType值≤30），使用Callback形式返回。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -46,7 +30,7 @@ isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名        | 类型                           | 必填   | 说明                                       |
 | ---------- | ---------------------------- | ---- | ---------------------------------------- |
 | bundleName | string                       | 是    | 应用的bundleName。                           |
-| callback   | AsyncCallback&lt;boolean&gt; | 是    | 指定的callback回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
+| callback   | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。<br>若应用为常用应用，返回true；若指定应用不是常用应用或bundleName无效，则返回false。 |
 
 **错误码**：
 
@@ -77,7 +61,7 @@ usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean
 
 isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
-判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态，使用Promise形式返回。
+查询指定的应用是否为常用应用（GroupType值≤30），使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -95,7 +79,7 @@ isIdleState(bundleName: string): Promise&lt;boolean&gt;
 
 | 类型                     | 说明                                       |
 | ---------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | 指定的Promise回调方法。如果指定的bundleName有效，则返回指定bundleName的应用当前是否是空闲状态；否则返回null。 |
+| Promise&lt;boolean&gt; | Promise对象。<br>若应用为常用应用，返回true；若指定应用不是常用应用或bundleName无效，则返回false。 |
 
 **错误码**：
 
@@ -124,7 +108,7 @@ usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
 
 isIdleStateSync(bundleName: string): boolean
 
-判断指定bundleName的应用当前是否是空闲状态，三方应用只能查询自身的空闲状态。
+查询指定的应用是否为常用应用（GroupType值≤30），使用同步方式返回。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -142,7 +126,7 @@ isIdleStateSync(bundleName: string): boolean
 
 | 类型                     | 说明                                       |
 | ---------------------- | ---------------------------------------- |
-| boolean | 如果指定的bundleName有效，返回true则表示空闲状态，false则非空闲。 |
+| boolean | 若应用为常用应用，返回true；若指定应用不是常用应用或bundleName无效，则返回false。 |
 
 **错误码**：
 
@@ -165,7 +149,7 @@ let isIdleState: boolean = usageStatistics.isIdleStateSync("com.ohos.camera");
 
 queryAppGroup(): Promise&lt;number&gt;
 
-查询当前应用的优先级分组。使用Promise形式返回其应用分组。
+查询当前应用的优先级分组，使用Promise异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -175,7 +159,7 @@ queryAppGroup(): Promise&lt;number&gt;
 
 | 类型              | 说明                          |
 | --------------- | --------------------------- |
-| Promise&lt;number&gt; | 指定的Promise回调方法。返回查询的应用分组结果。 |
+| Promise&lt;number&gt; | Promise对象。返回当前应用优先级分组结果，值越小，优先级越高。 |
 
 **错误码**：
 
@@ -207,7 +191,7 @@ usageStatistics.queryAppGroup().then((res: number) => {
 
 queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
-查询当前应用的优先级分组。使用callback形式返回其应用分组。
+查询当前应用的优先级分组，使用Callback异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -217,7 +201,7 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名      | 类型                    | 必填   | 说明                         |
 | -------- | --------------------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回查询的应用分组。 |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回当前应用优先级分组结果，值越小，优先级越高。 |
 
 **错误码**：
 
@@ -249,9 +233,9 @@ usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
 
 ## usageStatistics.queryAppGroupSync<sup>10+<sup>
 
-queryAppGroupSync(): number;
+queryAppGroupSync(): number
 
-查询当前应用的优先级分组。
+查询当前应用的优先级分组，使用同步方式返回。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
@@ -261,7 +245,7 @@ queryAppGroupSync(): number;
 
 | 类型              | 说明                          |
 | --------------- | --------------------------- |
-| number | 返回当前应用优先级分组结果。 |
+| number | 返回当前应用优先级分组结果，值越小，优先级越高。 |
 
 **错误码**：
 
@@ -283,11 +267,111 @@ queryAppGroupSync(): number;
 let priorityGroup: number = usageStatistics.queryAppGroupSync();
 ```
 
+## usageStatistics.queryAppGroup
+
+queryAppGroup(bundleName : string): Promise&lt;number&gt;
+
+查询指定bundleName应用的优先级分组，使用Promise异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型     | 必填   | 说明                                       |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| bundleName | string | 是    | 应用的bundleName。 |
+
+**返回值**：
+
+| 类型              | 说明                          |
+| --------------- | --------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回指定应用的优先级分组结果，值越小，优先级越高。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**示例**：
+
+```javascript
+//有bundleName的promise
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.ohos.camera";
+usageStatistics.queryAppGroup(bundleName).then((res: number) => {
+  console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryAppGroup
+
+queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
+
+查询指定bundleName应用的优先级分组，使用Callback异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                    | 必填   | 说明                                       |
+| ---------- | --------------------- | ---- | ---------------------------------------- |
+| bundleName | string                | 是    | 应用的bundleName。 |
+| callback   | AsyncCallback&lt;number&gt; | 是    | 回调函数，返回指定应用的优先级分组结果，值越小，优先级越高。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                       |
+| ---------- | ----------------------------       |
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000005   | Application is not installed.      |
+| 10000006   | Failed to get the application information.       |
+| 10100002   | Failed to get the application group information. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.ohos.camera";
+usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
+  }
+});
+```
+
 ## usageStatistics.queryAppGroupSync<sup>10+<sup>
 
 queryAppGroupSync(bundleName: string): number
 
-查询指定bundleName应用的优先级分组。
+查询指定bundleName应用的优先级分组，使用同步方式返回。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -305,7 +389,7 @@ queryAppGroupSync(bundleName: string): number
 
 | 类型              | 说明                          |
 | --------------- | --------------------------- |
-| number | 返回指定bundleName应用优先级分组结果。 |
+| number | 返回应用的优先级分组结果，值越小，优先级越高。 |
 
 **错误码**：
 
@@ -327,11 +411,114 @@ queryAppGroupSync(bundleName: string): number
 let priorityGroup: number = usageStatistics.queryAppGroupSync("com.ohos.camera");
 ```
 
+## usageStatistics.setAppGroup
+
+setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
+
+将指定bundleName应用的分组设置为newGroup，仅支持当前应用为其他应用设置，使用Promise异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型        | 必填   | 说明   |
+| ---------- | --------- | ---- | ---- |
+| bundleName | string    | 是    | 应用的bundleName。 |
+| newGroup   | [GroupType](#grouptype) | 是    | 应用分组类型。  |
+
+**返回值**：
+
+| 类型            | 说明                        |
+| ------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.deviceUsageStatistics";
+let newGroup = usageStatistics.GroupType.DAILY_GROUP;
+
+usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
+  console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.setAppGroup
+
+setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void
+
+将指定bundleName应用的分组设置为newGroup，仅支持当前应用为其他应用设置，使用CallBack异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                  | 必填   | 说明                        |
+| ---------- | ------------------- | ---- | ------------------------- |
+| bundleName | string              | 是    | 应用的bundleName。                    |
+| newGroup   | [GroupType](#grouptype)           | 是    | 应用分组类型。                      |
+| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，返回是否设置成功。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10100001   | Repeated operation on the application group. |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let bundleName: string = "com.example.deviceUsageStatistics";
+let newGroup = usageStatistics.GroupType.DAILY_GROUP;
+
+usageStatistics.setAppGroup(bundleName, newGroup, (err: BusinessError) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
+  }
+});
+```
+
 ## usageStatistics.queryBundleStatsInfos
 
 queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleStatsMap&gt;): void
 
-通过指定起始和结束时间查询应用使用时长统计信息，使用Callback形式返回。
+通过指定起始和结束时间，查询应用使用时长的具体信息，统计的最小颗粒度是天，使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -345,7 +532,7 @@ queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                   |
 | end      | number                                   | 是    | 结束时间，以毫秒为单位。                                   |
-| callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
+| callback | AsyncCallback&lt;[BundleStatsMap](#bundlestatsmap)&gt; | 是    | 回调函数，返回指定时间段内应用使用时长的具体信息。 |
 
 **错误码**：
 
@@ -379,7 +566,7 @@ usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err: BusinessError, re
 
 queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
-通过指定起始和结束时间查询应用使用时长统计信息，使用Promise形式返回。
+通过指定起始和结束时间，查询应用使用时长的具体信息，统计的最小颗粒度是天，使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -398,7 +585,7 @@ queryBundleStatsInfos(begin: number, end: number): Promise&lt;BundleStatsMap&gt;
 
 | 类型                                       | 说明                                     |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;[BundleStatsMap](#bundlestatsmap)&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
+| Promise&lt;[BundleStatsMap](#bundlestatsmap)&gt; | Promise对象。返回指定时间段内应用使用时长的具体信息。 |
 
 **错误码**：
 
@@ -430,7 +617,7 @@ usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatisti
 
 queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStatsInfo&gt;&gt;): void
 
-通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Callback形式返回。
+通过指定时间段间隔（天、周、月、年），查询应用使用时长的统计信息，使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -445,7 +632,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 | byInterval | [IntervalType](#intervaltype)            | 是    | 查询类型。                                    |
 | begin      | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
 | end        | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
-| callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| callback   | AsyncCallback&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | 是    | 回调函数，返回指定时间段间隔内，应用使用时长的统计信息。 |
 
 **错误码**：
 
@@ -482,11 +669,11 @@ usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err: Busin
 
 queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: number): Promise&lt;Array&lt;BundleStatsInfo&gt;&gt;
 
-通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，使用Promise形式返回。
+通过指定时间段间隔（天、周、月、年），查询应用使用时长的统计信息，使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App 
 
 **系统API**：此接口为系统接口。
 
@@ -502,7 +689,7 @@ queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 | 类型                                       | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| Promise&lt;Array&lt;[BundleStatsInfo](#bundlestatsinfo)&gt;&gt; | Promise对象。返回指定时间段间隔内，应用使用时长的统计信息。 |
 
 **错误码**：
 
@@ -537,7 +724,7 @@ usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then((res: 
 
 queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleEvents&gt;&gt;): void
 
-通过指定起始和结束时间查询所有应用的事件集合，使用Callback形式返回。
+通过指定起始和结束时间，查询所有应用的事件集合，使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -551,7 +738,7 @@ queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&l
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                   |
 | end      | number                                   | 是    | 结束时间，以毫秒为单位。                                   |
-| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
+| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 回调函数，返回起始和结束时间段内，所有应用的事件集合。 |
 
 **错误码**：
 
@@ -588,7 +775,7 @@ usageStatistics.queryBundleEvents(0, 20000000000000, (err: BusinessError, res: A
 
 queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&gt;&gt;
 
-通过指定起始和结束时间查询所有应用的事件集合，使用Promise形式返回。
+通过指定起始和结束时间，查询所有应用的事件集合，使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -607,7 +794,7 @@ queryBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&
 
 | 类型                                       | 说明                                     |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise对象。返回起始和结束时间段内，所有应用的事件集合。 |
 
 **错误码**：
 
@@ -642,7 +829,7 @@ usageStatistics.queryBundleEvents(0, 20000000000000).then((res: Array<usageStati
 
 queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleEvents&gt;&gt;): void
 
-通过指定起始和结束时间查询当前应用的事件集合，使用Callback形式返回。
+通过指定起始和结束时间，查询当前应用的事件集合，使用Callback异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -654,7 +841,7 @@ queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                   |
 | end      | number                                   | 是    | 结束时间，以毫秒为单位。                                   |
-| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
+| callback | AsyncCallback&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 是    | 回调函数，返回指定起始和结束时间段内，当前应用的事件集合。 |
 
 **错误码**：
 
@@ -691,7 +878,7 @@ usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err: BusinessError,
 
 queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;BundleEvents&gt;&gt;
 
-通过指定起始和结束时间查询当前应用的事件集合，使用Promise形式返回。
+通过指定起始和结束时间段内，查询当前应用的事件集合，使用Promise异步回调。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -708,7 +895,7 @@ queryCurrentBundleEvents(begin: number, end: number): Promise&lt;Array&lt;Bundle
 
 | 类型                                       | 说明                                     |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise对象。返回指定起始和结束时间段内，当前应用的事件集合。 |
 
 **错误码**：
 
@@ -739,9 +926,209 @@ usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usa
 });
 ```
 
+## usageStatistics.queryDeviceEventStats
+
+queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
+
+通过指定起始和结束时间，查询系统事件（休眠、唤醒、解锁、锁屏）的统计信息，使用Promise异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
+
+**返回值**：
+
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise对象。返回起始和结束时间段内，系统事件（休眠、唤醒、解锁、锁屏）的统计信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
+  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
+  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryDeviceEventStats
+
+queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
+
+通过指定起始和结束时间，查询系统事件（休眠、唤醒、解锁、锁屏）的统计信息，使用Callback异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 回调函数，返回起始和结束时间段内，系统事件（休眠、唤醒、解锁、锁屏）的统计信息。 | 
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.           |
+| 10000007   | Failed to get the system time.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
+    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
+  }
+});
+```
+
+## usageStatistics.queryNotificationEventStats
+
+queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
+
+通过指定起始和结束时间，查询所有应用的通知次数，使用Promise异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
+
+**返回值**：
+
+| 类型                                       | 说明                                       |
+| ---------------------------------------- | ---------------------------------------- |
+| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | Promise对象。返回指定起始和结束时间段内，所有应用的通知次数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
+  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
+  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryNotificationEventStats
+
+queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
+
+通过指定起始和结束时间，查询所有应用的通知次数，使用Callback异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名      | 类型                                       | 必填   | 说明                                       |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
+| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
+| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 回调函数，返回指定起始和结束时间段内，所有应用的通知次数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
+
+| 错误码ID        | 错误信息                          |
+| ---------- | ----------------------------          |
+| 10000001   | Memory operation failed.              |
+| 10000002   | Parcel operation failed.              |
+| 10000003   | System service operation failed.      |
+| 10000004   | IPC failed.             |
+| 10000006   | Failed to get the application information.          |
+| 10000007   | Failed to get the system time.     |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
+  if(err) {
+    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
+    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
+  }
+});
+```
+
 ## usageStatistics.queryModuleUsageRecords
 
 queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
+
+查询FA模型下各应用不用Hap包的使用记录（不超过1000条）。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Promise异步回调。
 
 使用Promise形式返回不超过1000条FA使用记录，FA使用记录由近及远排序。
 
@@ -755,7 +1142,7 @@ queryModuleUsageRecords(): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
 | 类型                                       | 说明                                 |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 指定的Promise回调方法。返回不超过1000条FA使用记录。 |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise对象。返回FA模型下各应用不用Hap包的使用记录（不超过1000条）。 |
 
 **错误码**：
 
@@ -791,7 +1178,7 @@ usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapMo
 
 queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-查询FA使用记录。使用CallBack形式返回数量不超过1000条FA使用记录（FA记录按时间由近及远排序）。
+查询FA模型下各应用不用Hap包的使用记录（不超过1000条）。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用CallBack异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -803,7 +1190,7 @@ queryModuleUsageRecords(callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调函数，返回FA模型下各应用不用Hap包的使用记录（不超过1000条）。 |
 
 **错误码**：
 
@@ -840,7 +1227,7 @@ usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageSta
 
 queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&gt;
 
-据maxNum，查询FA使用记录，使用Promise形式返回不超过maxNum条FA使用记录，FA使用记录由近及远排序，maxNum最大为1000。
+根据设置的maxNum，查询FA模型下各应用不用Hap包的使用记录。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -852,13 +1239,13 @@ queryModuleUsageRecords(maxNum: number): Promise&lt;Array&lt;HapModuleInfo&gt;&g
 
 | 参数名    | 类型     | 必填   | 说明                                 |
 | ------ | ------ | ---- | ---------------------------------- |
-| maxNum | number | 是    | 返回条目的最大数量，最多支持1000条。 |
+| maxNum | number | 是    | 使用记录的条数，取值范围为[1，1000]。 |
 
 **返回值**：
 
 | 类型                                       | 说明                                 |
 | ---------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 指定的Promise回调方法。返回不超过maxNum条FA使用记录。 |
+| Promise&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | Promise对象，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
 
 **错误码**：
 
@@ -893,7 +1280,7 @@ usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.H
 
 queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapModuleInfo&gt;&gt;): void
 
-查询FA使用记录。使用CallBack形式返回数量最大不超过maxNum设置的值，FA使用记录由近及远排序，maxNum最大为1000。
+根据设置的maxNum，查询FA模型下各应用不用Hap包的使用记录。若Hap包中存在FA卡片，使用信息中也包含卡片信息。使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -905,8 +1292,8 @@ queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;Array&lt;HapM
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| maxNum   | number                                   | 是    | 返回FA记录的最大数量，maxNum最大为1000。|
-| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 指定的CallBack回调方法。返回不超过maxNum条FA使用记录。 |
+| maxNum   | number                                   | 是    |  使用记录的条数，取值范围为[1，1000]。 |
+| callback | AsyncCallback&lt;Array&lt;[HapModuleInfo](#hapmoduleinfo)&gt;&gt; | 是    | 回调方法，Promise对象，返回不超过maxNum条，FA模型下各应用不用Hap包的使用记录。 |
 
 **错误码**：
 
@@ -939,214 +1326,11 @@ usageStatistics.queryModuleUsageRecords(1000, (err: BusinessError, res: Array<us
 });
 ```
 
-## usageStatistics.queryAppGroup
-
-queryAppGroup(bundleName : string): Promise&lt;number&gt;
-
-查询指定bundleName的应用的优先级分组。使用Promise形式返回其应用分组结果。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名        | 类型     | 必填   | 说明                                       |
-| ---------- | ------ | ---- | ---------------------------------------- |
-| bundleName | string | 是    | 查询指定bundleName的应用的优先级分组。 |
-
-**返回值**：
-
-| 类型              | 说明                          |
-| --------------- | --------------------------- |
-| Promise&lt;number&gt; | 指定的Promise回调方法。返回查询的应用分组结果。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
-
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
-| 10000005   | Application is not installed.      |
-| 10000006   | Failed to get the application information.       |
-| 10100002   | Failed to get the application group information. |
-
-**示例**：
-
-```javascript
-//有bundleName的promise
-import { BusinessError } from '@ohos.base';
-
-let bundleName: string = "com.ohos.camera";
-usageStatistics.queryAppGroup(bundleName).then((res: number) => {
-  console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
-}).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-```
-
-## usageStatistics.queryAppGroup
-
-queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void
-
-查询指定bundleName对应应用的分组。使用callback形式返回其应用分组。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名        | 类型                    | 必填   | 说明                                       |
-| ---------- | --------------------- | ---- | ---------------------------------------- |
-| bundleName | string                | 是    | 查询指定bundleName对应应用的分组。 |
-| callback   | AsyncCallback&lt;number&gt; | 是    | 指定的CallBack回调方法。返回指定bundleName的应用分组。|
-
-**错误码**：
-
-以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
-
-| 错误码ID        | 错误信息                       |
-| ---------- | ----------------------------       |
-| 10000001   | Memory operation failed.           |
-| 10000002   | Parcel operation failed.           |
-| 10000003   | System service operation failed.   |
-| 10000004   | IPC failed.          |
-| 10000005   | Application is not installed.      |
-| 10000006   | Failed to get the application information.       |
-| 10100002   | Failed to get the application group information. |
-
-**示例**：
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let bundleName: string = "com.ohos.camera";
-usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
-  if(err) {
-    console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-    console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
-  }
-});
-```
-
-## usageStatistics.setAppGroup
-
-setAppGroup(bundleName: string, newGroup: GroupType): Promise&lt;void&gt;
-
-将指定bundleName的应用的分组设置为newGroup，使用Promise形式返回设置是否成功。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名        | 类型        | 必填   | 说明   |
-| ---------- | --------- | ---- | ---- |
-| bundleName | string    | 是    | 应用名称 |
-| newGroup   | [GroupType](#grouptype) | 是    | 应用分组 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
-
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10100001   | Repeated operation on the application group. |
-
-**返回值**：
-
-| 类型            | 说明                        |
-| ------------- | ------------------------- |
-| Promise&lt;void&gt; | 指定的Promise回调方法。返回本次设置是否成功 |
-
-**示例**：
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let bundleName: string = "com.example.deviceUsageStatistics";
-let newGroup = usageStatistics.GroupType.DAILY_GROUP;
-
-usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
-  console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
-}).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-```
-
-## usageStatistics.setAppGroup
-
-setAppGroup(bundleName: string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void
-
-将指定bundleName的应用的分组设置为newGroup，使用CallBack形式返回设置是否成功。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名        | 类型                  | 必填   | 说明                        |
-| ---------- | ------------------- | ---- | ------------------------- |
-| bundleName | string              | 是    | 应用名称                      |
-| newGroup   | [GroupType](#grouptype)           | 是    | 应用分组                      |
-| callback   | AsyncCallback&lt;void&gt; | 是    | 指定的CallBack回调方法。返回设置是否成功。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
-
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10100001   | Repeated operation on the application group. |
-
-**示例**：
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let bundleName: string = "com.example.deviceUsageStatistics";
-let newGroup = usageStatistics.GroupType.DAILY_GROUP;
-
-usageStatistics.setAppGroup(bundleName, newGroup, (err: BusinessError) => {
-  if(err) {
-    console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-    console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
-  }
-});
-```
-
 ## usageStatistics.registerAppGroupCallBack
 
 registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): Promise&lt;void&gt;
 
-应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo)信息。使用Promise形式返回注册是否成功。
+注册应用分组变化监听，即用户名下的某个应用分组发生变化时，向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo)信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1158,7 +1342,13 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 
 | 参数名   | 类型                                                         | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息 |
+| groupCallback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | 是   | 返回的应用分组变化信息。 |
+
+**返回值**：
+
+| 类型            | 说明                      |
+| ------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -1172,11 +1362,6 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): P
 | 10000004   | IPC failed.             |
 | 10100001   | Repeated operation on the application group. |
 
-**返回值**：
-
-| 类型            | 说明                      |
-| ------------- | ----------------------- |
-| Promise&lt;void&gt; | 指定的Promise回调方法。返回注册监听是否成功 |
 
 **示例**：
 
@@ -1202,7 +1387,7 @@ usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
 
 registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-应用注册分组变化监听，待用户名下的某个应用分组发生变化时，通过callback形式向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo)信息。使用异步callback形式返回注册监听是否成功。
+应用注册分组变化监听，即用户名下的某个应用分组发生变化时，向所有已注册分组变化监听的应用返回[AppGroupCallbackInfo](#appgroupcallbackinfo)信息。使用Callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1214,8 +1399,8 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 | 参数名   | 类型                                                         | 必填 | 说明                                         |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| groupCallback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | 是   | 指定的callback函数，返回应用分组变化的信息   |
-| callback | AsyncCallback&lt;void&gt;                                    | 是   | 指定的异步callback函数，返回注册监听是否成功 |
+| groupCallback | Callback&lt;[AppGroupCallbackInfo](#appgroupcallbackinfo)&gt; | 是   | 返回的应用分组变化信息。   |
+| callback | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数，返回注册监听是否成功。 |
 
 **错误码**：
 
@@ -1256,7 +1441,7 @@ usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, (err: BusinessErr
 
 unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
-应用解除分组变化监听，解除通过调用注册接口生成的监听。使用Promise形式返回解除监听是否成功。
+应用解除分组变化监听。使用Promise异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1268,7 +1453,7 @@ unregisterAppGroupCallBack(): Promise&lt;void&gt;
 
 | 类型            | 说明                       |
 | ------------- | ------------------------ |
-| Promise&lt;void&gt; | 指定的Promise回调方法。返回解除监听是否成功 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -1298,7 +1483,7 @@ usageStatistics.unregisterAppGroupCallBack().then( () => {
 
 unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
-应用解除分组变化监听，解除通过调用注册接口生成的监听。使用异步callback形式返回解除监听是否成功。
+应用解除分组变化监听。使用callback异步回调。
 
 **需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
 
@@ -1310,7 +1495,7 @@ unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void;
 
 | 参数名      | 类型                  | 必填   | 说明             |
 | -------- | ------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;void&gt; | 是    | 解除监听是否成功的异步回调函数 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，返回是否成功解除监听。 |
 
 **错误码**：
 
@@ -1338,206 +1523,9 @@ usageStatistics.unregisterAppGroupCallBack((err: BusinessError) => {
 });
 ```
 
-## usageStatistics.queryDeviceEventStats
-
-queryDeviceEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
-
-通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，使用Promise形式返回。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间，以毫秒为单位。 |
-| end   | number | 是    | 结束时间，以毫秒为单位。 |
-
-**返回值**：
-
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
-
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10000007   | Failed to get the system time.     |
-
-**示例**：
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
-  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
-  console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
-}).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-```
-
-## usageStatistics.queryDeviceEventStats
-
-queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
-
-通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，使用Callback形式返回。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
-| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
-
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.           |
-| 10000007   | Failed to get the system time.     |
-
-**示例**：
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
-  if(err) {
-    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
-    console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
-  }
-});
-```
-
-## usageStatistics.queryNotificationEventStats
-
-queryNotificationEventStats(begin: number, end: number): Promise&lt;Array&lt;DeviceEventStats&gt;&gt;
-
-通过指定起始和结束时间查询所有应用的通知次数信息，使用Promise形式返回。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名   | 类型     | 必填   | 说明    |
-| ----- | ------ | ---- | ----- |
-| begin | number | 是    | 起始时间，以毫秒为单位。 |
-| end   | number | 是    | 结束时间，以毫秒为单位。 |
-
-**返回值**：
-
-| 类型                                       | 说明                                       |
-| ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的通知次数信息。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
-
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10000007   | Failed to get the system time.     |
-
-**示例**：
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
-  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
-  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
-}).catch((err: BusinessError) => {
-  console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
-});
-```
-
-## usageStatistics.queryNotificationEventStats
-
-queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void
-
-通过指定起始和结束时间查询所有应用的通知次数信息，使用Callback形式返回。
-
-**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
-
-**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名      | 类型                                       | 必填   | 说明                                       |
-| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| begin    | number                                   | 是    | 起始时间，以毫秒为单位。                                    |
-| end      | number                                   | 是    | 结束时间，以毫秒为单位。                                    |
-| callback | AsyncCallback&lt;Array&lt;[DeviceEventStats](#deviceeventstats)&gt;&gt; | 是    | 指定的callback回调方法。返回通过指定起始和结束时间查询所有应用的通知次数信息。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[设备信息使用统计错误码](../errorcodes/errorcode-DeviceUsageStatistics.md)。
-
-| 错误码ID        | 错误信息                          |
-| ---------- | ----------------------------          |
-| 10000001   | Memory operation failed.              |
-| 10000002   | Parcel operation failed.              |
-| 10000003   | System service operation failed.      |
-| 10000004   | IPC failed.             |
-| 10000006   | Failed to get the application information.          |
-| 10000007   | Failed to get the system time.     |
-
-**示例**：
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
-  if(err) {
-    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
-  } else {
-    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
-    console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
-  }
-});
-```
-
 ## HapModuleInfo
-FA的使用信息的属性集合。
+
+FA模型的使用信息属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1545,8 +1533,8 @@ FA的使用信息的属性集合。
 
 | 名称                  | 类型                                       | 必填   | 说明                            |
 | -------------------- | ---------------------------------------- | ---- | ----------------------------- |
-| deviceId             | string                                   | 否    | FA所属deviceId。                 |
-| bundleName           | string                                   | 是    | FA所属应用Bundle名称。             |
+| deviceId             | string                                   | 否    | 设备Id。                 |
+| bundleName           | string                                   | 是    | 应用名称。             |
 | moduleName           | string                                   | 是    | FA所属module名。                  |
 | abilityName          | string                                   | 否    | FA的MainAbility名。              |
 | appLabelId           | number                                   | 否    | FA的应用labelId。                 |
@@ -1560,7 +1548,8 @@ FA的使用信息的属性集合。
 | formRecords          | Array&lt;[HapFormInfo](#hapforminfo)&gt; | 是    | FA中卡片的使用记录。                   |
 
 ## HapFormInfo
-FA卡片的使用信息的属性集合。
+
+FA卡片的使用信息属性集合。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1584,16 +1573,15 @@ FA卡片的使用信息的属性集合。
 
 | 名称           | 类型   | 必填 | 说明             |
 | ---------------- | ------ | ---- | ---------------- |
-| appOldGroup | number | 是   | 变化前的应用分组 |
-| appNewGroup | number | 是   | 变化后的应用分组 |
-| userId           | number | 是   | 用户id           |
-| changeReason     | number | 是   | 分组变化原因     |
-| bundleName       | string | 是   | 应用名称         |
+| appOldGroup | number | 是   | 变化前的应用分组。 |
+| appNewGroup | number | 是   | 变化后的应用分组。|
+| userId           | number | 是   | 用户id。           |
+| changeReason     | number | 是   | 分组变化原因。<br>- 256:使用记录初创建时，默认匹配的原因。<br>- 512:计算优先级分组时异常。<br>- 768:使用时长变化。  <br>- 1024:有其他应用为当前应用强制设置优先级分组。|
+| bundleName       | string | 是   | 应用名称。         |
 
 ## BundleStatsInfo
 
-提供应用使用时长的具体信息。
-
+应用使用时长的具体信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1614,7 +1602,7 @@ FA卡片的使用信息的属性集合。
 
 ## BundleEvents
 
-提供应用事件的具体信息。
+应用事件的具体信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1631,15 +1619,15 @@ FA卡片的使用信息的属性集合。
 
 ## BundleStatsMap
 
-提供应用使用时长的具体信息。
+应用使用时长的具体信息。
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
 **系统API**：此接口为系统接口。
 
-|名称                           | 类型                                       | 必填   | 说明             |
-| ------------------------------ | ---------------------------------------- | ---- | -------------- |
-| [key: string] | [BundleStatsInfo](#bundlestatsinfo) | 是    | 不同应用的使用时长统计信息。 |
+|名称                           | 描述                                       |
+| ------------------------------ | ---------------------------------------- |
+| Record<string, [BundleStatsInfo](#bundlestatsinfo)> | 不同应用的使用时长统计信息 |
 
 ## DeviceEventStats
 
@@ -1657,7 +1645,7 @@ FA卡片的使用信息的属性集合。
 
 ## IntervalType
 
-提供应用使用时长的查询类型。
+应用使用时长的查询类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
 
@@ -1673,7 +1661,7 @@ FA卡片的使用信息的属性集合。
 
 ## GroupType
 
-提供应用分组的设置类型。
+应用分组的设置类型。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 

@@ -263,6 +263,8 @@ struct Index {
 
 Obtain the media asset using [FetchResult](../reference/apis/js-apis-photoAccessHelper.md#fetchresult), set the **PhotoAsset.displayName** attribute to modify the file name (including the file name extension) displayed, and use [PhotoAsset.commitModify](../reference/apis/js-apis-photoAccessHelper.md#commitmodify-1) to save the modification to the database.
 
+
+
 **Prerequisites**
 
 - A **PhotoAccessHelper** instance is obtained.
@@ -275,7 +277,7 @@ Example: Rename the first image in the obtained image assets.
 1. Set the fetch options.
 2. Call [PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-1) to obtain image assets.
 3. Call [FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1) to obtain the first image from the obtained file assets.
-4. Call **PhotoAsset.set** to rename the image.
+4. Call [PhotoAsset.set](../reference/apis/js-apis-photoAccessHelper.md#set) to rename the image.
 5. Call **PhotoAsset.commitModify** to save the modification to the database.
 
 ```ts

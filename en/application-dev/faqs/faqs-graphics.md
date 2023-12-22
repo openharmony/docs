@@ -1,12 +1,11 @@
 # Graphics Development
 
-## How do I obtain the DPI of a device?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model)
+## How do I obtain the DPI of a device? (API version 9)
 
 **Solution**
 
-Import the **@ohos.display** module and call the **getDefaultDisplaySync\(\)** API.
+Import the **\@ohos.display** module and call the **getDefaultDisplaySync()** API.
 
 **Example**
 
@@ -21,13 +20,12 @@ try {
 }
 ```
 
-## How do I obtain the window width and height?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model) 
+## How do I obtain the window width and height? (API version 9)
 
 **Solution**
 
-Import the **@ohos.window** module, obtain a **Window** object, and use **getWindowProperties\(\)** of the object to obtain the window properties. The **windowRect** field in the properties specifies the window width and height.
+Import the **\@ohos.window** module, obtain a **Window** object, and use **getWindowProperties()** of the object to obtain the window properties. The **windowRect** field in the properties specifies the window width and height.
 
 **Example**
 
@@ -55,13 +53,12 @@ try {
 }
 ```
 
-## How do I perform Gaussian blurring on images?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I perform Gaussian blurring on images? (API version 9)
 
 **Solution**
 
-Import the **@ohos.multimedia.image** and **@ohos.effectKit** modules to process the image and add the blur effect.
+Import the **\@ohos.multimedia.image** and **\@ohos.effectKit** modules to process the image and add the blur effect.
 
 **Example**
 
@@ -80,6 +77,6 @@ import effectKit from "@ohos.effectKit";
   })
 ```
 
-**Reference**
+**References**
 
 [blur](../reference/apis/js-apis-effectKit.md#blur)

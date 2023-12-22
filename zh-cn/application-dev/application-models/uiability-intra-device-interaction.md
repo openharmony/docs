@@ -26,7 +26,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 当一个应用内包含多个UIAbility时，存在应用内启动UIAbility的场景。例如在支付应用中从入口UIAbility启动收付款UIAbility。
 
-假设应用中有两个UIAbility：EntryAbility和FuncAbility（可以在应用的一个Module中，也可以在的不同Module中），需要从EntryAbility的页面中启动FuncAbility。
+假设应用中有两个UIAbility：EntryAbility和FuncAbility（可以在同一个Module中，也可以在不同的Module中），需要从EntryAbility的页面中启动FuncAbility。
 
 1. 在EntryAbility中，通过调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动UIAbility，[want](../reference/apis/js-apis-app-ability-want.md)为UIAbility实例启动的入口参数，其中bundleName为待启动应用的Bundle名称，abilityName为待启动的Ability名称，moduleName在待启动的UIAbility属于不同的Module时添加，parameters为自定义信息参数。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
@@ -34,23 +34,27 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import common from '@ohos.app.ability.common';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
-
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
-   let want: Want = {
+   import hilog from '@ohos.hilog';
+   
+   const TAG: string = '[EntryAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+   let wantInfo: Want = {
      deviceId: '', // deviceId为空表示本设备
-     bundleName: 'com.example.myapplication',
-     moduleName: 'func', // moduleName非必选
-     abilityName: 'FuncAbility',
+     bundleName: 'com.samples.myapplication',
+     moduleName: 'entry', // moduleName非必选
+     abilityName: 'FuncAbilityA',
      parameters: { // 自定义信息
-       info: '来自EntryAbility Index页面',
+       info: '来自EntryAbility Page_UIAbilityComponentsInteractive页面'
      },
    }
    // context为调用方UIAbility的UIAbilityContext
-   context.startAbility(want).then(() => {
-     console.info('Succeeded in starting ability.');
-   }).catch((err: BusinessError) => {
-     console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-   })
+   this.context.startAbility(wantInfo).then(() => {
+       hilog.info(DOMAIN_NUMBER, TAG, 'startAbility success.');
+   }).catch((error: BusinessError) => {
+       hilog.error(DOMAIN_NUMBER, TAG, 'startAbility failed.');
+   });
    ```
 
 2. 在FuncAbility的[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)或者[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)生命周期回调文件中接收EntryAbility传递过来的参数。
@@ -61,7 +65,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import Want from '@ohos.app.ability.Want';
 
    export default class FuncAbility extends UIAbility {
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        // 接收调用方UIAbility传过来的参数
        let funcAbilityWant = want;
        let info = funcAbilityWant?.parameters?.info;
@@ -78,13 +82,17 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
    ```ts
    import common from '@ohos.app.ability.common';
-
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
-
+   import hilog from '@ohos.hilog';
+   
+   const TAG: string = '[EntryAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+   
    // context为需要停止的UIAbility实例的AbilityContext
    context.terminateSelf((err) => {
      if (err.code) {
-       console.error(`Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
        return;
      }
    });
@@ -94,7 +102,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    >
    > 调用[`terminateSelf()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)方法停止当前UIAbility实例时，默认会保留该实例的快照（Snapshot），即在最近任务列表中仍然能查看到该实例对应的任务。如不需要保留该实例的快照，可以在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，将[abilities标签](../quick-start/module-configuration-file.md#abilities标签)的removeMissionAfterTerminate字段配置为true。
 
-4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[`killProcessBySelf()`](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses9)方法实现关闭应用所有的进程。
+4. 如需要关闭应用所有的UIAbility实例，可以调用[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md)的[`killAllProcesses()`](../reference/apis/js-apis-inner-application-applicationContext.md#applicationcontextkillallprocesses)方法实现关闭应用所有的进程。
 
 
 ## 启动应用内的UIAbility并获取返回结果
@@ -105,24 +113,28 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
-
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
+   
+   const TAG: string = '[EntryAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    let want: Want = {
-     deviceId: '', // deviceId为空表示本设备
-     bundleName: 'com.example.myapplication',
-     moduleName: 'func', // moduleName非必选
-     abilityName: 'FuncAbility',
-     parameters: { // 自定义信息
-       info: '来自EntryAbility Index页面',
-     },
-   }
+       deviceId: '', // deviceId为空表示本设备
+       bundleName: 'com.samples.stagemodelabilitydevelop',
+       moduleName: 'entry', // moduleName非必选
+       abilityName: 'FuncAbilityA',
+       parameters: { // 自定义信息
+           info: '来自EntryAbility UIAbilityComponentsInteractive页面'
+       }
+   };
    // context为调用方UIAbility的UIAbilityContext
    context.startAbilityForResult(want).then((data) => {
      // ...
    }).catch((err: BusinessError) => {
-     console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+     hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
@@ -130,27 +142,30 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
    ```ts
    import common from '@ohos.app.ability.common';
-   import Want from '@ohos.app.ability.Want';
-
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
+   import hilog from '@ohos.hilog';
+   
+   const TAG: string = '[EntryAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    const RESULT_CODE: number = 1001;
    let abilityResult: common.AbilityResult = {
      resultCode: RESULT_CODE,
-     want: {
-       bundleName: 'com.example.myapplication',
-       moduleName: 'func', // moduleName非必选
-       abilityName: 'FuncAbility',
-       parameters: {
-         info: '来自FuncAbility Index页面',
+       want: {
+           bundleName: 'com.samples.stagemodelabilitydevelop',
+           moduleName: 'entry', // moduleName非必选
+           abilityName: 'FuncAbilityB',
+           parameters: {
+               info: '来自FuncAbility Index页面'
+           },
        },
-     },
-   }
+   };
    // context为被调用方UIAbility的AbilityContext
    context.terminateSelfWithResult(abilityResult, (err) => {
-     if (err.code) {
-       console.error(`Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
-       return;
-     }
+       if (err.code) {
+           hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
+           return;
+       }
    });
    ```
 
@@ -158,30 +173,43 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
-
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
+   
+   const TAG: string = '[Page_UIAbilityComponentsInteractive]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    const RESULT_CODE: number = 1001;
-
+   
    let want: Want = {
-     deviceId: '', // deviceId为空表示本设备
-     bundleName: 'com.example.myapplication',
-     moduleName: 'func', // moduleName非必选
-     abilityName: 'FuncAbility',
-   }
-
-   // context为调用方UIAbility的UIAbilityContext
+       deviceId: '', // deviceId为空表示本设备
+       bundleName: 'com.samples.stagemodelabilitydevelop',
+       moduleName: 'entry', // moduleName非必选
+       abilityName: 'FuncAbilityA',
+       parameters: { // 自定义信息
+           info: '来自EntryAbility UIAbilityComponentsInteractive页面'
+       }
+   };
    context.startAbilityForResult(want).then((data) => {
-     if (data?.resultCode === RESULT_CODE) {
-       // 解析被调用方UIAbility返回的信息
-       let info = data.want?.parameters?.info;
-       // ...
-     }
+       if (data?.resultCode === RESULT_CODE) {
+           // 解析被调用方UIAbility返回的信息
+           let info = data.want?.parameters?.info;
+           hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(info) ?? '');
+       if (info !== null) {
+           promptAction.showToast({
+               message : JSON.stringify(info)
+           });
+       }
+   }
+   hilog.info(DOMAIN_NUMBER, TAG, JSON.stringify(data.resultCode) ?? '');
    }).catch((err: BusinessError) => {
-     console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
-   })
+   hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+   });
+   
    ```
+
 
 
 ## 启动其他应用的UIAbility
@@ -198,7 +226,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 1. 将多个待匹配的文档应用安装到设备，在其对应UIAbility的[module.json5配置文件](../quick-start/module-configuration-file.md)中，配置skills标签的entities字段和actions字段。
 
-   ```json
+  ```json
    {
      "module": {
        "abilities": [
@@ -228,8 +256,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import common from '@ohos.app.ability.common';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
-
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
+   import hilog from '@ohos.hilog';
+   
+   const TAG: string = '[EntryAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      // uncomment line below if wish to implicitly query only in the specific bundle.
@@ -238,12 +270,13 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
      // entities can be omitted.
      entities: ['entity.system.default'],
    }
-
+   
    // context为调用方UIAbility的UIAbilityContext
    context.startAbility(want).then(() => {
-     console.info('Succeeded in starting ability.');
-   }).catch((err: BusinessError) => {
-     console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+       hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting FuncAbility.');
+     }).catch((err: BusinessError) => {
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to start FuncAbility. Code is ${err.code}, message is ${err.message}`);
+     });
    })
    ```
 
@@ -254,17 +287,22 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
    ```ts
    import common from '@ohos.app.ability.common';
-
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
-
+   import hilog from '@ohos.hilog';
+   
+   const TAG: string = '[EntryAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+   
    // context为需要停止的UIAbility实例的AbilityContext
    context.terminateSelf((err) => {
-     if (err.code) {
-       console.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
-       return;
-     }
+       if (err.code) {
+           hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
+           return;
+       }
    });
    ```
+
 
 
 ## 启动其他应用的UIAbility并获取返回结果
@@ -303,8 +341,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import common from '@ohos.app.ability.common';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
-
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
+   import hilog from '@ohos.hilog';
+   
+   const TAG: string = '[EntryAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
    let want:Want = {
      deviceId: '', // deviceId为空表示本设备
      // uncomment line below if wish to implicitly query only in the specific bundle.
@@ -313,12 +355,12 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
      // entities can be omitted.
      entities: ['entity.system.default']
    }
-
+   
    // context为调用方UIAbility的UIAbilityContext
    context.startAbilityForResult(want).then((data) => {
      // ...
    }).catch((err: BusinessError) => {
-     console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+     hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
@@ -326,27 +368,32 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
-
-   let context: common.UIAbilityContext = this.context; // UIAbilityContext
+   
+   const TAG: string = '[FuncAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   let context: common.UIAbilityContext = this.context;
    const RESULT_CODE: number = 1001;
+   // context为目标端UIAbility的AbilityContext
    let abilityResult: common.AbilityResult = {
-     resultCode: RESULT_CODE,
-     want: {
-       bundleName: 'com.example.funcapplication',
-       moduleName: 'entry', // moduleName非必选
-       abilityName: 'EntryAbility',
-       parameters: {
-         payResult: 'OKay',
-       },
-     },
-   }
+       resultCode: RESULT_CODE,
+       want: {
+           bundleName: 'com.samples.stagemodelabilitydevelop',
+           moduleName: 'entry', // moduleName非必选
+           abilityName: 'CollaborateAbility',
+           parameters: {
+               info: 'OKay'
+           }
+       }
+   };
    // context为被调用方UIAbility的AbilityContext
    context.terminateSelfWithResult(abilityResult, (err) => {
-     if (err.code) {
-       console.error(`Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
-       return;
-     }
+       if (err.code) {
+           hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
+           return;
+       }
    });
    ```
 
@@ -354,25 +401,29 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
    ```ts
    import common from '@ohos.app.ability.common';
+   import hilog from '@ohos.hilog';
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base';
-
+   
+   const TAG: string = '[FuncAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
    let context: common.UIAbilityContext = this.context; // UIAbilityContext
    const RESULT_CODE: number = 1001;
 
    let want: Want = {
      // Want参数信息
    };
-
+   
    // context为调用方UIAbility的UIAbilityContext
    context.startAbilityForResult(want).then((data) => {
      if (data?.resultCode === RESULT_CODE) {
        // 解析被调用方UIAbility返回的信息
-       let payResult = data.want?.parameters?.payResult;
+       let info = data.want?.parameters?.info;
        // ...
      }
    }).catch((err: BusinessError) => {
-     console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
+     hilog.error(DOMAIN_NUMBER, TAG, `Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
@@ -397,35 +448,40 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
 
 1. 在调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法时，增加[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数。
 2. 在[StartOptions](../reference/apis/js-apis-app-ability-startOptions.md)参数中设置`windowMode`字段为`WINDOW_MODE_FLOATING`，表示启动的UIAbility将以悬浮窗的形式展示。
+3. `windowMode`属性仅适用于系统应用，三方应用可以使用`displayId`属性。
 
 示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
+import hilog from '@ohos.hilog';
 import StartOptions from '@ohos.app.ability.StartOptions';
+import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let context: common.UIAbilityContext = this.context; // UIAbilityContext
+const TAG: string = '[FuncAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 let want: Want = {
-  deviceId: '', // deviceId为空表示本设备
-  bundleName: 'com.example.myapplication',
-  moduleName: 'func', // moduleName非必选
-  abilityName: 'FuncAbility',
-  parameters: { // 自定义信息
-    info: '来自EntryAbility Index页面',
-  },
-}
+    deviceId: '', // deviceId为空表示本设备
+    bundleName: 'com.samples.stagemodelabilitydevelop',
+    moduleName: 'entry', // moduleName非必选
+    abilityName: 'FuncAbilityB',
+    parameters: { // 自定义信息
+        info: '来自EntryAbility Index页面'
+    }
+};
 let options: StartOptions = {
-  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+    windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
 };
 // context为调用方UIAbility的UIAbilityContext
 context.startAbility(want, options).then(() => {
-  console.info('Succeeded in starting ability.');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
-})
+    hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
 效果示意如下图所示。
@@ -452,24 +508,29 @@ UIAbility的启动分为两种情况：UIAbility冷启动和UIAbility热启动�
 
 ```ts
 import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 
-let context: common.UIAbilityContext = this.context; // UIAbilityContext
+const TAG: string = '[FuncAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
 let want: Want = {
-  deviceId: '', // deviceId为空表示本设备
-  bundleName: 'com.example.funcapplication',
-  moduleName: 'entry', // moduleName非必选
-  abilityName: 'EntryAbility',
-  parameters: { // 自定义参数传递页面信息
-    router: 'funcA',
-  },
-}
+    deviceId: '', // deviceId为空表示本设备
+    bundleName: 'com.samples.stagemodelabilityinteraction',
+    moduleName: 'entry', // moduleName非必选
+    abilityName: 'FuncAbility',
+    parameters: { // 自定义参数传递页面信息
+        router: 'FuncA'
+    }
+};
 // context为调用方UIAbility的UIAbilityContext
 context.startAbility(want).then(() => {
-  console.info('Succeeded in starting ability.');
+    hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ability.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+    hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+  });
 })
 ```
 
@@ -488,7 +549,7 @@ import window from '@ohos.window';
 export default class FuncAbility extends UIAbility {
   funcAbilityWant: Want | undefined = undefined;
 
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 接收调用方UIAbility传过来的参数
     this.funcAbilityWant = want;
   }
@@ -497,7 +558,7 @@ export default class FuncAbility extends UIAbility {
     // Main window is created, set main page for this ability
     let url = 'pages/Index';
     if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'funcA') {
-      url = 'pages/Second';
+      url = 'pages/Page_ColdStartUp';
     }
     windowStage.loadContent(url, (err, data) => {
       // ...
@@ -527,34 +588,38 @@ export default class FuncAbility extends UIAbility {
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import hilog from '@ohos.hilog';
    import UIAbility from '@ohos.app.ability.UIAbility';
    import Want from '@ohos.app.ability.Want';
    import window from '@ohos.window';
-
+   
    import { Router, UIContext } from '@ohos.arkui.UIContext';
-
+   
+   const DOMAIN_NUMBER: number = 0xFF00;
+   const TAG: string = '[EntryAbility]';
+   
    export default class EntryAbility extends UIAbility {
      funcAbilityWant: Want | undefined = undefined;
      uiContext: UIContext | undefined = undefined;
-
+   
      // ...
-
-     onWindowStageCreate(windowStage: window.WindowStage) {
+   
+     onWindowStageCreate(windowStage: window.WindowStage): void {
        // Main window is created, set main page for this ability
        let url = 'pages/Index';
        if (this.funcAbilityWant?.parameters?.router && this.funcAbilityWant.parameters.router === 'funcA') {
-         url = 'pages/Second';
+         url = 'pages/Page_ColdStartUp';
        }
-
+   
        windowStage.loadContent(url, (err, data) => {
          if (err.code) {
            return;
          }
-
+   
          let windowClass: window.Window;
          windowStage.getMainWindow((err, data) => {
            if (err.code) {
-             console.error(`Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
+             hilog.error(DOMAIN_NUMBER, TAG, `Failed to obtain the main window. Code is ${err.code}, message is ${err.message}`);
              return;
            }
            windowClass = data;
@@ -569,29 +634,34 @@ export default class FuncAbility extends UIAbility {
 
    ```ts
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import hilog from '@ohos.hilog';
    import UIAbility from '@ohos.app.ability.UIAbility';
    import Want from '@ohos.app.ability.Want';
-   import { Router, UIContext } from '@ohos.arkui.UIContext';
-   import { BusinessError } from '@ohos.base';
+   import window from '@ohos.window';
 
+   import { Router, UIContext } from '@ohos.arkui.UIContext';
+   
+   const DOMAIN_NUMBER: number = 0xFF00;
+   const TAG: string = '[EntryAbility]';
+   
    export default class EntryAbility extends UIAbility {
      funcAbilityWant: Want | undefined = undefined;
      uiContext: UIContext | undefined = undefined;
-
-     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
-       if (want?.parameters?.router && want.parameters.router === 'funcA') {
-         let funcAUrl = 'pages/Second';
+   
+     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       if (want?.parameters?.router && want.parameters.router === 'funcB') {
+         let funcAUrl = 'pages/Page_HotStartUp';
          if (this.uiContext) {
            let router: Router = this.uiContext.getRouter();
            router.pushUrl({
              url: funcAUrl
            }).catch((err: BusinessError) => {
-             console.error(`Failed to push url. Code is ${err.code}, message is ${err.message}`);
-           })
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to push url. Code is ${err.code}, message is ${err.message}`);
+           });
          }
        }
      }
-
+   
      // ...
    }
    ```
@@ -609,7 +679,7 @@ Call调用的核心接口是`startAbilityByCall()`方法，与`startAbility()`�
 
 - startAbilityByCall支持前台与后台两种启动方式，而`startAbility()`仅支持前台启动。
 
-- 调用方可使用`startAbilityByCall()`所返回的Caller对象与被调用方进行通信，而`startAbilty()`不具备通信能力。
+- 调用方可使用`startAbilityByCall()`所返回的Caller对象与被调用方进行通信，而`startAbility()`不具备通信能力。
 
 Call调用的使用场景主要包括：
 
@@ -686,9 +756,9 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
 
    ```ts
-   import rpc from '@ohos.rpc';
+   import type rpc from '@ohos.rpc';
 
-   export default class MyParcelable {
+   class MyParcelable {
      num: number = 0;
      str: string = '';
 
@@ -697,18 +767,17 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
        this.str = string;
      }
 
-     marshalling(messageSequence: rpc.MessageSequence) {
+     mySequenceable(num, string): void {
+       this.num = num;
+       this.str = string;
+     }
+
+     marshalling(messageSequence: rpc.MessageSequence): boolean {
        messageSequence.writeInt(this.num);
        messageSequence.writeString(this.str);
        return true;
-     }
-
-     unmarshalling(messageSequence: rpc.MessageSequence) {
-       this.num = messageSequence.readInt();
-       this.str = messageSequence.readString();
-       return true;
-     }
-   }
+     };
+   };
    ```
 
 4. 实现Callee.on监听及Callee.off解除监听。
@@ -717,23 +786,26 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
 
 
    ```ts
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import Want from '@ohos.app.ability.Want';
-   import rpc from '@ohos.rpc';
-   import { BusinessError } from '@ohos.base';
-   import MyParcelable from './MyParcelable';
+   import type Want from '@ohos.app.ability.Want';
+   import hilog from '@ohos.hilog';
+   import Logger from '../utils/Logger';
+   import type rpc from '@ohos.rpc';
+   import type window from '@ohos.window';
+   import type { Caller } from '@ohos.app.ability.UIAbility';
 
    const TAG: string = '[CalleeAbility]';
    const MSG_SEND_METHOD: string = 'CallSendMsg';
+   const DOMAIN_NUMBER: number = 0xFF00;
 
-   function sendMsgCallback(data: rpc.MessageSequence) {
-     console.info('CalleeSortFunc called');
+   function sendMsgCallback(data: rpc.MessageSequence): rpc.Parcelable {
+     hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'CalleeSortFunc called');
 
      // 获取Caller发送的序列化数据
      let receivedData: MyParcelable = new MyParcelable(0, '');
      data.readParcelable(receivedData);
-     console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
+     hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `receiveData[${receivedData.num}, ${receivedData.str}]`);
      let num: number = receivedData.num;
 
      // 作相应处理
@@ -742,24 +814,22 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
    }
 
    export default class CalleeAbility extends UIAbility {
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        try {
          this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-       } catch (err) {
-         let code = (err as BusinessError).code;
-         let message = (err as BusinessError).message;
-         console.error(`Failed to register. Code is ${code}, message is ${message}`);
-       }
+       } catch (error) {
+         hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
+       };
      }
 
-     onDestroy() {
+     onDestroy(): void {
        try {
          this.callee.off(MSG_SEND_METHOD);
-       } catch (err) {
-         let code = (err as BusinessError).code;
-         let message = (err as BusinessError).message;
-         console.error(`Failed to unregister. Code is ${code}, message is ${message}`);
-       }
+         hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Callee OnDestroy');
+         this.releaseCall();
+       } catch (error) {
+         hilog.error(DOMAIN_NUMBER, TAG, '%{public}s', `Failed to register. Error is ${error}`);
+       };
      }
    }
    ```
@@ -786,37 +856,45 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
      caller: Caller | undefined = undefined;
 
      // 注册caller的release监听
-     private regOnRelease(caller: Caller) {
+     private regOnRelease(caller: Caller): void {
+       hilog.info(DOMAIN_NUMBER, TAG, `caller is ${caller}`);
        try {
          caller.on('release', (msg: string) => {
-           console.info(`caller onRelease is called ${msg}`);
+           hilog.info(DOMAIN_NUMBER, TAG, `caller onRelease is called ${msg}`);
          })
-         console.info('Succeeded in registering on release.');
+         hilog.info(DOMAIN_NUMBER, TAG, 'succeeded in registering on release.');
        } catch (err) {
          let code = (err as BusinessError).code;
          let message = (err as BusinessError).message;
-         console.error(`Failed to caller register on release. Code is ${code}, message is ${message}`);
-       }
+         hilog.error(DOMAIN_NUMBER, TAG, `Failed to caller register on release. Code is ${code}, message is ${message}`);
+       };
      }
 
-     async onButtonGetCaller() {
-       try {
-         this.caller = await this.context.startAbilityByCall({
-           bundleName: 'com.samples.CallApplication',
-           abilityName: 'CalleeAbility'
-         });
-         if (this.caller === undefined) {
-           console.info('get caller failed')
-           return;
-         }
-         console.info('get caller success')
-         this.regOnRelease(this.caller)
-       } catch (err) {
-         let code = (err as BusinessError).code;
-         let message = (err as BusinessError).message;
-         console.error(`Failed to get caller. Code is ${code}, message is ${message}`);
+     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+     let want: Want = {
+       bundleName: 'com.samples.stagemodelabilityinteraction',
+       abilityName: 'CalleeAbility',
+       parameters: { // 自定义信息
+         info: 'CallSendMsg'
        }
-     }
+     };
+
+     context.startAbilityByCall(want).then((caller: Caller) => {
+       hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in starting ability.Code is ${caller}`);
+       if (caller === undefined) {
+         hilog.info(DOMAIN_NUMBER, TAG, 'get caller failed');
+         return;
+       }
+       else {
+         hilog.info(DOMAIN_NUMBER, TAG, 'get caller success');
+         this.regOnRelease(caller);
+         promptAction.showToast({
+           message: $r('app.string.CallerSuccess')
+         });
+       }
+     }).catch((err: BusinessError) => {
+       hilog.error(DOMAIN_NUMBER, TAG, `Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+     });
    }
    ```
 

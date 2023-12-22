@@ -1,7 +1,7 @@
 # \@Prop Decorator: One-Way Synchronization from Parent to Child Components
 
 
-An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. \@Prop decorated variables are mutable, but changes are not synchronized to the parent component.
+An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. This means that, such a variable is mutable, and its changes will not be synchronized to the parent component.
 
 
 > **NOTE**
@@ -15,7 +15,15 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
 
 - An @Prop variable is allowed to be modified locally, but the change does not propagate back to its parent component.
 
-- Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the value is synchronized from the parent component to the (owning) child component, but not from the other way around.
+- Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten. In other words, the value is synchronized from the parent component to the (owning) child component, but not the other way around.
+
+
+
+## Restrictions
+
+- When decorating variables of complex types, @Prop makes a deep copy, during which all types, except primitive types, Map, Set, Date, and Array, will be lost.
+
+- The \@Prop decorator cannot be used in custom components decorated by \@Entry.
 
 
 ## Rules of Use
@@ -24,7 +32,7 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
 | ----------- | ---------------------------------------- |
 | Decorator parameters      | None.                                       |
 | Synchronization type       | One-way: from the data source provided by the parent component to the @Prop decorated variable. For details about the scenarios of nested types, see [Observed Changes](#observed-changes).|
-| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>Union type of the preceding types, for example, string \| number, string \| undefined, or ClassA \| null. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Prop a: string \| undefined = undefined** is recommended; **@Prop a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>The type must be specified.<br>**NOTE**<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from an \@State or other decorated variable. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an \@State or other decorated array. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state attribute of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Attribute in Parent Component](#class-object-type-prop-synced-from-state-class-object-attribute-in-parent-component). |
+| Allowed variable types  | Object, class, string, number, Boolean, enum, and array of these types.<br>**undefined** or **null** (**any** is not supported).<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Prop](#union-type-prop).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @Prop a: string \| undefined = undefined is recommended; **@Prop a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>The type must be specified.<br>**NOTE**<br>The type must be the same as that of the [data source](arkts-state-management-overview.md#basic-concepts). There are three cases:<br>- Synchronizing the \@Prop decorated variable from an \@State or other decorated variable. Example: [Simple Type @Prop Synced from @State in Parent Component](#simple-type-prop-synced-from-state-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from the item of an \@State or other decorated array. Example: [Simple Type @Prop Synced from @State Array Item in Parent Component](#simple-type-prop-synced-from-state-array-item-in-parent-component).<br>- Synchronizing the \@Prop decorated variable from a state property of the Object or class type in the parent component. Example: [Class Object Type @Prop Synced from @State Class Object Property in Parent Component](#class-object-type-prop-synced-from-state-class-object-property-in-parent-component).|
 | Number of nested layers       | In component reuse scenarios, it is recommended that @Prop be nested with no more than five layers of data. If @Prop is nested with too many layers of data, garbage collection and increased memory usage caused by deep copy will follow, resulting in performance issues. To avoid such issues, use [\@ObjectLink](arkts-observed-and-objectlink.md) instead. If you do not want to synchronize the data of a child component to the parent component, consider using **aboutToReuse** in @Reusable to pass data from the parent component to the child component. For details, see [Component Reuse](arkts-state-management-best-practices.md)|
 | Initial value for the decorated variable  | Local initialization is allowed.                                |
 
@@ -64,7 +72,7 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
   this.title = new Model('Hi');
   ```
 
-When the decorated variable is of the Object or class type, the value changes of attributes at the first layer can be observed, that is, the attributes that **Object.keys(observedObject)** returns.
+When the decorated variable is of the Object or class type, the value changes of properties at the first layer can be observed, that is, the properties that **Object.keys(observedObject)** returns.
 
 ```
 class ClassA {
@@ -89,7 +97,7 @@ this.title.value = 'Hi'
 this.title.a.value = 'ArkUi' 
 ```
 
-In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class attribute can be observed. For the example, see [@Prop Nesting Scenario](#@prop-nesting-scenario).
+In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class property can be observed. For details, see [@Prop Nesting Scenario](#prop-nesting-scenario).
 
 When the decorated variable is of the array type, the value assignment, addition, deletion, and updates of array items can be observed.
 
@@ -113,7 +121,7 @@ For synchronization between \@State and \@Prop decorated variables:
 - In addition to \@State, the source can also be decorated with \@Link or \@Prop, where the mechanisms for syncing the \@Prop would be the same.
 - The source and \@Prop decorated variable must be of the same type. The \@Prop decorated variable can be of simple and class types.
 
-- When the decorated variable is of the Date type, the overall value assignment of the Date object can be observed, and the following APIs can be called to update Date attributes: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
+- When the decorated variable is of the Date type, the overall value assignment of the **Date** object can be observed, and the following APIs can be called to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
 
 ```ts
 @Component
@@ -309,7 +317,7 @@ struct Index {
 Initial render creates six instances of the **Child** component. Each \@Prop decorated variable is initialized with a copy of an array item. The **onclick** event handler of the **Child** component changes the local variable value.
 
 
-Assume that we clicked so many times that all local values be '7'.
+Click **1**, **2**, and **3** so that all local values change to **'7'**.
 
 
 
@@ -346,10 +354,10 @@ After **replace entire arr** is clicked, the following information is displayed:
 - Because **this.arr[0]** has been changed, the **Child({value: this.arr[0]})** component synchronizes the update of **this.arr[0]** to the instance's \@Prop decorated variable. The same happens for **Child({value: this.arr[1]})** and **Child({value: this.arr[2]})**.
 
 
-- The change of **this.arr** causes **ForEach** to update: The array item with the ID **3** is retained in this update, array items with IDs **1** and **2** are deleted, and array items with IDs **4** and **5** are added. The array before and after the update is **[1, 2, 3]** and **[3, 4, 5]**, respectively. This implies that the **Child** instance generated for item **3** will be moved to the first place, but not updated. In this case, the component value corresponding to **3** is **7**, and the final render result of **ForEach** is **7**, **4**, and **5**.
+- The change of **this.arr** causes **ForEach** to update: According to the diff algorithm, the array item with the ID **3** is retained in this update, array items with IDs **1** and **2** are deleted, and array items with IDs **4** and **5** are added. The array before and after the update is **[1, 2, 3]** and **[3, 4, 5]**, respectively. This implies that the **Child** instance generated for item **3** will be moved to the first place, but not updated. In this case, the component value corresponding to **3** is **7**, and the final render result of **ForEach** is **7**, **4**, and **5**.
 
 
-### Class Object Type @Prop Synced from @State Class Object Attribute in Parent Component
+### Class Object Type @Prop Synced from @State Class Object Property in Parent Component
 
 In a library with one book and two users, each user can mark the book as read, and the marking does not affect the other user reader. Technically speaking, local changes to the \@Prop decorated **book** object do not sync back to the @State decorated **book** in the **Library** component.
 
@@ -398,7 +406,7 @@ struct Library {
 
 ### Class Type @Prop Synced from @State Array Item in Parent Component
 
-In the following example, an attribute of the **Book** object in the \@State decorated **allBooks** array is changed, but the system does not respond when **Mark read for everyone** is clicked. This is because the attribute is a nested attribute of the second layer, and the \@State decorator can observe only the attribute of the first layer. Therefore, the framework does not update **ReaderComp**.
+In the following example, a property of the **Book** object in the \@State decorated **allBooks** array is changed, but the system does not respond when **Mark read for everyone** is clicked. This is because the property is nested at the second layer, and the \@State decorator can observe only properties at the first layer. Therefore, the framework does not update **ReaderComp**.
 
 ```ts
 let nextId: number = 1;
@@ -423,9 +431,9 @@ struct ReaderComp {
 
   build() {
     Row() {
-      Text(this.book.title)
-      Text(`...has${this.book.pages} pages!`)
-      Text(`...${this.book.readIt ? "I have read" : 'I have not read it'}`)
+      Text(this.book.title).fontColor('#e6000000')
+      Text(` has ${this.book.pages} pages!`).fontColor('#e6000000')
+      Text(` ${this.book.readIt ? "I have read" : 'I have not read it'}`).fontColor('#e6000000')
         .onClick(() => this.book.readIt = true)
     }
   }
@@ -434,27 +442,65 @@ struct ReaderComp {
 @Entry
 @Component
 struct Library {
-  @State allBooks: Book[] = [new Book("100 secrets of C++", 765), new Book("Effective C++", 651), new Book("The C++ programming language", 1765)];
+  @State allBooks: Book[] = [new Book("C#", 765), new Book("JS", 652), new Book("TS", 765)];
 
   build() {
     Column() {
       Text('library`s all time favorite')
+        .width(312)
+        .height(40)
+        .backgroundColor('#0d000000')
+        .borderRadius(20)
+        .margin(12)
+        .padding({ left: 20 })
+        .fontColor('#e6000000')
       ReaderComp({ book: this.allBooks[2] })
+        .backgroundColor('#0d000000')
+        .width(312)
+        .height(40)
+        .padding({ left: 20, top: 10 })
+        .borderRadius(20)
+        .colorBlend('#e6000000')
       Divider()
       Text('Books on loaan to a reader')
+        .width(312)
+        .height(40)
+        .backgroundColor('#0d000000')
+        .borderRadius(20)
+        .margin(12)
+        .padding({ left: 20 })
+        .fontColor('#e6000000')
       ForEach(this.allBooks, (book: Book) => {
         ReaderComp({ book: book })
+          .margin(12)
+          .width(312)
+          .height(40)
+          .padding({ left: 20, top: 10 })
+          .backgroundColor('#0d000000')
+          .borderRadius(20)
       },
         (book: Book) => book.id.toString())
       Button('Add new')
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
-          this.allBooks.push(new Book("The C++ Standard Library", 512));
+          this.allBooks.push(new Book("JA", 512));
         })
       Button('Remove first book')
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
           this.allBooks.shift();
         })
       Button("Mark read for everyone")
+        .width(312)
+        .height(40)
+        .margin(12)
+        .fontColor('#FFFFFF 90%')
         .onClick(() => {
           this.allBooks.forEach((book) => book.readIt = true)
         })
@@ -463,7 +509,7 @@ struct Library {
 }
 ```
 
- To observe the attribute of the **Book** object, you must use \@Observed to decorate the **Book** class. Note that the \@Prop decorated state variable in the child component is one-way synchronized from the data source of the parent component. This means that, the changes of the \@Prop decorated **book** in **ReaderComp** is not synchronized to the parent **library** component. The parent component triggers UI re-rendering only when the value is updated (compared with the last state).
+ To observe the property of the **Book** object, you must use \@Observed to decorate the **Book** class. Note that the \@Prop decorated state variable in the child component is one-way synchronized from the data source of the parent component. This means that, the changes of the \@Prop decorated **book** in **ReaderComp** is not synchronized to the parent **library** component. The parent component triggers UI re-rendering only when the value is updated (compared with the last state).
 
 ```ts
 @Observed
@@ -481,7 +527,9 @@ class Book {
 }
 ```
 
-All instances of the \@Observed decorated class are wrapped with an opaque proxy object. This proxy can detect all attribute changes inside the wrapped object. If any attribute change happens, the proxy notifies the \@Prop, and the \@Prop value will be updated.
+All instances of the \@Observed decorated class are wrapped with an opaque proxy object. This proxy can detect all property changes inside the wrapped object. If any property change happens, the proxy notifies the \@Prop, and the \@Prop value will be updated.
+
+![Video-prop-UsageScenario-one](figures/Video-prop-UsageScenario-one.gif)
 
 ### Simple Type @Prop with Local Initialization and No Sync from Parent Component
 
@@ -497,24 +545,28 @@ The following example includes two @Prop decorated variables in child component.
 ```ts
 @Component
 struct MyComponent {
-  @Prop customCounter: number = 0;
+  @Prop customCounter: number;
   @Prop customCounter2: number = 5;
 
   build() {
     Column() {
       Row() {
-        Text(`From Main: ${this.customCounter}`).width(90).height(40).fontColor('#FF0010')
+        Text(`From Main: ${this.customCounter}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
 
       Row() {
-        Button('Click to change locally !').width(180).height(60).margin({ top: 10 })
+        Button('Click to change locally !')
+          .width(288)
+          .height(40)
+          .margin({ left: 30, top: 12 })
+          .fontColor('#FFFFFF, 90%')
           .onClick(() => {
             this.customCounter2++
           })
-      }.height(100).width(180)
+      }
 
       Row() {
-        Text(`Custom Local: ${this.customCounter2}`).width(90).height(40).fontColor('#FF0010')
+        Text(`Custom Local: ${this.customCounter2}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
     }
   }
@@ -529,25 +581,31 @@ struct MainProgram {
     Column() {
       Row() {
         Column() {
-          Button('Click to change number').width(480).height(60).margin({ top: 10, bottom: 10 })
-            .onClick(() => {
-              this.mainCounter++
-            })
-        }
-      }
-
-      Row() {
-        Column() {
           // customCounter must be initialized from the parent component due to lack of local initialization. Here, customCounter2 does not need to be initialized.
           MyComponent({ customCounter: this.mainCounter })
           // customCounter2 of the child component can also be initialized from the parent component. The value from the parent component overwrites the locally assigned value of customCounter2 during initialization.
           MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
         }
       }
+
+      Row() {
+        Column() {
+          Button('Click to change number')
+            .width(288)
+            .height(40)
+            .margin({ left: 30, top: 12 })
+            .fontColor('#FFFFFF, 90%')
+            .onClick(() => {
+              this.mainCounter++
+            })
+        }
+      }
     }
   }
 }
 ```
+
+![Video-prop-UsageScenario-two](figures/Video-prop-UsageScenario-two.gif)
 
 ### \@Prop Nesting Scenario
 
@@ -586,12 +644,26 @@ struct Parent {
 
   build() {
     Column() {
-      Button('change')
-        .onClick(() => {
-          this.votes.name = "aaaaa"
-          this.votes.a.title = "wwwww"
-        })
-      Child({ vote: this.votes })
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+        Button('change ClassB name')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF, 90%')
+          .onClick(() => {
+            this.votes.name = "aaaaa"
+          })
+        Button('change ClassA title')
+          .width(312)
+          .height(40)
+          .margin(12)
+          .fontColor('#FFFFFF, 90%')
+          .onClick(() => {
+            this.votes.a.title = "wwwww"
+          })
+        Child({ vote: this.votes })
+      }
+
     }
 
   }
@@ -600,18 +672,34 @@ struct Parent {
 @Component
 struct Child {
   @Prop vote: ClassB = new ClassB('', new ClassA(''));
+
   build() {
     Column() {
 
-      Text(this.vote.name).fontSize(36).fontColor(Color.Red).margin(50)
+      Text(this.vote.name)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
+        .fontColor('#e6000000')
         .onClick(() => {
           this.vote.name = 'Bye'
         })
-      Text(this.vote.a.title).fontSize(36).fontColor(Color.Blue)
+      Text(this.vote.a.title)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
         .onClick(() => {
           this.vote.a.title = "openHarmony"
         })
-      Child1({vote1:this.vote.a})
+      Child1({ vote1: this.vote.a })
 
     }
   }
@@ -620,9 +708,17 @@ struct Child {
 @Component
 struct Child1 {
   @Prop vote1: ClassA = new ClassA('');
+
   build() {
     Column() {
-      Text(this.vote1.title).fontSize(36).fontColor(Color.Red).margin(50)
+      Text(this.vote1.title)
+        .fontSize(16)
+        .margin(12)
+        .width(312)
+        .height(40)
+        .backgroundColor('#ededed')
+        .borderRadius(20)
+        .textAlign(TextAlign.Center)
         .onClick(() => {
           this.vote1.title = 'Bye Bye'
         })
@@ -631,9 +727,11 @@ struct Child1 {
 }
 ```
 
+![Video-prop-UsageScenario-three](figures/Video-prop-UsageScenario-three.gif)
+
 ## Union Type @Prop 
 
-@Prop supports **undefined**, **null**, and union types. In the following example, the type of **count** is ClassA | undefined. If the attribute or type of **count** is changed when the button in the parent component **Library** is clicked, the change will be synced to the child component.
+@Prop supports **undefined**, **null**, and union types. In the following example, the type of **count** is ClassA | undefined. If the property or type of **count** is changed when the button in the parent component **Library** is clicked, the change will be synced to the child component.
 
 ```ts
 class Animals {
@@ -681,7 +779,7 @@ struct Library {
 
       Button('Parents change animals into dogs')
         .onClick(() => {
-          // Determine the animal type and update the attribute.
+          // Determine the animal type and update the property.
           if (this.animal instanceof Animals) {
             this.animal.name = "Dog"
           } else {
@@ -694,6 +792,113 @@ struct Library {
           // Assign the value undefined.
           this.animal = undefined
         })
+    }
+  }
+}
+```
+
+
+## FAQs
+
+### \@Prop Decorated State Variable Not Initialized
+
+The \@Prop decorated state variable must be initialized. If not initialized locally, it must be initialized from the parent component. If it has been initialized locally, initialization from the parent component is optional.
+
+[Nonexample]
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct PropChild {
+  @Prop testNum: ClassA; // The state variable is not initialized locally.
+
+  build() {
+    Text(`PropChild testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      // The @Prop state variable is not initialized locally, nor initialized from the parent component.
+      PropChild1()
+    }
+  }
+}
+```
+
+[Example]
+
+```ts
+@Observed
+class ClassA {
+  public c: number = 0;
+
+  constructor(c: number) {
+    this.c = c;
+  }
+}
+
+@Component
+struct PropChild1 {
+  @Prop testNum: ClassA; // The state variable is not initialized locally.
+
+  build() {
+    Text(`PropChild1 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+@Component
+struct PropChild2 {
+  @Prop testNum: ClassA = new ClassA(1); // The state variable is initialized locally.
+
+  build() {
+    Text(`PropChild2 testNum ${this.testNum.c}`)
+      .onClick(() => {
+        this.testNum.c += 1;
+      })
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State testNum: ClassA[] = [new ClassA(1)];
+
+  build() {
+    Column() {
+      Text(`Parent testNum ${this.testNum[0].c}`)
+        .onClick(() => {
+          this.testNum[0].c += 1;
+        })
+        
+      // @PropChild1 is not initialized locally and must be initialized from the parent component.
+      PropChild1({ testNum: this.testNum[0] })
+      // @PropChild2 is initialized locally. In this case, initialization from the parent component is optional.
+      PropChild2()
+      PropChild2({ testNum: this.testNum[0] })
     }
   }
 }

@@ -21,7 +21,7 @@ import backup from '@ohos.file.backup';
 
 | 名称       | 类型   | 必填 | 说明                                                                                           |
 | ---------- | ------ | ---- | ---------------------------------------------------------------------------------------------- |
-| bundleName | string | 是   | 应用名称，可通过[bundle.BundleInfo](js-apis-bundle-BundleInfo.md)提供的获取方式获取。          |
+| bundleName | string | 是   | 应用名称，可通过[bundleManager.BundleInfo](js-apis-bundleManager-bundleInfo.md)提供的获取方式获取。          |
 | uri        | string | 是   | 应用沙箱内待传输文件的名称，当前uri尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称 |
 
 ## FileData
@@ -85,6 +85,7 @@ onFileReady : AsyncCallback&lt;File&gt;
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+  
   onFileReady: (err: BusinessError, file: backup.File) => {
     if (err) {
       console.error('onFileReady failed with err: ' + JSON.stringify(err));
@@ -98,7 +99,7 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 onBundleBegin : AsyncCallback&lt;string&gt;
 
- 回调函数。当应用备份/恢复开始时返回bundle名称成功时触发回调，err为undefined，否则为错误对象。
+回调函数。当应用备份/恢复开始时返回bundle名称成功时触发回调，err为undefined，否则为错误对象。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -119,6 +120,7 @@ onBundleBegin : AsyncCallback&lt;string&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+
   onBundleBegin: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
@@ -152,6 +154,7 @@ onBundleEnd : AsyncCallback&lt;string&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+
   onBundleEnd: (err: BusinessError, bundleName: string) => {
     if (err) {
       console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
@@ -185,6 +188,7 @@ onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+
   onAllBundlesEnd: (err: BusinessError) => {
     if (err) {
       console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
@@ -223,7 +227,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 
 | 参数名   | 类型                                       | 必填 | 说明                                                   |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------ |
-| callback | AsyncCallback&lt;[FileData](#filedata)&gt; | 是   | 回调函数。当获取成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;[FileData](#filedata)&gt; | 是   | 异步获取本地能力文件之后的回调。返回FileData对象。 |
 
 **错误码：**
 
@@ -242,12 +246,14 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   try {
     backup.getLocalCapabilities((err: BusinessError, fileData: backup.FileData) => {
       if (err) {
         console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
       }
       console.info('getLocalCapabilities success');
+      console.info('fileData info:' + fileData.fd);
       fs.closeSync(fileData.fd);
     });
   } catch (error) {
@@ -256,7 +262,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
   }
   ```
 
-**返回的能力文件内容示例：**
+**能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.stat](js-apis-file-fs.md#fsstat-1)等相关接口获取，能力文件内容示例：**
 
  ```json
  {
@@ -288,7 +294,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 | 类型                                 | 说明                                                |
 | ------------------------------------ | --------------------------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回描述本地能力的Json文件的FileData。 |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回FileData对象。 |
 
 **错误码：**
 
@@ -307,10 +313,12 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   async function getLocalCapabilities() {
     try {
       let fileData = await backup.getLocalCapabilities();
       console.info('getLocalCapabilities success');
+      console.info('fileData info:' + fileData.fd);
       fs.closeSync(fileData.fd);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
@@ -319,7 +327,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
   }
   ```
 
-  **返回的能力文件内容示例：**
+  **能力文件可以通过[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.stat](js-apis-file-fs.md#fsstat)等相关接口获取，能力文件内容示例：**
 
  ```json
  {
@@ -362,6 +370,7 @@ constructor(callbacks: GeneralCallbacks);
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -410,7 +419,7 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
 | 参数名          | 类型                      | 必填 | 说明                                                           |
 | --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
 | bundlesToBackup | string[]                  | 是   | 需要备份的应用名称的数组。                                     |
-| callback        | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加备份应用成功，err为undefined，否则为错误对象。 |
+| callback        | AsyncCallback&lt;void&gt; | 是   | 异步添加备份应用之后的回调。 |
 
 **错误码：**
 
@@ -431,6 +440,7 @@ appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): v
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -498,7 +508,7 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **错误码：**
 
@@ -519,6 +529,7 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -589,6 +600,7 @@ constructor(callbacks: GeneralCallbacks);
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -643,7 +655,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
 | -------------------- | ------------------------- | ---- | -------------------------------------------------------------- |
 | remoteCapabilitiesFd | number                    | 是   | 用于恢复所需能力文件的文件描述符。                             |
 | bundlesToBackup      | string[]                  | 是   | 需要恢复的应用名称的数组。                                     |
-| callback             | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加恢复应用成功，err为undefined，否则为错误对象。 |
+| callback             | AsyncCallback&lt;void&gt; | 是   | 异步添加需要恢复的应用之后的回调。|
 
 **错误码：**
 
@@ -664,6 +676,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -711,6 +724,8 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback:
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+    } finally {
+      fs.closeSync(fileData.fd);
     }
   }
   ```
@@ -741,7 +756,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **错误码：**
 
@@ -762,6 +777,7 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -805,6 +821,8 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+    } finally {
+      fs.closeSync(fileData.fd);
     }
   }
   ```
@@ -831,7 +849,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                           |
 | -------- | ------------------------- | ---- | -------------------------------------------------------------- |
 | fileMeta | [FileMeta](#filemeta)     | 是   | 恢复文件的元数据。                                             |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当请求文件句柄成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步请求文件句柄成功之后的回调。|
 
 **错误码：**
 
@@ -849,6 +867,7 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -919,7 +938,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **错误码：**
 
@@ -937,6 +956,7 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let generalCallbacks: backup.GeneralCallbacks = {
     onFileReady: (err: BusinessError, file: backup.File) => {
       if (err) {
@@ -1004,7 +1024,7 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 | 参数名   | 类型                      | 必填 | 说明                                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------------------------- |
 | fileMeta | [FileMeta](#filemeta)     | 是   | 恢复文件元数据。                                           |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当发布文件成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步发布文件成功之后的回调。|
 
 **错误码：**
 
@@ -1022,6 +1042,7 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let g_session: backup.SessionRestore;
   function createSessionRestore() {
     let generalCallbacks: backup.GeneralCallbacks = {
@@ -1096,7 +1117,7 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 
 | 类型                | 说明                                   |
 | ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回值。 |
 
 **错误码：**
 
@@ -1114,6 +1135,7 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
   ```ts
   import fs from '@ohos.file.fs';
   import { BusinessError } from '@ohos.base';
+
   let g_session: backup.SessionRestore;
   async function publishFile(file: backup.FileMeta) {
     let fileMeta: backup.FileMeta = {

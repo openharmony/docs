@@ -15,63 +15,104 @@
   ```ts
   @Entry
   @Component
-  struct WidgetCard {
+  struct WidgetEventCallCard {
+    @LocalStorageProp('formId') formId: string = '12400633174999288';
+  
     build() {
       Column() {
-        Button('功能A')
-          .onClick(() => {
-            console.info('call EntryAbility funA');
-            postCardAction(this, {
-              'action': 'call',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'method': 'funA' // 在EntryAbility中调用的方法名
-              }
-            });
-          })
+        Text($r('app.string.WidgetEventCallEntryAbility_desc'))
+          .fontColor('#FFFFFF')
+          .opacity(0.9)
+          .fontSize(14)
+          .margin({ top: '8%', left: '10%' })
+        Row() {
+          Column() {
+            Button() {
+              Text($r('app.string.ButtonA_label'))
+                .fontColor('#45A6F4')
+                .fontSize(12)
+            }
+            .width(120)
+            .height(32)
+            .margin({ top: '20%' })
+            .backgroundColor('#FFFFFF')
+            .borderRadius(16)
+            .onClick(() => {
+              postCardAction(this, {
+                action: 'call',
+                abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
+                params: {
+                  formId: this.formId,
+                  method: 'funA' // 在EntryAbility中调用的方法名
+                }
+              });
+            })
   
-        Button('功能B')
-          .onClick(() => {
-            console.info('call EntryAbility funB');
-            postCardAction(this, {
-              'action': 'call',
-              'abilityName': 'EntryAbility', // 只能跳转到当前应用下的UIAbility
-              'params': {
-                'method': 'funB', // 在EntryAbility中调用的方法名
-                'num': 1 // 需要传递的其他参数
-              }
-            });
-          })
+            Button() {
+              Text($r('app.string.ButtonB_label'))
+                .fontColor('#45A6F4')
+                .fontSize(12)
+            }
+            .width(120)
+            .height(32)
+            .margin({ top: '8%', bottom: '15vp' })
+            .backgroundColor('#FFFFFF')
+            .borderRadius(16)
+            .onClick(() => {
+              postCardAction(this, {
+                action: 'call',
+                abilityName: 'WidgetEventCallEntryAbility', // 只能跳转到当前应用下的UIAbility
+                params: {
+                  formId: this.formId,
+                  method: 'funB', // 在EntryAbility中调用的方法名
+                  num: 1 // 需要传递的其他参数
+                }
+              });
+            })
+          }
+        }.width('100%').height('80%')
+        .justifyContent(FlexAlign.Center)
       }
       .width('100%')
       .height('100%')
-      .justifyContent(FlexAlign.SpaceAround)
+      .alignItems(HorizontalAlign.Start)
+      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImageSize(ImageSize.Cover)
     }
   }
   ```
-
+  
 - 在UIAbility中接收call事件并获取参数，根据传递的method不同，执行不同的方法。其余数据可以通过[readString](../reference/apis/js-apis-rpc.md#readstring)方法获取。需要注意的是，UIAbility需要onCreate生命周期中监听所需的方法。
   
   ```ts
+  import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import type Base from '@ohos.base';
+  import hilog from '@ohos.hilog';
+  import promptAction from '@ohos.promptAction';
+  import type rpc from '@ohos.rpc';
   import UIAbility from '@ohos.app.ability.UIAbility';
-  import Base from '@ohos.base'
-  import rpc from '@ohos.rpc';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-
-
+  import type Want from '@ohos.app.ability.Want';
+  
+  const TAG: string = 'WidgetEventCallEntryAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  const CONST_NUMBER_1: number = 1;
+  const CONST_NUMBER_2: number = 2;
+  
   class MyParcelable implements rpc.Parcelable {
     num: number;
     str: string;
+  
     constructor(num: number, str: string) {
       this.num = num;
       this.str = str;
     }
+  
     marshalling(messageSequence: rpc.MessageSequence): boolean {
       messageSequence.writeInt(this.num);
       messageSequence.writeString(this.str);
       return true;
     }
+  
     unmarshalling(messageSequence: rpc.MessageSequence): boolean {
       this.num = messageSequence.readInt();
       this.str = messageSequence.readString();
@@ -79,36 +120,40 @@
     }
   }
   
-  export default class CameraAbility extends UIAbility {
+  export default class WidgetEventCallEntryAbility extends UIAbility {
     // 如果UIAbility第一次启动，在收到call事件后会触发onCreate生命周期回调
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       try {
         // 监听call事件所需的方法
         this.callee.on('funA', (data: rpc.MessageSequence) => {
           // 获取call事件中传递的所有参数
-          console.info('FunACall param:' + JSON.stringify(data.readString()));
-          return new MyParcelable(1, 'aaa');
+          hilog.info(DOMAIN_NUMBER, TAG, `FunACall param:  ${JSON.stringify(data.readString())}`);
+          promptAction.showToast({
+            message: 'FunACall param:' + JSON.stringify(data.readString())
+          });
+          return new MyParcelable(CONST_NUMBER_1, 'aaa');
         });
         this.callee.on('funB', (data: rpc.MessageSequence) => {
           // 获取call事件中传递的所有参数
-          console.info('FunACall param:' + JSON.stringify(data.readString()));
-          return new MyParcelable(2, 'bbb');
+          hilog.info(DOMAIN_NUMBER, TAG, `FunBCall param:  ${JSON.stringify(data.readString())}`);
+          promptAction.showToast({
+            message: 'FunBCall param:' + JSON.stringify(data.readString())
+          });
+          return new MyParcelable(CONST_NUMBER_2, 'bbb');
         });
       } catch (err) {
-        console.error(`Failed to register callee on. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
-      }
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee on. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
+      };
     }
   
-    ...
-  
     // 进程退出时，解除监听
-    onDestroy() {
+    onDestroy(): void | Promise<void> {
       try {
         this.callee.off('funA');
         this.callee.off('funB');
       } catch (err) {
-        console.error(`Failed to register callee off. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
-      }
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to register callee off. Cause: ${JSON.stringify(err as Base.BusinessError)}`);
+      };
     }
-  };
+  }
   ```

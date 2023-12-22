@@ -3,6 +3,7 @@
 本模块提供图片处理效果，包括通过属性创建PixelMap、读取图像像素数据、读取区域内的图片数据等。
 
 > **说明：**
+>
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 导入模块
@@ -32,13 +33,11 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions): Promise\<Pi
 | -------------------------------- | ----------------------------------------------------------------------- |
 | Promise\<[PixelMap](#pixelmap7)> | 返回Pixelmap。<br>当创建的pixelmap大小超过原图大小时，返回原图pixelmap大小。|
 
-
 **示例：**
 
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
   console.log('Succeeded in creating pixelmap.');
@@ -68,11 +67,10 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (error : BusinessError, pixelMap : image.PixelMap) => {
     if(error) {
-        console.log('Failed to create pixelmap.');
+        console.error('Failed to create pixelmap.');
     } else {
         console.log('Succeeded in creating pixelmap.');
     }
@@ -172,8 +170,8 @@ async function Demo() {
 
 ## PixelMap<sup>7+</sup>
 
-图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过createPixelMap创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
-
+图像像素类，用于读取或写入图像数据以及获取图像信息。在调用PixelMap的方法前，需要先通过[createPixelMap](#imagecreatepixelmap8)创建一个PixelMap实例。目前pixelmap序列化大小最大128MB，超过会送显失败。大小计算方式为(宽\*高\*每像素占用字节数)。
+从API version 11开始，PixelMap支持通过worker跨线程调用。当PixelMap通过[Worker](js-apis-worker.md)跨线程后，原线程的PixelMap的所有接口均不能调用，否则将报错501 服务器不具备完成请求的功能。
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
@@ -194,7 +192,7 @@ readPixelsToBuffer(dst: ArrayBuffer): Promise\<void>
 
 | 参数名 | 类型        | 必填 | 说明                                                                                                  |
 | ------ | ----------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
+| dst    | ArrayBuffer | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
 
 **返回值：**
 
@@ -226,7 +224,7 @@ readPixelsToBuffer(dst: ArrayBuffer, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                                                                  |
 | -------- | -------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由getPixelBytesNumber接口获取。 |
+| dst      | ArrayBuffer          | 是   | 缓冲区，函数执行结束后获取的图像像素数据写入到该内存区域内。缓冲区大小由[getPixelBytesNumber](#getpixelbytesnumber7)接口获取。 |
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。                                                                        |
 
 **示例：**
@@ -300,11 +298,10 @@ readPixels(area: PositionArea, callback: AsyncCallback\<void>): void
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
     if(pixelMap == undefined){
-        console.info('createPixelMap failed.');
+        console.error('createPixelMap failed.');
     } else {
         const area : image.PositionArea = { pixels: new ArrayBuffer(8),
             offset: 0,
@@ -346,12 +343,12 @@ writePixels(area: PositionArea): Promise\<void>
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts)
     .then( (pixelMap : image.PixelMap)  => {
         if (pixelMap == undefined) {
-            console.info('createPixelMap failed.');
+            console.error('createPixelMap failed.');
+            return;
         }
         const area : image.PositionArea = { pixels: new ArrayBuffer(8),
             offset: 0,
@@ -362,9 +359,10 @@ image.createPixelMap(color, opts)
         for (let i = 0; i < bufferArr.length; i++) {
             bufferArr[i] = i + 1;
         }
-
         pixelMap.writePixels(area).then(() => {
             console.info('Succeeded to write pixelmap into the specified area.');
+        }).catch((error : BusinessError) => {
+            console.error(`Failed to write pixelmap into the specified area. code is ${error.code}, message is ${error.message}`);
         })
     }).catch((error : BusinessError) => {
         console.error('error: ' + error);
@@ -566,10 +564,13 @@ getBytesNumberPerRow(): number
 ```ts
 import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (err : BusinessError, pixelMap : image.PixelMap) => {
-    let rowCount : number = pixelMap.getBytesNumberPerRow();
+    if (err != undefined) {
+        console.error('Failed to create pixelmap.');
+    } else {
+        let rowCount : number = pixelMap.getBytesNumberPerRow();
+    }
 })
 ```
 
@@ -625,7 +626,7 @@ opacity(rate: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | -------- | -------------------- | ---- | ------------------------------ |
-| rate     | number               | 是   | 透明比率的值,取值范围：0-1。   |
+| rate     | number               | 是   | 透明比率的值。   |
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
@@ -655,7 +656,7 @@ opacity(rate: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                        |
 | ------ | ------ | ---- | --------------------------- |
-| rate   | number | 是   | 透明比率的值，取值范围：0-1。|
+| rate   | number | 是   | 透明比率的值。|
 
 **返回值：**
 
@@ -705,7 +706,7 @@ createAlphaPixelmap(callback: AsyncCallback\<PixelMap>): void
 
 | 参数名   | 类型                     | 必填 | 说明                     |
 | -------- | ------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<PixelMap> | 是   | 获取回调，异步返回结果。 |
+| callback | AsyncCallback\<[PixelMap](#pixelmap7)> | 是   | 获取回调，异步返回结果。 |
 
 **示例：**
 
@@ -732,8 +733,8 @@ scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                            |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | 是   | 宽度的缩放值，其值为输入的倍数。|
-| y        | number               | 是   | 高度的缩放值，其值为输入的倍数。|
+| x        | number               | 是   | 宽度的缩放倍数。|
+| y        | number               | 是   | 高度的缩放倍数。|
 | callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。  |
 
 **示例：**
@@ -756,8 +757,8 @@ scale(x: number, y: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                            |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | 是   | 宽度的缩放值，其值为输入的倍数。|
-| y      | number | 是   | 高度的缩放值，其值为输入的倍数。|
+| x      | number | 是   | 宽度的缩放倍数。|
+| y      | number | 是   | 高度的缩放倍数。|
 
 **返回值：**
 
@@ -1041,7 +1042,7 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980111| If the operation invalid              |
+| 62980111| If the operation invalid        |
 | 62980115| If the image parameter invalid             |
 
 **示例：**
@@ -1052,6 +1053,99 @@ async function Demo() {
     let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
     let csm : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
     pixelMap.setColorSpace(csm);
+}
+```
+
+### applyColorSpace<sup>11+</sup>
+
+applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback: AsyncCallback\<void>): void
+
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用callback形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                          |
+| -------- | -------------------- | ---- | ----------------------------- |
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+| callback | AsyncCallback\<void> | 是   | 获取回调，失败时返回错误信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------------------|
+| 401 | If the input parameter is not valid parameter. |
+| 62980104| If the internal object initialized failed |
+| 62980108| If the color space converted failed       |
+| 62980115| If the image parameter invalid            |
+
+**示例：**
+
+```ts
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import {BusinessError} from '@ohos.base'
+
+async function Demo() {
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    pixelmap.applyColorSpace(targetColorSpace, (err : BusinessError) => {
+        if (err) {
+            console.error('Failed to apply color space for pixelmap object.');
+        } else {
+            console.log('Succeeded in applying color space for pixelmap object.');
+        }
+    })
+}
+```
+
+### applyColorSpace<sup>11+</sup>
+
+applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\<void>
+
+根据输入的目标色彩空间对图像像素颜色进行色彩空间转换，使用Promise形式返回。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名 | 类型               | 必填 | 说明        |
+| ------ | ------------------ | ---- | ----------- |
+| targetColorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 目标色彩空间，支持SRGB、DCI_P3、DISPLAY_P3、ADOBE_RGB_1998。|
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------------------|
+| 401 | If the input parameter is not valid parameter. |
+| 62980104| If the internal object initialized failed |
+| 62980108| If the color space converted failed       |
+| 62980115| If the image parameter invalid            |
+
+**示例：**
+
+```ts
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import {BusinessError} from '@ohos.base'
+
+async function Demo() {
+    let colorSpaceName = colorSpaceManager.ColorSpace.SRGB;
+    let targetColorSpace : colorSpaceManager.ColorSpaceManager = colorSpaceManager.create(colorSpaceName);
+    pixelmap.applyColorSpace(targetColorSpace).then(() => {
+        console.log('Succeeded in applying color space for pixelmap object.');
+    }).catch((error : BusinessError) => {
+        console.error('Failed to apply color space for pixelmap object.');
+    })
 }
 ```
 
@@ -1154,7 +1248,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | 异步返回Promise对象。 |
+| Promise\<[PixelMap](#pixelmap7)> | Promise实例，用于异步获取结果，失败时返回错误信息。 |
 
 **错误码：**
 
@@ -1164,7 +1258,7 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 | ------- | --------------------------------------------|
 | 62980115 | If the input parameter invalid              |
 | 62980097 | If the ipc error              |
-| 62980096 | If fail to create async work            |
+| 62980096 | If fail to create async work         |
 
 **示例：**
 
@@ -1287,7 +1381,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明)。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 
 **返回值：**
 
@@ -1325,7 +1419,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明)。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明) .ico<sup>11+</sup>。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
 
 **返回值：**
@@ -1409,6 +1503,13 @@ createImageSource(buf: ArrayBuffer): ImageSource
 | ------ | ----------- | ---- | ---------------- |
 | buf    | ArrayBuffer | 是   | 图像缓冲区数组。 |
 
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+
 **示例：**
 
 ```ts
@@ -1443,6 +1544,45 @@ createImageSource(buf: ArrayBuffer, options: SourceOptions): ImageSource
 const data : ArrayBuffer= new ArrayBuffer(112);
 let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
 const imageSourceApi : image.ImageSource = image.createImageSource(data, sourceOptions);
+```
+
+## image.createImageSource<sup>11+</sup>
+
+createImageSource(rawfile: resourceManager.RawFileDescriptor, options?: SourceOptions): ImageSource
+
+通过图像资源文件的RawFileDescriptor创建图片源实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名 | 类型                             | 必填 | 说明                                 |
+| ------ | -------------------------------- | ---- | ------------------------------------ |
+| rawfile | [resourceManager.RawFileDescriptor](js-apis-resource-manager.md#rawfiledescriptor8) | 是 | 图像资源文件的RawFileDescriptor。 |
+| options | [SourceOptions](#sourceoptions9) | 否 | 图片属性，包括图片序号与默认属性值。 |
+
+**返回值：**
+
+| 类型                        | 说明                                         |
+| --------------------------- | -------------------------------------------- |
+| [ImageSource](#imagesource) | 返回ImageSource类实例，失败时返回undefined。 |
+
+**示例：**
+
+Stage模型
+
+```ts
+import resourceManager from '@ohos.resourceManager';
+
+// Stage模型
+const context : Context = getContext(this);
+// 获取resourceManager资源管理器
+const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
+resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
+    const imageSourceApi: image.ImageSource = image.createImageSource(rawFileDescriptor);
+}).catch((error : BusinessError) => {
+    console.error(`Failed to get RawFileDescriptor.code is ${error.code}, message is ${error.message}`);
+})
 ```
 
 ## image.CreateIncrementalSource<sup>9+</sup>
@@ -1502,7 +1642,7 @@ const imageSourceIncrementalSApi : image.ImageSource = image.CreateIncrementalSo
 
 ## ImageSource
 
-图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过createImageSource构建一个ImageSource实例。
+图片源类，用于获取图片相关信息。在调用ImageSource的方法前，需要先通过[createImageSource](#imagecreateimagesource)构建一个ImageSource实例。
 
 ### 属性
 
@@ -1530,10 +1670,10 @@ getImageInfo(index: number, callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getImageInfo(0,(error : BusinessError, imageInfo : image.ImageInfo) => { 
     if(error) {
-        console.log('getImageInfo failed.');
+        console.error('getImageInfo failed.');
     } else {
         console.log('getImageInfo succeeded.');
     }
@@ -1557,9 +1697,13 @@ getImageInfo(callback: AsyncCallback\<ImageInfo>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getImageInfo((err : BusinessError, imageInfo : image.ImageInfo) => { 
-    console.log('Succeeded in obtaining the image information.');
+    if (err != undefined) {
+        console.error(`Failed to obtaining the image information.code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.log('Succeeded in obtaining the image information.');
+    }
 })
 ```
 
@@ -1581,23 +1725,23 @@ getImageInfo(index?: number): Promise\<ImageInfo>
 
 | 类型                             | 说明                   |
 | -------------------------------- | ---------------------- |
-| Promise<[ImageInfo](#imageinfo)> | 返回获取到的图片信息。 |
+| Promise<[ImageInfo](#imageinfo)> | Promise实例，用于异步返回获取到的图片信息。 |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getImageInfo(0)
     .then((imageInfo : image.ImageInfo) => {
 		console.log('Succeeded in obtaining the image information.');
 	}).catch((error : BusinessError) => {
-		console.log('Failed to obtain the image information.');
+		console.error('Failed to obtain the image information.');
 	})
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>11+</sup>
 
-getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
+getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
 获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
 
@@ -1607,8 +1751,61 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 
 | 参数名  | 类型                                                 | 必填 | 说明                                 |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | [PropertyKey](#propertykey7)                                               | 是   | 图片属性名。                         |
+| options | [ImagePropertyOptions](#imagepropertyoptions11) | 否   | 图片属性，包括图片序号与默认属性值。 |
+
+**返回值：**
+
+| 类型             | 说明                                                              |
+| ---------------- | ----------------------------------------------------------------- |
+| Promise\<string> | Promise实例，用于异步获取图片属性值，如获取失败则返回属性默认值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401  | The parameter check failed.              |
+| 62980111| If the image source data incomplete.             |
+| 62980113| If the image format unknown.             |
+| 62980116| If the image decode failed.              |
+| 62980118| If the image plugin create failed.            |
+| 62980122| If the image decode head abnormal.             |
+| 62980123| If the image unsupport exif.             |
+| 62980135| If the exif value is invalid.             |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
+.then((data : string) => {
+    console.log('Succeeded in getting the value of the specified attribute key of the image.');
+}).catch((error : BusinessError) => {
+    console.error('Failed to get the value of the specified attribute key of the image.');
+})
+```
+
+### getImageProperty<sup>(deprecated)</sup>
+
+getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
+
+获取图片中给定索引处图像的指定属性键的值，用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                 |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
 | key     | string                                               | 是   | 图片属性名。                         |
-| options | [GetImagePropertyOptions](#getimagepropertyoptions7) | 否   | 图片属性，包括图片序号与默认属性值。 |
+| options | [GetImagePropertyOptions](#getimagepropertyoptionsdeprecated) | 否   | 图片属性，包括图片序号与默认属性值。 |
 
 **返回值：**
 
@@ -1619,17 +1816,24 @@ getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getImageProperty("BitsPerSample")
     .then((data : string) => {
 		console.log('Succeeded in getting the value of the specified attribute key of the image.');
+	}).catch((error : BusinessError) => {
+		console.error('Failed to get the value of the specified attribute key of the image.');
 	})
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>(deprecated)</sup>
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 获取图片中给定索引处图像的指定属性键的值，用callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1643,21 +1847,25 @@ getImageProperty(key:string, callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getImageProperty("BitsPerSample",(error : BusinessError, data : string) => { 
     if(error) {
-        console.log('Failed to get the value of the specified attribute key of the image.');
+        console.error('Failed to get the value of the specified attribute key of the image.');
     } else {
         console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>(deprecated)</sup>
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
 获取图片指定属性键的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[getImageProperty](#getimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1666,28 +1874,87 @@ getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCa
 | 参数名   | 类型                                                 | 必填 | 说明                                                          |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------- |
 | key      | string                                               | 是   | 图片属性名。                                                  |
-| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | 是   | 图片属性，包括图片序号与默认属性值。                          |
+| options  | [GetImagePropertyOptions](#getimagepropertyoptionsdeprecated) | 是   | 图片属性，包括图片序号与默认属性值。                          |
 | callback | AsyncCallback\<string>                               | 是   | 获取图片属性回调，返回图片属性值，如获取失败则返回属性默认值。|
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 let property : image.GetImagePropertyOptions = { index: 0, defaultValue: '9999' }
 imageSourceApi.getImageProperty("BitsPerSample",property,(error : BusinessError, data : string) => { 
     if(error) {
-        console.log('Failed to get the value of the specified attribute key of the image.');
+        console.error('Failed to get the value of the specified attribute key of the image.');
     } else {
         console.log('Succeeded in getting the value of the specified attribute key of the image.');
     }
 })
 ```
 
-### modifyImageProperty<sup>9+</sup>
+### modifyImageProperty<sup>11+</sup>
+
+modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
+
+通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| key     | [PropertyKey](#propertykey7)   | 是   | 图片属性名。 |
+| value   | string | 是   | 属性值。     |
+
+**返回值：**
+
+| 类型           | 说明                        |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise实例，异步返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](../errorcodes/errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401  | The parameter check failed.              |
+| 62980110| If the image source data error.       |
+| 62980111| If the image source data incomplete.  |
+| 62980113| If the image format unknown.             |
+| 62980116| If the image decode failed.              |
+| 62980118| If the image plugin create failed.       |
+| 62980123| If the image unsupport exif.             |
+| 62980130| If the image source file is abnormal.    |
+| 62980132| If the image source buffer size is abnormal.            |
+| 62980135| If the exif value is invalid.             |
+| 62980146| If the exif failed to be written to the file.        |
+| 62980147| If the file fails to be read.            |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base';
+imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
+    imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
+        console.info(`ImageWidth is :${width}`);
+    }).catch((error : BusinessError) => {
+        console.error('Failed to get the Image Width.');
+	})
+}).catch((error : BusinessError) => {
+	console.error('Failed to modify the Image Width');
+})
+```
+
+### modifyImageProperty<sup>(deprecated)</sup>
 
 modifyImageProperty(key: string, value: string): Promise\<void>
 
 通过指定的键修改图片属性的值，使用Promise形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1707,18 +1974,27 @@ modifyImageProperty(key: string, value: string): Promise\<void>
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
-    imageSourceApi.getImageProperty("ImageWidth").then( (w : string) => {
-        console.info('w', w);
-    })
+    imageSourceApi.getImageProperty("ImageWidth").then((width : string) => {
+        console.info(`ImageWidth is :${width}`);
+    }).catch((error : BusinessError) => {
+        console.error('Failed to get the Image Width.');
+	})
+}).catch((error : BusinessError) => {
+	console.error('Failed to modify the Image Width');
 })
 ```
 
-### modifyImageProperty<sup>9+</sup>
+### modifyImageProperty<sup>(deprecated)</sup>
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
 通过指定的键修改图片属性的值，callback形式返回结果，仅支持JPEG文件，且需要包含exif信息。
+
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[modifyImageProperty](#modifyimageproperty11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -1733,10 +2009,10 @@ modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>):
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imageSourceApi.modifyImageProperty("ImageWidth", "120",(err : BusinessError) => {
     if (err != undefined) {
-        console.info('modifyImageProperty Failed');
+        console.error('modifyImageProperty Failed');
     } else {
         console.info('modifyImageProperty Succeeded');
     }
@@ -1745,7 +2021,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120",(err : BusinessError) => 
 
 ### updateData<sup>9+</sup>
 
-updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number): Promise\<void>
+updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number): Promise\<void>
 
 更新增量数据，使用Promise形式返回结果。
 
@@ -1757,7 +2033,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 | ---------- | ----------- | ---- | ------------ |
 | buf        | ArrayBuffer | 是   | 增量数据。   |
 | isFinished | boolean     | 是   | 是否更新完。 |
-| value      | number      | 是   | 偏移量。     |
+| offset      | number      | 是   | 偏移量。     |
 | length     | number      | 是   | 数组长。     |
 
 **返回值：**
@@ -1769,7 +2045,7 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number)
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const array : ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10).then(() => {
     console.info('Succeeded in updating data.');
@@ -1781,7 +2057,7 @@ imageSourceApi.updateData(array, false, 0, 10).then(() => {
 
 ### updateData<sup>9+</sup>
 
-updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number, callback: AsyncCallback\<void>): void
+updateData(buf: ArrayBuffer, isFinished: boolean, offset: number, length: number, callback: AsyncCallback\<void>): void
 
 更新增量数据，callback形式返回结果。
 
@@ -1793,14 +2069,14 @@ updateData(buf: ArrayBuffer, isFinished: boolean, value: number, length: number,
 | ---------- | ------------------- | ---- | -------------------- |
 | buf        | ArrayBuffer         | 是   | 增量数据。           |
 | isFinished | boolean             | 是   | 是否更新完。         |
-| value      | number              | 是   | 偏移量。             |
+| offset      | number              | 是   | 偏移量。             |
 | length     | number              | 是   | 数组长。             |
 | callback   | AsyncCallback\<void> | 是   | 回调表示成功或失败。 |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const array : ArrayBuffer = new ArrayBuffer(100);
 imageSourceApi.updateData(array, false, 0, 10, (err: BusinessError) => {
     if (err != undefined) {
@@ -1829,16 +2105,16 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 | 类型                             | 说明                  |
 | -------------------------------- | --------------------- |
-| Promise\<[PixelMap](#pixelmap7)> | 异步返回Promise对象。 |
+| Promise\<[PixelMap](#pixelmap7)> | Promise实例，用于异步返回创建结果。 |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-imageSourceApi.createPixelMap().then((pixelmap : image.PixelMap) => {
-    console.log('Succeeded in creating pixelmap object through image decoding parameters.');
+import {BusinessError} from '@ohos.base';
+imageSourceApi.createPixelMap().then((pixelMap : image.PixelMap) => {
+    console.log('Succeeded in creating pixelMap object through image decoding parameters.');
 }).catch((error : BusinessError) => {
-    console.log('Failed to create pixelmap object through image decoding parameters.');
+    console.error('Failed to create pixelMap object through image decoding parameters.');
 })
 ```
 
@@ -1859,9 +2135,13 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-imageSourceApi.createPixelMap((err : BusinessError, pixelmap : image.PixelMap) => {
-    console.info('Succeeded in creating pixelmap object.');
+import {BusinessError} from '@ohos.base';
+imageSourceApi.createPixelMap((err : BusinessError, pixelMap : image.PixelMap) => {
+    if (err != undefined) {
+        console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.info('Succeeded in creating pixelMap object.');
+    }
 })
 ```
 
@@ -1883,7 +2163,7 @@ createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): vo
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 let decodingOptions : image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -1893,14 +2173,18 @@ let decodingOptions : image.DecodingOptions = {
     desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
     index: 0
 };
-imageSourceApi.createPixelMap(decodingOptions, (err : BusinessError, pixelmap : image.PixelMap) => { 
-    console.log('Succeeded in creating pixelmap object.');
+imageSourceApi.createPixelMap(decodingOptions, (err : BusinessError, pixelMap : image.PixelMap) => { 
+    if (err != undefined) {
+        console.error(`Failed to create pixelMap.code is ${err.code},message is ${err.message}`);
+    } else {
+        console.log('Succeeded in creating pixelMap object.');
+    }
 })
 ```
 
 ### createPixelMapList<sup>10+</sup>
 
-createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
+createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 通过图片解码参数创建PixelMap数组。
 
@@ -1925,15 +2209,27 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980096| If the operation failed              |
+| 62980099 | If the shared memory data abnormal |
+| 62980101 | If the image data abnormal |
 | 62980103| If the image data unsupport             |
+| 62980106 | If the image too large |
+| 62980109 | If the image crop failed |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
+| 62980112 | If the image format mismatch |
+| 62980113 | If the image format unknown |
+| 62980115 | If the image invalid parameter |
+| 62980116 | If the image decode failed |
 | 62980118| If the image plugin create failed             |
+| 62980122 | If the image decode head abnormal |
+| 62980137 | If the media invalid operation |
+| 62980173 | If the DMA memory not exist |
+| 62980174 | If the DMA memory data abnormal |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 let decodeOpts: image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -1942,10 +2238,10 @@ let decodeOpts: image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-imageSourceApi.createPixelMapList(decodeOpts).then((pixelmaplist: Array<image.PixelMap>) => {
-    console.log('Succeeded in creating pixelmaplist object.');
+imageSourceApi.createPixelMapList(decodeOpts).then((pixelMapList: Array<image.PixelMap>) => {
+    console.log('Succeeded in creating pixelMapList object.');
 }).catch((err: BusinessError) => {
-    console.error(`Failed to create pixelmaplist object.code is ${err.code},message is ${err.message}`);
+    console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1969,28 +2265,40 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
+| 62980096 | If the operation failed             |
+| 62980099 | If the shared memory data abnormal  |
+| 62980101 | If the image data abnormal          |
+| 62980103 | If the image data unsupport         |
+| 62980106 | If the image too large              |
+| 62980109 | If the image crop failed            |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
+| 62980173 | If the DMA memory not exist         |
+| 62980174 | If the DMA memory data abnormal     |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
-imageSourceApi.createPixelMapList((err: BusinessError, pixelmaplist: Array<image.PixelMap>) => {
+import {BusinessError} from '@ohos.base';
+imageSourceApi.createPixelMapList((err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
     if (err != undefined) {
-        console.error(`Failed to create pixelmaplist object.code is ${err.code},message is ${err.message}`);
+        console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
     } else {
-        console.info('Succeeded in creating pixelmaplist object.');
+        console.info('Succeeded in creating pixelMapList object.');
     }
 })
 ```
 
 ### createPixelMapList<sup>10+</sup>
 
-createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void;
+createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void
 
 通过图片解码参数创建PixelMap数组，使用callback形式返回结果。
 
@@ -2009,16 +2317,28 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980103| If the image data unsupport             |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980118| If the image plugin create failed             |
+| 62980096 | If the operation failed             |
+| 62980099 | If the shared memory data abnormal  |
+| 62980101 | If the image data abnormal          |
+| 62980103 | If the image data unsupport         |
+| 62980106 | If the image too large              |
+| 62980109 | If the image crop failed            |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
+| 62980173 | If the DMA memory not exist         |
+| 62980174 | If the DMA memory data abnormal     |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 let decodeOpts : image.DecodingOptions = {
     sampleSize: 1,
     editable: true,
@@ -2027,20 +2347,20 @@ let decodeOpts : image.DecodingOptions = {
     desiredPixelFormat: 3,
     index: 0,
 };
-imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelmaplist: Array<image.PixelMap>) => {
+imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList: Array<image.PixelMap>) => {
     if (err != undefined) {
-        console.error(`Failed to create pixelmaplist object.code is ${err.code},message is ${err.message}`);
+        console.error(`Failed to create pixelMapList object.code is ${err.code},message is ${err.message}`);
     } else {
-        console.log('Succeeded in creating pixelmaplist object.');
+        console.log('Succeeded in creating pixelMapList object.');
     }
 })
 ```
 
 ### getDelayTimeList<sup>10+</sup>
 
-getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
+getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
-获取图像延迟时间数组，使用callback形式返回结果。
+获取图像延迟时间数组，使用callback形式返回结果。此接口仅用于gif图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2059,15 +2379,19 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void;
 | 62980096| If the operation failed              |
 | 62980110| If the image source data error              |
 | 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980112 | If the image format mismatch |
+| 62980113| If the image format unknown |
+| 62980115 | If the image invalid parameter |
+| 62980116| If the image decode failed |
+| 62980118| If the image plugin create failed |
+| 62980122| If the image decode head abnormal |
+| 62980137 | If the media invalid operation |
+| 62980149 | If the media invalid parameter |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
     if (err != undefined) {
         console.error(`Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
@@ -2079,9 +2403,9 @@ imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) 
 
 ### getDelayTimeList<sup>10+</sup>
 
-getDelayTimeList(): Promise<Array\<number>>;
+getDelayTimeList(): Promise<Array\<number>>
 
-获取图像延迟时间数组，使用Promise形式返回结果。
+获取图像延迟时间数组，使用Promise形式返回结果。此接口仅用于gif图片。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -2097,17 +2421,22 @@ getDelayTimeList(): Promise<Array\<number>>;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096 | If the operation failed             |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
+| 62980149 | If the media invalid parameter      |
 
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
     console.log('Succeeded in delayTimes object.');
 }).catch((err: BusinessError) => {
@@ -2117,7 +2446,7 @@ imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
 
 ### getFrameCount<sup>10+</sup>
 
-getFrameCount(callback: AsyncCallback\<number>): void;
+getFrameCount(callback: AsyncCallback\<number>): void
 
 获取图像帧数，使用callback形式返回结果。
 
@@ -2136,17 +2465,20 @@ getFrameCount(callback: AsyncCallback\<number>): void;
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980110| If the image source data error |
+| 62980111| If the image source data incomplete |
+| 62980112 | If the image format mismatch |
+| 62980113| If the image format unknown |
+| 62980115 | If the image invalid parameter |
+| 62980116| If the image decode failed |
+| 62980118| If the image plugin create failed |
+| 62980122| If the image decode head abnormal |
+| 62980137 | If the media invalid operation |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
     if (err != undefined) {
         console.error(`Failed to get frame count.code is ${err.code},message is ${err.message}`);
@@ -2158,7 +2490,7 @@ imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
 
 ### getFrameCount<sup>10+</sup>
 
-getFrameCount(): Promise\<number>;
+getFrameCount(): Promise\<number>
 
 获取图像帧数，使用Promise形式返回结果。
 
@@ -2176,17 +2508,21 @@ getFrameCount(): Promise\<number>;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| If the operation failed              |
-| 62980110| If the image source data error              |
-| 62980111| If the image source data incomplete            |
-| 62980113| If the image format unknown            |
-| 62980116| If the image decode failed            |
-| 62980118| If the image plugin create failed             |
-| 62980122| If the image decode head abnormal             |
+| 62980096 | If the operation failed             |
+| 62980110 | If the image source data error      |
+| 62980111 | If the image source data incomplete |
+| 62980112 | If the image format mismatch        |
+| 62980113 | If the image format unknown         |
+| 62980115 | If the image invalid parameter      |
+| 62980116 | If the image decode failed          |
+| 62980118 | If the image plugin create failed   |
+| 62980122 | If the image decode head abnormal   |
+| 62980137 | If the media invalid operation      |
 
 **示例：**
 
 ```ts
+import {BusinessError} from '@ohos.base';
 imageSourceApi.getFrameCount().then((frameCount: number) => {
     console.log('Succeeded in getting frame count.');
 }).catch((err : BusinessError) => {
@@ -2211,10 +2547,10 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imageSourceApi.release((err : BusinessError) => { 
     if (err != undefined) {
-        console.log('Failed to release the image source instance.');
+        console.error('Failed to release the image source instance.');
     } else {
         console.log('Succeeded in releasing the image source instance.');
     }
@@ -2238,11 +2574,11 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imageSourceApi.release().then(()=>{
     console.log('Succeeded in releasing the image source instance.');
 }).catch((error : BusinessError) => {
-    console.log('Failed to release the image source instance.');
+    console.error('Failed to release the image source instance.');
 })
 ```
 
@@ -2268,7 +2604,7 @@ const imagePackerApi : image.ImagePacker = image.createImagePacker();
 
 ## ImagePacker
 
-图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过createImagePacker构建一个ImagePacker实例，当前支持格式有：jpeg webp png。
+图片打包器类，用于图片压缩和打包。在调用ImagePacker的方法前，需要先通过[createImagePacker](#imagecreateimagepacker)构建一个ImagePacker实例，当前支持格式有：jpeg、webp、png。
 
 ### 属性
 
@@ -2276,7 +2612,7 @@ const imagePackerApi : image.ImagePacker = image.createImagePacker();
 
 | 名称             | 类型           | 可读 | 可写 | 说明                       |
 | ---------------- | -------------- | ---- | ---- | -------------------------- |
-| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg webp png。 |
+| supportedFormats | Array\<string> | 是   | 否   | 图片打包支持的格式 jpeg、webp、png。 |
 
 ### packing
 
@@ -2297,10 +2633,16 @@ packing(source: ImageSource, option: PackingOption, callback: AsyncCallback\<Arr
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 };
-imagePackerApi.packing(imageSourceApi, packOpts, (err : BusinessError, data : ArrayBuffer) => {})
+imagePackerApi.packing(imageSourceApi, packOpts, (err : BusinessError, data : ArrayBuffer) => {
+    if(err) {
+        console.error('packing failed.');
+    } else {
+        console.log('packing succeeded.');
+    }
+})
 ```
 
 ### packing
@@ -2327,14 +2669,14 @@ packing(source: ImageSource, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const imageSourceApi : image.ImageSource = image.createImageSource(0);
 let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
 imagePackerApi.packing(imageSourceApi, packOpts)
     .then( (data : ArrayBuffer) => {
         console.log('packing succeeded.');
 	}).catch((error : BusinessError) => {
-	    console.log('packing failed.');
+	    console.error('packing failed.');
 	})
 ```
 
@@ -2350,22 +2692,23 @@ packing(source: PixelMap, option: PackingOption, callback: AsyncCallback\<ArrayB
 
 | 参数名   | 类型                            | 必填 | 说明                               |
 | -------- | ------------------------------- | ---- | ---------------------------------- |
-| source   | [PixelMap](#pixelmap)           | 是   | 打包的PixelMap资源。               |
+| source   | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap资源。               |
 | option   | [PackingOption](#packingoption) | 是   | 设置打包参数。                     |
 | callback | AsyncCallback\<ArrayBuffer>     | 是   | 获取图片打包回调，返回打包后数据。 |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelmap, packOpts, (err : BusinessError, data : ArrayBuffer) => { 
+    imagePackerApi.packing(pixelMap, packOpts, (err : BusinessError, data : ArrayBuffer) => { 
         console.log('Succeeded in packing the image.');
     })
+}).catch((error : BusinessError) => {
+	console.error('createPixelMap failed.');
 })
 ```
 
@@ -2381,7 +2724,7 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 
 | 参数名 | 类型                            | 必填 | 说明               |
 | ------ | ------------------------------- | ---- | ------------------ |
-| source | [PixelMap](#pixelmap)           | 是   | 打包的PixelMap源。 |
+| source | [PixelMap](#pixelmap7)           | 是   | 打包的PixelMap源。 |
 | option | [PackingOption](#packingoption) | 是   | 设置打包参数。     |
 
 **返回值：**
@@ -2393,18 +2736,19 @@ packing(source: PixelMap, option: PackingOption): Promise\<ArrayBuffer>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
-let bufferArr : Uint8Array = new Uint8Array(color);
 let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+image.createPixelMap(color, opts).then((pixelMap : image.PixelMap) => {
     let packOpts : image.PackingOption = { format:"image/jpeg", quality:98 }
-    imagePackerApi.packing(pixelmap, packOpts)
+    imagePackerApi.packing(pixelMap, packOpts)
         .then( (data : ArrayBuffer) => {
             console.log('Succeeded in packing the image.');
         }).catch((error : BusinessError) => {
-            console.log('Failed to pack the image..');
+            console.error('Failed to pack the image..');
         })
+}).catch((error : BusinessError) => {
+	console.error('createPixelMap failed.');
 })
 ```
 
@@ -2425,10 +2769,10 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imagePackerApi.release((err : BusinessError)=>{ 
     if (err != undefined) {
-        console.log('Failed to release image packaging.'); 
+        console.error('Failed to release image packaging.'); 
     } else {
         console.log('Succeeded in releasing image packaging.');
     }
@@ -2452,19 +2796,186 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 imagePackerApi.release().then(()=>{
     console.log('Succeeded in releasing image packaging.');
 }).catch((error : BusinessError)=>{ 
-    console.log('Failed to release image packaging.'); 
+    console.error('Failed to release image packaging.'); 
 }) 
 ```
 
-## image.createImageReceiver<sup>9+</sup>
+### packToFile<sup>11+</sup>
 
-createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
+packToFile(source: ImageSource, fd: number, options: PackingOption, callback: AsyncCallback\<void>): void
 
-通过宽、高、图片格式、容量创建ImageReceiver实例。
+指定打包参数，将ImageSource图片源编码后直接打包进文件。使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                           |
+| -------- | ------------------------------- | ---- | ------------------------------ |
+| source   | [ImageSource](#imagesource)     | 是   | 打包的图片源。                 |
+| fd       | number                          | 是   | 文件描述符。                   |
+| options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
+| callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const context : Context = getContext(this);
+const path : string = context.filesDir + "/test.png";
+const imageSourceApi : image.ImageSource = image.createImageSource(path);
+let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
+const filePath : string = context.cacheDir + "/image_source.jpg";
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+const imagePackerApi : image.ImagePacker = image.createImagePacker();
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts, (err : BusinessError) => {
+    if(err) {
+        console.error('packToFile failed.');
+    } else {
+        console.log('packToFile succeeded.');
+    }
+})
+```
+
+### packToFile<sup>11+</sup>
+
+packToFile (source: ImageSource, fd: number, options: PackingOption): Promise\<void>
+
+指定打包参数，将ImageSource图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明           |
+| ------ | ------------------------------- | ---- | -------------- |
+| source | [ImageSource](#imagesource)     | 是   | 打包的图片源。 |
+| fd     | number                          | 是   | 文件描述符。   |
+| options | [PackingOption](#packingoption) | 是   | 设置打包参数。 |
+
+**返回值：**
+
+| 类型           | 说明                              |
+| -------------- | --------------------------------- |
+| Promise\<void> | Promise实例，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const context : Context = getContext(this);
+const path : string = context.filesDir + "/test.png";
+const imageSourceApi : image.ImageSource = image.createImageSource(path);
+let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 };
+const filePath : string = context.cacheDir + "/image_source.jpg";
+let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+const imagePackerApi : image.ImagePacker = image.createImagePacker();
+imagePackerApi.packToFile(imageSourceApi, file.fd, packOpts).then(()=>{
+    console.log('Succeeded in packToFile.');
+}).catch((error : BusinessError)=>{ 
+    console.log('Failed to packToFile.'); 
+}) 
+```
+
+### packToFile<sup>11+</sup>
+
+packToFile (source: PixelMap, fd: number, options: PackingOption,  callback: AsyncCallback\<void>): void;
+
+指定打包参数，将PixelMap图片源编码后直接打包进文件。使用callback形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                           |
+| -------- | ------------------------------- | ---- | ------------------------------ |
+| source   | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。           |
+| fd       | number                          | 是   | 文件描述符。                   |
+| options   | [PackingOption](#packingoption) | 是   | 设置打包参数。                 |
+| callback | AsyncCallback\<void>            | 是   | 获取回调，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+const context : Context = getContext(this);
+const path : string = context.cacheDir + "/pixel_map.jpg";
+image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+    let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerApi : image.ImagePacker = image.createImagePacker();
+    imagePackerApi.packToFile(pixelmap, file.fd, packOpts, (err : BusinessError) => {
+        if(err) {
+            console.error('packToFile failed.');
+        } else {
+            console.log('packToFile succeeded.');
+        }
+    })
+})
+```
+
+### packToFile<sup>11+</sup>
+
+packToFile (source: PixelMap, fd: number, options: PackingOption): Promise\<void>
+
+指定打包参数，将PixelMap图片源编码后直接打包进文件。使用Promise形式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImagePacker
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明                 |
+| ------ | ------------------------------- | ---- | -------------------- |
+| source | [PixelMap](#pixelmap7)          | 是   | 打包的PixelMap资源。 |
+| fd     | number                          | 是   | 文件描述符。         |
+| options | [PackingOption](#packingoption) | 是   | 设置打包参数。       |
+
+**返回值：**
+
+| 类型           | 说明                              |
+| -------------- | --------------------------------- |
+| Promise\<void> | Promise实例，失败时返回错误信息。 |
+
+**示例：**
+
+```ts
+import {BusinessError} from '@ohos.base'
+import fs from '@ohos.file.fs'
+
+const color : ArrayBuffer = new ArrayBuffer(96);  //96为需要创建的像素buffer大小，取值为：height * width *4
+let opts : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+const context : Context = getContext(this);
+const path : string = context.cacheDir + "/pixel_map.jpg";
+image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
+    let packOpts : image.PackingOption = { format: "image/jpeg", quality: 98 }
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const imagePackerApi : image.ImagePacker = image.createImagePacker();
+    imagePackerApi.packToFile(pixelmap, file.fd, packOpts)
+        .then(() => {
+            console.log('Succeeded in packToFile.');
+        }).catch((error : BusinessError) => {
+            console.log('Failed to packToFile.');
+        })
+})
+```
+
+## image.createImageReceiver<sup>11+</sup>
+
+createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageReceiver
+
+通过图片大小、图片格式、容量创建ImageReceiver实例。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2474,7 +2985,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
-| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG 和 4）。  |
+| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -2486,7 +2997,43 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 **示例：**
 
 ```ts
-let receiver : image.ImageReceiver = image.createImageReceiver(8192, 8, 2000, 8);
+let size:image.Size = {
+    height: 8192,
+    width: 8
+} 
+let receiver : image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+```
+
+## image.createImageReceiver<sup>(deprecated)</sup>
+
+createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
+
+通过宽、高、图片格式、容量创建ImageReceiver实例。
+
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[createImageReceiver](#imagecreateimagereceiver11)代替。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageReceiver
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| size    | [Size](#size)  | 是   | 图像的默认大小。       |
+| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。             |
+| capacity | number | 是   | 同时访问的最大图像数。 |
+
+**返回值：**
+
+| 类型                             | 说明                                    |
+| -------------------------------- | --------------------------------------- |
+| [ImageReceiver](#imagereceiver9) | 如果操作成功，则返回ImageReceiver实例。 |
+
+**示例：**
+
+```ts
+let receiver : image.ImageReceiver = image.createImageReceiver(8192, 8, image.ImageFormat.JPEG, 8);
 ```
 
 ## ImageReceiver<sup>9+</sup>
@@ -2522,10 +3069,10 @@ getReceivingSurfaceId(callback: AsyncCallback\<string>): void
 **示例:**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 receiver.getReceivingSurfaceId((err : BusinessError, id : string) => { 
     if(err) {
-        console.log('getReceivingSurfaceId failed.');
+        console.error('getReceivingSurfaceId failed.');
     } else {
         console.log('getReceivingSurfaceId succeeded.');
     }
@@ -2549,11 +3096,11 @@ getReceivingSurfaceId(): Promise\<string>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 receiver.getReceivingSurfaceId().then( (id : string) => { 
     console.log('getReceivingSurfaceId succeeded.');
 }).catch((error : BusinessError) => {
-    console.log('getReceivingSurfaceId failed.');
+    console.error('getReceivingSurfaceId failed.');
 })
 ```
 
@@ -2574,10 +3121,10 @@ readLatestImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 receiver.readLatestImage((err : BusinessError, img : image.Image) => { 
     if(err) {
-        console.log('readLatestImage failed.');
+        console.error('readLatestImage failed.');
     } else {
         console.log('readLatestImage succeeded.');
     }
@@ -2601,11 +3148,11 @@ readLatestImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 receiver.readLatestImage().then((img : image.Image) => {
     console.log('readLatestImage succeeded.');
 }).catch((error : BusinessError) => {
-    console.log('readLatestImage failed.');
+    console.error('readLatestImage failed.');
 })
 ```
 
@@ -2626,10 +3173,10 @@ readNextImage(callback: AsyncCallback\<Image>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 receiver.readNextImage((err : BusinessError, img : image.Image) => { 
     if(err) {
-        console.log('readNextImage failed.');
+        console.error('readNextImage failed.');
     } else {
         console.log('readNextImage succeeded.');
     }
@@ -2653,11 +3200,11 @@ readNextImage(): Promise\<Image>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 receiver.readNextImage().then((img : image.Image) => {
     console.log('readNextImage succeeded.');
 }).catch((error : BusinessError) => {
-    console.log('readNextImage failed.');
+    console.error('readNextImage failed.');
 })
 ```
 
@@ -2679,7 +3226,9 @@ on(type: 'imageArrival', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-receiver.on('imageArrival', () => {})
+receiver.on('imageArrival', () => {
+    // image arrival, do something.
+})
 ```
 
 ### release<sup>9+</sup>
@@ -2700,7 +3249,13 @@ release(callback: AsyncCallback\<void>): void
 
 ```ts
 import {BusinessError} from '@ohos.base'
-receiver.release((err : BusinessError) => {})
+receiver.release((err : BusinessError) => {
+    if(err) {
+        console.error('release ImageReceiver failed.');
+    } else {
+        console.log('release ImageReceiver succeeded.');
+    }
+})
 ```
 
 ### release<sup>9+</sup>
@@ -2720,19 +3275,55 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 receiver.release().then(() => {
     console.log('release succeeded.');
 }).catch((error : BusinessError) => {
-    console.log('release failed.');
+    console.error('release failed.');
 })
 ```
 
-## image.createImageCreator<sup>9+</sup>
+## image.createImageCreator<sup>11+</sup>
+
+createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCreator
+
+通过图片大小、图片格式、容量创建ImageCreator实例。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageCreator
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明                   |
+| -------- | ------ | ---- | ---------------------- |
+| size    | [Size](#size)  | 是   | 图像的默认大小。       |
+| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，如YCBCR_422_SP，JPEG。             |
+| capacity | number | 是   | 同时访问的最大图像数。 |
+
+**返回值：**
+
+| 类型                           | 说明                                    |
+| ------------------------------ | --------------------------------------- |
+| [ImageCreator](#imagecreator9) | 如果操作成功，则返回ImageCreator实例。 |
+
+**示例：**
+
+```ts
+let size:image.Size = {
+    height: 8192,
+    width: 8
+} 
+let creator : image.ImageCreator = image.createImageCreator(size, image.ImageFormat.JPEG, 8);
+```
+
+## image.createImageCreator<sup>(deprecated)</sup>
 
 createImageCreator(width: number, height: number, format: number, capacity: number): ImageCreator
 
 通过宽、高、图片格式、容量创建ImageCreator实例。
+
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[createImageCreator](#imagecreateimagecreator11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageCreator
 
@@ -2754,13 +3345,13 @@ createImageCreator(width: number, height: number, format: number, capacity: numb
 **示例：**
 
 ```ts
-let creator : image.ImageCreator = image.createImageCreator(8192, 8, 4, 8);
+let creator : image.ImageCreator = image.createImageCreator(8192, 8, image.ImageFormat.JPEG, 8);
 ```
 
 ## ImageCreator<sup>9+</sup>
 
 图像创建模块，用于请求图像原生数据区域，并开放给应用编译原生图像数据的能力。
-在调用以下方法前需要先创建ImageCreator实例，ImageCreator不支持多线程。
+在调用以下方法前需要先创建[ImageCreator](#imagecreator9)实例，ImageCreator不支持多线程。
 
 ### 属性
 
@@ -2783,17 +3374,18 @@ dequeueImage(callback: AsyncCallback\<Image>): void
 
 | 参数名        | 类型                                    | 必填 | 说明                 |
 | ------------- | ---------------------------------------| ---- | -------------------- |
-| callback      | AsyncCallback\<Image>                   | 是   | 回调函数，返回最新图片。 |
+| callback      | AsyncCallback\<[Image](#image9)>                   | 是   | 回调函数，返回最新图片。 |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 creator.dequeueImage((err : BusinessError, img : image.Image) => {
     if (err) {
-        console.info('dequeueImage failed.');
+        console.error('dequeueImage failed.');
+    } else {
+        console.info('dequeueImage succeeded.');
     }
-    console.info('dequeueImage succeeded.');
 });
 ```
 
@@ -2809,16 +3401,16 @@ dequeueImage(): Promise\<Image>
 
 | 类型             | 说明           |
 | --------------- | ------------- |
-| Promise\<Image> | 返回绘制的图像。 |
+| Promise\<[Image](#image9)> | Promise实例，用于返回最新图片。 |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 creator.dequeueImage().then((img : image.Image) => {
     console.info('dequeueImage succeeded.');
 }).catch((error : BusinessError) => {
-    console.log('dequeueImage failed: ' + error);
+    console.error('dequeueImage failed: ' + error);
 })
 ```
 
@@ -2834,13 +3426,13 @@ queueImage(interface: Image, callback: AsyncCallback\<void>): void
 
 | 参数名        | 类型                     | 必填 | 说明                 |
 | ------------- | -------------------------| ---- | -------------------- |
-| interface     | Image                    | 是   | 绘制好的buffer图像。 |
+| interface     | [Image](#image9)                    | 是   | 绘制好的buffer图像。 |
 | callback      | AsyncCallback\<void>     | 是   | 获取回调，失败时返回错误信息。 |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 creator.dequeueImage().then((img : image.Image) => {
     //绘制图片
     img.getComponent(4).then( (component : image.Component) => {
@@ -2854,9 +3446,10 @@ creator.dequeueImage().then((img : image.Image) => {
     })
     creator.queueImage(img, (err : BusinessError) => {
         if (err) {
-            console.info('queueImage failed: ' + err);
+            console.error('queueImage failed: ' + err);
+        } else {
+            console.info('queueImage succeeded');
         }
-        console.info('queueImage succeeded');
     })
 })
 
@@ -2874,7 +3467,7 @@ queueImage(interface: Image): Promise\<void>
 
 | 参数名          | 类型     | 必填 | 说明                |
 | ------------- | --------| ---- | ------------------- |
-| interface     | Image   | 是   | 绘制好的buffer图像。 |
+| interface     | [Image](#image9)   | 是   | 绘制好的buffer图像。 |
 
 **返回值：**
 
@@ -2885,7 +3478,7 @@ queueImage(interface: Image): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 creator.dequeueImage().then((img : image.Image) => {
     //绘制图片
     img.getComponent(4).then((component : image.Component) => {
@@ -2900,7 +3493,7 @@ creator.dequeueImage().then((img : image.Image) => {
     creator.queueImage(img).then(() => {
         console.info('queueImage succeeded.');
     }).catch((error : BusinessError) => {
-        console.info('queueImage failed: ' + error);
+        console.error('queueImage failed: ' + error);
     })
 })
 
@@ -2924,12 +3517,13 @@ on(type: 'imageRelease', callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 creator.on('imageRelease', (err : BusinessError) => {
     if (err) {
-        console.info('on faild' + err);
+        console.error('on faild' + err);
+    } else {
+        console.info('on succeeded');
     }
-    console.info('on succeeded');
 })
 ```
 
@@ -2950,12 +3544,13 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 creator.release((err : BusinessError) => {
     if (err) {
-        console.info('release failed: ' + err);
+        console.error('release failed: ' + err);
+    } else {
+        console.info('release succeeded');
     }
-    console.info('release succeeded');
 });
 ```
 ### release<sup>9+</sup>
@@ -2975,11 +3570,11 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 creator.release().then(() => {
     console.info('release succeeded');
 }).catch((error : BusinessError) => {
-    console.info('release failed');
+    console.error('release failed');
 })
 ```
 
@@ -3015,10 +3610,10 @@ getComponent(componentType: ComponentType, callback: AsyncCallback\<Component>):
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 img.getComponent(4, (err : BusinessError, component : image.Component) => {
     if(err) {
-        console.log('getComponent failed.');
+        console.error('getComponent failed.');
     } else {
         console.log('getComponent succeeded.');
     }
@@ -3043,12 +3638,16 @@ getComponent(componentType: ComponentType): Promise\<Component>
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise<[Component](#component9)> | 用于返回组件缓冲区的promise实例。 |
+| Promise<[Component](#component9)> | Promise实例，用于异步返回组件缓冲区。 |
 
 **示例：**
 
 ```ts
-img.getComponent(4).then((component : image.Component) => { })
+img.getComponent(4).then((component : image.Component) => {
+    console.log('getComponent succeeded.');
+}).catch((error : BusinessError) => {
+    console.error('getComponent failed');
+})
 ```
 
 ### release<sup>9+</sup>
@@ -3070,10 +3669,10 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 img.release((err : BusinessError) =>{ 
     if (err != undefined) {
-        console.log('Failed to release the image source instance.');
+        console.error('Failed to release the image source instance.');
     } else {
         console.log('Succeeded in releasing the image source instance.');
     }
@@ -3099,11 +3698,11 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base'
+import {BusinessError} from '@ohos.base';
 img.release().then(() =>{
     console.log('release succeeded.');
 }).catch((error : BusinessError) => {
-    console.log('release failed.');
+    console.error('release failed.');
 })
 ```
 
@@ -3115,10 +3714,10 @@ img.release().then(() =>{
 
 | 名称   | 类型               | 可读 | 可写 | 说明                                                         |
 | ------ | ------------------ | ---- | ---- | ------------------------------------------------------------ |
-| pixels | ArrayBuffer        | 是   | 否   | 像素。                                                       |
-| offset | number             | 是   | 否   | 偏移量。                                                     |
-| stride | number             | 是   | 否   | 像素间距，stride >= region.size.width*4。                   |
-| region | [Region](#region7) | 是   | 否   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
+| pixels | ArrayBuffer        | 是   | 是   | 像素。                                                       |
+| offset | number             | 是   | 是   | 偏移量。                                                     |
+| stride | number             | 是   | 是   | 像素间距，stride >= region.size.width*4。                   |
+| region | [Region](#region7) | 是   | 是   | 区域，按照区域读写。写入的区域宽度加X坐标不能大于原图的宽度，写入的区域高度加Y坐标不能大于原图的高度。 |
 
 ## ImageInfo
 
@@ -3169,7 +3768,7 @@ img.release().then(() =>{
 | 名称     |   值   | 说明                    |
 | -------- | ------ | ----------------------- |
 | UNKNOWN  | 0      | 未知透明度。            |
-| OPAQUE   | 1      | 没有alpha或图片全透明。 |
+| OPAQUE   | 1      | 没有alpha或图片不透明。 |
 | PREMUL   | 2      | RGB前乘alpha。         |
 | UNPREMUL | 3      | RGB不前乘alpha。       |
 
@@ -3227,6 +3826,7 @@ PixelMap的初始化选项。
 | desiredPixelFormat | [PixelMapFormat](#pixelmapformat7) | 是   | 是   | 解码的像素格式。 |
 | index              | number                             | 是   | 是   | 解码图片序号。   |
 | fitDensity<sup>9+</sup> | number                        | 是   | 是   | 图像像素密度，单位为ppi。   |
+| desiredColorSpace<sup>11+</sup> | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 是   | 目标色彩空间。 |
 
 ## Region<sup>7+</sup>
 
@@ -3249,12 +3849,27 @@ PixelMap的初始化选项。
 | 名称    | 类型   | 可读 | 可写 | 说明                                                |
 | ------- | ------ | ---- | ---- | --------------------------------------------------- |
 | format  | string | 是   | 是   | 目标格式。</br>当前只支持jpg、webp 和 png。 |
-| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为1-100。 |
-| bufferSize<sup>9+</sup> | number | 是   | 是   | 用于设置图片大小，默认为10M。 |
+| quality | number | 是   | 是   | JPEG编码中设定输出图片质量的参数，取值范围为0-100。 |
+| bufferSize<sup>9+</sup> | number | 是   | 是   | 接收编码数据的缓冲区大小，单位为Byte。默认为10MB。bufferSize需大于编码后图片大小。 |
 
-## GetImagePropertyOptions<sup>7+</sup>
+## ImagePropertyOptions<sup>11+</sup>
 
 表示查询图片属性的索引。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+| 名称         | 类型   | 可读 | 可写 | 说明         |
+| ------------ | ------ | ---- | ---- | ------------ |
+| index        | number | 是   | 是   | 图片序号。   |
+| defaultValue | string | 是   | 是   | 默认属性值。 |
+
+## GetImagePropertyOptions<sup>(deprecated)</sup>
+
+表示查询图片属性的索引。
+
+> **说明：**
+>
+> 从API version 11开始不再维护，建议使用[ImagePropertyOptions](#imagepropertyoptions11)代替。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -3271,43 +3886,57 @@ PixelMap的初始化选项。
 
 | 名称              |   值                    | 说明                     |
 | ----------------- | ----------------------- | ------------------------ |
-| BITS_PER_SAMPLE   | "BitsPerSample"         | 每个像素比特数。         |
-| ORIENTATION       | "Orientation"           | 图片方向。               |
-| IMAGE_LENGTH      | "ImageLength"           | 图片长度。               |
-| IMAGE_WIDTH       | "ImageWidth"            | 图片宽度。               |
-| GPS_LATITUDE      | "GPSLatitude"           | 图片纬度。               |
-| GPS_LONGITUDE     | "GPSLongitude"          | 图片经度。               |
-| GPS_LATITUDE_REF  | "GPSLatitudeRef"        | 纬度引用，例如N或S。    |
-| GPS_LONGITUDE_REF | "GPSLongitudeRef"       | 经度引用，例如W或E。    |
-| DATE_TIME_ORIGINAL<sup>9+</sup> | "DateTimeOriginal" | 拍摄时间，例如2022:09:06 15:48:00。当前为只读属性。     |
-| EXPOSURE_TIME<sup>9+</sup>      | "ExposureTime"     | 曝光时间，例如1/33 sec。当前为只读属性。 |
-| SCENE_TYPE<sup>9+</sup>         | "SceneType"        | 拍摄场景模式，例如人像、风光、运动、夜景等。当前为只读属性。      |
-| ISO_SPEED_RATINGS<sup>9+</sup>  | "ISOSpeedRatings"  | ISO感光度，例如400。当前为只读属性。      |
-| F_NUMBER<sup>9+</sup>           | "FNumber"          | 光圈值，例如f/1.8。当前为只读属性。      |
-| DATE_TIME<sup>10+</sup>                  | "DateTime"             | 日期时间，当前为只读属性。                |
-| GPS_TIME_STAMP<sup>10+</sup>             | "GPSTimeStamp"         | GPS时间戳，当前为只读属性。         |
-| GPS_DATE_STAMP<sup>10+</sup>             | "GPSDateStamp"         | GPS日期戳，当前为只读属性。          |
-| IMAGE_DESCRIPTION<sup>10+</sup>          | "ImageDescription"     | 图像信息描述，当前为只读属性。               |
-| MAKE<sup>10+</sup>                       | "Make"                 | 生产商，当前为只读属性。                  |
-| MODEL<sup>10+</sup>                      | "Model"                | 设备型号，当前为只读属性。                  |
-| PHOTO_MODE<sup>10+</sup>                 | "PhotoMode "           | 拍照模式，当前为只读属性。              |
-| SENSITIVITY_TYPE<sup>10+</sup>           | "SensitivityType"      | 灵敏度类型，当前为只读属性。             |
-| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup>           | "StandardOutputSensitivity"          | 标准输出灵敏度，当前为只读属性。    |
-| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>            | "RecommendedExposureIndex"          | 推荐曝光指数，当前为只读属性。    |
-| ISO_SPEED<sup>10+</sup>                             | "ISOSpeedRatings"          | ISO速度等级，当前为只读属性。    |
-| APERTURE_VALUE<sup>10+</sup>             | "ApertureValue"            | 光圈值，当前为只读属性。    |
-| EXPOSURE_BIAS_VALUE<sup>10+</sup>        | "ExposureBiasValue"        | 曝光偏差值，当前为只读属性。    |
-| METERING_MODE<sup>10+</sup>              | "MeteringMode"             | 测光模式，当前为只读属性。    |
-| LIGHT_SOURCE<sup>10+</sup>               | "LightSource"              | 光源，当前为只读属性。    |
-| FLASH <sup>10+</sup>                     | "Flash"                    | 闪光灯,记录闪光灯状态，当前为只读属性。    |
-| FOCAL_LENGTH <sup>10+</sup>              | "FocalLength"              | 焦距，当前为只读属性。    |
-| USER_COMMENT <sup>10+</sup>               | "UserComment"              | 用户注释，当前为只读属性。    |
-| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"          | 像素X尺寸，当前为只读属性。   |
-| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"          | 像素Y尺寸，当前为只读属性。    |
-| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"             | 白平衡，当前为只读属性。    |
-| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"    | 焦距35毫米胶片，当前为只读属性。    |
-| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"       | 捕获模式，当前为只读属性。    |
-| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"  | 物理孔径,光圈大小，当前为只读属性。   |
+| BITS_PER_SAMPLE                           | "BitsPerSample"              | 每个像素比特数。                            |
+| ORIENTATION                               | "Orientation"                | 图片方向。                                  |
+| IMAGE_LENGTH                              | "ImageLength"                | 图片长度。                                  |
+| IMAGE_WIDTH                               | "ImageWidth"                 | 图片宽度。                                  |
+| GPS_LATITUDE                              | "GPSLatitude"                | 图片纬度。                                  |
+| GPS_LONGITUDE                             | "GPSLongitude"               | 图片经度。                                  |
+| GPS_LATITUDE_REF                          | "GPSLatitudeRef"             | 纬度引用，例如N或S。                        |
+| GPS_LONGITUDE_REF                         | "GPSLongitudeRef"            | 经度引用，例如W或E。                        |
+| DATE_TIME_ORIGINAL<sup>9+</sup>           | "DateTimeOriginal"           | 拍摄时间，例如2022:09:06 15:48:00。         |
+| EXPOSURE_TIME<sup>9+</sup>                | "ExposureTime"               | 曝光时间，例如1/33 sec。                    |
+| SCENE_TYPE<sup>9+</sup>                   | "SceneType"                  | 拍摄场景模式，例如人像、风光、运动、夜景等。 |
+| ISO_SPEED_RATINGS<sup>9+</sup>            | "ISOSpeedRatings"            | ISO感光度，例如400。                        |
+| F_NUMBER<sup>9+</sup>                     | "FNumber"                    | 光圈值，例如f/1.8。                         |
+| DATE_TIME<sup>10+</sup>                   | "DateTime"                   | 日期时间。                                  |
+| GPS_TIME_STAMP<sup>10+</sup>              | "GPSTimeStamp"               | GPS时间戳。                                   |
+| GPS_DATE_STAMP<sup>10+</sup>              | "GPSDateStamp"               | GPS日期戳。                                   |
+| IMAGE_DESCRIPTION<sup>10+</sup>           | "ImageDescription"           | 图像信息描述。                                |
+| MAKE<sup>10+</sup>                        | "Make"                       | 生产商。                                      |
+| MODEL<sup>10+</sup>                       | "Model"                      | 设备型号。                                    |
+| PHOTO_MODE<sup>10+</sup>                  | "PhotoMode "                 | 拍照模式。                                    |
+| SENSITIVITY_TYPE<sup>10+</sup>            | "SensitivityType"            | 灵敏度类型。                                  |
+| STANDARD_OUTPUT_SENSITIVITY<sup>10+</sup> | "StandardOutputSensitivity"  | 标准输出灵敏度。                              |
+| RECOMMENDED_EXPOSURE_INDEX<sup>10+</sup>  | "RecommendedExposureIndex"   | 推荐曝光指数。                                |
+| ISO_SPEED<sup>10+</sup>                   | "ISOSpeedRatings"            | ISO速度等级。                                 |
+| APERTURE_VALUE<sup>10+</sup>              | "ApertureValue"              | 光圈值。                                      |
+| EXPOSURE_BIAS_VALUE<sup>10+</sup>         | "ExposureBiasValue"          | 曝光偏差值。                                  |
+| METERING_MODE<sup>10+</sup>               | "MeteringMode"               | 测光模式。                                    |
+| LIGHT_SOURCE<sup>10+</sup>                | "LightSource"                | 光源。                                        |
+| FLASH <sup>10+</sup>                      | "Flash"                      | 闪光灯,记录闪光灯状态。                       |
+| FOCAL_LENGTH <sup>10+</sup>               | "FocalLength"                | 焦距。                                        |
+| USER_COMMENT <sup>10+</sup>               | "UserComment"                | 用户注释。                                    |
+| PIXEL_X_DIMENSION <sup>10+</sup>          | "PixelXDimension"            | 像素X尺寸。                                   |
+| PIXEL_Y_DIMENSION<sup>10+</sup>           | "PixelYDimension"            | 像素Y尺寸。                                   |
+| WHITE_BALANCE <sup>10+</sup>              | "WhiteBalance"               | 白平衡。                                      |
+| FOCAL_LENGTH_IN_35_MM_FILM <sup>10+</sup> | "FocalLengthIn35mmFilm"      | 焦距35毫米胶片。                              |
+| CAPTURE_MODE <sup>10+</sup>               | "HwMnoteCaptureMode"         | 捕获模式，当前为只读属性。                  |
+| PHYSICAL_APERTURE <sup>10+</sup>          | "HwMnotePhysicalAperture"    | 物理孔径，光圈大小，当前为只读属性。        |
+| ROLL_ANGLE <sup>11+</sup>                 | "HwMnoteRollAngle"           | 滚动角度，当前为只读属性。                  |
+| PITCH_ANGLE<sup>11+</sup>                | "HwMnotePitchAngle"          | 俯仰角度，当前为只读属性。                  |
+| SCENE_FOOD_CONF<sup>11+</sup>             | "HwMnoteSceneFoodConf"       | 拍照场景：食物，当前为只读属性。            |
+| SCENE_STAGE_CONF<sup>11+</sup>           | "HwMnoteSceneStageConf"     | 拍照场景：舞台，当前为只读属性。            |
+| SCENE_BLUE_SKY_CONF<sup>11+</sup>       | "HwMnoteSceneBlueSkyConf"    | 拍照场景：蓝天，当前为只读属性。            |
+| SCENE_GREEN_PLANT_CONF<sup>11+</sup>      | "HwMnoteSceneGreenPlantConf" | 拍照场景：绿植，当前为只读属性。       |
+| SCENE_BEACH_CONF<sup>11+</sup>            | "HwMnoteSceneBeachConf"      | 拍照场景：沙滩，当前为只读属性。            |
+| SCENE_SNOW_CONF<sup>11+</sup>             | "HwMnoteSceneSnowConf"       | 拍照场景：下雪，当前为只读属性。            |
+| SCENE_SUNSET_CONF<sup>11+</sup>           | "HwMnoteSceneSunsetConf"     | 拍照场景：日落，当前为只读属性。            |
+| SCENE_FLOWERS_CONF<sup>11+</sup>          | "HwMnoteSceneFlowersConf"    | 拍照场景：花，当前为只读属性。              |
+| SCENE_NIGHT_CONF<sup>11+</sup>            | "HwMnoteSceneNightConf"      | 拍照场景：夜晚，当前为只读属性。            |
+| SCENE_TEXT_CONF<sup>11+</sup>             | "HwMnoteSceneTextConf"       | 拍照场景：文本，当前为只读属性。            |
+| FACE_COUNT<sup>11+</sup>                  | "HwMnoteFaceCount"           | 人脸数量，当前为只读属性。                  |
+| FOCUS_MODE<sup>11+</sup>                  | "HwMnoteFocusMode"           | 对焦模式，当前为只读属性。                  |
 
 ## ImageFormat<sup>9+</sup>
 

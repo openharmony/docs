@@ -4,15 +4,21 @@
 - 并发
   - [并发概述](concurrency-overview.md)
   - 使用异步并发能力进行开发
-    - [异步并发概述](async-concurrency-overview.md)
-    - [单次I/O任务开发指导](single-io-development.md)
+    - [异步并发概述 (Promise和async/await)](async-concurrency-overview.md)
+    - [单次I/O任务开发指导 (Promise和async/await)](single-io-development.md)
   - 使用多线程并发能力进行开发
-    - [多线程并发概述](multi-thread-concurrency-overview.md)
+    - [多线程并发概述 (TaskPool和Worker)](multi-thread-concurrency-overview.md)
+    - [TaskPool简介](taskpool-introduction.md)
+    - [Worker简介](worker-introduction.md)
+    - [TaskPool和Worker的对比 (TaskPool和Worker)](taskpool-vs-worker.md)
+    - [CPU密集型任务开发指导 (TaskPool和Worker)](cpu-intensive-task-development.md)
+    - [I/O密集型任务开发指导 (TaskPool)](io-intensive-task-development.md)
+    - [同步任务开发指导 (TaskPool和Worker)](sync-task-development.md)
+  - 附录
     - [Actor并发模型对比内存共享并发模型](actor-model-development-samples.md)
-    - [TaskPool和Worker的对比](taskpool-vs-worker.md)
-    - [CPU密集型任务开发指导](cpu-intensive-task-development.md)
-    - [I/O密集型任务开发指导](io-intensive-task-development.md)
-    - [同步任务开发指导](sync-task-development.md)
+    - [TaskPool和Worker支持的序列化类型](serialization-support-types.md)
+    - [\@Concurrent装饰器：校验并发函数](arkts-concurrent.md)
+    - [多线程安全注意事项](multi-thread-safety.md)
 - 容器类库
   - [容器类库概述](container-overview.md)
   - [线性容器](linear-container.md)

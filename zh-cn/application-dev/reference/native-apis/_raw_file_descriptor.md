@@ -24,8 +24,8 @@ RawFileDescriptor是[OH_ResourceManager_GetRawFileDescriptor()](rawfile.md#oh_re
 | 成员变量名称 | 描述 |
 | -------- | -------- |
 | [fd](#fd) | rawfile文件描述符 |
-| [start](#start) | rawfile在HAP中的长度 |
-| [length](#length) | rawfile在HAP中的起始位置 |
+| [start](#start) | rawfile在HAP中的起始位置 |
+| [length](#length) | rawfile在HAP中的长度 |
 
 
 ## 结构体成员变量说明

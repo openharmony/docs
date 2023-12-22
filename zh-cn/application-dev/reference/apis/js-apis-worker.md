@@ -6,6 +6,8 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
+Worker使用过程中的相关注意点请见[Worker注意事项](../../arkts-utils/taskpool-vs-worker.md#worker注意事项)
+
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -32,12 +34,11 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。 |
-| name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。 |
-| shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 |
-
+| type | "classic" \| "module" | 是   | 否 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。 |
+| name | string   | 是   | 否 | Worker的名称，默认值为 undefined 。 |
+| shared | boolean | 是   | 否 | 表示Worker共享功能，此接口暂不支持。 |
 
 ## ThreadWorker<sup>9+</sup>
 
@@ -73,8 +74,6 @@ ThreadWorker构造函数。
 | 10200003 | Worker initialization failure. |
 | 10200007 | The worker file patch is invalid path. |
 
-
-
 **示例：**
 
 ```ts
@@ -94,14 +93,6 @@ const workerStageModel02 = new worker.ThreadWorker('entry/ets/pages/workers/work
 // 理解Stage模型scriptURL的"entry/ets/workers/worker.ts"：
 // entry: 为module.json5文件中module的name属性对应的值，ets: 表明当前使用的语言。
 // scriptURL与worker文件所在的workers目录层级有关，与new worker所在文件无关。
-
-// Stage模型工程esmodule编译场景下，支持新增的scriptURL规格：@bundle:bundlename/entryname/ets/workerdir/workerfile
-// @bundle:为固定标签，bundlename为当前应用包名，entryname为当前模块名，ets为当前使用语言
-// workerdir为worker文件所在目录，workerfile为worker文件名
-// Stage模型-目录同级（entry模块下，workers目录与pages目录同级），假设bundlename是com.example.workerdemo
-const workerStageModel03 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/workers/worker');
-// Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录），假设bundlename是com.example.workerdemo
-const workerStageModel04 = new worker.ThreadWorker('@bundle:com.example.workerdemo/entry/ets/pages/workers/worker');
 ```
 
 同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
@@ -326,6 +317,89 @@ const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.off("alert");
 ```
 
+### registerGlobalCallObject<sup>11+</sup>
+
+registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
+
+在宿主线程的ThreadWorker实例上注册一个对象，该对象上的方法可以在Worker线程中被调用，详细介绍请参见[callGlobalCallObjectMethod](#callglobalcallobjectmethod11)。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| instanceName  | string        | 是   | 注册对象时使用的键，调用时可以通过该键值找到相对应的被注册的对象。 |
+| globalCallObject | Object | 是   | 被注册的对象，ThreadWorker实例会持有被注册对象的强引用。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+
+**示例：**
+```ts
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+class TestObj {
+  private message : string = "this is a message from TestObj"
+  public getMessage() : string {
+    return this.message;
+  }
+  public getMessageWithInput(str : string) : string {
+    return this.message + " with input: " + str;
+  }
+}
+let registerObj = new TestObj();
+// 在ThreadWorker实例上注册registerObj
+workerInstance.registerGlobalCallObject("myObj", registerObj);
+workerInstance.postMessage("start worker")
+```
+
+### unregisterGlobalCallObject<sup>11+</sup>
+
+unregisterGlobalCallObject(instanceName?: string): void
+
+取消在宿主线程ThreadWorker实例上注册的对象，该方法会释放ThreadWorker实例中与该键相匹配对象的强引用，没有匹配对象时不会报错。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| instanceName  | string        | 否   | 注册对象时使用的键，此参数不填时，会释放ThreadWorker实例中所有已注册的对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+
+**示例：**
+```ts
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
+class TestObj {
+  private message : string = "this is a message from TestObj"
+  public getMessage() : string {
+    return this.message;
+  }
+  public getMessageWithInput(str : string) : string {
+    return this.message + " with input: " + str;
+  }
+}
+let registerObj = new TestObj();
+workerInstance.registerGlobalCallObject("myObj", registerObj);
+// 取消对象注册
+workerInstance.unregisterGlobalCallObject("myObj");
+// 取消ThreadWorker实例上的所有对象注册
+//workerInstance.unregisterGlobalCallObject();
+workerInstance.postMessage("start worker")
+```
 
 ### terminate<sup>9+</sup>
 
@@ -947,6 +1021,66 @@ workerPort.onmessage = (e: MessageEvents): void => {
 }
 ```
 
+### callGlobalCallObjectMethod<sup>11+</sup>
+
+callGlobalCallObjectMethod(instanceName: string, methodName: string, timeout: number, ...args: Object[]): Object
+
+Worker线程调用注册在宿主线程上某个对象的指定方法，调用对于Worker线程是同步的，对于宿主线程是异步的，返回值通过序列化传递。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| instanceName | string                                    | 是   | 注册对象时使用的键，用于在宿主线程查找对象。 |
+| methodName | string | 是 | 在已注册对象上调用的方法名，注意该方法不能为使用async或generator修饰的方法，或底层使用了异步机制等异步返回结果的方法，否则会抛出异常。 |
+| timeout | number | 是 | 本次同步调用的等待时间单位为ms，取整数，取值范围为[1-5000]ms。也可取特殊值0，此时表示本次调用等待时间为5000ms。 |
+| args | Object[] | 否 | 注册对象上所调用方法的参数数组。 |
+
+**返回值：**
+
+| 类型                                  | 说明                            |
+| ------------------------------------- | ------------------------------- |
+| Object | 返回值为调用方法在宿主线程的返回值，该返回值必须是可序列化的，具体可见序列化支持类型。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | ----------------------------------------- |
+| 10200004 | Worker instance is not running.           |
+| 10200006 | An exception occurred during serialization. |
+| 10200019 | The globalCallObject is not registered. |
+| 10200020 | The method to be called is not callable or is an async method or a generator. |
+| 10200021 | The global call exceeds the timeout. |
+
+**示例：**
+```ts
+// worker.ts
+import worker, { MessageEvents } from '@ohos.worker';
+
+const workerPort = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents): void => {
+  try {
+    // 调用方法无入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessage", 0) as string;
+    console.info("worker:", res) // worker: this is a message from TestObj
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+  try {
+    // 调用方法有入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessageWithInput", 0, "hello there!") as string;
+    console.info("worker:", res) //worker: this is a message from TestObj with input: hello there!
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+}
+```
 
 ### close<sup>9+</sup>
 
@@ -1168,6 +1302,132 @@ workerPort.onerror = () => {
 | 名称 | 类型 | 可读 | 可写 | 说明               |
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | any  | 是   | 否   | 线程间传递的数据。 |
+
+## RestrictedWorker<sup>11+</sup>
+
+RestrictedWorker类继承[ThreadWorker<sup>9+</sup>](#threadworker9)，具有ThreadWorker中所有的方法。
+RestrictedWorker主要作用是提供受限的Worker线程运行环境，该线程运行环境中只允许导入Worker模块，不允许导入其他API。
+
+### constructor<sup>11+</sup>
+
+constructor(scriptURL: string, options?: WorkerOptions)
+
+RestrictedWorker构造函数。使用以下方法前，均需先构造RestrictedWorker实例。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型                            | 必填 | 说明                                                         |
+| --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| scriptURL | string                          | 是   | Worker执行脚本的路径。<br/>DevEco Studio新建Worker线程文件的路径存在以下两种情况：<br/>(a) Worker线程文件所在目录与pages目录同级。<br/>(b) Worker线程文件所在目录与pages目录不同级。 |
+| options   | [WorkerOptions](#workeroptions) | 否   | RestrictedWorker构造的选项。                                           |
+
+**返回值：**
+
+| 类型         | 说明                                                         |
+| ------------ | ------------------------------------------------------------ |
+| RestrictedWorker | 执行RestrictedWorker构造函数生成的RestrictedWorker对象，失败则返回undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 10200003 | Worker initialization failure. |
+| 10200007 | The worker file patch is invalid path. |
+
+**示例：**
+
+```ts
+import worker from '@ohos.worker';
+
+// worker线程创建
+// FA模型-目录同级（entry模块下，workers目录与pages目录同级）
+const workerFAModel01 = new worker.RestrictedWorker("workers/worker.ts", {name:"first worker in FA model"});
+// FA模型-目录不同级（entry模块下，workers目录与pages目录的父目录同级）
+const workerFAModel02 = new worker.RestrictedWorker("../workers/worker.ts");
+
+// Stage模型-目录同级（entry模块下，workers目录与pages目录同级）
+const workerStageModel01 = new worker.RestrictedWorker('entry/ets/workers/worker.ts', {name:"first worker in Stage model"});
+// Stage模型-目录不同级（entry模块下，workers目录是pages目录的子目录）
+const workerStageModel02 = new worker.RestrictedWorker('entry/ets/pages/workers/worker.ts');
+
+// 理解Stage模型scriptURL的"entry/ets/workers/worker.ts"：
+// entry: 为module.json5文件中module的name属性对应的值，ets: 表明当前使用的语言。
+// scriptURL与worker文件所在的workers目录层级有关，与new worker所在文件无关。
+```
+
+同时，需在工程的模块级build-profile.json5文件的buildOption属性中添加配置信息，主要分为下面两种情况：
+
+(1) 目录同级
+
+FA模型:
+
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/entryability/workers/worker.ts"
+      ]
+    }
+  }
+```
+
+Stage模型:
+
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/workers/worker.ts"
+      ]
+    }
+  }
+```
+
+(2) 目录不同级
+
+FA模型:
+
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/workers/worker.ts"
+      ]
+    }
+  }
+```
+
+Stage模型:
+
+```json
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/main/ets/pages/workers/worker.ts"
+      ]
+    }
+  }
+```
+
+受限的Worker线程文件只允许导入Worker模块，不允许导入任何其他API，以下为示例代码：
+
+```ts
+// 受限worker线程文件
+import worker, { MessageEvents } from '@ohos.worker';
+
+//import process from '@ohos.process'; // 受限Worker线程内不允许导入除了worker之外的API。
+
+const workerPort = worker.workerPort;
+
+workerPort.onmessage = (e : MessageEvents) : void => {
+  console.info("worker:: This is worker thread.")
+  //console.info("worker:: worker tid: " + process.tid) // 执行process.tid，主线程会有对应的TypeError报出。
+}
+```
 
 ## Worker<sup>(deprecated)</sup>
 
@@ -1710,7 +1970,7 @@ Worker线程用于与宿主线程通信的类，通过postMessage接口发送消
 
 ### postMessage<sup>(deprecated)</sup>
 
-postMessage(messageObject: Object, transfer: Transferable[]): void;
+postMessage(messageObject: Object, transfer: Transferable[]): void
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
@@ -1728,7 +1988,7 @@ Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
 ### postMessage<sup>9+</sup>
 
-postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
+postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
 Worker线程通过转移对象所有权的方式向宿主线程发送消息。
 
@@ -2121,7 +2381,7 @@ Actor并发模型的交互原理：各个Actor并发地处理主线程任务，�
 
 ```ts
 // main thread(同级目录为例)
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
@@ -2142,6 +2402,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // 在调用terminate后，执行回调onexit
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts
@@ -2179,7 +2443,7 @@ build-profile.json5 配置 :
 ### Stage模型
 ```ts
 // main thread（以不同目录为例）
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // 主线程中创建Worker对象
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");
@@ -2199,6 +2463,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // 在调用terminate后，执行onexit
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts

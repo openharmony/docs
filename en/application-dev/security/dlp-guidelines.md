@@ -29,18 +29,22 @@ When an application is in the DLP sandbox state, the available permissions are r
 
 | API| Description|
 | -------- | -------- |
-| isDLPFile(fd: number): Promise&lt;boolean&gt; <br> isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| Checks whether a file is a DLP file.|
+| isDLPFile(fd: number): Promise&lt;boolean&gt; <br>isDLPFile(fd: number, callback: AsyncCallback&lt;boolean&gt;): void| Checks whether a file is a DLP file.|
 | getDLPPermissionInfo(): Promise&lt;DLPPermissionInfo&gt; <br>getDLPPermissionInfo(callback: AsyncCallback&lt;DLPPermissionInfo&gt;): void  | Obtains the permission type of this sandbox application.|
 | getOriginalFileName(fileName: string): string | Obtains the original name of a DLP file.|
 | getDLPSuffix(): string | Obtains the file name extension of a DLP file.|
 | on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void | Subscribes to a file open event of a DLP file. The application will be notified when the DLP file is opened.|
-| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | Unsubscribes from the file open event of a DLP file.| 
+| off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void | Unsubscribes from the file open event of a DLP file.|
 | isInSandbox(): Promise&lt;boolean&gt; <br>isInSandbox(callback: AsyncCallback&lt;boolean&gt;): void | Checks whether this application is running in a sandbox.|
 | getDLPSupportedFileTypes(): Promise&lt;Array&lt;string&gt;&gt;<br>getDLPSupportedFileTypes(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void | Obtains the file name extension types that can be added with the .dlp.|
-| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br> setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the retention state for the twin application.|
-| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br> cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Cancels the retention state for the twin application.|
-| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br> getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br> getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| Obtains the sandbox applications in the retention state.|
-| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br> getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | Obtains the DLP files that are accessed recently.|
+| setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt; <br>setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Sets the sandbox retention state. |
+| cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;<br>cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void | Cancels the sandbox retention state. |
+| getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandboxInfo&gt;&gt; <br>getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void  <br>getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo&gt;&gt;): void| Obtains the sandbox applications in the retention state.|
+| getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt; <br>getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;): void | Obtains the DLP files that are accessed recently.|
+|setSandboxAppConfig(configInfo: string): Promise&lt;void&gt;|Sets sandbox application configuration.|
+|getSandboxAppConfig(): Promise&lt;string&gt;|Obtains the sandbox application configuration.|
+|cleanSandboxAppConfig(): Promise&lt;void&gt;|Cleans the sandbox application configuration.|
+| startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt; <br>| Starts the DLP manager application on the current UIAbility page in borderless mode (available only for the stage model).|
 
 ## How to Develop
 
@@ -52,37 +56,84 @@ Procedure
    import dlpPermission from '@ohos.dlpPermission';
    ```
 
-2. Check whether the application is running in a sandbox.
+2. Open a DLP file. The system automatically installs a DLP sandbox twin app of your application. The following code should be used in Ability of the application.
+
+    ```ts
+    async OpenDlpFile(dlpUri: string, fileName: string, fd: number) {
+      let want:Want = {
+        "action": "ohos.want.action.viewData",
+        "bundleName": "com.example.example_bundle_name",
+        "abilityName": "exampleAbility",
+        "uri": dlpUri,
+        "parameters": {
+          "fileName": {
+            "name": fileName
+          },
+          "keyFd": {
+            "type": "FD",
+            "value": fd
+          }
+        }
+      }
+
+      try {
+        console.log('openDLPFile:' + JSON.stringify(want));
+        console.log('openDLPFile: delegator:' + JSON.stringify(this.context));
+        this.context.startAbility(want);
+      } catch (err) {
+        console.error('openDLPFile startAbility failed', (err as BusinessError).code, (err as BusinessError).message);
+        return;
+      }
+    }
+    ```
+
+    Add **ohos.want.action.viewData** to the **module.json5** file.
+
+    ```json
+      "skills":[
+        {
+          "entities":[
+            ...
+          ],
+          "actions":[
+            ...
+            "ohos.want.action.viewData"
+          ]
+        }
+      ]
+    ```
+
+3. Check whether the application is running in a sandbox.
 
    ```ts
-   dlpPermission.isInSandbox().then((data)=> { 
+   dlpPermission.isInSandbox().then((data)=> {
      console.log('isInSandbox, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("isInSandbox: "  + JSON.stringify(err));
+     console.log('isInSandbox: ' + JSON.stringify(err));
    });
    ```
 
-3. Obtain the permissions on the file. For more information, see [Sandbox Restrictions](#sandbox-restrictions).
+4. Obtain the permissions on the file. For more information, see [Sandbox Restrictions](#sandbox-restrictions).
 
    ```ts
-   dlpPermission.getDLPPermissionInfo().then((data)=> { 
+   dlpPermission.getDLPPermissionInfo().then((data)=> {
      console.log('getDLPPermissionInfo, result: ' + JSON.stringify(data));
    }).catch((err:BusinessError) => {
-     console.log("getDLPPermissionInfo: "  + JSON.stringify(err));
+     console.log('getDLPPermissionInfo: ' + JSON.stringify(err));
    });
    ```
 
-4. Obtain information about the file name extension types that support the DLP solution. Based on the information obtained, you can learn the types of files that be used to generate DLP files.
+5. Obtain information about the file name extension types that support the DLP solution. Based on the information obtained, you can learn the types of files that be used to generate DLP files.
 
    ```ts
-   dlpPermission.getDLPSupportedFileTypes((err, result) => { 
-     console.log("getDLPSupportedFileTypes: " + JSON.stringify(err));
+   dlpPermission.getDLPSupportedFileTypes((err, result) => {
+     console.log('getDLPSupportedFileTypes: ' + JSON.stringify(err));
      console.log('getDLPSupportedFileTypes: ' + JSON.stringify(result));
    });
    ```
 
-5. Check whether the opened file is a DLP file.
-  
+6. Check whether the opened file is a DLP file.
+
    ```ts
    let file = fs.openSync(uri);
    try {
@@ -97,8 +148,8 @@ Procedure
 6. Subscribe to and unsubscribe from the file open event for a DLP file.
 
    ```ts
-   event(info: dlpPermission.VisitedDLPFileInfo) {
-     console.info('openDlpFile event', info.uri, info.recentOpenTime)
+   event(info: dlpPermission.AccessedDLPFileInfo) {
+     console.info('openDlpFile event', info.uri, info.lastOpenTime)
    }
    unSubscribe() {
      try {
@@ -109,23 +160,25 @@ Procedure
    }
    subscribe() {
      try {
-       dlpPermission.on ('openDLPFile' , this.event); // Subscribe to a file open event.
+       dlpPermission.on ('openDLPFile' , this.event); // Subscribe to the file open event.
      } catch (err) {
        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
      }
    }
-   async func() {
-     this.subscribe();
-     this.unSubscribe();
+   onCreate() {
+    this.subscribe();
+   }
+   onDestroy() {
+    this.unSubscribe();
    }
    ```
 
-7. Obtain information about the DLP files that are recently accessed.
+8. Obtain information about the DLP files that are recently accessed.
 
    ```ts
-   async func() {
+   async getDLPFileAccessRecords() {
      try {
-       let res:Array<dlpPermission.VisitedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // Obtain the list of recently accessed DLP files.
+       let res:Array<dlpPermission.AccessedDLPFileInfo> = await dlpPermission.getDLPFileAccessRecords(); // Obtain the list of recently accessed DLP files.
        console.info('res', JSON.stringify(res))
      } catch (err) {
        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
@@ -133,15 +186,75 @@ Procedure
    }
    ```
 
-8. Obtain information about the DLP sandbox applications in the retention state.
-
-   ```ts
-   async func() {
+9. Obtain information about the DLP sandbox applications in the retention state.
+    ```ts
+    async getRetentionSandboxList() {
      try {
-       let res:Array<dlpPermission.VisitedDLPFileInfo> = await dlpPermission.getRetentionSandboxList(); // Obtain the list of sandbox applications in the retention state.
+       let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // Obtain the sandbox applications in the retention state.
        console.info('res', JSON.stringify(res))
      } catch (err) {
        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
      }
-   }
-   ```
+    }
+    ```
+
+10. Set sandbox application configuration.
+    ```ts
+    async setSandboxAppConfig() {
+      try {
+        await dlpPermission.setSandboxAppConfig('configInfo'); // Set sandbox application configuration.
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+      }
+    }
+    ```
+
+11. Clean the sandbox application configuration.
+    ```ts
+    async cleanSandboxAppConfig() {
+      try {
+        await dlpPermission.cleanSandboxAppConfig(); // Clean the sandbox application configuration.
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+      }
+    }
+    ```
+
+12. Obtain the sandbox application configuration.
+    ```ts
+    async getSandboxAppConfig() {
+      try {
+        let res:string = await dlpPermission.getSandboxAppConfig(); // Obtain the sandbox application configuration.
+        console.info('res', JSON.stringify(res))
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
+      }
+    }
+    ```
+
+13. Start the DLP manager application in borderless mode. This method can be called only in the UIAbility context and supports only the stage mode.
+
+    ```ts
+    import dlpPermission from '@ohos.dlpPermission';
+    import common from '@ohos.app.ability.common';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+    import UIAbility from '@ohos.app.ability.UIAbility'
+    import Want from '@ohos.app.ability.Want';
+    import { BusinessError } from '@ohos.base';
+    
+    try {
+      let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
+      let want: Want = {
+        "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+        "parameters": {
+          "displayName": "1.txt"
+        }
+      }; // Request parameters.
+      dlpPermission.startDLPManagerForResult(context, want).then((res) => {
+        console.info('res.resultCode', res.resultCode);
+        console.info('res.want', JSON.stringifg(res.want));
+      }); // Start the DLP manager application.
+    } catch (err) {
+      console.error('error', err.code, err.message); // Error reported if the operation fails.
+    }
+    ```

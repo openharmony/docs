@@ -14,7 +14,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
+isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。
 
@@ -32,7 +32,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -51,7 +51,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(): Promise&lt;boolean&gt;
+isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。
 
@@ -69,7 +69,7 @@ static isRunningInStabilityTest(): Promise&lt;boolean&gt;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -105,7 +105,7 @@ isRamConstrainedDevice(): Promise\<boolean>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -140,7 +140,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -176,7 +176,7 @@ getAppMemorySize(): Promise\<number>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -211,7 +211,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -231,7 +231,7 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
-获取有关运行进程的信息。
+获取运行进程的有关信息。如果申请了ohos.permission.GET_RUNNING_INFO权限可以获取所有运行进程信息，否则只能获取当前运行进程信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -249,7 +249,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -268,7 +268,7 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
-获取有关运行进程的信息。
+获取运行进程的有关信息。如果申请了ohos.permission.GET_RUNNING_INFO权限可以获取所有运行进程信息，否则只能获取当前运行进程信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -286,7 +286,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -333,7 +333,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -368,7 +368,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | 是    | 表示要查询的共享库包名。 |
 | versionCode   | number   | 是    | 表示要查询的共享库版本号。      |
-|AsyncCallback\<boolean>> | 回调函数。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
+| callback    | AsyncCallback\<boolean>> | 是    | 回调函数。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
 
 **错误码**：
 
@@ -376,7 +376,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -425,7 +425,7 @@ on(type: 'applicationState', observer: ApplicationStateObserver): number;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -492,7 +492,7 @@ on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList:
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -528,6 +528,53 @@ try {
 }
 ```
 
+## appManager.on<sup>11+</sup>
+
+on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
+
+注册应用启动和退出的观测器，可用于系统应用观测所有应用的启动和退出。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型，固定填'appForegroundState'字符串。 |
+| observer | [AppForegroundStateObserver](./js-apis-inner-application-appForegroundStateObserver.md) | 是 | 应用状态观测器，用于观测应用的启动和退出。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+
+let observer: appManager.AppForegroundStateObserver = {
+    onAppStateChanged(appStateData) {
+        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+    },
+};
+try {
+    appManager.on('appForegroundState', observer);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
 ## appManager.off
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void;
@@ -554,7 +601,7 @@ off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -640,7 +687,7 @@ off(type: 'applicationState', observerId: number): Promise\<void>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -691,6 +738,65 @@ try {
 }
 ```
 
+## appManager.off<sup>11+</sup>
+
+off(type: 'appForegroundState', observer: AppForegroundStateObserver): void
+
+取消注册应用启动和退出的观测器。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 调用接口类型，固定填'appForegroundState'字符串。|
+| observer | [AppForegroundStateObserver](./js-apis-inner-application-appForegroundStateObserver.md) | 否 | 取消注册的应用启动和退出观测器。|
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+let observer_;
+// 1.注册应用启动和退出的监听器
+let observer: appManager.AppForegroundStateObserver = {
+    onAppStateChanged(appStateData) {
+        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+    },
+};
+try {
+    appManager.on('appForegroundState', observer);
+    // 保存observer对象，用于注销
+    observer_ = observer;
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+
+// 2.注销监听器
+try {
+    appManager.off('appForegroundState',  observer_);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
 ## appManager.getForegroundApplications
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
@@ -703,19 +809,19 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void;
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
+
 **错误码**：
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 以回调方式方式返回接口运行结果及应用状态数据数组，可进行错误处理或其他自定义处理。 |
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -763,7 +869,7 @@ getForegroundApplications(): Promise\<Array\<AppStateData>>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -807,7 +913,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -861,7 +967,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -906,7 +1012,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>);
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -961,7 +1067,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1008,7 +1114,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>);
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1063,7 +1169,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1104,11 +1210,11 @@ getProcessMemoryByPid(pid: number, callback: AsyncCallback\<number>): void;
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1157,11 +1263,11 @@ getProcessMemoryByPid(pid: number): Promise\<number>;
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1202,11 +1308,11 @@ getRunningProcessInfoByBundleName(bundleName: string, callback: AsyncCallback\<A
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1255,11 +1361,11 @@ getRunningProcessInfoByBundleName(bundleName: string): Promise\<Array\<ProcessIn
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1301,11 +1407,11 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number, callback: 
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1356,11 +1462,11 @@ getRunningProcessInfoByBundleName(bundleName: string, userId: number): Promise\<
 
 **错误码**：
 
-以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1375,6 +1481,101 @@ try {
         console.log('getRunningProcessInfoByBundleName success.');
     }).catch((err: BusinessError) => {
         console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
+    });
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
+## appManager.isApplicationRunning<sup>11+</sup>
+
+isApplicationRunning(bundleName: string): Promise\<boolean>
+
+查询单个应用是否正在运行。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | 是    | 表示要查询的应用的包名。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<boolean> | Promise对象。返回true表示查询的应用正在运行，返回false表示查询的应用没有运行。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = "com.example.myapplication";
+appManager.isApplicationRunning(bundleName).then((data) => {
+    console.log(`The application running is: ${JSON.stringify(data)}`);
+}).catch((error: BusinessError) => {
+    console.error(`error: ${JSON.stringify(error)}`);
+});
+```
+
+## appManager.isApplicationRunning<sup>11+</sup>
+
+isApplicationRunning(bundleName: string, callback: AsyncCallback\<boolean>): void
+
+查询单个应用是否正在运行。使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | 是    | 表示要查询的共享库包名。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。返回true表示查询的应用正在运行，返回false表示查询的应用没有运行。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = "com.example.myapplication";
+try {
+    appManager.isApplicationRunning(bundleName, (err, data) => {
+        if (err) {
+            console.error(`err: ${JSON.stringify(err)}`);
+        } else {
+            console.log(`The application running is: ${JSON.stringify(data)}`);
+        }
     });
 } catch (paramError) {
     let code = (paramError as BusinessError).code;
@@ -1399,7 +1600,7 @@ try {
 | STATE_BACKGROUND        | 4   |       当应用处于后台不可见时处于的状态。           |
 | STATE_DESTROY        | 5   |           当应用在销毁的时候处于的状态。       |
 
-## ProcessState
+## ProcessState<sup>10+</sup>
 
 进程状态，该类型为枚举，可配合[ProcessData](js-apis-inner-application-processData.md)返回相应的进程状态。
 
@@ -1407,8 +1608,8 @@ try {
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
-| STATE_CREATE<sup>10+<sup>    | 0   |      当进程在创建中的时候处于的状态。       |
-| STATE_FOREGROUND<sup>10+<sup>          | 1   |            当进程切换到前台的时候处于的状态。      |
-| STATE_ACTIVE<sup>10+<sup>  | 2   |          当进程在获焦的时候处于的状态。   |
-| STATE_BACKGROUND<sup>10+<sup>        | 3   |       当进程处于后台不可见时处于的状态。           |
-| STATE_DESTROY<sup>10+<sup>        | 4   |         当进程在销毁的时候处于的状态。         |
+| STATE_CREATE    | 0   |      当进程在创建中的时候处于的状态。       |
+| STATE_FOREGROUND          | 1   |            当进程切换到前台的时候处于的状态。      |
+| STATE_ACTIVE  | 2   |          当进程在获焦的时候处于的状态。   |
+| STATE_BACKGROUND        | 3   |       当进程处于后台不可见时处于的状态。           |
+| STATE_DESTROY        | 4   |         当进程在销毁的时候处于的状态。         |

@@ -14,18 +14,18 @@ Cross-device migration supports the following features:
 
 - Checking application compatibility
 
-- Dynamically setting the migration state (**ACTIVE** by default) 
+- Dynamically setting the migration state (**ACTIVE** by default)
 
   For example, for an editing application, only the text editing page needs to be migrated to the target device. In this case, you can call [setMissionContinueState](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissioncontinuestate10) for precise control.
 
-- Determining whether to restore the page stack (restored by default) 
+- Determining whether to restore the page stack (restored by default)
 
   If an application wants to customize the page to be displayed after being migrated to the target device, you can use [SUPPORT_CONTINUE_PAGE_STACK_KEY](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams) for precise control.
 
-- Determining whether to exit the application on the source device after a successful migration (application exit by default) 
+- Determining whether to exit the application on the source device after a successful migration (application exit by default)
 
   You can use [SUPPORT_CONTINUE_SOURCE_EXIT_KEY](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams) for precise control.
-
+  
   > **NOTE**
   >
   > You only need to develop an application with the migration capabilities. System applications will trigger cross-device migration.
@@ -44,7 +44,6 @@ Cross-device migration supports the following features:
 
 - Cross-device migration must be performed between the same UIAbility component. In other words, **bundleName**, **abilityName**, and **signature** of the component on the two devices must be the same.
 - For better user experience, the data to be transmitted using the **wantParam** parameter must be less than 100 KB.
-- Certain ArkUI components can be restored to a given state on the target device after migration. For details, see [restoreId](../reference/arkui-ts/ts-universal-attributes-restoreId.md).
 
 ## How to Develop
 
@@ -114,40 +113,40 @@ Cross-device migration supports the following features:
    The **launchReason** parameter in the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback specifies whether the launch is triggered by migration. If the launch is triggered by migration, you must obtain the saved data from **want** and call **restoreWindowStage()** to trigger page restoration, including page stack information, after data restoration.
    
    ```ts
-      import UIAbility from '@ohos.app.ability.UIAbility';
-      import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-      import Want from '@ohos.app.ability.Want';
-      
-      export default class EntryAbility extends UIAbility {
-        storage : LocalStorage = new LocalStorage();
-      
-        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-          console.info('EntryAbility onCreate')
-          if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-            // Obtain the data saved.
-            let continueInput = '';
-            if (want.parameters != undefined) {
-              continueInput = JSON.stringify(want.parameters.data);
-              console.info(`continue input ${continueInput}`)
-            }
-            // Display the data on the current page.
-            this.context.restoreWindowStage(this.storage);
-          }
-        }
-      
-        onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-           console.info('EntryAbility onNewWant')
-           if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-             // Obtain the user data from the want parameter.
-             let continueInput = '';
-             if (want.parameters != undefined) {
-               continueInput = JSON.stringify(want.parameters.data);
-               console.info(`continue input ${continueInput}`);
-             }
-             this.context.restoreWindowStage(this.storage);
-           }
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import Want from '@ohos.app.ability.Want';
+   
+   export default class EntryAbility extends UIAbility {
+     storage : LocalStorage = new LocalStorage();
+   
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       console.info('EntryAbility onCreate')
+       if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+         // Obtain the data saved.
+         let continueInput = '';
+         if (want.parameters != undefined) {
+           continueInput = JSON.stringify(want.parameters.data);
+           console.info(`continue input ${continueInput}`)
          }
+         // Display the data on the current page.
+         this.context.restoreWindowStage(this.storage);
+       }
+     }
+   
+     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+        console.info('EntryAbility onNewWant')
+        if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+          // Obtain the user data from the want parameter.
+          let continueInput = '';
+          if (want.parameters != undefined) {
+            continueInput = JSON.stringify(want.parameters.data);
+            console.info(`continue input ${continueInput}`);
+          }
+          this.context.restoreWindowStage(this.storage);
+        }
       }
+   }
    ```
 
 ## Configuring Optional Migration Features
@@ -317,6 +316,143 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+## Cross-Device Data Migration
+Four data migration modes are provided. You can select them as required.
+
+### Using ArkUI Components for Data Migration
+
+Through the configuration of **restoreId**, certain ArkUI components can be restored to a given state on the target device after migration. For details, see [restoreId](../reference/arkui-ts/ts-universal-attributes-restoreId.md).
+
+### Using wantParam for Data Migration
+
+If the size of the data to migrate is less than 100 KB, you can add fields to **wantParam** for data migration. An example is as follows:
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+
+export default class EntryAbility extends UIAbility {
+  // Save the data on the source device.
+  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+    // Save the data to migrate in the custom field (for example, data) of wantParam.
+    const continueInput = 'Data to migrate';
+    wantParam['data'] = continueInput;
+    return AbilityConstant.OnContinueResult.AGREE;
+  }
+
+  // Restore the data on the target device.
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      let continueInput = '';
+      if (want.parameters != undefined) {
+        continueInput = JSON.stringify(want.parameters.data);
+      }
+    }
+  }
+
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      let continueInput = '';
+      if (want.parameters != undefined) {
+        continueInput = JSON.stringify(want.parameters.data);
+      }
+    }
+  }
+}
+```
+### Using Distributed Data Objects for Data Migration
+
+If the size of the data to migrate is greater than 100 KB, you can use a [Distributed Data Object](../reference/apis/js-apis-data-distributedobject.md) for data migration.
+
+First, create a distributed [data object](../reference/apis/js-apis-data-distributedobject.md#dataobject) during application initialization.
+
+```ts
+// Import dependencies.
+import distributedObject from '@ohos.data.distributedDataObject';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+  // Define a distributed data object.
+  g_object: distributedObject.DataObject|null = null;
+
+  // Initialize the distributed data object, for example, in the onCreate() callback.
+  onCreate() {
+    let source: SourceObject = new SourceObject('');
+    this.g_object = distributedObject.create(this.context, source);
+  }
+}
+```
+
+In the **onContinue()** callback on the source device, call [genSessionId()](../reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid) to generate a random session ID, call [setSessionId()](../reference/apis/js-apis-data-distributedobject.md#setsessionid9) to set this ID for the distributed data object, and transfer the session ID to the peer device through **want**. Automatic synchronization is performed for multiple devices with the same session ID on a trusted network. Then, write the data to be transmitted to the distributed data object and call [save()](../reference/apis/js-apis-data-distributedobject.md#save9) to save the data.
+
+```ts
+import distributedObject from '@ohos.data.distributedDataObject';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  
+  // Save the data on the source device.
+  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+    // Generate a session ID.
+    let sessionId: string = distributedObject.genSessionId();
+
+    // Enable data synchronization with the session ID.
+    this.g_object.setSessionId(sessionId, ()=>{
+        console.info("join session");
+    });
+    // Transfer the session ID to the peer device.
+    wantParam['session'] = sessionId;
+
+    // Write data to the distributed data object and save the data.
+    this.g_object['notesTitle'] = 'This is a sample title';
+    this.g_object.save(wantParam.targetDevice as string, (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
+      if (err) {
+        console.info("save failed, error code = " + err.code);
+        console.info("save failed, error message: " + err.message);
+        return;
+      }
+      console.info("save callback");
+      console.info("save sessionId: " + result.sessionId);
+      console.info("save version: " + result.version);
+      console.info("save deviceId:  " + result.deviceId);
+    });
+  }
+}
+```
+
+During data restoration on the peer device initiated by **onCreate()** or **onNewWant()**, call [setSessionId()](../application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9) to set the same session ID as that of the source device. In this way, data can be restored from the distributed data object.
+
+```ts
+import distributedObject from '@ohos.data.distributedDataObject';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  // Restore data, for example, in the onCreate() callback.
+  onCreate() {
+    // Obtain the session ID transferred from the source device.
+    let sessionId: string = want?.parameters?.session as string;
+
+    // Join the data transmission session.
+    this.g_object.setSessionId(sessionId, ()=>{
+      console.info("join session");
+    });
+
+    // Obtain the distributed data.
+    let newTitle: string = this.g_object['notesTitle'];
+  }
+}
+```
+
+### Using Distributed Files For Data Migration
+If the size of the data to migrate is greater than 100 KB, you can also use a distributed file for data migration. Compared with distributed data objects, distributed files are more suitable when files are to be transmitted. After data is written to the distributed file path on the source device, the application started on the target device can access the file in this path after the migration.
+
+For details, see [Accessing Files Across Devices](../file-management/file-access-across-devices.md).
+
 ## Verification Guide
 
 A mission center demo is provided for you to verify the migration capability of your application. The following walks you through on how to verify migration by using the demo.
@@ -337,7 +473,7 @@ Download the mission center demo from [Sample Code](https://gitee.com/openharmon
 
 #### Building Project Files
 
-a. Create an empty OpenHarmony project and replace the corresponding folders with the downloaded files. 
+a. Create an empty project and replace the corresponding folders with the downloaded files.
 
 ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
 
@@ -376,3 +512,5 @@ The default signature permission provided by the automatic signature template of
 3. Drag the application to the name of device A. The application on device A is started, and the application on device B exits.
 
    ![hop-cross-device-migration](figures/hop-cross-device-migration6.png)
+
+ <!--no_check--> 

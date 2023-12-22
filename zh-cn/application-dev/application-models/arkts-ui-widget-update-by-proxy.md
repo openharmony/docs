@@ -50,9 +50,9 @@
   {
     "forms": [
       {
-        "name": "widget",
-        "description": "This is a service widget.",
-        "src": "./ets/widget/pages/WidgetCard.ets",
+        "name": "WidgetProcessData",
+        "description": "$string:ProcessDataEntryAbility_desc",
+        "src": "./ets/widgetprocessdata/pages/WidgetProcessDataCard.ets",
         "uiSyntax": "arkts",
         "window": {
           "designWidth": 720,
@@ -63,58 +63,68 @@
         "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
         "defaultDimension": "2*2",
-        "supportDimensions": ["2*2"],
+        "supportDimensions": [
+          "2*2"
+        ],
         "dataProxyEnabled": true
       }
     ]
   }
   ```
-
-- 在[onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)回调中配置订阅信息[proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将key设置为"detail"，subscriberId设置为"11"。
+  
+- 在[onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)回调中配置订阅信息[proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将key设置为"datashareproxy://com.samples.widgetupdatebyproxy/weather"，subscriberId设置为"11"。
   > **说明：**
   >
   > key可以是uri也可以是简单字符串，subscriberId默认值为当前formId，实际取值都依赖于数据发布方的定义。
   ```ts
+  import formInfo from '@ohos.app.form.formInfo';
   import formBindingData from '@ohos.app.form.formBindingData';
-  import Want from '@ohos.app.ability.Want';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-
-  export default class EntryFormAbility extends FormExtensionAbility {
-    onAddForm(want: Want) {
+  import hilog from '@ohos.hilog';
+  import type Want from '@ohos.app.ability.Want';
+  
+  const TAG: string = 'ProcessDataFormAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  
+  export default class ProcessDataFormAbility extends FormExtensionAbility {
+    onAddForm(want: Want): formBindingData.FormBindingData {
       let formData: Record<string, Object> = {};
       let proxies: formBindingData.ProxyData[] = [
         {
-          "key": "detail",
-          "subscriberId": "11"
+          key: 'datashareproxy://com.samples.widgetupdatebyproxy/weather',
+          subscriberId: '11'
         }
-      ]
+      ];
       let formBinding = formBindingData.createFormBindingData(formData);
-      formBinding["proxies"] = proxies;
+      formBinding.proxies = proxies;
+      hilog.info(DOMAIN_NUMBER, TAG, 'onAddForm');
       return formBinding;
     }
   }
   ```
-
+  
 - 在[卡片页面文件](arkts-ui-widget-creation.md)中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'detail'获取订阅的数据，并在Text组件显示。
   ```ts
-  let storage = new LocalStorage();
-  @Entry(storage)
+  let storageProcess = new LocalStorage();
+  
+  @Entry(storageProcess)
   @Component
-  struct Index {
-    @LocalStorageProp('detail') detail: string = '加载中...';
-
+  struct WidgetProcessDataCard {
+    @LocalStorageProp('datashareproxy://com.samples.widgetupdatebyproxy/weather') city: ResourceStr = $r('app.string.loading');
+  
     build() {
-      Row() {
+      Column() {
         Column() {
-          Text(this.detail)
-            .fontSize('12vp')
-            .textAlign(TextAlign.Center)
-            .width('100%')
-            .height('15%')
-        }
-  	  .width('100%')
-      }
-  	.height('100%')
+          Text(this.city)
+            .fontColor('#FFFFFF')
+            .opacity(0.9)
+            .fontSize(14)
+            .margin({ top: '8%', left: '10%' })
+        }.width('100%')
+        .alignItems(HorizontalAlign.Start)
+      }.width('100%').height('100%')
+      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImageSize(ImageSize.Cover)
     }
   }
   ```
@@ -125,9 +135,9 @@
   {
     "forms": [
       {
-        "name": "widget",
-        "description": "This is a service widget.",
-        "src": "./ets/widget/pages/WidgetCard.ets",
+        "name": "WidgetPersistentData",
+        "description": "This is a service widget update by proxy using persistent data.",
+        "src": "./ets/widgetpersistentdata/pages/WidgetPersistentDataCard.ets",
         "uiSyntax": "arkts",
         "window": {
           "designWidth": 720,
@@ -137,14 +147,17 @@
         "isDefault": true,
         "updateEnabled": true,
         "scheduledUpdateTime": "10:30",
+        "updateDuration": 1,
         "defaultDimension": "2*2",
-        "supportDimensions": ["2*2"],
+        "supportDimensions": [
+          "2*2"
+        ],
         "dataProxyEnabled": true
       }
-    ]
+  ]
   }
   ```
-
+  
 - 在[onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板[addTemplate](../reference/apis/js-apis-data-dataShare.md#addtemplate10)，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。
 
   > **说明：**
@@ -152,38 +165,40 @@
   > - key的取值是uri，依赖于数据发布方定义。
   > - subscriberId可自定义，addTemplate中的subscriberId参数与proxies.subscriberId保持一致即可。
   ```ts
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
   import dataShare from '@ohos.data.dataShare';
-  import Want from '@ohos.app.ability.Want';
-
-  let dataShareHelper: dataShare.DataShareHelper;
-  export default class EntryFormAbility extends FormExtensionAbility {
-    onAddForm(want: Want) {
-      let template: dataShare.Template = {
+  import type formBindingData from '@ohos.app.form.formBindingData';
+  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+  import formInfo from '@ohos.app.form.formInfo';
+  import type Want from '@ohos.app.ability.Want';
+  
+  export default class PersistentDataFormAbility extends FormExtensionAbility {
+    onAddForm(want: Want): formBindingData.FormBindingData {
+      let dataShareHelper;
+      let subscriberId = '111';
+      let template = {
         predicates: {
-          "list": "select type from TBL00 limit 0,1"
+          'list': `select type from TBL00 where cityId = ${subscriberId}`
         },
-        scheduler: ""
-      }
-      let subscriberId: string = "111";
-      dataShare.createDataShareHelper(this.context, "datashareproxy://com.example.myapplication", {
+        scheduler: ''
+      };
+      dataShare.createDataShareHelper(this.context, 'datashareproxy://com.samples.widgetupdatebyproxy', {
         isProxy: true
-      }).then((data: dataShare.DataShareHelper) => {
+      }).then((data) => {
         dataShareHelper = data;
-        dataShareHelper.addTemplate("datashareproxy://com.example.myapplication/test", subscriberId, template);
-      })
-
-      let formData: Record<string, Object> = {};
-      let proxies: formBindingData.ProxyData[] = [
+        dataShareHelper.addTemplate('datashareproxy://com.samples.widgetupdatebyproxy/test', subscriberId, template);
+      });
+      let formData = {};
+      let proxies = [
         {
-          "key": "datashareproxy://com.example.myapplication/test",
-          "subscriberId": subscriberId
+          key: 'datashareproxy://com.samples.widgetupdatebyproxy/test',
+          subscriberId: subscriberId
         }
-      ]
-      let formBinding = formBindingData.createFormBindingData(formData);
-      formBinding["proxies"] = proxies;
-
+      ];
+  
+      let formBinding = {
+        data: JSON.stringify(formData),
+        proxies: proxies
+      };
       return formBinding;
     }
   }
@@ -191,35 +206,28 @@
 
 - 在[卡片页面文件](arkts-ui-widget-creation.md)中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'list'获取订阅的数据，并把第一个元素的值显示在Text组件上。
   ```ts
-  let storage = new LocalStorage();
-  @Entry(storage)
+  let storagePersis = new LocalStorage();
+  
+  @Entry(storagePersis)
   @Component
-  struct WidgetCard {
-    readonly ACTION_TYPE: string = 'router';
-    readonly ABILITY_NAME: string = 'EntryAbility';
-    readonly MESSAGE: string = 'add detail';
+  struct WidgetPersistentDataCard {
     readonly FULL_WIDTH_PERCENT: string = '100%';
     readonly FULL_HEIGHT_PERCENT: string = '100%';
-    @LocalStorageProp('list') list: Record<string, string>[] = [{"type": "a"}];
-
+    @LocalStorageProp('list') list: Record<string, string>[] = [{ 'type': 'a' }];
+  
     build() {
-      Row() {
+      Column() {
         Column() {
-          Text((this.list[0]["type"]))
-            .fontSize($r('app.float.font_size'))
-        }
-        .width(this.FULL_WIDTH_PERCENT)
-      }
-      .height(this.FULL_HEIGHT_PERCENT)
-      .onClick(() => {
-        postCardAction(this, {
-          "action": this.ACTION_TYPE,
-          "abilityName": this.ABILITY_NAME,
-          "params": {
-            "message": this.MESSAGE
-          }
-        })
-      })
+          Text((this.list[0]['type']))
+            .fontColor('#FFFFFF')
+            .opacity(0.9)
+            .fontSize(14)
+            .margin({ top: '8%', left: '10%' })
+        }.width('100%')
+        .alignItems(HorizontalAlign.Start)
+      }.width(this.FULL_WIDTH_PERCENT).height(this.FULL_HEIGHT_PERCENT)
+      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImageSize(ImageSize.Cover)
     }
   }
   ```

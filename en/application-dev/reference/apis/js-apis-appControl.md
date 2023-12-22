@@ -20,17 +20,17 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 Sets the disposed status for an application. This API uses a promise to return the result. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
-
-**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).              |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).              |
 | disposedWant | Want  | Yes| Disposal intent of the application.|
 
 **Return value**
@@ -77,17 +77,17 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 
 Sets the disposed status for an application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
-
-**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type                             | Mandatory  | Description                                   |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).                     |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).                     |
 | disposedWant | Want  | Yes| Disposal intent of the application.|
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.|
 
@@ -128,19 +128,20 @@ try {
 
 setDisposedStatusSync(appId: string, disposedWant: Want): void;
 
-Sets the disposed status for an application. This API is a synchronous API. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
+Sets the disposed status for an application. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
-**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type                             | Mandatory  | Description                                   |
 | ----------- | ------------------------------- | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).                     |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application).                     |
 | disposedWant | Want  | Yes| Disposal intent of the application.|
 
 **Error codes**
@@ -175,17 +176,17 @@ getDisposedStatus(appId: string): Promise\<Want>;
 
 Obtains the disposed status of an application. This API uses a promise to return the result. If the operation is successful, the disposed status of the application is returned. If the operation fails, an error message is returned.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
-
-**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 
 **Return value**
 
@@ -229,17 +230,17 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
 Obtains the disposed status of an application. This API uses an asynchronous callback to return the result. If the operation is successful, the disposed status of the application is returned. If the operation fails, an error message is returned.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
-
-**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                 |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 | callback    | AsyncCallback\<Want> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the disposed status obtained; otherwise, **err** is an error object.                   |
 
 **Error codes**
@@ -277,25 +278,25 @@ try {
 
 getDisposedStatusSync(appId: string): Want;
 
-Obtains the disposed status of an application. This API is a synchronous API. If the operation is successful, the disposed status of the application is returned. If the operation fails, an error message is returned.
+Obtains the disposed status of an application. This API returns the result synchronously. If the operation is successful, the disposed status of the application is returned. If the operation fails, an error message is returned.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 
 **Return value**
 
 | Type                       | Description                |
 | ------------------------- | ------------------ |
-| Want | Disposed status. |
+| Want | Disposed status.|
 
 **Error codes**
 
@@ -329,17 +330,17 @@ deleteDisposedStatus(appId: string): Promise\<void>
 
 Deletes the disposed status for an application. This API uses a promise to return the result. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
-
-**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 
 **Return value**
 
@@ -383,17 +384,17 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
 Deletes the disposed status for an application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
-
-**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 | callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **null**; otherwise, **err** is an error object.                  |
 
 **Error codes**
@@ -429,19 +430,19 @@ try {
 
 deleteDisposedStatusSync(appId: string) : void
 
-Deletes the disposed status for an application. This API is a synchronous API. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
+Deletes the disposed status for an application. This API returns the result synchronously. If the operation is successful, **null** is returned. If the operation fails, an error message is returned.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
 
-**System API**: This is a system API.
-
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appId  | string | Yes   | ID of the target application.<br> **appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 
 **Error codes**
 
@@ -493,3 +494,175 @@ try {
     console.error("getBundleInfo failed " + message);
 }
 ```
+
+## appControl.getDisposedRule<sup>11+</sup>
+
+getDisposedRule(appId: string): DisposedRule
+
+Obtains the disposed rule of an application.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description                                   |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+
+**Return value**
+
+| Type                       | Description                |
+| ------------------------- | ------------------ |
+| [DisposedRule](#disposedrule11) | Disposed rule of the application.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                               |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is an empty string.  |
+
+**Example**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let appId = "com.example.myapplication_xxxxx";
+
+try {
+  let data = appControl.getDisposedRule(appId);
+  console.info('getDisposedRule successfully. Data: ' + JSON.stringify(data));
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('getDisposedRule failed ' + message);
+}
+```
+
+## appControl.setDisposedRule<sup>11+</sup>
+
+setDisposedRule(appId: string, rule: DisposedRule): void
+
+Sets a disposed rule for an application.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**Parameters**
+
+| Name      | Type    | Mandatory  | Description                                   |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appId  | string | Yes   | ID of the target application.<br>**appId** is the unique identifier of an application and is determined by the bundle name and signature information of the application. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| rule | [DisposedRule](#disposedrule11) | Yes| Disposed rule to set.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                               |
+| ------ | -------------------------------------- |
+| 17700005 |  The specified app ID is an empty string.  |
+
+**Example**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import bundleManager from '@ohos.bundle.bundleManager';
+
+let appId = "com.example.myapplication_xxxxx";
+let want: Want = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let elementName: bundleManager.ElementName = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let rule: appControl.DisposedRule = {
+  want: want,
+  componentType: appControl.ComponentType.UI_ABILITY,
+  disposedType: appControl.DisposedType.BLOCK_APPLICATION,
+  controlType: appControl.ControlType.ALLOWED_LIST,
+  elementList: [
+    elementName
+  ],
+  priority: 100
+};
+
+try {
+  appControl.setDisposedRule(appId, rule);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('setDisposedRule failed ' + message);
+}
+```
+
+## DisposedRule<sup>11+</sup>
+
+Defines a disposed rule.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**System API**: This is a system API.
+
+| Name     | Type          | Readable| Writable| Description                       |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| want | [Want](js-apis-app-ability-want.md)     | Yes  | Yes  | Page displayed when the application is disposed of.|
+| componentType | [ComponentType](#componenttype11)  | Yes  | Yes  | Type of application component that functions as the displayed page.|
+| disposedType | [DisposedType](#disposedrule11) | Yes| Yes| Type of application disposal.|
+| controlType | [ControlType](#controltype11) | Yes| Yes| Control type of application disposal.|
+| elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes| Yes| List of application components to be disposed of or exempted.|
+| priority | number | Yes| Yes| Priority of the disposed rule.|
+
+### ComponentType<sup>11+</sup>
+
+Enumerates the types of application components that function as the displayed page.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**System API**: This is a system API.
+
+| Name   | Value  | Description                |
+| ------- | ---- | -------------------- |
+| UI_ABILITY | 1    | UIAbility component.|
+| UI_EXTENSION | 2    | UIExtensionAbility component.|
+
+### DisposedType<sup>11+</sup>
+
+Enumerates the types of application disposals.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**System API**: This is a system API.
+
+| Name   | Value  | Description                |
+| ------- | ---- | -------------------- |
+| BLOCK_APPLICATION | 1    | All abilities of the application are blocked. That is, the entire application is blocked.|
+| BLOCK_ABILITY | 2    | A specific ability of the application is blocked.|
+| NON_BLOCK | 3 | The application is not blocked.|
+
+### ControlType<sup>11+</sup>
+
+Enumerates the control type of application disposal.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.AppControl
+
+**System API**: This is a system API.
+
+| Name   | Value  | Description                |
+| ------- | ---- | -------------------- |
+| ALLOWED_LIST | 1    | A trustlist is used, which means that the application components in the list are allowed to run.|
+| DISALLOWED_LIST | 2    | A blocklist is used, which means that the application components in the list are forbidden to run.|

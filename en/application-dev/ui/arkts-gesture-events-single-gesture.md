@@ -206,10 +206,10 @@ Triggers a pinch gesture. This API has two optional parameters:
 
 - **fingers**: minimum number of fingers required for gesture recognition. The value ranges from 2 to 5. The default value is **2**.
 
-- **distance**: minimum distance between fingers required for gesture recognition, in vp. The default value is **3**.
+- **distance**: minimum distance between fingers required for gesture recognition, in vp. The default value is **5**.
 
 
- The following exemplifies how to bind a three-finger pinch gesture to the **\<Column>** component. You can obtain the scale factor from the callback of **PinchGesture** to scale the component.
+The following exemplifies how to bind a three-finger pinch gesture to the **\<Column>** component. You can obtain the scale factor from the callback of **PinchGesture** to scale the component.
 
 
 
@@ -279,7 +279,7 @@ Triggers a rotation gesture. This API has two optional parameters:
 - **angle**: minimum angle of rotation required for gesture recognition, in deg. The default value is **1**.
 
 
- The following exemplifies how to bind a rotation gesture to the **\<Text>** component. You can obtain the rotation angle from the callback of **RotationGesture** and implement rotation on the component.
+The following exemplifies how to bind a rotation gesture to the **\<Text>** component. You can obtain the rotation angle from the callback of **RotationGesture** and implement rotation on the component.
 
 
 

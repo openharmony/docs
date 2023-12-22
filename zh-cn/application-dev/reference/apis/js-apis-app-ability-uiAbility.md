@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIAbility (UIAbility)
 
-UIAbility是包含UI界面的应用组件，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力，组件协同主要提供如下常用功能：
+UIAbility是包含UI界面的应用组件，继承自[Ability](js-apis-app-ability-ability.md)，提供组件创建、销毁、前后台切换等生命周期回调，同时也具备组件协同的能力，组件协同主要提供如下常用功能：
 
 - [Caller](#caller)：由[startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall)接口返回，CallerAbility(调用者)可使用Caller与CalleeAbility(被调用者)进行通信。
 - [Callee](#callee)：UIAbility的内部对象，CalleeAbility(被调用者)可以通过Callee与Caller进行通信。
@@ -29,7 +29,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 ## UIAbility.onCreate
 
-onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;
+onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。
 
@@ -136,7 +136,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 ## UIAbility.onDestroy
 
-onDestroy(): void | Promise&lt;void&gt;;
+onDestroy(): void | Promise&lt;void&gt;
 
 UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
 
@@ -170,7 +170,7 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onForeground
 
-onForeground(): void;
+onForeground(): void
 
 UIAbility生命周期回调，当应用从后台转到前台时触发。
 
@@ -191,7 +191,7 @@ UIAbility生命周期回调，当应用从后台转到前台时触发。
 
 ## UIAbility.onBackground
 
-onBackground(): void;
+onBackground(): void
 
 UIAbility生命周期回调，当应用从前台转到后台时触发。
 
@@ -212,9 +212,9 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。
 
 ## UIAbility.onContinue
 
-onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
+onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult
 
-当ability迁移准备迁移时触发，保存数据。
+当Ability准备迁移时触发，保存数据。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -248,7 +248,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 
 ## UIAbility.onNewWant
 
-onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;
+onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例时会回调执行该方法。即UIAbility实例[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)时进入该生命周期回调。
 
@@ -278,9 +278,9 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 
 ## UIAbility.onDump
 
-onDump(params: Array\<string>): Array\<string>;
+onDump(params: Array\<string>): Array\<string>
 
-转储客户端信息时调用。
+转储客户端信息时调用，可用于转储非敏感信息。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -306,7 +306,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 ## UIAbility.onSaveState
 
-onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
@@ -342,7 +342,7 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onShare<sup>10+</sup>
 
-onShare(wantParam:{ [key: string]: Object }): void;
+onShare(wantParam:{ [key: string]: Object }): void
 
 在跨端分享场景下，在UIAbility中设置分享方设备要分享的数据。
 
@@ -370,7 +370,7 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onPrepareToTerminate<sup>10+</sup>
 
-onPrepareToTerminate(): boolean;
+onPrepareToTerminate(): boolean
 
 UIAbility生命周期回调，当系统预关闭开关打开后（配置系统参数persist.sys.prepare_terminate为true打开），在UIAbility关闭时触发，可在回调中定义操作来决定是否继续执行关闭UIAbility的操作。如果UIAbility在退出时需要与用户交互确认是否关闭UIAbility，可在此生命周期回调中定义预关闭操作配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口退出，如弹窗确认是否关闭，并配置预关闭生命周期返回true取消正常关闭。
 
@@ -420,7 +420,7 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 ## UIAbility.onBackPressed<sup>10+</sup>
 
-onBackPressed(): boolean;
+onBackPressed(): boolean
 
 UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回值决定是否销毁UIAbility，默认为销毁UIAbility。
 
@@ -477,7 +477,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 | 16200002 | Callee invalid. The callee does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -537,7 +537,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
 向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。
 
@@ -564,7 +564,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | 16200002 | Callee invalid. The callee does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -626,7 +626,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
 ## Caller.release
 
-release(): void;
+release(): void
 
 主动释放通用组件服务端的通信接口。
 
@@ -639,7 +639,7 @@ release(): void;
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -672,7 +672,7 @@ release(): void;
 
 ## Caller.onRelease
 
- onRelease(callback: OnReleaseCallback): void;
+ onRelease(callback: OnReleaseCallback): void
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -684,7 +684,7 @@ release(): void;
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **参数：**
 
@@ -725,7 +725,7 @@ release(): void;
 
 ## Caller.onRemoteStateChange<sup>10+</sup>
 
-onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 注册协同场景下跨设备组件状态变化监听通知。
 
@@ -743,7 +743,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -779,7 +779,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
 
 ## Caller.on
 
-on(type: 'release', callback: OnReleaseCallback): void;
+on(type: 'release', callback: OnReleaseCallback): void
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -796,10 +796,9 @@ on(type: 'release', callback: OnReleaseCallback): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
 | 16200001 | Caller released. The caller has been released. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -834,7 +833,7 @@ on(type: 'release', callback: OnReleaseCallback): void;
 
 ## Caller.off
 
-off(type: 'release', callback: OnReleaseCallback): void;
+off(type: 'release', callback: OnReleaseCallback): void
 
 取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
 
@@ -846,12 +845,6 @@ off(type: 'release', callback: OnReleaseCallback): void;
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
 | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
 
 **示例：**
 
@@ -888,7 +881,7 @@ off(type: 'release', callback: OnReleaseCallback): void;
 
 ## Caller.off
 
-off(type: 'release'): void;
+off(type: 'release'): void
 
 取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
 
@@ -939,7 +932,7 @@ off(type: 'release'): void;
 
 ## Callee.on
 
-on(method: string, callback: CalleeCallback): void;
+on(method: string, callback: CalleeCallback): void
 
 通用组件服务端注册消息通知callback。
 
@@ -959,7 +952,7 @@ on(method: string, callback: CalleeCallback): void;
 | 16200004 | Method registered. The method has registered. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1011,7 +1004,7 @@ on(method: string, callback: CalleeCallback): void;
 
 ## Callee.off
 
-off(method: string): void;
+off(method: string): void
 
 解除通用组件服务端注册消息通知callback。
 
@@ -1030,7 +1023,7 @@ off(method: string): void;
 | 16200005 | Method not registered. The method has not registered. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 
 **示例：**
@@ -1055,7 +1048,11 @@ off(method: string): void;
 
 ## OnReleaseCallback
 
-(msg: string): void;
+
+(msg: string): void
+
+注册通用组件服务端Stub（桩）断开监听通知的回调函数类型。
+
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1065,7 +1062,9 @@ off(method: string): void;
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
-(msg: string): void;
+(msg: string): void
+
+注册协同场景下跨设备组件状态变化监听通知的回调函数类型。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1076,6 +1075,8 @@ off(method: string): void;
 ## CalleeCallback
 
 (indata: rpc.MessageSequence): rpc.Parcelable;
+
+通用组件服务端注册消息通知的回调函数类型。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
