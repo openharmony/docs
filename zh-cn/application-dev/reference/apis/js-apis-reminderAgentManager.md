@@ -201,6 +201,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 > **说明：**
 >
 > 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
 > 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
@@ -264,6 +265,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 > **说明：**
 >
 > 当到达设置的提醒时间点时，通知中心会弹出相应提醒的通知卡片（通知栏消息）。若未点击通知卡片上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
 > 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
