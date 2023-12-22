@@ -260,36 +260,9 @@ struct TreeViewDemo {
   }
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed)
-    {
+    Column(){
       TreeView({ treeController: this.treeController })
-      Row() {
-        Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
-        Column() {
-          Row() {
-            Text('ClickNodeId=' + this.clickNodeId).fontSize('16fp')
-            Button('Add', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(90)
-              .onClick((event: ClickEvent) => {
-                this.treeController.addNode();
-              })
-            Button('Modify', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(90)
-              .onClick((event: ClickEvent) => {
-                this.treeController.modifyNode();
-              })
-            Button('Remove', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(120)
-              .onClick((event: ClickEvent) => {
-                this.treeController.removeNode();
-              })
-          }
-        }.height('100%').width('70%').alignItems(HorizontalAlign.Start)
-      }
     }
-    .focusable(true)
-    .showControlButton(false)
-    .showSideBar(true)
   }
 }
 ```
