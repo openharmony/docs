@@ -25,7 +25,7 @@ For the complete list of APIs and example code, see [Socket Connection](../refer
 
 Socket connection functions are mainly implemented by the **socket** module. The following table describes the related APIs.
 
-| API                            | 描述                                                                          |
+| API                            | Description                                                                          |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
 | constructUDPSocketInstance()       | Creates a **UDPSocket** object.                                                     |
 | constructTCPSocketInstance()       | Creates a **TCPSocket** object.                                                     |
