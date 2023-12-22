@@ -10,6 +10,8 @@
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
+    - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)](js-apis-app-ability-autoFillExtensionAbility.md)
+    - [@ohos.app.ability.AutoFillManager (AutoFillManager)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
     - [@ohos.app.ability.common (Context)](js-apis-app-ability-common.md)
@@ -55,7 +57,6 @@
     - [@ohos.app.form.formBindingData (formBindingData)](js-apis-app-form-formBindingData.md)
     - [@ohos.app.form.formHost (FormHost)](js-apis-app-form-formHost.md)
     - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-formInfo.md)
-    - [@ohos.application.formError (formError)](js-apis-application-formError.md)
     - [@ohos.app.form.formObserver (formObserver)](js-apis-app-form-formObserver.md)
     - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formProvider.md)
     - [@ohos.application.uriPermissionManager (URI Permission Management)](js-apis-uripermissionmanager.md)
@@ -101,6 +102,9 @@
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)
       - [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)
       - [AppStateData](js-apis-inner-application-appStateData.md)
+      - [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)
+      - [AutoFillRequest](js-apis-inner-application-autoFillRequest.md)
+      - [AutoFillType](js-apis-inner-application-autoFillType.md)
       - [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)
       - [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)
       - [BaseContext](js-apis-inner-application-baseContext.md)
@@ -119,6 +123,7 @@
       - [MissionListener](js-apis-inner-application-missionListener.md)
       - [MissionParameter](js-apis-inner-application-missionParameter.md)
       - [MissionSnapshot](js-apis-inner-application-missionSnapshot.md)
+      - [PageNodeInfo](js-apis-inner-application-pageNodeInfo.md)
       - [ProcessData](js-apis-inner-application-processData.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
@@ -126,6 +131,7 @@
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
+      - [ViewData](js-apis-inner-application-viewData.md)
       - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
@@ -287,7 +293,6 @@
   - [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md)
   - security
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
-
 - Data Management
   - [@ohos.data.cloudData (Device-Cloud Synergy)](js-apis-data-cloudData.md)
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
@@ -459,7 +464,7 @@
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-
+  
 - Account Management
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
