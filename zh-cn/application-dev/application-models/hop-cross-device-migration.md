@@ -66,7 +66,7 @@
    当`UIAbility`实例触发迁移时，[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调在源端被调用，开发者可以在该接口中保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
-   - 应用兼容性检测：开发者可以通过从`wantParam`参数中获取对端应用的版本号与[源端应用版本号](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/faqs-bundle-management.md)做兼容性校验。开发者可以在触发迁移时从[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调中`wantParam.version`获取到迁移对端应用的版本号与迁移源端应用版本号做兼容校验。
+   - 应用兼容性检测：开发者可以通过从`wantParam`参数中获取对端应用的版本号与源端应用版本号做兼容性校验。开发者可以在触发迁移时从[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调中`wantParam.version`获取到迁移对端应用的版本号与迁移源端应用版本号做兼容校验。
    - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调的返回值决定是否支持此次迁移。
 
    ```ts
@@ -345,16 +345,14 @@ export default class MigrationAbility extends UIAbility {
 ```
 
 ## 跨端迁移中的数据迁移
-当前支持四种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
+当前支持三种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
   > **说明：**
   >
-  > 当涉及分布式对象和分布式文件迁移时应注意:
+  > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../../application-dev/reference/arkui-ts/ts-universal-attributes-restoreId.md)。
+  >
+  > 如果涉及分布式对象和分布式文件迁移时应注意：
   > 1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
   > 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
-
-### 使用ArkUI组件迁移数据
-
-部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-restoreId.md)。
 
 ### 使用wantParam迁移数据
 
@@ -396,9 +394,13 @@ export default class EntryAbility extends UIAbility {
 ```
 ### 使用分布式对象迁移数据
 
-当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#ohosdatadistributeddataobject-%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1)进行数据迁移。
+当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../../application-dev/reference/apis/js-apis-data-distributedobject.md)进行数据迁移。
 
-首先，在源端`onContinue()`接口中，创建一个分布式数据对象[`DataObject`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中，接着调用[`genSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid)接口随机生成一个`sessionId`，使用该值调用[`setSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置当前对象的`sessionId`，并将其通过`want`传递到对端。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个`sessionId`，就能自动同步。随后，向分布式数据对象中写入需要传输的数据，并调用[`save()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#save9)接口保存。
+首先，在源端`onContinue()`接口中，创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中。
+
+接着调用[`genSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid)接口随机生成一个`sessionId`，使用该值调用[`setSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置当前对象的`sessionId`，并将其通过`want`传递到对端。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个`sessionId`，就能自动同步。
+
+最后调用[`save()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#save9)接口保存。
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
@@ -463,7 +465,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-对端在`onCreate()/onNewWant()`中进行数据恢复时，调用[`setSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置与源端相同的`sessionId`，随后即可从分布式对象中恢复数据。
+对端在`onCreate()/onNewWant()`中进行数据恢复时，调用[`setSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置与源端相同的`sessionId`，随后即可从分布式对象中恢复数据。
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
@@ -520,7 +522,7 @@ export default class EntryAbility extends UIAbility {
 ### 使用分布式文件迁移数据
 当需要迁移的数据较大（100KB以上）时，也可以选择分布式文件进行数据迁移。相比于分布式对象，分布式文件更适用于需要传输的数据为文件的场景。在源端将数据写入分布式文件路径后，对端迁移后拉起的应用能够在同个分布式文件路径下访问到该文件。
 
-使用参考详见[跨设备文件访问](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/file-management/file-access-across-devices.md)。
+使用参考详见[跨设备文件访问](../../application-dev/file-management/file-access-across-devices.md)。
 
 ## 验证指导
 
@@ -530,7 +532,7 @@ export default class EntryAbility extends UIAbility {
 
 #### **配置环境**
 
-public-SDK不支持开发者使用所有的系统API，例如：全局任务中心使用的[**@ohos.distributedDeviceManager**](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md)不包括在public_SDK中。因此为了正确编译安装全局任务中心，开发者需要替换full-SDK，具体操作可参见[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+public-SDK不支持开发者使用所有的系统API，例如：全局任务中心使用的[**@ohos.distributedDeviceManager**](../../application-dev/reference/apis/js-apis-distributedDeviceManager.md)不包括在public_SDK中。因此为了正确编译安装全局任务中心，开发者需要替换full-SDK，具体操作可参见[替换指南](../../application-dev/faqs/full-sdk-switch-guide.md)。
 
 > **说明**：
 >
