@@ -1,6 +1,6 @@
 # HTTP Data Request
 
-## Overview
+## When to Use
 
 An application can initiate a data request over HTTP. Common HTTP methods include **GET**, **POST**, **OPTIONS**, **HEAD**, **PUT**, **DELETE**, **TRACE**, and **CONNECT**.
 
@@ -14,7 +14,7 @@ For details about how to apply for permissions, see [Access Control Development]
 
 The following table provides only a simple description of the related APIs. For details, see [API Reference](../reference/apis/js-apis-http.md).
 
-| API                                   | Description                           |
+| API                                   | Description                               |
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | Creates an HTTP request.                 |
 | request()                                 | Initiates an HTTP request to a given URL.    |
@@ -29,6 +29,8 @@ The following table provides only a simple description of the related APIs. For 
 | off\('dataEnd'\)<sup>10+</sup>            | Unregisters the observer for events indicating completion of receiving HTTP streaming responses.|
 | on\('dataReceiveProgress'\)<sup>10+</sup>        | Registers an observer for events indicating progress of receiving HTTP streaming responses. |
 | off\('dataReceiveProgress'\)<sup>10+</sup>       | Unregisters the observer for events indicating progress of receiving HTTP streaming responses.|
+| on\('dataSendProgress'\)<sup>11+</sup>        | Registers an observer for events indicating progress of sending HTTP requests. |
+| off\('dataSendProgress'\)<sup>11+</sup>       | Unregisters the observer for events indicating progress of sending HTTP requests.|
 
 ## How to Develop request APIs
 
@@ -69,7 +71,28 @@ httpRequest.request(
     connectTimeout: 60000 // Optional. The default value is 60000, in ms.
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
+    caPath: '/path/to/cacert.pem', // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
+    clientCert: { // Optional. The client certificate is not used by default. This field is supported since API version 11.
+      certPath: '/path/to/client.pem', // The client certificate is not used by default. This field is supported since API version 11.
+      keyPath: '/path/to/client.key', // If the certificate contains key information, an empty string is passed. This field is supported since API version 11.
+      certType: http.CertType.PEM, // Certificate type, optional. A certificate in the PEM format is used by default. This field is supported since API version 11.
+      keyPassword: "passwordToKey" // Password of the key file, optional. It is supported since API version 11.
+    },
+    multiFormDataList: [ // Optional. This field is valid only when content-Type in the header is multipart/form-data. It is supported since API version 11.
+      {
+        name: "Part1", // Data name. This field is supported since API version 11.
+        contentType: 'text/plain', // Data type. This field is supported since API version 11.
+        data: 'Example data', // Data content, optional. This field is supported since API version 11.
+        remoteFileName: 'example.txt' // Optional. This field is supported since API version 11.
+      }, {
+        name: "Part2", // Data name. This field is supported since API version 11.
+        contentType: 'text/plain', // Data type. This field is supported since API version 11.
+        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
+        filePath: `${getContext(this).filesDir}/fileName.txt`, // File path, optional. This field is supported since API version 11.
+        remoteFileName: 'fileName.txt' // Optional. This field is supported since API version 11.
+      }
+    ]
   }, (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
       // data.result carries the HTTP response. Parse the response based on service requirements.
@@ -164,4 +187,3 @@ httpRequest.requestInStream(
 }
 );
 ```
-

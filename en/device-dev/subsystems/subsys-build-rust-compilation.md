@@ -2,10 +2,8 @@
 
 ## Introduction
 
-Rust is a static, strongly typed programming language. It has advantages such as secure memory management, high running performance, and native support for multi-thread development. Rust uses Cargo to create projects and compile and build Rust code.
-
+Rust is a static, strongly typed programming language. It has advantages such as secure memory management, high running performance, and native support for multi-thread development. Rust uses Cargo to create projects and compile and build Rust code.<br>
 To integrate C/C++ code and improve the build speed, OpenHarmony uses Generate Ninja (GN) and Ninja as its build system. GN has simple and easy-to-use build language, and Ninja provides direct and efficient assembly-level build rules.
-
 To integrate Rust code and maximize the interaction between the C/C++ code used in OpenHarmony and Rust, OpenHarmony uses GN as a unified build tool to build Rust source code files (xxx.rs) and is added with features such as interoperability with C/C++, compile time lints, test, IDL conversion, third-party library integration, and IDE. In addition, the GN framework is extended to support automatic interface conversion, which greatly simplifying development.
 
 ### Basic Concepts
@@ -14,32 +12,31 @@ To integrate Rust code and maximize the interaction between the C/C++ code used 
 | ----- | ------------------------------------------------------------ |
 | Cargo | Cargo is an official build tool used by Rust. It allows Rust projects to declare dependencies and ensures reproducible builds.|
 | crate | Crate is a unit that can be independently compiled.                               |
-| Lint| Lint is a code analysis tool used to flag programming errors, bugs, stylistic errors, and suspicious constructs. It performs extensive error analysis on programs.|
+| Lint  | Lint is a code analysis tool used to flag programming errors, bugs, stylistic errors, and suspicious constructs. It performs extensive error analysis on programs.|
 
 
 
 ## Configuration Rules
 OpenHarmony provides a variety of GN templates for compiling Rust executables, dynamic libraries, and static libraries. The following table describes the templates.
 
-| GN Template                  | Description             | Output                                           |
-| ------------------------ | ----------------- | ----------------------------------------------- |
-| ohos_rust_executable     | Rust executable file.   | Rust executable file, without the file name extension.                       |
-| ohos_rust_shared_library | Rust dynamic library.       | Rust dylib dynamic library, with the default file name extension **.dylib.so**.            |
-| ohos_rust_static_library | Rust static library.       | Rust rlib static library, with the default file name extension **.rlib**.                 |
-| ohos_rust_proc_macro     | Rust proc_macro library.   | Rust proc_macro library, with the default file name extension **.so**.                |
-| ohos_rust_shared_ffi     | Rust Foreign Function Interface (FFI) dynamic library.   | Rust cdylib dynamic library, which is called by the C/C++ module. The default file name extension is **.so**.|
-| ohos_rust_static_ffi     | Rust FFI static library.   | Rust staticlib library, which is called by the C/C++ module. The default file name extension is **.a**.  |
-| ohos_rust_cargo_crate    | Third-party Cargo crate.| Third-party Rust crates, which support rlib, dylib, and bin.             |
-| ohos_rust_systemtest     | Rust system test cases. | Executable system test cases for Rust, without the file name extension.               |
-| ohos_rust_unittest       | Rust unit test cases. | Executable unit test cases for Rust, without the file name extension.               |
-
+| GN Template                    | Description             | Output                               |
+|--------------------------|-----------------|-----------------------------------|
+| ohos_rust_executable     | Rust executable file.      | Rust executable file, without the file name extension.                   |
+| ohos_rust_shared_library | Rust dynamic library.        | Rust dylib dynamic library, with the default file name extension **.dylib.so**.      |
+| ohos_rust_static_library | Rust static library.        | Rust rlib static library, with the default file name extension **.rlib**.           |
+| ohos_rust_proc_macro     | Rust proc_macro library. | Rust proc_macro library, with the default file name extension **.so**.        |
+| ohos_rust_shared_ffi     | Rust Foreign Function Interface (FFI) dynamic library.    | Rust cdylib dynamic library, which is called by the C/C++ module. The default file name extension is **.so**.|
+| ohos_rust_static_ffi     | Rust FFI static library.    | Rust staticlib library, which is called by the C/C++ module. The default file name extension is **.a**.|
+| ohos_rust_cargo_crate    | Third-party Cargo crate. | Third-party Rust crates, which support rlib, dylib, and bin.      |
+| ohos_rust_systemtest     | Rust system test cases.     | Executable system test cases for Rust, without the file name extension.               |
+| ohos_rust_unittest       | Rust unit test cases.     | Executable unit test cases for Rust, without the file name extension.               |
+| ohos_rust_fuzztest       | Rust fuzzing test cases.  | Executable fuzzing test cases for Rust, without the file name extension.             |
 
 
 ## Configuration Guide
 The configuration of the Rust module is similar to that of the C/C++ module. For details, see [Module Configuration Rules](subsys-build-module.md). The following provides examples of using different Rust templates.
 ### Configuring a Rust Static Library
 The following example shows how to use the **ohos_rust_executable** and **ohos_rust_static_library** templates to build a binary executable and a static rlib library, respectively. The executable depends on the static library. 
-
 The procedure is as follows:
 
 1. Create **build/rust/tests/test_rlib_crate/src/simple_printer.rs**.
@@ -98,8 +95,8 @@ The procedure is as follows:
      features = [ "std" ]
    }
    ```
-   
-4. Run the **BUILD.gn** to generate the build targets.
+
+4. Run **BUILD.gn** to generate the build targets.
 
    ![test_rlib_crate](./figures/test_rlib_crate.png)
 
@@ -108,7 +105,6 @@ The procedure is as follows:
 The **BUILD.gn** file of the rust third-party library can be automatically generated using the cargo2gn tool. For details, see [Using Cargo2gn](subsys-build-cargo2gn-guide.md).
 
 The following example shows how to use the **ohos_rust_executable** and **ohos_rust_cargo_crate** templates to compile a third-party static library rlib file that contains a prebuilt file **build.rs**. 
-
 The procedure is as follows:
 
 1. Create **build/rust/tests/test_rlib_cargo_crate/crate/src/lib.rs**.
@@ -302,34 +298,34 @@ The procedure is as follows:
    }
    ```
 
-5. Run the **BUILD.gn** to generate the build target.
+5. Run **BUILD.gn** to generate the build target.
 
    ![test_rlib_cargo_crate](./figures/test_rlib_cargo_crate.png)
 
 ### Other Configuration Examples
 You can find the Rust module configuration examples in the **build/rust/tests** directory.
-| Directory                                    | Description                                                  |
-| -------------------------------------------- | ------------------------------------------------------------ |
-| build/rust/tests/test_bin_crate              | Tests the build of an executable file on the host platform and running of the executable file on the target platform.|
-| build/rust/tests/test_static_link            | Tests the static linking of an executable file to a standard library.                          |
-| build/rust/tests/test_dylib_crate            | Tests the build of a dynamic library and dynamic linking.                            |
-| build/rust/tests/test_rlib_crate             | Tests the build of a static library and static linking.                            |
-| build/rust/tests/test_proc_macro_crate       | Tests the build of Rust process macros and the linking function. Test cases are provided for different types of macros.|
-| build/rust/tests/test_cdylib_crate           | Tests the generation of Rust FFI bindings to a C/C++ dynamic library.                           |
-| build/rust/tests/test_staticlib_crate        | Tests the generation of Rust FFI bindings to a C/C++ static library.                           |
-| build/rust/tests/test_rust_ut                | Tests the Rust code unit test template.                   |
-| build/rust/tests/test_rust_st                | Tests the Rust code system test template.                   |
-| build/rust/tests/test_bin_cargo_crate        | Tests the build and running of a Rust third-party executable file. The third-party source code contains **build.rs**.|
-| build/rust/tests/test_rlib_cargo_crate       | Tests the build of a Rust third-party static library and static linking. The third-party source code contains **build.rs**.|
-| build/rust/tests/test_proc_macro_cargo_crate | Tests the build of Rust third-party process macros and linking. The third-party source code contains **build.rs**.    |
 
+| Directory                                        | Description                                                    |
+|----------------------------------------------|----------------------------------------------------------|
+| build/rust/tests/test_bin_crate              | Tests the build of an executable file on the host platform and running of the executable file on the target platform.|
+| build/rust/tests/test_static_link            | Tests the static linking of an executable file to a standard library.                                       |
+| build/rust/tests/test_dylib_crate            | Tests the build of a dynamic library and dynamic linking.                                        |
+| build/rust/tests/test_rlib_crate             | Tests the build of a static library and static linking.                                        |
+| build/rust/tests/test_proc_macro_crate       | Tests the build of Rust process macros and the linking function. Test cases are provided for different types of macros.                      |
+| build/rust/tests/test_cdylib_crate           | Tests the generation of Rust FFI bindings to a C/C++ dynamic library.                                   |
+| build/rust/tests/test_staticlib_crate        | Tests the generation of Rust FFI bindings to a C/C++ static library.                                   |
+| build/rust/tests/rust_test_ut                | Tests the Rust code unit test template.                              |
+| build/rust/tests/rust_test_st                | Tests the Rust code system test template.                              |
+| build/rust/tests/test_bin_cargo_crate        | Tests the build and running of a Rust third-party executable file. The third-party source code contains **build.rs**.                    |
+| build/rust/tests/test_rlib_cargo_crate       | Tests the build of a Rust third-party static library and static linking. The third-party source code contains **build.rs**.                    |
+| build/rust/tests/test_proc_macro_cargo_crate | Tests the build of Rust third-party process macros and linking. The third-party source code contains **build.rs**.                      |
+| build/rust/tests/rust_test_fuzzb             | Tests the Rust code fuzzing test template.                                     |
 ## Reference
 
 ### Feature Examples
 
 #### Linking a C/C++ library in Rust Source Code
 By default, the dynamic library of the OpenHarmony C/C++ module is in the **.z.so** format. However, when the Rust **-l** command is executed, only the dynamic library in the **.so** format is linked by default. If a C/C++ dynamic library is used as the dependency, you need to add **output_extension = "so"** to the GN build script of the dynamic library to make the generated dynamic library be named with **.so** instead of **.z.so**.
-
 If a dynamic library is directly linked in the Rust source code, the dynamic library must be in **.so** format. In this case, use the dynamic library name without "lib". The following is an example of linking **libhilog.so** in the Rust source code.
 
 ```rust
@@ -348,18 +344,16 @@ executable("foo") {
 ```
 ### Lint Rules
 The OpenHarmony framework supports two types of lints: rustc lints and Clippy lints. Each type of lint has three levels: openharmony (highest), vendor, and none (lowest).
-
 When configuring the Rust module, you can specify the lint level in **rustc_lints** or **clippy_lints**.
-
 If **rustc_lints** or **clippy_lints** is not configured in the module, the lint level is matched based on the module path. Different restrictions apply to the syntax specifications of Rust code in different directories. Therefore, you need to pay attention to the path of the module when configuring the Rust module to build in OpenHarmony.
 
-#### Levels of rustc Lints and Clippy Lints
+#### Levels of Rustc Lints and Clippy Lints
 | **Lint Type**| **Module Attribute**| **Lint Level**| **Lint Level Flag**| **Lint Content**                                               |
 | ------------- | ------------ | ------------- | ----------------- | ------------------------------------------------------------ |
 | rustc lints  | rustc_lints  | openharmony   | RustOhosLints     | "-A deprecated", "-D missing-docs", "-D warnings"           |
 | rustc lints  | rustc_lints  | vendor        | RustcVendorLints  | "-A deprecated", "-D warnings"                                |
 | rustc lints  | rustc_lints  | none          | allowAllLints     | "-cap-lints allow"                                           |
-| Clippy lints | clippy_lints | openharmony   | ClippyOhosLints   | "-A clippy::type-complexity", "-A clippy::unnecessary-wraps", "-A clippy::unusual-byte-groupings", "-A clippy::upper-case-acronyms" |
+| Clippy lints | clippy_lints| openharmony   | ClippyOhosLints   | "-A clippy::type-complexity", "-A clippy::unnecessary-wraps", "-A clippy::unusual-byte-groupings", "-A clippy::upper-case-acronyms" |
 | Clippy lints | clippy_lints | vendor        | ClippyVendorLints | "-A clippy::complexity", "-A Clippy::perf", "-A clippy::style" |
 | Clippy lints | clippy_lints | none          | allowAllLints     | "--cap-lints allow"                                          |
 

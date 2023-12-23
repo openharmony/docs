@@ -35,7 +35,7 @@
 | actionButtons                 | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             |   否  | 否  | 通知按钮，最多三个按钮。                                                          |
 | smallIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知小图标。可选字段，大小不超过30KB。                                                 |
 | largeIcon                     | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知大图标。可选字段，大小不超过30KB。                                                 |
-| overlayIcon<sup>11+<sup>      | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知重叠图标。可选字段，大小不超过30KB。                                               |
+| overlayIcon<sup>11+<sup>      | [image.PixelMap](js-apis-image.md#pixelmap7)             |   否  | 否  | 通知重叠图标。可选字段，大小不超过30KB。<br>**系统接口**: 此接口为系统接口。                                                 |
 | creatorBundleName             | string                                                   |   是  | 否  | 创建通知的包名。                                                              |
 | creatorUid                    | number                                                   |   是  | 否  | 创建通知的UID。                                                             |
 | creatorPid                    | number                                                   |   是  | 否  | 创建通知的PID。                                                             |
@@ -73,6 +73,8 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
+**系统接口**: 此接口为系统接口。  
+
 | 名称            | 类型                                   | 必填 | 说明                               |
 | ----------------| ------------------------------------- | ---- | ---------------------------------- |
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 实况通知的包信息。|
@@ -85,6 +87,8 @@
 描述通知的鉴权信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**: 此接口为系统接口。  
 
 | 名称          | 类型                                                       | 必填 | 说明              |
 | --------------| --------------------------------------------------------- | ---- | ----------------- |

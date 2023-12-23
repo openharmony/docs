@@ -17,18 +17,18 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 Enumerates the ability states. This enum can be used together with [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) to return the ability state.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This enum is an internal definition of a system API and cannot be called by third-party applications.
-
-| Name| Value| Description|
+| Name| Value| Description| 
 | -------- | -------- | -------- |
-| INITIAL | 0 | The ability is in the initial state.|
+| INITIAL | 0 | The ability is in the initial state.| 
 | FOCUS | 2 | The ability has the focus.|
-| FOREGROUND | 9 | The ability is in the foreground state. |
-| BACKGROUND | 10 | The ability is in the background state. |
-| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. |
-| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. |
+| FOREGROUND | 9 | The ability is in the foreground state. | 
+| BACKGROUND | 10 | The ability is in the background state. | 
+| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. | 
+| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
 
 ## updateConfiguration
 
@@ -36,10 +36,12 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 Updates the configuration. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
+ 
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -91,6 +93,8 @@ try {
 updateConfiguration(config: Configuration): Promise\<void>
 
 Updates the configuration. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -152,6 +156,8 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 Obtains the UIAbility running information. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -197,6 +203,8 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 Obtains the UIAbility running information. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -240,6 +248,8 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 Obtains the ExtensionAbility running information. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -268,7 +278,7 @@ import { BusinessError } from '@ohos.base';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<ExtensionRunningInfo>) => {
+    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<abilityManager.ExtensionRunningInfo>) => {
         if (err) {
             console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
         } else {
@@ -287,6 +297,8 @@ try {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 Obtains the ExtensionAbility running information. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -321,7 +333,7 @@ import { BusinessError } from '@ohos.base';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<ExtensionRunningInfo>) => {
+    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
         console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
@@ -333,11 +345,13 @@ try {
 }
 ```
 
-## getTopAbility<sup>9+</sup>
+## getTopAbility
 
-getTopAbility(callback: AsyncCallback\<ElementName>): void;
+getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 Obtains the top ability, which is the ability that has the window focus. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -361,7 +375,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility((err: BusinessError, data: AsyncCallback<ElementName>) => { 
+abilityManager.getTopAbility((err: BusinessError, data) => { 
     if (err) {
         console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -372,9 +386,11 @@ abilityManager.getTopAbility((err: BusinessError, data: AsyncCallback<ElementNam
 
 ## getTopAbility
 
-getTopAbility(): Promise\<ElementName>;
+getTopAbility(): Promise\<ElementName>
 
 Obtains the top ability, which is the ability that has the window focus. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -398,7 +414,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility().then((data: AsyncCallback<ElementName>) => {
+abilityManager.getTopAbility().then((data) => {
     console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
@@ -407,13 +423,13 @@ abilityManager.getTopAbility().then((data: AsyncCallback<ElementName>) => {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
+acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void
 
 Called by a system dialog box to obtain shared data, which is set by the target UIAbility through **onShare()**. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System API**: This is a system API.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -454,13 +470,13 @@ try {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
+acquireShareData(missionId: number): Promise<{[key: string]: Object}>
 
 Called by a system dialog box to obtain shared data, which is set by the target UIAbility through **onShare()**. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System API**: This is a system API.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -503,15 +519,15 @@ try {
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void
 
-Used by the Data Loss Prevention (DLP) management application to notify a sandbox application of the data saving result. This API uses an asynchronous callback to return the result.
+Used by the [Data Loss Prevention (DLP)](js-apis-dlppermission.md) management application to notify a sandbox application of the data saving result. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
 **System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -519,7 +535,7 @@ Used by the Data Loss Prevention (DLP) management application to notify a sandbo
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the initiator UIAbility.|
 | requestCode | number                                        | Yes| Request code passed in by the DLP management application.         |
-| callback  | AsyncCallback<void>                             | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.        |
+| callback  | AsyncCallback<void\>                             | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.        |
 
 **Error codes**
 
@@ -564,15 +580,15 @@ try {
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>
 
-Used by the DLP management application to notify a sandbox application of the data saving result. This API uses a promise to return the result.
+Used by the [Data Loss Prevention (DLP)](js-apis-dlppermission.md) management application to notify a sandbox application of the data saving result. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
 **System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -585,7 +601,7 @@ Used by the DLP management application to notify a sandbox application of the da
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise<void>| Promise that returns no value.|
+| Promise<void\>| Promise that returns no value.|
 
 **Error codes**
 
@@ -730,5 +746,3 @@ try {
     console.error(`error: ${code}, ${message} `);
 }
 ```
-
- <!--no_check--> 

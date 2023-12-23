@@ -16,7 +16,6 @@ import securityLabel from '@ohos.file.securityLabel';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
-**Stage模型**
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -30,18 +29,8 @@ import securityLabel from '@ohos.file.securityLabel';
   }
   ```
 
-**FA模型**
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
-FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## securityLabel.setSecurityLabel
 

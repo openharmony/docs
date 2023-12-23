@@ -170,6 +170,7 @@ disableUsb(admin: Want, disable: boolean): void
 | -------- | ------------------------------------------------------------ |
 | 9200001  | the application is not an administrator of the device.       |
 | 9200002  | the administrator application does not have permission to manage the device. |
+| 9200010  | a conflicting policy has been configured.                    |
 
 **示例：**
 
@@ -189,7 +190,7 @@ try {
 
 ## usbManager.isUsbDisabled<sup>11+</sup>
 
-isUsbDevicesDisallowed(admin: Want): boolean
+isUsbDisabled(admin: Want): boolean
 
 指定设备管理应用查询USB是否禁用。
 
@@ -238,7 +239,7 @@ try {
 
 ## usbManager.addAllowedUsbDevices<sup>11+</sup>
 
-addAllowedUsbDevices(admin: Want, usbDeviceIds: Array<usbManager.UsbDeviceId>): void
+addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 指定设备管理应用添加USB设备可用白名单。
 
@@ -250,10 +251,10 @@ addAllowedUsbDevices(admin: Want, usbDeviceIds: Array<usbManager.UsbDeviceId>): 
 
 **参数：**
 
-| 参数名       | 类型                                            | 必填 | 说明                                        |
-| ------------ | ----------------------------------------------- | ---- | ------------------------------------------- |
-| admin        | [Want](js-apis-app-ability-want.md)             | 是   | 设备管理应用。                              |
-| usbDeviceIds | Array<[usbManager.UsbDeviceId](#usbdeviceid11)> | 是   | USB设备ID数组。添加后的数组长度上限为1000。 |
+| 参数名       | 类型                                 | 必填 | 说明                                        |
+| ------------ | ------------------------------------ | ---- | ------------------------------------------- |
+| admin        | [Want](js-apis-app-ability-want.md)  | 是   | 设备管理应用。                              |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid11)> | 是   | USB设备ID数组。添加后的数组长度上限为1000。 |
 
 **错误码**：
 
@@ -263,6 +264,7 @@ addAllowedUsbDevices(admin: Want, usbDeviceIds: Array<usbManager.UsbDeviceId>): 
 | -------- | ------------------------------------------------------------ |
 | 9200001  | the application is not an administrator of the device.       |
 | 9200002  | the administrator application does not have permission to manage the device. |
+| 9200010  | a conflicting policy has been configured.                    |
 
 **示例：**
 
@@ -286,7 +288,7 @@ try {
 
 ## usbManager.removeAllowedUsbDevices<sup>11+</sup>
 
-removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array<usbManager.UsbDeviceId>): void
+removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 指定设备管理应用移除USB设备可用白名单。
 
@@ -298,10 +300,10 @@ removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array<usbManager.UsbDeviceId>
 
 **参数：**
 
-| 参数名       | 类型                                            | 必填 | 说明            |
-| ------------ | ----------------------------------------------- | ---- | --------------- |
-| admin        | [Want](js-apis-app-ability-want.md)             | 是   | 设备管理应用。  |
-| usbDeviceIds | Array<[usbManager.UsbDeviceId](#usbdeviceid11)> | 是   | USB设备ID数组。 |
+| 参数名       | 类型                                 | 必填 | 说明            |
+| ------------ | ------------------------------------ | ---- | --------------- |
+| admin        | [Want](js-apis-app-ability-want.md)  | 是   | 设备管理应用。  |
+| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid11)> | 是   | USB设备ID数组。 |
 
 **错误码**：
 
@@ -334,7 +336,7 @@ try {
 
 ## usbManager.getAllowedUsbDevices<sup>11+</sup>
 
-getAllowedUsbDevices(admin: Want): Array<usbManager.UsbDeviceId>
+getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
 
 指定设备管理应用获取USB设备可用白名单。
 
@@ -352,9 +354,9 @@ getAllowedUsbDevices(admin: Want): Array<usbManager.UsbDeviceId>
 
 **返回值：**
 
-| 类型                                            | 说明                      |
-| ----------------------------------------------- | ------------------------- |
-| Array<[usbManager.UsbDeviceId](#usbdeviceid11)> | 可用USB白名单设备ID数组。 |
+| 类型                                 | 说明                      |
+| ------------------------------------ | ------------------------- |
+| Array<[UsbDeviceId](#usbdeviceid11)> | 可用USB白名单设备ID数组。 |
 
 **错误码**：
 
@@ -408,6 +410,7 @@ setUsbStorageDeviceAccessPolicy(admin: Want, usbPolicy: UsbPolicy): void
 | -------- | ------------------------------------------------------------ |
 | 9200001  | the application is not an administrator of the device.       |
 | 9200002  | the administrator application does not have permission to manage the device. |
+| 9200010  | a conflicting policy has been configured.                    |
 
 **示例：**
 
@@ -428,7 +431,7 @@ try {
 
 ## usbManager.getUsbStorageDeviceAccessPolicy<sup>11+</sup>
 
-getUsbStorageDeviceAccessPolicy(admin: Want): Array<usbManager.UsbDeviceId>
+getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
 指定设备管理应用获取USB存储设备访问策略。
 

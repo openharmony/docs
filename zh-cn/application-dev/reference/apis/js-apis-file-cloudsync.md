@@ -401,13 +401,11 @@ stop(callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-## State
+## State<sup>11+</sup>
 
 云文件下载状态，为枚举类型。
 
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
@@ -416,20 +414,19 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 | FAILED |  2 | 云文件下载失败 |
 | STOPPED |  3 | 云文件下载已停止 |
 
-## DownloadProgress
+## DownloadProgress<sup>11+</sup>
 
 云文件下载过程。
 
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
-
 | 名称     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| state | [State](#state) | 是   | 枚举值，云文件下载状态|
+| state | [State](#state11) | 是   | 枚举值，云文件下载状态|
 | processed | number | 是   | 已下载数据大小|
 | size | number | 是   | 当前云文件大小|
 | uri | string | 是   | 当前云文件uri|
+| error | [DownloadErrorType](#downloaderrortype11) | 是   | 下载的错误类型|
 
 ## Download
 
@@ -1623,3 +1620,18 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
 | DOWNLOADING |  1 | 下行同步中 |
 | COMPLETED |  2 | 同步成功 |
 | STOPPED |  3 | 同步已停止 |
+
+## DownloadErrorType<sup>11+</sup>
+
+端云下载错误类型，为枚举类型。
+
+**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+| 名称 |  值|  说明 |
+| ----- |  ---- |  ---- |
+| NO_ERROR |  0 | 没有错误 |
+| UNKNOWN_ERROR |  1 | 未知错误 |
+| NETWORK_UNAVAILABLE |  2 | 网络不可用 |
+| LOCAL_STORAGE_FULL |  3 | 本地空间不足 |
+| CONTENT_NOT_FOUND |  4 | 云端空间未找到对应文件 |
+| FREQUENT_USER_REQUESTS |  5 | 用户请求过于频繁 |

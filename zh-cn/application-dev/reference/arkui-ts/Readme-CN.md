@@ -44,6 +44,7 @@
     - [点击回弹效果](ts-universal-attributes-click-effect.md)
     - [无障碍属性](ts-universal-attributes-accessibility.md)
     - [动态属性设置](ts-universal-attributes-attribute-modifier.md)
+    - [外描边设置](ts-universal-attributes-outline.md)
     - 触摸交互控制
       - [触摸热区设置](ts-universal-attributes-touch-target.md)
       - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
@@ -92,6 +93,7 @@
   - [Navigation](ts-basic-components-navigation.md)
   - [NavRouter](ts-basic-components-navrouter.md)
   - [NavDestination](ts-basic-components-navdestination.md)
+  - [NodeContianer](ts-basic-components-nodecontainer.md)
   - [PatternLock](ts-basic-components-patternlock.md)
   - [PluginComponent](ts-basic-components-plugincomponent.md)
   - [Progress](ts-basic-components-progress.md)
@@ -206,6 +208,7 @@
     - [组件内隐式共享元素转场（geometryTransition）](ts-transition-animation-geometrytransition.md)
   - [路径动画（motionPath）](ts-motion-path-animation.md)
   - [粒子动画（Particle）](ts-particle-animation.md)
+  - [显式动画立即下发（animateToImmediately）](ts-explicit-animatetoimmediately.md)
 - 全局UI方法
   - 弹窗
     - [警告弹窗（AlertDialog）](ts-methods-alert-dialog-box.md)
@@ -217,6 +220,7 @@
     - [文本滑动选择器弹窗（TextPickerDialog）](ts-methods-textpicker-dialog.md)
   - [菜单](ts-methods-menu.md)
 - [自定义组件的生命周期](ts-custom-component-lifecycle.md)
+- [自定义组件内置方法](ts-custom-component-api.md)
 - [应用级变量的状态管理](ts-state-management.md)
 - [像素单位](ts-pixel-units.md)
 - [枚举说明](ts-appendix-enums.md)

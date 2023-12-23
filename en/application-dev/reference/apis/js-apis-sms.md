@@ -95,8 +95,8 @@ import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
 const specification: string = '3gpp';
-// Display PDUs using numbers in an array, for example, [0x08, 0x91, ...].
-const pdu: Array<number> = [0x08, 0x91];
+// Display PDUs in array format. The type is number.
+const pdu: Array<number> = [0x01, 0x00, 0x05, 0x81, 0x01, 0x80, 0xF6, 0x00, 0x00, 0x05, 0xE8, 0x32, 0x9B, 0xFD, 0x06];
 sms.createMessage(pdu, specification).then((data: sms.ShortMessage) => {
     console.log(`createMessage success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
@@ -168,8 +168,6 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 Sends an SMS message. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **Required permissions**: ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
@@ -226,8 +224,6 @@ sms.sendShortMessage(options, (err: BusinessError) => {
 sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 Sends an SMS message. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.SEND_MESSAGES
 
@@ -336,7 +332,7 @@ import type Context from './application/BaseContext';
 import featureAbility from '@ohos.ability.featureAbility';
 let context: Context = featureAbility.getContext();
 
-// Configure the path for storing the PDU of the MMS message.
+// Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string  = sandBoxPath + 'SendReq.mms';
 
@@ -368,7 +364,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
-// Configure the path for storing the PDU of the MMS message.
+// Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath = '/data/storage/el2/base/files/';
 let filePath  = sandBoxPath + 'SendReq.mms';
 
@@ -450,7 +446,7 @@ import type Context from './application/BaseContext';
 import featureAbility from '@ohos.ability.featureAbility';
 let context: Context = featureAbility.getContext();
 
-// Configure the path for storing the PDU of the MMS message.
+// Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string = sandBoxPath + 'SendReq.mms';
 
@@ -481,7 +477,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
 
-// Configure the path for storing the PDU of the MMS message.
+// Configure the path for storing PDUs of MMS messages. Such PDUs are sent from the encoding API.
 const sandBoxPath = '/data/storage/el2/base/files/';
 let filePath  = sandBoxPath + 'SendReq.mms';
 
@@ -1220,7 +1216,7 @@ promise.then((data: string[]) => {
 
 addSimMessage\(options: SimMessageOptions, callback: AsyncCallback\<void\>\): void
 
-Adds a SIM message. This API uses an asynchronous callback to return the result.
+Adds a message to the SIM card. If the SIM card is full, an error is reported. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1271,7 +1267,7 @@ sms.addSimMessage(simMessageOptions, (err: BusinessError) => {
 
 addSimMessage\(options: SimMessageOptions\): Promise\<void\>
 
-Adds a SIM message. This API uses a promise to return the result.
+Adds a message to the SIM card. If the SIM card is full, an error is reported. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1289,7 +1285,7 @@ Adds a SIM message. This API uses a promise to return the result.
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; |  Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -1328,7 +1324,7 @@ sms.addSimMessage(simMessageOptions).then(() => {
 
 delSimMessage\(slotId: number, msgIndex: number, callback: AsyncCallback\<void\>\): void
 
-Deletes a SIM message. This API uses an asynchronous callback to return the result.
+Deletes a message from the SIM card. If the specified **msgIndex** is invalid, an error is reported. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1376,7 +1372,7 @@ sms.delSimMessage(slotId, msgIndex, (err: BusinessError) => {
 
 delSimMessage\(slotId: number, msgIndex: number\): Promise\<void\>
 
-Deletes a SIM message. This API uses a promise to return the result.
+Deletes a message from the SIM card. If the specified **msgIndex** is invalid, an error is reported. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1395,7 +1391,7 @@ Deletes a SIM message. This API uses a promise to return the result.
 
 | Type               | Description                         |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; |  Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 

@@ -10,7 +10,7 @@
 
 ## 子组件
 
-可以包含[Span](ts-basic-components-span.md)和[ImageSpan](ts-basic-components-imagespan.md)子组件。
+不包含子组件。
 
 
 ## 接口
@@ -228,7 +228,19 @@ addImageSpan(value: PixelMap | ResourceStr, options?: RichEditorImageSpanOptions
 
 addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): number
 
-添加builder内容。不支持通过[getSpans](#getspans)等方法获取。
+> **说明：**
+>
+> - RichEditor组件添加占位Span，占位Span调用系统的measure方法计算真实的长宽和位置。
+> - 可通过[RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
+> - 此占位Span不可获焦，不支持拖拽，支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
+> - 不支持通过[bindSelectionMenu](#属性)设置自定义菜单。
+> - 不支持通过[getSpans](#getspans)，[getSelection](#getselection11)，[onSelect](#事件)，[aboutToDelete](#事件)获取builderSpan信息。
+> - 不支持通过[updateSpanStyle](#updatespanstyle)，[updateParagraphStyle](#updateparagraphstyle11)等方式更新builder。
+> - 对此builder节点进行复制或粘贴不生效。
+> - builder的布局约束由RichEditor传入，如果builder里最外层组件不设置大小，则会用RichEditor的大小作为maxSize。
+> - builder的手势相关事件机制与通用手势事件相同，如果builder中未设置透传，则仅有builder中的子组件响应。
+
+通用属性仅支持[size](ts-universal-attributes-size.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[aspectRatio](ts-universal-attributes-layout-constraints.md#属性)、[borderStyle](ts-universal-attributes-border.md#属性)、[borderWidth](ts-universal-attributes-border.md#属性)、[borderColor](ts-universal-attributes-border.md#属性)、[borderRadius](ts-universal-attributes-border.md#属性)、[backgroundColor](ts-universal-attributes-attribute-modifier.md#属性)、[backgroundBlurStyle](ts-universal-attributes-background.md#属性)、[opacity](ts-universal-attributes-opacity.md#属性)、[blur](ts-universal-attributes-image-effect.md#属性)、[backdropBlur](ts-universal-attributes-image-effect.md#属性)、[shadow](ts-universal-attributes-image-effect.md#属性)、[grayscale](ts-universal-attributes-image-effect.md#属性)、[brightness](ts-universal-attributes-image-effect.md#属性)、[saturate](ts-universal-attributes-image-effect.md#属性)、[contrast](ts-universal-attributes-image-effect.md#属性)、[invert](ts-universal-attributes-image-effect.md#属性)、[sepia](ts-universal-attributes-image-effect.md#属性)、[hueRotate](ts-universal-attributes-image-effect.md#属性)、[colorBlend](ts-universal-attributes-image-effect.md#属性)、[sphericalEffect](ts-universal-attributes-image-effect.md#属性)、[lightUpEffect](ts-universal-attributes-image-effect.md#属性)、[pixelStretchEffect](ts-universal-attributes-image-effect.md#属性)、[linearGradientBlur](ts-universal-attributes-image-effect.md#属性)、[clip](ts-universal-attributes-sharp-clipping.md#属性)、[mask](ts-universal-attributes-sharp-clipping.md#属性)、[foregroundBlurStyle](ts-universal-attributes-foreground-blur-style.md#属性)、[accessibilityGroup](ts-universal-attributes-accessibility.md#属性)、[accessibilityText](ts-universal-attributes-accessibility.md#属性)、[accessibilityDescription](ts-universal-attributes-accessibility.md#属性)、[accessibilityLevel](ts-universal-attributes-accessibility.md#属性)。
 
 **参数：**
 
@@ -434,7 +446,7 @@ getSelection(): RichEditorSelection
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 设置文本段落在水平方向的对齐方式。 |
-| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否 | 设置文本段落缩进。 |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否 | 设置文本段落缩进，不支持设置百分比。 |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -443,7 +455,7 @@ getSelection(): RichEditorSelection
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是 | 图片内容。 |
-| size | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是 | 图片大小。 |
+| size | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是 | 图片大小，不支持设置百分比。 |
 
 ## RichEditorParagraphResult<sup>11+</sup>
 
@@ -1981,3 +1993,295 @@ struct Index {
 ```
 
 ![TextshadowExample](figures/rich_editor_textshadow.png)
+
+### 示例9
+``` ts
+@Builder
+function placeholderBuilder2() {
+  Row({ space: 2 }) {
+    Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
+    Text('okokokok').fontSize(10)
+  }.width('20%').height(50).padding(10).backgroundColor(Color.Red)
+}
+
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController();
+  option: RichEditorOptions = { controller: this.controller };
+  private start: number = 2;
+  private end: number = 4;
+  @State message: string = "[-1, -1]"
+  @State content: string = ""
+  private my_offset: number | undefined = undefined
+  private my_builder: CustomBuilder = undefined
+
+  @Builder
+  placeholderBuilder() {
+    Row({ space: 2 }) {
+      Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
+      Text('Custom Popup').fontSize(10)
+    }.width(100).height(50).padding(5)
+  }
+
+  @Builder
+  placeholderBuilder3() {
+    Text("hello").padding('20').borderWidth(1).width('100%')
+  }
+
+  @Builder
+  placeholderBuilder4() {
+    Column() {
+      Column({ space: 5 }) {
+        Text('direction:Row').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ direction: FlexDirection.Row }) { // 子组件在容器主抽上行布局
+          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(50).backgroundColor(0xD2B48C)
+          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(50).backgroundColor(0xD2B48C)
+        }
+        .height(70)
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+
+        Text('direction:RowReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ direction: FlexDirection.RowReverse }) { // 子组件在容器主抽上反向行布局
+          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(50).backgroundColor(0xD2B48C)
+          Text('1').width('20%').height(50).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(50).backgroundColor(0xD2B48C)
+        }
+        .height(70)
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+
+        Text('direction:Column').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ direction: FlexDirection.Column }) { // 子组件在容器主抽上列布局
+          Text('1').width('20%').height(40).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(40).backgroundColor(0xD2B48C)
+          Text('1').width('20%').height(40).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(40).backgroundColor(0xD2B48C)
+        }
+        .height(160)
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+
+        Text('direction:ColumnReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Flex({ direction: FlexDirection.ColumnReverse }) { // 子组件在容器主抽上反向列布局
+          Text('1').width('20%').height(40).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(40).backgroundColor(0xD2B48C)
+          Text('1').width('20%').height(40).backgroundColor(0xF5DEB3)
+          Text('1').width('20%').height(40).backgroundColor(0xD2B48C)
+        }
+        .height(160)
+        .width('90%')
+        .padding(10)
+        .backgroundColor(0xAFEEEE)
+      }.width('100%').margin({ top: 5 })
+    }.width('100%')
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项1" })
+      MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项2" })
+        .enabled(false)
+    }
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Text("selection range:").width("100%")
+        Text() {
+          Span(this.message)
+        }.width("100%")
+
+        Text("selection content:").width("100%")
+        Text() {
+          Span(this.content)
+        }.width("100%")
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("20%")
+
+      Row() {
+        Button("获取选择内容 getSpans").onClick(() => {
+          console.info('getSpans='+JSON.stringify(this.controller.getSpans({ start:1, end:5 })))
+          console.info('getParagraphs='+JSON.stringify(this.controller.getParagraphs({ start:1, end:5 })))
+          this.content = ""
+          this.controller.getSpans({
+            start: this.start,
+            end: this.end
+          }).forEach(item => {
+            if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+              if ((item as RichEditorImageSpanResult).valueResourceStr == "") {
+                console.info("builder span index " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range : " + (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " + (item as RichEditorImageSpanResult).imageStyle[0] + ", " + (item as RichEditorImageSpanResult).imageStyle[1])
+              } else {
+                console.info("image span " + (item as RichEditorImageSpanResult).valueResourceStr + ", index : " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range: " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " + (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " +
+                  (item as RichEditorImageSpanResult).imageStyle.size[0] + ", " + (item as RichEditorImageSpanResult).imageStyle.size[1])
+              }
+            } else {
+              this.content += (item as RichEditorTextSpanResult).value;
+              this.content += "\n"
+              console.info("text span: " + (item as RichEditorTextSpanResult).value)
+            }
+          })
+        })
+        Button("获取选择内容 getSelection").onClick(() => {
+          this.content = "";
+          let select = this.controller.getSelection()
+          console.info("selection start " + select.selection[0] + " end " + select.selection[1])
+          select.spans.forEach(item => {
+            if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+              if ((item as RichEditorImageSpanResult).valueResourceStr == "") {
+                console.info("builder span index " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range : " + (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " + (item as RichEditorImageSpanResult).imageStyle[0] + ", " + (item as RichEditorImageSpanResult).imageStyle[1])
+              } else {
+                console.info("image span " + (item as RichEditorImageSpanResult).valueResourceStr + ", index : " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range: " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " + (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " +
+                  (item as RichEditorImageSpanResult).imageStyle.size[0] + ", " + (item as RichEditorImageSpanResult).imageStyle.size[1])
+              }
+            } else {
+              this.content += (item as RichEditorTextSpanResult).value;
+              this.content += "\n"
+              console.info("text span: " + (item as RichEditorTextSpanResult).value)
+            }
+          })
+        })
+        Button("删除选择内容").onClick(() => {
+          this.controller.deleteSpans({
+            start: this.start,
+            end: this.end
+          })
+        })
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("10%")
+
+      Column() {
+        RichEditor(this.option)
+          .onReady(() => {
+            this.controller.addTextSpan("0123456789",
+              {
+                style:
+                {
+                  fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+            this.controller.addImageSpan($r("app.media.icon"),
+              {
+                imageStyle:
+                {
+                  size: ["57px", "57px"]
+                }
+              })
+          })
+          .onSelect((value: RichEditorSelection) => {
+            this.start = value.selection[0];
+            this.end = value.selection[1];
+            this.message = "[" + this.start + ", " + this.end + "]"
+            console.info("onSelect="+JSON.stringify(value))
+          })
+          .aboutToIMEInput((value: RichEditorInsertValue) => {
+            console.log("---------------------- aboutToIMEInput --------------------")
+            console.info("aboutToIMEInput="+JSON.stringify(value))
+            console.log("insertOffset:" + value.insertOffset)
+            console.log("insertValue:" + value.insertValue)
+            return true;
+          })
+          .onIMEInputComplete((value: RichEditorTextSpanResult) => {
+            console.log("---------------------- onIMEInputComplete --------------------")
+            console.info("onIMEInputComplete="+JSON.stringify(value))
+            console.log("spanIndex:" + value.spanPosition.spanIndex)
+            console.log("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]")
+            console.log("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]")
+            console.log("value:" + value.value)
+          })
+          .aboutToDelete((value: RichEditorDeleteValue) => {
+            value.richEditorDeleteSpans.forEach(item => {
+              console.log("---------------------- item --------------------")
+              console.info("spanIndex=" + item.spanPosition.spanIndex)
+              console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
+              console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
+              if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+                if ((item as RichEditorImageSpanResult).valueResourceStr == "") {
+                  console.info("builder span index " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range : " + (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " + (item as RichEditorImageSpanResult).imageStyle[0] + ", " + (item as RichEditorImageSpanResult).imageStyle[1])
+                } else {
+                  console.info("image span " + (item as RichEditorImageSpanResult).valueResourceStr + ", index : " + (item as RichEditorImageSpanResult).spanPosition.spanIndex + ", range: " +
+                  (item as RichEditorImageSpanResult).offsetInSpan[0] + ", " + (item as RichEditorImageSpanResult).offsetInSpan[1] + ", size : " +
+                  (item as RichEditorImageSpanResult).imageStyle.size[0] + ", " + (item as RichEditorImageSpanResult).imageStyle.size[1])
+                }
+              } else {
+                console.info("delete text: " + (item as RichEditorTextSpanResult).value)
+              }
+            })
+            return true;
+          })
+          .borderWidth(1)
+          .borderColor(Color.Green)
+          .width("100%")
+          .height("30%")
+
+        Button("add span")
+          .onClick(() => {
+            let num = this.controller.addBuilderSpan(this.my_builder, { offset: this.my_offset })
+            console.info('addBuilderSpan return ' + num)
+          })
+        Button("add image")
+          .onClick(() => {
+            let num = this.controller.addImageSpan($r("app.media.icon"), {
+              imageStyle: {
+                size: ["50px", "50px"],
+                verticalAlign: ImageSpanAlignment.BOTTOM,
+                layoutStyle: {
+                  borderRadius: undefined,
+                  margin: undefined
+                }
+              }
+            })
+            console.info('addImageSpan return' + num)
+          })
+        Row() {
+          Button('builder1').onClick(() => {
+            this.my_builder = () => {
+              this.placeholderBuilder()
+            }
+          })
+          Button('builder2').onClick(() => {
+            this.my_builder = placeholderBuilder2.bind(this)
+          })
+          Button('builder3').onClick(() => {
+            this.my_builder = () => {
+              this.placeholderBuilder3()
+            }
+          })
+          Button('builder4').onClick(() => {
+            this.my_builder = () => {
+              this.placeholderBuilder4()
+            }
+          })
+        }
+      }
+      .borderWidth(1)
+      .borderColor(Color.Red)
+      .width("100%")
+      .height("70%")
+    }
+  }
+}
+```
+![AddBuilderSpanExample](figures/rich_editor_addBuilderSpan.png)

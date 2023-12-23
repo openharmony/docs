@@ -21,60 +21,16 @@
 通过atManager实例来获取。
 
 **示例：**
-
-ArkTS语法不支持直接使用globalThis，需要通过一个单例的map来做中转。开发者需要：
-
-a. 在EntryAbility.ets中导入构建的单例对象GlobalThis。
-  ```typescript
-    import { GlobalThis } from '../utils/globalThis'; // 需要根据globalThis.ets的路径自行适配
-  ```
-b. 在onCreate中添加:
-  ```typescript
-    GlobalThis.getInstance().setContext('context', this.context);
-  ```
-
-> **说明：**
->
-> 由于在ts中引入ets文件会有告警提示，需要将EntryAbility.ts的文件后缀修改为EntryAbility.ets，并在module.json5中同步修改。
-
-**globalThis.ets示例代码如下：**
-```typescript
-import common from '@ohos.app.ability.common';
-
-// 构造单例对象
-export class GlobalThis {
-  private constructor() {}
-  private static instance: GlobalThis;
-  private _uiContexts = new Map<string, common.UIAbilityContext>();
-
-  public static getInstance(): GlobalThis {
-    if (!GlobalThis.instance) {
-      GlobalThis.instance = new GlobalThis();
-    }
-    return GlobalThis.instance;
-  }
-
-  getContext(key: string): common.UIAbilityContext | undefined {
-    return this._uiContexts.get(key);
-  }
-
-  setContext(key: string, value: common.UIAbilityContext): void {
-    this._uiContexts.set(key, value);
-  }
-
-  // 其他需要传递的内容依此扩展
-}
-```
+示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
-import { GlobalThis } from '../utils/globalThis';
 
 let atManager = abilityAccessCtrl.createAtManager();
 try {
-  let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
+  let context: Context = getContext(this) as common.UIAbilityContext;
   atManager.requestPermissionsFromUser(context, ["ohos.permission.CAMERA"]).then((data) => {
       console.info("data:" + JSON.stringify(data));
       console.info("data permissions:" + data.permissions);

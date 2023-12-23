@@ -38,7 +38,7 @@
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无                                        |
 | 同步类型              | 不与父组件中的任何类型同步变量。                         |
-| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date或者Array的class实例，示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
+| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、Map、Set、Array的class实例，示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -184,6 +184,10 @@ struct ViewB {
   }
 }
 ```
+
+继承Map的class时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[继承Map类](#继承map类)。
+
+继承Set的class时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见继承Set类。
 
 
 ### 框架行为
@@ -474,11 +478,163 @@ struct IndexPage {
 }
 ```
 
+### 继承Map类
+
+\@ObjectLink支持\@Observed装饰继承Map类和Map类型，在下面的示例中，myMap类型为MyMap<number, string>，点击Button改变myMap的属性，视图会随之刷新。
+
+```ts
+@Observed
+class ClassA {
+  public a: MyMap<number, string>;
+  constructor(a: MyMap<number, string>) {
+    this.a = a;
+  }
+}
+
+
+@Observed
+export class MyMap<K, V> extends Map<K, V> {
+
+  public name: string;
+
+  constructor(name?: string, args?: [K, V][]) {
+    super(args);
+    this.name = name ? name: "My Map";
+  }
+
+  getName() {
+    return this.name;
+  }
+}
+
+@Entry
+@Component
+struct MapSampleNested {
+  @State message: ClassA = new ClassA(new MyMap("myMap", [[0, "a"], [1, "b"], [3, "c"]]));
+
+  build() {
+    Row() {
+      Column() {
+        MapSampleNestedChild({myMap: this.message.a})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct MapSampleNestedChild {
+  @ObjectLink myMap: MyMap<number, string>
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.myMap.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Text(`${item[1]}`).fontSize(30)
+          Divider()
+        })
+
+        Button('set new one').onClick(() =>{
+          this.myMap.set(4, "d")
+        })
+        Button('clear').onClick(() =>{
+          this.myMap.clear()
+        })
+        Button('replace the first one').onClick(() =>{
+          this.myMap.set(0, "aa")
+        })
+        Button('delete the first one').onClick(() =>{
+          this.myMap.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 继承Set类
+
+\@ObjectLink支持\@Observed装饰继承Set类和Set类型，在下面的示例中，mySet类型为MySet<number>，点击Button改变mySet的属性，视图会随之刷新。
+
+```ts
+@Observed
+class ClassA {
+  public a: MySet<number>;
+  constructor(a: MySet<number>) {
+    this.a = a;
+  }
+}
+
+
+@Observed
+export class MySet<T> extends Set<T>  {
+
+  public name: string;
+
+  constructor(name?: string, args?: T[]) {
+    super(args);
+    this.name = name ? name: "My Set";
+  }
+
+  getName() {
+    return this.name;
+  }
+}
+
+@Entry
+@Component
+struct SetSampleNested {
+  @State message: ClassA = new ClassA( new MySet("Set", [0, 1, 2 ,3,4 ]));
+
+  build() {
+    Row() {
+      Column() {
+        SetSampleNestedChild({mySet: this.message.a})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct SetSampleNestedChild {
+  @ObjectLink mySet: MySet<number>
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.mySet.entries()), (item: number) => {
+          Text(`${item}`).fontSize(30)
+          Divider()
+        })
+        Button('set new one').onClick(() =>{
+          this.mySet.add(5)
+        })
+        Button('clear').onClick(() =>{
+          this.mySet.clear()
+        })
+        Button('delete the first one').onClick(() =>{
+          this.mySet.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## ObjectLink支持联合类型
 
 @ObjectLink支持@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为ClassA | ClassB | undefined，点击父组件Page2中的Button改变count的属性或者类型，Child中也会对应刷新。
 
 ```ts
+@Observed
 class ClassA {
   public a: number;
 
@@ -487,6 +643,7 @@ class ClassA {
   }
 }
 
+@Observed
 class ClassB {
   public b: number;
 

@@ -919,6 +919,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let progressCallback = (receivedSize: number, totalSize: number) => {
     console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
@@ -946,6 +947,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let progressCallback1 = (receivedSize: number, totalSize: number) => {
     console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
   };
@@ -981,6 +983,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let completeCallback = () => {
     console.info('Download task completed.');
   };
@@ -1018,6 +1021,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let completeCallback1 = () => {
     console.info('Download delete complete notification.');
   };
@@ -1085,6 +1089,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let failCallback = (err: number) => {
     console.error(`Failed to download the task. Code: ${err}`);
   };
@@ -1112,6 +1117,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let failCallback1 = (err: number) => {
     console.error(`Failed to download the task. Code: ${err}`);
   };
@@ -1145,6 +1151,7 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.delete().then((result: boolean) => {
     console.info('Succeeded in removing the download task.');
   }).catch((err: BusinessError) => {
@@ -1172,6 +1179,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1201,6 +1209,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
     console.info('Succeeded in querying the download task')
   }).catch((err: BusinessError) => {
@@ -1228,6 +1237,7 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
     if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
@@ -1257,6 +1267,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskMimeType().then((data: string) => {
     console.info('Succeeded in querying the download MimeType');
   }).catch((err: BusinessError) => {
@@ -1284,6 +1295,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
     if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
@@ -1313,6 +1325,7 @@ suspend(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.suspend().then((result: boolean) => {
     console.info('Succeeded in pausing the download task.');
   }).catch((err: BusinessError) => {
@@ -1340,6 +1353,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.suspend((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1369,6 +1383,7 @@ restore(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.restore().then((result: boolean) => {
     console.info('Succeeded in resuming the download task.')
   }).catch((err: BusinessError) => {
@@ -1396,6 +1411,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.restore((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
@@ -3549,7 +3565,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | id | string | 是 | 任务id。 |
-  | token | string | 是 | 任务查询token。 |
+  | token | string | 否 | 任务查询token。 |
 
 **返回值：** 
 

@@ -126,7 +126,7 @@ stopEditing(): void
 
 ### getTextContentRect<sup>10+</sup>
 
-getTextContentRect(): [RectResult](#rectresult)
+getTextContentRect(): RectResult
 
 获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
@@ -134,7 +134,7 @@ getTextContentRect(): [RectResult](#rectresult)
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](#rectresult) | 已编辑文本内容的相对组件的位置和大小。 |
+| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
 
 > **说明：**
 >
@@ -240,7 +240,7 @@ struct SearchExample {
 // xxx.ets
 @Entry
 @Component
-struct SearchButtoonExample {
+struct SearchExample {
   @State submitValue: string = ''
 
   build() {
