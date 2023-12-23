@@ -25,3 +25,4 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | wantAgentFlags<sup>(deprecated)</sup> | Array<[wantAgent.WantAgentFlags](js-apis-wantAgent.md#wantagentflags)> | 否   | 动作执行属性。<br/>从API version 7 开始支持，从API version 11 开始废弃，建议使用actionFlags<sup>11+</sup>替代。           |
 | actionFlags<sup>11+</sup> | Array<[abilityWantAgent.WantAgentFlags](js-apis-app-ability-wantAgent.md#wantagentflags)> | 否   | 动作执行属性。           |
 | extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
+| extraInfos      | Record\<string, Object>            | 否   | 额外数据。推荐使用该属性替代extraInfo，设置该属性后，extraInfo不再生效。               |

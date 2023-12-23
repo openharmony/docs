@@ -1909,7 +1909,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void
+acquireFormData(formId: string, callback: AsyncCallback\<Record\<string, Object>>): void
 
 请求卡片提供方数据。使用callback异步回调。
 
@@ -1924,7 +1924,7 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| callback | AsyncCallback<{[key: string]: Object} | 是   | 以callback方式返回接口运行结果及分享数据。 |
+| callback | AsyncCallback\<Record\<string, Object> | 是   | 以callback方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
@@ -1960,7 +1960,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string): Promise<{[key: string]: Object}>
+acquireFormData(formId: string): Promise\<Record\<string, Object>>
 
 请求卡片提供方数据。使用Promise异步回调。
 
@@ -1980,7 +1980,7 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise<{[key: string]: Object}>| 以Promise方式返回接口运行结果及分享数据。 |
+| Promise\<Record\<string, Object>>| 以Promise方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
