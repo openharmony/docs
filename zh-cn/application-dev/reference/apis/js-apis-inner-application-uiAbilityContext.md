@@ -3635,9 +3635,9 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
   })
   ```
 
-## UIAbilityContext.requestModalUIExtension
+## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
 
-requestModalUIExtension(want: Want): Promise\<void>
+requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用Promise形式异步回调。
 
@@ -3715,8 +3715,8 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.requestModalUIExtension
-requestModalUIExtension(want: Want, callback: AsyncCallback\<void>): void
+## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
+requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用callback形式异步回调。
 
