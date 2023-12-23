@@ -342,5 +342,30 @@ struct TextAreaExample {
 ### 示例5
 ```ts
 // xxx.ets
-// to finish
+@Entry
+@Component
+struct TextInputExample {
+  @State Text: string = ''
+  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
+  @State index: number = 0
+  build() {
+    Column({ space: 20 }) {
+      TextArea({ placeholder: '请输入用户名', text: this.Text })
+        .width(380)
+        .enterKeyType(this.enterTypes[this.index])
+        .onChange((value: string) => {
+          this.Text = value
+        })
+        .onSubmit((enterKey: EnterKeyType) => {
+          console.log("trigger area onsubmit" + enterKey);
+        })
+      Button('改变EnterKeyType').onClick(() => {
+        this.index = (this.index + 1) % this.enterTypes.length;
+      })
+
+    }.width('100%')
+  }
+}
 ```
+
+![TextAreaEnterKeyType](figures/area_enterkeytype.gif)
