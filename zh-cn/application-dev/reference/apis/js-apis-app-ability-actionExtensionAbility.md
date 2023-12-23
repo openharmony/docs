@@ -106,6 +106,9 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
    ```ts
    import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
+   import Want from '@ohos.app.ability.Want';
+   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+
    const TAG: string = "[ActionExtAbility]";
 
    export default class ActionExtAbility extends ActionExtensionAbility {
@@ -123,18 +126,18 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
        console.info(TAG, `onBackground`);
      }
 
-     onSessionCreate(want, session) {
+     onSessionCreate(want: Want, session: UIExtensionContentSession) {
        console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
-       this.message = want.parameters.shareMessages;
-       this.storage = new LocalStorage(
-        {
-          'session': session,
-          'messages': this.message
-        });
+       this.message = want.parameters.shareMessages.toString();
+       let localStorageData: Record<string, UIExtensionContentSession | string> = {
+         'session': session,
+         'messages': this.message
+       };
+       this.storage = new LocalStorage(localStorageData);
        session.loadContent('pages/Index', this.storage);
      }
 
-     onSessionDestroy(session) {
+     onSessionDestroy(session: UIExtensionContentSession) {
        console.info(TAG, `onSessionDestroy`);
      }
 
