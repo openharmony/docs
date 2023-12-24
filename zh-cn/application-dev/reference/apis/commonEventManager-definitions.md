@@ -717,10 +717,10 @@ Wi-Fi P2P群组信息已更改。
 提示SIM卡默认主卡已更新。
 
 * [COMMON_EVENT_SET_PRIMARY_SLOT_STATUS<sup>11+</sup> ](./common_event/commonEvent-telephony.md)
-提示设置主卡卡槽执行状态已更新。
+提示SIM卡默认主卡的设置状态，已完成或执行中。
 
 * [COMMON_EVENT_PRIMARY_SLOT_ROAMING<sup>11+</sup> ](./common_event/commonEvent-telephony.md)
-提示主卡漫游状态已更新。
+提示SIM卡默认主卡的漫游状态已更新。
 
 * [COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md)
 提示SIM卡默认语音主卡已更新。
