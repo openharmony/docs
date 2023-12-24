@@ -121,7 +121,7 @@
 
 ## COMMON_EVENT_SET_PRIMARY_SLOT_STATUS
 
-提示SIM卡默认主卡的设置状态，已完成或执行中。
+提示设置SIM卡默认主卡的动作，其状态更新为执行中或已完成。
 
 - 值：usual.event.SET_PRIMARY_SLOT_STATUS
 - 订阅者所需权限：无
