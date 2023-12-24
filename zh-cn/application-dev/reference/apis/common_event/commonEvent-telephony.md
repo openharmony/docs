@@ -126,7 +126,7 @@
 - 值：usual.event.SET_PRIMARY_SLOT_STATUS
 - 订阅者所需权限：无
 
-在设备设置SIM卡默认主卡的执行状态发生变化时，将会触发事件通知服务发布该系统公共事件。
+在设备上设置SIM卡默认主卡时，当执行状态发生变化（比如状态更新到执行中或已完成），将会触发事件通知服务发布该系统公共事件。
 
 ## COMMON_EVENT_PRIMARY_SLOT_ROAMING
 
