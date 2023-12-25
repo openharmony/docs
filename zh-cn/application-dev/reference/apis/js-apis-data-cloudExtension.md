@@ -80,7 +80,7 @@ export default class MyServiceExtension extends ServiceExtensionAbility {
     console.info(`onDisconnect: ${want}`);
   }
   onDestroy() {
-    console.info(`onDestroy`);
+    console.info('onDestroy');
   }
 }
 ```
@@ -623,7 +623,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
 
 以上示例中的类均采用implements实现，示例代码不能单独编译，需要实现父类中的所有方法才能使用，提供完整示例以作参考。
 
-```
+```ts
 import cloudExtension from '@ohos.data.cloudExtension';
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
@@ -633,7 +633,9 @@ import cloudData from '@ohos.data.cloudData';
 type Participant = cloudData.sharing.Participant;
 
 class MyShareCenter implements cloudExtension.ShareCenter {
-  constructor() {}
+  constructor() {
+  }
+
   async share(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
     Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
     console.info(`share, bundle: ${bundleName}`);
@@ -653,6 +655,7 @@ class MyShareCenter implements cloudExtension.ShareCenter {
       value: result
     }
   }
+
   async unshare(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
     Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
     console.info(`unshare, bundle: ${bundleName}`);
@@ -672,6 +675,7 @@ class MyShareCenter implements cloudExtension.ShareCenter {
       value: result
     }
   }
+
   async exit(userId: number, bundleName: string, sharingResource: string):
     Promise<cloudExtension.Result<void>> {
     console.info(`exit share, bundle: ${bundleName}`);
@@ -683,6 +687,7 @@ class MyShareCenter implements cloudExtension.ShareCenter {
       description: 'exit share succeeded'
     }
   }
+
   async changePrivilege(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
     Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
     console.info(`change privilege, bundle: ${bundleName}`);
@@ -702,6 +707,7 @@ class MyShareCenter implements cloudExtension.ShareCenter {
       value: result
     }
   }
+
   async queryParticipants(userId: number, bundleName: string, sharingResource: string):
     Promise<cloudExtension.Result<Array<Participant>>> {
     console.info(`query participants, bundle: ${bundleName}`);
@@ -741,6 +747,7 @@ class MyShareCenter implements cloudExtension.ShareCenter {
       value: participants
     }
   }
+
   async queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode: string):
     Promise<cloudExtension.Result<Array<Participant>>> {
     console.info(`query participants by invitation, bundle: ${bundleName}`);
@@ -780,6 +787,7 @@ class MyShareCenter implements cloudExtension.ShareCenter {
       value: participants
     }
   }
+
   async confirmInvitation(userId: number, bundleName: string, invitationCode: string, state: cloudData.sharing.State):
     Promise<cloudExtension.Result<string>> {
     console.info(`confirm invitation, bundle: ${bundleName}`);
@@ -792,6 +800,7 @@ class MyShareCenter implements cloudExtension.ShareCenter {
       value: 'sharing_resource_test'
     }
   }
+
   async changeConfirmation(userId: number, bundleName: string, sharingResource: string, state: cloudData.sharing.State):
     Promise<cloudExtension.Result<void>> {
     console.info(`change confirm, bundle: ${bundleName}`);
@@ -806,7 +815,9 @@ class MyShareCenter implements cloudExtension.ShareCenter {
 }
 
 class MyCloudService implements cloudExtension.CloudService {
-  constructor() {}
+  constructor() {
+  }
+
   async connectShareCenter(userId: number, bundleName: string): Promise<rpc.RemoteObject> {
     console.info(`connect share center, bundle: ${bundleName}`);
     return cloudExtension.createShareServiceStub(new MyShareCenter());
@@ -817,18 +828,22 @@ export default class MyServiceExtension extends ServiceExtensionAbility {
   onCreate(want: Want) {
     console.info(`onCreate: ${want}`);
   }
+
   onRequest(want: Want, startId: number) {
     console.info(`onRequest: ${want} ${startId}`);
   }
+
   onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject> {
     console.info(`onConnect: ${want}`);
     return cloudExtension.createCloudServiceStub(new MyCloudService());
   }
+
   onDisconnect(want: Want) {
     console.info(`onDisconnect: ${want}`);
   }
+
   onDestroy() {
-    console.info(`onDestroy`);
+    console.info('onDestroy');
   }
 }
 ```
