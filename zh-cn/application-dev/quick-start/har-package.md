@@ -60,9 +60,8 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 该字段配置前向兼容，原有功能暂时不受影响。API10后续将逐步废弃，建议尽快使用新的配置方式。
 
-## HAR开发注意事项
-- HAR不支持在配置文件中声明abilities、extensionAbilities组件。
-- HAR不支持在配置文件中声明pages页面。
+## HAR开发约束限制
+- HAR不支持UIAbility、ExtensionAbility组件和pages页面。
 - HAR不支持在build-profile.json5文件的buildOption中配置worker。
 - FA模型与Stage模型的HAR不支持相互引用。
 - Stage模型的HAR，不能引用AppScope内的内容。在编译构建时AppScope中的内容不会打包到HAR中，导致HAR资源引用失败。
