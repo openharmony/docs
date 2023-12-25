@@ -577,7 +577,7 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
 
-### 示例12
+### 示例13
 useShadowBatching搭配shadow实现同层阴影不重叠效果。
 ```ts
 // xxx.ets
