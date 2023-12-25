@@ -670,7 +670,7 @@ on(type: 'abilityAutoStartup', callback: AutoStartupCallback): void
 | -------- | -------------------------------------------- |
 | 16000050 | Internal error.                              |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -718,7 +718,7 @@ off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void
 | -------- | -------------------------------------------- |
 | 16000050 | Internal error.                              |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -769,7 +769,7 @@ setAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 | 16000050 | Internal error.                                 |
 | 16300003 | The target application is not self application. |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -822,7 +822,7 @@ setAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 16000050 | Internal error.                                 |
 | 16300003 | The target application is not self application. |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -872,7 +872,7 @@ cancelAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 | 16000050 | Internal error.                                 |
 | 16300003 | The target application is not self application. |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -925,7 +925,7 @@ cancelAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 16000050 | Internal error.                                 |
 | 16300003 | The target application is not self application. |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -973,7 +973,7 @@ isAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<boolean\>): void
 | 16000050 | Internal error.                                 |
 | 16300003 | The target application is not self application. |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -1024,7 +1024,7 @@ isAutoStartup(info: AutoStartupInfo): Promise\<boolean\>
 | 16000050 | Internal error.                                 |
 | 16300003 | The target application is not self application. |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

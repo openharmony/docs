@@ -37,7 +37,7 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -83,7 +83,7 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 | -------- | -------------------------------------------- |
 | 16000050 | Internal error.                              |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -131,7 +131,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -180,7 +180,7 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -226,7 +226,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -275,7 +275,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 | 16000013 | The application is controlled by EDM.        |
 | 16000050 | Internal error.                              |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -318,7 +318,7 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -356,7 +356,7 @@ try {
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-请参考元能力子系统错误码[errcode-ability](../errorcodes/errorcode-ability.md)。
+请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
