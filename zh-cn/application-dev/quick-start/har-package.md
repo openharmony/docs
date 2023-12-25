@@ -19,9 +19,8 @@ artifactType字段有以下两种取值，默认缺省为original。
 需要对代码资产进行保护时，建议开启混淆能力，混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 注意：artifactType字段设置为obfuscation时，apiType字段必须设置为stageMode，因为Stage模型才支持混淆。
 
-## HAR开发注意事项
-- HAR不支持在配置文件中声明abilities、extensionAbilities组件。
-- HAR不支持在配置文件中声明pages页面。
+## HAR开发约束限制
+- HAR不支持UIAbility、ExtensionAbility组件和pages页面。
 - HAR不支持在build-profile.json5文件的buildOption中配置worker。
 - FA模型与Stage模型的HAR不支持相互引用。
 - Stage模型的HAR，不能引用AppScope内的内容。在编译构建时APPScope中的内容不会打包到HAR中，导致HAR资源引用失败。
