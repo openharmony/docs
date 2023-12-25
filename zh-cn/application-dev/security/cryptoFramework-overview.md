@@ -250,7 +250,7 @@
 
 - **DH**
 
-  DH（Diffie-Hellman key Exchange），是一种密钥协商算法，只涉及公钥的交换，算法库框架基于开源算法库提供了DH密钥协商。
+  DH（Diffie-Hellman key exchange），是一种密钥协商算法，只涉及公钥的交换，算法库框架基于开源算法库提供了DH密钥协商。
 
 ### 摘要
 
