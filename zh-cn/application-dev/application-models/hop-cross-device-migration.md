@@ -70,7 +70,7 @@
    当`UIAbility`实例触发迁移时，[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调在源端被调用，开发者可以在该接口中保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
 
    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在`wantParam`参数中。
-   - 应用兼容性检测：开发者可以通过从`wantParam`参数中获取对端应用的版本号与[源端应用版本号](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/faqs-bundle-management.md)做兼容性校验。开发者可以在触发迁移时从[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调中`wantParam.version`获取到迁移对端应用的版本号与迁移源端应用版本号做兼容校验。
+   - 应用兼容性检测：开发者可以通过从`wantParam`参数中获取对端应用的版本号与源端应用版本号做兼容性校验。开发者可以在触发迁移时从[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调中`wantParam.version`获取到迁移对端应用的版本号与迁移源端应用版本号做兼容校验。
    - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调的返回值决定是否支持此次迁移。
 
    ```ts
@@ -313,11 +313,14 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ## 跨端迁移中的数据迁移
-当前支持四种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
-
-### 使用ArkUI组件迁移数据
-
-部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-restoreId.md)。
+当前支持三种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
+  > **说明：**
+  >
+  > 部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](../../application-dev/reference/arkui-ts/ts-universal-attributes-restoreId.md)。
+  >
+  > 如果涉及分布式对象和分布式文件迁移时应注意：
+  > 1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+  > 2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
 
 ### 使用wantParam迁移数据
 
@@ -359,87 +362,117 @@ export default class EntryAbility extends UIAbility {
 ```
 ### 使用分布式对象迁移数据
 
-当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#ohosdatadistributeddataobject-%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1)进行数据迁移。
+当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](../../application-dev/reference/apis/js-apis-data-distributedobject.md)进行数据迁移。
 
-首先，在应用初始化时，创建一个分布式数据对象[`DataObject`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)：
+首先，在源端`onContinue()`接口中，创建一个分布式数据对象[`DataObject`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)，将所要迁移的数据填充到分布式对象数据中。
 
-```ts
-// 导入依赖
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
+接着调用[`genSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid)接口随机生成一个`sessionId`，使用该值调用[`setSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置当前对象的`sessionId`，并将其通过`want`传递到对端。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个`sessionId`，就能自动同步。
 
-export default class EntryAbility extends UIAbility {
-  // 定义分布式数据对象
-  g_object: distributedObject.DataObject|null = null;
-
-  // 示例中，在onCreate阶段初始化分布式数据对象
-  onCreate() {
-    let source: SourceObject = new SourceObject('');
-    this.g_object = distributedObject.create(this.context, source);
-  }
-}
-```
-
-源端在`onContinue()`接口中，调用[`genSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid)接口随机生成一个`sessionId`，使用该值调用[`setSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置当前对象的`sessionId`，并将其通过`want`传递到对端。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个`sessionId`，就能自动同步。随后，向分布式数据对象中写入需要传输的数据，并调用[`save()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#save9)接口保存。
+最后调用[`save()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#save9)接口保存。
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
+
+// 示例数据结构
+class SourceObject {
+  notesTitle?: string;
+
+  constructor(notesTitle: string) {
+    this.notesTitle = notesTitle;
+  }
+}
 
 export default class EntryAbility extends UIAbility {
+  d_object?: distributedObject.DataObject;
   // ...
-  
+
   // 源端保存
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
-    // 生成sessionId
-    let sessionId: string = distributedObject.genSessionId();
+  onContinue(wantParam: Record<string, Object>): AbilityConstant.OnContinueResult {
+    if (this.d_object) {
+      this.d_object = undefined;
+    }
+    // 创建并向分布式数据对象中写入数据，据实际业务传递数据，这里是示例
+    if (!this.d_object) {
+      let source: SourceObject = new SourceObject('');
+      this.d_object = distributedObject.create(this.context, source);
+      this.d_object['notesTitle'] = 'This is a sample title';
 
-    // 使用该sessionId开启数据同步
-    this.g_object.setSessionId(sessionId, ()=>{
-        console.info("join session");
-    });
-    // 将sessionId传递到对端
-    wantParam['session'] = sessionId;
+      // 生成sessionId
+      let sessionId: string = distributedObject.genSessionId();
 
-    // 向分布式数据对象中写入数据，并保存
-    this.g_object['notesTitle'] = 'This is a sample title';
-    this.g_object.save(wantParam.targetDevice as string, (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
-      if (err) {
-        console.info("save failed, error code = " + err.code);
-        console.info("save failed, error message: " + err.message);
-        return;
-      }
-      console.info("save callback");
-      console.info("save sessionId: " + result.sessionId);
-      console.info("save version: " + result.version);
-      console.info("save deviceId:  " + result.deviceId);
-    });
+      // 使用该sessionId开启数据同步
+      this.d_object.setSessionId(sessionId, ()=>{
+        console.info(`join session`);
+      });
+
+      // 将sessionId传递到对端
+      wantParam['session'] = sessionId;
+      this.d_object.save(wantParam.targetDevice as string, (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
+        if (err) {
+          console.info("save failed, error code = " + err.code);
+          console.info("save failed, error message: " + err.message);
+          return;
+        }
+        console.info("save callback");
+        console.info("save sessionId: " + result.sessionId);
+        console.info("save version: " + result.version);
+        console.info("save deviceId:  " + result.deviceId);
+      });
+    }
+    return AbilityConstant.OnContinueResult.AGREE;
   }
 }
 ```
 
-对端在`onCreate()/onNewWant()`中进行数据恢复时，调用[`setSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置与源端相同的`sessionId`，随后即可从分布式对象中恢复数据。
+对端在`onCreate()/onNewWant()`中进行数据恢复时，调用[`setSessionId()`](../../application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置与源端相同的`sessionId`，随后即可从分布式对象中恢复数据。
 
 ```ts
 import distributedObject from '@ohos.data.distributedDataObject';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
+  d_object?: distributedObject.DataObject;
   // ...
 
-  // 例如，在onCreate()中恢复数据
-  onCreate() {
-    // 获取源端传入的sessionId
-    let sessionId: string = want?.parameters?.session as string;
+  // 迁移场景下数据处理
+  handleContinueParam(want: Want) {
+    if (this.d_object) {
+      this.d_object = undefined;
+    }
+    // 创建分布式对象并清空内容
+    if (!this.d_object) {
+      let source: SourceObject = new SourceObject('');
+      this.d_object = distributedObject.create(this.context, source);
+      this.d_object['notesTitle'] = undefined;
 
-    // 加入数据传输session
-    this.g_object.setSessionId(sessionId, ()=>{
-      console.info("join session");
-    });
+      // 获取源端传入的sessionId
+      let sessionId: string = want?.parameters?.session as string;
 
-    // 获取分布式数据
-    let newTitle: string = this.g_object['notesTitle'];
+      // 加入数据传输session
+      this.d_object.setSessionId(sessionId, ()=>{
+        console.info(`join session`);
+      });
+
+      // 获取分布式数据
+      let newTitle: string = this.d_object['notesTitle'];
+    }
+  }
+  // 冷启动场景下数据处理
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      this.handleContinueParam(want);
+    }
+  }
+  // 热启动场景下的数据处理
+  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+      this.handleContinueParam(want);
+    }
   }
 }
 ```
@@ -447,7 +480,7 @@ export default class EntryAbility extends UIAbility {
 ### 使用分布式文件迁移数据
 当需要迁移的数据较大（100KB以上）时，也可以选择分布式文件进行数据迁移。相比于分布式对象，分布式文件更适用于需要传输的数据为文件的场景。在源端将数据写入分布式文件路径后，对端迁移后拉起的应用能够在同个分布式文件路径下访问到该文件。
 
-使用参考详见[跨设备文件访问](https://gitee.com/eileen-dxy/docs/blob/master/zh-cn/application-dev/file-management/file-access-across-devices.md)。
+使用参考详见[跨设备文件访问](../../application-dev/file-management/file-access-across-devices.md)。
 
 ## 验证指导
 
@@ -457,7 +490,7 @@ export default class EntryAbility extends UIAbility {
 
 #### **配置环境**
 
-public-SDK不支持开发者使用所有的系统API，例如：全局任务中心使用的[**@ohos.distributedDeviceManager**](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md)不包括在public_SDK中。因此为了正确编译安装全局任务中心，开发者需要替换full-SDK，具体操作可参见[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
+public-SDK不支持开发者使用所有的系统API，例如：全局任务中心使用的[**@ohos.distributedDeviceManager**](../../application-dev/reference/apis/js-apis-distributedDeviceManager.md)不包括在public_SDK中。因此为了正确编译安装全局任务中心，开发者需要替换full-SDK，具体操作可参见[替换指南](../../application-dev/faqs/full-sdk-switch-guide.md)。
 
 > **说明**：
 >
