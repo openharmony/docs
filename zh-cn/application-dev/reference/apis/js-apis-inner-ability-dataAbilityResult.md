@@ -26,7 +26,6 @@ import ability from '@ohos.ability.ability';
 
 ```ts
 import ability from '@ohos.ability.ability';
-import Base from '@ohos.base'
 import featureAbility from '@ohos.ability.featureAbility';
 import rdb from '@ohos.data.rdb';
 import { BusinessError } from '@ohos.base';
