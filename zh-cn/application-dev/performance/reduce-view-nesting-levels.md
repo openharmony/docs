@@ -2,7 +2,7 @@
 
 ## 背景介绍
 
-应用开发中的用户界面（UI）布局是用户与应用程序交互的关键部分。使用不同类型的布局可以将页面排布的更加美观，但也容易带来不合理的布局。不合理的布局虽然能在界面显示上达到相同效果，但是过渡的布局计算，界面嵌套带来了渲染和计算的大量开销，造成性能的衰退，本文重点介绍了几种常见的布局功能和适用场景，同时提供了几种优化布局结构的方法。
+应用开发中的用户界面（UI）布局是用户与应用程序交互的关键部分。使用不同类型的布局可以将页面排布的更加美观，但也容易带来不合理的布局。不合理的布局虽然能在界面显示上达到相同效果，但是过度的布局计算，界面嵌套带来了渲染和计算的大量开销，造成性能的衰退，本文重点介绍了几种常见的布局功能和适用场景，同时提供了几种优化布局结构的方法。
 
 ## 常用布局
 
@@ -128,8 +128,7 @@ struct MyComponent {
       Column() {  
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {  
           Text('张')  
-          // 属性参数参考见正例  
-          ...  
+          // 属性参数见正例  
         }  
         .width("40vp")  
         .height("40vp")  
@@ -141,11 +140,11 @@ struct MyComponent {
             justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {  
             //Phone number or first name  
             Text('张三')  
-             ...   
+             // 属性参数见正例  
 
             //Date Time  
             Text('2分钟前')  
-             ...  
+             // 属性参数见正例 
              }  
           .width("100%").height(22)  
   
@@ -381,6 +380,207 @@ struct TopicItem {
 ```
 
 说明：上述情况考虑的是性能优先的场景，而当开发者优先考虑内存时，建议使用if/else控制图片的显隐。
+
+## 优化布局时间
+
+布局的嵌套层次过深会导致在创建节点及进行布局时耗费更多时间。因此开发者在开发时，应避免冗余的嵌套或者使用扁平化布局来优化嵌套层次。
+
+反例：
+使用线性布局，布局耗时166ms313us。
+
+```ts
+
+import measure from '@ohos.measure';
+import prompt from '@ohos.prompt';
+
+@Entry
+@Component
+struct PerformanceRelative {
+  @State message: string = 'Hello World'
+  @State textWidth: string = "";
+
+  build() {
+    Column() {
+      Image($r("app.media.app_icon")).width("100%").height(300).margin({ bottom: 20 })
+      Row() {
+        Blank()
+        Column() {
+          Image($r("app.media.app_icon")).margin({ bottom: 4 }).width(40).aspectRatio(1)
+          Text("Name")
+        }.margin({ left: 8, right: 8 })
+      }.position({ y: 280 }).width("100%")
+      // Empty row
+      Row().height(this.textWidth)
+      Column() {
+        Row() {
+          Text("Singapore").fontSize(20).fontWeight(FontWeight.Bolder)
+            .margin(8)
+            .textAlign(TextAlign.Start)
+        }.width("100%").justifyContent(FlexAlign.Start)
+
+        Flex({ alignItems: ItemAlign.Center }) {
+          Text("Camera").flexShrink(0)
+            .margin({ right: 8 })
+          TextInput()
+        }.margin(8)
+
+        Flex({ alignItems: ItemAlign.Center }) {
+          Text("Settings").flexShrink(0)
+            .margin({ right: 8 })
+          TextInput()
+        }.margin(8)
+
+        Row() {
+          Column() {
+            Image($r("app.media.app_icon")).width(80).aspectRatio(1).margin({ bottom: 8 })
+            Text("Description")
+          }.margin(8)
+
+          Column() {
+            Text("Title").fontWeight(FontWeight.Bold).margin({ bottom: 8 })
+            Text("Long Text")
+          }.margin(8).layoutWeight(1).alignItems(HorizontalAlign.Start)
+        }.margin(8).width("100%").alignItems(VerticalAlign.Top)
+      }.layoutWeight(1)
+
+      Flex({ justifyContent: FlexAlign.End }) {
+        Button("Upload").margin(8)
+        Button("Discard").margin(8)
+      }
+    }
+    .width("100%").height("100%")
+  }
+}
+
+```
+
+正例：
+使用相对布局上述界面，减少了组件的嵌套深度以及组件个数，布局耗时123ms278us。
+
+```ts
+
+@Entry
+@Component
+struct RelativePerformance {
+  @State message: string = 'Hello World'
+
+  build() {
+    RelativeContainer(){
+      Image($r("app.media.app_icon"))
+        .height(300)
+        .width("100%")
+        .id("topImage")
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "__container__", align: VerticalAlign.Top }
+        })
+      Image($r("app.media.app_icon"))
+        .width(40)
+        .aspectRatio(1)
+        .margin(4)
+        .id("topCornerImage")
+        .alignRules({
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          center: {anchor: "topImage", align: VerticalAlign.Bottom }
+        })
+      Text("Name")
+        .id("name")
+        .margin(4)
+        .alignRules({
+          left: { anchor: "topCornerImage", align: HorizontalAlign.Start },
+          top: {anchor: "topCornerImage", align: VerticalAlign.Bottom }
+        })
+      Text("Singapore")
+        .margin(8)
+        .fontWeight(FontWeight.Bolder)
+        .fontSize(20)
+        .id("singapore")
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "name", align: VerticalAlign.Bottom }
+        })
+      Text("Camera")
+        .margin(8)
+        .id("camera")
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "singapore", align: VerticalAlign.Bottom }
+        })
+      TextInput()
+        .id("cameraInput")
+        .alignRules({
+          left: { anchor: "camera", align: HorizontalAlign.End },
+          right:{ anchor: "__container__", align: HorizontalAlign.End },
+          top: {anchor: "camera", align: VerticalAlign.Top },
+          bottom: { anchor: "camera", align: VerticalAlign.Bottom }
+        })
+      Text("Settings")
+        .margin(8)
+        .id("settings")
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "camera", align: VerticalAlign.Bottom }
+        })
+      TextInput()
+        .id("settingInput")
+        .alignRules({
+          left: { anchor: "settings", align: HorizontalAlign.End },
+          right:{ anchor: "__container__", align: HorizontalAlign.End },
+          top: {anchor: "settings", align: VerticalAlign.Top },
+          bottom: { anchor: "settings", align: VerticalAlign.Bottom }
+        })
+      Image($r("app.media.app_icon"))
+        .id("descriptionIcon")
+        .margin(8)
+        .width(80)
+        .aspectRatio(1)
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "settings", align: VerticalAlign.Bottom }
+        })
+      Text("Description")
+        .id("description")
+        .margin(8)
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "descriptionIcon", align: VerticalAlign.Bottom }
+        })
+      Text("Title")
+        .fontWeight(FontWeight.Bold)
+        .id("title")
+        .margin(8)
+        .alignRules({
+          left: { anchor: "description", align: HorizontalAlign.End },
+          top: {anchor: "descriptionIcon", align: VerticalAlign.Top }
+        })
+      Text("Long Text")
+        .id("longText")
+        .margin(8)
+        .alignRules({
+          left: { anchor: "description", align: HorizontalAlign.End },
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          top: {anchor: "title", align: VerticalAlign.Bottom }
+        })
+      Button("Discard")
+        .id("discard")
+        .margin(8)
+        .alignRules({
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          bottom: {anchor: "__container__", align: VerticalAlign.Bottom }
+        })
+      Button("Upload")
+        .id("upload")
+        .margin(8)
+        .alignRules({
+          right: { anchor: "discard", align: HorizontalAlign.Start },
+          bottom: {anchor: "__container__", align: VerticalAlign.Bottom }
+        })
+    }.width("100%").height("100%")
+  }
+}
+
+```
+
 
 ## 优化布局工具介绍
 

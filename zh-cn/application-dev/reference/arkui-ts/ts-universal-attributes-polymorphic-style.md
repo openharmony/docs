@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  从API Version 11开始支持另一种写法[attributeModifier](./ts-universal-attributes-attribute-modifier.md)，可根据开发者需要动态设置属性。
 
 
 ## 属性

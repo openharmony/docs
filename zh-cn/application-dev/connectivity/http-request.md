@@ -14,11 +14,11 @@ HTTP数据请求功能主要由http模块提供。
 
 涉及的接口如下表，具体的接口说明请参考[API文档](../reference/apis/js-apis-http.md)。
 
-| 接口名                                    | 功能描述                            |
+| 接口名                                    | 描述                                |
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | 创建一个http请求。                  |
 | request()                                 | 根据URL地址，发起HTTP网络请求。     |
-| requestInStream()<sup>10+</sup>                  | 根据URL地址，发起HTTP网络请求并返回流式响应|
+| requestInStream()<sup>10+</sup>           | 根据URL地址，发起HTTP网络请求并返回流式响应。 |
 | destroy()                                 | 中断请求任务。                      |
 | on(type: 'headersReceive')                | 订阅HTTP Response Header 事件。     |
 | off(type: 'headersReceive')               | 取消订阅HTTP Response Header 事件。 |
@@ -29,6 +29,8 @@ HTTP数据请求功能主要由http模块提供。
 | off\('dataEnd'\)<sup>10+</sup>            | 取消订阅HTTP流式响应数据接收完毕事件。 |
 | on\('dataReceiveProgress'\)<sup>10+</sup>        | 订阅HTTP流式响应数据接收进度事件。  |
 | off\('dataReceiveProgress'\)<sup>10+</sup>       | 取消订阅HTTP流式响应数据接收进度事件。 |
+| on\('dataSendProgress'\)<sup>11+</sup>        | 订阅HTTP网络请求数据发送进度事件。  |
+| off\('dataSendProgress'\)<sup>11+</sup>       | 取消订阅HTTP网络请求数据发送进度事件。 |
 
 ## request接口开发步骤
 
@@ -69,7 +71,28 @@ httpRequest.request(
     connectTimeout: 60000, // 可选，默认为60000ms
     readTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
-    usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
+    usingProxy: false, // 可选，默认不使用网络代理，自API 10开始支持该属性
+    caPath:'/path/to/cacert.pem', // 可选，默认使用系统预制证书，自API 10开始支持该属性
+    clientCert: { // 可选，默认不使用客户端证书，自API 11开始支持该属性
+      certPath: '/path/to/client.pem', // 默认不使用客户端证书，自API 11开始支持该属性
+      keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性
+      certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
+      keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性
+    },
+    multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
+      {
+        name: "Part1", // 数据名，自API 11开始支持该属性
+        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
+        data: 'Example data', // 可选，数据内容，自API 11开始支持该属性
+        remoteFileName: 'example.txt' // 可选，自API 11开始支持该属性
+      }, {
+        name: "Part2", // 数据名，自API 11开始支持该属性
+        contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
+        // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
+        filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
+        remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性
+      }
+    ]
   }, (err: BusinessError, data: http.HttpResponse) => {
     if (!err) {
       // data.result为HTTP响应内容，可根据业务需要进行解析

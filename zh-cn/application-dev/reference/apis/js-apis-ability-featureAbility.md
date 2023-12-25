@@ -3,9 +3,9 @@
 FeatureAbility模块提供与用户进行交互的Ability的能力，包括启动新的Ability、停止Ability、获取dataAbilityHelper对象、获取当前Ability对应的窗口，连接断连Service等。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在FA模型下使用。
+>
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口仅可在FA模型下使用。Stage模型下需使用[UIAbility模块](js-apis-app-ability-uiAbility.md)和[UIAbilityContext模块](js-apis-inner-application-uiAbilityContext.md)。
 
 ## 使用限制
 
@@ -30,36 +30,14 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<number>                   | 是    | 以callback的形式返回启动Ability的结果。      |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| callback  | AsyncCallback\<number>                   | 是    | 回调函数。当启动Ability成功，err为undefined，data为0表示启动成功，data为其他表示启动失败；否则为错误对象。      |
 
 **示例：**
 
@@ -106,6 +84,8 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -116,31 +96,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<number> | Promise形式返回启动Ability结果。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| Promise\<number> | Promise对象。返回0表示启动成功，返回其他表示启动失败。 |
 
 **示例：**
 
@@ -181,6 +137,8 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[dataShare.createDataShareHelper](js-apis-data-dataShare.md#datasharecreatedatasharehelper)。
+
 **参数：**
 
 | 参数名   | 类型     | 必填   | 说明           |
@@ -218,37 +176,15 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)。
+
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 以callback的形式返回启动Ability结果。      |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
-
+| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 回调函数。当启动Ability成功，err为undefined，data为ability的启动结果；否则为错误对象。      |
 
 **示例：**
 
@@ -296,6 +232,8 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-2)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明            |
@@ -306,31 +244,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise形式返回启动Ability结果。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise对象，返回启动Ability的结果。 |
 
 **示例：**
 
@@ -376,25 +290,14 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)。
+
 **参数：**
 
 | 参数名        | 类型                              | 必填   | 说明             |
 | --------- | ------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示停止Ability之后返回的结果。 |
-| callback  | AsyncCallback\<void>            | 是    | 以callback的形式返回停止Ability结果。      |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| callback  | AsyncCallback\<void>            | 是    | 回调函数。当停止当前Ability成功，err为undefined，否则为错误对象。      |
 
 **示例：**
 
@@ -441,6 +344,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult-1)。
+
 **参数：**
 
 | 参数名        | 类型                              | 必填   | 说明            |
@@ -451,20 +356,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回停止当前Ability结果。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -510,17 +402,13 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[on('windowEvent')](js-apis-window.md#onwindowevent10)。
+
 **参数：**
 
 | 参数名       | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback\<boolean> | 是    | 以callback的形式返回结果。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
 
 **示例：**
 
@@ -549,12 +437,6 @@ hasWindowFocus(): Promise\<boolean>
 | ----------------- | ------------------------------------- |
 | Promise\<boolean> | Promise形式返回结果，如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-
 **示例：**
 
 ```ts
@@ -572,18 +454,13 @@ getWant(callback: AsyncCallback\<Want>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbility.launchWant](js-apis-app-ability-uiAbility.md#属性)。
+
 **参数：**
 
 | 参数名       | 类型                            | 必填   | 说明        |
 | -------- | ----------------------------- | ---- | --------- |
 | callback | AsyncCallback\<[Want](js-apis-application-want.md)> | 是    | 以callback的形式返回want。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -106 | Call the ability interface, the return value is wrong. |
 
 **示例：**
 
@@ -606,18 +483,13 @@ getWant(): Promise\<Want>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbility.launchWant](js-apis-app-ability-uiAbility.md#属性)。
+
 **返回值：**
 
 | 类型                      | 说明               |
 | ----------------------- | ---------------- |
 | Promise\<[Want](js-apis-application-want.md)> | 以Promise的形式返回want。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -106 | Call the ability interface, the return value is wrong. |
 
 **示例：**
 
@@ -635,6 +507,8 @@ getContext(): Context
 获取应用上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbility.context](js-apis-app-ability-uiAbility.md#属性)。
 
 **返回值：**
 
@@ -664,24 +538,13 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)。
+
 **参数：**
 
 | 参数名       | 类型                   | 必填   | 说明       |
 | -------- | -------------------- | ---- | -------- |
 | callback | AsyncCallback\<void> | 是    | 以callback的形式返回停止当前Ability结果 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -702,24 +565,13 @@ terminateSelf(): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)。
+
 **返回值：**
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 以Promise的形式返回停止当前Ability结果。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -744,6 +596,8 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.connectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)。
+
 **参数：**
 
 | 参数名      | 类型             | 必填   | 说明                    |
@@ -756,26 +610,6 @@ connectAbility(request: Want, options:ConnectOptions): number
 | 类型     | 说明                   |
 | ------ | -------------------- |
 | number | 连接的ServiceAbility的ID(ID从0开始自增，每连接成功一次ID加1)。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| -1   | Invalid parameter. |
-| -2   | Ability not found.|
-| -3   | Permission denied.|
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16000011 | The context does not exist.        |
-| 16000050 | Internal error. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -811,23 +645,14 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)。
+
 **参数：**
 
 | 参数名         | 类型                   | 必填   | 说明                      |
 | ---------- | -------------------- | ---- | ----------------------- |
 | connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
 | callback   | AsyncCallback\<void> | 是    | 以callback的形式返回断开连接结果                |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -105 | Type of ability is invalid. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -870,6 +695,8 @@ disconnectAbility(connection: number): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)。
+
 **参数：**
 
 | 参数名         | 类型     | 必填   | 说明                      |
@@ -880,18 +707,7 @@ disconnectAbility(connection: number): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回断开连接结果。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -105 | Type of ability is invalid. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -934,17 +750,13 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[window.getLastWindow](js-apis-window.md#windowgetlastwindow9)。
+
 **参数：**
 
 | 参数名     | 类型                          | 必填 | 说明                          |
 | -------- | ----------------------------- | ---- | ----------------------------- |
 | callback | AsyncCallback\<[window.Window](js-apis-window.md#window)> | 是   | callback形式返回当前Ability对应的窗口。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
 
 **示例：**
 
@@ -953,8 +765,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-export default {
+class FeatureAbilityClass {
+    onActive: () => void
+}
 
+let featureAbilityObj: FeatureAbilityClass =  {
   onActive() {
     console.info("onActive");
     featureAbility.getWindow((error: BusinessError, data: window.Window) => {
@@ -966,6 +781,8 @@ export default {
     });
   }
 }
+
+export default featureAbilityObj
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -976,17 +793,13 @@ getWindow(): Promise\<window.Window>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[window.getLastWindow](js-apis-window.md#windowgetlastwindow9-1)。
+
 **返回值：**
 
 | 类型                    | 说明                          |
 | ----------------------- | ----------------------------- |
 | Promise\<[window.Window](js-apis-window.md#window)> | Promise形式返回当前Ability对应的窗口。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
 
 **示例：**
 
@@ -1048,6 +861,19 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | BOUNDS_KEY<sup>7+</sup>      | 'abilityBounds' | 窗口显示大小属性的参数名。 |
 | WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | 窗口显示模式属性的参数名。|
 | DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | 窗口显示设备ID属性的参数名。 |
+
+## ErrorCode
+
+定义启动Ability时返回的错误码。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称                             | 值    | 说明                                       |
+| ------------------------------ | ---- | ---------------------------------------- |
+| NO_ERROR         | 0    | 没有异常。   |
+| INVALID_PARAMETER | -1   | 无效的参数。 |
+| ABILITY_NOT_FOUND | -2   | 找不到ABILITY。 |
+| PERMISSION_DENY   | -3   | 权限拒绝。   |
 
 ## DataAbilityOperationType
 

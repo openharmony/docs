@@ -1,4 +1,4 @@
-# Property Animation
+# Property Animation (animation)
 
 With property animations, you can animate changes to certain component properties, such as **width**, **height**, **backgroundColor**, **opacity**, **scale**, **rotate**, and **translate**. In a property animation that involves width and height changes, a component's content (such as text, canvas content, and linear gradient) is changed straight to the final state. To enable the content to change with the width and height during the animation process, you can use the [renderFit](ts-universal-attributes-renderfit.md) attribute.
 
@@ -6,7 +6,7 @@ With property animations, you can animate changes to certain component propertie
 >
 > This event is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations?: number, playMode?: PlayMode, onFinish?: () => void})
+animation(value: {duration?: number, tempo?: number, curve?: string | Curve | ICurve, delay?:number, iterations?: number, playMode?: PlayMode, onFinish?: () => void, finishCallbackType?: FinishCallbackType})
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -21,6 +21,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | iterations | number                                   | No   | Number of times that the animation is played.<br>Default value: **1**<br>Value range: [-1, +∞)<br>**NOTE**<br>The value **-1** indicates that the animation is played for an unlimited number of times. The value **0** indicates that no animation is applied.|
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode) | No   | Animation playback mode. By default, the animation is played from the beginning after the playback is complete.<br>Default value: **PlayMode.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.<br>For details about the restrictions, see **Notes about PlayMode**.|
 | onFinish   | () => void                               | No   | Callback invoked when the animation playback is complete.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>This callback is not invoked when **iterations** is set to **-1**.|
+| finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11) | No   | Type of the **onFinish** callback.<br>Default value: **FinishCallbackType.REMOVED**<br>Since API version 11, this API is supported in ArkTS widgets.|
 
 > **Notes about PlayMode**:
 > - **PlayMode.Normal** and **PlayMode.Alternate** are recommended. Under these settings, the first round of the animation is played forwards. If **PlayMode.Reverse** or **PlayMode.AlternateReverse** is used, the first round of the animation is played backwards. In this case, the animation jumps to the end state and then starts from there.

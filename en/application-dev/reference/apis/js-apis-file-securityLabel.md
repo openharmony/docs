@@ -47,7 +47,7 @@ For details about how to obtain the FA model context, see [Context](js-apis-inne
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
-Sets a security label for a file in asynchronous mode. This API uses a promise to return the result.
+Sets a security label for a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -87,7 +87,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   securityLabel.setSecurityLabel(filePath, "s0").then(() => {
     console.info("setSecurityLabel successfully");
   }).catch((err: BusinessError) => {
-    console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -95,7 +95,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt;):void
 
-Sets a security label for a file in asynchronous mode. This API uses an asynchronous callback to return the result.
+Sets a security label for a file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -129,7 +129,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0", (err: BusinessError) => {
     if (err) {
-      console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("setSecurityLabel successfully.");
     }
@@ -140,7 +140,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 setSecurityLabelSync(path:string, type:DataLevel):void
 
-Sets a security label for a file in synchronous mode.
+Sets a security label for a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -177,7 +177,7 @@ securityLabel.setSecurityLabelSync(filePath, "s0");
 
 getSecurityLabel(path:string):Promise&lt;string&gt;
 
-Obtains the security label of a file in asynchronous mode. This API uses a promise to return the result.
+Obtains the security label of a file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -224,7 +224,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
-Obtains the security label of a file in asynchronous mode. This API uses a callback to return the result.
+Obtains the security label of a file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -268,7 +268,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 
 getSecurityLabelSync(path:string):string
 
-Obtains the security label of a file in synchronous mode.
+Obtains the security label of a file. This API returns the result synchronously.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 

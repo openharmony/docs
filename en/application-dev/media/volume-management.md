@@ -1,4 +1,4 @@
-# Volume Management
+# Volume Management (ArkTS)
 
 You can use different APIs to manage the system volume and audio stream volume. The system volume and audio stream volume refer to the volume of a OpenHarmony device and the volume of a specified audio stream, respectively. The audio stream volume is restricted by the system volume.
 

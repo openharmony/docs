@@ -109,12 +109,13 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称       | 类型    | 可读 | 可写 | 说明                       |
-| ---------- | ------- | ---- | ---- | -------------------------- |
-| bundleName | string  | 是   | 否   | 窗口归属应用的包名。       |
-| title      | string  | 是   | 否   | 窗口的标题信息。           |
-| focused    | boolean | 是   | 否   | 窗口是否处于获焦状态。     |
-| actived    | boolean | 是   | 否   | 窗口是否正与用户进行交互。 |
+| 名称                 | 类型    | 可读 | 可写 | 说明                                                         |
+| -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| bundleName           | string  | 是   | 否   | 窗口归属应用的包名。                                         |
+| title                | string  | 是   | 否   | 窗口的标题信息。                                             |
+| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态。                                       |
+| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互。<br>从API11开始，名称变更为active。 |
+| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互。                                   |
 
 ## UiDirection<sup>10+</sup>
 
@@ -156,7 +157,7 @@ UI事件的相关信息。
 ## On<sup>9+</sup>
 
 UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
-On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[ON.isBefore](#isbefore)和[ON.isAfter](#isafter)等API限定邻近控件特征进行辅助定位。<br>On类提供的所有API均为同步接口，建议使用者通过静态构造器ON来链式创建On对象。
+On提供的API能力具有以下几个特点:<br>1、支持单属性匹配和多属性组合匹配，例如同时指定目标控件text和id。<br>2、控件属性支持多种匹配模式。<br>3、支持控件绝对定位，相对定位，可通过[ON.isBefore](#isbefore9)和[ON.isAfter](#isafter9)等API限定邻近控件特征进行辅助定位。<br>On类提供的所有API均为同步接口，建议使用者通过静态构造器ON来链式创建On对象。
 
 ```ts
 import { ON } from '@ohos.UiTest';
@@ -577,6 +578,34 @@ import { On, ON } from '@ohos.UiTest';
 let on:On = ON.inWindow('com.uitestScene.acts'); // 使用静态构造器ON创建On对象，指定目标控件位于给出的应用窗口内。
 ```
 
+### description<sup>11+</sup>
+
+description(val: string, pattern?: MatchPattern): On
+
+指定目标控件的描述属性，支持多种匹配模式，返回On对象自身。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名  | 类型                          | 必填 | 说明                                                |
+| ------- | ----------------------------- | ---- | --------------------------------------------------- |
+| val     | string                        | 是   | 控件的描述属性。                                    |
+| pattern | [MatchPattern](#matchpattern) | 否   | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
+
+**返回值：**
+
+| 类型       | 说明                                      |
+| ---------- | ----------------------------------------- |
+| [On](#on9) | 返回指定目标控件description属性的On对象。 |
+
+**示例：**
+
+```ts
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.description('123'); // 使用静态构造器ON创建On对象，指定目标控件的description属性。
+```
+
 ## Component<sup>9+</sup>
 
 UiTest框架在API9中，Component类代表了UI界面上的一个控件，提供控件属性获取，控件点击，滑动查找，文本注入等API。
@@ -884,9 +913,9 @@ isLongClickable(): Promise\<boolean>
 
 **返回值：**
 
-| 类型              | 说明                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回控件对象是否可安装点击，true：可长按点击，false：不可长按点击。 |
+| 类型              | 说明                                               |
+| ----------------- |--------------------------------------------------|
+| Promise\<boolean> | 以Promise形式返回控件对象是否可长按点击，true：可长按点击，false：不可长按点击。 |
 
 **错误码：**
 
@@ -1115,7 +1144,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                |
 | ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | 控件对象被选中状态，true：被选中，false：未被选中。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被选中状态，true：被选中，false：未被选中。 |
 
 **错误码：**
 
@@ -1184,6 +1213,7 @@ clearText(): Promise\<void>
 **系统能力**：SystemCapability.Test.UiTest
 
 **错误码：**
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
@@ -1412,6 +1442,40 @@ async function demo() {
 }
 ```
 
+### getDescription<sup>11+</sup>
+
+getDescription(): Promise\<string>
+
+获取控件对象的描述信息，使用Promise异步回调。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明                              |
+| ---------------- | --------------------------------- |
+| Promise\<string> | Promise对象，返回控件的描述信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.      |
+
+**示例：**
+
+```ts
+import { Component, Driver, ON } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  let description = await button.getDescription();
+}
+```
+
 ## Driver<sup>9+</sup>
 
 Driver类为uitest测试框架的总入口，提供控件匹配/查找，按键注入，坐标点击/滑动，截图等能力。
@@ -1613,7 +1677,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 | 类型                              | 说明                              |
 | --------------------------------- | --------------------------------- |
-| Promise\<[Component](#component)> | 以Promise形式返回找到的控件对象。 |
+| Promise\<[Component](#component9)> | 以Promise形式返回找到的控件对象。 |
 
 **错误码：**
 
@@ -1948,7 +2012,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 | 类型              | 说明                                   |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | 截图操作是否成功完成。成功完成为true。 |
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
 
 **错误码：**
 
@@ -2353,7 +2417,7 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 | 类型              | 说明                                   |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | 截图操作是否成功完成。成功完成为true。 |
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
 
 **错误码：**
 
@@ -2486,9 +2550,9 @@ createUIEventObserver(): UIEventObserver;
 
 **返回值：**
 
-| 类型                                            | 说明                                  |
-| ----------------------------------------------- | ------------------------------------- |
-| Promise\<[UIEventObserver](#uieventobserver10)> | 以Promise形式返回找到的目标窗口对象。 |
+| 类型                                   | 说明                                  |
+| ------------------------------------ | ------------------------------------- |
+|[UIEventObserver](#uieventobserver10) | 返回找到的目标窗口对象。 |
 
 **错误码：**
 
@@ -2645,7 +2709,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseMoveWithTrack(100,100,200,200,600);
+  await driver.mouseMoveWithTrack({x:100, y:100},{x:200, y:200},600);
 }
 ```
 
@@ -2679,7 +2743,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 import { Driver } from '@ohos.UiTest';
 async function demo() {
   let driver: Driver = Driver.create();
-  await driver.mouseDrag(100,100,200,200,600);
+  await driver.mouseDrag({x:100, y:100},{x:200, y:200},600);
 }
 ```
 
@@ -2959,11 +3023,13 @@ async function demo() {
 }
 ```
 
-### isActived<sup>9+</sup>
+### isActived<sup>(deprecated)</sup>
 
 isActived(): Promise\<boolean>
 
-判断窗口是否为用户正在交互窗口。
+判断窗口是否为用户正在交互窗口，使用Promise异步回调。
+
+从API version 9开始支持，从API version 11开始废弃，建议使用[isActive<sup>11+</sup>](#isactive11)替代。
 
 **系统能力**：SystemCapability.Test.UiTest
 
@@ -2971,7 +3037,7 @@ isActived(): Promise\<boolean>
 
 | 类型              | 说明                                                         |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true：交互窗口，false：非交互窗口。 |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true表示是交互窗口，false表示非交互窗口。 |
 
 **错误码：**
 
@@ -3239,13 +3305,47 @@ async function demo() {
 }
 ```
 
+### isActive<sup>11+</sup>
+
+isActive(): Promise\<boolean>
+
+判断窗口是否为用户正在交互窗口。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| Promise\<boolean> | 以Promise形式返回窗口对象是否为用户正在交互窗口，true：交互窗口，false：非交互窗口。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.         |
+
+**示例：**
+
+```ts
+import { Driver, UiWindow } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({active: true});
+  let focused = await window.isActive();
+}
+```
+
 ## UIEventObserver<sup>10+</sup>
 
 UI事件监听器。
 
 ### once('toastShow')
 
-once(type: 'toastShow', callback: Callback\<UIElementInfo>):void;
+once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 开始监听toast控件出现的事件，使用callback的形式返回结果。
 
@@ -3964,7 +4064,7 @@ isSelected(): Promise\<boolean>
 
 | 类型              | 说明                                                  |
 | ----------------- | ----------------------------------------------------- |
-| Promise\<boolean> | 控件对象被选中的状态，true：被选中，false：未被选中。 |
+| Promise\<boolean> | 以Promise形式返回控件对象被选中的状态，true：被选中，false：未被选中。 |
 
 **示例：**
 
@@ -4375,7 +4475,7 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 
 | 类型              | 说明                                   |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | 截图操作是否成功完成。成功完成为true。 |
+| Promise\<boolean> | 以Promise形式返回截图操作是否成功完成。成功完成为true。 |
 
 **示例：**
 

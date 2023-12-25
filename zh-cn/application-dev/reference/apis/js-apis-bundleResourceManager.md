@@ -26,6 +26,8 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 
 资源信息标志，指示需要获取的资源信息的内容。
 
+**系统接口：** 此接口为系统接口。
+
  **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Resource。
 
 | 名称                                      | 值         | 说明                                                         |
@@ -40,7 +42,7 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 
 ### bundleResourceManager.getBundleResourceInfo
 
-getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag)): [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md);
+getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag)): [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)
 
 以同步方法根据给定的bundleName和resourceFlags获取当前应用的BundleResourceInfo。
 
@@ -92,7 +94,7 @@ try {
 
 ### bundleResourceManager.getLauncherAbilityResourceInfo
 
-getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag)): Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>;
+getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag)): Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>
 
 以同步方法根据给定的bundleName和resourceFlags获取当前应用的LauncherAbilityResourceInfo。
 
@@ -143,13 +145,13 @@ try {
 
 ### bundleResourceManager.getAllBundleResourceInfo
 
-getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)>>): void;
+getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)>>): void
 
 以异步方法根据给定的resourceFlags获取所有应用的BundleResourceInfo。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST and ohos.permission.GET_BUNDLE_RESOURCES
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST 和 ohos.permission.GET_BUNDLE_RESOURCES
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
 
@@ -189,7 +191,7 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST and ohos.permission.GET_BUNDLE_RESOURCES
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST 和 ohos.permission.GET_BUNDLE_RESOURCES
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
 
@@ -215,7 +217,7 @@ let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllBundleResourceInfo(bundleFlags).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
-    }).catch(err=> {
+    }).catch((err: BusinessError) => {
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
     })
 } catch (err) {
@@ -226,13 +228,13 @@ try {
 
 ### bundleResourceManager.getAllLauncherAbilityResourceInfo
 
-getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>): void;
+getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>): void
 
 以异步方法根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST and ohos.permission.GET_BUNDLE_RESOURCES
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST 和 ohos.permission.GET_BUNDLE_RESOURCES
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
 
@@ -240,7 +242,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
+| resourceFlags | [number](#resourceflag) | 是   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
 | callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>> | 是 | 回调函数，当获取成功时，err为null，data为获取到的LauncherAbilityResourceInfo数值；否则为错误对象。 |
 
 
@@ -267,13 +269,13 @@ try {
 
 ### bundleResourceManager.getAllLauncherAbilityResourceInfo
 
-getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>;
+getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>
 
 以异步方法根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST and ohos.permission.GET_BUNDLE_RESOURCES
+**需要权限：** ohos.permission.GET_INSTALLED_BUNDLE_LIST 和 ohos.permission.GET_BUNDLE_RESOURCES
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
 
@@ -281,7 +283,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Prom
 
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
+| resourceFlags | [number](#resourceflag) | 是   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
 
 **返回值：**
 
@@ -298,7 +300,7 @@ let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
-    }).catch(err=> {
+    }).catch((err: BusinessError) => {
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
     })
 } catch (err) {

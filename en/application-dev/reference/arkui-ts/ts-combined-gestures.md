@@ -12,16 +12,16 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
 
 **Parameters**
 
-| Name    | Type                                    | Mandatory  | Description                          |
-| ------- | ---------------------------------------- | ---- | ------------------------------ |
-| mode    | [GestureMode](#gesturemode)          | Yes   | Recognition mode of combined gestures.<br>Default value: **GestureMode.Sequence**                   |
-| gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br>\| [LongPressGesture](ts-basic-gestures-longpressgesture.md)<br>\| [PanGesture](ts-basic-gestures-pangesture.md)<br>\| [PinchGesture](ts-basic-gestures-pinchgesture.md)<br>\| [RotationGesture](ts-basic-gestures-rotationgesture.md)<br>\| [SwipeGesture](ts-basic-gestures-swipegesture.md) | No   | One or more basic gestures to be recognized simultaneously. If this parameter is left empty, simultaneous recognition will not take effect.|
+| Name | Type                                                    | Mandatory| Description                                                    |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| mode    | [GestureMode](#gesturemode)                          | Yes  | Recognition mode of combined gestures.<br>Default value: **GestureMode.Sequence**     |
+| gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br>\| [LongPressGesture](ts-basic-gestures-longpressgesture.md)<br>\| [PanGesture](ts-basic-gestures-pangesture.md)<br>\| [PinchGesture](ts-basic-gestures-pinchgesture.md)<br>\| [RotationGesture](ts-basic-gestures-rotationgesture.md)<br>\| [SwipeGesture](ts-basic-gestures-swipegesture.md) | No  | One or more basic gestures to be recognized simultaneously. If this parameter is left empty, simultaneous recognition will not take effect.<br>**NOTE**<br>To add both tap and double-tap gestures for a component, add two TapGestures, with the tap gesture added after the double-tap gesture.|
 
 ## GestureMode
 
 | Name       | Description                                      |
 | --------- | ---------------------------------------- |
-| Sequence  | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. When one gesture fails to be recognized, all gestures fail to be recognized.<br>Only the last gesture in the sequential recognition gesture group can respond to **onActionEnd**.|
+| Sequence  | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. Once one gesture fails to be recognized, all subsequent gestures fail to be recognized.<br>Only the last gesture in the sequential recognition gesture group can respond to **onActionEnd**.|
 | Parallel  | Parallel recognition. Registered gestures are recognized concurrently until all gestures are recognized. The recognition result of each gesture does not affect each other.    |
 | Exclusive | Exclusive recognition. Registered gestures are identified concurrently. If one gesture is successfully recognized, gesture recognition ends.      |
 

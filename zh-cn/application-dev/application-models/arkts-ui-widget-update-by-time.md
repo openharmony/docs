@@ -3,20 +3,29 @@
 当前卡片框架提供了如下几种按时间刷新卡片的方式：
 
 
-- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onupdateform)的生命周期回调函数自动刷新卡片内容。可以在form_config.json配置文件的[`updateDuration`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每小时一次。
+- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onupdateform)的生命周期回调函数自动刷新卡片内容。可以在form_updatebytime_config.json配置文件的[`updateDuration`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每小时一次。
 
   > **说明：**
   >
-  > 在使用定时和定点刷新功能之前，需要在form_config.json配置文件中设置`updateEnabled`字段为`true`，以启用周期性刷新功能。
+  > 1. 在使用定时和定点刷新功能之前，需要在form_config.json配置文件中设置`updateEnabled`字段为`true`，以启用周期性刷新功能。
   > 当配置了`updateDuration`（定时刷新）后，该设置会优先于`scheduledUpdateTime`（定点刷新）生效，即使同时配置了两者，定点刷新也会被忽略。
+  >
+  > 2. 为减少卡片被动周期刷新进程启动次数，降低卡片刷新功耗，应用市场在安装应用时可以为该应用配置刷新周期，
+  > 也可以为已经安装的应用动态配置刷新周期，用来限制卡片刷新周期的时长，以达到降低周期刷新进程启动次数的目的。
+  > <br/> ● 当配置了`updateDuration`（定时刷新）后，若应用市场动态配置了该应用的刷新周期，
+  > 卡片框架会将form_config.json文件中配置的刷新周期与应用市场配置的刷新周期进行比较，取较长的刷新周期做为该卡片的定时刷新周期。
+  > <br/> ● 若应用市场未动态配置该应用的刷新周期，则以form_config.json文件中配置的定时刷新为准。
+  > <br/> ● 若该卡片取消定时刷新功能，该规则将无效。
+  > <br/> ● 卡片定时刷新的更新周期单位为30分钟。应用市场配置的刷新周期范围是1~336，即最短为半小时(1 * 30min)刷新一次，最长为一周(336 * 30min)刷新一次。
+  > <br/> ● 该规则从API11开始生效。若小于API11，则以form_config.json文件中配置的刷新周期为准。
 
   ```json
   {
     "forms": [
       {
-        "name": "widget",
-        "description": "This is a service widget.",
-        "src": "./ets/widget/pages/WidgetCard.ets",
+        "name": "UpdateDuration",
+        "description": "$string:widget_updateduration_desc",
+        "src": "./ets/updateduration/pages/UpdateDurationCard.ets",
         "uiSyntax": "arkts",
         "window": {
           "designWidth": 720,
@@ -28,26 +37,27 @@
         "scheduledUpdateTime": "10:30",
         "updateDuration": 2,
         "defaultDimension": "2*2",
-        "supportDimensions": ["2*2"]
+        "supportDimensions": [
+          "2*2"
+        ]
       }
     ]
   }
   ```
 
-- 定点刷新：表示在每天的某个特定时间点自动刷新卡片内容。可以在form_config.json配置文件中的[`scheduledUpdateTime`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每天的上午10点30分。
+- 定点刷新：表示在每天的某个特定时间点自动刷新卡片内容。可以在form_updatebytime_config.json配置文件中的[`scheduledUpdateTime`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每天的上午10点30分。
 
   > **说明：**
   >
   > 当同时配置了定时刷新（`updateDuration`）和定点刷新（`scheduledUpdateTime`)时，定时刷新的优先级更高。如果想要配置定点刷新，则需要将`updateDuration`配置为0。
-
-
+  
   ```json
   {
     "forms": [
-      {
-        "name": "widget",
-        "description": "This is a service widget.",
-        "src": "./ets/widget/pages/WidgetCard.ets",
+    	{
+        "name": "ScheduledUpdateTime",
+        "description": "$string:widget_scheupdatetime_desc",
+        "src": "./ets/scheduledupdatetime/pages/ScheduledUpdateTimeCard.ets",
         "uiSyntax": "arkts",
         "window": {
           "designWidth": 720,
@@ -59,7 +69,9 @@
         "scheduledUpdateTime": "10:30",
         "updateDuration": 0,
         "defaultDimension": "2*2",
-        "supportDimensions": ["2*2"]
+        "supportDimensions": [
+          "2*2"
+        ]
       }
     ]
   }
@@ -68,22 +80,36 @@
 - 下次刷新：表示指定卡片的下一次刷新时间。可以通过调用[`setFormNextRefreshTime()`](../reference/apis/js-apis-app-form-formProvider.md#setformnextrefreshtime)接口来实现。最短刷新时间为5分钟。例如，可以在接口调用后的5分钟内刷新卡片内容。
 
   ```ts
+  import type Base from '@ohos.base';
+  import formBindingData from '@ohos.app.form.formBindingData';
+  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+  import formInfo from '@ohos.app.form.formInfo';
   import formProvider from '@ohos.app.form.formProvider';
-  import Base from '@ohos.base';
-
-  let formId: string = '123456789'; // 实际业务场景需要使用正确的formId
-  try {
-    // 设置过5分钟后更新卡片内容
-    formProvider.setFormNextRefreshTime(formId, 5, (err: Base.BusinessError) => {
-      if (err) {
-        console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
-        return;
-      } else {
-        console.info('Succeeded in setFormNextRefreshTimeing.');
-      }
-    });
-  } catch (err) {
-    console.error(`Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
+  import hilog from '@ohos.hilog';
+  
+  const TAG: string = 'UpdateByTimeFormAbility';
+  const FIVE_MINUTE: number = 5;
+  const DOMAIN_NUMBER: number = 0xFF00;
+  
+  export default class UpdateByTimeFormAbility extends FormExtensionAbility {
+    onFormEvent(formId: string, message: string): void {
+      // Called when a specified message event defined by the form provider is triggered.
+      hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+      try {
+        // 设置过5分钟后更新卡片内容
+        formProvider.setFormNextRefreshTime(formId, FIVE_MINUTE, (err: Base.BusinessError) => {
+          if (err) {
+            hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
+            return;
+          } else {
+            hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in setFormNextRefreshTiming.');
+          }
+        });
+      } catch (err) {
+        hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
+      };
+    }
+    ...    
   }
   ```
 

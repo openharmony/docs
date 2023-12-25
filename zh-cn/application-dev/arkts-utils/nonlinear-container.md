@@ -41,7 +41,7 @@ HashSet依据泛型定义，集合中通过value的hash值确定其存储位置�
 
 HashSet基于[HashMap](../reference/apis/js-apis-hashmap.md)实现。在HashSet中，只对value对象进行处理。
 
-HashSet和[TreeSet](../reference/apis/js-apis-treeset.md)相比，HashSet中的数据无序存放，即存放元素的顺序和取出的顺序不一致，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不允许。
+HashSet和[TreeSet](../reference/apis/js-apis-treeset.md)相比，HashSet中的数据无序存放，即存放元素的顺序和取出的顺序不一致，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不建议存放null值，可能会对排序结果产生影响。
 
 可以利用HashSet不重复的特性，当需要不重复的集合或需要去重某个集合的时候使用。
 
@@ -96,7 +96,7 @@ TreeSet依据泛型定义，集合中的value值是有序的，TreeSet的底层�
 
 TreeSet基于[TreeMap](../reference/apis/js-apis-treemap.md)实现，在TreeSet中，只对value对象进行处理。TreeSet可用于存储一系列值的集合，元素中value唯一且有序。
 
-TreeSet和[HashSet](../reference/apis/js-apis-hashset.md)相比，HashSet中的数据无序存放，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不允许。
+TreeSet和[HashSet](../reference/apis/js-apis-hashset.md)相比，HashSet中的数据无序存放，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不建议存放null值，可能会对排序结果产生影响。
 
 一般需要存储有序集合的场景，可以使用TreeSet。
 
@@ -104,7 +104,7 @@ TreeSet进行增、删、改、查操作的常用API如下：
 
 | 操作 | 描述 |
 | -------- | ------ |
-| 增加元素 | 通过add(value: T)函数每次在HashSet增加一个值。 |
+| 增加元素 | 通过add(value: T)函数每次在TreeSet增加一个值。 |
 | 访问元素 | 通过values()返回一个迭代器对象，包含set中的所有value值。 |
 | 访问元素 | 通过entries()返回一个迭代器对象，包含类似键值对的数组，键值都是value。 |
 | 访问元素 | 通过getFirstValue()获取set中排在首位的value值。 |

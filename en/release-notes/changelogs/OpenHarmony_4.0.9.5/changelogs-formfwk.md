@@ -3,12 +3,11 @@
 ## cl.formfwk.1 Some APIs Moved from @ohos.app.form.formHost.d.ts and Their Permission Changed
 
 1. APIs used for listening for and obtaining dynamic widget information are moved from **@ohos.app.form.formHost.d.ts** to **@ohos.app.form.formObserver.d.ts**.
-
 2. The permission for these APIs is changed from **ohos.permission.REQUIRE_FORM** to **ohos.permission.OBSERVE_FORM_RUNNING**.
 
 **Change Impact**
 
-Applications that use the involved APIs may have compatibility issues.
+Applications that use the involved ArkTS APIs may have compatibility issues.
 
 **Key API/Component Changes**
 
@@ -26,17 +25,19 @@ Applications that use the involved APIs may have compatibility issues.
 | getRunningFormInfosByFilter | @ohos.app.form.formHost.d.ts | @ohos.app.form.formObserver.d.ts | ohos.permission.REQUIRE_FORM | ohos.permission.OBSERVE_FORM_RUNNING | @ohos.app.form.formHost.d.ts | @ohos.app.form.formObserver.d.ts | ohos.permission.REQUIRE_FORM | ohos.permission.OBSERVE_FORM_RUNNING |
 | getRunningFormInfoById | @ohos.app.form.formHost.d.ts | @ohos.app.form.formObserver.d.ts | ohos.permission.REQUIRE_FORM | ohos.permission.OBSERVE_FORM_RUNNING | @ohos.app.form.formHost.d.ts | @ohos.app.form.formObserver.d.ts | ohos.permission.REQUIRE_FORM | ohos.permission.OBSERVE_FORM_RUNNING |
 
+
 **Adaptation Guide**
 
 Adapt your application code accordingly. To use these APIs in OpenHarmony 4.0.9.5 and later versions, import **@ohos.app.form.formObserver.d.ts** and request the **ohos.permission.OBSERVE_FORM_RUNNING** permission.
 
 **Example**
-
 ```js
 import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formObserver.getRunningFormInfos((error, data) => {
+  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -48,14 +49,13 @@ try {
 }
 ```
 
-
 ## cl.formfwk.2 Adjusted the Parameter Sequence of Event Subscription and Unsubscription APIs (on/off)
 
 The **callback** parameter is moved as the last parameter in the event subscription and unsubscription APIs (**on**/**off**).
 
 **Change Impact**
 
-Applications that use the involved APIs may have compatibility issues.
+Applications that use the involved ArkTS APIs may have compatibility issues.
 
 **Key API/Component Changes**
 
@@ -127,12 +127,12 @@ function off(
   ): void;
 ```
 
+
 **Adaptation Guide**
 
 Adapt your application code accordingly. In OpenHarmony 4.0.9.5 and later versions, pass in **callback** as the last parameter when calling these APIs.
 
 **Example**
-
 ```js
 import formObserver from '@ohos.app.form.formObserver';
 

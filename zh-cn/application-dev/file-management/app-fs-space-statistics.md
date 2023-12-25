@@ -29,8 +29,10 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis/js-apis-file-st
   ```ts
   import statvfs from '@ohos.file.statvfs';
   import { BusinessError } from '@ohos.base';
+  import common from '@ohos.app.ability.common';
   
-  let path = "/data";
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
   statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
       console.error(`Invoke getFreeSize failed, code is ${err.code}, message is ${err.message}`);

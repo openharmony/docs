@@ -94,11 +94,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let defaultIme = inputMethod.getDefaultInputMethod();
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to getDefaultInputMethod: ${JSON.stringify(err)}`);
 }
 ```
@@ -128,11 +126,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let inputMethodConfig = inputMethod.getSystemInputMethodConfigAbility();
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to get getSystemInputMethodConfigAbility: ${JSON.stringify(err)}`);
 }
 ```
@@ -209,7 +205,7 @@ try{
       console.error('Failed to switchInputMethod.');
     }
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
@@ -259,7 +255,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
   })
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
 }
 ```
@@ -342,7 +338,7 @@ try {
       console.error('Failed to switchCurrentInputMethodSubtype');
     }
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -408,7 +404,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to switchCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -483,7 +479,7 @@ try {
       console.error('Failed to switchCurrentInputMethodAndSubtype.');
     }
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -541,7 +537,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to switchCurrentInputMethodAndSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -802,7 +798,7 @@ try {
     }
     console.log('Succeeded in attaching the inputMethod.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
 }
 ```
@@ -858,7 +854,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
 }
 ```
@@ -1146,7 +1142,7 @@ try {
     }
     console.log('Succeeded in setting callingWindow.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
 }
 ```
@@ -1197,7 +1193,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
 }
 ```
@@ -1241,7 +1237,7 @@ try {
     }
     console.log('Succeeded in updating cursorInfo.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -1288,7 +1284,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -1333,7 +1329,7 @@ try {
     }
     console.log('Succeeded in changing selection.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
 }
 ```
@@ -1381,7 +1377,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
 }
 ```
@@ -1425,7 +1421,7 @@ try {
     }
     console.log('Succeeded in updating attribute.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
 }
 ```
@@ -1472,7 +1468,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
 }
 ```
@@ -1521,7 +1517,7 @@ try {
       console.error('Failed to stopInputSession.');
     }
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
 }
 ```
@@ -1568,7 +1564,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to stopInputSession: ${JSON.stringify(err)}`);
 }
 ```
@@ -1841,8 +1837,6 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 function callback1(text: string) {
   console.info('Succeeded in getting callback1 data: ' + JSON.stringify(text));
 }
@@ -1858,7 +1852,7 @@ try {
   inputMethodController.off('insertText', callback1);
   // Cancel all callbacks of insertText.
   inputMethodController.off('insertText');
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe insertText: ${JSON.stringify(err)}`);
 }
 ```
@@ -1881,8 +1875,6 @@ Disables listening for the text insertion event of the input method.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let onInsertTextCallback = (text: string) => {
     console.log(`Succeeded in subscribing insertText: ${text}`);
 };
@@ -1916,13 +1908,11 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('deleteLeft', (length: number) => {
     console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe deleteLeft: ${JSON.stringify(err)}`);
 }
 ```
@@ -1978,13 +1968,11 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('deleteRight', (length: number) => {
     console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe deleteRight: ${JSON.stringify(err)}`);
 }
 ```
@@ -2040,13 +2028,11 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('sendKeyboardStatus', (keyboardStatus: inputMethod.KeyboardStatus) => {
     console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(err)}`);
 }
 ```
@@ -2102,13 +2088,11 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('sendFunctionKey', (functionKey: inputMethod.FunctionKey) => {
     console.log(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe sendFunctionKey: ${JSON.stringify(err)}`);
 }
 ```
@@ -2164,13 +2148,11 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('moveCursor', (direction: inputMethod.Direction) => {
     console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe moveCursor: ${JSON.stringify(err)}`);
 }
 ```
@@ -2226,13 +2208,11 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('handleExtendAction', (action: inputMethod.ExtendAction) => {
     console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(err)}`);
 }
 ```
@@ -2255,15 +2235,13 @@ Disables listening for the extended action handling event of the input method. T
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let onHandleExtendActionCallback = (action: inputMethod.ExtendAction) => {
     console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
   };
   inputMethodController.off('handleExtendAction', onHandleExtendActionCallback);
   inputMethodController.off('handleExtendAction');
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(err)}`);
 }
 ```
@@ -2286,13 +2264,11 @@ Enables listening for the select-by-range event. This API uses an asynchronous c
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('selectByRange', (range: inputMethod.Range) => {
     console.log(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe selectByRange: ${JSON.stringify(err)}`);
 }
 ```
@@ -2315,15 +2291,13 @@ Disables listening for the select-by-range event. This API uses an asynchronous 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let onSelectByRangeCallback = (range: inputMethod.Range) => {
     console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
   };
   inputMethodController.off('selectByRange', onSelectByRangeCallback);
   inputMethodController.off('selectByRange');
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe selectByRange: ${JSON.stringify(err)}`);
 }
 ```
@@ -2346,13 +2320,11 @@ Enables listening for the select-by-cursor-movement event. This API uses an asyn
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('selectByMovement', (movement: inputMethod.Movement) => {
     console.log('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
@@ -2375,15 +2347,13 @@ Disables listening for the select-by-cursor-movement event. This API uses an asy
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let onSelectByMovementCallback = (movement: inputMethod.Movement) => {
     console.log(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
   };
   inputMethodController.off('selectByMovement', onSelectByMovementCallback);
   inputMethodController.off('selectByMovement');
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
@@ -2414,15 +2384,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('getLeftTextOfCursor', (length: number) => {
     console.info(`Succeeded in subscribing getLeftTextOfCursor, length: ${length}`);
     let text:string = "";
     return text;
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing getLeftTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2445,8 +2413,6 @@ Disables listening for the event of obtaining the length of text deleted leftwar
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let getLeftTextOfCursorCallback = (length: number) => {
     console.info(`Succeeded in unsubscribing getLeftTextOfCursor, length: ${length}`);
@@ -2455,7 +2421,7 @@ try {
   };
   inputMethodController.off('getLeftTextOfCursor', getLeftTextOfCursorCallback);
   inputMethodController.off('getLeftTextOfCursor');
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing getLeftTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2486,15 +2452,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('getRightTextOfCursor', (length: number) => {
     console.info(`Succeeded in subscribing getRightTextOfCursor, length: ${length}`);
     let text:string = "";
     return text;
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe getRightTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2517,8 +2481,6 @@ Disables listening for the event of obtaining the length of text deleted rightwa
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let getRightTextOfCursorCallback = (length: number) => {
     console.info(`Succeeded in unsubscribing getRightTextOfCursor, length: ${length}`);
@@ -2527,7 +2489,7 @@ try {
   };
   inputMethodController.off('getRightTextOfCursor', getRightTextOfCursorCallback);
   inputMethodController.off('getRightTextOfCursor');
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing getRightTextOfCursor. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2558,15 +2520,13 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodController.on('getTextIndexAtCursor', () => {
     console.info(`Succeeded in subscribing getTextIndexAtCursor.`);
     let index:number = 0;
     return index;
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to subscribe getTextIndexAtCursor. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2589,8 +2549,6 @@ Disables listening for the event of obtaining the index of text at the cursor. T
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let getTextIndexAtCursorCallback = () => {
     console.info(`Succeeded in unsubscribing getTextIndexAtCursor.`);
@@ -2599,7 +2557,7 @@ try {
   };
   inputMethodController.off('getTextIndexAtCursor', getTextIndexAtCursorCallback);
   inputMethodController.off('getTextIndexAtCursor');
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing getTextIndexAtCursor. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2626,14 +2584,12 @@ Enables listening for the input method and subtype change event. This API uses a
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
+import InputMethodSubtype from '@ohos.InputMethodSubtype';
 try {
-  import InputMethodSubtype from '@ohos.InputMethodSubtype';
   inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
     console.log('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing inputMethodProperty. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2679,13 +2635,11 @@ Enables listening for the show event of the soft keyboard. This API uses an asyn
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodSetting.on('imeShow', (info: Array<inputMethod.InputWindowInfo>) => {
     console.info('Succeeded in subscribing imeShow event.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2710,13 +2664,11 @@ Enables listening for the hide event of the soft keyboard. This API uses an asyn
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodSetting.on('imeHide', (info: Array<inputMethod.InputWindowInfo>) => {
     console.info('Succeeded in subscribing imeHide event.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2741,11 +2693,9 @@ Disables listening for the show event of the soft keyboard.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodSetting.off('imeShow');
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing imeShow. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2770,11 +2720,9 @@ Disables listening for the hide event of the soft keyboard.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   inputMethodSetting.off('imeHide');
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to unsubscribing imeHide. err: ${JSON.stringify(err)}`);
 }
 ```
@@ -2813,7 +2761,6 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 ```ts
 import { PanelInfo, PanelType, PanelFlag } from '@ohos.inputMethod.Panel';
-import { BusinessError } from '@ohos.base';
 
 let info: PanelInfo = {
   type: PanelType.SOFT_KEYBOARD,
@@ -2822,7 +2769,7 @@ let info: PanelInfo = {
 try {
   let result = inputMethodSetting.isPanelShown(info);
   console.log('Succeeded in querying isPanelShown, result: ' + result);
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
 }
 ```
@@ -2872,7 +2819,7 @@ try {
     }
     console.log('Succeeded in listing inputMethodSubtype.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2925,7 +2872,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -2968,7 +2915,7 @@ try {
     }
     console.log('Succeeded in listing currentInputMethodSubtype.');
   });
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -3009,7 +2956,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
 }
 ```
@@ -3057,7 +3004,7 @@ try {
     }
     console.log('Succeeded in getting inputMethods.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -3108,7 +3055,7 @@ try {
   }).catch((err: BusinessError) => {
     console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
   })
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -3151,11 +3098,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let imeProp = inputMethodSetting.getInputMethodsSync(true);
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -3196,7 +3141,7 @@ try {
     }
     console.log('Succeeded in getting all inputMethods.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
 }
 ```
@@ -3262,11 +3207,9 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 try {
   let imeProp = inputMethodSetting.getAllInputMethodsSync();
-} catch(err: BusinessError) {
+} catch(err) {
   console.error(`Failed to getAllInputMethodsSync: ${JSON.stringify(err)}`);
 }
 ```
@@ -3306,7 +3249,7 @@ try {
     }
     console.log('Succeeded in showing optionalInputMethods.');
   });
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
 }
 ```

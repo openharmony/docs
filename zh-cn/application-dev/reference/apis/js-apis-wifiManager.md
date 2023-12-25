@@ -262,7 +262,7 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
           console.info("channelWidth: " + result[i].channelWidth);
           console.info("timestamp: " + result[i].timestamp);
       }
-  }).catch(err => {
+  }).catch((err:number) => {
       console.error("failed:" + JSON.stringify(err));
   });
 ```
@@ -322,7 +322,7 @@ getScanResultsSync(): &nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo9)&gt;
 
 ## wifiManager.getScanInfoList<sup>10+</sup>
 
-getScanInfoList(): Array&lt;WifiScanInfo&gt;;
+getScanInfoList(): Array&lt;WifiScanInfo&gt;
 
 获取扫描结果。
 
@@ -384,7 +384,7 @@ WLAN热点信息。
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
-| bssidType<sup>10+</sup>| DeviceAddressType | 是 | 否 | 热点的BSSID类型。 |
+| bssidType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。 |
 | capabilities | string | 是 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytype9) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
@@ -396,7 +396,7 @@ WLAN热点信息。
 | infoElems | Array&lt;[WifiInfoElem](#wifiinfoelem9)&gt; | 是 | 否 | 信息元素。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
 
-## DeviceAddressType <sup>10+</sup>
+## DeviceAddressType<sup>10+</sup>
 
 wifi 设备地址（mac/bssid）类型。
 
@@ -609,7 +609,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 		}
 		wifiManager.addDeviceConfig(config).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		}).catch(err => {
+		}).catch((err:number) => {
 			console.error("failed:" + JSON.stringify(err));
 		});
 	}catch(error){
@@ -628,7 +628,7 @@ WLAN配置信息。
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
-| bssidType<sup>10+</sup> | DeviceAddressType | 是 | 否 | 热点的BSSID类型。 |
+| bssidType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 热点的BSSID类型。 |
 | preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。 |
 | isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype9)| 是 | 否 | 加密类型。 |
@@ -640,7 +640,7 @@ WLAN配置信息。
 | ipType | [IpType](#iptype9) | 是 | 否 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
 | staticIp | [IpConfig](#ipconfig9) | 是 | 否 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
 | eapConfig<sup>10+</sup> | [WifiEapConfig](#wifieapconfig10) | 是 | 否 | 可扩展身份验证协议配置。 |
-| proxyConfig<sup>10+</sup> | WifiProxyConfig | 是 | 否 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
+| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | 是 | 否 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
 
 ## IpType<sup>9+</sup>
 
@@ -737,7 +737,7 @@ IP配置信息。
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
 
-## WifiProxyConfig <sup>10+</sup>
+## WifiProxyConfig<sup>10+</sup>
 
 Wifi 代理配置。
 
@@ -855,7 +855,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 		}
 		wifiManager.addCandidateConfig(config).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		}).catch(err => {
+		}).catch((err:number) => {
 			console.error("failed:" + JSON.stringify(err));
 		});
 	}catch(error){
@@ -945,7 +945,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 		let networkId = 0;
 		wifiManager.removeCandidateConfig(networkId).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		}).catch(err => {
+		}).catch((err:number) => {
 			console.error("failed:" + JSON.stringify(err));
 		});
 	}catch(error){
@@ -2099,6 +2099,106 @@ getDisconnectedReason(): DisconnectedReason
 | DISC_REASON_WRONG_PWD  | 1 | 密码错误。 |
 | DISC_REASON_CONNECTION_FULL  | 2 | 路由器的连接数已达到最大数量限制。 |
 
+## wifiManager.startPortalCertification<sup>11+</sup>
+
+startPortalCertification(): void
+
+**系统接口：** 此接口为系统接口。
+
+启动portal认证。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.startPortalCertification();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.isMeteredHotspot<sup>11+</sup>
+
+isMeteredHotspot(): boolean
+
+查询设备当前连接的wifi是否是手机热点。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:是手机热点，&nbsp;false:不是手机热点。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let isMeteredHotspot = wifiManager.isMeteredHotspot();
+		console.info("isMeteredHotspot:" + isMeteredHotspot);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.factoryReset<sup>11+</sup>
+
+factoryReset(): void
+
+**系统接口：** 此接口为系统接口。
+
+重置wifi相关配置。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.factoryReset();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 ## wifiManager.enableHotspot<sup>9+</sup>
 
 enableHotspot(): void
@@ -2392,9 +2492,134 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPO
 | -------- | -------- | -------- | -------- | -------- |
 | name | string | 是 | 否 | 设备名称。 |
 | macAddress | string | 是 | 否 | MAC地址。 |
-| macAddressType<sup>10+</sup> | DeviceAddressType | 是 | 否 | MAC地址类型。 |
+| macAddressType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | MAC地址类型。 |
 | ipAddress | string | 是 | 否 | IP地址。 |
 
+## wifiManager.addHotspotBlockList<sup>11+</sup>
+
+addHotspotBlockList(stationInfo: StationInfo)
+
+将设备添加到热点的阻止连接设备列表中，列表中的设备将不能访问热点。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| stationInfo | [StationInfo](#stationinfo9) | 是 | 将添加到热点的阻止列表中的设备。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config:wifiManager.StationInfo = {
+			name : "testSsid",
+			macAddress : "11:22:33:44:55:66",
+			ipAddress : "192.168.1.111"
+		}
+		// 热点开启后，才能正常将设备添加到连接阻止列表中
+		wifiManager.addHotspotBlockList(config);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.delHotspotBlockList<sup>11+</sup>
+
+delHotspotBlockList(stationInfo: StationInfo)
+
+将设备从热点的阻止列表中删除。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**参数：**
+
+| **参数名** | **类型** | **必填** | **说明** |
+| -------- | -------- | -------- | -------- |
+| stationInfo | [StationInfo](#stationinfo9) | 是 | 将从热点的阻止列表中删除的设备。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let config:wifiManager.StationInfo = {
+			name : "testSsid",
+			macAddress : "11:22:33:44:55:66",
+			ipAddress : "192.168.1.111"
+		}
+		wifiManager.delHotspotBlockList(config);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.getHotspotBlockList<sup>11+</sup>
+
+getHotspotBlockList(): Array&lt;StationInfo&gt;
+
+获取热点的阻止列表。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt; | 热点的阻止列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let data = wifiManager.getHotspotBlockList();
+		console.info("result:" + JSON.stringify(data));
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifiManager.getP2pLinkedInfo<sup>9+</sup>
 
@@ -2643,7 +2868,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 | -------- | -------- | -------- | -------- | -------- |
 | deviceName | string | 是 | 否 | 设备名称。 |
 | deviceAddress | string | 是 | 否 | 设备MAC地址。 |
-| deviceAddressType<sup>10+</sup> | DeviceAddressType | 是 | 否 | 设备MAC地址类型。 |
+| deviceAddressType<sup>10+</sup> | [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 设备MAC地址类型。 |
 | primaryDeviceType | string | 是 | 否 | 主设备类型。 |
 | deviceStatus | [P2pDeviceStatus](#p2pdevicestatus9) | 是 | 否 | 设备状态。 |
 | groupCapabilities | number | 是 | 否 | 群组能力。 |
@@ -2779,7 +3004,7 @@ createGroup(config: WifiP2PConfig): void
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | deviceAddress | string | 是 | 否 | 设备地址。 |
-| deviceAddressType<sup>10+</sup>| DeviceAddressType | 是 | 否 | 设备地址类型。 |
+| deviceAddressType<sup>10+</sup>| [DeviceAddressType](#deviceaddresstype10) | 是 | 否 | 设备地址类型。 |
 | netId | number | 是 | 否 | 网络ID。创建群组时-1表示创建临时组，-2表示创建永久组。 |
 | passphrase | string | 是 | 否 | 群组密钥。 |
 | groupName | string | 是 | 否 | 群组名称。 |

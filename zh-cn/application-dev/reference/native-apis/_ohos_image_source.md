@@ -5,15 +5,13 @@
 
 定义图像源输入资源，每次仅接收一种类型。由[OH_ImageSource_Create](image.md#oh_imagesource_create)获取。
 
-\@Syscap SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image
 
-**起始版本：**
+**废弃起始版本：** 11
 
-10
+**起始版本：** 10
 
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总

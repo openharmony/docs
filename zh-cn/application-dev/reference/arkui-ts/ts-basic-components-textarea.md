@@ -40,14 +40,16 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | inputFilter<sup>8+</sup>  | {<br/>value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>error?:&nbsp;(value:&nbsp;string) => void<br/>} | 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。<br/>-&nbsp;value：设置正则表达式。<br/>-&nbsp;error：正则匹配失败时，返回被过滤的内容。 |
 | copyOption<sup>9+</sup>   | [CopyOptions](ts-appendix-enums.md#copyoptions9)             | 设置输入的文本是否可复制。<br/>默认值：CopyOptions.LocalDevice，支持设备内复制。 <br/>设置CopyOptions.None时，当前TextArea中的文字无法被复制或剪切，仅支持粘贴。<br/> |
 | maxLength<sup>10+</sup>   | number                                                       | 设置文本的最大输入字符数。<br/>默认不设置最大输入字符数限制。<br/>到达文本最大字符限制，将无法继续输入字符，同时边框变为红色。 |
-| showCounter<sup>10+</sup> | boolean                                                      | 设置文本最大输入字符数后，是否显示字数。<br/>默认值：false   |
-| style<sup>10+</sup>       | [TextContentStyle](ts-appendix-enums.md#textcontentstyle10)  | 设置文本框多态样式。<br/>默认值：TextContentStyle.DEFAULT    |
+| showCounter<sup>10+</sup> | value: boolean, options<sup>11+</sup>?: [InputCounterOptions](ts-basic-components-textinput.md#inputcounteroptions11对象说明) | 参数value为true时，才能设置options，文本框开启计数下标功能，需要配合maxlength（设置最大字符限制）一起使用。字符计数器显示的效果是当前输入字符数/最大可输入字符数。当输入字符数大于最大字符数乘百分比值时，显示字符计数器。如果用户设置计数器时不设置InputCounterOptions，那么当前输入字符数达到最大字符数时，边框将变为红色。用户同时设置参数value为true和InputCounterOptions，当thresholdPercentage数值在有效区间内，且输入字符数超过最大字符数时，边框将变为红色，框体抖动。highlightBorder设置为false，则不显示红色边框，计数器默认显示红色边框。内联模式和密码模式下字符计数器不显示。 |
+| style<sup>10+</sup>       | [TextContentStyle](ts-appendix-enums.md#textcontentstyle10)  | 设置文本框多态样式。<br/>默认值：TextContentStyle.DEFAULT |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | TextArea获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 | selectionMenuHidden<sup>10+</sup> | boolean                                                      | 设置长按输入框或者右键输入框时，是否弹出文本选择菜单。<br />默认值：false |
-| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
+| barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#barstate) | 设置内联输入风格编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
 | maxLines<sup>10+</sup> | number | 设置内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3 <br/>**说明：**<br/>取值范围：(0, +∞)。|
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘，开发者也可以通过[TextAreaController](#textareacontroller8).[stopEditing](#stopediting10)方法控制键盘关闭。 |
 | type<sup>11+</sup>                     | [TextAreaType](#textareatype11枚举说明)     | 设置输入框类型。<br/>默认值：TextAreaType.Normal        |
+| selectAll<sup>11+</sup> | boolean | 初始状态，是否全选文本。<br />默认值：false 。不全选文本。 |
+| enterKeyType<sup>11+</sup>  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 设置输入法回车键类型。<br/>默认值：EnterKeyType.NEW_LINE |
 >  **说明：**
 >
 >  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }  <br>从API version 11开始，多行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。
@@ -62,9 +64,10 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。 |
 | onCopy<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>- value：复制的文本内容。 |
 | onCut<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板剪切按钮，触发该回调。<br/>- value：剪切的文本内容。 |
-| onPaste<sup>8+</sup>(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。<br/>- value：粘贴的文本内容。 |
+| onPaste(callback:(value:&nbsp;string, event<sup>11+</sup>:&nbsp;[PasteEvent](ts-basic-components-richeditor.md#pasteevent11))&nbsp;=&gt;&nbsp;void) | 长按输入框内部区域弹出剪贴板后，点击剪切板粘贴按钮，触发该回调。<br/>- value：粘贴的文本内容。<br/>- event：用户自定义的粘贴事件。|
 | onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>10+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
 | onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)<sup>10+</sup> | 文本内容滚动时，触发该回调。<br />totalOffsetX：文本在内容区的横坐标偏移。<br />totalOffsetY：文本在内容区的纵坐标偏移。 |
+| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType)&nbsp;=&gt;&nbsp;void)<sup>11+</sup>  | 按下输入法回车键触发该回调。<br/>enterKey：输入法回车键类型，类型为EnterKeyType.NEW_LINE时不触发onSubmit。具体类型见[EnterKeyType枚举说明](ts-basic-components-textinput.md#enterkeytype枚举说明)。|
 
 ## TextAreaController<sup>8+</sup>
 
@@ -170,6 +173,10 @@ getCaretOffset(): CaretOffset
 | ----------------------- | ---------------- |
 | [CaretOffset](ts-basic-components-textinput.md#caretoffset11对象说明) | 光标相对输入框的位置。 |
 
+> **说明：**
+>
+> - 在当前帧更新光标位置同时调用该接口，该接口不生效。
+
 ## 示例
 
 ### 示例1
@@ -207,6 +214,11 @@ struct TextAreaExample {
         .onClick(() => {
           // 设置光标位置到第一个字符后
           this.controller.caretPosition(1)
+        })
+      Button('Get CaretOffset')
+        .backgroundColor('#007DFF')
+        .margin(15)
+        .onClick(() => {
           this.positionInfo = this.controller.getCaretOffset()
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
@@ -297,3 +309,63 @@ struct TextAreaExample {
 ```
 
 ![customKeyboard](figures/textAreaCustomKeyboard.png)
+
+### 示例4
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = ''
+  controller: TextAreaController = new TextAreaController()
+
+  build() {
+    Column() {
+      TextArea({ text: this.text, controller: this.controller })
+        .placeholderFont({ size: 16, weight: 400 })
+        .width(336)
+        .height(56)
+        .maxLength(6)
+		.showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
+		//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
+        //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
+        //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![TextAreaCounter](figures/TextAreaCounter.jpg)
+
+
+### 示例5
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State Text: string = ''
+  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
+  @State index: number = 0
+  build() {
+    Column({ space: 20 }) {
+      TextArea({ placeholder: '请输入用户名', text: this.Text })
+        .width(380)
+        .enterKeyType(this.enterTypes[this.index])
+        .onChange((value: string) => {
+          this.Text = value
+        })
+        .onSubmit((enterKey: EnterKeyType) => {
+          console.log("trigger area onsubmit" + enterKey);
+        })
+      Button('改变EnterKeyType').onClick(() => {
+        this.index = (this.index + 1) % this.enterTypes.length;
+      })
+
+    }.width('100%')
+  }
+}
+```
+
+![TextAreaEnterKeyType](figures/area_enterkeytype.gif)

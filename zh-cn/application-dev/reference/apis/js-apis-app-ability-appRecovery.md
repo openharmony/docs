@@ -219,16 +219,22 @@ setRestartWant(want: Want): void;
 import appRecovery from '@ohos.app.ability.appRecovery';
 import Want from '@ohos.app.ability.Want';
 
-Button("启动到恢复Ability")
-    .fontSize(40)
-    .fontWeight(FontWeight.Bold)
-    .onClick(()=> {
+@Entry
+@Component
+struct Index {
+  build() {
+    Button("启动到恢复Ability")
+      .fontSize(40)
+      .fontWeight(FontWeight.Bold)
+      .onClick(()=> {
         // set restart want
         let want: Want = {
-            bundleName: "ohos.samples.recovery",
-            abilityName: "RecoveryAbility"
+          bundleName: "ohos.samples.recovery",
+          abilityName: "RecoveryAbility"
         };
 
         appRecovery.setRestartWant(want);
-    })
+      })
+  }
+}
 ```

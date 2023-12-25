@@ -1,10 +1,10 @@
-# 预览流二次处理(Native)
+# 预览流二次处理(C/C++)
 
 通过ImageReceiver创建预览输出，获取预览流实时数据，以供后续进行图像二次处理，比如应用可以对其添加滤镜算法等。
 
 ## 开发步骤
 
-详细的API说明请参考[Camera API参考]。
+详细的API说明请参考[Camera API参考](../reference/native-apis/_o_h___camera.md)。
 
 1. 导入NDK接口，接口中提供了相机相关的属性和方法，导入方法如下。
      
@@ -45,7 +45,7 @@
    }
    ```
 
-4. 通过OH_CameraManager_GetSupportedCameraOutputCapability方法获取当前设备支持的预览能力。通过OH_CameraManager_CreatePreviewOutput方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput方法中的参数分别是cameraManager指针，previewProfiles数组中的第一项，步骤二中获取的surfaceId，以及返回的previewOutput指针
+4. 通过OH_CameraManager_GetSupportedCameraOutputCapability方法获取当前设备支持的预览能力。通过OH_CameraManager_CreatePreviewOutput方法创建预览输出流，其中，OH_CameraManager_CreatePreviewOutput方法中的参数分别是cameraManager指针，previewProfiles数组中的第一项，步骤三中获取的surfaceId，以及返回的previewOutput指针
      
    ```c++
     ret = OH_CameraManager_CreatePreviewOutput(cameraManager, previewProfile, previewSurfaceId, &previewOutput);

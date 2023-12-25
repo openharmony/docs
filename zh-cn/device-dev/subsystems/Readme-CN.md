@@ -25,7 +25,8 @@
       - [ 常见问题](subsys-build-FAQ.md)
 - [ArkCompiler](subsys-arkcompiler-guide.md)
 - ArkUI
-    - [窗口标题栏定制](subsys-arkui-customize_titlebar.md)
+    - [窗口标题栏定制开发指导（ArkTs）](subsys-arkui-customize-titlebar-arkts.md)
+    - [窗口标题栏定制开发指导（C++）](subsys-arkui-customize-titlebar-c++.md)
 - 小型系统图形图像
     - [小型系统图形图像概述](subsys-graphics-overview.md)
     - [普通组件开发指导](subsys-graphics-common-guide.md)
@@ -70,6 +71,19 @@
     - [OpenHarmony通用密钥库系统开发指导](subsys-security-huks-guide.md)
     - [应用特权配置指导](subsys-app-privilege-config-guide.md)
     - [预置应用配置指导](subsys-preinstall-app-config-guide.md)
+    - OpenHarmony SELinux开发指导
+      - [OpenHarmony SELinux概述](subsys-security-selinux-overview.md)
+      - [OpenHarmony SELinux开发说明](subsys-security-selinux-develop-intro.md)
+      - [OpenHarmony SELinux编译与加载](subsys-security-selinux-compile.md)
+      - OpenHarmony SELinux典型流程开发指导
+        - [OpenHarmony SELinux新增进程策略配置方法](subsys-security-selinux-sample-domain.md)
+        - [OpenHarmony SELinux新增文件策略配置方法](subsys-security-selinux-sample-file.md)
+        - [OpenHarmony SELinux新增参数策略配置方法](subsys-security-selinux-sample-param.md)
+        - [OpenHarmony SELinux新增SA或HDF策略配置方法](subsys-security-selinux-sample-sa.md)
+      - [OpenHarmony SELinux对外接口说明](subsys-security-selinux-func.md)
+      - [OpenHarmony SELinux Check问题处理指导](subsys-security-selinux-check.md)
+      - [OpenHarmony SELinux常见问题处理指导](subsys-security-selinux-faq.md)
+      - [OpenHarmony SELinux策略自检](subsys-security-selinux-checklist.md)
 - 启动恢复
     - [启动恢复子系统概述](subsys-boot-overview.md)
     - [整机启动流程](subsys-boot-deviceboot.md)
@@ -138,3 +152,4 @@
         - [电源默认休眠行为定制开发指导](subsys-power-default-sleep-behavior-customization.md)
         - [唤醒源定制开发指导](subsys-power-wakeup-source-customization.md)
         - [关机振动定制开发指导](subsys-power-vibrator-customization.md)
+        - [唤醒后系统动作定制开发指导](subsys-power-wakeup-action-source-customization.md)

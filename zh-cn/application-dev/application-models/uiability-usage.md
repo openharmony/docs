@@ -14,7 +14,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
@@ -41,7 +41,7 @@ UIAbility类拥有自身的上下文信息，该信息为[UIAbilityContext](../r
   import Want from '@ohos.app.ability.Want';
   
   export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // 获取UIAbility实例的上下文
       let context = this.context;
       ...

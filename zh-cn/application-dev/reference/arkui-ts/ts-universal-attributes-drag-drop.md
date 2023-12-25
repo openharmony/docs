@@ -23,9 +23,25 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 | -------- | -------- | -------- |
 | allowDrop | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | 设置该组件上允许落入的数据类型。<br/>默认值：空<br/> |
 | draggable | boolean | 设置该组件是否允许进行拖拽。<br/>默认值：false<br/> |
+| dragPreview<sup>11+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) | 设置组件拖拽过程中的预览图，仅在onDragStart拖拽方式中有效。<br/>当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#属性)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md#属性)设置的预览图为准。开发者在[onDragStart](ts-universal-events-drag-drop.md#事件)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md#属性)设置的预览图，当设置了[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图时，拖拽过程中的背板图使用[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../apis/js-apis-image.md#pixelmap7)方式。<br/>默认值：空<br/> |
+| dragPreviewOptions<sup>11+</sup> | [DragPreviewOptions<sup>11+</sup>](#dragpreviewoptions11) | 设置拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/> |
 
+## DragPreviewOptions<sup>11+</sup>
+
+| 名称 | 类型 | 必填 | 描述 |
+| -------- | -------- | -------- | -------- |
+| mode | [DragPreviewMode](#dragpreviewmode11枚举说明) | 否 | 表示拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/> |
+
+## DragPreviewMode<sup>11+</sup>枚举说明
+
+| 名称 | 描述 |
+| -------- | -------- |
+| AUTO  | 系统根据拖拽场景自动改变跟手点位置，根据规则自动对拖拽背板图进行缩放变换等。 |
+| DISABLE_SCALE  | 禁用系统对拖拽背板图的缩放行为。 |
 
 ## 示例
+### 示例1
+allowDrop与draggable属性用法示例
 
 ```ts
 // xxx.ets
@@ -143,3 +159,91 @@ struct ImageExample {
 ```
 
 ![dragImage.gif](figures/dragImage.gif)
+
+### 示例2
+dragPreview属性用法示例
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DragPreviewDemo{
+  @Builder dragPreviewBuilder() {
+    Column() {
+      Text("dragPreview")
+        .width(150)
+        .height(50)
+        .fontSize(20)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+    }
+  }
+
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text("menu item 1")
+        .fontSize(15)
+        .width(100)
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+      Divider()
+        .height(5)
+      Text("menu item 2")
+        .fontSize(15)
+        .width(100)
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+    }
+    .width(100)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Image('/resource/image.jpeg')
+          .width("30%")
+          .draggable(true)
+          .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+          .onDragStart(() => {
+            console.log("Image onDragStart")
+          })
+          .dragPreview(this.dragPreviewBuilder)
+      }
+      .width("100%")
+    }
+    .height("100%")
+  }
+}
+```
+
+![dragPreview.gif](figures/dragPreview.gif)
+
+### 示例3
+dragPreviewOptions属性用法示例
+```ts
+// xxx.ets
+@Entry
+@Component
+struct dragPreviewOptionsDemo{
+  build() {
+    Row() {
+      Column() {
+        Image('/resource/image.jpeg')
+          .margin({ top: 10 })
+          .width("100%")
+          .draggable(true)
+          .dragPreviewOptions({ mode: DragPreviewMode.AUTO })
+      }
+      .width("100%")
+      .height("100%")
+    }
+  }
+}
+```
+
+![dragPreviewOptions.gif](figures/dragPreviewOptions.gif)

@@ -1,4 +1,4 @@
-# AVSession Controller
+# AVSession Controller (ArkTS)
 
 Media Controller preset in OpenHarmony functions as the controller to interact with audio and video applications, for example, obtaining and displaying media information and delivering playback control commands.
 

@@ -218,11 +218,63 @@ checkMultiOsAccountEnabled(): Promise&lt;boolean&gt;
   }
   ```
 
-### checkOsAccountActivated<sup>9+</sup>
+### isOsAccountActivated<sup>11+</sup>
+
+isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
+
+判断指定系统帐号是否处于激活状态。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                               |
+| ------- | ------ | ---- | --------------------------------- |
+| localId | number | 是   | 系统帐号ID。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                       |
+| ---------------------- | ---------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示帐号已激活；返回false表示帐号未激活。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**示例：** 判断ID为100的系统帐号是否处于激活状态
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.isOsAccountActivated(localId).then((isActivated: boolean) => {
+      console.log('isOsAccountActivated successfully, isActivated: ' + isActivated);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountActivated failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountActivated exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountActivated<sup>(deprecated)</sup>
 
 checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断指定系统帐号是否处于激活状态。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -262,11 +314,15 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
   }
   ```
 
-### checkOsAccountActivated<sup>9+</sup>
+### checkOsAccountActivated<sup>(deprecated)</sup>
 
 checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 判断指定系统帐号是否处于激活状态。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -309,11 +365,108 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
   }
   ```
 
-### checkOsAccountConstraintEnabled<sup>9+</sup>
+### isOsAccountConstraintEnabled<sup>11+</sup>
+
+isOsAccountConstraintEnabled(constraint: string): Promise&lt;boolean&gt;
+
+判断当前系统帐号是否使能指定约束。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                                |
+| ---------- | ------ | ---- | ---------------------------------- |
+| constraint | string | 是   | 指定的[约束](#系统帐号约束列表)名称。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                                  |
+| --------------------- | --------------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示已使能指定的约束；返回false表示未使能指定的约束。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let constraint: string = 'constraint.wifi';
+  try {
+    accountManager.isOsAccountConstraintEnabled(constraint).then((isEnabled: boolean) => {
+      console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### isOsAccountConstraintEnabled<sup>11+</sup>
+
+isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
+
+判断指定系统帐号是否使能指定约束。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                                |
+| ---------- | ------ | ---- | ---------------------------------- |
+| localId    | number | 是   | 系统帐号ID。  |
+| constraint | string | 是   | 指定的[约束](#系统帐号约束列表)名称。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                                  |
+| --------------------- | --------------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示已使能指定的约束；返回false表示未使能指定的约束。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  let constraint: string = 'constraint.wifi';
+  try {
+    accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
+      console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountConstraintEnabled<sup>(deprecated)</sup>
 
 checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 判断指定系统帐号是否具有指定约束。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -355,11 +508,15 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
   }
   ```
 
-### checkOsAccountConstraintEnabled<sup>9+</sup>
+### checkOsAccountConstraintEnabled<sup>(deprecated)</sup>
 
 checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
 
 判断指定系统帐号是否具有指定约束。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -477,12 +634,100 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
     console.log('checkOsAccountTestable exception: ' + JSON.stringify(err));
   }
   ```
+  
+### isOsAccountUnlocked<sup>11+</sup>
 
-### checkOsAccountVerified<sup>9+</sup>
+isOsAccountUnlocked(): Promise&lt;boolean&gt;
+
+检查当前系统帐号是否已认证解锁。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                   | 说明                                                                      |
+| ---------------------- | ------------------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前帐号已认证解锁；返回false表示当前帐号未认证解锁。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.isOsAccountUnlocked().then((isVerified: boolean) => {
+      console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountUnlocked exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### isOsAccountUnlocked<sup>11+</sup>
+
+isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
+
+检查指定系统帐号是否已验证。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                                              |
+| ------- | ------ | ---- | --------------------------------------------------------------- |
+| localId | number | 是   | 系统帐号ID。不填则检查当前系统帐号是否已验证。 |
+
+**返回值：**
+
+| 类型                   | 说明                                                               |
+| ---------------------- | ----------------------------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前帐号已认证解锁；返回false表示当前帐号未认证解锁。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.isOsAccountUnlocked(localId).then((isVerified: boolean) => {
+      console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
+    }).catch((err: BusinessError) => {
+      console.log('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('isOsAccountUnlocked exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
 
 检查当前系统帐号是否已认证解锁。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。建议使用[isOsAccountUnlocked](#isosaccountunlocked11)替代。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -516,11 +761,16 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(): Promise&lt;boolean&gt;
 
 检查当前系统帐号是否已认证解锁。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。建议使用[isOsAccountUnlocked](#isosaccountunlocked11)替代。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
@@ -552,11 +802,15 @@ checkOsAccountVerified(): Promise&lt;boolean&gt;
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 检查指定系统帐号是否已验证。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -596,11 +850,15 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
   }
   ```
 
-### checkOsAccountVerified<sup>9+</sup>
+### checkOsAccountVerified<sup>(deprecated)</sup>
 
 checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
 
 检查指定系统帐号是否已验证。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1427,11 +1685,63 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
   }
   ```
 
-### getOsAccountConstraints<sup>9+</sup>
+### getEnabledOsAccountConstraints<sup>11+</sup>
+
+getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
+
+获取指定系统帐号已使能的的全部约束。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明         |
+| ------- | ------ | ---- | ------------ |
+| localId | number | 是   | 系统帐号ID。 |
+
+**返回值：**
+
+| 类型                               | 说明                                                       |
+| ---------------------------------- | ---------------------------------------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回指定系统帐号已使能的的全部[约束](#系统帐号约束列表)。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**示例：** 获取ID为100的系统帐号的全部约束
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.getEnabledOsAccountConstraints(localId).then((constraints: string[]) => {
+      console.log('getEnabledOsAccountConstraints, constraints: ' + constraints);
+    }).catch((err: BusinessError) => {
+      console.log('getEnabledOsAccountConstraints err: ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getEnabledOsAccountConstraints exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### getOsAccountConstraints<sup>(deprecated)</sup>
 
 getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 获取指定系统帐号的全部约束。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1471,11 +1781,15 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
   }
   ```
 
-### getOsAccountConstraints<sup>9+</sup>
+### getOsAccountConstraints<sup>(deprecated)</sup>
 
 getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 获取指定系统帐号的全部约束。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -1873,11 +2187,15 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
   }
   ```
 
-### getCurrentOsAccount<sup>9+</sup>
+### getCurrentOsAccount<sup>(deprecated)</sup>
 
 getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 查询当前进程所属的系统帐号的信息。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
@@ -1910,11 +2228,15 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
   }
   ```
 
-### getCurrentOsAccount<sup>9+</sup>
+### getCurrentOsAccount<sup>(deprecated)</sup>
 
 getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 查询当前进程所属的系统帐号的信息。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 9开始支持，从API version 11开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS<sup>10+</sup>
 
@@ -1945,6 +2267,46 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
     });
   } catch (e) {
     console.log('getCurrentOsAccount exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### queryOsAccount<sup>11+</sup>
+
+queryOsAccount(): Promise&lt;OsAccountInfo&gt;
+
+查询当前进程所属的系统帐号的信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.GET_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                                           | 说明                                       |
+| ---------------------------------------------- | ----------------------------------------- |
+| Promise&lt;[OsAccountInfo](#osaccountinfo)&gt; | Promise对象，返回当前进程所属的系统帐号信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let accountManager = account_osAccount.getAccountManager();
+  try {
+    accountManager.queryOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
+      console.log('queryOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
+    }).catch((err: BusinessError) => {
+      console.log('queryOsAccount err: ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('queryOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2853,7 +3215,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | localId     | number | 是   |  要查询的系统帐号ID |
 | constraint     | string | 是   |  要查询的[约束](#系统帐号约束列表)名称 |
-| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统帐号的指定[约束](#系统帐号约束列表)来源信息；否则为错误对象。                      |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统帐号的指定[约束](#系统帐号约束列表)来源信息；否则为错误对象。                      |
 
 **错误码：**
 
@@ -2902,7 +3264,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise对象，返回指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。 |
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise对象，返回指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。 |
 
 **错误码：**
 
@@ -3000,7 +3362,7 @@ isOsAccountActived(localId: number, callback: AsyncCallback&lt;boolean&gt;): voi
 
 > **说明：**
 >
-> 从 API version 7开始支持从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9)。
+> 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3036,7 +3398,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持从API version 9开始废弃, 建议使用[checkOsAccountActivated](#checkosaccountactivated9-1)。
+> 从 API version 7开始支持从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -3075,7 +3437,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3113,7 +3475,7 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[checkOsAccountConstraintEnabled](#checkosaccountconstraintenabled9-1)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3309,7 +3671,7 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  accountManager.isOsAccountVerified(localId).then((isVerified: boolean) => {
+  accountManager.isOsAccountVerified().then((isVerified: boolean) => {
     console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
   }).catch((err: BusinessError) => {
     console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
@@ -3598,7 +3960,7 @@ getOsAccountAllConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountConstraints](#getosaccountconstraints9)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3629,7 +3991,7 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getOsAccountConstraints](#getosaccountconstraints9-1)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 获取指定系统帐号的全部约束。使用Promise异步回调。
 
@@ -3732,7 +4094,7 @@ queryCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCurrentOsAccount](#getcurrentosaccount9)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -3763,7 +4125,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。建议使用[getCurrentOsAccount](#getcurrentosaccount9-1)。
+> 从 API version 7开始支持，从API version 9开始废弃。替代方法仅向系统应用开放。
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
@@ -4875,7 +5237,7 @@ getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallba
         message: ""
       };
       let accountInfo: account_osAccount.DomainAccountInfo = {
-        domain: options.domain,
+        domain: options.domain ? options.domain : "",
         accountName: options.accountName,
         accountId: 'xxxx'
       };
@@ -6765,14 +7127,16 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | localName                      | string                                                       | 是   | 系统帐号名称。                    |
 | type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型。                      |
 | constraints                    | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表)，默认为空。|
-| isVerified<sup>8+</sup>        | boolean                                                      | 是   | 帐号是否验证。                      |
+| isVerified<sup>(deprecated)</sup> | boolean                                                   | 是   | 帐号是否验证。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                     |
+| isUnlocked<sup>11+</sup>      | boolean                                                       | 是   | 帐号是否已解锁（EL2级别目录是否解密）。                      |
 | photo<sup>8+</sup>             | string                                                       | 否   | 系统帐号头像，默认为空。                      |
 | createTime<sup>8+</sup>        | number                                                       | 是   | 系统帐号创建时间。                  |
 | lastLoginTime<sup>8+</sup>     | number                                                       | 否   | 系统帐号最后一次登录时间，默认为空。          |
 | serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统帐号SN码。                      |
-| isActived<sup>8+</sup>         | boolean                                                      | 是   | 系统帐号激活状态。                  |
+| isActived<sup>(deprecated)</sup>         | boolean                                            | 是   | 系统帐号激活状态。<br>**说明**: 从API version 7开始支持，从API version 11开始废弃。                  |
+| isActivated<sup>11+</sup>         | boolean                                                   | 是   | 系统帐号激是否激活。                  |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统帐号创建是否完整。              |
-| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息，默认为空。                    |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 否   | 分布式帐号信息，默认为空。                    |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 否   | 域帐号信息，默认为空。                        |
 
 ## DomainAccountInfo<sup>8+</sup>
@@ -6867,7 +7231,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | 是   | 系统帐号ID     |
-| type | [ConstraintSourceType](#constraintsourcetype) | 是   | 约束来源类型 |
+| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型 |
 
 ## ConstraintSourceType<sup>9+</sup>
 

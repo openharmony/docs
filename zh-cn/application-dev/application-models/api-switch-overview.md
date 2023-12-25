@@ -10,19 +10,22 @@ startAbility接口由FA模型切换到Stage模型的示例：
 - FA模型示例
 
   ```ts
-  import fa from '@ohos.ability.featureAbility';
+  import featureAbility from '@ohos.ability.featureAbility';
   import { BusinessError } from '@ohos.base';
-
-  fa.startAbility({
-    "want": {
-      bundleName: "com.example.myapplication",
-      abilityName: "com.example.myapplication.EntryAbility"
-    }
-  }).then((data) => {
-    console.info('startAbility success');
-  }).catch((error: BusinessError) => {
-    console.error('startAbility failed.');
-  })
+  
+  try {
+    Logger.info(TAG, 'Begin to start ability');
+    let want: Want = {
+      bundleName: 'com.samples.famodelabilitydevelop',
+      moduleName: 'entry',
+      abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
+    };
+    await featureAbility.startAbility({ want: want });
+    Logger.info(TAG, `Start ability succeed`);
+  }
+  catch (error) {
+    Logger.error(TAG, 'Start ability failed with ' + error);
+  }
   ```
 
 - Stage示例示例

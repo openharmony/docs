@@ -31,7 +31,7 @@
 | --------- | ------------------------------- |
 | Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。   |
 | Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 |
-| Auto      | 自适应显示                           |
+| Auto      | 自适应显示。                           |
 | Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。        |
 | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。             |
 | None      | 保持原有尺寸显示。                       |
@@ -45,6 +45,15 @@
 | Dotted | 显示为一系列圆点，圆点半径为borderWidth的一半。 |
 | Dashed | 显示为一系列短的方形虚线。                 |
 | Solid  | 显示为一条实线。                      |
+
+## OutlineStyle<sup>11+</sup>
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
+| DASHED | 显示为一系列短的方形虚线。                 |
+| SOLID  | 显示为一条实线。                      |
 
 ## LineJoinStyle
 
@@ -96,13 +105,13 @@
 | EaseIn              | 表示动画以低速开始，CubicBezier(0.42, 0.0, 1.0, 1.0)。 |
 | EaseOut             | 表示动画以低速结束，CubicBezier(0.0, 0.0, 0.58, 1.0)。 |
 | EaseInOut           | 表示动画以低速开始和结束，CubicBezier(0.42, 0.0, 0.58, 1.0)。 |
-| FastOutSlowIn       | 标准曲线，cubic-bezier(0.4, 0.0, 0.2, 1.0)。   |
-| LinearOutSlowIn     | 减速曲线，cubic-bezier(0.0, 0.0, 0.2, 1.0)。   |
-| FastOutLinearIn     | 加速曲线，cubic-bezier(0.4, 0.0, 1.0, 1.0)。   |
-| ExtremeDeceleration | 急缓曲线，cubic-bezier(0.0, 0.0, 0.0, 1.0)。   |
-| Sharp               | 锐利曲线，cubic-bezier(0.33, 0.0, 0.67, 1.0)。 |
-| Rhythm              | 节奏曲线，cubic-bezier(0.7, 0.0, 0.2, 1.0)。   |
-| Smooth              | 平滑曲线，cubic-bezier(0.4, 0.0, 0.4, 1.0)。   |
+| FastOutSlowIn       | 标准曲线，CubicBezier(0.4, 0.0, 0.2, 1.0)。   |
+| LinearOutSlowIn     | 减速曲线，CubicBezier(0.0, 0.0, 0.2, 1.0)。   |
+| FastOutLinearIn     | 加速曲线，CubicBezier(0.4, 0.0, 1.0, 1.0)。   |
+| ExtremeDeceleration | 急缓曲线，CubicBezier(0.0, 0.0, 0.0, 1.0)。   |
+| Sharp               | 锐利曲线，CubicBezier(0.33, 0.0, 0.67, 1.0)。 |
+| Rhythm              | 节奏曲线，CubicBezier(0.7, 0.0, 0.2, 1.0)。   |
+| Smooth              | 平滑曲线，CubicBezier(0.4, 0.0, 0.4, 1.0)。   |
 | Friction            | 阻尼曲线，CubicBezier(0.2, 0.0, 0.2, 1.0)。    |
 
 ## AnimationStatus
@@ -133,7 +142,7 @@
 
 | 名称               | 描述                                       |
 | ---------------- | ---------------------------------------- |
-| Normal           | 动画按正向播放。                                 |
+| Normal           | 动画正向播放。                                 |
 | Reverse          | 动画反向播放。                                  |
 | Alternate        | 动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放。 |
 | AlternateReverse | 动画在奇数次（1、3、5...）反向播放，在偶数次（2、4、6...）正向播放。 |
@@ -156,13 +165,13 @@
 
 | 名称                               | 描述                                       |
 | -------------------------------- | ---------------------------------------- |
-| Top                              | 竖直方向上边缘<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| Center<sup>(deprecated) </sup>   | 竖直方向居中位置<br/> 从API version 9开始废弃         |
-| Bottom                           | 竖直方向下边缘<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置<br/> 从API version 9开始废弃      |
-| Start                            | 水平方向起始位置<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| Middle<sup>(deprecated) </sup>   | 水平方向居中位置<br/> 从API version 9开始废弃         |
-| End                              | 水平方向末尾位置<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Top                              | 竖直方向上边缘。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Center<sup>(deprecated) </sup>   | 竖直方向居中位置。<br/> 从API version 9开始废弃。         |
+| Bottom                           | 竖直方向下边缘。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置。<br/> 从API version 9开始废弃。    |
+| Start                            | 水平方向起始位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Middle<sup>(deprecated) </sup>   | 水平方向居中位置。<br/> 从API version 9开始废弃。      |
+| End                              | 水平方向末尾位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## Week
 
@@ -526,6 +535,11 @@
 | BACKGROUND_THICK      | 远距景深模糊。   |
 | BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
 | NONE<sup>10+</sup> | 关闭模糊。  |
+| COMPONENT_ULTRA_THIN<sup>11+</sup> | 组件超轻薄材质模糊。 |
+| COMPONENT_THIN<sup>11+</sup> | 组件轻薄材质模糊。 |
+| COMPONENT_REGULAR<sup>11+</sup> | 组件普通材质模糊。 |
+| COMPONENT_THICK<sup>11+</sup> | 组件厚材质模糊。 |
+| COMPONENT_ULTRA_THICK<sup>11+</sup> | 组件超厚材质模糊。 |
 
 ## ThemeColorMode<sup>10+</sup>
 
@@ -574,6 +588,15 @@
 | LIGHT  | 小面积（轻盈） | 弹簧动效， 刚性：410，阻尼：38，初始速度：1 | 90% |
 | MIDDLE | 中面积（稳定） | 弹簧动效， 刚性：350，阻尼：35，初始速度：0.5 | 95% |
 | HEAVY  | 大面积（厚重） | 弹簧动效， 刚性：240，阻尼：28，初始速度：0 | 95% |
+
+## FoldStatus<sup>11+</sup>
+
+| 名称                      | 描述         |
+| ----------------------  | ---------- |
+| FOLD_STATUS_UNKNOWN     | 表示设备当前折叠状态未知。 |
+| FOLD_STATUS_EXPANDED    | 表示设备当前折叠状态为完全展开。   |
+| FOLD_STATUS_FOLDED      | 表示设备当前折叠状态为折叠。   |
+| FOLD_STATUS_HALF_FOLDED | 表示设备当前折叠状态为半折叠。半折叠指完全展开和折叠之间的状态。|
 
 ## TextContentStyle<sup>10+</sup>
 
@@ -638,6 +661,22 @@ Nullable\<T> {
 | REMOVED   | 当整个动画结束并立即删除时，将触发回调。                         |
 | LOGICALLY | 当动画在逻辑上处于下降状态，但可能仍处于其长尾状态时，将触发回调。 |
 
+## BlurOptions<sup>11+<sup>
+灰阶模糊参数。
+| 名称        |   类型   |   必填 | 说明                        |
+| ----        |  ----   |   ---- | --------------------------  |
+| grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
+
+## BackgroundBrightnessOptions<sup>11+<sup>
+背景光源参数。
+ | 名称        |   类型         |   必填 |  说明                        |
+| ----         |  ----         |   ---- | --------------------------  |
+| radius       | number        |   是   |   背景光源半径，取值范围：[0, +∞)，默认为0。     |
+| saturation   | number        |   否   |   背景光源饱和度，取值范围：[0, +∞)，默认为0。     |
+| brightness   | number        |   否   |   背景光源亮度，取值范围：[0, +∞)，默认为0。       | 
+| color        | [Color](ts-appendix-enums.md#color)        |   否   |   背景光源颜色，默认透明色。  |
+| adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10) |   否  | 背景模糊效果使用的取色模式,默认为DEFAULT。   |
+| blurOptions  | [BlurOptions](ts-appendix-enums.md#bluroptions11) |   否   |   灰阶模糊参数，默认为[0,0]。  |
 ## EllipsisMode<sup>11+</sup>
 
 从API version 11开始，该接口支持在ArkTS卡片中使用。
@@ -647,3 +686,47 @@ Nullable\<T> {
 | START  | 省略行首内容。|
 | CENTER | 省略行中内容。|
 | END | 省略行末内容。|
+
+## ArrowPointPosition<sup>11+</sup>
+
+| 名称            | 描述                                     |
+| ------------- | -------------------------------------- |
+| START | 水平方向：位于父组件最左侧，垂直方向：位于父组件最上侧。 |
+| CENTER | 位于父组件居中位置。 |
+| END | 水平方向：位于父组件最右侧，垂直方向：位于父组件最下侧。 |
+
+## TextDataDetectorType<sup>11+</sup>
+
+| 名称  | 描述                                   |
+| ----- | -------------------------------------- |
+| PHONE_NUMBER  | 电话号码 |
+| URL | 链接 |
+| EMAIL | 邮箱 |
+| ADDRESS | 地址 |
+
+## TextSpanType<sup>11+</sup>
+
+Span类型信息。
+
+| 名称 | 说明 |
+| -------- | -------- |
+| TEXT | Span为文字类型。 |
+| IMAGE | Span为图像类型。|
+| MIXED | Span为图文混合类型。|
+
+## TextResponseType<sup>11+</sup>
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
+| LONG_PRESS  | 通过长按触发菜单弹出。   |
+| SELECT | 通过鼠标选中触发菜单弹出。 |
+
+## SelectionMenuOptions<sup>11+</sup>
+
+范围信息。
+
+| 名称 | 描述                               |
+| ------ | -------------------------------------- |
+| onAppear | 自定义选择菜单弹出时回调。 |
+| onDisappear | 自定义选择菜单关闭时回调。 |

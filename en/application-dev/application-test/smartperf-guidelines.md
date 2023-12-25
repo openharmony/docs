@@ -2,11 +2,11 @@
 
 ## Overview
 
-Performance testing helps developers detect the performance bottlenecks and deliver quality applications that meet user expectations. For this reason, SmartPerf, a performance testing tool specially designed for OpenHarmony developers, is provided.
+Performance testing helps developers detect the performance bottlenecks and deliver quality applications that meet user expectations. For this reason, SmartPerf, a purpose-built performance testing tool, is provided.
 
 ## Introduction
 
-SmartPerf is a reliable, easy-to-use performance and power consumption test tool built for the OpenHarmony system. It provides KPIs with test value details that help you measure the performance and power consumption of your application, such as FPS, CPU, GPU, and Ftrace.
+SmartPerf is a reliable, easy-to-use performance and power consumption test tool. It provides KPIs with test value details that help you measure the performance and power consumption of your application, such as FPS, CPU, GPU, and Ftrace.
 
 You can use SmartPerf in two modes: visualized operation mode (SmartPerf-Device) and command-line shell mode (SmartPerf-Daemon). SmartPerf-Device supports visualized operations and floating window based operations (such as data collection control and real-time data display). SmartPerf-Daemon is applicable to devices without screens and devices with high tolerance regarding performance, for example, Hi3568.
 
@@ -23,7 +23,7 @@ SmartPerf come with SmartPerf-Device and SmartPerf-Daemon. SmartPerf-Device send
 
 ## Environment Preparations
 
-To run SmartPerf-Daemon, you must connect the PC to an OpenHarmony device, such as the RK3568 development board.
+To run SmartPerf-Daemon, you must connect the PC to a device, such as the RK3568 development board.
 
 ## Performing Performance Testing
 

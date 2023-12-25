@@ -300,9 +300,9 @@ try {
 ```
 
 
-## ble.startAdvertising<a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
 
-startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback<number>): void
+startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
 开始发送BLE广播。
 
@@ -372,9 +372,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -382,7 +382,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -392,9 +392,9 @@ try {
 ```
 
 
-## ble.startAdvertising<a name="startAdvertising"></a>
+## ble.startAdvertising<sup>11+</sup><a name="startAdvertising"></a>
 
-startAdvertising(advertisingParams: AdvertisingParams): Promise<void>
+startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
 开始发送BLE广播。
 
@@ -469,9 +469,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -485,9 +485,9 @@ try {
 ```
 
 
-## ble.enableAdvertising<a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
 
-enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback<void>): void
+enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
 
 临时启动BLE广播。
 
@@ -557,9 +557,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 300,
     }
     let advHandle = 0xFF;
@@ -567,7 +567,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -589,9 +589,9 @@ try {
 ```
 
 
-## ble.enableAdvertising<a name="enableAdvertising"></a>
+## ble.enableAdvertising<sup>11+</sup><a name="enableAdvertising"></a>
 
-enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise<void>
+enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
 
 临时启动BLE广播。
 
@@ -666,9 +666,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 300,
     }
     let advHandle = 0xFF;
@@ -676,7 +676,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -697,9 +697,9 @@ try {
 ```
 
 
-## ble.disableAdvertising<a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
 
-disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback<void>): void
+disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
 临时启动BLE广播。
 
@@ -769,9 +769,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -779,7 +779,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -798,9 +798,9 @@ try {
 ```
 
 
-## ble.disableAdvertising<a name="disableAdvertising"></a>
+## ble.disableAdvertising<sup>11+</sup><a name="disableAdvertising"></a>
 
-disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise<void>
+disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
 开始发送BLE广播。
 
@@ -875,9 +875,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -885,7 +885,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -902,9 +902,9 @@ try {
 }
 ```
 
-## ble.stopAdvertising<a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
 
-stopAdvertising(advertisingId: number, callback: AsyncCallback<void>): void
+stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
 
 停止发送BLE广播。
 
@@ -974,9 +974,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -984,7 +984,7 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
@@ -1000,9 +1000,9 @@ try {
 ```
 
 
-## ble.stopAdvertising<a name="stopAdvertising"></a>
+## ble.stopAdvertising<sup>11+</sup><a name="stopAdvertising"></a>
 
-stopAdvertising(advertisingId: number): Promise<void>
+stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
 停止发送BLE广播。
 
@@ -1077,9 +1077,9 @@ try {
         serviceData:[serviceDataUnit],
     };
     let advertisingParams: ble.AdvertisingParams = {
-        advertisingSettings: [setting],
-        advertisingData: [advData],
-        advertisingResponse: [advResponse],
+        advertisingSettings: setting,
+        advertisingData: advData,
+        advertisingResponse: advResponse,
         duration: 0,
     }
     let advHandle = 0xFF;
@@ -1087,12 +1087,12 @@ try {
         if (err) {
             return;
         } else {
-            advhandle = outAdvHandle;
+            advHandle = outAdvHandle;
             console.log("advHandle: " + advHandle);
         }
     });
 
-    ble.stopAdvertising(advhandle)
+    ble.stopAdvertising(advHandle)
         .then(() => {
             console.info("enable success");
     });
@@ -1102,7 +1102,7 @@ try {
 ```
 
 
-## ble.on('advertisingStateChange')
+## ble.on('advertisingStateChange')<sup>11+</sup>
 
 on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
@@ -1145,7 +1145,7 @@ try {
 ```
 
 
-## ble.off('advertisingStateChange')
+## ble.off('advertisingStateChange')<sup>11+</sup>
 
 off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
@@ -1160,7 +1160,7 @@ off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChang
 | 参数名      | 类型                                                                    | 必填   | 说明                                                      |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
 | type     | string                                                                    | 是    | 填写"advertisingStateChange"字符串，表示广播状态事件。        |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | 是    | 表示取消订阅广播状态上报。不填该参数则取消订阅该type对应的所有回调。 |
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | 否    | 表示取消订阅广播状态上报。不填该参数则取消订阅该type对应的所有回调。 |
 
 **错误码**：
 
@@ -3475,7 +3475,7 @@ try {
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 是    | 是    | 表示要广播的服务数据列表。               |
 | includeDeviceName | boolean                  | 是    | 是    | 表示是否携带设备名，可选参数。        |
 
-## AdvertisingParams
+## AdvertisingParams<sup>11+</sup>
 
 描述首次启动广播设置的参数。
 
@@ -3483,12 +3483,12 @@ try {
 
 | 名称                | 类型                             | 可读  | 可写  | 说明                      |
 | ------------------- | ------------------------------- | ----- | ----- | ------------------------ |
-| advertisingSettings | AdvertiseSetting                | 是    | 是    | 表示发送广播的相关参数。    |
-| advertisingData     | [AdvertiseData](#advertisedata) | 是    | 是    | 表示广播的数据包内容。      |
-| advertisingResponse | [AdvertiseData](#advertisedata) | 是    | 是    | 表示回复扫描请求的响应内容。 |
-| duration            | number                          | 是    | 是    | 表示发送广播持续的时间。     |
+| advertisingSettings<sup>11+</sup> | AdvertiseSetting                | 是    | 是    | 表示发送广播的相关参数。    |
+| advertisingData<sup>11+</sup>    | [AdvertiseData](#advertisedata) | 是    | 是    | 表示广播的数据包内容。      |
+| advertisingResponse<sup>11+</sup> | [AdvertiseData](#advertisedata) | 是    | 是    | 表示回复扫描请求的响应内容。 |
+| duration<sup>11+</sup>            | number                          | 是    | 是    | 表示发送广播持续的时间。     |
 
-## AdvertisingEnableParams
+## AdvertisingEnableParams<sup>11+</sup>
 
 描述临时启动广播设置的参数。
 
@@ -3496,10 +3496,10 @@ try {
 
 | 名称                | 类型                   | 可读  | 可写  | 说明                      |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
-| advertisingId       | number                | 是    | 是    | 表示当前广播的ID标识。     |
-| duration            | number                | 是    | 是    | 表示发送广播持续的时间。    |
+| advertisingId<sup>11+</sup>       | number                | 是    | 是    | 表示当前广播的ID标识。     |
+| duration<sup>11+</sup>            | number                | 是    | 是    | 表示发送广播持续的时间。    |
 
-## AdvertisingDisableParams
+## AdvertisingDisableParams<sup>11+</sup>
 
 描述临时停止广播设置的参数。
 
@@ -3507,9 +3507,9 @@ try {
 
 | 名称                | 类型                   | 可读  | 可写  | 说明                      |
 | ------------------- | --------------------- | ----- | ----- | ------------------------ |
-| advertisingId       | number                | 是    | 是    | 表示当前广播的ID标识。     |
+| advertisingId<sup>11+</sup>       | number                | 是    | 是    | 表示当前广播的ID标识。     |
 
-## AdvertisingStateChangeInfo
+## AdvertisingStateChangeInfo<sup>11+</sup>
 
 描述广播启动、停止等状态信息。
 
@@ -3517,8 +3517,8 @@ try {
 
 | 名称                | 类型                                     | 可读  | 可写  | 说明                      |
 | ------------------- | --------------------------------------- | ----- | ----- | ------------------------ |
-| advertisingId       | number                                  | 是    | 是    | 表示广播ID标识。           |
-| state               | [AdvertisingState](#advertisingstate)   | 是    | 是    | 表示广播状态。             |
+| advertisingId<sup>11+</sup>       | number                                  | 是    | 是    | 表示广播ID标识。           |
+| state<sup>11+</sup>               | [AdvertisingState](#advertisingstate)   | 是    | 是    | 表示广播状态。             |
 
 ## ManufactureData
 
@@ -3629,7 +3629,7 @@ try {
 | MATCH_MODE_AGGRESSIVE | 1    | 表示硬件上报扫描结果门限较低，比如扫描到的功率较低或者一段时间扫描到的次数较少也触发上报，默认值。 |
 | MATCH_MODE_STICKY     | 2    | 表示硬件上报扫描结果门限较高，更高的功率门限以及扫描到多次才会上报。       |
 
-## AdvertisingState
+## AdvertisingState<sup>11+</sup>
 
 枚举，广播状态。
 
@@ -3637,7 +3637,7 @@ try {
 
 | 名称      | 值    | 说明                           |
 | --------  | ---- | ------------------------------ |
-| STARTED   | 1    | 表示首次启动广播后的状态。       |
-| ENABLED   | 2    | 表示临时启动广播后的状态。       |
-| DISABLED  | 3    | 表示临时停止广播后的状态。       |
-| STOPED    | 4    | 表示完全停止广播后的状态。       |
+| STARTED<sup>11+</sup>   | 1    | 表示首次启动广播后的状态。       |
+| ENABLED<sup>11+</sup>   | 2    | 表示临时启动广播后的状态。       |
+| DISABLED<sup>11+</sup>  | 3    | 表示临时停止广播后的状态。       |
+| STOPPED<sup>11+</sup>    | 4    | 表示完全停止广播后的状态。       |

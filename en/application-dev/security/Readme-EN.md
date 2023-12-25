@@ -27,6 +27,8 @@
 - Certificate
   - [Certificate Overview](cert-overview.md)
   - [Certificate Development](cert-guidelines.md)
+- Certificate Management
+  - [Certificate Management Development](certManager-guidelines.md)
 - hapsigner
   - [hapsigner Overview](hapsigntool-overview.md)
   - [hapsigner Guide](hapsigntool-guidelines.md)

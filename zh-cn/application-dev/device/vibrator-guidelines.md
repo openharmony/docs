@@ -51,7 +51,7 @@
     "Channels": [
         {
             "Parameters": {
-                "Index": 1
+                "Index": 0
             },
             "Pattern": [
                 {
@@ -59,19 +59,41 @@
                         "Type": "transient",
                         "StartTime": 0,
                         "Parameters": {
-                            "Intensity": 100,
-                            "Frequency": 31
+                            "Frequency": 31,
+                            "Intensity": 100
                         }
                     }
                 },
                 {
                     "Event": {
                         "Type": "continuous",
-                        "StartTime": 100,
+                        "StartTime": 40,
                         "Duration": 54,
                         "Parameters": {
+                            "Frequency": 30,
                             "Intensity": 38,
-                            "Frequency": 30
+                            "Curve": [
+                                {
+                                    "Time": 0,
+                                    "Frequency": 0,
+                                    "Intensity": 0
+                                },
+                                {
+                                    "Time": 1,
+                                    "Frequency": 15,
+                                    "Intensity": 0.5
+                                },
+                                {
+                                    "Time": 40,
+                                    "Frequency": -8,
+                                    "Intensity": 1.0
+                                },
+                                {
+                                    "Time": 54,
+                                    "Frequency": 0,
+                                    "Intensity": 0
+                                }
+                            ]
                         }
                     }
                 }
@@ -82,31 +104,32 @@
 ```
 
 Json文件共包含2个属性。
-- "MetaData"属性中为文件头信息，可在如下属性中添加描述。<br>
-"Version"：必填项，文件格式的版本号，向前兼容，目前起步仅支持版本1.0；<br>
-"ChannelNumber"：必填项，表示马达振动的通道数，目前仅支持单通道，规定为1；<br>
-"Create"：可选项，可记录文件创作时间；<br>
-"Description"：可选项，可指明振动效果、创建信息等附加说明。<br>
-- "Channels"属性中为马达振动通道的相关信息。<br>
+1. "MetaData"属性中为文件头信息，可在如下属性中添加描述：<br>
+     - "Version"：必填项，文件格式的版本号，向前兼容，目前支持版本1.0；<br>
+     - "ChannelNumber"：必填项，表示马达振动的通道数，最大支持双马达通道；<br>
+     - "Create"：可选项，可记录文件创作时间；<br>
+     - "Description"：可选项，可指明振动效果、创建信息等附加说明。<br>
+2. "Channels"属性中为马达振动通道的相关信息。<br>
 
 "Channels"是Json数组，表示各个通道的信息，包含2个属性。
-- "Parameters"属性中为通道参数。<br>
-"Index"：必填项，表示通道编号，单通道下规定为1。<br>
-- "Pattern"属性中为马达振动序列。<br>
+1. "Parameters"属性中为通道参数。其中，"Index"表示通道编号，必填项，0表示全通道发送，1、2分别对应左右马达。<br>
+2. "Pattern"属性中为马达振动序列。<br>
 
-"Pattern"是Json数组，每个"Event"属性代表1个振动事件，支持添加2种振动类型。
-- 类型1："transient"类型，瞬态短振动，干脆有力；<br>
-- 类型2："continuous"类型，稳态长振动，具备长时间输出强劲有力振动的能力。<br>
+"Pattern"是Json数组，包含振动事件序列，每个"Event"属性代表1个振动事件，支持添加2种振动类型。
+1. "transient"类型，瞬态短振动，干脆有力；<br>
+2. "continuous"类型，稳态长振动，具备长时间输出强劲有力振动的能力。<br>
 
-振动事件参数信息具体如下表：
-
-| 参数 | 说明 | 范围|
-| --- | ------------------------ | ---|
-| Type | 振动事件类型，必填 | "transient" 或"continuous"|
-| StartTime | 振动的起始时间，必填 | 单位ms，有效范围为[0, 1800 000]，振动事件不能重叠|
-| Duration | 振动持续时间，仅当类型为"continuous"时有效 | 单位ms，有效范围为(10, 1600)|
-| Intensity | 振动强度，必填 | 有效范围为[0, 100]，这里的强度值为相对值，并不代表真实强度|
-| Frequency | 振动频率，必填 | 有效范围为[0, 100]，这里的频率值为相对值，并不代表真实频率|
+"Event"表示一个振动事件，包含如下属性：<br>
+1. "Type"：振动事件类型，必填项，为"transient" 或"continuous"；<br>
+2. "StartTime"：振动的起始时间，必填项，单位ms，有效范围为[0, 1800,000];<br>
+3. "Duration"：振动持续时间，仅当类型为"continuous"时有效且为必填项，单位ms，有效范围为[0, 5000]；<br>
+4. "Parameters"：振动事件参数设置，必填项，可设置以下属性参数：<br>
+     - "Intensity"：振动事件强度，必填，有效范围为[0, 100]；<br>
+     - "Frequency"：振动事件频率，必填，有效范围为[0, 100]；<br>
+     - "Curve"：振动曲线，可选项，当振动事件类型为"continuous"时有效，为Json数组，支持设置一组调节点，调节点数量最大支持16个，最小为4个，每个调节点需包含如下属性：<br>
+         * "Time"：相对事件起始时间的偏移，最小为0，最大不能超过事件振动时长；<br>
+         * "Intensity"：相对事件振动强度的增益，范围为[0, 1]，此值乘上振动事件强度为对应时间点调节后的强度；<br>
+         * "Frequency"：相对事件振动频率的变化，范围为[-100, 100]，此值加上振动事件频率为对应时间点调节后的频率。<br>
 
 其他要求：
 

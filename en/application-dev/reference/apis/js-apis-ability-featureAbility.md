@@ -3,9 +3,9 @@
 The **FeatureAbility** module provides APIs that enable user interaction. You can use the APIs to start or terminate an ability, obtain a **dataAbilityHelper** object, obtain the window corresponding to the current ability, and connect to or disconnect from a ServiceAbility.
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
-> The APIs of this module can be used only in the FA model.
+>
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs provided by this module can be used only in the FA model. In the stage model, use the APIs provided by [UIAbility](js-apis-app-ability-uiAbility.md) and [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) modules instead.
 
 ## Constraints
 
@@ -30,12 +30,14 @@ Observe the following when using this API:
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) instead.
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
-| callback  | AsyncCallback\<number>                   | Yes   | Callback used to return the result.     |
+| callback  | AsyncCallback\<number>                   | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **0**; otherwise, **err** is a non-zero value.     |
 
 **Error codes**
 
@@ -106,6 +108,8 @@ Observe the following when using this API:
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2) instead.
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
@@ -116,7 +120,7 @@ Observe the following when using this API:
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<number> | Promise used to return the result.|
+| Promise\<number> | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, a non-zero value is returned.|
 
 **Error codes**
 
@@ -181,6 +185,8 @@ Observe the following when using this API:
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [dataShare.createDataShareHelper](js-apis-data-dataShare.md#datasharecreatedatasharehelper) instead.
+
 **Parameters**
 
 | Name  | Type    | Mandatory  | Description          |
@@ -218,12 +224,14 @@ Observe the following when using this API:
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult) instead.
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
-| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Yes   | Callback used to return the result.     |
+| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is an **AbilityResult** object; otherwise, err is an error object.     |
 
 **Error codes**
 
@@ -295,6 +303,8 @@ Observe the following when using this API:
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-2) instead.
 
 **Parameters**
 
@@ -376,12 +386,14 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) instead.
+
 **Parameters**
 
 | Name       | Type                             | Mandatory  | Description            |
 | --------- | ------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned after the ability is terminated.|
-| callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result.     |
+| callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.     |
 
 **Error codes**
 
@@ -441,6 +453,8 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult-1) instead.
+
 **Parameters**
 
 | Name       | Type                             | Mandatory  | Description           |
@@ -451,7 +465,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -509,6 +523,8 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 Checks whether the main window of this ability has the focus. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Note**: This API can be used only in the FA model. In the stage model, use [on('windowEvent')](js-apis-window.md#onwindowevent10) instead.
 
 **Parameters**
 
@@ -572,6 +588,8 @@ Obtains the Want corresponding to the ability to start. This API uses an asynchr
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbility.launchWant](js-apis-app-ability-uiAbility.md#attributes) instead.
+
 **Parameters**
 
 | Name      | Type                           | Mandatory  | Description       |
@@ -606,6 +624,8 @@ Obtains the Want corresponding to the ability to start. This API uses a promise 
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbility.launchWant](js-apis-app-ability-uiAbility.md#attributes) instead.
+
 **Return value**
 
 | Type                     | Description              |
@@ -636,6 +656,8 @@ Obtains the application context.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbility.context](js-apis-app-ability-uiAbility.md#attributes) instead.
+
 **Return value**
 
 | Type     | Description        |
@@ -663,6 +685,8 @@ terminateSelf(callback: AsyncCallback\<void>): void
 Terminates this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) instead.
 
 **Parameters**
 
@@ -702,11 +726,13 @@ Terminates this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1) instead.
+
 **Return value**
 
 | Type            | Description              |
 | -------------- | ---------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -743,6 +769,8 @@ Observe the following when using this API:
  - For details about the startup rules for the components in the FA model, see [Component Startup Rules (FA Model)](../../application-models/component-startup-rules-fa.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.connectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) instead.
 
 **Parameters**
 
@@ -791,13 +819,13 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`)
         },
     },
 );
@@ -810,6 +838,8 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 Disconnects this ability from a specific ServiceAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1) instead.
 
 **Parameters**
 
@@ -842,13 +872,13 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
         },
     },
 );
@@ -870,6 +900,8 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) instead.
+
 **Parameters**
 
 | Name        | Type    | Mandatory  | Description                     |
@@ -880,7 +912,7 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 
 | Type            | Description             |
 | -------------- | --------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -907,13 +939,13 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
         },
     },
 );
@@ -921,7 +953,7 @@ let connectId = featureAbility.connectAbility(
 featureAbility.disconnectAbility(connectId).then(() => {
     console.log('disconnectAbility success')
 }).catch((error: BusinessError)=>{
-    console.error('featureAbilityTest result errCode : ${error.code}');
+    console.error(`featureAbilityTest result errCode : ${error.code}`);
 });
 ```
 
@@ -933,6 +965,8 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 Obtains the window corresponding to this ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Note**: This API can be used only in the FA model. In the stage model, use [window.getLastWindow](js-apis-window.md#windowgetlastwindow9) instead.
 
 **Parameters**
 
@@ -970,11 +1004,13 @@ export default {
 
 ## featureAbility.getWindow<sup>7+</sup>
 
-getWindow(): Promise\<window.Window>;
+getWindow(): Promise\<window.Window>
 
 Obtains the window corresponding to this ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+**Note**: This API can be used only in the FA model. In the stage model, use [window.getLastWindow](js-apis-window.md#windowgetlastwindow9-1) instead.
 
 **Return value**
 

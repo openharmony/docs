@@ -48,12 +48,15 @@
       - 自定义组件
         - [创建自定义组件](arkts-create-custom-components.md)
         - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
+        - [自定义组件冻结功能](arkts-custom-components-freeze.md)
       - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
       - [\@BuilderParam装饰器：引用\@Builder函数](arkts-builderparam.md)
+      - [wrapBuilder：封装全局@Builder](arkts-wrapBuilder.md)
       - [\@Styles装饰器：定义组件重用样式](arkts-style.md)
       - [\@Extend装饰器：定义扩展组件样式](arkts-extend.md)
       - [stateStyles：多态样式](arkts-statestyles.md)
       - [@AnimatableExtend装饰器：定义可动画属性](arkts-animatable-extend.md)
+      - [@Require装饰器：校验构造传参](arkts-require.md)
     - 状态管理
       - [状态管理概述](arkts-state-management-overview.md)
       - 管理组件拥有的状态
@@ -72,8 +75,10 @@
         - [其他状态管理概述](arkts-other-state-mgmt-functions-overview.md)
         - [\@Watch装饰器：状态变量更改通知](arkts-watch.md)
         - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
+        - [\@Track装饰器：class对象属性级更新](arkts-track.md)
       - [MVVM模式](arkts-mvvm.md)
       - [状态管理优秀实践](arkts-state-management-best-practices.md)
+      - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
     - 渲染控制
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

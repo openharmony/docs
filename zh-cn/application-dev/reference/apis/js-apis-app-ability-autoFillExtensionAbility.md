@@ -5,6 +5,7 @@ AutoFillExtensionAbility模块提供账号和密码的自动填充和保存功�
 > **说明：**
 > 
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块接口均为系统接口。  
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
@@ -55,11 +56,11 @@ onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback
 
 **参数：**
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md)  | 是 | 否 | AutoFillExtensionAbility界面内容相关信息。 |
-| request | [FillRequest](js-apis-inner-application-autoFillRequest.md#fillrequest)  | 是 | 否 | 自动填充数据。 |
-| callback | [FillRequestCallback](js-apis-inner-application-autoFillRequest.md#fillrequestcallback)  | 是 | 否 | 自动填充请求回调。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md)  | 是 | AutoFillExtensionAbility界面内容相关信息。 |
+| request | [FillRequest](js-apis-inner-application-autoFillRequest.md#fillrequest)  | 是 | 自动填充数据。 |
+| callback | [FillRequestCallback](js-apis-inner-application-autoFillRequest.md#fillrequestcallback)  | 是 | 自动填充请求回调。 |
 
 **示例：**
 
@@ -68,6 +69,7 @@ onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback
   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
   import autoFillManager from '@ohos.app.ability.autoFillManager';
   import hilog from '@ohos.hilog';
+  import common from '@ohos.app.ability.common';
 
   class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
     onFillRequest(session: UIExtensionContentSession,
@@ -77,14 +79,15 @@ onFillRequest(session: UIExtensionContentSession, request: FillRequest, callback
       hilog.info(0x0000, 'testTag', 'fill requestCallback: %{public}s', JSON.stringify(callback));
       hilog.info(0x0000, 'testTag', "get request viewData: ", JSON.stringify(request.viewData));
       try {
-        let storage_fill = new LocalStorage(
-          {
-            'session': session,
-            'message': "AutoFill Page",
-            'fillCallback': callback,
-            'viewData': request.viewData,
-            'context': this.context,
-          });
+        let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.FillRequestCallback |
+          autoFillManager.ViewData | common.AutoFillExtensionContext> = {
+          'session': session,
+          'message': "AutoFill Page",
+          'fillCallback': callback,
+          'viewData': request.viewData,
+          'context': this.context,
+        };
+        let storage_fill = new LocalStorage(localStorageData);
         if (session) {
           session.loadContent('pages/SelectorList', storage_fill);
         } else {
@@ -107,11 +110,11 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
 
 **参数：**
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md)  | 是 | 否 | AutoFillExtensionAbility界面内容相关信息。 |
-| request | [SaveRequest](js-apis-inner-application-autoFillRequest.md#saverequest)  | 是 | 否 | 保存请求数据。 |
-| callback | [SaveRequestCallback](js-apis-inner-application-autoFillRequest.md#saverequestcallback)  | 是 | 否 | 保存请求回调。 |
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| session | [UIExtensionContentSession](js-apis-app-ability-uiExtensionContentSession.md)  | 是 | AutoFillExtensionAbility界面内容相关信息。 |
+| request | [SaveRequest](js-apis-inner-application-autoFillRequest.md#saverequest)  | 是 | 保存请求数据。 |
+| callback | [SaveRequestCallback](js-apis-inner-application-autoFillRequest.md#saverequestcallback)  | 是 | 保存请求回调。 |
 
 **示例：**
 
@@ -120,6 +123,7 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
   import autoFillManager from '@ohos.app.ability.autoFillManager';
   import hilog from '@ohos.hilog';
+  import common from '@ohos.app.ability.common';
 
   class MyAutoFillExtensionAbility extends AutoFillExtensionAbility {
     onSaveRequest(session : UIExtensionContentSession,
@@ -127,13 +131,15 @@ onSaveRequest(session: UIExtensionContentSession, request: SaveRequest, callback
                   callback : autoFillManager.SaveRequestCallback) {
       hilog.info(0x0000, 'testTag', '%{public}s', 'onSaveRequest');
       try {
-        let storage_save = new LocalStorage(
-          {
-            'session': session,
-            'message': "AutoFill Page",
-            'callback': callback,
-            'viewData': request.viewData
-          });
+        let localStorageData: Record<string, UIExtensionContentSession | string | autoFillManager.FillRequestCallback |
+          autoFillManager.ViewData | common.AutoFillExtensionContext> = {
+          'session': session,
+          'message': "AutoFill Page",
+          'fillCallback': callback,
+          'viewData': request.viewData,
+          'context': this.context,
+        };
+        let storage_fill = new LocalStorage(localStorageData);
         if (session) {
           session.loadContent('pages/SavePage', storage_save);
         } else {

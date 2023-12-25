@@ -68,7 +68,7 @@ try {
 ```
 ## securityManager.getDeviceEncryptionStatus
 
-getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus;
+getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
 Obtains the file system encryption status of the device. This API returns the result synchronously. If the operation is successful, the file encryption status is returned. If the operation fails, an exception is thrown.
 
@@ -86,9 +86,9 @@ Obtains the file system encryption status of the device. This API returns the re
 
 **Return value**
 
-| Type            | Description                                                  |
-| ---------------- | ------------------------------------------------------ |
-| EncryptionStatus | File system encryption status. Currently, only a boolean value indicating whether the file system is encrypted is returned.|
+| Type                  | Description                                                  |
+| ---------------------- | ------------------------------------------------------ |
+| DeviceEncryptionStatus | File system encryption status. Currently, only a boolean value indicating whether the file system is encrypted is returned.|
 
 **Error codes**
 
@@ -109,7 +109,7 @@ let wantTemp: Want = {
 };
 
 try {
-    let result: securityManager.EncryptionStatus = securityManager.getDeviceEncryptionStatus(wantTemp);
+    let result: securityManager.DeviceEncryptionStatus = securityManager.getDeviceEncryptionStatus(wantTemp);
     console.info(`Succeeded in getting device encryption status. isEncrypted: ${result.isEncrypted}`);
 } catch(err) {
     console.error(`Failed to get device encryption status. Code: ${err.code}, message: ${err.message}`);

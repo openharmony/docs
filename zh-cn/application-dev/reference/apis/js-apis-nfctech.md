@@ -306,7 +306,7 @@ isExtendedApduSupported(): Promise&lt;boolean&gt;
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise&lt;boolean&gt; | 检查结果，true: 支持， false: 不支持。|
+| Promise&lt;boolean&gt; | 以Promise形式返回检查结果，true: 支持， false: 不支持。|
 
 **错误码：**
 
@@ -336,10 +336,10 @@ try {
     isoDep.isExtendedApduSupported().then((response: boolean) => {
         console.log("isoDep isExtendedApduSupported Promise response: " + response);
     }).catch((err: BusinessError) => {
-        console.log("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
+        console.error("isoDep isExtendedApduSupported Promise Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("isoDep isExtendedApduSupported Promise Code: ${(busiError as Businsess).code}, " +
+    console.error("isoDep isExtendedApduSupported Promise Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -393,7 +393,7 @@ try {
         }
     });
 } catch (busiErr) {
-    console.log("isoDep isExtendedApduSupported AsyncCallback Code: ${(busiError as Business).code}, " +
+    console.error("isoDep isExtendedApduSupported AsyncCallback Code: ${(busiError as Business).code}, " +
         "message: ${(busiError as Business).message}");
 }
 ```
@@ -484,7 +484,7 @@ console.log("ndef ndefMessage: " + ndefMessage);
 
 ### NdefTag.isNdefWritable<sup>9+</sup>
 
-isNdefWritable(): boolean;
+isNdefWritable(): boolean
 
 检查NDEF标签是否可写。在调用写数据接口前，需要先判断是否支持写操作。
 
@@ -550,10 +550,10 @@ try {
     ndefTag.readNdef().then((ndefmessage : tag.NdefMessage) => {
         console.log("ndef readNdef Promise ndefmessage: " + ndefmessage);
     }).catch((err : BusinessError)=> {
-        console.log("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
+        console.error("ndef readNdef Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndef readNdef Promise catched busiError Code: ${(busiError as BusinessError).code}, " +
+    console.error("ndef readNdef Promise catched busiError Code: ${(busiError as BusinessError).code}, " +
         "message: ${(busiError as BusinessError).message}");
 }
 ```
@@ -614,7 +614,7 @@ try {
 
 ### NdefTag.writeNdef<sup>9+</sup>
 
-writeNdef(msg: NdefMessage): Promise\<void>;
+writeNdef(msg: [NdefMessage](#ndefmessage9)): Promise\<void>
 
 将NDEF Messsage数据对象写入标签，使用Promise方式作为异步方法。
 
@@ -626,7 +626,7 @@ writeNdef(msg: NdefMessage): Promise\<void>;
 
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| msg | NdefMessage | 是   | NDEF Message数据对象。|
+| msg | [NdefMessage](#ndefmessage9) | 是   | NDEF Message数据对象。|
 
 **错误码：**
 
@@ -660,10 +660,10 @@ try {
     ndefTag.writeNdef(ndefMessage).then(() => {
         console.log("ndef writeNdef Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
+        console.error("ndef writeNdef err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndef writeNdef Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("ndef writeNdef Promise catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -716,13 +716,13 @@ if (!ndefTag.isTagConnected()) {
 try {
     ndefTag.writeNdef(ndefMessage, (err : BusinessError)=> {
         if (err) {
-            console.log("ndef writeNdef AsyncCallback Code: ${err.code}, message: ${err.message}");
+            console.error("ndef writeNdef AsyncCallback Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("ndef writeNdef AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("ndef writeNdef AsyncCallback catch busiError Code: ${(busiError as Businsess).code}," +
+    console.error("ndef writeNdef AsyncCallback catch busiError Code: ${(busiError as Businsess).code}," +
         " message: ${(busiError as Businsess).message}");
 }
 ```
@@ -799,10 +799,10 @@ try {
     ndefTag.setReadOnly().then(() => {
         console.log("ndef setReadOnly Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
+        console.error("ndef setReadOnly Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndef setReadOnly Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("ndef setReadOnly Promise catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -856,7 +856,7 @@ try {
         }
     });
 } catch (busiError) {
-    console.log("ndef setReadOnly AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("ndef setReadOnly AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -893,7 +893,7 @@ try {
     let ndefTypeString : tag.NfcForumType = ndefTag.getNdefTagTypeString(tag.NfcForumType.NFC_FORUM_TYPE_1);
     console.log("ndef ndefTypeString: " + ndefTypeString);
 } catch (busiError) {
-    console.log("ndef getNdefTagTypeString catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("ndef getNdefTagTypeString catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -954,10 +954,10 @@ try {
     mifareClassic.authenticateSector(sectorIndex, key, true).then(() => {
         console.log("mifareClassic authenticateSector Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
+        console.error("mifareClassic authenticateSector Promise errCode: ${err.code}, " + "message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic authenticateSector Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic authenticateSector Promise catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1015,7 +1015,7 @@ try {
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic authenticateSector AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic authenticateSector AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1040,7 +1040,7 @@ readSingleBlock(blockIndex: number): Promise\<number[]>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise\<number[]> | 读取的块数据。 |
+| Promise\<number[]> | 以Promise形式读取的块数据。 |
 
 **错误码：**
 
@@ -1071,10 +1071,10 @@ try {
     mifareClassic.readSingleBlock(blockIndex).then((data : number[]) => {
         console.log("mifareClassic readSingleBlock Promise data: " + data);
     }).catch((err : BusinessError)=> {
-        console.log("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
+        console.error("mifareClassic readSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic readSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic readSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1130,7 +1130,7 @@ try {
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic readSingleBlock AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic readSingleBlock AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1183,10 +1183,10 @@ try {
     mifareClassic.writeSingleBlock(blockIndex, rawData).then(() => {
         console.log("mifareClassic writeSingleBlock Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
+        console.error("mifareClassic writeSingleBlock Promise errCode: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic writeSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic writeSingleBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1245,7 +1245,7 @@ try {
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic writeSingleBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic writeSingleBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1254,7 +1254,7 @@ try {
 
 incrementBlock(blockIndex: number, value: number): Promise\<void>
 
-对指定块的内容，增加指定的数值。使用Promise方式作为异步方法。
+对指定块的内容，增加指定的数值，并将结果存储在内部传输缓冲器中。使用Promise方式作为异步方法。
 
 **需要权限：** ohos.permission.NFC_TAG
 
@@ -1297,10 +1297,10 @@ try {
     mifareClassic.incrementBlock(blockIndex, value).then(() => {
         console.log("mifareClassic incrementBlock Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
+        console.error("mifareClassic incrementBlock Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic incrementBlock Promise catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic incrementBlock Promise catch Code: ${(busiError as Businsess).code}, " +
        "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1309,7 +1309,7 @@ try {
 
 incrementBlock(blockIndex: number, value: number, callback: AsyncCallback\<void>): void
 
-对指定块的内容，增加指定的数值。使用AsyncCallback方式作为异步方法。
+对指定块的内容，增加指定的数值，并将结果存储在内部传输缓冲器中。使用AsyncCallback方式作为异步方法。
 
 **需要权限：** ohos.permission.NFC_TAG
 
@@ -1358,7 +1358,7 @@ try {
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic incrementBlock AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic incrementBlock AsyncCallback catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1367,7 +1367,7 @@ try {
 
 decrementBlock(blockIndex: number, value: number): Promise\<void>
 
-对指定块的内容，减少指定的数值。使用Promise方式作为异步方法。
+对指定块的内容，减少指定的数值，并将结果存储在内部传输缓冲器中。使用Promise方式作为异步方法。
 
 **需要权限：** ohos.permission.NFC_TAG
 
@@ -1410,10 +1410,10 @@ try {
     mifareClassic.decrementBlock(blockIndex, value).then(() => {
         console.log("mifareClassic decrementBlock Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
+        console.error("mifareClassic decrementBlock Promise errCode: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic decrementBlock Promise catch busiError: Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic decrementBlock Promise catch busiError: Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1471,7 +1471,7 @@ try {
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic decrementBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic decrementBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
       "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1521,10 +1521,10 @@ try {
     mifareClassic.transferToBlock(blockIndex).then(() => {
         console.log("mifareClassic transferToBlock Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
+        console.error("mifareClassic transferToBlock Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic transferToBlock Promise catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic transferToBlock Promise catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1574,13 +1574,13 @@ try {
     let blockIndex = 1; // change it to be correct index.
     mifareClassic.transferToBlock(blockIndex, (err : BusinessError)=> {
         if (err) {
-            console.log("mifareClassic transferToBlock AsyncCallback errCode: ${err.code}, message: ${err.message}");
+            console.error("mifareClassic transferToBlock AsyncCallback errCode: ${err.code}, message: ${err.message}");
         } else {
             console.log("mifareClassic transferToBlock AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic transferToBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic transferToBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1630,10 +1630,10 @@ try {
     mifareClassic.restoreFromBlock(blockIndex).then(() => {
         console.log("mifareClassic restoreFromBlock Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
+        console.error("mifareClassic restoreFromBlock Promise errCode: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareClassic restoreFromBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic restoreFromBlock Promise catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1689,7 +1689,7 @@ try {
         }
     });
 } catch (busiError) {
-    console.log("mifareClassic restoreFromBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic restoreFromBlock AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1752,7 +1752,7 @@ try {
     let blockCnt : number = mifareClassic.getBlockCountInSector(sectorIndex);
     console.log("mifareClassic blockCnt: " + blockCnt);
 } catch (busiError) {
-    console.log("mifareClassic getBlockCountInSector catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic getBlockCountInSector catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1864,7 +1864,7 @@ try {
     let blockIndex : number = mifareClassic.getBlockIndex(sectorIndex);
     console.log("mifareClassic blockIndex: " + blockIndex);
 } catch (busiError) {
-    console.log("mifareClassic getBlockIndex catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic getBlockIndex catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1902,7 +1902,7 @@ try {
     let sectorIndex : number = mifareClassic.getSectorIndex(blockIndex);
     console.log("mifareClassic sectorIndex: " + sectorIndex);
 } catch (busiError) {
-    console.log("mifareClassic getSectorIndex catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareClassic getSectorIndex catch busiError Code: ${(busiError as Businsess).code}, " +
        "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -1935,7 +1935,7 @@ readMultiplePages(pageIndex: number): Promise\<number[]>
 
 | **类型** | **说明**                             |
 | ------------------ | --------------------------|
-| Promise\<number[]> | 读取的4页的数据，共16字节。 |
+| Promise\<number[]> | 以Promise形式读取的4页的数据，共16字节。 |
 
 **错误码：**
 
@@ -1967,10 +1967,10 @@ try {
     mifareUltralight.readMultiplePages(pageIndex).then((data : number[]) => {
         console.log("mifareUltralight readMultiplePages Promise data = " + data);
     }).catch((err : BusinessError)=> {
-        console.log("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
+        console.error("mifareUltralight readMultiplePages Promise Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareUltralight readMultiplePages Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareUltralight readMultiplePages Promise catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -2026,7 +2026,7 @@ try {
         }
     });
 } catch (busiError) {
-    console.log("mifareUltralight readMultiplePages AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareUltralight readMultiplePages AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -2078,10 +2078,10 @@ try {
     mifareUltralight.writeSinglePage(pageIndex, rawData).then(() => {
         console.log("mifareUltralight writeSinglePage Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
+        console.error("mifareUltralight writeSinglePage Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("mifareUltralight writeSinglePage Promise catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareUltralight writeSinglePage Promise catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -2133,13 +2133,13 @@ try {
     let rawData = [0x01, 0x02, 0x03, 0x04]; // MUST be 4 bytes, change it to be correct raw data.
     mifareUltralight.writeSinglePage(pageIndex, rawData, (err : BusinessError)=> {
         if (err) {
-            console.log("mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}, message: ${err.message}");
+            console.error("mifareUltralight writeSinglePage AsyncCallback Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("mifareUltralight writeSinglePage AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("mifareUltralight writeSinglePage AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+    console.error("mifareUltralight writeSinglePage AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -2224,10 +2224,10 @@ try {
     ndefFormatable.format(ndefMessage).then(() => {
         console.log("ndefFormatable format Promise success.");
     }).catch((err : BusinessError)=> {
-        console.log("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
+        console.error("ndefFormatable format Promise err Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndefFormatable format Promise catch busiError Code: ${(busiError as Businsess).code}, " +
+    console.error("ndefFormatable format Promise catch busiError Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -2347,7 +2347,7 @@ try {
         console.log("ndefFormatable formatReadOnly Promise Code: ${err.code}, message: ${err.message}");
     });
 } catch (busiError) {
-    console.log("ndefFormatable formatReadOnly Promise catch Code: ${(busiError as Businsess).code}, " +
+    console.error("ndefFormatable formatReadOnly Promise catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```
@@ -2405,13 +2405,13 @@ try {
 
     ndefFormatable.formatReadOnly(ndefMessage, (err : BusinessError)=> {
         if (err) {
-            console.log("ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
+            console.error("ndefFormatable formatReadOnly AsyncCallback err Code: ${err.code}, message: ${err.message}");
         } else {
             console.log("ndefFormatable formatReadOnly AsyncCallback success.");
         }
     });
 } catch (busiError) {
-    console.log("ndefFormatable formatReadOnly AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
+    console.error("ndefFormatable formatReadOnly AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
         "message: ${(busiError as Businsess).message}");
 }
 ```

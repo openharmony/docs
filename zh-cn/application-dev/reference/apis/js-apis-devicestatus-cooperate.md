@@ -11,14 +11,16 @@
 ## 导入模块
 
 ```ts
-import cooperate from '@ohos.cooperate'
+import cooperate from '@ohos.cooperate';
 ```
 
-## cooperate.prepareCooperate
+## cooperate.prepareCooperate<sup>(11+)</sup>
 
 prepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 
 准备键鼠穿越，使用Callback异步回调。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -45,11 +47,13 @@ try {
 }
 ```
 
-## cooperate.prepareCooperate
+## cooperate.prepareCooperate<sup>(11+)</sup>
 
 prepareCooperate(): Promise&lt;void&gt;;
 
 准备键鼠穿越，使用Promise异步方式返回结果。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -76,11 +80,13 @@ try {
 
 
 
-## cooperate.unprepareCooperate
+## cooperate.unprepareCooperate<sup>(11+)</sup>
 
 unprepareCooperate(callback: AsyncCallback&lt;void&gt;): void;
 
 取消键鼠穿越准备，使用Callback异步回调。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -105,11 +111,13 @@ try {
 }
 ```
 
-## cooperate.unprepareCooperate
+## cooperate.unprepareCooperate<sup>(11+)</sup>
 
 unprepareCooperate(): Promise&lt;void&gt;;
 
 取消键鼠穿越准备，使用Promise异步回调。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -136,11 +144,13 @@ try {
 
 
 
-## cooperate.activateCooperate
+## cooperate.activateCooperate<sup>(11+)</sup>
 
 activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: AsyncCallback&lt;void&gt;): void;
 
 启动键鼠穿越，使用Callback异步回调。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -149,7 +159,7 @@ activateCooperate(targetNetworkId: string, inputDeviceId: number, callback: Asyn
 | 参数名          | 类型                      | 必填 | 说明                                                         |
 | --------------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | targetNetworkId | string                    | 是   | 键鼠穿越目标设备描述符。                                     |
-| inputDeviceId   | number                    | 是   |                                                              |
+| inputDeviceId   | number                    | 是   | 待穿越输入设备标识符。                                       |
 | callback        | AsyncCallback&lt;void&gt; | 是   | 回调函数，键鼠穿越启动成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -179,11 +189,13 @@ try {
 }
 ```
 
-## cooperate.activateCooperate
+## cooperate.activateCooperate<sup>(11+)</sup>
 
 activateCooperate(targetNetworkId: string, inputDeviceId: number): Promise&lt;void&gt;;
 
 启动键鼠穿越，使用Promise异步回调。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**: SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -227,11 +239,13 @@ try {
 
 
 
-## cooperate.deactivateCooperate
+## cooperate.deactivateCooperate<sup>(11+)</sup>
 
 deactivateCooperate(isUnchained: boolean, callback: AsyncCallback&lt;void&gt;): void;
 
 停止键鼠穿越，使用Callback异步回调。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -259,11 +273,13 @@ try {
 }
 ```
 
-## cooperate.deactivateCooperate
+## cooperate.deactivateCooperate<sup>(11+)</sup>
 
 deactivateCooperate(isUnchained: boolean): Promise&lt;void&gt;;
 
 停止键鼠穿越，使用Promise异步回调。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -296,11 +312,13 @@ try {
 
 
 
-## cooperate.getCooperateSwitchState
+## cooperate.getCooperateSwitchState<sup>(11+)</sup>
 
 getCooperateSwitchState(networkId: string, callback: AsyncCallback&lt;boolean&gt;): void;
 
 获取目标设备键鼠穿越开关的状态，使用Callback异步回调。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -329,11 +347,13 @@ try {
 }
 ```
 
-## cooperate.getCooperateSwitchState
+## cooperate.getCooperateSwitchState<sup>(11+)</sup>
 
 getCooperateSwitchState(networkId: string): Promise&lt;boolean&gt;;
 
 获取目标设备键鼠穿越开关的状态，使用Promise异步方式返回结果。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -367,11 +387,13 @@ try {
 
 
 
-## on('cooperateMessage')
+## on('cooperateMessage')<sup>(11+)</sup>
 
 on(type: 'cooperateMessage', callback: Callback&lt;CooperateMessage&gt;): void;
 
 注册监听键鼠穿越状态。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -398,11 +420,13 @@ try {
 
 
 
-## off('cooperateMessage')
+## off('cooperateMessage')<sup>(11+)</sup>
 
 off(type: 'cooperateMessage', callback?: Callback&lt;CooperateMessage&gt;): void;
 
 取消监听键鼠穿越状态。
+
+**需要权限**：ohos.permission.COOPERATE_MANAGER
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
@@ -449,35 +473,35 @@ try {
 
 
 
-## CooperateMessage
+## CooperateMessage<sup>(11+)</sup>
 
 键鼠穿越的消息。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 参数名    | 类型           | 说明                     |
-| --------- | -------------- | ------------------------ |
-| networkId | string         | 键鼠穿越目标设备描述符。 |
-| state     | CooperateState | 键鼠穿越的状态。         |
+| 名称                      | 类型           | 可读 | 可写 | 说明                     |
+| ------------------------- | -------------- | ---- | ---- | ------------------------ |
+| networkId<sup>(11+)</sup> | string         | 是   | 否   | 键鼠穿越目标设备描述符。 |
+| state<sup>(11+)</sup>     | CooperateState | 是   | 否   | 键鼠穿越的状态。         |
 
 
 
-## CooperateState
+## CooperateState<sup>(11+)</sup>
 
 键鼠穿越的状态。
 
 **系统能力**：SystemCapability.Msdp.DeviceStatus.Cooperate
 
-| 名称                           | 值   | 说明                   |
-| ------------------------------ | ---- | ---------------------- |
-| COOPERATE_PREPARE              | 0    | 表示准备键鼠穿越。     |
-| COOPERATE_UNPREPARE            | 1    | 表示取消键鼠穿越准备。 |
-| COOPERATE_ACTIVATE             | 2    | 表示启动键鼠穿越。     |
-| COOPERATE_ACTIVATE_SUCCESS     | 3    | 表示键鼠穿越启动成功。 |
-| COOPERATE_ACTIVATE_FAILURE     | 4    | 表示键鼠穿越启动失败。 |
-| COOPERATE_DEACTIVATE_SUCCESS   | 5    | 表示键鼠穿越停止成功。 |
-| COOPERATE_DEACTIVATE_FAILURE   | 6    | 表示键鼠穿越停止失败。 |
-| COOPERATE_SESSION_DISCONNECTED | 7    | 表示键鼠穿越会话断开。 |
+| 名称                                           | 类型   | 可读 | 可写 | 说明                   |
+| ---------------------------------------------- | ------ | ---- | ---- | ---------------------- |
+| COOPERATE_PREPARE<sup>(11+)</sup>              | number | 是   | 否   | 表示准备键鼠穿越。     |
+| COOPERATE_UNPREPARE<sup>(11+)</sup>            | number | 是   | 否   | 表示取消键鼠穿越准备。 |
+| COOPERATE_ACTIVATE<sup>(11+)</sup>             | number | 是   | 否   | 表示启动键鼠穿越。     |
+| COOPERATE_ACTIVATE_SUCCESS<sup>(11+)</sup>     | number | 是   | 否   | 表示键鼠穿越启动成功。 |
+| COOPERATE_ACTIVATE_FAILURE<sup>(11+)</sup>     | number | 是   | 否   | 表示键鼠穿越启动失败。 |
+| COOPERATE_DEACTIVATE_SUCCESS<sup>(11+)</sup>   | number | 是   | 否   | 表示键鼠穿越停止成功。 |
+| COOPERATE_DEACTIVATE_FAILURE<sup>(11+)</sup>   | number | 是   | 否   | 表示键鼠穿越停止失败。 |
+| COOPERATE_SESSION_DISCONNECTED<sup>(11+)</sup> | number | 是   | 否   | 表示键鼠穿越会话断开。 |
 
 
 

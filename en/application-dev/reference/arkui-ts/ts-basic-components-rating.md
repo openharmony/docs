@@ -47,6 +47,15 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ---------------------------------------- | ---------------------------------------- |
 | onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
+## Sequential Keyboard Navigation Specifications                                   
+| Key        | Description                       | 
+|------------|-----------------------------| 
+| Tab        | Switch the focus between components.                   | 
+| Left and right arrow keys  | Increase or decrease the rating on preview at the specified step, without changing the actual rating.|    
+| Home       | Move the focus to the first star, without changing the actual rating.         | 
+| End        | Move the focus to the last star, without changing the actual rating.        | 
+| Space/Enter | Submit the rating result based on the current rating.              |
+
 ## Example
 
 ### Example 1
