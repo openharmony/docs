@@ -3910,6 +3910,8 @@ email.email = "xxx@email.com";
 
 ```js
 let holder: contact.Holder = {
+  bundleName: "com.ohos.contacts",
+  displayName: "displayName",
   holderId: 0
 };
 ```
@@ -3918,6 +3920,8 @@ let holder: contact.Holder = {
 
 ```js
 let holder = new contact.Holder();
+holder.bundleName = "com.ohos.contacts";
+holder.displayName = "displayName";
 holder.holderId = 0;
 ```
 
@@ -4306,7 +4310,16 @@ portrait.uri = "uri";
 
 ```js
 let postalAddress: contact.PostalAddress = {
-    city: "city"
+    city: "xx市",
+    country: "中国",
+    labelName: "家庭地址",
+    neighborhood: "张三",
+    pobox: "xx区xx道135号101室",
+    postalAddress: "xx市xx区xx道135号101室",
+    postcode: "xxxxxx",
+    region: "xx区",
+    street: "xx道",
+    labelId: 1
 };
 ```
 
@@ -4314,7 +4327,16 @@ let postalAddress: contact.PostalAddress = {
 
 ```js
 let postalAddress = new contact.PostalAddress();
-postalAddress.city = "city";
+postalAddress.city = "xx市";
+postalAddress.country = "中国";
+postalAddress.labelName = "家庭地址";
+postalAddress.neighborhood = "张三";
+postalAddress.pobox = "xx区xx道135号101室";
+postalAddress.postalAddress = "xx市xx区xx道135号101室";
+postalAddress.postcode = "xxxxxx";
+postalAddress.region = "xx区";
+postalAddress.street = "xx道";
+postalAddress.labelId = 1;
 ```
 
 
