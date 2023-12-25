@@ -358,7 +358,7 @@ let count = emitter.getListenerCount("eventId");
 
 | 名称 | 类型           | 可读 | 可写 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，数据类型支持字符串、整型和布尔型。<br> 其中字符串长度最大为10240字节。 |
+| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据 ，数据大小最大为16M。 |
 
 ## Options<sup>11+</sup>
 
