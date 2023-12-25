@@ -4320,7 +4320,7 @@ let postalAddress: contact.PostalAddress = {
 ```js
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
-postalAddress.postalAddress = "xx市xx区xx道135号101室";
+postalAddress.postalAddress = "postalAddress";
 ```
 
 
