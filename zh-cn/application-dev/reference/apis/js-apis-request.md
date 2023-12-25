@@ -3565,7 +3565,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | id | string | 是 | 任务id。 |
-  | token | string | 是 | 任务查询token。 |
+  | token | string | 否 | 任务查询token。 |
 
 **返回值：** 
 

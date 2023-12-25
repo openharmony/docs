@@ -1024,7 +1024,7 @@ class SendData {
 
 let httpRequest = http.createHttp();
 httpRequest.on("dataSendProgress", (data: SendData) => {
-  console.info("dataSendProgress:"  JSON.stringify(data));
+  console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
 ```

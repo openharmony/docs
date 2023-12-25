@@ -63,6 +63,15 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 >  [通用属性padding](ts-universal-attributes-size.md)的默认值为：<br>{<br>&nbsp;top: 8 vp,<br>&nbsp;right: 16 vp,<br>&nbsp;bottom: 8 vp,<br>&nbsp;left: 16 vp<br> }    
 >   从API version 10开始，单行输入框可设置.width('auto')使组件宽度自适应文本宽度，自适应时组件宽度受constraintSize属性以及父容器传递的最大最小宽度限制，其余使用方式参考[尺寸设置](ts-universal-attributes-size.md#属性)。       
 
+## SubmitEvent<sup>11+</sup>
+
+定义用户提交事件。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| keepEditableState| ?(() => void) | 否 | 用户自定义输入框编辑状态。<br/> 调用时保持编辑态。 |
+| text| string | 否 | 输入框文本内容。 |
+
 ## EnterKeyType枚举说明
 
 | 名称                  | 描述        |
@@ -86,6 +95,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | NEW_PASSWORD<sup>11+<sup> | 新密码输入模式。 |
 | NUMBER_PASSWORD<sup>11+</sup> | 纯数字密码输入模式。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
 | SCREEN_LOCK_PASSWORD<sup>11+</sup> | 锁屏应用密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 <br>**系统接口：** 此接口为系统接口。 |
+| NUMBER_DECIMAL<sup>11+</sup>  | 带小数点的数字输入模式。支持数字，小数点（只能存在一个小数点）。 |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
 
@@ -108,7 +118,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onChange(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 输入内容发生变化时，触发该回调。<br/>value：输入的文本内容。<br/>触发该事件的条件：<br/>1、键盘输入。<br/>2、粘贴、剪切。<br/>3、键盘快捷键Ctrl+v。 |
-| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event<sup>11+</sup>:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调，返回值为当前输入法回车键的类型以及当前文本是否为编辑态。<br/>enterKeyType：输入法回车键类型。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。<br/>event：event.text为输入的文本内容，调用event.keepEditableState()函数使当前状态为编辑态。  |
+| onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event<sup>11+</sup>:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void) | 按下输入法回车键触发该回调。<br/>enterKey：输入法回车键类型。具体类型见[EnterKeyType枚举说明](#enterkeytype枚举说明)。<br/>event：提交事件，具体类型见[SubmitEvent事件说明](#submitevent11)。 |
 | onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>(deprecated)</sup> | 输入状态变化时，触发该回调。从API 8开始，建议使用onEditChange。 |
 | onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。 |
 | onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | 长按输入框内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>value：复制的文本内容。 |

@@ -381,7 +381,7 @@ class C extends A {}
 
 let arr: Array<A> = []
 
-let originMenusMap:Map<string, C> = new Map(arr.map(item => [item.str, (item instanceof C) ? item : null]))
+let originMenusMap:Map<string, C> = new Map(arr.map(item => [item.str, (item instanceof C) ? item: null]))
 ```
 
 **After adaptation**
@@ -395,7 +395,7 @@ class C extends A {}
 
 let arr: Array<A> = []
 
-let originMenusMap: Map<string, C | null> = new Map<string, C | null>(arr.map<[string, C | null]>(item => [item.str, (item instanceof C) ? item : null]))
+let originMenusMap: Map<string, C | null> = new Map<string, C | null>(arr.map<[string, C | null]>(item => [item.str, (item instanceof C) ? item: null]))
 ```
 
 **Reason for change**

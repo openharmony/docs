@@ -22,11 +22,16 @@
 
    ```ts
    import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-   import commonEventManager from '@ohos.commonEventManager';
+   import type Base from '@ohos.base';
+   import type commonEventManager from '@ohos.commonEventManager';
+   ...
+   
+   const TAG: string = 'StaticSubscriber';
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
-     onReceiveEvent(event: commonEventManager.CommonEventData) {
-       console.info('onReceiveEvent, event: ' + event.event);
+     onReceiveEvent(event: commonEventManager.CommonEventData): void {
+       Logger.info(TAG, 'onReceiveEvent, event: ' + event.event);
+       ...
      }
    }
    ```
@@ -38,6 +43,7 @@
    ```json
    {
      "module": {
+   	...
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
@@ -46,15 +52,15 @@
            "icon": "$media:icon",
            "label": "$string:StaticSubscriber_label",
            "type": "staticSubscriber",
-           "exported": true,
            "metadata": [
              {
                "name": "ohos.extension.staticSubscriber",
-               "resource": "$profile:subscribe"
+               "resource": "$profile:staticsubscriber"
              }
            ]
          }
-       ]
+       ],
+   	...
      }
    }
    ```
@@ -76,10 +82,10 @@
    {
      "commonEvents": [
        {
-         "name": "xxx",
-         "permission": "xxx",
-         "events":[
-           "xxx"
+         "name": "StaticSubscriber",
+         "permission": "",
+         "events": [
+           "usual.event.AIRPLANE_MODE"
          ]
        }
      ]
@@ -102,9 +108,9 @@
    [
      ...
      {
-       "bundleName": "com.example.myapplication", // Bundle名称
+       "bundleName": "com.samples.stageprocessthread", // Bundle名称
        "app_signature": ["****"], // 指纹信息
-       "allowCommonEvent": ["usual.event.A", "usual.event.B"] // 允许静态广播拉起的公共事件项
+       "allowCommonEvent": ["usual.event.AIRPLANE_MODE"] // 允许静态广播拉起的公共事件项
      }
    ]
    ```

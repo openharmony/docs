@@ -85,7 +85,7 @@ ohpm install
 ### 引用OpenHarmony HAR ArkTS页面   
 ArkTS是TypeScript的扩展，因此导出和引入的语法与TypeScript一致。在OpenHarmony ohpm模块中，可以通过export导出ArkTS页面，示例如下：
 ```typescript
-// library/src/main/ets/components/MainPage/MainPage.ets
+// library/src/main/ets/components/mainpage/MainPage.ets
 @Entry
 @Component
 export struct MainPage {

@@ -1,6 +1,6 @@
 # Network Sharing
 
-## Overview
+## Introduction
 
 The Network Sharing module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing. It also allows you to query the network sharing state and shared mobile data volume.
 
@@ -33,24 +33,24 @@ The following describes the development procedure specific to each application s
 
 For the complete list of APIs and example code, see [Network Sharing](../reference/apis/js-apis-net-sharing.md).
 
-| Type            | API                                                                                                                                               | Description                                                                                                          |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| ohos.net.sharing | function isSharingSupported(callback: AsyncCallback\<boolean>): void;                                                                               | Checks whether the system supports network sharing. This API uses an asynchronous callback to return the result.                                                      |
-| ohos.net.sharing | function isSharing(callback: AsyncCallback\<boolean>): void;                                                                                        | Checks whether network sharing is active. This API uses an asynchronous callback to return the result.                                                                  |
-| ohos.net.sharing | function startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void;                                                                | Starts network sharing. This API uses an asynchronous callback to return the result.                          |
-| ohos.net.sharing | function stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void;                                                                 | Stops network sharing. This API uses an asynchronous callback to return the result.                      |
-| ohos.net.sharing | function getStatsRxBytes(callback: AsyncCallback\<number>): void;                                                                                   | Obtains the received data traffic during network sharing, in KB. This API uses an asynchronous callback to return the result.                                                       |
-| ohos.net.sharing | function getStatsTxBytes(callback: AsyncCallback\<number>): void;                                                                                   | Obtains the sent data traffic during network sharing, in KB. This API uses an asynchronous callback to return the result.                                                       |
-| ohos.net.sharing | function getStatsTotalBytes(callback: AsyncCallback\<number>): void;                                                                                | Obtains the total data traffic during network sharing, in KB. This API uses an asynchronous callback to return the result.                                                       |
-| ohos.net.sharing | function getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<string>>): void;                                                | Obtains the names of network interface cards (NICs) in the specified network sharing state.. This API uses an asynchronous callback to return the result.              |
-| ohos.net.sharing | function getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState>): void;                                                | Obtains the network sharing state of the specified type. This API uses an asynchronous callback to return the result.                  |
-| ohos.net.sharing | function getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void;                                                | Obtains regular expressions of NICs of a specified type. This API uses an asynchronous callback to return the result.|
-| ohos.net.sharing | function on(type: 'sharingStateChange', callback: Callback\<boolean>): void;                                                                        | Subscribes to network sharing state changes.                                                                        |
-| ohos.net.sharing | function off(type: 'sharingStateChange', callback?: Callback\<boolean>): void;                                                                      | Unsubscribes from network sharing state changes.                                                                        |
-| ohos.net.sharing | unction on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void;    | Subscribes to network sharing state changes of the specified NIC.                                                                                      |
-| ohos.net.sharing | function off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void; | Unsubscribes from network sharing state changes of the specified NIC.                                                                                      |
-| ohos.net.sharing | function on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void;                                                                   | Subscribes to upstream NIC changes.                                                                                              |
-| ohos.net.sharing | function off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void;                                                                 | Unsubscribes from upstream NIC changes.                                                                                              |
+| API                                                                  | Description                                                                                                   |
+| --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| isSharingSupported(callback: AsyncCallback\<boolean>): void;    | Checks whether the system supports network sharing. This API uses an asynchronous callback to return the result.                                                      |
+| isSharing(callback: AsyncCallback\<boolean>): void;             | Checks whether network sharing is active. This API uses an asynchronous callback to return the result.                                                                  |
+| startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void;  | Starts network sharing. This API uses an asynchronous callback to return the result.               |
+| stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void;  | Stops network sharing. This API uses an asynchronous callback to return the result.            |
+| getStatsRxBytes(callback: AsyncCallback\<number>): void;         | Obtains the received data traffic during network sharing, in KB. This API uses an asynchronous callback to return the result.                                                       |
+| getStatsTxBytes(callback: AsyncCallback\<number>): void;         | Obtains the sent data traffic during network sharing, in KB. This API uses an asynchronous callback to return the result.                                                       |
+| getStatsTotalBytes(callback: AsyncCallback\<number>): void;      | Obtains the total data traffic during network sharing, in KB. This API uses an asynchronous callback to return the result.                                                       |
+| getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<string>>): void;  | Obtains the names of network interface cards (NICs) in the specified network sharing state.. This API uses an asynchronous callback to return the result.|
+| getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState>): void;  | Obtains the network sharing state of the specified type. This API uses an asynchronous callback to return the result. |
+| getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void;  | Obtains regular expressions of NICs of a specified type. This API uses an asynchronous callback to return the result.|
+| on(type: 'sharingStateChange', callback: Callback\<boolean>): void;        | Subscribes to network sharing state changes.                                                               |
+| off(type: 'sharingStateChange', callback?: Callback\<boolean>): void;      | Unsubscribes from network sharing state changes.                                                               |
+| unction on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void;    | Subscribes to network sharing state changes of the specified NIC.   |
+| off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void; | Unsubscribes from network sharing state changes of the specified NIC.            |
+| on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void;               | Subscribes to upstream NIC changes.                                                                        |
+| off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void;             | Unsubscribes from upstream NIC changes.                                                                        |
 
 ## Enabling Network Sharing
 

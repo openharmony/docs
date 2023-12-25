@@ -16,10 +16,10 @@
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
-     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-     import Want from '@ohos.app.ability.Want';
+     import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+     import type Want from '@ohos.app.ability.Want';
      export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let uiAbilityContext = this.context;
          ...
        }
@@ -46,7 +46,7 @@
      ```ts
      import AbilityStage from '@ohos.app.ability.AbilityStage';
      export default class MyAbilityStage extends AbilityStage {
-       onCreate() {
+       onCreate(): void {
          let abilityStageContext = this.context;
          ...
        }
@@ -56,10 +56,10 @@
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
-     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-     import Want from '@ohos.app.ability.Want';
+     import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+     import type Want from '@ohos.app.ability.Want';
      export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let applicationContext = this.context.getApplicationContext();
          ...
        }
@@ -99,28 +99,44 @@
 
   示例代码如下所示。
 
-    ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import Want from '@ohos.app.ability.Want';
-    
-    export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        let applicationContext = this.context.getApplicationContext();
-        let cacheDir = applicationContext.cacheDir;
-        let tempDir = applicationContext.tempDir;
-        let filesDir = applicationContext.filesDir;
-        let databaseDir = applicationContext.databaseDir;
-        let bundleCodeDir = applicationContext.bundleCodeDir;
-        let distributedFilesDir = applicationContext.distributedFilesDir;
-        let preferencesDir = applicationContext.preferencesDir;
-        ...
-        // 获取应用文件路径
-        let filePath = tempDir + 'test.txt';
-        console.info(`filePath: ${filePath}`);
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
+  import promptAction from '@ohos.promptAction'
+  
+  const TAG: string = '[Page_Context]';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  @Entry
+  @Component
+  struct Page_Context {
+  
+    private context = getContext(this) as common.UIAbilityContext;
+  
+    build() {
+      ...
+      Button(){
+        .onClick(() => {
+          let applicationContext = this.context.getApplicationContext();
+          let cacheDir = applicationContext.cacheDir;
+          let tempDir = applicationContext.tempDir;
+          let filesDir = applicationContext.filesDir;
+          let databaseDir = applicationContext.databaseDir;
+          let bundleCodeDir = applicationContext.bundleCodeDir;
+          let distributedFilesDir = applicationContext.distributedFilesDir;
+          let preferencesDir = applicationContext.preferencesDir;
+          // 获取应用文件路径
+          let filePath = tempDir + 'test.txt';
+          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+          if (filePath !== null) {
+            promptAction.showToast({
+            message: filePath
+            });
+          }
+        })
       }
     }
-    ```
+  }
+  ```
 
 - 通过AbilityStageContext、UIAbilityContext、ExtensionContext获取HAP级别的应用文件路径。此路径是HAP相关信息推荐的存放路径，这些文件会跟随HAP的卸载而删除，但不会影响应用级别路径的文件，除非该应用的HAP已全部卸载。
 
@@ -137,23 +153,39 @@
   示例代码如下所示。
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
+  import promptAction from '@ohos.promptAction'
   
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let cacheDir = this.context.cacheDir;
-      let tempDir = this.context.tempDir;
-      let filesDir = this.context.filesDir;
-      let databaseDir = this.context.databaseDir;
-      let bundleCodeDir = this.context.bundleCodeDir;
-      let distributedFilesDir = this.context.distributedFilesDir;
-      let preferencesDir = this.context.preferencesDir;
+  const TAG: string = '[Page_Context]';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  @Entry
+  @Component
+  struct Page_Context {
+  
+    private context = getContext(this) as common.UIAbilityContext;
+  
+    build() {
       ...
-      // 获取应用文件路径
-      let filePath = tempDir + 'test.txt';
-      console.info(`filePath: ${filePath}`);
+      Button(){
+        .onClick(() => {
+          let cacheDir = this.context.cacheDir;
+          let tempDir = this.context.tempDir;
+          let filesDir = this.context.filesDir;
+          let databaseDir = this.context.databaseDir;
+          let bundleCodeDir = this.context.bundleCodeDir;
+          let distributedFilesDir = this.context.distributedFilesDir;
+          let preferencesDir = this.context.preferencesDir;
+          // 获取应用文件路径
+          let filePath = tempDir + 'test.txt';
+          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+          if (filePath !== null) {
+            promptAction.showToast({
+              message: filePath
+            });
+          }
+        })
+      }
     }
   }
   ```
@@ -173,7 +205,6 @@
 </ul>
 
 要实现获取和设置当前加密分区，可以通过读写[Context](../reference/apis/js-apis-inner-application-context.md)的`area`属性来实现。
-
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import contextConstant from '@ohos.app.ability.contextConstant';
@@ -200,6 +231,55 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+```ts
+import contextConstant from '@ohos.app.ability.contextConstant';
+import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
+import promptAction from '@ohos.promptAction'
+
+const TAG: string = '[Page_Context]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+@Entry
+@Component
+struct Page_Context {
+
+  private context = getContext(this) as common.UIAbilityContext;
+
+  build() {
+    ...
+    Button(){
+      .onClick(() => {
+        // 存储普通信息前，切换到EL1设备级加密
+        if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
+          this.context.area = contextConstant.AreaMode.EL1; // 修改area
+          promptAction.showToast({
+            message: $r('app.string.SwitchToEL1')
+          });
+        }
+        // 存储普通信息
+      })
+    }
+    
+    ...
+
+    Button(){
+      .onClick(() => {
+        // 存储敏感信息前，切换到EL2用户级加密
+        if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
+          this.context.area = contextConstant.AreaMode.EL2; // 修改area
+          promptAction.showToast({
+            message: $r('app.string.SwitchToEL2')
+          });
+        }
+        // 存储敏感信息
+      })
+    }
+    
+    ...
+  }
+}
+```
 
 
 ### 创建其他应用或其他Module的Context
@@ -218,17 +298,13 @@ export default class EntryAbility extends UIAbility {
   例如在桌面上显示的应用信息，包括应用名称和应用图标等，桌面应用可以通过调用上述的方法获取相应应用的Context信息从而获取到相应的应用名称、图标等资源信息。
   
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let bundleName2 = 'com.example.application';
-      let context2 = this.context.createBundleContext(bundleName2);
-      let label2 = context2.applicationInfo.label;
-      ...
-    }
+  let bundleName2 = 'com.samples.stagemodelabilityinteraction';
+  let bundleContext = this.context.createBundleContext(bundleName2);
+  let label2 = bundleContext.applicationInfo.label;
+  if (bundleContext && label2 !== null) {
+    promptAction.showToast({
+      message: ('成功获取Context')
+    });
   }
   ```
   
@@ -242,33 +318,25 @@ export default class EntryAbility extends UIAbility {
   > - 接口为系统接口，三方应用不支持调用。
   
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let bundleName2 = 'com.example.application';
-      let moduleName2 = 'module1';
-      let context2 = this.context.createModuleContext(bundleName2, moduleName2);
-      ...
-    }
+  let bundleName2 : string = 'com.samples.stagemodelabilityinteraction';
+  let moduleName2 : string  = 'entry';
+  let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
+  if (moduleContext !== null) {
+    promptAction.showToast({
+      message: ('成功获取Context')
+    });
   }
   ```
   
 - 调用`createModuleContext(moduleName:string)`方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
   
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let moduleName2 = 'module1';
-      let context2 = this.context.createModuleContext(moduleName2);
-      ...
-    }
+  let moduleName2 = 'entry';
+  let moduleContext = this.context.createModuleContext(moduleName2);
+  if (moduleContext !== null) {
+    promptAction.showToast({
+      message: ('成功获取Context')
+    });
   }
   ```
 
@@ -281,76 +349,77 @@ export default class EntryAbility extends UIAbility {
 
 
 ```ts
+import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import type AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import type Want from '@ohos.app.ability.Want';
+import type window from '@ohos.window';
 
-const TAG: string = '[Example].[Entry].[EntryAbility]';
+const TAG: string = '[LifecycleAbility]';
 
-export default class EntryAbility extends UIAbility {
+export default class LifecycleAbility extends UIAbility {
   // 定义生命周期ID
   lifecycleId: number = -1;
 
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // 定义生命周期回调对象
     let abilityLifecycleCallback: AbilityLifecycleCallback = {
       // 当UIAbility创建时被调用
       onAbilityCreate(uiAbility) {
-        console.info(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // 当窗口创建时被调用
       onWindowStageCreate(uiAbility, windowStage: window.WindowStage) {
-        console.info(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.info(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
+        Logger.info(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
       },
       // 当窗口处于活动状态时被调用
       onWindowStageActive(uiAbility, windowStage: window.WindowStage) {
-        console.info(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.info(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
+        Logger.info(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // 当窗口处于非活动状态时被调用
       onWindowStageInactive(uiAbility, windowStage: window.WindowStage) {
-        console.info(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.info(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
+        Logger.info(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // 当窗口被销毁时被调用
       onWindowStageDestroy(uiAbility, windowStage: window.WindowStage) {
-        console.info(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.info(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
+        Logger.info(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
       },
       // 当UIAbility被销毁时被调用
       onAbilityDestroy(uiAbility) {
-        console.info(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // 当UIAbility从后台转到前台时触发回调
       onAbilityForeground(uiAbility) {
-        console.info(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // 当UIAbility从前台转到后台时触发回调
       onAbilityBackground(uiAbility) {
-        console.info(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // 当UIAbility迁移时被调用
       onAbilityContinue(uiAbility) {
-        console.info(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       }
-    }
+    };
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
     // 注册应用内生命周期回调
     this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-    console.info(TAG, `register callback number: ${this.lifecycleId}`);
+    Logger.info(TAG, `register callback number: ${this.lifecycleId}`);
   }
 
   ...
 
-  onDestroy() {
+  onDestroy() : void {
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
     // 取消应用内生命周期回调
     applicationContext.off('abilityLifecycle', this.lifecycleId);
   }
-}
+};
 ```

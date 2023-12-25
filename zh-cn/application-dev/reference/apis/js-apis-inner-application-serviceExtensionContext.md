@@ -1620,7 +1620,7 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import rpc from '@ohos.rpc';
 import { BusinessError } from '@ohos.base';
 
-let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     // connection为connectServiceExtensionAbility中的返回值
@@ -1630,7 +1630,7 @@ class EntryAbility extends ServiceExtensionAbility {
         commRemote = null;
         if (error.code) {
           // 处理业务逻辑错误
-          console.error('disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // 执行正常业务
@@ -1639,7 +1639,7 @@ class EntryAbility extends ServiceExtensionAbility {
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }
@@ -1683,7 +1683,7 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import rpc from '@ohos.rpc';
 import { BusinessError } from '@ohos.base';
 
-let commRemote: rpc.IRemoteObject; // 断开连接时需要释放
+let commRemote: rpc.IRemoteObject | null; // 断开连接时需要释放
 class EntryAbility extends ServiceExtensionAbility {
   onCreate() {
     // connection为connectServiceExtensionAbility中的返回值
@@ -1698,12 +1698,12 @@ class EntryAbility extends ServiceExtensionAbility {
         .catch((error: BusinessError) => {
           commRemote = null;
           // 处理业务逻辑错误
-          console.error('disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}');
+          console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       commRemote = null;
       // 处理入参错误异常
-      console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+      console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
     }
   }
 }

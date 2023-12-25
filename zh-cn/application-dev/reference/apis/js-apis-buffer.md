@@ -482,7 +482,6 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = buffer.alloc(50);
 let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
 console.log(newBuf.toString('ascii'));
 ```

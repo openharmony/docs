@@ -53,7 +53,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     console.log(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
     let dataObj1 = new Record<string, string> = {
       'temperature': '11c',
-      'time': '11:00',
+      'time': '11:00'
     };
 
     let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
@@ -129,7 +129,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onChangeFormVisibility
 
-onChangeFormVisibility(newStatus: { [key: string]: number }): void
+onChangeFormVisibility(newStatus: Record\<string, number>): void
 
 卡片提供方接收修改可见性的通知接口。  
 该接口仅对系统应用生效，且需要将formVisibleNotify配置为true。
@@ -140,7 +140,7 @@ onChangeFormVisibility(newStatus: { [key: string]: number }): void
 
 | 参数名    | 类型                      | 必填 | 说明                         |
 | --------- | ------------------------- | ---- | ---------------------------- |
-| newStatus | { [key: string]: number } | 是   | 请求修改的卡片标识和可见状态。 |
+| newStatus | Record\<string, number> | 是   | 请求修改的卡片标识和可见状态。 |
 
 **示例：**
 
@@ -258,7 +258,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
     // 仅当前formExtensionAbility存活时更新配置才会触发此生命周期。
     // 需要注意：formExtensionAbility创建后5秒内无操作将会被清理。
-    console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
+    console.log(`onConfigurationUpdate, config: ${JSON.stringify(newConfig)}`);
   }
 };
 ```
@@ -294,7 +294,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onShareForm
 
-onShareForm?(formId: string): { [key: string]: Object }
+onShareForm?(formId: string): Record\<string, Object>
 
 卡片提供方接收卡片分享的通知接口。
 
@@ -312,7 +312,7 @@ onShareForm?(formId: string): { [key: string]: Object }
 
 | 类型                                                         | 说明                                                        |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: Object} | 卡片要分享的数据，由开发者自行决定传入的键值对。 |
+| Record\<string, Object> | 卡片要分享的数据，由开发者自行决定传入的键值对。 |
 
 **示例：**
 
@@ -333,7 +333,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onAcquireFormData<sup>10+</sup>
 
-onAcquireFormData?(formId: string): { [key: string]: Object }
+onAcquireFormData?(formId: string): Record\<string, Object>
 
 卡片提供方接收卡片请求自定义数据的通知接口。
 
@@ -351,7 +351,7 @@ onAcquireFormData?(formId: string): { [key: string]: Object }
 
 | 类型                                                         | 说明                                                        |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: Object} | 卡片的自定义数据，由开发者自行决定传入的键值对。 |
+| Record\<string, Object> | 卡片的自定义数据，由开发者自行决定传入的键值对。 |
 
 **示例：**
 

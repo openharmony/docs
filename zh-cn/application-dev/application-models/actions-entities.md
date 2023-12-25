@@ -1,6 +1,6 @@
 # 常见action与entities
 
-**action**：表示调用方要执行的通用操作（如查看、分享、应用详情）。在隐式[Want](../reference/apis/js-apis-app-ability-want.md)中，您可定义该字段，配合uri或parameters来表示对数据要执行的操作。如打开，查看该uri数据。例如，当uri为一段网址，action为`ohos.want.action.viewData`则表示匹配可查看该网址的应用组件。在[Want](../reference/apis/js-apis-app-ability-want.md)内声明action字段表示希望被调用方应用支持声明的操作。在被调用方应用配置文件skills字段内声明actions表示该应用支持声明操作。更多actions请参考[wantConstant](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction)。
+**action**：表示调用方要执行的通用操作（如查看、分享、应用详情）。在隐式[Want](../reference/apis/js-apis-app-ability-want.md)中，您可定义该字段，配合uri或parameters来表示对数据要执行的操作。如打开，查看该uri数据。例如，当uri为一段网址，action为`ohos.want.action.viewData`则表示匹配可查看该网址的应用组件。在[Want](../reference/apis/js-apis-app-ability-want.md)内声明action字段表示希望被调用方应用支持声明的操作。在被调用方应用配置文件skills字段内声明actions表示该应用支持声明操作。
 
 **常见action**
 
@@ -13,7 +13,7 @@
 
 - ACTION_VIEW_MULTIPLE_DATA：发送多个数据记录的操作。
 
-**entities**：表示目标应用组件的类别信息（如浏览器、视频播放器），在隐式Want中是对action的补充。在隐式Want中，开发者可定义该字段，来过滤匹配应用的类别，例如必须是浏览器。在Want内声明entities字段表示希望被调用方应用属于声明的类别。在被调用方应用配置文件skills字段内声明entites表示该应用支持的类别。更多entities请参考[wantConstant](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity)
+**entities**：表示目标应用组件的类别信息（如浏览器、视频播放器），在隐式Want中是对action的补充。在隐式Want中，开发者可定义该字段，来过滤匹配应用的类别，例如必须是浏览器。在Want内声明entities字段表示希望被调用方应用属于声明的类别。在被调用方应用配置文件skills字段内声明entites表示该应用支持的类别。
 
 **常见entities**
 
