@@ -1,6 +1,6 @@
 # ProcessData
 
-进程数据的对象定义。使用接口[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，当应用或组件的生命周期变化时，系统通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onProcessCreated等方法回调给开发者。
+进程数据的对象定义。使用接口[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver)注册生命周期变化监听后，当应用或组件的生命周期变化时，系统通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onProcessCreated等方法回调给开发者。
 
 > **说明：**
 > 
