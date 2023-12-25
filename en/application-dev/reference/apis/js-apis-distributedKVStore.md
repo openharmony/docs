@@ -13,7 +13,7 @@ The **distributedKVStore** module provides the following functions:
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - All the APIs that need to obtain **deviceId** in this module are available only to system applications.
+> - All the APIs that need to obtain **deviceId** in this module can be called only by system applications.
 
 ## Modules to Import
 
@@ -734,7 +734,7 @@ Subscribes to service status changes. If the service is terminated, you need to 
 
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event to subscribe to. The value is **distributedDataServiceDie**, which indicates a service status change event.|
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates service status changes.|
 | deathCallback | Callback&lt;void&gt; | Yes  | Callback invoked to return service status changes.                                                  |
 
 **Example**
@@ -764,8 +764,8 @@ Unsubscribes from service status changes. The **deathCallback** parameter must b
 
 | Name       | Type            | Mandatory| Description                                                        |
 | ------------- | -------------------- | ---- | ------------------------------------------------------------ |
-| event         | string               | Yes  | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates a service status change event.|
-| deathCallback | Callback&lt;void&gt; | No  | Callback for the service status change event. If this parameter is not specified, all subscriptions to the service status change event will be canceled.                                         |
+| event         | string               | Yes  | Event type. The value is **distributedDataServiceDie**, which indicates service status changes.|
+| deathCallback | Callback&lt;void&gt; | No  | Callback for the service status changes. If this parameter is not specified, all subscriptions to the service status changes will be canceled.                                         |
 
 **Example**
 
@@ -950,7 +950,6 @@ try {
         resultSet = result;
         do {
           moved = resultSet.moveToNext();
-          const entry  = resultSet.getEntry();
           console.info("moveToNext succeed: " + moved);
         } while (moved)
     }).catch((err) => {
@@ -1167,7 +1166,7 @@ try {
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
-        const isbeforefirst = resultSet.isBeforeFirst();
+        let isbeforefirst = resultSet.isBeforeFirst();
         console.info("Check isBeforeFirst succeed: " + isbeforefirst);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
@@ -1200,7 +1199,7 @@ try {
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
-        const isafterlast = resultSet.isAfterLast();
+        let isafterlast = resultSet.isAfterLast();
         console.info("Check isAfterLast succeed:" + isafterlast);
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
@@ -1233,7 +1232,7 @@ try {
     kvStore.getResultSet('batch_test_string_key').then((result) => {
         console.info('getResultSet succeed.');
         resultSet = result;
-        const entry  = resultSet.getEntry();
+        let entry  = resultSet.getEntry();
         console.info("getEntry succeed:" + JSON.stringify(entry));
     }).catch((err) => {
         console.error('getResultSet failed: ' + err);
@@ -4675,9 +4674,9 @@ Subscribes to data changes of the specified type.
 
 | Name  | Type                                                 | Mandatory| Description                                                |
 | -------- | --------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| event    | string                                                    | Yes  | Event to subscribe to. The value is **dataChange**, which indicates a data change event.|
+| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
 | type     | [SubscribeType](#subscribetype)                           | Yes  | Type of data change.                                    |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                         |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | Yes  | Callback invoked to return the data change.                        |
 
 **Error codes**
 
@@ -4713,8 +4712,8 @@ Subscribes to synchronization complete events.
 
 | Name      | Type                                     | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the synchronization complete event. |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the synchronization complete event.            |
 
 **Example**
 
@@ -4748,8 +4747,8 @@ Unsubscribes from data changes.
 
 | Name  | Type                                                 | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
-| event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change event. If the callback is not specified, all subscriptions to the data change event will be canceled.|
+| event    | string                                                    | Yes  | Event type. The value is **dataChange**, which indicates data changes. |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change. If the callback is not specified, all callbacks for **dataChange** will be unregistered. |
 
 **Error codes**
 
@@ -4802,8 +4801,8 @@ Unsubscribes from synchronization complete events.
 
 | Name      | Type                                     | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event. If the callback is not specified, all subscriptions to the synchronization complete event will be canceled. |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a synchronization complete event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event. If the callback is not specified, all callbacks for **syncComplete** will be unregistered. |
 
 **Example**
 
