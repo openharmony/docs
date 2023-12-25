@@ -29,7 +29,7 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 创建一个设备管理实例。设备管理实例是分布式设备管理方法的调用入口。用于获取可信设备和本地设备的相关信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**
 
@@ -39,7 +39,7 @@ createDeviceManager(bundleName: string): DeviceManager;
 
 **返回值：**
 
-  | 名称                                        | 说明        |
+  | 类型                                        | 说明        |
   | ------------------------------------------- | --------- |
   | [DeviceManager](#devicemanager) | 返回设备管理器对象实例。 |
 
@@ -138,7 +138,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **返回值：**
 
-  | 名称                                        | 说明        |
+  | 类型                                        | 说明        |
   | ------------------------------------------- | --------- |
   | Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | 返回可信设备列表。 |
 
@@ -202,7 +202,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
         console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
         return;
       }
-      console.log('get available device info: ' + JSON.stringify(data));
+      console.log("get available device info: " + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -242,7 +242,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
   import { BusinessError } from '@ohos.base';
 
   dmInstance.getAvailableDeviceList().then((data: Array<deviceManager.DeviceBasicInfo>) => {
-    console.log('get available device info: ' + JSON.stringify(data));
+    console.log("get available device info: " + JSON.stringify(data));
     }).catch((err: BusinessError) => {
       console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
   });
@@ -260,7 +260,7 @@ getLocalDeviceNetworkId(): string;
 
 **返回值：**
 
-  | 名称                      | 说明              |
+  | 类型                      | 说明              |
   | ------------------------- | ---------------- |
   | string | 返回本地设备网络标识。 |
 
@@ -280,7 +280,7 @@ getLocalDeviceNetworkId(): string;
 
   try {
     let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
-    console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
+    console.log("local device networkId: " + JSON.stringify(deviceNetworkId));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("getLocalDeviceNetworkId errCode:" + e.code + ",errMessage:" + e.message);
@@ -299,7 +299,7 @@ getLocalDeviceName(): string;
 
 **返回值：**
 
-  | 名称                      | 说明              |
+  | 类型                      | 说明              |
   | ------------------------- | ---------------- |
   | string                    | 返回本地设备名称。 |
 
@@ -319,7 +319,7 @@ getLocalDeviceName(): string;
 
   try {
     let deviceName: string = dmInstance.getLocalDeviceName();
-    console.log('local device name: ' + JSON.stringify(deviceName));
+    console.log("local device name: " + JSON.stringify(deviceName));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("getLocalDeviceName errCode:" + e.code + ",errMessage:" + e.message);
@@ -338,7 +338,7 @@ getLocalDeviceType(): number;
 
 **返回值：**
 
-  | 名称                      | 说明              |
+  | 类型                      | 说明              |
   | ------------------------- | ---------------- |
   | number                    | 返回本地设备类型。 |
 
@@ -358,7 +358,7 @@ getLocalDeviceType(): number;
 
   try {
     let deviceType: number = dmInstance.getLocalDeviceType();
-    console.log('local device type: ' + JSON.stringify(deviceType));
+    console.log("local device type: " + JSON.stringify(deviceType));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("getLocalDeviceType errCode:" + e.code + ",errMessage:" + e.message);
@@ -377,7 +377,7 @@ getLocalDeviceId(): string;
 
 **返回值：**
 
-  | 名称                      | 说明              |
+  | 类型                      | 说明              |
   | ------------------------- | ---------------- |
   | string                    | 返回本地设备id。 |
 
@@ -397,7 +397,7 @@ getLocalDeviceId(): string;
 
   try {
     let deviceId: string = dmInstance.getLocalDeviceId();
-    console.log('local device id: ' + JSON.stringify(deviceId));
+    console.log("local device id: " + JSON.stringify(deviceId));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("getLocalDeviceId errCode:" + e.code + ",errMessage:" + e.message);
@@ -422,7 +422,7 @@ getDeviceName(networkId: string): string;
 
 **返回值：**
 
-  | 名称                      | 说明              |
+  | 类型                      | 说明              |
   | ------------------------- | ---------------- |
   | string                    | 返回指定设备名称。 |
 
@@ -444,7 +444,7 @@ getDeviceName(networkId: string): string;
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = "xxxxxxx";
     let deviceName: string = dmInstance.getDeviceName(networkId);
-    console.log('device name: ' + JSON.stringify(deviceName)); 
+    console.log("device name: " + JSON.stringify(deviceName)); 
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("getDeviceName errCode:" + e.code + ",errMessage:" + e.message);
@@ -469,7 +469,7 @@ getDeviceType(networkId: string): number;
 
 **返回值：**
 
-  | 名称                      | 说明              |
+  | 类型                      | 说明              |
   | ------------------------- | ---------------- |
   | number                    | 返回指定设备类型。 |
 
@@ -491,7 +491,7 @@ getDeviceType(networkId: string): number;
     // 设备网络标识，可以从可信设备列表中获取
     let networkId = "xxxxxxx";
     let deviceType: number = dmInstance.getDeviceType(networkId);
-    console.log('device type: ' + JSON.stringify(deviceType)); 
+    console.log("device type: " + JSON.stringify(deviceType)); 
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("getDeviceType errCode:" + e.code + ",errMessage:" + e.message);
@@ -814,7 +814,7 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
 on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
 
-注册设备状态回调。
+注册设备状态回调，以便在设备状态发生变化时根据应用捆绑包名通知应用。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -890,7 +890,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
   try {
     dmInstance.off('deviceStateChange', (data: Data) => {
-      console.info('deviceStateChange' + JSON.stringify(data));
+      console.info("deviceStateChange" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -975,7 +975,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
 
   try {
     dmInstance.off('discoverSuccess', (data: Data) => {
-      console.info('discoverSuccess' + JSON.stringify(data));
+      console.info("discoverSuccess" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -987,7 +987,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
 
 on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): void;
 
-注册设备名称变更回调监听。
+注册设备名称变更回调，以便在设备名称改变时通知应用程序。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1049,7 +1049,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 
   try {
     dmInstance.off('deviceNameChange', (data: Data) => {
-      console.info('deviceNameChange' + JSON.stringify(data));
+      console.info("deviceNameChange" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -1123,7 +1123,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
 
   try {
     dmInstance.off('discoverFailure', (data: Data) => {
-      console.info('discoverFailure' + JSON.stringify(data));
+      console.info("discoverFailure" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -1135,7 +1135,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
 
 on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
-注册设备管理服务死亡监听。
+注册设备管理服务死亡监听，以便在服务死亡时通知应用程序。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
