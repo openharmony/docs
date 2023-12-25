@@ -35,7 +35,7 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](js-apis-inner-application-context.md#context)        | 是   | 应用的上下文环境。                                           |
-| uri      | string                                                   | 是   | 指示要连接的服务端应用的路径。                               |
+| uri      | string                                                   | 是   | 要连接的服务端应用的路径。                               |
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | 是   | 回调函数。当创建DataShareHelper实例成功，err为undefined，data为获取到的DataShareHelper实例；否则为错误对象。 |
 
 **错误码：**
@@ -56,7 +56,7 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(context, uri, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -87,7 +87,7 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](js-apis-inner-application-context.md#context)        | 是   | 应用的上下文环境。                                           |
-| uri      | string                                                   | 是   | 指示要连接的服务端应用的路径。                               |
+| uri      | string                                                   | 是   | 要连接的服务端应用的路径。                               |
 | options | [DataShareHelperOptions](#datasharehelperoptions10)| 是   | 可选配置。指定[DataShareHelper](#datasharehelper)是否在代理模式下。|
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | 是   | 回调函数。当创建DataShareHelper实例成功，err为undefined，data为获取到的DataShareHelper实例；否则为错误对象。 |
 
@@ -109,7 +109,7 @@ let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err:BusinessError, data:dataShare.DataShareHelper) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -141,7 +141,7 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 | 参数名  | 类型                                          | 必填 | 说明                           |
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
 | context | [Context](js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。             |
-| uri     | string                                            | 是   | 指示要连接的服务端应用的路径。 |
+| uri     | string                                            | 是   | 要连接的服务端应用的路径。 |
 | options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | 否 | 可选配置。从API version 10开始支持此参数，如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下。|
 
 **返回值：**
@@ -331,7 +331,7 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 
 | 参数名     | 类型                    | 必填 | 说明                     |
 | -------- | ------------------------ | ---- | -------------------------|
-| uri      | string                   | 是   | 指示要插入的数据的路径。  |
+| uri      | string                   | 是   | 要插入的数据的路径。  |
 | subscriberId | string               | 是   | 要添加模板的订阅者ID，每个订阅者的ID是唯一的。 |
 | template    | [Template](#template10) | 是   | 要添加的数据模板。        |
 
@@ -376,7 +376,7 @@ delTemplate(uri: string, subscriberId: string): void
 
 | 参数名     | 类型        | 必填 | 说明                       |
 | -------- | -------------| ---- | ------------------------- |
-| uri      | string       | 是   | 指示要删除的数据的路径。     |
+| uri      | string       | 是   | 要删除的数据的路径。     |
 | subscriberId | string   | 是   | 订阅者ID，每个订阅者的ID是唯一的。          |
 
 **错误码：**
@@ -584,9 +584,9 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 
 | 参数名     | 类型                                                      | 必填 | 说明      |
 | --------- | -------------------------------------------------| ---- | ------------------- |
-| data      | Array&lt;[PublishedItem](#publisheditem10)&gt;     | 是   | 指示要发布的数据。   |
+| data      | Array&lt;[PublishedItem](#publisheditem10)&gt;     | 是   | 要发布的数据。   |
 | bundleName | string                                          | 是   | 表示要发布数据所属的APP，对发布的私有数据生效，仅该app可以读取数据。           |
-| version | number                                             | 是   | 指示要发布的数据版本，越大表示数据版本越新。如果发布的版本号小于数据库中的记录，则更新失败。 |
+| version | number                                             | 是   | 要发布的数据版本，越大表示数据版本越新。如果发布的版本号小于数据库中的记录，则更新失败。 |
 | callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | 是   | 回调函数。当发布数据时调用，err为undefined，result为发布数据结果；否则不被触发或为错误对象。    |
 
 **错误码：**
@@ -630,7 +630,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 
 | 参数名     | 类型                                            | 必填 | 说明                                 |
 | -------- | ------------------------------------------------- | ---- | ---------------------------------- |
-| data      | Array&lt;[PublishedItem](#publisheditem10)&gt;                        | 是   | 指示要发布的数据。   |
+| data      | Array&lt;[PublishedItem](#publisheditem10)&gt;                        | 是   | 要发布的数据。   |
 | bundleName | string                                          | 是   | 表示要发布数据所属的APP，对发布的私有数据生效，仅该app可以读取数据。       |
 | callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | 是   | 回调函数。当发布数据时调用，err为undefined，result为发布数据结果；否则不被触发或为错误对象。 |
 
@@ -671,9 +671,9 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 
 | 参数名     | 类型                        | 必填 | 说明                            |
 | -------- | ----------------------------- | ---- | ------------------------------ |
-| data      | Array&lt;[PublishedItem](#publisheditem10)&gt;    | 是   | 指示要发布的数据。|
+| data      | Array&lt;[PublishedItem](#publisheditem10)&gt;    | 是   | 要发布的数据。|
 | bundleName | string                      | 是   | 表示要发布数据所属的APP，对发布的私有数据生效，仅该app可以读取数据。  |
-| version | number                         | 否   | 指示要发布的数据版本，越大表示数据版本越新。如果发布的版本号小于数据库中的记录，则更新失败。<br/> 如果不检查要发布的数据版本，则不填。 |
+| version | number                         | 否   | 要发布的数据版本，越大表示数据版本越新。如果发布的版本号小于数据库中的记录，则更新失败。<br/> 如果不检查要发布的数据版本，则不填。 |
 
 **返回值：**
 
@@ -714,7 +714,7 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 | 参数名    | 类型             | 必填 | 说明                           |
 | -------- | -----------------| ---- | ----------------------------- |
 | bundleName | string         | 是   | 表示数据所属的APP。  |
-| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | 是   | 回调函数。 |
+| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | 是   | 回调函数，返回获取的过程中数据。 |
 
 **错误码：**
 
@@ -753,9 +753,9 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 
 **返回值：**
 
-| 类型             | 说明                                                         |
-| ---------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Promise对象。返回给定的APP和模板指定的数据。|
+| 类型                                                         | 说明                                |
+| ------------------------------------------------------------ | ----------------------------------- |
+| Promise&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Promise对象。返回获取的过程中数据。 |
 
 **错误码：**
 
@@ -785,8 +785,8 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 
 | 参数名     | 类型                                                      | 必填 | 说明                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| uri      | string                                                    | 是   | 指示要插入的数据的路径。                                     |
-| value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是   | 指示要插入的数据。如果此参数为空，将插入一个空行。           |
+| uri      | string                                                    | 是   | 要插入的数据的路径。                                     |
+| value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是   | 要插入的数据。如果此参数为空，将插入一个空行。           |
 | callback | AsyncCallback&lt;number&gt;                               | 是   | 回调函数。当将单条数据插入数据库成功，err为undefined，data为获取到的插入数据记录的索引；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此callback也无法返回索引值。 |
 
 **示例：**
@@ -836,8 +836,8 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 | 参数名  | 类型                                                      | 必填 | 说明                                               |
 | ----- | --------------------------------------------------------- | ---- | -------------------------------------------------- |
-| uri   | string                                                    | 是   | 指示要插入的数据的路径。                           |
-| value | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是   | 指示要插入的数据。如果此参数为空，将插入一个空行。 |
+| uri   | string                                                    | 是   | 要插入的数据的路径。                           |
+| value | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是   | 要插入的数据。如果此参数为空，将插入一个空行。 |
 
 **返回值：**
 
@@ -890,8 +890,8 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uri        | string                                                       | 是   | 指示要删除的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。 |
+| uri        | string                                                       | 是   | 要删除的数据的路径。                                     |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。谓词内方法为空时，默认全表删除。 |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当从数据库中删除一条或多条数据记录成功，err为undefined，data为获取到的已删除的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回删除的数据记录数。 |
 
 **示例：**
@@ -932,8 +932,8 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uri        | string                                                       | 是   | 指示要删除的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。 |
+| uri        | string                                                       | 是   | 要删除的数据的路径。                                     |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。谓词内方法为空时，默认全表删除。 |
 
 **返回值：**
 
@@ -977,9 +977,9 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uri        | string                                                       | 是   | 指示要查询的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。 |
-| columns    | Array&lt;string&gt;                                          | 是   | 指示要查询的列。如果此参数为空，则查询所有列。               |
+| uri        | string                                                       | 是   | 要查询的数据的路径。                                     |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。谓词内方法为空时，默认全表查询。 |
+| columns    | Array&lt;string&gt;                                          | 是   | 要查询的列。如果此参数为空，则查询所有列。               |
 | callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet.md#datashareresultset)&gt; | 是   | 回调函数。当查询数据库中的数据成功，err为undefined，data为获取到的查询到的结果集；否则为错误对象。 |
 
 **示例：**
@@ -1022,9 +1022,9 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uri        | string                                                       | 是   | 指示要查询的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。 |
-| columns    | Array&lt;string&gt;                                          | 是   | 指示要查询的列。如果此参数为空，则查询所有列。               |
+| uri        | string                                                       | 是   | 要查询的数据的路径。                                     |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。谓词内方法为空时，默认全表查询。 |
+| columns    | Array&lt;string&gt;                                          | 是   | 要查询的列。如果此参数为空，则查询所有列。               |
 
 **返回值：**
 
@@ -1070,9 +1070,9 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。可以为null。                                  |
+| uri        | string                                                       | 是   | 要更新的数据的路径。                                     |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。谓词内方法为空时，默认全表更新。 |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 要更新的数据。可以为null。                                  |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当更新数据库中的数据记录成功，err为undefined，data为获取到的更新的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回更新的数据记录数。 |
 
 **示例：**
@@ -1125,9 +1125,9 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uri        | string                                                       | 是   | 指示要更新的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 指示筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。 |
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 指示要更新的数据。可以为null。                                   |
+| uri        | string                                                       | 是   | 要更新的数据的路径。                                     |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />update接口是否支持谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。谓词内方法为空时，默认全表更新。 |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 要更新的数据。可以为null。                                   |
 
 **返回值：**
 
@@ -1183,8 +1183,8 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| uri      | string                                                       | 是   | 指示要插入的数据的路径。                                     |
-| values   | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据。                                           |
+| uri      | string                                                       | 是   | 要插入的数据的路径。                                     |
+| values   | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 要插入的数据。                                           |
 | callback | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当将批量数据插入数据库成功，err为undefined，data为获取到的插入的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回插入的数据记录数。 |
 
 **示例：**
@@ -1235,8 +1235,8 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
-| uri    | string                                                       | 是   | 指示要插入的数据的路径。 |
-| values | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 指示要插入的数据。       |
+| uri    | string                                                       | 是   | 要插入的数据的路径。 |
+| values | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 要插入的数据。       |
 
 **返回值：**
 
@@ -1290,7 +1290,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名     | 类型                   | 必填 | 说明                                                     |
 | -------- | ---------------------- | ---- | -------------------------------------------------------- |
-| uri      | string                 | 是   | 指示要规范化的[URI](js-apis-uri.md#uri)。      |
+| uri      | string                 | 是   | 要规范化的[URI](js-apis-uri.md#uri)。      |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当将给定的DataShare URI转换为规范化URI成功，err为undefined，data为获取到的规范化URI（如果支持URI规范化，则返回规范化URI，否则返回空）；否则为错误对象。 |
 
 **示例：**
@@ -1322,7 +1322,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ---- | ------ | ---- | ----------------------------------------- |
-| uri  | string | 是   | 指示要规范化的[URI](js-apis-uri.md#uri)。 |
+| uri  | string | 是   | 要规范化的[URI](js-apis-uri.md#uri)。 |
 
 **返回值：**
 
@@ -1357,7 +1357,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名     | 类型                   | 必填 | 说明                                                |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
-| uri      | string                 | 是   | 指示要反规范化的[URI](js-apis-uri.md#uri)。 |
+| uri      | string                 | 是   | 要反规范化的[URI](js-apis-uri.md#uri)。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。当将指定的URI转换为非规范化URI，err为undefined，data为获取到的反规范化URI（如果反规范化成功，则返回反规范化的URI；如果无需进行反规范化，则返回原始URI；若不支持则返回空）；否则为错误对象。 |
 
 **示例：**
@@ -1389,7 +1389,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                        |
 | ---- | ------ | ---- | ------------------------------------------- |
-| uri  | string | 是   | 指示要反规范化的[URI](js-apis-uri.md#uri)。 |
+| uri  | string | 是   | 要反规范化的[URI](js-apis-uri.md#uri)。 |
 
 **返回值：**
 
