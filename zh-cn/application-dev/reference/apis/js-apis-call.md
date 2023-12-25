@@ -5731,6 +5731,24 @@ IP多媒体系统调用模式。
 | callId          | number                                   | 是   | 呼叫Id         |
 | callState       | [DetailedCallState](#detailedcallstate7) | 是   | 详细呼叫状态   |
 | conferenceState | [ConferenceState](#conferencestate7)     | 是   | 会议状态       |
+| voipCallAttribute | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息       |
+
+## VoipCallAttribute<sup>11+</sup>
+
+VoIP通话信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+|      名称       | 类型               | 必填 | 说明           |
+| --------------- | ------------------- | ---- | -------------- |
+| voipCallId   | string    | 是   | VoIP通话唯一Id       |
+| userName  | string    | 是   | 用户昵称 |
+| userProfile       | [image.PixelMap](js-apis-image.md#pixelmap7)    | 是   | 用户头像图片  |
+| extensionId      | string     | 是   |  三方应用进程Id  |
+| abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
+| voipBundleName    | string     | 是   |  三方应用包名  |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -5761,6 +5779,7 @@ IP多媒体系统调用模式。
 | TYPE_IMS      | 1    | IMS通话      |
 | TYPE_OTT      | 2    | OTT通话      |
 | TYPE_ERR_CALL | 3    | 其他类型通话 |
+| TYPE_VOIP<sup>11+</sup> | 4    | VoIP通话 |
 
 ## VideoStateType<sup>7+</sup>
 
