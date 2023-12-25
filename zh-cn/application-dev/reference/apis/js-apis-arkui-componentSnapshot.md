@@ -115,7 +115,6 @@ get(id: string): Promise<image.PixelMap>
 ```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
-import {BusinessError} from '@ohos.base'
 
 @Entry
 @Component
@@ -130,7 +129,7 @@ struct SnapshotExample {
       // ...Component
       // ...Component
       Button("click to generate UI snapshot")
-        .onClick(() =>{
+        .onClick(() => {
           componentSnapshot.get("root")
             .then((pixmap: image.PixelMap) => {
               this.pixmap = pixmap
@@ -271,7 +270,6 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
 import componentUtils from '@ohos.arkui.componentUtils'
-import {BusinessError} from '@ohos.base'
 
 @Entry
 @Component
