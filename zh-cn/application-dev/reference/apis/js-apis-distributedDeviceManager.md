@@ -50,10 +50,10 @@ createDeviceManager(bundleName: string): DeviceManager;
   import { BusinessError } from '@ohos.base';
 
   try {
-    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
+    let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
   } catch(err) {
     let e: BusinessError = err as BusinessError;
-    console.error("createDeviceManager errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -88,11 +88,11 @@ releaseDeviceManager(deviceManager: DeviceManager): void;
   import deviceManager from '@ohos.distributedDeviceManager';
 
   try {
-    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
+    let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
     deviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("release device manager errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('release device manager errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -161,7 +161,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
     let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getAvailableDeviceListSync errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -199,14 +199,14 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
   try {
     dmInstance.getAvailableDeviceList((err: BusinessError, data: Array<deviceManager.DeviceBasicInfo>) => {
       if (err) {
-        console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
+        console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
         return;
       }
-      console.log("get available device info: " + JSON.stringify(data));
+      console.log('get available device info: ' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getAvailableDeviceList errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getAvailableDeviceList errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -242,9 +242,9 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
   import { BusinessError } from '@ohos.base';
 
   dmInstance.getAvailableDeviceList().then((data: Array<deviceManager.DeviceBasicInfo>) => {
-    console.log("get available device info: " + JSON.stringify(data));
+    console.log('get available device info: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.error("getAvailableDeviceList errCode:" + err.code + ",errMessage:" + err.message);
+      console.error('getAvailableDeviceList errCode:' + err.code + ',errMessage:' + err.message);
   });
   ```
 
@@ -280,10 +280,10 @@ getLocalDeviceNetworkId(): string;
 
   try {
     let deviceNetworkId: string = dmInstance.getLocalDeviceNetworkId();
-    console.log("local device networkId: " + JSON.stringify(deviceNetworkId));
+    console.log('local device networkId: ' + JSON.stringify(deviceNetworkId));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getLocalDeviceNetworkId errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getLocalDeviceNetworkId errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -319,10 +319,10 @@ getLocalDeviceName(): string;
 
   try {
     let deviceName: string = dmInstance.getLocalDeviceName();
-    console.log("local device name: " + JSON.stringify(deviceName));
+    console.log('local device name: ' + JSON.stringify(deviceName));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getLocalDeviceName errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getLocalDeviceName errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -358,10 +358,10 @@ getLocalDeviceType(): number;
 
   try {
     let deviceType: number = dmInstance.getLocalDeviceType();
-    console.log("local device type: " + JSON.stringify(deviceType));
+    console.log('local device type: ' + JSON.stringify(deviceType));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getLocalDeviceType errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getLocalDeviceType errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -397,10 +397,10 @@ getLocalDeviceId(): string;
 
   try {
     let deviceId: string = dmInstance.getLocalDeviceId();
-    console.log("local device id: " + JSON.stringify(deviceId));
+    console.log('local device id: ' + JSON.stringify(deviceId));
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getLocalDeviceId errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getLocalDeviceId errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -442,12 +442,12 @@ getDeviceName(networkId: string): string;
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
-    let networkId = "xxxxxxx";
+    let networkId = 'xxxxxxx';
     let deviceName: string = dmInstance.getDeviceName(networkId);
-    console.log("device name: " + JSON.stringify(deviceName)); 
+    console.log('device name: ' + JSON.stringify(deviceName)); 
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getDeviceName errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getDeviceName errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -489,12 +489,12 @@ getDeviceType(networkId: string): number;
 
   try {
     // 设备网络标识，可以从可信设备列表中获取
-    let networkId = "xxxxxxx";
+    let networkId = 'xxxxxxx';
     let deviceType: number = dmInstance.getDeviceType(networkId);
-    console.log("device type: " + JSON.stringify(deviceType)); 
+    console.log('device type: ' + JSON.stringify(deviceType)); 
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("getDeviceType errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('getDeviceType errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -552,7 +552,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
     dmInstance.startDiscovering(discoverParam, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("startDiscovering errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('startDiscovering errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -585,7 +585,7 @@ stopDiscovering(): void;
     dmInstance.stopDiscovering();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("stopDiscovering errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('stopDiscovering errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -623,11 +623,11 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
   import { BusinessError } from '@ohos.base';
 
   class Data {
-    deviceId: string = "";
+    deviceId: string = '';
   }
 
   // 认证的设备信息，可以从发现的结果中获取
-  let deviceId = "XXXXXXXX";
+  let deviceId = 'XXXXXXXX';
   let bindParam: Record<string, string | number> = {
     'bindType': 1, // 认证类型： 1 - 无帐号PIN码认证
     'targetPkgName': 'xxxx',
@@ -639,14 +639,14 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
   try {
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
-        console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
+        console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
         return;
       }
-      console.info("bindTarget result:" + JSON.stringify(data));
+      console.info('bindTarget result:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("bindTarget errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('bindTarget errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -681,11 +681,11 @@ unbindTarget(deviceId: string): void;
   import { BusinessError } from '@ohos.base';
 
   try {
-    let deviceId = "XXXXXXXX";
+    let deviceId = 'XXXXXXXX';
     dmInstance.unbindTarget(deviceId);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("unbindTarget errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('unbindTarget errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -724,10 +724,10 @@ replyUiAction(action: number, actionResult: string): void;
       action = 5 - pin码输入框确定操作
     */
     let operation = 0;
-    dmInstance.replyUiAction(operation, "extra");
+    dmInstance.replyUiAction(operation, 'extra');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("replyUiAction errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('replyUiAction errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -757,7 +757,7 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
   import { BusinessError } from '@ohos.base';
 
   class Data {
-    param: string = "";
+    param: string = '';
   }
 
   interface TmpStr {
@@ -766,14 +766,14 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
   try {
     dmInstance.on('replyResult', (data: Data) => {
-      console.log("replyResult executed, dialog closed" + JSON.stringify(data));
+      console.log('replyResult executed, dialog closed' + JSON.stringify(data));
       let tmpStr: TmpStr = JSON.parse(data.param);
       let isShow = tmpStr.verifyFailed;
-      console.log("replyResult executed, dialog closed" + isShow);
+      console.log('replyResult executed, dialog closed' + isShow);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('replyResult errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -806,7 +806,7 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
     dmInstance.off('replyResult');
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("replyResult errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('replyResult errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -837,20 +837,20 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
   class Data {
     action: deviceManager.DeviceStateChange = 0;
     device: deviceManager.DeviceBasicInfo = {
-      deviceId: "",
-      deviceName: "",
-      deviceType: "",
-      networkId: ""
+      deviceId: '',
+      deviceName: '',
+      deviceType: '',
+      networkId: ''
     };
   }
 
   try {
     dmInstance.on('deviceStateChange', (data: Data) => {
-      console.info("deviceStateChange on:" + JSON.stringify(data));
+      console.info('deviceStateChange on:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('deviceStateChange errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -881,20 +881,20 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
   class Data {
     action: deviceManager.DeviceStateChange = 0;
     device: deviceManager.DeviceBasicInfo = {
-      deviceId: "",
-      deviceName: "",
-      deviceType: "",
-      networkId: ""
+      deviceId: '',
+      deviceName: '',
+      deviceType: '',
+      networkId: ''
     };
   }
 
   try {
     dmInstance.off('deviceStateChange', (data: Data) => {
-      console.info("deviceStateChange" + JSON.stringify(data));
+      console.info('deviceStateChange' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('deviceStateChange errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -924,20 +924,20 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
 
   class Data {
     device: deviceManager.DeviceBasicInfo = {
-      deviceId: "",
-      deviceName: "",
-      deviceType: "",
-      networkId: ""
+      deviceId: '',
+      deviceName: '',
+      deviceType: '',
+      networkId: ''
     };
   }
   
   try {
     dmInstance.on('discoverSuccess', (data: Data) => {
-      console.info("discoverSuccess:" + JSON.stringify(data));
+      console.info('discoverSuccess:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('discoverSuccess errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -966,20 +966,20 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ device: DeviceBasicInfo }&
 
   class Data {
     device: deviceManager.DeviceBasicInfo = {
-      deviceId: "",
-      deviceName: "",
-      deviceType: "",
-      networkId: ""
+      deviceId: '',
+      deviceName: '',
+      deviceType: '',
+      networkId: ''
     };
   }
 
   try {
     dmInstance.off('discoverSuccess', (data: Data) => {
-      console.info("discoverSuccess" + JSON.stringify(data));
+      console.info('discoverSuccess' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("discoverSuccess errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('discoverSuccess errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1007,16 +1007,16 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
   import { BusinessError } from '@ohos.base';
 
   class Data {
-    deviceName: string = "";
+    deviceName: string = '';
   }
 
   try {
     dmInstance.on('deviceNameChange', (data: Data) => {
-      console.info("deviceNameChange on:" + JSON.stringify(data));
+      console.info('deviceNameChange on:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('deviceNameChange errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1044,16 +1044,16 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
   import { BusinessError } from '@ohos.base';
 
   class Data {
-    deviceName: string = "";
+    deviceName: string = '';
   }
 
   try {
     dmInstance.off('deviceNameChange', (data: Data) => {
-      console.info("deviceNameChange" + JSON.stringify(data));
+      console.info('deviceNameChange' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceNameChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('deviceNameChange errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1086,11 +1086,11 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
   try {
     dmInstance.on('discoverFailure', (data: Data) => {
-      console.info("discoverFailure on:" + JSON.stringify(data));
+      console.info('discoverFailure on:' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('discoverFailure errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1123,11 +1123,11 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
 
   try {
     dmInstance.off('discoverFailure', (data: Data) => {
-      console.info("discoverFailure" + JSON.stringify(data));
+      console.info('discoverFailure' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("discoverFailure errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('discoverFailure errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1155,12 +1155,12 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
   import { BusinessError } from '@ohos.base';
 
   try {
-    dmInstance.on("serviceDie", () => {
-      console.info("serviceDie on");
+    dmInstance.on('serviceDie', () => {
+      console.info('serviceDie on');
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('serviceDie errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -1188,11 +1188,11 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
   import { BusinessError } from '@ohos.base';
 
   try {
-    dmInstance.off("serviceDie", () => {
-      console.info("serviceDie off");
+    dmInstance.off('serviceDie', () => {
+      console.info('serviceDie off');
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("serviceDie errCode:" + e.code + ",errMessage:" + e.message);
+    console.error('serviceDie errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
