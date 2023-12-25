@@ -37,7 +37,6 @@ animation(value: {duration?: number, tempo?: number, curve?: string | Curve | IC
 > - 不推荐使用PlayMode.Reverse，此场景下不仅会导致动画刚开始就跳变到终止状态，也会导致动画最终状态和状态变量的取值不同。
 
 ## 示例
-**1. 缩放动画**
 ```ts
 // xxx.ets
 @Entry
@@ -81,7 +80,12 @@ struct AttrAnimationExample {
           curve: Curve.Friction,
           delay: 500,
           iterations: -1, // 设置-1表示动画无限循环
-          playMode: PlayMode.Alternate
+          playMode: PlayMode.Alternate,
+          expectedFrameRateRange: {
+            min: 20,
+            max: 120,
+            expected: 90,
+          }
         })
     }.width('100%').margin({ top: 20 })
   }
@@ -89,15 +93,3 @@ struct AttrAnimationExample {
 ```
 
 ![animation](figures/animation.gif)
-
-**2. 配置帧率参数**
-```ts
-animation({
-      // Add New AnimationPararm
-      expectedFrameRateRange: {
-              min: 20,
-              max: 120,
-              expected: 90,
-     },
-})
-```
