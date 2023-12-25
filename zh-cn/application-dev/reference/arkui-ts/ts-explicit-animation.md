@@ -98,6 +98,11 @@ struct AnimateToExample {
             onFinish: () => {
               console.info('play end')
             }
+            expectedFrameRateRange: {
+              min: 10,
+              max: 120,
+              expected: 60,
+            }
           }, () => {
             this.rotateAngle = 90
           })
@@ -108,15 +113,3 @@ struct AnimateToExample {
 ```
 
 ![animation1](figures/animation1.gif)
-
-**2. 动画配置帧率参数**
-```ts
-animateTo({
-       // Add New AnimationPararm
-       expectedFrameRateRange: {
-                min: 10,
-                max: 120,
-                expected: 60,
-       }
-})
-```
