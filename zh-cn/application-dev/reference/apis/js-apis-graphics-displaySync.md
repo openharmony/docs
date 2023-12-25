@@ -1,5 +1,5 @@
 #  @ohos.graphics.displaySync (可变帧率)
-可变帧率基于设置的期望帧率参数，系统按照最匹配的帧率运行开发者设置的回调函数，一般用于开发者自绘制UI，并且对于帧率有特定诉求的场景。
+可变帧率支持让开发者以指定帧率来运行UI业务，一般用于开发者自绘制UI，并且对于帧率有特定诉求的场景。
 
 > **说明：**
 >
@@ -37,10 +37,11 @@ private backDisplaySyncBigger: displaySync.DisplaySync = displaySync.create();
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                         | 类型     | 说明                    |
-| --------------------------- | ------ | ----------------------- |
-| timestamp                           | number      | 当前帧到达的时间。|
-| targetTimestamp                    | number      | 下一帧预期到达的时间。 |
+| 名称             | 类型                                      | 只读 | 必填 | 说明                                       |
+| ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
+| timestamp      | number | 是   | 否   | 下一帧预期到达的时间。 |
+| targetTimestamp | number| 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。 |
+
 
 ## DisplaySync
 
@@ -66,7 +67,7 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange) : void
 **示例：**
 
 ```ts
-let  range : ExpectedFrameRateRange = {
+let range : ExpectedFrameRateRange = {
   expected: 10,
   min:0,
   max:120
@@ -74,9 +75,9 @@ let  range : ExpectedFrameRateRange = {
 this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
 ```
 
-### on(type: 'frame')
+### on('frame')
 
-on(type: 'frame', callback: Callback<IntervalInfo>): void
+on(type: 'frame', callback: Callback\<IntervalInfo\>): void
 
 订阅每一帧的变化。
 
@@ -94,17 +95,17 @@ on(type: 'frame', callback: Callback<IntervalInfo>): void
 
 ```ts
 let _this = this
-let bigger = (ii: displaySync.IntervalInfo) => {
+let bigger = (frameInfo: displaySync.IntervalInfo) => {
 _this.drawFirstSize += 1;
-    console.info(_this.TAG, 'bigger:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
+    console.info(_this.TAG, 'bigger:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
 }
 this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
 this.backDisplaySyncBigger.on("frame", bigger)
 ```
 
-### off(type: 'frame')
+### off('frame')
 
-off(type: 'frame', callback?: Callback<IntervalInfo>): void
+off(type: 'frame', callback\?: Callback\<IntervalInfo\>): void
 
 取消订阅每一帧的变化。
 
@@ -115,16 +116,16 @@ off(type: 'frame', callback?: Callback<IntervalInfo>): void
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
-| callback    | Callback<[IntervalInfo](#intervalinfo)>| 是   | 订阅函数。|
+| callback    | Callback<[IntervalInfo](#intervalinfo)>| 否   | 订阅函数, 参数不填时，默认取消全部订阅函数。|
 
 
 **示例：**
 
 ```ts
 let _this = this
-let bigger = (ii: displaySync.IntervalInfo) => {
+let bigger = (frameInfo: displaySync.IntervalInfo) => {
 _this.drawFirstSize += 1;
-    console.info(_this.TAG, 'bigger:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
+    console.info(_this.TAG, 'bigger:' + frameInfo.timestamp + ' TargetTimeStamp: ' + frameInfo.targetTimestamp);
 }
 this.backDisplaySyncBigger.off("frame", bigger)
 ```
