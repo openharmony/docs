@@ -4310,16 +4310,8 @@ portrait.uri = "uri";
 
 ```js
 let postalAddress: contact.PostalAddress = {
-    city: "xx市",
-    country: "中国",
-    labelName: "家庭地址",
-    neighborhood: "张三",
-    pobox: "xx区xx道135号101室",
-    postalAddress: "xx市xx区xx道135号101室",
-    postcode: "xxxxxx",
-    region: "xx区",
-    street: "xx道",
-    labelId: 1
+    city: "city",
+    postalAddress: "postalAddress"
 };
 ```
 
@@ -4327,16 +4319,8 @@ let postalAddress: contact.PostalAddress = {
 
 ```js
 let postalAddress = new contact.PostalAddress();
-postalAddress.city = "xx市";
-postalAddress.country = "中国";
-postalAddress.labelName = "家庭地址";
-postalAddress.neighborhood = "张三";
-postalAddress.pobox = "xx区xx道135号101室";
+postalAddress.city = "city";
 postalAddress.postalAddress = "xx市xx区xx道135号101室";
-postalAddress.postcode = "xxxxxx";
-postalAddress.region = "xx区";
-postalAddress.street = "xx道";
-postalAddress.labelId = 1;
 ```
 
 
