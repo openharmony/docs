@@ -409,7 +409,7 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 | 类型                  | 说明                                  |
 | --------------------- | ------------------------------------- |
-| Promise&lt;number&gt; | 返回使用closeCustomDialog的对话框id。 |
+| Promise&lt;number&gt; | 返回供closeCustomDialog使用的对话框id。 |
 
 **错误码：**
 
