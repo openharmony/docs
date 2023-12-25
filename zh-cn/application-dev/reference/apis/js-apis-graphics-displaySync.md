@@ -42,12 +42,13 @@ private backDisplaySyncBigger: displaySync.DisplaySync = displaySync.create();
 | targetTimestamp                    | number      | 下一帧预期到达的时间。 |
 
 ## DisplaySync
+
  帧率和回调函数设置实例。用于帧率设置和回调函数的注册，以及启动和停止回调函数的调用。
+
  下列API示例中都需先使用[displaySync.create()](#displaysynccreate)方法获取到DisplaySync实例，再通过此实例调用对应方法。
 
-
-
 ### setExpectedFrameRateRange
+
 setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange) : void
 
 设置期望的帧率范围。
@@ -62,6 +63,7 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange) : void
 
 
 **示例：**
+
 ```ts
 let  range : ExpectedFrameRateRange = {
   expected: 10,
@@ -84,27 +86,26 @@ on(type: 'frame', callback: Callback<IntervalInfo>): void
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
-| callback    | [Callback<IntervalInfo>](js-apis-base.md)| 是   | 订阅函数。|
+| callback    | [Callback](js-apis-base.md)<[IntervalInfo](#intervalinfo)>| 是   | 订阅函数。|
 
 
 **示例：**
+
 ```ts
 let _this = this
 let bigger = (ii: displaySync.IntervalInfo) => {
 _this.drawFirstSize += 1;
     console.info(_this.TAG, 'bigger:' + ii.timestamp + ' TargetTimeStamp: ' + ii.targetTimestamp);
 }
-
 this.backDisplaySyncBigger.setExpectedFrameRateRange(range)
 this.backDisplaySyncBigger.on("frame", bigger)
 ```
 
 ### off(type: 'frame')
 
-取消订阅每一帧的变化。
-```ts
 off(type: 'frame', callback?: Callback<IntervalInfo>): void
-```
+
+取消订阅每一帧的变化。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -113,10 +114,11 @@ off(type: 'frame', callback?: Callback<IntervalInfo>): void
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
-| callback    | [Callback<IntervalInfo>](js-apis-base.md)| 是   | 订阅函数。|
+| callback    | Callback<[IntervalInfo](#intervalinfo)>| 是   | 订阅函数。|
 
 
 **示例：**
+
 ```ts
 let _this = this
 let bigger = (ii: displaySync.IntervalInfo) => {
@@ -127,6 +129,7 @@ this.backDisplaySyncBigger.off("frame", bigger)
 ```
 
 ### start
+
 start(): void
 
 开始每帧回调。
@@ -134,6 +137,7 @@ start(): void
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
+
 ```ts
 Button('StartBigger')
         .fontSize(30)
@@ -154,6 +158,7 @@ stop(): void
 
 
 **示例：**
+
 ```ts
 Button('StopBigger')
         .fontSize(30)
