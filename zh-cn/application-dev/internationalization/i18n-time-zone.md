@@ -41,11 +41,11 @@
    // 系统支持的时区城市Id列表
    let cityIdArray = I18n.TimeZone.getAvailableZoneCityIDs();  // ["Auckland", "Magadan", "Lord Howe Island",...]
    // 遍历时区城市Id列表
-   let timezoneList = [];  // 呈现给用户的时区列表
+   let timezoneList: Array<{ cityDisplayName; timezoneId; offset; cityId; }> = [];  // 呈现给用户的时区列表
    for (let i =0 ; i < cityIdArray.length ; i++) {
        let cityId = cityIdArray[i];
-       let timezone = I18n.TimeZone.getTimezoneFromCity(cityID: string); // 城市Id对应的时区对象
-       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityID: string, locale: string); // 本地化城市名称
+       let timezone = I18n.TimeZone.getTimezoneFromCity(cityId); // 城市Id对应的时区对象
+       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityId, "zh-CN"); // 本地化城市名称
        let timestamp = (new Date()).getTime()
        let item = {
            cityDisplayName : cityDisplayName ,
