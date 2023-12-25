@@ -226,7 +226,6 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
 **示例：**
 ```ts
   import wifiManager from '@ohos.wifiManager';
-  import { BusinessError } from '@ohos.base';
   
   wifiManager.getScanResults((err, result) => {
       if (err) {
@@ -601,7 +600,6 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-	import { BusinessError } from '@ohos.base';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -848,7 +846,6 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 **示例：**
 `````ts
 	import wifiManager from '@ohos.wifiManager';
-	import { BusinessError } from '@ohos.base';
 	
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -943,7 +940,6 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 
 ```ts
 	import wifiManager from '@ohos.wifiManager';
-	import { BusinessError } from '@ohos.base';
 
 	try {
 		let networkId = 0;
