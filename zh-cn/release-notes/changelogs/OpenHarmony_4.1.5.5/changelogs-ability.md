@@ -1,22 +1,29 @@
-# 元能力子系统ChangeLog
+# 元能力子系统变更说明
 
-## cl.ability.1 应用开机启动管理接口新增权限校验
+## cl.ability.1 on、off、setApplicationAutoStartup(callback方式)、setApplicationAutoStartup方法(promise方式)、cancelApplicationAutoStartup方法(callback方式)、cancelApplicationAutoStartup方法(promise方式)、queryAllAutoStartupApplications方法(callback方式)、queryAllAutoStartupApplications方法(promise方式)
+
+**访问级别**
+
+系统接口
+
+**变更原因**
 
 此前版本注册监听应用组件开机自启动状态变化、注销监听应用组件开机自启动状态变化、设置应用组件开机自启动、取消应用组件开机自启动及查询自启动应用组件信息接口对调用方只进行系统应用校验，未进行权限校验，存在安全风险，不符合OpenHarmony的API接口规范。
-现做出如下变更：
-  - 使用on方法前需提前申请"ohos.permission.MANAGE_APP_BOOT"权限。
-  - 使用off方法前需提前申请"ohos.permission.MANAGE_APP_BOOT"权限。
-  - 使用setApplicationAutoStartup方法(callback方式)前需提前申请"ohos.permission.MANAGE_APP_BOOT"权限。
-  - 使用setApplicationAutoStartup方法(promise方式)前需提前申请"ohos.permission.MANAGE_APP_BOOT"权限。
-  - 使用cancelApplicationAutoStartup方法(callback方式)前需提前申请"ohos.permission.MANAGE_APP_BOOT"权限。
-  - 使用cancelApplicationAutoStartup方法(promise方式)前需提前申请"ohos.permission.MANAGE_APP_BOOT"权限。
-  - 使用queryAllAutoStartupApplications方法(callback方式)前需提前申请"ohos.permission.MANAGE_APP_BOOT"权限。
-  - 使用queryAllAutoStartupApplications方法(promise方式)前需提前申请"ohos.permission.MANAGE_APP_BOOT"权限。
 
-**关键的接口/组件变更**
+**变更影响**
 
-涉及接口
+影响接口调用权限，接口调用权限发生变更。
+应用需要配置相应的权限，才可以正常使用。
 
+**API Level**
+
+11
+
+**变更发生版本**
+
+从Openharmony SDK OpenHarmony_4.1.5.5 开始
+
+**变更的接口**
   - autoStartupManager.on(type: 'systemAutoStartup', callback: AutoStartupCallback);
   - autoStartupManager.off(type: 'systemAutoStartup', callback: AutoStartupCallback);
   - autoStartupManager.setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback<void>);
