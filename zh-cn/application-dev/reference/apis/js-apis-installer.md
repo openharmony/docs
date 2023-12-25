@@ -3,7 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-在设备上安装、升级和卸载应用
+在设备上安装、升级和卸载应用。
 
 ## 导入模块
 
@@ -24,11 +24,11 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.INSTALL_SELF_BUNDLE | system_core | 允许企业MDM应用在企业设备上自升级。|
 
 
-权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
+权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
 
 ## BundleInstaller.getBundleInstaller
 
-getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
+getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 
 获取BundleInstaller对象，使用callback形式返回结果。
 
@@ -40,7 +40,7 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | 是   | 回调函数，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
+| callback | AsyncCallback\<BundleInstaller> | 是   | 回调函数，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
 
 **示例：**
 
@@ -64,7 +64,7 @@ try {
 
 ## BundleInstaller.getBundleInstaller
 
-getBundleInstaller(): Promise\<BundleInstaller>;
+getBundleInstaller(): Promise\<BundleInstaller>
 
 获取BundleInstaller对象，使用callback形式返回结果。
 
@@ -75,7 +75,7 @@ getBundleInstaller(): Promise\<BundleInstaller>;
 **返回值：**
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Promise对象，返回BundleInstaller对象。 |
+| Promise\<BundleInstaller> | Promise对象，返回BundleInstaller对象。 |
 
 **示例：**
 
@@ -97,7 +97,7 @@ try {
 
 ## BundleInstaller.getBundleInstallerSync<sup>10+</sup>
 
-getBundleInstallerSync(): BundleInstaller;
+getBundleInstallerSync(): BundleInstaller
 
 获取并返回BundleInstaller对象。
 
@@ -108,7 +108,7 @@ getBundleInstallerSync(): BundleInstaller;
 **返回值：**
 | 类型                                                         | 说明                                 |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [BundleInstaller](js-apis-installer.md#BundleInstaller) | 返回BundleInstaller对象。 |
+| BundleInstaller | 返回BundleInstaller对象。 |
 
 **示例：**
 
@@ -126,7 +126,7 @@ try {
 ```
 
 ## BundleInstaller.install
-install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法安装应用，使用callback形式返回结果。
 
@@ -135,13 +135,13 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 **需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup> 或 ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup> 或 ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **说明：** 从API version 10起，可通过ohos.permission.INSTALL_ENTERPRISE_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限调用此接口。
 >
-> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限
+> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限。
 >
-> 安装企业NORMAL应用需要ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE或ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限
+> 安装企业NORMAL应用需要ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE或ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
-> 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限
+> 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
-> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限
+> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -209,7 +209,7 @@ try {
 }
 ```
 ## BundleInstaller.install
-install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法安装应用，使用callback形式返回结果。
 
@@ -218,13 +218,13 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 **需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup> 或 ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup> 或 ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **说明：** 从API version 10起，可通过ohos.permission.INSTALL_ENTERPRISE_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限调用此接口。
 >
-> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限
+> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限。
 >
-> 安装企业NORMAL应用需要ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE或ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限
+> 安装企业NORMAL应用需要ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE或ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
-> 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限
+> 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
-> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限
+> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -287,7 +287,7 @@ try {
 
 ## BundleInstaller.install
 
-install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>;
+install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>
 
 以异步方法安装应用，使用Promise形式返回结果。
 
@@ -296,13 +296,13 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 **需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup> 或 ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup> 或 ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **说明：** 从API version 10起，可通过ohos.permission.INSTALL_ENTERPRISE_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限调用此接口。
 >
-> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限
+> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限。
 >
-> 安装企业NORMAL应用需要ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE或ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限
+> 安装企业NORMAL应用需要ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE或ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
-> 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限
+> 安装企业MDM应用需要ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE权限。
 >
-> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限
+> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -376,7 +376,7 @@ try {
 
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法卸载应用，使用callback形式返回结果。
 
@@ -439,7 +439,7 @@ try {
 
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法卸载应用，使用callback形式返回结果。
 
@@ -494,7 +494,7 @@ try {
 ```
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 以异步方法卸载应用，使用Promise形式返回结果。
 
@@ -560,7 +560,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法回滚应用到初次安装时的状态，使用callback形式返回结果。
 
@@ -621,7 +621,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 以异步方法回滚应用到初次安装时的状态，使用callback形式返回结果。
 
@@ -674,7 +674,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 以异步方法回滚应用到初次安装时的状态，使用Promise形式返回结果。
 
@@ -737,7 +737,7 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void ;
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void
 
 以异步方法卸载一个共享包，使用callback形式返回结果。
 
@@ -794,7 +794,7 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam) : Promise\<void>;
+uninstall(uninstallParam: UninstallParam) : Promise\<void>
 
 以异步方法卸载一个共享包，使用Promise形式返回结果。
 
@@ -856,7 +856,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void;
+updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void
 
 以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback形式返回结果。
 
@@ -932,7 +932,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>): void;
+updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>): void
 
 以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用callback形式返回结果。
 
@@ -1001,7 +1001,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>;
+updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>
 
 以异步方法更新当前应用，仅限企业设备上的企业MDM应用调用，且传入的hapFilePaths中的hap必须都属于当前应用，使用promise形式返回结果。
 
@@ -1017,6 +1017,12 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam):
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
 | installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
+
+**返回值：**
+
+| 类型          | 说明                                   |
+| ------------- | -------------------------------------- |
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 

@@ -171,7 +171,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hiviewdfx-hidebug.md)。
+以下错误码的详细介绍请参见[Hidebug错误码](../errorcodes/errorcode-hiviewdfx-hidebug.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -182,10 +182,10 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import fs from '@ohos.file.fs'
-import hidebug from '@ohos.hidebug'
-import common from '@ohos.app.ability.common'
-import { BusinessError } from '@ohos.base'
+import fs from '@ohos.file.fs';
+import hidebug from '@ohos.hidebug';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 export default class HidebugTest extends UIAbility {
   public testfunc() {
@@ -232,7 +232,7 @@ startJsCpuProfiling(filename : string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -298,7 +298,7 @@ dumpJsHeapData(filename : string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |

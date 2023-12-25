@@ -379,6 +379,13 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Static   | The element position remains unchanged on the target page, and transition opacity can be configured. Currently, this effect is only valid in redirecting to the target page.|
 | Exchange | The element is relocated and scaled properly on the target page.                 |
 
+## ShadowType<sup>10+<sup>
+
+| Name      | Description                                  |
+| -------- | ---------------------------------------- |
+| COLOR    | Color.                                   |
+| BLUR     | Blur.                                   |
+
 ## FontStyle
 
 Since API version 9, this API is supported in ArkTS widgets.

@@ -72,7 +72,7 @@
   this.title = new Model('Hi');
   ```
 
-当装饰的类型是Object或者class复杂类型时，可以观察到第一层的属性的变化，属性即Object.keys(observedObject)返回的所有属性；
+- 当装饰的类型是Object或者class复杂类型时，可以观察到第一层的属性的变化，属性即Object.keys(observedObject)返回的所有属性；
 
 ```
 class ClassA {
@@ -99,7 +99,7 @@ this.title.a.value = 'ArkUi'
 
 对于嵌套场景，如果class是被\@Observed装饰的，可以观察到class属性的变化，示例请参考[@Prop嵌套场景](#prop嵌套场景)。
 
-当装饰的类型是数组的时候，可以观察到数组本身的赋值、添加、删除和更新。
+- 当装饰的类型是数组的时候，可以观察到数组本身的赋值、添加、删除和更新。
 
 ```
 // @State装饰的对象为数组时

@@ -249,10 +249,10 @@ import { BusinessError } from '@ohos.base';
 
 **参数：** 
 
-| 名称        | 类型                    | 可读   | 可写   | 说明       |
-| --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | 是    | 否    | 当前设备屏幕方向 |
-| locale    | string                  | 是    | 否    | 当前系统语言   |
+| 名称        | 类型                    | 必填   |说明       |
+| --------- | ----------------------- | ---- |  -------- |
+| direction | [Direction](#direction) | 是    |当前设备屏幕方向 |
+| locale    | string                  | 是    | 当前系统语言   |
 
 
 ## DeviceCapability
@@ -263,10 +263,10 @@ import { BusinessError } from '@ohos.base';
 
 **参数：**
 
-| 名称            | 类型                            | 可读   | 可写   | 说明       |
-| ------------- | ------------------------------- | ---- | ---- | -------- |
-| screenDensity | [ScreenDensity](#screendensity) | 是    | 否    | 当前设备屏幕密度 |
-| deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型   |
+| 名称            | 类型                            | 必填   | 说明       |
+| ------------- | ------------------------------- | ---- | -------- |
+| screenDensity | [ScreenDensity](#screendensity) | 是    | 当前设备屏幕密度 |
+| deviceType    | [DeviceType](#devicetype)       | 是    | 当前设备类型   |
 
 
 ## RawFileDescriptor<sup>8+</sup>
@@ -310,7 +310,7 @@ import { BusinessError } from '@ohos.base';
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
 >
-> - 对于本应用包资源，通过指定资源ID或资源名称进行访问。对于应用内跨包资源，通过指定[resource对象](#resource9)或对应包的[context](../../application-models/application-context-stage.md#创建其他应用或其他module的context)进行访问，通过对应包context访问跨包资源与访问本应用包资源的逻辑一致，推荐开发者使用对应包的context方法。
+> - 对于本应用资源，通过 [getContext()](js-apis-ability-featureAbility.md#featureabilitygetcontext) 或 this.context 方法访问特定ID或名称的资源。对于应用内跨包资源有两种访问方式，第一种通过resource对象，第二种创建对应module的context，通过.context访问。
 
 ### getStringSync<sup>9+</sup>
 
@@ -594,7 +594,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的字符串，使用callback形式返回字符串。
 
@@ -605,7 +605,7 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | 是    | 资源ID值           |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| callback | _AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **错误码：**
 
@@ -685,7 +685,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 用户获取指定resource对象对应的字符串，使用callback形式返回字符串。
 
@@ -698,7 +698,7 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | 是    | 资源信息            |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| callback | _AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **错误码：**
 
@@ -1313,7 +1313,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1361,7 +1361,7 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1417,7 +1417,7 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1465,7 +1465,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1514,7 +1514,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1566,7 +1566,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1623,7 +1623,7 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1681,6 +1681,10 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 根据传入的数量值，获取资源名称对应的字符串资源，使用callback形式返回字符串。
 
+**说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **参数：** 
@@ -1725,6 +1729,10 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 根据传入的数量值，获取资源名称对应的字符串资源，使用Promise形式返回字符串。
+
+**说明**
+>
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4611,7 +4619,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
   }
   ```
 
-### getConfigurationSync
+### getConfigurationSync<sup>10+</sup>
 
 getConfigurationSync(): Configuration
 
@@ -4696,7 +4704,7 @@ getConfiguration(): Promise&lt;Configuration&gt;
   }
   ```
 
-### getDeviceCapabilitySync
+### getDeviceCapabilitySync<sup>10+</sup>
 
 getDeviceCapabilitySync(): DeviceCapability
 
@@ -5331,7 +5339,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9)代替。
 
@@ -5372,7 +5380,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 **说明**
 >
->中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
+> 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
 从API version 9开始不再维护，建议使用[getPluralStringValue](#getpluralstringvalue9-1)代替。
 

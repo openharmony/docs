@@ -231,7 +231,7 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
-Obtains information about the running processes. This API uses a promise to return the result.
+Obtains information about the running processes. This API uses a promise to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -268,7 +268,7 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
-Obtains information about the running processes. This API uses an asynchronous callback to return the result.
+Obtains information about the running processes. This API uses an asynchronous callback to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -368,7 +368,7 @@ Checks whether the shared library is in use. This API uses an asynchronous callb
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | Yes   | Bundle name of the shared library.|
 | versionCode   | number   | Yes   | Version number of the shared library.     |
-| callback    | syncCallback\<boolean>> | Yes   | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
+| callback    | AsyncCallback\<boolean>> | Yes   | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1412,3 +1412,4 @@ Enumerates the process states. This enum can be used together with [ProcessData]
 | STATE_ACTIVE  | 2   |          State indicating that the process is active.  |
 | STATE_BACKGROUND        | 3   |       State indicating that the process is running in the background.          |
 | STATE_DESTROY        | 4   |         State indicating that the process is destroyed.        |
+

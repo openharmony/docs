@@ -1766,7 +1766,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
       // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
       const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1774,7 +1774,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'，事件类型为NOTIFY_MOVED_TO
       const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1783,7 +1783,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
       const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1817,7 +1817,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'，事件类型为NOTIFY_ADD
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1847,7 +1847,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
       // 期待无第二次返回
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1895,7 +1895,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1923,7 +1923,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
       const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1954,7 +1954,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
       // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'，事件类型为NOTIFY_MOVED_TO
       const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }
@@ -1962,7 +1962,7 @@ registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&
       // 期待收不到任何事件
       const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
         if (NotifyMessageDir != undefined) {
-          console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+          console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
         } else {
           console.error("NotifyMessageDir is undefined");
         }

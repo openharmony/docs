@@ -146,7 +146,7 @@ Enables a device administrator application for the current or specified user. Th
 | admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application to enable.                     |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information of the device administrator application.                |
 | type           | [AdminType](#admintype)             | Yes   | Type of the device administrator application to enable.                  |
-| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is enabled.<br>- If **userId** is not passed in, the application of the current user is enabled. |
+| userId         | number                              | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the application of the specified user is enabled.<br>- If **userId** is not passed in, the application of the current user is enabled.|
 
 **Return value**
 
@@ -610,7 +610,7 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>): void
 
 Sets enterprise information for a device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -628,7 +628,7 @@ Sets enterprise information for a device administrator application. This API use
 | -------------- | ----------------------------------- | ---- | ---------------------- |
 | admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.               |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information to set.          |
-| callback       | AsyncCallback\<void>;               | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback\<void>              | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -662,7 +662,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 Sets enterprise information for a device administrator application. This API uses a promise to return the result.
 
@@ -1159,3 +1159,4 @@ Enumerates the system management events that can be subscribed to.
 | MANAGED_EVENT_BUNDLE_REMOVED | 1  | Application uninstalled.|
 | MANAGED_EVENT_APP_START<sup>10+</sup> | 2    | Application started.|
 | MANAGED_EVENT_APP_STOP<sup>10+</sup> | 3  | Application stopped.|
+

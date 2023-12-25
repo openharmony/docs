@@ -9,11 +9,11 @@ This subscription mechanism is applicable when the local proxy object needs to d
 
 ## **Development Using Native APIs**
 
-| Name| Return Value Type| Description|
-| -------- | -------- | -------- |
-| AddDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | Adds a recipient for death notifications of a remote stub object.|
-| RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | Removes the recipient for death notifications of a remote stub object.|
-| OnRemoteDied(const wptr\<IRemoteObject> &object); | void | Called when the remote stub object dies.|
+| Name                                                             |  Description                    |
+| ------------------------------------------------------------------- | ------------------------- |
+| bool AddDeathRecipient(const sptr\<DeathRecipient> &recipient);     | Adds a recipient for death notifications of a remote stub object.    |
+| bool RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient);  | Removes the recipient for death notifications of a remote stub object.|
+| void OnRemoteDied(const wptr\<IRemoteObject> &object);              | Called when the remote stub object dies.|
 
 ### Sample Code
 
@@ -80,7 +80,7 @@ bool result = object->AddDeathRecipient(deathRecipient); // Add a recipient for 
 result = object->RemoveDeathRecipient(deathRecipient); // Remove the recipient for death notifications.
 ```
 
-## **Development Using JS APIs**
+## **Development Using ArkTS APIs**
 
 | Name                                                      | Return Value Type| Description                                                    |
 | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |

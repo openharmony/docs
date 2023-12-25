@@ -53,13 +53,13 @@ let context = featureAbility.getContext()
    
    ```ts
     import featureAbility from '@ohos.ability.featureAbility'
-    import bundleManager from '@ohos.bundle.bundleManager';
+    import bundle from '@ohos.bundle';
 
     class Entry {
       onCreate() {
         // 获取context并调用相关方法
         let context = featureAbility.getContext();
-        context.setDisplayOrientation(bundleManager.DisplayOrientation.LANDSCAPE).then(() => {
+        context.setDisplayOrientation(bundle.DisplayOrientation.LANDSCAPE).then(() => {
           console.info("Set display orientation.")
         })
         console.info('Application onCreate')

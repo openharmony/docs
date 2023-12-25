@@ -1,4 +1,4 @@
-# 音效管理
+# 音效管理(ArkTS)
 
 音效管理主要包括播放实例音效管理和全局音效查询两部分，播放实例音效管理主要包括查询和设置当前音频播放流的音效模式，全局音效查询支持查询ContentType和StreamUsage对应场景支持的音效模式。
 
@@ -19,7 +19,6 @@
 2. 步骤二：配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8)，创建AudioRenderer实例时会默认挂载EFFECT_DEFAULT模式音效。
 
   ```ts
-  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   let audioStreamInfo: audio.AudioStreamInfo = {
@@ -53,6 +52,7 @@
 ### 查询当前播放实例的音效模式
 
   ```ts
+  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
@@ -70,6 +70,7 @@
 关闭系统音效：
 
   ```ts
+  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_NONE, (err: BusinessError) => {
@@ -85,6 +86,7 @@
 开启系统音效默认模式：
 
   ```ts
+  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
@@ -116,6 +118,7 @@
 ### 查询对应场景的音效模式
 
   ```ts
+  import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
 
   audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MEDIA, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {

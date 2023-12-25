@@ -53,7 +53,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     console.log(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
     let dataObj1 = new Record<string, string> = {
       'temperature': '11c',
-      'time': '11:00',
+      'time': '11:00'
     };
 
     let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);

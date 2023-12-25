@@ -1041,7 +1041,7 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 
 ```ts
 import { BusinessError } from '@ohos.base';
-policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: number) => {
+policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: policy.NetBackgroundPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -1088,7 +1088,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 import { BusinessError } from '@ohos.base';
 policy
   .getBackgroundPolicyByUid(11111)
-  .then((data: number) => {
+  .then((data: policy.NetBackgroundPolicy) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {

@@ -1,7 +1,9 @@
 # @ohos.data.relationalStore (RDB Store)
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
+
 ArkTS supports the following basic data types: number, string, binary data, and boolean. 
+
 To ensure successful read and write of data, the data size cannot exceed 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
 The **relationalStore** module provides the following functions:
@@ -509,7 +511,7 @@ Defines the RDB store configuration.
 
 ## SecurityLevel
 
-Enumerates the RDB store security levels.
+Enumerates the RDB store security levels. Use the enum name rather than the enum value.
 
 > **NOTE**
 >
@@ -532,12 +534,12 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 | Name                             | Value  | Description            |
 | ------------------------------- | --- | -------------- |
-| ASSET_NORMAL     | -   | The asset is in normal status.     |
-| ASSET_INSERT | - | The asset is to be inserted to the cloud.|
-| ASSET_UPDATE | - | The asset is to be updated to the cloud.|
-| ASSET_DELETE | - | The asset is to be deleted from the cloud.|
-| ASSET_ABNORMAL    | -   | The asset is in abnormal status.     |
-| ASSET_DOWNLOADING | -   | The asset is being downloaded to a local device.|
+| ASSET_NORMAL     | 1  | The asset is in normal status.     |
+| ASSET_INSERT | 2 | The asset is to be inserted to the cloud.|
+| ASSET_UPDATE | 3 | The asset is to be updated to the cloud.|
+| ASSET_DELETE | 4 | The asset is to be deleted from the cloud.|
+| ASSET_ABNORMAL    | 5   | The asset is in abnormal status.     |
+| ASSET_DOWNLOADING | 6   | The asset is being downloaded to a local device.|
 
 ## Asset<sup>10+</sup>
 
@@ -567,7 +569,7 @@ Defines an array of the [Asset](#asset10) type.
 
 ## ValueType
 
-Defines the data types allowed.
+Enumerates the types of the value in a KV pair. The type varies with the parameter function.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -625,27 +627,27 @@ Represents the data type of the primary key and modification time of a database 
 
 ## SyncMode
 
-Enumerates the database synchronization modes.
+Enumerates the database synchronization modes. Use the enum name rather than the enum value.
 
 | Name          | Value  | Description                              |
 | -------------- | ---- | ---------------------------------- |
-| SYNC_MODE_PUSH                       | 0   | Push data from a local device to a remote device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core                    |
-| SYNC_MODE_PULL                       | 1   | Pull data from a remote device to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core                     |
-| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | Synchronize with the data with the latest modification time. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | Synchronize data from a local device to the cloud. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
-| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | Synchronize data from the cloud to a local device. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
+| SYNC_MODE_PUSH                       | 0   | Push data from a local device to a remote device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| SYNC_MODE_PULL                       | 1   | Pull data from a remote device to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | 4   | Synchronize with the data with the latest modification time.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | 5   | Synchronize data from a local device to the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | 6   | Synchronize data from the cloud to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## SubscribeType
 
-Enumerates the subscription types.
+Enumerates the subscription types. Use the enum name rather than the enum value.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 | Name                 | Value  | Description              |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -  | Subscribe to cloud data changes. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | -  | Subscribe to cloud data change details. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | Subscribe to cloud data changes.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | Subscribe to cloud data change details.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## ChangeType<sup>10+</sup>
 
@@ -657,8 +659,8 @@ Enumerates data change types. Use the enum name rather than the enum value.
 
 | Name                        | Value  | Description                        |
 | -------------------------- | --- | -------------------------- |
-| DATA_CHANGE  | -   | Data change.  |
-| ASSET_CHANGE | -   | Asset change.|
+| DATA_CHANGE  | 0   | Data change.  |
+| ASSET_CHANGE | 1   | Asset change.|
 
 ## ChangeInfo<sup>10+</sup>
 
@@ -682,8 +684,8 @@ Enumerates the distributed table types. Use the enum name rather than the enum v
 
 | Name               | Value  | Description                                                                                                |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | -  | Distributed database table synchronized between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
-| DISTRIBUTED_CLOUD  | -   | Distributed database table synchronized between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| DISTRIBUTED_DEVICE | 0  | Distributed database table synchronized between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
+| DISTRIBUTED_CLOUD  | 1   | Distributed database table synchronized between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -693,11 +695,11 @@ Defines the configuration of the distributed mode of tables.
 
 | Name    | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| autoSync | boolean | Yes  | The value **true** means both automatic synchronization and manual synchronization are supported for the table.<br/>The value **false** means only manual synchronization is supported for the table. |
+| autoSync | boolean | Yes  | The value **true** means both automatic synchronization and manual synchronization are supported for the table. The value **false** means only manual synchronization is supported for the table.|
 
 ## ConflictResolution<sup>10+</sup>
 
-Defines the resolution to use when **insert()** and **update()** conflict.
+Defines the resolution to use when **insert()** and **update()** conflict. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -718,9 +720,9 @@ Enumerates the device-cloud synchronization processes. Use the enum name rather 
 
 | Name            | Value  | Description                    |
 | ---------------- | ---- | ------------------------ |
-| SYNC_BEGIN       | -    | The device-cloud synchronization starts.  |
-| SYNC_IN_PROGRESS | -    | The device-cloud synchronization is in progress.|
-| SYNC_FINISH      | -    | The device-cloud synchronization is complete.|
+| SYNC_BEGIN       | 0    | The device-cloud synchronization starts.  |
+| SYNC_IN_PROGRESS | 1    | The device-cloud synchronization is in progress.|
+| SYNC_FINISH      | 2    | The device-cloud synchronization is complete.|
 
 ## Statistic<sup>10+</sup>
 
@@ -754,13 +756,13 @@ Enumerates the device-cloud synchronization states. Use the enum name rather tha
 
 | Name                 | Value  | Description                                                        |
 | --------------------- | ---- | ------------------------------------------------------------ |
-| SUCCESS               | -    | The device-cloud synchronization is successful.                                      |
-| UNKNOWN_ERROR         | -    | An unknown error occurs during device-cloud synchronization.                              |
-| NETWORK_ERROR         | -    | A network error occurs during device-cloud synchronization.                              |
-| CLOUD_DISABLED        | -    | The cloud is unavailable.                                            |
-| LOCKED_BY_OTHERS      | -    | The device-cloud synchronization of another device is being performed.<br>Start device-cloud synchronization after checking that cloud resources are not occupied by other devices.|
-| RECORD_LIMIT_EXCEEDED | -    | The number of records or size of the data to be synchronized exceeds the maximum. The maximum value is configured on the cloud.|
-| NO_SPACE_FOR_ASSET    | -    | The remaining cloud space is less than the size of the data to be synchronized.                    |
+| SUCCESS               | 0    | The device-cloud synchronization is successful.                                      |
+| UNKNOWN_ERROR         | 1    | An unknown error occurs during device-cloud synchronization.                              |
+| NETWORK_ERROR         | 2    | A network error occurs during device-cloud synchronization.                              |
+| CLOUD_DISABLED        | 3    | The cloud is unavailable.                                            |
+| LOCKED_BY_OTHERS      | 4    | The device-cloud synchronization of another device is being performed.<br>Start device-cloud synchronization after checking that cloud resources are not occupied by other devices.|
+| RECORD_LIMIT_EXCEEDED | 5    | The number of records or size of the data to be synchronized exceeds the maximum. The maximum value is configured on the cloud.|
+| NO_SPACE_FOR_ASSET    | 6    | The remaining cloud space is less than the size of the data to be synchronized.                    |
 
 ## ProgressDetails<sup>10+</sup>
 
@@ -902,8 +904,9 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of Lisa in the EMPLOYEE table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi");
+predicates.equalTo("NAME", "Lisa");
 ```
 
 
@@ -931,8 +934,9 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name is not Lisa in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.notEqualTo("NAME", "lisi");
+predicates.notEqualTo("NAME", "Lisa");
 ```
 
 
@@ -955,7 +959,7 @@ Adds a left parenthesis to the **RdbPredicates**.
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -981,7 +985,7 @@ Adds a right parenthesis to the **RdbPredicates**.
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -1006,6 +1010,7 @@ Adds the OR condition to the **RdbPredicates**.
 **Example**
 
 ```ts
+// Locate the employees named Lisa or Rose in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .or()
@@ -1029,6 +1034,7 @@ Adds the AND condition to the **RdbPredicates**.
 **Example**
 
 ```ts
+// Locate the field with name of Lisa and salary of 200.5 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .and()
@@ -1059,6 +1065,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name contains os, for example, Rose, in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
@@ -1087,8 +1094,9 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name begins with Li, for example, Lisa, in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.beginsWith("NAME", "os");
+predicates.beginsWith("NAME", "Li");
 ```
 
 ### endsWith
@@ -1115,6 +1123,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name ends with se, for example, Rose, in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
@@ -1197,6 +1206,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name is similar to os in the table, for example, Rose.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
@@ -1205,7 +1215,7 @@ predicates.like("NAME", "%os%");
 
 glob(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the specified string.
+Sets an **RdbPredicates** object to locate the fields in the specified column that match the given string.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1225,6 +1235,7 @@ Sets an **RdbPredicates** object to match the specified string.
 **Example**
 
 ```ts
+// Locate data of the employees whose name matches the "?h*g" string in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
@@ -1233,7 +1244,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are within the given range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are within the given range (including the min. and max. values).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1242,8 +1253,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicates**.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicates**.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
 
 **Return value**
 
@@ -1254,6 +1265,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees with age between 10 and 50 (including 10 and 50) in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
@@ -1262,7 +1274,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range (excluding the min. and max. values).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1271,8 +1283,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicates**.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicates**.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
 
 **Return value**
 
@@ -1283,6 +1295,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are younger than 10 or older than 50 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
@@ -1311,6 +1324,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are older than 18 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
@@ -1339,6 +1353,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are younger than 20 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
@@ -1367,6 +1382,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are 18 or older in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
@@ -1395,6 +1411,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are 20 or younger in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
@@ -1607,6 +1624,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees with age of [18, 20] in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
@@ -1635,6 +1653,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of all the employees except Lisa and Rose in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
@@ -3470,7 +3489,7 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
@@ -3515,7 +3534,7 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
@@ -3560,7 +3579,7 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
@@ -4427,7 +4446,7 @@ Registers a data change event listener for the RDB store. When the data in the R
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates data changes.     |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br> If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | Yes  | Callback invoked to return the data change.<br>If **type** is **SUBSCRIBE_TYPE_REMOTE**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the IDs of the peer devices with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD**, **observer** must be **Callback&lt;Array&lt;string&gt;&gt;**, where **Array&lt;string&gt;** specifies the cloud accounts with data changes.<br>If **type** is **SUBSCRIBE_TYPE_CLOUD_DETAILS**, **observer** must be **Callback&lt;Array&lt;ChangeInfo&gt;&gt;**, where **Array&lt;ChangeInfo&gt;** specifies the details about the device-cloud synchronization. |
 
 **Example**
 
@@ -4466,7 +4485,7 @@ Registers an intra-process or inter-process event listener for the RDB store. Th
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Event name to observe.                                              |
-| interProcess | boolean         | Yes  | Type of the event to observe.<br> The value **true** means the inter-process event.<br> The value **false** means the intra-process event.|
+| interProcess | boolean         | Yes  | Type of the event to observe.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event. |
 | observer     | Callback\<void> | Yes  | Callback invoked to return the result.                                                  |
 
 **Error codes**
@@ -4506,9 +4525,9 @@ Unregisters the data change event listener.
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                     |
-| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to unregister.                                                |
-| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback for the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed. |
+| event    | string                                                       | Yes  | Event type. The value is **dataChange**, which indicates data changes.                          |
+| type     | [SubscribeType](#subscribetype) | Yes  | Subscription type to unregister.                                                  |
+| observer | Callback&lt;Array&lt;string&gt;&gt;                          | Yes  | Callback for the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
@@ -4585,7 +4604,7 @@ Unregisters the data change event listener.
 | Name      | Type           | Mandatory| Description                                                        |
 | ------------ | --------------- | ---- | ------------------------------------------------------------ |
 | event        | string          | Yes  | Name of the event.                                          |
-| interProcess | boolean         | Yes  | Type of the event.<br> The value **true** means the inter-process event.<br> The value **false** means the intra-process event.|
+| interProcess | boolean         | Yes  | Type of the event.<br>The value **true** means the inter-process event.<br>The value **false** means the intra-process event. |
 | observer     | Callback\<void> | No  | Callback for the event to unregister.<br/>If this parameter is specified, the specified callback will be unregistered. If this parameter is not specified, all callbacks of the specified event will be unregistered. |
 
 **Error codes**
@@ -4754,9 +4773,9 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
-const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
-const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
+  const id = (resultSet as relationalStore.ResultSet).getColumnName(0);
+  const name = (resultSet as relationalStore.ResultSet).getColumnName(1);
+  const age = (resultSet as relationalStore.ResultSet).getColumnName(2);
 }
 ```
 
@@ -4792,7 +4811,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goTo(1);
+  (resultSet as relationalStore.ResultSet).goTo(1);
 }
 ```
 
@@ -4828,7 +4847,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToRow(5);
+  (resultSet as relationalStore.ResultSet).goToRow(5);
 }
 ```
 
@@ -4859,7 +4878,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToFirstRow();
+  (resultSet as relationalStore.ResultSet).goToFirstRow();
 }
 ```
 
@@ -4889,7 +4908,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToLastRow();
+  (resultSet as relationalStore.ResultSet).goToLastRow();
 }
 ```
 
@@ -4919,7 +4938,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToNextRow();
+  (resultSet as relationalStore.ResultSet).goToNextRow();
 }
 ```
 
@@ -4949,7 +4968,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).goToPreviousRow();
+  (resultSet as relationalStore.ResultSet).goToPreviousRow();
 }
 ```
 
@@ -4985,7 +5004,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const codes = (resultSet as relationalStore.ResultSet).getBlob((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5021,7 +5040,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
+  const name = (resultSet as relationalStore.ResultSet).getString((resultSet as relationalStore.ResultSet).getColumnIndex("NAME"));
 }
 ```
 
@@ -5057,7 +5076,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
+  const age = (resultSet as relationalStore.ResultSet).getLong((resultSet as relationalStore.ResultSet).getColumnIndex("AGE"));
  }
 ```
 
@@ -5093,7 +5112,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
+  const salary = (resultSet as relationalStore.ResultSet).getDouble((resultSet as relationalStore.ResultSet).getColumnIndex("SALARY"));
 }
 ```
 
@@ -5129,7 +5148,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
+  const doc = (resultSet as relationalStore.ResultSet).getAsset((resultSet as relationalStore.ResultSet).getColumnIndex("DOC"));
 }
 ```
 
@@ -5165,7 +5184,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
+  const docs = (resultSet as relationalStore.ResultSet).getAssets((resultSet as relationalStore.ResultSet).getColumnIndex("DOCS"));
 }
 ```
 
@@ -5202,7 +5221,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 ```ts
 if(resultSet != undefined) {
-const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
+  const isColumnNull = (resultSet as relationalStore.ResultSet).isColumnNull((resultSet as relationalStore.ResultSet).getColumnIndex("CODES"));
 }
 ```
 
@@ -5218,7 +5237,7 @@ Closes this result set.
 
 ```ts
 if(resultSet != undefined) {
-(resultSet as relationalStore.ResultSet).close();
+  (resultSet as relationalStore.ResultSet).close();
 }
 ```
 

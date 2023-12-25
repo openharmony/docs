@@ -56,11 +56,11 @@ try {
   let fd = fs.openSync('/path/to/form.png');
   let formImagesParam: Record<string, object> = {
     'image': fd
-  }
+  };
   let createFormBindingDataParam: Record<string, string | Object> = {
     'name': '21°',
     'formImages': formImagesParam
-  }
+  };
 
   formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {

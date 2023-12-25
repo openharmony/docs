@@ -2,7 +2,7 @@
 HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR可以实现多个模块或多个工程共享ArkUI组件、资源等相关代码。HAR不同于HAP，不能独立安装运行在设备上，只能作为应用模块的依赖项被引用。
 
 ## 创建HAR模块
-通过DevEco Studio创建一个HAR模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)。
+通过DevEco Studio创建一个HAR模块，详见[创建库模块](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section143510369612)。
 
 需要对代码资产进行保护时，建议开启混淆能力。混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 > 注意：仅Stage模型的ArkTS工程支持混淆。
@@ -77,7 +77,7 @@ Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，�
 ### 导出ArkUI组件
 ArkUI组件的导出方式与ts的导出方式一致，通过`export`导出ArkUI组件，示例如下：
 ```ts
-// library/src/main/ets/components/MainPage/MainPage.ets
+// library/src/main/ets/components/mainpage/MainPage.ets
 @Component
 export struct MainPage {
   @State message: string = 'Hello World'
@@ -97,7 +97,7 @@ export struct MainPage {
 HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 ```ts
 // library/Index.ets
-export { MainPage } from './src/main/ets/components/MainPage/MainPage'
+export { MainPage } from './src/main/ets/components/mainpage/MainPage'
 ```
 ### 导出ts类和方法
 通过`export`导出ts类和方法，支持导出多个ts类和方法，示例如下所示：
@@ -149,7 +149,7 @@ HAR模块编译打包时会把资源打包到HAR中。在编译构建HAP时，De
 - 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照依赖顺序进行覆盖（依赖顺序在前的优先级较高）。
 
 ## 引用HAR的ArkUI组件、接口、资源
-引用HAR前，需要先配置对HAR的依赖，配置方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section611662614153)。
+引用HAR前，需要先配置对HAR的依赖，详见[引用HAR文件和资源](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section611662614153)。
 
 ### 引用HAR的ArkUI组件
 
@@ -258,4 +258,8 @@ struct Index {
 
 ## 发布HAR
 
-发布HAR可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512)。
+详见[发布HAR](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section1213451811512)。
+
+## 相关实例
+
+- [购物示例应用](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)

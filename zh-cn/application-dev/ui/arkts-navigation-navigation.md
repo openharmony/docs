@@ -54,7 +54,7 @@ Navigation组件通过mode属性设置页面的显示模式。
   @Entry
   @Component
   struct NavigationExample {
-    @State TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+    @State TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
     private arr: number[] = [1, 2, 3];
   
     build() {
@@ -97,11 +97,7 @@ Navigation组件通过mode属性设置页面的显示模式。
           {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}},
           {value: "", icon: "./image/ic_public_add.svg", action: ()=> {}}
         ])
-        .toolBar({items: [
-          this.TooTmp,
-          this.TooTmp,
-          this.TooTmp
-        ]})
+        .toolbarConfiguration([this.TooTmp, this.TooTmp, this.TooTmp])
       }
       .height('100%')
       .width('100%')
@@ -158,7 +154,7 @@ Navigation组件通过mode属性设置页面的显示模式。
 ![菜单栏2](figures/菜单栏2.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
@@ -172,7 +168,7 @@ Navigation() {
 ![菜单栏](figures/菜单栏.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
@@ -193,10 +189,10 @@ Navigation() {
 ![free3](figures/free3.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
-let TooBar:Record<string,object[]> = {'items':[TooTmp,TooTmp,TooTmp]}
+let TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooBar: ToolbarItem[] = [TooTmp,TooTmp,TooTmp]
 Navigation() {
   ...
 }
-.toolBar(TooBar)
+.toolbarConfiguration(TooBar)
 ```

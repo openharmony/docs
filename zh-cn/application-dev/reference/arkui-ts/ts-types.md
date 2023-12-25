@@ -209,7 +209,7 @@
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | 否    | 边框宽度。   |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | 否    | 边框圆角半径。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | 否    | 边框样式。   |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup> | 否    | 边框样式。   |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -234,7 +234,7 @@
 
 | 名称     | 类型                | 必填   | 说明             |
 | ------ | ----------------- | ---- | -------------- |
-| left   | [Length](#length) | 否    | 组件图像左边沿扩展距离。   |
+| left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
 | right  | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
 | top    | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
 | bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |
@@ -316,9 +316,9 @@ Swiper组件动画相关信息集合。
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
-| targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
-| velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0.|
+| currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
 ## SafeAreaType<sup>10+</sup>
 
 扩展安全区域的枚举类型。

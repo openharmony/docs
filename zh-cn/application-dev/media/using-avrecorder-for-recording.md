@@ -1,10 +1,10 @@
-# 使用AVRecorder开发音频录制功能
+# 使用AVRecorder开发音频录制功能(ArkTS)
 
 使用AVRecorder可以实现音频录制功能，本开发指导将以“开始录制-暂停录制-恢复录制-停止录制”的一次流程为示例，向开发者讲解AVRecorder音频录制相关功能。
 
 在进行应用开发的过程中，开发者可以通过AVRecorder的state属性，主动获取当前状态或使用on('stateChange')方法监听状态变化。开发过程中应该严格遵循状态机要求，例如只能在started状态下调用pause()接口，只能在paused状态下调用resume()接口。
 
-**图1** 录制状态变化示意图  
+**图1** 录制状态变化示意图
 
 ![Recording status change](figures/recording-status-change.png)
 
@@ -23,11 +23,12 @@
      
    ```ts
    import media from '@ohos.multimedia.media';
+   import { BusinessError } from '@ohos.base';
    
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder;
-   }, (error: Error) => {
+   }, (error: BusinessError) => {
      console.error(`createAVRecorder failed`);
    })
    ```
@@ -39,6 +40,8 @@
    | error | 必要事件，监听AVRecorder的错误信息 |
      
    ```ts
+   import { BusinessError } from '@ohos.base';
+   
    // 状态上报回调函数
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.log(`current state is ${state}`);
@@ -63,6 +66,9 @@
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要基础文件操作接口（[ohos.file.fs](../reference/apis/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../file-management/app-file-access.md)。
  
    ```ts
+   import media from '@ohos.multimedia.media';
+   import { BusinessError } from '@ohos.base';
+   
    let avProfile: media.AVRecorderProfile = {
      audioBitrate: 100000, // 音频比特率
      audioChannels: 2, // 音频声道数

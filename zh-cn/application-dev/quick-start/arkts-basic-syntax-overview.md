@@ -36,7 +36,7 @@
 
 - [@Builder](arkts-builder.md)/[@BuilderParam](arkts-builderparam.md)：特殊的封装UI描述的方法，细粒度的封装和复用UI描述。
 
-- [@Extend](arkts-extend.md)/[@Style](arkts-style.md)：扩展内置组件和封装属性样式，更灵活地组合内置组件。
+- [@Extend](arkts-extend.md)/[@Styles](arkts-style.md)：扩展内置组件和封装属性样式，更灵活地组合内置组件。
 
 - [stateStyles](arkts-statestyles.md)：多态样式，可以依据组件的内部状态的不同，设置不同样式。
 

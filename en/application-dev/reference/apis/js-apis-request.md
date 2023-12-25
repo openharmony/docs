@@ -395,7 +395,7 @@ Subscribes to upload completion or failure events. This API uses a callback to r
 
 off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
 
-Unsubscribes from upload progress events. This API uses a callback to return the result synchronously.
+Unsubscribes from upload progress events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -406,7 +406,7 @@ Unsubscribes from upload progress events. This API uses a callback to return the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
-| callback | function | No| Callback used to return the result.<br>**uploadedSize**: size of the uploaded files, in B.<br>**totalSize**: Total size of the files to upload, in B.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**uploadedSize**: size of the uploaded files, in B.<br>**totalSize**: Total size of the files to upload, in B.|
 
 **Example**
 
@@ -430,7 +430,7 @@ Unsubscribes from upload progress events. This API uses a callback to return the
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-Unsubscribes from HTTP header events for the upload task. This API returns the result asynchronously.
+Unsubscribes from HTTP header events for the upload task.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -441,7 +441,7 @@ Unsubscribes from HTTP header events for the upload task. This API returns the r
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
-| callback | function | No| Callback used to return the result.<br>**header**: HTTP response header.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**header**: HTTP response header.|
 
 **Example**
 
@@ -464,7 +464,7 @@ Unsubscribes from HTTP header events for the upload task. This API returns the r
 
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-Unsubscribes from upload completion or failure events. This API returns the result asynchronously.
+Unsubscribes from upload completion or failure events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -475,7 +475,7 @@ Unsubscribes from upload completion or failure events. This API returns the resu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback used to return the result.<br>**taskstates**: upload task result.|
+| callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**taskstates**: upload task result.|
 
 **Example**
 
@@ -927,7 +927,7 @@ Subscribes to download progress events. This API uses a callback to return the r
 
 off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt; void): void
 
-Unsubscribes from download progress events. This API returns the result asynchronously.
+Unsubscribes from download progress events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -938,7 +938,7 @@ Unsubscribes from download progress events. This API returns the result asynchro
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
-| callback | function | No| Callback used to return the result.<br>**receivedSize**: size of the downloaded files.<br>**totalSize**: total size of the files to download.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**receivedSize**: size of the downloaded files.<br>**totalSize**: total size of the files to download.|
 
 **Example**
 
@@ -999,7 +999,7 @@ Subscribes to download events. This API uses a callback to return the result asy
 
 off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
-Unsubscribes from download events. This API returns the result asynchronously.
+Unsubscribes from download events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1010,7 +1010,7 @@ Unsubscribes from download events. This API returns the result asynchronously.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-| callback | function | No| Callback used to return the result.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
@@ -1093,7 +1093,7 @@ Subscribes to download failure events. This API uses a callback to return the re
 
 off(type: 'fail', callback?: (err: number) =&gt; void): void
 
-Unsubscribes from download failure events. This API returns the result asynchronously.
+Unsubscribes from download failure events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1104,7 +1104,7 @@ Unsubscribes from download failure events. This API returns the result asynchron
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
-| callback | function | No| Callback used to return the result.<br>**err**: error code of the download failure. |
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**err**: error code of the download failure. |
 
 **Example**
 
@@ -2175,7 +2175,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from task progress events. This API returns the result asynchronously.
+Unsubscribes from task progress events.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2184,7 +2184,7 @@ Unsubscribes from task progress events. This API returns the result asynchronous
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
-| callback | function | No| Callback used to return the data structure of the task progress.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2254,7 +2254,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from task completion events. This API returns the result asynchronously.
+Unsubscribes from task completion events.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2263,7 +2263,7 @@ Unsubscribes from task completion events. This API returns the result asynchrono
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
-| callback | function | No| Callback used to return the data structure of the task progress.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2333,7 +2333,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from task failure events. This API returns the result asynchronously.
+Unsubscribes from task failure events.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2342,7 +2342,7 @@ Unsubscribes from task failure events. This API returns the result asynchronousl
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
-| callback | function | No| Callback used to return the data structure of the task progress.|
+| callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 

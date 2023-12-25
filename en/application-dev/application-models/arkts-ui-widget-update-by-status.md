@@ -6,7 +6,7 @@ In the following example, two copies of the weather widget are added to the home
 
 
 - Widget configuration file: Configure the widget to be updated at 07:00 every morning.
-  
+
   ```json
   {
     "forms": [
@@ -32,7 +32,7 @@ In the following example, two copies of the weather widget are added to the home
   ```
 
 - Widget page: A widget has different states and needs to be updated by state. When the state changes, **postCardAction** is called to notify the EntryFormAbility.
-  
+
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
@@ -42,7 +42,7 @@ In the following example, two copies of the weather widget are added to the home
     @LocalStorageProp('textB') textB: string ='To be updated...';
     @State selectA: boolean = false;
     @State selectB: boolean = false;
-  
+
     build() {
       Column() {
         Row() {
@@ -59,7 +59,7 @@ In the following example, two copies of the weather widget are added to the home
             })
           Text ('State A')
         }
-  
+
         Row() {
           Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
             .select(false)
@@ -74,12 +74,12 @@ In the following example, two copies of the weather widget are added to the home
             })
           Text ('State B')
         }
-  
+
         Row() {// Content that is updated only in state A
           Text ('State A:')
           Text(this.textA)
         }
-  
+
         Row() { // Content that is updated only in state B
           Text ('State B:')
           Text(this.textB)
@@ -88,9 +88,9 @@ In the following example, two copies of the weather widget are added to the home
     }
   }
   ```
-  
+
 - EntryFormAbility: The widget state data is stored in the local database. When the update event callback is triggered, the current widget state is obtained through **formId**, and then content is updated based on the state obtained.
-  
+
   ```ts
   import formInfo from '@ohos.app.form.formInfo'
   import formProvider from '@ohos.app.form.formProvider';
@@ -131,6 +131,7 @@ In the following example, two copies of the weather widget are added to the home
         console.info("Succeeded to get preferences.");
         await storeDB.delete('A' + formId);
         await storeDB.delete('B' + formId);
+        await storeDB.flush();
       }).catch((err: Base.BusinessError) => {
         console.info(`Failed to get preferences. ${JSON.stringify(err)}`);
       })
