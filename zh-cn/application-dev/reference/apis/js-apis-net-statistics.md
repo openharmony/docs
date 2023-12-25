@@ -965,7 +965,7 @@ statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInf
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number, callback: AsyncCallback<number>): void;
+getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 获取指定socket的下行流量信息，使用 callback 方式作为异步方法。
 
@@ -1004,7 +1004,7 @@ statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number): Promise<number>;
+getSockfdRxBytes(sockfd: number): Promise\<number\>;
 
 获取指定socket的下行流量信息，使用 Promise 方式作为异步方法。
 
@@ -1049,7 +1049,7 @@ statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number, callback: AsyncCallback<number>): void;
+getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 获取指定socket的上行流量信息，使用 callback 方式作为异步方法。
 
@@ -1088,7 +1088,7 @@ statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number): Promise<number>;
+getSockfdTxBytes(sockfd: number): Promise\<number\>;
 
 获取指定socket的上行流量信息，使用 Promise 方式作为异步方法。
 

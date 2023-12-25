@@ -136,7 +136,7 @@ struct SnapshotExample {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
-            }).catch((err: BusinessError) => {
+            }).catch((err:Error) => {
             console.log("error: " + err)
           })
         })
@@ -309,7 +309,7 @@ struct OffscreenSnapshotExample {
               // get component size and location
               let info = componentUtils.getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
-            }).catch((err: BusinessError) => {
+            }).catch((err:Error) => {
             console.log("error: " + err)
           })
         })

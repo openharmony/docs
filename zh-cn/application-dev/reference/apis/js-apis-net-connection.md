@@ -1549,6 +1549,247 @@ connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
 });
 ```
 
+## connection.addCustomDnsRule
+
+addCustomDnsRule(host: string, ip: Array<string>, callback: AsyncCallback<void>): void
+
+为当前应用程序添加自定义host和对应的ip地址的映射，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| host     | string               | 是   | 需要自定义解析的主机名。                                     |
+| ip       | Array\<string>       | 是   | 主机名所映射的IP地址列表。                                   |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当为当前应用程序添加自定义host和对应的ip地址的映射成功，error为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.addCustomDnsRule
+
+addCustomDnsRule(host: string, ip: Array<string>): Promise<void>
+
+为当前应用程序添加自定义host和对应的ip地址的映射，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名 | 类型           | 必填 | 说明                       |
+| ------ | -------------- | ---- | -------------------------- |
+| host   | string         | 是   | 需要自定义解析的主机名。   |
+| ip     | Array\<string> | 是   | 主机名所映射的IP地址列表。 |
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.addCustomDNSRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+## connection.removeCustomDnsRule
+
+removeCustomDnsRule(host: string, callback: AsyncCallback<void>): void
+
+删除当前应用程序中对应host的自定义DNS规则，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| host     | string               | 是   | 需要删除自定义DNS规则的主机名。                              |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当删除当前应用程序中对应host的自定义DNS规则成功，error为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.removeCustomDnsRule
+
+function removeCustomDnsRule(host: string): Promise<void>
+
+删除当前应用程序中对应host的自定义DNS规则，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| host   | string | 是   | 需要删除自定义DNS规则的主机名。 |
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.removeCustomDnsRule("xxxx").then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+## connection.clearCustomDnsRules
+
+clearCustomDnsRules(callback: AsyncCallback<void>): void
+
+删除当前应用程序的所有的自定义DNS规则，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当删除当前应用程序的所有的自定义DNS规则成功，error为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.clearCustomDnsRules((error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.clearCustomDnsRules
+
+clearCustomDnsRules(): Promise<void>
+
+删除当前应用程序的所有的自定义DNS规则，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.clearCustomDnsRules().then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
 ## NetConnection
 
 网络连接的句柄。

@@ -396,14 +396,15 @@ import { BusinessError } from '@ohos.base';
 
 function generateEd25519() {
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('Ed25519');
-  let promiseAsyKey = asyKeyGenerator.generateKeyPair();
-  promiseAsyKey.then(keyPair => {
+  let keyGenPromise = asyKeyGenerator.generateKeyPair();
+  keyGenPromise.then(keyPair => {
     let priKeyEncoded = keyPair.priKey.getEncoded();
-    let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
-    console.info('priKeyEncoded.data:' + priKeyEncoded.data);
-    console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
+    let pubKeyEncoded = keyPair.pubKey.getEncoded();
+    console.info('priKeyEncoded.data：' + priKeyEncoded.data);
+    console.info('pubKeyEncoded.data：' + pubKeyEncoded.data);
   }).catch((error: BusinessError) => {
-    console.error(`getEncoded failed, ${error.code}, ${error.message}`);
+    let e: BusinessError = error as BusinessError;
+    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
   })
 }
 ```
@@ -432,7 +433,8 @@ function convertEd25519AsyKey() {
   generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
     console.info('ConvertKey Success');
   }).catch((error: BusinessError) => {
-    console.error(`convertKey failed, ${error.code}, ${error.message}`);
+    let e: BusinessError = error as BusinessError;
+    console.error(`convertKey failed, ${e.code}, ${e.message}`);
   })
 }
 ```
@@ -457,14 +459,15 @@ import { BusinessError } from '@ohos.base';
 
 function generateX25519() {
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('X25519');
-  let promiseAsyKey = asyKeyGenerator.generateKeyPair();
-  promiseAsyKey.then(keyPair => {
+  let keyGenPromise = asyKeyGenerator.generateKeyPair();
+  keyGenPromise.then(keyPair => {
     let priKeyEncoded = keyPair.priKey.getEncoded();
-    let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
-    console.info('priKeyEncoded.data:' + priKeyEncoded.data);
-    console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
+    let pubKeyEncoded = keyPair.pubKey.getEncoded();
+    console.info('priKeyEncoded.data：' + priKeyEncoded.data);
+    console.info('pubKeyEncoded.data：' + pubKeyEncoded.data);
   }).catch((error: BusinessError) => {
-    console.error(`getEncoded failed, ${error.code}, ${error.message}`);
+    let e: BusinessError = error as BusinessError;
+    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
   })
 }
 ```
@@ -493,7 +496,8 @@ function convertX25519AsyKey() {
   generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
     console.info('ConvertKey Success');
   }).catch((error: BusinessError) => {
-    console.error(`convertKey failed, ${error.code}, ${error.message}`);
+    let e: BusinessError = error as BusinessError;
+    console.error(`convertKey failed, ${e.code}, ${e.message}`);
   })
 }
 ```
@@ -518,14 +522,15 @@ import { BusinessError } from '@ohos.base';
 
 function generateDH2048() {
   let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('DH_modp2048');
-  let promiseAsyKey = asyKeyGenerator.generateKeyPair();
-  promiseAsyKey.then(keyPair => {
+  let keyGenPromise = asyKeyGenerator.generateKeyPair();
+  keyGenPromise.then(keyPair => {
     let priKeyEncoded = keyPair.priKey.getEncoded();
-    let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
-    console.info('priKeyEncoded.data:' + priKeyEncoded.data);
-    console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
+    let pubKeyEncoded = keyPair.pubKey.getEncoded();
+    console.info('priKeyEncoded.data：' + priKeyEncoded.data);
+    console.info('pubKeyEncoded.data：' + pubKeyEncoded.data);
   }).catch((error: BusinessError) => {
-    console.error(`getEncoded failed, ${error.code}, ${error.message}`);
+    let e: BusinessError = error as BusinessError;
+    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
   })
 }
 ```
@@ -546,15 +551,16 @@ import cryptoFramework from "@ohos.security.cryptoFramework";
 import { BusinessError } from '@ohos.base';
 
 function convertDHAsyKey() {
-  let pubKeyArray = new Uint8Array([48,129,158,48,87,6,9,42,134,72,134,247,13,1,3,1,48,74,2,65,0,132,110,250,169,110,200,228,17,253,161,228,250,125,252,114,252,44,158,21,55,85,33,24,92,95,47,252,140,1,51,14,139,31,128,123,178,237,132,172,113,126,164,139,40,18,7,98,247,216,11,251,108,151,157,189,177,44,28,231,201,85,91,59,63,2,1,2,2,2,0,128,3,67,0,2,64,126,193,154,51,43,74,231,54,91,145,238,242,161,86,104,49,214,115,218,124,132,131,107,118,194,199,219,138,203,169,42,93,139,176,154,119,213,207,135,53,66,76,55,45,190,22,39,68,140,199,64,11,45,19,81,16,143,113,106,70,170,43,219,205]);
-  let priKeyArray = new Uint8Array([48,113,2,1,0,48,87,6,9,42,134,72,134,247,13,1,3,1,48,74,2,65,0,132,110,250,169,110,200,228,17,253,161,228,250,125,252,114,252,44,158,21,55,85,33,24,92,95,47,252,140,1,51,14,139,31,128,123,178,237,132,172,113,126,164,139,40,18,7,98,247,216,11,251,108,151,157,189,177,44,28,231,201,85,91,59,63,2,1,2,2,2,0,128,4,19,2,17,0,209,36,86,44,20,237,156,208,10,34,123,133,239,159,211,23]);
+  let pubKeyArray = new Uint8Array([48, 129, 158, 48, 87, 6, 9, 42, 134, 72, 134, 247, 13, 1, 3, 1, 48, 74, 2, 65, 0, 132, 110, 250, 169, 110, 200, 228, 17, 253, 161, 228, 250, 125, 252, 114, 252, 44, 158, 21, 55, 85, 33, 24, 92, 95, 47, 252, 140, 1, 51, 14, 139, 31, 128, 123, 178, 237, 132, 172, 113, 126, 164, 139, 40, 18, 7, 98, 247, 216, 11, 251, 108, 151, 157, 189, 177, 44, 28, 231, 201, 85, 91, 59, 63, 2, 1, 2, 2, 2, 0, 128, 3, 67, 0, 2, 64, 126, 193, 154, 51, 43, 74, 231, 54, 91, 145, 238, 242, 161, 86, 104, 49, 214, 115, 218, 124, 132, 131, 107, 118, 194, 199, 219, 138, 203, 169, 42, 93, 139, 176, 154, 119, 213, 207, 135, 53, 66, 76, 55, 45, 190, 22, 39, 68, 140, 199, 64, 11, 45, 19, 81, 16, 143, 113, 106, 70, 170, 43, 219, 205]);
+  let priKeyArray = new Uint8Array([48, 113, 2, 1, 0, 48, 87, 6, 9, 42, 134, 72, 134, 247, 13, 1, 3, 1, 48, 74, 2, 65, 0, 132, 110, 250, 169, 110, 200, 228, 17, 253, 161, 228, 250, 125, 252, 114, 252, 44, 158, 21, 55, 85, 33, 24, 92, 95, 47, 252, 140, 1, 51, 14, 139, 31, 128, 123, 178, 237, 132, 172, 113, 126, 164, 139, 40, 18, 7, 98, 247, 216, 11, 251, 108, 151, 157, 189, 177, 44, 28, 231, 201, 85, 91, 59, 63, 2, 1, 2, 2, 2, 0, 128, 4, 19, 2, 17, 0, 209, 36, 86, 44, 20, 237, 156, 208, 10, 34, 123, 133, 239, 159, 211, 23]);
   let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray };
   let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray };
   let generator = cryptoFramework.createAsyKeyGenerator('DH_modp1536');
   generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
     console.info('ConvertKey Success');
   }).catch((error: BusinessError) => {
-    console.error(`convertKey failed, ${error.code}, ${error.message}`);
+    let e: BusinessError = error as BusinessError;
+    console.error(`convertKey failed, ${e.code}, ${e.message}`);
   })
 }
 ```
@@ -738,8 +744,8 @@ import cryptoFramework from "@ohos.security.cryptoFramework";
 import { BusinessError } from '@ohos.base';
 
 function genECCSpec() {
-  let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_secp224r1')
-  let generator = cryptoFramework.createAsyKeyGeneratorBySpec(ECCCommonParamsSpec)
+  let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_secp224r1');
+  let generator = cryptoFramework.createAsyKeyGeneratorBySpec(ECCCommonParamsSpec);
   generator.generateKeyPair().then(keyPair => {
     let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
     let fpP = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
@@ -767,8 +773,8 @@ function genECCSpec() {
     console.info('ECC_SK_BN= ' + sk);
     console.info('ECC_PK_X_BN= ' + pkX);
     console.info('ECC_PK_Y_BN= ' + pkY);
-  }).catch(err => {
-    let e: BusinessError = err as BusinessError;
+  }).catch((error: BusinessError) => {
+    let e: BusinessError = error as BusinessError;
     console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
   })
 }
@@ -869,12 +875,12 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
 function SM2CommonSpec() {
-  let fieldFp = {
+  let fieldFp: cryptoFramework.ECFieldFp = {
     fieldType: "Fp",
     p: BigInt("0xfffffffeffffffffffffffffffffffffffffffff00000000ffffffffffffffff"),
   };
 
-  let G = {
+  let G: cryptoFramework.Point = {
     x: BigInt("0x32C4AE2C1F1981195F9904466A39C9948FE30BBFF2660BE1715A4589334C74C7"),
     y: BigInt("0xBC3736A2F4F6779C59BDCEE36B692153D0A9877CC62A474002DF32E52139F0A0"),
   };
@@ -904,41 +910,20 @@ function SM2Pk() {
   return pk;
 }
 
-function genSM2KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
+function genSM2KeyPairSpec() {
   let eccCommonSpec = SM2CommonSpec();
-  switch (keyType) {
-    case cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC:
-      return eccCommonSpec;
-    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
-      let eccPriKeySpec = {
-        algName: "SM2",
-        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
-        params: eccCommonSpec,
-        sk: SM2Sk(),
-      };
-      return eccPriKeySpec;
-    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
-      let eccPubKeySpec = {
-        algName: "SM2",
-        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
-        params: eccCommonSpec,
-        pk: SM2Pk(),
-      };
-      return eccPubKeySpec;
-    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
-      let eccKeyPairSpec = {
-        algName: "SM2",
-        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
-        params: eccCommonSpec,
-        sk: SM2Sk(),
-        pk: SM2Pk(),
-      };
-      return eccKeyPairSpec;
-  }
+  let eccKeyPairSpec: cryptoFramework.ECCKeyPairSpec = {
+    algName: "SM2",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+    params: eccCommonSpec,
+    sk: SM2Sk(),
+    pk: SM2Pk(),
+  };
+  return eccKeyPairSpec;
 }
 
 function sm2KeySpecGet() {
-  let sm2KeySpec = genSM2KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let sm2KeySpec = genSM2KeyPairSpec();
   let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(sm2KeySpec);
   generatorBySpec.generateKeyPair().then(keyPair => {
     let eccA = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
@@ -956,37 +941,37 @@ function sm2KeySpecGet() {
     let eccPkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
 
     if (BigInt(eccA) === SM2CommonSpec().a) {
-      console.log('ECC_A_BN Compare success');
+      console.info('ECC_A_BN Compare success');
     }
     if (BigInt(eccB) === SM2CommonSpec().b) {
-      console.log('ECC_B_BN Compare success');
+      console.info('ECC_B_BN Compare success');
     }
     if (BigInt(eccN) === SM2CommonSpec().n) {
-      console.log('ECC_N_BN Compare success');
+      console.info('ECC_N_BN Compare success');
     }
     if (BigInt(eccSk) === SM2Sk()) {
-      console.log('ECC_SK_BN Compare success');
+      console.info('ECC_SK_BN Compare success');
     }
     if (BigInt(eccGx) === SM2CommonSpec().g.x) {
-      console.log('ECC_G_X_BN Compare success');
+      console.info('ECC_G_X_BN Compare success');
     }
     if (BigInt(eccGy) === SM2CommonSpec().g.y) {
-      console.log('ECC_G_Y_BN Compare success');
+      console.info('ECC_G_Y_BN Compare success');
     }
     if (BigInt(eccFpP) === (SM2CommonSpec().field as cryptoFramework.ECFieldFp).p) {
-      console.log('ECC_FP_P_BN Compare success');
+      console.info('ECC_FP_P_BN Compare success');
     }
     if (eccH === SM2CommonSpec().h) {
-      console.log('ECC_H_NUM Compare success');
+      console.info('ECC_H_NUM Compare success');
     }
     if (eccFieldType === SM2CommonSpec().field.fieldType) {
-      console.log('ECC_FIELD_TYPE_STR Compare success');
+      console.info('ECC_FIELD_TYPE_STR Compare success');
     }
     if (BigInt(eccPkX) === SM2Pk().x && BigInt(eccPkY) === SM2Pk().y) {
-      console.log('ECC_PK_X_BN and ECC_PK_Y_BN Compare success');
+      console.info('ECC_PK_X_BN and ECC_PK_Y_BN Compare success');
     }
-    console.log('ECC_CURVE_NAME_STR: ' + eccCurveName); // NID_sm2
-    console.log('ECC_FIELD_SIZE_NUM: ' + eccFieldSizeNum); // 256
+    console.info('ECC_CURVE_NAME_STR: ' + eccCurveName); // NID_sm2
+    console.info('ECC_FIELD_SIZE_NUM: ' + eccFieldSizeNum); // 256
   }).catch((error: BusinessError) => {
     console.error(`catch error, ${error.code}, ${error.message}`);
   })
@@ -1010,8 +995,8 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
 function genECCSpec() {
-  let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2')
-  let generator = cryptoFramework.createAsyKeyGeneratorBySpec(ECCCommonParamsSpec)
+  let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');
+  let generator = cryptoFramework.createAsyKeyGeneratorBySpec(ECCCommonParamsSpec);
   generator.generateKeyPair().then(keyPair => {
     let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
     let fpP = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
@@ -1039,8 +1024,8 @@ function genECCSpec() {
     console.info('ECC_SK_BN= ' + sk);
     console.info('ECC_PK_X_BN= ' + pkX);
     console.info('ECC_PK_Y_BN= ' + pkY);
-  }).catch(err => {
-    let e: BusinessError = err as BusinessError;
+  }).catch((error: BusinessError) => {
+    let e: BusinessError = error as BusinessError;
     console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
   })
 }
@@ -1061,59 +1046,28 @@ function genECCSpec() {
 以使用Promise方式根据密钥参数生成ED25519密钥为例：
 
 ```ts
-import cryptoFramework from '@ohos.security.cryptoFramework';
+import cryptoFramework from "@ohos.security.cryptoFramework";
 import { BusinessError } from '@ohos.base';
 
-function ed25519Sk() {
-  return BigInt('26338314196010394003047705826246263763817858777633584257903027929486581399289')
-}
-
-function ed25519Pk() {
-  return BigInt('88526073542684289740553502784855485761717378867878721325430646321401727693216')
-}
-
 // ED25519
-function genEd25519KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
-  switch (keyType) {
-    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
-      let ed25519PriKeySpec = {
-        algName: "Ed25519",
-        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
-        sk: ed25519Sk(),
-      };
-      return ed25519PriKeySpec;
-    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
-      let ed25519PubKeySpec = {
-        algName: "Ed25519",
-        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
-        pk: ed25519Pk(),
-      };
-      return ed25519PubKeySpec;
-    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
-      let ed25519KeyPairSpec = {
-        algName: "Ed25519",
-        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
-        sk: ed25519Sk(),
-        pk: ed25519Pk(),
-      };
-      return ed25519KeyPairSpec;
-  }
+function genEd25519KeyPairSpec() {
+  let ed25519KeyPairSpec: cryptoFramework.ED25519KeyPairSpec = {
+    algName: "Ed25519",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+    sk: BigInt('26338314196010394003047705826246263763817858777633584257903027929486581399289'),
+    pk: BigInt('88526073542684289740553502784855485761717378867878721325430646321401727693216'),
+  };
+  return ed25519KeyPairSpec;
 }
 
 function ed25519SpecGet() {
-  let ed25519KeySpec = genEd25519KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let ed25519KeySpec = genEd25519KeyPairSpec();
   let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(ed25519KeySpec);
   generatorBySpec.generateKeyPair().then(keyPair => {
     let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ED25519_SK_BN);
     let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ED25519_PK_BN);
     console.info('sk: ' + sk);
     console.info('pk: ' + pk);
-    if (sk === ed25519Sk()) {
-      console.info('ED25519_SK_BN Compare success');
-    }
-    if (pk === ed25519Pk()) {
-      console.info('ED25519_PK_BN Compare success');
-    }
   }).catch((error: BusinessError) => {
     console.error(`catch error, ${error.code}, ${error.message}`);
   })
@@ -1139,56 +1093,25 @@ function ed25519SpecGet() {
 import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
-function x25519Sk() {
-  return BigInt('80492519743984536410287031417673280832731199941643693694014394451502905215291')
-}
-
-function x25519Pk() {
-  return BigInt('29236918585986399753398384668566812412856019336455282363269457131759906074454')
-}
-
 // X25519
-function genX25519KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
-  switch (keyType) {
-    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
-      let x25519PriKeySpec = {
-        algName: "X25519",
-        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
-        sk: x25519Sk(),
-      };
-      return x25519PriKeySpec;
-    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
-      let x25519PubKeySpec = {
-        algName: "X25519",
-        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
-        pk: x25519Pk(),
-      };
-      return x25519PubKeySpec;
-    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
-      let x25519KeyPairSpec = {
-        algName: "X25519",
-        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
-        sk: x25519Sk(),
-        pk: x25519Pk(),
-      };
-      return x25519KeyPairSpec;
-  }
+function genX25519KeyPairSpec() {
+  let x25519KeyPairSpec: cryptoFramework.X25519KeyPairSpec = {
+    algName: "X25519",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+    sk: BigInt('80492519743984536410287031417673280832731199941643693694014394451502905215291'),
+    pk: BigInt('29236918585986399753398384668566812412856019336455282363269457131759906074454'),
+  };
+  return x25519KeyPairSpec;
 }
 
 function x25519SpecGet() {
-  let x25519KeySpec = genX25519KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let x25519KeySpec = genX25519KeyPairSpec();
   let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(x25519KeySpec);
   generatorBySpec.generateKeyPair().then(keyPair => {
     let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.X25519_SK_BN);
     let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.X25519_PK_BN);
     console.info('sk: ' + sk);
     console.info('pk: ' + pk);
-    if (sk === x25519Sk()) {
-      console.info('X25519_SK_BN Compare success');
-    }
-    if (pk === x25519Pk()) {
-      console.info('X25519_PK_BN Compare success');
-    }
   }).catch((error: BusinessError) => {
     console.error(`catch error, ${error.code}, ${error.message}`);
   })
@@ -1214,50 +1137,30 @@ function x25519SpecGet() {
 import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
-function genDH1536KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
-  switch (keyType) {
-    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
-      let dh1536PriKeySpec = {
-        algName: "DH",
-        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
-        params: {
-          p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
-          g: BigInt('2'),
-          l: 200
-        },
-        sk: BigInt('997343118225696905003934977332505780812546063723514013218065'),
-      };
-      return dh1536PriKeySpec;
-    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
-      let dh1536PubKeySpec = {
-        algName: "DH",
-        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
-        params: {
-          p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
-          g: BigInt('2'),
-          l: 200
-        },
-        pk: BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621'),
-      };
-      return dh1536PubKeySpec;
-    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
-      let dh1536KeyPairSpec = {
-        algName: "DH",
-        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
-        params: {
-          p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
-          g: BigInt('2'),
-          l: 200
-        },
-        sk: BigInt('997343118225696905003934977332505780812546063723514013218065'),
-        pk: BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621'),
-      };
-      return dh1536KeyPairSpec;
-  }
+function genDH1536CommonParamsSpec() {
+  let genDH1536CommonParamsSpec: cryptoFramework.DHCommonParamsSpec = {
+    p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
+    g: BigInt('2'),
+    l: 200,
+    algName: "DH",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+  };
+  return genDH1536CommonParamsSpec;
+}
+
+function genDH1536KeyPairSpec() {
+  let dh1536KeyPairSpec: cryptoFramework.DHKeyPairSpec = {
+    algName: "DH",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+    params: genDH1536CommonParamsSpec(),
+    sk: BigInt('997343118225696905003934977332505780812546063723514013218065'),
+    pk: BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621'),
+  };
+  return dh1536KeyPairSpec;
 }
 
 function DH1536SpecGet() {
-  let DH1536KeySpec = genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let DH1536KeySpec = genDH1536KeyPairSpec();
   let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(DH1536KeySpec);
   generatorBySpec.generateKeyPair().then(keyPair => {
     let p = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_P_BN);
@@ -1270,21 +1173,6 @@ function DH1536SpecGet() {
     console.info('l: ' + l);
     console.info('sk: ' + sk);
     console.info('pk: ' + pk);
-    if (p === genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC).params.p) {
-      console.info('DH_P_BN Compare success');
-    }
-    if (g === genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC).params.g) {
-      console.info('DH_G_BN Compare success');
-    }
-    if (l === genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC).params.l) {
-      console.info('DH_L_NUM Compare success');
-    }
-    if (sk === BigInt('997343118225696905003934977332505780812546063723514013218065')) {
-      console.info('DH_SK_BN Compare success');
-    }
-    if (pk === BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621')) {
-      console.info('DH_PK_BN Compare success');
-    }
   }).catch((error: BusinessError) => {
     console.error(`catch error, ${error.code}, ${error.message}`);
   })
@@ -1309,7 +1197,7 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
 function genDHSpec() {
-  // The second parameter here is skLen, which can be used to specify the number of private key bits
+  // 这里的第二个参数是skLen，可以用来指定私钥的位数
   let DHCommonParamsSpec = cryptoFramework.DHKeyUtil.genDHCommonParamsSpec(3072, 256)
   let generator = cryptoFramework.createAsyKeyGeneratorBySpec(DHCommonParamsSpec)
   generator.generateKeyPair().then(keyPair => {
@@ -1323,8 +1211,8 @@ function genDHSpec() {
     console.info('DH_G_BN= ' + g); // 2
     console.info('DH_L_NUM= ' + l); // 256
     console.info('DH_PK_BN= ' + pk);
-  }).catch(err => {
-    let e: BusinessError = err as BusinessError;
+  }).catch((error: BusinessError) => {
+    let e: BusinessError = error as BusinessError;
     console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
   })
 }
@@ -1422,13 +1310,13 @@ function uint8ArrayToString(array: Uint8Array) {
 function testAesGcm() {
   let symAlgName = 'AES128';
   let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
-  console.info(`symKeyGenerator algName: ${symKeyGenerator.algName}`);
+  console.info('symKeyGenerator algName: ' + symKeyGenerator.algName);
   // Generate GCM parameter specifications.
   let globalGcmParams = genGcmParamsSpec();
   // Create a Cipher instance.
   let cipherAlgName = 'AES128|GCM|PKCS7';
   let globalCipher = cryptoFramework.createCipher(cipherAlgName);
-  console.info(`cipher algName: ${globalCipher.algName}`);
+  console.info('cipher algName: ' + globalCipher.algName);
   // Use the key generator to randomly generate a 128-bit symmetric key.
   let globalCipherText: cryptoFramework.DataBlob;
   let globalKey: cryptoFramework.SymKey;
@@ -2855,34 +2743,41 @@ import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 import buffer from '@ohos.buffer';
 
-// Convert strings in plaintext into byte streams.
+// 将字符串按utf-8解码为Uint8Array
 function stringToUint8Array(str: string) {
   let arr = new Uint8Array(buffer.from(str, 'utf-8').buffer);
   return arr;
 }
 
 function ed25519SignAndVerify() {
-  let sign = cryptoFramework.createSign('Ed25519');
-  let verify = cryptoFramework.createVerify('Ed25519');
-  let input = { data: stringToUint8Array("This is Sign test plan1") };
+  let signer = cryptoFramework.createSign('Ed25519');
+  let verifier = cryptoFramework.createVerify('Ed25519');
+  let input: cryptoFramework.DataBlob = { data: stringToUint8Array("This is Sign test plan1") };
   let tempKeyPair: cryptoFramework.KeyPair;
   let SignMessageBlob: cryptoFramework.DataBlob;
   let generator = cryptoFramework.createAsyKeyGenerator('Ed25519');
-  generator.generateKeyPair().then(keyPair => {
-    tempKeyPair = keyPair;
-    return sign.init(tempKeyPair.priKey)
-  }).then(() => {
-    return sign.sign(input)
-  }).then(data => {
-    SignMessageBlob = data;
-    return verify.init(tempKeyPair.pubKey)
-  }).then(() => {
-    return verify.verify(input, SignMessageBlob)
-  }).then(ret => {
-    console.info('verify ret= ' + ret);
-  }).catch((error: BusinessError) => {
-    console.error(`verify failed, ${error.code}, ${error.message}`);
-  })
+  generator.generateKeyPair()
+    .then(keyPair => {
+      tempKeyPair = keyPair;
+      return signer.init(tempKeyPair.priKey)
+    })
+    .then(() => {
+      return signer.sign(input)
+    })
+    .then(data => {
+      SignMessageBlob = data;
+      return verifier.init(tempKeyPair.pubKey)
+    })
+    .then(() => {
+      return verifier.verify(input, SignMessageBlob)
+    })
+    .then(ret => {
+      console.info('verify ret= ' + ret);
+    })
+    .catch((error: BusinessError) => {
+      let e: BusinessError = error as BusinessError;
+      console.error(`verify failed, ${e.code}, ${e.message}`);
+    })
 }
 ```
 
@@ -2972,10 +2867,10 @@ function x25519Promise() {
   let keyGenPromise = x25519Generator.generateKeyPair();
   keyGenPromise.then(keyPair => {
     return x25519KeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
-  }).then((secret) => {
+  }).then(secret => {
     console.info("generateSecret output is " + secret.data);
-  }).catch((err) => {
-    let e: BusinessError = err as BusinessError;
+  }).catch((error: BusinessError) => {
+    let e: BusinessError = error as BusinessError;
     console.error(`generateSecret error, ${e.code}, ${e.message}`);
   });
 }
@@ -3000,10 +2895,10 @@ function dhPromise() {
   let keyGenPromise = dhGenerator.generateKeyPair();
   keyGenPromise.then(keyPair => {
     return dhKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
-  }).then((secret) => {
+  }).then(secret => {
     console.info("generateSecret output is " + secret.data);
-  }).catch((err) => {
-    let e: BusinessError = err as BusinessError;
+  }).catch((error: BusinessError) => {
+    let e: BusinessError = error as BusinessError;
     console.error(`generateSecret error, ${e.code}, ${e.message}`);
   });
 }
@@ -3491,7 +3386,7 @@ function kdfPromise() {
   };
   let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
   let kdfPromise = kdf.generateSecret(spec);
-  kdfPromise.then((secret) => {
+  kdfPromise.then(secret => {
     console.info("key derivation output is " + secret.data);
   }).catch((error: BusinessError) => {
     console.error("key derivation error.");

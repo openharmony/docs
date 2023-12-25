@@ -11,6 +11,10 @@
 
 仅可包含子组件[TabContent](ts-container-tabcontent.md)。
 
+>  **说明：**
+>
+>  Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
+
 
 ## 接口
 
