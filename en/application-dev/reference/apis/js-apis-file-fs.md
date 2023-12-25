@@ -75,7 +75,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.stat(filePath).then((stat: fs.Stat) => {
     console.info("get file info succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("get file info failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -104,7 +104,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   import { BusinessError } from '@ohos.base';
   fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
-      console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("get file info failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("get file info succeed, the size of file is " + stat.size);
     }
@@ -178,7 +178,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("file not exists");
     }
   }).catch((err: BusinessError) => {
-    console.info("access failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("access failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -208,7 +208,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   fs.access(filePath, (err: BusinessError, res: boolean) => {
     if (err) {
-      console.info("access failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("access failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (res) {
         console.info("file exists");
@@ -257,7 +257,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     }
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.info("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -295,7 +295,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.close(file).then(() => {
     console.info("File closed");
   }).catch((err: BusinessError) => {
-    console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -326,7 +326,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.close(file, (err: BusinessError) => {
     if (err) {
-      console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("File closed");
     }
@@ -358,6 +358,167 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.closeSync(file);
   ```
+
+## fs.copy<sup>11+</sup>
+
+copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
+
+Copies a file or folder. This API uses a promise to return the result.
+
+File copy across devices is supported. This API forcibly overwrites the file or folder with the same name in the destination directory. The file or directory URI is supported.
+A maximum of 10 cross-device copy tasks are allowed at the same time, and the number of files to be copied at a time cannot exceed 500.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name | Type                        | Mandatory  | Description                                      |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
+  | destUri | string | Yes   | URI of the destination file or folder.                         |
+  | options | [CopyOptions](#copyoptions11)| No| Callback invoked to provide the copy progress|
+
+**Return value**
+
+  | Type                 | Description                          |
+  | ------------------- | ---------------------------- |
+  | Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fileuri from '@ohos.file.fileuri';
+
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+
+let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+
+let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
+  console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
+};
+let options: fs.CopyOptions = {
+  "progressListener" : progressListener
+}
+try {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, options).then(()=>{
+    console.info("Succeeded in copying. ");
+  }).catch((err: BusinessError)=>{
+    console.error(`Failed to copy: ${JSON.stringify(err)}`);
+  })
+} catch(err) {
+  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+}
+```
+
+## fs.copy<sup>11+</sup>
+
+copy(srcUri: string, destUri: string, callback: AsyncCallback\<void>): void
+
+Copies a file or folder. This API uses an asynchronous callback to return the result.
+
+File copy across devices is supported. This API forcibly overwrites the file or folder with the same name in the destination directory. The file or directory URI is supported.
+A maximum of 10 cross-device copy tasks are allowed at the same time, and the number of files to be copied at a time cannot exceed 500.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name | Type                        | Mandatory  | Description                                      |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
+  | destUri | string | Yes   | URI of the destination file or folder.                         |
+  | callback | AsyncCallback\<void>| Yes| Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fileuri from '@ohos.file.fileuri';
+
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+
+let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+
+try {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to copy: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info("Succeeded in copying. ");
+  })
+} catch(err) {
+  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+}
+```
+
+## fs.copy<sup>11+</sup>
+
+copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallback\<void>): void
+
+Copies a file or folder. This API uses an asynchronous callback to return the result.
+
+File copy across devices is supported. This API forcibly overwrites the file or folder with the same name in the destination directory. The file or directory URI is supported.
+A maximum of 10 cross-device copy tasks are allowed at the same time, and the number of files to be copied at a time cannot exceed 500.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+**Parameters**
+
+  | Name | Type                        | Mandatory  | Description                                      |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | srcUri  | string | Yes   | URI of the file or folder to copy.                     |
+  | destUri | string | Yes   | URI of the destination file or folder.                         |
+  | options | [CopyOptions](#copyoptions11) |Yes| Callback invoked to return the copy progress.                         |
+  | callback | AsyncCallback\<void>| Yes| Callback invoked to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fileuri from '@ohos.file.fileuri';
+
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+
+let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+
+try {
+  let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
+    console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
+  };
+  let options: fs.CopyOptions = {
+    "progressListener" : progressListener
+  }
+  fs.copy(srcDirUriLocal, dstDirUriLocal, options, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to copy: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info("Succeeded in copying. ");
+  })
+} catch(err) {
+  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+}
+```
 
 ## fs.copyFile
 
@@ -394,7 +555,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.copyFile(srcPath, dstPath, 0).then(() => {
     console.info("copy file succeed");
   }).catch((err: BusinessError) => {
-    console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("copy file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -427,7 +588,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, 0, (err: BusinessError) => {
     if (err) {
-      console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy file succeed");
     }
@@ -462,7 +623,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, (err: BusinessError) => {
     if (err) {
-      console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy file succeed");
     }
@@ -534,7 +695,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.copyDir(srcPath, destPath, 0).then(() => {
     console.info("copy directory succeed");
   }).catch((err: BusinessError) => {
-    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -570,10 +731,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
     }  
@@ -613,10 +774,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.copyDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
     }  
@@ -655,7 +816,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.info("copy directory succeed");
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -728,7 +889,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.mkdir(dirPath).then(() => {
     console.info("Directory created");
   }).catch((err: BusinessError) => {
-    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -765,7 +926,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.mkdir(dirPath, true).then(() => {
     console.info("Directory created");
   }).catch((err: BusinessError) => {
-    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -795,7 +956,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath, (err: BusinessError) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Directory created");
     }
@@ -829,7 +990,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let dirPath = pathDir + "/testDir1/testDir2/testDir3";
   fs.mkdir(dirPath, true, (err: BusinessError) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Directory created");
     }
@@ -921,7 +1082,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.info("file fd: " + file.fd);
     fs.closeSync(file);
   }).catch((err: BusinessError) => {
-    console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("open file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -954,7 +1115,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
-      console.info("open failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
     }
@@ -987,7 +1148,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, (err: BusinessError, file: fs.File) => {
     if (err) {
-      console.info("open failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
     }
@@ -1068,7 +1229,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.info(`The content of file: ${buf.toString()}`);
   }).catch((err: BusinessError) => {
-    console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("read file data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -1105,7 +1266,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let arrayBuffer = new ArrayBuffer(4096);
   fs.read(file.fd, arrayBuffer, (err: BusinessError, readLen: number) => {
     if (err) {
-      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read file data successfully");
       let buf = buffer.from(arrayBuffer, 0, readLen);
@@ -1183,7 +1344,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.rmdir(dirPath).then(() => {
     console.info("Directory deleted");
   }).catch((err: BusinessError) => {
-    console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("rmdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1213,7 +1374,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath, (err: BusinessError) => {
     if (err) {
-      console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("rmdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Directory deleted");
     }
@@ -1277,7 +1438,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.unlink(filePath).then(() => {
     console.info("File deleted");
   }).catch((err: BusinessError) => {
-    console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("remove file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1307,7 +1468,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath, (err: BusinessError) => {
     if (err) {
-      console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("remove file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("File deleted");
     }
@@ -1376,7 +1537,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.write(file.fd, str).then((writeLen: number) => {
     console.info("write data to file succeed and size is:" + writeLen);
   }).catch((err: BusinessError) => {
-    console.info("write data to file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("write data to file failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -1412,7 +1573,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let str: string = "hello, world";
   fs.write(file.fd, str, (err: BusinessError, writeLen: number) => {
     if (err) {
-      console.info("write data to file failed with error message:" + err.message + ", error code: " + err.code);
+      console.error("write data to file failed with error message:" + err.message + ", error code: " + err.code);
     } else {
       console.info("write data to file succeed and size is:" + writeLen);
     }
@@ -1491,7 +1652,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.truncate(filePath, len).then(() => {
     console.info("File truncated");
   }).catch((err: BusinessError) => {
-    console.info("truncate file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("truncate file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1523,7 +1684,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let len: number = 5;
   fs.truncate(filePath, len, (err: BusinessError) => {
     if (err) {
-      console.info("truncate failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("truncate failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("truncate succeed");
     }
@@ -1596,7 +1757,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("content: " + it.value);
     }
   }).catch((err: BusinessError) => {
-    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1631,7 +1792,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   };
   fs.readLines(filePath, options, (err: BusinessError, readerIterator: fs.ReaderIterator) => {
     if (err) {
-      console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
         console.info("content: " + it.value);
@@ -1715,7 +1876,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("content: " + it.value);
     }
   }).catch((err: BusinessError) => {
-    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1763,7 +1924,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.readText(filePath).then((str: string) => {
     console.info("readText succeed:" + str);
   }).catch((err: BusinessError) => {
-    console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1803,7 +1964,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   option.length = stat.size;
   fs.readText(filePath, option, (err: BusinessError, str: string) => {
     if (err) {
-      console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("readText succeed:" + str);
     }
@@ -1884,7 +2045,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.lstat(filePath).then((stat: fs.Stat) => {
     console.info("lstat succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("lstat failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1914,7 +2075,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/linkToFile";
   fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
-      console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("lstat failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("lstat succeed, the size of file is" + stat.size);
     }
@@ -1987,7 +2148,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.rename(srcFile, dstFile).then(() => {
     console.info("File renamed");
   }).catch((err: BusinessError) => {
-    console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("rename failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2019,7 +2180,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
-      console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("rename failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("File renamed");
     }
@@ -2086,7 +2247,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.fsync(file.fd).then(() => {
     console.info("Data flushed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("sync data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -2119,7 +2280,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.fsync(file.fd, (err: BusinessError) => {
     if (err) {
-      console.info("fsync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("fsync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fsync succeed");
     }
@@ -2188,7 +2349,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.fdatasync(file.fd).then(() => {
     console.info("Data flushed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("sync data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -2221,7 +2382,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.fdatasync (file.fd, (err: BusinessError) => {
     if (err) {
-      console.info("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdatasync succeed");
     }
@@ -2290,7 +2451,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.symlink(srcFile, dstFile).then(() => {
     console.info("Symbolic link created");
   }).catch((err: BusinessError) => {
-    console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("symlink failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2322,7 +2483,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
-      console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("symlink failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Symbolic link created");
     }
@@ -2413,7 +2574,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
       console.info("fileName: %s", filenames[i]);
     }
   }).catch((err: BusinessError) => {
-    console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("list file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2465,7 +2626,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
-      console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("listFile succeed");
       for (let i = 0; i < filenames.length; i++) {
@@ -2604,7 +2765,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.moveDir(srcPath, destPath, 1).then(() => {
     console.info("move directory succeed");
   }).catch((err: BusinessError) => {
-    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2640,10 +2801,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
     }  
@@ -2683,10 +2844,10 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
     }  
@@ -2728,10 +2889,10 @@ try {
   let err: BusinessError<Array<ConflictFiles>> = error as BusinessError<Array<ConflictFiles>>;
   if (err.code == 13900015) {
     for (let i = 0; i < err.data.length; i++) {
-      console.info("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+      console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
     }
   } else {
-    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
 }
   ```
@@ -2771,7 +2932,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.moveFile(srcPath, destPath, 0).then(() => {
     console.info("move file succeed");
   }).catch((err: BusinessError) => {
-    console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2804,7 +2965,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0, (err: BusinessError) => {
     if (err) {
-      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
     }  
@@ -2838,7 +2999,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, (err: BusinessError) => {
     if (err) {
-      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
     }  
@@ -2905,7 +3066,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.mkdtemp(pathDir + "/XXXXXX").then((dir: string) => {
     console.info("mkdtemp succeed:" + dir);
   }).catch((err: BusinessError) => {
-    console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2934,7 +3095,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   import { BusinessError } from '@ohos.base';
   fs.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) => {
     if (err) {
-      console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("mkdtemp succeed");
     }
@@ -3033,7 +3194,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.info("randomAccessFile fd: " + randomAccessFile.fd);
     randomAccessFile.close();
   }).catch((err: BusinessError) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -3066,7 +3227,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file, fs.OpenMode.READ_ONLY (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
     if (err) {
-      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("randomAccessFile fd: " + randomAccessFile.fd);
       randomAccessFile.close();
@@ -3101,7 +3262,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
     if (err) {
-      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("randomAccessFile fd: " + randomAccessFile.fd);
       randomAccessFile.close();
@@ -3177,7 +3338,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
     console.info("Stream created");
   }).catch((err: BusinessError) => {
-    console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("createStream failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     stream.closeSync();
   });
@@ -3211,7 +3372,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
-      console.info("create stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Stream created");
     }
@@ -3287,11 +3448,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath);
   fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
     console.info("Stream opened");
-    stream.closeSync();
-  }).catch((err: BusinessError) => {
-    console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
     fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.error("openStream failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    stream.closeSync();
   });
   ```
 
@@ -3323,12 +3484,12 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
-      console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdopen stream succeed");
-      stream.closeSync();
+      fs.closeSync(file);
     }
-    fs.closeSync(file);
+    stream.closeSync();
   });
   ```
 
@@ -3363,8 +3524,8 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let stream = fs.fdopenStreamSync(file.fd, "r+");
-  stream.closeSync();
   fs.closeSync(file);
+  stream.closeSync();
   ```
 
 ## fs.createWatcher<sup>10+</sup>
@@ -3439,6 +3600,35 @@ Defines the event to observe.
 | fileName | string | Yes   | No   | Name of the file for which the event occurs.|
 | event | number | Yes   | No   | Events to observe. Multiple events can be separated by a bitwise OR operator (\|).<br>- **0x1: IN_ACCESS**: A file is accessed.<br>- **0x2: IN_MODIFY**: The file content is modified.<br>- **0x4: IN_ATTRIB**: The file metadata is modified.<br>- **0x8: IN_CLOSE_WRITE**: A file is opened, written with data, and then closed.<br>- **0x10: IN_CLOSE_NOWRITE**: A file or directory is opened and then closed without data written.<br>- **0x20: IN_OPEN**: A file or directory is opened.<br>- **0x40: IN_MOVED_FROM**: A file in the observed directory is moved.<br>- **0x80: IN_MOVED_TO**: A file is moved to the observed directory.<br>- **0x100: IN_CREATE**: A file or directory is created in the observed directory.<br>- **0x200: IN_DELETE**: A file or directory is deleted from the observed directory.<br>- **0x400: IN_DELETE_SELF**: The observed directory is deleted. After the directory is deleted, the listening stops.<br>- **0x800: IN_MOVE_SELF**: The observed file or directory is moved. After the file or directory is moved, the listening continues.<br>- **0xfff: IN_ALL_EVENTS**: All events.|
 | cookie | number | Yes   | No   | Cookie bound with the event. Currently, only the **IN_MOVED_FROM** and **IN_MOVED_TO** events are supported. The **IN_MOVED_FROM** and **IN_MOVED_TO** events of the same file have the same **cookie** value.|
+
+## Progress<sup>11+</sup>
+
+Defines the copy progress information.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+| Name  | Type  | Readable  | Writable  | Description     |
+| ---- | ------ | ---- | ---- | ------- |
+| processedSize | number | Yes   | No   | Size of the copied data.|
+| totalSize | number | Yes   | No   | Total size of the data to be copied.|
+
+## CopyOptions<sup>11+</sup>
+
+Defines the copy progress callback.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
+| Name  | Type  | Readable  | Writable  | Description     |
+| ---- | ------ | ---- | ---- | ------- |
+| progressListener | [ProgressListener](#progresslistener) | Yes   | Yes   | Listener used to observe the copy progress.|
+
+## ProgressListener
+
+Defines the listener used to observe the copy progress.
+
+| Type| Description|
+| ----| ------|
+|(progress: [Progress](#progress11)) => void| Listener used to observe the copy progress.|
 
 ## Stat
 
@@ -3666,7 +3856,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   stream.close().then(() => {
     console.info("File stream closed");
   }).catch((err: BusinessError) => {
-    console.info("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3696,7 +3886,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let stream = fs.createStreamSync(filePath, "r+");
   stream.close((err: BusinessError) => {
     if (err) {
-      console.info("close stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("close stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close stream succeed");
     }
@@ -3751,7 +3941,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.info("Stream flushed");
     stream.close();
   }).catch((err: BusinessError) => {
-    console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("flush failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3781,7 +3971,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush((err: BusinessError) => {
     if (err) {
-      console.info("flush stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("flush stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Stream flushed");
       stream.close();
@@ -3853,7 +4043,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.info("write succeed and size is:" + number);
     stream.close();
   }).catch((err: BusinessError) => {
-    console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("write failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3893,7 +4083,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   option.length = 5;
   stream.write("hello, world", option, (err: BusinessError, bytesWritten: number) => {
     if (err) {
-      console.info("write stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("write stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
@@ -3991,7 +4181,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
     console.log(`The content of file: ${buf.toString()}`);
     stream.close();
   }).catch((err: BusinessError) => {
-    console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -4032,7 +4222,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   option.length = 5;
   stream.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
     if (err) {
-      console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("Read data successfully");
       let buf = buffer.from(arrayBuffer, 0, readLen);
@@ -4159,7 +4349,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   file.lock(true).then(() => {
     console.log("lock file succeed");
   }).catch((err: BusinessError) => {
-    console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -4192,7 +4382,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true, (err: BusinessError) => {
     if (err) {
-      console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.log("lock file succeed");
     }
@@ -4352,7 +4542,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   randomaccessfile.write(arrayBuffer, option).then((bytesWritten: number) => {
     console.info("randomAccessFile bytesWritten: " + bytesWritten);
   }).catch((err: BusinessError) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     randomAccessFile.close();
     fs.closeSync(file);
@@ -4398,7 +4588,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let arrayBuffer = new ArrayBuffer(bufferLength);
   randomAccessFile.write(arrayBuffer, option, (err: BusinessError, bytesWritten: number) => {
     if (err) {
-      console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("write failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
@@ -4495,7 +4685,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
     console.info("randomAccessFile readLength: " + readLength);
   }).catch((err: BusinessError) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     randomAccessFile.close();
     fs.closeSync(file);
@@ -4540,7 +4730,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let arrayBuffer = new ArrayBuffer(length);
   randomaccessfile.read(arrayBuffer, option, (err: BusinessError, readLength: number) => {
     if (err) {
-      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (readLength) {
         console.info("read succeed and size is:" + readLength);

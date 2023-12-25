@@ -27,6 +27,8 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md#perm
 
 Enumerates the resource information flags, which indicate the type of resource information to obtain.
 
+**System API**: This is a system API.
+
  **System capability**: SystemCapability.BundleManager.BundleFramework.Resource
 
 | Name                                     | Value        | Description                                                        |
@@ -41,7 +43,7 @@ Enumerates the resource information flags, which indicate the type of resource i
 
 ### bundleResourceManager.getBundleResourceInfo
 
-getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag)): [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md);
+getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag)): [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)
 
 Obtains the resource information of an application based on the given bundle name and resource flags. This API returns the result synchronously.
 
@@ -74,7 +76,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700001 | The specified bundleName is not found. |
 
 
-**Example:**
+**Example**
 
 ```ts
 import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
@@ -93,7 +95,7 @@ try {
 
 ### bundleResourceManager.getLauncherAbilityResourceInfo
 
-getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag)): Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>;
+getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag)): Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>
 
 Obtains the bundle information of the entry ability of an application based on the given bundle name and resource flags. This API returns the result synchronously.
 
@@ -125,7 +127,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700001 | The specified bundleName is not found. |
 
 
-**Example:**
+**Example**
 
 ```ts
 import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
@@ -144,7 +146,7 @@ try {
 
 ### bundleResourceManager.getAllBundleResourceInfo
 
-getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)>>): void;
+getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)>>): void
 
 Obtains resource information of all applications based on the given resource flags. This API uses an asynchronous callback to return the result.
 
@@ -161,7 +163,7 @@ Obtains resource information of all applications based on the given resource fla
 | resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
 | callback | AsyncCallback\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the application obtained. Otherwise, **err** is an error object.|
 
-**Example:**
+**Example**
 
 ```ts
 import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
@@ -206,7 +208,7 @@ Obtains resource information of all applications based on the given resource fla
 | ------------------------------------------------------------ | -------------------------------- |
 | Promise\<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)>> | Promise used to return the resource information of the application obtained.|
 
-**Example:**
+**Example**
 
 ```ts
 import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
@@ -216,7 +218,7 @@ let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllBundleResourceInfo(bundleFlags).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
-    }).catch(err=> {
+    }).catch((err: BusinessError) => {
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
     })
 } catch (err) {
@@ -227,7 +229,7 @@ try {
 
 ### bundleResourceManager.getAllLauncherAbilityResourceInfo
 
-getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>): void;
+getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>): void
 
 Obtains resource information of the entry abilities of all applications based on the given resource flags. This API uses an asynchronous callback to return the result.
 
@@ -241,11 +243,11 @@ Obtains resource information of the entry abilities of all applications based on
 
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain.|
+| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
 | callback | AsyncCallback\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the resource information of the entry abilities obtained. Otherwise, **err** is an error object.|
 
 
-**Example:**
+**Example**
 
 ```ts
 import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
@@ -268,7 +270,7 @@ try {
 
 ### bundleResourceManager.getAllLauncherAbilityResourceInfo
 
-getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>;
+getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>>
 
 Obtains resource information of the entry abilities of all applications based on the given resource flags. This API uses a promise to return the result.
 
@@ -282,7 +284,7 @@ Obtains resource information of the entry abilities of all applications based on
 
 | Name    | Type  | Mandatory| Description               |
 | ----------- | ------ | ---- | --------------------- |
-| resourceFlags | [number](#resourceflag) | No  | Type of the resource information to obtain.|
+| resourceFlags | [number](#resourceflag) | Yes  | Type of the resource information to obtain.|
 
 **Return value**
 
@@ -290,7 +292,7 @@ Obtains resource information of the entry abilities of all applications based on
 | ------------------------------------------------------------ | -------------------------------- |
 | Promise\<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo.md)>> | Promise used to return the resource information of the entry abilities obtained.|
 
-**Example:**
+**Example**
 ```ts
 import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 import { BusinessError } from '@ohos.base';
@@ -299,7 +301,7 @@ let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
-    }).catch(err=> {
+    }).catch((err: BusinessError) => {
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
     })
 } catch (err) {

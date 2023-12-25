@@ -31,7 +31,7 @@ Enables listening for global touch (touchscreen) events.
 | Name      | Type                                      | Mandatory  | Description                 |
 | -------- | ---------------------------------------- | ---- | ------------------- |
 | type     | string                                   | Yes   | Event type. This field has a fixed value of **touch**.|
-| receiver | [TouchEventReceiver](#toucheventreceiver) | Yes   | Callback used to return the touch event asynchronously.|
+| receiver | [TouchEventReceiver](#toucheventreceiver) | Yes   | Callback used to return touch events asynchronously.|
 
 **Example**
 
@@ -62,7 +62,7 @@ Enables listening for global mouse events.
 | Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
-| receiver | Callback&lt;MouseEvent&gt; | Yes   | Callback used to return the mouse event asynchronously. |
+| receiver | Callback&lt;MouseEvent&gt; | Yes   | Callback used to return mouse events asynchronously. |
 
   **Example**
 
@@ -83,19 +83,19 @@ try {
 
 on(type: 'mouse', rect: display.Rect[], receiver: Callback&lt;MouseEvent&gt;): void
 
-Enables listening for mouse events and trigger a callback task when the mouse moves within the specified rectangular area.
+Enables listening for mouse events. When the mouse pointer moves to the specified rectangular area, a callback is triggered.
 
 **Required permissions**: ohos.permission.INPUT_MONITORING
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
 
-**Parameters** 
+**Parameters**
 
-| Name       | Type                         | Mandatory   | Description                  |
+| Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
-| type     | string                     | Yes    | Event type. This field has a fixed value of **mouse**. |
-| rect     | display.Rect[]             | Yes    | The rectangular area that can trigger the callback task, the number of rectangles can be 1 or 2. |
-| receiver | Callback&lt;[MouseEvent](./js-apis-mouseevent.md)&gt; | Yes    | Callback used to return the mouse event   |
+| type     | string                     | Yes   | Event type. This field has a fixed value of **mouse**.|
+| rect     | display.Rect[]             | Yes   | Rectangular area where a callback is triggered. One or two rectangular areas can be specified.|
+| receiver | Callback&lt;[MouseEvent](./js-apis-mouseevent.md)&gt; | Yes   | Callback used to return mouse events asynchronously. |
 
   **Example**
 
@@ -105,18 +105,18 @@ import promptAction from '@ohos.promptAction'
 import display from '@ohos.display';
 
 /**
- * A callback task triggered when the mouse is within the rectangular area.
+ * Callback triggered when the mouse pointer moves to the specified rectangular area.
  */
 function callback(mouseEvent : MouseEvent) {
   promptAction.showToast({
-    message: `Monitoring successful:${JSON.stringify(mouseEvent)}`
+    message: `Monitor on success: ${JSON.stringify(mouseEvent)}`
   })
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
   return false;
 };
 
 /**
- * The rectangular area that triggers the callback event.
+ * Rectangular area where a callback is triggered.
  */
 let rect: display.Rect[] = [{
   left: 100,
@@ -290,7 +290,7 @@ Enables listening for global touchpad pinch events.
 | Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **pinch**.|
-| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | Yes   | Callback used to return the pinch event asynchronously. |
+| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | Yes   | Callback used to return pinch events asynchronously. |
 
   **Example**
 
@@ -374,7 +374,7 @@ Enables listening for three-finger swipe events.
 | Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **threeFingersSwipe**.|
-| receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt; | Yes   | Callback used to return the three-finger swipe event asynchronously. |
+| receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt; | Yes   | Callback used to return three-finger swipe events asynchronously. |
 
   **Example**
 
@@ -457,7 +457,7 @@ Enables listening for four-finger swipe events.
 | Name      | Type                        | Mandatory  | Description                 |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **fourFingersSwipe**.|
-| receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt; | Yes   | Callback used to return the four-finger swipe event asynchronously. |
+| receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt; | Yes   | Callback used to return four-finger swipe events asynchronously. |
 
   **Example**
 
@@ -541,7 +541,7 @@ Enables listening for rotation events of the touchpad.
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **rotate**.|
 | fingers     | number                     | Yes   | Number of fingers that trigger a rotation. The value must not be greater than **2**.|
-| receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | Yes   | Callback used to return the rotation event asynchronously. |
+| receiver | Callback&lt;[Rotate](js-apis-multimodalinput-gestureevent.md#rotate)&gt; | Yes   | Callback used to return rotation events asynchronously. |
 
   **Example**
 
@@ -627,7 +627,7 @@ Enables listening for global touchpad pinch events.
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | Yes   | Event type. This field has a fixed value of **pinch**.|
 | fingers     | number                     | Yes   | Number of fingers that trigger the pinch. The value must be greater than or equal to **2**.|
-| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | Yes   | Callback used to return the pinch event asynchronously. |
+| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | Yes   | Callback used to return pinch events asynchronously. |
 
   **Example**
 
@@ -696,4 +696,86 @@ try {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
-<!--no_check-->
+
+## inputMonitor.on('threeFingersTap')<sup>11+</sup>
+
+on(type: 'threeFingersTap', receiver: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt;): void
+
+Enables listening for three-finger tap events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                     |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **threeFingersTap**.|
+| receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | Yes  | Callback used to return three-finger tap events asynchronously.     |
+
+  **Example**
+
+```js
+try {
+  inputMonitor.on('threeFingersTap', (threeFingersTap) => {
+    console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
+    return false;
+  });
+} catch (error) {
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('threeFingersTap')<sup>11+</sup>
+
+off(type: 'threeFingersTap', receiver?: Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt;): void
+
+Disables listening for three-finger tap events.
+
+**Required permissions**: ohos.permission.INPUT_MONITORING
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputMonitor
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | Yes  | Event type. This field has a fixed value of **threeFingersTap**.                   |
+| receiver | Callback&lt;[ThreeFingersTap](js-apis-multimodalinput-gestureevent.md#threefingerstap)&gt; | No  | Callback for which listening is disabled. If this parameter is not specified, listening will be disabled for all callbacks registered by the current application.|
+
+**Example**
+
+```js
+// Disable listening for a single callback.
+import { ThreeFingersTap } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (threeFingersTap: ThreeFingersTap) => {
+  console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
+  return false;
+};
+try {
+  inputMonitor.on('threeFingersTap', callback);
+  inputMonitor.off("threeFingersTap", callback);
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// Cancel listening for all callbacks.
+import { ThreeFingersTap } from '@ohos.multimodalInput.gestureEvent';
+
+let callback = (threeFingersTap: ThreeFingersTap) => {
+  console.log(`Monitor on success ${JSON.stringify(threeFingersTap)}`);
+  return false;
+};
+try {
+  inputMonitor.on('threeFingersTap', callback);
+  inputMonitor.off("threeFingersTap");
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```

@@ -14,7 +14,7 @@
 
 ## 接口
 
-Text(content?: string | Resource)
+Text(content?: string | Resource, value?: TextOptions)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -23,6 +23,7 @@ Text(content?: string | Resource)
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | content | string \| [Resource](ts-types.md#resource) | 否 | 文本内容。包含子组件Span时不生效，显示Span内容，并且此时text组件的样式不生效。<br/>默认值：' ' |
+| value<sup>11+</sup> | [TextOptions](#textoptions11) | 否 | 文本组件初始化选项。|
 
 ## 属性
 
@@ -30,7 +31,7 @@ Text(content?: string | Resource)
 
 | 名称                       | 参数类型                            | 描述                                               |
 | ----------------------- | ----------------------------------- | ------------------------------------------- |
-| textAlign               | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>说明：<br/>文本段落宽度占满Text组件宽度；可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。结合TextAlign属性可控制内容在水平方向的位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| textAlign               | [TextAlign](ts-appendix-enums.md#textalign) | 设置文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>**说明：**<br/>文本段落宽度占满Text组件宽度；可通过[align](ts-universal-attributes-location.md)属性控制文本段落在垂直方向上的位置，此组件中不可通过align属性控制文本段落在水平方向上的位置，即align属性中Alignment.TopStart、Alignment.Top、Alignment.TopEnd效果相同，控制内容在顶部，Alignment.Start、Alignment.Center、Alignment.End效果相同，控制内容垂直居中，Alignment.BottomStart、Alignment.Bottom、Alignment.BottomEnd效果相同，控制内容在底部。结合TextAlign属性可控制内容在水平方向的位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | textOverflow            | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)} | 设置文本超长时的显示方式。<br/>默认值：{overflow:&nbsp;TextOverflow.Clip}<br/>**说明：**<br/>文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可在字母间添加零宽空格：\u200B。从API version 11开始，建议优先组合`wordBreak`属性设置为WordBreak.BREAK_ALL方式实现字母为单位进行截断，使用[示例](#示例4)。<br />当`overflow`设置为TextOverflow.None、TextOverflow.Clip、TextOverflow.Ellipsis时，需配合`maxLines`使用，单独设置不生效。设置TextOverflow.None与TextOverflow.Clip效果一样。当`overflow`设置为TextOverflow.Marquee时，文本在一行内滚动显示，设置`maxLines`及`copyOption`属性均不生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | maxLines                | number | 设置文本的最大行数。<br />**说明：** <br />默认情况下，文本是自动折行的，如果指定此参数，则文本最多不会超过指定的行。如果有多余的文本，可以通过        `textOverflow`来指定截断方式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | lineHeight              | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)  | 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，Length为number类型时单位为fp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -51,6 +52,7 @@ Text(content?: string | Resource)
 | ellipsisMode<sup>11+</sup> |[EllipsisMode](ts-appendix-enums.md#ellipsismode11)| 设置省略位置。 <br />默认值：EllipsisMode.END <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>当`ellipsisMode`设置为EllipsisMode.END，需要配合`overflow`设置为TextOverflow.Ellipsis以及maxLines使用，单独设置`ellipsisMode`属性不生效。<br/>EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。|
 | enableDataDetector<sup>11+</sup> |boolean| 使能文本识别。<br/>默认值： false<br/>**说明：**<br/>所识别实体的`fontColor`和`decoration`会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}<br/>该接口依赖设备底层应具有文本识别能力，否则设置不会生效。<br/>当`enableDataDetector`设置为true，同时不设置`dataDetectorConfig`属性时，默认识别所有类型的实体。<br/>当`copyOption`设置为CopyOptions.None时，该功能不会生效。 |
 | dataDetectorConfig<sup>11+</sup> |{<br/>types:&nbsp;[TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11),<br/>onDetectResultUpdate:&nbsp;(callback:(result:&nbsp;string)&nbsp;=&gt;&nbsp;void)<br/>} | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/>`types`：文本识别的实体类型。设置`types`为`null`或者`[]`时，识别所有类型的实体，否则只识别指定类型的实体。<br/> `onDetectResultUpdate`：文本识别成功后，触发`onDetectResultUpdate`回调。<br/>`result`：文本识别的结果，Json格式。 |
+| bindSelectionMenu<sup>11+</sup> | {<br/>spantype:&nbsp;[TextSpanType](ts-appendix-enums.md#textSpanType),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[TextResponseType](ts-appendix-enums.md#textResponseType)&nbsp;\,<br/>options?:&nbsp;[SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;TextSpanType.TEXT<br/>content：空<br/>responseType:&nbsp;TextResponseType.LONG_PRESS <br/>}|
 
 >  **说明：**
 >
@@ -65,6 +67,31 @@ Text(content?: string | Resource)
 | 名称                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onCopy(callback:(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>11+</sup> | 长按文本内部区域弹出剪贴板后，点击剪切板复制按钮，触发该回调。<br/>value：复制的文本内容。 <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>目前文本复制仅支持文本。|
+| onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)<sup>11+</sup> | 文本选择的位置发生变化时，触发该回调。<br />selectionStart：文本选择区域起始位置，文本框中文字的起始位置为0。<br />selectionEnd：文本选择区域结束位置。 |
+
+## TextOptions<sup>11+</sup>
+
+Text初始化参数。
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| controller | [TextController](#textcontroller11)  | 是 | 文本控制器。 |
+
+## TextController<sup>11+</sup>
+
+Text组件的控制器。
+
+### 导入对象
+
+```
+controller: TextController = new TextController()
+```
+
+### closeSelectionMenu
+
+closeSelectionMenu(): void
+
+关闭自定义选择菜单或系统默认选择菜单。
 
 ## 示例
 
@@ -485,3 +512,112 @@ struct TextExample7 {
   }
 }
 ```
+### 示例8
+bindSelectionMenu，onTextSelectionChange及closeSelectionMenu使用示例
+
+```ts
+@Entry
+@Component
+struct Demo {
+  controller: TextController = new TextController();
+  options: TextOptions = { controller: this.controller };
+
+  build() {
+    Column() {
+      Column() {
+        Text(undefined, this.options) {
+          Span('Hello World')
+          ImageSpan($r('app.media.icon'))
+            .width('100px')
+            .height('100px')
+            .objectFit(ImageFit.Fill)
+            .verticalAlign(ImageSpanAlignment.CENTER)
+        }
+        .copyOption(CopyOptions.InApp)
+        .bindSelectionMenu(TextSpanType.IMAGE, this.LongPressImageCustomMenu, TextResponseType.LONG_PRESS, {
+          onDisappear: () => {
+            console.info(`自定义选择菜单关闭时回调`);
+          },
+          onAppear: () => {
+            console.info(`自定义选择菜单弹出时回调`);
+          }
+        })
+        .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK)
+        .bindSelectionMenu(TextSpanType.MIXED, this.SelectMixCustomMenu, TextResponseType.SELECT)
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          console.info(`文本选中区域变化回调, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`);
+        })
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width(200)
+        .height(100)
+      }
+      .width('100%')
+      .backgroundColor(Color.White)
+      .alignItems(HorizontalAlign.Start)
+      .padding(25)
+    }
+    .height('100%')
+  }
+
+  @Builder
+  RightClickTextCustomMenu() {
+    Column() {
+      Menu() {
+        MenuItemGroup() {
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 1", labelInfo: "" })
+            .onClick((event) => {
+              this.controller.closeSelectionMenu();
+            })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 2", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 3", labelInfo: "" })
+        }
+      }
+      .MenuStyles()
+    }
+  }
+
+  @Builder
+  LongPressImageCustomMenu() {
+    Column() {
+      Menu() {
+        MenuItemGroup() {
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 1", labelInfo: "" })
+            .onClick((event) => {
+              this.controller.closeSelectionMenu();
+            })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "SLong Press Image Menu 2", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 3", labelInfo: "" })
+        }
+      }
+      .MenuStyles()
+    }
+  }
+
+  @Builder
+  SelectMixCustomMenu() {
+    Column() {
+      Menu() {
+        MenuItemGroup() {
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
+            .onClick((event) => {
+              this.controller.closeSelectionMenu();
+            })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
+        }
+      }
+      .MenuStyles()
+    }
+  }
+}
+
+@Extend(Menu)
+function MenuStyles() {
+  .radius($r('sys.float.ohos_id_corner_radius_card'))
+  .clip(true)
+  .backgroundColor('#F0F0F0')
+}
+```
+
+![](figures/textBindSelectionMenu.gif)

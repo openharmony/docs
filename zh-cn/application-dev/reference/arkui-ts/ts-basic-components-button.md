@@ -16,7 +16,7 @@
 
 ### Button
 
-Button(options?: {type?: ButtonType, stateEffect?: boolean})
+Button(options?: {type?: ButtonType, stateEffect?: boolean, buttonStyle?: ButtonStyleMode, controlSize?: ControlSize})
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -26,10 +26,12 @@ Button(options?: {type?: ButtonType, stateEffect?: boolean})
 | ----------- | ---------- | ------| --------------------------------- |
 | type        | [ButtonType](#buttontype枚举说明) | 否    | 描述按钮显示样式。<br/>默认值：ButtonType.Capsule                           |
 | stateEffect | boolean    | 否    | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。 |
+| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明)   | 否    | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：** <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。
+| controlSize<sup>11+</sup>  | [ControlSize](#controlsize11枚举说明)   | 否    | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL
 
 ### Button
 
-Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
+Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean, buttonStyle?: ButtonStyleMode, controlSize?: ControlSize})
 
 使用文本内容创建相应的按钮组件，此时Button无法包含子组件。
 
@@ -40,7 +42,7 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 | 参数名     | 参数类型                                | 必填   | 参数描述          |
 | ------- | ----------------------------------- | ---- | ------------- |
 | label   | [ResourceStr](ts-types.md#resourcestr) | 否    | 按钮文本内容。 |
-| options | { type?: ButtonType, stateEffect?: boolean }   | 否    | 见[Button](#button-1)参数说明。 |
+| options | { type?: ButtonType, stateEffect?: boolean, buttonStyle<sup>11+</sup>?: ButtonStyleMode, controlSize<sup>11+</sup>?: ControlSize }   | 否    | 见[Button](#button-1)参数说明。 |
 
 ## 属性
 
@@ -51,6 +53,8 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 | type        | [ButtonType](#buttontype枚举说明) | 设置Button样式。<br/>默认值：ButtonType.Capsule<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | stateEffect | boolean     | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10对象说明) | 设置Button组件label文本和字体的样式。 |
+| buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 设置Button组件的样式和重要程度。 |
+| controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明) | 设置Button组件的尺寸。 |
 
 ## ButtonType枚举说明
 
@@ -79,6 +83,26 @@ Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean
 | maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | 否   | 设置Label文本最大显示字号。需配合minFontSize以及maxLines或布局大小限制使用。 |
 | heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | 否   | 设置Label文本自适应高度的方式。                              |
 | font                 | [Font](ts-types.md#font)                                     | 否   | 设置Label文本字体样式。                                      |
+
+## ButtonStyleMode<sup>11+</sup>枚举说明
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称      | 描述                 |
+| ------- | ------------------ |
+| EMPHASIZED | 强调按钮（用于强调当前操作）。 |
+| NORMAL  | 普通按钮（一般界面操作）。              |
+| TEXTUAL  | 文本按钮（纯文本，无背景颜色）。      |
+
+## ControlSize<sup>11+</sup>枚举说明
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称      | 描述                 |
+| ------- | ------------------ |
+| SMALL | 小尺寸按钮。 |
+| NORMAL  | 正常尺寸按钮。              |
+
 ## 事件
 
 支持[通用事件](ts-universal-events-click.md)。
@@ -211,3 +235,38 @@ struct buttonTestDemo {
 ```
 
 ![image-20230711171138661](figures/imageButtonLabelStyle.png)
+
+### 示例4
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ButtonExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text('Normal size button').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Emphasized', { buttonStyle: ButtonStyleMode.EMPHASIZED });
+        Button('Normal', { buttonStyle: ButtonStyleMode.NORMAL });
+        Button('Textual', { buttonStyle: ButtonStyleMode.TEXTUAL });
+      }
+
+      Text('Small size button').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Emphasized', { controlSize: ControlSize.SMALL, buttonStyle: ButtonStyleMode.EMPHASIZED });
+        Button('Normal', { controlSize: ControlSize.SMALL, buttonStyle: ButtonStyleMode.NORMAL });
+        Button('Textual', { controlSize: ControlSize.SMALL, buttonStyle: ButtonStyleMode.TEXTUAL });
+      }
+
+      Text('Small size button').fontSize(9).fontColor(0xCCCCCC)
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+        Button('Emphasized').controlSize(ControlSize.SMALL).buttonStyle(ButtonStyleMode.EMPHASIZED);
+        Button('Normal').controlSize(ControlSize.SMALL).buttonStyle(ButtonStyleMode.NORMAL);
+        Button('Textual').controlSize(ControlSize.SMALL).buttonStyle(ButtonStyleMode.TEXTUAL);
+      }
+
+    }.height(400).padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+![image-20230711171138661](figures/buttonstyleandsize.jpeg)

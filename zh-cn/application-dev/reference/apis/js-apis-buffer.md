@@ -482,7 +482,6 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = buffer.alloc(50);
 let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
 console.log(newBuf.toString('ascii'));
 ```
@@ -850,7 +849,7 @@ readBigInt64BE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。默认值: 0。取值范围：0 <= offset <= Buffer.length - 8 |
 
 **返回值：**
 
@@ -864,7 +863,7 @@ readBigInt64BE(offset?: number): bigint
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
@@ -891,7 +890,7 @@ readBigInt64LE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
 
 **返回值：**
 
@@ -905,7 +904,7 @@ readBigInt64LE(offset?: number): bigint
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
@@ -932,7 +931,7 @@ readBigUInt64BE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
 
 **返回值：**
 
@@ -946,7 +945,7 @@ readBigUInt64BE(offset?: number): bigint
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
@@ -973,7 +972,7 @@ readBigUInt64LE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
 
 **返回值：**
 
@@ -987,7 +986,7 @@ readBigUInt64LE(offset?: number): bigint
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
@@ -1014,7 +1013,7 @@ readDoubleBE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
 
 **返回值：**
 
@@ -1028,7 +1027,7 @@ readDoubleBE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
@@ -1054,7 +1053,7 @@ readDoubleLE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
 
 **返回值：**
 
@@ -1068,7 +1067,7 @@ readDoubleLE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **示例：**
 
@@ -1094,7 +1093,7 @@ readFloatBE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
 
 **返回值：**
 
@@ -1108,7 +1107,7 @@ readFloatBE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
@@ -1134,7 +1133,7 @@ readFloatLE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
 
 **返回值：**
 
@@ -1148,7 +1147,7 @@ readFloatLE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
@@ -1174,7 +1173,7 @@ readInt8(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值: 0。 |
 
 **返回值：**
 
@@ -1188,7 +1187,7 @@ readInt8(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 1. Received value is: [offset]. |
 
 **示例：**
 
@@ -1215,7 +1214,7 @@ readInt16BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
 
 **返回值：**
 
@@ -1229,7 +1228,7 @@ readInt16BE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
 
@@ -1255,7 +1254,7 @@ readInt16LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
 
 **返回值：**
 
@@ -1269,7 +1268,7 @@ readInt16LE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
 
@@ -1295,7 +1294,7 @@ readInt32BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
 
 **返回值：**
 
@@ -1309,7 +1308,7 @@ readInt32BE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
@@ -1335,7 +1334,7 @@ readInt32LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
 
 **返回值：**
 
@@ -1349,7 +1348,7 @@ readInt32LE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 |  The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
@@ -1375,7 +1374,7 @@ readIntBE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。 默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
 | byteLength | number | 是 | 读取的字节数。 |
 
 
@@ -1419,7 +1418,7 @@ readIntLE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。 默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
 | byteLength | number | 是 | 读取的字节数。 |
 
 
@@ -1461,7 +1460,7 @@ readUInt8(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值: 0。 |
 
 
 **返回值：**
@@ -1476,7 +1475,7 @@ readUInt8(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 1. Received value is: [offset]. |
 
 **示例：**
 
@@ -1503,7 +1502,7 @@ readUInt16BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
 
 
 **返回值：**
@@ -1518,7 +1517,7 @@ readUInt16BE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
 
@@ -1545,7 +1544,7 @@ readUInt16LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
 
 
 **返回值：**
@@ -1560,7 +1559,7 @@ readUInt16LE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **示例：**
 
@@ -1587,7 +1586,7 @@ readUInt32BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
 
 
 **返回值：**
@@ -1602,7 +1601,7 @@ readUInt32BE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
@@ -1628,7 +1627,7 @@ readUInt32LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
 
 
 **返回值：**
@@ -1643,7 +1642,7 @@ readUInt32LE(offset?: number): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **示例：**
 
@@ -1669,7 +1668,7 @@ readUIntBE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。 默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
 | byteLength | number | 是 | 要读取的字节数。 |
 
 
@@ -1711,7 +1710,7 @@ readUIntLE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。 默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
 | byteLength | number | 是 | 要读取的字节数。 |
 
 
@@ -2000,7 +1999,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 10200001 | The value of "[offset/length]" is out of range. |
+| 10200001 | The value of "[offset/length]" is out of range. It must be >= 0 and <= buf.length. Received value is: [offset/length]. |
 
 **示例：**
 
@@ -2029,7 +2028,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2068,7 +2067,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2107,7 +2106,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2146,7 +2145,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2185,7 +2184,7 @@ writeDoubleBE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2224,7 +2223,7 @@ writeDoubleLE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2263,7 +2262,7 @@ writeFloatBE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2303,7 +2302,7 @@ writeFloatLE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2342,7 +2341,7 @@ writeInt8(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 1。 |
 
 
 **返回值：**
@@ -2383,7 +2382,7 @@ writeInt16BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -2423,7 +2422,7 @@ writeInt16LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -2462,7 +2461,7 @@ writeInt32BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2502,7 +2501,7 @@ writeInt32LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2541,7 +2540,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。 |
+| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -2582,7 +2581,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。 |
+| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -2622,7 +2621,7 @@ writeUInt8(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 1。 |
 
 
 **返回值：**
@@ -2664,7 +2663,7 @@ writeUInt16BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值为0。 |
+| offset | number | 否 | 偏移量。 默认值为0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -2704,7 +2703,7 @@ writeUInt16LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -2744,7 +2743,7 @@ writeUInt32BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2783,7 +2782,7 @@ writeUInt32LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer对象的数字。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2822,7 +2821,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。 |
+| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -2862,7 +2861,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。 |
+| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 

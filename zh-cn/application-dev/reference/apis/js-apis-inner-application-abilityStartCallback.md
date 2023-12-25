@@ -30,7 +30,7 @@ import common from '@ohos.app.ability.common';
     'time':'2023-10-23 20:45',
   };
   let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code, name, message) => {
+    onError: (code: number, name: string, message: string) => {
       console.log(`code:` + code + `name:` + name + `message:` + message);
     }
   }

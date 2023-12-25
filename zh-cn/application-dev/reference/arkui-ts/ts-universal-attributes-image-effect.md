@@ -539,7 +539,7 @@ struct Index {
 
 ![testDestinationIn_lockDemo](figures/testDestinationIn_lockDemo.jpeg)
 
-### 示例11
+### 示例12
 通过 InvertOptions 实现反色。
 ```ts
 // xxx.ets

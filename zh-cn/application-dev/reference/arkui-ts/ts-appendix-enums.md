@@ -31,7 +31,7 @@
 | --------- | ------------------------------- |
 | Contain   | 保持宽高比进行缩小或者放大，使得图片完全显示在显示边界内。   |
 | Cover     | 保持宽高比进行缩小或者放大，使得图片两边都大于或等于显示边界。 |
-| Auto      | 自适应显示                           |
+| Auto      | 自适应显示。                           |
 | Fill      | 不保持宽高比进行放大缩小，使得图片充满显示边界。        |
 | ScaleDown | 保持宽高比显示，图片缩小或者保持不变。             |
 | None      | 保持原有尺寸显示。                       |
@@ -45,6 +45,15 @@
 | Dotted | 显示为一系列圆点，圆点半径为borderWidth的一半。 |
 | Dashed | 显示为一系列短的方形虚线。                 |
 | Solid  | 显示为一条实线。                      |
+
+## OutlineStyle<sup>11+</sup>
+从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+| 名称     | 描述                            |
+| ------ | ----------------------------- |
+| DOTTED | 显示为一系列圆点，圆点半径为outlineWidth的一半。 |
+| DASHED | 显示为一系列短的方形虚线。                 |
+| SOLID  | 显示为一条实线。                      |
 
 ## LineJoinStyle
 
@@ -96,13 +105,13 @@
 | EaseIn              | 表示动画以低速开始，CubicBezier(0.42, 0.0, 1.0, 1.0)。 |
 | EaseOut             | 表示动画以低速结束，CubicBezier(0.0, 0.0, 0.58, 1.0)。 |
 | EaseInOut           | 表示动画以低速开始和结束，CubicBezier(0.42, 0.0, 0.58, 1.0)。 |
-| FastOutSlowIn       | 标准曲线，cubic-bezier(0.4, 0.0, 0.2, 1.0)。   |
-| LinearOutSlowIn     | 减速曲线，cubic-bezier(0.0, 0.0, 0.2, 1.0)。   |
-| FastOutLinearIn     | 加速曲线，cubic-bezier(0.4, 0.0, 1.0, 1.0)。   |
-| ExtremeDeceleration | 急缓曲线，cubic-bezier(0.0, 0.0, 0.0, 1.0)。   |
-| Sharp               | 锐利曲线，cubic-bezier(0.33, 0.0, 0.67, 1.0)。 |
-| Rhythm              | 节奏曲线，cubic-bezier(0.7, 0.0, 0.2, 1.0)。   |
-| Smooth              | 平滑曲线，cubic-bezier(0.4, 0.0, 0.4, 1.0)。   |
+| FastOutSlowIn       | 标准曲线，CubicBezier(0.4, 0.0, 0.2, 1.0)。   |
+| LinearOutSlowIn     | 减速曲线，CubicBezier(0.0, 0.0, 0.2, 1.0)。   |
+| FastOutLinearIn     | 加速曲线，CubicBezier(0.4, 0.0, 1.0, 1.0)。   |
+| ExtremeDeceleration | 急缓曲线，CubicBezier(0.0, 0.0, 0.0, 1.0)。   |
+| Sharp               | 锐利曲线，CubicBezier(0.33, 0.0, 0.67, 1.0)。 |
+| Rhythm              | 节奏曲线，CubicBezier(0.7, 0.0, 0.2, 1.0)。   |
+| Smooth              | 平滑曲线，CubicBezier(0.4, 0.0, 0.4, 1.0)。   |
 | Friction            | 阻尼曲线，CubicBezier(0.2, 0.0, 0.2, 1.0)。    |
 
 ## AnimationStatus
@@ -133,7 +142,7 @@
 
 | 名称               | 描述                                       |
 | ---------------- | ---------------------------------------- |
-| Normal           | 动画按正向播放。                                 |
+| Normal           | 动画正向播放。                                 |
 | Reverse          | 动画反向播放。                                  |
 | Alternate        | 动画在奇数次（1、3、5...）正向播放，在偶数次（2、4、6...）反向播放。 |
 | AlternateReverse | 动画在奇数次（1、3、5...）反向播放，在偶数次（2、4、6...）正向播放。 |
@@ -156,13 +165,13 @@
 
 | 名称                               | 描述                                       |
 | -------------------------------- | ---------------------------------------- |
-| Top                              | 竖直方向上边缘<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| Center<sup>(deprecated) </sup>   | 竖直方向居中位置<br/> 从API version 9开始废弃         |
-| Bottom                           | 竖直方向下边缘<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置<br/> 从API version 9开始废弃      |
-| Start                            | 水平方向起始位置<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| Middle<sup>(deprecated) </sup>   | 水平方向居中位置<br/> 从API version 9开始废弃         |
-| End                              | 水平方向末尾位置<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Top                              | 竖直方向上边缘。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Center<sup>(deprecated) </sup>   | 竖直方向居中位置。<br/> 从API version 9开始废弃。         |
+| Bottom                           | 竖直方向下边缘。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Baseline<sup>(deprecated) </sup> | 交叉轴方向文本基线位置。<br/> 从API version 9开始废弃。    |
+| Start                            | 水平方向起始位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| Middle<sup>(deprecated) </sup>   | 水平方向居中位置。<br/> 从API version 9开始废弃。      |
+| End                              | 水平方向末尾位置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## Week
 
@@ -694,3 +703,30 @@ Nullable\<T> {
 | URL | 链接 |
 | EMAIL | 邮箱 |
 | ADDRESS | 地址 |
+
+## TextSpanType<sup>11+</sup>
+
+Span类型信息。
+
+| 名称 | 说明 |
+| -------- | -------- |
+| TEXT | Span为文字类型。 |
+| IMAGE | Span为图像类型。|
+| MIXED | Span为图文混合类型。|
+
+## TextResponseType<sup>11+</sup>
+
+| 名称         | 描述            |
+| ---------- | ------------- |
+| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
+| LONG_PRESS  | 通过长按触发菜单弹出。   |
+| SELECT | 通过鼠标选中触发菜单弹出。 |
+
+## SelectionMenuOptions<sup>11+</sup>
+
+范围信息。
+
+| 名称 | 描述                               |
+| ------ | -------------------------------------- |
+| onAppear | 自定义选择菜单弹出时回调。 |
+| onDisappear | 自定义选择菜单关闭时回调。 |
