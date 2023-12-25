@@ -22,7 +22,7 @@
       - Shared Package
         - [Shared Package Overview](quick-start/shared-guide.md)
         - [HAR](quick-start/har-package.md)
-        - [HSP](quick-start/in-app-hsp.md)        
+        - [HSP](quick-start/in-app-hsp.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
@@ -160,8 +160,6 @@
         - [Background Services](application-models/background-services.md)
       - Thread Model
         - [Thread Model Overview](application-models/thread-model-stage.md)
-        - [Using Emitter for Inter-Thread Communication](application-models/itc-with-emitter.md)
-        - [Using Worker for Inter-Thread Communication](application-models/itc-with-worker.md)
       - Mission Management
         - [Mission Management Scenarios](application-models/mission-management-overview.md)
         - [Mission and Launch Type](application-models/mission-management-launch-type.md)
@@ -210,7 +208,7 @@
         - [Background Services](application-models/rpc.md)
       - Thread Model
         - [Thread Model Overview](application-models/thread-model-fa.md)
-        - [Inter-Thread Communication](application-models/itc-fa-overview.md)
+        - [Using Emitter for Inter-Thread Communication](application-models/itc-with-emitter.md)
       - [Mission Management](application-models/mission-management-fa.md)
       - [Application Configuration File (FA Model)](application-models/config-file-fa.md)
     - Development of Component Interaction Between the FA Model and Stage Model
@@ -258,7 +256,7 @@
           - [Flex Layout (Flex)](ui/arkts-layout-development-flex-layout.md)
           - [Relative Layout (RelativeContainer)](ui/arkts-layout-development-relative-layout.md)
           - [Responsive Grid Layout (GridRow/GridCol)](ui/arkts-layout-development-grid-layout.md)
-          - [Media Query (@ohos.mediaquery)](ui/arkts-layout-development-media-query.md)
+          - [MediaQuery (@ohos.mediaquery)](ui/arkts-layout-development-media-query.md)
           - [Creating a List (List)](ui/arkts-layout-development-create-list.md)
           - [Creating a Grid (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
           - [Creating a Swiper (Swiper)](ui/arkts-layout-development-create-looping.md)
@@ -398,12 +396,14 @@
         - [Asynchronous Concurrency Overview](arkts-utils/async-concurrency-overview.md)
         - [Single I/O Task Development](arkts-utils/single-io-development.md)
       - Using Multithread Concurrency for Development
-        - [Multithread Concurrency Overview](arkts-utils/multi-thread-concurrency-overview.md)
+        - [Multithread Concurrency Overview (TaskPool and Worker)](arkts-utils/multi-thread-concurrency-overview.md)
         - [Comparison Between TaskPool and Worker](arkts-utils/taskpool-vs-worker.md)
+        - [CPU Intensive Task Development (TaskPool and Worker)](arkts-utils/cpu-intensive-task-development.md)
+        - [I/O Intensive Task Development (TaskPool)](arkts-utils/io-intensive-task-development.md)
+        - [Synchronous Task Development (TaskPool and Worker)](arkts-utils/sync-task-development.md)
+      - Appendix
+        - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
         - [\@Concurrent Decorator: Verifying Concurrent Functions](arkts-utils/arkts-concurrent.md)
-        - [CPU Intensive Task Development](arkts-utils/cpu-intensive-task-development.md)
-        - [I/O Intensive Task Development](arkts-utils/io-intensive-task-development.md)
-        - [Synchronous Task Development](arkts-utils/sync-task-development.md)
     - Container
       - [Container Overview](arkts-utils/container-overview.md)
       - [Linear Containers](arkts-utils/linear-container.md)
@@ -447,7 +447,7 @@
     - [WebGL Overview](webgl/webgl-overview.md)
     - [WebGL Development](webgl/webgl-guidelines.md)
   - Media
-    - [Media Application Overview](media/media-application-overview.md)
+    - [Media Application Development Overview](media/media-application-overview.md)
     - Audio and Video
       - [Audio and Video Overview](media/av-overview.md)
       - [AVPlayer and AVRecorder](media/avplayer-avrecorder-overview.md)
@@ -521,10 +521,10 @@
         - [Image Transformation (Native)](media/image-transformation-native.md)
         - [PixelMap Data Processing (Native)](media/image-pixelmap-operation-native.md)
         - [Pixel Map Operation](media/image-pixelmap-operation.md)
-      - [Image Encoding](media/image-encoding.md)
+      - [Image Encoding (ArkTS)](media/image-encoding.md)
       - [Image Tool](media/image-tool.md)
   - Security
-    - Access Control 
+    - Access Control
       - [Access Control (Permission) Overview](security/accesstoken-overview.md)
       - [Applying for Permissions](security/accesstoken-guidelines.md)
       - [Verifying API Access Permissions](security/permission-verify-guidelines.md)
@@ -681,10 +681,6 @@
     - Log Analysis
       - [Application Freeze (appfreeze) Log Analysis](dfx/appfreeze-guidelines.md)
       - [cppcrash Log Analysis](dfx/cppcrash-guidelines.md)
-  - Internationalization
-    - [Internationalization Overview](internationalization/international-overview.md)
-    - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
-    - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
   - Application services
     - [OAID Service](ads-service/oaid/oaid-service.md)
   - Application Test
@@ -693,27 +689,35 @@
     - [wukong User Guide](application-test/wukong-guidelines.md)
   - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
-    - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
-    - Graphics
-      - [XComponent Development](napi/xcomponent-guidelines.md)
-      - [Using Drawing to Draw and Display Graphics](napi/drawing-guidelines.md)
-      - [NativeBuffer Development](napi/native-buffer-guidelines.md)
-      - [NativeImage Development](napi/native-image-guidelines.md)
-      - [NativeVsync Development](napi/native-vsync-guidelines.md)
-      - [NativeWindow Development](napi/native-window-guidelines.md)
-      - [Vulkan Development](napi/vulkan-guidelines.md)
-    - Resource Management
-      - [Raw File Development](napi/rawfile-guidelines.md)
-    - AI
-      - [Using MindSpore Lite for Model Inference](napi/mindspore-lite-guidelines.md)
-      - [Using MindSpore Lite for Offline Model Conversion and Inference](napi/mindspore-lite-offline-model-guidelines.md)
-      - [Connecting the Neural Network Runtime to an AI Inference Framework](napi/neural-network-runtime-guidelines.md)
-    - Memory Management
-      - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
-    - Device Management
-      - [USB DDK Development](napi/usb-ddk-guidelines.md)
-    - Data Management
-      - [RelationalStore Development Guide](napi/native-relational-store-guidelines.md)
+      - Graphics
+        - [XComponent Development](napi/xcomponent-guidelines.md)
+        - [Drawing Development](napi/drawing-guidelines.md)
+        - [NativeBuffer Development](napi/native-buffer-guidelines.md)
+        - [NativeImage Development](napi/native-image-guidelines.md)
+        - [NativeVsync Development](napi/native-vsync-guidelines.md)
+        - [NativeWindow Development](napi/native-window-guidelines.md)
+        - [Vulkan Development](napi/vulkan-guidelines.md)
+      - Resource Management
+        - [Raw File Development](napi/rawfile-guidelines.md)
+      - Resource Scheduling
+        - [FFRT Development](napi/ffrt-guidelines.md)
+      - AI
+        - [Using MindSpore Lite for Model Inference](napi/mindspore-lite-guidelines.md)
+        - [Using MindSpore Lite for Offline Model Conversion and Inference](napi/mindspore-lite-offline-model-guidelines.md)
+        - [Connecting the Neural Network Runtime to an AI Inference Framework](napi/neural-network-runtime-guidelines.md)
+      - Memory Management
+        - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
+      - Device Management
+        - [USB DDK Development](napi/usb-ddk-guidelines.md)
+      - Data Management
+        - [RelationalStore Development Guide](napi/native-relational-store-guidelines.md)
+      - Bundle Management
+        - [NativeBuffer Development](napi/native-bundle-guidelines.md)
+    - Hardware Compatibility
+      - [Introduction to Hardware Compatibility](napi/hw-guide.md)
+      - [OpenHarmony ABI](napi/ohos-abi.md)
+      - [CPU Features](napi/cpu-features.md)
+      - [Using Neon Instructions](napi/neon-guide.md)
   - Performance
     - [Application Performance Improvement Overview](performance/performance-overview.md)
     - ArkTS High-Performance Programming
@@ -1448,7 +1452,20 @@
       - [OffscreenCanvasRenderingContext2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
     - Advanced Components
+      - [@ohos.arkui.advanced.ComposeListItem (List)](reference/arkui-ts/ts-composite-components-composelistitem.md)
+      - [@ohos.arkui.advanced.ComposeTitleBar (One- or Two-Row Title Bar with Profile Picture)](reference/arkui-ts/ts-composite-components-composetitlebar.md)
       - [@ohos.arkui.advanced.Counter (Counter)](reference/arkui-ts/ohos-arkui-advanced-counter.md)
+      - [@ohos.arkui.advanced.Dialog (Dialog Box)](reference/arkui-ts/ts-composite-components-dialog.md)
+      - [@ohos.arkui.advanced.EditableTitleBar (Editable Title Bar)](reference/arkui-ts/ts-composite-components-editabletitlebar.md)
+      - [@ohos.arkui.advanced.Filter (Advanced Filter)](reference/arkui-ts/ts-composite-components-filter.md)
+      - [@ohos.arkui.advanced.ProgressButton (Download Button with Progress Indicator)](reference/arkui-ts/ts-composite-components-progressbutton.md)
+      - [@ohos.arkui.advanced.SelectTitleBar (Drop-down Title Bar)](reference/arkui-ts/ts-composite-components-selecttitlebar.md)
+      - [@ohos.arkui.advanced.SplitLayout (Split Layout)](reference/arkui-ts/ts-composite-components-splitlayout.md)
+      - [@ohos.arkui.advanced.SubHeader (Subheader)](reference/arkui-ts/ts-composite-components-subheader.md)
+      - [@ohos.arkui.advanced.SwipeRefresher (Swipe Refresher)](reference/arkui-ts/ts-composite-components-swiperefresher.md)
+      - [@ohos.arkui.advanced.TabTitleBar (Tab Title Bar)](reference/arkui-ts/ts-composite-components-tabtitlebar.md)
+      - [@ohos.arkui.advanced.ToolBar (Toolbar)](reference/arkui-ts/ts-composite-components-toolbar.md)
+      - [@ohos.arkui.advanced.TreeView (Tree View)](reference/arkui-ts/ts-composite-components-treeview.md)
       - [@ohos.multimedia.avCastPicker (AVCastPicker)](reference/arkui-ts/ohos-multimedia-avcastpicker.md)
     - Security Components
       - [Security Component Universal Attributes](reference/arkui-ts/ts-securitycomponent-attributes.md)
@@ -1461,7 +1478,7 @@
       - Transition Animation
         - [Page Transition (pageTransition)](reference/arkui-ts/ts-page-transition-animation.md)
         - [Component Transition (transition)](reference/arkui-ts/ts-transition-animation-component.md)
-        - [Transition of Shared Elements (sharedTransition)]](reference/arkui-ts/ts-transition-animation-shared-elements.md)
+        - [Shared Element Transition (sharedTransition)](reference/arkui-ts/ts-transition-animation-shared-elements.md)
         - [Implicit Shared Element Transition (geometryTransition)](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
       - [Motion Path Animation (motionPath)](reference/arkui-ts/ts-motion-path-animation.md)
       - [Particle Animation (Particle)](reference/arkui-ts/ts-particle-animation.md)
@@ -1481,7 +1498,7 @@
     - [Enums](reference/arkui-ts/ts-appendix-enums.md)
     - [Types](reference/arkui-ts/ts-types.md)
     - Components No Longer Maintained 
-      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)  
+      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
     - APIs No Longer Maintained
       - [Click Control](reference/arkui-ts/ts-universal-attributes-click.md)
@@ -1806,6 +1823,7 @@
       - [UsbDdk](reference/native-apis/_usb_ddk.md)
       - [Hitrace](reference/native-apis/_hitrace.md)
       - [Vulkan](reference/native-apis/_vulkan.md)
+      - [Bundle](reference/native-apis/_bundle.md)
     - Header Files
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
       - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
@@ -1865,6 +1883,7 @@
       - [native_huks_api.h](reference/native-apis/native__huks__api_8h.md)
       - [native_huks_param.h](reference/native-apis/native__huks__param_8h.md)
       - [native_huks_type.h](reference/native-apis/native__huks__type_8h.md)
+      - [native_interface_bundle.h](reference/native-apis/native__interface__bundle.md)
       - [oh_cursor.h](reference/native-apis/oh__cursor_8h.md)
       - [oh_predicates.h](reference/native-apis/oh__predicates_8h.md)
       - [oh_value_object.h](reference/native-apis/oh__value__object_8h.md)
@@ -1879,6 +1898,7 @@
       - [vulkan_ohos.h](reference/native-apis/vulkan__ohos_8h.md)
     - Structs
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
+      - [OH_NativeBundle_ApplicationInfo](reference/native-apis/_o_h___native_bundle_application_info.md)
       - [OH_NativeBuffer_Config](reference/native-apis/_o_h___native_buffer___config.md)
       - [OH_NativeXComponent_Callback](reference/native-apis/_o_h___native_x_component___callback.md)
       - [OH_NativeXComponent_MouseEvent](reference/native-apis/_o_h___native_x_component___mouse_event.md)

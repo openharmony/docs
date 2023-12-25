@@ -1,7 +1,7 @@
 # IDL Specifications and User Guide (for System Applications Only)
 
 ## IDL Overview
-To ensure successful communications between the client and server, interfaces recognized by both parties must be defined. The OpenHarmony Interface Definition Language (IDL) is a tool for defining such interfaces. OpenHarmony IDL decomposes objects to be transferred into primitives that can be understood by the operating system and encapsulates cross-boundary objects based on developers' requirements.
+To ensure successful communications between the client and server, interfaces recognized by both parties must be defined. The OpenHarmony Interface Definition Language (IDL) is a tool for defining such interfaces. IDL decomposes objects into primitives that can be understood by the operating system and encapsulates cross-boundary objects based on your requirements.
 
 **Figure 1** IDL interface description
 
@@ -131,7 +131,7 @@ Only one interface type can be defined in an IDL file, and the interface name mu
 [<*interface_attr_declaration*>]interface<*interface_name_with_namespace*>{<*method_declaration*>}
 ```
 
-In the preceding information, <*interface_attr_declaration*> declares interface attributes. Currently, only the **oneway** attribute is supported, indicating that all methods in the interface are unidirectional. Such a method returns value without waiting for the execution to complete. This attribute is optional. If this attribute is not set, synchronous call is used. The interface name must contain the complete interface header file directory, namespace, and method declaration. Empty interfaces are not allowed.
+In the preceding information, <*interface_attr_declaration*> declares interface attributes. Currently, only the **oneway** attribute is supported, indicating that all methods in the interface are unidirectional. Such a method returns value without waiting for the execution to complete. This attribute is optional. If this attribute is not set, synchronous call is used. The interface name must contain the complete interface header file directory, namespace, and method declaration. Null interfaces are not allowed.
 The method declaration format in the interface is as follows:
 
 ```
@@ -348,7 +348,7 @@ export default new ServiceAbility()
 
 #### Calling Methods from the Client for IPC
 
-When the client calls **connectServiceExtensionAbility()** to connect to a Service ability, the **onConnect** callback in **onAbilityConnectDone** of the client receives the **IRemoteObject** instance returned by the **onConnect()** method of the Service ability. The client and Service ability are in different applications. Therefore, the directory of the client application must contain a copy of the .idl file (the SDK automatically generates the proxy class). The **onConnect** callback then uses the **IRemoteObject** instance to create the **testProxy** instance of the **IdlTestServiceProxy** class and calls the related IPC method. The sample code is as follows:
+When the client calls **connectServiceExtensionAbility()** to connect to a ServiceAbility, the **onConnect** callback in **onAbilityConnectDone** of the client receives the **IRemoteObject** instance returned by the **onConnect()** method of the ServiceAbility. The client and ServiceAbility are in different applications. Therefore, the directory of the client application must contain a copy of the .idl file (the SDK automatically generates the proxy class). The **onConnect** callback then uses the **IRemoteObject** instance to create the **testProxy** instance of the **IdlTestServiceProxy** class and calls the related IPC method. The sample code is as follows:
 
 ```ts
 import common from '@ohos.app.ability.common';
@@ -450,3 +450,317 @@ export default class MySequenceable implements rpc.Sequenceable {
     private str: string;
 }
 ```
+
+### Development Using C++ (Automatically Generating ServiceAbility Interface Template Code During Compilation)
+
+#### Creating an IDL File
+
+You can use C++ to create IDL files.
+
+For example, create a file named **IQuickFixManager.idl** with the following content:
+
+```
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+sequenceable QuickFixInfo..OHOS.AAFwk.ApplicationQuickFixInfo;
+interface OHOS.AAFwk.IQuickFixManager {
+    void ApplyQuickFix([in] String[] quickFixFiles, [in] boolean isDebug);
+    void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
+    void RevokeQuickFix([in] String bundleName);
+}
+```
+
+#### Modifying the BUILD.gn File
+
+1. Import the IDL tool template to the current **BUILD.gn** file.
+
+   ```bash
+   # Copy the line below to the .gn file.
+   import("//foundation/ability/idl_tool/idl_config.gni")
+   ```
+
+2. Invoke the IDL tool to generate a C++ template file.
+
+   Replace *axx_bxx_cxx* in the code below with the .cpp file names of the generated stub and proxy.
+
+   ```bash
+   idl_interface_sources = [
+     # Change axx_bxx_cxx to the name of the .cpp file of the generated proxy.
+     "${target_gen_dir}/axx_bxx_cxx_proxy.cpp",                                            
+     # Change axx_bxx_cxx to the name of the .cpp file of the generated stub.
+     "${target_gen_dir}/axx_bxx_cxx_stub.cpp",
+   ]
+   
+   # Use idl_gen_interface to generate a template file. You need to enter the parameter name, which will be used in deps.
+   idl_gen_interface("EEEFFFGGG") {
+     # Name of your .idl file, which is in the same path as the .gn file.
+     src_idl = rebase_path("IAxxBxxCxx.idl")
+     # The template file .cpp of the proxy and stub. You can copy the line below to the .gn file.
+     dst_file = string_join(",", idl_interface_sources)
+     # Enable hitrace. The value is the uint64_t type identifier defined in the hitrace_meter.h file. You need to enter the variable name of the constant.
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     # Enable hilog. The domain ID is a hexadecimal integer.
+     log_domainid = "0xD003900"
+     # Enable hilog. The tag name is a string, which is generally a subsystem name.
+     log_tag = "QuickFixManagerService"
+   }
+   ```
+
+   The names of ***axx_bxx_cxx_*proxy.cpp** and ***axx_bxx_cxx_*stub.cpp** are the same as the corresponding .idl file names in lowercase, with an underscore (_) added for each CamelCase segment.
+
+   ```bash
+   # For example, if the .idl file is IQuickFixManager.idl,
+   then axx_bxx_cxx_proxy.cpp is quick_fix_manager_proxy.cpp
+   and axx_bxx_cxx_stub.cpp is quick_fix_manager_stub.cpp.
+   ```
+
+   If the name of the template file to be generated starts with I, add one **I** before the interface name.
+
+   ```bash
+   # For example, if the generated template file is **quick_fix_manager_proxy.cpp**, the interface name is **IQuickFixManager**.
+   # Definition in the .idl file
+   interface OHOS.AAFwk.IQuickFixManager {
+       void ApplyQuickFix([in] String[] quickFixFiles, [in] boolean isDebug);
+       void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
+       void RevokeQuickFix([in] String bundleName);
+   }
+   ```
+
+   Configure hilog. The log_domainid and log_tag parameters must appear in pairs; otherwise, a compilation error occurs.
+
+   ```bash
+   idl_gen_interface("quickfix_manager_interface") {
+     src_idl = rebase_path("IQuickFixManager.idl")
+     dst_file = string_join(",", idl_interface_sources)
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     log_domainid = "0xD003900"
+     log_tag = "QuickFixManagerService" # An error occurs during compilation if only log_tag or log_domainid is included.
+   }
+   ```
+
+3. Add the header file path of the template file to **BUILD.gn**.
+
+   You only need to add **${target_gen_dir}** to **include_dirs**.
+
+   ```bash
+   include_dirs = [
+     "aaa/bbb/ccc",        # Path of the original header file
+     "${target_gen_dir}",  # Path of the template header file
+   ]
+   ```
+
+4. Add the path of the template file .cpp to **BUILD.gn**.
+
+   If **sources** contain ***axx_bxx_cxx_*proxy.cpp** and ***axx_bxx_cxx_*stub.cpp**, delete them and add **sources += filter_include(output_values, [ "*.cpp" ])**.
+
+   ```bash
+   output_values = get_target_outputs(":EEEFFFGGG") # Return the output file list of the target tag. Replace EEEFFFGGG.
+   sources = [ "axx_bxx_cxx_proxy.cpp" ] # Delete axx_bxx_cxx_proxy.cpp.
+   sources += filter_include(output_values, [ "*.cpp" ]) # filter_include selects the list that meets the requirements. You can copy this line directly.
+   ```
+
+5. Add the dependency **EEEFFFGGG** to **BUILD.gn**.
+
+   ```bash
+   deps = [
+       ":EEEFFFGGG",
+     ]
+   ```
+
+   The name of the dependency added to **deps** must be the same as the parameter name of the **idl_gen_interface** function.
+
+   ```bash
+   idl_gen_interface("quickfix_manager_interface") {
+     src_idl = rebase_path("IQuickFixManager.idl")
+     dst_file = string_join(",", idl_interface_sources)
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     log_domainid = "0xD003900"
+     log_tag = "QuickFixManagerService"
+   }
+   deps = [
+    "${ability_runtime_innerkits_path}/app_manager:app_manager",
+    ":quickfix_manager_interface"] # Same as the parameter name of the idl_gen_interface function.
+   ```
+
+6. Add external dependencies of the template file to **BUILD.gn**.
+
+   Add the external dependencies of the template file to **external_deps**.
+
+   If a dependency already exists, you do not need to add it again; otherwise, compilation errors may occur.
+
+   ```bash
+     external_deps = [
+     # Mandatory dependency of the template file
+     "c_utils:utils",
+     # Mandatory dependency of the hilog output
+     "hilog:libhilog",
+     # Mandatory dependency of the hitrace output
+     "hitrace:hitrace_meter",
+     # Mandatory dependency of the template file
+     "ipc:ipc_core",
+   ]
+   ```
+
+#### Example
+
+The following uses the quick fix service as an example:
+
+1. Create the **IQuickFixManager.idl** file.
+
+   When creating the .idl file, ensure that the interface name is the same as the .idl file name; otherwise, an error occurs during code generation.
+
+   The path of the .idl file must be the same as that of the **BUILD.gn** file of the function code.
+
+   In the example, the file is in **foundation/ability/ability_runtime/interfaces/inner_api/quick_fix/**.
+
+   ```bash
+   /*
+    * Copyright (c) 2023 Huawei Device Co., Ltd.
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    *     http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */
+   
+   sequenceable QuickFixInfo..OHOS.AAFwk.ApplicationQuickFixInfo;
+   interface OHOS.AAFwk.IQuickFixManager {
+       void ApplyQuickFix([in] String[] quickFixFiles, [in] boolean isDebug);
+       void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
+       void RevokeQuickFix([in] String bundleName);
+   }
+   ```
+
+   When creating the .idl file, change the return value of the function from int to void.
+
+   ```bash
+   # Functions in quick_fix_manager_client.h
+       int32_t ApplyQuickFix(const std::vector<std::string> &quickFixFiles);
+       int32_t GetApplyedQuickFixInfo(const std::string &bundleName, ApplicationQuickFixInfo &quickFixInfo);
+       int32_t RevokeQuickFix(const std::string &bundleName);
+   # Definition in the .idl file
+   interface OHOS.AAFwk.QuickFixManager {
+       void ApplyQuickFix([in] String[] quickFixFiles);
+       void GetApplyedQuickFixInfo([in] String bundleName, [out] ApplicationQuickFixInfo quickFixInfo);
+       void RevokeQuickFix([in] String bundleName);
+   }
+   ```
+
+2. Modify the BUILD.gn file.
+
+   ```bash
+   # Copyright (c) 2023 Huawei Device Co., Ltd.
+   # Licensed under the Apache License, Version 2.0 (the "License");
+   # you may not use this file except in compliance with the License.
+   # You may obtain a copy of the License at
+   #
+   #     http://www.apache.org/licenses/LICENSE-2.0
+   #
+   # Unless required by applicable law or agreed to in writing, software
+   # distributed under the License is distributed on an "AS IS" BASIS,
+   # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   # See the License for the specific language governing permissions and
+   # limitations under the License.
+   
+   import("//build/ohos.gni")
+   import("//foundation/ability/ability_runtime/ability_runtime.gni")
+   import("//foundation/ability/idl_tool/idl_config.gni")
+   
+   idl_interface_sources = [
+     "${target_gen_dir}/quick_fix_manager_proxy.cpp",
+     "${target_gen_dir}/quick_fix_manager_stub.cpp",
+   ]
+   
+   idl_gen_interface("quickfix_manager_interface") {
+     src_idl = rebase_path("IQuickFixManager.idl")
+     dst_file = string_join(",", idl_interface_sources)
+     hitrace = "HITRACE_TAG_ABILITY_MANAGER"
+     log_domainid = "0xD003900"
+     log_tag = "QuickFixManagerService"
+   }
+   
+   config("quickfix_config") {
+     visibility = [ ":*" ]
+     include_dirs = [
+       "include",
+       "${target_gen_dir}",
+     ]
+     cflags = []
+     if (target_cpu == "arm") {
+       cflags += [ "-DBINDER_IPC_32BIT" ]
+     }
+   }
+   
+   ohos_shared_library("quickfix_manager") {
+     configs = [ "${ability_runtime_services_path}/common:common_config" ]
+     public_configs = [ ":quickfix_config" ]
+   
+     output_values = get_target_outputs(":quickfix_manager_interface")
+     sources = [
+       "src/quick_fix_error_utils.cpp",
+       "src/quick_fix_info.cpp",
+       "src/quick_fix_load_callback.cpp",
+       "src/quick_fix_manager_client.cpp",
+       "src/quick_fix_utils.cpp",
+     ]
+     sources += filter_include(output_values, [ "*.cpp" ])
+     defines = [ "AMS_LOG_TAG = \"QuickFixService\"" ]
+     deps = [
+       ":quickfix_manager_interface",
+       "${ability_runtime_innerkits_path}/app_manager:app_manager",
+     ]
+   
+     external_deps = [
+       "ability_base:want",
+       "bundle_framework:appexecfwk_base",
+       "bundle_framework:appexecfwk_core",
+       "c_utils:utils",
+       "hilog:libhilog",
+       "hitrace:hitrace_meter",
+       "ipc:ipc_single",
+       "safwk:system_ability_fwk",
+       "samgr:samgr_proxy",
+     ]
+   
+     innerapi_tags = [ "platformsdk" ]
+     subsystem_name = "ability"
+     part_name = "ability_runtime"
+   }
+   ```
+
+3. Specify the path and directory structure of the generated template file.
+
+   Take rk3568 as an example. The path of the template file generated in the instance is **out/rk3568/gen/foundation/ability/ability_runtime/interfaces/inner_api/quick_fix/**,
+
+   where **foundation/ability/ability_runtime/interfaces/inner_api/quick_fix/** is the relative path of the .idl file.
+
+   The directory structure of the template file generated is as follows:
+
+   ```bash
+   |-- out/rk3568/gen/foundation/ability/ability_runtime/interfaces/inner_api/quick_fix/
+      |-- iquick_fix_manager.h
+      |-- quick_fix_manager_stub.h
+      |-- quick_fix_manager_stub.cpp
+      |-- quick_fix_manager_proxy.h
+      |-- quick_fix_manager_proxy.cpp
+   ```
+
