@@ -17,9 +17,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)返回Ability的状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统接口**: 该接口为系统接口。
 
-**系统API**: 此枚举类型为系统接口内部定义，三方应用不支持调用。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
@@ -35,6 +35,8 @@ Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-in
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 通过传入修改的配置项来更新配置（callback形式）。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -53,7 +55,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -80,7 +82,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -91,6 +93,8 @@ try {
 updateConfiguration(config: Configuration): Promise\<void>
 
 通过修改配置来更新配置（Promise形式）。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -114,7 +118,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -140,7 +144,7 @@ try {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -151,6 +155,8 @@ try {
 getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): void
 
 获取UIAbility运行相关信息（callback形式）。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
@@ -168,7 +174,7 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -177,7 +183,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<AbilityRunningInfo>) => {
+    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<abilityManager.AbilityRunningInfo>) => {
         if (err) {
             console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
         } else {
@@ -185,7 +191,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -196,6 +202,8 @@ try {
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 获取UIAbility运行相关信息（Promise形式）。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
@@ -213,7 +221,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -222,13 +230,13 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos().then((data: Array<AbilityRunningInfo>) => {
+    abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
         console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -239,6 +247,8 @@ try {
 getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
 
 获取关于运行扩展能力的信息（callback形式）。
+
+**系统接口**：该接口为系统接口。
 
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
@@ -257,7 +267,7 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -268,7 +278,7 @@ import { BusinessError } from '@ohos.base';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<ExtensionRunningInfo>) => {
+    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<abilityManager.ExtensionRunningInfo>) => {
         if (err) {
             console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
         } else {
@@ -276,7 +286,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -287,7 +297,9 @@ try {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 获取关于运行扩展能力的信息（Promise形式）。
- 
+
+**系统接口**：该接口为系统接口。
+
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
@@ -310,7 +322,7 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -321,23 +333,25 @@ import { BusinessError } from '@ohos.base';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<ExtensionRunningInfo>) => {
+    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
         console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
-## getTopAbility<sup>9+</sup>
+## getTopAbility
 
-getTopAbility(callback: AsyncCallback\<ElementName>): void;
+getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 获取窗口焦点的ability接口（callback形式）。
+
+**系统接口**：该接口为系统接口。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -353,7 +367,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -361,7 +375,7 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void;
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility((err: BusinessError, data: AsyncCallback<ElementName>) => { 
+abilityManager.getTopAbility((err: BusinessError, data) => { 
     if (err) {
         console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -372,10 +386,12 @@ abilityManager.getTopAbility((err: BusinessError, data: AsyncCallback<ElementNam
 
 ## getTopAbility
 
-getTopAbility(): Promise\<ElementName>;
+getTopAbility(): Promise\<ElementName>
 
 获取窗口焦点的ability接口（Promise形式）。
- 
+
+**系统接口**：该接口为系统接口。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
@@ -390,7 +406,7 @@ getTopAbility(): Promise\<ElementName>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -398,7 +414,7 @@ getTopAbility(): Promise\<ElementName>;
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility().then((data: AsyncCallback<ElementName>) => {
+abilityManager.getTopAbility().then((data) => {
     console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
@@ -407,20 +423,20 @@ abilityManager.getTopAbility().then((data: AsyncCallback<ElementName>) => {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
+acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Object>>): void
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统接口**：该接口为系统接口。
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | missionId | number                                   | 是 | 目标应用的missionId，最大为2<sup>31</sup>-1。 |
-| callback  | AsyncCallback<{[key: string]: Object}>  | 是    | 以回调方式返回接口运行结果及分享得到的数据，可进行错误处理或其他自定义处理。      |
+| callback  | AsyncCallback\<Record\<string, Object>>  | 是    | 以回调方式返回接口运行结果及分享得到的数据，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
 
@@ -428,7 +444,7 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -445,7 +461,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -454,13 +470,13 @@ try {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
+acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
- 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：该接口为系统接口，三方应用不支持调用。
+**系统接口**：该接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -472,7 +488,7 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise<{[key: string]: Object}>| 以Promise方式返回接口运行结果及分享数据，可进行错误处理或其他自定义处理。 |
+| Promise\<Record\<string, Object>>| 以Promise方式返回接口运行结果及分享数据，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -480,7 +496,7 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -495,7 +511,7 @@ try {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -503,15 +519,15 @@ try {
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void
 
-该接口仅供DLP（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
+该接口仅供[DLP](js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
 **系统接口**：此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -527,7 +543,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -556,7 +572,7 @@ try {
     }
   });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -564,15 +580,15 @@ try {
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>
 
-该接口仅供DLP管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
+该接口仅供[DLP](js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
 **系统接口**：此接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -593,7 +609,7 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例**：
 
@@ -620,7 +636,7 @@ try {
     console.log(`notifySaveAsResult success`);
   });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -651,7 +667,7 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -675,7 +691,7 @@ try {
 
 ## abilityManager.off<sup>11+</sup>
 
-off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
+off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 
 取消注册Ability启动和退出的观测器。
 
@@ -698,14 +714,14 @@ off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
 | ------- | -------- |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
-let observer_;
+let observer_: abilityManager.AbilityForegroundStateObserver;
 // 1.注册应用启动和退出的监听器
 let observer: abilityManager.AbilityForegroundStateObserver = {
     onAbilityStateChanged(abilityStateData) {
@@ -729,4 +745,83 @@ try {
     let message = (paramError as BusinessError).message;
     console.error(`error: ${code}, ${message} `);
 }
+```
+
+## abilityManager.getForegroundUIAbilities<sup>11+</sup>
+
+getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): void
+
+获取前台正在运行的应用Ability的信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>>  | 是 |以回调方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
+abilityManager.getForegroundUIAbilities((err, data) => {
+    if (err) {
+        console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(err)}`);
+    } else {
+        console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+    }
+});
+```
+
+## abilityManager.getForegroundUIAbilities<sup>11+</sup>
+
+getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
+
+获取前台正在运行的应用Ability的信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>> | 以Promise方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。|
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
+appManager.getForegroundUIAbilities().then((data) => {
+    console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+}).catch((error: BusinessError) => {
+    console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);
+});
 ```

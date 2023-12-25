@@ -38,8 +38,8 @@
 | getSync(key: string, defValue: ValueType): void              | 获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue。该接口存在异步接口。 |
 | deleteSync(key: string): void                                | 从Preferences实例中删除名为给定Key的存储键值对。该接口存在异步接口。 |
 | flush(callback: AsyncCallback&lt;void&gt;): void             | 将当前Preferences实例的数据异步存储到用户首选项持久化文件中。 |
-| on(type: 'change', callback: ( key : string ) => void): void | 订阅数据变更，订阅的Key的值发生变更后，在执行flush方法后，触发callback回调。 |
-| off(type: 'change', callback?: ( key : string ) => void): void | 取消订阅数据变更。                                           |
+| on(type: 'change', callback: Callback&lt;string&gt;): void | 订阅数据变更，订阅的数据发生变更后，在执行flush方法后，触发callback回调。 |
+| off(type: 'change', callback?: Callback&lt;string&gt;): void | 取消订阅数据变更。                                           |
 | deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void | 从内存中移除指定的Preferences实例。若Preferences实例有对应的持久化文件，则同时删除其持久化文件。 |
 
 
@@ -180,9 +180,10 @@
      应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
      
    ```ts
-   preferences.on('change', (key: string) => {
+   let observer = (key: string) => {
      console.info('The key' + key + 'changed.');
-   });
+   }
+   preferences.on('change', observer);
    // 数据产生变更，由'auto'变为'manual'
    preferences.put('startup', 'manual', (err: BusinessError) => {
      if (err) {

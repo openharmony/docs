@@ -74,17 +74,21 @@
    - 迁移决策：开发者可以通过[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)回调的返回值决定是否支持此次迁移。
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import hilog from '@ohos.hilog';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    
-   export default class EntryAbility extends UIAbility {
+   const TAG: string = '[MigrationAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
+   
+   export default class MigrationAbility extends UIAbility {
      onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
        let version = wantParam.version;
        let targetDevice = wantParam.targetDevice;
-       console.info(`onContinue version = ${version}, targetDevice: ${targetDevice}`); // 准备迁移数据
+       hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${version}, targetDevice: ${targetDevice}`); // 准备迁移数据
    
        // 获取源端版本号
-       let versionSrc: number = -1; // 请填充具体获取版本号的代码
+       let versionSrc: number = 0; // 请填充具体获取版本号的代码
    
        // 兼容性校验
        if (version !== versionSrc) {
@@ -94,7 +98,7 @@
    
        // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
        const continueInput = '迁移的数据';
-       wantParam['data'] = continueInput;
+       wantParam.data = continueInput;
    
        return AbilityConstant.OnContinueResult.AGREE;
      }
@@ -107,21 +111,25 @@
    通过在[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)回调中检查`launchReason`，可以判断此次启动是否有迁移触发。开发者可以从`want`中获取之前保存的迁移数据，并在数据恢复后调用`restoreWindowStage()`来触发页面恢复，包括页面栈信息。
 
    ```ts
-   import UIAbility from '@ohos.app.ability.UIAbility';
    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import Want from '@ohos.app.ability.Want';
+   import hilog from '@ohos.hilog';
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import type Want from '@ohos.app.ability.Want';
+   
+   const TAG: string = '[MigrationAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    
    export default class EntryAbility extends UIAbility {
      storage : LocalStorage = new LocalStorage();
    
      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-       console.info('EntryAbility onCreate')
+       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
        if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
          // 将上述的保存的数据取出恢复
          let continueInput = '';
-         if (want.parameters != undefined) {
+         if (want.parameters !== undefined) {
            continueInput = JSON.stringify(want.parameters.data);
-           console.info(`continue input ${continueInput}`)
+           hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
          }
          // 将数据显示当前页面
          this.context.restoreWindowStage(this.storage);
@@ -129,13 +137,13 @@
      }
    
      onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-        console.info('EntryAbility onNewWant')
-        if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
+        hilog.info(DOMAIN_NUMBER, TAG, 'onNewWant');
+        if (launchParam.launchReason === AbilityConstant.LaunchReason.CONTINUATION) {
           // get user data from want params
           let continueInput = '';
-          if (want.parameters != undefined) {
+          if (want.parameters !== undefined) {
             continueInput = JSON.stringify(want.parameters.data);
-            console.info(`continue input ${continueInput}`);
+            hilog.info(DOMAIN_NUMBER, TAG, `continue input ${continueInput}`);
           }
           this.context.restoreWindowStage(this.storage);
         }
@@ -158,16 +166,20 @@
 在`UIAbility`的[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)回调中调用接口，可以在应用创建时设置应用的迁移状态。
 
 ```ts
-// EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
+// MigrationAbility.ets
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends UIAbility {
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class MigrationAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
-      console.info(`setMissionContinueState: ${JSON.stringify(result)}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState: ${JSON.stringify(result)}`);
     });
     // ...
   }
@@ -177,21 +189,26 @@ export default class EntryAbility extends UIAbility {
 在页面的`onPageShow()`回调中调用接口，可以设置单个页面出现时应用的迁移状态。
 
 ```ts
-// PageName.ets
+// Page_MigrationAbilityFirst.ets
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
 @Entry
 @Component
-struct PageName {
+struct Page_MigrationAbilityFirst {
   private context = getContext(this) as common.UIAbilityContext;
   build() {
     // ...
   }
   // ...
   onPageShow(){
-  // 进入该页面时，将应用设置为可迁移状态
+    // 进入该页面时，将应用设置为可迁移状态
     this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-      console.info(`setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+      hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
     });
   }
 }
@@ -200,45 +217,57 @@ struct PageName {
 在某个组件的触发事件中设置应用迁移能力。
 
 ```ts
-// PageName.ets
+// Page_MigrationAbilityFirst.ets
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 @Entry
 @Component
-struct PageName {
+struct Page_MigrationAbilityFirst {
   private context = getContext(this) as common.UIAbilityContext;
   build() {
     // ...
     Button() {
       // ...
-    }.onClick(()=>{
-    // 点击该按钮时，将应用设置为可迁移状态
+    }
+    .onClick(()=>{
+      // 点击该按钮时，将应用设置为可迁移状态
       this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-        console.info(`setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+        promptAction.showToast({
+          message: $r('app.string.Success')
+        });
       });
     })
   }
 }
 ```
 
-**保证迁移连续性**
+### **保证迁移连续性**
 
 由于迁移加载时，对端拉起的应用可能执行过自己的迁移状态设置命令（例如，冷启动时对端在[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)中设置了 **INACTIVE** ；热启动时对端已打开了不可迁移的页面，迁移状态为 **INACTIVE** 等情况）。为了保证迁移过后的应用依然具有可以迁移回源端的能力，应在 [`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)的迁移调用判断中，将迁移状态设置为 **ACTIVE** 。
 
 ```ts
-// EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
+// MigrationAbility.ets
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import type Want from '@ohos.app.ability.Want';
 
-export default class EntryAbility extends UIAbility {
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class MigrationAbility extends UIAbility {
   // ...
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // ...
     // 调用原因为迁移时，设置状态为可迁移，应对冷启动情况
     this.context.setMissionContinueState(AbilityConstant.ContinueState.INACTIVE, (result) => {
-        console.info(`setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState INACTIVE result: ${JSON.stringify(result)}`);
     });
   }
   
@@ -247,7 +276,7 @@ export default class EntryAbility extends UIAbility {
     // 调用原因为迁移时，设置状态为可迁移，应对热启动情况
     if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
       this.context.setMissionContinueState(AbilityConstant.ContinueState.ACTIVE, (result) => {
-        console.info(`setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
+        hilog.info(DOMAIN_NUMBER, TAG, `setMissionContinueState ACTIVE result: ${JSON.stringify(result)}`);
       });
     }
   }
@@ -264,25 +293,30 @@ export default class EntryAbility extends UIAbility {
 例如，`UIAbility`迁移不需要自动迁移页面栈信息。
 
 ```ts
-// EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
+// MigrationAbility.ets
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
-import window from '@ohos.window';
+import type window from '@ohos.window';
 
-export default class EntryAbility extends UIAbility {
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class MigrationAbility extends UIAbility {
   // ...
   
-  onContinue(wantParam: Record<string, Object>) {
-    console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
+  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+    hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
     wantParam[wantConstant.Params.SUPPORT_CONTINUE_PAGE_STACK_KEY] = false;
     return AbilityConstant.OnContinueResult.AGREE;
   }
 
-  onWindowStageRestore(windowStage: window.WindowStage) {
-      // 若不需要自动迁移页面栈信息，则需要在此处设置应用迁移后进入的页面
-    windowStage.loadContent('pages/Index', (err, data) => {
+  onWindowStageRestore(windowStage: window.WindowStage) : void {
+    // 若不需要自动迁移页面栈信息，则需要在此处设置应用迁移后进入的页面
+    windowStage.loadContent('pages/page_migrationability/Page_MigrationAbilityThird', (err, data) => {
       if (err.code) {
+        hilog.error(DOMAIN_NUMBER, TAG, 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
     });
@@ -297,157 +331,24 @@ export default class EntryAbility extends UIAbility {
 示例：`UIAbility`设置迁移成功后，源端不需要退出迁移应用。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
 
-export default class EntryAbility extends UIAbility {
+const TAG: string = '[MigrationAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+export default class MigrationAbility extends UIAbility {
   // ...
   
-  onContinue(wantParam: Record<string, Object>) {
-    console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
+  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
+    hilog.info(DOMAIN_NUMBER, TAG, `onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`);
     wantParam[wantConstant.Params.SUPPORT_CONTINUE_SOURCE_EXIT_KEY] = false;
     return AbilityConstant.OnContinueResult.AGREE;
   }
 }
 ```
-
-## 跨端迁移中的数据迁移
-当前支持四种不同的数据迁移方式，开发者可以根据实际使用需要进行选择。
-
-### 使用ArkUI组件迁移数据
-
-部分ArkUI组件支持通过配置`restoreId`的方式，在迁移后将特定状态恢复到对端设备。详情请见[分布式迁移标识](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-restoreId.md)。
-
-### 使用wantParam迁移数据
-
-在需要迁移的数据较少（100KB以下）时，开发者可以选择在`wantParam`中增加字段进行数据迁移。示例如下：
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
-
-export default class EntryAbility extends UIAbility {
-  // 源端保存
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
-    // 将要迁移的数据保存在wantParam的自定义字段（例如data）中
-    const continueInput = '迁移的数据';
-    wantParam['data'] = continueInput;
-    return AbilityConstant.OnContinueResult.AGREE;
-  }
-
-  // 对端恢复
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-      let continueInput = '';
-      if (want.parameters != undefined) {
-        continueInput = JSON.stringify(want.parameters.data);
-      }
-    }
-  }
-
-  onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
-      let continueInput = '';
-      if (want.parameters != undefined) {
-        continueInput = JSON.stringify(want.parameters.data);
-      }
-    }
-  }
-}
-```
-### 使用分布式对象迁移数据
-
-当需要迁移的数据较大（100KB以上）时，可以选择[分布式对象](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#ohosdatadistributeddataobject-%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1)进行数据迁移。
-
-首先，在应用初始化时，创建一个分布式数据对象[`DataObject`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#dataobject)：
-
-```ts
-// 导入依赖
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-  // 定义分布式数据对象
-  g_object: distributedObject.DataObject|null = null;
-
-  // 示例中，在onCreate阶段初始化分布式数据对象
-  onCreate() {
-    let source: SourceObject = new SourceObject('');
-    this.g_object = distributedObject.create(this.context, source);
-  }
-}
-```
-
-源端在`onContinue()`接口中，调用[`genSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#distributedobjectgensessionid)接口随机生成一个`sessionId`，使用该值调用[`setSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置当前对象的`sessionId`，并将其通过`want`传递到对端。当可信组网中有多个设备时，多个设备间的对象如果设置为同一个`sessionId`，就能自动同步。随后，向分布式数据对象中写入需要传输的数据，并调用[`save()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#save9)接口保存。
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  
-  // 源端保存
-  onContinue(wantParam: Record<string, Object>):AbilityConstant.OnContinueResult {
-    // 生成sessionId
-    let sessionId: string = distributedObject.genSessionId();
-
-    // 使用该sessionId开启数据同步
-    this.g_object.setSessionId(sessionId, ()=>{
-        console.info("join session");
-    });
-    // 将sessionId传递到对端
-    wantParam['session'] = sessionId;
-
-    // 向分布式数据对象中写入数据，并保存
-    this.g_object['notesTitle'] = 'This is a sample title';
-    this.g_object.save(wantParam.targetDevice as string, (err: BusinessError, result:distributedObject.SaveSuccessResponse) => {
-      if (err) {
-        console.info("save failed, error code = " + err.code);
-        console.info("save failed, error message: " + err.message);
-        return;
-      }
-      console.info("save callback");
-      console.info("save sessionId: " + result.sessionId);
-      console.info("save version: " + result.version);
-      console.info("save deviceId:  " + result.deviceId);
-    });
-  }
-}
-```
-
-对端在`onCreate()/onNewWant()`中进行数据恢复时，调用[`setSessionId()`](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md#setsessionid9)接口设置与源端相同的`sessionId`，随后即可从分布式对象中恢复数据。
-
-```ts
-import distributedObject from '@ohos.data.distributedDataObject';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-
-  // 例如，在onCreate()中恢复数据
-  onCreate() {
-    // 获取源端传入的sessionId
-    let sessionId: string = want?.parameters?.session as string;
-
-    // 加入数据传输session
-    this.g_object.setSessionId(sessionId, ()=>{
-      console.info("join session");
-    });
-
-    // 获取分布式数据
-    let newTitle: string = this.g_object['notesTitle'];
-  }
-}
-```
-
-### 使用分布式文件迁移数据
-当需要迁移的数据较大（100KB以上）时，也可以选择分布式文件进行数据迁移。相比于分布式对象，分布式文件更适用于需要传输的数据为文件的场景。在源端将数据写入分布式文件路径后，对端迁移后拉起的应用能够在同个分布式文件路径下访问到该文件。
-
-使用参考详见[跨设备文件访问](https://gitee.com/eileen-dxy/docs/blob/master/zh-cn/application-dev/file-management/file-access-across-devices.md)。
 
 ## 验证指导
 
@@ -474,7 +375,7 @@ public-SDK不支持开发者使用所有的系统API，例如：全局任务中�
 
 ​		DevEco的自动签名模板默认签名权限为normal级。而本应用设计到ohos.permission.MANAGE_MISSIONS权限为system_core级别。自动生成的签名无法获得足够的权限，所以需要将权限升级为system_core级别，然后签名。
 
-​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsgnedReleasedProfileTemplate.json文件中的"apl":"normal_core"改为"apl":"system_core"。
+​	c.系统权限设置(以api10目录为例): 将Sdk目录下的openharmony\api版本(如：10)\toolchains\lib\UnsignedReleasedProfileTemplate.json文件中的"apl":"normal_core"改为"apl":"system_core"。
 
 1. 点击file->Project Structure。  
    ![hop-cross-device-migration](figures/hop-cross-device-migration2.png)

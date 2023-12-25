@@ -36,12 +36,12 @@ hdc file send ${Path of the local file to send}/data/app/el1/bundle/public/com.o
 After the file is pushed, set **user_id** and **group_id** of the file to **user_id** of the application. You can run the following command to query **user_id** of the application, which is the value in the first column of the process.
 
 ```
-ps -ef | grep com.ohos.example
+hdc shell ps -ef | grep com.ohos.example
 ```
 
 Run the following command to set **user_id** and **group_id**:
 ```
-chown ${user_id}:${user_id} ${file_path}
+hdc shell chown ${user_id}:${user_id} ${ file_path}
 ```
 
 ## Switching to the Application View
@@ -55,4 +55,3 @@ nsenter -t [hapPid] -m /bin/sh    // Enter the application sandbox environment b
 ```
 
 Now the application view is in use, and the paths you see are the application sandbox paths.
-

@@ -25,11 +25,11 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **参数：**
 
-| 参数名    | 类型                                   | 必填 | 说明                                                       |
-| --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。                    |
-| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                             |
-| callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。 |
+| 参数名    | 类型                                  | 必填 | 说明                                                         |
+| --------- | ------------------------------------- | ---- | :----------------------------------------------------------- |
+| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。 |
+| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。                                               |
+| callback  | AsyncCallback&lt;void&gt;             | 是   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
 
@@ -139,10 +139,10 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **参数：** 
 
-| 参数名    | 类型                                   | 必填 | 说明           |
-| --------- | -------------------------------------- | ---- | -------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。 |
-| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。 |
+| 参数名    | 类型                                  | 必填 | 说明                                                         |
+| --------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。 |
+| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。                                               |
 
 **返回值：** 
 
@@ -649,7 +649,7 @@ try {
 | VIBRATOR_STOP_MODE_TIME   | "time"   | 停止duration模式的振动。 |
 | VIBRATOR_STOP_MODE_PRESET | "preset" | 停止预置EffectId的振动。|
 
-## VibrateEffect<sup>9+</sup>
+## VibrateEffect
 
 马达振动效果，支持以下三种。
 
@@ -657,9 +657,9 @@ try {
 
 | 类型                             | 说明                           |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9)     | 按照指定持续时间触发马达振动。 |
-| [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
-| [VibrateFromFile<sup>10+</sup>](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
+| [VibrateTime](#vibratetime) | 按照指定持续时间触发马达振动。 |
+| [VibratePreset](#vibratepreset) | 按照预置振动类型触发马达振动。 |
+| [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 
@@ -693,7 +693,7 @@ try {
 | 名称     | 类型       | 必填 | 说明                           |
 | -------- | --------  | ---- | ------------------------------ |
 | type     | string    |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
-| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10) | 是 | 振动配置文件的描述符。|
+| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | 是 | 振动配置文件的描述符。|
 
 ## HapticFileDescriptor<sup>10+</sup>
 
@@ -716,9 +716,9 @@ try {
 | 名称  | 类型 | 必填 | 说明           |
 | ----- | ------ | ---- | -------------- |
 | id    | number      |  否 | 振动器id， 默认值为0。    |
-| usage | [Usage](#usage9)      | 是 | 马达振动的使用场景。 |
+| usage | [Usage](#usage) | 是 | 马达振动的使用场景。 |
 
-## Usage<sup>9+</sup>
+## Usage
 
 振动使用场景。
 
@@ -742,7 +742,7 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 按照指定持续时间触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) 代替。
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1)<sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -779,7 +779,7 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定持续时间触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) 代替。
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9)<sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -814,7 +814,7 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 按照预置振动效果触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1) 代替。
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9-1)<sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -852,7 +852,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定振动效果触发马达振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9) 代替。
+从API version 9 开始不再维护，建议使用 [vibrator.startVibration](#vibratorstartvibration9)<sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -886,7 +886,7 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 按照指定模式停止马达的振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9-1) 代替。
+从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9-1)<sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -933,7 +933,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 
 按照指定模式停止马达的振动。
 
-从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9) 代替。
+从API version 9 开始不再维护，建议使用 [vibrator.stopVibration](#vibratorstopvibration9)<sup>9+</sup>代替。
 
 **需要权限**：ohos.permission.VIBRATE
 

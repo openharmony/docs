@@ -1047,7 +1047,7 @@ onActive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1092,7 +1092,7 @@ onInactive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1136,7 +1136,7 @@ refresh(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1193,7 +1193,7 @@ accessStep(step: number): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1240,7 +1240,7 @@ clearHistory(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1291,7 +1291,7 @@ getHitTest(): WebHitTestType
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1345,7 +1345,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1358,13 +1358,23 @@ class testObj {
   constructor() {
   }
 
-  test(): string {
-    console.log('ArkUI Web Component');
-    return "ArkUI Web Component";
+  test(testStr:string): string {
+    console.log('Web Component str' + testStr);
+    return testStr;
   }
 
   toString(): void {
     console.log('Web Component toString');
+  }
+
+  testNumber(testNum:number): number {
+    console.log('Web Component number' + testNum);
+    return testNum;
+  }
+
+  testBool(testBol:boolean): boolean {
+    console.log('Web Component boolean' + testBol);
+    return testBol;
   }
 }
 
@@ -1402,7 +1412,7 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -1430,7 +1440,9 @@ struct Index {
     <script type="text/javascript">
     function htmlTest() {
       // This function call expects to return "ArkUI Web Component"
-      let str=objName.test();
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
 
@@ -1464,7 +1476,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1554,7 +1566,7 @@ runJavaScript(script: string): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1633,7 +1645,7 @@ runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1759,7 +1771,7 @@ runJavaScriptExt(script: string): Promise\<JsMessageExt>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1870,7 +1882,7 @@ deleteJavaScriptRegister(name: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Cannot delete JavaScriptProxy.                               |
 
 **示例：**
@@ -1975,7 +1987,7 @@ zoom(factor: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enable.                                         |
 
 **示例：**
@@ -2029,7 +2041,7 @@ searchAllAsync(searchString: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2092,7 +2104,7 @@ clearMatches(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2145,7 +2157,7 @@ searchNext(forward: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2192,7 +2204,7 @@ clearSslCache(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2237,7 +2249,7 @@ clearClientAuthenticationCache(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2390,7 +2402,7 @@ struct WebComponent {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2467,7 +2479,7 @@ window.addEventListener('message', function (event) {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -3624,7 +3636,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -3681,7 +3693,7 @@ hasImage(): Promise\<boolean>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -4320,7 +4332,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -4764,7 +4776,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -4881,7 +4893,7 @@ struct WebComponent {
 
 ### postUrl<sup>11+</sup>
 
-static postUrl(url: string, postData: ArrayBuffer): void
+postUrl(url: string, postData: ArrayBuffer): void
 
 使用"POST"方法加载带有postData的url。如果url不是网络url，则会使用[loadUrl](#loadurl)方法加载url，忽略postData参数。
 
@@ -4891,8 +4903,8 @@ static postUrl(url: string, postData: ArrayBuffer): void
 
 | 参数名  | 类型             | 必填 | 说明                  |
 | ------- | ---------------- | ---- | :-------------------- |
-| url     | string \| Resource | 是   | 需要加载的 URL。      |
-| postData | ArrayBuffer | 否   | 使用"POST"方法传递数据。 该请求必须采用"application/x-www-form-urlencoded"编码。|
+| url     | string | 是   | 需要加载的 URL。      |
+| postData | ArrayBuffer | 是   | 使用"POST"方法传递数据。 该请求必须采用"application/x-www-form-urlencoded"编码。|
 
 **错误码：**
 
@@ -4945,6 +4957,115 @@ struct WebComponent {
           }
         })
       Web({ src: '', controller: this.controller })
+    }
+  }
+}
+```
+
+### createWebPrintDocumentAdapter<sup>11+</sup>
+
+createWebPrintDocumentAdapter(jobName: string): printDocumentAdapter
+
+**需要权限：** ohos.permission.PRINT
+
+创建web相关打印功能的。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                  |
+| ------- | ------ | ---- | :-------------------- |
+| jobName | string | 是   | 需要打印的文件名。      |
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| printDocumentAdapter | 返回打印文档的适配器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                                    |
+| -------- | -------------------------------------------------------------------------- |
+| 401 | Invalid input parameter.                                                        |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+import print from '@ohos.print'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('createWebPrintDocumentAdapter')
+        .onClick(() => {
+          try {
+            let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
+            print.print('example_jobid', webPrintDocadapter, null, getContext());
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getSecurityLevel<sup>11+</sup>
+
+getSecurityLevel(): SecurityLevel
+
+获取当前网页的安全级别。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                                | 说明                        |
+| ----------------------------------- | --------------------------- |
+| [SecurityLevel](#securitylevel) | 当前网页的安全级别，具体值为NONE、SECURE、WARNING、DANGEROUS。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+import webview from '@ohos.web.webview'
+
+
+	
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController()
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onPageEnd((event) => {
+          if (event) {
+            let securityLevel = this.controller.getSecurityLevel()
+            console.info('securityLevel: ', securityLevel)
+          }
+        })
     }
   }
 }
@@ -7185,6 +7306,17 @@ Web组件返回的请求/响应头对象。
 | Phone         | 6 |电话号码。                                |
 | Unknown       | 7 |未知内容。                                |
 
+## SecurityLevel<sup>11+</sup>
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| NONE          | 0 |页面既不绝对安全，也不是不安全，即是中立。例如，部分scheme非http/https的URL。|
+| SECURE        | 1 |页面安全，页面使用的是HTTPS协议，且使用了信任的证书。|
+| WARNING       | 2 |页面不安全。例如，使用HTTP协议或使用HTTPS协议但使用旧版TLS版本。|
+| DANGEROUS     | 3 |页面不安全。尝试HTTPS并失败、页面未通过身份验证、页面上包含不安全活动内容的HTTPS、恶意软件、网络钓鱼或任何其他可能危险的严重安全问题。 |
+
 ##  HitTestValue
 
 提供点击区域的元素信息。示例代码参考getHitTestValue。
@@ -7885,7 +8017,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -7952,7 +8084,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8019,7 +8151,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8086,7 +8218,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8153,7 +8285,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8167,7 +8299,7 @@ struct WebComponent {
 
 ### getLastErrorCode<sup>11+</sup>
 
-getLastErrorCode(): number
+getLastErrorCode(): WebDownloadErrorCode
 
 获取下载的错误码。
 
@@ -8221,7 +8353,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8288,7 +8420,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8355,7 +8487,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8422,7 +8554,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8489,7 +8621,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8557,7 +8689,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8625,7 +8757,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8663,7 +8795,7 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8681,7 +8813,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8695,7 +8827,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8717,9 +8849,9 @@ static deserialize(serializedData: Uint8Array): WebDownloadItem
 
 **参数：**
 
-| 类型   | 说明                      |
-| ------ | ------------------------- |
-| Uint8Array | 序列化后的下载。 |
+| 参数名              | 类型    | 必填   |  说明 |
+| ------------------ | ------- | ---- | ------------- |
+| serializedData | Uint8Array | 是   | 序列化后的下载。|
 
 **返回值：**
 
@@ -8739,7 +8871,7 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8757,7 +8889,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8771,7 +8903,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8780,7 +8912,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8802,9 +8934,9 @@ start(downloadPath: string): void
 
 **参数：**
 
-| 类型   | 说明                      |
-| ------ | ------------------------- |
-| string | 下载文件的路径(包含文件名)。 |
+| 参数名 | 类型                   | 必填 | 说明                             |
+| ------ | ---------------------- | ---- | ------------------------------|
+| downloadPath   | string     | 是  | 下载文件的路径(包含文件名)。|
 
 **示例：**
 
@@ -8818,7 +8950,7 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8836,7 +8968,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8850,7 +8982,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8859,7 +8991,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8891,8 +9023,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -8911,7 +9043,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -8925,7 +9057,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8934,7 +9066,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -8983,8 +9115,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9003,7 +9135,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9017,7 +9149,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9026,7 +9158,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9084,8 +9216,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9104,7 +9236,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9118,7 +9250,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9127,7 +9259,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9172,7 +9304,7 @@ struct WebComponent {
 
 ### onBeforeDownload<sup>11+</sup>
 
-onBeforeDownload(): void
+onBeforeDownload(callback: Callback\<WebDownloadItem>): void
 
 下载开始前通知给用户，用户需要在此接口中调用WebDownloadItem.start("xxx")并提供下载路径，否则下载会一直处于PENDING状态。
 
@@ -9190,8 +9322,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9210,7 +9342,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9224,7 +9356,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9233,7 +9365,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9274,7 +9406,7 @@ struct WebComponent {
 
 ### onDownloadUpdated<sup>11+</sup>
 
-onDownloadUpdated(): void
+onDownloadUpdated(callback: Callback\<WebDownloadItem>): void
 
 下载过程中的回调，通过该回调的参数可以了解下载进度等信息。
 
@@ -9292,8 +9424,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9312,7 +9444,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9326,7 +9458,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9335,7 +9467,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9376,7 +9508,7 @@ struct WebComponent {
 
 ### onDownloadFinish<sup>11+</sup>
 
-onDownloadFinish(): void
+onDownloadFinish(callback: Callback\<WebDownloadItem>): void
 
 下载完成的通知。
 
@@ -9394,8 +9526,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9414,7 +9546,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9428,7 +9560,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9437,7 +9569,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9478,7 +9610,7 @@ struct WebComponent {
 
 ### onDownloadFailed<sup>11+</sup>
 
-onDownloadFailed(): void
+onDownloadFailed(callback: Callback\<WebDownloadItem>): void
 
 下载失败的通知。
 
@@ -9496,8 +9628,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9516,7 +9648,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9530,7 +9662,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9539,7 +9671,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9608,8 +9740,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9628,7 +9760,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9642,7 +9774,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9651,7 +9783,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9724,8 +9856,8 @@ import business_error from '@ohos.base'
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
-  failedDownload: Uint8Array;
-  download: WebDownloadItem;
+  download: web_webview.WebDownloadItem = new web_webview.WebDownloadItem();
+  failedData: Uint8Array = new Uint8Array();
 
   build() {
     Column() {
@@ -9744,7 +9876,7 @@ struct WebComponent {
             this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download failed guid: " + webDownloadItem.getGuid());
               // 序列化失败的下载到一个字节数组。
-              failedDownload = webDownloadItem.serialize();
+              this.failedData = webDownloadItem.serialize();
             })
             this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
               console.log("download finish guid: " + webDownloadItem.getGuid());
@@ -9758,7 +9890,7 @@ struct WebComponent {
       Button('startDownload')
         .onClick(() => {
           try {
-            this.controller.startDownload('wwww.example.com');
+            this.controller.startDownload('www.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -9767,7 +9899,7 @@ struct WebComponent {
       Button('resumeDownload')
         .onClick(() => {
           try {
-            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedData));
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);

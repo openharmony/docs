@@ -1,5 +1,4 @@
 # Service Management
-
 ## Overview
 
 Service management is implemented by using the init process to parse the service process configuration files (**xxx.cfg** files), which are used to configure services based on service scenarios. Currently, the supported value-added services include startup control, on-demand startup, command execution, scheduled startup, FD proxy, and sandbox management.
@@ -8,15 +7,15 @@ Service management is implemented by using the init process to parse the service
 
 - Naming:
 
-  Generally, the configuration file is named in the format of **serviceName.cfg**, where **serviceName** is the service process name, for example, **appspawn.cfg**.
+    Generally, the configuration file is named in the format of **serviceName.cfg**, where **serviceName** is the service process name, for example, **appspawn.cfg**.
 
 - Format:
 
-  The configuration file is based on the JSON format and complies with the basic rules of the JSON file.
+    The configuration file is based on the JSON format and complies with the basic rules of the JSON file.
 
 - Content:
 
-  The configuration file contains the following fields. Except mandatory fields, other fields can be configured based on service features.
+    The configuration file contains the following fields. Except mandatory fields, other fields can be configured based on service features.
 
    Table 1 Service configuration fields
 
@@ -179,13 +178,13 @@ Service management is implemented by using the init process to parse the service
   ```
 ### Configuring the DAC Permission for a Service Process
 
-Configure the DAC permission for the desired service process based on the GID and UID in the service process configuration file.
+  Configure the DAC permission for the desired service process based on the GID and UID in the service process configuration file.
 
-If the corresponding GID and UID do not exist, add them to the **/init/services/etc/passwd** and **/init/services/etc/group** files of the init module.
+  If the corresponding GID and UID do not exist, add them to the **/init/services/etc/passwd** and **/init/services/etc/group** files of the init module.
 
-- Description of the **passwd** file:
+  - Description of the **passwd** file:
 
-- Each entry corresponds to a user. User information is separated by colons (:) and divided into seven fields, as shown below:
+  - Each entry corresponds to a user. User information is separated by colons (:) and divided into seven fields, as shown below:
 
     ```js
     root:x:0:0:::/bin/false
@@ -193,21 +192,20 @@ If the corresponding GID and UID do not exist, add them to the **/init/services/
     system:x:1000:1000:::/bin/false
     ```
 
-Fields in the **passwd** file
+  Fields in the **passwd** file
+  |     SN  |   Field   |                            Description                             |
+  | ---------- | --------- | ------------------------------------------------------------ |
+  | 1| User name   | Use a name that is easy to remember, for example, **root**. Based on the mapping between user names and user ID (UIDs), the system identifies a user and grants the required user permissions.|
+  | 2| Password flag     | **x** indicates that a password has bee set, but not the real password. The real password is stored in the **/etc/shadow** file.|
+  | 3| UID       | Each user has a unique UID. The system identifies a user based on the UID.<br>A valid UID ranges from 0 to 65535. Numbers in different ranges represent different UIDs.<br>1. 0: administrator<br>2. 1 to 499: system users<br>3. 500 to 65535: common users|
+  | 4| GID       | A GID indicates an initial group. A user has the permissions of the initial group once logging in to the system. Each user can have only one initial group. Generally, the initial group has the same name as the user name.|
+  | 5| Description | This field provides a simple description of the user. It is usually left blank.                                              |
+  | 6| Home directory   | This field specifies the home directory of a user. For example, the home directory of the **root** user is **/root**. This field is usually left blank.                         |
+  | 7| Default shell| Shell is a Linux command interpreter and serves as a bridge between users and the Linux kernel. It is used to convert commands entered by users into machine languages that can be identified by the system. By default, the command interpreter used by the Linux system is usually **/bin/bash**.|
 
-|     SN  |   Field   |                            Description                             |
-| ---------- | --------- | ------------------------------------------------------------ |
-| 1| User name   | Use a name that is easy to remember, for example, **root**. The mapping between user names and UIDs are defined in the file. The system identifies users based on UIDs and grants the mapping user permissions.|
-| 2| Password flag     | **x** indicates that a password has bee set, but not the real password. It must not be deleted. **null** indicates that no password has been set. The system stores the actual encrypted password string in the **/etc/shadow** file. To ensure the password security, only the root user can browse and operate the string.|
-| 3| UID       | Each user has a unique UID. The system identifies a user based on the UID.<br>A valid UID ranges from 0 to 65535. Numbers in different ranges represent different UIDs.<br>1. 0: administrator<br>2. 1 to 499: system users<br>3. 500 to 65535: common users|
-| 4| GID       | GIDs are used to identify groups, which can be an initial group or extended group. Each user has one and only one initial group. When a user logs in to the system, the user has the permissions of the initial group. The groups with the same name as the user name are usually treated as the extended groups of the user. A user can be added to multiple user groups and have the permissions of these user groups.|
-| 5| Description | This field provides the user meaning and is usually left blank.                                              |
-| 6| Home directory   | This field sets the home directory of a user. For example, the home directory of the root user is **/root**. This field is usually left blank.                         |
-| 7| Default shell| Shell is a Linux command interpreter and serves as a bridge between users and the Linux kernel. It is used to convert commands entered by users into machine languages that can be identified by the system. By default, the command interpreter used by the Linux system is usually **/bin/bash**.|
+  - Description of the **group** file
 
-- Description of the **group** file
-
-- Each entry corresponds to a user group. User group information is separated by colons (:) and divided into four fields, as shown below:
+  - Each entry corresponds to a user group. User group information is separated by colons (:) and divided into four fields, as shown below:
 
     ```js
     root:x:0:
@@ -216,16 +214,15 @@ Fields in the **passwd** file
     servicectrl:x:1050:root,shell,system,samgr,hdf_devmgr,foundation,update
     ```
 
-Fields in the **group** file
+  Fields in the **group** file
+  |    SN   | Field     |                         Description                      |
+  | ---------- | --------- | -------------------------------------------------- |
+  | 1| Group name| This field indicates the user group name. For example, **servicectrl** indicates that the user group name is **servicectrl**.|
+  | 2| Password flag| Similar to the **/etc/passwd** file, **x** is only the password flag. The encrypted group password is stored in the **/etc/gshdow** file.|
+  | 3| GID | GIDs are used to identify different user groups.|
+  | 4| Group member| This field indicates the members of a user group. For example, the members of the **servicectrl** group include **root**, **shell**, **system**, **samgr**, **hdf_devmgr**, **foundation**, and **update**.|
 
-|    SN   | Field     |                         Description                      |
-| ---------- | --------- | -------------------------------------------------- |
-| 1| Group name| This field indicates the user group name. For example, **servicectrl** indicates that the user group name is **servicectrl**.|
-| 2| Password flag| Similar to the **/etc/passwd** file, **x** is only the password flag. The encrypted group password is stored in the **/etc/gshdow** file.|
-| 3| GID | GIDs are used to identify different user groups.|
-| 4| Group member| This field indicates the members of a user group. For example, the members of the **servicectrl** group include **root**, **shell**, **system**, **samgr**, **hdf_devmgr**, **foundation**, and **update**.|
-
-- If the GID and UID are set to **root** or **system**, add a trustlist to the **security_config/high_privilege_process_list.json** file in the corresponding product directory. For example:
+  - If the GID and UID are set to **root** or **system**, add a trustlist to the **security_config/high_privilege_process_list.json** file in the corresponding product directory. For example:
 
   ```
     {
@@ -259,25 +256,27 @@ Fields in the **group** file
   ```
 ### Configuring the SELinux Permission for a Service Process
 
-1. Check whether the service process can be started in permissive mode. If yes, you do not need to configure the **selinux** tag.
+- Configuring the SELinux permission
 
-2. To configure SELinux rules, you need to set the SELinux tag in the **secon** field in the configuration file of the service process.
+  1. Check whether the service process can be started in permissive mode. If yes, you do not need to configure the **selinux** tag.
 
-3. Define the service process tag in the SELinux module. The procedure is as follows:
+  2. To configure SELinux rules, you need to set the SELinux tag in the **secon** field in the configuration file of the service process.
 
-   Define the tag for program execution in the **base/security/selinux_adapter/sepolicy/base/system/file_contexts** file. For example:
+  3. Define the service process tag in the SELinux module. The procedure is as follows:
 
-   ```
+  Define the tag for program execution in the **base/security/selinux_adapter/sepolicy/base/system/file_contexts** file. For example:
+
+  ```
     /system/bin/watchdog_service        u:object_r:watchdog_service_exec:s0
     /system/bin/hdcd        u:object_r:hdcd_exec:s0
-   ```
+  ```
 
-   Define the applicable scope of the tag in the **base/security/selinux_adapter/sepolicy/base/public/type.te** file. For example:
+  Define the applicable scope of the tag in the **base/security/selinux_adapter/sepolicy/base/public/type.te** file. For example:
 
-   ```
+  ```
     type watchdog_service, sadomain, domain;
     type watchdog_service_exec, exec_attr, file_attr, system_file_attr;
-   ```
+  ```
 
 ##  Error Codes
 
@@ -317,8 +316,7 @@ Description of error codes
 
 ## Available APIs
 
-**Table 3** Service control APIs
-
+  **Table 3** Service control APIs
 | Function| Description| Parameter Description|
 | :----------  |  :----------  |:--------|
 | int ServiceControlWithExtra(const char *serviceName, int action, const char *extArgv[], int extArgc) | Configures service parameters.| Return value: **0** if the operation is successful; **-1** otherwise.<br> Parameters:<br> **serviceName**: service name.<br> **action**: service action, which can be **start**, **stop**, or **restart**.<br> **extArgv**: parameter array.<br> **extArgc**: number of parameters.|
@@ -328,17 +326,17 @@ Description of error codes
 | int StartServiceByTimer(const char *serviceName, uint64_t timeout) | Starts a service by timer.| Return value: **0** if the operation is successful; **-1** otherwise.<br> Parameters:<br> **serviceName**: service name.<br> timeout: timeout interval.|
 | int StopServiceTimer(const char *serviceName)  | Stops a service timer.| Return value: **0** if the operation is successful; **-1** otherwise.<br> Parameters:<br> **serviceName**: service name.|
 
-- The service management APIs are privileged APIs. Therefore, you need to configure the DAC and SELinux permissions as follows:
+  - The service management APIs are privileged APIs. Therefore, you need to configure the DAC and SELinux permissions as follows:
 
-- Go to **/base/startup/init/services/etc/group** and add the correct user ID to **servicectrl**. For example:
+   - Go to **/base/startup/init/services/etc/group** and add the correct user ID to **servicectrl**. For example:
 
-   ```
-   servicectrl:x:1050:root,shell,system,samgr,hdf_devmgr
-   ```
+    ```
+    servicectrl:x:1050:root,shell,system,samgr,hdf_devmgr
+    ```
 
-- SELinux configuration for service control APIs
+  - SELinux configuration for service control APIs
 
-  Add the required SELinux permissions to the **init.te** file. For example, grant the system parameter write permission for services such as **init**, **samgr**, and **hdf_devmgr**.
+    Add the required SELinux permissions to the **init.te** file. For example, grant the system parameter write permission for services such as **init**, **samgr**, and **hdf_devmgr**.
 
     ```java
     allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
@@ -348,4 +346,4 @@ Description of error codes
 The service management module is available only for the mini system and standard system.
 ## FAQs
 
-For details, see [init Module FAQs](./subsys-boot-init-faqs.md) Details
+For details, see [init Module FAQs](./subsys-boot-init-faqs.md).

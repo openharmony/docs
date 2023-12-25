@@ -17,9 +17,9 @@ To ensure best experience for UI app development for OpenHarmony ecosystem, ArkT
 
 This tutorial will guide you through the core features, syntax, and best practices of ArkTS. After reading this tutorial through the end, you will be able to build performant and efficient mobile applications in ArkTS.
 
-# The Basics
+## The Basics
 
-## Declarations
+### Declarations
 
 Declarations in ArkTS introduce:
 
@@ -28,7 +28,7 @@ Declarations in ArkTS introduce:
 - Functions
 - Types
 
-### Variable Declaration
+#### Variable Declaration
 
 A declaration starting with the keyword `let` introduces a variable which can have different values during program execution.
 
@@ -37,7 +37,7 @@ let hi: string = 'hello'
 hi = 'hello, world'
 ```
 
-### Constant Declaration
+#### Constant Declaration
 
 A declaration starting with the keyword `const` introduces a read-only constant that can be assigned only once.
 
@@ -47,7 +47,7 @@ const hello: string = 'hello'
 
 A compile-time error occurs if a new value is assigned to a constant.
 
-### Automatic Type Inference
+#### Automatic Type Inference
 
 As ArkTS is a statically typed language, the types of all entities, like variables and constants, have to be known at compile time.
 
@@ -62,11 +62,11 @@ let hi1: string = 'hello'
 let hi2 = 'hello, world'
 ```
 
-## Types
+### Types
 
 `Class`, `interface`, `function`, `enum`, `union` types, and type `aliases` are described in the corresponding sections.
 
-### Numeric Types
+#### Numeric Types
 
 ArkTS has `number` and `Number` numeric types. Any integer and floating-point values can be assigned to a variable of these types.
 
@@ -103,7 +103,7 @@ function factorial(n: number): number {
 }
 ```
 
-### `Boolean`
+#### `Boolean`
 
 The `boolean` type represents logical values that are either `true` or `false`.
 
@@ -119,7 +119,7 @@ if (isDone) {
 }
 ```
 
-### `String`
+#### `String`
 
 A `string` is a sequence of characters; some characters can be set by using escape sequences.
 
@@ -132,7 +132,7 @@ let a = 'Success'
 let s3 = `The result is ${a}`
 ```
 
-### `Void` Type
+#### `Void` Type
 
 The `void` type is used to specify that a function does not return a value.
 This type has the only one value which is also `void`. As `void` is
@@ -145,11 +145,11 @@ class Class<T> {
 let instance: Class <void>
 ```
 
-### `Object` Type
+#### `Object` Type
 
 An `Object` class type is a base type for all reference types. Any value, including values of primitive types (they will be automatically boxed), can be directly assigned to variables of the type `Object`.
 
-### `Array` Type
+#### `Array` Type
 
 An `array` is an object comprised of elements of data types assignable to the element type specified in the array declaration.
 A value of an `array` is set by using *array composite literal*, that is a list of zero or more expressions enclosed in square brackets ([]). Each expression represents an element of the `array`. The length of the `array` is set by the number of expressions. Index of the first array element is 0.
@@ -160,24 +160,24 @@ The following example creates the `array` with three elements:
 let names: string[] = ['Alice', 'Bob', 'Carol']
 ```
 
-### `Enum` Type
+#### `Enum` Type
 
 An `enum` type is a value type with a defined set of named values called enum constants.
 In order to be used, an `enum` constant must be prefixed with an enum `type` name.
 
 ```typescript
-enum Color { Red, Green, Blue }
-let c: Color = Color.Red
+enum ColorSet { Red, Green, Blue }
+let c: ColorSet = ColorSet.Red
 ```
 
 A constant expression can be used to explicitly set the value of an `enum` constant.
 
 ```typescript
-enum Color { White = 0xFF, Grey = 0x7F, Black = 0x00 }
-let c: Color = Color.Black
+enum ColorSet { White = 0xFF, Grey = 0x7F, Black = 0x00 }
+let c: ColorSet = ColorSet.Black
 ```
 
-### `Union` Type
+#### `Union` Type
 
 A `union` type is a reference type which is created as a combination of other types. Values of union types can be valid values of all types a union was created from.
 
@@ -222,7 +222,7 @@ if (animal instanceof Frog) {
 animal.sleep () // Any animal can sleep
 ```
 
-### Type `Aliases`
+#### Type `Aliases`
 
 Type `aliases` provides names for anonymous types (array, function, object literal or union types) or alternative names for existing types.
 
@@ -233,9 +233,9 @@ type Predicate <T> = (x: T) => Boolean
 type NullableObject = Object | null
 ```
 
-## Operators
+### Operators
 
-### Assignment Operators
+#### Assignment Operators
 
 Simple assignment operator '=' is used as in "x = y".
 
@@ -243,7 +243,7 @@ Compound assignment operators combine an assignment with an operator, where `x o
 
 Compound assignment operators are as follows: `+=`, `-=`, `*=`, `/=`, `%=`, `<<=`, `>>=`, `>>>=`, `&=`, `|=`, `^=`.
 
-### Comparison Operators
+#### Comparison Operators
 
 | Operator | Description                                                  |
 | -------- | ------------------------------------------------------------ |
@@ -253,7 +253,7 @@ Compound assignment operators are as follows: `+=`, `-=`, `*=`, `/=`, `%=`, `<<=
 | `>=`     | Returns true if the left operand is greater than or equal to the right. |
 | `<`      | Returns true if the left operand is less than the right.     |
 | `<=`     | Returns true if the left operand is less than or equal to the right. |
-### Arithmetic Operators
+#### Arithmetic Operators
 
 Unary operators are `-`, `+`, `--` and `++`.
 
@@ -266,7 +266,7 @@ Binary operators are as follows:
 | `*`        | multiplication           |
 | `/`        | division                 |
 | `%`        | remainder after division |
-### Bitwise Operators
+#### Bitwise Operators
 
 | Operator   | Description                                                                                                     |
 |------------|-----------------------------------------------------------------------------------------------------------------|
@@ -277,16 +277,16 @@ Binary operators are as follows:
 | `a << b`   | Shift left: shifts the binary representation of *a* to the left by *b* bits.                                    |
 | `a >> b`   | Arithmetic right shift: shifts the binary representation of *a* to the right by *b* bits with sign-extension.   |
 | `a >>> b`  | Logical right shift: shifts the binary representation of *a* to the right by *b* bits with zero-extension.      |
-### Logical Operators
+#### Logical Operators
 
 | Operator   | Description   |
 |------------|---------------|
 | `a && b`   | Logical AND  |
 | `a \|\| b`   | Logical OR   |
 | `! a`      | Logical NOT  |
-## Statements
+### Statements
 
-### `If` Statements
+#### `If` Statements
 
 An `if` statement is used to execute a sequence of statements when a logical condition is `true`, or another set of statements (if provided) otherwise.
 
@@ -318,7 +318,7 @@ if (s2.length != 0) {
 }
 ```
 
-### `Switch` Statements
+#### `Switch` Statements
 
 A `switch` statement is used to execute a sequence of statements that match the value of a switch expression.
 
@@ -354,7 +354,7 @@ An optional `break` statement allows you to break out of the `switch` and contin
 
 If there is no `break`, then the next statements in the `switch` are executed.
 
-### Conditional Expressions
+#### Conditional Expressions
 
 The conditional expression `? :` uses the `boolean` value of the first expression to decide which of two other expressions to evaluate.
 
@@ -373,7 +373,7 @@ let isValid = Math.random() > 0.5 ? true : false
 let message = isValid ? 'Valid' : 'Failed'
 ```
 
-### `For` Statements
+#### `For` Statements
 
 A `for` statement is executed repeatedly until the specified loop exit condition is `false`.
 
@@ -402,7 +402,7 @@ for (let i = 0; i < 10; i += 2) {
 }
 ```
 
-### `For-of` Statements
+#### `For-of` Statements
 
 `for-of` statements are used to iterate over an array or string.
 
@@ -417,10 +417,12 @@ for (forVar of expression) {
 Example:
 
 ```typescript
-for (let ch of 'a string object') { /* process ch */ }
+for (let ch of 'a string object') {
+  /* process ch */
+}
 ```
 
-### `While` Statements
+#### `While` Statements
 
 A `while` statement has its body statements executed as long as the specified condition evaluates to `true`.
 
@@ -445,7 +447,7 @@ while (n < 3) {
 }
 ```
 
-### `Do-while` Statements
+#### `Do-while` Statements
 
 `do-while` statements are executed repetitively until a specified condition evaluates to false.
 
@@ -468,7 +470,7 @@ do {
 } while (i < 10)
 ```
 
-### `Break` Statements
+#### `Break` Statements
 
 A `break` statement is used to terminate any `loop` statement or `switch`.
 
@@ -499,7 +501,7 @@ label: while (true) {
 }
 ```
 
-### `Continue` Statements
+#### `Continue` Statements
 
 A `continue` statement stops the execution of the current loop iteration and passes control to the next iteration.
 
@@ -515,7 +517,7 @@ for (let x = 0; x < 100; x++) {
 }
 ```
 
-### `Throw` and `Try` Statements
+#### `Throw` and `Try` Statements
 
 A `throw` statement is used to throw an exception or an error:
 
@@ -577,9 +579,9 @@ function processData(s: string) {
 }
 ```
 
-# Functions
+## Functions
 
-## Function Declarations
+### Function Declarations
 
 A function declaration introduces a named function, specifying its name, parameters, return type and body.
 
@@ -595,7 +597,7 @@ function add(x: string, y: string): string {
 For every parameter its type annotation must be specified.
 An optional parameter allows you to omit the corresponding argument when calling a function. The last parameter of a function can be a rest parameter.
 
-## Optional Parameters
+### Optional Parameters
 
 An optional parameter has the form `name?: Type`.
 
@@ -604,7 +606,7 @@ function hello(name?: string) {
   if (name == undefined) {
     console.log('Hello!')
   } else {
-    console.log(`Hello, ${name}!`)
+    console.log('Hello, ${name}!')
   }
 }
 ```
@@ -620,7 +622,7 @@ multiply(2)  // returns 2*2
 multiply(2, 3) // returns 2*3
 ```
 
-## The Rest Parameter
+### The Rest Parameter
 
 The last parameter of a function can be a rest parameter. It allows functions or methods to take unlimited number of arguments.
 
@@ -636,7 +638,7 @@ sum() // returns 0
 sum(1, 2, 3) // returns 6
 ```
 
-## Return Types
+### Return Types
 
 If function return type can be inferred from its body content, then it can be omitted from the function declaration.
 
@@ -657,13 +659,13 @@ function hi1() { console.log('hi') }
 function hi2(): void { console.log('hi') }
 ```
 
-## Function Scope
+### Function Scope
 
 Variables and other entities defined in a function are local to the function and cannot be accessed from the outside.
 
 If the name of a variable defined in the function is equal to the name of an entity in the outer scope, then the local definition shadows the outer entity.
 
-## Function Calls
+### Function Calls
 
 Calling a function actually leads to the execution of its body, while the arguments of the call are assigned to the function parameters.
 
@@ -697,7 +699,7 @@ function do_action(f: trigFunc) {
 do_action(Math.sin) // pass the function as the parameter
 ```
 
-## Arrow Functions or Lambdas
+### Arrow Functions or Lambdas
 
 A function can be defined as an arrow function, for example:
 
@@ -716,7 +718,7 @@ let sum1 = (x: number, y: number) => { return x + y }
 let sum2 = (x: number, y: number) => x + y
 ```
 
-## Closure
+### Closure
 
 An arrow function is usually defined inside another function. As an inner function, it can access all variables and functions defined in the outer functions.
 
@@ -736,7 +738,7 @@ console.log(z()) // output: 2
 
 In the sample above, the arrow function closure captures the `count` variable.
 
-## Function Overload Signatures
+### Function Overload Signatures
 
 A function can be specified to be called in different ways by writing overload signatures. To do so, several functions' headers that have the same name but different signatures are written and immediately followed by the single implementation function.
 
@@ -753,7 +755,7 @@ foo('aa') // ok, 2nd signature is used
 
 An error occurs if two overload signatures have identical parameter lists.
 
-# Classes
+## Classes
 
 A class declaration introduces a new type and defines its fields, methods and constructors.
 
@@ -790,13 +792,13 @@ class Point {
 let p: Point = {x: 42, y: 42}
 ```
 
-## Fields
+### Fields
 
 A field is a variable of some type that is declared directly in a class.
 
 Classes may have instance fields, static fields or both.
 
-### Instance Fields
+#### Instance Fields
 
 Instance fields exist on every instance of a class. Each instance has its own set of instance fields.
 
@@ -811,7 +813,7 @@ class Person {
     this.age = a
   }
 
-  GetName(): string {
+  getName(): string {
     return this.name
   }
 }
@@ -819,15 +821,10 @@ class Person {
 let p1 = new Person('Alice', 25)
 console.log(p1.name)
 let p2 = new Person('Bob', 28)
-console.log(p2.GetName())
+console.log(p2.getName())
 ```
 
-```typescript
-p1.name
-this.name
-```
-
-### Static Fields
+#### Static Fields
 
 The keyword `static` is used to declare a field as static. Static fields belong to the class itself, and all instances of the class share one static field.
 
@@ -846,29 +843,25 @@ class Person {
 console.log(Person.numberOfPersons)
 ```
 
-### Field Initializers
+#### Field Initializers
 
-ArkTS requires that all fields are explicitly initialized with some values
-either when the field is declared or in the `constructor`. This is similar
-to `strictPropertyInitialization` mode of the standard TypeScript. Such behavior
-is enforced to minimize the number of unexpected runtime errors and achieve
-better performance.
+ArkTS requires that all fields are explicitly initialized with some values either when the field is declared or in the `constructor`. This is similar to `strictPropertyInitialization` mode of the standard TypeScript. Such behavior is enforced to minimize the number of unexpected runtime errors and achieve better performance.
 
 The following code (invalid in ArkTS) is error-prone:
 
 ```typescript
 class Person {
   name: string // The compiler automatically sets to undefined
-
+  
   setName(n:string): void {
     this.name = n
   }
-
+  
   getName(): string {
-  // Return type "string" hides from the developers the fact
-  // that name can be undefined. The most correct would be
-  // to write the return type as "string | undefined". By doing so
-  // we tell the users of our API about all possible return values.
+    // Return type "string" hides from the developers the fact
+    // that name can be undefined. The most correct would be
+    // to write the return type as "string | undefined". By doing so
+    // we tell the users of our API about all possible return values.
     return this.name
   }
 }
@@ -936,7 +929,7 @@ console.log(jack.getName().length); // The code won't build and run
 console.log(jack.getName()?.length); // Builds ok, no runtime error
 ```
 
-### Getters and Setters
+#### Getters and Setters
 
 Setters and getters can be used to provide controlled access to object properties.
 
@@ -962,7 +955,7 @@ p.age = -42 // Error will be thrown as an attempt to set incorrect age
 
 A class can define a getter, a setter or both.
 
-## Methods
+### Methods
 
 A method is a function that belongs to a class.
 A class can define instance methods, static methods or both.
@@ -975,7 +968,7 @@ The example below illustrates how instanced methods work.
 The `calculateArea` method calculates the area of a rectangle by multiplying the height by the width:
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   private height: number = 0
   private width: number = 0
   constructor(height: number, width: number) {
@@ -990,11 +983,11 @@ class Rectangle {
 To use an instance method, it must be called on an instance of the class:
 
 ```typescript
-let square = new Rectangle(10, 10)
+let square = new RectangleSize(10, 10)
 console.log(square.calculateArea()) // output: 100
 ```
 
-### Static Methods
+#### Static Methods
 
 The keyword `static` is used to declare a method as static. Static methods belong to the class itself and have access to static fields only.
 A static method defines a common behavior of the class as a whole.
@@ -1011,16 +1004,13 @@ class Cl {
 console.log(Cl.staticMethod())
 ```
 
-### Inheritance
+#### Inheritance
 
 A class can extend another class.
-The class that is being extended by another class is called ‘*base class*’,
-‘parent class’, or ‘superclass’.
-The class that extends another class is called ‘*extended class*’, ‘derived
-class’ or ‘subclass’.
+The class that is being extended by another class is called ‘*base class*’, ‘parent class’, or ‘superclass’.
+The class that extends another class is called ‘*extended class*’, ‘derived class’, or ‘subclass’.
 
-An extended class can implement several interfaces by using the
-following syntax:
+An extended class can implement several interfaces by using the following syntax:
 
 ```typescript
 class [extends BaseClassName] [implements listOfInterfaces] {
@@ -1064,14 +1054,14 @@ class MyDate implements DateInterface {
 }
 ```
 
-### Access to Super
+#### Access to Super
 
 The keyword `super` can be used to access instance fields, instance methods and constructors from the super class.
 
 It is often used to extend basic functionality of subclass with the required behavior taken from the super class:
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   protected height: number = 0
   protected width: number = 0
 
@@ -1084,7 +1074,7 @@ class Rectangle {
     /* draw bounds */
   }
 }
-class FilledRectangle extends Rectangle {
+class FilledRectangle extends RectangleSize {
   color = ''
   constructor (h: number, w: number, c: string) {
     super(h, w) // call of super constructor
@@ -1099,21 +1089,21 @@ class FilledRectangle extends Rectangle {
 }
 ```
 
-### Override Methods
+#### Override Methods
 
 A subclass can override implementation of a method defined in its superclass.
 An overridden method can be marked with the keyword `override` to improve readability.
 An overridden method must have the same types of parameters, and same or derived return type as the original method.
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   // ...
   area(): number {
     // implementation
     return 0
   }
 }
-class Square extends Rectangle {
+class Square extends RectangleSize {
   private side: number = 0
   override area(): number {
     return this.side * this.side
@@ -1140,7 +1130,7 @@ c.foo('aa') // ok, 2nd signature is used
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
 
-## Constructors
+### Constructors
 
 A class declaration may contain a constructor that is used to initialize object state.
 
@@ -1164,17 +1154,17 @@ let p = new Point()
 
 In this case the default constructor fills the instance fields with default values for the field types.
 
-### Constructors in Derived Class
+#### Constructors in Derived Class
 
 The first statement of a constructor body can use the keyword `super` to explicitly call a constructor of the direct superclass.
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   constructor(width: number, height: number) {
     // ...
   }
 }
-class Square extends Rectangle {
+class Square extends RectangleSize {
   constructor(side: number) {
     super(side, side)
   }
@@ -1183,7 +1173,7 @@ class Square extends Rectangle {
 
 If a constructor body does not begin with such an explicit call of a superclass constructor, then the constructor body implicitly begins with a superclass constructor call `super()`.
 
-### Constructor Overload Signatures
+#### Constructor Overload Signatures
 
 A constructor can be specified to be called in different ways by writing overload signatures. To do so, several constructor headers that have the same name but different signatures are written and immediately followed by the single implementation constructor.
 
@@ -1201,7 +1191,7 @@ let c2 = new C('abc') // ok, 2nd signature is used
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
 
-## Visibility Modifiers
+### Visibility Modifiers
 
 Both methods and properties of a class can have visibility modifiers.
 
@@ -1213,7 +1203,7 @@ There are several visibility modifiers:
 
 The default visibility is `public`.
 
-### Public Visibility
+#### Public Visibility
 
 The `public` members (fields, methods, constructors) of a class are visible in any part of the program, where their class is visible.
 
@@ -1235,7 +1225,7 @@ c.x = 'a' // ok, the field is public
 c.y = 'b' // compile-time error: 'y' is not visible
 ```
 
-### Protected Visibility
+#### Protected Visibility
 
 The modifier `protected` acts much like the modifier `private`, but the `protected` members are also accessible in derived classes.
 Example:
@@ -1253,7 +1243,7 @@ class Derived extends Base {
 }
 ```
 
-## Object Literals
+### Object Literals
 
 An object literal is an expression that can be used to create a class instance and provide some initial values. It can be used instead of the expression `new` as it is more convenient in some cases.
 
@@ -1298,7 +1288,7 @@ class C {
 let cc: C[] = [{n: 1, s: 'a'}, {n: 2, s: 'b'}]
 ```
 
-### Object Literals of Record Type
+#### Object Literals of Record Type
 
 The generic Record<K, V> type is used to map the properties of a type (Key type) to another type (Value type).
 
@@ -1326,7 +1316,7 @@ let map: Record<string, PersonInfo> = {
 }
 ```
 
-# Interfaces
+## Interfaces
 
 An interface declaration introduces a new type. Interfaces are a common way of defining contracts between various part of codes.
 
@@ -1340,8 +1330,8 @@ Examples:
 interface Style {
   color: string // property
 }
-interface Area {
-  calculateArea(): number // method header
+interface AreaSize {
+  calculateAreaSize(): number // method header
   someMethod(): void;    // method header
 }
 ```
@@ -1350,26 +1340,26 @@ Examples of a class implementing an interface:
 
 ```typescript
 // Interface:
-interface Area {
-  calculateArea(): number // method header
+interface AreaSize {
+  calculateAreaSize(): number // method header
   someMethod(): void;    // method header
 }
 
 // Implementation:
-class Rectangle implements Area {
+class RectangleSize implements AreaSize {
   private width: number = 0
   private height: number = 0
   someMethod(): void {
     console.log('someMethod called')
   }
-  calculateArea(): number {
+  calculateAreaSize(): number {
     this.someMethod() // calls another method and returns result
     return this.width * this.height
   }
 }
 ```
 
-## Interface Properties
+### Interface Properties
 
 An interface property can be in a form of field, getter, setter, or both getter and setter.
 
@@ -1412,7 +1402,7 @@ class StyledRectangle implements Style {
 }
 ```
 
-## Interface Inheritance
+### Interface Inheritance
 
 An interface may extend other interfaces like in the example below:
 
@@ -1428,29 +1418,26 @@ interface ExtendedStyle extends Style {
 
 An extended interface contains all properties and methods of the interface it extends, and can also add its own properties and methods.
 
-# Generic Types and Functions
+## Generic Types and Functions
 
 Generic types and functions allow creating the code capable to work over a variety of types rather than a single type.
 
-## Generic Classes and Interfaces
+### Generic Classes and Interfaces
 
 A class and an interface can be defined as generics, adding parameters to the type definition, like the type parameter `Element` in the following example:
 
 ```typescript
-class Stack<Element> {
-  public pop(): Element {
-    // ...
-  }
+class CustomStack<Element> {
   public push(e: Element): void {
     // ...
   }
 }
 ```
 
-To use type Stack, the type argument must be specified for each type parameter:
+To use type CustomStack, the type argument must be specified for each type parameter:
 
 ```typescript
-let s = new Stack<string>
+let s = new CustomStack<string>()
 s.push('hello')
 ```
 
@@ -1458,12 +1445,12 @@ Compiler ensures type safety while working with generic types and functions.
 See below:
 
 ```typescript
-let s = new Stack<string>
+let s = new CustomStack<string>()
 s.push(55) /* That will be a compile-time error as 55 is not compatible
   with type string */
 ```
 
-## Generic Constraints
+### Generic Constraints
 
 Type parameters of generic types can be bounded. For example, the `Key` type parameter in the `HashMap<Key, Value>` container must have a hash method, that is, it must be hashable.
 
@@ -1481,7 +1468,7 @@ class HasMap<Key extends Hashable, Value> {
 
 In the above example, the `Key` type extends `Hashable`, and all methods of `Hashable` interface can be called for keys.
 
-## Generic Functions
+### Generic Functions
 
 Use a generic function to create a more universal code. Consider a function that returns the last element of the array:
 
@@ -1514,7 +1501,7 @@ console.log(last<number>([1, 2, 3]))
 console.log(last([1, 2, 3]))
 ```
 
-## Generic Defaults
+### Generic Defaults
 
 Type parameters of generic types can have defaults. It allows using just the generic type name instead of specifying the actual type arguments.
 The example below illustrates this for both classes and functions.
@@ -1535,7 +1522,7 @@ foo()
 foo<number>()
 ```
 
-# Null Safety
+## Null Safety
 
 All types in ArkTS by default are non-nullable, so the value of a type cannot be null.
 It is similar to TypeScript behavior in strict null checking mode (`strictNullChecks`), but the rules are stricter.
@@ -1557,7 +1544,7 @@ x = null // ok
 if (x != null) { /* do something */ }
 ```
 
-## Non-Null Assertion Operator
+### Non-Null Assertion Operator
 
 A postfix operator `!` can be used to assert that its operand is non-null.
 
@@ -1570,7 +1557,7 @@ y = x + 1  // compile time error: cannot add to a nullable value
 y = x! + 1 // ok
 ```
 
-## Null-Coalescing Operator
+### Null-Coalescing Operator
 
 The null-coalescing binary operator `??` checks whether the evaluation of the left-hand-side expression is equal to null.
 If it is, then the result of the expression is the right-hand-side expression; otherwise, it is the left-hand-side expression.
@@ -1589,7 +1576,7 @@ class Person {
 }
 ```
 
-## Optional Chaining
+### Optional Chaining
 
 Optional chaining operator `?.` allows writing code where the evaluation stops at an expression that is partially evaluated to `null` or `undefined`.
 
@@ -1636,7 +1623,7 @@ let p: Person = new Person('Alice')
 console.log(p.spouse?.nick) // print: undefined
 ```
 
-# Modules
+## Modules
 
 Programs are organized as sets of compilation units or modules.
 
@@ -1644,11 +1631,13 @@ Each module creates its own scope, i.e., any declarations (variables, functions,
 
 Conversely, a variable, function, class, interface, etc. exported from another module must first be imported to a module.
 
-## Export
+### Export
 
 A top-level declaration can be exported by using the keyword `export`.
 
 A declared name that is not exported is considered private and can be used only in the module where it is declared.
+
+**NOTE**: Use braces ({}) when importing a declaration that was exported using the keyword `export`.
 
 ```typescript
 export class Point {
@@ -1665,7 +1654,7 @@ export function Distance(p1: Point, p2: Point): number {
 }
 ```
 
-## Import
+### Import
 
 Import declarations are used to import entities exported from other modules and provide their bindings in the current module.
 An import declaration consists of two parts:
@@ -1703,14 +1692,14 @@ Y // denotes Y from Utils
 X // Compile-time error: 'X' is not visible
 ```
 
-## Top-Level Statements
+### Top-Level Statements
 
 A module can contain any statements at the module level, except `return` ones.
 
 If a module contains a `main` function (program entry point), then top-level statements of the module are executed immediately before the body of this function.
 Otherwise, they are executed before execution of any other function of the module.
 
-## Program Entry Point
+### Program Entry Point
 
 An entry point of a program (application) is the top-level `main` function.
 The `main` function must have either an empty parameter list or a single parameter of `string[]` type.
@@ -1721,11 +1710,11 @@ function main() {
 }
 ```
 
-# Support for ArkUI
+## Support for ArkUI
 
 This section demonstrates mechanisms that ArkTS provides for creating graphical user interface (GUI) programs. The section is based on the ArkUI declarative framework. ArkUI provides a set of extensions of the standard TypeScript to declaratively describe the GUI of the applications and the interaction between the GUI components.
 
-## ArkUI Example
+### ArkUI Example
 
 The [Example](arkts-mvvm.md#example) provides a complete ArkUI-based application as an illustration of GUI programming capabilities.
 

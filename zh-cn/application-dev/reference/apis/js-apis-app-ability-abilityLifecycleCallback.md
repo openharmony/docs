@@ -31,11 +31,34 @@ onAbilityCreate(ability: UIAbility): void;
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
     onAbilityCreate(ability){
         console.log('AbilityLifecycleCallback onAbilityCreate.');
+    },
+    onWindowStageCreate(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageCreate.');
+    },
+    onWindowStageActive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageActive.');
+    },
+    onWindowStageInactive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageInactive.');
+    },
+    onWindowStageDestroy(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+    },
+    onAbilityDestroy(ability){
+        console.log('AbilityLifecycleCallback onAbilityDestroy.');
+    },
+    onAbilityForeground(ability){
+        console.log('AbilityLifecycleCallback onAbilityForeground.');
+    },
+    onAbilityBackground(ability){
+        console.log('AbilityLifecycleCallback onAbilityBackground.');
+    },
+    onAbilityContinue(ability){
+        console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
-    ...
 };
 ```
 
@@ -58,9 +81,33 @@ onWindowStageCreate(ability: UIAbility, windowStage: window.WindowStage): void;
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
+    onAbilityCreate(ability){
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
+    },
     onWindowStageCreate(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageCreate.');
+    },
+    onWindowStageActive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageActive.');
+    },
+    onWindowStageInactive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageInactive.');
+    },
+    onWindowStageDestroy(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+    },
+    onAbilityDestroy(ability){
+        console.log('AbilityLifecycleCallback onAbilityDestroy.');
+    },
+    onAbilityForeground(ability){
+        console.log('AbilityLifecycleCallback onAbilityForeground.');
+    },
+    onAbilityBackground(ability){
+        console.log('AbilityLifecycleCallback onAbilityBackground.');
+    },
+    onAbilityContinue(ability){
+        console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
 };
 ```
@@ -84,9 +131,33 @@ onWindowStageActive(ability: UIAbility, windowStage: window.WindowStage): void;
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
+    onAbilityCreate(ability){
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
+    },
+    onWindowStageCreate(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageCreate.');
+    },
     onWindowStageActive(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageActive.');
+    },
+    onWindowStageInactive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageInactive.');
+    },
+    onWindowStageDestroy(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+    },
+    onAbilityDestroy(ability){
+        console.log('AbilityLifecycleCallback onAbilityDestroy.');
+    },
+    onAbilityForeground(ability){
+        console.log('AbilityLifecycleCallback onAbilityForeground.');
+    },
+    onAbilityBackground(ability){
+        console.log('AbilityLifecycleCallback onAbilityBackground.');
+    },
+    onAbilityContinue(ability){
+        console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
 };
 ```
@@ -110,9 +181,33 @@ onWindowStageInactive(ability: UIAbility, windowStage: window.WindowStage): void
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
+    onAbilityCreate(ability){
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
+    },
+    onWindowStageCreate(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageCreate.');
+    },
+    onWindowStageActive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageActive.');
+    },
     onWindowStageInactive(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageInactive.');
+    },
+    onWindowStageDestroy(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+    },
+    onAbilityDestroy(ability){
+        console.log('AbilityLifecycleCallback onAbilityDestroy.');
+    },
+    onAbilityForeground(ability){
+        console.log('AbilityLifecycleCallback onAbilityForeground.');
+    },
+    onAbilityBackground(ability){
+        console.log('AbilityLifecycleCallback onAbilityBackground.');
+    },
+    onAbilityContinue(ability){
+        console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
 };
 ```
@@ -136,9 +231,33 @@ onWindowStageDestroy(ability: UIAbility, windowStage: window.WindowStage): void;
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
+    onAbilityCreate(ability){
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
+    },
+    onWindowStageCreate(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageCreate.');
+    },
+    onWindowStageActive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageActive.');
+    },
+    onWindowStageInactive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageInactive.');
+    },
     onWindowStageDestroy(ability, windowStage){
         console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+    },
+    onAbilityDestroy(ability){
+        console.log('AbilityLifecycleCallback onAbilityDestroy.');
+    },
+    onAbilityForeground(ability){
+        console.log('AbilityLifecycleCallback onAbilityForeground.');
+    },
+    onAbilityBackground(ability){
+        console.log('AbilityLifecycleCallback onAbilityBackground.');
+    },
+    onAbilityContinue(ability){
+        console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
 };
 ```
@@ -161,9 +280,33 @@ onAbilityDestroy(ability: UIAbility): void;
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
+    onAbilityCreate(ability){
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
+    },
+    onWindowStageCreate(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageCreate.');
+    },
+    onWindowStageActive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageActive.');
+    },
+    onWindowStageInactive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageInactive.');
+    },
+    onWindowStageDestroy(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+    },
     onAbilityDestroy(ability){
         console.log('AbilityLifecycleCallback onAbilityDestroy.');
+    },
+    onAbilityForeground(ability){
+        console.log('AbilityLifecycleCallback onAbilityForeground.');
+    },
+    onAbilityBackground(ability){
+        console.log('AbilityLifecycleCallback onAbilityBackground.');
+    },
+    onAbilityContinue(ability){
+        console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
 };
 ```
@@ -186,9 +329,33 @@ onAbilityForeground(ability: UIAbility): void;
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
+    onAbilityCreate(ability){
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
+    },
+    onWindowStageCreate(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageCreate.');
+    },
+    onWindowStageActive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageActive.');
+    },
+    onWindowStageInactive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageInactive.');
+    },
+    onWindowStageDestroy(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+    },
+    onAbilityDestroy(ability){
+        console.log('AbilityLifecycleCallback onAbilityDestroy.');
+    },
     onAbilityForeground(ability){
         console.log('AbilityLifecycleCallback onAbilityForeground.');
+    },
+    onAbilityBackground(ability){
+        console.log('AbilityLifecycleCallback onAbilityBackground.');
+    },
+    onAbilityContinue(ability){
+        console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
 };
 ```
@@ -211,9 +378,33 @@ onAbilityBackground(ability: UIAbility): void;
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
+    onAbilityCreate(ability){
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
+    },
+    onWindowStageCreate(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageCreate.');
+    },
+    onWindowStageActive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageActive.');
+    },
+    onWindowStageInactive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageInactive.');
+    },
+    onWindowStageDestroy(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+    },
+    onAbilityDestroy(ability){
+        console.log('AbilityLifecycleCallback onAbilityDestroy.');
+    },
+    onAbilityForeground(ability){
+        console.log('AbilityLifecycleCallback onAbilityForeground.');
+    },
     onAbilityBackground(ability){
         console.log('AbilityLifecycleCallback onAbilityBackground.');
+    },
+    onAbilityContinue(ability){
+        console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
 };
 ```
@@ -236,7 +427,31 @@ onAbilityContinue(ability: UIAbility): void;
 ```ts
 import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-let abilityLifecycleCallback: AbilityLifecycleCallback =  {
+let abilityLifecycleCallback: AbilityLifecycleCallback = {
+    onAbilityCreate(ability){
+        console.log('AbilityLifecycleCallback onAbilityCreate.');
+    },
+    onWindowStageCreate(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageCreate.');
+    },
+    onWindowStageActive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageActive.');
+    },
+    onWindowStageInactive(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageInactive.');
+    },
+    onWindowStageDestroy(ability, windowStage){
+        console.log('AbilityLifecycleCallback onWindowStageDestroy.');
+    },
+    onAbilityDestroy(ability){
+        console.log('AbilityLifecycleCallback onAbilityDestroy.');
+    },
+    onAbilityForeground(ability){
+        console.log('AbilityLifecycleCallback onAbilityForeground.');
+    },
+    onAbilityBackground(ability){
+        console.log('AbilityLifecycleCallback onAbilityBackground.');
+    },
     onAbilityContinue(ability){
         console.log('AbilityLifecycleCallback onAbilityContinue.');
     }
@@ -322,7 +537,7 @@ export default class MyFirstAbility extends UIAbility {
         try {
             let lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
             GlobalContext.getContext().setObject("lifecycleId", lifecycleId);
-            console.log(`registerAbilityLifecycleCallback lifecycleId: ${globalThis.lifecycleId}`);
+            console.log(`registerAbilityLifecycleCallback lifecycleId: ${GlobalContext.getContext().getObject('lifecycleId')}`);
         } catch (paramError) {
             console.error(`error: ${paramError.code}, ${paramError.message}`);
         }

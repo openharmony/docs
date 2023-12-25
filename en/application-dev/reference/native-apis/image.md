@@ -608,7 +608,7 @@ Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful; returns an
 
 **See**
 
-UnAccessPixels
+[UnAccessPixels](image.md#oh_unaccesspixels)
 
 
 ### OH_GetImageInfo()
@@ -1507,7 +1507,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
@@ -1598,7 +1598,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
@@ -1678,7 +1678,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1746,7 +1746,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1815,7 +1815,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -1884,7 +1884,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -2028,7 +2028,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_INDEX_INVALID** if the index is invalid.
 
@@ -2153,7 +2153,7 @@ Returns **IMAGE_RESULT_UNKNOWN_FORMAT** if the image format is unknown.
 
 Returns **IMAGE_RESULT_PLUGIN_REGISTER_FAILED** if the plug-in fails to be registered.
 
-Returns **IMAGE_RESULT_PLUGIN_CREATE_FAILED** if the plug-in fails to be created.
+Returns **IMAGE_RESULT_ENCODE_FAILED** if the plug-in fails to be created.  
 
 Returns **IMAGE_RESULT_ENCODE_FAILED** if the image fails to be encoded.
 
@@ -2243,7 +2243,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-AccessPixels
+[AccessPixels](image.md#oh_pixelmap_accesspixels)
 
 
 ### OH_PixelMap_CreateAlphaPixelMap()
@@ -2330,7 +2330,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-CreateAlphaPixelMap
+[CreateAlphaPixelMap](image.md#oh_pixelmap_createalphapixelmap)
 
 
 ### OH_PixelMap_CreatePixelMap()
@@ -2419,7 +2419,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-CreatePixelMap
+[CreatePixelMap](image.md#oh_pixelmap_createpixelmap)
 
 
 ### OH_PixelMap_Crop()
@@ -2490,7 +2490,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Crop
+[Crop](image.md#oh_pixelmap_crop)
 
 
 ### OH_PixelMap_Flip()
@@ -2559,7 +2559,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Flip
+[Flip](image.md#oh_pixelmap_flip)
 
 
 ### OH_PixelMap_GetBytesNumberPerRow()
@@ -2601,7 +2601,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **See**
 
-GetBytesNumberPerRow
+[GetBytesNumberPerRow](image.md#oh_pixelmap_getbytesnumberperrow)
 
 
 ### OH_PixelMap_GetDensity()
@@ -2643,7 +2643,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **See**
 
-GetDensity
+[GetDensity](image.md#oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_GetImageInfo()
@@ -2753,7 +2753,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **See**
 
-GetIsEditable
+[GetIsEditable](image.md#oh_pixelmap_getiseditable)
 
 
 ### OH_PixelMap_InitNativePixelMap()
@@ -2783,7 +2783,7 @@ Returns a pointer to the **NativePixelMap** object if the operation is successfu
 
 **See**
 
-InitNativePixelMap
+[InitNativePixelMap](image.md#oh_pixelmap_initnativepixelmap)
 
 
 ### OH_PixelMap_IsSupportAlpha()
@@ -2825,7 +2825,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **See**
 
-IsSupportAlpha
+[IsSupportAlpha](image.md#oh_pixelmap_issupportalpha)
 
 
 ### OH_PixelMap_Rotate()
@@ -2893,7 +2893,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Rotate
+[Rotate](image.md#oh_pixelmap_rotate)
 
 
 ### OH_PixelMap_Scale()
@@ -2964,7 +2964,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Scale
+[Scale](image.md#oh_pixelmap_scale)
 
 
 ### OH_PixelMap_SetAlphaAble()
@@ -3006,7 +3006,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **See**
 
-SetAlphaAble
+[SetAlphaAble](image.md#oh_pixelmap_setalphaable)
 
 
 ### OH_PixelMap_SetDensity()
@@ -3049,7 +3049,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **See**
 
-GetDensity
+[GetDensity](oh_pixelmap_getdensity)
 
 
 ### OH_PixelMap_SetOpacity()
@@ -3091,7 +3091,7 @@ Returns **IMAGE_RESULT_DATA_UNSUPPORT** if the image type is not supported.
 
 **See**
 
-SetOpacity
+[SetOpacity](image.md#oh_pixelmap_setopacity)
 
 
 ### OH_PixelMap_Translate()
@@ -3160,7 +3160,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-Translate
+[Translate](image.md#oh_pixelmap_translate)
 
 
 ### OH_PixelMap_UnAccessPixels()
@@ -3227,7 +3227,7 @@ Returns **IMAGE_RESULT_ALLOCATER_TYPE_ERROR** if the memory allocation type is i
 
 **See**
 
-UnAccessPixels
+[UnAccessPixels](image.md#oh_pixelmap_unaccesspixels)
 
 
 ### OH_UnAccessPixels()
@@ -3261,7 +3261,7 @@ Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful; returns an
 
 **See**
 
-AccessPixels
+[AccessPixels](image.md#oh_accesspixels)
 
 
 ## Variable Description

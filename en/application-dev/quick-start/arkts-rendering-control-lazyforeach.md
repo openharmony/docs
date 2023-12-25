@@ -29,7 +29,7 @@ LazyForEach(
 ```ts
 interface IDataSource {
     totalCount(): number; // Obtain the total number of data items.
-    getData(index: number): Object; // Obtain the data that matches the specified index.
+    getData(index: number): Object; // Obtain the data item that matches the specified index.
     registerDataChangeListener(listener: DataChangeListener): void; // Register a data change listener.
     unregisterDataChangeListener(listener: DataChangeListener): void; // Deregister the data change listener.
 }
@@ -38,7 +38,7 @@ interface IDataSource {
 | Declaration                                                    | Parameter Type                                         | Description                                                       |
 | ------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------------- |
 | totalCount(): number                                    | -                                                 | Obtains the total number of data items.                                             |
-| getData(index: number): any                        | number                                            | Obtains the data item corresponding to the specified index.<br>**index**: index of the data item to obtain.|
+| getData(index: number): any                        | number                                            | Obtains the data item that matches the specified index.<br>**index**: index of the data item to obtain.|
 | registerDataChangeListener(listener:[DataChangeListener](#description-of-datachangelistener)): void | [DataChangeListener](#description-of-datachangelistener) | Registers a listener for data changes.<br>**listener**: listener for data changes.        |
 | unregisterDataChangeListener(listener:[DataChangeListener](#description-of-datachangelistener)): void | [DataChangeListener](#description-of-datachangelistener) | Deregisters the listener for data changes.<br>**listener**: listener for data changes.        |
 
@@ -85,7 +85,7 @@ interface DataChangeListener {
 
 During **LazyForEach** rendering, the system generates a unique, persistent key for each item to identify the owing component. When the key changes, the ArkUI framework considers that the array element has been replaced or modified and creates a new component based on the new key.
 
-**LazyForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. When no custom **keyGenerator** function is defined, the ArkUI framework uses the default key generation function, that is, **(item: any, index: number) => { return viewId + '-' + index.toString(); }**, wherein **viewId** is generated during compiler conversion. The **viewId** values in the same **LazyForEach** component are the same.
+**LazyForEach** provides a parameter named **keyGenerator**, which is in effect a function through which you can customize key generation rules. If no **keyGenerator** function is defined, the ArkUI framework uses the default key generator, that is, **(item: any, index: number) => { return viewId + '-' + index.toString(); }**, wherein **viewId** is generated during compiler conversion. The **viewId** values in the same **LazyForEach** component are the same.
 
 ## Component Creation Rules
 
@@ -724,7 +724,7 @@ struct MyComponent {
 }
 ```
 
-When a child component of **LazyForEach** is clicked, the index of the data to be moved is stored in the **moved** member variable. When another child component of **LazyForEach** is clicked, the first child component clicked is moved here. The **moveData** method of the data source is called to move the data from the original location to the expected location, after which the **notifyDatMove** method is called. In the **notifyDataMove** method, the **listener.onDataMove** method is called to notify **LazyForEach** that data needs to be moved.** LazyForEach** then swaps data between the **from** and **to** positions.
+When a child component of **LazyForEach** is clicked, the index of the data to be moved is stored in the **moved** member variable. When another child component of **LazyForEach** is clicked, the first child component clicked is moved here. The **moveData** method of the data source is called to move the data from the original location to the expected location, after which the **notifyDatMove** method is called. In the **notifyDataMove** method, the **listener.onDataMove** method is called to notify **LazyForEach** that data needs to be moved. **LazyForEach** then swaps data between the **from** and **to** positions.
 
 The figure below shows the effect.
 
@@ -819,7 +819,7 @@ class MyDataSource extends BasicDataSource {
   }
   
   public changeData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
+    this.dataArray.splice(index, 1, data);
     this.notifyDataChange(index);
   }
 }
@@ -1493,7 +1493,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
     message: string;
     imgSrc: Resource;
     constructor(message: string, imgSrc: Resource) {
-      this.message = message;
+        this.message = message;
         this.imgSrc = imgSrc;
     }  
   }
@@ -1537,7 +1537,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
   **Figure 11** Unwanted image flickering with LazyForEach 
   ![LazyForEach-Image-Flush](./figures/LazyForEach-Image-Flush.gif)
 
-  In the example, when a list item is clicked, only the **message** property of the item is changed. Yet, along with the text change comes the unwanted image flickering. This is because, with the **LazyForEach** update mechanism, the entire list item is rebuilt. As the **\<Image>** component is updated asynchronously, the user perceives the flickering. To address this issue, use @ObjectLink and @Observed so that only the **\<Text>** component that uses the **item.message** property is re-rendered.
+  In the example, when a list item is clicked, only the **message** property of the item is changed. Yet, along with the text change comes the unwanted image flickering. This is because, with the **LazyForEach** update mechanism, the entire list item is rebuilt. As the **\<Image>** component is updated asynchronously, flickering occurs. To address this issue, use @ObjectLink and @Observed so that only the **\<Text>** component that uses the **item.message** property is re-rendered.
 
   The following shows the code snippet after optimization:
 
@@ -1627,7 +1627,7 @@ When the child component of **LazyForEach** is clicked, **item.message** is chan
     message: string;
     imgSrc: Resource;
     constructor(message: string, imgSrc: Resource) {
-      this.message = message;
+        this.message = message;
         this.imgSrc = imgSrc;
     }  
   }

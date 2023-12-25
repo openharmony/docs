@@ -434,7 +434,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[installer.getBundleInstaller](js-apis-installer.md#bundleinstallergetbundleinstaller)替代。
 
-getBundleInstaller(): Promise&lt;BundleInstaller&gt;;
+getBundleInstaller(): Promise&lt;BundleInstaller&gt;
 
 获取用于安装包的接口，使用Promise异步回调，返回安装接口对象。
 
@@ -473,7 +473,7 @@ bundle.getBundleInstaller().then((data) => {
 
 > 从API version 9开始不再维护，建议使用[installer.getBundleInstaller](js-apis-installer.md#bundleinstallergetbundleinstaller)替代。
 
-getBundleInstaller(callback: AsyncCallback&lt;BundleInstaller&gt;): void;
+getBundleInstaller(callback: AsyncCallback&lt;BundleInstaller&gt;): void
 
 获取用于安装包的接口，使用callback异步回调。
 
@@ -512,7 +512,7 @@ bundle.getBundleInstaller((err, data) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.cleanBundleCacheFiles](js-apis-bundleManager.md#bundlemanagercleanbundlecachefiles)替代。
 
-cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 清除指定应用程序的缓存数据，使用callback异步回调。
 
@@ -602,7 +602,7 @@ bundle.cleanBundleCacheFiles(bundleName).then(()=> {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.setApplicationEnabled](js-apis-bundleManager.md#bundlemanagersetapplicationenabled)替代。
 
-setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setApplicationEnabled(bundleName: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置是否启用指定的应用程序，使用callback异步回调。
 
@@ -694,7 +694,7 @@ bundle.setApplicationEnabled(bundleName, false).then(()=> {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.setAbilityEnabled](js-apis-bundleManager.md#bundlemanagersetabilityenabled)替代。
 
-setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void;
+setAbilityEnabled(info: AbilityInfo, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 设置是否启用指定的Ability组件，使用callback异步回调。
 
@@ -776,7 +776,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
 
 > 从API version 9开始不再维护，建议使用[bundleManager.getPermissionDef](js-apis-bundleManager.md#bundlemanagergetpermissiondef)替代。
 
-getPermissionDef(permissionName: string, callback: AsyncCallback&lt;PermissionDef&gt;): void;
+getPermissionDef(permissionName: string, callback: AsyncCallback&lt;PermissionDef&gt;): void
 
 按权限名称获取权限的详细信息，使用callback异步回调。
 
@@ -950,7 +950,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 > 从API version 9开始不再维护。
 
-getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void;
+getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void
 
 获取调用方所在用户下已安装的应用信息，使用callback异步回调。
 
@@ -1111,7 +1111,7 @@ bundle.getAbilityInfo(bundleName, abilityName)
 
 > 从API version 9开始不再维护。
 
-getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void;
+getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void
 
 通过Bundle名称和组件名获取Ability组件信息，使用callback形式返回结果。
 
@@ -1496,7 +1496,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 > 从API version 9开始不再维护。
 
-queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void;
+queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void
 
 以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
 
@@ -1586,7 +1586,7 @@ bundle.getLaunchWantForBundle(bundleName)
 
 > 从API version 9开始不再维护。
 
-getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void;
+getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
 以异步方法查询拉起指定应用的want对象，使用callback形式返回结果。
 
@@ -1698,7 +1698,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 > 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9)替代。
 
-getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>;
+getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>
 
 以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用Promise形式返回结果。
 
@@ -1744,7 +1744,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 > 从API version 9开始不再维护，建议使用[resourceManager.getMediaContent](js-apis-resource-manager.md#getmediacontent9)替代。
 
-getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void;
+getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void
 
 以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](js-apis-image.md)，使用callback形式返回结果。
 

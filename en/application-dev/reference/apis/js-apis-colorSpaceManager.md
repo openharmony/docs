@@ -20,12 +20,37 @@ Enumerates the color space types.
 
 | Name                        | Value    | Description                   |
 | --------------------------- | ------ | ----------------------- |
-| UNKNOWN        | 0      | Unknown type.|
-| ADOBE_RGB_1998 | 1      | Adobe RGB (1998).|
-| DCI_P3         | 2      | DCI-P3.|
-| DISPLAY_P3     | 3      | Display P3.|
-| SRGB           | 4      | SRGB.<br>This is the default color space type.|
-| CUSTOM         | 5      | Custom type.|
+| UNKNOWN                           | 0      | Unknown type.|
+| ADOBE_RGB_1998                    | 1      | Adobe RGB (1998).<br>The conversion function is of the Adobe RGB (1998) type.<br>The encoding range is of the Full type.|
+| DCI_P3                            | 2      | DCI-P3.<br>The conversion function is of the Gamma 2.6 type.<br>The encoding range is of the Full type.|
+| DISPLAY_P3                        | 3      | Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.|
+| SRGB                              | 4      | SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.<br>This is the default color space type.|
+| CUSTOM                            | 5      | Custom type.|
+| BT709<sup>11+</sup>                | 6      | BT709.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Full type.|
+| BT601_EBU<sup>11+</sup>            | 7      | BT601_P.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Full type.|
+| BT601_SMPTE_C<sup>11+</sup>        | 8      | BT601_N.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Full type.|
+| BT2020_HLG<sup>11+</sup>           | 9      | BT2020.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type.|
+| BT2020_PQ<sup>11+</sup>            | 10     | BT2020.<br>The conversion function is of the PQ type.<br>The encoding range is of the Full type.|
+| P3_HLG<sup>11+</sup>               | 11     | Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type.|
+| P3_PQ<sup>11+</sup>                | 12     | Display P3.<br>The conversion function is of the PQ type.<br>The encoding range is of the Full type.|
+| ADOBE_RGB_1998_LIMIT<sup>11+</sup> | 13     | Adobe RGB (1998).<br>The conversion function is of the Adobe RGB (1998) type.<br>The encoding range is of the Limit type.|
+| DISPLAY_P3_LIMIT<sup>11+</sup>     | 14     | Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Limit type.|
+| SRGB_LIMIT<sup>11+</sup>           | 15     | SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Limit type.|
+| BT709_LIMIT<sup>11+</sup>          | 16     | BT709.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Limit type.|
+| BT601_EBU_LIMIT<sup>11+</sup>      | 17     | BT601_P.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Limit type.|
+| BT601_SMPTE_C_LIMIT<sup>11+</sup>  | 18     | BT601_N.<br>The conversion function is of the BT709 type.<br>The encoding range is of the Limit type.|
+| BT2020_HLG_LIMIT<sup>11+</sup>     | 19     | BT2020.<br>The conversion function is of the HLG type.<br>The encoding range is of the Limit type.|
+| BT2020_PQ_LIMIT<sup>11+</sup>      | 20     | BT2020.<br>The conversion function is of the PQ type.<br>The encoding range is of the Limit type.|
+| P3_HLG_LIMIT<sup>11+</sup>         | 21     | Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Limit type.|
+| P3_PQ_LIMIT<sup>11+</sup>          | 22     | Display P3.<br>The conversion function is of the PQ type.<br>The encoding range is of the Limit type.|
+| LINEAR_P3<sup>11+</sup>            | 23     | Display P3.<br>The conversion function is of the Linear type.|
+| LINEAR_SRGB<sup>11+</sup>          | 24     | SRGB.<br>The conversion function is of the Linear type.|
+| LINEAR_BT709<sup>11+</sup>         | 24     | Same as that of LINEAR_SRGB.<br>BT709.<br>The conversion function is of the Linear type.|
+| LINEAR_BT2020<sup>11+</sup>        | 25     | BT2020.<br>The conversion function is of the Linear type.|
+| DISPLAY_SRGB<sup>11+</sup>         | 4      | Same as that of SRGB.<br>SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.|
+| DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | Same as that of DISPLAY_P3.<br>Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.|
+| DISPLAY_P3_HLG<sup>11+</sup>       | 11     | Same as that of P3_HLG.<br>Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type.|
+| DISPLAY_P3_PQ<sup>11+</sup>        | 12     | Same as that of P3_PQ.<br>Display P3.<br>The conversion function is of the PQ type.<br>The encoding range is of the Full type.|
 
 ## ColorSpacePrimaries
 
@@ -138,7 +163,7 @@ try {
 
 Implements management of color space objects.
 
-Before calling any of the following APIs, you must use [create()](#colorspacemanagercreate) to create a color space object.
+Before calling any of the following APIs, you must use [create()](#colorspacemanagercreate) to create a color space manager.
 
 ### getColorSpaceName
 
@@ -176,7 +201,7 @@ try {
 
 getWhitePoint(): Array\<number\>
 
-Obtains the coordinates of the white point of the color space.
+Obtains the coordinates of the white point in the color space.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.ColorManager.Core
 

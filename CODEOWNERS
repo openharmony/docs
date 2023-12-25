@@ -122,29 +122,30 @@ zh-cn/application-dev/reference/apis/js-apis-connectedTag.md @cheng_guohong @zha
 zh-cn/application-dev/reference/apis/js-apis-contact.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-Context.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-convertxml.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
-zh-cn/application-dev/reference/apis/js-apis-data-ability.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-dataSharePredicates.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-DataShareResultSet.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-preferences.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-rdb.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-unifiedDataChannel.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-uniformTypeDescriptor.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-cloudData.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/napi/native-relational-store-guidelines.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-resultset.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-storage.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-data-ValuesBucket.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-dataAbilityHelper.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
-zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
+zh-cn/application-dev/reference/apis/js-apis-data-ability.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-dataShare.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-dataSharePredicates.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-DataShareResultSet.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-distributedobject.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-preferences.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-rdb.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-unifiedDataChannel.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode @dboy190
+zh-cn/application-dev/reference/apis/js-apis-data-uniformTypeDescriptor.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode @dboy190
+zh-cn/application-dev/reference/apis/js-apis-data-cloudData.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-relationalStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/napi/native-relational-store-guidelines.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-resultset.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-storage.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-data-ValuesBucket.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-dataAbilityHelper.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/reference/apis/js-apis-DataUriUtils.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
 zh-cn/application-dev/reference/apis/js-apis-deque.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-device-info.md @mupceet @zhang_yixin13 @handyohos @nan-xiansen
-zh-cn/application-dev/reference/apis/js-apis-device-manager.md @intermilano @RayShih @william-ligang @liuhonggang123
+zh-cn/application-dev/reference/apis/js-apis-device-manager.md @intermilano @RayShih @william-ligang @liuhonggang123 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-distributedDeviceManager.md @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-deviceUsageStatistics.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-display.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/reference/apis/js-apis-distributed-data.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
+zh-cn/application-dev/reference/apis/js-apis-distributed-data.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
 zh-cn/application-dev/reference/apis/js-apis-distributedMissionManager.md @chenmingJay @ningningW @nan-xiansen @iceice1001
 zh-cn/application-dev/reference/apis/js-apis-effectKit.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-emitter.md @jayleehw @huipeizi @li-weifeng2 @currydavids
@@ -193,7 +194,7 @@ zh-cn/application-dev/reference/apis/js-apis-nfcController.md @cheng_guohong @zh
 zh-cn/application-dev/reference/apis/js-apis-nfcTag.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-observer.md @zhang-hai-feng @zhang_yixin13 @jyh926 @gaoxi785
 zh-cn/application-dev/reference/apis/js-apis-particleAbility.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @han-zhengshi @HelloCrease @logic42
+zh-cn/application-dev/reference/apis/js-apis-pasteboard.md @han-zhengshi @HelloCrease @logic42 @widecode
 zh-cn/application-dev/reference/apis/js-apis-permissionrequestresult.md @littlejerry1 @RayShih @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-plainarray.md @gongjunsong @ge-yafang @flyingwolf @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-pointer.md @yuanxinying @ningningW @houchengyu
@@ -238,7 +239,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-prompt.md @HelloCrease @niul
 zh-cn/application-dev/reference/apis/js-apis-system-request.md @hu-zhiqiong @hanruofei @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-system-router.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-system-sensor.md @hellohyh001 @hu-zhiqiong @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis/js-apis-system-storage.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
+zh-cn/application-dev/reference/apis/js-apis-system-storage.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
 zh-cn/application-dev/reference/apis/js-apis-system-time.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-system-timer.md @hu-zhiqiong @illybyy @murphy1984 @feng-aiwen @illybyy @murphy1984
 zh-cn/application-dev/reference/apis/js-apis-system-vibrate.md @hellohyh001 @ningningW @hu-zhiqiong @butterls @star-wind-snow-and-rain
@@ -271,6 +272,7 @@ zh-cn/application-dev/reference/apis/js-apis-webSocket.md @zhang-hai-feng @zhang
 zh-cn/application-dev/reference/apis/js-apis-wifi.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-wifiext.md @cheng_guohong @zhang_yixin13 @cheng_guohong @quanli125
 zh-cn/application-dev/reference/apis/js-apis-window.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
+zh-cn/application-dev/reference/apis/js-apis-pipWindow.md @zhangqiang183  @ge-yafang @zhouyaoying @zxg-gitee @nobuggers
 zh-cn/application-dev/reference/apis/js-apis-windowAnimationManager.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
 zh-cn/application-dev/reference/apis/js-apis-worker.md @gongjunsong @ge-yafang @flyingwolf @weng-changcheng @blackstone-oh
 zh-cn/application-dev/reference/apis/js-apis-taskpool.md @gongjunsong @ge-yafang @flyingwolf @weng-changcheng @blackstone-oh
@@ -281,10 +283,10 @@ zh-cn/application-dev/reference/apis/js-apis-xml.md @gongjunsong @ge-yafang @fly
 zh-cn/application-dev/reference/apis/js-apis-zlib.md @shuaytao @RayShih @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-webview.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
 zh-cn/application-dev/reference/arkui-ts/ts-basic-components-web.md @bigpumpkin @HelloCrease @litao33 @zhang-xinyue15
-zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @mupceet @RayShih @mupceet @gaoxi785
-zh-cn/application-dev/reference/apis/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785
+zh-cn/application-dev/reference/apis/js-apis-accessibility-config.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePath.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility-GesturePoint.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-accessibility.md @mupceet @RayShih @mupceet @gaoxi785 @warehouse12
 zh-cn/application-dev/reference/apis/js-apis-appControl.md @littlejerry1 @huipeizi @gwang2008 @chengxingzhen
 zh-cn/application-dev/reference/apis/js-apis-batteryStatistics.md  @warehouse12  @alien0208
 zh-cn/application-dev/reference/apis/js-apis-colorSpaceManager.md @zhangqiang183  @ge-yafang @liuchao92 @zxg-gitee
@@ -293,7 +295,7 @@ zh-cn/application-dev/reference/apis/js-apis-cooperate.md @yuanxinying @ningning
 zh-cn/application-dev/reference/apis/js-apis-curve.md @HelloCrease @niulihua @tomatodevboy
 zh-cn/application-dev/reference/apis/js-apis-defaultAppManager.md @shuaytao @huipeizi @wangzhen107 @inter515
 zh-cn/application-dev/reference/apis/js-apis-distributedBundle.md @shuaytao @RayShih @wangzhen107 @inter515
-zh-cn/application-dev/reference/apis/js-apis-distributedKVStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
+zh-cn/application-dev/reference/apis/js-apis-distributedKVStore.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
 zh-cn/application-dev/reference/apis/js-apis-enterprise-applicationManager.md @liuzuming @ningningW @yangqing3 @caiminggang
 zh-cn/application-dev/reference/apis/js-apis-enterprise-accountManager.md @liuzuming @ningningW @yangqing3 @caiminggang
 zh-cn/application-dev/reference/apis/js-apis-enterprise-adminManager.md @liuzuming @ningningW @yangqing3 @caiminggang
@@ -343,7 +345,7 @@ zh-cn/application-dev/reference/errorcodes/errorcode-device-manager.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-DeviceUsageStatistics.md @ningningW
 zh-cn/application-dev/reference/errorcodes/errorcode-display.md @ge-yafang
 zh-cn/application-dev/reference/errorcodes/errorcode-distributed-dataObject.md @ge-yafang
-zh-cn/application-dev/reference/errorcodes/errorcode-distributedKVStore.md @ge-yafang
+zh-cn/application-dev/reference/errorcodes/errorcode-distributedKVStore.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
 zh-cn/application-dev/reference/errorcodes/errorcode-DistributedNotificationService.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-DistributedSchedule.md @RayShih
 zh-cn/application-dev/reference/errorcodes/errorcode-enterpriseDeviceManager.md @ningningW
@@ -392,23 +394,24 @@ zh-cn/application-dev/arkts-utils/xml-overview.md @ge-yafang @gongjunsong @black
 zh-cn/application-dev/arkts-utils/xml-generation.md @ge-yafang @gongjunsong @blackstone-oh
 zh-cn/application-dev/arkts-utils/xml-parsing.md @ge-yafang @gongjunsong @blackstone-oh
 zh-cn/application-dev/arkts-utils/xml-conversion.md @ge-yafang @gongjunsong @blackstone-oh
-zh-cn/application-dev/database/data-mgmt-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/app-data-persistence-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/data-persistence-by-preferences.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/data-persistence-by-kv-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/data-persistence-by-rdb-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/sync-app-data-across-devices-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/data-sync-of-rdb-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/data-sync-of-kv-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/data-reliability-security-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/data-backup-and-restore.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/data-encryption.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/access-control-by-device-and-data-level.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/data-share-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/unified-data-definition.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/share-data-by-datashareextensionability.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/share-data-by-silent-access.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
-zh-cn/application-dev/database/unified-data-channels.md @ge-yafang @feng-aiwen @gong-a-shi @logic42
+zh-cn/application-dev/database/data-mgmt-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/app-data-persistence-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-persistence-by-preferences.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-persistence-by-kv-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
+zh-cn/application-dev/database/data-persistence-by-rdb-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/sync-app-data-across-devices-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-sync-of-rdb-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-sync-of-kv-store.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @liuwenhui_ddmp @widecode
+zh-cn/application-dev/database/data-reliability-security-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-backup-and-restore.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-encryption.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/access-control-by-device-and-data-level.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/data-share-overview.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/unified-data-definition.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
+zh-cn/application-dev/database/share-data-by-datashareextensionability.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/share-data-by-silent-access.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode
+zh-cn/application-dev/database/unified-data-definition.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
+zh-cn/application-dev/database/unified-data-channels.md @ge-yafang @feng-aiwen @gong-a-shi @logic42 @widecode @dboy190
 
 [ArkTS组件开发指南配置文件]
 zh-cn/application-dev/ui/arkui-overview.md			@tomatodevboy	@HelloCrease
@@ -717,8 +720,8 @@ zh-cn/application-dev/reference/apis/js-apis-inner-wantAgent*.md @huipeizi  @li-
 zh-cn/application-dev/reference/apis/js-apis-uripermissionmanager.md @huipeizi  @ccllee  @lxfycode  @lixiaogang30
 zh-cn/application-dev/reference/apis/js-apis-wantAgent.md @huipeizi  @li-weifeng2  @lxfycode  @lixiaogang30
 
-zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen
-zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md @feng-aiwen @ge-yafang @gong-a-shi @logic42
+zh-cn/application-dev/reference/apis/js-apis-application-AccessibilityExtensionAbility.md @mupceet @RayShih @mupceet @chengxingzhen @warehouse12
+zh-cn/application-dev/reference/apis/js-apis-application-DataShareExtensionAbility.md @feng-aiwen @ge-yafang @gong-a-shi @logic42 @widecode
 
 
 [API参考-包管理]

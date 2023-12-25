@@ -35,7 +35,7 @@ onPageShow?(): void
 
 onPageHide?(): void
 
-页面每次隐藏时触发一次，包括路由过程、应用进入前后台等场景，仅\@Entry装饰的自定义组件生效。
+页面每次隐藏时触发一次，包括路由过程、应用进入后台等场景，仅\@Entry装饰的自定义组件生效。
 
 
 ## onBackPress
@@ -93,7 +93,7 @@ ArkUI框架会在自定义组件布局时，将该自定义组件的子节点信
 
 | 参数名        | 类型                                                         | 说明               |
 |------------|------------------------------------------------------------|------------------|
-| children   | Array&lt;[LayoutChild](#layoutchild(deprecated))&gt;                  | 子组件布局信息。         |
+| children   | Array&lt;[LayoutChild](#layoutchilddeprecated)&gt;                  | 子组件布局信息。         |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
 ## onPlaceChildren<sup>10+</sup>
@@ -118,13 +118,13 @@ onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions
 
 ArkUI框架会在自定义组件确定尺寸时，将该自定义组件的子节点信息和自身的尺寸范围通过onMeasure传递给该自定义组件。不允许在onMeasure函数中改变状态变量。
 
-该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onMeasureSize](#onmeasuresize10+)替代。
+该接口从API version 9开始支持，从API version 10开始废弃，推荐使用[onMeasureSize](#onmeasuresize10)替代。
 
 **参数：**
 
 | 参数名        | 类型                                                         | 说明               |
 |------------|------------------------------------------------------------|------------------|
-| children   | Array&lt;[LayoutChild](#layoutchild(deprecated))&gt;                  | 子组件布局信息。         |
+| children   | Array&lt;[LayoutChild](#layoutchilddeprecated)&gt;                  | 子组件布局信息。         |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
 ## onMeasureSize<sup>10+</sup>
@@ -212,10 +212,10 @@ struct Child {
 | name       | string                                                             | 子组件名称。              |
 | id         | string                                                             | 子组件id。              |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions)         | 子组件约束尺寸。            |
-| borderInfo | [LayoutBorderInfo](#layoutborderinfo(deprecated))                             | 子组件border信息。        |
-| position   | [Position](ts-types.md#position)                                   | 子组件位置坐标。            |
+| borderInfo | [LayoutBorderInfo](#layoutborderinfodeprecated)                             | 子组件border信息。        |
+| position   | [Position](ts-types.md#position8)                                   | 子组件位置坐标。            |
 | measure    | (childConstraint:)&nbsp;=&gt;&nbsp;void                            | 调用此方法对子组件的尺寸范围进行限制。 |
-| layout     | (LayoutInfo：&nbsp;[LayoutInfo](#layoutinfo(deprecated)))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
+| layout     | (LayoutInfo：&nbsp;[LayoutInfo](#layoutinfodeprecated))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
 
 ## LayoutBorderInfo<sup>(deprecated)</sup>
 
@@ -225,7 +225,7 @@ struct Child {
 
 | 参数          | 参数类型                                 | 描述                      |
 |-------------|--------------------------------------|-------------------------|
-| borderWidth | [EdgeWidths](ts-types.md#edgewidths) | 边框宽度类型，用于描述组件边框不同方向的宽度。 |
+| borderWidth | [EdgeWidths](ts-types.md#edgewidths9) | 边框宽度类型，用于描述组件边框不同方向的宽度。 |
 | margin      | [Margin](ts-types.md#margin)         | 外边距类型，用于描述组件不同方向的外边距。   |
 | padding     | [Padding](ts-types.md#padding)       | 内边距类型，用于描述组件不同方向的内边距。   |
 
@@ -237,7 +237,7 @@ struct Child {
 
 | 参数         | 参数类型                                                       | 描述       |
 |------------|------------------------------------------------------------|----------|
-| position   | [Position](ts-types.md#position)                           | 子组件位置坐标。 |
+| position   | [Position](ts-types.md#position8)                           | 子组件位置坐标。 |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 子组件约束尺寸。 |
 
 ```ts
@@ -299,7 +299,7 @@ struct CustomLayout {
 
 | 参数          | 参数类型      | 描述                  |
 |-------------|-----------|---------------------|
-| borderWidth | [EdgeWidth](ts-types.md#edgewidths) | 父组件边框宽度。<br>单位：vp            |
+| borderWidth | [EdgeWidth](ts-types.md#edgewidths9) | 父组件边框宽度。<br>单位：vp            |
 | margin      | [Margin](ts-types.md#margin)       | 父组件margin信息。 <br>单位：vp       |
 | padding     | [Padding](ts-types.md#padding)   | 父组件padding信息。<br>单位：vp |
 | width  | Number | 测量后的宽。<br>单位：vp<br> **说明：** <br>若值为空时，则返回组件的百分比宽。 |
@@ -314,8 +314,8 @@ struct CustomLayout {
 
 | 参数         | 参数类型                                                    | 描述                  |
 |------------|---------------------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10+)      | 子组件测量后的尺寸信息。   <br>单位：vp     |
-| layout     | ([Position](ts-types.md#position))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
+| measureResult| [MeasureResult](#measureresult10)      | 子组件测量后的尺寸信息。   <br>单位：vp     |
+| layout     | ([Position](ts-types.md#position8))&nbsp;=&gt;&nbsp;void | 调用此方法对子组件的位置信息进行限制。 |
 
 ## Measurable<sup>10+</sup>
 
@@ -325,7 +325,7 @@ struct CustomLayout {
 
 | 参数         | 参数类型                                                                             | 描述                                    |
 |------------|----------------------------------------------------------------------------------|---------------------------------------|
-| measure    | (childConstraint:)&nbsp;=&gt;&nbsp;[MeasureResult](#measureresult10+) | 调用此方法对子组件的尺寸范围进行限制。<br/>返回值：子组件测量后的尺寸。 |
+| measure    | (childConstraint:)&nbsp;=&gt;&nbsp;[MeasureResult](#measureresult10) | 调用此方法对子组件的尺寸范围进行限制。<br/>返回值：子组件测量后的尺寸。 |
 
 ## MeasureResult<sup>10+</sup>
 

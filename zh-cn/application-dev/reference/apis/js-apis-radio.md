@@ -15,7 +15,7 @@ import radio from '@ohos.telephony.radio';
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>\): void
+getRadioTech\(slotId: number, callback: AsyncCallback<[NetworkRadioTech](#networkradiotech11)\>\): void
 
 获取当前接入的CS域和PS域无线接入技术。使用callback异步回调。
 
@@ -28,7 +28,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | 是   | 回调函数。返回当前接入的CS域和PS域无线接入技术。 |
+| callback | AsyncCallback\<[NetworkRadioTech](#networkradiotech11)\> | 是   | 回调函数。返回当前接入的CS域和PS域无线接入技术。 |
 
 **错误码：**
 
@@ -49,11 +49,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-class Tech {
-    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-}
-radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
+radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) => {
     if (err) {
         console.error(`getRadioTech failed, callback: err->${JSON.stringify(err)}`);
         return;
@@ -65,7 +61,7 @@ radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>
+getRadioTech\(slotId: number\): Promise<\[NetworkRadioTech](#networkradiotech11)\>
 
 获取当前接入的CS域和PS域无线接入技术。使用Promise异步回调。
 
@@ -83,7 +79,7 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 
 | 类型                                                         | 说明                                            |
 | ------------------------------------------------------------ | ----------------------------------------------- |
-| Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | 以Promise形式返回当前接入的CS域和PS域技术。 |
+| Promise\<[NetworkRadioTech](#networkradiotech11)\> | 以Promise形式返回当前接入的CS域和PS域技术。 |
 
 **错误码：**
 
@@ -104,11 +100,7 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-class Tech {
-    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-}
-radio.getRadioTech(slotId).then((data: Tech) => {
+radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
     console.log(`getRadioTech success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getRadioTech failed, promise: err->${JSON.stringify(err)}`);
@@ -3439,6 +3431,68 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 });
 ```
 
+## radio.factoryReset<sup>11+</sup>
+
+factoryReset\(slotId: number\): Promise\<void\>
+
+重置网络状态设置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   |                              类型                               | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回重置网络状态设置的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.factoryReset(slotId).then(() => {
+    console.log(`factoryReset success`);
+}).catch((err: BusinessError) => {
+    console.error(`factoryReset failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## NetworkRadioTech<sup>11+</sup>
+
+网络中packet service (PS) 和 circuit service (CS) 无线接入技术。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+|      名称       |           类型              | 必填 |      说明          |
+| --------------- | --------------------------- | ---- | ------------------ |
+| psRadioTech     | [RadioTechnology](#radiotechnology) | 是   | PS无线接入技术。 |
+| csRadioTech     | [RadioTechnology](#radiotechnology) | 是   | CS无线接入技术。 |
+
 ## RadioTechnology
 
 无线接入技术。
@@ -3453,7 +3507,7 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 | RADIO_TECHNOLOGY_WCDMA    | 3    | 无线接入技术WCDMA（Wideband Code Division Multiple Access）。 |
 | RADIO_TECHNOLOGY_HSPA     | 4    | 无线接入技术HSPA（High Speed Packet Access）。               |
 | RADIO_TECHNOLOGY_HSPAP    | 5    | 无线接入技术HSPAP（High Speed packet access (HSPA+) ）。     |
-| RADIO_TECHNOLOGY_TD_SCDMA | 6    | 无线接入技术TDSCDMA（TimeDivision-Synchronous Code Division Multiple Access）。 |
+| RADIO_TECHNOLOGY_TD_SCDMA | 6    | 无线接入技术TD_SCDMA（TimeDivision-Synchronous Code Division Multiple Access）。 |
 | RADIO_TECHNOLOGY_EVDO     | 7    | 无线接入技术EVDO（Evolution Data Only）。                   |
 | RADIO_TECHNOLOGY_EHRPD    | 8    | 无线接入技术EHRPD（Evolved High Rate Package Data）。        |
 | RADIO_TECHNOLOGY_LTE      | 9    | 无线接入技术LTE（Long Term Evolution）。                     |
@@ -3608,7 +3662,7 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 | isCamped          | boolean                                 |  是  | 获取服务单元的状态。<br>**系统接口：** 此接口为系统接口。          |
 | timeStamp         | number                                  |  是  | 获取单元格信息时获取时间戳。<br>**系统接口：** 此接口为系统接口。    |
 | signalInformation | [SignalInformation](#signalinformation) |  是  | 信号信息。                                                   |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息\|Wcdma小区信息  <br>**系统接口：** 此接口为系统接口。|
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息\|Wcdma小区信息。  <br>**系统接口：** 此接口为系统接口。|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -3660,7 +3714,7 @@ LTE小区信息。
 | bandwidth     | number  |  是  | 带宽。                  |
 | mcc           | string  |  是  | 移动国家码。            |
 | mnc           | string  |  是  | 移动网号。              |
-| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接 |
+| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接。 |
 
 ## NrCellInformation<sup>8+</sup>
 

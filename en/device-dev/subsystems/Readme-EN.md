@@ -72,6 +72,7 @@
   - [Configuration of Pre-installed Applications](subsys-preinstall-app-config-guide.md)
 - Startup
   - [Startup](subsys-boot-overview.md)
+  - [Device Boot](subsys-boot-deviceboot.md)
   - init Module
       - [init Configuration File](subsys-boot-init-cfg.md)
       - [Job Management](subsys-boot-init-jobs.md)
@@ -83,10 +84,10 @@
       - [init Run Log Standardization](subsys-boot-init-log.md)
       - [Seccomp Policy Development](subsys-boot-init-seccomp.md)
       - [DeviceInfo Adaptation](subsys-boot-init-deviceInfo.md)
+      - [ueventd](subsys-boot-init-ueventd.md)
   - [appspawn Module](subsys-boot-appspawn.md)
   - [bootstrap Module](subsys-boot-bootstrap.md)
-  - [FAQs](subsys-boot-faqs.md)
-  - [Reference](subsys-boot-ref.md)
+  - [init Module FAQs](subsys-boot-init-faqs.md)
 - DFX
   - [DFX Overview](subsys-dfx-overview.md)
   - [HiLog Development](subsys-dfx-hilog-rich.md)
@@ -119,8 +120,9 @@
         - [Battery Vibrator Customization](subsys-power-battery-vibrator-customization.md)
         - [Charging Current and Voltage Limit Customization](subsys-power-charge-current-voltage-limit.md)
         - [Charging Type Customization](subsys-power-charge-type-customization.md)
-        - [Power Vibrator Customization](subsys-power-vibrator-customization.md)
         - [Power-off Charging Animation Customization](subsys-power-poweroff-charge-animation.md)
+        - [General Framework for Battery Kernel Node Read/Write](subsys-power-charge-common-framework-guide.md)
+        - [uevent Customization](subsys-power-battery-uevent-customization.md)
     - Power Consumption Statistics
         - [Power Consumption Statistics Customization](subsys-power-stats-power-average-customization.md)
     - Thermal Management
@@ -135,3 +137,5 @@
         - [Power Mode Customization](subsys-power-mode-customization.md)
         - [Default Hibernation Behavior Customization](subsys-power-default-sleep-behavior-customization.md)
         - [Wakeup Source Customization](subsys-power-wakeup-source-customization.md)
+        - [Power Vibrator Customization](subsys-power-vibrator-customization.md)
+        - [Power Wakeup Action Source Customization](subsys-power-wakeup-action-source-customization.md)

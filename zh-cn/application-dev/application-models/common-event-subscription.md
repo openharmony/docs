@@ -22,33 +22,36 @@
 1. 导入模块。
    
    ```ts
-   import commonEventManager from '@ohos.commonEventManager';
    import Base from '@ohos.base';
+   import commonEventManager from '@ohos.commonEventManager';
+   import promptAction from '@ohos.promptAction';
    ```
 
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo)文档介绍。
    
    ```ts
    // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-   let subscriber: commonEventManager.CommonEventSubscriber | null = null;
+   private subscriber: commonEventManager.CommonEventSubscriber | null = null;
    // 订阅者信息
-   let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
-     events: ["usual.event.SCREEN_OFF"], // 订阅灭屏公共事件
-   }
+   private subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+       events: ['usual.event.SCREEN_OFF'], // 订阅灭屏公共事件
+   };
    ```
 
 3. 创建订阅者，保存返回的订阅者对象subscriber，用于执行后续的订阅、退订等操作。
    
    ```ts
    // 创建订阅者回调
-   commonEventManager.createSubscriber(subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
+   commonEventManager.createSubscriber(this.subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
      if (err) {
-       console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+       Logger.error(TAG, `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in creating subscriber.');
-     subscriber = data;
+     Logger.info(TAG, 'Succeeded in creating subscriber.');
+     this.subscriber = data;
+     
      // 订阅公共事件回调
+     ...
    })
    ```
 
@@ -56,14 +59,19 @@
    
    ```ts
    // 订阅公共事件回调
-   if (subscriber !== null) {
-     commonEventManager.subscribe(subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
+   if (this.subscriber !== null) {
+     commonEventManager.subscribe(this.subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
        if (err) {
-         console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+         Logger.error(TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;
        }
+       promptAction.showToast({
+         message: JSON.stringify(data)
+       });
+       Logger.info(TAG, `Receive CommonEventData = ` + JSON.stringify(data));
      })
+    ...
    } else {
-     console.error(`Need create subscriber`);
+     Logger.error(TAG, `Need create subscriber`);
    }
    ```

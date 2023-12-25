@@ -37,6 +37,7 @@ In addition to the [universal text style](ts-universal-attributes-text-style.md)
 | letterSpacing       | number \| string  | Letter spacing. A negative value tightens the spacing; a positive value loosens the spacing, and the letters are spread farther apart with the value.<br>Since API version 9, this API is supported in ArkTS widgets.                               |
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | font<sup>10+</sup> | [Font](ts-types.md#font) | Text style, covering the font size, font width, Font family, and font style.|
+| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.|
 
 
 ## Events
@@ -49,7 +50,7 @@ Among all the universal events, only the [click event](ts-universal-attributes-c
 
 
 ## Example
-
+### Example 1
 ```ts
 // xxx.ets
 @Entry
@@ -125,3 +126,25 @@ struct SpanExample {
 ```
 
 ![Span](figures/span.png)
+
+### Example 2
+``` ts
+@Entry
+@Component
+struct TextSpanExample {
+  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
+      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
+      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  build() {
+    Column({ space: 8 }) {
+      Text() {
+        Span('123456789').fontSize(50).textShadow(this.textShadows)
+      }
+      Text() {
+        Span('123456789') // span can inherit text shadow & font size from outer text
+      }.fontSize(50).textShadow(this.textShadows)
+    }
+  }
+}
+```
+![TextshadowExample](figures/text_span_textshadow.png)

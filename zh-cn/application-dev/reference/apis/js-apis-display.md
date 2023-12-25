@@ -875,7 +875,7 @@ promise.then((data: Array<display.Display>) => {
 | alive | boolean | 是 | 否 | 显示设备是否启用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。                                                                                                      |
 | refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数。                                                                                             |
-| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br>值为0时，表示显示设备屏幕旋转为0°；<br>值为1时，表示显示设备屏幕旋转为90°；<br>值为2时，表示显示设备屏幕旋转为180°；<br>值为3时，表示显示设备屏幕旋转为270°。 |
+| rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。 |
 | width | number | 是 | 否 | 显示设备的宽度，单位为像素，该参数应为整数。                                                                                        |
 | height | number | 是 | 否 | 显示设备的高度，单位为像素，该参数应为整数。                                                                                        |
 | densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。该参数为浮点数，一般取值160.0、480.0等。                                                                   |
@@ -884,6 +884,8 @@ promise.then((data: Array<display.Display>) => {
 | scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。                                                                    |
 | xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
 | yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
+| colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](js-apis-colorSpaceManager.md)> | 是 | 否 | 显示设备支持的所有色域类型。                                                                                                |
+| hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](js-apis-hdrCapability.md)> | 是 | 否 | 显示设备支持的所有HDR格式。                                                                                               |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void

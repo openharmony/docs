@@ -27,14 +27,7 @@ struct ComponentDemo {
     Row() {
       Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
         .select(true)
-        .shape(CheckBoxShape.ROUNDED_SQUARE)
-        .selectedColor(0xed6f21)
-        .size({ width: 50, height: 50 })
-
-      Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
-        .select(false)
-        .shape(CheckBoxShape.ROUNDED_SQUARE)
-        .selectedColor(0x39a2db)
+        .shape(CheckBoxShape.CIRCLE)
         .size({ width: 50, height: 50 })
     }
     .width('100%')
@@ -105,9 +98,9 @@ export class WindowManager {
       }
 
       let winWidth = this.getMainWindowWidth();
-      AppStorage.SetOrCreate<number>('mainWinWidth', winWidth)
+      AppStorage.setOrCreate<number>('mainWinWidth', winWidth)
       let winHeight = this.getMainWindowHeight();
-      AppStorage.SetOrCreate<number>('mainWinHeight', winHeight)
+      AppStorage.setOrCreate<number>('mainWinHeight', winHeight)
       let context:UIAbility = new UIAbility()
       context.context.eventHub.emit("windowSizeChange", winWidth, winHeight)
     })
@@ -121,10 +114,10 @@ export class WindowManager {
   }
 
   private onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
-    if (mediaQueryResult.matches == AppStorage.Get<boolean>('isLandscape')) {
+    if (mediaQueryResult.matches == AppStorage.get<boolean>('isLandscape')) {
       return
     }
-    AppStorage.SetOrCreate<boolean>('isLandscape', mediaQueryResult.matches)
+    AppStorage.setOrCreate<boolean>('isLandscape', mediaQueryResult.matches)
     this.loadDisplayInfo()
   }
 
@@ -140,8 +133,8 @@ export class WindowManager {
 
   private loadDisplayInfo() {
     this.displayInfo = display.getDefaultDisplaySync()
-    AppStorage.SetOrCreate<number>('displayWidth', this.getDisplayWidth())
-    AppStorage.SetOrCreate<number>('displayHeight', this.getDisplayHeight())
+    AppStorage.setOrCreate<number>('displayWidth', this.getDisplayWidth())
+    AppStorage.setOrCreate<number>('displayHeight', this.getDisplayHeight())
   }
 
   /**
@@ -203,26 +196,18 @@ export class TaskData {
 
 export const taskDataArr: Array<TaskData> =
   [
-    new TaskData(0xFA8072, 0, 'music'),
-    new TaskData(0xF4A460, 1, 'mall'),
-    new TaskData(0xFFFACD, 2, 'photos'),
-    new TaskData(0x98FB98, 3, 'setting'),
-    new TaskData(0x7FFFD4, 4, 'call'),
-    new TaskData(0x87CEFA, 5, 'music'),
-    new TaskData(0x7B68EE, 6, 'mall'),
-    new TaskData(0x909399, 7, 'photos'),
-    new TaskData(0x888888, 8, 'setting'),
-    new TaskData(0xFFC0CB, 9, 'call'),
-    new TaskData(0xFFC0CB, 10, 'music'),
-    new TaskData(0x888888, 11, 'mall'),
-    new TaskData(0x909399, 12, 'photos'),
-    new TaskData(0x7B68EE, 13, 'setting'),
-    new TaskData(0x87CEFA, 14, 'call'),
-    new TaskData(0x7FFFD4, 15, 'music'),
-    new TaskData(0x98FB98, 16, 'mall'),
-    new TaskData(0xFFFACD, 17, 'photos'),
-    new TaskData(0xF4A460, 18, 'setting'),
-    new TaskData(0xFA8072, 19, 'call'),
+    new TaskData('#317AF7', 0, 'music'),
+    new TaskData('#D94838', 1, 'mall'),
+    new TaskData('#DB6B42 ', 2, 'photos'),
+    new TaskData('#5BA854', 3, 'setting'),
+    new TaskData('#317AF7', 4, 'call'),
+    new TaskData('#D94838', 5, 'music'),
+    new TaskData('#DB6B42', 6, 'mall'),
+    new TaskData('#5BA854', 7, 'photos'),
+    new TaskData('#D94838', 8, 'setting'),
+    new TaskData('#DB6B42', 9, 'call'),
+    new TaskData('#5BA854', 10, 'music')
+
   ];
 
 @Entry

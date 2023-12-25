@@ -10,7 +10,7 @@ HiAppEvent is a module that provides the event logging function for applications
 
 - **Logging**
 
-  Logs changes caused by user operations to provide service data for development, product, and O&M analysis.
+  Logs the changes caused by user operations to facilitate development, product, and O&M analysis.
 
 ## Event Design Specifications
 
@@ -145,4 +145,5 @@ The following example illustrates how to log and subscribe to button click event
 > HiAppEvent eventPkg.row=1
 > HiAppEvent eventPkg.size=124
 > HiAppEvent eventPkg.info={"domain\_":"button","name\_":"click","type\_":4,"time\_":1670268234523,"tz\_":"+0800","pid\_":3295,"tid\_":3309,"click_time":100}
+
 

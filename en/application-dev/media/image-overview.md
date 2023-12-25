@@ -36,5 +36,3 @@ The figure below illustrates the image development process.
 5. [Image encoding](image-encoding.md): Use the **ImagePacker** class to compress and encode the pixel map or image source to generate a new image.
 
 In addition to the preceding basic image development capabilities, OpenHarmony provides the [image tool](image-tool.md) to ease your development.
-
- <!--no_check--> 

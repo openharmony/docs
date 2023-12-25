@@ -37,8 +37,8 @@ The **image_pixel_map_mdk.h** file declares the APIs that can lock, access, and 
 
 | Name| Description| 
 | -------- | -------- |
-| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md) = 0,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md) = 1,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md) = 2,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL](image.md) = 3 } | Enumerates the pixel map alpha types.| 
-| { [OHOS_PIXEL_MAP_READ_ONLY](image.md) = 0,<br>[OHOS_PIXEL_MAP_EDITABLE](image.md) = 1 } | Enumerates the pixel map editing types.| 
+| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md#anonymous-enum-23) = 0,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md#anonymous-enum-23) = 1,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md#anonymous-enum-23) = 2,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL](image.md#anonymous-enum-23) = 3 } | Enumerates the pixel map alpha types.| 
+| { [OHOS_PIXEL_MAP_READ_ONLY](image.md#anonymous-enum-23-1) = 0,<br>[OHOS_PIXEL_MAP_EDITABLE](image.md#anonymous-enum-23-1) = 1 } | Enumerates the pixel map editing types.| 
 
 
 ### Functions
@@ -63,3 +63,4 @@ The **image_pixel_map_mdk.h** file declares the APIs that can lock, access, and 
 | [OH_PixelMap_GetImageInfo](image.md#oh_pixelmap_getimageinfo) (const [NativePixelMap](image.md#nativepixelmap) \*native, [OhosPixelMapInfos](_ohos_pixel_map_infos.md) \*info) | Obtains the image information of a **NativePixelMap** object.| 
 | [OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native, void \*\*addr) | Obtains the memory address of a **NativePixelMap** object and locks the memory.| 
 | [OH_PixelMap_UnAccessPixels](image.md#oh_pixelmap_unaccesspixels) (const [NativePixelMap](image.md#nativepixelmap) \*native) | Unlocks the memory of a **NativePixelMap** object. This function is used with [OH_PixelMap_AccessPixels](image.md#oh_pixelmap_accesspixels) in pairs.| 
+<!--no_check-->
