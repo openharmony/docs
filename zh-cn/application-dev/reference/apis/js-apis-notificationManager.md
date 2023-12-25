@@ -4837,13 +4837,13 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 import Base from '@ohos.base';
 
 // 包信息
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 // 通知ID
 let notificationId = 1;
 // 按钮信息
-let buttonOptions = {
+let buttonOptions: notificationManager.ButtonOptions = {
     buttonName: "buttonName1",
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
