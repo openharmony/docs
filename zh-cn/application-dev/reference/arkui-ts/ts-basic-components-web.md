@@ -786,6 +786,36 @@ cacheMode(cacheMode: CacheMode)
   }
   ```
 
+### copyOptions<sup>11+</sup>
+
+copyOptions(value: CopyOptions)
+
+设置剪贴板复制范围选项。
+
+**参数：**
+
+| 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
+| --------- | --------------------------- | ---- | ----------------- | --------- |
+| value | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
+
+**示例：**
+
+  ```ts
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .copyOptions(CopyOptions.None)
+    }
+  }
+}
+  ```
+
 ### textZoomAtio<sup>(deprecated)</sup>
 
 textZoomAtio(textZoomAtio: number)
