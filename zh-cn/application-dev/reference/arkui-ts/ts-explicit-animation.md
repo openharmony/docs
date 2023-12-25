@@ -97,7 +97,7 @@ struct AnimateToExample {
             playMode: PlayMode.Alternate,
             onFinish: () => {
               console.info('play end')
-            }
+            },
             expectedFrameRateRange: {
               min: 10,
               max: 120,
