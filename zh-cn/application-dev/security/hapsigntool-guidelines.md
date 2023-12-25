@@ -406,3 +406,17 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
    - **解决办法**
 
      最终实体证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA。
+
+4. 签名hap包失败，提示证书CN字段为空。
+
+   - **现象描述**
+
+     执行命令后提示：`error: Common name of certificate is empty! `。
+
+   - **可能原因**
+
+     当前使用的hap包签名证书，不包含CN字段，导致签名失败。
+
+   - **解决办法**
+
+     根据业界证书规范，hap包签名证书的CN字段必须不为空，请重新生成格式正确的证书。
