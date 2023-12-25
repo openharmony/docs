@@ -10,13 +10,21 @@
 >
 >  - 存在默认交互逻辑的组件例如Button、TextInput等，默认即为可获焦，Text、Image等组件则默认状态为不可获焦，不可获焦状态下，无法触发焦点事件，需要设置focusable属性为true才可触发。
 
+## onFocus
 
-## 事件
+onFocus(event: () => void)
 
-| **名称**                                   | **支持冒泡** | **功能描述**        |
-| ---------------------------------------- | -------- | --------------- |
-| onFocus(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否   | 当前组件获取焦点时触发的回调。 |
-| onBlur(event:()&nbsp;=&gt;&nbsp;void)    | 否        | 当前组件失去焦点时触发的回调。 |
+当前组件获取焦点时触发的回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## onBlur
+
+onBlur(event:()&nbsp;=&gt;&nbsp;void)
+
+当前组件失去焦点时触发的回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ## 示例
