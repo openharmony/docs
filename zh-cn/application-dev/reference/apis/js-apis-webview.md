@@ -5023,6 +5023,57 @@ struct WebComponent {
   }
 }
 ```
+### isIncognitoMode<sup>11+</sup>
+
+isIncognitoMode(): boolean
+
+查询当前是否是隐私模式的Webview。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型                 | 说明                      |
+| -------------------- | ------------------------- |
+| boolean              | 返回是否是隐私模式的Webview。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                                    |
+| -------- | -------------------------------------------------------------------------- |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('isIncognitoMode')
+        .onClick(() => {
+          try {
+             let result = this.controller.isIncognitoMode();
+             console.log('isIncognitoMode' + result);
+            } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
 
 ### getSecurityLevel<sup>11+</sup>
 
