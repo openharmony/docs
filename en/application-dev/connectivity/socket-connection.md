@@ -25,12 +25,12 @@ For the complete list of APIs and example code, see [Socket Connection](../refer
 
 Socket connection functions are mainly implemented by the **socket** module. The following table describes the related APIs.
 
-| API                            | Description                                                                      |
+| API                            | Description                                                                         |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
 | constructUDPSocketInstance()       | Creates a **UDPSocket** object.                                                     |
 | constructTCPSocketInstance()       | Creates a **TCPSocket** object.                                                     |
 | constructTCPSocketServerInstance() | Creates a **TCPSocketServer** object.                                               |
-| listen()                           | Listens for and accepts TCP socket connections established over the socket. (This API is applicable only to TCP.)|
+| listen()                           | Listens for and accepts TCP socket connections established over the socket. (This API is applicable only to TCP.)   |
 | bind()                             | Binds the IP address and port number.                                                          |
 | send()                             | Sends data.                                                                    |
 | close()                            | Closes a socket connection.                                                                    |
@@ -412,3 +412,4 @@ tlsTwoWay.close((err: BusinessError) => {
   tlsTwoWay.off('close');
 });
 ```
+

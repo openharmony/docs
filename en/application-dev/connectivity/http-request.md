@@ -14,7 +14,7 @@ For details about how to apply for permissions, see [Access Control Development]
 
 The following table provides only a simple description of the related APIs. For details, see [API Reference](../reference/apis/js-apis-http.md).
 
-| API                                   | Description                           |
+| API                                   | Description                               |
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | Creates an HTTP request.                 |
 | request()                                 | Initiates an HTTP request to a given URL.    |
