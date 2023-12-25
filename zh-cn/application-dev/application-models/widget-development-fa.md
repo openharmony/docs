@@ -62,11 +62,12 @@ FormAbility生命周期接口如下：
 | onCreate(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData | 卡片提供方接收创建卡片的通知接口。 |
 | onCastToNormal(formId:&nbsp;string):&nbsp;void | 卡片提供方接收临时卡片转常态卡片的通知接口 |
 | onUpdate(formId:&nbsp;string):&nbsp;void | 卡片提供方接收更新卡片的通知接口。 |
-| onVisibilityChange(newStatus:&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;number&nbsp;}):&nbsp;void | 卡片提供方接收修改可见性的通知接口。 |
+| onVisibilityChange(newStatus:&nbsp;Record&lt;string,&nbsp;number&gt;):&nbsp;void | 卡片提供方接收修改可见性的通知接口。 |
 | onEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void | 卡片提供方接收处理卡片事件的通知接口。 |
 | onDestroy(formId:&nbsp;string):&nbsp;void | 卡片提供方接收销毁卡片的通知接口。 |
 | onAcquireFormState?(want:&nbsp;Want):&nbsp;formInfo.FormState | 卡片提供方接收查询卡片状态的通知接口。 |
 | onShare?(formId:&nbsp;string):&nbsp;{[key:&nbsp;string]:&nbsp;any} | 卡片提供方接收卡片分享的通知接口。 |
+| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt; | 卡片提供方接收卡片分享的通知接口。推荐使用该接口替代onShare接口。如果了实现该接口，onShare将不再被回调。 |
 
 FormProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
 
@@ -140,7 +141,7 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
     onDestroy: (formId: string) => void = (formId) => {
     };
     onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0);
-    onShare?: (formId: string) => Record<string, number | string | boolean | object | undefined | null> = (formId) => {
+    onShareForm?: (formId: string) => Record<string, Object> = (formId) => {
       let obj: Record<string, number> = {
         test: 1
       };

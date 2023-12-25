@@ -1546,7 +1546,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 ### setMockList<sup>11+</sup>
 
-setMockList(mockList: { [key: string]: string }): void
+setMockList(mockList: Record\<string, string>): void
 
 设置模块的mock替换关系。
 
@@ -1556,7 +1556,7 @@ setMockList(mockList: { [key: string]: string }): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                         |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| mockList | { [key: string]: string } | 是   | 模块mock替换关系的键值对象，其中key为待替换的目标路径，value为用于替换的mock实现文件的路径。 |
+| mockList | Record\<string, string> | 是   | 模块mock替换关系的键值对象，其中key为待替换的目标路径，value为用于替换的mock实现文件的路径。 |
 
 **错误码：**
 
