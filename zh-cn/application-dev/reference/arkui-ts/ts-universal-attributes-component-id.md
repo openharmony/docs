@@ -236,6 +236,8 @@ struct IdExample {
             windowY: rect.left + (rect.right - rect.left) / 2, // 相对于应用窗口左上角的垂直方向坐标
             displayX: rect.left + (rect.right - rect.left) / 2, // 相对于设备屏幕左上角的水平方向坐标
             displayY: rect.left + (rect.right - rect.left) / 2, // 相对于设备屏幕左上角的垂直方向坐标
+            stopPropagation: () => {
+            },
             timestamp: 1,
             target: {
               area: {
@@ -276,6 +278,8 @@ struct IdExample {
             deviceId: 0,
             metaKey: 0,
             timestamp: 0,
+            stopPropagation: () => {
+            },
             intentionCode: IntentionCode.INTENTION_DOWN
           }
           sendKeyEvent(keyEvent) // 发送按键事件

@@ -191,6 +191,7 @@ struct SliderExample {
         Column() {
           Text('vertical outset slider').fontSize(9).fontColor(0xCCCCCC).width('50%').margin(15)
           Row() {
+            Text().width('10%')
             Slider({
               value: this.vOutSetValueOne,
               style: SliderStyle.OutSet,
@@ -295,7 +296,7 @@ struct SliderExample {
       Divider()
       Text('tips').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
       Slider({ style: SliderStyle.InSet, value: this.tipsValue })
-        .showTips(true, 'value:' + this.tipsValue.toFixed())
+        .showTips(true, this.tipsValue.toFixed())
         .onChange(value => {
           this.tipsValue = value
         })

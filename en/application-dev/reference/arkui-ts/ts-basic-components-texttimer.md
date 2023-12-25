@@ -27,6 +27,7 @@ TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTi
 | Name       | Type      | Description                            |
 | -------- | ---------------------- | ---------------------- |
 | format   | string   | Custom format. The value must contain at least one of the following keywords: **HH**, **mm**, **ss**, and **SS**. If the specified date format is yy, MM, or dd, the default value is used instead.<br>Default value: **'HH:mm:ss.SS'**|
+| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.|
 
 ## Events
 
@@ -64,7 +65,7 @@ reset()
 Resets the timer.
 
 ## Example
-
+### Example 1
 ```ts
 // xxx.ets
 @Entry
@@ -100,3 +101,20 @@ struct TextTimerExample {
 
 
 ![en-us_image_0000001257138345](figures/en-us_image_0000001257138345.gif)
+
+### Example 2
+``` ts
+@Entry
+@Component
+struct TextTimerExample {
+  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
+      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
+      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  build() {
+    Column({ space: 8 }) {
+      TextTimer().fontSize(50).textShadow(this.textShadows)
+    }
+  }
+}
+```
+![TextshadowExample](figures/text_timer_textshadow.png)

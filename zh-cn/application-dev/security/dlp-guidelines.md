@@ -135,9 +135,14 @@
 6. 判断当前打开文件是否是dlp文件。
 
    ```ts
+   import dlpPermission from '@ohos.dlpPermission';
+   import fs from '@ohos.file.fs';
+   import { BusinessError } from '@ohos.base';
+   
+   let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
    let file = fs.openSync(uri);
    try {
-     let res = await dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
+     let res = dlpPermission.isDLPFile(file.fd); // 是否加密DLP文件
      console.info('res', res);
    } catch (err) {
      console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -189,12 +194,12 @@
 9. 获取DLP文件保留沙箱记录。
     ```ts
     async getRetentionSandboxList() {
-     try {
-       let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
-       console.info('res', JSON.stringify(res))
-     } catch (err) {
-       console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
-     }
+      try {
+        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
+        console.info('res', JSON.stringify(res))
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
     }
     ```
 

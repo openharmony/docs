@@ -160,8 +160,8 @@ struct SpringMotionDemo {
                 // When the user places or moves their finger on the screen, use the responsiveSpringMotion curve.
                 animateTo({ curve: curves.responsiveSpringMotion() }, () => {
                   // Subtract the radius so that the center of the ball moves to where the finger is placed.
-                  this.positionX = event.touches[0].screenX - this.diameter / 2;
-                  this.positionY = event.touches[0].screenY - this.diameter / 2;
+                  this.positionX = event.touches[0].windowX - this.diameter / 2;
+                  this.positionY = event.touches[0].windowY - this.diameter / 2;
                   console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
                 })
               } else if (event.type === TouchType.Up) {

@@ -152,7 +152,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -191,7 +191,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -236,7 +236,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -274,7 +274,7 @@ getLocalDeviceNetworkId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -313,7 +313,7 @@ getLocalDeviceName(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -352,7 +352,7 @@ getLocalDeviceType(): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -391,7 +391,7 @@ getLocalDeviceId(): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -436,7 +436,7 @@ getDeviceName(networkId: string): string;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -483,7 +483,7 @@ getDeviceType(networkId: string): number;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -526,7 +526,7 @@ startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOption
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -577,7 +577,7 @@ stopDiscovering(): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -618,7 +618,7 @@ bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , call
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -676,7 +676,7 @@ unbindTarget(deviceId: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -710,7 +710,7 @@ replyUiAction(action: number, actionResult: string): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -752,7 +752,7 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -798,7 +798,7 @@ off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -829,7 +829,7 @@ on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange,
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -873,7 +873,7 @@ off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChang
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -917,7 +917,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ device: DeviceBasicInfo }&gt
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedDeviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1002,7 +1002,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1012,7 +1012,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
 
   try {
     dmInstance.on('deviceNameChange', (data: Data) => {
-        console.info("deviceNameChange on:" + JSON.stringify(data));
+      console.info("deviceNameChange on:" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -1039,7 +1039,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1076,7 +1076,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1086,7 +1086,7 @@ on(type: 'discoverFailure', callback: Callback&lt;{ reason: number }&gt;): void;
 
   try {
     dmInstance.on('discoverFailure', (data: Data) => {
-        console.info("discoverFailure on:" + JSON.stringify(data));
+      console.info("discoverFailure on:" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -1113,7 +1113,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1150,7 +1150,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1183,7 +1183,7 @@ off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 **示例：**
 
-示例中`dmInstance`的初始化请参见[DM初始化](##deviceManager.createDeviceManager)
+示例中`dmInstance`的初始化请参见[DM初始化](#devicemanagercreatedevicemanager)
   ```ts
   import { BusinessError } from '@ohos.base';
 

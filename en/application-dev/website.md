@@ -200,7 +200,7 @@
           - [Starting a DataAbility](application-models/start-dataability.md)
           - [Accessing a DataAbility](application-models/access-dataability.md)
           - [DataAbility Permission Control](application-models/dataability-permission-control.md)
-        - [Widget Development](application-models/widget-development-fa.md)
+        - [Service Widget Development in FA Model](application-models/widget-development-fa.md)
         - [Context](application-models/application-context-fa.md)
         - [Want](application-models/want-fa.md)
         - [Component Startup Rules (FA Model)](application-models/component-startup-rules-fa.md)

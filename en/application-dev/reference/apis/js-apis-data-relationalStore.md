@@ -2,7 +2,7 @@
 
 The relational database (RDB) store manages data based on relational models. It provides a complete mechanism for managing local databases based on the underlying SQLite. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
 
-ArkTS supports the following basic data types: number, string, binary data, and boolean. 
+ArkTS supports the following basic data types: number, string, binary data, and Boolean. 
 
 To ensure successful read and write of data, the data size cannot exceed 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
@@ -508,11 +508,11 @@ Defines the RDB store configuration.
 | dataGroupId<sup>10+</sup> | string | No| Application group ID, which needs to be obtained from AppGallery.<br>**Model restriction**: This attribute can be used only in the stage model.<br>This parameter is supported since API version 10. The **RdbStore** instance is created in the sandbox directory corresponding to the specified **dataGroupId**. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | customDir<sup>11+</sup> | string | No| Customized path of the RDB store.<br>**Constraints**: The value cannot exceed 128 bytes.<br>This parameter is supported since API version 11. The RDB store directory is in the **context.databaseDir**/**rdb**/**customDir** format. **context.databaseDir** specifies the application sandbox path. **rdb** is a fixed field that indicates an RDB store. **customDir** specifies the customized path. If this parameter is not specified, the **RdbStore** instance is created in the sandbox directory of the application.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
 | isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| autoCleanDirtyData<sup>11+<sup> | boolean | No| Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| autoCleanDirtyData<sup>11+<sup> | boolean | No| Whether to automatically clear the dirty data (data that has been deleted from the cloud) from the local device. The value **true** means to clear the dirty data automatically. The value **false** means to clear the data manually. The default value is **true**.<br>This parameter applies to the RDB stores with device-cloud synergy. To manually clear the dirty data, use [cleanDirtyData<sup>11+</sup>](#cleandirtydata11).<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## SecurityLevel
 
-Enumerates the RDB store security levels.
+Enumerates the RDB store security levels. Use the enum name rather than the enum value.
 
 > **NOTE**
 >
@@ -535,12 +535,12 @@ Enumerates the asset statuses. Use the enum name rather than the enum value.
 
 | Name                             | Value  | Description            |
 | ------------------------------- | --- | -------------- |
-| ASSET_NORMAL     | -   | The asset is in normal status.     |
-| ASSET_INSERT | - | The asset is to be inserted to the cloud.|
-| ASSET_UPDATE | - | The asset is to be updated to the cloud.|
-| ASSET_DELETE | - | The asset is to be deleted from the cloud.|
-| ASSET_ABNORMAL    | -   | The asset is in abnormal status.     |
-| ASSET_DOWNLOADING | -   | The asset is being downloaded to a local device.|
+| ASSET_NORMAL     | 1  | The asset is in normal status.     |
+| ASSET_INSERT | 2 | The asset is to be inserted to the cloud.|
+| ASSET_UPDATE | 3 | The asset is to be updated to the cloud.|
+| ASSET_DELETE | 4 | The asset is to be deleted from the cloud.|
+| ASSET_ABNORMAL    | 5   | The asset is in abnormal status.     |
+| ASSET_DOWNLOADING | 6   | The asset is being downloaded to a local device.|
 
 ## Asset<sup>10+</sup>
 
@@ -570,7 +570,7 @@ Defines an array of the [Asset](#asset10) type.
 
 ## ValueType
 
-Defines the data types allowed.
+Enumerates the types of the value in a KV pair. The type varies with the parameter function.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -628,31 +628,31 @@ Represents the data type of the primary key and modification time of a database 
 
 ## SyncMode
 
-Enumerates the database synchronization modes.
+Enumerates the database synchronization modes. Use the enum name rather than the enum value.
 
 | Name          | Value  | Description                              |
 | -------------- | ---- | ---------------------------------- |
-| SYNC_MODE_PUSH                       | 0   | Push data from a local device to a remote device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core                    |
-| SYNC_MODE_PULL                       | 1   | Pull data from a remote device to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core                     |
-| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | Synchronize with the data with the latest modification time. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | Synchronize data from a local device to the cloud. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
-| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | Synchronize data from the cloud to a local device. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client            |
+| SYNC_MODE_PUSH                       | 0   | Push data from a local device to a remote device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| SYNC_MODE_PULL                       | 1   | Pull data from a remote device to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | 4   | Synchronize with the data with the latest modification time.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | 5   | Synchronize data from a local device to the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | 6   | Synchronize data from the cloud to a local device.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## Origin<sup>11+</sup>
 
-Enumerates the data sources.
+Enumerates the data sources. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
 | Name          | Value  | Description                              |
 | -------------- | ---- | ---------------------------------- |
-| LOCAL       | -   | Local data. Use the enum name rather than the enum value.     |
-| CLOUD       | -   | Cloud data. Use the enum name rather than the enum value.    |
-| REMOTE      | -   | Remote device data. Use the enum name rather than the enum value.|
+| LOCAL       | 0   | Local data.     |
+| CLOUD       | 1   | Cloud data.    |
+| REMOTE      | 2   | Remote device data.|
 
 ## Field<sup>11+</sup>
 
-Enumerates the special fields used in predicates.
+Enumerates the special fields used in predicates. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -660,19 +660,22 @@ Enumerates the special fields used in predicates.
 | -------------- | ---- | ---------------------------------- |
 | CURSOR_FIELD        | '#_cursor'     | Field name to be searched based on the cursor.|
 | ORIGIN_FIELD        | '#_origin'     | Data source to be searched based on the cursor.   |
-| DELETED_FLAG_FIELD  | '#_deleted_flag' | Field in the result set used to indicate whether the dirty data (data deleted from the cloud) is cleared from the local device.<br>The value **true** means the dirty data is cleared; the value **false** means the opposite.|
+| DELETED_FLAG_FIELD  | '#_deleted_flag' | Whether the dirty data (data deleted from the cloud) is cleared from the local device. It fills in the result set returned on the search based on the cursor. <br>The value **true** means the dirty data is cleared; the value **false** means the opposite.|
+| OWNER_FIELD  | '#_cloud_owner' | Party who shares the data. It fills in the result set returned when the owner of the shared data is searched.|
+| PRIVILEGE_FIELD  | '#_cloud_privilege' | Operation permission on the shared data. It fills in the result set returned when the permission on the shared data is searched.|
+| SHARING_RESOURCE_FIELD   | '#_sharing_resource_field' | Resource shared. It fills in the result set returned when the shared resource is searched.|
 
 ## SubscribeType
 
-Enumerates the subscription types.
+Enumerates the subscription types. Use the enum name rather than the enum value.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
 | Name                 | Value  | Description              |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -  | Subscribe to cloud data changes. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
-| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | -  | Subscribe to cloud data change details. Use the enum name rather than the enum value.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1  | Subscribe to cloud data changes.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | 2  | Subscribe to cloud data change details.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
 
 ## ChangeType<sup>10+</sup>
 
@@ -684,8 +687,8 @@ Enumerates data change types. Use the enum name rather than the enum value.
 
 | Name                        | Value  | Description                        |
 | -------------------------- | --- | -------------------------- |
-| DATA_CHANGE  | -   | Data change.  |
-| ASSET_CHANGE | -   | Asset change.|
+| DATA_CHANGE  | 0   | Data change.  |
+| ASSET_CHANGE | 1   | Asset change.|
 
 ## ChangeInfo<sup>10+</sup>
 
@@ -709,8 +712,22 @@ Enumerates the distributed table types. Use the enum name rather than the enum v
 
 | Name               | Value  | Description                                                                                                |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | -  | Distributed database table synchronized between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
-| DISTRIBUTED_CLOUD  | -   | Distributed database table synchronized between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+| DISTRIBUTED_DEVICE | 0  | Distributed database table synchronized between devices.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core              |
+| DISTRIBUTED_CLOUD  | 1   | Distributed database table synchronized between the device and the cloud.<br>**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client|
+
+## Reference<sup>11+</sup>
+
+Represents the reference between tables by field. If table **b** references table **a**, table **a** is the source table and **b** is the target table.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**System API**: This is a system API.
+
+| Name      | Type  | Mandatory| Description                                    |
+| ---------- | ------ | ---- | ---------------------------------------- |
+| sourceTable | string | Yes  | Source table.  |
+| targetTable | string | Yes  | Target table.  |
+| refFields   | {[src: string]: string} | Yes  | Fields referenced. In a KV pair, the key indicates the field in the source table, and the value indicates the field in the target table.      |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -720,11 +737,12 @@ Defines the configuration of the distributed mode of tables.
 
 | Name    | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| autoSync | boolean | Yes  | The value **true** means both automatic synchronization and manual synchronization are supported for the table.<br/>The value **false** means only manual synchronization is supported for the table. |
+| autoSync   | boolean | Yes  | The value **true** means both automatic synchronization and manual synchronization are supported for the table. The value **false** means only manual synchronization is supported for the table.|
+| references<sup>11+</sup> | Array&lt;[Reference](#reference11)&gt; | No  | References between tables. You can reference multiple fields, and their values must be the same in the source and target tables. By default, database tables are not referenced with each other.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.|
 
 ## ConflictResolution<sup>10+</sup>
 
-Defines the resolution to use when **insert()** and **update()** conflict.
+Defines the resolution to use when **insert()** and **update()** conflict. Use the enum name rather than the enum value.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -745,9 +763,9 @@ Enumerates the device-cloud synchronization processes. Use the enum name rather 
 
 | Name            | Value  | Description                    |
 | ---------------- | ---- | ------------------------ |
-| SYNC_BEGIN       | -    | The device-cloud synchronization starts.  |
-| SYNC_IN_PROGRESS | -    | The device-cloud synchronization is in progress.|
-| SYNC_FINISH      | -    | The device-cloud synchronization is complete.|
+| SYNC_BEGIN       | 0    | The device-cloud synchronization starts.  |
+| SYNC_IN_PROGRESS | 1    | The device-cloud synchronization is in progress.|
+| SYNC_FINISH      | 2    | The device-cloud synchronization is complete.|
 
 ## Statistic<sup>10+</sup>
 
@@ -781,13 +799,13 @@ Enumerates the device-cloud synchronization states. Use the enum name rather tha
 
 | Name                 | Value  | Description                                                        |
 | --------------------- | ---- | ------------------------------------------------------------ |
-| SUCCESS               | -    | The device-cloud synchronization is successful.                                      |
-| UNKNOWN_ERROR         | -    | An unknown error occurs during device-cloud synchronization.                              |
-| NETWORK_ERROR         | -    | A network error occurs during device-cloud synchronization.                              |
-| CLOUD_DISABLED        | -    | The cloud is unavailable.                                            |
-| LOCKED_BY_OTHERS      | -    | The device-cloud synchronization of another device is being performed.<br>Start device-cloud synchronization after checking that cloud resources are not occupied by other devices.|
-| RECORD_LIMIT_EXCEEDED | -    | The number of records or size of the data to be synchronized exceeds the maximum. The maximum value is configured on the cloud.|
-| NO_SPACE_FOR_ASSET    | -    | The remaining cloud space is less than the size of the data to be synchronized.                    |
+| SUCCESS               | 0    | The device-cloud synchronization is successful.                                      |
+| UNKNOWN_ERROR         | 1    | An unknown error occurs during device-cloud synchronization.                              |
+| NETWORK_ERROR         | 2    | A network error occurs during device-cloud synchronization.                              |
+| CLOUD_DISABLED        | 3    | The cloud is unavailable.                                            |
+| LOCKED_BY_OTHERS      | 4    | The device-cloud synchronization of another device is being performed.<br>Start device-cloud synchronization after checking that cloud resources are not occupied by other devices.|
+| RECORD_LIMIT_EXCEEDED | 5    | The number of records or size of the data to be synchronized exceeds the maximum. The maximum value is configured on the cloud.|
+| NO_SPACE_FOR_ASSET    | 6    | The remaining cloud space is less than the size of the data to be synchronized.                    |
 
 ## ProgressDetails<sup>10+</sup>
 
@@ -929,8 +947,9 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of Lisa in the EMPLOYEE table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi");
+predicates.equalTo("NAME", "Lisa");
 ```
 
 
@@ -959,8 +978,9 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name is not Lisa in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.notEqualTo("NAME", "lisi");
+predicates.notEqualTo("NAME", "Lisa");
 ```
 
 
@@ -983,7 +1003,7 @@ Adds a left parenthesis to the **RdbPredicates**.
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -1009,7 +1029,7 @@ Adds a right parenthesis to the **RdbPredicates**.
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.equalTo("NAME", "lisi")
+predicates.equalTo("NAME", "Lisa")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
@@ -1034,6 +1054,7 @@ Adds the OR condition to the **RdbPredicates**.
 **Example**
 
 ```ts
+// Locate the employees named Lisa or Rose in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .or()
@@ -1057,6 +1078,7 @@ Adds the AND condition to the **RdbPredicates**.
 **Example**
 
 ```ts
+// Locate the field with name of Lisa and salary of 200.5 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa")
     .and()
@@ -1087,6 +1109,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name contains os, for example, Rose, in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.contains("NAME", "os");
 ```
@@ -1115,8 +1138,9 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name begins with Li, for example, Lisa, in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.beginsWith("NAME", "os");
+predicates.beginsWith("NAME", "Li");
 ```
 
 ### endsWith
@@ -1143,6 +1167,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name ends with se, for example, Rose, in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.endsWith("NAME", "se");
 ```
@@ -1225,6 +1250,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees whose name is similar to os in the table, for example, Rose.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.like("NAME", "%os%");
 ```
@@ -1233,7 +1259,7 @@ predicates.like("NAME", "%os%");
 
 glob(field: string, value: string): RdbPredicates
 
-Sets an **RdbPredicates** object to match the specified string.
+Sets an **RdbPredicates** object to locate the fields in the specified column that match the given string.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1253,6 +1279,7 @@ Sets an **RdbPredicates** object to match the specified string.
 **Example**
 
 ```ts
+// Locate data of the employees whose name matches the "?h*g" string in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.glob("NAME", "?h*g");
 ```
@@ -1261,7 +1288,7 @@ predicates.glob("NAME", "?h*g");
 
 between(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are within the given range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are within the given range (including the min. and max. values).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1270,8 +1297,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicates**.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicates**.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
 
 **Return value**
 
@@ -1282,6 +1309,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees with age between 10 and 50 (including 10 and 50) in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.between("AGE", 10, 50);
 ```
@@ -1290,7 +1318,7 @@ predicates.between("AGE", 10, 50);
 
 notBetween(field: string, low: ValueType, high: ValueType): RdbPredicates
 
-Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range.
+Sets an **RdbPredicates** object to match the fields in the specified column that are out of the given range (excluding the min. and max. values).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -1299,8 +1327,8 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 | Name| Type                   | Mandatory| Description                      |
 | ------ | ----------------------- | ---- | -------------------------- |
 | field  | string                  | Yes  | Column name in the database table.        |
-| low    | [ValueType](#valuetype) | Yes  | Minimum value to match the **RdbPredicates**.  |
-| high   | [ValueType](#valuetype) | Yes  | Maximum value to match the **RdbPredicates**.|
+| low    | [ValueType](#valuetype) | Yes  | Minimum value to match.  |
+| high   | [ValueType](#valuetype) | Yes  | Maximum value to match.|
 
 **Return value**
 
@@ -1311,6 +1339,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are younger than 10 or older than 50 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notBetween("AGE", 10, 50);
 ```
@@ -1339,6 +1368,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are older than 18 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThan("AGE", 18);
 ```
@@ -1367,6 +1397,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are younger than 20 in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThan("AGE", 20);
 ```
@@ -1395,6 +1426,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are 18 or older in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.greaterThanOrEqualTo("AGE", 18);
 ```
@@ -1423,6 +1455,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees who are 20 or younger in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.lessThanOrEqualTo("AGE", 20);
 ```
@@ -1635,6 +1668,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of the employees with age of [18, 20] in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("AGE", [18, 20]);
 ```
@@ -1663,6 +1697,7 @@ Sets an **RdbPredicates** object to match the fields in the specified column tha
 **Example**
 
 ```ts
+// Locate data of all the employees except Lisa and Rose in the table.
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
@@ -3498,7 +3533,7 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
@@ -3543,7 +3578,7 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
@@ -3588,7 +3623,7 @@ let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
 let key4 = "blobType";
-let value1 = "Lisi";
+let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
@@ -4914,7 +4949,6 @@ Clears the dirty data with the cursor smaller than the specified cursor from the
 | cursor    | number           | No  | Cursor of the data, which is an integer. All the dirty data with the cursor smaller than the specified value will be cleared. If this parameter is not specified, all dirty data in the current table will be cleared. |
 
 **Return value**
-
 | Name   | Description                                              |
 | -------- | ------------------------------------------------- |
 | Promise<void> | Promise that returns no value.       |
@@ -4939,6 +4973,160 @@ if(store != undefined) {
         console.error(`clean dirty data failed, code is ${err.code},message is ${err.message}`);
     })
 }
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, columns?: Array&lt;string&gt;): Promise&lt;ResultSet&gt;
+
+Queries the shared resource of the data matching the specified predicates. This API uses a promise to return the result set, which includes the shared resource ID and the column names if the column names are specified.
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                              |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions.   |
+| columns    | Array&lt;string&gt;      | No  | Columns to be searched for. If this parameter is not specified, the returned result set contains only the shared resource ID.|
+
+**Return value**
+
+| Name   | Description                                              |
+| -------- | ------------------------------------------------- |
+| Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result set.  |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**Example**
+
+```ts
+import { BusinessError } from "@ohos.base";
+
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data']).then((resultSet) => {
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  }).catch((err: BusinessError) => {
+    console.error(`query sharing resource failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, callback: AsyncCallback&lt;ResultSet&gt;): void
+
+Queries the shared resource of the data matching the specified predicates. This API uses an asynchronous callback to return the result set.
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                              |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates)              | Yes  | Query conditions.          |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result set.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**Example**
+
+```ts
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates,(err, resultSet) => {
+    if (err) {
+      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  })
+}
+
+```
+
+### querySharingResource<sup>11+</sup>
+
+querySharingResource(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;): void
+
+Queries the shared resource of the data matching the specified predicates. This API uses an asynchronous callback to return the shared resource ID and the column names specified.
+
+**System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                 | Mandatory| Description                                              |
+| -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
+| predicates | [RdbPredicates](#rdbpredicates) | Yes  | **RdbPredicates** object.          |
+| columns    | Array&lt;string&gt;              | Yes  | Columns to be searched for.          |
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | Yes  | Callback invoked to return the result set.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                          |
+| ------------ | -------------------------------------- |
+| 14800000     | Inner error.                           |
+
+**Example**
+
+```ts
+let sharingResource: string;
+let predicates = new relationalStore.RdbPredicates('test_table');
+predicates.equalTo('data', 'data_test');
+if(store != undefined) {
+  (store as relationalStore.RdbStore).querySharingResource(predicates, ['uuid', 'data'], (err, resultSet) => {
+    if (err) {
+      console.error(`sharing resource failed, code is ${err.code},message is ${err.message}`);
+      return;
+    }
+    if (!resultSet.goToFirstRow()) {
+      console.error(`resultSet error`);
+      return;
+    }
+    const res = resultSet.getString(resultSet.getColumnIndex(relationalStore.Field.SHARING_RESOURCE_FIELD));
+    console.info(`sharing resource: ${res}`);
+    sharingResource = res;
+  })
+}
+
 ```
 
 ## ResultSet

@@ -18,7 +18,7 @@ import browser from '@ohos.enterprise.browser';
 
 ## browser.setPolicies
 
-setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallback&lt;void&gt;): void;
+setPolicies(admin: Want, appId: string, policies: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets policies for a given browser through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -55,7 +55,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let appId: string = 'com.example.myapplication';
-let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}'
+let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}';
 browser.setPolicies(wantTemp, appId, policies, (err) => {
   if (err) {
     console.error(`Failed to set browser policies. Code is ${err.code}, message is ${err.message}`);
@@ -67,7 +67,7 @@ browser.setPolicies(wantTemp, appId, policies, (err) => {
 
 ## browser.setPolicies
 
-setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;;
+setPolicies(admin: Want, appId: string, policies: string): Promise&lt;void&gt;
 
 Sets policies for a given browser through the specified device administrator application. This API uses a promise to return the result.
 
@@ -110,7 +110,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let appId: string = 'com.example.myapplication';
-let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}'
+let policies: string = '{"InsecurePrivateNetworkRequestsAllowed":{"level":"mandatory","scope":"machine","source":"platform","value":true},"LegacySameSiteCookieBehaviorEnabledForDomainList":{"level":"mandatory","scope":"machine","source":"platform","value":["[*.]"]}}';
 browser.setPolicies(wantTemp, appId, policies).then(() => {
   console.info('Succeeded in setting browser policies');
 }).catch((err: BusinessError) => {
@@ -120,7 +120,7 @@ browser.setPolicies(wantTemp, appId, policies).then(() => {
 
 ## browser.getPolicies
 
-getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): void;
+getPolicies(admin: Want, appId: string, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the policies of a given browser through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -164,7 +164,7 @@ browser.getPolicies(wantTemp, appId, (err, result) => {
 
 ## browser.getPolicies
 
-getPolicies(admin: Want, appId: string): Promise&lt;string&gt;;
+getPolicies(admin: Want, appId: string): Promise&lt;string&gt;
 
 Obtains the policies of a given browser through the specified device administrator application. This API uses a promise to return the result.
 

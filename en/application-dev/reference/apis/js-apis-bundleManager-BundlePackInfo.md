@@ -1,6 +1,6 @@
 # BundlePackInfo
 
-The **BundlePackInfo** module provides information in the **pack.info** file. The information can be obtained using [freeInstall.getBundlePackInfo](js-apis-freeInstall.md).
+The **BundlePackInfo** module provides information in the **pack.info** file. The information can be obtained using [freeInstall.getBundlePackInfo](js-apis-freeInstall.md#getbundlepackinfo).
 
 > **NOTE**
 >

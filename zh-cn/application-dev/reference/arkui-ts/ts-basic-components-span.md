@@ -1,6 +1,6 @@
 # Span
 
-作为Text组件和RichEditor组件的子组件，用于显示行内文本的组件。
+作为Text组件的子组件，用于显示行内文本的组件。
 
 >  **说明：**
 >
@@ -42,7 +42,7 @@ Span(value: string | Resource)
 
 ## 事件
 
-通用事件仅支持[点击事件](ts-universal-attributes-click.md)。
+通用事件仅支持[点击事件](ts-universal-events-click.md)。
 
 >  **说明：**
 >

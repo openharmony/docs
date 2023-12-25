@@ -29,7 +29,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 ## UIAbility.onCreate
 
-onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;
+onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。
 
@@ -136,7 +136,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 ## UIAbility.onDestroy
 
-onDestroy(): void | Promise&lt;void&gt;;
+onDestroy(): void | Promise&lt;void&gt;
 
 UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。
 
@@ -170,7 +170,7 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onForeground
 
-onForeground(): void;
+onForeground(): void
 
 UIAbility生命周期回调，当应用从后台转到前台时触发。
 
@@ -191,7 +191,7 @@ UIAbility生命周期回调，当应用从后台转到前台时触发。
 
 ## UIAbility.onBackground
 
-onBackground(): void;
+onBackground(): void
 
 UIAbility生命周期回调，当应用从前台转到后台时触发。
 
@@ -212,9 +212,9 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。
 
 ## UIAbility.onContinue
 
-onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
+onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult
 
-当ability迁移准备迁移时触发，保存数据。
+当Ability准备迁移时触发，保存数据。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -222,7 +222,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | want相关参数。 |
 
 **返回值：**
 
@@ -248,7 +248,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 
 ## UIAbility.onNewWant
 
-onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;
+onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例时会回调执行该方法。即UIAbility实例[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)时进入该生命周期回调。
 
@@ -278,7 +278,7 @@ UIAbility实例已经启动并在前台运行过，由于某些原因切换到�
 
 ## UIAbility.onDump
 
-onDump(params: Array\<string>): Array\<string>;
+onDump(params: Array\<string>): Array\<string>
 
 转储客户端信息时调用，可用于转储非敏感信息。
 
@@ -306,7 +306,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 ## UIAbility.onSaveState
 
-onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
+onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
@@ -317,7 +317,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Objec
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | want相关参数。 |
 
 **返回值：**
 
@@ -342,7 +342,7 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onShare<sup>10+</sup>
 
-onShare(wantParam:{ [key: string]: Object }): void;
+onShare(wantParam: Record&lt;string, Object&gt;): void
 
 在跨端分享场景下，在UIAbility中设置分享方设备要分享的数据。
 
@@ -352,7 +352,7 @@ onShare(wantParam:{ [key: string]: Object }): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | 待分享的数据。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 待分享的数据。 |
 
 **示例：**
 
@@ -370,7 +370,7 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onPrepareToTerminate<sup>10+</sup>
 
-onPrepareToTerminate(): boolean;
+onPrepareToTerminate(): boolean
 
 UIAbility生命周期回调，当系统预关闭开关打开后（配置系统参数persist.sys.prepare_terminate为true打开），在UIAbility关闭时触发，可在回调中定义操作来决定是否继续执行关闭UIAbility的操作。如果UIAbility在退出时需要与用户交互确认是否关闭UIAbility，可在此生命周期回调中定义预关闭操作配合[terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)接口退出，如弹窗确认是否关闭，并配置预关闭生命周期返回true取消正常关闭。
 
@@ -420,7 +420,7 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 ## UIAbility.onBackPressed<sup>10+</sup>
 
-onBackPressed(): boolean;
+onBackPressed(): boolean
 
 UIAbility生命周期回调，当UIAbility侧滑返回时触发。根据返回值决定是否销毁UIAbility，默认为销毁UIAbility。
 
@@ -537,7 +537,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
 向通用组件服务端发送约定序列化数据, 并将服务端返回的约定序列化数据带回。
 
@@ -626,7 +626,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
 ## Caller.release
 
-release(): void;
+release(): void
 
 主动释放通用组件服务端的通信接口。
 
@@ -672,7 +672,7 @@ release(): void;
 
 ## Caller.onRelease
 
- onRelease(callback: OnReleaseCallback): void;
+ onRelease(callback: OnReleaseCallback): void
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -725,7 +725,7 @@ release(): void;
 
 ## Caller.onRemoteStateChange<sup>10+</sup>
 
-onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 注册协同场景下跨设备组件状态变化监听通知。
 
@@ -779,7 +779,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
 
 ## Caller.on
 
-on(type: 'release', callback: OnReleaseCallback): void;
+on(type: 'release', callback: OnReleaseCallback): void
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -833,7 +833,7 @@ on(type: 'release', callback: OnReleaseCallback): void;
 
 ## Caller.off
 
-off(type: 'release', callback: OnReleaseCallback): void;
+off(type: 'release', callback: OnReleaseCallback): void
 
 取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
 
@@ -881,7 +881,7 @@ off(type: 'release', callback: OnReleaseCallback): void;
 
 ## Caller.off
 
-off(type: 'release'): void;
+off(type: 'release'): void
 
 取消注册通用组件服务端Stub（桩）断开监听通知。预留能力，当前暂未支持。
 
@@ -932,7 +932,7 @@ off(type: 'release'): void;
 
 ## Callee.on
 
-on(method: string, callback: CalleeCallback): void;
+on(method: string, callback: CalleeCallback): void
 
 通用组件服务端注册消息通知callback。
 
@@ -1004,7 +1004,7 @@ on(method: string, callback: CalleeCallback): void;
 
 ## Callee.off
 
-off(method: string): void;
+off(method: string): void
 
 解除通用组件服务端注册消息通知callback。
 
@@ -1048,9 +1048,11 @@ off(method: string): void;
 
 ## OnReleaseCallback
 
+
+(msg: string): void
+
 注册通用组件服务端Stub（桩）断开监听通知的回调函数类型。
 
-(msg: string): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1060,7 +1062,7 @@ off(method: string): void;
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
-(msg: string): void;
+(msg: string): void
 
 注册协同场景下跨设备组件状态变化监听通知的回调函数类型。
 

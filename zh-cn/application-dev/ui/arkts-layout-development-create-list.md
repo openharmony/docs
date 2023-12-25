@@ -810,7 +810,7 @@ ListItem() {
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todolist: TodoTmp = new TodoTmp()
+    let todoList: TodoTmp = new TodoTmp()
     // ToDoListItem.ets
     ```
     ```ts
@@ -822,9 +822,9 @@ ListItem() {
     GestureGroup(GestureMode.Exclusive,
       LongPressGesture()
         .onAction(() => {
-          if (!todolist.isEditMode) {
-            todolist.isEditMode = true; //进入编辑模式
-            todolist.selectedItems.push(todolist.toDoItem); // 记录长按时选中的列表项
+          if (!todoList.isEditMode) {
+            todoList.isEditMode = true; //进入编辑模式
+            todoList.selectedItems.push(todoList.toDoItem); // 记录长按时选中的列表项
           }
         })
       )
@@ -852,20 +852,20 @@ ListItem() {
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todolist: TodoTmp = new TodoTmp()
+    let todoList: TodoTmp = new TodoTmp()
     // ToDoListItem.ets
     ```
     ```ts
     // 实现参考
-    if (todolist.isEditMode) {
+    if (todoList.isEditMode) {
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            todolist.selectedItems.push(todolist.toDoItem) // 勾选时，记录选中的列表项
+            todoList.selectedItems.push(todoList.toDoItem) // 勾选时，记录选中的列表项
           } else {
-            let index = todolist.selectedItems.indexOf(todolist.toDoItem)
+            let index = todoList.selectedItems.indexOf(todoList.toDoItem)
             if (index !== -1) {
-              todolist.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
+              todoList.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
             }
           }
         })
@@ -892,19 +892,19 @@ ListItem() {
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todolist: TodoTmp = new TodoTmp()
+    let todoList: TodoTmp = new TodoTmp()
     ```
     ```ts
     // 实现参考
     Button('删除')
       .onClick(() => {
         // 删除选中的列表项对应的toDoData数据
-        let leftData = todolist.toDoData.filter((item) => {
-          return todolist.selectedItems.find((selectedItem) => selectedItem !== item);
+        let leftData = todoList.toDoData.filter((item) => {
+          return todoList.selectedItems.find((selectedItem) => selectedItem !== item);
         })
 
-        todolist.toDoData = leftData;
-        todolist.isEditMode = false;
+        todoList.toDoData = leftData;
+        todoList.isEditMode = false;
       })
     ```
 

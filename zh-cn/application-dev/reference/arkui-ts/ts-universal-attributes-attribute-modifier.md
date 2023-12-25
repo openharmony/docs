@@ -1,6 +1,6 @@
 # 动态属性设置
 
-动态设置组件的属性，支持开发者在属性设置时使用if/else语法。
+动态设置组件的属性，支持开发者在属性设置时使用if/else语法，且根据需要使用多态样式设置属性。
 
 >  **说明：**
 >
@@ -19,13 +19,35 @@
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
 
-开发者需要自定义实现该方法，通过传入的参数识别组件类型，对instance设置属性，支持使用if/else语法进行动态设置。
+组件普通状态时的样式。
+
+### applyPressedAttribute
+applyPressedAttribute(instance: T) : void
+
+组件按下状态的样式。
+
+### applyFocusedAttribute
+applyFocusedAttribute(instance: T) : void
+
+组件获焦状态的样式。
+
+### applyDisabledAttribute
+applyDisabledAttribute(instance: T) : void
+
+组件禁用状态的样式。
+
+### applySelectedAttribute
+applySelectedAttribute(instance: T) : void
+
+组件选中状态的样式
+
+开发者可根据需要自定义实现这些方法，通过传入的参数识别组件类型，对instance设置属性，支持使用if/else语法进行动态设置。
 
 **参数**：
 
-| 参数             | 参数类型    | 描述                                                         |
-| -------------------- | ----------------- | ------------------------------------------------------------ |
-| instance | T | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。|
+| 参数             | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| instance |组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。|
 
 ## 示例
 
@@ -55,6 +77,39 @@ struct attributeDemo {
           .onClick(() => {
             this.modifier.isDark = !this.modifier.isDark
           })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
+
+
+
+```ts
+// xxx.ets
+class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Black)
+  }
+
+  applyPressedAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor(Color.Red)
+  }
+}
+
+@Entry
+@Component
+struct attributePressedDemo {
+  @State modifier: MyButtonModifier = new MyButtonModifier()
+
+  build() {
+    Row() {
+      Column() {
+        Button("Button")
+          .attributeModifier(this.modifier)
       }
       .width('100%')
     }
