@@ -244,7 +244,7 @@ Wi-Fi状态公共事件的动作，如启用和禁用。
 表示Wi-Fi信号强度（RSSI）改变的公共事件的动作。
 
 * [COMMON_EVENT_WIFI_CONN_STATE](./common_event/commonEvent-wifi.md#common_event_wifi_conn_state)
-Wi-Fi连接状态发生改变的公共事件的动作
+Wi-Fi连接状态发生改变的公共事件的动作。
 
 * [COMMON_EVENT_WIFI_HOTSPOT_STATE](./common_event/commonEvent-wifi.md#common_event_wifi_hotspot_state)
 Wi-Fi热点状态的公共事件的动作，如启用或禁用。
