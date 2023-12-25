@@ -41,13 +41,13 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
     "startTime":"2023-11-17 14:48:01:265",
     "stopTime":"2023-11-17 14:48:01:434",
 	"result":[{
-		"files":[
-			"application-entry-default.hap/libs/armeabi-v7a/example.so",
-			"entry-default.hap/libs/armeabi-v7a/example.so"
-		],
-		"md5":"975c41f5727b416b1ffefa5bb0f073b",
-		"size":1108880
-	}]
+        "md5":"975c41f5727b416b1ffefa5bb0f073b",
+        "size":1108880,
+        "files":[
+            "/application-entry-default.hap/libs/armeabi-v7a/example.so",
+            "/entry-default.hap/libs/armeabi-v7a/example.so"
+        ]
+    }]
 }]
 ```
 
@@ -88,10 +88,10 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-duplica
             </tr>
             <tr>
                 <td rowspan="2">files</td>
-                <td>application-entry-default.hap/libs/example.so</td>
+                <td>/application-entry-default.hap/libs/armeabi-v7a/example.so</td>
             </tr>
             <tr>
-                <td>entry-default.hap/libs/example.so</td>
+                <td>/entry-default.hap/libs/armeabi-v7a/example.so</td>
             </tr>
         </table>
 </div>
@@ -137,13 +137,13 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
 [{
     "taskType":2,
     "taskDesc":"find files whose size exceed the limit size",
-	"param":"--stat-file-size 4",
+    "param":"--stat-file-size 4",
     "startTime":"2023-11-17 14:48:01:458",
     "stopTime":"2023-11-17 14:48:01:491",
-	"result":[{
-			"file":"application-entry-default.hap/libs/x86_64/example.so",
-			"size":1292840
-	}]
+    "result":[{
+            "file":"/application-entry-default.hap/libs/x86_64/example.so",
+            "size":1292840
+    }]
 }]
 ```
 <b>HTML统计结果：</b>
@@ -177,7 +177,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-file-si
             <td>file</td> <td>size</td>
         </tr>
         <tr>
-            <td>application-entry-default.hap/libs/x86_64/example.so</td>
+            <td>/application-entry-default.hap/libs/x86_64/example.so</td>
             <td>1292840</td>
         </tr>
     </table>
@@ -223,34 +223,34 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
 [{
     "taskType":3,
     "taskDesc":"show files group by file type[.suffix]",
-	"param":"--stat-suffix",
+    "param":"--stat-suffix",
     "startTime":"2023-11-17 14:48:01:497",
     "stopTime":"2023-11-17 14:48:01:537",
-	"pathList":[
-		"test.app/application-entry-default.hap",
-		"test.app/entry-default.hap"
-	],
-	"result":[{
-		"files":[{
-			"compress":"false",
-			"file":"application-entry-default.hap/libs/x86_64/example.so",
-			"size":1292840
-		}],
-		"suffix":"so",
-		"totalSize":1292840
-	},
-	{
-		"files":[{
-			"file":"application-entry-default.hap/ets/modules.abc",
-			"size":76304
-		},
-		{
-			"file":"entry-default.hap/ets/modules.abc",
-			"size":8548
-		}],
-		"suffix":"abc",
-		"totalSize":84852
-	}]
+    "pathList":[
+        "test.app/application-entry-default.hap",
+        "test.app/entry-default.hap"
+    ],
+    "result":[{
+        "suffix":"so",
+        "totalSize":1292840,
+        "files":[{
+            "compress":"false",
+            "file":"/application-entry-default.hap/libs/x86_64/example.so",
+            "size":1292840
+        }]
+    },
+    {
+        "suffix":"abc",
+        "totalSize":84852,
+        "files":[{
+            "file":"/application-entry-default.hap/ets/modules.abc",
+            "size":76304
+        },
+        {
+            "file":"/entry-default.hap/ets/modules.abc",
+            "size":8548
+        }]
+    }]
 }]
 ```
 
@@ -281,7 +281,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
         <tr>
 			<td >pathList</td>
 			<td colspan="2">
-				test.app/application-entry-default.hap<br>test.app/entry-default.hap
+                test.app/application-entry-default.hap<br>test.app/entry-default.hap
 			</td>
 		</tr>
         <tr >
@@ -297,7 +297,7 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
             <td rowspan="2">files</td>
         </tr>
         <tr>
-            <td>compress:false<br>size:1292840<br>file:application-entry-default.hap/libs/x86_64/example.so </td>
+            <td>compress:false<br>size:1292840<br>file:/application-entry-default.hap/libs/x86_64/example.so </td>
         </tr>
         <tr>
             <td width="10%">suffix</td>
@@ -311,8 +311,8 @@ java -jar app_check_tool.jar --input ./test.app --out-path ./test --stat-suffix 
             <td rowspan="2">files</td>
         </tr>
         <tr>
-            <td>
-                size:8548<br>file:entry-default.hap/ets/modules.abc<br>size:76304<br>file:application-entry-default.hap/ets/modules.abc<br>
+            <td>            
+                size:8548<br>file:/entry-default.hap/ets/modules.abc<br>size:76304<br>file:/application-entry-default.hap/ets/modules.abc<br>
             </td>
         </tr>
     </table>
