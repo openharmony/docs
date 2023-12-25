@@ -58,7 +58,7 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import rpc from '@ohos.rpc';
 
-class MyCloudService implements cloudExtension.CloudService {
+export default class MyCloudService implements cloudExtension.CloudService {
   constructor() {}
   async connectShareCenter(userId: number, bundleName: string): Promise<rpc.RemoteObject> {
     // ...
@@ -132,7 +132,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObject&gt;
 
-系统内部通过该接口获取[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#remoteobject)对象，可以通过[createShareServiceStub](#cloudextension.createshareservicestub)接口进行创建，使用Promise异步回调。
+系统内部通过该接口获取[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#remoteobject)对象，可以通过[createShareServiceStub](#cloudextensioncreateshareservicestub)接口进行创建，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
