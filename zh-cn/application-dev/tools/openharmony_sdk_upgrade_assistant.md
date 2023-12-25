@@ -60,7 +60,14 @@ OpenHarmony SDK 升级助手，用于帮助开发者快速解决OpenHarmony应�
 
 ![suap-warehouse](figures/suap-warehouse.png)
 
-2.在本地api_diff工具和collect_application_api工具目录下进入终端，进行安装和编译。输入命令：npm install，之后进行构建：npm run build。构建成功之后，会在对应的工具文件夹下生成dist=>build=>api-diff.js和dist=>build=>api-collector.js
+2.在本地api_diff工具和collect_application_api工具目录下进入终端，进行安装和编译。
+
+> **说明：**
+> 
+> 需保证node.js版本为14.
+> 
+
+输入命令：npm install，之后进行构建：npm run build。构建成功之后，会在对应的工具文件夹下生成dist=>build=>api-diff.js和dist=>build=>api-collector.js
 
 ![suap-diff](figures/suap-diff.png)
 ![suap-collect](figures/suap-collect.png)
