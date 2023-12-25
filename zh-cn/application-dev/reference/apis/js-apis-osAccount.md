@@ -2851,7 +2851,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | localId     | number | 是   |  要查询的系统帐号ID |
 | constraint     | string | 是   |  要查询的[约束](#系统帐号约束列表)名称 |
-| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统帐号的指定[约束](#系统帐号约束列表)来源信息；否则为错误对象。                      |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统帐号的指定[约束](#系统帐号约束列表)来源信息；否则为错误对象。                      |
 
 **错误码：**
 
@@ -2900,7 +2900,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo)&gt;&gt; | Promise对象，返回指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。 |
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise对象，返回指定系统帐号的指定[约束](#系统帐号约束列表)来源信息。 |
 
 **错误码：**
 
@@ -3307,7 +3307,7 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let accountManager = account_osAccount.getAccountManager();
-  accountManager.isOsAccountVerified(localId).then((isVerified: boolean) => {
+  accountManager.isOsAccountVerified().then((isVerified: boolean) => {
     console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
   }).catch((err: BusinessError) => {
     console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
@@ -6665,7 +6665,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统帐号SN码。                      |
 | isActived<sup>8+</sup>         | boolean                                                      | 是   | 系统帐号激活状态。                  |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统帐号创建是否完整。              |
-| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息，默认为空。                    |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md#distributedinfo) | 否   | 分布式帐号信息，默认为空。                    |
 | domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 否   | 域帐号信息，默认为空。                        |
 
 ## DomainAccountInfo<sup>8+</sup>
@@ -6759,7 +6759,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
 | localId      | number | 是   | 系统帐号ID     |
-| type | [ConstraintSourceType](#constraintsourcetype) | 是   | 约束来源类型 |
+| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型 |
 
 ## ConstraintSourceType<sup>9+</sup>
 
