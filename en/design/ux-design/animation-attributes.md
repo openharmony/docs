@@ -34,8 +34,7 @@ The motion of an animation takes place within a certain range, and a small range
 ## Curves
 
 The curve and duration cooperate with each other to produce the rhythm of motion. By adjusting the curve, you can make an animated object speed up or slow down, rather than moving at a constant speed. The movement of objects in the real world takes time to accelerate and slow down.
-
-![en-us_media_0000001517452992.gif](figures/en-us_media_0000001517452992.gif)
+![curve-1.gif](figures/curve-1.gif)
 
 Transitions without moderating curves are stiff and mechanical.
 
@@ -43,7 +42,7 @@ Transitions without moderating curves are stiff and mechanical.
 
 The animation curve, also known as the animation interpolator, is essentially a method of adjusting the speed of the moving object on the time line.
 
-|![en-us_image_0000001732143361.png](figures/en-us_image_0000001732143361.png) | ![en-us_image_0000001684144448.png](figures/en-us_image_0000001684144448.png) | ![en-us_image_0000001684304160.png](figures/en-us_image_0000001684304160.png) |![en-us_image_0000001732223269.png](figures/en-us_image_0000001732223269.png)|
+|![animation-curve-linear.jpg](figures/animation-curve-linear.jpg)| ![animation-curve-linear-easing.jpg](figures/animation-curve-linear-easing.jpg)| ![animation-curve-linear-spring.jpg](figures/animation-curve-linear-spring.jpg)|![animation-curve-linear-others.jpg](figures/animation-curve-linear-others.jpg)|
 | -------- | -------- | -------- | -------- |
 | Linear | Easing| Spring| Others|
 
@@ -60,14 +59,14 @@ Usage: Use the standard curve for objects that remain within the users' line of 
 
 Scenarios: image zooming, tab switching, and switch toggling on/off.
 
-![100-90621263532880091556480001970716.gif](figures/standard-curve.gif)
+![standard-curve-1.gif](figures/standard-curve-1.gif)
 
 cubic-bezier(0.40,0.00,0.20,1.00)
 
 
 ### Other Types of Standard Curves
 
-| ![standard-curve-1](figures/standard-curve-1.png)| ![standard-curve-2](figures/standard-curve-2.png)|
+| ![standard-curve-cubic-bezier-(0.20,0.00,0.10,1.00).jpg](figures/standard-curve-cubic-bezier-(0.20,0.00,0.10,1.00).jpg)| ![standard-curve-cubic-bezier-(0.33,0.00,0.67,1.00).jpg](figures/standard-curve-cubic-bezier-(0.33,0.00,0.67,1.00).jpg)|
 | -------- | -------- |
 | cubic-bezier(0.20,0.00,0.10,1.00) | cubic-bezier(0.33,&nbsp;0.00,&nbsp;0.67,&nbsp;1.00) |
 
@@ -80,13 +79,13 @@ Usage: Use the deceleration curve for objects that appear in the line of sight. 
 
 Scenarios: appearing of dialog boxes.
 
-![en-us_media_0000001517293414](figures/en-us_media_0000001517293414.gif)
+![deceleration-curve-1.gif](figures/deceleration-curve-1.gif)
 cubic-bezier(0.00, 0.00, 0.40, 1.00)
 
 
 ### Other Types of Deceleration Curves
 
-| ![deceleration-curve-1](figures/deceleration-curve-1.png)| ![deceleration-curve-2](figures/deceleration-curve-2.png)|
+| ![deceleration-curve-cubic-bezier-(0.00,0.00,0.20,1.00).jpg](figures/deceleration-curve-cubic-bezier-(0.00,0.00,0.20,1.00).jpg)| ![deceleration-curve-cubic-bezier-(0.00,0.00,0.00,1.00).jpg](figures/deceleration-curve-cubic-bezier-(0.00,0.00,0.00,1.00).jpg)|
 | -------- | -------- |
 | cubic-bezier(0.00,&nbsp;0.00,&nbsp;0.20,&nbsp;1.00) | cubic-bezier(0.00,&nbsp;0.00,&nbsp;0.00,&nbsp;1.00) |
 
@@ -99,7 +98,7 @@ Usage: Use the acceleration curve for objects moving out.
 
 Scenarios: exiting of dialog boxes and deleting widgets.
 
-![2-2-6_acceleration-curve-40-0-(abstract demo)_1](figures/2-2-6_acceleration-curve-40-0-(abstract demo)_1.gif)
+![acceleration-curve-1.gif](figures/acceleration-curve-1.gif)
 
 ## Spring Curve
 
@@ -132,9 +131,9 @@ The interpolation spring curve type and the spring motion or responsive spring m
 
 ![en-us_image_0000001682083252.gif](figures/en-us_image_0000001682083252.gif)
 
-Interpolating spring: Stiffness:128, Damping:12 , Msss:1, Velocity:0
+Interpolating spring: Stiffness: 128, Damping: 12, Msss: 1, Velocity: 0
 
-Spring motion: Response:0.555, DampingFraction:0.53
+Spring motion: Response: 0.555, DampingFraction :0.53
 
 ### Critical Damping
 
@@ -203,8 +202,6 @@ Micro animations apply the effect of multiple oscillations to a small-sized elem
 |![en-us_image_0000001682083252.gif](figures/en-us_image_0000001682083252.gif) |![en-us_image_0000001729962573.gif](figures/en-us_image_0000001729962573.gif) |
 | -------- | -------- |
 | Icon micro animation example 1| Icon micro animation example 2|
-
-For details about the elastic curve, see [Spring Curve](../../application-dev/ui/arkts-spring-curve.md).
 
 
 ## Frame Rate
