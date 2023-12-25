@@ -69,89 +69,91 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
 
 1. 在\@CustomDialog装饰器内添加按钮，同时添加数据函数。
 
-  ```ts
-  @CustomDialog
-  struct CustomDialogExample {
-    cancel: () => void = () => {
-      console.info('Callback when the first button is clicked')
-    }
-    confirm: () => void = () => {
-      console.info('Callback when the second button is clicked')
-    }
-    controller: CustomDialogController = new CustomDialogController({
-      builder: CustomDialogExample({
-        cancel: this.cancel,
-        confirm: this.confirm,
-      }),
-    })
-  
-    build() {
-      Column() {
-        Text('我是内容').fontSize(20).margin({ top: 10, bottom: 10 })
-        Flex({ justifyContent: FlexAlign.SpaceAround }) {
-          Button('cancel')
-            .onClick(() => {
-              this.controller.close()
-              this.cancel()
-            }).backgroundColor(0xffffff).fontColor(Color.Black)
-          Button('confirm')
-            .onClick(() => {
-              this.controller.close()
-              this.confirm()
-            }).backgroundColor(0xffffff).fontColor(Color.Red)
-        }.margin({ bottom: 10 })
-      }
-    }
-  }
-  ```
+     ```ts
+   @CustomDialog
+   struct CustomDialogExample {
+     cancel?: () => void
+     confirm?: () => void
+     controller: CustomDialogController
+   
+     build() {
+       Column() {
+         Text('我是内容').fontSize(20).margin({ top: 10, bottom: 10 })
+         Flex({ justifyContent: FlexAlign.SpaceAround }) {
+           Button('cancel')
+             .onClick(() => {
+               this.controller.close()
+               if(this.cancel) this.cancel()
+             }).backgroundColor(0xffffff).fontColor(Color.Black)
+           Button('confirm')
+             .onClick(() => {
+               this.controller.close()
+               if(this.confirm) this.confirm()
+             }).backgroundColor(0xffffff).fontColor(Color.Red)
+         }.margin({ bottom: 10 })
+       }
+     }
+   }
+     ```
 
 2. 页面内需要在构造器内进行接收，同时创建相应的函数操作。
 
-  ```ts
-  @Entry
-  @Component
-  struct CustomDialogUser {
-    @State bud: Record<string, Function | void> = { 'cancel': this.onCancel(), 'confirm': this.onAccept() }
-    dialogController: CustomDialogController = new CustomDialogController({
-      builder: CustomDialogExample(this.bud),
-    })
-  
-    onCancel() {
-      console.info('Callback when the first button is clicked')
-    }
-  
-    onAccept() {
-      console.info('Callback when the second button is clicked')
-    }
-  
-    build() {
-      Column() {
-        Button('click me')
-          .onClick(() => {
-            this.dialogController.open()
-          })
-      }.width('100%').margin({ top: 5 })
-    }
-  }
-  ```
+     ```ts
+   @Entry
+   @Component
+   struct CustomDialogUser {
+     dialogController: CustomDialogController = new CustomDialogController({
+       builder: CustomDialogExample({
+         cancel: this.onCancel,
+         confirm: this.onAccept,
+       }),
+     })
    
-   ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
+     onCancel() {
+       console.info('Callback when the first button is clicked')
+     }
+   
+     onAccept() {
+       console.info('Callback when the second button is clicked')
+     }
+   
+     build() {
+       Column() {
+         Button('click me')
+           .onClick(() => {
+             this.dialogController.open()
+           })
+       }.width('100%').margin({ top: 5 })
+     }
+   }
+     ```
+
+      ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
 
 ## 完整示例
 
 ```ts
-// xxx.ets
 @CustomDialog
 struct CustomDialogExample {
-  controller: CustomDialogController = new CustomDialogController({
-    builder: undefined
-  })
+  cancel?: () => void
+  confirm?: () => void
+  controller: CustomDialogController
 
   build() {
     Column() {
-      Text('我是内容')
-        .fontSize(20)
-        .margin({ top: 10, bottom: 10 })
+      Text('我是内容').fontSize(20).margin({ top: 10, bottom: 10 })
+      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Button('cancel')
+          .onClick(() => {
+            this.controller.close()
+            if (this.cancel) this.cancel()
+          }).backgroundColor(0xffffff).fontColor(Color.Black)
+        Button('confirm')
+          .onClick(() => {
+            this.controller.close()
+            if (this.confirm) this.confirm()
+          }).backgroundColor(0xffffff).fontColor(Color.Red)
+      }.margin({ bottom: 10 })
     }
   }
 }
@@ -159,9 +161,11 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct CustomDialogUser {
-  @State bud: Record<string, Function | void> = { 'cancel': this.onCancel(), 'confirm': this.onAccept() }
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample(this.bud),
+    builder: CustomDialogExample({
+      cancel: this.onCancel,
+      confirm: this.onAccept,
+    }),
   })
 
   onCancel() {
