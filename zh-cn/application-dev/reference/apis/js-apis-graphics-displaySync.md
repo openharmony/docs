@@ -26,6 +26,7 @@ create(): DisplaySync
 | [DisplaySync](#displaysync)  | 返回当前创建的DisplaySync对象实例。               |
 
 **示例：**
+
 ```ts
 private backDisplaySyncBigger: displaySync.DisplaySync = displaySync.create();
 ```
@@ -86,7 +87,7 @@ on(type: 'frame', callback: Callback<IntervalInfo>): void
 | 参数名           | 类型                                       | 必填 | 说明                          |
 | --------------- | ------------------------------------------ | ---- | -----------------------------|
 | type | 'frame'| 是   | 设置注册回调的类型（只能是'frame'类型）。|
-| callback    | [Callback](js-apis-base.md)<[IntervalInfo](#intervalinfo)>| 是   | 订阅函数。|
+| callback    | Callback<[IntervalInfo](#intervalinfo)>| 是   | 订阅函数。|
 
 
 **示例：**
