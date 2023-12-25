@@ -27,8 +27,8 @@ let defaultIpAddress = "ws://";
 let ws = webSocket.createWebSocket();
 ws.on('open', (err:BusinessError, value: Object) => {
   if (err != undefined) {
-    console.log(JSON.stringify(err))
-    return
+    console.log(JSON.stringify(err));
+    return;
   }
   // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
   ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
@@ -64,6 +64,13 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   } else {
     console.log("connect fail, err:" + JSON.stringify(err));
   }
+  ws.close((err: BusinessError) => {
+    if (!err) {
+      console.log("close success");
+    } else {
+      console.log("close fail, err is " + JSON.stringify(err));
+    }
+  });
 });
 ```
 
@@ -125,12 +132,12 @@ import webSocket from '@ohos.net.webSocket';
 import { BusinessError } from '@ohos.base';
 
 let ws = webSocket.createWebSocket();
-let url = "ws://"
+let url = "ws://";
 ws.connect(url, (err: BusinessError, value: boolean) => {
   if (!err) {
     console.log("connect success");
   } else {
-    console.log("connect fail, err:" + JSON.stringify(err))
+    console.log("connect fail, err:" + JSON.stringify(err));
   }
 });
 ```
