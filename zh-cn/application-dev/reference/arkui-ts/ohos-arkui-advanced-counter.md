@@ -38,7 +38,7 @@ CounterOptions定义Counter的类型及具体式样参数。
 
 | 名称        | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
-| type | [CounterTyle](#countertyle) | 是   | 指定当前Counter的类型。 |
+| type | [CounterType](#countertype) | 是   | 指定当前Counter的类型。 |
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | 否    | 列表型和紧凑型counter的式样。 |
 | inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 数值型内联型counter的式样。   |
 | dateOptions | [DateStyleOptions](#datestyleoptions) | 否 | 日期型内联型counter的式样。 |
