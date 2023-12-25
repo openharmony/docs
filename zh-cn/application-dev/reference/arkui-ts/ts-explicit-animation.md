@@ -46,7 +46,7 @@ animateTo(value: AnimateParam, event: () => void): void
 > - 不推荐使用PlayMode.Reverse，此场景下不仅会导致动画刚开始就跳变到终止状态，也会导致动画最终状态和状态变量的取值不同。
 
 ## 示例
-**1. 缩放动画**
+
 ```ts
 // xxx.ets
 @Entry
