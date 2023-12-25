@@ -118,10 +118,11 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
+import abilityManager from '@ohos.application.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilitymanager.getAbilityRunningInfos((err,data) => { 
-    console.log("getAbilityRunningInfos err: "  + err + " data: " + JSON.stringify(data));
+abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<abilityManager.AbilityRunningInfo>) => { 
+    console.log(`getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -144,11 +145,12 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 **示例**：
 
 ```ts
-import abilitymanager from '@ohos.application.abilityManager';
- 
-abilitymanager.getAbilityRunningInfos().then((data) => {
-    console.log("getAbilityRunningInfos  data: " + JSON.stringify(data));
-}).catch((err) => {
-  console.log("getAbilityRunningInfos err: "  + err);
+import abilityManager from '@ohos.application.abilityManager';
+import { BusinessError } from '@ohos.base';
+
+abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
+    console.log(`getAbilityRunningInfos  data: ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`getAbilityRunningInfos err: ${JSON.stringify(err)}`);
 });
 ```
