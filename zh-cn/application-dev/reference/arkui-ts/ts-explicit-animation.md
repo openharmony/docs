@@ -31,14 +31,14 @@ animateTo(value: AnimateParam, event: () => void): void
 | playMode   | [PlayMode](ts-appendix-enums.md#playmode) | 动画播放模式，默认播放完成后重头开始播放。<br/>默认值：PlayMode.Normal<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>相关使用约束请参考PlayMode说明。 |
 | onFinish   | ()&nbsp;=&gt;&nbsp;void                  | 动画播放完成回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | finishCallbackType<sup>11+</sup>   | [FinishCallbackType](ts-appendix-enums.md#finishcallbacktype11) | 在动画中定义onFinish回调的类型。<br/>默认值：FinishCallbackType.REMOVED<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
-| expectedFrameRateRange <sup>11+</sup>   | [ExpectedFrameRateRange ](#expectedframeraterange) | 设置动画的期望帧率，从API version 11开始。 |
+| expectedFrameRateRange <sup>11+</sup>   | [ExpectedFrameRateRange ](#expectedframeraterange) | 设置动画的期望帧率。 |
 
-## ExpectedFrameRateRange
+## ExpectedFrameRateRange <sup>11+</sup>
 | 名称  | 类型     | 说明      |
 |-----|--------|---------|
-| min | number | 期望的最小帧率 |
-| max | number | 期望的最大帧率 |
-| expected | number | 期望的最优帧率 |
+| min | number | 期望的最小帧率。 |
+| max | number | 期望的最大帧率。 |
+| expected | number | 期望的最优帧率。 |
 
 > **PlayMode说明：**
 > - PlayMode推荐使用PlayMode.Normal和PlayMode.Alternate，此场景下动画的第一轮是正向播放的。如使用PlayMode.Reverse和PlayMode.AlternateReverse，则动画的第一轮是逆向播放的，在动画刚开始时会跳变到终止状态，然后逆向播放动画。
