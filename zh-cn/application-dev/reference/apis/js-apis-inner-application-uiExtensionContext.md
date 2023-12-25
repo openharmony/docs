@@ -53,7 +53,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContext.startAbility
 
@@ -94,7 +94,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContext.startAbility
 
@@ -142,7 +142,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContext.startAbilityForResult
 
@@ -187,7 +187,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContext.startAbilityForResult
 
@@ -231,7 +231,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContext.startAbilityForResult
 
@@ -283,7 +283,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 
 ## UIExtensionContext.connectServiceExtensionAbility
@@ -322,7 +322,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 
 
@@ -353,7 +353,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 ## UIExtensionContext.disconnectServiceExtensionAbility
 
@@ -377,4 +377,4 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback\<v
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)
+错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
