@@ -366,6 +366,29 @@
             - [Animation Effect](ui/ui-js-animate-dynamic-effects.md)
             - [Animation Frame](ui/ui-js-animate-frame.md)
       - [Custom Components](ui/ui-js-custom-components.md)
+  - ArkTS Common Library
+    - [Overview of ArkTS Common Library](arkts-utils/arkts-commonlibrary-overview.md)
+    - Concurrency
+      - [Concurrency Overview](arkts-utils/concurrency-overview.md)
+      - Using Asynchronous Concurrency for Development
+        - [Asynchronous Concurrency Overview](arkts-utils/async-concurrency-overview.md)
+        - [Single I/O Task Development](arkts-utils/single-io-development.md)
+      - Using Multithread Concurrency for Development
+        - [Multithread Concurrency Overview (TaskPool and Worker)](arkts-utils/multi-thread-concurrency-overview.md)
+        - [Comparison Between TaskPool and Worker](arkts-utils/taskpool-vs-worker.md)
+        - [\@Concurrent Decorator: Verifying Concurrent Functions](arkts-utils/arkts-concurrent.md)
+        - [CPU Intensive Task Development (TaskPool and Worker)](arkts-utils/cpu-intensive-task-development.md)
+        - [I/O Intensive Task Development (TaskPool)](arkts-utils/io-intensive-task-development.md)
+        - [Synchronous Task Development (TaskPool and Worker)](arkts-utils/sync-task-development.md)
+    - Container
+      - [Container Overview](arkts-utils/container-overview.md)
+      - [Linear Containers](arkts-utils/linear-container.md)
+      - [Nonlinear Containers](arkts-utils/nonlinear-container.md)
+    - XML Generation, Parsing, and Conversion
+      - [XML Overview](arkts-utils/xml-overview.md)
+      - [XML Generation](arkts-utils/xml-generation.md)
+      - [XML Parsing](arkts-utils/xml-parsing.md)
+      - [XML Conversion](arkts-utils/xml-conversion.md)
   - Web
     - [Web Component Overview](web/web-component-overview.md)
     - [Loading Pages by Using the Web Component](web/web-page-loading-with-web-components.md)
