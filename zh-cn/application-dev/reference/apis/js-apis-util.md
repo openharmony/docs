@@ -392,6 +392,30 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 | Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
 
 
+## TextDecoderOptions<sup>11+</sup>
+
+**系统能力：** SystemCapability.Utils.Lang
+
+解码相关选项参数，存在两个属性fatal和ignoreBOM。
+
+| 名称      | 参数类型 | 必填 | 说明               |
+| --------- | -------- | ---- | ------------------ |
+| fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
+| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
+
+
+## DecodeWithStreamOptions<sup>11+</sup>
+
+**系统能力：** SystemCapability.Utils.Lang
+
+解码相关选项参数。
+
+| 名称 | 参数类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
+
+
+
 ## TextDecoder
 
 TextDecoder用于将字节数组解码为字符串，可以处理多种编码格式，包括utf-8、utf-16le/be、iso-8859和windows-1251等不同的编码格式。
@@ -422,7 +446,7 @@ let retStr = result.encoding;
 ```
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
+create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
 
@@ -433,25 +457,22 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): Te
 | 参数名   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
-| options  | Object | 否   | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
-
-**表1.1**options
-
-| 名称      | 参数类型 | 必填 | 说明               |
-| --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
-| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
+| options  | TextDecoderOptions | 否   | 编码相关选项参数。|
 
 **示例：**
 
 ```ts
-let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
+let textDecoderOptions: util.TextDecoderOptions = {
+  fatal: false,
+  ignoreBOM : true
+}
+let result = util.TextDecoder.create('utf-8', textDecoderOptions)
 let retStr = result.encoding
 ```
 
 ### decodeWithStream<sup>9+</sup>
 
-decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
+decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 通过输入参数解码后输出对应文本。
 
@@ -462,13 +483,7 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
-| options | Object | 否 | 解码相关选项参数。 |
-
-**表2** options
-
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
+| options | DecodeWithStreamOptions | 否 | 解码相关选项参数。 |
 
 **返回值：**
 
@@ -479,7 +494,14 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 **示例：**
 
 ```ts
-let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+let textDecoderOptions: util.TextDecoderOptions = {
+  fatal: false,
+  ignoreBOM : true
+}
+let decodeWithStreamOptions: util.DecodeWithStreamOptions = {
+  stream: false
+}
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
 let result = new Uint8Array(6);
 result[0] = 0xEF;
 result[1] = 0xBB;
@@ -488,7 +510,7 @@ result[3] = 0x61;
 result[4] = 0x62;
 result[5] = 0x63;
 console.log("input num:");
-let retStr = textDecoder.decodeWithStream( result , {stream: false});
+let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
 console.log("retStr = " + retStr);
 ```
 
@@ -571,6 +593,18 @@ let retStr = textDecoder.decode( result , {stream: false});
 console.log("retStr = " + retStr);
 ```
 
+## EncodeIntoUint8ArrayInfo<sup>11+</sup>
+
+**系统能力：** SystemCapability.Utils.Lang
+
+编码后的文本。
+
+| 名称      | 参数类型 | 说明               |
+| --------- | -------- | ------------------ |
+| read     | number  | 表示已读取的字符数。 |
+| written | number   | 表示已写入的字节数。  |
+
+
 ## TextEncoder
 
 TextEncoder用于将字符串编码为字节数组，支持多种编码格式，包括utf-8、utf-16le/be等。需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的。例如，utf-8编码下中文字符通常占3个字节，而utf-16le/be编码下中文字符通常占2个字节。因此，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
@@ -649,7 +683,7 @@ result = textEncoder.encodeInto("\uD800¥¥");
 
 ### encodeIntoUint8Array<sup>9+</sup>
 
-encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: number }
+encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 放置生成的UTF-8编码文本。
 
@@ -666,7 +700,7 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: 
 
 | 类型       | 说明               |
 | ---------- | ------------------ |
-| Uint8Array | 返回编码后的文本。 |
+| EncodeIntoUint8ArrayInfo | 返回编码后的文本。 |
 
 **示例：**
 
