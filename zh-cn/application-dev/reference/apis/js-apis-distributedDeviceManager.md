@@ -1135,7 +1135,7 @@ off(type: 'discoverFailure', callback?: Callback&lt;{ reason: number }&gt;): voi
 
 on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
-注册设备管理服务死亡监听，以便在服务死亡时通知应用程序。
+注册设备管理服务死亡回调，以便在服务死亡时通知应用程序。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1168,7 +1168,7 @@ on(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
 off(type: 'serviceDie', callback?: Callback&lt;{}&gt;): void;
 
-取消注册设备管理服务死亡监听。
+取消注册设备管理服务死亡回调。
 
 **需要权限**：ohos.permission.DISTRIBUTED_DATASYNC
 
