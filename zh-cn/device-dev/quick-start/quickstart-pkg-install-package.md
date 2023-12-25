@@ -21,7 +21,7 @@
    > 
    >   - Java要求java8及以上版本，此处以java8为例。
    >
-   > - 若您使用的是Ubuntu20，由于gcc-multilib和gcc-arm-linux-gnueabi互斥，请勿安装gcc-arm-linux-gnueabi。
+   > - 若您使用的是Ubuntu20及以上版本，由于gcc-multilib和gcc-arm-linux-gnueabi互斥，请勿安装gcc-arm-linux-gnueabi。
 
 2. 将Python 3.8设置为默认Python版本。
    
