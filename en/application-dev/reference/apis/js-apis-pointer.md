@@ -12,7 +12,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 import pointer from '@ohos.multimodalInput.pointer';
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -43,7 +43,7 @@ try {
 }
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
@@ -75,7 +75,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -105,7 +105,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
@@ -131,11 +131,11 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the mouse movement speed. This API uses an asynchronous callback to return the result.
+Sets the moving speed of the mouse pointer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -145,7 +145,7 @@ Sets the mouse movement speed. This API uses an asynchronous callback to return 
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.  |
+| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -164,11 +164,11 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number): Promise&lt;void&gt;
 
-Sets the mouse movement speed. This API uses a promise to return the result.
+Sets the moving speed of the mouse pointer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -178,7 +178,7 @@ Sets the mouse movement speed. This API uses a promise to return the result.
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Mouse movement speed. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.|
 
 **Return value**
 
@@ -198,11 +198,11 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
-Obtains the mouse movement speed. This API uses an asynchronous callback to return the result.
+Obtains the moving speed of the mouse pointer. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -230,11 +230,11 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(): Promise&lt;number&gt;
 
-Obtains the mouse movement speed. This API uses a promise to return the result.
+Obtains the moving speed of the mouse pointer. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
@@ -258,7 +258,7 @@ try {
 }
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
 
@@ -271,7 +271,7 @@ Obtains the mouse pointer style. This API uses an asynchronous callback to retur
 | Name      | Type                                      | Mandatory  | Description            |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | windowId | number                                   | Yes   | Window ID.   |
-| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle9)&gt; | Yes   | Callback used to return the result.|
+| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -298,7 +298,7 @@ window.getLastWindow(this.context, (error, win) => {
 });
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
@@ -316,7 +316,7 @@ Obtains the mouse pointer style. This API uses a promise to return the result.
 
 | Name                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[PointerStyle](#pointerstyle9)&gt; | Promise used to return the result.|
+| Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise used to return the result.|
 
 **Example**
 
@@ -343,7 +343,7 @@ window.getLastWindow(this.context, (error, win) => {
 });
 ```
 
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -356,7 +356,7 @@ Sets the mouse pointer style. This API uses an asynchronous callback to return t
 | Name          | Type                            | Mandatory  | Description                                 |
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
 | windowId     | number                         | Yes   | Window ID.                         |
-| pointerStyle | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.                            |
+| pointerStyle | [PointerStyle](#pointerstyle) | Yes   | Mouse pointer style ID.                            |
 | callback     | AsyncCallback&lt;void&gt;      | Yes   | Callback used to return the result.|
 
 **Example**
@@ -383,7 +383,7 @@ window.getLastWindow(this.context, (error, win) => {
   }
 });
 ```
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&gt;
 
@@ -396,7 +396,7 @@ Sets the mouse pointer style. This API uses a promise to return the result.
 | Name                 | Type                            | Mandatory  | Description              |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | Yes   | Window ID.      |
-| pointerStyle        | [PointerStyle](#pointerstyle9) | Yes   | Mouse pointer style ID.         |
+| pointerStyle        | [PointerStyle](#pointerstyle) | Yes   | Mouse pointer style ID.         |
 | Promise&lt;void&gt; | void                           | Yes   | Promise used to return the result.|
 
 **Example**
@@ -423,7 +423,7 @@ window.getLastWindow(this.context, (error, win) => {
   }
 });
 ```
-## PointerStyle<sup>9+</sup>
+## PointerStyle
 
 Enumerates mouse pointer styles.
 
@@ -445,8 +445,8 @@ Enumerates mouse pointer styles.
 | NORTH_EAST_SOUTH_WEST            | 11   | North-east and south-west adjustment|![North_East_South_West.png](./figures/North_East_South_West.png)|
 | NORTH_WEST_SOUTH_EAST            | 12   | North-west and south-east adjustment|![North_West_South_East.png](./figures/North_West_South_East.png)|
 | CROSS                            | 13   | Cross (accurate selection)  |![Cross.png](./figures/Cross.png)|
-| CURSOR_COPY                      | 14   | Copy cursor    |![Copy.png](./figures/Copy.png)|
-| CURSOR_FORBID                    | 15   | Forbid cursor   |![Forbid.png](./figures/Forbid.png)|
+| CURSOR_COPY                      | 14   | Copy    |![Copy.png](./figures/Copy.png)|
+| CURSOR_FORBID                    | 15   | Forbid   |![Forbid.png](./figures/Forbid.png)|
 | COLOR_SUCKER                     | 16   | Sucker    |![Colorsucker.png](./figures/Colorsucker.png)|
 | HAND_GRABBING                    | 17   | Grabbing hand  |![Hand_Grabbing.png](./figures/Hand_Grabbing.png)|
 | HAND_OPEN                        | 18   | Opening hand  |![Hand_Open.png](./figures/Hand_Open.png)|
@@ -456,8 +456,8 @@ Enumerates mouse pointer styles.
 | RESIZE_LEFT_RIGHT                | 22   | Left and right resizing|![Resize_Left_Right.png](./figures/Resize_Left_Right.png)|
 | RESIZE_UP_DOWN                   | 23   | Up and down resizing|![Resize_Up_Down.png](./figures/Resize_Up_Down.png)|
 | SCREENSHOT_CHOOSE                | 24   | Screenshot crosshair|![Screenshot_Cross.png](./figures/Screenshot_Cross.png)|
-| SCREENSHOT_CURSOR                | 25   | Screenshot cursor    |![Screenshot_Cursor.png](./figures/Screenshot_Cursor.png)|
-| TEXT_CURSOR                      | 26   | Text cursor  |![Text_Cursor.png](./figures/Text_Cursor.png)|
+| SCREENSHOT_CURSOR                | 25   | Screenshot    |![Screenshot_Cursor.png](./figures/Screenshot_Cursor.png)|
+| TEXT_CURSOR                      | 26   | Text selection  |![Text_Cursor.png](./figures/Text_Cursor.png)|
 | ZOOM_IN                          | 27   | Zoom in    |![Zoom_In.png](./figures/Zoom_In.png)|
 | ZOOM_OUT                         | 28   | Zoom out    |![Zoom_Out.png](./figures/Zoom_Out.png)|
 | MIDDLE_BTN_EAST                  | 29   | Scrolling east  |![MID_Btn_East.png](./figures/MID_Btn_East.png)|
