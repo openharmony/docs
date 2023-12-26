@@ -52,4 +52,4 @@ Component3D组件配置选项。
 | shaderImageTexture | [Resource]([Resource](ts-types.md#resource)) | 自定义渲染用到的纹理资源。<br/>**说明：** <br/>若自定义渲染用到多个纹理资源则则调用多次，绑定点与调用顺序一致，不支持纹理更换 |
 | shaderInputBuffer | Array<number\> | 自定义渲染用到的动效参数 |
 | renderWidth | [Dimension](ts-types.md#dimension10) | 3D渲染分辨率的宽度。<br/>**说明：** <br/> 渲染分辨率的长宽可以不同于控件的长宽，若渲染分辨率与控件分辨率长宽不一致时会上采样或下采样到控件长宽。<br/> 不调用此属性时默认渲染分辨率 |
-| renderHeight | [Dimension](ts-types.md#dimension10) | 3D渲染分辨率的长度。<br/>**说明：** <br/> 渲染分辨率的长宽可以不同于控件的长宽，若渲染分辨率与控件分辨率长宽不一致时会上采样或下采样到控件长宽。<br/> 不调用此属性时默认渲染分辨率 |
+| renderHeight | [Dimension](ts-types.md#dimension10) | 3D渲染分辨率的长度。<br/>**说明：** <br/> 渲染分辨率的长宽可以不同于控件的长宽，若渲染分辨率与控件分辨率长宽不一致时会上采样或下采样到控件长宽。<br/> 不调用此属性时默认渲染分辨率  |
