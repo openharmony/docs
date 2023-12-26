@@ -124,14 +124,19 @@ In the **onCreate()** callback of the target PageAbility, use the **featureAbili
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import router from '@ohos.router';
+import { BusinessError } from '@ohos.base';
 
 export default {
   onCreate() {
     featureAbility.getWant().then((want) => {
-      if (want.parameters.page) {
-        router.push({
-          url: want.parameters.page
-        })
+      if (want.parameters) {
+        if (want.parameters.page) {
+          router.pushUrl({
+            url: want.parameters.page as string
+          }, (error: BusinessError)=>{
+            console.error(`error: ${JSON.stringify(error)}`);
+          })
+        }
       }
     })
   },
