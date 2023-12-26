@@ -25,14 +25,14 @@ format(format: string,  ...args: Object[]): string
 
 | 参数名  | 类型     | 必填 | 说明           |
 | ------- | -------- | ---- | -------------- |
-| format  | string   | 是   | 式样化字符串。 |
-| ...args | Object[] | 否   | 替换式样化字符串通配符的数据，此参数缺失时，默认返回第一个参数。 |
+| format  | string   | 是   | 格式化字符串，可以包含零个或多个占位符，用于指定要插入的参数的位置和格式。 |
+| ...args | Object[] | 否   | 替换format参数中占位符的数据，此参数缺失时，默认返回第一个参数。|
 
 **返回值：**
 
-| 类型   | 说明                         |
-| ------ | ---------------------------- |
-| string | 按特定格式式样化后的字符串。 |
+| 类型   | 说明              |
+| ------ | -----------------|
+| string | 格式化后的字符串。 |
 
 
 **格式说明符：**
@@ -1566,26 +1566,23 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **示例：**
 
-  ```js
-let arr = [];
-class ChildLruBuffer<K, V> extends util.LRUCache<K, V>
-{
-	constructor()
-	{
-		super();
-	}
-	afterRemoval(isEvict, key, value, newValue)
-	{
-		if (isEvict === false)
-		{
-			arr = [key, value, newValue];
-		}
-	}
-}
-let lru = new ChildLruBuffer();
-lru.afterRemoval(false,10,30,null);
-  ```
+```js
+let arr : Object[] = [];
+class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
+  constructor() {
+    super();
+  }
 
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
+  {
+    if (isEvict === false) {
+      arr = [key, value, newValue];
+    }
+  }
+}
+let lru : ChildLruBuffer<number, number>= new ChildLruBuffer();
+lru.afterRemoval(false, 10, 30, 50);
+```
 
 ### contains<sup>9+</sup>
 
