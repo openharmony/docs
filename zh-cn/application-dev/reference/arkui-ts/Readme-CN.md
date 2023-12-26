@@ -175,6 +175,8 @@
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
 - 高级组件
+  - [@ohos.advertising.AdComponent (非全屏广告展示组件)](../apis/js-apis-adcomponent.md)
+  - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](../apis/js-apis-autoadcomponent.md)
   - [@ohos.arkui.advanced.Chip (操作块)](ts-composite-components-chip.md)
   - [@ohos.arkui.advanced.ComposeListItem (列表)](ts-composite-components-composelistitem.md)
   - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](ts-composite-components-composetitlebar.md)

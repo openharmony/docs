@@ -108,5 +108,6 @@
   - [语言基础类库错误码](errorcode-utils.md)
 - 应用服务
   - [广告标识服务错误码](errorcode-oaid.md)
+  - [广告服务框架错误码](errorcode-ads.md)
 - 测试
   - [uitest错误码](errorcode-uitest.md)
