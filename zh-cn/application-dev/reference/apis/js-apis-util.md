@@ -621,7 +621,7 @@ let textEncoder = new util.TextEncoder("utf-8");
 
 encodeInto(input?: string): Uint8Array
 
-通过输入参数编码后输出对应文本。
+通过输入参数编码后输出Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -635,7 +635,7 @@ encodeInto(input?: string): Uint8Array
 
 | 类型       | 说明               |
 | ---------- | ------------------ |
-| Uint8Array | 返回编码后的文本。 |
+| Uint8Array | 返回编码后的Uint8Array对象。 |
 
 **示例：**
 
@@ -650,7 +650,7 @@ result = textEncoder.encodeInto("\uD800¥¥");
 
 encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: number }
 
-放置生成的UTF-8编码文本。
+对字符串进行编码，将结果写入dest数组。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -663,9 +663,9 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: 
 
 **返回值：**
 
-| 类型       | 说明               |
-| ---------- | ------------------ |
-| Uint8Array | 返回编码后的文本。 |
+| 类型      | 说明               |
+| --------- | ------------------ |
+| object | 返回一个对象，read表示已编码的字符数，write表示编码字符所占用的字节数。 |
 
 **示例：**
 
@@ -1595,13 +1595,13 @@ remove(key: K): V | undefined
 
 | 参数名 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | 是   | 要删除的密钥。 |
+| key    | K    | 是   | 要删除的键值。 |
 
 **返回值：**
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回一个空的Optional对象，如果key为null，则抛出异常。 |
+| V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回undefined，如果key为null，则抛出异常。 |
 
 **示例：**
 
@@ -2383,7 +2383,7 @@ Base64Helper的构造函数。
 
 encodeSync(src: Uint8Array): Uint8Array
 
-通过输入参数编码后输出对应文本。
+通过输入参数编码后输出Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2391,13 +2391,13 @@ encodeSync(src: Uint8Array): Uint8Array
 
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | 是   | 编码输入Uint8数组。 |
+| src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
 
 **返回值：**
 
 | 类型       | 说明                          |
 | ---------- | ----------------------------- |
-| Uint8Array | 返回编码后新分配的Uint8数组。 |
+| Uint8Array | 返回编码后的Uint8Array对象。 |
 
 **示例：**
 
@@ -2420,7 +2420,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | 是   | 编码输入Uint8数组。 |
+| src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。|
 
 **返回值：**
@@ -2442,7 +2442,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
-通过输入参数解码后输出对应文本。
+通过输入参数解码后输出对应Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2450,14 +2450,14 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 | 参数名 | 类型                           | 必填 | 说明                          |
 | ------ | ------------------------------ | ---- | ----------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 解码输入Uint8数组或者字符串。 |
+| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 待解码Uint8Array对象或者字符串。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
 | 类型       | 说明                          |
 | ---------- | ----------------------------- |
-| Uint8Array | 返回解码后新分配的Uint8数组。 |
+| Uint8Array | 返回解码后新分配的Uint8Array对象。 |
 
 **示例：**
 
@@ -2472,7 +2472,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步编码后输出对应文本。
+通过输入参数异步编码后输出对应Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2480,13 +2480,13 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | 是   | 异步编码输入Uint8数组。 |
+| src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
 
 **返回值：**
 
 | 类型                      | 说明                              |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | 返回异步编码后新分配的Uint8数组。 |
+| Promise&lt;Uint8Array&gt; | 返回异步编码后新分配的Uint8Array对象。 |
 
 **示例：**
 
@@ -2514,7 +2514,7 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | 是   | 异步编码输入Uint8数组。 |
+| src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   |  从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
@@ -2538,7 +2538,7 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步解码后输出对应文本。
+通过输入参数异步解码后输出对应Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2546,14 +2546,14 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 | 参数名 | 类型                           | 必填 | 说明                              |
 | ------ | ------------------------------ | ---- | --------------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8数组或者字符串。 |
+| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8Array对象或者字符串。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
 | 类型                      | 说明                              |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | 返回异步解码后新分配的Uint8数组。 |
+| Promise&lt;Uint8Array&gt; | 返回异步解码后新分配的Uint8Array对象。 |
 
 **示例：**
 
@@ -2998,7 +2998,7 @@ isGeneratorObject(value: Object): boolean
 **示例：**
 
   ```ts
-  // 本接口不支持在.ets文件中使用
+  // 本接口不支持在.ets文件中使用。
   let that = new util.types();
   function* foo() {};
   const generator = foo();
@@ -3673,6 +3673,10 @@ isModuleNamespaceObject(value: Object): boolean
 
 检查输入的value是否是Module Namespace Object类型。
 
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3690,6 +3694,7 @@ isModuleNamespaceObject(value: Object): boolean
 **示例：**
 
   ```ts
+  // 本接口不支持在.ets文件中使用。
   import url from '@ohos.url'
   let that = new util.types();
   let result = that.isModuleNamespaceObject(url);
