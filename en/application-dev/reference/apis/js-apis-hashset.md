@@ -2,7 +2,7 @@
 
 **HashSet** is implemented based on [HashMap](js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
 
-Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allows only unique elements. However, null values are allowed in **HashSet**, but not allowed in **TreeSet**.
+Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
 
 **Recommended use case**: Use **HashSet** when you need a set that has only unique elements or need to deduplicate a set.
 
@@ -282,14 +282,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
 
-callbackfn
+callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | No| Value of the element that is currently traversed.|
 | key | T | No| Key of the element that is currently traversed (same as **value**).|
-| set | HashSet&lt;T&gt; | No| Instance that invokes the **forEach** API.|
+| set | HashSet&lt;T&gt; | No| Instance that calls the **forEach** API.|
 
 **Error codes**
 

@@ -2,7 +2,7 @@
 
 **TreeSet** is implemented based on **[TreeMap](js-apis-treemap.md)**. In **TreeSet**, only **value** objects are processed. **TreeSet** can be used to store values, each of which must be unique.
 
-**[HashSet](js-apis-hashset.md)** stores data in a random order, whereas **TreeSet** stores data in sorted order. Both of them allows only unique elements. However, null values are allowed in **HashSet**, but not allowed in **TreeSet**.
+**[HashSet](js-apis-hashset.md)** stores data in a random order, whereas **TreeSet** stores data in sorted order. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
 
 Recommended use case: Use **TreeSet** when you need to store data in sorted order.
 
@@ -486,12 +486,12 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
 | thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
 
-callbackfn
+callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | No| Value of the element that is currently traversed.|
 | key | T | No| Key of the element that is currently traversed.|
-| set | TreeSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| set | TreeSet&lt;T&gt; | No| Instance that calls the **forEach** API.|
 
 **Error codes**
 

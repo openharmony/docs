@@ -88,7 +88,7 @@ The thread that creates the worker thread is referred to as the host thread (not
 
 ```js
 // Import the module.
-import worker form '@ohos.worker';
+import worker from '@ohos.worker';
 
 // Use the following function in API version 9 and later versions:
 const worker1 = new worker.ThreadWorker(scriptURL);
@@ -104,7 +104,7 @@ The following is an example of **scriptURL** in the constructor function:
 
 ```js
 // Import the module.
-import worker form '@ohos.worker';
+import worker from '@ohos.worker';
 
 // Method 1
 // In the stage model, the workers directory is at the same level as the pages directory in the entry module.
@@ -137,7 +137,7 @@ The following is an example of **scriptURL** in the constructor function:
 
 ```js
 // Import the module.
-import worker form '@ohos.worker';
+import worker from '@ohos.worker';
 
 // In the FA model, the workers directory is at the same level as the pages directory in the entry module.
 const worker1 = new worker.ThreadWorker('workers/worker.js', {name:'first worker in FA model'});

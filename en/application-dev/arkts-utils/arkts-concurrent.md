@@ -13,7 +13,7 @@ To pass function verification, the concurrent functions executed in a [TaskPool]
 | --------------------- | ------------------------------------------------------------------------------------------ |
 | Decorator parameters            | None.                                                                                      |
 | Application scenarios              | This decorator can be used only in projects of the stage model.                                                             |
-| Decorated function types        | This decorator can be used for asynchronous functions or common functions. It cannot be used for generators, arrow functions, or methods. It does not support class member functions or anonymous functions. |
+| Decorated function types        | This decorator can be used for asynchronous functions and common functions. It cannot be used for generators, arrow functions, or methods. It does not support class member functions or anonymous functions. |
 | Variable types in decorated functions | Local variables, input parameters, and variables imported through **import** are supported. Closure variables are not allowed.                              |
 
 
@@ -21,15 +21,38 @@ To pass function verification, the concurrent functions executed in a [TaskPool]
   ```ts
   import taskpool from '@ohos.taskpool';
 
-  async function concurrentFunc() {
-    @Concurrent
-    function printLog(): void {
-      console.log("This is printLog");
-    }
-
-    let task: taskpool.Task = new taskpool.Task(printLog);
-    await taskpool.execute(task);
+  @Concurrent
+  function add(num1: number, num2: number): number {
+    return num1 + num2;
   }
 
-  concurrentFunc();
+  async function ConcurrentFunc(): Promise<void> {
+    try {
+      let task: taskpool.Task = new taskpool.Task(add, 1, 2);
+      console.info("taskpool res is: " + await taskpool.execute(task));
+    } catch (e) {
+      console.error("taskpool execute error is: " + e);
+    }
+  }
+
+  @Entry
+  @Component
+  struct Index {
+    @State message: string = 'Hello World'
+
+    build() {
+      Row() {
+        Column() {
+          Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+              ConcurrentFunc();
+            })
+        }
+        .width('100%')
+      }
+      .height('100%')
+    }
+  }
   ```

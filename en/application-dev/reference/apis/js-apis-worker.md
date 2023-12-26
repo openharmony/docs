@@ -33,11 +33,11 @@ Provides options that can be set for the **Worker** instance to create.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | Yes  | Yes| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**.|
-| name | string   | Yes  | Yes| Name of the worker thread. The default value is **undefined**.|
-| shared | boolean | Yes  | Yes| Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported.|
+| type | "classic" \| "module" | Yes  | No| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**.|
+| name | string   | Yes  | No| Name of the worker thread. The default value is **undefined**.|
+| shared | boolean | Yes  | No| Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported.|
 
 
 ## ThreadWorker<sup>9+</sup>
@@ -2031,7 +2031,7 @@ parentPort.onerror = function(e){
 ### Sequenceable Data Types
 | Type               | Remarks                                  | Supported|
 | ------------------ | -------------------------------------- | -------- |
-| All primitive types | The Symbol type is not included.                          | Yes      |
+| All primitive types| The Symbol type is not included.                          | Yes      |
 | Date               |                                        | Yes      |
 | String             |                                        | Yes      |
 | RegExp             |                                        | Yes      |
@@ -2110,7 +2110,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 
 ## Sample Code
 > **NOTE**<br>
-> Two projects of API version 9 are used as an example. <br>Only the FA model is supported in API version 8 and earlier versions. If you want to use API version 8 or earlier, change the API for constructing the **Worker** instance and the API for creating an object in the worker thread for communicating with the main thread.
+> Two projects of API version 9 are used as an example.<br>Only the FA model is supported in API version 8 and earlier versions. If you want to use API version 8 or earlier, change the API for constructing the **Worker** instance and the API for creating an object in the worker thread for communicating with the main thread.
 ### FA Model
 
 ```js
