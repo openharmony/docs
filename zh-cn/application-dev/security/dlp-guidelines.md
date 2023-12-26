@@ -257,7 +257,7 @@
       }; // 请求参数
       dlpPermission.startDLPManagerForResult(context, want).then((res) => {
         console.info('res.resultCode', res.resultCode);
-        console.info('res.want', JSON.stringifg(res.want));
+        console.info('res.want', JSON.stringify(res.want));
       }); // 打开DLP权限管理应用
     } catch (err) {
       console.error('error', err.code, err.message); // 失败报错

@@ -51,11 +51,11 @@ FormExtensionAbility类拥有如下API接口，具体的API介绍详见[接口�
 | onAddForm(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData                                 | 卡片提供方接收创建卡片的通知接口。 |
 | onCastToNormalForm(formId:&nbsp;string):&nbsp;void                                               | 卡片提供方接收临时卡片转常态卡片的通知接口。 |
 | onUpdateForm(formId:&nbsp;string):&nbsp;void                                                     | 卡片提供方接收更新卡片的通知接口。 |
-| onChangeFormVisibility(newStatus:&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;number&nbsp;}):&nbsp;void | 卡片提供方接收修改可见性的通知接口。 |
+| onChangeFormVisibility(newStatus:&nbsp;Record&lt;string,&nbsp;number&gt;):&nbsp;void             | 卡片提供方接收修改可见性的通知接口。 |
 | onFormEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void                           | 卡片提供方接收处理卡片事件的通知接口。 |
 | onRemoveForm(formId:&nbsp;string):&nbsp;void                                                     | 卡片提供方接收销毁卡片的通知接口。 |
 | onConfigurationUpdate(newConfig:&nbsp;Configuration):&nbsp;void                                  | 当系统配置更新时调用。 |
-| onShareForm?(formId:&nbsp;string):&nbsp;{&nbsp;[key:&nbsp;string]:&nbsp;Object&nbsp;}            | 卡片提供方接收卡片分享的通知接口。 |
+| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt;                        | 卡片提供方接收卡片分享的通知接口。 |
 
 formProvider类有如下API接口，具体的API介绍详见[接口文档](../reference/apis/js-apis-app-form-formProvider.md)。
 

@@ -72,7 +72,7 @@ let inputBuffer : ArrayBuffer | null = null;
 let inputName: string = 'mnet_caffemodel_nhwc.bin';
 
 globalContext.resourceManager.getRawFileContent(inputName).then((buffer : Uint8Array) => {
-  inputBuffer = buffer.buffer;
+  inputBuffer = buffer.buffer as object as ArrayBuffer ;
   console.log('=========input bin byte length: ' + buffer.byteLength)
 })
 // 1.创建上下文

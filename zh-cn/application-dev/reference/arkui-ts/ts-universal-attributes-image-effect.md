@@ -29,6 +29,7 @@
 | linearGradientBlur<sup>10+</sup> | <br/>value: number,<br/>{<br/>fractionStops:Array\<[FractionStop]()>,<br/>direction:[GradientDirection](ts-appendix-enums.md#gradientdirection)<br/>} <br/> | -      | 为当前组件添加内容线性渐变模糊效果，<br/>-value为模糊半径，模糊半径越大越模糊，为0时不模糊。取值范围：[0, 60]<br/>线性梯度模糊包含两个部分fractionStops和direction<br/>-fractionStops数组中保存的每一个二元数组（取值0-1，小于0则为0，大于0则为1）表示[模糊程度, 模糊位置]；模糊位置需严格递增，开发者传入的数据不符合规范会记录日志，渐变模糊数组中二元数组个数必须大于等于2，否则渐变模糊不生效  <br/> -direction为渐变模糊方向，默认值为[GradientDirection](ts-appendix-enums.md#gradientdirection).Bottom。 |
 | renderGroup<sup>10+<sup>         | boolean                                  | false  | 设置当前控件和子控件是否先整体离屏渲染绘制后再与父控件融合绘制。当前控件的不透明度不为1时绘制效果可能有差异。 |
 | blendMode<sup>11+</sup>          | value: [BlendMode](#blendmode枚举说明)    |BlendMode.NORMAL| 将当前控件背景与子节点内容进行混合，<br/> **说明：** <br/> -value为混合模式，不同的模式控制不同的混合方式从而产生不同的效果，默认值为BlendMode.NORMAL<br/>**注意事项：** <br/> 1、实现效果只需要一层blend，不推荐blendMode嵌套使用，会影响性能且效果可能不正常 <br/> 2、SOURCE_IN和DESTINATION_IN混合模式只适用于alpha通道存在的图像，即包含透明度信息的图像。如果图像没有alpha通道，则无法使用这两种混合模式。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。 |
+| useShadowBatching<sup>11+</sup>  | boolean                                   |false| 控件内部子节点的阴影进行同层绘制，同层元素阴影重叠。<br/> **说明：** <br/>1. 默认不开启，如果子节点的阴影半径较大，会对节点的各自阴影会互相重叠。 当开启时，元素的阴影将不会重叠。<br/>2. 不推荐useShadowBatching嵌套使用，如果嵌套使用，只会对当前的子节点生效，无法递推。<br/> 从API version 11开始，该接口支持在ArkTS卡片中使用。 |
 
 ## ShadowOptions对象说明
 
@@ -575,3 +576,62 @@ struct Index {
 ```
 
 ![testDestinationIn_lockDemo](figures/testInvertOptions.png)
+
+### 示例13
+useShadowBatching搭配shadow实现同层阴影不重叠效果。
+```ts
+// xxx.ets
+@Entry
+@Component
+struct UseShadowBatchingExample {
+  build() {
+    Column() {
+      Column({ space: 10 }) {
+        Stack() {
+
+        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
+        .shadow({ radius: 120, color: Color.Green, offsetX: 0, offsetY: 0 })
+        .align(Alignment.TopStart).shadow({ radius: 120, color: Color.Green, offsetX: 0, offsetY: 0 })
+
+        Stack() {
+
+        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
+        .align(Alignment.TopStart).shadow({ radius: 120, color: Color.Red, offsetX: 0, offsetY: 0 })
+        .width('90%')
+        .backgroundColor(Color.White)
+
+        Column() {
+          Text()
+            .fontWeight(FontWeight.Bold)
+            .fontSize(20)
+            .fontColor(Color.White)
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(150)
+        .height(150)
+        .borderRadius(10)
+        .backgroundColor(0xf56c6c)
+        .shadow({ radius: 300, color: Color.Yellow, offsetX: 0, offsetY: 0 })
+
+        Column() {
+          Text()
+            .fontWeight(FontWeight.Bold)
+            .fontSize(20)
+            .fontColor(Color.White)
+        }
+        .justifyContent(FlexAlign.Center)
+        .width(150)
+        .height(150)
+        .backgroundColor(0x67C23A)
+        .borderRadius(10)
+        .translate({ y: -50})
+        .shadow({ radius: 220, color: Color.Blue, offsetX: 0, offsetY: 0 })
+      }
+      .useShadowBatching(true)
+    }
+    .width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![testUseShadowBatchingDemo](figures/testUseShadowBatching.png)

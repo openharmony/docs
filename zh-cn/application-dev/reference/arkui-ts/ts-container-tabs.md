@@ -11,6 +11,10 @@
 
 仅可包含子组件[TabContent](ts-container-tabcontent.md)。
 
+>  **说明：**
+>
+>  Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
+
 
 ## 接口
 
@@ -102,6 +106,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 | onAnimationStart<sup>11+</sup>(handler: (index: number, targetIndex: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | 切换动画开始时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;targetIndex:切换动画目标元素的索引。<br/>-&nbsp;event:动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。<br/>**说明：** <br/>参数为动画开始前的index值（不是最终结束动画的index值）。 |
 | onAnimationEnd<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | 切换动画结束时触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;event:动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。<br/>**说明：** <br/>当Tabs切换动效结束时触发，包括动画过程中手势中断。参数为动画结束后的index值。 |
 | onGestureSwipe<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | 在页面跟手滑动过程中，逐帧触发该回调。<br/>-&nbsp;index:当前显示元素的索引。<br/>-&nbsp;event:动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
+| customContentTransition<sup>11+</sup>(delegate: (from: number, to: number) => [TabContentAnimatedTransition](ts-types.md#tabcontentanimatedtransition) \| undefined) | 自定义Tabs页面切换动画。其中，from和to参数为返回给开发者使用的值，代表的含义如下：<br> -&nbsp;from:动画开始时，当前页面的index值。<br/>-&nbsp;to:动画开始时，目标页面的index值。<br> 使用说明：<br>  1、当使用自定义切换动画时，Tabs组件自带的默认切换动画会被禁用，同时，页面也无法跟手滑动。<br> 2、当设置为undefined时，表示不使用自定义切换动画，仍然使用组件自带的默认切换动画。<br> 3、当前自定义切换动画不支持打断。<br> 4、目前自定义切换动画只支持两种场景触发：点击页签和调用TabsController.changeIndex()接口。<br> 5、当使用自定义切换动画时，Tabs组件支持的事件中，除了onGestureSwipe，其他事件均支持。<br> 6、onChange和onAnimationEnd事件的触发时机需要特殊说明：如果在第一次自定义动画执行过程中，触发了第二次自定义动画，那么在开始第二次自定义动画时，就会触发第一次自定义动画的onChange和onAnimationEnd事件。<br> 7、当使用自定义动画时，参与动画的页面布局方式会改为Stack布局。如果开发者未主动设置相关页面的zIndex属性，那么所有页面的zIndex值是一样的，页面的渲染层级会按照在组件树上的顺序（即页面的index值顺序）确定。因此，开发者需要主动修改页面的zIndex属性，来控制页面的渲染层级。 <br/> |
 
 ## TabsController
 
@@ -123,7 +128,7 @@ changeIndex(value: number): void
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value | number | 是    | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，该事件失效。 |
+| value | number | 是    | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，取默认值0。 |
 
 
 ## 示例
@@ -698,3 +703,161 @@ struct TabsExample6 {
 ```
 
 ![tabs5](figures/tabs7.gif)
+
+### 示例7
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsCustomAnimationExample {
+  @State useCustomAnimation: boolean = true
+  @State tabContent0Scale: number = 1.0
+  @State tabContent1Scale: number = 1.0
+  @State tabContent0Opacity: number = 1.0
+  @State tabContent1Opacity: number = 1.0
+  @State tabContent2Opacity: number = 1.0
+  tabsController: TabsController = new TabsController()
+  private firstTimeout: number = 3000
+  private secondTimeout: number = 5000
+  private first2secondDuration: number = 3000
+  private second2thirdDuration: number = 5000
+  private first2thirdDuration: number = 2000
+  private baseCustomAnimation: (from: number, to: number) => TabContentAnimatedTransition = (from: number, to: number) => {
+    if ((from === 0 && to === 1) || (from === 1 && to === 0)) {
+      // 缩放动画
+      let firstCustomTransition = {
+        timeout: this.firstTimeout,
+        transition: (proxy: TabContentTransitionProxy) => {
+          if (proxy.from === 0 && proxy.to === 1) {
+            this.tabContent0Scale = 1.0
+            this.tabContent1Scale = 0.5
+          } else {
+            this.tabContent0Scale = 0.5
+            this.tabContent1Scale = 1.0
+          }
+
+          animateTo({
+            duration: this.first2secondDuration,
+            onFinish: () => {
+              proxy.finishTransition()
+            }
+          }, () => {
+            if (proxy.from === 0 && proxy.to === 1) {
+              this.tabContent0Scale = 0.5
+              this.tabContent1Scale = 1.0
+            } else {
+              this.tabContent0Scale = 1.0
+              this.tabContent1Scale = 0.5
+            }
+          })
+        }
+      } as TabContentAnimatedTransition;
+      return firstCustomTransition;
+    } else {
+      // 透明度动画
+      let secondCustomTransition = {
+        timeout: this.secondTimeout,
+        transition: (proxy: TabContentTransitionProxy) => {
+          if ((proxy.from === 1 && proxy.to === 2) || (proxy.from === 2 && proxy.to === 1)) {
+            if (proxy.from === 1 && proxy.to === 2) {
+              this.tabContent1Opacity = 1.0
+              this.tabContent2Opacity = 0.5
+            } else {
+              this.tabContent1Opacity = 0.5
+              this.tabContent2Opacity = 1.0
+            }
+            animateTo({
+              duration: this.second2thirdDuration,
+              onFinish: () => {
+                proxy.finishTransition()
+              }
+            }, () => {
+              if (proxy.from === 1 && proxy.to === 2) {
+                this.tabContent1Opacity = 0.5
+                this.tabContent2Opacity = 1.0
+              } else {
+                this.tabContent1Opacity = 1.0
+                this.tabContent2Opacity = 0.5
+              }
+            })
+          } else if ((proxy.from === 0 && proxy.to === 2) || (proxy.from === 2 && proxy.to === 0)) {
+            if (proxy.from === 0 && proxy.to === 2) {
+              this.tabContent0Opacity = 1.0
+              this.tabContent2Opacity = 0.5
+            } else {
+              this.tabContent0Opacity = 0.5
+              this.tabContent2Opacity = 1.0
+            }
+            animateTo({
+              duration: this.first2thirdDuration,
+              onFinish: () => {
+                proxy.finishTransition()
+              }
+            }, () => {
+              if (proxy.from === 0 && proxy.to === 2) {
+                this.tabContent0Opacity = 0.5
+                this.tabContent2Opacity = 1.0
+              } else {
+                this.tabContent0Opacity = 1.0
+                this.tabContent2Opacity = 0.5
+              }
+            })
+          }
+        }
+      } as TabContentAnimatedTransition;
+      return secondCustomTransition;
+    }
+  }
+
+  build() {
+    Column() {
+      Tabs({ controller: this.tabsController }) {
+        TabContent() {
+          Text("Red")
+        }
+        .tabBar("Red")
+        .scale({ x: this.tabContent0Scale, y: this.tabContent0Scale })
+        .backgroundColor(Color.Red)
+        .opacity(this.tabContent0Opacity)
+        .width(100)
+        .height(100)
+
+        TabContent() {
+          Text("Yellow")
+        }
+        .tabBar("Yellow")
+        .scale({ x: this.tabContent1Scale, y: this.tabContent1Scale })
+        .backgroundColor(Color.Yellow)
+        .opacity(this.tabContent1Opacity)
+        .width(200)
+        .height(200)
+
+        TabContent() {
+          Text("Blue")
+        }
+        .tabBar("Blue")
+        .backgroundColor(Color.Blue)
+        .opacity(this.tabContent2Opacity)
+        .width(300)
+        .height(300)
+
+      }
+      .backgroundColor(0xf1f3f5)
+      .width('100%')
+      .height(500)
+      .margin({ top: 5 })
+      .customContentTransition(this.useCustomAnimation ? this.baseCustomAnimation : undefined)
+      .barMode(BarMode.Scrollable)
+      .onChange((index: number) => {
+        console.info("onChange index: " + index)
+      })
+      .onTabBarClick((index: number) => {
+        console.info("onTabBarClick index: " + index)
+      })
+    }
+  }
+}
+```
+
+![tabs5](figures/tabs8.gif)

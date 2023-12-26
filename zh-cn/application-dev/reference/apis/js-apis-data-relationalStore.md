@@ -5651,6 +5651,35 @@ if(resultSet != undefined) {
 }
 ```
 
+### getRow<sup>11+</sup>
+
+getRow(): ValuesBucket
+
+获取当前行。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| [ValuesBucket](#valuesbucket) | 返回指定行的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**示例：**
+
+```ts
+if(resultSet != undefined) {
+  const row = (resultSet as relationalStore.ResultSet).getRow();
+}
+```
 
 ### isColumnNull
 
