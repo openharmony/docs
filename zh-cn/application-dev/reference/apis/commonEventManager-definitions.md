@@ -14,7 +14,7 @@
   - 订阅者所需权限：ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 * [COMMON_EVENT_SHUTDOWN](./common_event/commonEvent-powermgr.md#common_event_shutdown)
-表示设备正在关闭并将继续最终关闭的公共事件的操作。
+表示设备正在关闭的公共事件的操作。
 
 * [COMMON_EVENT_BATTERY_CHANGED](./common_event/commonEvent-powermgr.md#common_event_battery_changed)
 表示电池充电状态、电平和其他信息发生变化的公共事件的动作。
