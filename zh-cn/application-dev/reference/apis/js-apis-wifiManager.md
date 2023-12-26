@@ -3701,7 +3701,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 
 on(type: "streamChange", callback: Callback&lt;number&gt;): void
 
-注册WIFI流变更事件，当前版本不支持，抛出通用错误码801。
+注册WIFI流变更事件。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3728,7 +3728,7 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 
 off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 
-取消注册WIFI流变更事件，当前版本不支持，抛出通用错误码801。
+取消注册WIFI流变更事件。
 
 **系统接口：** 此接口为系统接口。
 
