@@ -8,11 +8,19 @@
 >
 > 该接口为系统接口。
 
-## 属性
+## useEffect
 
-| 名称 | 参数类型 | 参数描述 |
-| -------- | -------- | -------- |
-| useEffect | bool | 控制组件是否继承EffectComponent组件的特效属性参数，从而合并绘制特效。<br/>useEffect为true时子组件继承EffectComponent组件的特效属性参数。<br/>默认值：false|
+useEffect(value: boolean)
+
+用于对背景模糊等特效进行绘制合并。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | boolean | 是 | 控制组件是否继承EffectComponent组件的特效属性参数，从而合并绘制特效。<br/>useEffect为true时子组件继承EffectComponent组件的特效属性参数。<br/>默认值：false|
 
 ## 示例
 

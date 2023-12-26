@@ -16,15 +16,61 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 其他组件需要开发者将draggable属性设置为true，并在onDragStart等接口中实现数据传输相关内容，才能正确处理拖拽。
 
+## allowDrop
 
-## 属性
+allowDrop(value: Array&lt;UniformDataType&gt;)
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| allowDrop | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | 设置该组件上允许落入的数据类型。<br/>默认值：空<br/> |
-| draggable | boolean | 设置该组件是否允许进行拖拽。<br/>默认值：false<br/> |
-| dragPreview<sup>11+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) | 设置组件拖拽过程中的预览图，仅在onDragStart拖拽方式中有效。<br/>当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#属性)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md#属性)设置的预览图为准。开发者在[onDragStart](ts-universal-events-drag-drop.md#事件)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md#属性)设置的预览图，当设置了[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图时，拖拽过程中的背板图使用[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../apis/js-apis-image.md#pixelmap7)方式。<br/>默认值：空<br/> |
-| dragPreviewOptions<sup>11+</sup> | [DragPreviewOptions<sup>11+</sup>](#dragpreviewoptions11) | 设置拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO<br/> |
+设置该组件上允许落入的数据类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                            |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
+| value  | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | 是   | 设置该组件上允许落入的数据类型。<br/>默认值：空 |
+
+## draggable
+
+draggable(value: boolean)
+
+设置该组件是否允许进行拖拽。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                           |
+| ------ | ------- | ---- | ---------------------------------------------- |
+| value  | boolean | 是   | 设置该组件是否允许进行拖拽。<br/>默认值：false |
+
+## dragPreview<sup>11+</sup>
+
+dragPreview(value: CustomBuilder | DragItemInfo)
+
+设置组件拖拽过程中的预览图。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明) | 是   | 设置组件拖拽过程中的预览图，仅在onDragStart拖拽方式中有效。<br/>当组件支持拖拽并同时设置[bindContextMenu](ts-universal-attributes-menu.md#属性)的预览图时，则长按浮起的预览图以[bindContextMenu](ts-universal-attributes-menu.md#属性)设置的预览图为准。开发者在[onDragStart](ts-universal-events-drag-drop.md#事件)中返回的背板图优先级低于[dragPreview](ts-universal-attributes-drag-drop.md#属性)设置的预览图，当设置了[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图时，拖拽过程中的背板图使用[dragPreview](ts-universal-attributes-drag-drop.md#属性)预览图。由于[CustomBuilder](ts-types.md#custombuilder8)需要离线渲染之后才能使用，因此存在一定的性能开销和时延，推荐优先使用 [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo说明)中的[PixelMap](../apis/js-apis-image.md#pixelmap7)方式。<br/>默认值：空<br/> |
+
+## dragPreviewOptions<sup>11+</sup>
+
+dragPreviewOptions(value: DragPreviewOptions)
+
+设置拖拽过程中背板图处理模式。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                      | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [DragPreviewOptions](#dragpreviewoptions11)<sup>11+</sup> | 是   | 设置拖拽过程中背板图处理模式。<br/>默认值：DragPreviewMode.AUTO |
 
 ## DragPreviewOptions<sup>11+</sup>
 
