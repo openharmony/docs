@@ -616,7 +616,7 @@ accessBackward(): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -703,7 +703,7 @@ onActive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -746,7 +746,7 @@ onInactive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -788,7 +788,7 @@ refresh(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -843,7 +843,7 @@ accessStep(step: number): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -888,7 +888,7 @@ clearHistory(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -937,7 +937,7 @@ getHitTest(): WebHitTestType
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -989,7 +989,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1120,7 +1120,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1206,7 +1206,7 @@ runJavaScript(script: string): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1280,7 +1280,7 @@ deleteJavaScriptRegister(name: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Cannot delete JavaScriptProxy.                               |
 
 **示例：**
@@ -4860,6 +4860,7 @@ struct WebComponent {
 }
 ```
 ## WebHeader
+
 Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -4871,14 +4872,16 @@ Web组件返回的请求/响应头对象。
 
 ## WebHitTestType
 
+[getHitTest](#gethittest)接口用于指示游标节点。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
 | EditText      | 0 |可编辑的区域。                            |
 | Email         | 1 |电子邮件地址。                            |
-| HttpAnchor    | 2 |超链接，其src为http。                     |
-| HttpAnchorImg | 3 |带有超链接的图片，其中超链接的src为http。 |
+| HttpAnchor    | 2 |超链接，其中src为http。                     |
+| HttpAnchorImg | 3 |带有超链接的图片，其中src为http + HTML::img。 |
 | Img           | 4 |HTML::img标签。                           |
 | Map           | 5 |地理地址。                                |
 | Phone         | 6 |电话号码。                                |
@@ -4886,7 +4889,7 @@ Web组件返回的请求/响应头对象。
 
 ##  HitTestValue
 
-提供点击区域的元素信息。示例代码参考getHitTestValue。
+提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvalue)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
