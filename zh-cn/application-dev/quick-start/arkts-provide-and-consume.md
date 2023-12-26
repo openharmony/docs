@@ -463,3 +463,70 @@ struct GrandParent {
 - GrandSon在初始化@Consume的时候，@Consume装饰的变量通过相同的属性名绑定其最近的祖先的@Provide装饰的变量。
 - GrandSon查找到相同属性名的@Provide在祖先Child中，所以@Consume("reviewVotes") reviewVotes: number初始化数值为10。如果Child中没有定义与@Consume同名的@Provide，则继续向上寻找Parent中的同名@Provide值为20，以此类推。
 - 如果查找到根节点还没有找到key对应的@Provide，则会报初始化@Consume找不到@Provide的报错。
+
+
+## 常见问题
+
+### \@BuilderParam尾随闭包情况下\@Provide未定义错误
+
+在此场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuidlerParam连用的时候要谨慎this的指向。
+
+错误示例：
+
+```ts
+class Tmp {
+  a: string = ''
+}
+@Entry
+@Component
+struct HomePage {
+
+  @Builder
+  builder2($$: Tmp) {
+    Text(`${$$.a}测试`)
+  }
+
+  build() {
+    Column() {
+      CustomWidget() {
+        CustomWidgetChild({ builder: this.builder2 })
+      }
+    }
+  }
+}
+
+@Component
+struct CustomWidget {
+  @Provide('a') a: string='abc';
+  @BuilderParam
+  builder: () => void;
+
+  build() {
+    Column() {
+      Button('你好').onClick((x) => {
+        if (this.a == 'ddd') {
+          this.a = 'abc';
+        }
+        else {
+          this.a = 'ddd';
+        }
+
+      })
+      this.builder()
+    }
+  }
+}
+
+@Component
+struct CustomWidgetChild {
+  @Consume('a') a: string;
+  @BuilderParam
+  builder: ($$: Tmp) => void;
+
+  build() {
+    Column() {
+      this.builder({ a: this.a })
+    }
+  }
+}
+```
