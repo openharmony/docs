@@ -42,6 +42,7 @@ getCalendarManager(context : Context): CalendarManager
 // 获取calendarManager
 // !!!以下代码中的class EntryAbility extends UIAbility，onWindowStageCreate在工程main/ets/entryability/EntryAbility.ets中，测试ohosTest/ets/testability/TestAbility.ets中有，可直接使用
 // calendarMgr需在主线程中获取，worker线程会获取失败
+// 请在调用getCalendarManager接口之前确定已经手动申请成功ohos.permission.WRITE_CALENDAR和ohos.permission.READ_CALENDAR权限，否则会影响后续函数调用
 import UIAbility from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
 import window from '@ohos.window';
