@@ -154,43 +154,43 @@ export class WaterFlowDataSource implements IDataSource {
   }
 
   // 增加数据
-  public Add1stItem(): void {
+  public add1stItem(): void {
     this.dataArray.splice(0, 0, this.dataArray.length)
     this.notifyDataAdd(0)
   }
 
   // 在数据尾部增加一个元素
-  public AddLastItem(): void {
+  public addLastItem(): void {
     this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
     this.notifyDataAdd(this.dataArray.length - 1)
   }
 
   // 在指定索引位置增加一个元素
-  public AddItem(index: number): void {
+  public addItem(index: number): void {
     this.dataArray.splice(index, 0, this.dataArray.length)
     this.notifyDataAdd(index)
   }
 
   // 删除第一个元素
-  public Delete1stItem(): void {
+  public delete1stItem(): void {
     this.dataArray.splice(0, 1)
     this.notifyDataDelete(0)
   }
 
   // 删除第二个元素
-  public Delete2ndItem(): void {
+  public delete2ndItem(): void {
     this.dataArray.splice(1, 1)
     this.notifyDataDelete(1)
   }
 
   // 删除最后一个元素
-  public DeleteLastItem(): void {
+  public deleteLastItem(): void {
     this.dataArray.splice(-1, 1)
     this.notifyDataDelete(this.dataArray.length)
   }
 
   // 重新加载数据
-  public Reload(): void {
+  public reload(): void {
     this.dataArray.splice(1, 1)
     this.dataArray.splice(3, 2)
     this.notifyDataReload()
@@ -204,13 +204,13 @@ import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
 @Component
-struct WaterflowDemo {
+struct WaterFlowDemo {
   @State minSize: number = 80
   @State maxSize: number = 180
   @State fontSize: number = 24
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
   scroller: Scroller = new Scroller()
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
@@ -248,7 +248,7 @@ struct WaterflowDemo {
   build() {
     Column({ space: 2 }) {
       WaterFlow() {
-        LazyForEach(this.datasource, (item: number) => {
+        LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
@@ -260,9 +260,9 @@ struct WaterflowDemo {
           }
           .onAppear(() => {
             // 即将触底时提前增加数据
-            if (item + 20 == this.datasource.totalCount()) {
+            if (item + 20 == this.dataSource.totalCount()) {
               for (let i = 0; i < 100; i++) {
-                this.datasource.AddLastItem()
+                this.dataSource.addLastItem()
               }
             }
           })
@@ -292,11 +292,11 @@ import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
 @Component
-struct WaterflowDemo {
+struct WaterFlowDemo {
   @State minSize: number = 80
   @State maxSize: number = 180
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
@@ -321,7 +321,7 @@ struct WaterflowDemo {
   build() {
     Column({ space: 2 }) {
       WaterFlow() {
-        LazyForEach(this.datasource, (item: number) => {
+        LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
