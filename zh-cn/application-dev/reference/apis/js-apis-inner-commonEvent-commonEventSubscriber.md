@@ -318,7 +318,7 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
-以回调形式查询当前公共事件的是否为有序公共事件。
+以回调形式查询当前公共事件是否为有序公共事件。
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
@@ -328,7 +328,7 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为有序公共事件。 |
+| callback | AsyncCallback\<boolean> | 是   | 当前公共事件是否为有序公共事件。 |
 
 **示例：**
 
@@ -348,7 +348,7 @@ subscriber.isOrderedCommonEvent(isOrderedCB);
 
 isOrderedCommonEvent(): Promise\<boolean>
 
-以Promise形式查询当前公共事件的是否为有序公共事件。
+以Promise形式查询当前公共事件是否为有序公共事件。
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
@@ -358,7 +358,7 @@ isOrderedCommonEvent(): Promise\<boolean>
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| Promise\<boolean> | 当前公共事件的是否为有序公共事件。 |
+| Promise\<boolean> | 当前公共事件是否为有序公共事件。 |
 
 **示例：**
 
@@ -384,7 +384,7 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为粘性公共事件。 |
+| callback | AsyncCallback\<boolean> | 是   | 当前公共事件是否为粘性公共事件。 |
 
 **示例：**
 
@@ -414,7 +414,7 @@ isStickyCommonEvent(): Promise\<boolean>
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| Promise\<boolean> | 当前公共事件的是否为粘性公共事件。 |
+| Promise\<boolean> | 当前公共事件是否为粘性公共事件。 |
 
 **示例：**
 
