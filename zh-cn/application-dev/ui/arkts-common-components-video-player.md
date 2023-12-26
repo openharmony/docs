@@ -72,13 +72,13 @@ Video组件支持加载本地视频和网络视频。
 
 ### 加载沙箱路径视频
 
-支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源，需要保证应用沙箱目录路径下的文件存在并且有可读权限。
+支持file://data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源，需要保证应用沙箱目录路径下的文件存在并且有可读权限。
 
 ```ts
 @Component
 export struct VideoPlayer {
   private controller: VideoController | undefined;
-  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+  private videosrc: string = 'file://data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
     Column() {

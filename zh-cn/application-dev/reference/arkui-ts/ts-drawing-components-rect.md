@@ -38,9 +38,9 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 | radiusWidth | string&nbsp;\|&nbsp;number | 0 | 圆角的宽度，仅设置宽时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 | radiusHeight | string&nbsp;\|&nbsp;number | 0 | 圆角的高度，仅设置高时宽高一致。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 | radius | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Array&lt;string&nbsp;\|&nbsp;number&gt; | 0 | 圆角半径大小。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
-| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
-| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值不会绘制边框。 |
+| stroke | [ResourceColor](ts-types.md#resourcecolor) | - | 设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值不会绘制边框。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
