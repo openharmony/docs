@@ -17,11 +17,11 @@
    ```ts
    // 获取巴西时区
    let timezone = I18n.getTimeZone("America/Sao_Paulo"); // 传入特定时区，创建时区类
-   let timezoneId = timezone.getID()；// America/Sao_Paulo
+   let timezoneId = timezone.getID();// America/Sao_Paulo
    
    // 获取城市Id对应的时区对象
    let timezone = I18n.TimeZone.getTimezoneFromCity("Auckland");
-   timezone.getID()；// Pacific/Auckland
+   timezone.getID();// Pacific/Auckland
    
    // 时区的本地化名称
    let timeZoneName = timezone.getDisplayName("zh-Hans", true); // 巴西利亚标准时间
@@ -39,22 +39,28 @@
    let ids = I18n.TimeZone.getAvailableIDs() // ["America/Adak", "Asia/Hovd", "America/Sao_Paulo", "Asia/Jerusalem", "Europe/London",...]
    
    // 系统支持的时区城市Id列表
-   let cityIdArray = I18n.TimeZone.getAvailableZoneCityIDs()  // ["Auckland", "Magadan", "Lord Howe Island",...]
+   let cityIdArray = I18n.TimeZone.getAvailableZoneCityIDs();  // ["Auckland", "Magadan", "Lord Howe Island",...]
    // 遍历时区城市Id列表
-   let timezoneList = [];  // 呈现给用户的时区列表
+   let timezoneList: Array<object> = [];  // 呈现给用户的时区列表
+   class Item {
+       cityDisplayName : string = "";
+       timezoneId : string = "";
+       offset : string = "";
+       cityId : string = ""
+   }
    for (let i =0 ; i < cityIdArray.length ; i++) {
        let cityId = cityIdArray[i];
-       let timezone = I18n.TimeZone.getTimezoneFromCity(cityID: string); // 城市Id对应的时区对象
-       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityID: string, locale: string); // 本地化城市名称
+       let timezone = I18n.TimeZone.getTimezoneFromCity(cityId); // 城市Id对应的时区对象
+       let cityDisplayName = I18n.TimeZone.getCityDisplayName(cityId, "zh-CN"); // 本地化城市名称
        let timestamp = (new Date()).getTime()
-       let item = {
-           cityDisplayName : cityDisplayName ,
+       let item : Item = {
+           cityDisplayName : cityDisplayName,
            timezoneId : timezone.getID(),
            offset : 'GMT'+ (timezone.getOffset(timestamp) / 3600*1000),
            cityId : cityId 
        }
        timezoneList.push(item);
-    }
+   }
    
    // 指定地理坐标所在的时区对象数组
    let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-43.1, -22.5)
