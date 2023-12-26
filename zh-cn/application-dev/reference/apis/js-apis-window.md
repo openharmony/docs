@@ -340,7 +340,7 @@ import window from '@ohos.window';
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
 
-##  TitleButtionRect11+
+##  TitleButtionRect<sup>11+</sup>
 
 标题栏三键位置矩形区域，该区域位置坐标相对窗口右上角。
 
@@ -6777,6 +6777,169 @@ try {
 }
 ```
 
+###  setWindowDecorVisible<sup>11+</sup>
+
+setWindowDecorVisible(isVisible: boolean): void
+
+主窗口设置标题栏是否可见。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isVisible | boolean | 是   | 设置标题栏是否可见，true为可见，false为隐藏。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let mainWindow = null;
+        
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            mainWindow = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+            let isVisible = false;
+            // 调用setWindowDecorVisible接口。
+            mainWindow.setWindowDecorVisible(isVisible, (err) => {
+                if (err.code) {
+                    console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(err));
+                    return;
+                }
+                console.info('Succeeded in setting the visibility of window decor.');
+            });
+        })
+    }
+};
+```
+
+###  setWindowDecorHeight<sup>11+</sup>
+
+setWindowDecorHeight(height: number): void
+
+设置窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[48,112]，默认值为72，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let height: number = 50;
+let windowClass: window.Window = window.findWindow("test");
+try {
+  windowClass.setWindowDecorHeight(height);
+} catch (exception) {
+  console.error('Failed to set the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getWindowDecorHeight<sup>11+</sup>
+
+getWindowDecorHeight(): number;
+
+获取窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let height = windowClass.getWindowDecorHeight();
+} catch (exception) {
+  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getTitleButtonRect<sup>11+</sup>
+
+getTitleButtonRect(): TitleButtonRect;
+
+获取标题栏三键区域。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 类型            | 说明                                           |
+| --------------- | ---------------------------------------------- |
+| TitleButtonRect | 标题栏三键区域，该区域位置坐标相对窗口右上角。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let titleButtionArea = windowClass.getWindowDecorHeight();
+  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtionArea));
+} catch (exception) {
+  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### show<sup>(deprecated)</sup>
 
 show(callback: AsyncCallback&lt;void&gt;): void
@@ -8639,169 +8802,6 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error('Failed to set the window to be touchable. Cause: ' + JSON.stringify(err));
 });
-```
-
-###  setWindowDecorVisible11+
-
-setWindowDecorVisible(isVisible: boolean): void
-
-主窗口设置标题栏是否可见。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名    | 类型    | 必填 | 说明                                          |
-| --------- | ------- | ---- | --------------------------------------------- |
-| isVisible | boolean | 是   | 设置标题栏是否可见，true为可见，false为隐藏。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
-
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------ |
-| 1300002  | This window state is abnormal. |
-
-**示例：**
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-
-            let isVisible = false;
-            // 调用setWindowDecorVisible接口。
-            mainWindow.setWindowDecorVisible(isVisible, (err) => {
-                if (err.code) {
-                    console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in setting the visibility of window decor.');
-            });
-        })
-    }
-};
-```
-
-###  setWindowDecorHeight11+
-
-setWindowDecorHeight(height: number): void
-
-设置窗口标题栏高度。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[48,112]，默认值为72，单位为vp。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
-
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------ |
-| 1300002  | This window state is abnormal. |
-
-**示例：**
-
-```ts
-let height: number = 50;
-let windowClass: window.Window = window.findWindow("test");
-try {
-  windowClass.setWindowDecorHeight(height);
-} catch (exception) {
-  console.error('Failed to set the height of window decor. Cause: ' + JSON.stringify(exception));
-}
-```
-
-###  getWindowDecorHeight11+
-
-getWindowDecorHeight(): number;
-
-获取窗口标题栏高度。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 类型   | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
-
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------ |
-| 1300002  | This window state is abnormal. |
-
-**示例：**
-
-```ts
-let windowClass: window.Window = window.findWindow("test");
-try {
-  let height = windowClass.getWindowDecorHeight();
-} catch (exception) {
-  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
-}
-```
-
-###  getTitleButtonRect11+
-
-getTitleButtonRect(): TitleButtonRect;
-
-获取标题栏三键区域。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 类型            | 说明                                           |
-| --------------- | ---------------------------------------------- |
-| TitleButtonRect | 标题栏三键区域，该区域位置坐标相对窗口右上角。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
-
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------ |
-| 1300002  | This window state is abnormal. |
-
-**示例：**
-
-```ts
-let windowClass: window.Window = window.findWindow("test");
-try {
-  let titleButtionArea = windowClass.getWindowDecorHeight();
-  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtionArea));
-} catch (exception) {
-  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
-}
 ```
 
 ## WindowStageEventType<sup>9+</sup>
