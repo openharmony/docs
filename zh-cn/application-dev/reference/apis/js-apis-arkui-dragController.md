@@ -435,7 +435,7 @@ getDragPreview(): DragPreview
 
 | 类型        | 说明                                            |
 | ------------| ------------------------------------------------|
-| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口。 |
+| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
 **示例：**
 
@@ -443,7 +443,7 @@ getDragPreview(): DragPreview
 
 ## DragPreview<sup>11+</sup>
 
-拖拽背板的对象。
+拖拽背板的对象，在OnDrop和OnDragEnd回调中使用不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -451,7 +451,7 @@ getDragPreview(): DragPreview
 
 setForegroundColor(color: ResourceColor): void
 
-设置背板蒙版颜色。
+设置背板蒙版颜色，在OnDrop和OnDragEnd回调中使用不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -469,7 +469,7 @@ setForegroundColor(color: ResourceColor): void
 
 animate(options: AnimationOptions, handler: () => void): void
 
-设置背板蒙版颜色变化动效。
+设置背板蒙版颜色变化动效，在OnDrop和OnDragEnd回调中使用不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
