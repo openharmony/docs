@@ -179,7 +179,6 @@ struct CompA {
 在下面的示例是与后代组件双向同步状态\@Provide和\@Consume场景。当分别点击CompA和CompD组件内Button时，reviewVotes 的更改会双向同步在CompA和CompD中。
 
 
-
 ```ts
 @Component
 struct CompD {
@@ -229,7 +228,7 @@ struct CompA {
 }
 ```
 
-## Provide_and_Consume支持联合类型实例
+### Provide_and_Consume支持联合类型实例
 
 @Provide和@Consume支持联合类型和undefined和null，在下面的示例中，count类型为string | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
 
@@ -269,6 +268,66 @@ struct Ancestors {
       Button(`count(${this.count}), Child`)
         .onClick(() => this.count = undefined)
       Parent()
+    }
+  }
+}
+```
+
+
+## 常见问题
+
+### \@BuilderParam尾随闭包情况下\@Provide未定义错误
+
+在此场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuidlerParam连用的时候要谨慎this的指向。
+
+错误示例：
+
+```ts
+class Tmp {
+  a: string = ''
+}
+@Entry
+@Component
+struct HomePage {
+  @Builder
+  builder2($$: Tmp) {
+    Text(`${$$.a}测试`)
+  }
+  build() {
+    Column() {
+      CustomWidget() {
+        CustomWidgetChild({ builder: this.builder2 })
+      }
+    }
+  }
+}
+@Component
+struct CustomWidget {
+  @Provide('a') a: string='abc';
+  @BuilderParam
+  builder: () => void;
+  build() {
+    Column() {
+      Button('你好').onClick((x) => {
+        if (this.a == 'ddd') {
+          this.a = 'abc';
+        }
+        else {
+          this.a = 'ddd';
+        }
+      })
+      this.builder()
+    }
+  }
+}
+@Component
+struct CustomWidgetChild {
+  @Consume('a') a: string;
+  @BuilderParam
+  builder: ($$: Tmp) => void;
+  build() {
+    Column() {
+      this.builder({ a: this.a })
     }
   }
 }
