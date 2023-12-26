@@ -191,7 +191,7 @@ struct CustomDialogUser {
 
 针对自定义弹窗开发，有以下相关实例可供参考：
 
-- [`CustomDialog`：自定义弹窗（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog)
+- [自定义弹窗（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog)
 
 - [构建多种样式弹窗（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultipleDialog)
 
