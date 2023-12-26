@@ -174,7 +174,7 @@ struct TabContentExample {
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
-  @Builder TabBuilder(index: number) {
+  @Builder tabBuilder(index: number) {
     Column() {
       Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
         .width(24)
@@ -205,7 +205,7 @@ struct TabContentExample {
               .color('#182431')
               .opacity(0.05)
           }.width('100%')
-        }.tabBar(this.TabBuilder(0))
+        }.tabBar(this.tabBuilder(0))
 
         TabContent() {
           Column() {
@@ -220,7 +220,7 @@ struct TabContentExample {
               .color('#182431')
               .opacity(0.05)
           }.width('100%')
-        }.tabBar(this.TabBuilder(1))
+        }.tabBar(this.tabBuilder(1))
 
         TabContent() {
           Column() {
@@ -235,7 +235,7 @@ struct TabContentExample {
               .color('#182431')
               .opacity(0.05)
           }.width('100%')
-        }.tabBar(this.TabBuilder(2))
+        }.tabBar(this.tabBuilder(2))
 
         TabContent() {
           Column() {
@@ -250,7 +250,7 @@ struct TabContentExample {
               .color('#182431')
               .opacity(0.05)
           }.width('100%')
-        }.tabBar(this.TabBuilder(3))
+        }.tabBar(this.tabBuilder(3))
       }
       .vertical(false)
       .barHeight(56)
@@ -280,7 +280,7 @@ struct TabContentExample {
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
-  @Builder TabBuilder(index: number) {
+  @Builder tabBuilder(index: number) {
     Column() {
       Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
         .width(24)
@@ -299,13 +299,13 @@ struct TabContentExample {
     Column() {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent()
-          .tabBar(this.TabBuilder(0))
+          .tabBar(this.tabBuilder(0))
         TabContent()
-          .tabBar(this.TabBuilder(1))
+          .tabBar(this.tabBuilder(1))
         TabContent()
-          .tabBar(this.TabBuilder(2))
+          .tabBar(this.tabBuilder(2))
         TabContent()
-          .tabBar(this.TabBuilder(3))
+          .tabBar(this.tabBuilder(3))
       }
       .vertical(true)
       .barWidth(96)
