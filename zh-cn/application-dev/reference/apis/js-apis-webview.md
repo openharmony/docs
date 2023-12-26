@@ -956,7 +956,7 @@ accessBackward(): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -4612,12 +4612,12 @@ import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
+        console.log("EntryAbility onCreate");
+        web_webview.WebviewController.initializeWebEngine();
         // 预连接时，需要將'https://www.example.com'替换成一个真实的网站地址。
         web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
-        AppStorage.setOrCreate("abilityWant", want)
-        console.log("EntryAbility onCreate done")
+        AppStorage.setOrCreate("abilityWant", want);
+        console.log("EntryAbility onCreate done");
     }
 }
 ```
@@ -7173,6 +7173,7 @@ struct WebComponent {
 }
 ```
 ## WebHeader
+
 Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -7184,14 +7185,16 @@ Web组件返回的请求/响应头对象。
 
 ## WebHitTestType
 
+[getHitTest](#gethittest)接口用于指示游标节点。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
 | EditText      | 0 |可编辑的区域。                            |
 | Email         | 1 |电子邮件地址。                            |
-| HttpAnchor    | 2 |超链接，其src为http。                     |
-| HttpAnchorImg | 3 |带有超链接的图片，其中超链接的src为http。 |
+| HttpAnchor    | 2 |超链接，其中src为http。                     |
+| HttpAnchorImg | 3 |带有超链接的图片，其中src为http + HTML::img。 |
 | Img           | 4 |HTML::img标签。                           |
 | Map           | 5 |地理地址。                                |
 | Phone         | 6 |电话号码。                                |
@@ -7199,7 +7202,7 @@ Web组件返回的请求/响应头对象。
 
 ##  HitTestValue
 
-提供点击区域的元素信息。示例代码参考getHitTestValue。
+提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvalue)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7258,7 +7261,7 @@ Web组件返回的请求/响应头对象。
 
 getType(): JsMessageType
 
-获取数据对象的类型。
+获取数据对象的类型。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7386,7 +7389,7 @@ getArray(): Array\<string | number | boolean\>
 
 getType(): WebMessageType
 
-获取数据对象的类型。
+获取数据对象的类型。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7467,6 +7470,7 @@ getBoolean(): boolean
 getArrayBuffer(): ArrayBuffer
 
 获取数据对象的原始二进制数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -7531,7 +7535,7 @@ getError(): Error
 
 setType(type: WebMessageType): void
 
-设置数据对象的类型。
+设置数据对象的类型。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7542,6 +7546,8 @@ setType(type: WebMessageType): void
 | type  | [WebMessageType](#webmessagetype10) | 是   | [webMessagePort](#webmessageport)接口所支持的数据类型。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7563,6 +7569,8 @@ setString(message: string): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -7582,6 +7590,8 @@ setNumber(message: number): void
 | message  | number | 是   | 数值类型数据。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7603,6 +7613,8 @@ setBoolean(message: boolean): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -7622,6 +7634,8 @@ setArrayBuffer(message: ArrayBuffer): void
 | message  | ArrayBuffer | 是   | 原始二进制类型数据。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -7643,6 +7657,8 @@ setArray(message: Array\<string | number | boolean\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -7662,6 +7678,8 @@ setError(message: Error): void
 | message  | Error | 是   | 错误对象类型数据。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
