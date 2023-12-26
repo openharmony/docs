@@ -4001,7 +4001,7 @@ try {
 
 ### off('windowTitleButtonRectChange')<sup>11+</sup>
 
-off(type: 'windowTitleButtonRectChange', callback: Callback<TitleButtonRect>): void
+off(type: 'windowTitleButtonRectChange', callback?: Callback<TitleButtonRect>): void
 
 关闭标题栏三键位置变化的监听。
 
