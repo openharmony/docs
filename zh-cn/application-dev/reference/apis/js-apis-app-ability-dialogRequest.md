@@ -326,7 +326,7 @@ getRequestCallback(want: Want): RequestCallback
 | RESULT_CANCEL        | 1          | 表示失败。          |
 
 ## RequestResult
-模态弹框请求结果，当前只包含结果码，即RequestResult只当前只有ResultCode这一个成员。
+模态弹框请求结果，包含结果码ResultCode和请求结果ResultWant。
 
 ## 属性
 

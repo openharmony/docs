@@ -735,7 +735,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback) | 是 | 返回onRemoteStateChange回调结果。 |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback10) | 是 | 返回onRemoteStateChange回调结果。 |
 
 **错误码：**
 

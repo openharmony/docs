@@ -63,6 +63,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { BusinessError } from '@ohos.base';
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
@@ -724,7 +725,7 @@ import { BusinessError } from '@ohos.base';
 let observer_: abilityManager.AbilityForegroundStateObserver;
 // 1.注册应用启动和退出的监听器
 let observer: abilityManager.AbilityForegroundStateObserver = {
-    onAbilityStateChanged(abilityStateData) {
+    onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
         console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
     },
 };
@@ -777,8 +778,9 @@ getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): vo
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilityManager.getForegroundUIAbilities((err, data) => {
+abilityManager.getForegroundUIAbilities((err: BusinessError, data: Array<abilityManager.AbilityStateData>) => {
     if (err) {
         console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(err)}`);
     } else {
@@ -819,7 +821,7 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-appManager.getForegroundUIAbilities().then((data) => {
+appManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
     console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
     console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);

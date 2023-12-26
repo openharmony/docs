@@ -107,9 +107,10 @@ verifyPermission(permission: string, options: PermissionOptions, callback: Async
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
+import { BusinessError } from '@ohos.base';
 
 let context: featureAbility.Context = featureAbility.getContext();
-bundle.getBundleInfo('com.context.test', 1, (err, datainfo) =>{
+bundle.getBundleInfo('com.context.test', 1, (err: BusinessError, datainfo: bundle.BundleInfo) =>{
     context.verifyPermission('com.example.permission', {uid:datainfo.appInfo.uid}, (error, data) =>{
         if (error && error.code !== 0) {
             console.error(`verifyPermission fail, error: ${JSON.stringify(error)}`);
@@ -166,7 +167,7 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 | 参数名         | 类型                                      | 必填   | 说明       |
 | ---------- | --------------------------------------- | ---- | -------- |
 | permission | string                                  | 是    | 指定权限的名称。 |
-| options    | [PermissionOptions](#permissionoptions) | 否    | 权限选项。    |
+| options    | [PermissionOptions](#permissionoptions7) | 否    | 权限选项。    |
 
 **返回值：**
 
@@ -189,7 +190,7 @@ context.verifyPermission('com.context.permission', {pid:1}).then((data) => {
 
 ## Context.requestPermissionsFromUser<sup>7+</sup>
 
-requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult)>): void
+requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, resultCallback: AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)>): void
 
 从系统请求某些权限（callback形式）。
 

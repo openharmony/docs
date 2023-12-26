@@ -596,7 +596,7 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.connectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.connectServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)。
 
 **参数：**
 
