@@ -28,6 +28,7 @@ The following lists the OpenSL ES APIs that have been implemented on OpenHarmony
 - **BufferQueue APIs implemented on OpenHarmony**
   
   The APIs listed below can be used only after <OpenSLES_OpenHarmony.h\> is introduced.
+
   | API| Description| 
   | -------- | -------- |
   | SLresult (\*Enqueue) (SLOHBufferQueueItf self, const void \*buffer, SLuint32 size) | Adds a buffer to the corresponding queue.<br>For an audio playback operation, this API adds the buffer with audio data to the **filledBufferQ_** queue. For an audio recording operation, this API adds the idle buffer after recording data storage to the **freeBufferQ_** queue.<br>The **self** parameter indicates the **BufferQueue** object that calls this API.<br>The **buffer** parameter indicates the pointer to the buffer with audio data or the pointer to the idle buffer after the recording data is stored.<br>The **size** parameter indicates the size of the buffer.| 
@@ -38,14 +39,20 @@ The following lists the OpenSL ES APIs that have been implemented on OpenHarmony
 
 ## Sample Code
 
+### Linking the Dynamic Library in the CMake Script
+
+``` cmake
+target_link_libraries(sample PUBLIC libOpenSLES.so)
+```
+
 Refer to the sample code below to record an audio file.
 
 1. Add the header files.
-     
+
    ```c++
-   #include <OpenSLES.h>
-   #include <OpenSLES_OpenHarmony.h>
-   #include <OpenSLES_Platform.h>
+   #include "SLES/OpenSLES.h"
+   #include "SLES/OpenSLES_OpenHarmony.h"
+   #include "SLES/OpenSLES_Platform.h"
    ```
 
 2. Use the **slCreateEngine** API to create and instantiate an **engine** object.

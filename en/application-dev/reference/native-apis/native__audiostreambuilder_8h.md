@@ -7,15 +7,11 @@ The **native_audiostreambuilder.h** file declares the functions related to the a
 
 You can use the functions to create and destroy an audio stream builder, set audio stream attributes, and set callbacks.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[OHAudio](_o_h_audio.md)
+**Related module**: [OHAudio](_o_h_audio.md)
 
 
 ## Summary
