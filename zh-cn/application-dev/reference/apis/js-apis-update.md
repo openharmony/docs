@@ -1116,7 +1116,7 @@ updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
 
 getUpgradePolicy(): Promise\<UpgradePolicy>
 
-获取升级策略，通过promise方式作为异步方法。
+获取升级策略。通过promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Update.UpdateService
 
@@ -1379,7 +1379,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                   | 必填   | 说明                                     |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | 是    | 回调函数。当恢复出厂执行成功时，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当恢复出厂执行失败时，err为错误对象；否则，不允许调用回调函数。 |
 
 **错误码**：
 
@@ -1411,7 +1411,7 @@ factoryReset(): Promise\<void>
 
 | 类型             | 说明                         |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。当恢复出厂执行失败时，使用Promise异步回调；否则，不允许使用回调函数。 |
 
 **错误码**：
 
@@ -1857,7 +1857,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | 名称        | 类型                  | 必填   | 说明     |
 | --------- | --------------------- | ---- | ------ |
 | existTask |  boolean                  | 是    | 是否存在任务。<br>ture表示存在，false表示不存在。 |
-| taskBody  | [TaskBody](#taskinfo) | 是    | 任务数据。   |
+| taskBody  | [TaskBody](#taskbody) | 是    | 任务数据。   |
 
 ## EventInfo
 
@@ -1868,7 +1868,7 @@ localUpdater.off(eventClassifyInfo, onTaskUpdate);
 | 名称       | 类型                  | 必填   | 说明   |
 | -------- | --------------------- | ---- | ---- |
 | eventId  | [EventId](#eventid)   | 是    | 事件ID。 |
-| taskBody | [TaskBody](#taskinfo) | 是    | 任务数据。 |
+| taskBody | [TaskBody](#taskbody) | 是    | 任务数据。 |
 
 ## TaskBody
 
