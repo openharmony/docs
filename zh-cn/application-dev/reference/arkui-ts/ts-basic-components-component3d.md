@@ -103,7 +103,6 @@ function TickFrame() {
 @Component
 struct Index {
   scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
-  endFlag?: boolean = false;
   backAnimator: AnimatorResult = animator.create({
     duration: 2000,
     easing: "ease",
@@ -114,27 +113,14 @@ struct Index {
     begin: 100,
     end: 200,
   });
-  @State timeDelta: Array<number> = new Array<number>(2);
-  @State arr2: number[] = [1.0, 2.0];
+  @State timeDelta: number[] = [1.0, 2.0];
   create() {
-    let _this = this;
-    this.backAnimator = animator.create({
-      duration: 2000,
-      easing: "ease",
-      delay: 0,
-      fill: "none",
-      direction: "normal",
-      iterations: -1,
-      begin: 100,
-      end: 200,
-    });
     this.backAnimator.onfinish = () => {
-      _this.endFlag = true;
       console.log('backAnimator onfinish');
     }
     this.backAnimator.onframe = value => {
       TickFrame();
-      _this.arr2[0] = mEngineTime.deltaTimeUs;
+      this.timeDelta[0] = engineTime.deltaTimeUs;
     }
 
   }
@@ -145,7 +131,7 @@ struct Index {
         Component3D()
           .shader($rawfile('assets/app/shaders'))
           .shaderImageTexture($rawfile('assets/London.jpg'))
-          .shaderInputBuffer(this.arr2)
+          .shaderInputBuffer(this.timeDelta)
           .customRender($rawfile('assets/app/rendernodegraphs/London.rng'), true)
           .renderWidth('90%').renderHeight('90%')
           .onAppear(() => {
@@ -156,4 +142,5 @@ struct Index {
     }
     .height('100%')
   }
+}
 ```
