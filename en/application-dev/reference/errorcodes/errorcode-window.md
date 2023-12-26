@@ -172,10 +172,10 @@ This operation is not support in fullscreen.
 
 **Description**
 
-
 This error code is reported when you perform an invalid operation in the full-screen window.
 
 **Possible Causes**
+
 1. Perform the move operation in the full-screen window.
 2. Perform the resize operation in the full-screen window.
 
@@ -270,7 +270,7 @@ This error code is reported when a repeated PiP operation is performed.
 
 **Possible Causes**
 
-You attempt to start PiP when it is already started or stop it when it is already stopped.<br>
+You attempt to start PiP when it is already started or stop it when it is already stopped.
 
 **Solution**
 
