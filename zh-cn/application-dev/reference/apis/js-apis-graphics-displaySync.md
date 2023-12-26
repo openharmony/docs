@@ -39,8 +39,8 @@ private backDisplaySyncBigger: displaySync.DisplaySync = displaySync.create();
 
 | 名称             | 类型                                      | 只读 | 必填 | 说明                                       |
 | ---------------- | ----------------------------------------- | ---- | ---- | ------------------------------------------ |
-| timestamp      | number | 是   | 否   | 下一帧预期到达的时间。 |
-| targetTimestamp | number| 是   | 否   | 表示当前设备是否支持电池或者电池是否在位。 |
+| timestamp      | number | 是   | 否   | 当前帧到达的时间。 |
+| targetTimestamp | number| 是   | 否   | 下一帧预期到达的时间。 |
 
 
 ## DisplaySync
