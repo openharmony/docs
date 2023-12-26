@@ -281,7 +281,7 @@ on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) =>
 ```ts
 g_object.on("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
-    if (fields != null && fields != undefined) {
+    if (g_object != null && fields != null && fields != undefined) {
         for (let index: number = 0; index < fields.length; index++) {
             console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
         }
@@ -311,7 +311,7 @@ off(type: 'change', callback?: (sessionId: string, fields: Array&lt;string&gt;) 
 // 删除数据变更回调changeCallback
 g_object.off("change", (sessionId: string, fields: Array<string>) => {
     console.info("change" + sessionId);
-    if (fields != null && fields != undefined) {
+    if (g_object != null && fields != null && fields != undefined) {
         for (let index: number = 0; index < fields.length; index++) {
             console.info("changed !" + fields[index] + " " + g_object[fields[index]]);
         }
