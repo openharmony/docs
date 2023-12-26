@@ -11,6 +11,7 @@
   - [ArkUI Routing/Navigation Development (ArkTS)](faqs-arkui-route-nav.md)
   - [ArkUI Animation/Interaction Event Development (ArkTS)](faqs-arkui-animation-interactive-event.md)
 - [ArkUI Development (JS)](faqs-arkui-js.md)
+- [ArkTS Common Library Development](faqs-arkts-utils.md)
 - [Web Development](faqs-arkui-web.md)
 - [Bundle Management Development](faqs-bundle-management.md)
 - [Resource Manager Development](faqs-globalization.md)

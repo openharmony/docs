@@ -1,7 +1,7 @@
 # XML Overview
 
 
-Extensible Markup Language (XML) is a markup language used to describe data. It aims to provide a common way to transmit and store data, especially data frequently used in web applications. XML does not predefine tags. As a result, it is more flexible and widely used.
+Extensible Markup Language (XML) is a markup language used to describe data. It aims to provide a common way to transmit and store data, especially data frequently used in web applications. XML does not predefine tags. As such, it is more flexible and widely used.
 
 
 An XML file consists of elements, attributes, and content.

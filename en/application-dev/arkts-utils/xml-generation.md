@@ -18,11 +18,11 @@ XML can also be used as a message passing format for communication between nodes
 
 The **xml** module provides the **XmlSerializer** class to generate XML files. The input is an object of the ArrayBuffer or DataView type with a fixed length, which is used to store the output XML data.
 
-You can call different to write different types of content. For example, call **startElement(name: string)** to write the start tag and **setText(text: string)** to write a tag value. 
+You can call different methods to write different types of content. For example, call **startElement(name: string)** to write a start tag and **setText(text: string)** to write a tag value. 
 
 For details about the APIs of the **XML** module, see [@ohos.xml (XML Parsing and Generation)](../reference/apis/js-apis-xml.md).
 
-The following steps walk you through on how to generate an XML file.
+To generate an XML file, proceed as follows:
 
 1. Import the modules.
 
@@ -31,7 +31,7 @@ The following steps walk you through on how to generate an XML file.
    import util from '@ohos.util';
    ```
 
-2. Create a buffer and create an **XmlSerializer** object, either based on an object of the ArrayBuffer or DataView type.
+2. Create a buffer and create an **XmlSerializer** object, based on an object of the ArrayBuffer or DataView type.
 
    ```ts
    // 1. Create an XmlSerializer object based on an object of the ArrayBuffer type.
@@ -48,7 +48,7 @@ The following steps walk you through on how to generate an XML file.
 
    ```ts
    thatSer.setDeclaration(); // Write the XML file declaration.
-   thatSer.startElement('bookstore'); // Write the start flag.
+   thatSer.startElement('bookstore'); // Write the start tag of an element.
    thatSer.startElement('book'); // Write the start tag of a nested element.
    thatSer.setAttributes('category', 'COOKING'); // Write the attributes and attribute values.
    thatSer.startElement('title');
