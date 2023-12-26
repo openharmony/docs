@@ -17,7 +17,7 @@ There are two types of updates: SD card update and over the air (OTA) update.
 ## Modules to Import
 
 ```js
-import update from '@ohos.update'
+import update from '@ohos.update';
 ```
 
 ## update.getOnlineUpdater
@@ -1379,7 +1379,7 @@ Restores the scale to its factory settings. This API uses an asynchronous callba
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is failed, `err` is an `Error` object; otherwise, the callback cannot be used.|
 
 **Error codes**
 
@@ -1411,7 +1411,7 @@ Restores the scale to its factory settings. This API uses a promise to return th
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. If the operation is failed, use the promise callback; otherwise, the callback cannot be used.|
 
 **Error codes**
 
@@ -1857,7 +1857,7 @@ Task information.
 | Name       | Type                 | Mandatory  | Description    |
 | --------- | --------------------- | ---- | ------ |
 | existTask |  boolean                  | Yes   | Whether a task exists.<br>The value **true** indicates that the task exists, and the value **false** indicates the opposite.|
-| taskBody  | [TaskBody](#taskinfo) | Yes   | Task data.  |
+| taskBody  | [TaskBody](#taskbody) | Yes   | Task data.  |
 
 ## EventInfo
 
@@ -1868,7 +1868,7 @@ Represents event information.
 | Name      | Type                 | Mandatory  | Description  |
 | -------- | --------------------- | ---- | ---- |
 | eventId  | [EventId](#eventid)   | Yes   | Event ID.|
-| taskBody | [TaskBody](#taskinfo) | Yes   | Task data.|
+| taskBody | [TaskBody](#taskbody) | Yes   | Task data.|
 
 ## TaskBody
 
