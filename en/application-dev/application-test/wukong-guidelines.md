@@ -1,113 +1,93 @@
 # wukong User Guide
 
-
-## Overview
-
-Stability testing is important in that it demonstrates how an application performs under stress. For this reason, wukong, a stability testing tool specially designed for OpenHarmony developers, is provided.
-
-In this document you will learn about the key functions of wukong and how to use it to perform stability testing.
-
 ## Introduction
 
-wukong is part of the OpenHarmony toolkit and implements basic application stability test capabilities such as random event injection, component injection, exception capture, report generation, and data traversal of abilities.
+wukong is a built-in command line tool that implements application stability test capabilities such as random event injection, component injection, exception capture, report generation, and data traversal of abilities. This tool allows you to conduct stability tests on the system or applications by simulating user behavior.<br>
+wukong provides two types of testing: random testing and special testing. In random testing, test inputs are generated randomly. Available features include shell startup, whole application startup, multiple injection modes, random seeds setting, run log printing, and report generation. In special testing, specific application components are tested. Available features include shell startup, sequential traversal and screenshot, sleep and wakeup test, recording and playback, run log printing, and report generation.
 
 ## Principles
 
-wukong mainly provides two types of tests: random test and special test.
+The following figure shows the wukong component architecture and the responsibilities of sub-modules.
+ ![](figures/wukongRandomTestFlow.png)
 
-- Random test
-
-  The random test is the staple service of wukong. It provides the basic startup, running, and result summary features, as shown below.
-
-  ![](figures/wukongRandomTest.png)
-
-  The following figure shows the basic running process of the random test, which depends on the **hdc** command.
-
-  ![](figures/wukongRandomTestFlow.png)
-
-- Special test
-
-  The special test provides a wide range of features: traversing the components of an application in sequence, recording and playback, and sleeping and waking up.
-
-  The following figure shows the main features of the special test.
-
-  ![](figures/wukongSpecialTest.png)
-
-For details about the test commands, see [wukong](https://gitee.com/openharmony/ostest_wukong/blob/master/README.md).
+- Command line parsing: Obtain and parse parameters using commands.
+- Operating environment management: Initialize the overall operating environment of wukong using commands.
+- System API management: Check and obtain the specified mgr, and register the callback function of the Faultlogger for the controller and DFX.
+- Random event generation: Use the **random** function to generate a sequence of random numbers with the specified seed value to generate an event.
+- Event injection: Inject events of supported types to the system. This feature depends on the window, multi-mode, and security subsystems.
+- Exception capture and processing and report generation: Obtain exception information with the DFX subsystem during application running, record log, and generate reports.
 
 ## Constraints
 
-1. wukong is pre-installed in version 3.2 and later versions.
+1. The wukong tool is built in the system since API version 9.
 
-2. In versions earlier than 3.2, you must build wukong separately and push it to the tested OpenHarmony device. The procedure is as follows:       
-    How to build:
-    ```
-    ./build.sh --product-name rk3568 --build-target wukong
-    ```
-    How to push:
-    ```
-    hdc_std shell mount -o rw,remount /
-    hdc_std file send wukong /
-    hdc_std shell chmod a+x /wukong
-    hdc_std shell mv /wukong /bin/
-    ```
+2. In API versions earlier than 9, you need to build the tool and push it to the target device. The procedure is as follows:
 
-## Environment Preparations
+   ```
+    // Build code.
+     ./build.sh --product-name rk3568 --build-target wukong
 
-To run commands, connect the PC to an OpenHarmony device, such as the RK3568 development board.
+   // Push the tool to the target device.
+    hdc shell mount -o rw,remount /
+    hdc file send wukong /
+    hdc shell chmod a+x /wukong
+    hdc shell mv /wukong /bin/
+   ```
 
-## Performing Stability Testing
+3. When the PC is connected to one or more target devices, you can run test commands.
 
-**Using wukong exec for Random Test**
+## Random Testing
 
-Access the shell and run the following random test command:
-```
-# wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
-```
-Random test commands
-| Command          | Value          | Description                                          |
-| -------------- | -------------- | ---------------------------------------------- |
-| wukong exec | -           | Works as the main command.                            |
-| -s     | 10           | Sets the random seed. The value 10 is the seed value.           |
-| -i  | 1000           | Sets the application startup interval to 1000 ms.|
-| -a  | 0.28          | Sets the proportion of the random application startup test to 28%.         |
-| -t  | 0.72           | Sets the proportion of the random touch test to 72%.   |
-| -c  | 100           | Sets the number of execution times to 100.               |
+1. Open the shell.<br>If you are testing one device, run **hdc shell**. If you are testing multiple devices, run **hdc -t sn shell**, where **sn** indicates the device ID, which can be obtained by running **hdc list targets**.
 
-**Using wukong special for Special Test**
+2. Run the random test command. An example command is as follows:
+  ```
+   # wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
+  ```
+  The parameters in the command are described as follows.
+  | Command          | Value          | Description                                          |
+  | -------------- | -------------- | ---------------------------------------------- |
+  | wukong exec | -           | Works as the main command.                            |
+  | -s     | 10           | Sets the random seed. The value 10 is the seed value.           |
+  | -i  | 1000           | Sets the application startup interval to 1000 ms.|
+  | -a  | 0.28          | Sets the proportion of the random application startup test to 28%.         |
+  | -t  | 0.72           | Sets the proportion of the random touch test to 72%.   |
+  | -c  | 100           | Sets the number of execution times to 100.               |
 
-Access the shell and run the following commands to perform the sequential traversal test:
-```bash
-# wukong special -C [bundlename] -p
-```
-Special test commands
-| Command          | Value          | Description                                          |
-| -------------- |-------------- | ---------------------------------------------- |
-| wukong special | -  | Works as the main command.                            |
-| -C [bundlename]    |[bundlename] | Sets the bundle name of the application for the sequential traversal test.           |
-| -p | -  | Indicates a screenshot.                            |
+## Special Testing
+
+1. Open the shell.<br>If you are testing one device, run **hdc shell**. If you are testing multiple devices, run **hdc -t sn shell**, where **sn** indicates the device ID, which can be obtained by running **hdc list targets**.
+2. Run the special test command. An example command is as follows:
+
+  ```bash
+   # wukong special -C [bundlename] -p
+  ```
+ The parameters in the command are described as follows.
+ | Command          | Value          | Description                                          |
+ | -------------- |-------------- | ---------------------------------------------- |
+ | wukong special | -  | Works as the main command.                            |
+ | -C [bundlename]    |[bundlename] | Sets the bundle name of the application for the sequential traversal test.           |
+ | -p | p  | Indicates a screenshot.                            |
 
 ## Viewing the Test Result
 
-After the test commands are executed, the test result is automatically generated.
+**Test Result Output Path**
 
-You can obtain the test result in the following directory:
-```
-Before 2022/9/22: /data/local/wukong/report/xxxxxxxx_xxxxxx/
-Since 2022/9/22: /data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/
-```
->**NOTE**
->
->The folder for test reports is automatically generated.
+After the test commands are executed, the test result is automatically generated. You can obtain the test result in the following directory:
+- For IDE versions earlier than September 22, 2022: /data/local/wukong/report/xxxxxxxx_xxxxxx/
+- For IDE versions later than September 22, 2022: /data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/
 
-Content of the folder is described in the table below.
-| Folder/File                   | Description              |
+**Test Report Directories**
+
+| Type                                | Description              |
 | ------------------------------------ | ------------------ |
 | exception/                           | Stores exception files generated during the test.|
 | screenshot/                          | Stores screenshots of the sequential traversal test. |
 | wukong_report.csv                    | Stores the test report summary.      |
 
+**Execution Log**
+
 You can view the wukong execution log in the path below:
 ```
-reports/xxxxxxxx_xxxxxx/wukong.log
+ reports/xxxxxxxx_xxxxxx/wukong.log
 ```
