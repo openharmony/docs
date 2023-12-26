@@ -998,7 +998,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
@@ -1022,7 +1022,7 @@ class testObj {
   }
 }
 
-class webObj {
+class WebObj {
   constructor() {
   }
 
@@ -1040,8 +1040,8 @@ class webObj {
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
-  @State webTestObj: webObj = new webObj();
+  @State testObjtest: TestObj = new TestObj();
+  @State webTestObj: WebObj = new WebObj();
   build() {
     Column() {
       Button('refresh')
