@@ -815,7 +815,7 @@ async function example18() {
 
 枚举，picker选择的文档类型。
 
-**系统能力：** SystemCapability.FileManagement.UserFileService
+**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- | ---- |
