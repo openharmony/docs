@@ -56,7 +56,8 @@ Component3D组件配置选项。
 
 
 ## 示例
-
+示例效果请以真机运行为准，当前IDE预览器不支持。<br/>
+GLTF 模型加载示例。 <br/>
 ```ts
 // xxx.ets
 @Entry
@@ -75,4 +76,84 @@ struct Index {
     .height('100%')
   }
 }
+```
+自定义渲染示例。 <br/>
+
+```ts
+import animator, { AnimatorResult } from '@ohos.animator';
+class EngineTime {
+  totalTimeUs = 0;
+  deltaTimeUs = 0;
+};
+
+let engineTime = new EngineTime();
+let frameCount: number = 0;
+
+function TickFrame() {
+  if (frameCount == 10) {
+    engineTime.totalTimeUs += 1.0;
+    engineTime.deltaTimeUs += 1.0;
+    frameCount = 0;
+  } else {
+    frameCount++;
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  scene: SceneOptions = { scene: $rawfile('gltf/DamageHemlt/glTF/DamagedHelmet.gltf'), modelType: ModelType.SURFACE};
+  endFlag?: boolean = false;
+  backAnimator: AnimatorResult = animator.create({
+    duration: 2000,
+    easing: "ease",
+    delay: 0,
+    fill: "none",
+    direction: "normal",
+    iterations: -1,
+    begin: 100,
+    end: 200,
+  });
+  @State timeDelta: Array<number> = new Array<number>(2);
+  @State arr2: number[] = [1.0, 2.0];
+  create() {
+    let _this = this;
+    this.backAnimator = animator.create({
+      duration: 2000,
+      easing: "ease",
+      delay: 0,
+      fill: "none",
+      direction: "normal",
+      iterations: -1,
+      begin: 100,
+      end: 200,
+    });
+    this.backAnimator.onfinish = () => {
+      _this.endFlag = true;
+      console.log('backAnimator onfinish');
+    }
+    this.backAnimator.onframe = value => {
+      TickFrame();
+      _this.arr2[0] = mEngineTime.deltaTimeUs;
+    }
+
+  }
+  build() {
+    Row() {
+      Column() {
+        Text('custom rendering')
+        Component3D()
+          .shader($rawfile('assets/app/shaders'))
+          .shaderImageTexture($rawfile('assets/London.jpg'))
+          .shaderInputBuffer(this.arr2)
+          .customRender($rawfile('assets/app/rendernodegraphs/London.rng'), true)
+          .renderWidth('90%').renderHeight('90%')
+          .onAppear(() => {
+            this.create();
+            this.backAnimator.play();
+          }).width('50%').height('50%')
+      }.width('100%')
+    }
+    .height('100%')
+  }
 ```
