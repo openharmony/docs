@@ -117,8 +117,8 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
    ```ts
    // 打开设备，获取数据传输通道。
-   let pipe : USBDevicePipe = usb.connectDevice(deviceList[0]);
-   let interface1 : number = deviceList[0].configs[0].interfaces[0];
+   let pipe : usb.USBDevicePipe = usb.connectDevice(deviceList[0]);
+   let interface1 : usb.USBInterface = deviceList[0].configs[0].interfaces[0];
    /*
     打开对应接口，在设备信息（deviceList）中选取对应的interface。
    interface1为设备配置中的一个接口。
@@ -135,9 +135,9 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
     读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
    （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
    */
-   let inEndpoint : USBEndpoint = interface1.endpoints[2];
-   let outEndpoint : USBEndpoint = interface1.endpoints[1];
-   let dataUint8Array : Array<number> = new Uint8Array(1024);
+   let inEndpoint : usb.USBEndpoint = interface1.endpoints[2];
+   let outEndpoint : usb.USBEndpoint = interface1.endpoints[1];
+   let dataUint8Array : Uint8Array = new Uint8Array(1024);
    usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then((dataLength : number) => {
    if (dataLength >= 0) {
      console.info("usb readData result Length : " + dataLength);
