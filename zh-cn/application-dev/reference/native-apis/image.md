@@ -828,7 +828,9 @@ int32_t OH_Image_Receiver_CreateImageReceiver (napi_env env, struct OhosImageRec
 
 如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果参数无效或从surface获取参数失败则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+
+从surface获取参数失败则返回IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED；
 
 如果创建surface失败则返回IMAGE_RESULT_CREATE_SURFACE_FAILED；
 
@@ -956,7 +958,9 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId (const ImageReceiverNative * nat
 
 如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果参数无效或从surface获取参数失败则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+
+从surface获取参数失败则返回IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED；
 
 如果获取surface失败则返回IMAGE_RESULT_GET_SURFACE_FAILED；
 
@@ -1071,7 +1075,9 @@ int32_t OH_Image_Receiver_On (const ImageReceiverNative * native, OH_Image_Recei
 
 如果图像类型不支持失败则返回IMAGE_RESULT_DATA_UNSUPPORT；
 
-如果媒体类型不支持失败则返回IMAGE_RESULT_MEDIA_DATA_UNSUPPORT。
+如果注册监听失败则返回IMAGE_RESULT_REGISTER_LISTENER_FAILED；
+
+如果注册内存失败则返回IMAGE_RESULT_REGISTER_BUFFER_FAILED。
 
 
 **参见：**
@@ -1108,7 +1114,9 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 
 如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果参数无效或从surface获取参数失败则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+
+如果从surface获取参数失败返回IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED；
 
 如果创建surface失败则返回IMAGE_RESULT_CREATE_SURFACE_FAILED；
 
@@ -1120,7 +1128,7 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 
 如果图像类型不支持失败则返回IMAGE_RESULT_DATA_UNSUPPORT；
 
-如果媒体类型不支持失败则返回IMAGE_RESULT_MEDIA_DATA_UNSUPPORT。
+如果申请内存失败则返回IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED。
 
 
 **参见：**
@@ -1157,7 +1165,9 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 
 如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果参数无效或从surface获取参数失败则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+
+如果从surface获取参数失败返回IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED；
 
 如果创建surface失败则返回IMAGE_RESULT_CREATE_SURFACE_FAILED；
 
@@ -1169,7 +1179,7 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 
 如果图像类型不支持失败则返回IMAGE_RESULT_DATA_UNSUPPORT；
 
-如果媒体类型不支持失败则返回IMAGE_RESULT_MEDIA_DATA_UNSUPPORT。
+如果申请内存失败则返回IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED。
 
 **参见：**
 
@@ -1202,9 +1212,9 @@ int32_t OH_Image_Receiver_Release (ImageReceiverNative * native)
 
 如果参数错误则返回IMAGE_RESULT_BAD_PARAMETER；
 
-如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果图像类型不支持失败则返回IMAGE_RESULT_DATA_UNSUPPORT。
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER。
 
 
 **参见：**

@@ -81,7 +81,7 @@
       resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
          console.log("Succeeded in getting RawFileContent")
          // 获取图片的ArrayBuffer
-         const buffer = fileData.buffer;
+         const buffer = fileData.buffer.slice(0);
       }).catch((err : BusinessError) => {
          console.error("Failed to get RawFileContent")
       });
@@ -183,7 +183,7 @@
       resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
          console.log("Succeeded in getting RawFileContent")
          // 获取图片的ArrayBuffer
-         const buffer = fileData.buffer;
+         const buffer = fileData.buffer.slice(0);
          const imageSource : image.ImageSource = image.createImageSource(buffer);
       }).catch((err : BusinessError) => {
          console.error("Failed to get RawFileContent")
