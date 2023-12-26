@@ -75,6 +75,7 @@ class menuItems {
 
 @Entry
 @Component
+struct Index {
 private  menuItems:Array<menuItems> =
   [
     new menuItems($r('app.media.ic_public_save'),true,() => promptAction.showToast({ message: "show toast index 1" })),
