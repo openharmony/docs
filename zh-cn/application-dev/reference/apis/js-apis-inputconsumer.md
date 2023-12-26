@@ -107,7 +107,9 @@ try {
 
 setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
-设置组合按键屏蔽状态。
+设置屏蔽按键拦截状态。
+
+**需要权限**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -135,7 +137,9 @@ try {
 
 getShieldStatus(shieldMode: ShieldMode): boolean
 
-获取组合按键屏蔽是否生效。
+获取屏蔽按键拦截是否生效。
+
+**需要权限**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
