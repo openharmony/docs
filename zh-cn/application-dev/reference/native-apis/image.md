@@ -191,7 +191,7 @@
 | [OhosImageSource::uri](#uri) = nullptr | 图像源资源标识符，接受文件资源或者base64资源。 | 
 | [OhosImageSource::uriSize](#urisize) = 0 | 图像源资源长度。 | 
 | [OhosImageSource::fd](#fd) = -1 | 图像源文件资源描述符。 | 
-| [OhosImageSource::buffer](#buffer-12) = nullptr | 图像源缓冲区资源，解手格式化包缓冲区或者base64缓冲区。 | 
+| [OhosImageSource::buffer](#buffer-12) = nullptr | 图像源缓冲区资源，接受格式化包缓冲区或者base64缓冲区。 | 
 | [OhosImageSource::bufferSize](#buffersize-12) = 0 | 图像源缓冲区资源大小。 | 
 | [OhosImageSourceDelayTimeList::delayTimeList](#delaytimelist) | 图像源延迟时间列表头地址。 | 
 | [OhosImageSourceDelayTimeList::size](#size-47) = 0 | 图像源延迟时间列表大小。 | 
@@ -3567,7 +3567,7 @@ uint8_t* OhosImageSource::buffer = nullptr
 
 **描述**
 
-图像源缓冲区资源，解手格式化包缓冲区或者base64缓冲区
+图像源缓冲区资源，接受格式化包缓冲区或者base64缓冲区
 
 **起始版本：** 10
 
