@@ -250,6 +250,7 @@
   - [@ohos.display (屏幕属性)](js-apis-display.md)
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (色彩管理)](js-apis-colorSpaceManager.md)
+  - [@ohos.graphics.displaySync (可变帧率)](js-apis-graphics-displaySync.md)
   - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
   - [@ohos.screen (屏幕)](js-apis-screen.md)
   - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
