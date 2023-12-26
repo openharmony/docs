@@ -3005,7 +3005,7 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| VideoStabilizationMode    | 视频防抖是否正在使用。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| [VideoStabilizationMode](#videostabilizationmode)    | 视频防抖是否正在使用。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 
