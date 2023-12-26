@@ -527,6 +527,8 @@
 
 - 应用服务
   - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
+  - [@ohos.advertising (广告服务框架)](js-apis-advertising.md)
+  - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)](js-apis-adsserviceextensionability.md)
 
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)
