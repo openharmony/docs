@@ -62,7 +62,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[NetHandle](#nethandle)> | 是   | 回调函数。当成功获取默认激活的数据网络时，error为undefined，data为默认激活的数据网络；否则为错误对象 |
+| callback | AsyncCallback\<[NetHandle](#nethandle)> | 是   | 回调函数。当成功获取默认激活的数据网络时，error为undefined，data为默认激活的数据网络；否则为错误对象。 |
 
 **错误码：**
 
@@ -243,8 +243,8 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 
 | 参数名    | 类型                    | 必填 | 说明                                                         |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| httpProxy | [HttpProxy](#httpproxy10) | 是   | 网络全局Http代理配置信息                                     |
-| callback  | AsyncCallback\<void>    | 是   | 回调函数。当成功设置网络全局Http代理配置信息时，error为undefined，否则为错误对象 |
+| httpProxy | [HttpProxy](#httpproxy10) | 是   | 网络全局Http代理配置信息。                                  |
+| callback  | AsyncCallback\<void>    | 是   | 回调函数。当成功设置网络全局Http代理配置信息时，error为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -344,7 +344,7 @@ getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[HttpProxy](#httpproxy10)> | 是   | 回调函数。当成功获取网络默认的代理配置信息时，error为undefined，data为网络默认的代理配置信息；否则为错误对象 |
+| callback | AsyncCallback<[HttpProxy](#httpproxy10)> | 是   | 回调函数。当成功获取网络默认的代理配置信息时，error为undefined，data为网络默认的代理配置信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -413,7 +413,7 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[NetHandle](#nethandle)> | 是   | 回调函数。当成功获取App绑定的网络信息时，error为undefined，data为获取到App绑定的网络信息；否则为错误对象 |
+| callback | AsyncCallback\<[NetHandle](#nethandle)> | 是   | 回调函数。当成功获取App绑定的网络信息时，error为undefined，data为获取到App绑定的网络信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -515,7 +515,7 @@ setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void
 | 参数名    | 类型                    | 必填 | 说明                                                         |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | netHandle | [NetHandle](#nethandle) | 是   | 数据网络的句柄。                                             |
-| callback  | AsyncCallback\<void>    | 是   | 回调函数。当成功绑定App到指定网络时，error为undefined，否则为错误对象 |
+| callback  | AsyncCallback\<void>    | 是   | 回调函数。当成功绑定App到指定网络时，error为undefined，否则为错误对象。|
 
 **错误码：**
 
@@ -602,7 +602,7 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | 是 | 回调函数。当成功获取所有处于连接状态的网络列表时，error为undefined，data为激活的数据网络列表；否则为错误对象 |
+| callback | AsyncCallback&lt;Array&lt;[NetHandle](#nethandle)&gt;&gt; | 是 | 回调函数。当成功获取所有处于连接状态的网络列表时，error为undefined，data为激活的数据网络列表；否则为错误对象。|
 
 **错误码：**
 
@@ -708,7 +708,7 @@ getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<Connectio
 | 参数名    | 类型                                                         | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | netHandle | [NetHandle](#nethandle)                                      | 是   | 数据网络的句柄。                                             |
-| callback  | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | 是   | 回调函数。当成功获取netHandle对应的网络的连接信息时，error为undefined，data为获取的网络连接信息；否则为错误对象 |
+| callback  | AsyncCallback\<[ConnectionProperties](#connectionproperties)> | 是   | 回调函数。当成功获取netHandle对应的网络的连接信息时，error为undefined，data为获取的网络连接信息；否则为错误对象。|
 
 **错误码：**
 
@@ -834,7 +834,7 @@ getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilitie
 | 参数名    | 类型                                                | 必填 | 说明                                                         |
 | --------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | netHandle | [NetHandle](#nethandle)                             | 是   | 数据网络的句柄。                                             |
-| callback  | AsyncCallback\<[NetCapabilities](#netcapabilities)> | 是   | 回调函数。当成功获取netHandle对应的网络的能力信息时，error为undefined，data为获取到的网络能力信息；否则为错误对象 |
+| callback  | AsyncCallback\<[NetCapabilities](#netcapabilities)> | 是   | 回调函数。当成功获取netHandle对应的网络的能力信息时，error为undefined，data为获取到的网络能力信息；否则为错误对象。|
 
 **错误码：**
 
@@ -1549,6 +1549,247 @@ connection.getAddressesByName("xxxx").then((data: connection.NetAddress[]) => {
 });
 ```
 
+## connection.addCustomDnsRule
+
+addCustomDnsRule(host: string, ip: Array<string>, callback: AsyncCallback<void>): void
+
+为当前应用程序添加自定义host和对应的ip地址的映射，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| host     | string               | 是   | 需要自定义解析的主机名。                                     |
+| ip       | Array\<string>       | 是   | 主机名所映射的IP地址列表。                                   |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当为当前应用程序添加自定义host和对应的ip地址的映射成功，error为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.addCustomDnsRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"], (error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.addCustomDnsRule
+
+addCustomDnsRule(host: string, ip: Array<string>): Promise<void>
+
+为当前应用程序添加自定义host和对应的ip地址的映射，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名 | 类型           | 必填 | 说明                       |
+| ------ | -------------- | ---- | -------------------------- |
+| host   | string         | 是   | 需要自定义解析的主机名。   |
+| ip     | Array\<string> | 是   | 主机名所映射的IP地址列表。 |
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.addCustomDNSRule("xxxx", ["xx.xx.xx.xx","xx.xx.xx.xx"]).then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+## connection.removeCustomDnsRule
+
+removeCustomDnsRule(host: string, callback: AsyncCallback<void>): void
+
+删除当前应用程序中对应host的自定义DNS规则，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| host     | string               | 是   | 需要删除自定义DNS规则的主机名。                              |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当删除当前应用程序中对应host的自定义DNS规则成功，error为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.removeCustomDnsRule("xxxx", (error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.removeCustomDnsRule
+
+function removeCustomDnsRule(host: string): Promise<void>
+
+删除当前应用程序中对应host的自定义DNS规则，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                            |
+| ------ | ------ | ---- | ------------------------------- |
+| host   | string | 是   | 需要删除自定义DNS规则的主机名。 |
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.removeCustomDnsRule("xxxx").then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
+## connection.clearCustomDnsRules
+
+clearCustomDnsRules(callback: AsyncCallback<void>): void
+
+删除当前应用程序的所有的自定义DNS规则，使用callback方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                                                         |
+| -------- | -------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当删除当前应用程序的所有的自定义DNS规则成功，error为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.clearCustomDnsRules((error: BusinessError, data: void) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(data));
+})
+```
+
+## connection.clearCustomDnsRules
+
+clearCustomDnsRules(): Promise<void>
+
+删除当前应用程序的所有的自定义DNS规则，使用Promise方式作为异步方法。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| Promise\<Array\<void>> | 无返回值的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+connection.clearCustomDnsRules().then(() => {
+    console.log("success");
+}).catch((error: BusinessError) => {
+    console.log(JSON.stringify(error));
+})
+```
+
 ## NetConnection
 
 网络连接的句柄。
@@ -1777,7 +2018,7 @@ ConnectionProperties }>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 订阅事件，固定为'netConnectionPropertiesChange'。<br/>netConnectionPropertiesChange：网络连接信息变化事件。 |
-| callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的连接信息(connectionProperties)|
+| callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | 是   | 回调函数，返回数据网络句柄(netHandle)和网络的连接信息(connectionProperties)。|
 
 **示例：**
 
@@ -1824,7 +2065,7 @@ on(type: 'netLost', callback: Callback\<NetHandle>): void
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                             | 是   | 订阅事件，固定为'netLost'。<br/>netLost：网络严重中断或正常断开事件。 |
-| callback | Callback\<[NetHandle](#nethandle)> | 是   | 回调函数，数据网络句柄(netHandle)|
+| callback | Callback\<[NetHandle](#nethandle)> | 是   | 回调函数，数据网络句柄(netHandle)。|
 
 **示例：**
 
@@ -1919,7 +2160,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 
 | 参数名      | 类型                     | 必填 | 说明                            |
 | ----------- | ------------------------ | ---- | -------------------------------|
-| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket7) \| [UDPSocket](js-apis-socket.md#udpsocket7) | 是 | 待绑定的TCPSocket或UDPSocket对象。|
+| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是 | 待绑定的TCPSocket或UDPSocket对象。|
 | callback    | AsyncCallback\<void>      | 是   | 回调函数。当TCPSocket或UDPSocket成功绑定到当前网络，error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2001,7 +2242,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 | 参数名          | 类型                  | 必填  | 说明                           |
 | --------------- | --------------------- | ---- | ------------------------------ |
-| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket7) \| [UDPSocket](js-apis-socket.md#udpsocket7) | 是   | 待绑定的TCPSocket或UDPSocket对象。|
+| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是   | 待绑定的TCPSocket或UDPSocket对象。|
 
 **返回值：**
 

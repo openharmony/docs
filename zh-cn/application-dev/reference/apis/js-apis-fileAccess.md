@@ -1734,6 +1734,8 @@ copyFile(sourceUri: string, destUri: string, fileName: string): Promise&lt;strin
 
 复制文件并传入备用文件名，使用Promise异步回调。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1780,6 +1782,8 @@ copyFile(sourceUri: string, destUri: string, fileName, callback: AsyncCallback&l
 
 复制文件并传入备用文件名，使用callback异步回调。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1808,8 +1812,6 @@ try {
   // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
   fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (copyResult: string) => {
         console.log("copyResult uri: " + copyResult);
-      }
-    }
   });
 } catch (err) {
   let error: BusinessError = err as BusinessError;
@@ -1850,7 +1852,7 @@ async function registerObserver01() {
     // uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVE_SELF
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1858,7 +1860,7 @@ async function registerObserver01() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR2/SUB_FILE'，事件类型为NOTIFY_MOVED_TO
     const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1867,7 +1869,7 @@ async function registerObserver01() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR1/SUB_FILE'，事件类型为NOTIFY_MOVED_FROM
     const callbackFile = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1901,7 +1903,7 @@ async function registerObserver02() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/SUB_DIR'，事件类型为NOTIFY_ADD
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1932,7 +1934,7 @@ async function registerObserver03() {
     // 期待无第二次返回
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -1980,7 +1982,7 @@ async function UnregisterObserver01() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2008,7 +2010,7 @@ async function UnregisterObserver02() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR'，事件类型为NOTIFY_DELETE
     const callbackDir = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2039,7 +2041,7 @@ async function UnregisterObserver03() {
     // 期待收到uri为'file://docs/storage/Users/currentUser/Documents/NOTIFY_DIR/RENAME_FILE'，事件类型为NOTIFY_MOVED_TO
     const callbackDir1 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2047,7 +2049,7 @@ async function UnregisterObserver03() {
     // 期待收不到任何事件
     const callbackDir2 = (NotifyMessageDir: fileAccess.NotifyMessage) => {
       if (NotifyMessageDir != undefined) {
-        console.log('NotifyType: ' + NotifyMessageDir.NotifyType + 'NotifyUri:' + NotifyMessageDir.uri[0]);
+        console.log('NotifyType: ' + NotifyMessageDir.type + 'NotifyUri:' + NotifyMessageDir.uri[0]);
       } else {
         console.error("NotifyMessageDir is undefined");
       }
@@ -2070,13 +2072,15 @@ async function UnregisterObserver03() {
 
 ### moveItem<sup>11+</sup>
 
-moveItem(sourceUri: string, destUri: string, force?: boolean) : Promise<Array<MoveResult>>&gt;
+moveItem(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;MoveResult&gt;&gt;
 
 以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用Promise异步回调。
 
 当存在同名文件时，可以选择强制覆盖文件。
 
 目前仅支持设备内移动，跨设备不支持移动。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2168,6 +2172,8 @@ moveItem(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt
 
 当前仅支持设备内移动，不支持跨设备移动。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2221,6 +2227,8 @@ moveItem(sourceUri: string, destUri: string, force: boolean, callback: AsyncCall
 当存在同名文件时，可以选择强制覆盖文件。
 
 当前仅支持设备内移动，不支持跨设备移动。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2277,6 +2285,8 @@ moveFile(sourceUri: string, destUri: string, fileName: string) : Promise&lt;stri
 
 目前仅支持设备内移动，跨设备不支持移动。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2309,6 +2319,7 @@ moveFile(sourceUri: string, destUri: string, fileName: string) : Promise&lt;stri
     // 开发者应根据自己实际获取的uri进行开发
     let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
     let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+    let fileName: string;
     try {
       // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
       let fileUri = await fileAccessHelper.moveFile(sourceUri, destUri, fileName);
@@ -2329,6 +2340,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 当存在同名文件时（即发生文件移动冲突时），可以重命名待移动的文件，再保存到目标文件夹。
 
 当前仅支持设备内移动，不支持跨设备移动。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2356,6 +2369,7 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
   // 开发者应根据自己实际获取的uri进行开发
   let sourceUri: string = "file://docs/storage/Users/currentUser/Download/1.txt";
   let destUri: string = "file://docs/storage/Users/currentUser/Download/test";
+  let fileName: string;
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.moveFile(sourceUri, destUri, fileName, (err: BusinessError, fileUri: string) => {
@@ -2449,6 +2463,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 ## MoveResult<sup>11+</sup>
 
 表示移动操作失败时的返回信息，移动成功时则没有返回信息。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 

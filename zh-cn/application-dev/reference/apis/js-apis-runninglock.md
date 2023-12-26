@@ -279,18 +279,18 @@ hold(timeout: number): void
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then((lock: runningLock.RunningLock) => {
-    console.info('create running lock success');
-    try {
-        lock.hold(500);
-        console.info('hold running lock success');
-    } catch(err) {
-        console.error('hold running lock failed, err: ' + err);
+runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
+    if (typeof err === 'undefined') {
+        console.info('create running lock: ' + lock);
+        try {
+            lock.hold(500);
+            console.info('hold running lock success');
+        } catch(err) {
+            console.error('hold running lock failed, err: ' + err);
+        }
+    } else {
+        console.error('create running lock failed, err: ' + err);
     }
-})
-.catch((err: { code: number, message: string }) => {
-    console.error('create running lock failed, err: ' + err);
 });
 ```
 
@@ -315,18 +315,18 @@ unhold(): void
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then((lock: runningLock.RunningLock) => {
-    console.info('create running lock success');
-    try {
-        lock.unhold();
-        console.info('unhold running lock success');
-    } catch(err) {
-        console.error('unhold running lock failed, err: ' + err);
+runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
+    if (typeof err === 'undefined') {
+        console.info('create running lock: ' + lock);
+        try {
+            lock.unhold();
+            console.info('unhold running lock success');
+        } catch(err) {
+            console.error('unhold running lock failed, err: ' + err);
+        }
+    } else {
+        console.error('create running lock failed, err: ' + err);
     }
-})
-.catch((err: { code: number, message: string }) => {
-    console.error('create running lock failed, err: ' + err);
 });
 ```
 
@@ -355,18 +355,18 @@ isHolding(): boolean
 **示例：**
 
 ```js
-runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
-.then((lock: runningLock.RunningLock) => {
-    console.info('create running lock success');
-    try {
-        let isHolding = lock.isHolding();
-        console.info('check running lock holding status: ' + isHolding);
-    } catch(err) {
-        console.error('check running lock holding status failed, err: ' + err);
+runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND, (err: Error, lock: runningLock.RunningLock) => {
+    if (typeof err === 'undefined') {
+        console.info('create running lock: ' + lock);
+        try {
+            let isHolding = lock.isHolding();
+            console.info('check running lock holding status: ' + isHolding);
+        } catch(err) {
+            console.error('check running lock holding status failed, err: ' + err);
+        }
+    } else {
+        console.error('create running lock failed, err: ' + err);
     }
-})
-.catch((err: { code: number, message: string }) => {
-    console.error('create running lock failed, err: ' + err);
 });
 ```
 

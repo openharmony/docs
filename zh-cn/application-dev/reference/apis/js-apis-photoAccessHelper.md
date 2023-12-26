@@ -173,6 +173,11 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 
 指定待创建的图片或者视频的文件名，创建图片或视频资源，使用callback方式返回结果。
 
+待创建的文件名参数规格为：
+- 应包含有效文件主名和图片或视频扩展名。
+- 文件名字符串长度为1~255。
+- 文件主名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -221,6 +226,11 @@ async function example() {
 createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 指定待创建的图片或者视频的文件名，创建图片或视频资源，使用Promise方式返回结果。
+
+待创建的文件名参数规格为：
+- 应包含有效文件主名和图片或视频扩展名。
+- 文件名字符串长度为1~255。
+- 文件主名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统接口**：此接口为系统接口。
 
@@ -275,6 +285,11 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 
 指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用callback方式返回结果。
 
+待创建的文件名参数规格为：
+- 应包含有效文件主名和图片或视频扩展名。
+- 文件名字符串长度为1~255。
+- 文件主名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
 **系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -327,6 +342,11 @@ async function example() {
 createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;
 
 指定待创建的图片或者视频的文件名和创建选项，创建图片或视频资源，使用Promise方式返回结果。
+
+待创建的文件名参数规格为：
+- 应包含有效文件主名和图片或视频扩展名。
+- 文件名字符串长度为1~255。
+- 文件主名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统接口**：此接口为系统接口。
 
@@ -1611,7 +1631,7 @@ async function example() {
       if (err === undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
-        console.info(`getPhotoIndex failed;`);
+        console.info(`getPhotoIndex failed; error: ${err}`);
       }
     });
   } catch (error) {
@@ -2278,7 +2298,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 ```ts
 async function example() {
-  console.info('openDemo');
+  console.info('Open demo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
   photoAsset.open('rw', (err, fd) => {
@@ -2286,7 +2306,7 @@ async function example() {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('File err' + err);
+      console.error('Open file err' + err);
     }
   });
 }
@@ -2334,7 +2354,7 @@ open(mode: string): Promise&lt;number&gt;
 
 ```ts
 async function example() {
-  console.info('openDemo');
+  console.info('Open demo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
@@ -2343,10 +2363,10 @@ async function example() {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error(' open File fail');
+      console.error('Open file fail');
     }
   } catch (err) {
-    console.error('open Demo err' + err);
+    console.error('Open demo err' + err);
   }
 }
 ```
@@ -2385,14 +2405,20 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
-  let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+  // 需要保证设备中存在可读取图片视频文件
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
   photoAsset.getReadOnlyFd((err, fd) => {
     if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('File err' + err);
+      console.error('getReadOnlyFd err' + err);
     }
   });
 }
@@ -2433,17 +2459,23 @@ getReadOnlyFd(): Promise&lt;number&gt;
 async function example() {
   console.info('getReadOnlyFdDemo');
   try {
-    let testFileName: string = 'testFile' + Date.now() + '.jpg';
-    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    // 需要保证设备中存在可读取图片视频文件
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
     let fd: number = await photoAsset.getReadOnlyFd();
     if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error(' open File fail');
+      console.error('getReadOnlyFd fail');
     }
   } catch (err) {
-    console.error('open Demo err' + err);
+    console.error('getReadOnlyFd demo err' + err);
   }
 }
 ```
@@ -3011,6 +3043,7 @@ async function example() {
     let exifMessage = await photoAsset.getExif();
     let userCommentKey = 'UserComment';
     let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
     fetchResult.close();
   } catch (err) {
     console.error('getExifDemoCallback failed with error: ' + err);
@@ -3141,7 +3174,7 @@ async function example() {
     let userComment = 'test_set_user_comment';
     await photoAsset.setUserComment(userComment);
   } catch (err) {
-    console.error('setUserCommentDemoCallback failed with error: ' + err);
+    console.error('setUserCommentDemoPromise failed with error: ' + err);
   }
 }
 ```
@@ -4361,7 +4394,7 @@ async function example() {
   if (fetchResult.isAfterLast()) {
     console.info('photoAsset isAfterLast displayName = ', photoAsset.displayName);
   } else {
-    console.info('photoAsset  not isAfterLast ');
+    console.info('photoAsset not isAfterLast.');
   }
 }
 ```
@@ -4980,7 +5013,6 @@ import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('albumGetAssetsDemoPromise');
-
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -4993,9 +5025,9 @@ async function example() {
   let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
   let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption).then((albumFetchResult) => {
-    console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
+    console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
   }).catch((err: BusinessError) => {
-    console.error('album getPhotoAssets failed with error: ' + err);
+    console.error('album getAssets failed with error: ' + err);
   });
 }
 ```
@@ -5985,6 +6017,30 @@ async function example() {
 | VIDEO_TYPE |  'video/*' | 视频类型。 |
 | IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型。 |
 
+## RecommendationType<sup>11+</sup>
+
+枚举，推荐的照片类型。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- | ---- |
+| QR_OR_BAR_CODE  |  1 | 二维码或条码。 |
+| QR_CODE |  2 | 二维码。 |
+| BAR_CODE |  3 | 条码。 |
+| ID_CARD |  4 | 身份证。 |
+| PROFILE_PICTURE |  5 | 头像。 |
+
+## RecommendationOptions<sup>11+</sup>
+
+照片推荐选项。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 可选择的照片推荐类型，若无此参数，则默认为不推荐照片。 |
+
 ## PhotoSelectOptions
 
 图库选择选项。
@@ -5998,6 +6054,7 @@ async function example() {
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持照片推荐。      |
 
 ## PhotoSelectResult
 

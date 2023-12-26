@@ -5,13 +5,11 @@
 
 定义**ImageReceiver**的相关信息。
 
-**起始版本：**
+**系统能力：** SystemCapability.Multimedia.Image
 
-10
+**起始版本：** 10
 
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总

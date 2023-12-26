@@ -110,7 +110,7 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 ## 示例
 
 ```ts
-import { IconType } from '@ohos.arkui.advanced.ComposeListItem';
+import { IconType, ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';
 import promptAction from '@ohos.promptAction'
 
 @Entry

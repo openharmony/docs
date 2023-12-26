@@ -1642,7 +1642,7 @@ export default class EntryAbility extends UIAbility {
     };
     let resultCode = 100;
     // 返回给接口调用方AbilityResult信息
-    let abilityResult: : common.AbilityResult = {
+    let abilityResult: common.AbilityResult = {
       want,
       resultCode
     };
@@ -2399,10 +2399,12 @@ setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
 
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test', (result: BusinessError) => {
       console.info(`setMissionLabel: ${JSON.stringify(result)}`);
     });
@@ -2444,10 +2446,12 @@ setMissionLabel(label: string): Promise&lt;void&gt;
   ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
 
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test').then(() => {
       console.info('success');
     }).catch((err: BusinessError) => {
@@ -3567,7 +3571,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
     'time':'2023-10-23 20:45',
   };
   let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code, name, message) => {
+    onError: (code: number, name: string, message: string) => {
       console.log(`code:` + code + `name:` + name + `message:` + message);
     }
   }
@@ -3624,7 +3628,7 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
     'time':'2023-10-23 20:45',
   };
   let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code, name, message) => {
+    onError: (code: number, name: string, message: string) => {
       console.log(`code:` + code + `name:` + name + `message:` + message);
     }
   }
@@ -3635,9 +3639,9 @@ startAbilityByType(type: string, wantParam: Record<string, Object>,
   })
   ```
 
-## UIAbilityContext.requestModalUIExtension
+## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
 
-requestModalUIExtension(want: Want): Promise\<void>
+requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用Promise形式异步回调。
 
@@ -3715,8 +3719,8 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## UIAbilityContext.requestModalUIExtension
-requestModalUIExtension(want: Want, callback: AsyncCallback\<void>): void
+## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
+requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
 应用拉起一个UIExtension模态弹窗，拉起方与被拉起方的信息由want携带。根据want所携带的拉起方bundleName与前台应用的bundleName是否一致，来判断拉起模态窗口的类型。使用callback形式异步回调。
 

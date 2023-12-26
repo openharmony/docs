@@ -46,7 +46,7 @@ Creates a **DeviceManager** instance.
 
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   let dmInstance: deviceManager.DeviceManager | null = null;
   try {
@@ -275,8 +275,9 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     dmInstance.release();
@@ -314,9 +315,10 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     let deviceInfoList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
@@ -360,9 +362,10 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     let deviceInfoList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync(true);
@@ -392,9 +395,10 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
   try {
     dmInstance.getTrustedDeviceList((err: BusinessError, data: Array<deviceManager.DeviceInfo>) => {
       if (err) {
@@ -429,9 +433,10 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   dmInstance.getTrustedDeviceList().then((data: Array<deviceManager.DeviceInfo>) => {
     console.log('get trusted device info: ' + JSON.stringify(data));
@@ -468,9 +473,10 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     let deviceInfo: deviceManager.DeviceInfo = dmInstance.getLocalDeviceInfoSync();
@@ -500,17 +506,17 @@ Obtains local device information. This API uses an asynchronous callback to retu
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
-
+  import { BusinessError } from '@ohos.base';
 
   try {
     dmInstance.getLocalDeviceInfo((err: BusinessError, data: deviceManager.DeviceInfo) => {
-    if (err) {
-      console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
-      return;
-    }
+      if (err) {
+        console.error("getLocalDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+        return;
+      }
       console.log('get local device info: ' + JSON.stringify(data));
     });
   } catch (err) {
@@ -539,9 +545,10 @@ Obtains local device information. This API uses a promise to return the result.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   dmInstance.getLocalDeviceInfo().then((data: deviceManager.DeviceInfo) => {
     console.log('get local device info: ' + JSON.stringify(data));
@@ -571,18 +578,19 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     // Network ID of the device, which can be obtained from the trusted device list
-    let networkId = "xxxxxxx"
+    let networkId = "xxxxxxx";
     dmInstance.getDeviceInfo(networkId, (err: BusinessError, data: deviceManager.DeviceInfo) => {
-    if (err) {
-      console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
-      return;
-    }
+      if (err) {
+        console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
+        return;
+      }
       console.log('get device info: ' + JSON.stringify(data));
     });
   } catch (err) {
@@ -617,12 +625,13 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   // Network ID of the device, which can be obtained from the trusted device list
-  let networkId = "xxxxxxx"
+  let networkId = "xxxxxxx";
   dmInstance.getDeviceInfo(networkId).then((data: deviceManager.DeviceInfo) => {
     console.log('get device info: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -659,18 +668,19 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface SubscribeInfo {
-    subscribeId: number,
-    mode: number, // Active discovery
-    medium: number,  // Automatic. Multiple media can be used for device discovery.
-    freq: number,    // High frequency
-    isSameAccount: boolean,
-    isWakeRemote: boolean,
-    capability: number
-  };
+    subscribeId: number;
+    mode: number; // Active discovery
+    medium: number;  // Automatic. Multiple media can be used for device discovery.
+    freq: number;    // High frequency
+    isSameAccount: boolean;
+    isWakeRemote: boolean;
+    capability: number;
+  }
 
   // Automatically generate a unique subscription ID.
   let subscribeId = Math.floor(Math.random() * 10000 + 1000);
@@ -721,27 +731,28 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface Filters {
-    type: string,
-    value: number
+    type: string;
+    value: number;
   }
 
   interface FilterOptions {
-    filter_op: string, // Optional. The default value is OR.
-    filters: Filters[]
-    }
+    filter_op: string; // Optional. The default value is OR.
+    filters: Filters[];
+  }
 
   interface SubscribeInfo {
-    subscribeId: number,
-    mode: number, // Active discovery
-    medium: number,  // Automatic. Multiple media can be used for device discovery.
-    freq: number,    // High frequency
-    isSameAccount: boolean,
-    isWakeRemote: boolean,
-    capability: number
+    subscribeId: number;
+    mode: number; // Active discovery
+    medium: number;  // Automatic. Multiple media can be used for device discovery.
+    freq: number;    // High frequency
+    isSameAccount: boolean;
+    isWakeRemote: boolean;
+    capability: number;
   }
 
   // Automatically generate a unique subscription ID.
@@ -758,10 +769,10 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
   let filters: Filters[] = [
     {
-        type: "range",
-        value: 50 // Filter discovered devices based on the distance (in cm).
+      type: "range",
+      value: 50 // Filter discovered devices based on the distance (in cm).
     }
-  ]
+  ];
 
   let filterOptions: FilterOptions = {
     filter_op: "OR", // Optional. The default value is OR.
@@ -803,8 +814,9 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     // stopDeviceDiscovery and startDeviceDiscovery must be used in pairs, and the input parameter **subscribeId** passed in them must be the same.
@@ -845,15 +857,16 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface PublishInfo {
-    publishId: number,
-    mode: number, // Active discovery
-    freq: number,    // High frequency
-    ranging: boolean // Whether the device supports reporting the distance to the discovery initiator.
-  };
+    publishId: number;
+    mode: number; // Active discovery
+    freq: number;    // High frequency
+    ranging: boolean; // Whether the device supports reporting the distance to the discovery initiator.
+  }
 
   // Automatically generate a unique subscription ID.
   let publishId = Math.floor(Math.random() * 10000 + 1000);
@@ -900,8 +913,9 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     // unPublishDeviceDiscovery and publishDeviceDiscovery must be used in pairs, and the input parameter **publishId** passed in them must be the same.
@@ -935,32 +949,33 @@ Authenticates a device.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    deviceId: string = ""
-    pinToken?: number = 0
+    deviceId: string = "";
+    pinToken?: number = 0;
   }
 
   interface DeviceInfo {
-    deviceId: string,
-    deviceName: string
-    deviceType: number,
-    networkId: string,
-    range: number
-  };
+    deviceId: string;
+    deviceName: string;
+    deviceType: number;
+    networkId: string;
+    range: number;
+  }
 
   interface ExtraInfo {
-    targetPkgName: string,
-    appName: string,
-    appDescription: string,
-    business: string
+    targetPkgName: string;
+    appName: string;
+    appDescription: string;
+    business: string;
   }
 
   interface AuthParam {
-    authType: number,//Authentication type. The value 1 means no account PIN authentication.
-    extraInfo: ExtraInfo
+    authType: number; //Authentication type. The value 1 means no account PIN authentication.
+    extraInfo: ExtraInfo;
   }
 
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
@@ -977,17 +992,17 @@ Authenticates a device.
     appName: 'xxx',
     appDescription: 'xxx',
     business: '0'
-  }
+  };
   let authParam: AuthParam = {
     authType: 1,// Authentication type. The value 1 means no account PIN authentication.
     extraInfo: extraInfo
-  }
+  };
 
   try {
     dmInstance.authenticateDevice(deviceInfo, authParam, (err: BusinessError, data: Data) => {
       if (err) {
-          console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
-          return;
+        console.error("authenticateDevice errCode:" + err.code + ",errMessage:" + err.message);
+        return;
       }
       console.info("authenticateDevice result:" + JSON.stringify(data));
       let token = data.pinToken;
@@ -1026,15 +1041,16 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface DeviceInfo {
-    deviceId: string,
-    deviceName: string,
-    deviceType: number,
-    networkId: string,
-    range: number
+    deviceId: string;
+    deviceName: string;
+    deviceType: number;
+    networkId: string;
+    range: number;
   }
 
   try {
@@ -1074,42 +1090,43 @@ Verifies authentication information.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface ExtraInfo {
-    authType: number,
-    token: number
+    authType: number;
+    token: number;
   }
 
   interface AuthInfo {
-    authType: number,
-    token: number,
-    extraInfo: ExtraInfo
+    authType: number;
+    token: number;
+    extraInfo: ExtraInfo;
   }
 
   class Data {
-    deviceId: string = ""
-    level: number = 0
+    deviceId: string = "";
+    level: number = 0;
   }
 
   let extraInfo: ExtraInfo = {
     authType: 0,
     token: 0
-  }
+  };
 
   let authInfo: AuthInfo = {
     authType: 1,
     token: 123456,
     extraInfo: extraInfo
-  }
+  };
   try {
     dmInstance.verifyAuthInfo(authInfo, (err: BusinessError, data: Data) => {
       if (err) {
-          console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
-          return;
-    }
-    console.info("verifyAuthInfo result:" + JSON.stringify(data));
+        console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
+        return;
+      }
+      console.info("verifyAuthInfo result:" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -1138,8 +1155,9 @@ Sets a user operation.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
  try {
     /*
@@ -1151,10 +1169,10 @@ Sets a user operation.
       operateAction = 5 - Confirm the input in the PIN input box.
     */
     let operation = 0;
-    dmInstance.setUserOperation(operation, "extra")
-    } catch (err) {
-      let e: BusinessError = err as BusinessError;
-      console.error("setUserOperation errCode:" + e.code + ",errMessage:" + e.message);
+    dmInstance.setUserOperation(operation, "extra");
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error("setUserOperation errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 
@@ -1179,29 +1197,30 @@ Obtains the registration information of the credential.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   interface CredentialInfo {
-    version: string,
-    userId: string
+    version: string;
+    userId: string;
   }
 
   class Data {
-    registerInfo: string = ""
+    registerInfo: string = "";
   }
 
   let credentialInfo: CredentialInfo = {
     version: "1.2.3",
     userId: "123"
-  }
+  };
   try {
-    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    let jsonCredentialInfo = JSON.stringify(credentialInfo);
     dmInstance.requestCredentialRegisterInfo(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
-          console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
+        console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
-          console.info("requestCredentialRegisterInfo result: data is null");
+        console.info("requestCredentialRegisterInfo result: data is null");
       }
     });
   } catch (err) {
@@ -1231,31 +1250,32 @@ Imports credential information.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    resultInfo: string = ""
+    resultInfo: string = "";
   }
 
   interface CredentialData {
-    credentialType: number,
-    credentialId: string,
-    serverPk: string,
-    pkInfoSignature : string,
-    pkInfo: string,
-    authCode: string,
-    peerDeviceId: string
+    credentialType: number;
+    credentialId: string;
+    serverPk: string;
+    pkInfoSignature : string;
+    pkInfo: string;
+    authCode: string;
+    peerDeviceId: string;
   }
 
   interface CredentialInfo {
-    processType: number,
-    authType: number,
-    userId: string,
-    deviceId: string,
-    version: string,
-    devicePk : string,
-    credentialData : CredentialData
+    processType: number;
+    authType: number;
+    userId: string;
+    deviceId: string;
+    version: string;
+    devicePk : string;
+    credentialData : CredentialData;
   }
 
   let credentialData: CredentialData = {
@@ -1266,8 +1286,7 @@ Imports credential information.
     pkInfo: "",
     authCode: "",
     peerDeviceId: ""
-  }
-
+  };
 
   let credentialInfo: CredentialInfo = {
     processType: 1,
@@ -1277,15 +1296,15 @@ Imports credential information.
     version: "1.2.3",
     devicePk : "0000",
     credentialData : credentialData
-  }
+  };
 
   try {
-    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    let jsonCredentialInfo = JSON.stringify(credentialInfo);
     dmInstance.importCredential(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
-          console.info("importCredential result:" + JSON.stringify(data));
+        console.info("importCredential result:" + JSON.stringify(data));
       } else {
-          console.info("importCredential result: data is null");
+        console.info("importCredential result: data is null");
       }
     });
   } catch (err) {
@@ -1315,32 +1334,33 @@ Deletes credential information.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    resultInfo: string = ""
+    resultInfo: string = "";
   }
 
   interface QueryInfo {
-    processType: number,
-    authType: number,
-    userId: string
+    processType: number;
+    authType: number;
+    userId: string;
   }
 
   let queryInfo: QueryInfo = {
     processType: 1,
     authType: 1,
     userId: "123"
-  }
+  };
 
   try {
-    var jsonQueryInfo = JSON.stringify(queryInfo)
+    let jsonQueryInfo = JSON.stringify(queryInfo);
     dmInstance.deleteCredential(jsonQueryInfo, (err: BusinessError, data: Data) => {
       if (data) {
-          console.info("deleteCredential result:" + JSON.stringify(data));
+        console.info("deleteCredential result:" + JSON.stringify(data));
       } else {
-          console.info("deleteCredential result: data is null");
+        console.info("deleteCredential result: data is null");
       }
     });
   } catch (err) {
@@ -1370,24 +1390,25 @@ Subscribes to UI status changes.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    param: string = ""
+    param: string = "";
   }
 
   interface TmpStr {
-    verifyFailed: boolean
+    verifyFailed: boolean;
   }
 
   try {
     dmInstance.on('uiStateChange', (data: Data) => {
-    console.log("uiStateChange executed, dialog closed" + JSON.stringify(data))
-    let tmpStr: TmpStr = JSON.parse(data.param)
-    let isShow = tmpStr.verifyFailed
-    console.log("uiStateChange executed, dialog closed" + isShow)
-  });
+      console.log("uiStateChange executed, dialog closed" + JSON.stringify(data));
+      let tmpStr: TmpStr = JSON.parse(data.param);
+      let isShow = tmpStr.verifyFailed;
+      console.log("uiStateChange executed, dialog closed" + isShow);
+    });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("uiStateChange errCode:" + e.code + ",errMessage:" + e.message);
@@ -1415,8 +1436,9 @@ Unsubscribes from UI status changes.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     dmInstance.off('uiStateChange');
@@ -1447,20 +1469,21 @@ Subscribes to device state changes.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    action: deviceManager.DeviceStateChangeAction = 0
+    action: deviceManager.DeviceStateChangeAction = 0;
     device: deviceManager.DeviceInfo = {
       deviceId: "",
       deviceName: "",
       deviceType: 0,
       networkId: "",
       range: 0,
-      authForm:0,
-    }
+      authForm:0
+    };
   }
 
   try {
@@ -1494,20 +1517,21 @@ Unsubscribes from device state changes.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    action: deviceManager.DeviceStateChangeAction = 0
+    action: deviceManager.DeviceStateChangeAction = 0;
     device: deviceManager.DeviceInfo = {
       deviceId: "",
       deviceName: "",
       deviceType: 0,
       networkId: "",
       range: 0,
-      authForm:0,
-    }
+      authForm:0
+    };
   }
 
   try {
@@ -1541,20 +1565,21 @@ Subscribes to device discovery events.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    subscribeId: number = 0
+    subscribeId: number = 0;
     device: deviceManager.DeviceInfo = {
       deviceId: "",
       deviceName: "",
       deviceType: 0,
       networkId: "",
       range: 0,
-      authForm:0,
-    }
+      authForm:0
+    };
   }
 
   try {
@@ -1588,20 +1613,21 @@ Unsubscribes from device discovery events.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    subscribeId: number = 0
+    subscribeId: number = 0;
     device: deviceManager.DeviceInfo = {
       deviceId: "",
       deviceName: "",
       deviceType: 0,
       networkId: "",
       range: 0,
-      authForm:0,
-    }
+      authForm:0
+    };
   }
 
   try {
@@ -1635,17 +1661,18 @@ Subscribes to device discovery failures.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    subscribeId: number = 0
-    reason: number = 0
+    subscribeId: number = 0;
+    reason: number = 0;
   }
 
   try {
     dmInstance.on('discoverFail', (data: Data) => {
-        console.info("discoverFail on:" + JSON.stringify(data));
+      console.info("discoverFail on:" + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -1674,12 +1701,13 @@ Unsubscribes from device discovery failures.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    subscribeId: number = 0
-    reason: number = 0
+    subscribeId: number = 0;
+    reason: number = 0;
   }
 
   try {
@@ -1714,11 +1742,12 @@ Subscribes to device information publication success events.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    publishId: number = 0
+    publishId: number = 0;
   }
 
   try {
@@ -1752,11 +1781,12 @@ Unsubscribes from device information publication success events.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    publishId: number = 0
+    publishId: number = 0;
   }
 
   try {
@@ -1790,12 +1820,13 @@ Subscribes to device information publication failures.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    publishId: number = 0
-    reason: number = 0
+    publishId: number = 0;
+    reason: number = 0;
   }
 
   try {
@@ -1829,12 +1860,13 @@ Unsubscribes from device information publication failures.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   class Data {
-    publishId: number = 0
-    reason: number = 0
+    publishId: number = 0;
+    reason: number = 0;
   }
 
   try {
@@ -1868,8 +1900,9 @@ Subscribes to dead events of the **DeviceManager** service.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     dmInstance.on("serviceDie", () => {
@@ -1902,8 +1935,9 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
 **Example**
 
+For details about the instance of `dmInstance`, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager)
   ```ts
-  import { BusinessError } from '@ohos.base'
+  import { BusinessError } from '@ohos.base';
 
   try {
     dmInstance.off("serviceDie", () => {

@@ -15,7 +15,7 @@ import radio from '@ohos.telephony.radio';
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>\): void
+getRadioTech\(slotId: number, callback: AsyncCallback<[NetworkRadioTech](#networkradiotech11)\>\): void
 
 Obtains the RAT used in the CS and PS domains for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -28,7 +28,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 | Name  | Type                                                        | Mandatory| Description                                  |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | Yes  | Callback used to return the result.  |
+| callback | AsyncCallback\<[NetworkRadioTech](#networkradiotech11)\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -49,11 +49,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-class Tech {
-    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-}
-radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
+radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) => {
     if (err) {
         console.error(`getRadioTech failed, callback: err->${JSON.stringify(err)}`);
         return;
@@ -65,7 +61,7 @@ radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>
+getRadioTech\(slotId: number\): Promise<\[NetworkRadioTech](#networkradiotech11)\>
 
 Obtains the RAT used in the CS and PS domains for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -83,7 +79,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 
 | Type                                                        | Description                                           |
 | ------------------------------------------------------------ | ----------------------------------------------- |
-| Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | Promise used to return the result.|
+| Promise\<[NetworkRadioTech](#networkradiotech11)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -104,11 +100,7 @@ For details about the error codes, see [Telephony Error Codes](../../reference/e
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-class Tech {
-    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-}
-radio.getRadioTech(slotId).then((data: Tech) => {
+radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
     console.log(`getRadioTech success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`getRadioTech failed, promise: err->${JSON.stringify(err)}`);
@@ -3490,6 +3482,17 @@ radio.factoryReset(slotId).then(() => {
 });
 ```
 
+## NetworkRadioTech<sup>11+</sup>
+
+Defines the radio access technology for the packet switched (PS) or circuit switched (CS) network.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+|      Name      |           Type             | Mandatory|      Description         |
+| --------------- | --------------------------- | ---- | ------------------ |
+| psRadioTech     | [RadioTechnology](#radiotechnology) | Yes  | PS.|
+| csRadioTech     | [RadioTechnology](#radiotechnology) | Yes  | CS.|
+
 ## RadioTechnology
 
 Enumerates radio access technologies.
@@ -3504,7 +3507,7 @@ Enumerates radio access technologies.
 | RADIO_TECHNOLOGY_WCDMA    | 3    | Wideband Code Division Multiple Access (WCDMA)|
 | RADIO_TECHNOLOGY_HSPA     | 4    | High Speed Packet Access (HSPA)              |
 | RADIO_TECHNOLOGY_HSPAP    | 5    | Evolved High Speed Packet Access (HSPA+)    |
-| RADIO_TECHNOLOGY_TD_SCDMA | 6    | Time Division Synchronous Code Division Multiple Access (TD-SCDMA)|
+| RADIO_TECHNOLOGY_TD_SCDMA | 6    | TD-SCDMA.|
 | RADIO_TECHNOLOGY_EVDO     | 7    | Evolution-Data Optimized (EVDO)                  |
 | RADIO_TECHNOLOGY_EHRPD    | 8    | Evolved High Rate Package Data (EHRPD)       |
 | RADIO_TECHNOLOGY_LTE      | 9    | Long Term Evolution (LTE)                    |
@@ -3562,7 +3565,7 @@ Defines the network status.
 
 ## RegState
 
-Enumerates the network registration status.
+Defines the network registration status.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -3659,7 +3662,7 @@ Defines the cell information.
 | isCamped          | boolean                                 |  Yes | Cell status.<br>**System API**: This is a system API.         |
 | timeStamp         | number                                  |  Yes | Timestamp when cell information is obtained.<br>**System API**: This is a system API.   |
 | signalInformation | [SignalInformation](#signalinformation) |  Yes | Signal information.                                                  |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information\|WCDMA cell information.<br>**System API**: This is a system API.|
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  Yes | CDMA cell information\|GSM cell information\|LTE cell information\|NR cell information\|TD-SCDMA cell information\|WCDMA.<br>**System API**: This is a system API.|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -3711,7 +3714,7 @@ LTE cell information.
 | bandwidth     | number  |  Yes | Bandwidth.                 |
 | mcc           | string  |  Yes | Mobile country code.           |
 | mnc           | string  |  Yes | Mobile network code.             |
-| isSupportEndc | boolean |  Yes | Support for New Radio_Dual Connectivity.|
+| isSupportEndc | boolean |  Yes | Support for New Radio Dual Connectivity (NR-DC).|
 
 ## NrCellInformation<sup>8+</sup>
 

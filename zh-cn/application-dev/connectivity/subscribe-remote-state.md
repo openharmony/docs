@@ -136,7 +136,7 @@ import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
 import hilog from '@ohos.hilog';
 
-let proxy: rpc.IRemoteObject | undefined = undefined;
+let proxy: rpc.IRemoteObject | undefined;
 let connect: common.ConnectOptions = {
   onConnect: (elementName, remoteProxy) => {
     hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called.');
@@ -162,8 +162,6 @@ this.context.connectServiceExtensionAbility(want, connect);
 上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的[unregisterDeathRecipient](../reference/apis/js-apis-rpc.md#unregisterdeathrecipient9-1)接口方法注销死亡回调
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
 import hilog from '@ohos.hilog';
 
@@ -173,8 +171,10 @@ class MyDeathRecipient implements rpc.DeathRecipient{
   }
 }
 let deathRecipient = new MyDeathRecipient();
-proxy.registerDeathRecipient(deathRecipient, 0);
-proxy.unregisterDeathRecipient(deathRecipient, 0);
+if (proxy != undefined) {
+  proxy.registerDeathRecipient(deathRecipient, 0);
+  proxy.unregisterDeathRecipient(deathRecipient, 0);
+}
 ```
 
 ## Stub感知Proxy消亡（匿名Stub的使用）

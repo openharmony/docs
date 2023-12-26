@@ -9,32 +9,55 @@
 - 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发message事件拉起FormExtensionAbility。卡片页面中使用[LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)装饰需要刷新的卡片数据。
   
   ```ts
-  let storage = new LocalStorage();
-  @Entry(storage)
+  let storageUpdateByMsg = new LocalStorage();
+  
+  @Entry(storageUpdateByMsg)
   @Component
-  struct WidgetCard {
-    @LocalStorageProp('title') title: string = 'Title default';
-    @LocalStorageProp('detail') detail: string = 'Description default';
+  struct UpdateByMessageCard {
+    @LocalStorageProp('title') title: ResourceStr = $r('app.string.default_title');
+    @LocalStorageProp('detail') detail: ResourceStr = $r('app.string.DescriptionDefault');
   
     build() {
       Column() {
         Column() {
-          Text(`${this.title}`)
-            .margin(5).fontWeight(FontWeight.Medium).fontSize('14fp')
-          Text(`${this.detail}`)
-            .margin(5).fontColor(Color.Gray).fontSize('12fp').height('25%')
-        }.width('100%').alignItems(HorizontalAlign.Start)
-        Button('UPDATE')
-          .margin(15).width('90%')
+          Text(this.title)
+            .fontColor('#FFFFFF')
+            .opacity(0.9)
+            .fontSize(14)
+            .margin({ top: '8%', left: '10%' })
+          Text(this.detail)
+            .fontColor('#FFFFFF')
+            .opacity(0.6)
+            .fontSize(12)
+            .margin({ top: '5%', left: '10%' })
+        }.width('100%').height('50%')
+        .alignItems(HorizontalAlign.Start)
+  
+        Row() {
+          Button() {
+            Text($r('app.string.update'))
+              .fontColor('#45A6F4')
+              .fontSize(12)
+          }
+          .width(120)
+          .height(32)
+          .margin({ top: '30%', bottom: '10%' })
+          .backgroundColor('#FFFFFF')
+          .borderRadius(16)
           .onClick(() => {
             postCardAction(this, {
               action: 'message',
-              params: {
-                msgTest: 'messageEvent'
-              }
+              params: { msgTest: 'messageEvent' }
             });
           })
-      }.width('90%').height('90%').margin('5%')
+        }.width('100%').height('40%')
+        .justifyContent(FlexAlign.Center)
+      }
+      .width('100%')
+      .height('100%')
+      .alignItems(HorizontalAlign.Start)
+      .backgroundImage($r('app.media.CardEvent'))
+      .backgroundImageSize(ImageSize.Cover)
     }
   }
   ```
@@ -42,28 +65,38 @@
 - 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
   
   ```ts
+  import formInfo from '@ohos.app.form.formInfo';
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
   import formProvider from '@ohos.app.form.formProvider';
-
+  import hilog from '@ohos.hilog';
+  import type Want from '@ohos.app.ability.Want';
+  
+  const TAG: string = 'EntryFormAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  
   export default class EntryFormAbility extends FormExtensionAbility {
-    onFormEvent(formId: string, message: string) {
+    onFormEvent(formId: string, message: string): void {
       // Called when a specified message event defined by the form provider is triggered.
-      console.info(`FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
-      class FormDataClass{
-        title: string = 'Title Update.' // 和卡片布局中对应
-        detail: string = 'Description update success.' // 和卡片布局中对应
+      hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+  
+      class FormDataClass {
+        title: string = 'Title Update.'; // 和卡片布局中对应
+        detail: string = 'Description update success.'; // 和卡片布局中对应
       }
+  
       let formData = new FormDataClass();
       let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(formId, formInfo).then(() => {
-        console.info('FormAbility updateForm success.');
+        hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
+      }).catch((error) => {
+        hilog.info(DOMAIN_NUMBER, TAG, `Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
       });
     }
     ...
   }
   ```
-
+  
   运行效果如下图所示。
   
   | 初始状态                                                | 点击刷新                                              |

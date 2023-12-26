@@ -1909,7 +1909,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void
+acquireFormData(formId: string, callback: AsyncCallback\<Record\<string, Object>>): void
 
 请求卡片提供方数据。使用callback异步回调。
 
@@ -1924,7 +1924,7 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| callback | AsyncCallback<{[key: string]: Object} | 是   | 以callback方式返回接口运行结果及分享数据。 |
+| callback | AsyncCallback\<Record\<string, Object> | 是   | 以callback方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
@@ -1960,7 +1960,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string): Promise<{[key: string]: Object}>
+acquireFormData(formId: string): Promise\<Record\<string, Object>>
 
 请求卡片提供方数据。使用Promise异步回调。
 
@@ -1980,7 +1980,7 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise<{[key: string]: Object}>| 以Promise方式返回接口运行结果及分享数据。 |
+| Promise\<Record\<string, Object>>| 以Promise方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
@@ -2250,11 +2250,11 @@ try {
   let formIds: string[] = [ '12400633174999288' ];
   formHost.clearRouterProxy(formIds, (err: Base.BusinessError) => {
     if (err) {
-        conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+        console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch (e: Base.BusinessError) {
-  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2306,10 +2306,10 @@ try {
   formHost.clearRouterProxy(formIds).then(() => {
     console.log('formHost clear rourter proxy success');
   }).catch((err: Base.BusinessError) => {
-    conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+    console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
   });
-} catch (e: Base.BusinessError) {
-  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 

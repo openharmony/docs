@@ -14,7 +14,7 @@ import picker from '@ohos.file.picker';
 
 ## PhotoViewPicker
 
-图库选择器对象，用来支撑选择图片/视频和保存图片/视频等用户场景。选择文件推荐使用[PhotoAccessHelper的PhotoViewPicker](js-apis-photoAccessHelper.md)。在使用前，需要先创建PhotoViewPicker实例。
+图库选择器对象，用来支撑选择图片/视频和保存图片/视频等用户场景。选择文件推荐使用[PhotoAccessHelper的PhotoViewPicker](js-apis-photoAccessHelper.md#photoviewpicker)。在使用前，需要先创建PhotoViewPicker实例。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -829,12 +829,12 @@ async function example18() {
 
 **系统能力：** SystemCapability.FileManagement.UserFileService
 
-| 名称                    | 类型                | 必填 | 说明                                       |
-| ----------------------- | ------------------- | ---- |------------------------------------------|
-| maxSelectNumber<sup>10+</sup>       | number  | 否   | 选择文件/目录最大个数，上限500，有效值范围1-500             |
-| defaultFilePathUri<sup>10+</sup>    | string  | 否   | 指定选择的文件或者目录路径                            |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔 |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode)         | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅支持特定设备         |
+| 名称                    | 类型                                          | 必填 | 说明                                       |
+| ----------------------- |---------------------------------------------| ---- |------------------------------------------|
+| maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件/目录最大个数，上限500，有效值范围1-500（选择目录仅支持特定设备） |
+| defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径                            |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，若选择项存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔 |
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅支持特定设备  |
 
 
 ## DocumentSaveOptions

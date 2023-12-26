@@ -1728,6 +1728,95 @@ try {
 }
 ```
 
+### copyFile<sup>11+</sup>
+
+copyFile(sourceUri: string, destUri: string, fileName: string): Promise&lt;string&gt;
+
+Copies a file with an alternative file name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name   | Type   | Mandatory| Description                                                        |
+| --------- | ------- | ---- | ------------------------------------------------------------ |
+| sourceUri | string  | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
+| destUri   | string  | Yes  | URI of the destination directory, for example, **file://docs/storage/Users/currentUser/Download/test**.       |
+| fileName  | string  | Yes  | File name to use if there is a file with the same name as the source file in the destination directory.|
+
+**Return value**
+
+| Type                                                   | Description                                                        |
+| :------------------------------------------------------ | :----------------------------------------------------------- |
+| Promise&lt;string&gt; | URI of the file generated.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+// A built-in storage directory is used as an example.
+// In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
+// You can use the URI obtained.
+async function copyFunc01() {
+  let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+  let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+  let fileName: string = "2.txt";
+  try {
+    // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+    let copyResult = await fileAccessHelper.copyFile(sourceFile, destFile, fileName);
+    console.log("copyResult uri: " + copyResult);
+  } catch (err) {
+    let error: BusinessError = err as BusinessError;
+    console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+}
+```
+
+### copyFile<sup>11+</sup>
+
+copyFile(sourceUri: string, destUri: string, fileName, callback: AsyncCallback&lt;string&gt;) : void
+
+Copies a file with an alternative file name. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+| Name   | Type                                            | Mandatory| Description                                                        |
+| --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| sourceUri | string                                           | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
+| destUri   | string                                           | Yes  | URI of the destination directory, for example, **file://docs/storage/Users/currentUser/Download/test**.        |
+| fileName  | string                                           | Yes  | File name to use if there is a file with the same name as the source file in the destination directory.|
+| callback  | AsyncCallback&lt;string&gt; | Yes  | URI of the file generated.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+// A built-in storage directory is used as an example.
+// In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
+// You can use the URI obtained.
+let sourceFile: string = "file://docs/storage/Users/currentUser/Download/1.txt";
+let destFile: string = "file://docs/storage/Users/currentUser/Download/test";
+let fileName: string = "2.txt";
+
+try {
+  // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
+  fileAccessHelper.copyFile(sourceFile, destFile, fileName, async (copyResult: string) => {
+        console.log("copyResult uri: " + copyResult);
+      }
+    }
+  });
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error("copy failed, errCode:" + error.code + ", errMessage:" + error.message);
+}
+```
+
 ### registerObserver<sup>10+</sup>
 
 registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&lt;NotifyMessage&gt;): void
@@ -2184,6 +2273,7 @@ moveFile(sourceUri: string, destUri: string, fileName: string) : Promise&lt;stri
 
 Moves a file, and renames it if a file with the same name already exists in the destination directory. This API uses a promise to return the result.
 
+
 Currently, this API does not support move of files across devices.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
@@ -2234,6 +2324,8 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncCallback&lt;string&gt;) : void
 
 Moves a file, and renames it if a file with the same name already exists in the destination directory. This API uses an asynchronous callback to return the URI of the file after move.
+
+ 
 
 Currently, this API does not support move of files across devices.
 

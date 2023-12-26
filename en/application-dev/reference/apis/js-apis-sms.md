@@ -168,8 +168,6 @@ sendShortMessage\(options: SendMessageOptions, callback: AsyncCallback&lt;void&g
 
 Sends an SMS message. This API uses an asynchronous callback to return the result.
 
-**System API**: This is a system API.
-
 **Required permissions**: ohos.permission.SEND_MESSAGES
 
 **System capability**: SystemCapability.Telephony.SmsMms
@@ -226,8 +224,6 @@ sms.sendShortMessage(options, (err: BusinessError) => {
 sendShortMessage\(options: SendMessageOptions\): Promise&lt;void&gt;
 
 Sends an SMS message. This API uses a promise to return the result.
-
-**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.SEND_MESSAGES
 

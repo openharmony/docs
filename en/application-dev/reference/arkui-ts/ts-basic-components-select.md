@@ -14,6 +14,12 @@ Not supported
 
 Select(options: Array\<[SelectOption](#selectoption)\>)
 
+**Parameters**
+
+| Name | Type                                      | Mandatory| Description      |
+| ------- | ---------------------------------------------- | ---- | -------------- |
+| options | Array\<[SelectOption](#selectoption)\> | Yes  | Options in the drop-down list box.|
+
 ## SelectOption
 
 | Name| Type                           | Mandatory| Description      |

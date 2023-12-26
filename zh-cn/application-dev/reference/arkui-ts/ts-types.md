@@ -148,8 +148,8 @@
 | 名称     | 描述              |
 | ------ | --------------- |
 | INVERT | 设置前景色为控件背景色的反色。 |
-| AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。 |
-| PRIMARY<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的主色。 |
+| AVERAGE| 设置控件背景阴影色为控件背景阴影区域的平均色。 |
+| PRIMARY| 设置控件背景阴影色为控件背景阴影区域的主色。 |
 
 ## LengthConstrain
 
@@ -222,7 +222,7 @@
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | 否    | 边框宽度。   |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | 否    | 边框颜色。   |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | 否    | 边框圆角半径。 |
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | 否    | 边框样式。   |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup>| 否    | 边框样式。   |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -230,7 +230,7 @@
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 每个值的有效范围是[0, 1], 矩阵是行优先的。 |
+| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 矩阵是行优先的。 |
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -247,7 +247,7 @@
 
 | 名称     | 类型                | 必填   | 说明             |
 | ------ | ----------------- | ---- | -------------- |
-| left   | [Length](#length) | 否    | 组件图像左边沿扩展距离。   |
+| left   | [Length](#length) | 否    | 组件图像左边沿像素扩展距离。 |
 | right  | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
 | top    | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
 | bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |
@@ -329,9 +329,9 @@ Swiper组件动画相关信息集合。
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
-| targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0.|
-| velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0.|
+| currentOffset | number | Swiper当前显示元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| targetOffset | number | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
+| velocity | number | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
 
 ## TabsAnimationEvent<sup>11+</sup>
 
@@ -379,5 +379,24 @@ Tabs组件动画相关信息集合。
 
 | 名称   | 类型定义 | 描述       |
 | ------ | ----------------------| ---------- |
-| X |Dimension | 跟手点X轴坐标。 |
-| Y |Dimension | 跟手点Y轴坐标。 |
+| X | [Dimension](#dimension10) | 跟手点X轴坐标。 |
+| Y | [Dimension](#dimension10) | 跟手点Y轴坐标。 |
+
+## TabContentAnimatedTransition<sup>11+</sup>
+
+Tabs自定义切换动画相关信息。
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| timeout | number | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
+| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | 自定义切换动画具体内容。|
+
+## TabContentTransitionProxy<sup>11+</sup>
+
+Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| from | number | 自定义动画起始页面对应的index值。|
+| to | number | 自定义动画目标页面对应的index值。|
+| finishTransition() | void | 通知Tabs组件，此次自定义动画已结束。|
