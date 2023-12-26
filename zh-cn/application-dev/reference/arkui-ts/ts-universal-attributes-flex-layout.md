@@ -11,7 +11,7 @@
 | 名称       | 参数说明                                    | 描述                                                         |
 | ---------- | ------------------------------------------- | ------------------------------------------------------------ |
 | flexBasis  | number \| string                            | 设置组件在父容器主轴方向上的基准尺寸。<br/>默认值：'auto'（表示组件在主轴方向上的基准尺寸为组件原本的大小）。<br/>不支持百分比设置。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| flexGrow   | number                                      | 设置父容器的剩余空间分配给此属性所在组件的比例。<br/>默认值：0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| flexGrow   | number                                      | 设置父容器在主轴方向上的剩余空间分配给此属性所在组件的比例。<br/>默认值：0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | flexShrink | number                                      | 设置父容器压缩尺寸分配给此属性所在组件的比例。<br/>父容器为Row、Column时，默认值：0<br/> 父容器为Flex时，默认值：1<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | alignSelf  | [ItemAlign](ts-appendix-enums.md#itemalign) | 子组件在父容器交叉轴的对齐格式，会覆盖Flex、Column、Row、GridRow布局容器中的alignItems设置。<br/>GridCol可以绑定alignsSelf属性来改变它自身在交叉轴方向上的布局。<br/>默认值：ItemAlign.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
