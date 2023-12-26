@@ -141,6 +141,7 @@
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
   - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
   - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
+  - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
   - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)
   - [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)
   - [OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)
