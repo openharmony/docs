@@ -87,6 +87,6 @@
    result = enDateTimeFmt.format(date); // result = "10/23/2023"
    
    // 方法三
-   let systemDateTimeFmt = new Intl.DateTimeFormat(systemLocale.toString);
+   let systemDateTimeFmt = new Intl.DateTimeFormat(systemLocale.toString());
    result = systemDateTimeFmt.format(date); // result = "2023/10/23" （具体显示效果依赖于当前系统环境）
    ```
