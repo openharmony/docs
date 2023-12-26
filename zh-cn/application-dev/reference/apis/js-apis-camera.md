@@ -2349,7 +2349,7 @@ function setExposureMode(captureSession: camera.CaptureSession): void {
 
 getMeteringPoint(): Point
 
-查询曝光区域中心点。（该接口目前为预留，将在3.2版本开放）
+查询曝光区域中心点。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
