@@ -357,6 +357,7 @@
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
   - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
+  - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
 
 - 通信与连接
