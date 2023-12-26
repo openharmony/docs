@@ -17,7 +17,7 @@
 ## 导入模块
 
 ```js
-import update from '@ohos.update'
+import update from '@ohos.update';
 ```
 
 ## update.getOnlineUpdater
