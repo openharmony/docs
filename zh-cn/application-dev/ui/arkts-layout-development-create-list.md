@@ -752,7 +752,7 @@ ListItem() {
                  TextPickerDialog.show({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
-                   let arr = Array.isArray(value.index)?value.index:[value.index];
+                   let arr = Array.isArray(value.index) ? value.index : [value.index];
                    for(let i = 0; i < arr.length; i++) {
                       this.toDoData.push(new ToDo(this.availableThings[arr[i]])); // 新增列表项数据toDoData(可选事项)
                    }
@@ -804,13 +804,13 @@ ListItem() {
         this.name = name;
       }
     }
-    class TodoTmp {
+    class ToDoTmp {
       isEditMode: boolean = false
       selectedItems: Array<object> = []
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todoList: TodoTmp = new TodoTmp()
+    let toDoList: ToDoTmp = new ToDoTmp()
     // ToDoListItem.ets
     ```
     ```ts
@@ -822,9 +822,9 @@ ListItem() {
     GestureGroup(GestureMode.Exclusive,
       LongPressGesture()
         .onAction(() => {
-          if (!todoList.isEditMode) {
-            todoList.isEditMode = true; //进入编辑模式
-            todoList.selectedItems.push(todoList.toDoItem); // 记录长按时选中的列表项
+          if (!toDoList.isEditMode) {
+            toDoList.isEditMode = true; //进入编辑模式
+            toDoList.selectedItems.push(toDoList.toDoItem); // 记录长按时选中的列表项
           }
         })
       )
@@ -846,26 +846,26 @@ ListItem() {
         this.name = name;
       }
     }
-    class TodoTmp {
+    class ToDoTmp {
       isEditMode: boolean = false
       selectedItems: Array<object> = []
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todoList: TodoTmp = new TodoTmp()
+    let toDoList: ToDoTmp = new ToDoTmp()
     // ToDoListItem.ets
     ```
     ```ts
     // 实现参考
-    if (todoList.isEditMode) {
+    if (toDoList.isEditMode) {
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            todoList.selectedItems.push(todoList.toDoItem) // 勾选时，记录选中的列表项
+            toDoList.selectedItems.push(toDoList.toDoItem) // 勾选时，记录选中的列表项
           } else {
-            let index = todoList.selectedItems.indexOf(todoList.toDoItem)
+            let index = toDoList.selectedItems.indexOf(toDoList.toDoItem)
             if (index !== -1) {
-              todoList.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
+              toDoList.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
             }
           }
         })
@@ -886,25 +886,25 @@ ListItem() {
         this.name = name;
       }
     }
-    class TodoTmp {
+    class ToDoTmp {
       isEditMode: boolean = false
       selectedItems: Array<object> = []
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todoList: TodoTmp = new TodoTmp()
+    let toDoList: ToDoTmp = new ToDoTmp()
     ```
     ```ts
     // 实现参考
     Button('删除')
       .onClick(() => {
         // 删除选中的列表项对应的toDoData数据
-        let leftData = todoList.toDoData.filter((item) => {
-          return todoList.selectedItems.find((selectedItem) => selectedItem !== item);
+        let leftData = toDoList.toDoData.filter((item) => {
+          return toDoList.selectedItems.find((selectedItem) => selectedItem !== item);
         })
 
-        todoList.toDoData = leftData;
-        todoList.isEditMode = false;
+        toDoList.toDoData = leftData;
+        toDoList.isEditMode = false;
       })
     ```
 
