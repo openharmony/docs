@@ -241,6 +241,18 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
+class TestObj {
+  test(str: string): ArrayBuffer {
+    let buf = new ArrayBuffer(str.length);
+    let buff = new Uint8Array(buf);
+
+    for (let i = 0; i < str.length; i++) {
+      buff[i] = str.charCodeAt(i);
+    }
+    return buf;
+  }
+}
+
 // 应用与网页互发消息的示例：使用"init_web_messageport"的通道，通过端口0在应用侧接受网页发送的消息，通过端口1在网页侧接受应用发送的消息。
 @Entry
 @Component
@@ -251,22 +263,115 @@ struct WebComponent {
   @State msg1: string = "";
   @State msg2: string = "";
   message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
+  @State testObjtest: TestObj = new TestObj();
 
   build() {
     Column() {
       Text(this.msg1).fontSize(16)
       Text(this.msg2).fontSize(16)
-      Button('SendToH5')
+      Button('SendToH5 setString').margin({
+        right: 800,
+      })
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setString("helloFromEts");
+              this.message.setType(2);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setNumber').margin({
+        top: 10,
+        right: 800,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setNumber(12345);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setBoolean').margin({
+        top: -90,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setBoolean(true);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setArrayBuffer').margin({
+        top: 10,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setArrayBuffer(this.testObjtest.test("Name=test&Password=test"));
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setArray').margin({
+        top: -90,
+        left: 800,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setArray([1,2,3]);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setError').margin({
+        top: 10,
+        left: 800,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            throw new ReferenceError("ReferenceError");
+          }
+          catch (error) {
+            if (this.nativePort) {
+              this.message.setError(error);
+              this.nativePort.postMessageEventExt(this.message);
+            }
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
           }
@@ -775,7 +880,6 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
 
 **示例：**
 
@@ -1354,7 +1458,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
@@ -1378,7 +1482,7 @@ class testObj {
   }
 }
 
-class webObj {
+class WebObj {
   constructor() {
   }
 
@@ -1396,8 +1500,8 @@ class webObj {
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
-  @State webTestObj: webObj = new webObj();
+  @State testObjtest: TestObj = new TestObj();
+  @State webTestObj: WebObj = new WebObj();
   build() {
     Column() {
       Button('refresh')
@@ -1892,7 +1996,7 @@ deleteJavaScriptRegister(name: string): void
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
@@ -1909,7 +2013,7 @@ class testObj {
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
+  @State testObjtest: TestObj = new TestObj();
   @State name: string = 'objName';
   build() {
     Column() {
@@ -4922,7 +5026,7 @@ postUrl(url: string, postData: ArrayBuffer): void
 import web_webview from '@ohos.web.webview'
 import business_error from '@ohos.base'
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
@@ -4941,7 +5045,7 @@ class testObj {
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
+  @State testObjtest: TestObj = new TestObj();
 
   build() {
     Column() {
@@ -5383,7 +5487,7 @@ static setCookie(url: string, value: string): void
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[configCookieSync](###configCookieSync11+)替代
+> 从API version9开始支持，从API version 11开始废弃。建议使用[configCookieSync<sup>11+</sup>](#configcookiesync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

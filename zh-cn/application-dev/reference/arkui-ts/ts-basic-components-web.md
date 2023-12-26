@@ -4238,7 +4238,7 @@ web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#on
 
 ### getRequestHeader
 
-getResponseHeader() : Array\<Header\>
+getRequestHeader(): Array\<Header\>
 
 获取资源请求头信息。
 

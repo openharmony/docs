@@ -7,7 +7,7 @@ Cookie是网络访问过程中，由服务端发送给客户端的一小段数�
 
 Web组件提供了WebCookieManager类，用于管理Web组件的Cookie信息。Cookie信息保存在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd的文件中。
 
-下面以[setCookie()](../reference/apis/js-apis-webview.md#setcookie)接口举例，为“www\.example.com”设置单个Cookie的值“value=test”。其他Cookie的相关功能及使用，请参考[WebCookieManager()](../reference/apis/js-apis-webview.md#webcookiemanager)接口文档。
+下面以[configCookieSync()](../reference/apis/js-apis-webview.md#configcookiesync11)接口举例，为“www\.example.com”设置单个Cookie的值“value=test”。其他Cookie的相关功能及使用，请参考[WebCookieManager()](../reference/apis/js-apis-webview.md#webcookiemanager)接口文档。
 
 
 ```ts
@@ -22,10 +22,10 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('setCookie')
+      Button('configCookieSync')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.setCookie('https://www.example.com', 'value=test');
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'value=test');
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
