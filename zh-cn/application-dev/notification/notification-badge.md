@@ -29,6 +29,7 @@
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 2. 增加角标个数。
@@ -38,16 +39,16 @@
    示例为调用setBadgeNumber接口增加角标，在发布完新的通知后，调用该接口。
    
    ```ts
-   function setBadgeNumberCallback(err:Base.BusinessError) {
+   setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
-       console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`Succeeded in seting badge number.`);
+     logger.info(`Succeeded in setting badge number.`);
    }
    
-   let badgeNumber = 10;
-   notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
+   let badgeNumber = 9;
+   notificationManager.setBadgeNumber(badgeNumber, this.setBadgeNumberCallback);
    ```
 
 3. 减少角标个数。
@@ -55,16 +56,16 @@
    一条通知被查看后，应用需要调用接口设置剩下未读通知个数，桌面刷新角标。
 
    ```ts
-   function setBadgeNumberCallback(err:Base.BusinessError) {
+   setBadgeNumberCallback = async (err: Base.BusinessError) => {
      if (err) {
-       console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`Succeeded in seting badge number.`);
+     logger.info(`Succeeded in setting badge number.`);
    }
    
-   let badgeNumber = 9;
-   notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
+   let badgeNumber = 8;
+   notificationManager.setBadgeNumber(badgeNumber, this.setBadgeNumberCallback);
    ```
 
    

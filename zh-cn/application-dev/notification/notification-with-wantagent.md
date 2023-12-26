@@ -32,6 +32,7 @@
    import wantAgent from '@ohos.app.ability.wantAgent';
    import { WantAgent } from '@ohos.app.ability.wantAgent';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. 创建WantAgentInfo信息。
@@ -46,8 +47,8 @@
      wants: [
        {
          deviceId: '',
-         bundleName: 'com.example.myapplication',
-         abilityName: 'EntryAbility',
+         bundleName: 'com.samples.notification',
+         abilityName: 'SecondAbility',
          action: '',
          entities: [],
          uri: '',
@@ -85,10 +86,10 @@
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
      if (err) {
-       console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in geting want agent.');
+     logger.info('Succeeded in getting want agent.');
      wantAgentObj = data;
    });
    ```
@@ -99,24 +100,24 @@
    // 构造NotificationRequest对象
    let notificationRequest: notificationManager.NotificationRequest = {
      content: {
-       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
        normal: {
          title: 'Test_Title',
          text: 'Test_Text',
          additionalText: 'Test_AdditionalText',
        },
      },
-     id: 1,
+     id: 6,
      label: 'TEST',
      wantAgent: wantAgentObj,
    }
    
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in publishing notification.');
+     logger.info('Succeeded in publishing notification.');
    });
    ```
 
