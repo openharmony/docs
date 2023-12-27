@@ -52,7 +52,7 @@ import cloudData from '@ohos.data.cloudData';
 ```ts
 //token:用于校验应用信息
 //accountId:用户打开的云帐号ID
-//bundleName:应用名
+//bundleName:应用包名
 //containerName:云上数据库名称
 //containerName:云上数据库表名
 
