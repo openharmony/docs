@@ -3981,10 +3981,10 @@ on(type: 'windowTitleButtonRectChange', callback: Callback<TitleButtonRect>): vo
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                    | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏三键位置变化事件。 |
-| callback | Callback<TitleButtonRect> | 是   | 回调函数。返回当前的标题栏三键区域。                         |
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                      | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏三键位置变化事件。 |
+| callback | Callback<TitleButt conRect> | 是   | 回调函数。返回当前的标题栏三键区域。                         |
 
 **示例：**
 
@@ -6798,6 +6798,7 @@ setWindowDecorVisible(isVisible: boolean): void
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
 | 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation.        |
 
 **示例：**
 
@@ -6881,7 +6882,7 @@ getWindowDecorHeight(): number;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**参数：**
+**返回值：**
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
@@ -6914,7 +6915,7 @@ getTitleButtonRect(): TitleButtonRect;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**参数：**
+**返回值：**
 
 | 类型            | 说明                                           |
 | --------------- | ---------------------------------------------- |
