@@ -234,7 +234,7 @@ struct GridExample {
 
 2.  在[onItemDragStart](#事件)回调中设置拖拽过程中显示的图片。
 
-3.  在[onItemDrop](#事件)中获取拖拽起始位置，和拖拽插入位置，在[onDrag](#事件)回调中完成交换数组位置逻辑。
+3.  在[onItemDrop](#事件)中获取拖拽起始位置，和拖拽插入位置，并在[onItemDrop](#事件)中完成交换数组位置逻辑。
 
 ```ts
 @Entry
