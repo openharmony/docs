@@ -25,5 +25,5 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [count](_r_d_b.md#count) | 表示发生变化的主键或者行号的数量。 |
-| [type](_r_d_b.md#type) | 表示主键的类型OH_ColumnType。 |
+| [type](_r_d_b.md#type) | 表示主键的类型[OH_ColumnType](_r_d_b.md#oh_columntype)。 |
 | **data** | 存放变化的具体数据[Rdb_KeyInfo::Rdb_KeyData](union_rdb___key_info_1_1_rdb___key_data.md)。 |
