@@ -9,7 +9,7 @@ The **fileUri** module allows the uniform resource identifier (URI) of a file to
 ## Modules to Import
 
 ```ts
-import fileuri from "@ohos.file.fileuri";
+import fileUri from "@ohos.file.fileuri";
 ```
 
 Before using this module, you need to obtain the path of the file in the application sandbox. The following is an example:
@@ -63,8 +63,8 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   let path = pathDir + '/test';
-  let uri = fileuri.getUriFromPath(path);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
-  let fileUriObject = new fileuri.FileUri(uri);
+  let uri = fileUri.getUriFromPath(path);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
+  let fileUriObject = new fileUri.FileUri(uri);
   console.info("The name of FileUri is " + fileUriObject.name);
   ```
 
@@ -86,11 +86,11 @@ Obtains the URI of the string type.
 
   ```ts
   let path = pathDir + '/test';
-  let fileUriObject = new fileuri.FileUri(path);
+  let fileUriObject = new fileUri.FileUri(path);
   console.info("The uri of FileUri is " + fileUriObject.toString());
   ```
 
-## fileuri.getUriFromPath
+## fileUri.getUriFromPath
 
 getUriFromPath(path: string): string
 
@@ -121,5 +121,5 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
   ```ts
   let filePath = pathDir + "/test";
-  let uri = fileuri.getUriFromPath(filePath);
+  let uri = fileUri.getUriFromPath(filePath);
   ```

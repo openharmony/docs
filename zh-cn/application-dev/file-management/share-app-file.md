@@ -36,7 +36,7 @@
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import fileuri from '@ohos.file.fileuri';
+   import fileUri from '@ohos.file.fileuri';
    import window from '@ohos.window';
    
    export default class EntryAbility extends UIAbility {
@@ -44,7 +44,7 @@
        // 获取文件的沙箱路径
        let pathInSandbox = this.context.filesDir + "/test.txt";
        // 将沙箱路径转换为uri
-       let uri = fileuri.getUriFromPath(pathInSandbox);
+       let uri = fileUri.getUriFromPath(pathInSandbox);
        // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test.txt"
      }
    }
@@ -58,7 +58,7 @@
    > 写权限分享时，同时授予读权限。
 
    ```ts
-   import fileuri from '@ohos.file.fileuri';
+   import fileUri from '@ohos.file.fileuri';
    import window from '@ohos.window';
    import wantConstant from '@ohos.app.ability.wantConstant';
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -70,7 +70,7 @@
        // 获取文件沙箱路径
        let filePath = this.context.filesDir + '/test.txt';
        // 将沙箱路径转换为uri
-       let uri = fileuri.getUriFromPath(filePath);
+       let uri = fileUri.getUriFromPath(filePath);
        let want: Want  = {
          // 配置被分享文件的读写权限，例如对被分享应用进行读写授权
          flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
