@@ -54,10 +54,10 @@ let context = getContext(this) as common.UIAbilityContext;
 let wantInfo: Want = {
   // uncomment line below if wish to implicitly query only in the specific bundle.
   // bundleName: 'com.example.myapplication',
-  'action': 'ohos.want.action.viewData',
+  action: 'ohos.want.action.viewData',
   // entities can be omitted.
-  'entities': ['entity.system.browsable'],
-  'uri': 'https://www.test.com:8080/query/student'
+  entities: ['entity.system.browsable'],
+  uri: 'https://www.test.com:8080/query/student'
 }
 context.startAbility(wantInfo).then(() => {
   // ...

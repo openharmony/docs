@@ -69,12 +69,13 @@ import Base from '@ohos.base';
 
 try {
   let fd = fs.openSync('/path/to/form.png');
-
-  let createFormBindingDataParam = new Map<string, string | Object>();
-  let formImagesParam = new Map<string, Object>();
-  formImagesParam.set('image', fd);
-  createFormBindingDataParam.set("name", '21°');
-  createFormBindingDataParam.set('formImages', formImagesParam);
+  let formImagesParam: Record<string, object> = {
+    'image': fd
+  };
+  let createFormBindingDataParam: Record<string, string | Object> = {
+    'name': '21°',
+    'formImages': formImagesParam
+  };
 
   formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {
