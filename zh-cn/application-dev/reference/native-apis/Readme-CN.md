@@ -139,6 +139,7 @@
 - 结构体
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
+  - [OH_OnFrameAvailableListener](_o_h___on_frame_available_listener.md)
   - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
   - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
   - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
