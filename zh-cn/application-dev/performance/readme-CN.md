@@ -14,6 +14,7 @@
     - [精准控制组件的更新范围](precisely-control-render-scope.md)
     - [合理使用renderGroup](reasonable-using-renderGroup.md)
     - [减少动画丢帧](reduce-animation-frame-loss.md)
+    - [合理使用多线程共享内存](thread_memory_shared.md)
     - [Grid高性能开发指导](grid_optimization.md)
   - 提升应用启动和响应速度
     - [提升应用冷启动速度](improve-application-cold-start-speed.md)
