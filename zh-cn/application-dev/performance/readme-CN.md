@@ -28,6 +28,7 @@
     - [动效能力实践](animation_practice.md)
     - [性能提升的其他方法](arkts-performance-improvement-recommendation.md)
     - [运行时动态加载页面提升性能](performance-dynamic-import.md)
+    - [合理运行后台任务](reasonable-running-backgroundTask.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
