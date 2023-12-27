@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController, incognitoMode? : boolean})
 
 > **说明：**
 >
@@ -29,6 +29,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | [ResourceStr](ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
 **示例：**
 
@@ -45,6 +46,24 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+隐私模式Webview加载在线网页。
+ 
+   ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
       }
     }
   }
@@ -3145,6 +3164,39 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   }
   ```
 
+### onContextMenuHide<sup>11+</sup>
+
+onContextMenuHide(callback: OnContextMenuHideCallback)
+
+长按特定元素（例如图片，链接）或鼠标右键，隐藏菜单。
+
+**参数：**
+
+| 参数名    | 参数类型                                     | 参数描述        |
+| ------ | ---------------------------------------- | ----------- |
+| callback  | [OnContextMenuHideCallback](#oncontextmenuhidecallback11) | 菜单相关参数。     |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onContextMenuHide(() => {
+            console.log("onContextMenuHide callback")
+        })
+      }
+    }
+  }
+  ```
+
 ### onScroll<sup>9+</sup>
 
 onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
@@ -4008,6 +4060,44 @@ onControllerAttached(callback: () => void)
       </body>
   </html>
   ```
+
+### onNavigationEntryCommitted<sup>11+</sup>
+
+onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11))
+
+当网页跳转提交时触发该回调。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| callback       | [OnNavigationEntryCommittedCallback](#onnavigationentrycommittedcallback11) | 网页跳转提交时触发的回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onNavigationEntryCommitted((details) => {
+            console.log("onNavigationEntryCommitted: [isMainFrame]= " + details.isMainFrame +
+              ", [isSameDocument]=" + details.isSameDocument +
+              ", [didReplaceEntry]=" + details.didReplaceEntry +
+              ", [navigationType]=" + details.navigationType +
+              ", [url]=" + details.url);
+        })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -4944,6 +5034,10 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | NEVER  | Web过滚动模式关闭。 |
 | ALWAYS | Web过滚动模式开启。 |
 
+## OnContextMenuHideCallback<sup>11+</sup>
+
+上下文菜单自定义隐藏的回调。
+
 ## SslError<sup>9+</sup>枚举说明
 
 onSslErrorEventReceive接口返回的SSL错误的具体原因。
@@ -5836,3 +5930,37 @@ saveCookie(): boolean
 | ----------- | -------------- | ---- | --------------------- |
 | script      | string         | 是    | 需要注入、执行的JavaScript脚本。 |
 | scriptRules | Array\<string> | 是    | 一组允许来源的匹配规则。          |
+
+## NavigationType<sup>11+</sup>
+
+定义navigation类型。
+
+| 名称                           | 描述           |
+| ----------------------------- | ------------ |
+| UNKNOWN                       | 未知类型。   |
+| MAIN_FRAME_NEW_ENTRY          | 主文档上产生的新的历史节点跳转。   |
+| MAIN_FRAME_EXISTING_ENTRY     | 主文档上产生的到已有的历史节点的跳转。 |
+| NAVIGATION_TYPE_NEW_SUBFRAME  | 子文档上产生的用户触发的跳转。 |
+| NAVIGATION_TYPE_AUTO_SUBFRAME | 子文档上产生的非用户触发的跳转。 |
+
+## LoadCommittedDetails<sup>11+</sup>
+
+提供已提交跳转的网页的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| isMainFrame     | boolean                              | 是    | 是否是主文档。 |
+| isSameDocument  | boolean                              | 是    | 是否在不更改文档的情况下进行的网页跳转。在同文档跳转的示例：1.参考片段跳转；2.pushState或replaceState触发的跳转；3.同一页面历史跳转。  |
+| didReplaceEntry | boolean                              | 是    | 是否提交的新节点替换了已有的节点。另外在一些子文档跳转的场景，虽然没有实际替换已有节点，但是有一些属性发生了变更。  |
+| navigationType  | [NavigationType](#navigationtype11)  | 是    | 网页跳转的类型。       |
+| url             | string                               | 是    | 当前跳转网页的URL。          |
+
+## OnNavigationEntryCommittedCallback<sup>11+</sup>
+
+type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedDetails](#loadcommitteddetails11)) => void
+
+导航条目提交时触发的回调。
+
+| 参数名                | 参数类型                                           | 参数描述                |
+| -------------------- | ------------------------------------------------ | ------------------- |
+| loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | 提供已提交跳转的网页的详细信息。 |

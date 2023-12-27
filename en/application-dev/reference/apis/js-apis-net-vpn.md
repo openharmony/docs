@@ -470,8 +470,8 @@ Defines the VPN configuration.
 
 | Name               | Type                                                          | Mandatory| Description                               |
 | ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
-| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress8)\> | Yes  | IP address of the vNIC.           |
-| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo8)\>     | No  | Route information of the vNIC.           |
+| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | Yes  | IP address of the vNIC.           |
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | No  | Route information of the vNIC.           |
 | dnsAddresses        | Array\<string\>                                                | No  | IP address of the DNS server.               |
 | searchDomains       | Array\<string\>                                                | No  | List of DNS search domains.                 |
 | mtu                 | number                                                         | No  | Maximum transmission unit (MTU), in bytes.    |

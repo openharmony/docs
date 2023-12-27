@@ -166,7 +166,7 @@ let result = plainArray.get(1);
 
 getIndexOfKey(key: number): number
 
-查找指定key第一次出现的下标值，如果没有找到该key返回-1。
+查找指定key对应的下标值，如果没有找到该key返回-1。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -180,7 +180,7 @@ getIndexOfKey(key: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回指定key第一次出现时的下标值，查找失败返回-1。 |
+| number | 返回指定key对应的下标值，查找失败返回-1。 |
 
 **错误码：**
 
@@ -380,7 +380,7 @@ plainArray.add(1, "squirrel");
 
 remove(key: number): T
 
-删除指定key对应元素。
+删除指定key对应的键值对。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -394,7 +394,7 @@ remove(key: number): T
 
 | 类型 | 说明 |
 | -------- | -------- |
-| T | 返回删除元素的值。 |
+| T | 返回所删除的键值对中的Value值。 |
 
 **错误码：**
 

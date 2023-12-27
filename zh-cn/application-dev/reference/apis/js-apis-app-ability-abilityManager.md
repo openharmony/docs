@@ -63,6 +63,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { BusinessError } from '@ohos.base';
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
@@ -82,7 +83,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -144,7 +145,7 @@ try {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -183,7 +184,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<AbilityRunningInfo>) => {
+    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<abilityManager.AbilityRunningInfo>) => {
         if (err) {
             console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
         } else {
@@ -191,7 +192,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -230,13 +231,13 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos().then((data: Array<AbilityRunningInfo>) => {
+    abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
         console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -286,7 +287,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -339,7 +340,7 @@ try {
         console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -423,7 +424,7 @@ abilityManager.getTopAbility().then((data) => {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void
+acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Object>>): void
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
@@ -436,7 +437,7 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | missionId | number                                   | 是 | 目标应用的missionId，最大为2<sup>31</sup>-1。 |
-| callback  | AsyncCallback<{[key: string]: Object}>  | 是    | 以回调方式返回接口运行结果及分享得到的数据，可进行错误处理或其他自定义处理。      |
+| callback  | AsyncCallback\<Record\<string, Object>>  | 是    | 以回调方式返回接口运行结果及分享得到的数据，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
 
@@ -461,7 +462,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -470,7 +471,7 @@ try {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number): Promise<{[key: string]: Object}>
+acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
 系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
 
@@ -488,7 +489,7 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise<{[key: string]: Object}>| 以Promise方式返回接口运行结果及分享数据，可进行错误处理或其他自定义处理。 |
+| Promise\<Record\<string, Object>>| 以Promise方式返回接口运行结果及分享数据，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
@@ -511,7 +512,7 @@ try {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -572,7 +573,7 @@ try {
     }
   });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -636,7 +637,7 @@ try {
     console.log(`notifySaveAsResult success`);
   });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -691,7 +692,7 @@ try {
 
 ## abilityManager.off<sup>11+</sup>
 
-off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
+off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 
 取消注册Ability启动和退出的观测器。
 
@@ -721,10 +722,10 @@ off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
-let observer_;
+let observer_: abilityManager.AbilityForegroundStateObserver;
 // 1.注册应用启动和退出的监听器
 let observer: abilityManager.AbilityForegroundStateObserver = {
-    onAbilityStateChanged(abilityStateData) {
+    onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
         console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
     },
 };
@@ -777,8 +778,9 @@ getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): vo
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilityManager.getForegroundUIAbilities((err, data) => {
+abilityManager.getForegroundUIAbilities((err: BusinessError, data: Array<abilityManager.AbilityStateData>) => {
     if (err) {
         console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(err)}`);
     } else {
@@ -819,7 +821,7 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-appManager.getForegroundUIAbilities().then((data) => {
+appManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
     console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
     console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);

@@ -31,11 +31,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type                                                    | Mandatory| Description                                                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| src    | [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr) \| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes  | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where **[base64 data]** is a Base64 string.<br>- Strings with the **file://** prefix, which are used to access the images in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http://** or **file://** prefix.<br>- ArkTS widgets do not support the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create a file with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.|
+| src    | [PixelMap](../apis/js-apis-image.md#pixelmap7) \| [ResourceStr](ts-types.md#resourcestr)\| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes  | Data source of the image. Local and online sources are supported. For details about how to reference an image, see [Loading Image Resources](../../ui/arkts-graphics-display.md#loading-image-resources).<br>1. **PixelMap**: an array of pixels storing graphical information. This type is usually used in image editing scenarios.<br>2. **ResourceStr**: a string or a **Resource** object.<br>The string format can be used to load local images and, more frequently, online images. When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. If an image needs to be used globally, you are advised to use the **Resource** format. The following types of strings are supported:<br>- Base64 strings in the format of data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where **[base64 data]** is a Base64 string.<br>- Strings with the **file://** prefix, that is, [application sandbox URIs](../apis/js-apis-file-fileuri.md#constructor10): **file://\<bundleName>/\<sandboxPath>**, which are used to access the images in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path.<br>The **Resource** format allows for access across bundles and modules. It is recommended for accessing local images.<br>3. **DrawableDescriptor**: an object created when the passed resource ID or name belongs to a common image.<br>**NOTE**<br>- ArkTS widgets support GIF animations, but the animations only play once on display.<br>- ArkTS widgets do not support the strings with the **http:/\/** or **file:/\/** prefix.<br>- ArkTS widgets do not support the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.<br>- When a local image is being loaded, any modification or replacement of it may cause application crash. Therefore, to overwrite an image file, delete the file first and then create one with the same name.<br>- Online images must support the RFC 9113 standard to be successfully loaded.|
 
 ## Attributes
 
-For details about how to use attributes, see [Setting Attributes](../../ui/arkts-graphics-display.md#setting-attributes). In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+For details about how to use the attributes, see [Setting Attributes](../../ui/arkts-graphics-display.md#setting-attributes). In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name                            | Type                                               | Description                                                        |
 | -------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ |
@@ -51,8 +51,11 @@ For details about how to use attributes, see [Setting Attributes](../../ui/arkts
 | autoResize                       | boolean                                                 | Whether to resize the image source based on the size of the display area during image decoding. This resizing can help reduce the memory usage. For example, if the size of the original image is 1920 x 1080 and the size of the display area is 200 x 200, you can set this attribute to **true** so that the image is downsampled to 200 x 200.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>As downsampling images results in some loss of information, it may reduce the image quality, causing issues such as aliasing. To retain the original image quality, set **autoResize** to **false**.|
 | syncLoad<sup>8+</sup>            | boolean                                                 | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder image is not displayed.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When loading a small image, you are advised to set **syncLoad** to **true** so that the image loading can be quickly completed on the main thread.|
 | copyOption<sup>9+</sup>          | [CopyOptions](ts-appendix-enums.md#copyoptions9)        | Whether the image can be copied.<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>SVG images cannot be copied.|
-| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>The RGBA values are floating-point numbers between 0 and 1. When the diagonal value of the matrix is 1, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>Since API version 9, this API is supported in ArkTS widgets.|
+| colorFilter<sup>9+</sup>         | [ColorFilter](ts-types.md#colorfilter9)                 | Color filter of the image. The input parameter is a 4 x 5 RGBA transformation matrix.<br>The first row of the matrix represents a vector value of R (red), the second row represents a vector value of G (green), the third row represents a vector value of B (blue), and the fourth row represents a vector value of A (alpha). The four rows represent different RGBA vector values.<br>If the matrix contains entries of 1 on the diagonal and entries of 0 in other places, the original color of the image is retained.<br> **Calculation rule:**<br>If the input filter matrix is as follows:<br>![image-matrix-1](figures/image-matrix-1.jpg)<br>Wherein the color is [R, G, B, A].<br>Then the color after filtering is [R', G', B', A'].<br>![image-matrix-2](figures/image-matrix-2.jpg)<br>Since API version 9, this API is supported in ArkTS widgets.|
 | draggable<sup>9+</sup> | boolean                                                 | Whether the image is draggable. The value **true** means that the image is draggable, and **false** means the opposite.<br>This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>Default value: **false**<br>**NOTE**<br>The default value is **false** in API version 9 and **true** in API version 10.|
+| enableAnalyzer<sup>11+</sup>   | boolean                                                 | Whether to enable the AI analyzer. The value **true** means to enable the AI analyzer.<br>This attribute cannot be used together with the [overlay](ts-universal-attributes-overlay.md) attribute. If they are set at the same time, the **CustomBuilder** attribute in **overlay** has no effect.<br>Default value: **false**<br>**NOTE**<br> This feature depends on device capabilities.<br> Images to be analyzed must be static, non-vector images. That is, SVG and GIF images cannot be analyzed. [Pixel maps](../apis/js-apis-image.md#pixelmap7) can be passed in for analysis.<br> The placeholder images (specified by **alt**) cannot be analyzed. An image can be analyzed only when **objectRepeat** is set to **ImageRepeat.NoRepeat** and [obscured](ts-universal-attributes-obscured.md) is disabled.<br> Analysis is performed based on the complete original image. If the **clip**, **margin**, **borderRadius**, **position**, or **objectFit** attribute is set, the image is not displayed completely. If **renderMode** is used to apply a mask, analysis is still performed based on the complete original image.<br> The **copyOption** attribute does not affect the AI analyzer.|
+| analyzerConfig<sup>11+</sup>   | [ImageAnalyzerConfig](#imageanalyzerconfig11)           | Type of the AI analyzer, including subject recognition and character recognition. By default, all types are supported.|
+| edgeAntialiasing<sup>11+</sup> | number                                                  | Edge antialiasing of the image. This attribute applies only to an SVG image.<br>Value range: $[0.333, 1.333]$. The value is valid up to three decimal places.<br>Default value: **$0$**|
 
 >  **NOTE**
 >
@@ -78,6 +81,17 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------- | -------------- |
 | Original | Render image pixels as they are in the original source image.|
 | Template | Render image pixels to create a monochrome template image.|
+
+## ImageAnalyzerConfig<sup>11+</sup>
+
+Since API version 11, this API is supported in ArkTS widgets.
+
+Describes the type of the AI analyzer.
+
+| Name    | Description          |
+| -------- | -------------- |
+| SUBJECT | Object recognition.|
+| TEXT | Text recognition.|
 
 ## Events
 
@@ -108,7 +122,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ### onError
 
-onError(callback: (event?: { componentWidth: number, componentHeight: number , message: string }) =&gt; void)
+onError(callback: [ImageErrorCallback](#imageerrorcallback11))
 
 Triggered when an error occurs during image loading.
 
@@ -118,10 +132,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name              | Type  | Description                     |
 | -------------------- | ------ | ------------------------- |
-| componentWidth       | number | Width of the component.<br>Unit: pixel|
-| componentHeight      | number | Height of the component.<br>Unit: pixel|
-| message<sup>9+</sup> | string | Error information.               |
-
+| callback       | [ImageErrorCallback](#imageerrorcallback11) | Triggered when an error occurs during image loading.|
 
 ### onFinish
 
@@ -132,6 +143,26 @@ Triggered when the animation playback in the loaded SVG image is complete. If th
 Only SVG images are supported.
 
 Since API version 9, this API is supported in ArkTS widgets.
+
+## ImageErrorCallback<sup>11+</sup>
+
+type ImageErrorCallback = (error: [ImageError](#imageerror11)) => void
+
+Triggered when an error occurs during image loading.
+
+| Name              | Type  | Description                     |
+| -------------------- | ------ | ------------------------- |
+| error       | [ImageError](#imageerror11) | Return object that triggers the callback for when an error occurs during image loading.|
+
+## ImageError<sup>11+</sup>
+
+Describes the return object that triggers the callback for when an error occurs during image loading.
+
+| Name              | Type  | Description                     |
+| -------------------- | ------ | ------------------------- |
+| componentWidth       | number | Width of the component.<br>Unit: pixel|
+| componentHeight      | number | Height of the component.<br>Unit: pixel|
+| message<sup>9+</sup> | string | Error information.               |
 
 ## Example
 

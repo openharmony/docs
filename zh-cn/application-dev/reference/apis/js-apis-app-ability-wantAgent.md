@@ -1050,7 +1050,7 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     }
     //equal回调
     let equalCallback = (err: BusinessError, data: boolean) => {
@@ -1140,7 +1140,7 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
         wantAgent1 = data;
         wantAgent2 = data;
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
@@ -1383,5 +1383,5 @@ try {
 | want           | Want                            | 是   | 存在的被触发的want。     |
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
 | finalData      | string                          | 是   | 公共事件收集的最终数据。  |
-| extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
+| extraInfo      | Record\<string, Object>            | 否   | 额外数据。               |
 

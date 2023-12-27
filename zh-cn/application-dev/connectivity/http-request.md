@@ -18,7 +18,7 @@ HTTP数据请求功能主要由http模块提供。
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | 创建一个http请求。                  |
 | request()                                 | 根据URL地址，发起HTTP网络请求。     |
-| requestInStream()<sup>10+</sup>                  | 根据URL地址，发起HTTP网络请求并返回流式响应|
+| requestInStream()<sup>10+</sup>           | 根据URL地址，发起HTTP网络请求并返回流式响应。 |
 | destroy()                                 | 中断请求任务。                      |
 | on(type: 'headersReceive')                | 订阅HTTP Response Header 事件。     |
 | off(type: 'headersReceive')               | 取消订阅HTTP Response Header 事件。 |
@@ -78,7 +78,7 @@ httpRequest.request(
       keyPath: '/path/to/client.key', // 若证书包含Key信息，传入空字符串，自API 11开始支持该属性
       certType: http.CertType.PEM, // 可选，默认使用PEM，自API 11开始支持该属性
       keyPassword: "passwordToKey" // 可选，输入key文件的密码，自API 11开始支持该属性
-    }，
+    },
     multiFormDataList: [ // 可选，仅当Header中，'content-Type'为'multipart/form-data'时生效，自API 11开始支持该属性
       {
         name: "Part1", // 数据名，自API 11开始支持该属性

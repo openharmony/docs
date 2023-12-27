@@ -103,18 +103,17 @@ let timeout = 10 * 1000;
 // 创建NetConnection对象
 let conn = connection.createNetConnection(netSpecifier, timeout);
 
-// 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
-conn.on('netAvailable', ((data: connection.NetHandle) => {
-  console.log("net is available, netId is " + data.netId);
-}));
-
-// 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
-conn.on('netUnavailable', ((data: void) => {
-  console.log("net is unavailable, data is " + JSON.stringify(data));
-}));
-
 // 订阅指定网络状态变化的通知
 conn.register((err: BusinessError, data: void) => {
+  // 订阅事件，如果当前指定网络可用，通过on_netAvailable通知用户
+  conn.on('netAvailable', ((data: connection.NetHandle) => {
+    console.log("net is available, netId is " + data.netId);
+  }));
+
+  // 订阅事件，如果当前指定网络不可用，通过on_netUnavailable通知用户
+  conn.on('netUnavailable', ((data: void) => {
+    console.log("net is unavailable, data is " + JSON.stringify(data));
+  }));
 });
 
 // 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅
@@ -220,49 +219,49 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
   console.log(JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netHandle = data;
-  }
-})
 
-// 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
-connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
-  console.log(JSON.stringify(err));
+    // 获取netHandle对应网络的能力信息。能力信息包含了网络类型、网络具体能力等网络信息
+    connection.getNetCapabilities(GlobalContext.getContext().netHandle, (err: BusinessError, data: connection.NetCapabilities) => {
+      console.log(JSON.stringify(err));
 
-  // 获取网络类型(bearerTypes)
-  let bearerTypes: Set<number> = new Set(data.bearerTypes);
-  let bearerTypesNum = Array.from(bearerTypes.values());
-  for (let item of bearerTypesNum) {
-    if (item == 0) {
-      // 蜂窝网
-      console.log(JSON.stringify("BEARER_CELLULAR"));
-    } else if (item == 1) {
-      // Wi-Fi网络
-      console.log(JSON.stringify("BEARER_WIFI"));
-    } else if (item == 3) {
-      // 以太网网络
-      console.log(JSON.stringify("BEARER_ETHERNET"));
-    }
-  }
-  
-  // 获取网络具体能力(networkCap)
-  let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
-  let dataNumber = Array.from(itemNumber.values());
-  for (let item of dataNumber) {
-    if (item == 0) {
-      // 表示网络可以访问运营商的MMSC（Multimedia Message Service，多媒体短信服务）发送和接收彩信
-      console.log(JSON.stringify("NET_CAPABILITY_MMS"));
-    } else if (item == 11) {
-      // 表示网络流量未被计费
-      console.log(JSON.stringify("NET_CAPABILITY_NOT_METERED"));
-    } else if (item == 12) {
-      // 表示该网络应具有访问Internet的能力，该能力由网络提供者设置
-      console.log(JSON.stringify("NET_CAPABILITY_INTERNET"));
-    } else if (item == 15) {
-      // 表示网络不使用VPN（Virtual Private Network，虚拟专用网络）
-      console.log(JSON.stringify("NET_CAPABILITY_NOT_VPN"));
-    } else if (item == 16) {
-      // 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置
-      console.log(JSON.stringify("NET_CAPABILITY_VALIDATED"));
-    }
+      // 获取网络类型(bearerTypes)
+      let bearerTypes: Set<number> = new Set(data.bearerTypes);
+      let bearerTypesNum = Array.from(bearerTypes.values());
+      for (let item of bearerTypesNum) {
+        if (item == 0) {
+          // 蜂窝网
+          console.log(JSON.stringify("BEARER_CELLULAR"));
+        } else if (item == 1) {
+          // Wi-Fi网络
+          console.log(JSON.stringify("BEARER_WIFI"));
+        } else if (item == 3) {
+          // 以太网网络
+          console.log(JSON.stringify("BEARER_ETHERNET"));
+        }
+      }
+      
+      // 获取网络具体能力(networkCap)
+      let itemNumber : Set<number> = new Set(data.networkCap);
+      let dataNumber = Array.from(itemNumber.values());
+      for (let item of dataNumber) {
+        if (item == 0) {
+          // 表示网络可以访问运营商的MMSC（Multimedia Message Service，多媒体短信服务）发送和接收彩信
+          console.log(JSON.stringify("NET_CAPABILITY_MMS"));
+        } else if (item == 11) {
+          // 表示网络流量未被计费
+          console.log(JSON.stringify("NET_CAPABILITY_NOT_METERED"));
+        } else if (item == 12) {
+          // 表示该网络应具有访问Internet的能力，该能力由网络提供者设置
+          console.log(JSON.stringify("NET_CAPABILITY_INTERNET"));
+        } else if (item == 15) {
+          // 表示网络不使用VPN（Virtual Private Network，虚拟专用网络）
+          console.log(JSON.stringify("NET_CAPABILITY_NOT_VPN"));
+        } else if (item == 16) {
+          // 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置
+          console.log(JSON.stringify("NET_CAPABILITY_VALIDATED"));
+        }
+      }
+    })
   }
 })
 
@@ -278,24 +277,24 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
+
+    let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
+    let dataNumber = Array.from(itemNumber.values());
+    for (let item of dataNumber) {
+      // 循环获取网络列表每个netHandle对应网络的能力信息
+      connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(data));
+      })
+
+      // 循环获取网络列表每个netHandle对应的网络的连接信息
+      connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(data));
+      })
+    }
   }
 })
-
-let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
-let dataNumber = Array.from(itemNumber.values());
-for (let item of dataNumber) {
-  // 循环获取网络列表每个netHandle对应网络的能力信息
-  connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(err));
-    console.log(JSON.stringify(data));
-  })
-
-  // 循环获取网络列表每个netHandle对应的网络的连接信息
-  connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(err));
-    console.log(JSON.stringify(data));
-  })
-}
 ```
 
 ## 使用对应网络解析域名，获取所有IP

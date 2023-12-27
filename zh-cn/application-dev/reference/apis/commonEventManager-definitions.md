@@ -716,6 +716,12 @@ Wi-Fi P2P群组信息已更改。
 * [COMMON_EVENT_SIM_CARD_DEFAULT_MAIN_SUBSCRIPTION_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md)
 提示SIM卡默认主卡已更新。
 
+* [COMMON_EVENT_SET_PRIMARY_SLOT_STATUS<sup>11+</sup> ](./common_event/commonEvent-telephony.md)
+提示设置SIM卡默认主卡的动作，其状态更新为执行中或已完成。
+
+* [COMMON_EVENT_PRIMARY_SLOT_ROAMING<sup>11+</sup> ](./common_event/commonEvent-telephony.md)
+提示SIM卡默认主卡的漫游状态已更新。
+
 * [COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED<sup>10+</sup> ](./common_event/commonEvent-telephony.md)
 提示SIM卡默认语音主卡已更新。
 

@@ -32,7 +32,7 @@ RotationGesture(value?: { fingers?: number, angle?: number })
 
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the rotation gesture. It is used to distinguish the gesture during custom gesture recognition.|
+| tag<sup>11+</sup>   | string  | Tag for the rotation gesture. It is used to distinguish the gesture during custom gesture judgment.|
 ## Example
 
 ```ts

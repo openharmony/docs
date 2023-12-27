@@ -395,7 +395,7 @@ Subscribes to upload completion or failure events. This API uses a callback to r
 
 off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
 
-Unsubscribes from upload progress events. This API returns the result asynchronously.
+Unsubscribes from upload progress events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -406,7 +406,7 @@ Unsubscribes from upload progress events. This API returns the result asynchrono
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
-  | callback | function | No| Callback used to return the result.<br>**uploadedSize**: size of the uploaded files, in B.<br>**totalSize**: Total size of the files to upload, in B.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**uploadedSize**: size of the uploaded files, in B.<br>**totalSize**: Total size of the files to upload, in B.|
 
 **Example**
 
@@ -430,7 +430,7 @@ Unsubscribes from upload progress events. This API returns the result asynchrono
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-Unsubscribes from HTTP header events for the upload task. This API returns the result asynchronously.
+Unsubscribes from HTTP header events for the upload task.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -441,7 +441,7 @@ Unsubscribes from HTTP header events for the upload task. This API returns the r
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
-  | callback | function | No| Callback used to return the result.<br>**header**: HTTP response header.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
@@ -464,7 +464,7 @@ Unsubscribes from HTTP header events for the upload task. This API returns the r
 
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-Unsubscribes from upload completion or failure events. This API returns the result asynchronously.
+Unsubscribes from upload completion or failure events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -475,7 +475,7 @@ Unsubscribes from upload completion or failure events. This API returns the resu
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
-  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback used to return the result.<br>**taskstates**: upload task result.|
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
@@ -642,7 +642,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
   ```
 
 ## UploadConfig<sup>6+</sup>
-Describes the configuration for an upload task.
+Describes the configuration of an upload task.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -653,21 +653,11 @@ Describes the configuration for an upload task.
 | url | string | Yes| Resource URL.|
 | header | Object | Yes| HTTP or HTTPS header added to an upload request.|
 | method | string | Yes| Request method, which can be **'POST'** or **'PUT'**. The default value is **'POST'**.|
+| index<sup>11+</sup> | number | No| Path index of the task. The default value is **0**.|
+| begins<sup>11+</sup> | number | No| File start point to read when the task begins. The default value is **0**. The value is a closed interval.|
+| ends<sup>11+</sup> | number | No| File start point to read when the task ends. The default value is **-1**. The value is a closed interval.|
 | files | Array&lt;[File](#file)&gt; | Yes| List of files to upload, which is submitted through **multipart/form-data**.|
 | data | Array&lt;[RequestData](#requestdata)&gt; | Yes| Form data in the request body.|
-
-## UploadConfig<sup>11+</sup>
-Describes the configuration of an upload task.
-
-**Required permissions**: ohos.permission.INTERNET
-
-**System capability**: SystemCapability.MiscServices.Upload
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| index | number | No| Path index of the task. The default value is **0**.|
-| begins | number | No| File start point to read when the task begins. The default value is **0**. The value is a closed interval.|
-| ends | number | No| File start point to read when the task ends. The default value is **-1**. The value is a closed interval.|
 
 ## TaskState<sup>9+</sup>
 Implements a **TaskState** object, which is the callback parameter of the [on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9) and [off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9) APIs.
@@ -929,6 +919,7 @@ Subscribes to download progress events. This API uses a callback to return the r
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let progressCallback = (receivedSize: number, totalSize: number) => {
     console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
@@ -940,7 +931,7 @@ Subscribes to download progress events. This API uses a callback to return the r
 
 off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt; void): void
 
-Unsubscribes from download progress events. This API returns the result asynchronously.
+Unsubscribes from download progress events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -951,11 +942,12 @@ Unsubscribes from download progress events. This API returns the result asynchro
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
-  | callback | function | No| Callback used to return the result.<br>**receivedSize**: size of the downloaded files.<br>**totalSize**: total size of the files to download.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.<br>**receivedSize**: size of the downloaded files.<br>**totalSize**: total size of the files to download.|
 
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let progressCallback1 = (receivedSize: number, totalSize: number) => {
     console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
   };
@@ -991,6 +983,7 @@ Subscribes to download events. This API uses a callback to return the result asy
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let completeCallback = () => {
     console.info('Download task completed.');
   };
@@ -1012,7 +1005,7 @@ Subscribes to download events. This API uses a callback to return the result asy
 
 off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
-Unsubscribes from download events. This API returns the result asynchronously.
+Unsubscribes from download events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1023,11 +1016,12 @@ Unsubscribes from download events. This API returns the result asynchronously.
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to unsubscribe from.<br>- **'complete'**: download task completion event.<br>- **'pause'**: download task pause event.<br>- **'remove'**: download task removal event.|
-  | callback | function | No| Callback used to return the result.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let completeCallback1 = () => {
     console.info('Download delete complete notification.');
   };
@@ -1095,6 +1089,7 @@ Subscribes to download failure events. This API uses a callback to return the re
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let failCallback = (err: number) => {
     console.error(`Failed to download the task. Code: ${err}`);
   };
@@ -1106,7 +1101,7 @@ Subscribes to download failure events. This API uses a callback to return the re
 
 off(type: 'fail', callback?: (err: number) =&gt; void): void
 
-Unsubscribes from download failure events. This API returns the result asynchronously.
+Unsubscribes from download failure events.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1117,11 +1112,12 @@ Unsubscribes from download failure events. This API returns the result asynchron
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
-  | callback | function | No| Callback used to return the result.<br>**err**: error code of the download failure. |
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let failCallback1 = (err: number) => {
     console.error(`Failed to download the task. Code: ${err}`);
   };
@@ -1155,6 +1151,7 @@ Deletes this download task. This API uses a promise to return the result.
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.delete().then((result: boolean) => {
     console.info('Succeeded in removing the download task.');
   }).catch((err: BusinessError) => {
@@ -1182,6 +1179,7 @@ Deletes this download task. This API uses an asynchronous callback to return the
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1211,6 +1209,7 @@ Obtains the information about this download task. This API uses a promise to ret
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
     console.info('Succeeded in querying the download task')
   }).catch((err: BusinessError) => {
@@ -1238,6 +1237,7 @@ Obtains the information about this download task. This API uses an asynchronous 
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
     if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
@@ -1267,6 +1267,7 @@ Obtains the **MimeType** of this download task. This API uses a promise to retur
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskMimeType().then((data: string) => {
     console.info('Succeeded in querying the download MimeType');
   }).catch((err: BusinessError) => {
@@ -1294,6 +1295,7 @@ Obtains the **MimeType** of this download task. This API uses an asynchronous ca
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
     if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
@@ -1323,6 +1325,7 @@ Pauses this download task. This API uses a promise to return the result.
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.suspend().then((result: boolean) => {
     console.info('Succeeded in pausing the download task.');
   }).catch((err: BusinessError) => {
@@ -1350,6 +1353,7 @@ Pauses this download task. This API uses an asynchronous callback to return the 
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.suspend((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1379,6 +1383,7 @@ Resumes this download task. This API uses a promise to return the result.
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.restore().then((result: boolean) => {
     console.info('Succeeded in resuming the download task.')
   }).catch((err: BusinessError) => {
@@ -1406,6 +1411,7 @@ Resumes this download task. This API uses an asynchronous callback to return the
 **Example**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.restore((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1814,7 +1820,9 @@ Defines network options.
 ## BroadcastEvent<sup>11+</sup>
 
 Defines a custom system event. You can use a common event API to obtain the event.
-The upload and download SA has the **'ohos.permission.SEND_TASK_COMPLETE_EVENT'** permission. You can configure the level-2 configuration file to which the metadata of an event points to intercept other event senders.
+The upload and download SA has the **ohos.permission.SEND_TASK_COMPLETE_EVENT** permission. You can configure the level-2 configuration file to which the metadata of an event points to intercept other event senders.
+
+You can use the **CommonEventData** type to transmit data related to common events. The members in **CommonEventData** are different from those described in [CommonEventData](js-apis-inner-commonEvent-commonEventData.md). Specifically, **CommonEventData.code** indicates the task status, which is **0x40 COMPLETE** or **0x41 FAILED**, and **CommonEventData.data** indicates the task ID.
 
 For details about event configuration information, see [Subscribing to Common Events in Static Mode](../../application-models/common-event-static-subscription.md).
 
@@ -1876,6 +1884,7 @@ Provides the configuration information of an upload or download task.
 | gauge | boolean | No| Whether to send progress notifications. This parameter applies only to background tasks. The default value is **false**.<br>- **false**: Progress notifications are not sent. This means that a notification is sent only to indicate the result of the total task.<br>- **true**: Progress notifications are sent to indicate the result of each file.|
 | precise | boolean | No| - If this parameter is set to **true**, the task fails when the file size cannot be obtained.<br>- If this parameter is set to **false**, the task continues when the file size is set to **-1**.<br>The default value is **false**.|
 | token | string | No| Token of the task. If the task has a token configured, this token is required for query of the task. The value contains 8 to 2048 bytes. This parameter is left empty by default.|
+| priority<sup>11+</sup> | number | No| Priority of the task. For tasks in the same mode, a smaller value indicates a higher priority.<br>Default value: **0**|
 | extras | object | No| Additional information of the task. This parameter is left empty by default.|
 
 ## State<sup>10+</sup>  
@@ -1957,6 +1966,7 @@ Defines the data structure of the task information for query. The fields availab
 | description | string | Yes| Task description.|
 | action | [Action](#action10) | Yes| Task action.<br>- **UPLOAD**<br>- **DOWNLOAD**|
 | mode | [Mode](#mode10) | Yes| Task mode.<br>- **FOREGROUND**<br>- **BACKGROUND**|
+| priority<sup>11+</sup> | number | No| Task priority. The priority of a foreground task is higher than that of a background task. For tasks in the same mode, a smaller value indicates a higher priority.|
 | mimeType | string | Yes| MIME type in the task configuration.|
 | progress | [Progress](#progress10) | Yes| Task progress.|
 | gauge | boolean | Yes| Whether to send progress notifications. This parameter applies only to background tasks.|
@@ -2401,7 +2411,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from foreground task progress changes. This API returns the result asynchronously.
+Unsubscribes from foreground task progress changes.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2410,7 +2420,7 @@ Unsubscribes from foreground task progress changes. This API returns the result 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | event | string | Yes| Type of the event to subscribe to.<br>The value is **'progress'**, indicating the task progress.|
-  | callback | function | No| Callback used to return the data structure of the task progress.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2480,7 +2490,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from the foreground task completion event. This API returns the result asynchronously.
+Unsubscribes from the foreground task completion event.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2489,7 +2499,7 @@ Unsubscribes from the foreground task completion event. This API returns the res
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | event | string | Yes| Type of the event to subscribe to.<br>The value is **'completed'**, indicating task completion.|
-  | callback | function | No| Callback used to return the data structure of the task progress.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2559,7 +2569,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from the foreground task failure event. This API returns the result asynchronously.
+Unsubscribes from the foreground task failure event.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2568,7 +2578,7 @@ Unsubscribes from the foreground task failure event. This API returns the result
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | event | string | Yes| Type of the event to subscribe to.<br>The value is **'failed'**, indicating task failure.|
-  | callback | function | No| Callback used to return the data structure of the task progress.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2638,7 +2648,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from the foreground task pause event. This API returns the result asynchronously.
+Unsubscribes from the foreground task pause event.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2647,7 +2657,7 @@ Unsubscribes from the foreground task pause event. This API returns the result a
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | event | string | Yes| Type of the event to subscribe to.<br>The value is **'pause'**, indicating task pause.|
-  | callback | function | No| Callback used to return the data structure of the task progress.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2713,7 +2723,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from the foreground task resume event. This API returns the result asynchronously.
+Unsubscribes from the foreground task resume event.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2722,7 +2732,7 @@ Unsubscribes from the foreground task resume event. This API returns the result 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | event | string | Yes| Type of the event to subscribe to.<br>The value is **'resume'**, indicating task resume.|
-  | callback | function | No| Callback used to return the data structure of the task progress.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -2788,7 +2798,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 
-Unsubscribes from the task removal event. This API returns the result asynchronously.
+Unsubscribes from the task removal event.
 
 **System capability**: SystemCapability.Request.FileTransferAgent
 
@@ -2797,7 +2807,7 @@ Unsubscribes from the task removal event. This API returns the result asynchrono
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | event | string | Yes| Type of the event to subscribe to.<br>The value is **'remove'**, indicating task removal.|
-  | callback | function | No| Callback used to return the data structure of the task progress.|
+  | callback | function | No| Callback to unregister. If this parameter is not specified, all callbacks of the current type will be unregistered.|
 
 **Error codes**
 
@@ -3540,6 +3550,47 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 > **NOTE**
 >
 > For details about how to obtain the context in the example, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+## request.agent.getTask<sup>11+</sup>
+
+getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
+
+Obtains task information based on the task ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Request.FileTransferAgent
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | Yes| Application-based context.|
+  | id | string | Yes| Task ID.|
+  | token | string | No| Token for task query.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;[Task](#task10)&gt; | Promise used to return the configuration about the created task.|
+
+**Error codes**
+
+For details about the error codes, see [Upload and Download Error Codes](../errorcodes/errorcode-request.md).
+
+  | ID| Error Message|
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**Example**
+
+  ```ts
+  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
+    console.info(`Succeeded in querying a upload task. result: ${task.uid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
 
 ## request.agent.remove<sup>10+</sup>
 

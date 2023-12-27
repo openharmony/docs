@@ -29,13 +29,13 @@
   async function getUserDownloadDirExample() {
     try {
       let path = environment.getUserDownloadDir();
-      console.log(`success to getUserPublicDir: ${JSON.stringify(path)}`);
+      console.log(`success to getUserDownloadDir: ${JSON.stringify(path)}`);
       await fs.mkdir(path + "/brower");
-      let fd = await fs.open(path + "/brower/1.txt", fs.OpenMode.Create);
+      let fd = await fs.open(path + "/brower/1.txt", fs.OpenMode.CREATE);
       await fs.close(fd);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error(`failed to getUserPublicDir because: ${JSON.stringify(err)}`);
+      console.error(`failed to getUserDownloadDir because: ${JSON.stringify(err)}`);
     }
   }
   ```
@@ -53,7 +53,7 @@
   async function selectExample() {
     try {
       let DocumentSelectOptions = new picker.DocumentSelectOptions();
-      DocumentSelectOptions.selectMode = picker.SelectMode.FOLDER;
+      DocumentSelectOptions.selectMode = picker.DocumentSelectMode.FOLDER;
       let documentPicker = new picker.DocumentViewPicker();
       let uris = await documentPicker.select(DocumentSelectOptions);
     } catch (error) {
@@ -66,8 +66,8 @@
 2.应用按需对路径设置持久化授权，参数uri为第一步FilePicker应用获取的选择路径。以下示例代码演示了持久化授权过程：
   ```ts
   import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
   import fileshare from '@ohos.fileshare';
+  import fs from '@ohos.file.fs';
   
   async function persistPermissionExample() {
     try {
@@ -97,8 +97,8 @@
 3.应用按需对持久化授权后的路径取消授权，参数URI为第一步通过FilePicker选择的路径。以下示例代码演示了去除持久化授权URI的过程：
   ```ts
   import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
   import fileshare from '@ohos.fileshare';
+  import fs from '@ohos.file.fs';
   
   async function revokePermissionExample() {
     try {
@@ -130,8 +130,8 @@
 以下示例代码演示了应用重启时激活持久化授权的URI，其中参数URI为应用重启后读取的最近使用文件：
   ```ts
   import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
   import fileshare from '@ohos.fileshare';
+  import fs from '@ohos.file.fs';
   
   async function activatePermissionExample01() {
     try {
@@ -158,8 +158,8 @@
 5.应用可以按需取消激活的持久化权限能力，参数URI为应用重启后读取的最近使用文件。以下示例代码演示了取消激活持久化权限的过程：
   ```ts
   import { BusinessError } from '@ohos.base';
-  import picker from '@ohos.file.picker';
   import fileshare from '@ohos.fileshare';
+  import fs from '@ohos.file.fs';
   
   async function deactivatePermissionExample01() {
     try {
@@ -218,7 +218,7 @@
       //获取公共桌面目录
       let desktopPath = environment.getUserDesktopDir();
       //获取公共文档目录
-      let doucmentPath = environment.getUserDoucmentDir();
+      let documentPath = environment.getUserDocumentDir();
       //获取外卡根目录
       let externalStoragePath = environment.getExternalStorageDir();
       //获取当前用户下应用沙箱路径的内卡目录

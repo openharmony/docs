@@ -3741,3 +3741,15 @@
 **ACL使能**：TRUE
 
 **起始版本**：11
+
+## ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+允许应用管理系统音效。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+**起始版本**：11

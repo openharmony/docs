@@ -62,7 +62,7 @@ MyMenu(){
       content: "Menu option",
       endIcon: $r("app.media.arrow_right_filled"),
       // When the builder parameter is set, it indicates that a submenu is bound to a menu item. When the user hovers the cursor over the menu item, the submenu is displayed.
-      builder: this.SubMenu.bind(this),
+      builder: this.SubMenu
     })
     MenuItemGroup ({ header: 'Subtitle' }) {
       MenuItem ({ content: "Menu option" })
@@ -77,7 +77,7 @@ MyMenu(){
         startIcon: $r("app.media.view_list_filled"),
         content: "Menu option",
         endIcon: $r("app.media.arrow_right_filled"),
-        builder: this.SubMenu.bind(this)
+        builder: this.SubMenu
       })
     }
     MenuItem({

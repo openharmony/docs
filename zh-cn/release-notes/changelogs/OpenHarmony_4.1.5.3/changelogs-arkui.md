@@ -8,9 +8,11 @@
 
 **变更原因**
 
-该变更为非兼容性变更。
+规格优化。
 
 **变更影响**
+
+该变更为兼容性变更。
 
 DatePickerDialog、TimePickerDialog、TextPickerDialog支持通过设置alignment参数调整滑动选择器弹窗相对于窗口的弹出位置。具体受影响的场景见下文：
 
@@ -31,6 +33,10 @@ c) 设置alignment为Center
 变更前：相对于窗口正中位置默认有16vp的向上偏移
 
 变更后：处于窗口正中位置
+
+**API Level** 
+
+11
 
 **变更发生版本**
 
@@ -124,9 +130,13 @@ TextInput设置cancelButton时不设置IconOptions.size参数可以获取正确�
 
 公开接口。
 
+**变更原因**
+
+@Require和@Prop或者@BuilderParam结合使用能够决定是否需要从父组件构造传参，现@Prop和@BuilderParam的初始化校验变更。
+
 **变更影响**
 
- 变更@Prop和@BuilderParam初始化校验规格。增加当@Require装饰器和@Prop装饰器或者@BuilderParam装饰器结合使用时，@Prop装饰器或者 @BuilderParam装饰器修饰的变量值必须由父组件构造传参，如父组件未构造传参，编译报错。如果@Prop、@BuilderParam没有和@Require结合使用，不会进行构造传参初始化校验。 
+该变更为兼容性变更。变更@Prop和@BuilderParam初始化校验规格。增加当@Require装饰器和@Prop装饰器或者@BuilderParam装饰器结合使用时，@Prop装饰器或者 @BuilderParam装饰器修饰的变量值必须由父组件构造传参，如父组件未构造传参，编译报错。如果@Prop、@BuilderParam没有和@Require结合使用，不会进行构造传参初始化校验。 
 
 **变更发生版本**
 

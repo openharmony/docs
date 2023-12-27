@@ -48,6 +48,7 @@
 | 允许装饰的变量类型      | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>支持Date、Map、Set类型。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[@Provide_and_Consume支持联合类型实例](#provide_and_consume支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScipt类型校验，比如：`@Provide a : string \| undefined = undefiend`是推荐的，不推荐`@Provide a: string = undefined`。
 <br/>支持AkrUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>不支持any。| 必须指定类型。<br/>\@Provide变量的\@Consume变量的类型必须相同。|
 | 被装饰变量的初始值      | 必须指定。                                    |
+| 支持allowOverride参数          | 允许重写，只要声明了allowOverride，则别名和属性名都可以被Override。示例见\@Provide支持allowOverride参数。 |
 
 | \@Consume变量装饰器 | 说明                                       |
 | -------------- | ---------------------------------------- |
@@ -343,7 +344,7 @@ struct SetSample {
 }
 ```
 
-## Provide_and_Consume支持联合类型实例
+### Provide_and_Consume支持联合类型实例
 
 @Provide和@Consume支持联合类型和undefined和null，在下面的示例中，count类型为string | undefined，点击父组件Parent中的Button改变count的属性或者类型，Child中也会对应刷新。
 
@@ -383,6 +384,148 @@ struct Ancestors {
       Button(`count(${this.count}), Child`)
         .onClick(() => this.count = undefined)
       Parent()
+    }
+  }
+}
+```
+
+### \@Provide支持allowOverride参数
+
+allowOverride：\@Provide重写选项。
+
+> **说明：**
+>
+> 从API version 11开始使用。
+
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| allowOverride | string | 否 | 是否允许@Provide重写。允许在同一组件树下通过allowOverride重写同名的@Provide。如果开发者未写allowOverride，定义同名的@Provide，运行时会报错。 |
+
+```ts
+@Component
+struct MyComponent {
+  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
+}
+```
+
+```ts
+@Component
+struct GrandSon {
+  // @Consume装饰的变量通过相同的属性名绑定其祖先内的@Provide装饰的变量
+  @Consume("reviewVotes") reviewVotes: number;
+
+  build() {
+    Column() {
+      Text(`reviewVotes(${this.reviewVotes})`) // Text显示10
+      Button(`reviewVotes(${this.reviewVotes}), give +1`)
+        .onClick(() => this.reviewVotes += 1)
+    }
+    .width('50%')
+  }
+}
+
+@Component
+struct Child {
+  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
+  build() {
+    Row({ space: 5 }) {
+      GrandSon()
+    }
+  }
+}
+
+@Component
+struct Parent {
+  @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 20;
+  build() {
+    Child()
+  }
+}
+
+@Entry
+@Component
+struct GrandParent {
+  @Provide("reviewVotes") reviewVotes: number = 40;
+
+  build() {
+    Column() {
+      Button(`reviewVotes(${this.reviewVotes}), give +1`)
+        .onClick(() => this.reviewVotes += 1)
+      Parent()
+    }
+  }
+}
+```
+
+在上面的示例中：
+- GrandParent声明了@Provide("reviewVotes") reviewVotes: number = 40
+- Parent是GrandParent的子组件，声明@Provide为allowOverride，重写父组件GrandParent的@Provide("reviewVotes") reviewVotes: number = 40。如果不设置allowOverride，则会抛出运行时报错，提示@Provide重复定义。Child同理。
+- GrandSon在初始化@Consume的时候，@Consume装饰的变量通过相同的属性名绑定其最近的祖先的@Provide装饰的变量。
+- GrandSon查找到相同属性名的@Provide在祖先Child中，所以@Consume("reviewVotes") reviewVotes: number初始化数值为10。如果Child中没有定义与@Consume同名的@Provide，则继续向上寻找Parent中的同名@Provide值为20，以此类推。
+- 如果查找到根节点还没有找到key对应的@Provide，则会报初始化@Consume找不到@Provide的报错。
+
+
+## 常见问题
+
+### \@BuilderParam尾随闭包情况下\@Provide未定义错误
+
+在此场景下，CustomWidget执行this.builder()创建子组件CustomWidgetChild时，this指向的是HomePage。因此找不到CustomWidget的\@Provide变量，所以下面示例会报找不到\@Provide错误，和\@BuidlerParam连用的时候要谨慎this的指向。
+
+错误示例：
+
+```ts
+class Tmp {
+  a: string = ''
+}
+@Entry
+@Component
+struct HomePage {
+
+  @Builder
+  builder2($$: Tmp) {
+    Text(`${$$.a}测试`)
+  }
+
+  build() {
+    Column() {
+      CustomWidget() {
+        CustomWidgetChild({ builder: this.builder2 })
+      }
+    }
+  }
+}
+
+@Component
+struct CustomWidget {
+  @Provide('a') a: string='abc';
+  @BuilderParam
+  builder: () => void;
+
+  build() {
+    Column() {
+      Button('你好').onClick((x) => {
+        if (this.a == 'ddd') {
+          this.a = 'abc';
+        }
+        else {
+          this.a = 'ddd';
+        }
+
+      })
+      this.builder()
+    }
+  }
+}
+
+@Component
+struct CustomWidgetChild {
+  @Consume('a') a: string;
+  @BuilderParam
+  builder: ($$: Tmp) => void;
+
+  build() {
+    Column() {
+      this.builder({ a: this.a })
     }
   }
 }

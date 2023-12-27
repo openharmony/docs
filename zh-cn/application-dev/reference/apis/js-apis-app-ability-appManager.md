@@ -740,7 +740,7 @@ try {
 
 ## appManager.off<sup>11+</sup>
 
-off(type: 'appForegroundState', observer: AppForegroundStateObserver): void
+off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 
 取消注册应用启动和退出的观测器。
 
@@ -770,30 +770,30 @@ off(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 import { BusinessError } from '@ohos.base';
-let observer_;
+let observer_: appManager.AppForegroundStateObserver;
 // 1.注册应用启动和退出的监听器
 let observer: appManager.AppForegroundStateObserver = {
-    onAppStateChanged(appStateData) {
-        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
-    },
+  onAppStateChanged(appStateData: appManager.AppStateData) {
+    console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+  },
 };
 try {
-    appManager.on('appForegroundState', observer);
-    // 保存observer对象，用于注销
-    observer_ = observer;
+  appManager.on('appForegroundState', observer);
+  // 保存observer对象，用于注销
+  observer_ = observer;
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message} `);
 }
 
 // 2.注销监听器
 try {
-    appManager.off('appForegroundState',  observer_);
+  appManager.off('appForegroundState',  observer_);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 

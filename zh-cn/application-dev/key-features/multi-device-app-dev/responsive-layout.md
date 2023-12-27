@@ -77,7 +77,7 @@
        if (this.curBp !== newBp) {
          this.curBp = newBp
          // 使用状态变量记录当前断点值
-         AppStorage.SetOrCreate('currentBreakpoint', this.curBp)
+         AppStorage.setOrCreate('currentBreakpoint', this.curBp)
        }
      }
 

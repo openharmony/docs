@@ -22,7 +22,7 @@ Invalid SQL statement is passed in.
 
 Determine the cause of the error based on the log information.
 
-## 14800010 Invalid RDB Name
+## 14800010 Invalid Database Path
 
 **Error Message**
 
@@ -30,7 +30,7 @@ Failed to open or delete database by invalid database path.
 
 **Description**
 
-The RDB store name is invalid.
+The RDB store path is invalid.
 
 **Possible Causes**
 

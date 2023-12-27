@@ -236,7 +236,7 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 | Name  | Type                       | Mandatory| Description                                         |
 | -------- | --------------------------- | ---- | --------------------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.          |
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, whether to delete all keys or a single key. To delete a single key, pass in an empty **properties**.                     |
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, pass in an empty **properties**.                     |
 | callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
 
 **Error codes**
@@ -287,8 +287,8 @@ Deletes a key. This API uses a promise to return the result.
 
 | Name  | Type                       | Mandatory| Description                               |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| keyAlias | string                      | Yes  | Key alias passed in when the key was generated.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, whether to delete all keys or a single key. To delete a single key, pass in an empty **properties**.           |
+| keyAlias | string                      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, pass in an empty **properties**.           |
 
 **Error codes**
 
@@ -844,6 +844,291 @@ async function attestKey() {
 }
 ```
 
+## huks.anonAttestKeyItem<sup>11+</sup>
+
+anonAttestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
+
+Obtains the certificate for anonymous attestation. This API uses an asynchronous callback to return the result.
+
+This operation requires Internet access and takes time.
+
+**System capability**: SystemCapability.Security.Huks.Extension
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                         |
+| -------- | ---------------------------------------------------- | ---- | --------------------------------------------- |
+| keyAlias | string                                               | Yes  | Alias of the key. The certificate to be obtained stores the key.         |
+| options  | [HuksOptions](#huksoptions)                          | Yes  | Parameters and data required for obtaining the certificate.           |
+| callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**Example**
+
+```ts
+import huks from '@ohos.security.huks';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
+    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
+    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+function stringToUint8Array(str: string): Uint8Array {
+    let arr: number[] = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+    }
+    let tmpUint8Array = new Uint8Array(arr);
+    return tmpUint8Array;
+}
+
+async function generateKeyThenAttestKey(alias: string): Promise<void> {
+    let aliasString = keyAliasString;
+    let aliasUint8 = stringToUint8Array(aliasString);
+    let generateProperties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+            value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_ECB
+        }
+    ];
+    let generateOptions: huks.HuksOptions = {
+        properties: generateProperties
+    };
+    let anonAttestProperties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+            value: securityLevel
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+            value: challenge
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+            value: versionInfo
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+            value: aliasUint8
+        }
+    ];
+    let anonAttestOptions: huks.HuksOptions = {
+        properties: anonAttestProperties
+    };
+    try {
+        huks.generateKeyItem(alias, generateOptions, (error, data) => {
+            if (error) {
+                console.error(`callback: generateKeyItem failed`);
+            } else {
+                console.info(`callback: generateKeyItem success`);
+                try {
+                    huks.anonAttestKeyItem(aliasString, anonAttestOptions, (error, data) => {
+                        if (error) {
+                            console.error(`callback: anonAttestKeyItem failed`);
+                        } else {
+                            console.info(`callback: anonAttestKeyItem success`);
+                        }
+                    });
+                } catch (error) {
+                    console.error(`callback: anonAttestKeyItem input arg invalid`);
+                }
+            }
+        });
+    } catch (error) {
+        console.error(`callback: generateKeyItem input arg invalid`);
+    }
+}
+```
+
+## huks.anonAttestKeyItem<sup>11+</sup>
+
+anonAttestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+
+Obtains the certificate for anonymous attestation. This API uses a promise to return the result.
+
+This operation requires Internet access and takes time.
+
+**System capability**: SystemCapability.Security.Huks.Extension
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                |
+| -------- | --------------------------- | ---- | ------------------------------------ |
+| keyAlias | string                      | Yes  | Alias of the key. The certificate to be obtained stores the key.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Parameters and data required for obtaining the certificate.  |
+
+**Return value**
+
+| Type                                          | Description                                         |
+| ---------------------------------------------- | --------------------------------------------- |
+| Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**Example**
+
+```ts
+import huks from '@ohos.security.huks';
+class HuksProperties {
+    tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ALGORITHM
+    value: huks.HuksKeyAlg | huks.HuksKeySize | huks.HuksKeyPurpose | huks.HuksKeyDigest |
+    huks.HuksKeyStorageType | huks.HuksKeyPadding | huks.HuksKeyGenerateType |
+    huks.HuksCipherMode | Uint8Array = huks.HuksKeyAlg.HUKS_ALG_ECC
+}
+let securityLevel = stringToUint8Array('sec_level');
+let challenge = stringToUint8Array('challenge_data');
+let versionInfo = stringToUint8Array('version_info');
+let keyAliasString = "key anon attest";
+function stringToUint8Array(str: string): Uint8Array {
+    let arr: number[] = [];
+    for (let i = 0, j = str.length; i < j; ++i) {
+        arr.push(str.charCodeAt(i));
+    }
+    let tmpUint8Array = new Uint8Array(arr);
+    return tmpUint8Array;
+}
+async function generateKey(alias: string): Promise<void> {
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+            value: huks.HuksKeyAlg.HUKS_ALG_RSA
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
+            value: huks.HuksKeyStorageType.HUKS_STORAGE_PERSISTENT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+            value: huks.HuksKeySize.HUKS_RSA_KEY_SIZE_2048
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+            value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_DIGEST,
+            value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_PADDING,
+            value: huks.HuksKeyPadding.HUKS_PADDING_PSS
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_KEY_GENERATE_TYPE,
+            value: huks.HuksKeyGenerateType.HUKS_KEY_GENERATE_TYPE_DEFAULT
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+            value: huks.HuksCipherMode.HUKS_MODE_ECB
+        }
+    ];
+    let options: huks.HuksOptions = {
+        properties: properties
+    };
+    try {
+        let data = await huks.generateKeyItem(alias, options);
+    } catch (error) {
+        console.error(`promise: generateKeyItem failed`);
+    }
+}
+async function anonAttestKey(): Promise<void> {
+    let aliasString = keyAliasString;
+    let aliasUint8 = stringToUint8Array(aliasString);
+    let properties: HuksProperties[] = [
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
+            value: securityLevel
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_CHALLENGE,
+            value: challenge
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_VERSION_INFO,
+            value: versionInfo
+        },
+        {
+            tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_ALIAS,
+            value: aliasUint8
+        }
+    ];
+    let options: huks.HuksOptions = {
+        properties: properties
+    };
+    await generateKey(aliasString);
+    try {
+        let data = await huks.anonAttestKeyItem(aliasString, options);
+    } catch (error) {
+        console.error(`promise: anonAttestKeyItem fail`);
+    }
+}
+```
+
 ## huks.importWrappedKeyItem<sup>9+</sup>
 
 importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void
@@ -1384,7 +1669,7 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 | Name  | Type                       | Mandatory| Description                                                    |
 | -------- | --------------------------- | ---- |--------------------------------------------------------|
 | keyAlias | string                      | Yes  | Alias of the key to check.                                           |
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, whether to check all keys or a single key. To check a single key, pass in an empty **properties**.    |
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, pass in an empty **properties**.    |
 | callback | AsyncCallback\<boolean>     | Yes  | Callback invoked to return the result. If the key exists, **data** is **true**. If the key does not exist, **error** is the error code.|
 
 **Error codes**
@@ -1441,7 +1726,7 @@ Checks whether a key exists. This API uses a promise to return the result.
 | Name  | Type                       | Mandatory| Description                    |
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | Yes  | Alias of the key to check.  |
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, whether to check all keys or a single key. To check a single key, pass in an empty **properties**.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, pass in an empty **properties**.|
 
 **Return value**
 
@@ -1482,6 +1767,137 @@ huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
         message: "keyAlias: " + keyAlias +"is existed! ",
         duration: 500,
     })
+}).catch((error: BusinessError)=>{
+    promptAction.showToast({
+        message: "find key failed",
+        duration: 6500,
+    })
+})
+```
+
+## huks.hasKeyItem<sup>11+</sup>
+
+hasKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<boolean>) : void
+
+Checks whether a key exists. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Security.Huks.Core
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                    |
+| -------- | --------------------------- | ---- |--------------------------------------------------------|
+| keyAlias | string                      | Yes  | Alias of the key to check.                                           |
+| options  | [HuksOptions](#huksoptions) | Yes  | Property tag of the key, for example, **HuksAuthStorageLevel**, which specifies the storage security level of the key. This parameter can be left empty.    |
+| callback | AsyncCallback\<boolean>     | Yes  | Callback invoked to return the result. If the key exists, **data** is **true**. Otherwise, **data** is **false**.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**Example**
+
+```ts
+import huks from '@ohos.security.huks';
+import promptAction from '@ohos.promptAction';
+/* Set options to emptyOptions. */
+let keyAlias = 'keyAlias';
+let emptyOptions: huks.HuksOptions = {
+    properties: []
+};
+
+try {
+    huks.hasKeyItem(keyAlias, emptyOptions, (error, data) => {
+        if (data) {
+            promptAction.showToast({
+                message: "keyAlias: " + keyAlias +" is existed!",
+                duration: 2500,
+            })
+        } else {
+            promptAction.showToast({
+                message: "find key failed",
+                duration: 2500,
+            })
+        }
+    });
+} catch (error) {
+    console.error(`callback: hasKeyItem input args may be invalid`);
+}
+```
+
+## huks.hasKeyItem<sup>11+</sup>
+
+hasKeyItem(keyAlias: string, options: HuksOptions) : Promise\<boolean>
+
+Checks whether a key exists. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Security.Huks.Extension
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                    |
+| -------- | --------------------------- | ---- | ------------------------ |
+| keyAlias | string                      | Yes  | Alias of the key to check.  |
+| options  | [HuksOptions](#huksoptions) | Yes  | Property tag of the key, for example, **HuksAuthStorageLevel**, which specifies the storage security level of the key. This parameter can be left empty.    |
+
+**Return value**
+
+| Type             | Description                                   |
+| ----------------- | --------------------------------------- |
+| Promise\<boolean> | Promise used to return the result. If the key exists, **true** is returned. If the key does not exist, **false** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
+**Example**
+
+```ts
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
+import promptAction from '@ohos.promptAction';
+
+/* Set options to emptyOptions. */
+let keyAlias = 'keyAlias';
+let emptyOptions: huks.HuksOptions = {
+    properties: []
+};
+huks.hasKeyItem(keyAlias, emptyOptions).then((data) => {
+    if (data) {
+        promptAction.showToast({
+            message: "keyAlias: " + keyAlias +" is existed!",
+            duration: 2500,
+        })
+    } else {
+        promptAction.showToast({
+            message: "find key failed",
+            duration: 2500,
+        })
+    }
 }).catch((error: BusinessError)=>{
     promptAction.showToast({
         message: "find key failed",
@@ -2145,24 +2561,25 @@ For details about the error codes, see [KUKS Error Codes](../errorcodes/errorcod
 
 | Name                                          | Value|  Description                       |
 | ---------------------------------------------- | -------- |--------------------------- |
-| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | Permission verification failed.         |
-| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | Invalid parameters are detected.         |
-| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | The API is not supported.              |
-| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | The feature is not supported.        |
-| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | Key algorithm parameters are missing.         |
-| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | Invalid key algorithm parameters are detected.         |
-| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | The file operation failed.             |
-| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | The communication failed.                 |
-| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | Failed to operate the algorithm library.           |
-| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | Failed to access the key because the key has expired.|
-| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | Failed to access the key because the authentication has failed.|
-| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | Key access timed out.|
-| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | The number of key operation sessions has reached the limit.   |
-| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | The target object does not exist.           |
-| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | An external error occurs.                 |
-| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | The credential does not exist.             |
-| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | The memory is insufficient.                 |
-| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | Failed to call other system services.     |
+| HUKS_ERR_CODE_PERMISSION_FAIL                  | 201      | Permission verification failed.<br>**System capability**: SystemCapability.Security.Huks.Core         |
+| HUKS_ERR_CODE_ILLEGAL_ARGUMENT                 | 401      | Invalid parameters are detected.<br>**System capability**: SystemCapability.Security.Huks.Core         |
+| HUKS_ERR_CODE_NOT_SUPPORTED_API                | 801      | The API is not supported.<br>**System capability**: SystemCapability.Security.Huks.Core              |
+| HUKS_ERR_CODE_FEATURE_NOT_SUPPORTED            | 12000001 | The feature is not supported.<br>**System capability**: SystemCapability.Security.Huks.Core        |
+| HUKS_ERR_CODE_MISSING_CRYPTO_ALG_ARGUMENT      | 12000002 | Key algorithm parameters are missing.<br>**System capability**: SystemCapability.Security.Huks.Core         |
+| HUKS_ERR_CODE_INVALID_CRYPTO_ALG_ARGUMENT      | 12000003 | Invalid key algorithm parameters are detected.<br>**System capability**: SystemCapability.Security.Huks.Core         |
+| HUKS_ERR_CODE_FILE_OPERATION_FAIL              | 12000004 | The file operation failed.<br>**System capability**: SystemCapability.Security.Huks.Core             |
+| HUKS_ERR_CODE_COMMUNICATION_FAIL               | 12000005 | The communication failed.<br>**System capability**: SystemCapability.Security.Huks.Core                 |
+| HUKS_ERR_CODE_CRYPTO_FAIL                      | 12000006 | Failed to operate the algorithm library.<br>**System capability**: SystemCapability.Security.Huks.Core           |
+| HUKS_ERR_CODE_KEY_AUTH_PERMANENTLY_INVALIDATED | 12000007 | Failed to access the key because the key has expired.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_ERR_CODE_KEY_AUTH_VERIFY_FAILED           | 12000008 | Failed to access the key because the authentication has failed.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_ERR_CODE_KEY_AUTH_TIME_OUT                | 12000009 | Key access timed out.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_ERR_CODE_SESSION_LIMIT                    | 12000010 | The number of key operation sessions has reached the limit.<br>**System capability**: SystemCapability.Security.Huks.Core   |
+| HUKS_ERR_CODE_ITEM_NOT_EXIST                   | 12000011 | The target object does not exist.<br>**System capability**: SystemCapability.Security.Huks.Core           |
+| HUKS_ERR_CODE_EXTERNAL_ERROR                   | 12000012 | An external error occurs.<br>**System capability**: SystemCapability.Security.Huks.Core                 |
+| HUKS_ERR_CODE_CREDENTIAL_NOT_EXIST             | 12000013 | The credential does not exist.<br>**System capability**: SystemCapability.Security.Huks.Core             |
+| HUKS_ERR_CODE_INSUFFICIENT_MEMORY              | 12000014 | The memory is insufficient.<br>**System capability**: SystemCapability.Security.Huks.Core                 |
+| HUKS_ERR_CODE_CALL_SERVICE_FAILED              | 12000015 | Failed to call other system services.<br>**System capability**: SystemCapability.Security.Huks.Core     |
+| HUKS_ERR_CODE_DEVICE_PASSWORD_UNSET<sup>11+</sup>  | 12000016 | The required lock screen password is not set.<br>**System capability**: SystemCapability.Security.Huks.Extension    |
 
 ## HuksKeyPurpose
 
@@ -2423,6 +2840,18 @@ Defines the signature type of the key generated or imported.
 | ------------------------------ | ---- | ------------------------------------------------------------ |
 | HUKS_SECURE_SIGN_WITH_AUTHINFO | 1    | The signature carries authentication information. This field is specified when a key is generated or imported. When the key is used for signing, the data will be added with the authentication information and then be signed.|
 
+## HuksAuthStorageLevel<sup>11+</sup>
+
+Represents the storage security level of a key.
+
+**System capability**: SystemCapability.Security.Huks.Extension
+
+| Name                          | Value  | Description                                                        |
+| ------------------------------ | ---- | ------------------------------------------------------------ |
+| HUKS_AUTH_STORAGE_LEVEL_DE | 0    | The key can be accessed only after the device is started.|
+| HUKS_AUTH_STORAGE_LEVEL_CE | 1    | The key can be accessed only after the first unlock of the device.|
+| HUKS_AUTH_STORAGE_LEVEL_ECE | 2    | The key can be accessed only when the device is unlocked.|
+
 ## HuksTagType
 
 Enumerates the tag data types.
@@ -2490,6 +2919,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup>                        | HuksTagType.HUKS_TAG_TYPE_UINT \| 309    | Type of the challenge generated for a key. For details, see [HuksChallengeType](#hukschallengetype9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_CHALLENGE_POS<sup>9+</sup>                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 310    | Position of the 8-byte valid value in a custom challenge. For details, see [HuksChallengePosition](#hukschallengeposition9).<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|311     | Key authentication purpose.<br>**System capability**: SystemCapability.Security.Huks.Extension|
+| HUKS_TAG_AUTH_STORAGE_LEVEL<sup>11+</sup>                     | HuksTagType.HUKS_TAG_TYPE_UINT \|316     | Key storage security level, which is a value of [HuksAuthStorageLevel](#huksauthstoragelevel11).<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_ATTESTATION_CHALLENGE                              | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_ATTESTATION_APPLICATION_ID                         | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Application ID used in the attestation.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_ATTESTATION_ID_BRAND<sup>(deprecated)</sup>        | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Brand of the device. It is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
@@ -2516,6 +2946,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_SECURE_KEY_ALIAS<sup>(deprecated)</sup>            | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1009   | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_TAG_SECURE_KEY_UUID<sup>(deprecated)</sup>             | HuksTagType.HUKS_TAG_TYPE_BYTES \| 1010  | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_KEY_DOMAIN                                         | HuksTagType.HUKS_TAG_TYPE_UINT \| 1011   | Reserved.<br>**System capability**: SystemCapability.Security.Huks.Core|
+| HUKS_TAG_IS_DEVICE_PASSWORD_SET<sup>11+</sup>                | HuksTagType.HUKS_TAG_TYPE_BOOL \| 1012   | Whether the key is accessible only with a lock screen password.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_PROCESS_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10001 | Process name. It is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Core|
 | HUKS_TAG_PACKAGE_NAME<sup>(deprecated)</sup>                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 10002 | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
 | HUKS_TAG_ACCESS_TIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_UINT \| 10003  | Reserved filed, which is deprecated since API version 9.<br>**System capability**: SystemCapability.Security.Huks.Extension|
@@ -2673,8 +3104,8 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 
 | Name  | Type                                     | Mandatory| Description                                                |
 | -------- | ----------------------------------------- | ---- |----------------------------------------------------|
-| keyAlias | string                                    | Yes  | Key alias passed in when the key was generated.                               |
-| options  | [HuksOptions](#huksoptions)               | Yes  | Properties of the key to delete, for example, whether to delete all keys or a single key. To delete a single key, pass in an empty **properties**.|
+| keyAlias | string                                    | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.                               |
+| options  | [HuksOptions](#huksoptions)               | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, pass in an empty **properties**.|
 | callback | AsyncCallback\<[HuksResult](#huksresultdeprecated)> | Yes  | Callback invoked to return the result. If the operation is successful, **HUKS_SUCCESS** is returned. If the operation fails, an error code is returned.              |
 
 **Example**
@@ -2706,8 +3137,8 @@ Deletes a key. This API uses a promise to return the result.
 
 | Name  | Type       | Mandatory| Description                                                 |
 | -------- | ----------- | ---- | ----------------------------------------------------- |
-| keyAlias | string      | Yes  | Key alias passed in when the key was generated.|
-| options | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, whether to delete all keys or a single key. To delete a single key, pass in an empty **properties**.|
+| keyAlias | string      | Yes  | Alias of the key to delete. It must be the key alias passed in when the key was generated.|
+| options | [HuksOptions](#huksoptions) | Yes  | Properties of the key to delete, for example, delete all keys or a single key. To delete a single key, pass in an empty **properties**.|
 
 **Return value**
 
@@ -3028,7 +3459,7 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 | Name  | Type                  | Mandatory| Description                                 |
 | -------- | ---------------------- | ---- | ------------------------------------- |
 | keyAlias | string                 | Yes  | Alias of the key to check.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, whether to check all keys or a single key. To check a single key, pass in an empty **properties**.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, pass in an empty **properties**.|
 | callback | AsyncCallback\<boolean> | Yes  | Callback invoked to return the result. The value **true** means the key exists; the value **false** means the opposite.|
 
 **Example**
@@ -3061,7 +3492,7 @@ Checks whether a key exists. This API uses a promise to return the result.
 | Name  | Type       | Mandatory| Description                            |
 | -------- | ----------- | ---- | -------------------------------- |
 | keyAlias | string      | Yes  | Alias of the key to check.|
-| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, whether to check all keys or a single key. To check a single key, pass in an empty **properties**.|
+| options  | [HuksOptions](#huksoptions) | Yes  | Properties of the key to check, for example, check all keys or a single key. To check a single key, pass in an empty **properties**.|
 
 **Return value**
 

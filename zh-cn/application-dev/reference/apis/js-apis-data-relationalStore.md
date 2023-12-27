@@ -887,13 +887,6 @@ try {
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.inDevices(deviceIds);
-
-if(store != undefined) {
-  // 设置数据库版本
-  (store as relationalStore.RdbStore).version = 3;
-  // 获取数据库版本
-  console.info(`RdbStore version is ${(store as relationalStore.RdbStore).version}`);
-}
 ```
 
 ### inAllDevices
@@ -1638,7 +1631,7 @@ indexedBy(field: string): RdbPredicates
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.indexedBy("SALARY_INDEX");
+predicates.indexedBy("SALARY");
 ```
 
 ### in
@@ -3443,7 +3436,7 @@ getModifyTime(table: string, columnName: string, primaryKeys: PRIKeyType[], call
 ```ts
 let PRIKey = [1, 4, 2, 3];
 if(store != undefined) {
-  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
+  (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey, (err, modifyTime: relationalStore.ModifyTime) => {
     if (err) {
       console.error(`getModifyTime failed, code is ${err.code},message is ${err.message}`);
       return;
@@ -3490,7 +3483,7 @@ import { BusinessError } from "@ohos.base";
 
 let PRIKey = [1, 2, 3];
 if(store != undefined) {
-  (store as relationalStore.RdbStore).getModifyTime("cloud_tasks", "uuid", PRIKey)
+  (store as relationalStore.RdbStore).getModifyTime("EMPLOYEE", "NAME", PRIKey)
     .then((modifyTime: relationalStore.ModifyTime) => {
       let size = modifyTime.size;
     })
@@ -3524,8 +3517,6 @@ beginTransaction():void
 import featureAbility from '@ohos.ability.featureAbility'
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-let context = getContext(this);
-
 let key1 = "name";
 let key2 = "age";
 let key3 = "SALARY";
@@ -3534,25 +3525,16 @@ let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+
+store.beginTransaction();
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
-  };
-  await store.insert("test", valueBucket);
-  store.commit();
-})
+store.insert("test", valueBucket);
+store.commit();
 ```
 
 ### commit
@@ -3579,25 +3561,16 @@ let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
+
+store.beginTransaction();
+const valueBucket: ValuesBucket = {
+  key1: value1,
+  key2: value2,
+  key3: value3,
+  key4: value4,
 };
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  store.beginTransaction();
-  const valueBucket: ValuesBucket = {
-    key1: value1,
-    key2: value2,
-    key3: value3,
-    key4: value4,
-  };
-  await store.insert("test", valueBucket);
-  store.commit();
-})
+store.insert("test", valueBucket);
+store.commit();
 ```
 
 ### rollBack
@@ -3624,32 +3597,23 @@ let value1 = "Lisa";
 let value2 = 18;
 let value3 = 100.5;
 let value4 = new Uint8Array([1, 2, 3]);
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S1
-};
-relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
-  if (err) {
-    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  try {
-    store.beginTransaction()
-    const valueBucket: ValuesBucket = {
-      key1: value1,
-      key2: value2,
-      key3: value3,
-      key4: value4,
-    };
-    await store.insert("test", valueBucket);
-    store.commit();
-  } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message
-    console.error(`Transaction failed, code is ${code},message is ${message}`);
-    store.rollBack();
-  }
-})
+
+try {
+  store.beginTransaction()
+  const valueBucket: ValuesBucket = {
+    key1: value1,
+    key2: value2,
+    key3: value3,
+    key4: value4,
+  };
+  store.insert("test", valueBucket);
+  store.commit();
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message
+  console.error(`Transaction failed, code is ${code},message is ${message}`);
+  store.rollBack();
+}
 ```
 
 ### backup
@@ -5651,6 +5615,35 @@ if(resultSet != undefined) {
 }
 ```
 
+### getRow<sup>11+</sup>
+
+getRow(): ValuesBucket
+
+获取当前行。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**返回值：**
+
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| [ValuesBucket](#valuesbucket) | 返回指定行的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
+**示例：**
+
+```ts
+if(resultSet != undefined) {
+  const row = (resultSet as relationalStore.ResultSet).getRow();
+}
+```
 
 ### isColumnNull
 

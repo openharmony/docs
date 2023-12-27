@@ -36,11 +36,11 @@
   import deviceManager from '@ohos.driver.deviceManager';
   import { BusinessError } from '@ohos.base';
 
-  let matchDevice : deviceManager.USBDevice | null = null;
+  let matchDevice: deviceManager.USBDevice | null = null;
   try {
-    let devices : Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
+    let devices: Array<deviceManager.Device> = deviceManager.queryDevices(deviceManager.BusType.USB);
     for (let item of devices) {
-      let device : deviceManager.USBDevice = item as deviceManager.USBDevice;
+      let device: deviceManager.USBDevice = item as deviceManager.USBDevice;
       // 通过productId和vendorId来匹配要使用的USB设备
       if (device.productId == 1234 && device.vendorId === 2345) {
         matchDevice = device;
@@ -81,16 +81,16 @@
       }
     console.info('bindDevice success');
     remoteObject = data.remote;
-    });
-  } catch (error) {
-    let errCode = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
-  }
-  if (!remoteObject) {
-    console.error('Bind device failed');
-  }
-   ```
+  });
+} catch (error) {
+  let errCode = (error as BusinessError).code;
+  let message = (error as BusinessError).message;
+  console.error(`bindDevice fail. Code is ${errCode}, message is ${message}`);
+}
+if (!remoteObject) {
+  console.error('Bind device failed');
+}
+  ```
 
 3. 绑定成功后使用设备驱动能力。
 
@@ -98,9 +98,9 @@
   import { BusinessError } from '@ohos.base';
   import rpc from '@ohos.rpc';
 
-  let option : rpc.MessageOption = new rpc.MessageOption();
-  let data : rpc.MessageSequence = rpc.MessageSequence.create();
-  let reply : rpc.MessageSequence = rpc.MessageSequence.create();
+  let option: rpc.MessageOption = new rpc.MessageOption();
+  let data: rpc.MessageSequence = rpc.MessageSequence.create();
+  let reply: rpc.MessageSequence = rpc.MessageSequence.create();
   data.writeString('hello');
   let code = 1;
   // remoteObject应用可以通过绑定设备获取到

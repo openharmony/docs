@@ -42,6 +42,7 @@
     - [Foreground Blur](ts-universal-attributes-foreground-blur-style.md)
     - [Click Effect](ts-universal-attributes-click-effect.md)
     - [Accessibility](ts-universal-attributes-accessibility.md)
+    - [Attribute Modifier](ts-universal-attributes-attribute-modifier.md)
     - Touch Interactions
       - [Touch Target](ts-universal-attributes-touch-target.md)
       - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
@@ -54,6 +55,7 @@
     - [Safe Area](ts-universal-attributes-expand-safe-area.md)
     - [Special Effect Drawing Combination](ts-universal-attributes-use-effect.md)
     - [Render Fit](ts-universal-attributes-renderfit.md)
+    - [Event Monopolization](ts-universal-attributes-monopolize-events.md)
   - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
@@ -64,6 +66,7 @@
       - [RotationGesture](ts-basic-gestures-rotationgesture.md)
       - [SwipeGesture](ts-basic-gestures-swipegesture.md)
     - [Combined Gestures](ts-combined-gestures.md)
+    - [Custom Gesture Judgment](ts-gesture-customize-judge.md)
 - Basic Components
   - [AlphabetIndexer](ts-container-alphabet-indexer.md)
   - [Blank](ts-basic-components-blank.md)
@@ -167,7 +170,23 @@
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
 - Advanced Components
+  - [@ohos.arkui.advanced.Chip (Chip)](ts-composite-components-chip.md)
+  - [@ohos.arkui.advanced.ComposeListItem (List)](ts-composite-components-composelistitem.md)
+  - [@ohos.arkui.advanced.ComposeTitleBar (One- or Two-Row Title Bar with Profile Picture)](ts-composite-components-composetitlebar.md)
   - [@ohos.arkui.advanced.Counter (Counter)](ohos-arkui-advanced-counter.md)
+  - [@ohos.arkui.advanced.Dialog (Dialog Box)](ts-composite-components-dialog.md)
+  - [@ohos.arkui.advanced.EditableTitleBar (Editable Title Bar)](ts-composite-components-editabletitlebar.md)
+  - [@ohos.arkui.advanced.Filter (Advanced Filter)](ts-composite-components-filter.md)
+  - [@ohos.arkui.advanced.ProgressButton (Download Button with Progress Indicator)](ts-composite-components-progressbutton.md)
+  - [@ohos.arkui.advanced.SegmentButton (Segment Button)](ohos-arkui-advanced-segmentbutton.md)
+  - [@ohos.arkui.advanced.SelectionMenu (Context Menu on Selection)](ts-composite-components-selectionmenu.md)
+  - [@ohos.arkui.advanced.SelectTitleBar (Drop-down Title Bar)](ts-composite-components-selecttitlebar.md)
+  - [@ohos.arkui.advanced.SplitLayout (Split Layout)](ts-composite-components-splitlayout.md)
+  - [@ohos.arkui.advanced.SubHeader (Subheader)](ts-composite-components-subheader.md)
+  - [@ohos.arkui.advanced.SwipeRefresher (Swipe Refresher)](ts-composite-components-swiperefresher.md)
+  - [@ohos.arkui.advanced.TabTitleBar (Tab Title Bar)](ts-composite-components-tabtitlebar.md)
+  - [@ohos.arkui.advanced.ToolBar (Toolbar)](ts-composite-components-toolbar.md)
+  - [@ohos.arkui.advanced.TreeView (Tree View)](ts-composite-components-treeview.md)
   - [@ohos.multimedia.avCastPicker (AVCastPicker)](ohos-multimedia-avcastpicker.md)
 - Security Components
   - [Security Component Universal Attributes](ts-securitycomponent-attributes.md)

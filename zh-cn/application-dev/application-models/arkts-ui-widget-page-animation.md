@@ -3,7 +3,6 @@
 
 ArkTS卡片开放了使用动画效果的能力，支持[显式动画](../reference/arkui-ts/ts-explicit-animation.md)、[属性动画](../reference/arkui-ts/ts-animatorproperty.md)、[组件内转场](../reference/arkui-ts/ts-transition-animation-component.md)能力。需要注意的是，ArkTS卡片使用动画效果时具有以下限制：
 
-
 **表1** 动效参数限制
 
 | 名称 | 参数说明 | 限制描述 |
@@ -25,24 +24,32 @@ ArkTS卡片开放了使用动画效果的能力，支持[显式动画](../refere
 ```ts
 @Entry
 @Component
-struct AnimationCard {
+struct AttrAnimationCard {
   @State rotateAngle: number = 0;
 
   build() {
-    Row() {
-      Button('change rotate angle')
-        .height('20%')
-        .width('90%')
-        .margin('5%')
-        .onClick(() => {
-          this.rotateAngle = (this.rotateAngle === 0 ? 90 : 0);
-        })
-        .rotate({ angle: this.rotateAngle })
-        .animation({
-          curve: Curve.EaseOut,
-          playMode: PlayMode.Normal,
-        })
-    }.height('100%').alignItems(VerticalAlign.Center)
+    Column() {
+      Button() {
+        Text($r('app.string.change_rotate_angle'))
+          .fontColor('#45A6F4')
+          .fontSize(12)
+      }
+      .width(120)
+      .height(32)
+      .backgroundColor('#FFFFFF')
+      .borderRadius(16)
+      .onClick(() => {
+        this.rotateAngle = (this.rotateAngle === 0 ? 90 : 0);
+      })
+      .rotate({ angle: this.rotateAngle })
+      .animation({
+        curve: Curve.EaseOut,
+        playMode: PlayMode.Normal,
+      })
+    }.height('100%').width('100%')
+    .justifyContent(FlexAlign.Center)
+    .backgroundImage($r('app.media.CardExampleBkg'))
+    .backgroundImageSize(ImageSize.Cover)
   }
 }
 ```

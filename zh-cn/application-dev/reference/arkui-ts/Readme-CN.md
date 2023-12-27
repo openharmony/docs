@@ -44,6 +44,7 @@
     - [点击回弹效果](ts-universal-attributes-click-effect.md)
     - [无障碍属性](ts-universal-attributes-accessibility.md)
     - [动态属性设置](ts-universal-attributes-attribute-modifier.md)
+    - [外描边设置](ts-universal-attributes-outline.md)
     - 触摸交互控制
       - [触摸热区设置](ts-universal-attributes-touch-target.md)
       - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
@@ -92,6 +93,7 @@
   - [Navigation](ts-basic-components-navigation.md)
   - [NavRouter](ts-basic-components-navrouter.md)
   - [NavDestination](ts-basic-components-navdestination.md)
+  - [NodeContianer](ts-basic-components-nodecontainer.md)
   - [PatternLock](ts-basic-components-patternlock.md)
   - [PluginComponent](ts-basic-components-plugincomponent.md)
   - [Progress](ts-basic-components-progress.md)
@@ -173,6 +175,8 @@
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
 - 高级组件
+  - [@ohos.advertising.AdComponent (非全屏广告展示组件)](../apis/js-apis-adcomponent.md)
+  - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](../apis/js-apis-autoadcomponent.md)
   - [@ohos.arkui.advanced.Chip (操作块)](ts-composite-components-chip.md)
   - [@ohos.arkui.advanced.ComposeListItem (列表)](ts-composite-components-composelistitem.md)
   - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](ts-composite-components-composetitlebar.md)
@@ -181,6 +185,7 @@
   - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](ts-composite-components-editabletitlebar.md)
   - [@ohos.arkui.advanced.Filter (多条件筛选)](ts-composite-components-filter.md)
   - [@ohos.arkui.advanced.ProgressButton (下载按钮)](ts-composite-components-progressbutton.md)
+  - [@ohos.arkui.advanced.Popup (气泡组件)](ohos-arkui-advanced-popup.md)
   - [@ohos.arkui.advanced.SegmentButton (分段按钮)](ohos-arkui-advanced-segmentbutton.md)
   - [@ohos.arkui.advanced.SelectionMenu(文本选择菜单)](ts-composite-components-selectionmenu.md)
   - [@ohos.arkui.advanced.SelectTitleBar (下拉菜单标题栏)](ts-composite-components-selecttitlebar.md)

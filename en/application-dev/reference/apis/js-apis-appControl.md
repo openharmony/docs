@@ -578,27 +578,28 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 import appControl from '@ohos.bundle.appControl';
 import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let appId = "com.example.myapplication_xxxxx";
 let want: Want = {
-  "bundleName": "com.example.myapplication",
-  "moduleName": "entry",
-  "abilityName": "EntryAbility"
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
 };
-let elementName: ElementName = {
-  "bundleName": "com.example.myapplication",
-  "moduleName": "entry",
-  "abilityName": "EntryAbility"
+let elementName: bundleManager.ElementName = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
 };
-let rule: DisposedRule = {
-  "want": want,
-  "componentType": appControl.ComponentType.UI_ABILITY,
-  "disposedType": appControl.DisposedType.BLOCK_APPLICATION,
-  "controlType": appControl.ControlType.ALLOWED_LIST,
-  "elementList": [
+let rule: appControl.DisposedRule = {
+  want: want,
+  componentType: appControl.ComponentType.UI_ABILITY,
+  disposedType: appControl.DisposedType.BLOCK_APPLICATION,
+  controlType: appControl.ControlType.ALLOWED_LIST,
+  elementList: [
     elementName
   ],
-  "priority": 100
+  priority: 100
 };
 
 try {

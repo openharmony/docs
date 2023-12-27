@@ -262,7 +262,7 @@ getScanResults(callback: AsyncCallback&lt;Array&lt;WifiScanInfo&gt;&gt;): void
           console.info("channelWidth: " + result[i].channelWidth);
           console.info("timestamp: " + result[i].timestamp);
       }
-  }).catch(err => {
+  }).catch((err:number) => {
       console.error("failed:" + JSON.stringify(err));
   });
 ```
@@ -609,7 +609,7 @@ addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 		}
 		wifiManager.addDeviceConfig(config).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		}).catch(err => {
+		}).catch((err:number) => {
 			console.error("failed:" + JSON.stringify(err));
 		});
 	}catch(error){
@@ -846,7 +846,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 **示例：**
 `````ts
 	import wifiManager from '@ohos.wifiManager';
-
+	
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",
@@ -855,7 +855,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 		}
 		wifiManager.addCandidateConfig(config).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		}).catch(err => {
+		}).catch((err:number) => {
 			console.error("failed:" + JSON.stringify(err));
 		});
 	}catch(error){
@@ -945,7 +945,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 		let networkId = 0;
 		wifiManager.removeCandidateConfig(networkId).then(result => {
 			console.info("result:" + JSON.stringify(result));
-		}).catch(err => {
+		}).catch((err:number) => {
 			console.error("failed:" + JSON.stringify(err));
 		});
 	}catch(error){
@@ -2099,6 +2099,106 @@ getDisconnectedReason(): DisconnectedReason
 | DISC_REASON_WRONG_PWD  | 1 | 密码错误。 |
 | DISC_REASON_CONNECTION_FULL  | 2 | 路由器的连接数已达到最大数量限制。 |
 
+## wifiManager.startPortalCertification<sup>11+</sup>
+
+startPortalCertification(): void
+
+**系统接口：** 此接口为系统接口。
+
+启动portal认证。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和ohos.permission.MANAGE_WIFI_CONNECTION
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.startPortalCertification();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.isMeteredHotspot<sup>11+</sup>
+
+isMeteredHotspot(): boolean
+
+查询设备当前连接的wifi是否是手机热点。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:是手机热点，&nbsp;false:不是手机热点。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let isMeteredHotspot = wifiManager.isMeteredHotspot();
+		console.info("isMeteredHotspot:" + isMeteredHotspot);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.factoryReset<sup>11+</sup>
+
+factoryReset(): void
+
+**系统接口：** 此接口为系统接口。
+
+重置wifi相关配置。
+
+**需要权限：** ohos.permission.SET_WIFI_INFO 和ohos.permission.SET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+**示例：**
+
+```ts
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		wifiManager.factoryReset();
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 ## wifiManager.enableHotspot<sup>9+</sup>
 
 enableHotspot(): void
@@ -2397,7 +2497,7 @@ API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPO
 
 ## wifiManager.addHotspotBlockList<sup>11+</sup>
 
-addHotspotBlockList(config: StationInfo)
+addHotspotBlockList(stationInfo: StationInfo)
 
 将设备添加到热点的阻止连接设备列表中，列表中的设备将不能访问热点。
 
@@ -2411,7 +2511,7 @@ addHotspotBlockList(config: StationInfo)
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [StationInfo](#stationinfo9) | 是 | 将添加到热点的阻止列表中的设备。 |
+| stationInfo | [StationInfo](#stationinfo9) | 是 | 将添加到热点的阻止列表中的设备。 |
 
 **错误码：**
 
@@ -2441,7 +2541,7 @@ addHotspotBlockList(config: StationInfo)
 
 ## wifiManager.delHotspotBlockList<sup>11+</sup>
 
-delHotspotBlockList(config: StationInfo)
+delHotspotBlockList(stationInfo: StationInfo)
 
 将设备从热点的阻止列表中删除。
 
@@ -2455,7 +2555,7 @@ delHotspotBlockList(config: StationInfo)
 
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| config | [StationInfo](#stationinfo9) | 是 | 将从热点的阻止列表中删除的设备。 |
+| stationInfo | [StationInfo](#stationinfo9) | 是 | 将从热点的阻止列表中删除的设备。 |
 
 **错误码：**
 
@@ -3601,7 +3701,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 
 on(type: "streamChange", callback: Callback&lt;number&gt;): void
 
-注册WIFI流变更事件，当前版本不支持，抛出通用错误码801。
+注册WIFI流变更事件。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3628,7 +3728,7 @@ on(type: "streamChange", callback: Callback&lt;number&gt;): void
 
 off(type: "streamChange", callback?: Callback&lt;number&gt;): void
 
-取消注册WIFI流变更事件，当前版本不支持，抛出通用错误码801。
+取消注册WIFI流变更事件。
 
 **系统接口：** 此接口为系统接口。
 

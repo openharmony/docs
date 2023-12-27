@@ -1,10 +1,10 @@
 # \@AnimatableExtend Decorator: Definition of Animatable Attributes
 
-The @AnimatableExtend decorator is used to define an attribute method for animating a non-animatable attribute of a component. During animation execution, the frame-by-frame callback is used to change the value of the non-animatable attribute so that an animation effect can be applied to the attribute.
+The @AnimatableExtend decorator is used to define an attribute method for the non-animatable attribute of a component. During animation execution, a frame-by-frame callback is used to change the value of the non-animatable attribute so that an animation effect can be applied to the attribute.
 
-- Animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute can make the animation effect specified by the **animation** attribute take effect, then this attribute is called animatable attribute. Examples of animatable attributes are **height**, **width**, **backgroundColor**, and **translate**.
+- Animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute can make the animation effect specified by the **animation** attribute take effect, then this attribute is called animatable attribute. Typical animatable attributes are **height**, **width**, **backgroundColor**, and **translate**.
 
-- Non-animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute cannot make the animation effect specified by the **animation** attribute take effect, then this attribute is called non-animatable attribute. Examples of non-animatable attributes are **fontSize** of the **\<Text>** component and **points** of the **\<Polyline>** component.
+- Non-animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute cannot make the animation effect specified by the **animation** attribute take effect, then this attribute is called non-animatable attribute. Typical non-animatable attributes are **fontSize** of the **\<Text>** component and **points** of the **\<Polyline>** component.
 
 >  **NOTE**
 >
@@ -27,8 +27,8 @@ The @AnimatableExtend decorator is used to define an attribute method for animat
 - In the \@AnimatableExtend decorated function body, only the attribute methods of the component specified in brackets immediately following \@AnimatableExtend can be called.
 
 ### AnimtableArithmetic\<T\> Description
-To perform animation on complex data types, you must implement the addition, subtraction, multiplication, and equivalence judgment functions in the **AnimtableArithmetic\<T\>** API.
-| Name| Input Parameter Type| Return Value Type| Description|
+To perform animation when complex data types are involved, you must implement the addition, subtraction, multiplication, and equivalence judgment functions in the **AnimtableArithmetic\<T\>** API.
+| Name| Input Parameter Type| Return Value Type| Description
 | -------- | -------- |-------- |-------- |
 | plus | AnimtableArithmetic\<T\> | AnimtableArithmetic\<T\> | Addition function.|
 | subtract | AnimtableArithmetic\<T\> | AnimtableArithmetic\<T\> | Subtraction function.|

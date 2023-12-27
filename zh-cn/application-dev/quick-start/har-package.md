@@ -60,9 +60,8 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 
 该字段配置前向兼容，原有功能暂时不受影响。API10后续将逐步废弃，建议尽快使用新的配置方式。
 
-## HAR开发注意事项
-- HAR不支持在配置文件中声明abilities、extensionAbilities组件。
-- HAR不支持在配置文件中声明pages页面。
+## HAR开发约束限制
+- HAR不支持UIAbility、ExtensionAbility组件和pages页面。
 - HAR不支持在build-profile.json5文件的buildOption中配置worker。
 - FA模型与Stage模型的HAR不支持相互引用。
 - Stage模型的HAR，不能引用AppScope内的内容。在编译构建时AppScope中的内容不会打包到HAR中，导致HAR资源引用失败。
@@ -77,7 +76,7 @@ Index.ets文件是HAR导出声明文件的入口，HAR需要导出的接口，�
 ### 导出ArkUI组件
 ArkUI组件的导出方式与ts的导出方式一致，通过`export`导出ArkUI组件，示例如下：
 ```ts
-// library/src/main/ets/components/MainPage/MainPage.ets
+// library/src/main/ets/components/mainpage/MainPage.ets
 @Component
 export struct MainPage {
   @State message: string = 'Hello World'
@@ -97,7 +96,7 @@ export struct MainPage {
 HAR对外暴露的接口，在Index.ets导出文件中声明如下所示：
 ```ts
 // library/Index.ets
-export { MainPage } from './src/main/ets/components/MainPage/MainPage'
+export { MainPage } from './src/main/ets/components/mainpage/MainPage'
 ```
 ### 导出ts类和方法
 通过`export`导出ts类和方法，支持导出多个ts类和方法，示例如下所示：

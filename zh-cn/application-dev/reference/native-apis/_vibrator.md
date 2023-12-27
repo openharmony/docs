@@ -20,28 +20,28 @@
 
 ### 结构体
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [Vibrator_Attribute](_vibrator___attribute.md) | struct<br/>马达属性。  | 
-| [Vibrator_FileDescription](_vibrator___file_description.md) | struct<br/>振动文件描述。  | 
+| [Vibrator_Attribute](_vibrator___attribute.md) | 马达属性。  |
+| [Vibrator_FileDescription](_vibrator___file_description.md) | 振动文件描述。  |
 
 
 ### 类型定义
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [Vibrator_ErrorCode](#vibrator_errorcode) | typedef enum [Vibrator_ErrorCode](#vibrator_errorcode)<br/>为用户定义错误码。  | 
-| [Vibrator_Usage](#vibrator_usage) | typedef enum [Vibrator_Usage](#vibrator_usage)<br/>振动优先级。  | 
-| [Vibrator_Attribute](#vibrator_attribute) | typedef struct [Vibrator_Attribute](_vibrator___attribute.md)<br/>马达属性。  | 
-| [Vibrator_FileDescription](#vibrator_filedescription) | typedef struct [Vibrator_FileDescription](_vibrator___file_description.md)<br/>振动文件描述。  | 
+| [Vibrator_ErrorCode](#vibrator_errorcode) | 为用户定义错误码。  |
+| [Vibrator_Usage                                       | 振动优先级。       |
+| [Vibrator_Attribute](#vibrator_attribute) | 马达属性。  |
+| [Vibrator_FileDescription](#vibrator_filedescription) | 振动文件描述。  |
 
 
 ### 枚举
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [Vibrator_ErrorCode](#vibrator_errorcode) : int32_t { PERMISSION_DENIED = 201, PARAMETER_ERROR = 401, UNSUPPORTED = 801, **DEVICE_OPERATION_FAILED** = 14600101 } | 为用户定义错误码。  | 
-| [Vibrator_Usage](#vibrator_usage) {<br/>USAGE_UNKNOWN = 0, USAGE_ALARM = 1, USAGE_RING = 2, USAGE_NOTIFICATION = 3,<br/>USAGE_COMMUNICATION = 4, USAGE_TOUCH = 5, USAGE_MEDIA = 6, USAGE_PHYSICAL_FEEDBACK = 7,<br/>**USAGE_SIMULATE_REALITY** = 8, **USAGE_MAX** = 9<br/>} | 振动优先级。  | 
+| [Vibrator_ErrorCode](#vibrator_errorcode):int32_t { <br/>PERMISSION_DENIED = 201, <br/>PARAMETER_ERROR = 401, <br/>UNSUPPORTED = 801, <br/>DEVICE_OPERATION_FAILED = 14600101<br/>} | 为用户定义错误码。  |
+| [Vibrator_Usage](#vibrator_usage) {<br/>USAGE_UNKNOWN = 0, <br/>USAGE_ALARM = 1, <br/>USAGE_RING = 2,<br/> USAGE_NOTIFICATION = 3,<br/>USAGE_COMMUNICATION = 4, <br/>USAGE_TOUCH = 5, <br/>USAGE_MEDIA = 6, <br/>USAGE_PHYSICAL_FEEDBACK = 7,<br/>USAGE_SIMULATE_REALITY = 8, <br/>USAGE_MAX = 9<br/>} | 振动优先级。  |
 
 
 ## 类型定义说明
@@ -101,7 +101,7 @@ typedef enum Vibrator_Usage Vibrator_Usage
 ### Vibrator_ErrorCode
 
 ```
-enum Vibrator_ErrorCode : int32_t
+enum Vibrator_ErrorCode:int32_t
 ```
 **描述**
 
@@ -127,13 +127,13 @@ enum Vibrator_Usage
 
 **起始版本：** 11
 
-| 枚举值 | 描述 | 
+| 枚举值 | 描述 |
 | -------- | -------- |
-| USAGE_UNKNOWN  | 未知场景 报警 | 
-| USAGE_ALARM  | 铃声 | 
-| USAGE_RING  | 通知 | 
-| USAGE_NOTIFICATION  | 通信 | 
-| USAGE_COMMUNICATION  | 触摸 | 
-| USAGE_TOUCH  | 媒体 | 
-| USAGE_MEDIA  | 物理反馈 | 
-| USAGE_PHYSICAL_FEEDBACK  | 模拟现实 | 
+| USAGE_UNKNOWN  | 未知场景 报警。 |
+| USAGE_ALARM  | 铃声。 |
+| USAGE_RING  | 通知。 |
+| USAGE_NOTIFICATION  | 通信。 |
+| USAGE_COMMUNICATION  | 触摸。 |
+| USAGE_TOUCH  | 媒体。 |
+| USAGE_MEDIA  | 物理反馈。 |
+| USAGE_PHYSICAL_FEEDBACK  | 模拟现实。 |

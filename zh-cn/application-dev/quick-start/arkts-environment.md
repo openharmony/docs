@@ -77,7 +77,7 @@ Environment和UIContext相关联，需要在[UIContext](../reference/apis/js-api
 
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 

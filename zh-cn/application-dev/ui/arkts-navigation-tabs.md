@@ -235,7 +235,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 
 ```ts
-@Builder TabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
+@Builder tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
   Column() {
     Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
       .size({ width: 25, height: 25 })
@@ -262,7 +262,7 @@ TabContent() {
   .height('100%')
   .backgroundColor('#007DFF')
 }
-.tabBar(this.TabBuilder('我的', 0, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
+.tabBar(this.tabBuilder('我的', 0, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
 ```
 
 
@@ -287,23 +287,23 @@ class Tmp{
   foo(val:number){
     this.currentIndex = val;
   }
-  tabfoo(){
+  tabFoo(){
     this.tabsController.changeIndex(this.currentIndex);
   }
 }
-private tabsController : object = new TabsController()
+private tabsController : TabsController = new TabsController()
 @State currentIndex:number = 0;
 
-@Builder TabBuilder(title: string, targetIndex: number) {
+@Builder tabBuilder(title: string, targetIndex: number) {
   Column() {
     Text(title)
       .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
   }
   ...
   .onClick(() => {
-    let Cur:Tmp = new Tmp()
-    Cur.foo(targetIndex)
-    Cur.tabfoo()
+    let cur:Tmp = new Tmp()
+    cur.foo(targetIndex)
+    cur.tabFoo()
   })
 }
 ```
@@ -317,20 +317,20 @@ private tabsController : object = new TabsController()
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent(){
     ...
-  }.tabBar(this.TabBuilder('首页',0))
+  }.tabBar(this.tabBuilder('首页',0))
 
   TabContent(){
     ...
-  }.tabBar(this.TabBuilder('发现',1))
+  }.tabBar(this.tabBuilder('发现',1))
 
   TabContent(){
     ...
-  }.tabBar(this.TabBuilder('推荐',2))
+  }.tabBar(this.tabBuilder('推荐',2))
 
   TabContent(){
     ...
   }
-  .tabBar(this.TabBuilder('我的',3))
+  .tabBar(this.tabBuilder('我的',3))
 }
 ```
 
@@ -360,23 +360,23 @@ class Tmp{
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent() {
     ...
-  }.tabBar(this.TabBuilder('首页', 0))
+  }.tabBar(this.tabBuilder('首页', 0))
 
   TabContent() {
     ...
-  }.tabBar(this.TabBuilder('发现', 1))
+  }.tabBar(this.tabBuilder('发现', 1))
 
   TabContent() {
     ...
-  }.tabBar(this.TabBuilder('推荐', 2))
+  }.tabBar(this.tabBuilder('推荐', 2))
 
   TabContent() {
     ...
   }
-  .tabBar(this.TabBuilder('我的', 3))
+  .tabBar(this.tabBuilder('我的', 3))
 }.onChange((index:number) => {
-  let Cur:Tmp = new Tmp()
-  Cur.foo(index)
+  let cur:Tmp = new Tmp()
+  cur.foo(index)
 })
 ```
 

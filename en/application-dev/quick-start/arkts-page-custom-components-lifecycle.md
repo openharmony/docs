@@ -14,7 +14,7 @@ The following lifecycle callbacks are provided for a page, that is, a custom com
 
 - [onPageShow](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpageshow): Invoked each time the page is displayed, for example, during page redirection or when the application is switched to the foreground. It works only for custom components decorated with @Entry.
 
-- [onPageHide](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpagehide): Invoked each time the page is hidden, for example, during page redirection or when the application is switched to the foreground or background. It works only for custom components decorated with @Entry.
+- [onPageHide](../reference/arkui-ts/ts-custom-component-lifecycle.md#onpagehide): Invoked each time the page is hidden, for example, during page redirection or when the application is switched to the background. It works only for custom components decorated with @Entry.
 
 - [onBackPress](../reference/arkui-ts/ts-custom-component-lifecycle.md#onbackpress): Invoked when the user clicks the Back button. It works only for custom components decorated with @Entry.
 

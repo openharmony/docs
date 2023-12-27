@@ -180,6 +180,41 @@ try {
   promptAction.showDialog({
     title: 'showDialog Title Info',
     message: 'Message Info',
+    buttons: [
+      {
+        text: 'button1',
+        color: '#000000'
+      },
+      {
+        text: 'button2',
+        color: '#000000'
+      }
+    ]
+  }, (err, data) => {
+    if (err) {
+      console.info('showDialog err: ' + err);
+      return;
+    }
+    console.info('showDialog success callback, click button: ' + data.index);
+  });
+} catch (error) {
+  let message = (error as BusinessError).message
+  let code = (error as BusinessError).code
+  console.error(`showDialog args error code is ${code}, message is ${message}`);
+};
+```
+
+![en-us_image_0002](figures/en-us_image_0002.gif)
+
+When the **showInSubWindow** attribute is set to **true**, the toast can be displayed outside the window.
+
+```ts
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+try {
+  promptAction.showDialog({
+    title: 'showDialog Title Info',
+    message: 'Message Info',
     isModal: true,
     showInSubWindow: true,
     buttons: [
@@ -268,8 +303,6 @@ import { BusinessError } from '@ohos.base';
 try {
   promptAction.showActionMenu({
     title: 'Title Info',
-    showInSubWindow: true,
-    isModal: true,
     buttons: [
       {
         text: 'item1',
@@ -294,7 +327,7 @@ try {
 };
 ```
 
-![en-us_image_0005_showinsubwindow](figures/en-us_image_0005_showinsubwindow.jpg)
+![en-us_image_0005](figures/en-us_image_0005.gif)
 
 ## promptAction.showActionMenu
 
@@ -358,6 +391,107 @@ try {
 
 ![en-us_image_0005](figures/en-us_image_0005.gif)
 
+## promptAction.openCustomDialog<sup>11+</sup>
+
+openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
+
+Opens a custom dialog box.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                         | Mandatory| Description              |
+| ------- | --------------------------------------------- | ---- | ------------------ |
+| options | [CustomDialogOptions](#customdialogoptions11) | Yes  | Content of the custom dialog box.|
+
+**Return value**
+
+| Type                 | Description                                 |
+| --------------------- | ------------------------------------- |
+| Promise&lt;number&gt; | ID of the custom dialog box, which can be used in **closeCustomDialog**.|
+
+**Error codes**
+
+For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+
+| ID| Error Message                          |
+| -------- | ---------------------------------- |
+| 100001   | if UI execution context not found. |
+
+**Example**
+
+```ts
+import promptAction from '@ohos.promptAction'
+let customDialogId: number = 0
+@Builder
+function customDialogBuilder() {
+  Column() {
+    Text('Custom dialog Message').fontSize(10)
+    Row() {
+      Button ("OK").onClick () => {
+        promptAction.closeCustomDialog(customDialogId)
+      })
+      Blank().width(50)
+      Button ("Cancel").onClick () => {
+        promptAction.closeCustomDialog(customDialogId)
+      })
+    }
+  }.height(200).padding(5)
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+    
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            promptAction.openCustomDialog({
+              builder: customDialogBuilder
+            }).then((dialogId: number) => {
+              customDialogId = dialogId
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## promptAction.closeCustomDialog<sup>11+</sup>
+
+closeCustomDialog(dialogId: number): void
+
+Closes the specified custom dialog box.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                            |
+| -------- | ------ | ---- | -------------------------------- |
+| dialogId | number | Yes  | ID of the custom dialog box to close. It is returned from **openCustomDialog**.|
+
+**Error codes**
+
+For details about the error codes, see [promptAction Error Codes](../errorcodes/errorcode-promptAction.md).
+
+| ID| Error Message                          |
+| -------- | ---------------------------------- |
+| 100001   | if UI execution context not found. |
+
+**Example**
+
+See the example of [promptAction.openCustomDialog](#promptactionopencustomdialog11).
+
 ## ActionMenuOptions
 
 Describes the options for showing the action menu.
@@ -370,6 +504,30 @@ Describes the options for showing the action menu.
 | buttons                       | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | Yes  | Array of menu item buttons. The array structure is **{text:'button', color: '\#666666'}**. Up to six buttons are supported. If there are more than six buttons, only the first six buttons will be displayed.|
 | showInSubWindow<sup>11+</sup> | boolean                                                      | No  | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
 | isModal<sup>11+</sup>         | boolean                                                      | No  | Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
+
+## CustomDialogOptions<sup>11+</sup>
+
+Defines the options of the custom dialog box. This API extends [BaseDialogOptions](#basedialogoptions11).
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                                   | Mandatory| Description                  |
+| ------- | ------------------------------------------------------- | ---- | ---------------------- |
+| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | No  | Content of the custom dialog box.|
+
+## BaseDialogOptions<sup>11+</sup>
+
+Defines the options of the dialog box.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name           | Type                                                        | Mandatory| Description                                                        |
+| --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| maskRect        | [Rectangle](../arkui-ts/ts-methods-alert-dialog-box.md#rectangle10) | No  | Mask area.                                            |
+| alignment       | [DialogAlignment](../arkui-ts/ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.                                |
+| offset          | [Offset](../arkui-ts/ts-types.md#offset)                     | No  | Offset of the dialog box based on the **alignment** settings.                         |
+| isModal         | boolean                                                      | No  | Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
+| showInSubWindow | boolean                                                      | No  | Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.      |
 
 ## ActionMenuSuccessResponse
 

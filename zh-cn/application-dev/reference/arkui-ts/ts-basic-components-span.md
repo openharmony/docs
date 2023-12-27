@@ -1,6 +1,6 @@
 # Span
 
-作为Text组件和RichEditor组件的子组件，用于显示行内文本的组件。
+作为Text组件的子组件，用于显示行内文本的组件。
 
 >  **说明：**
 >
@@ -29,7 +29,7 @@ Span(value: string | Resource)
 
 ## 属性
 
-通用属性方法仅支持[通用文本样式](ts-universal-attributes-text-style.md)。
+通用属性方法仅支持[文本通用](ts-universal-attributes-text-style.md)。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |

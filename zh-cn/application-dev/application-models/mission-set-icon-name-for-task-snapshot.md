@@ -23,12 +23,16 @@
 ```ts
 import common from '@ohos.app.ability.common';
 
-let context: common.UIAbilityContext = ...; // UIAbilityContext
-let pixelMap: PixelMap = ...; // 图片的PixelMap信息
+let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
+... // 获取pixelMap
+
+// 设置任务快照的图标
 context.setMissionIcon(pixelMap, (err) => {
   if (err.code) {
-    console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+    Logger.error(TAG, `Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+  } else {
+    Logger.info(TAG, `Success to set mission icon.`);
   }
 })
 ```
@@ -47,11 +51,11 @@ import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
-
+// 设置任务快照的名称
 context.setMissionLabel('test').then(() => {
-  console.info('Succeeded in seting mission label.');
+  Logger.info(TAG, 'Succeeded in seting mission label.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
+  Logger.error(TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 

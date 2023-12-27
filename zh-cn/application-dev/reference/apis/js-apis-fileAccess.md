@@ -1734,6 +1734,8 @@ copyFile(sourceUri: string, destUri: string, fileName: string): Promise&lt;strin
 
 复制文件并传入备用文件名，使用Promise异步回调。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -1779,6 +1781,8 @@ async function copyFunc01() {
 copyFile(sourceUri: string, destUri: string, fileName, callback: AsyncCallback&lt;string&gt;) : void
 
 复制文件并传入备用文件名，使用callback异步回调。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2068,13 +2072,15 @@ async function UnregisterObserver03() {
 
 ### moveItem<sup>11+</sup>
 
-moveItem(sourceUri: string, destUri: string, force?: boolean) : Promise<Array<MoveResult>>&gt;
+moveItem(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;MoveResult&gt;&gt;
 
 以异步方法移动文件(夹)，返回移动后文件(夹)的uri。使用Promise异步回调。
 
 当存在同名文件时，可以选择强制覆盖文件。
 
 目前仅支持设备内移动，跨设备不支持移动。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2166,6 +2172,8 @@ moveItem(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt
 
 当前仅支持设备内移动，不支持跨设备移动。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2219,6 +2227,8 @@ moveItem(sourceUri: string, destUri: string, force: boolean, callback: AsyncCall
 当存在同名文件时，可以选择强制覆盖文件。
 
 当前仅支持设备内移动，不支持跨设备移动。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2275,6 +2285,8 @@ moveFile(sourceUri: string, destUri: string, fileName: string) : Promise&lt;stri
 
 目前仅支持设备内移动，跨设备不支持移动。
 
+**模型约束**：此接口仅可在Stage模型下使用。
+
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
@@ -2328,6 +2340,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 当存在同名文件时（即发生文件移动冲突时），可以重命名待移动的文件，再保存到目标文件夹。
 
 当前仅支持设备内移动，不支持跨设备移动。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 
@@ -2449,6 +2463,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 ## MoveResult<sup>11+</sup>
 
 表示移动操作失败时的返回信息，移动成功时则没有返回信息。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileService
 

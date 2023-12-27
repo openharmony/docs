@@ -12,43 +12,36 @@
 > 需注意FA模型中abilityName由bundleName + AbilityName组成，具体见示例。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
 import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.info("EntryAbility onCreate")
-    }
-    onDestroy() {
-        console.info("EntryAbility onDestroy")
-    }
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        console.info("EntryAbility onWindowStageCreate")
-        windowStage.loadContent('pages/Index', (err, data) => {
-            // ...
-        });
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext;
+
+  build() {
+    Button('StartFAModel'){
+      .onClick(() => {
         let want: Want = {
-            bundleName: "com.ohos.fa",
-            abilityName: "com.ohos.fa.EntryAbility",
+          bundleName: 'com.samples.famodelabilitydevelop',
+          abilityName: 'com.samples.famodelabilitydevelop.MainAbility'
         };
         this.context.startAbility(want).then(() => {
-            console.info('Start Ability successfully.');
+          hilog.info(DOMAIN_NUMBER, TAG, 'Start Ability successfully.');
         }).catch((error: BusinessError) => {
-            console.error("Ability failed: " + JSON.stringify(error));
+          hilog.error(DOMAIN_NUMBER, TAG, `Ability failed: ` + JSON.stringify(error));
         });
+      })
     }
-    onWindowStageDestroy() {
-        console.info("EntryAbility onWindowStageDestroy")
-    }
-    onForeground() {
-        console.info("EntryAbility onForeground")
-    }
-    onBackground() {
-        console.info("EntryAbility onBackground")
-    }
+  }
+  
+  // ...
 }
 ```
 
@@ -61,43 +54,38 @@ UIAbility通过startAbilityForResult启动PageABility和UIAbility通过startAbil
 
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
 import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.info("EntryAbility onCreate")
-    }
-    onDestroy() {
-        console.info("EntryAbility onDestroy")
-    }
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        console.info("EntryAbility onWindowStageCreate")
-        windowStage.loadContent('pages/Index', (err, data) => {
-            // ...
-        });
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+@Entry
+@Component
+struct Index {
+  private context = getContext(this) as common.UIAbilityContext;
+
+  build() {
+    Button('StartFAModelWithResult'){
+      .onClick(() => {
+        let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
-            bundleName: "com.ohos.fa",
-            abilityName: "EntryAbility",
+          bundleName: 'com.samples.stagemodelabilitydevelop',
+          abilityName: 'LifecycleAbility',
         };
-        this.context.startAbilityForResult(want).then((result) => {
-            console.info('Ability verify result: ' + JSON.stringify(result));
-        }).catch((error: BusinessError) => {
-            console.error("Ability failed: " + JSON.stringify(error));
+        // context为调用方UIAbility的UIAbilityContext
+        context.startAbility(want).then(() => {
+          hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting LifecycleAbility.');
+        }).catch((err: BusinessError) => {
+          hilog.error(DOMAIN_NUMBER, TAG, `Failed to start LifecycleAbility. Code is ${err.code}, message is ${err.message}`);
         });
+      })
     }
-    onWindowStageDestroy() {
-        console.info("EntryAbility onWindowStageDestroy")
-    }
-    onForeground() {
-        console.info("EntryAbility onForeground")
-    }
-    onBackground() {
-        console.info("EntryAbility onBackground")
-    }
+  }
+  
+  // ...
 }
 ```
 
