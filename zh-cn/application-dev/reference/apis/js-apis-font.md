@@ -186,3 +186,105 @@ struct FontExample {
   }
 }
 ```
+
+## font.getUIFontConfig<sup>11+</sup>
+getUIFontConfig() : [UIFontConfig](#uifontconfig11)
+
+获取系统的UI字体配置
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+| 类型             | 说明                          |
+| ---------------- | ---------------------------- |
+| [UIFontConfig](#uifontconfig11)     | 系统的UI字体配置信息          |
+
+## UIFontConfig<sup>11+</sup>
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+| 名称            | 类型    | 必填  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| fontDir        | Array\<string>  | 是 | 系统字体文件所在的路径      |
+| generic | Array\<[UIFontGenericInfo](#uifontgenericinfo11)>  | 是 | 系统所支持的一般字体集列表 |
+| fallbackGroups       | Array\<[UIFallbackGroupInfo](#uifallbackgroupinfo11)>  | 是 | 备用字体集           |
+
+## UIFontGenericInfo<sup>11+</sup>
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+| 名称            | 类型    | 必填  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| family        | string | 是 | 字体集名，字体文件中指定的"family"值      |
+| alias        | Array\<[UIFontAliasInfo](#uifontaliasinfo11)>  | 是 | 别名列表 |
+| adjust       | Array\<[UIFontAdjustInfo](#uifontadjustinfo11)>  | 否 | 字体原本的weight值对应需显示的值 |
+
+## UIFallbackGroupInfo<sup>11+</sup>
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+| 名称            | 类型    | 必填  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| fontSetName  | string | 是 | 备用字体集所对应的字体集名称      |
+| fallback        | Array\<[UIFontFallbackInfo](#uifontfallbackinfo11)>  | 是 | 表示以下列表为该字体集的备用字体，如果fontSetName为""，表示可以作为所有字体集的备用字体 |
+
+## UIFontAliasInfo<sup>11+</sup>
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+| 名称            | 类型    | 必填  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| name          | string  | 是 | 别名名称      |
+| weight        | number  | 是 | 当weight>0时表示此字体集只包含所指定weight的字体，当weight=0时，表示此字体集包含所有字体 |
+
+## UIFontAdjustInfo<sup>11+</sup>
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+| 名称            | 类型    | 必填  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| weight        | number  | 是 | 字体原本的weight值      |
+| to            | number  | 是 | 字体在应用中显示的weight值 |
+
+## UIFontFallbackInfo<sup>11+</sup>
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+| 名称            | 类型    | 必填  | 说明                       |
+| -------------- | ------- | ------------------------- | ------------------------- |
+| language       | number  | 是 | 字体集所支持的语言类型，语言格式为bcp47    |
+| family         | number  | 是 | 字体集名，字体文件中指定的"family"值 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import font from '@ohos.font';
+
+@Entry
+@Component
+struct FontExample {
+ build() {
+   Column() {
+     Button("getUIFontConfig")
+       .width('60%')
+       .height('6%')
+       .onClick(()=>{
+         let fontConfig = font.getUIFontConfig();
+         console.log("font-dir -----------" + String(fontConfig.fontDir.length));
+         for (let i = 0; i < fontConfig.fontDir.length; i ++) {
+           console.log(fontConfig.fontDir[i]);
+         }
+         console.log("--------------------");
+         console.log("generic-------------" + String(fontConfig.generic.length));
+         for (let i = 0; i < fontConfig.generic.length; i ++){
+           console.log("family:", fontConfig.generic[i].family);
+           for (let j = 0; j < fontConfig.generic[i].alias.length; j ++){
+             console.log(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
+           }
+           for (let j = 0; j < fontConfig.generic[i].adjust.length; j ++){
+             console.log(fontConfig.generic[i].adjust[j].weight + " " + fontConfig.generic[i].adjust[j].to);
+           }
+         }
+         console.log("--------------------");
+         console.log("fallback------------" + String(fontConfig.fallbackGroups.length));
+         for (let i = 0; i < fontConfig.fallbackGroups.length; i ++){
+           console.log("fontSetName:", fontConfig.fallbackGroups[i].fontSetName);
+           for (let j = 0; j < fontConfig.fallbackGroups[i].fallback.length; j ++){
+             console.log("language:", fontConfig.fallbackGroups[i].fallback[j].language + " family:" + fontConfig.fallbackGroups[i].fallback[j].family);
+           }
+         }
+         console.log("--------------------");
+       })
+   }.width('100%')
+ }
+}
+```
