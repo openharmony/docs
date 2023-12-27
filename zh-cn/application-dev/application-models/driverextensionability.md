@@ -17,9 +17,9 @@
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为driverextability。
 
-2. 在driverextability目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为DriverExtAbility.ts。
+2. 在driverextability目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DriverExtAbility.ets。
 
-3. 打开DriverExtAbility.ts文件，导入[RPC通信模块](../reference/apis/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
+3. 打开DriverExtAbility.ets文件，导入[RPC通信模块](../reference/apis/js-apis-rpc.md)，重载onRemoteMessageRequest()方法，接收应用传递过来的消息，并将处理的结果返回给应用。REQUEST_VALUE用于校验应用发送的服务请求码。
    
    ```ts
    import rpc from '@ohos.rpc';
@@ -49,7 +49,7 @@
    ```
 
 
-4. 在DriverExtAbility.ts文件中，增加导入[DriverExtensionAbility](../reference/apis/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../reference/apis/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
+4. 在DriverExtAbility.ets文件中，增加导入[DriverExtensionAbility](../reference/apis/js-apis-app-ability-driverExtensionAbility.md)的依赖包，该包提供了onInit()、onRelease()、onConnect()和onDisconnect()生命周期回调，自定义类继承[DriverExtensionAbility](../reference/apis/js-apis-app-ability-driverExtensionAbility.md)并根据需要重写需要的生命周期回调。
    
    ```ts
    import DriverExtensionAbility from '@ohos.app.ability.DriverExtensionAbility';
@@ -101,7 +101,7 @@
            "description": "driver",
            "type": "driver",
            "exported": true,
-           "srcEntry": "./ets/driverextability/DriverExtAbility.ts",
+           "srcEntry": "./ets/driverextability/DriverExtAbility.ets",
            "metadata": [
             {
               "name": "bus", // 必填项，所属总线
