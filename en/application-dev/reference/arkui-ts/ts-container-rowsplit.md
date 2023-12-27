@@ -10,6 +10,7 @@ The **\<RowSplit>** lays out child components horizontally and inserts a vertica
 
 Supported
 
+This component limits the width of its child components. During initialization, the layout of the component is calculated based on the width of its child components. After initialization, changes to the width of the child components do not take effect. Still, the space occupied by the child components can be changed by dragging the dividers between them.
 ## APIs
 
 RowSplit()
