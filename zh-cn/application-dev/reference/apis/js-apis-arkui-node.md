@@ -82,6 +82,112 @@ rootNode.build(wrapBuilder,{text:"update"})
 
 ```
 
+### postTouchEvent
+
+postTouchEvent(event: TouchEvent): boolean
+
+将原始事件派发到某个BuilderNode创建出的FrameNode上。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                   | 必填 | 说明                                                                                     |
+| ------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------- |
+| event | [TouchEvent](../arkui-ts/ts-universal-events-touch.md#touchevent对象说明) | 是   | 触摸事件。 |
+
+**返回值：**
+
+| 类型     | 说明                                                              |
+| -------- | ----------------------------------------------------------------- |
+| boolean | 派发事件是否成功。 |
+
+**示例：**
+
+```ts
+import { UIContext } from '@ohos.arkui.UIContext';
+import { NodeController, BuilderNode, FrameNode } from '@ohos.arkui.node';
+
+class Params {
+  text: string = "this is a text"
+}
+
+@Builder
+function ButtonBuilder(Params: Params) {
+  Column() {
+    Button(`button ` + Params.text)
+      .borderWidth(2)
+      .backgroundColor(Color.Orange)
+      .width("100%")
+      .height("100%")
+      .gesture(
+        TapGesture()
+          .onAction((event: GestureEvent) => {
+            console.log("TapGesture");
+          })
+      )
+  }
+  .width(500)
+  .height(300)
+  .backgroundColor(Color.Gray)
+}
+
+class myNodeController extends NodeController {
+  private rootnode: BuilderNode<Params[]> = null;
+  private wrapBuilder = new WrappedBuilder(ButtonBuilder);
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.rootnode == null) {
+      this.rootnode = new BuilderNode(uiContext);
+      this.rootnode.build(this.wrapBuilder, { text: "this is a string" })
+    }
+    return this.rootnode.getFrameNode();
+  }
+
+  getBuilderNode(): FrameNode {
+    return this.rootnode.getFrameNode();
+  }
+
+  setBuilderNode(rootNode: BuilderNode<Params[]>): void {
+    this.rootnode = rootNode;
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private rootnode: BuilderNode<Params[]> = null;
+  private nodeController: myNodeController = new myNodeController()
+  private wrapBuilder = new WrappedBuilder(ButtonBuilder);
+
+  aboutToAppear() {
+    this.rootnode = new BuilderNode(this.getUIContext());
+    this.rootnode.build(this.wrapBuilder, { text: "this is a string" })
+    this.nodeController.setBuilderNode(this.rootnode)
+    this.nodeController.rebuild()
+  }
+
+  build() {
+    Column() {
+      NodeContainer(this.nodeController)
+        .height(300)
+        .width(500)
+
+      Column()
+        .width(500)
+        .height(300)
+        .backgroundColor(Color.Pink)
+        .onTouch((event) => {
+          let result = this.rootnode.postTouchEvent(event)
+          console.log("result " + result);
+        })
+    }
+  }
+}
+
+```
+
+
 ## Size
 
 用于返回组件布局大小的宽和高，单位为vp。
@@ -156,6 +262,19 @@ aboutToResize?(size: Size): void
 | ------ | ------------- | ---- | ---------------------------------------- |
 | size   | [Size](#size) | 是   | 用于返回组件布局大小的宽和高，单位为vp。 |
 
+### onTouchEvent
+
+onTouchEvent?(event: TouchEvent): void
+
+当NodeController绑定的[NodeContainer](../arkui-ts/ts-basic-components-nodecontainer.md#nodecontanier)收到Touch事件时触发此回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                   | 必填 | 说明                                                                                     |
+| ------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------- |
+| event | [TouchEvent](../arkui-ts/ts-universal-events-touch.md#touchevent对象说明) | 是   | 触摸事件。 |
 
 ### rebuild
 
@@ -224,6 +343,11 @@ class MyNodeController extends NodeController {
     }
     this.rootNode.build(this.wrapBuilder, { text:"this is a update string" })
     this.rebuild();
+  }
+
+  onTouchEvent(event:TouchEvent)
+  {
+    console.log("onTouchEvent");
   }
 }
 
