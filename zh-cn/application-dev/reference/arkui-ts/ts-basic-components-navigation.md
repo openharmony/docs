@@ -71,7 +71,7 @@ Navigation路由栈。
 
 ### pushPath<sup>10+</sup>
 
-pushPath(info: NavPathInfo): void
+pushPath(info: NavPathInfo, animated?: boolean): void
 
 将info指定的NavDestination页面信息入栈。
 
@@ -80,10 +80,11 @@ pushPath(info: NavPathInfo): void
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### pushPathByName<sup>10+</sup>
 
-pushPathByName(name: string, param: unknown): void
+pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param。
 
@@ -93,10 +94,11 @@ pushPathByName(name: string, param: unknown): void
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | NavDestination页面详细参数。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### replacePath<sup>11+</sup>
 
-replacePath(info: NavPathInfo): void
+replacePath(info: NavPathInfo, animated?: boolean): void
 
 将当前页面栈栈顶退出，将info指定的NavDestination页面信息入栈。
 
@@ -105,10 +107,11 @@ replacePath(info: NavPathInfo): void
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### replacePathByName<sup>11+</sup>
 
-replacePathByName(name: string, param: Object): void
+replacePathByName(name: string, param: Object, animated?: boolean): void
 
 将当前页面栈栈顶退出，将name指定的页面入栈。
 
@@ -118,12 +121,19 @@ replacePathByName(name: string, param: Object): void
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### pop<sup>10+</sup>
 
-pop(): NavPathInfo | undefined
+pop(animated?: boolean): NavPathInfo | undefined
 
 弹出路由栈栈顶元素。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
 
@@ -134,7 +144,7 @@ pop(): NavPathInfo | undefined
 
 ### popToName<sup>10+</sup>
 
-popToName(name: string): number
+popToName(name: string, animated?: boolean): number
 
 回退路由栈到第一个名为name的NavDestination页面。
 
@@ -143,6 +153,7 @@ popToName(name: string): number
 | 名称   | 类型     | 必填   | 描述                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
 
@@ -152,7 +163,7 @@ popToName(name: string): number
 
 ### popToIndex<sup>10+</sup>
 
-popToIndex(index: number): void
+popToIndex(index: number, animated?: boolean): void
 
 回退路由栈到index指定的NavDestination页面。
 
@@ -161,10 +172,11 @@ popToIndex(index: number): void
 | 名称    | 类型     | 必填   | 描述                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### moveToTop<sup>10+</sup>
 
-moveToTop(name: string): number
+moveToTop(name: string, animated?: boolean): number
 
 将第一个名为name的NavDestination页面移到栈顶。
 
@@ -173,6 +185,7 @@ moveToTop(name: string): number
 | 名称   | 类型     | 必填   | 描述                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
 
@@ -182,7 +195,7 @@ moveToTop(name: string): number
 
 ### moveIndexToTop<sup>10+</sup>
 
-moveIndexToTop(index: number): void
+moveIndexToTop(index: number, animated?: boolean): void
 
 将index指定的NavDestination页面移到栈顶。
 
@@ -191,12 +204,19 @@ moveIndexToTop(index: number): void
 | 名称    | 类型     | 必填   | 描述                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### clear<sup>10+</sup>
 
-clear(): void
+clear(animated?: boolean): void
 
 清除栈中所有页面。
+
+**参数：**
+
+| 名称    | 类型     | 必填   | 描述                     |
+| ----- | ------ | ---- | ---------------------- |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### getAllPathName<sup>10+</sup>
 
@@ -276,6 +296,18 @@ size(): number
 | 类型     | 说明     |
 | ------ | ------ |
 | number | 返回栈大小。 |
+
+### disableAnimation<sup>11+</sup>
+
+disableAnimation(value: boolean): void
+
+关闭（true）或打开（false）当前Navigation中所有转场动画。
+
+**参数：**
+
+| 名称    | 类型     | 必填   | 描述                     |
+| ----- | ------ | ---- | ---------------------- |
+| value | boolean | 否    | 是否关闭转场动画，默认值：false。 |
 
 ## NavPathInfo<sup>10+</sup>
 
