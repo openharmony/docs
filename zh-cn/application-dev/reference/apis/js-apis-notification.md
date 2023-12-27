@@ -3554,7 +3554,7 @@ Notification.getDeviceRemindType().then((data: Notification.DeviceRemindType) =>
 | 名称                                                | 类型            | 可读 | 可写 | 说明                                                                                           |
 |---------------------------------------------------| --------------- | --- | ---- |----------------------------------------------------------------------------------------------|
 | bundleNames                                       | Array\<string\> | 是  | 是  | 指定订阅哪些包名的APP发来的通知。                                                                           |
-| userId | number          | 是  | 是  | 指定订阅哪个用户下发来的通知，可以通过[getCurrentOsAccount](../apis/js-apis-osAccount.md#getcurrentosaccount9-1)获取userId。 |
+| userId | number          | 是  | 是  | 指定订阅哪个用户下发来的通知。 |
 
 
 ## NotificationTemplate<sup>8+</sup>
