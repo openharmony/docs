@@ -340,7 +340,7 @@ import window from '@ohos.window';
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
 
-##  TitleButtionRect<sup>11+</sup>
+##  TitleButtonRect<sup>11+</sup>
 
 标题栏三键位置矩形区域，该区域位置坐标相对窗口右上角。
 
