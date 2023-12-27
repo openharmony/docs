@@ -846,7 +846,7 @@ addCandidateConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
 **示例：**
 `````ts
 	import wifiManager from '@ohos.wifiManager';
-
+	
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
 			ssid : "****",

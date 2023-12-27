@@ -4835,21 +4835,22 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 ```ts
 import Base from '@ohos.base';
+import notificationManager from '@ohos.notificationManager';
 
 // 包信息
-let bundle = {
-    bundle: "bundleName1",
+let bundle: notificationManager.BundleOption = {
+  bundle: "bundleName1",
 };
 // 通知ID
 let notificationId = 1;
 // 按钮信息
-let buttonOptions = {
-    buttonName: "buttonName1",
+let buttonOptions: notificationManager.ButtonOptions = {
+  buttonName: "buttonName1",
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
-	console.info("triggerSystemLiveView success");
+  console.info("triggerSystemLiveView success");
 }).catch((error: Base.BusinessError) => {
-    console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
+  console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
 });
 ```
 

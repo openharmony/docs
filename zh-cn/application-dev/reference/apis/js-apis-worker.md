@@ -2344,22 +2344,18 @@ class MyModel {
     }
 }
 workerPort.onmessage = (d: MessageEvents): void => {
-    console.log("worker.ts onmessage");
-    let data: string = d.data;
-    let func1 = () => {
-        console.log("post message is function");
-    }
-    let obj1 = {
-        "index": 2,
-        "name1": "zhangshan",
-        setName() {
-            this.index = 3;
-        }
-    }
-    let obj2 = new MyModel();
-    // workerPort.postMessage(func1); 传递func1发生序列化错误
-    // workerPort.postMessage(obj1);  传递obj1发生序列化错误
-    workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
+  console.log("worker.ts onmessage");
+  let data: string = d.data;
+  let func1 = () => {
+    console.log("post message is function");
+  }
+  // workerPort.postMessage(func1); 传递func1发生序列化错误
+  // let obj1: obj | null = null;
+  // if (obj1) {
+  //   workerPort.postMessage(obj1 as obj);  //传递obj1发生序列化错误
+  // }
+  let obj2 = new MyModel();
+  workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
 }
 workerPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror");
