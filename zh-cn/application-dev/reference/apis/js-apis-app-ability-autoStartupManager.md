@@ -42,21 +42,20 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
-
-let autoStartupCallback = {
-  onAutoStartupOn(data) {
-    console.info('===> onAutoStartupOn data: ' + JSON.stringify(data));
-  },
-  onAutoStartupOff(data) {
-    console.info('===> onAutoStartupOff data: ' + JSON.stringify(data));
-  }
-}
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
 
 try {
-  AutoStartupManager.on('systemAutoStartup', autoStartupCallback);
+  AutoStartupManager.on('systemAutoStartup', {
+    onAutoStartupOn(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+    },
+    onAutoStartupOff(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+    }
+  });
 } catch (err) {
-  console.info('====> autostartupmanager on throw err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
 }
 ```
 
@@ -88,21 +87,20 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
-
-let autoStartupCallback = {
-  onAutoStartupOn(data) {
-    console.info('===> onAutoStartupOn data: ' + JSON.stringify(data));
-  },
-  onAutoStartupOff(data) {
-    console.info('===> onAutoStartupOff data: ' + JSON.stringify(data));
-  }
-}
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
 
 try {
-  AutoStartupManager.off('systemAutoStartup', autoStartupCallback);
+  AutoStartupManager.off('systemAutoStartup', {
+    onAutoStartupOn(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+    },
+    onAutoStartupOff(data: common.AutoStartupInfo) {
+      console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+    }
+  });
 } catch (err) {
-  console.info('====> autostartupmanager off throw err: ' + JSON.stringify(err));
+  console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
 }
 ```
 
@@ -136,7 +134,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
 
 try {
   AutoStartupManager.setApplicationAutoStartup({
@@ -185,15 +183,16 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { BusinessError } from '@ohos.base';
 
 try {
   AutoStartupManager.setApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }).then((data) => {
+  }).then((data: void) => {
     console.info('====> setApplicationAutoStartup data: ' + JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info('====> setApplicationAutoStartup err: ' + JSON.stringify(err));
   });
 } catch (err) {
@@ -231,7 +230,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
 
 try {
   AutoStartupManager.cancelApplicationAutoStartup({
@@ -280,15 +279,16 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import { BusinessError } from '@ohos.base';
 
 try {
   AutoStartupManager.cancelApplicationAutoStartup({
     bundleName: 'com.example.autostartupapp',
     abilityName: 'EntryAbility'
-  }).then((data) => {
+  }).then((data: void) => {
     console.info('====> cancelApplicationAutoStartup data: ' + JSON.stringify(data));
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.info('====> cancelApplicationAutoStartup err: ' + JSON.stringify(err));
   });
 } catch (err) {
@@ -323,7 +323,7 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
 
 try {
   AutoStartupManager.queryAllAutoStartupApplications((err, data) => {
@@ -361,12 +361,14 @@ try {
 **示例**：
 
 ```ts
-import AutoStartupManager from '@ohos.app.ability.AutoStartupManager';
+import AutoStartupManager from '@ohos.app.ability.autoStartupManager';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 try {
-  AutoStartupManager.queryAllAutoStartupApplications().then((data) => {
-    console.info('====> queryAllAutoStartupApplications OK');
-  }).catch((err) => {
+  AutoStartupManager.queryAllAutoStartupApplications().then((autoStartupInfo: common.AutoStartupInfo[]) => {
+    console.info('====> queryAllAutoStartupApplications data: ' + JSON.stringify(autoStartupInfo));
+  }).catch((err: BusinessError) => {
     console.info('====> queryAllAutoStartupApplications err: ' + JSON.stringify(err));
   });
 } catch (err) {
