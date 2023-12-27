@@ -241,7 +241,7 @@ connection.getDefaultNet((err: BusinessError, data:connection.NetHandle) => {
       }
       
       // 获取网络具体能力(networkCap)
-      let itemNumber : Set<number> = new Set([0, 11, 12, 15, 16]);
+      let itemNumber : Set<number> = new Set(data.networkCap);
       let dataNumber = Array.from(itemNumber.values());
       for (let item of dataNumber) {
         if (item == 0) {
@@ -277,24 +277,24 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
   console.log(JSON.stringify(data));
   if (data) {
     GlobalContext.getContext().netList = data;
+
+    let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
+    let dataNumber = Array.from(itemNumber.values());
+    for (let item of dataNumber) {
+      // 循环获取网络列表每个netHandle对应网络的能力信息
+      connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(data));
+      })
+
+      // 循环获取网络列表每个netHandle对应的网络的连接信息
+      connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
+        console.log(JSON.stringify(err));
+        console.log(JSON.stringify(data));
+      })
+    }
   }
 })
-
-let itemNumber : Set<connection.NetHandle> = new Set(GlobalContext.getContext().netList);
-let dataNumber = Array.from(itemNumber.values());
-for (let item of dataNumber) {
-  // 循环获取网络列表每个netHandle对应网络的能力信息
-  connection.getNetCapabilities(item, (err: BusinessError, data: connection.NetCapabilities) => {
-    console.log(JSON.stringify(err));
-    console.log(JSON.stringify(data));
-  })
-
-  // 循环获取网络列表每个netHandle对应的网络的连接信息
-  connection.getConnectionProperties(item, (err: BusinessError, data: connection.ConnectionProperties) => {
-    console.log(JSON.stringify(err));
-    console.log(JSON.stringify(data));
-  })
-}
 ```
 
 ## 使用对应网络解析域名，获取所有IP
