@@ -25,6 +25,7 @@
     - [列表场景性能提升实践](list-perf-improvment.md)
     - [动效能力实践](animation_practice.md)
     - [性能提升的其他方法](arkts-performance-improvement-recommendation.md)
+    - [合理运行后台任务](reasonable-running-backgroundTask.md)
   - 性能工具
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
