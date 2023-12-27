@@ -82,6 +82,7 @@ createColorPicker(source: image.PixelMap): Promise\<ColorPicker>
 ```ts
 import image from "@ohos.multimedia.image";
 import effectKit from "@ohos.effectKit";
+import { BusinessError } from "@ohos.base";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
@@ -128,6 +129,7 @@ createColorPicker(source: image.PixelMap, region: Array\<number>): Promise\<Colo
 ```ts
 import image from "@ohos.multimedia.image";
 import effectKit from "@ohos.effectKit";
+import { BusinessError } from "@ohos.base";
 
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
