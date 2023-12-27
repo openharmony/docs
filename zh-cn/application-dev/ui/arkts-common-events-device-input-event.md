@@ -334,6 +334,7 @@ struct KeyEventExample {
   build() {
     Column() {
       Button('onKeyEvent')
+        .defaultFocus(true)
         .width(140).height(70)
         .onKeyEvent((event?: KeyEvent) => { // 给Button设置onKeyEvent事件
           if(event){
@@ -375,7 +376,7 @@ struct KeyEventExample {
 ```
 
 
-上述示例中给组件Button和其父容器Column绑定onKeyEvent。应用打开页面加载后，组件树上第一个可获焦的非容器组件自动获焦，该应用只有一个Button组件，因此该组件会自动获焦，由于Button是Column的子节点，Button获焦也同时意味着Column获焦。获焦机制见[焦点事件](arkts-common-events-focus-event.md)。
+上述示例中给组件Button和其父容器Column绑定onKeyEvent。应用打开页面加载后，组件树上第一个可获焦的非容器组件自动获焦，设置Button为当前页面的默认焦点，由于Button是Column的子节点，Button获焦也同时意味着Column获焦。获焦机制见[焦点事件](arkts-common-events-focus-event.md)。
 
 
 ![zh-cn_image_0000001511421324](figures/zh-cn_image_0000001511421324.gif)
@@ -406,6 +407,7 @@ struct KeyEventExample {
   build() {
     Column() {
       Button('onKeyEvent')
+        .defaultFocus(true)
         .width(140).height(70)
         .onKeyEvent((event?: KeyEvent) => {
           // 通过stopPropagation阻止事件冒泡
