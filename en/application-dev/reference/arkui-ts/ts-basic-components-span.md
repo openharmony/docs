@@ -1,6 +1,6 @@
 # Span
 
-As a child of the **\<Text>** and **\<RichEditor>** components, the **\<Span>** component is used to display inline text.
+As a child of the **\<Text>** component, the **\<Span>** component is used to display inline text.
 
 >  **NOTE**
 >
@@ -42,7 +42,7 @@ In addition to the [universal text style](ts-universal-attributes-text-style.md)
 
 ## Events
 
-Among all the universal events, only the [click event](ts-universal-attributes-click.md) is supported.
+Among all the universal events, only the [click event](ts-universal-events-click.md) is supported.
 
 >  **NOTE**
 >
