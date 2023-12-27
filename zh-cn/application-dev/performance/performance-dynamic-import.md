@@ -82,7 +82,7 @@
     ```ts
     async loadPageOne(key: string){
       if (key === "pageOne") {
-        let PageObj = await import("../pages/PageOneLoader");
+        let PageObj: ESObject = await import("../pages/PageOneLoader");
         this.PageOneLoader = PageObj.PageOneLoader;
       }
     }
@@ -151,7 +151,7 @@ struct DynamicHome {
 
   async loadPageOne(key: String) {
     if (key === "pageOne") {
-      let PageObj = await import("../pages/PageOneLoader");
+      let PageObj: ESObject = await import("../pages/PageOneLoader");
       this.PageOneLoader = PageObj.PageOneLoader;
     }
   }
