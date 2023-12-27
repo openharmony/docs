@@ -3679,6 +3679,1383 @@ TCP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 
+## socket.constructLocalSocketInstance<sup>11+</sup>
+
+constructLocalSocketInstance(): LocalSocket
+
+创建一个LocalSocket对象。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                               | 说明                    |
+  | :--------------------------------- | :---------------------- |
+| [LocalSocket](#localsocket) | 返回一个LocalSocket对象。 |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+```
+
+## LocalSocket<sup>11+</sup>
+
+LocalSocket连接。在调用LocalSocket的方法前，需要先通过[socket.constructLocalSocketInstance](#socketconstructlocalsocketinstance)创建LocalSocket对象。
+
+### bind<sup>11+</sup>
+
+bind(address: LocalAddress): Promise\<void\>;
+
+绑定本地套接字文件的路径。使用promise方法作为异步方法。
+
+> **说明：**
+> bind方法可以使客户端确保有个明确的本地套接字路径，显式的绑定一个本地套接字文件。
+> bind方法在本地套接字通信中非必须。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                               | 必填 | 说明                                                   |
+| -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
+| address  | [LocalAddress](#localaddress) | 是   | 目标地址信息，参考[LocalAddress](#localaddress)。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                    |
+| ------- | -------------------------- |
+| 401     | Parameter error.           |
+| 2301013 | Insufficient permissions.  |
+| 2301022 | Invalid argument.          |
+| 2301098 | Address already in use.    |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+
+let client = socket.constructLocalSocketInstance()
+let address : socket.LocalAddress = {
+  address: '/tmp/testSocket'
+}
+client.bind(address).then(() => {
+  console.log('bind success')
+}).catch((err) => {
+  console.log('failed to bind: ' + JSON.stringify(err))
+})
+```
+
+### connect<sup>11+</sup>
+
+connect(options: LocalConnectOptions): Promise\<void\>
+
+连接到指定的套接字文件。使用promise方法作为异步方法。
+
+> **说明：**
+> 在没有执行localsocket.bind的情况下，也可以直接调用该接口完成与LocalSocket服务端的连接。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                     | 必填 | 说明                                                         |
+| ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [LocalConnectOptions](#localconnectoptions) | 是   | LocalSocket连接的参数，参考[LocalConnectOptions](#localconnectoptions)。 |
+
+**返回值：**
+
+| 类型            | 说明                                       |
+| :-------------- | :---------------------------------------- |
+| Promise\<void\> | 以Promise形式返回LocalSocket连接服务端的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.                 |
+| 2301013     | Insufficient permissions.        |
+| 2301022     | Invalid argument.                |
+| 2301111     | Connection refused.              |
+| 2301099     | Cannot assign requested address. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+
+let client = socket.constructLocalSocketInstance();
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success')
+}).catch((err) => {
+  console.log('connect fail: ' + JSON.stringify(err));
+});
+```
+
+### send<sup>11+</sup>
+
+send(options: LocalSendOptions): Promise\<void\>
+
+通过LocalSocket连接发送数据。使用Promise方式作为异步方法。
+
+> **说明：**
+> connect方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                    | 必填 | 说明                                                         |
+| ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [LocalSendOptions](#localsendoptions) | 是   | LocalSocket发送请求的参数，参考[LocalSendOptions](#localsendoptions)。 |
+
+**返回值：**
+
+| 类型            | 说明                                         |
+| :-------------- | :------------------------------------------ |
+| Promise\<void\> | 以Promise形式返回通过LocalSocket发送数据的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 2301011 | Operation would block.  |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket"
+
+let client: socket.LocalSocket = socket.constructLocalSocketInstance()
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success')
+}).catch((err) => {
+  console.log('connect failed: ' + JSON.stringify(err))
+})
+let sendOpt: socket.LocalSendOptions = {
+  data: 'Hello world!'
+}
+client.send(sendOpt).then(() => {
+  console.log('send success')
+}).catch((err) => {
+  console.log('send fail: ' + JSON.stringify(err))
+})
+```
+
+### close<sup>11+</sup>
+
+close(): Promise\<void\>
+
+关闭LocalSocket连接。使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                       |
+| :-------------- | :----------------------------------------- |
+| Promise\<void\> | 以Promise形式返回关闭LocalSocket连接的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 2301009 | Bad file descriptor.    |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+
+client.close().then(() => {
+  console.log('close success');
+}).catch((err) => {
+  console.log('close fail: ' + JSON.stringify(err));
+});
+```
+
+### getState<sup>11+</sup>
+
+getState(): Promise\<SocketStateBase\>
+
+获取LocalSocket状态。使用Promise方式作为异步方法。
+
+> **说明：**
+> bind或connect方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                          | 说明                                     |
+| :------------------------------------------- | :--------------------------------------- |
+| Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取LocalSocket状态的结果。 |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success');
+  client.getState().then(() => {
+    console.log('getState success');
+  }).catch((err) => {
+    console.log('getState fail: ' + JSON.stringify(err))
+  });
+}).catch((err) => {
+  console.log('connect fail: ' + JSON.stringify(err));
+});
+```
+
+### getSocketFd<sup>11+</sup>
+
+getSocketFd(): Promise\<number\>
+
+获取LocalSocket的文件描述符。使用Promise方式作为异步方法。
+
+> **说明：**
+> bind或connect方法调用成功后，才可调用此方法。
+> 获取由系统内核分配的唯一文件描述符，用于标识当前使用的套接字。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型               | 说明                              |
+| :---------------- | :-------------------------------- |
+| Promise\<number\> | 以Promise形式返回socket的文件描述符。 |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect ok')
+}).catch((err) => {
+  console.log('connect fail: ' + JSON.stringify(err))
+})
+client.getSocketFd().then((data: number) => {
+  console.info("fd: " + data);
+}).catch((err) => {
+  console.info("getSocketFd faile: " + JSON.stringify(err));
+})
+```
+
+### setExtraOptions<sup>11+</sup>
+
+setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
+
+设置LocalSocket的套接字属性，使用Promise方式作为异步方法。
+
+> **说明：**
+> bind或connect方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| options | [ExtraOptionsBase](#extraoptionsbase) | 是   | LocalSocket连接的其他属性，参考[ExtraOptionsBase](#extraoptionsbase)。 |
+
+**返回值：**
+
+| 类型            | 说明                                           |
+| :-------------- | :-------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回设置LocalSocket套接字属性的结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 401     | Parameter error.        |
+| 201     | Permission denied.      |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt, () => {
+  console.log('connect success');
+  let options: socket.ExtraOptionsBase = {
+    receiveBufferSize: 8000,
+    sendBufferSize: 8000,
+    socketTimeout: 3000
+  }
+  client.setExtraOptions(options).then(() => {
+    console.log('setExtraOptions success');
+  }).catch((err) => {
+    console.log('setExtraOptions fail: ' + JSON.stringify(err));
+  });
+});
+```
+
+### getExtraOptions<sup>11+</sup>
+
+getExtraOptions(): Promise\<ExtraOptionsBase\>;
+
+获取LocalSocket的套接字属性，使用Promise方式作为异步方法。
+
+> **说明：**
+> bind或connect方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                         | 说明                                      |
+| :-------------------------- | :---------------------------------------- |
+| Promise\<ExtraOptionsBase\> | 以Promise形式返回设置LocalSocket套接字的属性。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| ------- | ----------------------- |
+| 2301009 | Bad file descriptor.    |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+client.connect(connectOpt, () => {
+  console.log('connect success');
+  client.getExtraOptions().then((options : socket.ExtraOptionsBase) => {
+    console.log('options: ' + JSON.stringify(options));
+  }).catch((err) => {
+    console.log('setExtraOptions fail: ' + JSON.stringify(err));
+  });
+});
+```
+
+### on('message')<sup>11+</sup>
+
+on(type: 'message', callback: Callback\<{MessageReceive}\>): void
+
+订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                      |
+| -------- | ----------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<{[MessageReceive](#messagereceive)}\> | 是   | 回调函数。                            |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+client.on('message', (value) => {
+  const uintArray = new UInt8Array(value.message)
+  let messageView = '';
+  for (let i = 0; i < uintArray.length; i++) {
+    messageView = String.fromCharCode(uintArray[i]);
+  }
+  console.log('total: ' + JSON.stringify(value));
+  console.log('message infomation: ' + messageView);
+});
+```
+
+### off('message')<sup>11+</sup>
+
+off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
+
+取消订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                                 |
+| -------- | ---------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                         | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<{[MessageReceive](#messagereceive)}> | 否   | 回调函数。                            |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let messageView = '';
+let callback = (value) => {
+  const uintArray = new UInt8Array(value.message)
+  let messageView = '';
+  for (let i = 0; i < uintArray.length; i++) {
+    messageView = String.fromCharCode(uintArray[i]);
+  }
+  console.log('total: ' + JSON.stringify(value));
+  console.log('message infomation: ' + messageView);
+}
+client.on('message', callback);
+client.off('message');
+```
+
+### on('connect')<sup>11+</sup>
+
+on(type: 'connect', callback: Callback\<void\>): void;
+
+订阅LocalSocket的连接事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | --------------------------------------------------------- |
+| type     | string           | 是   | 订阅的事件类型。                                             |
+| callback | Callback\<void\> | 是   | 回调函数。                                                  |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+client.on('connect', () => {
+  console.log("on connect success")
+});
+```
+
+### off('connect')<sup>11+</sup>
+
+off(type: 'connect', callback?: Callback\<void\>): void;
+
+取消订阅LocalSocket的连接事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | --------------------------------------------------------- |
+| type     | string           | 是   | 订阅的事件类型。                                             |
+| callback | Callback\<void\> | 是   | 回调函数。                                                  |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let callback = () => {
+  console.log("on connect success");
+}
+client.on('connect', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+client.off('connect', callback);
+client.off('connect');
+```
+
+### on('close')<sup>11+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void;
+
+订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                        |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。                 |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let callback = () => {
+  console.log("on close success");
+}
+client.on('close', callback);
+```
+
+### off('close')<sup>11+</sup>
+
+off(type: 'close', callback?: Callback\<void\>): void;
+
+订阅LocalSocket的关闭事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                        |
+| -------- | ---------------- | ---- | ------------------------ |
+| type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。                 |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let callback = () => {
+  console.log("on close success");
+}
+client.on('close', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+client.off('close', callback);
+client.off('close');
+```
+
+### on('error')<sup>11+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅LocalSocket连接的error事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                            |
+| -------- | ------------- | ---- | ---------------------------- |
+| type     | string        | 是   | 订阅LocalSocket的error事件。   |
+| callback | ErrorCallback | 是   | 回调函数。                     |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+client.on('error', (err) => {
+  console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')<sup>11+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void;
+
+取消订阅LocalSocket连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                             |
+| -------- | ------------- | ---- | ----------------------------- |
+| type     | string        | 是   | 取消订阅LocalSocket的error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                      |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let client: socket.LocalSocket = socket.constructLocalSocketInstance();
+let callback = (err) => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+client.on('error', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+client.off('error', callback);
+client.off('error');
+```
+
+## MessageReceive<sup>11+</sup>
+
+LocalSocket客户端与服务端通信时接收的数据。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称     | 类型            | 必填 | 说明               |
+| ------- | --------------- | --- | ------------------ |
+| message | ArrayBuffer     | 是   | 收到的消息数据。     |
+| address | string          | 是   | 使用的本地套接字路径。|
+| size    | number          | 是   | 数据长度。          |
+
+## LocalAddress<sup>11+</sup>
+
+LocalSocket本地套接字文件路径信息，在传入套接字路径进行绑定时，会在此路径下创建套接字文件。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称     | 类型       | 必填 | 说明               |
+| ------- | ---------- | --- | ------------------ |
+| address | string     | 是   | 本地套接字路径。     |
+
+## LocalConnectOptions<sup>11+</sup>
+
+LocalSocket客户端在连接服务端时传入的参数信息。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称     | 类型       | 必填 | 说明                            |
+| ------- | ---------- | --- | ------------------------------ |
+| address | string     | 是   | 指定的本地套接字路径。            |
+| timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。  |
+
+## LocalSendOptions<sup>11+</sup>
+
+LocalSocket发送请求的参数。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称     | 类型       | 必填 | 说明                 |
+| ------- | ---------- | --- | ------------------- |
+| address | string     | 是   | 指定的本地套接字路径。 |
+| timeout | encoding   | 否   | 字符编码。           |
+
+## socket.constructLocalSocketServerInstance<sup>11+</sup>
+
+constructLocalSocketServerInstance(): LocalSocketServer
+
+创建一个LocalSocketServer对象。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                | 说明                          |
+| :---------------------------------- | :---------------------------- |
+| [LocalSocketServer](#localsocketserver11) | 返回一个LocalSocketServer对象。 |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+```
+
+## LocalSocketServer<sup>11+</sup>
+
+LocalSocketServer类。在调用LocalSocketServer的方法前，需要先通过[socket.constructLocalSocketServerInstance](#socketconstructlocalsocketserverinstance11)创建LocalSocketServer对象。
+
+### listen<sup>11+</sup>
+
+listen(address: LocalAddress): Promise\<void\>
+
+绑定本地套接字文件，监听并接受与此套接字建立的LocalSocket连接。该接口使用多线程并发处理客户端的数据。使用Promise方法作为异步方法。
+
+> **说明：**
+> 服务端使用该方法完成bind，listen，accept操作。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                      | 必填 | 说明                                          |
+| ------- | ------------------------- | ---- | --------------------------------------------- |
+| address | [LocalAddress](#localaddress) | 是   | 目标地址信息。 |
+
+**返回值：**
+
+| 类型            | 说明                                                   |
+| :-------------- | :---------------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回执行结果, 成功返回空，失败返回错误码错误信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息                      |
+| -------- | --------------------------- |
+| 401      | Parameter error.            |
+| 2303109  | Bad file number.            |
+| 2301013  | Insufficient permissions.   |
+| 2301022  | Invalid argument.           |
+| 2303198  | Address already in use.     |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let addr: socket.LocalAddress = {
+  address:  '/tmp/testSocket'
+}
+server.listen(addr).then(() => {
+  console.log('listen success');
+}).catch((err) => {
+  console.log('listen fail: ' + JSON.stringify(err));
+});
+```
+
+### getState<sup>11+</sup>
+
+getState(): Promise\<SocketStateBase\>
+
+获取LocalSocketServer状态。使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                         | 说明                                            |
+| :------------------------------------------- | :--------------------------------------------- |
+| Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取LocalSocketServer状态的结果。 |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let listenAddr: socket.LocalAddress = {
+  address:  '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err) => {
+  console.log("listen fail: " + JSON.stringify(err));
+})
+server.getState().then((data: socket.SocketStateBase) => {
+  console.log('getState success: ' + JSON.stringify(data));
+}).catch((err) => {
+  console.log('getState fail: ' + JSON.stringify(err));
+});
+```
+
+### setExtraOptions<sup>11+</sup>
+
+setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
+
+设置LocalSocketServer连接的套接字属性，使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                                | 必填 | 说明                                                         |
+| ------- | ----------------------------------- | ---- | -------------------------------- |
+| options | [ExtraOptionsBase](#extraoptionsbase) | 是   | LocalSocketServer连接的其他属性。 |
+
+**返回值：**
+
+| 类型            | 说明                                             |
+| :-------------- | :---------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 401      | Parameter error.                |
+| 2301009  | Bad file descriptor.            |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let listenAddr: socket.NetAddress = {
+  address:  '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err) => {
+  console.log("listen fail: " + JSON.stringify(err));
+})
+
+let options: socket.ExtraOptionsBase = {
+  receiveBufferSize: 6000,
+  sendBufferSize: 6000,
+  socketTimeout: 3000
+}
+server.setExtraOptions(options).then(() => {
+  console.log('setExtraOptions success');
+}).catch((err) => {
+  console.log('setExtraOptions fail: ' + JSON.stringify(err));
+});
+```
+
+### getExtraOptions<sup>11+</sup>
+
+getExtraOptions(): Promise\<ExtraOptionsBase\>;
+
+获取LocalSocketServer中连接的套接字的属性，使用Promise方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                         | 说明                        |
+| :-------------------------- | :-------------------------- |
+| Promise\<ExtraOptionsBase\> | 以Promise形式返回套接字的属性。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | -------------------- |
+| 2301009  | Bad file descriptor. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let listenAddr: socket.NetAddress = {
+  address:  '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err) => {
+  console.log("listen fail: " + JSON.stringify(err));
+})
+server.getExtraOptions().then((options) => {
+  console.log('options: ' + JSON.stringify(options));
+}).catch((err) => {
+  console.log('getExtraOptions fail: ' + JSON.stringify(err));
+});
+```
+
+### on('connect')<sup>11+</sup>
+
+on(type: 'connect', callback: Callback\<LocalSocketConnection\>): void
+
+订阅LocalSocketServer的连接事件。使用callback方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                                  |
+| -------- | ------------------------------- | ---- | ------------------------------------- |
+| type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
+| callback | Callback<[LocalSocketConnection](#localsocketconnection11)> | 是   | 回调函数。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  if (connection) {
+    console.log('accept a client')
+  }
+});
+```
+
+### off('connect')<sup>11+</sup>
+
+off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
+
+取消订阅LocalSocketServer的连接事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                            | 必填 | 说明                                  |
+| -------- | ------------------------------- | ---- | ------------------------------------- |
+| type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
+| callback | Callback<[LocalSocketConnection](#localsocketconnection11)> | 否   | 回调函数。                            |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let callback = (connection: socket.LocalSocketConnection) => {
+  if (connection) {
+    console.log('accept a client')
+  }
+}
+server.on('connect', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+server.off('connect', callback);
+server.off('connect');
+```
+
+### on('error')<sup>11+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅LocalSocketServer连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> listen方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('error', (err) => {
+  console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')<sup>11+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅LocalSocketServer连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let callback = (err) => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+server.on('error', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+server.off('error', callback);
+server.off('error');
+```
+
+
+## LocalSocketConnection<sup>11+</sup>
+
+LocalSocketConnection连接，即LocalSocket客户端与服务端的会话连接。在调用LocalSocketConnection的方法前，需要先获取LocalSocketConnection对象。
+
+> **说明：**
+> 客户端与服务端成功建立连接后，才能通过返回的LocalSocketConnection对象调用相应的接口。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+### 属性
+
+| 名称     | 类型   | 必填 | 说明                            |
+| -------- | ------ | ---- | ---------------------------- |
+| clientId | number | 是   | 客户端与服务端建立的会话连接的id。 |
+
+### send<sup>11+</sup>
+
+send(options: LocalSendOptions): Promise\<void\>
+
+通过LocalSocketConnection连接对象发送数据。使用Promise方式作为异步方法。
+
+> **说明：**
+> 服务端与客户端建立连接后，服务端通过connect事件回调得到LocalSocketConnection连接对象后，才可使用连接对象调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                                         |
+| ------- | --------------------------------- | ---- | -------------------------------------- |
+| options | [LocalSendOptions](#localsendoptions) | 是   | LocalSocketConnection发送请求的参数。 |
+
+**返回值：**
+
+| 类型            | 说明                                             |
+| :-------------- | :---------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ---------------------- |
+| 401      | Parameter error.       |
+| 2301011  | Operation would block. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  let sendOptions: socket.LocalSendOptions = {
+    data: 'Hello, client!'
+  }
+  connection.send(sendOptions).then(() => {
+    console.log('send success');
+  }).catch((err) => {
+    console.log('send fail: ' + JSON.stringify(err));
+  });
+});
+```
+
+### close<sup>11+</sup>
+
+close(): Promise\<void\>
+
+关闭一个LocalSocket客户端与服务端建立的连接。使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型            | 说明                                         |
+| :-------------- | :------------------------------------------- |
+| Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | -------------------- |
+| 201      | Permission denied.   |
+| 2301009  | Bad file descriptor. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.close().then(() => {
+  	console.log('close success');
+  }).catch((err) => {
+  	console.log('close fail: ' + JSON.stringify(err));
+  });
+});
+```
+
+### on('message')<sup>11+</sup>
+
+on(type: 'message', callback: Callback\<MessageReceive\>): void;
+
+订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                     |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------- |
+| type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。     |
+| callback | Callback\<{[MessageReceive](#messagereceive)}\> | 是   | 回调函数。MessageReceive为接收到的消息对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let listenAddr: socket.LocalAddress = {
+  address: '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err) => {
+  console.log("listen fail: " + JSON.stringify(err));
+});
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('message', (value: MessageReceive) => {
+    const uintArray = new UInt8Array(value.message)
+    let messageView = '';
+    for (let i = 0; i < uintArray.length; i++) {
+      messageView = String.fromCharCode(uintArray[i]);
+    }
+    console.log('total: ' + JSON.stringify(value));
+    console.log('message infomation: ' + messageView);
+  });
+});
+```
+
+### off('message')<sup>11+</sup>
+
+off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
+
+取消订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                 |
+| -------- | ----------------------------------------------- | ---- | ----------------------------------- |
+| type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<{[MessageReceive](#messagereceive)}\> | 否   | 回调函数。MessageReceive：接收到的消息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let callback = (value) => {
+  const uintArray = new UInt8Array(value.message)
+  let messageView = '';
+  for (let i = 0; i < uintArray.length; i++) {
+    messageView = String.fromCharCode(uintArray[i]);
+  }
+  console.log('total: ' + JSON.stringify(value));
+  console.log('message infomation: ' + messageView);
+}
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('message', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  connection.off('message', callback);
+  connection.off('message');
+});
+```
+
+### on('close')<sup>11+</sup>
+
+on(type: 'close', callback: Callback\<void\>): void
+
+订阅LocalSocketConnection的关闭事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 是   | 回调函数。                          |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('close', () => {
+    console.log("on close success")
+  });
+});
+```
+
+### off('close')<sup>11+</sup>
+
+off(type: 'close', callback?: Callback\<void\>): void
+
+取消订阅LocalSocketConnection的关闭事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                |
+| -------- | ---------------- | ---- | ----------------------------------- |
+| type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。                          |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+let callback = () => {
+  console.log("on close success");
+}
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('close', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  connection.off('close', callback);
+  connection.off('close');
+});
+```
+
+### on('error')<sup>11+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅LocalSocketConnection连接的error事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('error', (err) => {
+    console.log("on error, err:" + JSON.stringify(err))
+  });
+});
+```
+
+### off('error')<sup>11+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅LocalSocketConnection连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                           |
+
+**错误码：**
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | Parameter error. |
+
+**示例：**
+
+```ts
+import socket from "@ohos.net.socket";
+let callback = (err) => {
+  console.log("on error, err: " + JSON.stringify(err));
+}
+let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
+server.on('connect', (connection: socket.LocalSocketConnection) => {
+  connection.on('error', callback);
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  connection.off('error', callback);
+  connection.off('error');
+});
+```
+
+## LocalSocket 错误码说明
+
+LocalSocket 错误码映射形式为：2301000 + Linux内核错误码。
+
+错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
+
 ## socket.constructTLSSocketInstance<sup>9+</sup>
 
 constructTLSSocketInstance(): TLSSocket

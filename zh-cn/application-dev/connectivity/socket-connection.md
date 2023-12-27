@@ -10,14 +10,16 @@ Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicas
 - TCP：传输控制协议(Transmission Control Protocol)。是一种面向连接的、可靠的、基于字节流的传输层通信协议。
 - UDP：用户数据报协议(User Datagram Protocol)。是一个简单的面向消息的传输层，不需要连接。
 - Multicast：多播，基于UDP的一种通信模式，用于实现组内所有设备之间广播形式的通信。
+- LocalSocket：本地套接字，IPC(Inter-Process Communication)进程间通信的一种，实现设备内进程之间相互通信，无需网络。
 - TLS：安全传输层协议(Transport Layer Security)。用于在两个通信应用程序之间提供保密性和数据完整性。
 
 ## 场景介绍
 
 应用通过 Socket 进行数据传输，支持 TCP/UDP/Multicast/TLS 协议。主要场景有：
 
-- 应用通过 TCP/UDP/Multicast Socket 进行数据传输
+- 应用通过 TCP/UDP/Multicast/Local Socket 进行数据传输
 - 应用通过 TCP Socket Server 进行数据传输
+- 应用通过 Local Socket Server 进行数据传输
 - 应用通过 TLS Socket 进行加密数据传输
 
 ## 接口说明
@@ -32,6 +34,8 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | constructTCPSocketInstance()       | 创建一个 TCPSocket 对象。                                                      |
 | constructTCPSocketServerInstance() | 创建一个 TCPSocketServer 对象。                                                |
 | constructMulticastSocketInstance() | 创建一个 MulticastSocket 对象。                                                |
+| constructLocalSocketInstance()       | 创建一个 LocalSocket 对象。                                                  |
+| constructLocalSocketServerInstance() | 创建一个 LocalSocketServer 对象。                                            |
 | listen()                           | 绑定 IP 地址和端口，监听并接受与此套接字建立的 TCPSocket 连接。（仅 TCP 支持）    |
 | bind()                             | 绑定 IP 地址和端口。                                                           |
 | send()                             | 发送数据。                                                                     |
@@ -40,6 +44,7 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | connect()                          | 连接到指定的 IP 地址和端口（仅 TCP 支持）                                      |
 | getRemoteAddress()                 | 获取对端 Socket 地址（仅 TCP 支持，需要先调用 connect 方法）                   |
 | setExtraOptions()                  | 设置 Socket 连接的其他属性。                                                   |
+| getExtraOptions()                  | 获取 Socket 连接的其他属性（仅 LocalSocket 支持）。                            |
 | addMembership()                    | 加入到指定的多播组 IP 中 (仅 Multicast 支持)。                                 |
 | dropMembership()                   | 从指定的多播组 IP 中退出 (仅 Multicast 支持)。                                 |
 | setMulticastTTL()                  | 设置数据传输跳数 TTL (仅 Multicast 支持)。                                    |
@@ -334,6 +339,158 @@ multicast.dropMembership(addr, (err) => {
   }
   console.info('drop ok');
 })
+```
+
+## 应用通过 LocalSocket 进行数据传输
+
+## 开发步骤：
+
+1. import 需要的 socket 模块。
+
+2. 使用 constructLocalSocketInstance 接口，创建一个 LocalSocket 客户端对象。
+
+3. （可选）订阅 LocalSocket 相关的事件。
+
+5. 连接到指定的本地套接字文件路径。
+
+6. 发送数据。
+
+7. Socket 连接使用完毕后，主动关闭。
+
+```ts
+import socket from '@ohos.net.socket';
+
+// 创建一个LocalSocket连接，返回一个LocalSocket对象。
+let client = socket.constructLocalSocketInstance();
+client.on('message', (value) => {
+  const uintArray = new UInt8Array(value.message)
+  let messageView = '';
+  for (let i = 0; i < uintArray.length; i++) {
+    messageView = String.fromCharCode(uintArray[i]);
+  }
+  console.log('total receive: ' + JSON.stringify(value));
+  console.log('message infomation: ' + messageView);
+});
+client.on('connect', () => {
+  console.log("on connect");
+});
+client.on('close', () => {
+  console.log("on close");
+});
+
+// 传入指定的本地套接字路径，连接服务端。
+let connectOpt: socket.LocalConnectOptions = {
+  address: {
+    address: '/tmp/testSocket'
+  },
+  timeout: 6000
+}
+let sendOpt: socket.LocalSendOptions = {
+  data: 'Hello world!'
+}
+client.connect(connectOpt).then(() => {
+  console.log('connect success')
+  client.send(sendOpt).then(() => {
+  console.log('send success')
+  }).catch((err) => {
+    console.log('send failed: ' + JSON.stringify(err))
+  })
+}).catch((err) => {
+  console.log('connect fail: ' + JSON.stringify(err));
+});
+
+// 当不需要再连接服务端，需要断开且取消事件的监听时
+client.off('message');
+client.off('connect');
+client.off('close');
+client.close().then(() => {
+  console.log('close client success')
+}).catch((err) => {
+  console.log('close client err: ' + JSON.stringify(err))
+})
+```
+
+## 应用通过 TCP Socket Server 进行数据传输
+
+### 开发步骤
+
+服务端 TCP Socket 流程：
+
+1. import 需要的 socket 模块。
+
+2. 使用 constructLocalSocketServerInstance 接口，创建一个 LocalSocketServer 服务端对象。
+
+3. 绑定并创建本地套接字，启动服务。
+
+4. 订阅 LocalSocketServer 的 connect 事件，用于监听客户端的连接状态。
+
+5. 客户端与服务端建立连接后，返回一个 LocalSocketConnection 对象，在服务端得到会话连接与客户端通信。
+
+6. 订阅 LocalSocketConnection 相关的事件，通过 LocalSocketConnection 向客户端发送数据。
+
+7. 主动关闭与客户端的连接。
+
+8. 取消 LocalSocketConnection 和 LocalSocketServer 相关事件的订阅。
+
+```ts
+import socket from '@ohos.net.socket';
+// 创建一个LocalSocketServer连接，返回一个LocalSocketServer对象。
+let server = socket.constructLocalSocketServerInstance();
+// 绑定本地IP地址和端口，进行监听
+let listenAddr: socket.LocalAddress = {
+  address: '/tmp/testSocket'
+}
+server.listen(listenAddr).then(() => {
+  console.log("listen success");
+}).catch((err) => {
+  console.log("listen fail: " + JSON.stringify(err));
+});
+
+// 订阅LocalSocketServer的connect事件
+server.on("connect", (connection: socket.LocalSocketConnection) => {
+  // 订阅LocalSocketConnection相关的事件
+  connection.on("error", (err) => {
+    console.log("on error success");
+  });
+  connection.on('message', (value: MessageReceive) => {
+    const uintArray = new UInt8Array(value.message)
+    let messageView = '';
+    for (let i = 0; i < uintArray.length; i++) {
+      messageView = String.fromCharCode(uintArray[i]);
+    }
+    console.log('total: ' + JSON.stringify(value));
+    console.log('message infomation: ' + messageView);
+  });
+
+  connection.on('error', (err) => {
+    console.log("err:" + JSON.stringify(err))
+  })
+
+  // 向客户端发送数据
+  let sendOpt : socket.LocalSendOptions = {
+    data: 'Hello world!'
+  };
+  connection.send(sendOpt).then(() => {
+    console.log('send success')
+  }).catch((err) => {
+    console.log('send failed: ' + JSON.stringify(err))
+  })
+
+  // 关闭与客户端的连接
+  connection.close().then(() => {
+    console.log('close success');
+  }).catch((err) => {
+    console.log('close failed: ' + JSON.stringify(err));
+  });
+
+  // 取消LocalSocketConnection相关的事件订阅
+  connection.off('message')
+  connection.off('error')
+});
+
+// 取消LocalSocketServer相关的事件订阅
+server.off('connect')
+server.off('error')
 ```
 
 ## 应用通过 TLS Socket 进行加密数据传输
