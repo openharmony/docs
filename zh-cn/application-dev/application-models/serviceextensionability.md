@@ -117,7 +117,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为ServiceExtAbility。
 
-2. 在ServiceExtAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ServiceExtAbility.ets。
+2. 在ServiceExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为ServiceExtAbility.ets。
 
     ```
     ├── ets
@@ -181,7 +181,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
            "description": "service",
            "type": "service",
            "exported": true,
-           "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+           "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets"
          }
        ]
      }
