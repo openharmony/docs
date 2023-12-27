@@ -29,7 +29,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 | ------------------ | ------------------------------------------------------------ |
 | Decorator parameters        | None.                                                          |
 | Synchronization type          | Does not synchronize with any type of variable in the parent component.                            |
-| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>**undefined** or **null**.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @State](#union-type-state).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@State a: string \| undefined = undefined** is recommended; **@State a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>The type must be specified.<br>**any** is not supported.|
+| Allowed variable types| Object, class, string, number, Boolean, enum, and array of these types.<br>Date, Map, and Set types.<br>**undefined** or **null**.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @State](#union-type-state).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @State a: string \| undefined = undefined is recommended; **@State a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>The type must be specified.<br>**any** is not supported.|
 | Initial value for the decorated variable| Local initialization is required.                                              |
 
 
@@ -38,7 +38,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 | Transfer/Access         | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
 | Initialization from the parent component    | Optional. Initialization from the parent component or local initialization can be used. The initial value specified in the parent component will overwrite the one defined locally.<br>An @State decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an @State, @Link, @Prop, @Provide, @Consume, @ObjectLink, @StorageLink, @StorageProp, @LocalStorageLink, or @LocalStorageProp decorated variable in its parent component.|
-| Subnode initialization  | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Child component initialization | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.                                  |
 
   **Figure 1** Initialization rule 
@@ -62,7 +62,7 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   this.count = 1;
   ```
 
-- When the decorated variable is of the class or Object type, its value change and value changes of all its properties, that is, the properties that **Object.keys(observedObject)** returns. Below is an example.
+- When the decorated variable is of the class or Object type, its value change and value changes of all its properties, that is, the properties that **Object.keys(observedObject)** returns, can be observed. Below is an example.
     Declare the **ClassA** and **Model** classes.
 
     ```ts
@@ -88,7 +88,7 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 
     ```ts
     // Class type
-     @State title: Model = new Model('Hello', new ClassA('World'));
+    @State title: Model = new Model('Hello', new ClassA('World'));
     ```
 
     Assign a value to the \@State decorated variable.
@@ -102,17 +102,17 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 
     ```ts
     // Assign a value to a property of the class object.
-    this.title.value = 'Hi'
+    this.title.value = 'Hi';
     ```
 
     The value assignment of the nested property cannot be observed.
 
     ```ts
     // The value assignment of the nested property cannot be observed.
-    this.title.name.value = 'ArkUI'
+    this.title.name.value = 'ArkUI';
     ```
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed. Below is an example.
-  Declare the **ClassA** and **Model** classes.
+  Declare the **Model** class.
 
   ```ts
   class Model {
@@ -126,37 +126,37 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   Use \@State to decorate a variable of the Model class array type.
 
   ```ts
-  @State title: Model[] = [new Model(11), new Model(1)]
+  @State title: Model[] = [new Model(11), new Model(1)];
   ```
 
   The value assignment of the array itself can be observed.
 
   ```ts
-  this.title = [new Model(2)]
+  this.title = [new Model(2)];
   ```
 
   The value assignment of array items can be observed.
 
   ```ts
-  this.title[0] = new Model(2)
+  this.title[0] = new Model(2);
   ```
 
   The deletion of array items can be observed.
 
   ```ts
-  this.title.pop()
+  this.title.pop();
   ```
 
   The addition of array items can be observed.
 
   ```ts
-  this.title.push(new Model(12))
+  this.title.push(new Model(12));
   ```
 
   The property value assignment in the array items cannot be observed.
 
   ```ts
-  this.title[0].value = 6
+  this.title[0].value = 6;
   ```
 
 - When the decorated variable is of the Date type, the overall value assignment of the **Date** object can be observed, and the following APIs can be called to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
@@ -198,6 +198,10 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
     }
   }
   ```
+
+- When the decorated variable is **Map**, value changes of **Map** can be observed. In addition, you can call the **set**, **clear**, and **delete** APIs of **Map** to update its value. For details, see [Decorating Variables of the Map Type](#decorating-variables-of-the-map-type).
+
+- When the decorated variable is **Set**, value changes of **Set** can be observed. In addition, you can call the **add**, **clear**, and **delete** APIs of **Set** to update its value. For details, see [Decorating Variables of the Set Type](#decorating-variables-of-the-set-type).
 
 ### Framework Behavior
 
@@ -313,6 +317,85 @@ From this example, we learn the initialization process of an \@State decorated v
    let obj = new C1(1, 2)
    MyComponent(obj)
    ```
+
+
+### Decorating Variables of the Map Type
+
+In this example, \@State is used to decorate the **message** variable of the Map\<number, string\> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
+
+```ts
+@Entry
+@Component
+struct MapSample {
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Text(`${item[1]}`).fontSize(30)
+          Divider()
+        })
+        Button('init map').onClick(() =>{
+          this.message = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        })
+        Button('set new one').onClick(() =>{
+          this.message.set(4, "d")
+        })
+        Button('clear').onClick(() =>{
+          this.message.clear()
+        })
+        Button('replace the first one').onClick(() =>{
+          this.message.set(0, "aa")
+        })
+        Button('delete the first one').onClick(() =>{
+          this.message.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### Decorating Variables of the Set Type
+
+In this example, \@State is used to decorate the **message** variable of the Set\<number> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
+
+```ts
+@Entry
+@Component
+struct SetSample {
+  @State message: Set<number> = new Set([0, 1, 2 ,3,4 ])
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.message.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Divider()
+        })
+        Button('init set').onClick(() =>{
+          this.message = new Set([0, 1, 2 ,3,4 ])
+        })
+        Button('set new one').onClick(() =>{
+          this.message.add(5)
+        })
+        Button('clear').onClick(() =>{
+          this.message.clear()
+        })
+        Button('delete the first one').onClick(() =>{
+          this.message.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
 
 ## Union Type @State
 
