@@ -21,11 +21,11 @@ hap级别的快速修复信息。
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称        | 类型                 | 必填 | 说明                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| moduleName    | string               | 是   | HAP的名称。                               |
-| originHapHash    | string               | 是   | 指示hap的哈希值。                               |
-| quickFixFilePath    | string               | 是   | 指示快速修复文件的安装路径。                               |
+| 名称        | 类型                 | 只读 | 必填 | 说明                                                         |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
+| moduleName    | string               | 是 |  是   | HAP的名称。                               |
+| originHapHash    | string            | 是 | 是   | 指示hap的哈希值。                               |
+| quickFixFilePath    | string         | 是 | 是   | 指示快速修复文件的安装路径。                               |
 
 ## ApplicationQuickFixInfo
 
@@ -35,14 +35,14 @@ hap级别的快速修复信息。
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
-| 名称        | 类型                 | 必填 | 说明                                                         |
-| ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName    | string               | 是   | 应用Bundle名称。                       |
-| bundleVersionCode    | number               | 是   | 应用的版本号。                               |
-| bundleVersionName    | string               | 是   | 应用版本号的文字描述。                               |
-| quickFixVersionCode    | number               | 是   | 快速修复补丁包的版本号。                               |
-| quickFixVersionName    | string               | 是   | 快速修复补丁包版本号的文字描述。                               |
-| hapModuleQuickFixInfo    | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>      | 是   | hap级别的快速修复信息。     |
+| 名称        | 类型                 | 只读 | 必填 | 说明                                                         |
+| ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
+| bundleName    | string               | 是 | 是   | 应用Bundle名称。                       |
+| bundleVersionCode    | number        | 是 | 是   | 应用的版本号。                               |
+| bundleVersionName    | string        | 是 | 是   | 应用版本号的文字描述。                               |
+| quickFixVersionCode    | number      | 是 | 是   | 快速修复补丁包的版本号。                               |
+| quickFixVersionName    | string      | 是 | 是   | 快速修复补丁包版本号的文字描述。                               |
+| hapModuleQuickFixInfo    | Array\<[HapModuleQuickFixInfo](#hapmodulequickfixinfo)>   | 是 | 是   | hap级别的快速修复信息。     |
 
 ## quickFixManager.applyQuickFix
 
@@ -91,7 +91,7 @@ import quickFixManager from '@ohos.app.ability.quickFixManager';
       }
     });
   } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
   }
 ```
 
@@ -165,7 +165,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 |应用Bundle名称。  |
-| callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 应用的快速修复信息。 |
+| callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 以callback形式返回应用的快速修复信息。 |
 
 **错误码**：
 
@@ -217,7 +217,7 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 返回应用的快速修复信息。 |
+  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 以Promise形式返回应用的快速修复信息。 |
 
 **错误码**：
 

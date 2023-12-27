@@ -20,7 +20,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。<br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
-| displayId | number | 否 | 屏幕ID。默认是0，表示当前屏幕。 |
+| displayId | number | 否 | 屏幕ID模式。默认是0，表示当前屏幕。 |
 | withAnimation<sup>11+</sup> | boolean | 否 | Ability是否具有动画效果。 |
 | windowLeft<sup>11+</sup> | number | 否 | 窗口左边的位置。 |
 | windowTop<sup>11+</sup> | number | 否 | 窗口顶部的位置。 |
@@ -45,7 +45,6 @@ import StartOptions from '@ohos.app.ability.StartOptions';
       let id = missions[0].missionId;
 
       let startOptions: StartOptions = {
-          windowMode : 101,
           displayId: 0
       };
       missionManager.moveMissionToFront(id, startOptions).then(() => {
