@@ -43,7 +43,7 @@ Displays an image-attached confirmation dialog box. If necessary, the confirmati
 
 | Name| Type| Mandatory| Decorator| Description| 
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md) | Yes| - | Dialog box controller.| 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| - | Dialog box controller.| 
 | imageRes | [Resource](ts-types.md#resource) | Yes| - | Image to be displayed.| 
 | imageSize | [SizeOptions](ts-types.md#sizeoptions) | Yes| - | Image size.| 
 | title | [ResourceStr](ts-types.md#resourcestr) | Yes| - | Title of the dialog box.| 
@@ -71,9 +71,9 @@ Displays a dialog box from which the user can select options presented in a list
 | controller | CustomDialogController | Yes| Dialog box controller.| 
 | title | [ResourceStr](ts-types.md#resourcestr) | Yes| Title of the dialog box.| 
 | content | [ResourceStr](ts-types.md#resourcestr) | No| Content of the dialog box.| 
-| selectedIndex | number | No| Index of the selected option in the dialog box.<br>Default value: **1**| 
+| selectedIndex | number | No| Index of the selected option in the dialog box.<br>Default value: **-1**| 
 | confirm | [ButtonOptions](#buttonoptions) | No| Confirm button.| 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md)&gt; | No| List of subitems in the dialog box. You can set text and a select callback for each subitem.| 
+| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo)&gt; | No| List of subitems in the dialog box. You can set text and a select callback for each subitem.| 
 
 
 ## ConfirmDialog
