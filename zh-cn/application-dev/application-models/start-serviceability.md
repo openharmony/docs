@@ -10,22 +10,25 @@ ServiceAbility的启动与其他Ability并无区别，应用开发者可以在Pa
 import featureAbility from '@ohos.ability.featureAbility'
 import Want from '@ohos.app.ability.Want';
 import promptAction from '@ohos.promptAction';
+import hilog from '@ohos.hilog';
 ```
 ```ts
-async startServiceAbility(): Promise<void> {
+const LOG_DOMAIN: number = 0x0000;
+const LOG_TAG: string = 'startServiceAbility';
+const startServiceAbility = async () => {
   try {
-    Logger.info(TAG, 'Begin to start ability');
+    hilog.info(LOG_DOMAIN, LOG_TAG, 'Begin to start ability');
     let want: Want = {
       bundleName: 'com.samples.famodelabilitydevelop',
       abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility'
     };
     await featureAbility.startAbility({ want });
     promptAction.showToast({
-      message: $r('app.string.start_service_success_toast')
+      message: 'start service success'
     });
-    Logger.info(TAG, `Start ability succeed`);
+    hilog.info(LOG_DOMAIN, LOG_TAG, 'Start ability succeed');
   } catch (error) {
-    Logger.error(TAG, 'Start ability failed with ' + error);
+    hilog.info(LOG_DOMAIN, LOG_TAG, 'Start ability failed with ' + error);
   }
 }
 ```
