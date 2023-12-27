@@ -230,6 +230,7 @@ Describes the window properties.
 | Name                                 | Type                 | Readable| Writable| Description                                                                                                    |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
 | windowRect<sup>7+</sup>               | [Rect](#rect7)             | Yes  | Yes  | Window size.                                                                                                 |
+| drawableRect<sup>11+</sup>            | [Rect](#rect7)             | Yes  | Yes  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window.                                                                                                 |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | Yes  | Yes  | Window type.                                                                                                 |
 | isFullScreen                          | boolean                   | Yes  | Yes  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.                                                                    |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.                                                              |
@@ -303,14 +304,13 @@ Describes the translation parameters.
 
 Enumerates the window lifecycle states.
 
-**System capability**: SystemCapability.WindowManager.WindowManager.Core
-
 | Name      | Value| Description      |
 | ---------- | ------ | ---------- |
-| WINDOW_SHOWN      | 1      | The window is running in the foreground.|
-| WINDOW_ACTIVE     | 2      | The window gains focus.|
-| WINDOW_INACTIVE   | 3      | The window loses focus.|
-| WINDOW_HIDDEN     | 4      | The window is running in the background.|
+| WINDOW_SHOWN      | 1      | The window is running in the foreground.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| WINDOW_ACTIVE     | 2      | The window gains focus.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| WINDOW_INACTIVE   | 3      | The window loses focus.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| WINDOW_HIDDEN     | 4      | The window is running in the background.<br>**System capability**: SystemCapability.WindowManager.WindowManager.Core|
+| WINDOW_DESTROYED<sup>11+</sup>  | 7      | The window is destroyed.<br>**System capability**: SystemCapability.Window.SessionManager|
 
 ## WindowLimits<sup>11+</sup>
 
@@ -318,12 +318,12 @@ Defines the window size limits.
 
 **System capability**: SystemCapability.Window.SessionManager
 
-| Name     | Type  | Readable| Writable| Mandatory| Description                                                        |
-| :-------- | :----- | :--- | :--- | :--- | :----------------------------------------------------------- |
-| maxWidth  | number | Yes  | Yes  | No  | Maximum window width, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum width specified by the system. |
-| maxHeight | number | Yes  | Yes  | No  | Maximum window height, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum height specified by the system. |
-| minWidth  | number | Yes  | Yes  | No  | Minimum window width, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum width specified by the system. |
-| minHeight | number | Yes  | Yes  | No  | Minimum window height, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum height specified by the system. |
+| Name     | Type  | Readable| Writable| Description                                                        |
+| :-------- | :----- | :--- | :--- | :----------------------------------------------------------- |
+| maxWidth  | number | Yes  | Yes  | Maximum window width, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum width specified by the system. |
+| maxHeight | number | Yes  | Yes  | Maximum window height, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the maximum height specified by the system. |
+| minWidth  | number | Yes  | Yes  | Minimum window width, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum width specified by the system. |
+| minHeight | number | Yes  | Yes  | Minimum window height, in pixels. The value must be an integer. The default value is **0**, indicating that the attribute does not change. The lower limit is **0**, and the upper limit is the minimum height specified by the system. |
 
 ## WindowStatusType<sup>11+</sup>
 
@@ -6295,6 +6295,44 @@ promise.then(() => {
 
 ```
 
+### recover<sup>11+</sup>
+
+recover(): Promise&lt;void&gt;
+
+Restores the main window from the full-screen, maximized, or split-screen mode to a floating window, and restores the window size and position to those before the full-screen, maximized, or split-screen mode is entered. If the main window is already in the floating window mode, nothing will happen. This API uses a promise to return the result. It takes effect only for certain device types.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300001 | Repeated operation.            |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.recover();
+promise.then(() => {
+  console.info('Succeeded in recovering the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to recover the window. Cause: ' + JSON.stringify(err));
+});
+
+```
+
 ### setResizeByDragEnabled<sup>10+</sup>
 
 setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -6664,6 +6702,55 @@ try {
 } catch (exception) {
   console.error('Failed to change the window limits. Cause:' + JSON.stringify(exception));
 }
+
+```
+
+
+### setSingleFrameComposerEnabled<sup>11+</sup>
+
+setSingleFrameComposerEnabled(enable: boolean): Promise&lt;void&gt;
+
+Enables or disables the single-frame composer. This API uses a promise to return the result.
+
+The single-frame composer is mainly used in scenarios that requires extremely low interaction latency. It reduces the screen display latency of the rendering node.  
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name   | Type    | Mandatory | Description                                                  |
+| ------ | ------- | --------- | ------------------------------------------------------------ |
+| enable | boolean | Yes       | Whether to enable the single-frame composer. The value **true** means to enable the single-frame composer, and false means to disable it. |
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let enable = true;
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.setSingleFrameComposerEnabled(enable);
+promise.then(()=> {
+    console.info('Succeeded in enabling the single-frame-composer function.');
+}).catch((err: BusinessError)=>{
+    console.error('Failed to enable the single-frame-composer function. code:${err.code}, message:${err.message}.');
+});
 
 ```
 
