@@ -4,7 +4,7 @@
 Converting XML text into JavaScript objects makes it easier to process and manipulate data. In addition, JavaScript objects are more suitable than XML text for JavaScript applications.
 
 
-The common library provides the **ConvertXML** class to convert XML text into JavaScript objects. The input is XML strings and conversion options, and the output is a JavaScript object. For details about the conversion options, see the API reference [@ohos.convertxml (XML-to-JavaScript Conversion)](../reference/apis/js-apis-convertxml.md).
+The common library provides the **ConvertXML** class to convert XML text into JavaScript objects. The input is XML strings and conversion options, and the output is a JavaScript object. For details about the conversion options, see [@ohos.convertxml (XML-to-JavaScript Conversion)](../reference/apis/js-apis-convertxml.md).
 
 
 ## Precautions
@@ -14,7 +14,7 @@ To ensure successful XML parsing and conversion, the input XML data must comply 
 
 ## How to Develop
 
-The following steps walk you through on how to convert an XML file into a JavaScript object to obtain the tag values.
+To convert an XML file into a JavaScript object to obtain the tag values, proceed as follows:
 
 1. Import the **convertxml** module.
 
@@ -22,7 +22,7 @@ The following steps walk you through on how to convert an XML file into a JavaSc
    import convertxml from '@ohos.convertxml';
    ```
 
-2. Pass in an XML file to be converted and set conversion options.
+2. Pass in the XML file to be converted and set conversion options.
 
    ```ts
    let xml: string =

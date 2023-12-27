@@ -17,7 +17,7 @@ import util from '@ohos.util';
 
 format(format: string,  ...args: Object[]): string
 
-Formats the specified values and inserts them into the string by replacing the wildcard in the string.
+Formats a string by replacing the placeholders in it.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -25,14 +25,14 @@ Formats the specified values and inserts them into the string by replacing the w
 
 | Name | Type    | Mandatory| Description          |
 | ------- | -------- | ---- | -------------- |
-| format  | string   | Yes  | String.|
-| ...args | Object[] | No  | Values to format. The formatted values will replace the wildcard in the string. If this parameter is not set, the first parameter is returned by default.|
+| format  | string   | Yes  | Format string. This string contains zero or more placeholders, which specify the position and format of the arguments to be inserted.|
+| ...args | Object[] | No  | Data used to replace the placeholders in **format**. If null is passed in, the first argument is returned by default.|
 
 **Return value**
 
-| Type  | Description                        |
-| ------ | ---------------------------- |
-| string | String containing the formatted values.|
+| Type  | Description             |
+| ------ | -----------------|
+| string | Formatted string.|
 
 
 **Format Specifiers**
@@ -52,6 +52,18 @@ Formats the specified values and inserts them into the string by replacing the w
 **Example**
 
 ```ts
+import util from '@ohos.util';
+
+interface utilAddresstype {
+  city: string;
+  country: string;
+}
+interface utilPersontype {
+  name: string;
+  age: number;
+  address: utilAddresstype;
+}
+
 let name = 'John';
 let age = 20;
 let formattedString = util.format('My name is %s and I am %s years old', name, age);
@@ -69,11 +81,11 @@ const pi = 3.141592653;
 formattedString = util.format('The value of pi is %f', pi);
 console.log(formattedString);
 // Output: The value of pi is 3.141592653
-const obj = { name: 'John', age: 20 };
+const obj: Record<string,number | string> = { "name": 'John', "age": 20 };
 formattedString = util.format('The object is %j', obj);
 console.log(formattedString);
 // Output: The object is {"name":"John","age":20}.
-const person = {
+const person: utilPersontype = {
   name: 'John',
   age: 20,
   address: {
@@ -1645,8 +1657,8 @@ class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
     }
   }
 }
-let lru : ChildLruBuffer<number,number|null>= new ChildLruBuffer();
-lru.afterRemoval(false,10,30,null);
+let lru : ChildLruBuffer<number, number>= new ChildLruBuffer();
+lru.afterRemoval(false, 10, 30, 50);
 ```
 
 ### contains<sup>9+</sup>
@@ -2573,10 +2585,10 @@ Enumerates the Base64 encoding formats.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name  | Value                    | Description            |
-| -------- | ------------------------ | ---------------- |
+| Name  |Value| Description              |
+| ----- |---| ----------------- |
 | BASIC | 0 | Basic format.|
-| MIME | 1 | MIME format.|
+| MIME  | 1 | MIME format.|
 
 
 ## types<sup>8+</sup>
@@ -2999,6 +3011,7 @@ Checks whether the input value is a generator object.
 **Example**
 
   ```ts
+  // This API cannot be used in .ets files.
   let that = new util.types();
   function* foo() {}
   const generator = foo();
@@ -3405,6 +3418,7 @@ Checks whether the input value is a symbol object.
 **Example**
 
   ```ts
+  // This API cannot be used in .ets files.
   let that = new util.types();
   const symbols = Symbol('foo');
   let result = that.isSymbolObject(Object(symbols));
