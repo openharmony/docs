@@ -24,8 +24,8 @@ ImageBitmap(src: string)
 
 | 属性     | 类型     | 描述                                       |
 | ------ | ------ | ---------------------------------------- |
-| width  | number | ImageBitmap的像素宽度，当前值为0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | ImageBitmap的像素高度，当前值为0。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| width  | number | ImageBitmap的像素宽度，当前值为0，单位：vp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| height | number | ImageBitmap的像素高度，当前值为0，单位：vp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 **示例：**
 
