@@ -453,7 +453,7 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
             promptAction.openCustomDialog({
-              builder: customDialogBuilder
+              builder: customDialogBuilder.bind(this)
             }).then((dialogId: number) => {
               customDialogId = dialogId
             })
