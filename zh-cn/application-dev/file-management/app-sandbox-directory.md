@@ -37,6 +37,11 @@
 **图3** 应用文件目录结构图  
 ![Application file directory structure](figures/application-file-directory-structure.png)
 
+> **说明：**
+>
+> - 禁止直接使用上图中四级目录之前的目录名组成的路径字符串，否则可能导致后续应用版本因应用文件路径变化导致不兼容问题。
+> - 应通过Context属性获取应用文件路径，包括但不限于上图中绿色背景的路径。 Context上下文获取及上述应用文件路径的获取，详见[应用上下文Context](../application-models/application-context-stage.md)。
+
 1. 一级目录data/：代表应用文件目录。
 
 2. 二级目录storage/：代表本应用持久化文件目录。
@@ -50,13 +55,6 @@
    通过ApplicationContext可以获取distributedfiles目录或base下的files、cache、preferences、temp等目录的应用文件路径，应用全局信息可以存放在这些目录下。
 
    通过UIAbilityContext、AbilityStageContext、ExtensionContext可以获取HAP级别应用文件路径。HAP信息可以存放在这些目录下，存放在此目录的文件会跟随HAP的卸载而删除，不会影响App级别目录下的文件。在开发态，一个应用包含一个或者多个HAP，详见[Stage模型应用程序包结构](../quick-start/application-package-structure-stage.md)。
-
-   Context上下文获取及上述应用文件路径的获取，详见[应用上下文Context](../application-models/application-context-stage.md)。
-
-   > **说明：**
-   >
-   > - 禁止直接使用上图中四级目录之前的目录名组成的路径字符串，否则可能导致后续应用版本因应用文件路径变化导致不兼容问题。
-   > - 应通过Context属性获取应用文件路径，包括但不限于上图中绿色背景的路径。
 
    应用文件路径具体说明及生命周期如下表所示。
 

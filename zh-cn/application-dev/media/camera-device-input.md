@@ -15,7 +15,9 @@
    ```
 
 2. 通过getCameraManager()方法，获取cameraManager对象。
-   [BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
+
+   Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
    ```ts
    function getCameraManager(context: common.BaseContext): camera.CameraManager {
      let cameraManager: camera.CameraManager = camera.getCameraManager(context);
