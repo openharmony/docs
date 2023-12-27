@@ -23,7 +23,6 @@
    // 待拷贝文件沙箱路径
    let filePath: string = pathDir + '/src.txt';
    
-
    try {
      // 文件不存在时，需要创建文件并写入内容
      let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
