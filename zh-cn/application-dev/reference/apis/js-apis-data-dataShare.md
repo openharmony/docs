@@ -714,7 +714,7 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 | 参数名    | 类型             | 必填 | 说明                           |
 | -------- | -----------------| ---- | ----------------------------- |
 | bundleName | string         | 是   | 表示数据所属的APP。  |
-| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | 是   | 回调函数，返回获取的过程中数据。 |
+| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | 是   | 回调函数，返回给定的APP和模板发布的数据。 |
 
 **错误码：**
 
@@ -755,7 +755,7 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 
 | 类型                                                         | 说明                                |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Promise对象。返回获取的过程中数据。 |
+| Promise&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Promise对象，返回给定的APP和模板发布的数据。 |
 
 **错误码：**
 
