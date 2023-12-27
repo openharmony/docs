@@ -159,6 +159,13 @@ save(options?: ScreenshotOptions): Promise&lt;image.PixelMap&gt;
 | ----------------------------- | ----------------------------------------------- |
 | Promise&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Promise对象。返回一个PixelMap对象。 |
 
+**错误码：**
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)
+
+|错误码值           |说明                       |
+|------------------|---------------------------|
+|1400001           | Invalid display or screen |
+
 **示例：**
 
 ```ts
