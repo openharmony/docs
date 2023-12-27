@@ -63,16 +63,22 @@ onHover(event: (isHover?: boolean) => void)
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered: boolean = false;
+  @State hoverText: string = 'Not Hover';
+  @State Color: Color = Color.Gray;
 
   build() {
     Column() {
-      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+      Button(this.hoverText)
         .width(200).height(100)
-        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .backgroundColor(this.Color)
         .onHover((isHover?: boolean) => { // 使用onHover接口监听鼠标是否悬浮在Button组件上
-          if(isHover){
-            this.isHovered = isHover;
+          if (isHover) {
+            this.hoverText = 'Hovered!';
+            this.Color = Color.Green;
+          }
+          else {
+            this.hoverText = 'Not Hover';
+            this.Color = Color.Gray;
           }
         })
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
@@ -118,28 +124,34 @@ onMouse(event: (event?: MouseEvent) => void)
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered: boolean = false;
   @State buttonText: string = '';
   @State columnText: string = '';
+  @State hoverText: string = 'Not Hover';
+  @State Color: Color = Color.Gray;
 
   build() {
     Column() {
-      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+      Button(this.hoverText)
         .width(200)
         .height(100)
-        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .backgroundColor(this.Color)
         .onHover((isHover?: boolean) => {
-          if(isHover){
-            this.isHovered = isHover
+          if (isHover) {
+            this.hoverText = 'Hovered!';
+            this.Color = Color.Green;
+          }
+          else {
+            this.hoverText = 'Not Hover';
+            this.Color = Color.Gray;
           }
         })
-       .onMouse((event?: MouseEvent) => {    // 设置Button的onMouse回调
-          if(event){
+        .onMouse((event?: MouseEvent) => { // 设置Button的onMouse回调
+          if (event) {
             this.buttonText = 'Button onMouse:\n' + '' +
-            'button = ' + event.button + '\n' +
-            'action = ' + event.action + '\n' +
-            'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-            'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+              'button = ' + event.button + '\n' +
+              'action = ' + event.action + '\n' +
+              'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+              'windowXY=(' + event.windowX + ',' + event.windowY + ')';
           }
         })
       Divider()
@@ -152,8 +164,8 @@ struct MouseExample {
     .justifyContent(FlexAlign.Center)
     .borderWidth(2)
     .borderColor(Color.Red)
-    .onMouse((event?: MouseEvent) => {    // Set the onMouse callback for the column.
-      if(event){
+    .onMouse((event?: MouseEvent) => { // Set the onMouse callback for the column.
+      if (event) {
         this.columnText = 'Column onMouse:\n' + '' +
           'button = ' + event.button + '\n' +
           'action = ' + event.action + '\n' +
