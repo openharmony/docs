@@ -56,6 +56,7 @@
     - [Special Effect Drawing Combination](ts-universal-attributes-use-effect.md)
     - [Render Fit](ts-universal-attributes-renderfit.md)
     - [Event Monopolization](ts-universal-attributes-monopolize-events.md)
+    - [Cursor Control](ts-universal-attributes-cursor.md)
   - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
@@ -178,6 +179,7 @@
   - [@ohos.arkui.advanced.EditableTitleBar (Editable Title Bar)](ts-composite-components-editabletitlebar.md)
   - [@ohos.arkui.advanced.Filter (Advanced Filter)](ts-composite-components-filter.md)
   - [@ohos.arkui.advanced.ProgressButton (Download Button with Progress Indicator)](ts-composite-components-progressbutton.md)
+  - [@ohos.arkui.advanced.Popup (Popup)](ohos-arkui-advanced-popup.md)
   - [@ohos.arkui.advanced.SegmentButton (Segment Button)](ohos-arkui-advanced-segmentbutton.md)
   - [@ohos.arkui.advanced.SelectionMenu (Context Menu on Selection)](ts-composite-components-selectionmenu.md)
   - [@ohos.arkui.advanced.SelectTitleBar (Drop-down Title Bar)](ts-composite-components-selecttitlebar.md)
