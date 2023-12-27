@@ -3973,7 +3973,7 @@ try {
 
 ### on('windowTitleButtonRectChange')<sup>11+</sup>
 
-on(type: 'windowTitleButtonRectChange', callback: Callback<TitleButtonRect>): void;
+on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void;
 
 开启标题栏三键位置变化的监听。
 
@@ -3981,10 +3981,10 @@ on(type: 'windowTitleButtonRectChange', callback: Callback<TitleButtonRect>): vo
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                                                         |
-| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                      | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏三键位置变化事件。 |
-| callback | Callback<TitleButt conRect> | 是   | 回调函数。返回当前的标题栏三键区域。                         |
+| 参数名   | 类型                            | 必填 | 说明                                                         |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                          | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏三键位置变化事件。 |
+| callback | Callback&lt;TitleButtonRect&gt; | 是   | 回调函数。返回当前的标题栏三键区域。                         |
 
 **示例：**
 
@@ -4001,7 +4001,7 @@ try {
 
 ### off('windowTitleButtonRectChange')<sup>11+</sup>
 
-off(type: 'windowTitleButtonRectChange', callback?: Callback<TitleButtonRect>): void
+off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
 关闭标题栏三键位置变化的监听。
 
@@ -4009,10 +4009,10 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback<TitleButtonRect>): 
 
 **参数：**
 
-| 参数名   | 类型                      | 必填 | 说明                                                         |
-| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                    | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏三键位置变化事件。 |
-| callback | Callback<TitleButtonRect> | 否   | 回调函数。返回当前的标题栏三键区域。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有标题栏三键位置变化的监听。 |
+| 参数名   | 类型                            | 必填 | 说明                                                         |
+| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                          | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏三键位置变化事件。 |
+| callback | Callback&lt;TitleButtonRect&gt; | 否   | 回调函数。返回当前的标题栏三键区域。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有标题栏三键位置变化的监听。 |
 
 **示例：**
 
