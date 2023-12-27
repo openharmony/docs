@@ -1,21 +1,25 @@
 # Thread Model Overview (Stage Model)
 
-For an application, each process has a main thread to provide the following functionalities:
+There are three types of threads in the stage model:
+- Main thread
+  - Draws the UI.
+  - Manages the ArkTS engine instance of the main thread so that multiple UIAbility components can run on it.
+  - Manages ArkTS engine instances of other threads, for example, using **TaskPool** to create or cancel tasks, and starting and terminating **Worker** threads.
+  - Distributes interaction events.
+  - Processes application code callbacks (event processing and lifecycle management).
+  - Receives messages sent by the **TaskPool** and **Worker** threads.
+- [TaskPool Worker Thread](../reference/apis/js-apis-taskpool.md)
 
-- Draw the UI.
-- Manage the ArkTS engine instance of the main thread so that multiple UIAbility components can run on it.
-- Manage ArkTS engine instances of other threads, for example, starting and terminating other threads.
-- Distribute interaction events.
-- Process application code callbacks (event processing and lifecycle management).
-- Receive messages sent by the worker thread.
+  Used for time-consuming operations and provides APIs for setting the scheduling priority and load balancing. It is recommended.
+- [Worker Thread](../reference/apis/js-apis-worker.md)
 
-In addition to the main thread, there is an independent thread, named worker. The worker thread is mainly used to perform time-consuming operations. The worker thread is created in the main thread and is independent from the main thread. It cannot directly operate the UI. A maximum of eight worker threads can be created. 
+  Used for time-consuming operations and supports inter-thread communication.
+For details about the operation mechanism, communication method, and usage of **TaskPool** and **Worker**, see [Comparison Between TaskPool and Worker](../arkts-utils/taskpool-vs-worker.md).
+
 ![thread-model-stage](figures/thread-model-stage.png)
-
-Based on the thread model, different services run on different threads. Service interaction requires inter-thread communication. In the same process, threads can communicate with each other in Emitter or Worker mode. Emitter is mainly used for event synchronization between threads, and Worker is mainly used to execute time-consuming tasks.
 
 > **NOTE**
 >
-> - The stage model provides only the main thread and worker thread. Emitter is mainly used for event synchronization within the worker thread or between the main thread and worker thread.
-> - The UIAbility and UI are in the main thread. For details about data synchronization between them, see [Data Synchronization Between UIAbility and UI](uiability-data-sync-with-ui.md).
-> - To view thread information about an application process, run the **hdc shell** command to enter the shell CLI of the device, and then run the **ps -p *<pid>* -T command**, where *<pid>* indicates the [process ID](process-model-stage.md) of the application.
+> - **TaskPool** manages the number of threads that can be created and their lifecycle. A maximum of eight **Worker** threads can be created, and you need to manage their lifecycle.
+> - Multiple components can exist in the same thread. For example, both UIAbility and UI components exist in the main thread. In the stage model, [EventHub](itc-with-eventHub.md) is used for data communication.
+> - To view thread information about an application process, run the **hdc shell** command to enter the shell CLI of the device, and then run the **ps -p *\<pid>* -T command**, where *\<pid>* indicates the [process ID](process-model-stage.md) of the application.
