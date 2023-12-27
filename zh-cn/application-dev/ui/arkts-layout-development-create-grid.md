@@ -81,7 +81,7 @@ Grid() {
 
 在单个网格单元中，rowStart和rowEnd属性表示指定当前元素起始行号和终点行号，columnStart和columnEnd属性表示指定当前元素的起始列号和终点列号。
 
-所以“0”按键横跨第一列和第二列，只要将“0”对应GridItem的columnStart和columnEnd设为1和2，将“=”对应GridItem的的rowStart和rowEnd设为5和6即可。
+所以“0”按键横跨第一列和第二列，只要将“0”对应GridItem的columnStart和columnEnd设为1和2，将“=”对应GridItem的rowStart和rowEnd设为5和6即可。
 
 
 ```ts
@@ -108,13 +108,13 @@ GridItem() {
 
 ### 设置主轴方向
 
-使用Grid构建网格布局时，若没有设置行列数量与占比，可以通过layoutDirection可以设置网格布局的主轴方向，决定子组件的排列方式。此时可以结合minCount和maxCount属性来约束主轴方向上的网格数量。
+使用Grid构建网格布局时，若没有设置行列数量与占比，可以通过layoutDirection设置网格布局的主轴方向，决定子组件的排列方式。此时可以结合minCount和maxCount属性来约束主轴方向上的网格数量。
 
   **图6** 主轴方向示意图  
 
 ![zh-cn_image_0000001562700469](figures/zh-cn_image_0000001562700469.png)
 
-当前layoutDirection设置为Row时，先从左到右排列，排满一行再排一下一行。当前layoutDirection设置为Column时，先从上到下排列，排满一列再排一下一列，如上图所示。此时，将maxCount属性设为3，表示主轴方向上最大显示的网格单元数量为3。
+当前layoutDirection设置为Row时，先从左到右排列，排满一行再排下一行。当前layoutDirection设置为Column时，先从上到下排列，排满一列再排下一列，如上图所示。此时，将maxCount属性设为3，表示主轴方向上最大显示的网格单元数量为3。
 
 
 ```ts
