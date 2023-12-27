@@ -363,19 +363,20 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
 // 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath = '/data/storage/el2/base/files/';
 let filePath  = sandBoxPath + 'SendReq.mms';
 
 // 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf = {
+let mmsConf: sms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // 发送彩信参数(mmsc以联通卡为例)
-let mmsPars = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -383,7 +384,7 @@ let mmsPars = {
 };
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
     sms.sendMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
             console.error(`sendMms fail, err : ${JSON.stringify(err)}`);
@@ -476,19 +477,20 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
 // 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath = '/data/storage/el2/base/files/';
 let filePath  = sandBoxPath + 'SendReq.mms';
 
 // 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf = {
+let mmsConf: sms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // 发送彩信参数(mmsc以联通卡为例)
-let mmsPars = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -496,7 +498,7 @@ let mmsPars = {
 };
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
     let promise = sms.sendMms(this.context, mmsPars);
     promise.then(() => {
         console.log(`sendMms success`);
@@ -587,6 +589,7 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import mms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
 // 彩信pdu存储路径
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -596,13 +599,13 @@ let filePath  = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl  = 'URL';
 
 // 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf = {
+let mmsConf: mms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // 下载彩信参数
-let mmsPars = {
+let mmsPars: mms.MmsParams = {
   slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -610,7 +613,7 @@ let mmsPars = {
 };
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
     mms.downloadMms(this.context, mmsPars, async(err: BusinessError) =>{
         if (err) {
             console.error(`downloadMms fail, err : ${JSON.stringify(err)}`);
@@ -706,6 +709,7 @@ Stage模型示例：
 import UIAbility from '@ohos.app.ability.UIAbility';
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
 // 彩信pdu存储路径
 const sandBoxPath = '/data/storage/el2/base/files/';
@@ -715,13 +719,13 @@ let filePath  = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl  = 'URL';
 
 // 彩信用户代理、用户代理描述配置。根据运营商要求配置，默认ua，uaprof
-let mmsConf = {
+let mmsConf: sms.MmsConfig = {
   userAgent:'ua',
   userAgentProfile: 'uaprof'
 };
 
 // 下载彩信参数
-let mmsPars = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -729,7 +733,7 @@ let mmsPars = {
 };
 
 class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
     let promise = sms.downloadMms(this.context, mmsPars);
     promise.then(() => {
         console.log(`downloadMms success`);

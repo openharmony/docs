@@ -110,7 +110,7 @@ The [universal events](ts-universal-events-click.md) are supported.
 ## Example
 
 ```ts
-import { IconType } from '@ohos.arkui.advanced.ComposeListItem';
+import { IconType, ComposeListItem } from '@ohos.arkui.advanced.ComposeListItem';
 import promptAction from '@ohos.promptAction'
 
 @Entry

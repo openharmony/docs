@@ -514,7 +514,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统） |
+| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -551,7 +551,7 @@ setLanguage(language: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取  |
+| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取。  |
 
 **错误码**：
 
@@ -622,7 +622,7 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 **参数：**
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callback | AsyncCallback\<void> | 是   | 回调方法。清理应用本身的数据成功时，err为undefined，否则返回错误对象。  |
+| callback | AsyncCallback\<void> | 是   | 回调方法。清理应用本身的数据成功时，error为undefined，否则返回错误对象。  |
 
 **错误码**：
 
@@ -668,16 +668,17 @@ on(type: 'abilityAutoStartup', callback: AutoStartupCallback): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
     try {
       applicationContext.on('abilityAutoStartup', {
-        onAutoStartupOn(data) {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
           console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
         },
-        onAutoStartupOff(data) {
+        onAutoStartupOff(data: common.AutoStartupInfo) {
           console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
         }
       });
@@ -707,16 +708,17 @@ off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
     try {
       applicationContext.off('abilityAutoStartup', {
-        onAutoStartupOn(data) {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
           console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
         },
-        onAutoStartupOff(data) {
+        onAutoStartupOff(data: common.AutoStartupInfo) {
           console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
         }
       });
@@ -746,6 +748,7 @@ setAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -754,7 +757,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -797,7 +800,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
         console.info('====> setAutoStartup data: ' + JSON.stringify(data));
       }).catch((err: BusinessError) => {
         console.info('====> setAutoStartup err: ' + JSON.stringify(err));
@@ -828,6 +831,7 @@ cancelAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -836,7 +840,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -879,7 +883,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
           console.info('====> cancelAutoStartup data: ' + JSON.stringify(data));
       }).catch((err: BusinessError) => {
           console.info('====> cancelAutoStartup err: ' + JSON.stringify(err));
@@ -910,6 +914,7 @@ isAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<boolean\>): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -918,7 +923,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: boolean) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -961,7 +966,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: boolean) => {
         console.info('====> isAutoStartup data: ' + JSON.stringify(data));
       }).catch((err: BusinessError) => {
         console.info('====> isAutoStartup err: ' + JSON.stringify(err));

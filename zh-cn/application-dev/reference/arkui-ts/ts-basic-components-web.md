@@ -16,7 +16,7 @@
 
 ## 接口
 
-Web(options: { src: ResourceStr, controller: WebviewController | WebController})
+Web(options: { src: ResourceStr, controller: WebviewController | WebController, incognitoMode? : boolean})
 
 > **说明：**
 >
@@ -29,6 +29,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | [ResourceStr](ts-types.md#resourcestr)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 
 **示例：**
 
@@ -45,6 +46,24 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
+      }
+    }
+  }
+  ```
+
+隐私模式Webview加载在线网页。
+ 
+   ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller, incognitoMode: true })
       }
     }
   }
@@ -3145,6 +3164,39 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
   }
   ```
 
+### onContextMenuHide<sup>11+</sup>
+
+onContextMenuHide(callback: OnContextMenuHideCallback)
+
+长按特定元素（例如图片，链接）或鼠标右键，隐藏菜单。
+
+**参数：**
+
+| 参数名    | 参数类型                                     | 参数描述        |
+| ------ | ---------------------------------------- | ----------- |
+| callback  | [OnContextMenuHideCallback](#oncontextmenuhidecallback11) | 菜单相关参数。     |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onContextMenuHide(() => {
+            console.log("onContextMenuHide callback")
+        })
+      }
+    }
+  }
+  ```
+
 ### onScroll<sup>9+</sup>
 
 onScroll(callback: (event: {xOffset: number, yOffset: number}) => void)
@@ -4981,6 +5033,10 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | ------ | ----------- |
 | NEVER  | Web过滚动模式关闭。 |
 | ALWAYS | Web过滚动模式开启。 |
+
+## OnContextMenuHideCallback<sup>11+</sup>
+
+上下文菜单自定义隐藏的回调。
 
 ## SslError<sup>9+</sup>枚举说明
 

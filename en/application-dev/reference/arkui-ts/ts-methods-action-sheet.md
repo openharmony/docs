@@ -48,8 +48,66 @@ Defines and shows the action sheet.
 | DEFAULT   | Blue text on white background (black background under the dark theme).|
 | HIGHLIGHT | White text on blue background.                       |
 
-
 ## Example
+
+### Example 1
+
+```ts
+@Entry
+@Component
+struct ActionSheetExample {
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button('Click to Show ActionSheet')
+        .onClick(() => {
+          ActionSheet.show({
+            title: 'ActionSheet title',
+            subtitle: 'ActionSheet subtitle',
+            message: 'message',
+            autoCancel: true,
+            confirm: {
+              defaultFocus: true,
+              value: 'Confirm button',
+              action: () => {
+                console.log('Get Alert Dialog handled')
+              }
+            },
+            cancel: () => {
+              console.log('actionSheet canceled')
+            },
+            alignment: DialogAlignment.Bottom,
+            offset: { dx: 0, dy: -10 },
+            sheets: [
+              {
+                title: 'apples',
+                action: () => {
+                  console.log('apples')
+                }
+              },
+              {
+                title: 'bananas',
+                action: () => {
+                  console.log('bananas')
+                }
+              },
+              {
+                title: 'pears',
+                action: () => {
+                  console.log('pears')
+                }
+              }
+            ]
+          })
+        })
+    }.width('100%')
+    .height('100%')
+  }
+}
+```
+
+![en-us_image_action](figures/en-us_image_action.gif)
+
+### Example 2
 
 ```ts
 @Entry
@@ -76,7 +134,7 @@ struct ActionSheetExample {
             cancel: () => {
               console.log('actionSheet canceled')
             },
-            alignment: DialogAlignment.Bottom,
+            alignment: DialogAlignment.Center,
             offset: { dx: 0, dy: -10 },
             sheets: [
               {

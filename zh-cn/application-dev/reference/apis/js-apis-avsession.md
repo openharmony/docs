@@ -4698,11 +4698,10 @@ getOutputDeviceSync(): OutputDeviceInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let currentOutputDevice: avSession.OutputDeviceInfo = currentAVSession.getOutputDeviceSync();
-} catch (err: BusinessError) {
+} catch (err) {
   console.info(`getOutputDeviceSync error, error code: ${err.code}, error message: ${err.message}`);
 }
 ```
@@ -8415,11 +8414,10 @@ getAVPlaybackStateSync(): AVPlaybackState;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let playbackState: avsession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
-} catch (err: BusinessError) {
+} catch (err) {
   console.info(`getAVPlaybackStateSync error, error code: ${err.code}, error message: ${err.message}`);
 }
 ```
@@ -8450,11 +8448,10 @@ getAVMetadataSync(): AVMetadata
 
 **示例：**
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let metaData: avsession.AVMetadata = avsessionController.getAVMetadataSync();
-} catch (err: BusinessError) {
+} catch (err) {
   console.info(`getAVMetadataSync error, error code: ${err.code}, error message: ${err.message}`);
 }
 ```
@@ -8634,11 +8631,10 @@ getAVQueueTitleSync(): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let currentQueueTitle: string = avsessionController.getAVQueueTitleSync();
-} catch (err: BusinessError) {
+} catch (err) {
   console.info(`getAVQueueTitleSync error, error code: ${err.code}, error message: ${err.message}`);
 }
 ```
@@ -8670,11 +8666,10 @@ getAVQueueItemsSync(): Array\<AVQueueItem\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let currentQueueItems: Array<avsession.AVQueueItem> = avsessionController.getAVQueueItemsSync();
-} catch (err: BusinessError) {
+} catch (err) {
   console.info(`getAVQueueItemsSync error, error code: ${err.code}, error message: ${err.message}`);
 }
 ```
@@ -8705,11 +8700,10 @@ getOutputDeviceSync(): OutputDeviceInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let currentOutputDevice: avSession.OutputDeviceInfo = avsessionController.getOutputDeviceSync();
-} catch (err: BusinessError) {
+} catch (err) {
   console.info(`getOutputDeviceSync error, error code: ${err.code}, error message: ${err.message}`);
 }
 ```
@@ -8741,11 +8735,10 @@ isActiveSync(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let isActive: boolean = avsessionController.isActiveSync();
-} catch (err: BusinessError) {
+} catch (err) {
   console.info(`isActiveSync error, error code: ${err.code}, error message: ${err.message}`);
 }
 ```
@@ -8777,11 +8770,10 @@ getValidCommandsSync(): Array\<AVControlCommandType\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 
 try {
   let validCommands: Array<avSession.AVControlCommandType> = avsessionController.getValidCommandsSync();
-} catch (err: BusinessError) {
+} catch (err) {
   console.info(`getValidCommandsSync error, error code: ${err.code}, error message: ${err.message}`);
 }
 ```

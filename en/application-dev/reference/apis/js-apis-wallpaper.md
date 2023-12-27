@@ -1,6 +1,6 @@
 # @ohos.wallpaper (Wallpaper)
 
-The **wallpaper** module is a system service module in OpenHarmony that provides the wallpaper management service. You can use the APIs of this module to show, set, and switch between wallpapers.
+The **wallpaper** module provides APIs for switching between wallpapers. Since API version 9, the APIs of this module function as system APIs, and only system applications are allowed to switch between wallpapers. Applications that use the wallpaper, for example, the home screen, need to subscribe to wallpaper changes and update the wallpaper accordingly.
 
 > **NOTE**
 > 
@@ -145,7 +145,7 @@ try {
 
 setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the content from a specified URI as the wallpaper. This API works only when com.ohos.sceneboard is set. This API uses an asynchronous callback to return the result.
+Sets a specific ZIP file as the wallpaper. This API works only when **com.ohos.sceneboard** is set. Applications with the **ohos.permission.GET_WALLPAPER** permission have access to the **/data/wallpaper/** directory. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.SET_WALLPAPER
 
@@ -157,7 +157,7 @@ Sets the content from a specified URI as the wallpaper. This API works only when
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string | Yes| URI of the custom wallpaper.|
+| source | string | Yes| ZIP file to set as the wallpaper.|
 | wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the wallpaper is set, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -185,7 +185,7 @@ try {
 
 setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
 
-Sets the content from a specified URI as the wallpaper. This API works only when com.ohos.sceneboard is set. This API uses a promise to return the result.
+Sets a specific ZIP file as the wallpaper. This API works only when **com.ohos.sceneboard** is set. Applications with the **ohos.permission.GET_WALLPAPER** permission have access to the **/data/wallpaper/** directory. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.SET_WALLPAPER
 
@@ -197,7 +197,7 @@ Sets the content from a specified URI as the wallpaper. This API works only when
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| source | string | Yes| URI of the custom wallpaper.|
+| source | string | Yes| ZIP file to set as the wallpaper.|
 | wallpaperType | [WallpaperType](#wallpapertype7) | Yes| Wallpaper type.|
 
 **Return value**
@@ -647,7 +647,7 @@ Subscribes to the wallpaper color change event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to subscribe to. The value **'colorChange'** indicates subscribing to the wallpaper color change event.|
-| callback | function | Yes| Callback triggered when the wallpaper color changes. The wallpaper type and main colors are returned.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- wallpaperType<br>  Wallpaper type.|
+| callback | function | Yes| Callback triggered when the wallpaper color changes. The wallpaper type and main colors are returned.<br>- **colors**:<br>  Main color of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- **wallpaperType**:<br>  Wallpaper type. |
 
 **Example**
 
@@ -679,7 +679,7 @@ Unsubscribes from the wallpaper color change event.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Type of the event to unsubscribe from. The value **'colorChange'** indicates unsubscribing from the wallpaper color change event.|
-| callback | function | No|   Callback used for unsubscription. If this parameter is not set, this API unsubscribes from all callbacks of the specified event type.<br>- colors<br>  Main color information of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- wallpaperType<br>  Wallpaper type.|
+| callback | function | No|   Callback used for unsubscription. If this parameter is not set, this API unsubscribes from all callbacks of the specified event type.<br>- colors<br>  Main color of the wallpaper. For details, see [RgbaColor](#rgbacolordeprecated).<br>- wallpaperType<br>  Wallpaper type.|
 
 **Example**
 

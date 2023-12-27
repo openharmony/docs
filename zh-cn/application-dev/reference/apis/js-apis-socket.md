@@ -545,7 +545,8 @@ class SocketInfo {
 let messageView = '';
 udp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -585,7 +586,8 @@ let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -2401,7 +2403,8 @@ class SocketInfo {
 let messageView = '';
 tcp.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -2441,7 +2444,8 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -3456,7 +3460,8 @@ tcpServer.on('connect', (client: socket.TCPSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message[i]
+      let uint8Array = new Uint8Array(value.message) 
+      let messages = uint8Array[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -3503,7 +3508,8 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -4034,7 +4040,8 @@ class SocketInfo {
 let messageView = '';
 tls.on('message', (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -4074,7 +4081,8 @@ class SocketInfo {
 let messageView = '';
 let callback = (value: SocketInfo) => {
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }
@@ -6800,7 +6808,8 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
   client.on('message', (value: SocketInfo) => {
     let messageView = '';
     for (let i: number = 0; i < value.message.byteLength; i++) {
-      let messages: number = value.message[i]
+      let uint8Array = new Uint8Array(value.message) 
+      let messages = uint8Array[i]
       let message = String.fromCharCode(messages);
       messageView += message;
     }
@@ -6870,7 +6879,8 @@ class SocketInfo {
 let callback = (value: SocketInfo) => {
   let messageView = '';
   for (let i: number = 0; i < value.message.byteLength; i++) {
-    let messages: number = value.message[i]
+    let uint8Array = new Uint8Array(value.message) 
+    let messages = uint8Array[i]
     let message = String.fromCharCode(messages);
     messageView += message;
   }

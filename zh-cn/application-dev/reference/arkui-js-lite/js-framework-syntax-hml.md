@@ -167,19 +167,19 @@ export default {
 ```html
 <!-- xxx.hml -->
 <div class="array-container">
-  <!-- div列表渲染 -->
-  <!-- 默认$item代表数组中的元素, $idx代表数组中的元素索引 -->
-  <div for="{{array}}" tid="id" onclick="changeText">
-    <text>{{$idx}}.{{$item.name}}</text>
-  </div>
-  <!-- 自定义元素变量名称 -->
-  <div for="{{value in array}}" tid="id" onclick="changeText">    
-    <text>{{$idx}}.{{value.name}}</text>
-  </div>
-  <!-- 自定义元素变量、索引名称 -->
-  <div for="{{(index, value) in array}}" tid="id" onclick="changeText">    
-    <text>{{index}}.{{value.name}}</text>
-  </div>
+    <!-- div列表渲染 -->
+    <!-- 默认$item代表数组中的元素, $idx代表数组中的元素索引 -->
+    <div class="item-container" for="{{array}}" tid="id" onclick="changeText">
+        <text>{{$idx}}.{{$item.name}}</text>
+    </div>
+    <!-- 自定义元素变量名称 -->
+    <div class="item-container" for="{{value in array}}" tid="id" onclick="changeText">
+        <text>{{$idx}}.{{value.name}}</text>
+    </div>
+    <!-- 自定义元素变量、索引名称 -->
+    <div class="item-container" for="{{(index, value) in array}}" tid="id" onclick="changeText">
+        <text>{{index}}.{{value.name}}</text>
+    </div>
 </div>
 ```
 
@@ -202,6 +202,25 @@ export default {
   },
 }
 ```
+
+
+```css
+.array-container {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.item-container {
+    margin-top: 10px;
+    width: 200px;
+    height: 50px;
+    flex-direction: column;
+}
+```
+
 
 tid属性主要用来加速for循环的重渲染，旨在列表中的数据有变更时，提高重新渲染的效率。tid属性是用来指定数组中每个元素的唯一标识，如果未指定，数组中每个元素的索引为该元素的唯一id。例如上述tid="id"表示数组中的每个元素的id属性为该元素的唯一标识。for循环支持的写法如下：
 

@@ -562,7 +562,7 @@ imageSource.createPixelMap(opts).then((pixelMap: image.PixelMap) => {
 
 getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap&gt;): void;
 
-获取壁纸图片的像素图。使用callback异步回调。
+获取壁纸图片的像素图，且只能获取使用setImage设置的静态壁纸。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 
@@ -597,7 +597,7 @@ wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessErr
 
 getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
-获取壁纸图片的像素图。使用promise异步回调。
+获取壁纸图片的像素图，且只能获取使用setImage设置的静态壁纸。使用promise异步回调。
 
 **需要权限**：ohos.permission.GET_WALLPAPER
 

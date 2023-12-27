@@ -5,7 +5,7 @@
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在FA模型下使用。Stage模型下需使用[dataAbility模块](js-apis-data-ability.md)和[dataShare模块](js-apis-data-dataShare.md)。
+> 除了[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。Stage模型下需使用[dataAbility模块](js-apis-data-ability.md)和[dataShare模块](js-apis-data-dataShare.md)。
 
 ## 导入模块
 

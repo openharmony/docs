@@ -28,7 +28,7 @@ Usage:
 
 
 ```ts
-this.MyBuilderFunction() { ... }
+this.MyBuilderFunction()
 ```
 
 - You can define one or more @Builder decorated methods in a custom component. Such a method is considered as a private, special type of member function of the component.

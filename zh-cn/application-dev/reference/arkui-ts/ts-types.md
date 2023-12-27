@@ -230,7 +230,7 @@
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 每个值的有效范围是[0, 1], 矩阵是行优先的。 |
+| constructor | number[] | 是    | 创建具有4\*5矩阵的颜色过滤器, 入参为[m\*n]位于m行和n列中矩阵值, 矩阵是行优先的。 |
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -339,9 +339,9 @@ Tabs组件动画相关信息集合。
 
 | 名称            | 类型定义                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
-| currentOffset | number | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0.|
-| targetOffset | number | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0.|
-| velocity | number | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0.|
+| currentOffset | number | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
+| targetOffset | number | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
+| velocity | number | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
 
 ## SafeAreaType<sup>10+</sup>
 
@@ -377,7 +377,26 @@ Tabs组件动画相关信息集合。
 
 配置跟手点坐标，不配置时，默认居中。
 
-| 名称   | 描述       |
-| ------ | ---------- |
-| X | 跟手点X轴坐标。 |
-| Y | 跟手点Y轴坐标。 |
+| 名称   | 类型定义 | 描述       |
+| ------ | ----------------------| ---------- |
+| X | [Dimension](#dimension10) | 跟手点X轴坐标。 |
+| Y | [Dimension](#dimension10) | 跟手点Y轴坐标。 |
+
+## TabContentAnimatedTransition<sup>11+</sup>
+
+Tabs自定义切换动画相关信息。
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| timeout | number | Tabs自定义切换动画超时时间。从自定义动画开始切换计时，如果到达该时间后，开发者仍未调用[TabContentTransitionProxy](#tabcontenttransitionproxy11)的finishTransition接口通知Tabs组件自定义动画结束，那么组件就会认为此次自定义动画已结束，直接执行后续操作。单位ms，默认值为1000.|
+| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | 自定义切换动画具体内容。|
+
+## TabContentTransitionProxy<sup>11+</sup>
+
+Tabs自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画的起始和目标页面信息，同时，也可以通过调用该对象的finishTransition接口通知Tabs组件自定义动画已结束。
+
+| 名称            | 类型定义                   | 描述                                       |
+| ------------- | ---------------------- | ---------------------------------------- |
+| from | number | 自定义动画起始页面对应的index值。|
+| to | number | 自定义动画目标页面对应的index值。|
+| finishTransition() | void | 通知Tabs组件，此次自定义动画已结束。|

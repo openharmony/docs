@@ -38,7 +38,7 @@ CounterOptions定义Counter的类型及具体式样参数。
 
 | 名称        | 类型       | 必填        | 说明                            |
 | ----------- | ---------- | ------| --------------------------------- |
-| type | [CounterTyle](#countertyle) | 是   | 指定当前Counter的类型。 |
+| type | [CounterType](#countertype) | 是   | 指定当前Counter的类型。 |
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | 否    | 列表型和紧凑型counter的式样。 |
 | inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | 否 | 数值型内联型counter的式样。   |
 | dateOptions | [DateStyleOptions](#datestyleoptions) | 否 | 日期型内联型counter的式样。 |
@@ -52,9 +52,9 @@ CounterOptions定义Counter的类型及具体式样参数。
 | CounterTyle.INLINE      | InlineStyleOptions |
 | CounterTyle.INLINE_DATE | DateStyleOptions   |
 
-## CounterTyle
+## CounterType
 
-CounterTyle指定Counter的类型，如列表型Counter。
+CounterType指定Counter的类型，如列表型Counter。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -64,6 +64,7 @@ CounterTyle指定Counter的类型，如列表型Counter。
 | COMPACT     | 紧凑型Counter。             |
 | INLINE      | 普通数字内联调节型Counter。 |
 | INLINE_DATE | 日期型内联型Counter。       |
+
 ## CommonOptions
 
 CommonOptions定义Counter的共通属性和事件。

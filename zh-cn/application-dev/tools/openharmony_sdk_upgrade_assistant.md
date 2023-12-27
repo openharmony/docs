@@ -60,21 +60,24 @@ OpenHarmony SDK 升级助手，用于帮助开发者快速解决OpenHarmony应�
 
 ![suap-warehouse](figures/suap-warehouse.png)
 
-2.在本地collect_application_api工具目录下创建名为'deps'的文件夹，在deps文件夹，放置[typescript](https://gitee.com/openharmony/third_party_typescript/tree/master/build_package)源码。
+2.在本地api_diff工具和collect_application_api工具目录下进入终端，进行安装和编译。
 
-![suap-deps](figures/suap-deps.png)
+> **说明：**
+>
+> 需保证node.js版本为14.
+>
 
-3.在本地api_diff工具和collect_application_api工具目录下进入终端，进行安装和编译。输入命令：npm install，之后进行构建：npm run build。构建成功之后，会在对应的工具文件夹下生成dist=>build=>api-diff.js和dist=>build=>api-collector.js
+输入命令：npm install，之后进行构建：npm run build。构建成功之后，会在对应的工具文件夹下生成dist=>build=>api-diff.js和dist=>build=>api-collector.js
 
 ![suap-diff](figures/suap-diff.png)
 ![suap-collect](figures/suap-collect.png)
 
-4.在本地磁盘的最后一个盘符，创建名为'updateCheck'文件夹，内部分别创建'api-diff'和'collect_application_api'文件夹。</br>将步骤3中的api-diff.js文件放置'api-diff'文件夹下，collect_application_api文件夹下libs文件夹以及api-collector.js放置在'collect_application_api'文件夹下。
+3.在本地磁盘的最后一个盘符，创建名为'updateCheck'文件夹，内部分别创建'api-diff'和'collect_application_api'文件夹。</br>将步骤3中的api-diff.js文件放置'api-diff'文件夹下，collect_application_api文件夹下libs文件夹以及api-collector.js放置在'collect_application_api'文件夹下。
 
 ![suap-diff-file](figures/suap-diff-file.png)
 ![suap-collect-file](figures/suap-collect-file.png)
 
-5.升级辅助工具源码clone下来之后，在idea上打开，需要配置gradle环境，并且在src同级目录下新建'build.gradle.kts'文件，将下面内容粘贴至文件中，刷新gradle，在idea右侧gradle工具栏即可运行项目和打包成插件。
+4.升级辅助工具源码clone下来之后，在idea上打开，需要配置gradle环境，并且在src同级目录下新建'build.gradle.kts'文件，将下面内容粘贴至文件中，刷新gradle，在idea右侧gradle工具栏即可运行项目和打包成插件。
 ```lombok.config
 plugins {
     id("java")

@@ -42,7 +42,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 | value | number | 设置量规图的数据值，可用于动态修改量规图的数据值。<br/>默认值：0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | startAngle | number | 设置起始角度位置，时钟0点为0度，顺时针方向为正角度。<br/>默认值：0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | endAngle | number | 设置终止角度位置，时钟0点为0度，顺时针方向为正角度。<br/>默认值：360<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) \| Array&lt;[ColorStop](#colorstop)&gt; | 设置量规图的颜色，支持分段颜色设置。<br/>API version 9 默认值：Color.Black<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br/>从API version 11开始，该接口使用以下规则：<br/> 参数类型为ResourceColor，则圆环类型为单色环。<br/> 参数类型为LinearGradient，则圆环类型为渐变环。<br/> 参数类型为数组，则圆环类型为分段渐变环。<br/> 分段渐变环最大显示段数为9段，若多于9段，则多于部分不显示。<br/>API version 11默认值：<br>若不传颜色，或者数组为空，无法确定圆环类型及颜色，则圆环颜色为0xFF64BB5C、0xFFF7CE00、0xFFE84026的渐变环。<br/>若传入颜色，但颜色值有误，则该颜色为黑色。 |
+| colors | [ResourceColor<sup>11+</sup>](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明) \| Array&lt;[ColorStop](#colorstop)&gt; | 设置量规图的颜色，支持分段颜色设置。<br/>API version 9 默认值：Color.Black<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br/>从API version 11开始，该接口使用以下规则：<br/> 参数类型为ResourceColor，则圆环类型为单色环。<br/> 参数类型为LinearGradient，则圆环类型为渐变环。<br/> 参数类型为数组，则圆环类型为分段渐变环。<br/> 分段渐变环最大显示段数为9段，若多于9段，则多于部分不显示。<br/>API version 11默认值：<br>若不传颜色，或者数组为空，无法确定圆环类型及颜色，则圆环颜色为"0xFF64BB5C"、"0xFFF7CE00"、"0xFFE84026"的渐变环。<br/>若传入颜色，但颜色值有误，则该颜色为"0xFFE84026"。 |
 | strokeWidth | Length | 设置环形量规图的环形厚度。<br/>默认值：4<br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>不支持百分比。 |
 | description<sup>11+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | 设置说明文本。<br/>**说明：** <br/>@Builder中内由开发者自定义，建议使用文本或者图片。<br/>若自定义部分的宽高为百分比形式，则基准范围为圆环直径的44.4%*25.4%的矩形（图片为28.6%*28.6%），距离圆环底部0vp，左右居中。<br/>设置null则不显示内容。<br/>不设置则依赖是否设置数据最大最小值。<br/>若设置最大最小值或者只设置其中一个，则显示最大最小值。<br/>若未设置最大最小值，则不显示内容。<br/>最大最小值显示在圆环底部，位置不可移动，若圆环开口角度设置不恰当，存在圆环遮挡文字的情况。|
 | trackShadow<sup>11+</sup> | [GuageShadowOptions](#guageshadowoptions11对象说明) | 设置阴影样式。<br/>**说明：** <br/>阴影颜色与圆环颜色一致。<br/>设置null为不开启投影。|
@@ -56,7 +56,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 
 | 名称      | 类型定义             | 描述                                                         |
 | --------- | -------------------- | ------------------------------------------------------------ |
-| ColorStop | [[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，若设置为非颜色类型，则置为黑色。第二个参数为颜色所占比重，若设置为负数或是非数值类型，则将比重置为0。 |
+| ColorStop | [[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient<sup>11+</sup>](ts-basic-components-datapanel.md#lineargradient10对象说明),&nbsp;number] | 描述渐进色颜色断点类型，第一个参数为颜色值，若设置为非颜色类型，则置为"0xFFE84026"。第二个参数为颜色所占比重，若设置为负数或是非数值类型，则将比重置为0。 |
 
 ## GuageShadowOptions<sup>11+</sup>对象说明
 | 名称          | 参数类型 | 必填 | 描述 |
@@ -78,7 +78,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 @Entry
 @Component
 struct Gauge1 {
-  @Builder DescriptionBuilder() {
+  @Builder descriptionBuilder() {
     Text('说明文本')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
@@ -130,7 +130,7 @@ struct Gauge1 {
       .height('80%')
       .strokeWidth(18)
       .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-      .description(this.DescriptionBuilder)
+      .description(this.descriptionBuilder)
       .padding(18)
     }.margin({ top: 40 }).width('100%').height('100%')
   }
@@ -144,7 +144,7 @@ struct Gauge1 {
 @Entry
 @Component
 struct Gauge2 {
-  @Builder DescriptionBuilderImage() {
+  @Builder descriptionBuilderImage() {
     Image($r('sys.media.ohos_ic_public_clock')).width(72).height(72)
   }
 
@@ -170,7 +170,7 @@ struct Gauge2 {
       .width('80%')
       .height('80%')
       .strokeWidth(18)
-      .description(this.DescriptionBuilderImage)
+      .description(this.descriptionBuilderImage)
       .padding(18)
     }.margin({ top: 40 }).width('100%').height('100%')
   }
@@ -184,7 +184,7 @@ struct Gauge2 {
 @Entry
 @Component
 struct Gauge3 {
-  @Builder DescriptionBuilder() {
+  @Builder descriptionBuilder() {
     Text('说明文本')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
@@ -226,7 +226,7 @@ struct Gauge3 {
         .width('80%')
         .height('80%')
         .strokeWidth(18)
-        .description(this.DescriptionBuilder)
+        .description(this.descriptionBuilder)
         .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
         .padding(18)
       }.margin({ top: 40 }).width('100%').height('100%')

@@ -16,6 +16,7 @@
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
     - [@ohos.app.ability.common (应用上下文Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
+    - [@ohos.app.ability.dialogSession (dialogSession)](js-apis-app-ability-dialogSession.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (扩展能力基类)](js-apis-app-ability-extensionAbility.md)
     - [@ohos.app.ability.insightIntent (insightIntent)](js-apis-app-ability-insightIntent.md)
@@ -93,12 +94,14 @@
     - application
       - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
       - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
+      - [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver.md)
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
       - [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)
       - [AbilityStateData](js-apis-inner-application-abilityStateData.md)
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
+      - [AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver.md)
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)
       - [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)
       - [AppStateData](js-apis-inner-application-appStateData.md)
@@ -218,6 +221,7 @@
     - [metadata](js-apis-bundleManager-metadata.md)
     - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
     - [permissionDef](js-apis-bundleManager-permissionDef.md)
+    - [recoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)
     - [remoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)
     - [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)
     - [SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)
@@ -250,6 +254,7 @@
   - [@ohos.display (屏幕属性)](js-apis-display.md)
   - [@ohos.effectKit (图像效果)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (色彩管理)](js-apis-colorSpaceManager.md)
+  - [@ohos.graphics.displaySync (可变帧率)](js-apis-graphics-displaySync.md)
   - [@ohos.PiPWindow (画中画窗口)](js-apis-pipWindow.md)
   - [@ohos.screen (屏幕)](js-apis-screen.md)
   - [@ohos.screenshot (屏幕截图)](js-apis-screenshot.md)
@@ -357,6 +362,7 @@
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
   - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
+  - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
 
 - 通信与连接
@@ -492,6 +498,7 @@
   - [@ohos.enterprise.deviceInfo (设备信息管理)](js-apis-enterprise-deviceInfo.md)
   - [@ohos.enterprise.deviceSettings (设备设置管理)](js-apis-enterprise-deviceSettings.md)
   - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterprise.locationManager（位置服务管理)](js-apis-enterprise-locationManager.md)
   - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.restrictions (限制类策略)](js-apis-enterprise-restrictions.md)
   - [@ohos.enterprise.securityManager (安全管理)](js-apis-enterprise-securityManager.md)
@@ -526,6 +533,8 @@
 
 - 应用服务
   - [@ohos.identifier.oaid (广告标识服务)](js-apis-oaid.md)
+  - [@ohos.advertising (广告服务框架)](js-apis-advertising.md)
+  - [@ohos.advertising.AdsServiceExtensionAbility (广告扩展服务)](js-apis-adsserviceextensionability.md)
 
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)

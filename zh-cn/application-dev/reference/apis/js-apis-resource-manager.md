@@ -6,6 +6,7 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
+
 ## 导入模块
 
 ```js
@@ -52,7 +53,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue(0x1000000, (error, value) => {
+    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -62,6 +63,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
   });
   ```
 注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
+
 
 ## resourceManager.getResourceManager
 
@@ -109,7 +111,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
   import { BusinessError } from '@ohos.base';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue(0x1000000, (error, value) => {
+    mgr.getStringValue(0x1000000, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -247,10 +249,10 @@ import { BusinessError } from '@ohos.base';
 
 **参数：** 
 
-| 名称        | 类型                    | 必填 | 说明       |
-| --------- | ----------------------- | ---- |-------- |
-| direction | [Direction](#direction) | 是    |当前设备屏幕方向 |
-| locale    | string                  | 是    |当前系统语言   |
+| 名称        | 类型                    | 可读   | 可写   | 说明       |
+| --------- | ----------------------- | ---- | ---- | -------- |
+| direction | [Direction](#direction) | 是    | 否    | 当前设备屏幕方向 |
+| locale    | string                  | 是    | 否    | 当前系统语言   |
 
 
 ## DeviceCapability
@@ -261,10 +263,10 @@ import { BusinessError } from '@ohos.base';
 
 **参数：**
 
-| 名称            | 类型                            | 必填   |说明       |
-| ------------- | ------------------------------- | ---- | -------- |
-| screenDensity | [ScreenDensity](#screendensity) | 是    | 当前设备屏幕密度 |
-| deviceType    | [DeviceType](#devicetype)       | 是    | 当前设备类型   |
+| 名称            | 类型                            | 可读   | 可写   | 说明       |
+| ------------- | ------------------------------- | ---- | ---- | -------- |
+| screenDensity | [ScreenDensity](#screendensity) | 是    | 否    | 当前设备屏幕密度 |
+| deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型   |
 
 
 ## RawFileDescriptor<sup>8+</sup>
@@ -308,7 +310,7 @@ import { BusinessError } from '@ohos.base';
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
 >
-> - 对于本应用资源，通过 [getContext()](js-apis-ability-featureAbility.md#featureabilitygetcontext) 或 this.context 方法访问特定ID或名称的资源。对于应用内跨包资源有两种访问方式，第一种通过resource对象，第二种创建对应module的context，通过.context访问。
+> - 对于本应用包资源，通过指定资源ID或资源名称进行访问。对于应用内跨包资源，通过指定[resource对象](#resource9)或对应包的[context](../../application-models/application-context-stage.md#创建其他应用或其他module的context)进行访问，通过对应包context访问跨包资源与访问本应用包资源的逻辑一致，推荐开发者使用对应包的context方法。
 
 ### getStringSync<sup>9+</sup>
 
@@ -402,9 +404,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 getStringSync(resource: Resource): string
 
-用户获取指定resource对象对应的字符串，使用同步方式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，使用同步方式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -455,9 +455,7 @@ getStringSync(resource: Resource): string
 
 getStringSync(resource: Resource, ...args: Array<string | number>): string
 
-用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -596,7 +594,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
+getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 用户获取指定资源ID对应的字符串，使用callback形式返回字符串。
 
@@ -607,7 +605,7 @@ getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | 是    | 资源ID值           |
-| callback | _AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **错误码：**
 
@@ -624,7 +622,7 @@ getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getStringValue($r('app.string.test').id, (error, value) => {
+    this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -687,11 +685,9 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
+getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的字符串，使用callback形式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -702,7 +698,7 @@ getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | 是    | 资源信息            |
-| callback | _AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
 **错误码：**
 
@@ -725,7 +721,7 @@ getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
     id: $r('app.string.test').id
   };
   try {
-    this.context.resourceManager.getStringValue(resource, (error, value) => {
+    this.context.resourceManager.getStringValue(resource, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -743,9 +739,7 @@ getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的字符串，使用Promise形式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -826,7 +820,7 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getStringByName("test", (error, value) => {
+    this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -934,9 +928,7 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
-用户获取指定resource对象对应的字符串数组，使用同步方式返回字符串数组。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串数组，使用同步方式返回字符串数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1054,7 +1046,7 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error, value) => {
+    this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1119,10 +1111,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定resource对象对应的字符串数组，使用callback形式返回回字符串数组。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
-
+用户获取指定resource对象对应的字符串数组，使用callback形式返回回字符串数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1155,7 +1144,7 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
     id: $r('app.strarray.test').id
   };
   try {
-    this.context.resourceManager.getStringArrayValue(resource, (error, value) => {
+    this.context.resourceManager.getStringArrayValue(resource, (error: BusinessError, value: Array<string>) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1254,7 +1243,7 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getStringArrayByName("test", (error, value) => {
+    this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1367,9 +1356,7 @@ getPluralStringValueSync(resId: number, num: number): string
 
 getPluralStringValueSync(resource: Resource, num: number): string
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **说明**
 >
@@ -1504,7 +1491,7 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error, value) => {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1574,9 +1561,7 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用callback形式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+根据指定数量获取指定resource对象表示的单复数字符串，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **说明**
 >
@@ -1615,7 +1600,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
     id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralStringValue(resource, 1, (error, value) => {
+    this.context.resourceManager.getPluralStringValue(resource, 1, error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1633,9 +1618,7 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
-根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise形式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **说明**
 >
@@ -1726,7 +1709,7 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getPluralStringByName("test", 1, (error, value) => {
+    this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -1847,9 +1830,7 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
-用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回字节数组。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1984,7 +1965,7 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id, (error, value) => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2028,7 +2009,7 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error, value) => {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2139,9 +2120,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的媒体文件内容，使用callback形式返回字节数组。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的媒体文件内容，使用callback形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2174,7 +2153,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource, (error, value) => {
+    this.context.resourceManager.getMediaContent(resource, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2192,9 +2171,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2228,7 +2205,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContent(resource, 120, (error, value) => {
+    this.context.resourceManager.getMediaContent(resource, 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2246,9 +2223,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的媒体文件内容，使用Promise形式返回字节数组。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的媒体文件内容，使用Promise形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2302,9 +2277,7 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2384,7 +2357,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaByName("test", (error, value) => {
+    this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2428,7 +2401,7 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaByName("test", 120, (error, value) => {
+    this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2590,9 +2563,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
-用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2727,7 +2698,7 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error, value) => {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2771,7 +2742,7 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error, value) => {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2882,9 +2853,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的图片资源Base64编码，使用callback形式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的图片资源Base64编码，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2917,7 +2886,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContentBase64(resource, (error, value) => {
+    this.context.resourceManager.getMediaContentBase64(resource, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -2935,9 +2904,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2971,7 +2938,7 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
     id: $r('app.media.test').id
   };
   try {
-    this.context.resourceManager.getMediaContentBase64(resource, 120, (error, value) => {
+    this.context.resourceManager.getMediaContentBase64(resource, 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -2989,9 +2956,7 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的图片资源Base64编码，使用Promise形式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的图片资源Base64编码，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3045,9 +3010,7 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3127,7 +3090,7 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
+    this.context.resourceManager.getMediaBase64ByName("test", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -3171,7 +3134,7 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getMediaBase64ByName("test", 120, (error, value) => {
+    this.context.resourceManager.getMediaBase64ByName("test", 120, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -3340,9 +3303,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
 
-用户获取指定resource对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3508,9 +3469,7 @@ getBoolean(resId: number): boolean
 
 getBoolean(resource: Resource): boolean
 
-使用同步方式，返回获取指定resource对象对应的布尔结果。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+使用同步方式，返回获取指定resource对象对应的布尔结果。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3655,9 +3614,7 @@ getNumber(resId: number): number
 
 getNumber(resource: Resource): number
 
-用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回资源对应的数值。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回资源对应的数值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3802,9 +3759,7 @@ getColorSync(resId: number) : number;
 
 getColorSync(resource: Resource): number
 
-用户获取指定resource对象对应的颜色值，使用同步方式返回其对应的颜色值。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的颜色值，使用同步方式返回其对应的颜色值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3924,7 +3879,7 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getColor($r('app.color.test').id, (error, value) => {
+    this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -3989,9 +3944,7 @@ getColor(resId: number): Promise&lt;number&gt;
 
 getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
-用户获取指定resource对象对应的颜色值，使用callback形式返回其对应的颜色值。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的颜色值，使用callback形式返回其对应的颜色值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4025,7 +3978,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
     id: $r('app.color.test').id
   };
   try {
-    this.context.resourceManager.getColor(resource, (error, value) => {
+    this.context.resourceManager.getColor(resource, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4043,9 +3996,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 getColor(resource: Resource): Promise&lt;number&gt;;
 
-用户获取指定resource对象对应的颜色值，使用Promise形式返回其对应的颜色值。
-
-此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的颜色值，使用Promise形式返回其对应的颜色值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4126,7 +4077,7 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getColorByName("test", (error, value) => {
+    this.context.resourceManager.getColorByName("test", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4256,7 +4207,7 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getRawFileContent("test.txt", (error, value) => {
+    this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -4384,7 +4335,7 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
   import { BusinessError } from '@ohos.base';
 
   try { // 传入""表示获取rawfile根目录下的文件列表
-    this.context.resourceManager.getRawFileList("", (error, value) => {
+    this.context.resourceManager.getRawFileList("", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -4512,7 +4463,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.getRawFd("test.txt", (error, value) => {
+    this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
       } else {
@@ -4638,7 +4589,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
   import { BusinessError } from '@ohos.base';
 
   try {
-    this.context.resourceManager.closeRawFd("test.txt", (error, value) => {
+    this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       }
@@ -4733,7 +4684,7 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 **示例：** 
   ```ts
   try {
-    this.context.resourceManager.getConfiguration((error, value) => {
+    this.context.resourceManager.getConfiguration((error: BusinessError, value: string) => {
       if (error != null) {
         console.error("getConfiguration callback error is " + error);
       } else {
@@ -4818,7 +4769,7 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 **示例：** 
   ```ts
   try {
-    this.context.resourceManager.getDeviceCapability((error, value) => {
+    this.context.resourceManager.getDeviceCapability((error: BusinessError, value: string) => {
       if (error != null) {
         console.error("getDeviceCapability callback error is " + error);
       } else {
@@ -5155,7 +5106,7 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getString($r('app.string.test').id, (error, value) => {
+      mgr.getString($r('app.string.test').id, (error: BusinessError, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5222,7 +5173,7 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getStringArray($r('app.strarray.test').id, (error, value) => {
+      mgr.getStringArray($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5289,7 +5240,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMedia($r('app.media.test').id, (error, value) => {
+      mgr.getMedia($r('app.media.test').id, (error: BusinessError, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5356,7 +5307,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getMediaBase64($r('app.media.test').id, (error, value) => {
+      mgr.getMediaBase64($r('app.media.test').id, ((error: BusinessError, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5469,7 +5420,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getPluralString($r("app.plural.test").id, 1, (error, value) => {
+      mgr.getPluralString($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5500,7 +5451,7 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFile("test.txt", (error, value) => {
+      mgr.getRawFile("test.txt", (error: BusinessError, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5567,7 +5518,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.getRawFileDescriptor("test.txt", (error, value) => {
+      mgr.getRawFileDescriptor("test.txt", (error: BusinessError, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           } else {
@@ -5636,7 +5587,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：** 
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
-      mgr.closeRawFileDescriptor("test.txt", (error, value) => {
+      mgr.closeRawFileDescriptor("test.txt", (error: BusinessError, value: string) => {
           if (error != null) {
               console.error("error is " + error);
           }

@@ -551,11 +551,11 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
    }
    
    /**
-    * Creates a program object and makes it as the current object.
-    * @param gl Indicates the WebGL context.
-    * @param vshader Indicates a vertex shader program (string).
-    * @param fshader Indicates a fragment shader program (string).
-    * @return Returns true if the WebGLProgram object was created and successfully made as the current object; returns false otherwise. 
+    * Create a program object and use it as the current object.
+    * @param gl WebGL context.
+    * @param vshader Vertex shader.
+    * @param fshader Fragment shader.
+    * @return Returns true if the WebGLProgram object is created and used as the current object; returns false otherwise.
     */
    function initShaders(gl, vshader, fshader) {
        var program = createProgram(gl, vshader, fshader);
@@ -572,15 +572,15 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
    }
    
    /**
-    * Creates a linked program object.
-    * @param gl Indicates the WebGL context.
-    * @param vshader Indicates a vertex shader program (string).
-    * @param fshader Indicates a fragment shader program (string).
-    * @return Returns the created program object if the operation is successful; returns null otherwise. 
+    * Create a linked program object.
+    * @param gl WebGL context.
+    * @param vshader Vertex shader.
+    * @param fshader Fragment shader.
+    * @return Returns true if the linked program object is created; returns null otherwise.
     */
    function createProgram(gl, vshader, fshader) {
        console.log("======createProgram start======");
-       // Create shader object
+       // Create a shader object.
        var vertexShader = loadShader(gl, gl.VERTEX_SHADER, vshader);
        console.log("======vertexShader: " + vertexShader);
        var fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fshader);
@@ -596,14 +596,14 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
            return null;
        }
    
-       // Attach the shader objects.
+       // Attach the shader to the program object.
        gl.attachShader(program, vertexShader);
        gl.attachShader(program, fragmentShader);
    
        // Link the program object.
        gl.linkProgram(program);
    
-       // Check the result of linking.
+       // Check the linking result.
        var linked = gl.getProgramParameter(program, 0x8B82);
        console.log("======getProgramParameter linked: " + linked);
    
@@ -619,15 +619,15 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
    }
    
    /**
-     * Creates a shader object.
-     * @param gl Indicates the WebGL context.
-     * @param type Indicates the type of the shader object to be created.
-     * @param source Indicates the shader program (string). 
+     * Create a shader object.
+     * @param gl WebGL context.
+     * @param type Shader type.
+     * @param source Source code of the shader.
      * @return Returns the created shader object if the operation is successful; returns false otherwise. 
      */ 
    function loadShader(gl, type, source) {
        console.log("======into loadShader====");
-       // Create shader object
+       // Create a shader object.
        var shader = gl.createShader(type);
        if (shader == null) {
            console.log('Failed to create the shader.');
@@ -640,7 +640,7 @@ To use WebGL to draw a color triangle (GPU drawing), perform the following steps
        // Compile the shader.
        gl.compileShader(shader);
    
-       // Check the result of compilation.
+       // Check the shader compilation result.
        var compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
        if (!compiled) {
            var error = gl.getShaderInfoLog(shader);

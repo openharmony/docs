@@ -640,7 +640,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-av
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置，静态属性。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、webm、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。 |
 | surfaceId<sup>9+</sup>                              | string                                                       | 是   | 是   | 视频窗口ID，默认无窗口，只允许在**initialized**状态下设置，静态属性。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。 |
 | loop<sup>9+</sup>                                   | boolean                                                      | 是   | 是   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>直播场景不支持loop设置。 |
-| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT_CROP，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
+| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | 是   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | 是   | 是   | 设置音频渲染信息，默认值content为CONTENT_TYPE_MUSIC，usage为STREAM_USAGE_MEDIA，rendererFlags为0。<br/>只允许在**initialized**状态下设置 |
 | audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | 是   | 是   | 设置音频音效模式，默认值为EFFECT_DEFAULT，动态属性。audioRendererInfo的content和usage变动时会恢复为默认值，只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
@@ -5101,8 +5101,9 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5113,13 +5114,15 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
 });
 
 let seekTime: number = 5000;
-videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
-  if (err == null) {
-    console.info('seek success!');
-  } else {
-    console.error('seek fail!');
-  }
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).seek(seekTime, (err: BusinessError, result: number) => {
+    if (err == null) {
+      console.info('seek success!');
+    } else {
+      console.error('seek fail!');
+    }
+  });
+}
 ```
 
 ### seek<sup>(deprecated)</sup>
@@ -5145,8 +5148,9 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5156,13 +5160,15 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let seekTime: number = 5000;
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
-  if (err == null) {
-    console.info('seek success!');
-  } else {
-    console.error('seek fail!');
-  }
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
+    if (err == null) {
+      console.info('seek success!');
+    } else {
+      console.error('seek fail!');
+    }
+  });
+}
 ```
 
 ### seek<sup>(deprecated)</sup>
@@ -5193,8 +5199,9 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5204,17 +5211,19 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let seekTime: number = 5000;
-videoPlayer.seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
-  console.info('seek success');
-}).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
+    console.info('seek success');
+  }).catch((error: BusinessError) => {
+    console.error(`video catchCallback, error:${error}`);
+  });
 
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: number) => {
-  console.info('seek success');
-}).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
-});
+  (videoPlayer as media.VideoPlayer).seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: number) => {
+    console.info('seek success');
+  }).catch((error: BusinessError) => {
+    console.error(`video catchCallback, error:${error}`);
+  });
+}
 ```
 
 ### setVolume<sup>(deprecated)</sup>
@@ -5420,8 +5429,9 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5431,13 +5441,15 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
-videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
-  if (err == null) {
-    console.info('setSpeed success!');
-  } else {
-    console.error('setSpeed fail!');
-  }
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).setSpeed(speed, (err: BusinessError, result: number) => {
+    if (err == null) {
+      console.info('setSpeed success!');
+    } else {
+      console.error('setSpeed fail!');
+    }
+  });
+}
 ```
 
 ### setSpeed<sup>(deprecated)</sup>
@@ -5467,8 +5479,9 @@ setSpeed(speed:number): Promise\<number>
 
 ```ts
 import media from '@ohos.multimedia.media'
+import {BusinessError} from '@ohos.base'
 
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -5478,11 +5491,13 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
-videoPlayer.setSpeed(speed).then((result: number) => {
-  console.info('setSpeed success');
-}).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).setSpeed(speed).then((result: number) => {
+    console.info('setSpeed success');
+  }).catch((error: BusinessError) => {
+    console.error(`video catchCallback, error:${error}`);
+  });
+}
 ```
 
 ### on('playbackCompleted')<sup>(deprecated)</sup>
