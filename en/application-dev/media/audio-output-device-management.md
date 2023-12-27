@@ -9,8 +9,6 @@ Before using **AudioRoutingManager** to manage audio devices, import the audio m
 ```ts
 import audio from '@ohos.multimedia.audio'; // Import the audio module.
 
-import { BusinessError } from '@ohos.base'; // Import BusinessError.
-
 let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
 
 let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
@@ -35,6 +33,8 @@ The table below lists the supported audio output devices.
 Use **getDevices()** to obtain information about all the output devices.
 
 ```ts
+import audio from '@ohos.multimedia.audio';
+
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
 });
@@ -45,6 +45,8 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 Set a listener to listen for changes of the device connection state. When a device is connected or disconnected, a callback is triggered.
 
 ```ts
+import audio from '@ohos.multimedia.audio';
+
 // Listen for connection state changes of audio devices.
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
   console.info(`device change type : ${deviceChanged.type}`);  // Device connection state change. The value 0 means that the device is connected and 1 means that the device is disconnected.
@@ -67,6 +69,8 @@ Currently, only one output device can be selected, and the device ID is used as 
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
     deviceType : audio.DeviceType.SPEAKER,
@@ -101,9 +105,11 @@ Call **getPreferOutputDeviceForRendererInfo()** to obtain the output device with
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0,
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags : 0
 }
 
 async function getPreferOutputDeviceForRendererInfo() {
@@ -119,9 +125,10 @@ async function getPreferOutputDeviceForRendererInfo() {
 
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags : 0,
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags : 0
 }
 
 // Listen for changes of the output device with the highest priority.

@@ -17,8 +17,11 @@ Before developing an audio feature, especially before implementing audio data pr
 Before developing features related to audio and video playback, you are advised to understand the following concepts:
 
 - Playback process: network protocol > container format > audio and video codec > graphics/audio rendering
+
 - Network protocols: HLS, HTTP, HTTPS, and more
-- Container formats: MP4, MKV, MPEG-TS, WebM, and more
+
+- Container formats: mp4, mkv, mpeg-ts, webm, and more
+
 - Encoding formats: H.263/H.264/H.265, MPEG4/MPEG2, and more
 
 ## Introduction to Audio Streams
@@ -33,11 +36,9 @@ In addition to the basic information (which describes only audio data), an audio
 
 - Playback scenario
 
-  Information about the audio playback scenario is defined by using [StreamUsage](../reference/apis/js-apis-audio.md#streamusage) and [ContentType](../reference/apis/js-apis-audio.md#contenttype).
+  Information about the audio playback scenario is defined by [StreamUsage](../reference/apis/js-apis-audio.md#streamusage).
 
--  **StreamUsage** specifies the usage type of an audio stream, for example, used for media, voice communication, voice assistant, notification, and ringtone.
-
--  **ContentType** specifies the content type of data in an audio stream, for example, speech, music, movie, notification tone, and ringtone.
+  **StreamUsage** specifies the usage type of an audio stream, for example, used for media, voice communication, voice assistant, notification, and ringtone.
 
 - Recording scenario
 

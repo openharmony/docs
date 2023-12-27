@@ -49,6 +49,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
    ```ts
    import audio from '@ohos.multimedia.audio';
    import { BusinessError } from '@ohos.base';
+   
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
