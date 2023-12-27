@@ -36,6 +36,14 @@ UTD通过定义常用的数据类型描述符，构筑OpenHarmony生态内跨应
 UTD中定义的标准化数据类型分为两类，物理&逻辑，如下图所示（图中涉及的标准化数据类型详见UniformDataType的接口定义）。物理分类的根节点为general.entity，
 用于描述类型的物理属性，比如文件、目录等。逻辑分类的根节点为general.object，用于描述类型的功能性特征，如图片、网页等。
 
+**图1** 逻辑标准化数据类型示意图
+
+![utd_type](figures/utd_type.png)
+
+**图2** 物理标准化数据类型示意图
+
+![utd_preset_type](figures/utd_preset_type.png)
+
 将标准化数据类型分为物理和逻辑两类，可以从两个维度对数据类型进行描述。如描述图片时，可以是一个图片对象，同时也可以是一个文件，并非所有的格式都具有
 两个维度，如general.calendar，更多的注重calendar对象的功能性描述。
 
@@ -56,72 +64,78 @@ UTD中定义的标准化数据类型分为两类，物理&逻辑，如下图所�
 
 下面以媒体类文件的归属类型查询场景为例，说明如何使用UTD。
 
-1. 导入`@ohos.data.unifiedDataChannel`和`@ohos.data.uniformTypeDescriptor`模块。
+1. 导入`@ohos.data.uniformTypeDescriptor`模块。
    
    ```ts
-   import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
    import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
    ```
-2. 创建图片数据记录，并初始化得到带有该数据记录的UnifiedData对象。
-   
-   （1）创建图片数据记录。
-   
+2. 根据 “.mp3” 文件后缀查询对应UTD数据类型,并查询对应UTD数据类型具体属性。
+
    ```ts
-   let image = new unifiedDataChannel.Image();
+   try {
+     let fileExtention = '.mp3';
+     let typeId1 = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
+     let typeObj1 = uniformTypeDescriptor.getTypeDescriptor(typeId1);
+     console.log('typeId:' + typeObj1.typeId);
+     console.log('belongingToTypes:' + typeObj1.belongingToTypes);
+     console.log('description:' + typeObj1.description);
+     console.log('referenceURL:' + typeObj1.referenceURL);
+   } catch (err) {
+     console.log('err message:' + err.message + ', err code:' + err.code);
+   }
    ```
-   
-   （2）修改对象属性。
-   
+
+3. 根据 “audio/mp3” MIMEType查询对应UTD数据类型,并查询对应UTD数据类型具体属性。
+
    ```ts
-   // Image对象包含一个属性imageUri
-   image.imageUri = '...';
+   try {
+     let mineType = 'audio/mp3';
+     let typeId2 = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
+     let typeObj2 = uniformTypeDescriptor.getTypeDescriptor(typeId2);
+     console.log('typeId:' + typeObj2.typeId);
+     console.log('belongingToTypes:' + typeObj2.belongingToTypes);
+     console.log('description:' + typeObj2.description);
+     console.log('referenceURL:' + typeObj2.referenceURL);
+   } catch (err) {
+     console.log('err message:' + err.message + ', err code:' + err.code);
+   }
    ```
-   
-   （3）访问对象属性。
-   
+4. 将上述步骤查询出来的数据类型进行比较，确认类型是否相等。
+
    ```ts
-   console.info(`imageUri = ${image.imageUri}`);
-   ```
-   
-   （4）创建一个统一数据对象实例。
-   
-   ```ts
-   let unifiedData = new unifiedDataChannel.UnifiedData(image);
-   ```
-3. 创建纯文本数据类型记录，将其添加到刚才创建的UnifiedData对象。
-   
-   ```ts
-   let plainText = new unifiedDataChannel.PlainText();
-   plainText.textContent = 'this is textContent of plainText';
-   plainText.abstract = 'abstract of plainText';
-   plainText.details = {
-     plainKey1: 'plainValue1',
-     plainKey2: 'plainValue2',
-   };
-   unifiedData.addRecord(plainText);
-   ```
-4. 记录添加完成后，可获取当前UnifiedData对象内的所有数据记录。
-   
-   ```ts
-   let records = unifiedData.getRecords();
-   ```
-5. 遍历每条记录，判断该记录的数据类型，转换为子类对象，得到原数据记录。
-   
-   ```ts
-   for (let i = 0; i < records.length; i ++) {
-     // 读取该数据记录的类型
-     let type = records[i].getType();
-     switch (type) {
-       case uniformTypeDescriptor.UniformDataType.IMAGE:
-         // 转换得到原图片数据记录
-         let image = records[i] as unifiedDataChannel.Image;
-         break;
-       case uniformTypeDescriptor.UniformDataType.PLAIN_TEXT:
-         // 转换得到原文本数据记录
-         let plainText = records[i] as unifiedDataChannel.PlainText;
-         break;
-       default:
-         break;
+   try {
+     let fileExtention = '.mp3';
+     let typeId1 = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
+     let typeObj1 = uniformTypeDescriptor.getTypeDescriptor(typeId1);
+     
+     let mineType = 'audio/mp3';
+     let typeId2 = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
+     let typeObj2 = uniformTypeDescriptor.getTypeDescriptor(typeId2);
+     
+     if(typeObj1 != null && typeObj2 !=null) {
+       let ret = typeObj1.equals(typeObj2);
+       console.log('typeObj1 equals typeObj2, ret:' + ret);
      }
+   } catch (err) {
+     console.log('err message:' + err.message + ', err code:' + err.code);
+   }
+   ```
+
+5. 根据上述步骤中查询到的标准数据类型与已知标准数据类型做比较查询，确认是否存在归属关系。
+
+   ```ts
+   try {
+     let fileExtention = '.mp3';
+     let typeId1 = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
+     let typeObj1 = uniformTypeDescriptor.getTypeDescriptor(typeId1);
+     if(typeObj1 != null) {
+       let ret = typeObj1.belongsTo('general.audio');
+       console.log('belongsTo, ret:' + ret);
+       let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
+       ret = mediaTypeObj.isHigherLevelType('general.audio');
+       console.log('isHigherLevelType, ret:' + ret);
+     }
+   } catch (err) {
+     console.log('err message:' + err.message + ', err code:' + err.code);
    }
    ```
