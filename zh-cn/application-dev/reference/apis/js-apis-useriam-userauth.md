@@ -70,7 +70,7 @@ import userIAM_userAuth from '@ohos.userIAM.userAuth';
 
 onResult(result: UserAuthResult): void
 
-回调函数，返回认证结果。
+回调函数，返回认证结果。如果认证成功，可以通过UserAuthResult获取到认证通过的令牌信息。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -96,6 +96,7 @@ const widgetParam :userAuth.WidgetParam = {
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
     onResult (result) {
       console.log('userAuthInstance callback result = ' + JSON.stringify(result));
@@ -109,7 +110,7 @@ try {
 
 ## UserAuthInstance<sup>10+</sup>
 
-用于执行用户身份认证，并支持使用统一用户身份认证组件。
+用于执行用户身份认证，并支持使用统一用户身份认证控件。
 使用以下接口前，都需要先通过[getUserAuthInstance](#getuserauthinstance10)方法获取UserAuthInstance对象。
 
 ### on<sup>10+</sup>
@@ -152,6 +153,7 @@ const widgetParam :userAuth.WidgetParam = {
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
     onResult (result) {
       console.log('userAuthInstance callback result = ' + JSON.stringify(result));
@@ -169,7 +171,9 @@ off(type: 'result', callback?: IAuthCallback): void
 
 取消订阅用户身份认证结果。
 
-> **说明**：需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
+> **说明**：
+> 
+> 需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -221,6 +225,9 @@ try {
 start(): void
 
 开始认证。
+
+> **说明：**
+> 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -274,7 +281,9 @@ cancel(): void
 
 取消认证。
 
-> **说明**：此时UserAuthInstance需要是正在进行认证的对象。
+> **说明**：
+>
+> 此时UserAuthInstance需要是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -304,6 +313,7 @@ const widgetParam :userAuth.WidgetParam = {
 try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
+  // 需要调用UserAuthInstance的start()接口，启动认证后，才能调用cancel()接口。
   userAuthInstance.cancel();
   console.log('auth cancel success');
 } catch (error) {
@@ -315,7 +325,7 @@ try {
 
 getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance
 
-获取[UserAuthInstance](#userauthinstance10)对象，用于执行用户身份认证，并支持使用统一用户身份认证组件。
+获取[UserAuthInstance](#userauthinstance10)对象，用于执行用户身份认证，并支持使用统一用户身份认证控件。
 
 > **说明：**
 > 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
@@ -383,7 +393,7 @@ try {
 
 sendNotice(noticeType: NoticeType, eventData: string): void
 
-在使用统一身份认证组件进行用户身份认证时，用于接收来自统一身份认证组件的通知。
+在使用统一身份认证控件进行用户身份认证时，用于接收来自统一身份认证控件的通知。
 
 **需要权限**：ohos.permission.SUPPORT_USER_AUTH
 
@@ -443,13 +453,13 @@ try {
 
 ## UserAuthWidgetMgr<sup>10+</sup>
 
-组件管理接口，可将用身份认证组件注册到UserAuthWidgetMgr中，由UserAuthWidgetMgr进行管理、调度。
+组件管理接口，可将用身份认证控件注册到UserAuthWidgetMgr中，由UserAuthWidgetMgr进行管理、调度。
 
 ### on<sup>10+</sup>
 
 on(type: 'command', callback: IAuthWidgetCallback): void
 
-身份认证组件订阅来自用户认证框架的命令。
+身份认证控件订阅来自用户认证框架的命令。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -459,8 +469,8 @@ on(type: 'command', callback: IAuthWidgetCallback): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证组件发送命令。 |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 是   | 组件管理接口的回调函数，用于用户认证框架向身份认证组件发送命令。 |
+| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证控件发送命令。 |
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 是   | 组件管理接口的回调函数，用于用户认证框架向身份认证控件发送命令。 |
 
 **错误码：**
 
@@ -495,7 +505,7 @@ try {
 
 off(type: 'command', callback?: IAuthWidgetCallback): void
 
-身份认证组件取消订阅来自用户认证框架的命令。
+身份认证控件取消订阅来自用户认证框架的命令。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -505,8 +515,8 @@ off(type: 'command', callback?: IAuthWidgetCallback): void
 
 | 参数名   | 类型                                          | 必填 | 说明                                                         |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证组件发送命令。 |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 否   | 组件管理接口的回调函数，用于用户认证框架向身份认证组件发送命令。 |
+| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证控件发送命令。 |
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 否   | 组件管理接口的回调函数，用于用户认证框架向身份认证控件发送命令。 |
 
 **错误码：**
 
@@ -607,7 +617,7 @@ sendCommand(cmdData: string): void
 
 | 参数名  | 类型   | 必填 | 说明                               |
 | ------- | ------ | ---- | ---------------------------------- |
-| cmdData | string | 是   | 用户身份认证框架向组件发送的命令。 |
+| cmdData | string | 是   | 用户身份认证框架向控件发送的命令。 |
 
 **示例：**
 
@@ -755,10 +765,8 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 订阅指定类型的用户认证事件。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃。
-
-> **说明：**
-> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行订阅。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -824,11 +832,9 @@ off : (name : AuthEventKey) => void
 
 取消订阅特定类型的认证事件。
 
->**说明：**
->从 API version 9 开始支持，从 API version 10 开始废弃。
-
 > **说明：**
-> 需要使用已经成功订阅事件的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消订阅。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 需要使用已经成功订阅事件的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -880,10 +886,8 @@ start : () => void
 开始认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃。
-
-> **说明：**
-> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行认证。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行认证。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -932,10 +936,8 @@ cancel : () => void
 取消认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃。
-
-> **说明：**
-> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消认证，此[AuthInstance](#authinstancedeprecated)需要是正在进行认证的对象。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃。
+> - 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消认证，此[AuthInstance](#authinstancedeprecated)需要是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -976,10 +978,9 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 获取AuthInstance对象，用于执行用户身份认证。
 
 > **说明：**
-> 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#getuserauthinstance10)替代。
+> - 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#getuserauthinstance10)替代。
+> - 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
 
-> **说明：**
-> 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -1526,11 +1527,11 @@ execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt
 
 **参数：**
 
-| 参数名   | 类型                        | 必填 | 说明                      |
-| -------- | --------------------------- | ---- | -------------------------- |
-| type     | AuthType                      | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
+| 参数名   | 类型                        | 必填 | 说明                                                                                                                    |
+| -------- | --------------------------- | ---- |-----------------------------------------------------------------------------------------------------------------------|
+| type     | AuthType                      | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数。当前版本暂不支持ALL类型的认证。                                                                 |
 | level    | SecureLevel  | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。    |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。                                                                                                                 |
 
 callback返回值：
 
@@ -1569,9 +1570,9 @@ execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | AuthType | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数，当前版本暂不支持ALL类型的认证。 |
+| 参数名 | 类型   | 必填 | 说明                                                                                                                    |
+| ------ | ------ | ---- |-----------------------------------------------------------------------------------------------------------------------|
+| type   | AuthType | 是   | 认证类型，当前只支持"FACE_ONLY"。<br/>ALL为预留参数。当前版本暂不支持ALL类型的认证。                                                                 |
 | level  | SecureLevel | 是   | 安全级别，对应认证的安全级别，有效值为"S1"（最低）、"S2"、"S3"、"S4"（最高）。<br/>具备3D人脸识别能力的设备支持"S3"及以下安全级别的认证。<br/>具备2D人脸识别能力的设备支持"S2"及以下安全级别的认证。 |
 
 **返回值：**
