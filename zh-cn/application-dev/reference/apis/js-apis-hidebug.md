@@ -261,8 +261,8 @@ startJsCpuProfiling(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -290,8 +290,8 @@ stopJsCpuProfiling() : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -327,8 +327,8 @@ dumpJsHeapData(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.dumpJsHeapData("heapData");
