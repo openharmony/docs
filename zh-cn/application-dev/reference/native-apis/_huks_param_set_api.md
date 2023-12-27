@@ -44,7 +44,7 @@
 
   
 ```
-int32_t OH_Huks_AddParams (struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Param * params, uint32_t paramCnt )
+struct OH_Huks_Result OH_Huks_AddParams (struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Param * params, uint32_t paramCnt )
 ```
 **描述:**
 添加参数到参数集里面。
