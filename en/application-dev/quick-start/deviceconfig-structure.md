@@ -36,7 +36,7 @@ Table 2 describes the internal structure of the **deviceConfig** attributes.
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| cleartextTraffic | Whether to allow the application to use plaintext traffic, for example, plaintext HTTP traffic.<br>**true**: The application is allowed to use plaintext traffic. **false**: The application is not allowed to use plaintext traffic.| Boolean| Yes (initial value: **false**)|
+| cleartextTraffic | Whether to allow the application to use plaintext traffic, for example, plaintext HTTP traffic.<br>- **true**: The application is allowed to use plaintext traffic.<br>- **false**: The application is not allowed to use plaintext traffic.| Boolean| Yes (initial value: **false**)|
 | securityConfig | Network security configuration of the application.| Object| Yes (initial value: left empty)|
 
 ## Internal Structure of the securityConfig Attribute

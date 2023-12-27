@@ -22,7 +22,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
 
 ## Publishing a Common Event That Does Not Carry Information
 
-Common events that do not carry information can be published only as unordered common events.
+Common events that do not carry information can be published only as unordered common events. The following example publishes the custom common event **custom_event**.
 
 1. Import the **commonEventManager** module.
    
@@ -34,7 +34,7 @@ Common events that do not carry information can be published only as unordered c
    
    ```ts
    // Publish a common event.
-   commonEventManager.publish("usual.event.SCREEN_OFF", (err) => {
+   commonEventManager.publish("custom_event", (err) => {
        if (err) {
            console.error(`[CommonEvent] PublishCallBack err=${JSON.stringify(err)}`);
        } else {
@@ -68,7 +68,7 @@ Common events that carry information can be published as unordered, ordered, and
    
    ```ts
    // Publish a common event.
-   commonEventManager.publish("usual.event.SCREEN_OFF", options, (err) => {
+   commonEventManager.publish("custom_event", options, (err) => {
        if (err) {
            console.error('[CommonEvent] PublishCallBack err=' + JSON.stringify(err));
        } else {
