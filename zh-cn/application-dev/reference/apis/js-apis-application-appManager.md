@@ -184,7 +184,7 @@ getProcessRunningInfos(): Promise\<Array\<ProcessRunningInfo>>
 
 获取有关运行进程的信息。
 
-> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
+> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
@@ -215,7 +215,7 @@ getProcessRunningInfos(callback: AsyncCallback\<Array\<ProcessRunningInfo>>): vo
 
 获取有关运行进程的信息。
 
-> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation<sup>9+</sup>](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9)替代。
+> 从 API Version 9 开始废弃，建议使用[appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation)替代。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 

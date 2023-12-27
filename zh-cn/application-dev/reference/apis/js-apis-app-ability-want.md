@@ -45,9 +45,11 @@ import Want from '@ohos.app.ability.Want';
     moduleName: 'entry' // moduleName非必选
   };
 
-  context.startAbility(want, (err) => {
-    // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-    console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+  context.startAbility(want, (err: BusinessError) => {
+    if (err.code) {
+      // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
+      console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+    }
   });
   ```
 
@@ -67,8 +69,10 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * 数字（Number）
@@ -86,8 +90,10 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want: BusinessError, (err) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * 布尔（Boolean）
@@ -104,8 +110,10 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * 对象（Object）
@@ -127,8 +135,10 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * 数组（Array）
@@ -148,8 +158,10 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
         ```
     * 文件描述符（FD）
@@ -179,8 +191,10 @@ import Want from '@ohos.app.ability.Want';
           }
         };
 
-        context.startAbility(want, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
       ```
     - parameter参数用法：
@@ -197,8 +211,10 @@ import Want from '@ohos.app.ability.Want';
           bundleName: 'com.example.myapplication1',
           abilityName: 'ServiceExtensionAbility',
         };
-        context.startAbility(want, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
       ```
 
@@ -216,8 +232,10 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
       ```
 
@@ -238,8 +256,10 @@ import Want from '@ohos.app.ability.Want';
             developerParameters: 'parameters',
           },
         };
-        context.startAbility(want, (err) => {
-          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        context.startAbility(want, (err: BusinessError) => {
+          if (err.code) {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          }
         });
       ```
 
@@ -250,8 +270,8 @@ import Want from '@ohos.app.ability.Want';
         import Want from '@ohos.app.ability.Want';
 
         class UIAbilityB extends UIAbility {
-            onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-                console.log(`onCreate, want parameters: ${want.parameters.developerParameters}`);
-            }
+          onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+            console.log(`onCreate, want parameters: ${want.parameters?.developerParameters}`);
+          }
         }
       ```
