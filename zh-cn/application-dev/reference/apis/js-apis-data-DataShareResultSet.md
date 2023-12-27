@@ -23,14 +23,14 @@ import DataShareResultSet from '@ohos.data.DataShareResultSet';
 
 ```ts
 import dataShare from '@ohos.data.dataShare';
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility'
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let context = getContext(UIAbility);
-dataShare.createDataShareHelper(context, uri, (err, data) => {
+dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
   if (err != undefined) {
     console.error("createDataShareHelper fail, error message : " + err);
   } else {
@@ -202,9 +202,9 @@ goToRow(position: number): boolean
 
 **参数：**
 
-| **参数名** | **类型** | **必填** | 说明                     |
-| ---------- | -------- | -------- | ------------------------ |
-| position   | number   | 是       | 表示要移动到的指定位置。 |
+| **参数名** | **类型** | **必填** | 说明                                    |
+| ---------- | -------- | -------- | --------------------------------------- |
+| position   | number   | 是       | 表示要移动到的指定位置，从 0 开始。 |
 
 **返回值：**
 
