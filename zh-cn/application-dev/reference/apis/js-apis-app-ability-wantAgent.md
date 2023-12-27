@@ -1379,7 +1379,7 @@ try {
 
 | 名称           | 类型                           | 必填 | 说明                    |
 | -------------- | ------------------------------ | ---- | ---------------------- |
-| info           | [WantAgent](js-apis-app-ability-wantAgent.md#导入模块)                       | 是   | 触发的wantAgent。       |
+| info           | WantAgent                       | 是   | 触发的wantAgent。       |
 | want           | [Want](js-apis-app-ability-want.md#属性)                            | 是   | 存在的被触发的want。     |
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
 | finalData      | string                          | 是   | 公共事件收集的最终数据。  |

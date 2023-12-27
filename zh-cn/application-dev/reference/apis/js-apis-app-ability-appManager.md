@@ -799,7 +799,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9)。 |
+| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)。 |
 
 **错误码**：
 
@@ -852,7 +852,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
   | 参数名 | 类型 | 必填 | 说明 | 
   | -------- | -------- | -------- | -------- |
   | bundleName | string | 是 | 应用Bundle名称。 | 
-  | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9)。 | 
+  | accountId | number | 是 | 系统帐号的帐号ID，详情参考[getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9)。 | 
   | callback | AsyncCallback\<void\> | 是 | 以回调方式返回接口运行结果，可进行错误处理或其他自定义处理。 | 
 
 **错误码**：
