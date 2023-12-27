@@ -3,13 +3,11 @@
 
 ## Overview
 
-The **OHAudio** module provides native APIs of the audio module.
+The **OHAudio** module provides C APIs of the audio module.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
-
-10
+**Since**: 10
 
 
 ## Summary
@@ -48,14 +46,17 @@ The **OHAudio** module provides native APIs of the audio module.
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AudioStream_Result](#oh_audiostream_result) { AUDIOSTREAM_SUCCESS, AUDIOSTREAM_ERROR_INVALID_PARAM, AUDIOSTREAM_ERROR_ILLEGAL_STATE, AUDIOSTREAM_ERROR_SYSTEM } | Enumerates the audio stream result codes.| 
-| [OH_AudioStream_Type](#oh_audiostream_type) { AUDIOSTREAM_TYPE_RENDERER = 1, AUDIOSTREAM_TYPE_CAPTURER = 2 } | Enumerates the audio stream types.| 
+| [OH_AudioStream_Result](#oh_audiostream_result) { AUDIOSTREAM_SUCCESS, AUDIOSTREAM_ERROR_INVALID_PARAM, AUDIOSTREAM_ERROR_ILLEGAL_STATE, AUDIOSTREAM_ERROR_SYSTEM } | Enumerates the audio stream operation results.| 
+| [OH_AudioStream_Type](#oh_audiostream_type) { AUDIOSTREAM_TYPE_RERNDERER = 1, AUDIOSTREAM_TYPE_CAPTURER = 2 } | Enumerates the audio stream types.| 
 | [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) { AUDIOSTREAM_SAMPLE_U8 = 0, AUDIOSTREAM_SAMPLE_S16LE = 1, AUDIOSTREAM_SAMPLE_S24LE = 2, AUDIOSTREAM_SAMPLE_S32LE = 3 } | Enumerates the sampling formats of audio streams.| 
-| [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { **AUDIOSTREAM_ENCODING_TYPE_RAW** = 0 } | Enumerates the encoding types of audio streams.| 
-| [OH_AudioStream_Usage](#oh_audiostream_usage) { **AUDIOSTREAM_USAGE_UNKNOWN** = 0, **AUDIOSTREAM_USAGE_MUSIC** = 1, **AUDIOSTREAM_USAGE_COMMUNICATION** = 2, **AUDIOSTREAM_USAGE_GAME** = 11 } | Enumerates the usage scenarios of audio output streams.| 
-| [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) { AUDIOSTREAM_LATENCY_MODE_NORMAL = 0, AUDIOSTREAM_LATENCY_MODE_FAST = 1} | Enumerates the latency modes of audio streams.| 
+| [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { AUDIOSTREAM_ENCODING_TYPE_RAW = 0 } | Enumerates the encoding types of audio streams.| 
+| [OH_AudioStream_Usage](#oh_audiostream_usage) { AUDIOSTREAM_USAGE_UNKNOWN = 0, AUDIOSTREAM_USAGE_MUSIC = 1, AUDIOSTREAM_USAGE_COMMUNICATION = 2, AUDIOSTREAM_USAGE_GAME = 11 } | Enumerates the usage scenarios of audio streams.| 
+| [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) { AUDIOSTREAM_LATENCY_MODE_NORMAL } | Enumerates the latency modes of audio streams.| 
 | [OH_AudioStream_State](#oh_audiostream_state) {<br>AUDIOSTREAM_STATE_INVALID = -1, AUDIOSTREAM_STATE_PREPARED = 1, AUDIOSTREAM_STATE_RUNNING = 2, AUDIOSTREAM_STATE_STOPPED = 3,<br>AUDIOSTREAM_STATE_RELEASED = 4, AUDIOSTREAM_STATE_PAUSED = 5<br>} | Enumerates the audio stream states.| 
-| [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) { **AUDIOSTREAM_SOURCE_TYPE_INVALID** = -1, **AUDIOSTREAM_SOURCE_TYPE_MIC**, **AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION** = 1, **AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION** = 7 } | Enumerates the usage scenarios of audio input streams.| 
+| [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) { AUDIOSTREAM_SOURCE_TYPE_INVALID = -1, AUDIOSTREAM_SOURCE_TYPE_MIC, AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1, AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7 } | Enumerates the usage scenarios of audio streams.| 
+| [OH_AudioStream_Event](#oh_audiostream_event) { AUDIOSTREAM_EVENT_ROUTING_CHANGED } | Enumerates the audio stream events.| 
+| [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) { AUDIOSTREAM_INTERRUPT_FORCE, AUDIOSTREAM_INTERRUPT_SHAR } | Enumerates the types of force that causes audio interruption.| 
+| [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) {<br>AUDIOSTREAM_INTERRUPT_HINT_NONE, AUDIOSTREAM_INTERRUPT_HINT_RESUME, AUDIOSTREAM_INTERRUPT_HINT_PAUSE, AUDIOSTREAM_INTERRUPT_HINT_STOP,<br>AUDIOSTREAM_INTERRUPT_HINT_DUCK, AUDIOSTREAM_INTERRUPT_HINT_UNDUCK<br>} | Enumerates the hints provided along with audio interruption.| 
 
 
 ### Functions
@@ -75,6 +76,8 @@ The **OHAudio** module provides native APIs of the audio module.
 | [OH_AudioCapturer_GetSampleFormat](#oh_audiocapturer_getsampleformat) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) \*sampleFormat) | Obtains the sampling format of an audio capturer.| 
 | [OH_AudioCapturer_GetEncodingType](#oh_audiocapturer_getencodingtype) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | Obtains the encoding type of an audio capturer.| 
 | [OH_AudioCapturer_GetCapturerInfo](#oh_audiocapturer_getcapturerinfo) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) \*sourceType) | Obtains the usage scenario of an audio capturer.| 
+| [OH_AudioCapturer_GetFrameSizeInCallback](#oh_audiocapturer_getframesizeincallback) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, int32_t \*frameSize) | Obtains the frame size in the callback. The frame size is the fixed length of the buffer returned by each callback.| 
+| [OH_AudioCapturer_GetTimestamp](#oh_audiocapturer_gettimestamp) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an audio input stream.| 
 | [OH_AudioRenderer_Release](#oh_audiorenderer_release) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Releases an audio renderer.| 
 | [OH_AudioRenderer_Start](#oh_audiorenderer_start) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Starts an audio renderer.| 
 | [OH_AudioRenderer_Pause](#oh_audiorenderer_pause) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | Pauses an audio renderer.| 
@@ -88,6 +91,9 @@ The **OHAudio** module provides native APIs of the audio module.
 | [OH_AudioRenderer_GetLatencyMode](#oh_audiorenderer_getlatencymode) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) \*latencyMode) | Obtains the latency mode of an audio renderer.| 
 | [OH_AudioRenderer_GetRendererInfo](#oh_audiorenderer_getrendererinfo) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_Usage](#oh_audiostream_usage) \*usage) | Obtains the usage scenario of an audio renderer.| 
 | [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | Obtains the encoding type of an audio renderer.| 
+| [OH_AudioRenderer_GetFramesWritten](#oh_audiorenderer_getframeswritten) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*frames) | Obtains the number of frames that have been written since the stream was created.| 
+| [OH_AudioRenderer_GetTimestamp](#oh_audiorenderer_gettimestamp) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | Obtains the timestamp and position information of an audio output stream.| 
+| [OH_AudioRenderer_GetFrameSizeInCallback](#oh_audiorenderer_getframesizeincallback) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*frameSize) | Obtains the frame size in the callback.| 
 | [OH_AudioStreamBuilder_Create](#oh_audiostreambuilder_create) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*\*builder, [OH_AudioStream_Type](#oh_audiostream_type) type) | Creates an audio stream builder, which can be an audio renderer or capturer.| 
 | [OH_AudioStreamBuilder_Destroy](#oh_audiostreambuilder_destroy) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder) | Destroys an audio stream builder.| 
 | [OH_AudioStreamBuilder_SetSamplingRate](#oh_audiostreambuilder_setsamplingrate) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t rate) | Sets the sampling rate of an audio stream.| 
@@ -116,7 +122,6 @@ The **OHAudio** module provides native APIs of the audio module.
 
 ### OH_AudioCapturer
 
-  
 ```
 typedef struct OH_AudioCapturerStruct OH_AudioCapturer
 ```
@@ -127,16 +132,13 @@ Defines an audio capturer.
 
 An audio capturer instance is used to capture audio data.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OH_AudioCapturer_Callbacks
 
-  
 ```
 typedef struct OH_AudioCapturer_Callbacks_Struct OH_AudioCapturer_Callbacks
 ```
@@ -145,16 +147,13 @@ typedef struct OH_AudioCapturer_Callbacks_Struct OH_AudioCapturer_Callbacks
 
 Defines a pointer to the callback functions related to an audio capturer.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OH_AudioRenderer
 
-  
 ```
 typedef struct OH_AudioRendererStruct OH_AudioRenderer
 ```
@@ -165,16 +164,13 @@ Defines an audio renderer.
 
 An audio renderer instance is used to render audio data.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OH_AudioRenderer_Callbacks
 
-  
 ```
 typedef struct OH_AudioRenderer_Callbacks_Struct OH_AudioRenderer_Callbacks
 ```
@@ -183,16 +179,13 @@ typedef struct OH_AudioRenderer_Callbacks_Struct OH_AudioRenderer_Callbacks
 
 Defines a pointer to the callback functions related to an audio renderer.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OH_AudioStreamBuilder
 
-  
 ```
 typedef struct OH_AudioStreamBuilderStruct OH_AudioStreamBuilder
 ```
@@ -203,19 +196,64 @@ Defines an audio stream builder.
 
 An audio stream builder instance is often used to create an audio stream and set its attributes.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
-
-10
+**Since**: 10
 
 
 ## Enum Description
 
 
+### OH_AudioInterrupt_ForceType
+
+```
+enum OH_AudioInterrupt_ForceType
+```
+
+**Description**
+
+Enumerates the types of force that causes audio interruption.
+
+This enum is used to describe audio interruption events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Since**: 10
+
+| Value| Description| 
+| -------- | -------- |
+| AUDIOSTREAM_INTERRUPT_FORCE | The system changes the audio status.| 
+| AUDIOSTREAM_INTERRUPT_SHAR | The application changes the audio status.| 
+
+
+### OH_AudioInterrupt_Hint
+
+```
+enum OH_AudioInterrupt_Hint
+```
+
+**Description**
+
+Enumerates the hints provided along with audio interruption.
+
+This enum is used to describe audio interruption events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Since**: 10
+
+| Value| Description| 
+| -------- | -------- |
+| AUDIOSTREAM_INTERRUPT_HINT_NONE | None.| 
+| AUDIOSTREAM_INTERRUPT_HINT_RESUME | Resume the playback.| 
+| AUDIOSTREAM_INTERRUPT_HINT_PAUSE | Paused/Pause the playback.| 
+| AUDIOSTREAM_INTERRUPT_HINT_STOP | Stopped/Stop the playback.| 
+| AUDIOSTREAM_INTERRUPT_HINT_DUCK | Ducked the playback.| 
+| AUDIOSTREAM_INTERRUPT_HINT_UNDUCK | Unducked the playback.| 
+
+
 ### OH_AudioStream_EncodingType
 
-  
 ```
 enum OH_AudioStream_EncodingType
 ```
@@ -224,20 +262,38 @@ enum OH_AudioStream_EncodingType
 
 Enumerates the encoding types of audio streams.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
+**Since**: 10
 
-10
-
-  | Value| Description| 
+| Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_ENCODING_TYPE_RAW | PCM encoding.| 
 
 
+### OH_AudioStream_Event
+
+```
+enum OH_AudioStream_Event
+```
+
+**Description**
+
+Enumerates the audio stream events.
+
+This enum is used to describe audio events.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Since**: 10
+
+| Value| Description| 
+| -------- | -------- |
+| AUDIOSTREAM_EVENT_ROUTING_CHANGED | The audio route has been changed.| 
+
+
 ### OH_AudioStream_LatencyMode
 
-  
 ```
 enum OH_AudioStream_LatencyMode
 ```
@@ -246,38 +302,32 @@ enum OH_AudioStream_LatencyMode
 
 Enumerates the latency modes of audio streams.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
+**Since**: 10
 
-10
-
-  | Value| Description| 
+| Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_LATENCY_MODE_NORMAL | Normal latency mode.| 
-| AUDIOSTREAM_LATENCY_MODE_FAST | Low latency mode.| 
 
 
 ### OH_AudioStream_Result
 
-  
 ```
 enum OH_AudioStream_Result
 ```
 
 **Description**
 
-Enumerates the audio stream result codes.
+Enumerates the audio stream operation results.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
+**Since**: 10
 
-10
-
-  | Value| Description| 
+| Value| Description| 
 | -------- | -------- |
-| AUDIOSTREAM_SUCCESS | Operation successful.| 
+| AUDIOSTREAM_SUCCESS | The operation is successful.| 
 | AUDIOSTREAM_ERROR_INVALID_PARAM | Invalid input parameter.| 
 | AUDIOSTREAM_ERROR_ILLEGAL_STATE | Invalid state.| 
 | AUDIOSTREAM_ERROR_SYSTEM | System error.| 
@@ -285,7 +335,6 @@ Enumerates the audio stream result codes.
 
 ### OH_AudioStream_SampleFormat
 
-  
 ```
 enum OH_AudioStream_SampleFormat
 ```
@@ -294,13 +343,11 @@ enum OH_AudioStream_SampleFormat
 
 Enumerates the sampling formats of audio streams.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
+**Since**: 10
 
-10
-
-  | Value| Description| 
+| Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_SAMPLE_U8 | Unsigned 8-bit.| 
 | AUDIOSTREAM_SAMPLE_S16LE | Short 16-bit little-endian.| 
@@ -310,7 +357,6 @@ Enumerates the sampling formats of audio streams.
 
 ### OH_AudioStream_SourceType
 
-  
 ```
 enum OH_AudioStream_SourceType
 ```
@@ -319,13 +365,11 @@ enum OH_AudioStream_SourceType
 
 Enumerates the usage scenarios of an audio capturer, that is, the usage scenarios of audio input streams.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
+**Since**: 10
 
-10
-
-  | Value| Description| 
+| Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_SOURCE_TYPE_INVALID | Invalid state.| 
 | AUDIOSTREAM_SOURCE_TYPE_MIC | Audio recording.| 
@@ -335,7 +379,6 @@ Enumerates the usage scenarios of an audio capturer, that is, the usage scenario
 
 ### OH_AudioStream_State
 
-  
 ```
 enum OH_AudioStream_State
 ```
@@ -344,13 +387,11 @@ enum OH_AudioStream_State
 
 Enumerates the audio stream states.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
+**Since**: 10
 
-10
-
-  | Value| Description| 
+| Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_STATE_INVALID | Invalid state.| 
 | AUDIOSTREAM_STATE_PREPARED | Prepared.| 
@@ -362,7 +403,6 @@ Enumerates the audio stream states.
 
 ### OH_AudioStream_Type
 
-  
 ```
 enum OH_AudioStream_Type
 ```
@@ -371,13 +411,11 @@ enum OH_AudioStream_Type
 
 Enumerates the audio stream types.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
+**Since**: 10
 
-10
-
-  | Value| Description| 
+| Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_TYPE_RENDERER | The audio stream is an output stream.| 
 | AUDIOSTREAM_TYPE_CAPTURER | The audio stream is an input stream.| 
@@ -385,7 +423,6 @@ Enumerates the audio stream types.
 
 ### OH_AudioStream_Usage
 
-  
 ```
 enum OH_AudioStream_Usage
 ```
@@ -394,13 +431,11 @@ enum OH_AudioStream_Usage
 
 Enumerates the usage scenarios of an audio renderer, that is, the usage scenarios of audio output streams.
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
-**Since**
+**Since**: 10
 
-10
-
-  | Value| Description| 
+| Value| Description| 
 | -------- | -------- |
 | AUDIOSTREAM_USAGE_UNKNOWN | Undefined.| 
 | AUDIOSTREAM_USAGE_MUSIC | Music.| 
@@ -413,7 +448,6 @@ Enumerates the usage scenarios of an audio renderer, that is, the usage scenario
 
 ### OH_AudioCapturer_Flush()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Flush (OH_AudioCapturer * capturer)
 ```
@@ -421,6 +455,10 @@ OH_AudioStream_Result OH_AudioCapturer_Flush (OH_AudioCapturer * capturer)
 **Description**
 
 Flushes obtained audio data.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -432,14 +470,9 @@ Flushes obtained audio data.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_GetCapturerInfo()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo (OH_AudioCapturer * capturer, OH_AudioStream_SourceType * sourceType )
 ```
@@ -447,6 +480,10 @@ OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo (OH_AudioCapturer * captu
 **Description**
 
 Obtains the usage scenario of an audio capturer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -459,14 +496,9 @@ Obtains the usage scenario of an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_GetChannelCount()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetChannelCount (OH_AudioCapturer * capturer, int32_t * channelCount )
 ```
@@ -474,6 +506,10 @@ OH_AudioStream_Result OH_AudioCapturer_GetChannelCount (OH_AudioCapturer * captu
 **Description**
 
 Obtains the number of channels for an audio capturer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -486,14 +522,9 @@ Obtains the number of channels for an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_GetCurrentState()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetCurrentState (OH_AudioCapturer * capturer, OH_AudioStream_State * state )
 ```
@@ -501,6 +532,10 @@ OH_AudioStream_Result OH_AudioCapturer_GetCurrentState (OH_AudioCapturer * captu
 **Description**
 
 Obtains the state of an audio capturer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -513,14 +548,9 @@ Obtains the state of an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_GetEncodingType()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetEncodingType (OH_AudioCapturer * capturer, OH_AudioStream_EncodingType * encodingType )
 ```
@@ -528,6 +558,10 @@ OH_AudioStream_Result OH_AudioCapturer_GetEncodingType (OH_AudioCapturer * captu
 **Description**
 
 Obtains the encoding type of an audio capturer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -540,14 +574,35 @@ Obtains the encoding type of an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
 
-10
+### OH_AudioCapturer_GetFrameSizeInCallback()
+
+```
+OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback (OH_AudioCapturer * capturer, int32_t * frameSize )
+```
+
+**Description**
+
+Obtains the frame size in the callback. The frame size is the fixed length of the buffer returned by each callback.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
+| frameSize | Pointer to the variable that holds the frame size.| 
+
+**Returns**
+
+Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
 
 ### OH_AudioCapturer_GetLatencyMode()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode (OH_AudioCapturer * capturer, OH_AudioStream_LatencyMode * latencyMode )
 ```
@@ -555,6 +610,10 @@ OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode (OH_AudioCapturer * captur
 **Description**
 
 Obtains the latency mode of an audio capturer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -567,14 +626,9 @@ Obtains the latency mode of an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_GetSampleFormat()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat (OH_AudioCapturer * capturer, OH_AudioStream_SampleFormat * sampleFormat )
 ```
@@ -582,6 +636,10 @@ OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat (OH_AudioCapturer * captu
 **Description**
 
 Obtains the sampling format of an audio capturer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -594,14 +652,9 @@ Obtains the sampling format of an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_GetSamplingRate()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate (OH_AudioCapturer * capturer, int32_t * rate )
 ```
@@ -609,6 +662,10 @@ OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate (OH_AudioCapturer * captu
 **Description**
 
 Obtains the sampling rate of an audio capturer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -621,14 +678,9 @@ Obtains the sampling rate of an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_GetStreamId()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetStreamId (OH_AudioCapturer * capturer, uint32_t * streamId )
 ```
@@ -636,6 +688,10 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId (OH_AudioCapturer * capturer,
 **Description**
 
 Obtains the stream ID of an audio capturer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -648,14 +704,37 @@ Obtains the stream ID of an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
 
-10
+### OH_AudioCapturer_GetTimestamp()
+
+```
+OH_AudioStream_Result OH_AudioCapturer_GetTimestamp (OH_AudioCapturer * capturer, clockid_t clockId, int64_t * framePosition, int64_t * timestamp )
+```
+
+**Description**
+
+Obtains the timestamp and position information of an audio input stream.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
+| clockId | CLOCK_MONOTONIC.| 
+| framePosition | Pointer to the variable that holds the position information.| 
+| timestamp | Pointer to the variable that holds the timestamp.| 
+
+**Returns**
+
+Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
 
 ### OH_AudioCapturer_Pause()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Pause (OH_AudioCapturer * capturer)
 ```
@@ -664,24 +743,27 @@ OH_AudioStream_Result OH_AudioCapturer_Pause (OH_AudioCapturer * capturer)
 
 Pauses an audio capturer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
 
+**Required permissions**
+
+ohos.permission.MICROPHONE
+
 **Returns**
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_Release()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Release (OH_AudioCapturer * capturer)
 ```
@@ -690,24 +772,27 @@ OH_AudioStream_Result OH_AudioCapturer_Release (OH_AudioCapturer * capturer)
 
 Releases an audio capturer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
 
+**Required permissions**
+
+ohos.permission.MICROPHONE
+
 **Returns**
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_Start()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Start (OH_AudioCapturer * capturer)
 ```
@@ -716,24 +801,27 @@ OH_AudioStream_Result OH_AudioCapturer_Start (OH_AudioCapturer * capturer)
 
 Starts an audio capturer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
 
+**Required permissions**
+
+ohos.permission.MICROPHONE
+
 **Returns**
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioCapturer_Stop()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Stop (OH_AudioCapturer * capturer)
 ```
@@ -742,24 +830,27 @@ OH_AudioStream_Result OH_AudioCapturer_Stop (OH_AudioCapturer * capturer)
 
 Stops an audio capturer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | capturer | Pointer to an audio capturer instance created by [OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer).| 
 
+**Required permissions**
+
+ohos.permission.MICROPHONE
+
 **Returns**
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_Flush()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Flush (OH_AudioRenderer * renderer)
 ```
@@ -767,6 +858,10 @@ OH_AudioStream_Result OH_AudioRenderer_Flush (OH_AudioRenderer * renderer)
 **Description**
 
 Flushes written audio data.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -778,14 +873,9 @@ Flushes written audio data.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_GetChannelCount()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetChannelCount (OH_AudioRenderer * renderer, int32_t * channelCount )
 ```
@@ -793,6 +883,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelCount (OH_AudioRenderer * rende
 **Description**
 
 Obtains the number of channels for an audio renderer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -805,14 +899,9 @@ Obtains the number of channels for an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_GetCurrentState()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetCurrentState (OH_AudioRenderer * renderer, OH_AudioStream_State * state )
 ```
@@ -820,6 +909,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetCurrentState (OH_AudioRenderer * rende
 **Description**
 
 Obtains the state of an audio renderer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -832,14 +925,9 @@ Obtains the state of an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_GetEncodingType()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetEncodingType (OH_AudioRenderer * renderer, OH_AudioStream_EncodingType * encodingType )
 ```
@@ -847,6 +935,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetEncodingType (OH_AudioRenderer * rende
 **Description**
 
 Obtains the encoding type of an audio renderer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -859,14 +951,61 @@ Obtains the encoding type of an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
 
-10
+### OH_AudioRenderer_GetFrameSizeInCallback()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback (OH_AudioRenderer * renderer, int32_t * frameSize )
+```
+
+**Description**
+
+Obtains the frame size in the callback. The frame size is the fixed length of the buffer returned by each callback.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio renderer instance created by [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+| frameSize | Pointer to the variable that holds the frame size.| 
+
+**Returns**
+
+Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
+
+
+### OH_AudioRenderer_GetFramesWritten()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten (OH_AudioRenderer * renderer, int64_t * frames )
+```
+
+**Description**
+
+Obtains the number of frames that have been written since the stream was created.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio renderer instance created by [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+| frames | Pointer to the variable that holds the frame count.| 
+
+**Returns**
+
+Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
 
 ### OH_AudioRenderer_GetLatencyMode()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode (OH_AudioRenderer * renderer, OH_AudioStream_LatencyMode * latencyMode )
 ```
@@ -874,6 +1013,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode (OH_AudioRenderer * render
 **Description**
 
 Obtains the latency mode of an audio renderer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -886,14 +1029,9 @@ Obtains the latency mode of an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_GetRendererInfo()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo (OH_AudioRenderer * renderer, OH_AudioStream_Usage * usage )
 ```
@@ -901,6 +1039,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo (OH_AudioRenderer * rende
 **Description**
 
 Obtains the usage scenario of an audio renderer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -913,14 +1055,9 @@ Obtains the usage scenario of an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_GetSampleFormat()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat (OH_AudioRenderer * renderer, OH_AudioStream_SampleFormat * sampleFormat )
 ```
@@ -928,6 +1065,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat (OH_AudioRenderer * rende
 **Description**
 
 Obtains the sampling format of an audio renderer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -940,14 +1081,9 @@ Obtains the sampling format of an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_GetSamplingRate()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate (OH_AudioRenderer * renderer, int32_t * rate )
 ```
@@ -955,6 +1091,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate (OH_AudioRenderer * rende
 **Description**
 
 Obtains the sampling rate of an audio renderer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -967,14 +1107,9 @@ Obtains the sampling rate of an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_GetStreamId()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetStreamId (OH_AudioRenderer * renderer, uint32_t * streamId )
 ```
@@ -982,6 +1117,10 @@ OH_AudioStream_Result OH_AudioRenderer_GetStreamId (OH_AudioRenderer * renderer,
 **Description**
 
 Obtains the stream ID of an audio renderer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -994,14 +1133,37 @@ Obtains the stream ID of an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
 
-10
+### OH_AudioRenderer_GetTimestamp()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetTimestamp (OH_AudioRenderer * renderer, clockid_t clockId, int64_t * framePosition, int64_t * timestamp )
+```
+
+**Description**
+
+Obtains the timestamp and position information of an audio output stream.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| renderer | Pointer to an audio renderer instance created by [OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer).| 
+| clockId | CLOCK_MONOTONIC | 
+| framePosition | Pointer to the variable that holds the position information.| 
+| timestamp | Pointer to the variable that holds the timestamp.| 
+
+**Returns**
+
+Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
 
 ### OH_AudioRenderer_Pause()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Pause (OH_AudioRenderer * renderer)
 ```
@@ -1010,6 +1172,10 @@ OH_AudioStream_Result OH_AudioRenderer_Pause (OH_AudioRenderer * renderer)
 
 Pauses an audio renderer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
@@ -1020,14 +1186,9 @@ Pauses an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_Release()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Release (OH_AudioRenderer * renderer)
 ```
@@ -1036,6 +1197,10 @@ OH_AudioStream_Result OH_AudioRenderer_Release (OH_AudioRenderer * renderer)
 
 Releases an audio renderer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
@@ -1046,14 +1211,9 @@ Releases an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_Start()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Start (OH_AudioRenderer * renderer)
 ```
@@ -1062,6 +1222,10 @@ OH_AudioStream_Result OH_AudioRenderer_Start (OH_AudioRenderer * renderer)
 
 Starts an audio renderer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
@@ -1072,14 +1236,9 @@ Starts an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioRenderer_Stop()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Stop (OH_AudioRenderer * renderer)
 ```
@@ -1088,6 +1247,10 @@ OH_AudioStream_Result OH_AudioRenderer_Stop (OH_AudioRenderer * renderer)
 
 Stops an audio renderer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
@@ -1098,14 +1261,9 @@ Stops an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_Create()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_Create (OH_AudioStreamBuilder ** builder, OH_AudioStream_Type type )
 ```
@@ -1116,25 +1274,24 @@ Creates an audio stream builder, which can be an audio renderer or capturer.
 
 You need to call **OH_AudioStreamBuilder_Destroy()** to destroy the builder when it is no longer required.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | builder | Double pointer to the audio stream builder created.| 
-| type | Type of the audio stream builder, which can be **AUDIOSTREAM_TYPE_RENDERER** or **AUDIOSTREAM_TYPE_CAPTURER**.| 
+| type | Type of the audio stream builder, which can be **AUDIOSTREAM_TYPE_RERNDERER** or **AUDIOSTREAM_TYPE_CAPTURER**.| 
 
 **Returns**
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_Destroy()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_Destroy (OH_AudioStreamBuilder * builder)
 ```
@@ -1142,6 +1299,11 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Destroy (OH_AudioStreamBuilder * bui
 **Description**
 
 Destroys an audio stream builder when it is no longer required.
+
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1153,14 +1315,9 @@ Destroys an audio stream builder when it is no longer required.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_GenerateCapturer()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer (OH_AudioStreamBuilder * builder, OH_AudioCapturer ** audioCapturer )
 ```
@@ -1168,6 +1325,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer (OH_AudioStreamBuil
 **Description**
 
 Creates an audio capturer instance.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1180,14 +1341,9 @@ Creates an audio capturer instance.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_GenerateRenderer()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer (OH_AudioStreamBuilder * builder, OH_AudioRenderer ** audioRenderer )
 ```
@@ -1195,6 +1351,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer (OH_AudioStreamBuil
 **Description**
 
 Creates an audio renderer instance.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1207,14 +1367,9 @@ Creates an audio renderer instance.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_SetCapturerCallback()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback (OH_AudioStreamBuilder * builder, OH_AudioCapturer_Callbacks callbacks, void * userData )
 ```
@@ -1223,26 +1378,25 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback (OH_AudioStreamB
 
 Sets callbacks for an audio capturer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | builder | Pointer to an audio stream builder instance created by **OH_AudioStreamBuilder_Create()**.| 
-| callbacks | Callback functions that will be used to process events related to input audio streams.| 
+| callbacks | Callback functions that will be used to process events related to audio input streams.| 
 | userData | Pointer to the application data passed through the callback functions.| 
 
 **Returns**
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_SetCapturerInfo()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo (OH_AudioStreamBuilder * builder, OH_AudioStream_SourceType sourceType )
 ```
@@ -1250,6 +1404,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo (OH_AudioStreamBuild
 **Description**
 
 Sets the usage scenario of an audio capturer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1262,14 +1420,9 @@ Sets the usage scenario of an audio capturer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_SetChannelCount()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount (OH_AudioStreamBuilder * builder, int32_t channelCount )
 ```
@@ -1277,6 +1430,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount (OH_AudioStreamBuild
 **Description**
 
 Sets the number of channels for an audio stream.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1289,14 +1446,9 @@ Sets the number of channels for an audio stream.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_SetEncodingType()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType (OH_AudioStreamBuilder * builder, OH_AudioStream_EncodingType encodingType )
 ```
@@ -1304,6 +1456,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType (OH_AudioStreamBuild
 **Description**
 
 Sets the encoding type of an audio stream.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1316,14 +1472,9 @@ Sets the encoding type of an audio stream.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_SetLatencyMode()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetLatencyMode (OH_AudioStreamBuilder * builder, OH_AudioStream_LatencyMode latencyMode )
 ```
@@ -1331,6 +1482,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetLatencyMode (OH_AudioStreamBuilde
 **Description**
 
 Sets the latency mode of an audio stream.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1343,14 +1498,9 @@ Sets the latency mode of an audio stream.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_SetRendererCallback()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererCallback (OH_AudioStreamBuilder * builder, OH_AudioRenderer_Callbacks callbacks, void * userData )
 ```
@@ -1359,26 +1509,25 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererCallback (OH_AudioStreamB
 
 Sets callbacks for an audio renderer.
 
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | builder | Pointer to an audio stream builder instance created by **OH_AudioStreamBuilder_Create()**.| 
-| callbacks | Callback functions that will be used to process events related to output audio streams.| 
+| callbacks | Callback functions that will be used to process events related to audio output streams.| 
 | userData | Pointer to the application data passed through the callback functions.| 
 
 **Returns**
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_SetRendererInfo()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo (OH_AudioStreamBuilder * builder, OH_AudioStream_Usage usage )
 ```
@@ -1386,6 +1535,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo (OH_AudioStreamBuild
 **Description**
 
 Sets the usage scenario of an audio renderer.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1398,14 +1551,9 @@ Sets the usage scenario of an audio renderer.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_SetSampleFormat()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat (OH_AudioStreamBuilder * builder, OH_AudioStream_SampleFormat format )
 ```
@@ -1413,6 +1561,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat (OH_AudioStreamBuild
 **Description**
 
 Sets the sampling format of an audio stream.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1425,14 +1577,9 @@ Sets the sampling format of an audio stream.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ### OH_AudioStreamBuilder_SetSamplingRate()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate (OH_AudioStreamBuilder * builder, int32_t rate )
 ```
@@ -1440,6 +1587,10 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate (OH_AudioStreamBuild
 **Description**
 
 Sets the sampling rate of an audio stream.
+
+**Since**: 10
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -1452,17 +1603,12 @@ Sets the sampling rate of an audio stream.
 
 Returns **AUDIOSTREAM_SUCCESS** if the operation is successful; returns an error code otherwise.
 
-**Since**
-
-10
-
 
 ## Variable Description
 
 
 ### OH_AudioCapturer_OnReadData
 
-  
 ```
 int32_t(* OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnReadData) (OH_AudioCapturer *capturer, void *userData, void *buffer, int32_t lenth)
 ```
@@ -1471,14 +1617,11 @@ int32_t(* OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnReadData) (OH_Au
 
 Defines a function pointer to the callback function used to read audio data.
 
-**Since**
-
-10
+**Since**: 10
 
 
 ### OH_AudioRenderer_OnWriteData
 
-  
 ```
 int32_t(* OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnWriteData) (OH_AudioRenderer *renderer, void *userData, void *buffer, int32_t lenth)
 ```
@@ -1487,6 +1630,4 @@ int32_t(* OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnWriteData) (OH_A
 
 Defines a function pointer to the callback function used to write audio data.
 
-**Since**
-
-10
+**Since**: 10
