@@ -32,8 +32,7 @@
 已使用相关接口开发的应用工程，需要对接口进行适配。从OpenHarmony 4.0.9.5版本起，相关接口使用应导入\@ohos.app.form.formObserver.d.ts，并申请ohos.permission.OBSERVE_FORM_RUNNING权限。
 
 **示例：**
-
-```js
+```ts
 import formObserver from '@ohos.app.form.formObserver';
 import formInfo from '@ohos.app.form.formInfo';
 import Base from '@ohos.base';
@@ -64,7 +63,7 @@ try {
 
 修改前的接口原型：
 
-```js
+```ts
 function on(type: 'formAdd', observerCallback: Callback<formInfo.RunningFormInfo>, bundleName?: string): void;
 function off(type: 'formAdd', observerCallback?: Callback<formInfo.RunningFormInfo>, bundleName?: string): void;
 
@@ -96,7 +95,7 @@ function off(
 
 修改后的接口原型：
 
-```js
+```ts
 function on(type: 'formAdd', observerCallback: Callback<formInfo.RunningFormInfo>): void;
 function on(type: 'formAdd', hostBundleName: string, observerCallback: Callback<formInfo.RunningFormInfo>): void;
 function off(type: 'formAdd', hostBundleName?: string, observerCallback?: Callback<formInfo.RunningFormInfo>): void;
@@ -135,9 +134,8 @@ function off(
 已使用相关接口开发的应用工程，需要对接口进行适配。从OpenHarmony 4.0.9.5版本起，相关接口使用应注意入参顺序的调整，将callback作为最后一个参数进行接口调用。
 
 **示例：**
-
-```js
-import formObserver from @ohos.app.form.formObserver.d.ts;
+```ts
+import formObserver from '@ohos.app.form.formObserver';
 
 let bundleName = 'ohos.samples.FormApplication';
 let callback = function(data) {

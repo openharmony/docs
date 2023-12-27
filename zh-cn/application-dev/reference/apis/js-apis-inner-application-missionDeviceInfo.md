@@ -17,16 +17,17 @@ distributedMissionManager.registerMissionListener(
         deviceId: '123456'
     },
     {
-        notifyMissionsChanged: (deviceId) => {
+        notifyMissionsChanged: (deviceId: string) => {
             console.log(`notifyMissionsChanged deviceId: ${JSON.stringify(deviceId)}`);
         },
-        notifySnapshot: (mission, deviceId) => {
+        notifySnapshot: (deviceId: string, mission: number) => {
             console.log(`notifySnapshot mission: ${JSON.stringify(mission)}`);
             console.log(`notifySnapshot deviceId: ${JSON.stringify(deviceId)}`);
         },
-        notifyNetDisconnect: (mission, state) => {
+        notifyNetDisconnect: (mission: string, state: number) => {
             console.log(`notifyNetDisconnect mission: ${JSON.stringify(mission)}`);
             console.log(`notifyNetDisconnect state: ${JSON.stringify(state)}`);
         }
-    });
+    }
+);
 ```
