@@ -1636,7 +1636,7 @@ bind(address: NetAddress): Promise\<void\>
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
-
+## socket.constructTCP
 **参数：**
 
 | 参数名  | 类型                               | 必填 | 说明                                                   |
@@ -4354,6 +4354,19 @@ LocalSocket发送请求的参数。
 | ------- | ---------- | --- | ------------------- |
 | address | string     | 是   | 指定的本地套接字路径。 |
 | timeout | encoding   | 否   | 字符编码。           |
+
+## ExtraOptionsBase<sup>10+</sup>
+
+Socket套接字的基础属性。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+| 名称            | 类型    | 必填 | 说明                              |
+| ----------------- | ------- | ---- | ----------------------------- |
+| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。     |
+| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。     |
+| reuseAddress      | boolean | 否   | 是否重用地址。                   |
+| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。    |
 
 ## socket.constructLocalSocketServerInstance<sup>11+</sup>
 
