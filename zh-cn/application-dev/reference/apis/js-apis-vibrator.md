@@ -491,7 +491,7 @@ try {
 
 | 类型                             | 说明                           |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9)     | 按照指定持续时间触发马达振动。 |
+| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。 |
 | [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
 | [VibrateFromFile<sup>10+</sup>](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
 
