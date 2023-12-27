@@ -152,15 +152,15 @@ let names: string[] = ['Alice', 'Bob', 'Carol']
 使用枚举常量时必须以枚举类型名称为前缀。
 
 ```typescript
-enum Color { Red, Green, Blue }
-let c: Color = Color.Red
+enum ColorSet { Red, Green, Blue }
+let c: ColorSet = ColorSet.Red
 ```
 
 常量表达式可以用于显式设置枚举常量的值。
 
 ```typescript
-enum Color { White = 0xFF, Grey = 0x7F, Black = 0x00 }
-let c: Color = Color.Black
+enum ColorSet { White = 0xFF, Grey = 0x7F, Black = 0x00 }
+let c: ColorSet = ColorSet.Black
 ```
 
 #### `Union`类型
@@ -792,7 +792,7 @@ class Person {
     this.age = a
   }
 
-  GetName(): string {
+  getName(): string {
     return this.name
   }
 }
@@ -800,7 +800,7 @@ class Person {
 let p1 = new Person('Alice', 25)
 console.log(p1.name)
 let p2 = new Person('Bob', 28)
-console.log(p2.GetName())
+console.log(p2.getName())
 ```
 
 #### 静态字段
@@ -834,13 +834,13 @@ class Person {
   name: string // undefined
   
   setName(n:string): void {
-  this.name = n
+    this.name = n
   }
   
   getName(): string {
-  // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实。
-  // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值。
-  return this.name
+    // 开发者使用"string"作为返回类型，这隐藏了name可能为"undefined"的事实。
+    // 更合适的做法是将返回类型标注为"string | undefined"，以告诉开发者这个API所有可能的返回值。
+    return this.name
   }
 }
 
@@ -863,6 +863,7 @@ class Person {
   getName(): string {
     return this.name
   }
+}
   
 
 let jack = new Person()
@@ -936,7 +937,7 @@ p.age = -42 // 设置无效age值会抛出错误
 `calculateArea`方法通过将高度乘以宽度来计算矩形的面积：
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   private height: number = 0
   private width: number = 0
   constructor(height: number, width: number) {
@@ -951,7 +952,7 @@ class Rectangle {
 必须通过类的实例调用实例方法：
 
 ```typescript
-let square = new Rectangle(10, 10)
+let square = new RectangleSize(10, 10)
 console.log(square.calculateArea()) // 输出：100
 ```
 
@@ -1025,7 +1026,7 @@ class MyDate implements DateInterface {
 关键字`super`可用于访问父类的实例字段、实例方法和构造函数。在实现子类功能时，可以通过该关键字从父类中获取所需接口：
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   protected height: number = 0
   protected width: number = 0
 
@@ -1038,7 +1039,7 @@ class Rectangle {
     /* 绘制边界 */
   }
 }
-class FilledRectangle extends Rectangle {
+class FilledRectangle extends RectangleSize {
   color = ''
   constructor (h: number, w: number, c: string) {
     super(h, w) // 父类构造函数的调用
@@ -1058,14 +1059,14 @@ class FilledRectangle extends Rectangle {
 子类可以重写其父类中定义的方法的实现。重写的方法可以用关键字`override`标记，以提高可读性。重写的方法必须具有与原始方法相同的参数类型和相同或派生的返回类型。
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   // ...
   area(): number {
     // 实现
     return 0
   }
 }
-class Square extends Rectangle {
+class Square extends RectangleSize {
   private side: number = 0
   override area(): number {
     return this.side * this.side
@@ -1121,12 +1122,12 @@ let p = new Point()
 构造函数函数体的第一条语句可以使用关键字`super`来显式调用直接父类的构造函数。
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   constructor(width: number, height: number) {
     // ...
   }
 }
-class Square extends Rectangle {
+class Square extends RectangleSize {
   constructor(side: number) {
     super(side, side)
   }
@@ -1282,8 +1283,8 @@ let map: Record<string, PersonInfo> = {
 interface Style {
   color: string // 属性
 }
-interface Area {
-  calculateArea(): number // 方法的声明
+interface AreaSize {
+  calculateAreaSize(): number // 方法的声明
   someMethod(): void;     // 方法的声明
 }
 ```
@@ -1292,19 +1293,19 @@ interface Area {
 
 ```typescript
 // 接口：
-interface Area {
-  calculateArea(): number // 方法的声明
+interface AreaSize {
+  calculateAreaSize(): number // 方法的声明
   someMethod(): void;     // 方法的声明
 }
 
 // 实现：
-class Rectangle implements Area {
+class RectangleSize implements AreaSize {
   private width: number = 0
   private height: number = 0
   someMethod(): void {
     console.log('someMethod called')
   }
-  calculateArea(): number {
+  calculateAreaSize(): number {
     this.someMethod() // 调用另一个方法并返回结果
     return this.width * this.height
   }
@@ -1379,27 +1380,24 @@ interface ExtendedStyle extends Style {
 类和接口可以定义为泛型，将参数添加到类型定义中，如以下示例中的类型参数`Element`：
 
 ```typescript
-class Stack<Element> {
-  public pop(): Element {
-    // ...
-  }
+class CustomStack<Element> {
   public push(e: Element):void {
     // ...
   }
 }
 ```
 
-要使用类型Stack，必须为每个类型参数指定类型实参：
+要使用类型CustomStack，必须为每个类型参数指定类型实参：
 
 ```typescript
-let s = new Stack<string>
+let s = new CustomStack<string>()
 s.push('hello')
 ```
 
 编译器在使用泛型类型和函数时会确保类型安全。参见以下示例：
 
 ```typescript
-let s = new Stack<string>
+let s = new CustomStack<string>()
 s.push(55) // 将会产生编译时错误
 ```
 
