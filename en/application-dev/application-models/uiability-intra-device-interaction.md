@@ -642,11 +642,11 @@ The following figure shows the call process.
 - The CalleeAbility, which holds a callee object, uses **on()** of the callee object to register a callback. This callback is invoked when the CalleeAbility receives data from the CallerAbility.
 
 > **NOTE**
-> - Currently, only system applications can use the call.
+> Currently, only system applications can use the call.
 >
-> - The launch type of the CalleeAbility must be **singleton**.
+> The launch type of the CalleeAbility must be **singleton**.
 >
-> - Both local (intra-device) and cross-device calls are supported. The following describes how to initiate a local call. For details about how to initiate a cross-device call, see [Using Cross-Device Call](hop-multi-device-collaboration.md#using-cross-device-call).
+> Both local (intra-device) and cross-device calls are supported. The following describes how to initiate a local call. For details about how to initiate a cross-device call, see [Using Cross-Device Call](hop-multi-device-collaboration.md#using-cross-device-call).
 
 
 ### Available APIs
@@ -663,7 +663,7 @@ The following table describes the main APIs used for the call. For details, see 
 | call(method: string, data: rpc.Parcelable): Promise&lt;void&gt; | Sends agreed parcelable data to the CalleeAbility.|
 | callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt; | Sends agreed parcelable data to the CalleeAbility and obtains the agreed parcelable data returned by the CalleeAbility.|
 | release(): void | Releases the caller object.|
-| on(type: "release", callback: OnReleaseCallback): void | Callback invoked when the caller object is released.|
+| on(type: "release", callback: OnReleaseCallback): void| Callback invoked when the caller object is released.|
 
 The implementation of using the call for UIAbility interaction involves two parts:
 

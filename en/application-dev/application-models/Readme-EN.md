@@ -18,9 +18,9 @@
       - [ExtensionAbility Overview](extensionability-overview.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
-      - [ServiceExtensionAbility](serviceextensionability.md)      
+      - [ServiceExtensionAbility](serviceextensionability.md)
       - [WindowExtensionAbility (for System Applications Only)](windowextensionability.md)
-      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)    
+      - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [DriverExtensionAbility](driverextensionability.md)
     - Service Widget Development in Stage Model
       - [Service Widget Overview](service-widget-overview.md)
@@ -78,8 +78,7 @@
     - [Background Services](background-services.md)
   - Thread Model
     - [Thread Model Overview](thread-model-stage.md)
-    - [Using Emitter for Inter-Thread Communication](itc-with-emitter.md)
-    - [Using Worker for Inter-Thread Communication](itc-with-worker.md)
+    - [Using EventHub for Intra-Thread Communication](itc-with-eventHub.md)
   - Mission Management
     - [Mission Management Scenarios](mission-management-overview.md)
     - [Mission and Launch Type](mission-management-launch-type.md)
@@ -118,7 +117,7 @@
       - [Starting a DataAbility](start-dataability.md)
       - [Accessing a DataAbility](access-dataability.md)
       - [DataAbility Permission Control](dataability-permission-control.md)
-    - [Widget Development](widget-development-fa.md)
+    - [Service Widget Development in FA Model](widget-development-fa.md)
     - [Context](application-context-fa.md)
     - [Want](want-fa.md)
     - [Component Startup Rules (FA Model)](component-startup-rules-fa.md)
@@ -128,7 +127,7 @@
     - [Background Services](rpc.md)
   - Thread Model
     - [Thread Model Overview](thread-model-fa.md)
-    - [Inter-Thread Communication](itc-fa-overview.md)
+    - [Using Emitter for Inter-Thread Communication](itc-with-emitter.md)
   - [Mission Management](mission-management-fa.md)
   - [Application Configuration File](config-file-fa.md)
 - Development of Component Interaction Between the FA Model and Stage Model
