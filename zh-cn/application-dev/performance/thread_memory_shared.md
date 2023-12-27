@@ -1,12 +1,13 @@
 # 合理使用多线程共享内存
 ## 概述
 在应用开发中，为了避免主线程阻塞，提高应用性能，需要将一些耗时操作放在子线程中执行。此时，子线程就需要访问主线程中的数据。ArkTS采用了基于消息通信的Actor并发模型，具有内存隔离的特性，所以跨线程传输数据时需要将数据序列化，但是AkrTS支持通过可共享对象SharedArrayBuffer实现直接的共享内存。
-在开发应用时，如果遇到数据量较大，并且需要多个线程同时操作的情况，推荐使用SharedArrayBuffer共享内存，可以减少数据在线程间传递时需要复制和序列化的额外开销。比如，音视频解码播放、多个线程同时读取写入文件等场景。由于内存是共享的，所以在多个线程同时操作同一块内存时，可能会引起数据的紊乱，这时就需要使用锁来确保数据操作的有序性。本文将基于此具体展开说明。关于多线程的使用和原理，可参考[OpenHarmony多线程能力场景化示例实践](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/multi_thread_capability.md/)，本文将不再详细讲述。
+
+在开发应用时，如果遇到数据量较大，并且需要多个线程同时操作的情况，推荐使用SharedArrayBuffer共享内存，可以减少数据在线程间传递时需要复制和序列化的额外开销。比如，音视频解码播放、多个线程同时读取写入文件等场景。由于内存是共享的，所以在多个线程同时操作同一块内存时，可能会引起数据的紊乱，这时就需要使用锁来确保数据操作的有序性。本文将基于此具体展开说明。关于多线程的使用和原理，可参考[OpenHarmony多线程能力场景化示例实践](./multi_thread_capability.md)，本文将不再详细讲述。
 ## 工作原理
 可共享对象SharedArrayBuffer，是拥有固定长度的原始二进制数据缓冲区，可以存储任何类型的数据，包括数字、字符串等。它支持在多线程之间传递，传递之后的SharedArrayBuffer对象和原始的SharedArrayBuffer对象可以指向同一块内存，进而达到共享内存的目的。SharedArrayBuffer对象存储的数据在子线程中被修改时，需要通过原子操作保证其同步性，即下个操作开始之前务必需要保证上个操作已经结束。下面将通过示例说明原子操作保证同步性的必要性，详细代码请参考[AtomicsUsage.ets](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/memoryShared/src/main/ets/pages/AtomicsUsage.ets)。
 ### 非原子操作
 
-```
+```javascript
 ......
 // 非原子操作，进行10000次++
 @Concurrent
@@ -85,7 +86,7 @@ sharedArrayBufferUsage(isAtomics: boolean) {
 ### 原子操作
 下面修改一下代码，将自增操作改为使用Atomics.add()方法的原子操作。
 
-```
+```javascript
 ......
 Button("原子操作")
   .width("80%")
@@ -105,7 +106,7 @@ Button("原子操作")
 并发编程重在解决线程间分工、同步与互斥的问题，而实现互斥的重要方式是通过锁。示例通过Atomics和SharedArrayBuffer简单实现不可重入锁类NonReentrantLock。
 constructor()通过传入可共享对象SharedArrayBuffer初始化锁，实现多线程共享同一块内存，以作为共同操作的标志位，从而控制锁的状态。
 
-```
+```javascript
 const UNLOCKED = 0;
 const LOCKED_SINGLE = 1;
 const LOCKED_MULTI = 2;
@@ -123,7 +124,7 @@ export class NonReentrantLock {
 ```
 lock()方法用于获取锁，如果获取锁失败，则线程进入阻塞状态。
 
-```
+```javascript
 lock(): void {
   const flag= this.flag;
   let c = UNLOCKED;
@@ -142,7 +143,7 @@ lock(): void {
 ```
 tryLock()方法用于尝试获取锁，如果获取锁成功则返回true，失败返回false，但不会阻塞线程。
 
-```
+```javascript
 tryLock(): boolean {
   const flag= this.flag;
   return Atomics.compareExchange(flag, 0, UNLOCKED, LOCKED_SINGLE) === UNLOCKED;
@@ -151,7 +152,7 @@ tryLock(): boolean {
 ```
 unlock()方法用于释放锁。
 
-```
+```javascript
 unlock(): void {
   // 局部化flag，保证只有获取锁的线程可以释放锁
   const flag= this.flag;
@@ -168,7 +169,7 @@ unlock(): void {
 示例通过多线程写入文件的场景，展示多线程不合理操作共享内存时，出现的线程不安全问题，进而导致输出文件乱码的情况。并通过使用上文实现的NonReentrantLock，解决该问题。
 主线程通过startWrite(useLock: boolean)方法，开启多线程写入文件，并通过useLock参数控制是否使用锁。
 
-```
+```javascript
 @Component
 export struct LockUsage {
   taskNum: number = 10; // 任务数，实际并行线程数依设备而定
@@ -234,7 +235,7 @@ export struct LockUsage {
 ```
 子线程根据偏移量在指定位置写入文件，并通过偏移量自增，指定下次的写入位置。
 
-```
+```javascript
 @Concurrent
 async function createWriteTask(baseDir: string, writeText: number, sabInLock: SharedArrayBuffer, sabForLine: SharedArrayBuffer, useLock: boolean): Promise<void> {
   class Option { // 写入文件时的接口方法参数类
@@ -285,10 +286,15 @@ async function createWriteTask(baseDir: string, writeText: number, sabInLock: Sh
 
 ```
 从应用沙箱地址查看写入的文件，可以看到unusedLock.txt文件，所写行数不足1000行，且存在乱码，如图1所示。
+
 图1 不使用锁写入的文件
+
 ![unusedLock.txt](./figures/not_use_lock.png)
+
 而usedLock.txt文件，所写行数刚好1000行，且不存在乱码，如图2所示。
+
 图2 使用锁写入的文件
+
 ![usedLock.txt](./figures/use_lock.png)
 
 ## 总结
