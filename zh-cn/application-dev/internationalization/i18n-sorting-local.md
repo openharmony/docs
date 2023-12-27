@@ -35,46 +35,46 @@
 | 名称 | 取值 | 描述 | 显示效果 | 
 | -------- | -------- | -------- | -------- |
 | localeMatcher | lookup | 模糊匹配 |  | 
-| best fit | 准确匹配 |  | 
+|  | best fit | 准确匹配 |  | 
 | usage | sort | 用作排序 |  | 
-| search | 用作查找匹配的字符串 |  | 
+|  | search | 用作查找匹配的字符串 |  | 
 | sensitivity | base | 不同的字母比较不相等 | 例如: a ≠ b, a = á, a = A. | 
-| accent | 不同的字母或读音比较不相等 | 例如: a ≠ b, a ≠ á, a = A. | 
-| case | 不同的字母或同一字母大小写比较不相等 | 例如: a ≠ b, a = á, a ≠ A. | 
-| variant | 不同的字母或读音及其它有区别的标志或大小写都是不相等的 | 例如: a ≠ b, a ≠ á, a ≠ A. | 
+|  | accent | 不同的字母或读音比较不相等 | 例如: a ≠ b, a ≠ á, a = A. | 
+|  | case | 不同的字母或同一字母大小写比较不相等 | 例如: a ≠ b, a = á, a ≠ A. | 
+|  | variant | 不同的字母或读音及其它有区别的标志或大小写都是不相等的 | 例如: a ≠ b, a ≠ á, a ≠ A. | 
 | ignorePunctuation | true | 忽略标点 | a,b = ab | 
-| false | 不忽略标点 | a,b &lt; ab | 
+|  | false | 不忽略标点 | a,b &lt; ab | 
 | numeric | true | 使用数字排序 | 1 &lt; 2 &lt; 10 &lt; 11 | 
-| false | 不使用数字排序 | 1 &lt; 10 &lt; 11 &lt; 2 | 
+|  | false | 不使用数字排序 | 1 &lt; 10 &lt; 11 &lt; 2 | 
 | caseFirst | upper | 大写排前面 | ab,aB, AB,Ab =&gt; AB &lt; Ab &lt; aB &lt; ab | 
-| lower | 小写排前面 | ab,aB, AB,Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
-| false | 不区分首字母大小写 | ab,aB, AB,Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
+|  | lower | 小写排前面 | ab,aB, AB,Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
+|  | false | 不区分首字母大小写 | ab,aB, AB,Ab =&gt; ab &lt; aB &lt; Ab &lt; AB | 
 | collation | big5han | 拉丁字母使用的拼音排序 |  | 
-| compat | 兼容性排序，仅用于阿拉伯语 |  | 
-| dict | 词典风格排序，仅用于僧伽罗语 |  | 
-| direct | 二进制码点排序 |  | 
-| ducet | Unicode排序规则元素表 |  | 
-| eor | 欧洲排序规则 |  | 
-| gb2312 | 拼音排序，仅用于中文排序 |  | 
-| phonebk | 电话本风格排序 |  | 
-| phonetic | 发音排序 |  | 
-| pinyin | 拼音排序 |  | 
-| reformed | 瑞典语排序 |  | 
-| searchjl | 韩语初始辅音搜索的特殊排序 |  | 
-| stroke | 汉语的笔画排序 |  | 
-| trad | 传统风格排序，如西班牙语 |  | 
-| unihan | 统一汉字排序，用于日语、韩语、中文等汉字排序 |  | 
-| zhuyin | 注音排序，仅用于中文排序 |  | 
+|  | compat | 兼容性排序，仅用于阿拉伯语 |  | 
+|  | dict | 词典风格排序，仅用于僧伽罗语 |  | 
+|  | direct | 二进制码点排序 |  | 
+|  | ducet | Unicode排序规则元素表 |  | 
+|  | eor | 欧洲排序规则 |  | 
+|  | gb2312 | 拼音排序，仅用于中文排序 |  | 
+|  | phonebk | 电话本风格排序 |  | 
+|  | phonetic | 发音排序 |  | 
+|  | pinyin | 拼音排序 |  | 
+|  | reformed | 瑞典语排序 |  | 
+|  | searchjl | 韩语初始辅音搜索的特殊排序 |  | 
+|  | stroke | 汉语的笔画排序 |  | 
+|  | trad | 传统风格排序，如西班牙语 |  | 
+|  | unihan | 统一汉字排序，用于日语、韩语、中文等汉字排序 |  | 
+|  | zhuyin | 注音排序，仅用于中文排序 |  | 
 
 **开发实例**
 
 ```ts
 // 导入模块
-improt I18n from '@ohos.i18n';
+import I18n from '@ohos.i18n';
 import Intl from '@ohos.intl';
 
 // 创建排序对象
-let options = {
+let options: Intl.CollatorOptions = {
     localeMatcher: "lookup", 
     usage: "sort",
     sensitivity: "case" // 区分大小写
