@@ -75,10 +75,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed, error: ${JSON.stringify(err)}`);
+        wantAgent = data;
     }
 }
 try {
@@ -157,12 +157,12 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
-    wantAgent = data;
-}).catch((err: BusinessError) => {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
-});
+        wantAgent = data;
+    }).catch((err: BusinessError) => {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    });
 } catch (err) {
-    console.error('getWantAgent failed! ${err.code} ${err.message}');
+    console.error(`getWantAgent failed! ${err.code} ${err.message}`);
 }
 ```
 
@@ -231,10 +231,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     //getBundleName回调
     let getBundleNameCallback = (err: BusinessError, data: string) => {
@@ -327,10 +327,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getBundleName(wantAgent).then((data)=>{
@@ -414,10 +414,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.info(`getWantAgent failed ${JSON.stringify(err)}`);
+        wantAgent = data;
     }
     //getUid回调
     let getUidCallback = (err: BusinessError, data: number) => {
@@ -510,10 +510,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
@@ -599,10 +599,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     //getWant回调
     let getWantCallback = (err: BusinessError, data: Want) => {
@@ -698,10 +698,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getUid(wantAgent).then((data)=>{
@@ -785,10 +785,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     //cancel回调
     let cancelCallback = (err: BusinessError, data: void) => {
@@ -881,10 +881,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.cancel(wantAgent).then((data)=>{
@@ -962,10 +962,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     //trigger回调
     let triggerCallback = (err: BusinessError, data: WantAgent.CompleteData) => {
@@ -1046,11 +1046,11 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    } else {
         wantAgent1 = data;
         wantAgent2 = data;
-    } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
     }
     //equal回调
     let equalCallback = (err: BusinessError, data: boolean) => {
@@ -1136,11 +1136,11 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    } else {
         wantAgent1 = data;
         wantAgent2 = data;
-    } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
     }
     try {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
@@ -1223,10 +1223,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     //getOperationTypeCallback回调
     let getOperationTypeCallback = (err: BusinessError, data: number) => {
@@ -1318,10 +1318,10 @@ let wantAgentInfo: WantAgent.WantAgentInfo = {
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
-    if (err === undefined) {
-        wantAgent = data;
+    if (err) {
+        console.error(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
     } else {
-        console.error(`getWantAgent failed! ${JSON.stringify(wantAgent)}`);
+        wantAgent = data;
     }
     try {
         WantAgent.getOperationType(wantAgent).then((data)=>{
@@ -1379,8 +1379,8 @@ try {
 
 | 名称           | 类型                           | 必填 | 说明                    |
 | -------------- | ------------------------------ | ---- | ---------------------- |
-| info           | WantAgent                       | 是   | 触发的wantAgent。       |
-| want           | Want                            | 是   | 存在的被触发的want。     |
+| info           | [WantAgent](js-apis-app-ability-wantAgent.md#导入模块)                       | 是   | 触发的wantAgent。       |
+| want           | [Want](js-apis-app-ability-want.md#属性)                            | 是   | 存在的被触发的want。     |
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
 | finalData      | string                          | 是   | 公共事件收集的最终数据。  |
 | extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
