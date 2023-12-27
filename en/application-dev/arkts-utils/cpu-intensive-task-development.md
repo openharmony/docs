@@ -1,13 +1,13 @@
-# CPU Intensive Task Development
+# CPU Intensive Task Development (TaskPool and Worker)
 
 
-CPU intensive tasks occupy lots of system computing resources for a long period of time, during which other events of the thread are blocked. Example CPU intensive tasks are image processing, video encoding, and data analysis.
+CPU intensive tasks are tasks that occupy a significant amount of system computing resources and that may block other tasks in the same thread. Example CPU intensive tasks are image processing, video encoding, and data analysis.
 
 
-OpenHarmony uses multithread concurrency to process CPU intensive tasks. This improves CPU utilization and application response speed.
+To improve CPU utilization and application response speeds, use multithread concurrency in processing CPU intensive tasks.
 
 
-If a task does not need to occupy a background thread for a long time (3 minutes), you are advised to use **TaskPool**. Otherwise, use **Worker**. The following uses histogram processing and a time-consuming model prediction task in the background as examples.
+If a task can be completed in a background thread within 3 minutes, you are advised to use **TaskPool**. Otherwise, use **Worker**. The following uses histogram processing and a time-consuming model prediction task in the background as examples.
 
 
 ## Using TaskPool to Process Histograms
@@ -16,7 +16,7 @@ If a task does not need to occupy a background thread for a long time (3 minutes
 
 2. Segment the data, and initiate associated task scheduling through task groups.
 
-   Create a [task group](../reference/apis/js-apis-taskpool.md#taskgroup10), call [addTask()](../reference/apis/js-apis-taskpool.md#addtask10) to add tasks, call [execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute10) to execute the tasks in the task group, and set [a high priority](../reference/apis/js-apis-taskpool.md#priority) for the task group. After all the tasks in the task group are complete, the histogram processing result is returned simultaneously.
+   Create a [task group](../reference/apis/js-apis-taskpool.md#taskgroup10), call [addTask()](../reference/apis/js-apis-taskpool.md#addtask10) to add tasks, and call [execute()](../reference/apis/js-apis-taskpool.md#taskpoolexecute10) to execute the tasks in the task group at a [a high priority](../reference/apis/js-apis-taskpool.md#priority). After all the tasks in the task group are complete, the histogram processing result is returned simultaneously.
 
 3. Summarize and process the result arrays.
 
@@ -70,11 +70,11 @@ struct Index {
 ```
 
 
-## Using Worker for Time-Consuming Data Analysis
+## Using Worker for Time-Consuming Model Prediction
 
-The following uses the training of a region-specific house price prediction model as an example. This model can be used to predict house prices in the region based on the house area and number of rooms. The model needs to run for a long time, and the prediction will use the previous running result. Due to these considerations, **Worker** is used for the development.
+The following uses the training of a region-specific house price prediction model as an example. This model can be used to predict house prices in the region based on the house area and number of rooms. The model needs to run for a long time, and each prediction needs to use the previous running result. Due to these considerations, **Worker** is used for the development.
 
-1. Add the worker creation template provided on DevEco Studio to your project, and name it **MyWorker**.
+1. In DevEco Studio, add a worker named **MyWorker** to your project.
 
    ![newWorker](figures/newWorker.png)
 
@@ -95,14 +95,13 @@ The following uses the training of a region-specific house price prediction mode
 
     const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
 
-    // Receive the result of the worker thread.
+    // Receive the result from the worker thread.
     workerInstance.onmessage = (() => {
      console.info('MyWorker.ts onmessage');
-     // Perform time-consuming operations in the worker thread.
     })
 
     workerInstance.onerror = (() => {
-     // Receive error information of the worker thread.
+     // Receive error information from the worker thread.
     })
 
     // Send a training message to the worker thread.
@@ -122,7 +121,7 @@ The following uses the training of a region-specific house price prediction mode
 
 5. In the worker thread, call [onmessage()](../reference/apis/js-apis-worker.md#onmessage9-1) to receive messages sent by the host thread, and call [postMessage()](../reference/apis/js-apis-worker.md#postmessage9-2) to send messages to the host thread.
 
-   For example, the prediction model and its training process are defined in the worker thread, and messages are exchanged with the main thread.
+    For example, the prediction model and its training process are defined in the worker thread, and messages are exchanged with the main thread.
 
     ```ts
     import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
@@ -162,9 +161,8 @@ The following uses the training of a region-specific house price prediction mode
 
 6. After the task is completed in the worker thread, destroy the worker thread. The worker thread can be destroyed by itself or the host thread. Then, call [onexit()](../reference/apis/js-apis-worker.md#onexit9) in the host thread to define the processing logic after the worker thread is destroyed.
 
-
     ```ts
-// After the worker thread is destroyed, execute the onexit() callback.
+    // After the worker thread is destroyed, execute the onexit() callback.
     workerInstance.onexit = (): void => {
      console.info("main thread terminate");
     }

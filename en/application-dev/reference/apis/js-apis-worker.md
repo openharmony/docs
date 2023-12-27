@@ -35,11 +35,11 @@ Provides options that can be set for the **Worker** instance to create.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | Yes  | Yes| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**.|
-| name | string   | Yes  | Yes| Name of the worker thread. The default value is **undefined**.|
-| shared | boolean | Yes  | Yes| Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported.|
+| type | "classic" \| "module" | Yes  | No| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**.|
+| name | string   | Yes  | No| Name of the worker thread. The default value is **undefined**.|
+| shared | boolean | Yes  | No| Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported.|
 
 
 ## ThreadWorker<sup>9+</sup>
@@ -1713,7 +1713,7 @@ Implements communication between the worker thread and the host thread. The **po
 
 ### postMessage<sup>(deprecated)</sup>
 
-postMessage(messageObject: Object, transfer: Transferable[]): void;
+postMessage(messageObject: Object, transfer: Transferable[]): void
 
 Used by the worker thread to send a message to the host thread by transferring object ownership.
 
@@ -1731,7 +1731,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 ### postMessage<sup>9+</sup>
 
-postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
+postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
 Used by the worker thread to send a message to the host thread by transferring object ownership.
 
@@ -2125,7 +2125,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 
 ```ts
 // Main thread (The following assumes that the workers directory and pages directory are at the same level.)
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
@@ -2187,7 +2187,7 @@ Configuration of the **build-profile.json5** file:
 ### Stage Model
 ```ts
 // Main thread (The following assumes that the workers directory and pages directory are at different levels.)
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");

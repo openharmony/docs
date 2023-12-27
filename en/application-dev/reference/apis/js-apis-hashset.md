@@ -2,7 +2,7 @@
 
 **HashSet** is implemented based on [HashMap](js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
 
-Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allows only unique elements. However, null values are allowed in **HashSet**, but not allowed in **TreeSet**.
+Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
 
 **Recommended use case**: Use **HashSet** when you need a set that has only unique elements or need to deduplicate a set.
 
