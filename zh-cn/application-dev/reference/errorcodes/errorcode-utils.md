@@ -258,7 +258,7 @@ The task does not exist when it is canceled.
 
 **处理步骤**
 
-取消任务前，确保任务已被taskpool.execute调用进入任务池且任务未执行完成。无法保证时，需要捕获异常。
+取消任务前，确保任务已被[taskpool.execute](../apis/js-apis-taskpool.md#taskpoolexecute-1)调用进入任务池且任务未执行完成。无法保证时，需要捕获异常。
 
 ## 10200016 取消正在执行的任务错误
 
@@ -276,7 +276,7 @@ The task is executing when it is canceled.
 
 **处理步骤**
 
-取消任务前，确保任务已被taskpool.execute调用进入任务池且任务未开始执行。无法保证时，需要捕获异常。
+取消任务前，确保任务已被[taskpool.execute](../apis/js-apis-taskpool.md#taskpoolexecute-1)调用进入任务池且任务未开始执行。无法保证时，需要捕获异常。
 
 ## 10200017 删除不存在的元素错误
 
@@ -312,7 +312,7 @@ The task group does not exist when it is canceled.
 
 **处理步骤**
 
-取消任务组前，确保任务组已被taskpool.execute调用进入任务池且任务组内存在任务未执行完成。无法保证时，需要捕获异常。
+取消任务组前，确保任务组已被[taskpool.execute](../apis/js-apis-taskpool.md#taskpoolexecute10)调用进入任务池且任务组内存在任务未执行完成。无法保证时，需要捕获异常。
 
 ## 10200019 调用未注册对象的方法错误
 
@@ -421,3 +421,57 @@ The callback is not registered on the host side.
 **处理步骤**
 
 调用时，确保函数在宿主线程已注册。无法保证时，需要捕获异常。
+
+## 10200025 串行队列中添加了存在依赖的任务
+
+**错误信息**
+
+Add dependent task to SequenceRunner.
+
+**错误描述**
+
+当前串行队列中添加了存在依赖的任务。
+
+**可能原因**
+
+当前串行队列中添加了存在依赖的任务。
+
+**处理步骤**
+
+排查找到串行队列里使用[addDependency()](../apis/js-apis-taskpool.md#adddependency11)添加依赖的任务，使用[removeDependency()](../apis/js-apis-taskpool.md#removedependency11)删除此任务的依赖。
+
+## 10200026 当前任务存在循环依赖
+
+**错误信息**
+
+There is a circular dependency.
+
+**错误描述**
+
+当前任务存在循环依赖关系。
+
+**可能原因**
+
+当前任务存在循环依赖关系。
+
+**处理步骤**
+
+排查找到循环依赖关系的相关任务，根据实际情况使用[removeDependency()](../apis/js-apis-taskpool.md#removedependency11)删除不需要的依赖关系，确保所有任务中不存在循环依赖关系。
+
+## 10200027 依赖关系不存在
+
+**错误信息**
+
+The dependency does not exist.
+
+**错误描述**
+
+依赖关系不存在。
+
+**可能原因**
+
+使用[removeDependency()](../apis/js-apis-taskpool.md#removedependency11)删除任务依赖时，依赖关系不存在。
+
+**处理步骤**
+
+调用时，确保在删除依赖之前，已经使用[addDependency()](../apis/js-apis-taskpool.md#adddependency11)成功添加依赖。无法保证时，需要捕获异常。
