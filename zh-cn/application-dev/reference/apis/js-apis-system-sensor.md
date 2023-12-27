@@ -467,7 +467,7 @@ sensor.getOnBodyState(getOnBodyStateOptions);
 
 | 参数名  | 类型                                                         | 必填 | 说明                                             |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| options | [SubscribeDeviceOrientationOptions](#subscribedeviceorientationoptions) | 是   | 用于监听设备方向传感器数据的回调函数的执行频率。 |
+| options | [SubscribeDeviceOrientationOptions](#subscribedeviceorientationoptions6) | 是   | 用于监听设备方向传感器数据的回调函数的执行频率。 |
 
 **示例：**
 
@@ -520,9 +520,9 @@ sensor.unsubscribeDeviceOrientation();
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                                           |
-| ------- | ------------------------------------------------------- | ---- | ---------------------------------------------- |
-| options | [SubscribeGyroscopeOptions](#subscribegyroscopeoptions) | 是   | 用于侦听陀螺仪传感器数据的回调函数的执行频率。 |
+| 参数名  | 类型                                                     | 必填 | 说明                                           |
+| ------- | -------------------------------------------------------- | ---- | ---------------------------------------------- |
+| options | [SubscribeGyroscopeOptions](#subscribegyroscopeoptions6) | 是   | 用于侦听陀螺仪传感器数据的回调函数的执行频率。 |
 
 **示例：**
 
@@ -573,7 +573,7 @@ sensor.unsubscribeGyroscope();
 
 | 名称     | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| interval | string                                          | 是   | 频率参数，加速度的回调函数执行频率。 默认为normal，可选值有： - game：极高的回调频率，20ms/次，适用于游戏。 - ui：较高的回调频率，60ms/次，适用于UI更新。 - normal：普通的回调频率，200ms/次，低功耗。 |
+| interval | string                                          | 是   | 频率参数，加速度的回调函数执行频率。<br/>默认为normal，可选值有：<br/>game：极高的回调频率，20ms/次，适用于游戏。<br/>ui：较高的回调频率，60ms/次，适用于UI更新。<br/>normal：普通的回调频率，200ms/次，低功耗。 |
 | success  | [AccelerometerResponse](#accelerometerresponse) | 是   | 感应到加速度数据变化后的回调函数。                           |
 | fail     | Function                                        | 否   | 接口调用失败的回调函数。                                     |
 
@@ -764,11 +764,11 @@ sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-| 名称     | 类型                                                    | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| interval | string                                                  | 是   | 频率参数，设备方向传感器的回调函数执行频率。<br/>默认为normal，可选值有：<br/>-&nbsp;game：极高的回调频率，20ms/次，适用于游戏。<br/>-&nbsp;ui：较高的回调频率，60ms/次，适用于UI更新。<br/>-&nbsp;normal：普通的回调频率，200ms/次，低功耗。 |
-| success  | [DeviceOrientationResponse](#deviceorientationresponse) | 是   | 感应到设备方向传感器数据变化后的回调函数。                   |
-| fail     | Function                                                | 否   | 接口调用失败的回调函数。                                     |
+| 名称     | 类型                                                     | 必填 | 说明                                                         |
+| -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| interval | string                                                   | 是   | 频率参数，设备方向传感器的回调函数执行频率。<br/>默认为normal，可选值有：<br/>-&nbsp;game：极高的回调频率，20ms/次，适用于游戏。<br/>-&nbsp;ui：较高的回调频率，60ms/次，适用于UI更新。<br/>-&nbsp;normal：普通的回调频率，200ms/次，低功耗。 |
+| success  | [DeviceOrientationResponse](#deviceorientationresponse6) | 是   | 感应到设备方向传感器数据变化后的回调函数。                   |
+| fail     | Function                                                 | 否   | 接口调用失败的回调函数。                                     |
 
 ## DeviceOrientationResponse<sup>6+</sup> 
 
@@ -790,11 +790,11 @@ sensor.unsubscribeGyroscope();
 
 **系统能力**：SystemCapability.Sensors.Sensor.Lite
 
-| 名称     | 类型                                    | 必填 | 说明                                                         |
-| -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| interval | string                                  | 是   | 频率参数，陀螺仪的回调函数执行频率。<br/>默认为normal，可选值有：<br/>-&nbsp;game：极高的回调频率，20ms/次，适用于游戏。<br/>-&nbsp;ui：较高的回调频率，60ms/次，适用于UI更新。<br/>-&nbsp;normal：普通的回调频率，200ms/次，低功耗。 |
-| success  | [GyroscopeResponse](#gyroscoperesponse) | 是   | 感应到陀螺仪数据变化后的回调函数。                           |
-| fail     | Function                                | 否   | 接口调用失败的回调函数。                                     |
+| 名称     | 类型                                     | 必填 | 说明                                                         |
+| -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| interval | string                                   | 是   | 频率参数，陀螺仪的回调函数执行频率。<br/>默认为normal，可选值有：<br/>game：极高的回调频率，20ms/次，适用于游戏。<br/>ui：较高的回调频率，60ms/次，适用于UI更新。<br/>normal：普通的回调频率，200ms/次，低功耗。 |
+| success  | [GyroscopeResponse](#gyroscoperesponse6) | 是   | 感应到陀螺仪数据变化后的回调函数。                           |
+| fail     | Function                                 | 否   | 接口调用失败的回调函数。                                     |
 
 ## GyroscopeResponse<sup>6+</sup> 
 
