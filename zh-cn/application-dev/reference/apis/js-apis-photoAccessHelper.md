@@ -6033,7 +6033,7 @@ async function example() {
 
 ## RecommendationOptions<sup>11+</sup>
 
-照片推荐选项。
+照片推荐选项(基于照片数据分析结果，依赖设备适配)。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
