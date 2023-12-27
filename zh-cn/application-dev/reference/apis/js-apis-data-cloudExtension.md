@@ -80,7 +80,7 @@ export default class MyServiceExtension extends ServiceExtensionAbility {
     console.info(`onDisconnect: ${want}`);
   }
   onDestroy() {
-    console.info(`onDestroy`);   
+    console.info('onDestroy');
   }
 }
 ```
@@ -132,7 +132,7 @@ export default class MyCloudService implements cloudExtension.CloudService {
 
 connectShareCenter(userId: number, bundleName: string): Promise&lt;rpc.RemoteObject&gt;
 
-系统内部通过该接口获取[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#remoteobject)对象，可以通过[createShareServiceStub](#createshareservicestub)接口进行创建，使用Promise异步回调。
+系统内部通过该接口获取[ShareCenter](#sharecenter)的[RemoteObject](js-apis-rpc.md#remoteobject)对象，可以通过[createShareServiceStub](#cloudextensioncreateshareservicestub)接口进行创建，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -187,13 +187,13 @@ share(userId: number, bundleName: string, sharingResource: string, participants:
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源的标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;  | 是   | 端云共享参与者。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回发起共享的结果。 |
 
 **示例：**
 
@@ -213,12 +213,12 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     let result: Array<cloudExtension.Result<Participant>> = [];
     participants.forEach((item => {
       result.push({
-        code: cloudData.sharing.sharingCode.SUCCESS,
+        code: cloudData.sharing.SharingCode.SUCCESS,
         description: 'share succeeded'    
       })
     }))
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'share succeeded',
       value: result
     }
@@ -242,13 +242,13 @@ unshare(userId: number, bundleName: string, sharingResource: string, participant
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;  | 是   | 端云共享参与者。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
 
 **示例：**
 
@@ -268,12 +268,12 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     let result: Array<cloudExtension.Result<Participant>> = [];
     participants.forEach((item => {
       result.push({
-        code: cloudData.sharing.sharingCode.SUCCESS,
+        code: cloudData.sharing.SharingCode.SUCCESS,
         description: 'unshare succeeded'    
       })
     }))
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'unshare succeeded',
       value: result
     }
@@ -318,7 +318,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // ...
     // 返回服务端退出共享的返回结果
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'exit share succeeded'
     }
   }
@@ -341,13 +341,13 @@ changePrivilege(userId: number, bundleName: string, sharingResource: string, par
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源标识。   |
-| participants    | Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;  | 是   | 端云共享参与者。   |
+| participants    | Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;  | 是   | 端云共享参与者。   |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回更改权限的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[Result](#resultt)&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回更改权限的结果。 |
 
 **示例：**
 
@@ -367,12 +367,12 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     let result: Array<cloudExtension.Result<Participant>> = [];
     participants.forEach((item => {
       result.push({
-        code: cloudData.sharing.sharingCode.SUCCESS,
+        code: cloudData.sharing.SharingCode.SUCCESS,
         description: 'change privilege succeeded'    
       })
     }))
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'change privilege succeeded',
       value: result
     }
@@ -399,9 +399,9 @@ queryParticipants(userId: number, bundleName: string, sharingResource: string): 
 
 **返回值：**
 
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
+| 类型                                                         | 说明                                    |
+| ------------------------------------------------------------ | --------------------------------------- |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
 
 **示例：**
 
@@ -418,30 +418,35 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // 对接云共享服务端，并获得查询参与者的返回值
     // ...
     // 返回服务端查询参与者的返回结果
-    let privilege = {
-      writable: false,
-      readable: true,
-      creatable: false,
-      deletable: false,
-      shareable: false
-    }
-    let participants = new Array();
+    let participants = new Array<cloudData.sharing.Participant>();
     participants.push({
       identity: '000000000',
       role: cloudData.sharing.Role.ROLE_INVITEE,
       state: cloudData.sharing.State.STATE_ACCEPTED,
-      privilege: privilege,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
       attachInfo: ''
     })
     participants.push({
       identity: '111111111',
       role: cloudData.sharing.Role.ROLE_INVITEE,
       state: cloudData.sharing.State.STATE_ACCEPTED,
-      privilege: privilege,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
       attachInfo: ''
     })
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'query participants succeeded',
       value: participants
     }
@@ -470,7 +475,7 @@ queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](#js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise对象，返回根据邀请码查询共享参与者的结果。 |
+| Promise&lt;[Result](#resultt)&lt;Array&lt;[cloudData.sharing.Participant](js-apis-data-cloudData.md#participant11)&gt;&gt;&gt; | Promise对象，返回根据邀请码查询共享参与者的结果。 |
 
 **示例：**
 
@@ -487,30 +492,35 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // 对接云共享服务端，并获得查询参与者的返回值
     // ...
     // 返回服务端查询参与者的返回结果
-    let privilege = {
-      writable: false,
-      readable: true,
-      creatable: false,
-      deletable: false,
-      shareable: false
-    }
-    let participants = new Array();
+    let participants = new Array<cloudData.sharing.Participant>();
     participants.push({
       identity: '000000000',
       role: cloudData.sharing.Role.ROLE_INVITEE,
       state: cloudData.sharing.State.STATE_ACCEPTED,
-      privilege: privilege,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
       attachInfo: ''
     })
     participants.push({
       identity: '111111111',
       role: cloudData.sharing.Role.ROLE_INVITEE,
       state: cloudData.sharing.State.STATE_ACCEPTED,
-      privilege: privilege,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
       attachInfo: ''
     })
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'query participants by invitation succeeded',
       value: participants
     }
@@ -534,7 +544,7 @@ confirmInvitation(userId: number, bundleName: string, invitationCode: string, st
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | invitationCode  | string  | 是   | 端云共享邀请码。   |
-| state           | [cloudData.sharing.State](#js-apis-data-cloudData.md#state11)  | 是   | 共享邀请的确认状态。   |
+| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state11)  | 是   | 共享邀请的确认状态。   |
 
 **返回值：**
 
@@ -556,7 +566,7 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // ...
     // 返回服务端确认共享邀请的返回结果
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'confirm invitation succeeded',
       value: 'sharing_resource_test'
     }
@@ -580,7 +590,7 @@ changeConfirmation(userId: number, bundleName: string, sharingResource: string, 
 | userId          | number  | 是   | 表示用户ID。  |
 | bundleName      | string  | 是   | 应用包名。    |
 | sharingResource | string  | 是   | 端云共享资源标识。   |
-| state           | [cloudData.sharing.State](#js-apis-data-cloudData.md#state11)  | 是   | 共享邀请的更改状态。   |
+| state           | [cloudData.sharing.State](js-apis-data-cloudData.md#state11)  | 是   | 共享邀请的更改状态。   |
 
 **返回值：**
 
@@ -602,11 +612,239 @@ export default class MyShareCenter implements cloudExtension.ShareCenter {
     // ...
     // 返回服务端更改共享邀请的返回结果
     return {
-      code: cloudData.sharing.sharingCode.SUCCESS,
+      code: cloudData.sharing.SharingCode.SUCCESS,
       description: 'change confirm succeeded'
     }
   }
   // ...
+}
+```
+## 完整示例
+
+以上示例中的类均采用implements实现，示例代码不能单独编译，需要实现父类中的所有方法才能使用，提供完整示例以作参考。
+
+```ts
+import cloudExtension from '@ohos.data.cloudExtension';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import rpc from '@ohos.rpc';
+import cloudData from '@ohos.data.cloudData';
+
+type Participant = cloudData.sharing.Participant;
+
+class MyShareCenter implements cloudExtension.ShareCenter {
+  constructor() {
+  }
+
+  async share(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
+    Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
+    console.info(`share, bundle: ${bundleName}`);
+    // 对接云共享服务端，并获得共享的返回值
+    // ...
+    // 返回服务端发起共享的返回结果
+    let result: Array<cloudExtension.Result<Participant>> = [];
+    participants.forEach((item => {
+      result.push({
+        code: cloudData.sharing.SharingCode.SUCCESS,
+        description: 'share succeeded'
+      })
+    }))
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'share succeeded',
+      value: result
+    }
+  }
+
+  async unshare(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
+    Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
+    console.info(`unshare, bundle: ${bundleName}`);
+    // 对接云共享服务端，并获得取消共享的返回值
+    // ...
+    // 返回服务端取消共享的返回结果
+    let result: Array<cloudExtension.Result<Participant>> = [];
+    participants.forEach((item => {
+      result.push({
+        code: cloudData.sharing.SharingCode.SUCCESS,
+        description: 'unshare succeeded'
+      })
+    }))
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'unshare succeeded',
+      value: result
+    }
+  }
+
+  async exit(userId: number, bundleName: string, sharingResource: string):
+    Promise<cloudExtension.Result<void>> {
+    console.info(`exit share, bundle: ${bundleName}`);
+    // 对接云共享服务端，并获得退出共享的返回值
+    // ...
+    // 返回服务端退出共享的返回结果
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'exit share succeeded'
+    }
+  }
+
+  async changePrivilege(userId: number, bundleName: string, sharingResource: string, participants: Array<Participant>):
+    Promise<cloudExtension.Result<Array<cloudExtension.Result<Participant>>>> {
+    console.info(`change privilege, bundle: ${bundleName}`);
+    // 对接云共享服务端，并获得更改权限的返回值
+    // ...
+    // 返回服务端更改权限的返回结果
+    let result: Array<cloudExtension.Result<Participant>> = [];
+    participants.forEach((item => {
+      result.push({
+        code: cloudData.sharing.SharingCode.SUCCESS,
+        description: 'change privilege succeeded'
+      })
+    }))
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'change privilege succeeded',
+      value: result
+    }
+  }
+
+  async queryParticipants(userId: number, bundleName: string, sharingResource: string):
+    Promise<cloudExtension.Result<Array<Participant>>> {
+    console.info(`query participants, bundle: ${bundleName}`);
+    // 对接云共享服务端，并获得查询参与者的返回值
+    // ...
+    // 返回服务端查询参与者的返回结果
+    let participants = new Array<cloudData.sharing.Participant>();
+    participants.push({
+      identity: '000000000',
+      role: cloudData.sharing.Role.ROLE_INVITEE,
+      state: cloudData.sharing.State.STATE_ACCEPTED,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
+      attachInfo: ''
+    })
+    participants.push({
+      identity: '111111111',
+      role: cloudData.sharing.Role.ROLE_INVITEE,
+      state: cloudData.sharing.State.STATE_ACCEPTED,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
+      attachInfo: ''
+    })
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'query participants succeeded',
+      value: participants
+    }
+  }
+
+  async queryParticipantsByInvitation(userId: number, bundleName: string, invitationCode: string):
+    Promise<cloudExtension.Result<Array<Participant>>> {
+    console.info(`query participants by invitation, bundle: ${bundleName}`);
+    // 对接云共享服务端，并获得查询参与者的返回值
+    // ...
+    // 返回服务端查询参与者的返回结果
+    let participants = new Array<cloudData.sharing.Participant>();
+    participants.push({
+      identity: '000000000',
+      role: cloudData.sharing.Role.ROLE_INVITEE,
+      state: cloudData.sharing.State.STATE_ACCEPTED,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
+      attachInfo: ''
+    })
+    participants.push({
+      identity: '111111111',
+      role: cloudData.sharing.Role.ROLE_INVITEE,
+      state: cloudData.sharing.State.STATE_ACCEPTED,
+      privilege: {
+        writable: false,
+        readable: true,
+        creatable: false,
+        deletable: false,
+        shareable: false
+      },
+      attachInfo: ''
+    })
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'query participants by invitation succeeded',
+      value: participants
+    }
+  }
+
+  async confirmInvitation(userId: number, bundleName: string, invitationCode: string, state: cloudData.sharing.State):
+    Promise<cloudExtension.Result<string>> {
+    console.info(`confirm invitation, bundle: ${bundleName}`);
+    // 对接云共享服务端，并获得确认共享邀请的返回值
+    // ...
+    // 返回服务端确认共享邀请的返回结果
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'confirm invitation succeeded',
+      value: 'sharing_resource_test'
+    }
+  }
+
+  async changeConfirmation(userId: number, bundleName: string, sharingResource: string, state: cloudData.sharing.State):
+    Promise<cloudExtension.Result<void>> {
+    console.info(`change confirm, bundle: ${bundleName}`);
+    // 对接云共享服务端，并获得更改共享邀请的返回值
+    // ...
+    // 返回服务端更改共享邀请的返回结果
+    return {
+      code: cloudData.sharing.SharingCode.SUCCESS,
+      description: 'change confirm succeeded'
+    }
+  }
+}
+
+class MyCloudService implements cloudExtension.CloudService {
+  constructor() {
+  }
+
+  async connectShareCenter(userId: number, bundleName: string): Promise<rpc.RemoteObject> {
+    console.info(`connect share center, bundle: ${bundleName}`);
+    return cloudExtension.createShareServiceStub(new MyShareCenter());
+  }
+}
+
+export default class MyServiceExtension extends ServiceExtensionAbility {
+  onCreate(want: Want) {
+    console.info(`onCreate: ${want}`);
+  }
+
+  onRequest(want: Want, startId: number) {
+    console.info(`onRequest: ${want} ${startId}`);
+  }
+
+  onConnect(want: Want): rpc.RemoteObject | Promise<rpc.RemoteObject> {
+    console.info(`onConnect: ${want}`);
+    return cloudExtension.createCloudServiceStub(new MyCloudService());
+  }
+
+  onDisconnect(want: Want) {
+    console.info(`onDisconnect: ${want}`);
+  }
+
+  onDestroy() {
+    console.info('onDestroy');
+  }
 }
 ```
 <!--no_check-->
