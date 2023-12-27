@@ -3920,8 +3920,6 @@ let holder: contact.Holder = {
 
 ```js
 let holder = new contact.Holder();
-holder.bundleName = "com.ohos.contacts";
-holder.displayName = "displayName";
 holder.holderId = 0;
 ```
 
