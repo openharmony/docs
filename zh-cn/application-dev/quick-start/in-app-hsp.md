@@ -409,7 +409,7 @@ struct Index3 { // 路径为：`library/src/main/ets/pages/Back.ets
     '页面所在的文件名(不加.ets后缀)'
     ```
 
-* 如果从HSP页面返回HSP页面，url的内容为：
+* 如果从HSP1的页面跳到HSP2的页面后，需要返回到HSP1的页面，url的内容为：
 
     ```ets
     '@bundle:com.samples.hspsample/library/ets/pages/Menu'
