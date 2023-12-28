@@ -25,11 +25,11 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute, callback: Asy
 
 **参数：**
 
-| 参数名    | 类型                                  | 必填 | 说明                                                         |
-| --------- | ------------------------------------- | ---- | :----------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。 |
-| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。                                               |
-| callback  | AsyncCallback&lt;void&gt;             | 是   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。   |
+| 参数名    | 类型                                   | 必填 | 说明                                                         |
+| --------- | -------------------------------------- | ---- | :----------------------------------------------------------- |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。 |
+| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
+| callback  | AsyncCallback&lt;void&gt;              | 是   | 回调函数，当马达振动成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
 
@@ -139,10 +139,10 @@ startVibration(effect: VibrateEffect, attribute: VibrateAttribute): Promise&lt;v
 
 **参数：** 
 
-| 参数名    | 类型                                  | 必填 | 说明                                                         |
-| --------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| effect    | [VibrateEffect](#vibrateeffect)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。 |
-| attribute | [VibrateAttribute](#vibrateattribute) | 是   | 马达振动属性。                                               |
+| 参数名    | 类型                                   | 必填 | 说明                                                         |
+| --------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| effect    | [VibrateEffect](#vibrateeffect9)       | 是   | 马达振动效果，支持三种：<br>1、[VibrateTime](#vibratetime9)：按照指定持续时间触发马达振动；<br>2、[VibratePreset](#vibratepreset9)：按照预置振动效果触发马达振动；<br>3、[VibrateFromFile](#vibratefromfile10)：按照自定义振动配置文件触发马达振动。 |
+| attribute | [VibrateAttribute](#vibrateattribute9) | 是   | 马达振动属性。                                               |
 
 **返回值：** 
 
@@ -649,7 +649,7 @@ try {
 | VIBRATOR_STOP_MODE_TIME   | "time"   | 停止duration模式的振动。 |
 | VIBRATOR_STOP_MODE_PRESET | "preset" | 停止预置EffectId的振动。|
 
-## VibrateEffect
+## VibrateEffect<sup>9+</sup>
 
 马达振动效果，支持以下三种。
 
@@ -657,8 +657,8 @@ try {
 
 | 类型                             | 说明                           |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime) | 按照指定持续时间触发马达振动。 |
-| [VibratePreset](#vibratepreset) | 按照预置振动类型触发马达振动。 |
+| [VibrateTime](#vibratetime9) | 按照指定持续时间触发马达振动。 |
+| [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
 | [VibrateFromFile](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
