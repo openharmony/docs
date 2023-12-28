@@ -15,7 +15,7 @@
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
    import { BusinessError } from '@ohos.base';
-   import fileuri from '@ohos.file.fileuri';
+   import fileUri from '@ohos.file.fileUri';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备A的UIAbilityContext信息
    let pathDir: string = context.filesDir;
@@ -24,30 +24,31 @@
    let filePath: string = pathDir + '/src.txt';
    
    try {
-     // 文件不存在时，需要创建文件并写入内容
-     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-     fs.writeSync(file.fd, 'Create file success');
-     fs.closeSync(file);
-   }).catch((err: BusinessError)=>{
-     console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
-   })
+    // 文件不存在时，需要创建文件并写入内容
+    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    fs.writeSync(file.fd, 'Create file success');
+    fs.closeSync(file);
+  } catch (err: BusinessError){
+    console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
+  }
 
    // 获取待拷贝文件uri
-   let fileUri = fileuri.getUriFromPath(filePath);
+   let fileUri = fileUri.getUriFromPath(filePath);
    
    // 将待拷贝的沙箱文件，拷贝到分布式目录下
-   let destUri: string = fileuri.getUriFromPath(distributedPathDir + '/src.txt');
+   let destUri: string = fileUri.getUriFromPath(distributedPathDir + '/src.txt');
 
    try {
-     // 将沙箱路径下的文件拷贝到分布式路径下
-     fs.copy(fileUri, destUri).then(()=>{
-       console.info("Succeeded in copying. ");
-     }).catch((err: BusinessError)=>{
-       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
-     })
-   }).catch((err: BusinessError)=>{
-     console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
-   })
+    // 将沙箱路径下的文件拷贝到分布式路径下
+    fs.copy(fileUri, destUri).then(()=>{
+      console.info("Succeeded in copying---. ");
+      console.info("src: " + fileUri + "dest: " + destUri);
+    }).catch((err: BusinessError)=>{
+      console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err: BusinessError) {
+    console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
+  }
    ```
 
    B设备在获取A端沙箱文件时，从B设备的分布式路径下将对应的文件拷贝走，以此完成跨设备拷贝。
@@ -56,7 +57,7 @@
    import fs from '@ohos.file.fs';
    import common from '@ohos.app.ability.common';
    import { BusinessError } from '@ohos.base';
-   import fileuri from '@ohos.file.fileuri';
+   import fileUri from '@ohos.file.fileUri';
 
    let context = getContext(this) as common.UIAbilityContext; // 获取设备B的UIAbilityContext信息
    let pathDir: string = context.filesDir;
@@ -65,10 +66,10 @@
    let filePath: string = pathDir + '/dest.txt';
 
    // 获取目标路径uri
-   let destUri = fileuri.getUriFromPath(filePath);
+   let destUri = fileUri.getUriFromPath(filePath);
 
    // 获取分布式路径下的源文件
-   let srcUri: string = fileuri.getUriFromPath(distributedPathDir + '/src.txt');
+   let srcUri: string = fileUri.getUriFromPath(distributedPathDir + '/src.txt');
 
    // 定义拷贝回调
    let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
@@ -78,14 +79,15 @@
      "progressListener" : progressListener
    }
 
-   try {
-     // 将分布式路径下的文件拷贝到其他沙箱路径下
-     fs.copy(srcUri, destUri, options).then(()=>{
-       console.info("Succeeded in copying. ");
-     }).catch((err: BusinessError)=>{
-       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
-     })
-   }).catch((err: BusinessError)=>{
-     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
-   })
+  try {
+    // 将分布式路径下的文件拷贝到其他沙箱路径下
+    fs.copy(srcUri, destUri, options).then(()=>{
+      console.info("Succeeded in copying of paste. ");
+      console.info("src: " + fileUri + "dest: " + destUri); // file://com.example.myapplication/data/storage/el2/distributedfiles/src.txt
+    }).catch((err: BusinessError)=>{
+      console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err: BusinessError){
+    console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
+  }
    ```
