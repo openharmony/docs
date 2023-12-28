@@ -1379,7 +1379,7 @@ factoryReset(callback: AsyncCallback\<void>): void
 
 | 参数名      | 类型                   | 必填   | 说明                                     |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | 是    | 回调函数。当恢复出厂执行失败时，err为错误对象；否则，不允许调用回调函数。 |
+| callback | AsyncCallback\<void> | 是    | 回调函数。当恢复出厂执行失败时，err为错误对象，有回调；执行成功时，err为undefined，无回调。 |
 
 **错误码**：
 
@@ -1411,7 +1411,7 @@ factoryReset(): Promise\<void>
 
 | 类型             | 说明                         |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。当恢复出厂执行失败时，使用Promise异步回调；否则，不允许使用回调函数。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。当恢复出厂执行失败时，有回调；执行成功无回调。 |
 
 **错误码**：
 
