@@ -42,7 +42,7 @@ ExceptionPrompt ({ options: this.options })
 | ----------- | ---------- | --------------------------------- | --------------------------------- |
 | options | PromptOptions | 是 | 指定当前ExceptionPrompt的配置信息 |
 
-##  OptionType
+##  PromptOptions
 
 PromptOptions定义options的类型。
 
@@ -98,7 +98,7 @@ struct Index {
   @State options: PromptOptions = {
     icon: '',
     tip: '',
-    marginType: MarginType.DEFAULT_MARGIN
+    marginType: MarginType.DEFAULT_MARGIN,
     actionText: '',
     marginTop: 80,
     isShown:true
@@ -117,6 +117,7 @@ struct Index {
       })
     }
   }
+}
 
 ```
 
