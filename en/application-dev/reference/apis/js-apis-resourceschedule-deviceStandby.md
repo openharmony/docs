@@ -13,7 +13,7 @@ import deviceStandby from '@ohos.resourceschedule.deviceStandby';
 
 ## deviceStandby.getExemptedApps
 
-getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;ExemptedAppInfo&gt;>): void;
+getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;ExemptedAppInfo&gt;>): void
 
 Obtains the list of applications that can still use resources of the specified types when the device is in standby mode. This API uses an asynchronous callback to return the result.
 
@@ -27,7 +27,7 @@ Obtains the list of applications that can still use resources of the specified t
 
 | Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
-| [ResourceTypes](#resourcetype)|number | Yes   | Types of resources that can be used.|
+| ResourceTypes|number | Yes   | Resource types. For details, see [ResourceType](#resourcetype).|
 | callback | AsyncCallback<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | Yes   |Callback used to return the exempted application information.|
 
 **Error codes**
@@ -47,7 +47,7 @@ For details about the error codes, see [Background Task Management Error Codes](
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let resourceTypes: deviceStandby.ResourceType  = deviceStandby.ResourceType.TIMER;
+let resourceTypes: deviceStandby.ResourceType  = deviceStandby.ResourceType.TIMER | deviceStandby.ResourceType.NETWORK;
 deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<deviceStandby.ExemptedAppInfo>) => {
   if (err) {
     console.log('DEVICE_STANDBY getExemptedApps callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -62,7 +62,7 @@ deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<dev
 
 ## deviceStandby.getExemptedApps
 
-getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
+getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>
 
 Obtains the list of applications that can still use resources of the specified types when the device is in standby mode. This API uses a promise to return the result.
 
@@ -76,7 +76,7 @@ Obtains the list of applications that can still use resources of the specified t
 
 | Name     | Type                  | Mandatory  | Description                            |
 | -------- | -------------------- | ---- | ------------------------------ |
-| [ResourceTypes](#resourcetype)|number | Yes   |Types of resources that can be used.|
+| ResourceTypes|number | Yes   |Resource types. For details, see [ResourceType](#resourcetype).|
 
 **Return value**
 
@@ -101,7 +101,7 @@ For details about the error codes, see [Background Task Management Error Codes](
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let resourceTypes: deviceStandby.ResourceType = deviceStandby.ResourceType.TIMER;
+let resourceTypes: deviceStandby.ResourceType = deviceStandby.ResourceType.TIMER | deviceStandby.ResourceType.NETWORK;
 deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<deviceStandby.ExemptedAppInfo>) => {
   console.log('DEVICE_STANDBY getExemptedApps promise success.');
   for (let i = 0; i < res.length; i++) {
@@ -114,7 +114,7 @@ deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<deviceStandby.Exe
 
 ## deviceStandby.requestExemptionResource
 
-requestExemptionResource(request: ResourceRequest): void;
+requestExemptionResource(request: ResourceRequest): void
 
 Requests exemption, so that the application can use restricted resources when the device is in standby mode.
 
@@ -157,7 +157,7 @@ deviceStandby.requestExemptionResource(resRequest);
 
 ## deviceStandby.releaseExemptionResource
 
-releaseExemptionResource(request: ResourceRequest): void;
+releaseExemptionResource(request: ResourceRequest): void
 
 Cancels exemption for the application.
 
@@ -226,7 +226,7 @@ Defines the information about an exempted application.
 
 |Name |Type  | Mandatory  |Description  |
 | ------------ | ------------ |------------ | ------------ |
-|[resourceTypes](#resourcetype)   | number  | Yes  |Types of resources that can be used.  |
+|resourceTypes   | number  | Yes  |Resource types. For details, see [ResourceType](#resourcetype).  |
 |name   |string   | Yes  |  Name of the application. |
 |duration   | number  | Yes  | Exemption duration.|
 
@@ -240,7 +240,7 @@ Defines the message used to request to be an exempted application.
 
 |Name  |Type  | Mandatory  |Description  |
 | ------------ | ------------ |------------| ------------ |
-|[resourceTypes](#resourcetype)   | number  | Yes  |Types of resources that can be used.  |
+|resourceTypes   | number  | Yes  |Resource types. For details, see [ResourceType](#resourcetype).  |
 |uid   | number  | Yes  |UID of the application.  |
 |name   |string   | Yes  | Name of the application. |
 |duration   | number  | Yes  | Exemption duration.|

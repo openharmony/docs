@@ -564,7 +564,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -655,7 +655,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback invoked when the ability is terminated.|
 
@@ -750,7 +750,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -984,7 +984,7 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1063,7 +1063,7 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 
 **Error codes**
 
@@ -1277,7 +1277,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1353,7 +1353,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 
 **Error codes**
 
@@ -1770,7 +1770,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Instance of the callback function after the connection to the ServiceExtensionAbility is set up.|
 
 **Return value**
@@ -2121,7 +2121,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -2210,7 +2210,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -2304,7 +2304,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Error codes**
@@ -3167,7 +3167,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
-| accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+| accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 
 **Return value**
 

@@ -270,7 +270,6 @@
   - [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md)
   - security
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
-
 - Data Management
   - [@ohos.data.cloudData (Device-Cloud Synergy)](js-apis-data-cloudData.md)
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
@@ -437,7 +436,7 @@
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-
+  
 - Account Management
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)
