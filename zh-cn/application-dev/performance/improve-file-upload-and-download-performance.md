@@ -148,7 +148,7 @@ async zipUploadFiles(fileUris: Array<string>): Promise<void> {
 
 通过结合应用端和服务器端的相关技术，可以共同实现高效且可靠的文件断点续传功能，提供更好的用户体验并确保数据传输的稳定性。
 
-本文基于[上传和下载（API 10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)中的后台上传场景，给出了部分断点续传的示例代码，具体可以参考该工程。
+本文基于[上传和下载](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Connectivity/UploadAndDownLoad)中的后台上传场景，给出了部分断点续传的示例代码，具体可以参考该工程。
 
 #### 文件上传
 
@@ -159,6 +159,8 @@ async zipUploadFiles(fileUris: Array<string>): Promise<void> {
 ![断点续传上传流程图](./figures/file-upload-and-download-pic4.png)
 
  **断点续传上传示例代码如下：**
+
+具体可以参考[RequestUpload.ets](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Release/code/BasicFeature/Connectivity/UploadAndDownLoad/features/uploadanddownload/src/main/ets/upload/RequestUpload.ets)
 
 1. 导入相关模块：
 ```ts
@@ -295,6 +297,8 @@ async resume() {
 
 **断点续传下载示例代码如下：**
 
+具体可以参考[RequestDownload.ets](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-4.0-Release/code/BasicFeature/Connectivity/UploadAndDownLoad/features/uploadanddownload/src/main/ets/download/RequestDownload.ets)
+
 1. 导入模块：
 ```ts
 import common from '@ohos.app.ability.common';
@@ -377,4 +381,4 @@ async deleteAllBackTasks() {
 
 针对断点续传，有以下相关实例可以参考：  
 
-- [上传和下载（API 10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
+- [上传和下载](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Connectivity/UploadAndDownLoad)
