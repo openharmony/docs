@@ -32,3 +32,4 @@
     - [性能分析工具CPU Profiler](application-performance-analysis.md)
     - [性能优化工具HiDumper](performance-optimization-using-hidumper.md)
     - [性能优化工具SmartPerf-Host](performance-optimization-using-smartperf-host.md)
+    - [常用trace使用指导](common-trace-using-instructions.md)
