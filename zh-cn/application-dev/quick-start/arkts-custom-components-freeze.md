@@ -89,7 +89,7 @@ struct SeconedTest {
 - 等到组件状态重新变为active时，再更新在冻结状态时变化的状态变量。
 
 - 需要注意的是：在首次渲染的时候，ListItem的子组件会懒加载，即只会创建当前正在显示的和cachedcount的ListItem的子组件，如果没有设置cachedCount，则默认为1。对于未滑动到且不在cache的ListItem，其子组件不会创建：
-  - 当滑动List，在cache内的ListItem进入List区域内时，ListItem子节点从inactive->active，\@watch方法执行。非cache内的ListItem首次进入List区域内时，ListItem子节点会被创建，不存在状态的变化。
+  - 当滑动List，在cache内的ListItem进入List区域内时，ListItem子节点从inactive->active，\@watch方法执行。非cache内的ListItem首次进入List区域内时，ListItem子节点会被创建，不存在inactive->active状态的变化。
   - 当滑动ListItem离开List区域内时，ListItem子节点从active->inactive。
 
 ```ts
