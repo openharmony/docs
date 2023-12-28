@@ -1,4 +1,4 @@
-# Using AudioCapturer for Audio Recording
+# Using AudioCapturer for Audio Recording (ArkTS)
 
 The AudioCapturer is used to record Pulse Code Modulation (PCM) audio data. It is suitable if you have extensive audio development experience and want to implement more flexible recording features.
 
@@ -17,7 +17,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 ### How to Develop
 
 1. Set audio recording parameters and create an **AudioCapturer** instance. For details about the parameters, see [AudioCapturerOptions](../reference/apis/js-apis-audio.md#audiocaptureroptions8).
-   
+     
    ```ts
     import audio from '@ohos.multimedia.audio';
     
@@ -49,8 +49,10 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 2. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
-   
+     
    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     audioCapturer.start((err: BusinessError) => {
       if (err) {
         console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
@@ -61,7 +63,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 3. Specify the recording file path and call **read()** to read the data in the buffer.
-   
+     
    ```ts
     import fs from '@ohos.file.fs';
     
@@ -77,8 +79,10 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 4. Call **stop()** to stop recording.
-   
+     
    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     audioCapturer.stop((err: BusinessError) => {
       if (err) {
         console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -89,8 +93,10 @@ You can call **on('stateChange')** to listen for state changes. For details abou
    ```
 
 5. Call **release()** to release the instance.
-   
+     
    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     audioCapturer.release((err: BusinessError) => {
       if (err) {
         console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
@@ -104,7 +110,7 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 ### Sample Code
 
 Refer to the sample code below to record audio using AudioCapturer.
-
+  
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
@@ -161,7 +167,7 @@ async function start() {
       return;
     }
     await (audioCapturer as audio.AudioCapturer).start(); // Start recording.
-    const path = context.filesDir + '/test.wav'; // Path for storing the recorded audio file.
+    const filePath = context.filesDir + '/test.wav'; // Path for storing the recorded audio file.
     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE); // Create the file if it does not exist.
     let fd = file.fd;
     let numBuffersToCapture = 150; // Write data for 150 times.

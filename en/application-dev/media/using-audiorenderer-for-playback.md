@@ -1,4 +1,4 @@
-# Using AudioRenderer for Audio Playback
+# Using AudioRenderer for Audio Playback (ArkTS)
 
 The AudioRenderer is used to play Pulse Code Modulation (PCM) audio data. Unlike the AVPlayer, the AudioRenderer can perform data preprocessing before audio input. Therefore, the AudioRenderer is more suitable if you have extensive audio development experience and want to implement more flexible playback features.
 
@@ -64,6 +64,8 @@ During application development, you are advised to use **on('stateChange')** to 
 2. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+   
    audioRenderer.start((err: BusinessError) => {
      if (err) {
        console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
@@ -94,6 +96,8 @@ During application development, you are advised to use **on('stateChange')** to 
 4. Call **stop()** to stop rendering.
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+   
    audioRenderer.stop((err: BusinessError) => {
      if (err) {
        console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -106,6 +110,8 @@ During application development, you are advised to use **on('stateChange')** to 
 5. Call **release()** to release the instance.
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+   
    audioRenderer.release((err: BusinessError) => {
      if (err) {
        console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
@@ -134,7 +140,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // Audio stream usage type.
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type.
   rendererFlags: 0 // AudioRenderer flag.
 }
 let audioRendererOptions: audio.AudioRendererOptions = {
