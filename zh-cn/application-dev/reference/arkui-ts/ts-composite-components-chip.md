@@ -49,6 +49,9 @@ ChipOptions定义chip的样式及具体式样参数。
 > suffixIcon有传入参数时，allowClose不生效，suffixIcon没有传入参数时，allowClose决定是否显示删除图标。
 >
 > backgroundColor赋值undefined时，显示默认背景颜色，赋值非法值时，背景色透明。
+>
+> prefixIcon的fillColor默认值：'sys.color.ohos_id_color_secondary'，suffixIcon的fillColor默认值：'sys.color.ohos_id_color_primary'。fillColor对颜色的解析与Image组件保持一致。
+>
 
 ## ChipSize
 
@@ -66,12 +69,13 @@ IconCommonOptions定义图标的共通属性。
 | 名称      | 类型          | 必填 | 说明                                                         |
 | --------- | ------------- | ---- | ------------------------------------------------------------ |
 | src       | ResourceStr   | 是   | 图标图片或图片地址引用。                                     |
-| size      | SizeOptions   | 否   | 图标大小，不支持百分比。<br/>默认值: {width: 16,height: 16}。 |
+| size      | SizeOptions   | 否   | 图标大小，不支持百分比。<br/>默认值：{width: 16,height: 16}。 |
 | fillColor | ResourceColor | 否   | 图标填充颜色。                                               |
 
 > **说明：**
 >
 > 仅在图片格式为svg时，fillColor生效。
+>
 
 ## PrefixIconOptions
 
