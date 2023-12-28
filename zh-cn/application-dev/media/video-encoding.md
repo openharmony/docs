@@ -54,7 +54,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 2. 创建编码器实例对象。
 
-   应用可以通过名称或媒体类型创建编码器。
+   应用可以通过名称或媒体类型创建编码器。示例中的变量说明如下：
+
+   - videoEnc：视频编码器实例的指针；
+   - capability：编解码器能力查询实例的指针；
+   - OH_AVCODEC_MIMETYPE_VIDEO_AVC：AVC格式视频码流的名称。
 
    ```c++
    // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
