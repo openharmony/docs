@@ -422,7 +422,7 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最后显示的窗口，使用callback异步回调。
+获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -445,18 +445,27 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```js
-let windowClass = null;
-try {
-    window.getLastWindow(this.context, (err, data) => {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+class myAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass = undefined;
+    try {
+      window.getLastWindow(this.context, (err, data) => {
         if (err.code) {
-            console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-            return;
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
         }
         windowClass = data;
         console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-    });
-} catch (exception) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+  }
 }
 ```
 
@@ -464,7 +473,7 @@ try {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-获取当前应用内最后显示的窗口，使用Promise异步回调。
+获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -492,17 +501,26 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 **示例：**
 
 ```js
-let windowClass = null;
-try {
-    let promise = window.getLastWindow(this.context);
-    promise.then((data)=> {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+class myAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass = undefined;
+    try {
+      let promise = window.getLastWindow(this.context);
+      promise.then((data) => {
         windowClass = data;
         console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-    }).catch((err)=>{
+      }).catch((err) => {
         console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-    });
-} catch (exception) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+  };
 }
 ```
 
