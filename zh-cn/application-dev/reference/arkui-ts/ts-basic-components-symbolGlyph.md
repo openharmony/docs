@@ -73,19 +73,19 @@ struct Index {
         Row() {
           Column(){
             Text("字重 细")
-            SymbolGlyph($r('sys.media.ohos_lungs'))
+            SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Lighter)
               .fontSize(100)
           }
           Column(){
             Text("字重 标准")
-            SymbolGlyph($r('sys.media.ohos_lungs'))
+            SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Normal)
               .fontSize(100)
           }
           Column(){
             Text("字重 粗")
-            SymbolGlyph($r('sys.media.ohos_lungs'))
+            SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Bold)
               .fontSize(100)
           }
@@ -94,21 +94,21 @@ struct Index {
         Row() {
           Column(){
             Text("渲染模式：统一")
-            SymbolGlyph($r('sys.media.ohos_lungs'))
+            SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontSize(100)
               .renderingStrategy(SymbolRenderingStrategy.SINGLE)
               .fontColor([Color.Blue,Color.Grey,Color.Green])
           }
           Column(){
             Text("渲染模式：多色")
-            SymbolGlyph($r('sys.media.ohos_lungs'))
+            SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontSize(100)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
               .fontColor([Color.Blue,Color.Grey,Color.Green])
           }
           Column(){
             Text("渲染模式：不同透明度")
-            SymbolGlyph($r('sys.media.ohos_lungs'))
+            SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontSize(100)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
               .fontColor([Color.Blue,Color.Grey,Color.Green])
@@ -117,19 +117,19 @@ struct Index {
         Row() {
           Column(){
             Text("无动效")
-            SymbolGlyph($r('sys.media.ohos_lungs'))
+            SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontSize(100)
               .effectStrategy(SymbolEffectStrategy.NONE)
           }
           Column(){
             Text("整体缩放动效")
-            SymbolGlyph($r('sys.media.ohos_lungs'))
+            SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontSize(100)
               .effectStrategy(SymbolEffectStrategy.SCALE)
           }
           Column(){
             Text("层级动效")
-            SymbolGlyph($r('sys.media.ohos_lungs'))
+            SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontSize(100)
               .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
           }
