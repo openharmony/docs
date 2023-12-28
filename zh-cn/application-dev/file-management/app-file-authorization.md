@@ -189,12 +189,12 @@
 以下示例代码演示了获取文件父目录过程：
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fileuri from '@ohos.file.fileuri';
+  import fileUri from '@ohos.file.fileuri';
   
   function getFullDirectoryUriExample01() {
     try {
       let uri = "file://docs/storage/Users/100/tmp/1.txt";
-      let fileObject = new fileuri.FileUri(uri);
+      let fileObject = new fileUri.FileUri(uri);
       let directoryUri = fileObject.getFullDirectoryUri();
     } catch (error) {
       let err: BusinessError = error as BusinessError;

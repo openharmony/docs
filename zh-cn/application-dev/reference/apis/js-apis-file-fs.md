@@ -380,13 +380,13 @@ copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import fileuri from '@ohos.file.fileuri';
+import fileUri from '@ohos.file.fileuri';
 
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
 
-let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
-let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
 
 let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
   console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
@@ -432,13 +432,13 @@ copy(srcUri: string, destUri: string, callback: AsyncCallback\<void>): void
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import fileuri from '@ohos.file.fileuri';
+import fileUri from '@ohos.file.fileuri';
 
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
 
-let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
-let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
 
 try {
   fs.copy(srcDirUriLocal, dstDirUriLocal, (err: BusinessError) => {
@@ -481,13 +481,13 @@ copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallb
 
 ```ts
 import { BusinessError } from '@ohos.base';
-import fileuri from '@ohos.file.fileuri';
+import fileUri from '@ohos.file.fileuri';
 
 let srcDirPathLocal: string = pathDir + "/src";
 let dstDirPathLocal: string = pathDir + "/dest";
 
-let srcDirUriLocal: string = fileuri.getUriFromPath(srcDirPathLocal);
-let dstDirUriLocal: string = fileuri.getUriFromPath(dstDirPathLocal);
+let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
 
 try {
   let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
