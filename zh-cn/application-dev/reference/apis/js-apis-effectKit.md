@@ -183,9 +183,9 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
     }
   })
 })
@@ -225,9 +225,9 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
     }
   })
 })
@@ -283,11 +283,11 @@ export function test06(): void {
   image.createPixelMap(color, opts).then((pixelMap) => {
     effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
       if (error) {
-        console.log('Failed to create color picker.');
+        console.error('Failed to create color picker.');
       } else {
-        console.log('Succeeded in creating color picker.');
+        console.info('Succeeded in creating color picker.');
         colorPicker.getMainColor().then(color => {
-          console.log('Succeeded in getting main color.');
+          console.info('Succeeded in getting main color.');
           console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
         })
       }
@@ -328,11 +328,11 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let color = colorPicker.getMainColorSync();
-      console.log('get main color =' + color);
+      console.info('get main color =' + color);
     }
   })
 })
@@ -371,11 +371,11 @@ let opts : image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let color = colorPicker.getLargestProportionColor();
-      console.log('get largest proportion color =' + color);
+      console.info('get largest proportion color =' + color);
     }
   })
 })
@@ -414,11 +414,11 @@ let opts: image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let color = colorPicker.getHighestSaturationColor();
-      console.log('get highest saturation color =' + color);
+      console.info('get highest saturation color =' + color);
     }
   })
 })
@@ -457,11 +457,11 @@ let opts: image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let color = colorPicker.getAverageColor();
-      console.log('get average color =' + color);
+      console.info('get average color =' + color);
     }
   })
 })
@@ -506,11 +506,11 @@ let opts: image.InitializationOptions = {
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
       let bJudge = colorPicker.isBlackOrWhiteOrGrayColor(0xFFFFFFFF);
-      console.log('is black or white or gray color[bool](white) =' + bJudge);
+      console.info('is black or white or gray color[bool](white) =' + bJudge);
     }
   })
 })
@@ -679,7 +679,7 @@ let opts : image.InitializationOptions = {
 };
 image.createPixelMap(color, opts).then((pixelMap) => {
   let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap();
-  console.log('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
+  console.info('getPixelBytesNumber = ', pixel.getPixelBytesNumber());
 })
 ```
 
