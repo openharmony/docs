@@ -48,7 +48,7 @@ Creates and initializes a **Buffer** instance of the specified length.
 | -------- | -------- | -------- | -------- |
 | size | number | Yes| Size of the **Buffer** instance to create, in bytes.|
 | fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | No| Value to be filled in the buffer. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **fill** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **fill** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -139,7 +139,7 @@ Obtains the number of bytes of a string based on the encoding format.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Target string.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **'utf8'**.|
 
 **Return value**
 
@@ -274,7 +274,7 @@ Creates a **Buffer** instance of the specified length that shares memory with **
 | -------- | -------- | -------- | -------- |
 | arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Array of **Buffer** instances, whose memory is to be shared.|
 | byteOffset | number | No| Byte offset. The default value is **0**.|
-| length | number | No| Length of the **Buffer** instance to create, in bytes. The default value is the length of **arrayBuffer** minus **byteOffset**.|
+| length | number | No| Length of the **Buffer** instance to create, in bytes. The default value is **arrayBuffer.byteLength** minus **byteOffset**.|
 
 **Return value**
 
@@ -342,7 +342,7 @@ Creates a **Buffer** instance based on the specified object.
 | -------- | -------- | -------- | -------- |
 | object | Object | Yes| Object that supports **Symbol.toPrimitive** or **valueOf()**.|
 | offsetOrEncoding | number&nbsp;\|&nbsp;string | Yes| Byte offset or encoding format.|
-| length | number | Yes| Length of the **Buffer** instance to create.|
+| length | number | Yes| Length of the **Buffer** instance to create, in bytes. This parameter is valid only when the return value of **valueOf()** of **object** is **arraybuffer**. In other cases, you can set this parameter to any value of the number type. This parameter does not affect the result.|
 
 **Return value**
 
@@ -371,7 +371,7 @@ Creates a **Buffer** instance based on a string in the given encoding format.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | string | String | Yes| String.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **'utf8'**.|
 
 **Return value**
 
@@ -482,7 +482,6 @@ Transcodes the given **Buffer** or **Uint8Array** object from one encoding forma
 ```ts
 import buffer from '@ohos.buffer';
 
-let buf = buffer.alloc(50);
 let newBuf = buffer.transcode(buffer.from('€'), 'utf-8', 'ascii');
 console.log(newBuf.toString('ascii'));
 ```
@@ -633,11 +632,11 @@ Creates and returns an iterator that contains key-value pairs of this **Buffer**
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-let pair = buf.entries()
-let next: IteratorResult<Object[]> = pair.next()
+let pair = buf.entries();
+let next: IteratorResult<Object[]> = pair.next();
 while (!next.done) {
-  console.info("buffer: " + next.value)
-  next = pair.next()
+  console.info("buffer: " + next.value);
+  next = pair.next();
 }
 ```
 
@@ -689,7 +688,7 @@ Fills this **Buffer** instance at the specified position. By default, data is fi
 | value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | Yes| Value to fill.|
 | offset | number | No| Offset to the start position in this **Buffer** instance where data is filled. The default value is **0**.|
 | end | number | No| Offset to the end position in this **Buffer** instance (not inclusive). The default value is the length of this **Buffer** instance.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -729,7 +728,7 @@ Checks whether this **Buffer** instance contains the specified value.
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
 | byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -761,7 +760,7 @@ Obtains the index of the first occurrence of the specified value in this **Buffe
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
 | byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -799,7 +798,7 @@ Creates and returns an iterator that contains the keys of this **Buffer** instan
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from('buffer');
-let numbers = Array.from(buf.values())
+let numbers = Array.from(buf.values());
 for (const key of numbers) {
   console.log(key.toString());
 }
@@ -819,7 +818,7 @@ Obtains the index of the last occurrence of the specified value in this **Buffer
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
 | byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -850,7 +849,7 @@ Reads a 64-bit, big-endian, signed big integer from this **Buffer** instance at 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 **Return value**
 
@@ -864,7 +863,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **Example**
 
@@ -891,7 +890,7 @@ Reads a 64-bit, little-endian, signed big integer from this **Buffer** instance 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 **Return value**
 
@@ -905,7 +904,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **Example**
 
@@ -932,7 +931,7 @@ Reads a 64-bit, big-endian, unsigned big integer from this **Buffer** instance a
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 **Return value**
 
@@ -946,7 +945,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **Example**
 
@@ -973,7 +972,7 @@ Reads a 64-bit, little-endian, unsigned big integer from this **Buffer** instanc
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 **Return value**
 
@@ -987,7 +986,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **Example**
 
@@ -1014,7 +1013,7 @@ Reads a 64-bit, big-endian, double-precision floating-point number from this **B
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 **Return value**
 
@@ -1028,7 +1027,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **Example**
 
@@ -1054,7 +1053,7 @@ Reads a 64-bit, little-endian, double-precision floating-point number from this 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 **Return value**
 
@@ -1068,7 +1067,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 8. Received value is: [offset]. |
 
 **Example**
 
@@ -1094,7 +1093,7 @@ Reads a 32-bit, big-endian, single-precision floating-point number from this **B
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 **Return value**
 
@@ -1108,7 +1107,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **Example**
 
@@ -1134,7 +1133,7 @@ Reads a 32-bit, little-endian, single-precision floating-point number from this 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 **Return value**
 
@@ -1148,7 +1147,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **Example**
 
@@ -1174,7 +1173,7 @@ Reads an 8-bit signed integer from this **Buffer** instance at the specified off
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 1].|
 
 **Return value**
 
@@ -1188,7 +1187,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 1. Received value is: [offset]. |
 
 **Example**
 
@@ -1196,7 +1195,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([-1, 5]);
-console.log(buf.readInt8(0).toString());	// Print: -1
+console.log(buf.readInt8(0).toString());	// Print: 0
 console.log(buf.readInt8(1).toString());	// Print: 5
 
 let buf1 = buffer.allocUninitializedFromPool(2);
@@ -1215,7 +1214,7 @@ Reads a 16-bit, big-endian, signed integer from this **Buffer** instance at the 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 2].|
 
 **Return value**
 
@@ -1229,7 +1228,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **Example**
 
@@ -1255,7 +1254,7 @@ Reads a 16-bit, little-endian, signed integer from this **Buffer** instance at t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 2].|
 
 **Return value**
 
@@ -1269,7 +1268,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **Example**
 
@@ -1295,7 +1294,7 @@ Reads a 32-bit, big-endian, signed integer from this **Buffer** instance at the 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 **Return value**
 
@@ -1309,7 +1308,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **Example**
 
@@ -1335,7 +1334,7 @@ Reads a 32-bit, little-endian, signed integer from this **Buffer** instance at t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 **Return value**
 
@@ -1349,7 +1348,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 |  The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **Example**
 
@@ -1375,7 +1374,7 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
 | byteLength | number | Yes| Number of bytes to read.|
 
 
@@ -1419,7 +1418,7 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
 | byteLength | number | Yes| Number of bytes to read.|
 
 
@@ -1461,7 +1460,7 @@ Reads an 8-bit unsigned integer from this **Buffer** instance at the specified o
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 1].|
 
 
 **Return value**
@@ -1476,7 +1475,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 1. Received value is: [offset]. |
 
 **Example**
 
@@ -1503,7 +1502,7 @@ Reads a 16-bit, big-endian, unsigned integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 2].|
 
 
 **Return value**
@@ -1518,7 +1517,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **Example**
 
@@ -1545,7 +1544,7 @@ Reads a 16-bit, little-endian, unsigned integer from this **Buffer** instance at
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 2].|
 
 
 **Return value**
@@ -1560,7 +1559,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 2. Received value is: [offset]. |
 
 **Example**
 
@@ -1587,7 +1586,7 @@ Reads a 32-bit, big-endian, unsigned integer from this **Buffer** instance at th
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 
 **Return value**
@@ -1602,7 +1601,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **Example**
 
@@ -1628,7 +1627,7 @@ Reads a 32-bit, little-endian, unsigned integer from this **Buffer** instance at
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 
 **Return value**
@@ -1643,7 +1642,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "offset" is out of range. |
+| 10200001 | The value of "offset" is out of range. It must be >= 0 and <= buf.length - 4. Received value is: [offset]. |
 
 **Example**
 
@@ -1669,7 +1668,7 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
 | byteLength | number | Yes| Number of bytes to read.|
 
 
@@ -1711,7 +1710,7 @@ Reads the specified number of bytes from this **Buffer** instance at the specifi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**.|
+| offset | number | Yes| Number of bytes to skip before starting to read data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
 | byteLength | number | Yes| Number of bytes to read.|
 
 
@@ -1903,7 +1902,7 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
 let obj = buf1.toJSON();
-console.log(JSON.stringify(obj))
+console.log(JSON.stringify(obj));
 // Print: {"type":"Buffer","data":[1,2,3,4,5]}
 ```
 
@@ -1919,7 +1918,7 @@ Converts the data at the specified position in this **Buffer** instance into a s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | string | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 | start  | number | No|  Offset to the start position of the data to convert. The default value is **0**.|
 | end  | number | No|  Offset to the end position of the data to convert. The default value is the length of this **Buffer** instance.|
 
@@ -1966,7 +1965,7 @@ let pair = buf1.values()
 let next:IteratorResult<number> = pair.next()
 while (!next.done) {
   console.log(next.value.toString());
-  next = pair.next()
+  next = pair.next();
 }
 ```
 
@@ -1985,7 +1984,7 @@ Writes a string of the specified length to this **Buffer** instance at the speci
 | str | string | Yes| String to write.|
 | offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 | length | number | No| Maximum number of bytes to write. The default value is the length of the **Buffer** instance minus the offset.|
-| encoding | string | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | string | No| Encoding format of the string. The default value is **'utf8'**.|
 
 
 **Return value**
@@ -2000,7 +1999,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200001 | The value of "[offset/length]" is out of range. |
+| 10200001 | The value of "[offset/length]" is out of range. It must be >= 0 and <= buf.length. Received value is: [offset/length]. |
 
 **Example**
 
@@ -2029,7 +2028,7 @@ Writes a 64-bit, big-endian, signed big integer to this **Buffer** instance at t
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 
 **Return value**
@@ -2068,7 +2067,7 @@ Writes a 64-bit, little-endian, signed big integer to this **Buffer** instance a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 
 **Return value**
@@ -2107,7 +2106,7 @@ Writes a 64-bit, big-endian, unsigned big integer to this **Buffer** instance at
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 
 **Return value**
@@ -2146,7 +2145,7 @@ Writes a 64-bit, little-endian, unsigned big integer to this **Buffer** instance
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | bigint | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 
 **Return value**
@@ -2185,7 +2184,7 @@ Writes a 64-bit, big-endian, double-precision floating-point number to this **Bu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 8].|
 
 
 **Return value**
@@ -2224,7 +2223,7 @@ Writes a 64-bit, little-endian, double-precision floating-point number to this *
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 
 **Return value**
@@ -2263,7 +2262,7 @@ Writes a 32-bit, big-endian, single-precision floating-point number to this **Bu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 
 **Return value**
@@ -2303,7 +2302,7 @@ Writes a 32-bit, little-endian, single-precision floating-point number to this *
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 
 **Return value**
@@ -2342,7 +2341,7 @@ Writes an 8-bit signed integer to this **Buffer** instance at the specified offs
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 1].|
 
 
 **Return value**
@@ -2383,7 +2382,7 @@ Writes a 16-bit, big-endian, signed integer to this **Buffer** instance at the s
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 2].|
 
 
 **Return value**
@@ -2423,7 +2422,7 @@ Writes a 16-bit, little-endian, signed integer to this **Buffer** instance at th
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 2].|
 
 
 **Return value**
@@ -2462,7 +2461,7 @@ Writes a 32-bit, big-endian, signed integer to this **Buffer** instance at the s
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 
 **Return value**
@@ -2502,7 +2501,7 @@ Writes a 32-bit, little-endian, signed integer to this **Buffer** instance at th
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 
 **Return value**
@@ -2541,7 +2540,7 @@ Writes a big-endian signed value of the specified length to this **Buffer** inst
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -2582,7 +2581,7 @@ Writes a little-endian signed value of the specified length to this **Buffer** i
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -2622,7 +2621,7 @@ Writes an 8-bit unsigned integer to this **Buffer** instance at the specified of
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 1].|
 
 
 **Return value**
@@ -2664,7 +2663,7 @@ Writes a 16-bit, big-endian, unsigned integer to this **Buffer** instance at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 2].|
 
 
 **Return value**
@@ -2704,7 +2703,7 @@ Writes a 16-bit, little-endian, unsigned integer to this **Buffer** instance at 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 2].|
 
 
 **Return value**
@@ -2744,7 +2743,7 @@ Writes a 32-bit, big-endian, unsigned integer to this **Buffer** instance at the
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 
 **Return value**
@@ -2783,7 +2782,7 @@ Writes a 32-bit, little-endian, unsigned integer to this **Buffer** instance at 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - 4].|
 
 
 **Return value**
@@ -2822,7 +2821,7 @@ Writes an unsigned big-endian value of the specified length to this **Buffer** i
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -2862,7 +2861,7 @@ Writes an unsigned little-endian value of the specified length to this **Buffer*
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | number | Yes| Data to write.|
-| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**.|
+| offset | number | Yes| Number of bytes to skip before starting to write data. The default value is **0**. The value range is [0, Buffer.length - byteLength].|
 | byteLength | number | Yes| Number of bytes to write.|
 
 
@@ -2923,8 +2922,8 @@ import buffer from '@ohos.buffer';
 let blob: buffer.Blob  = new buffer.Blob(['a', 'b', 'c']);
 
 class option {
-  endings: string = ""
-  type: string = ""
+  endings: string = "";
+  type: string = "";
 }
 let o1: option = {endings:'native', type: 'MIME'}
 let blob1: buffer.Blob = new buffer.Blob(['a', 'b', 'c'], o1);
@@ -2995,7 +2994,7 @@ Returns text in UTF-8 format. This API uses a promise to return the result.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the text encoded in UTF-8.|
+| Promise&lt;string&gt; | Promise used to return the text decoded in UTF-8.|
 
 **Example**
 ```ts
@@ -3004,6 +3003,6 @@ import buffer from '@ohos.buffer';
 let blob: buffer.Blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();
 pro.then((val: string) => {
-  console.log(val)
+  console.log(val);
 });
 ```
