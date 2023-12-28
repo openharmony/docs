@@ -548,7 +548,9 @@ The **distributionFilter** tag defines the rules for distributing HAP files base
 >
 > This tag is supported since API version 10. In earlier versions, the **distroFilter** tag is used.
 
-- **Application scenario**:<br>If a project has multiple entry-type modules and the values of **deviceTypes** configured for these modules overlap, you need to use this tag to distinguish the modules. In the following example, both entry-type modules support the tablet type, and therefore the **distributionFilter** tag is required.
+- **Application scenario**:
+  
+  If a project has multiple entry-type modules and the values of **deviceType** configured for these modules overlap, you need to use this tag to distinguish the modules. In the following example, both entry-type modules support the tablet type, and therefore the **distributionFilter** tag is required.
   
   ```json
   // Device types supported by entry1
@@ -575,17 +577,21 @@ The **distributionFilter** tag defines the rules for distributing HAP files base
       ]
     }
   }
-```
+  ```
   
-- **Configuration rules**:<br>This tag consists of four attributes: [screenShape](#screenshape), [screenWindow](#screenwindow), [screenDensity](#screendensity), and [countryCode](#countrycode).
+- **Configuration rules**:
 
-  During distribution, a unique HAP is determined based on the mapping between **deviceType** and the preceding attributes.
-  
+  This tag consists of four attributes: [screenShape](#screenshape), [screenWindow](#screenwindow), [screenDensity](#screendensity), and [countryCode](#countrycode).
+
+  During distribution, a unique HAP is determined based on the mapping between **deviceTypes** and the preceding attributes.
+
   * When configuring this tag, include at least one of the attributes.
   * If any one or more attributes are set for one entry-type module, the same attributes must be set for all other entry-type modules.
   * The **screenShape** and **screenWindow** attributes are available only for lite wearables.
 
-- **Configuration**:<br>This tag must be configured in the **/resource/profile** directory and be referenced in the **resource** field of **metadata**.
+- **Configuration**:
+
+  This tag must be configured in the **/resource/profile** directory and be referenced in the **resource** field of **metadata**.
 
 
 **Table 12** distributionFilter
@@ -594,8 +600,8 @@ The **distributionFilter** tag defines the rules for distributing HAP files base
 | -------- | -------- | -------- | -------- |
 | [screenShape](#screenshape) | Supported screen shapes.| Object array| Yes (initial value: left empty)|
 | [screenWindow](#screenwindow) | Supported window resolutions for when the application is running.| Object array| Yes (initial value: left empty)|
-| [screenDensity](#screendensity) | Pixel density of the screen, in dots per inch (DPI).| Object array| Yes (initial value: left empty)|
-| [countryCode](#countrycode) | Code of the country or region to which the application is to be distributed. The value is subject to the ISO-3166-1 standard. Enumerated definitions of multiple countries and regions are supported.| Object array| Yes (initial value: left empty)|
+| [screenDensity](#screendensity)| Pixel density of the screen, in dots per inch (DPI).| Object array| Yes (initial value: left empty)|
+| [countryCode](#countrycode)| Code of the country or region to which the application is to be distributed. The value is subject to the ISO-3166-1 standard. Enumerated definitions of multiple countries and regions are supported.| Object array| Yes (initial value: left empty)|
 
 ### screenShape
 
