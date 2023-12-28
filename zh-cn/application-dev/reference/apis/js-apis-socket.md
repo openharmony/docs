@@ -4012,7 +4012,7 @@ let connectOpt: socket.LocalConnectOptions = {
   },
   timeout: 6000
 }
-client.connect(connectOpt, () => {
+client.connect(connectOpt).then(() => {
   console.log('connect success');
   let options: socket.ExtraOptionsBase = {
     receiveBufferSize: 8000,
@@ -4024,6 +4024,8 @@ client.connect(connectOpt, () => {
   }).catch((err) => {
     console.log('setExtraOptions fail: ' + JSON.stringify(err));
   });
+}).catch((err) => {
+  console.log('connect fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -4061,13 +4063,15 @@ let connectOpt: socket.LocalConnectOptions = {
   },
   timeout: 6000
 }
-client.connect(connectOpt, () => {
+client.connect(connectOpt).then(() => {
   console.log('connect success');
   client.getExtraOptions().then((options : socket.ExtraOptionsBase) => {
     console.log('options: ' + JSON.stringify(options));
   }).catch((err) => {
     console.log('setExtraOptions fail: ' + JSON.stringify(err));
   });
+}).catch((err) => {
+  console.log('connect fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -4859,8 +4863,8 @@ server.listen(listenAddr).then(() => {
   console.log("listen fail: " + JSON.stringify(err));
 });
 server.on('connect', (connection: socket.LocalSocketConnection) => {
-  connection.on('message', (value: MessageReceive) => {
-    const uintArray = new Uint8Array(value.message)
+  connection.on('message', (value: socket.MessageReceive) => {
+    const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
       messageView = String.fromCharCode(uintArray[i]);
