@@ -31,9 +31,9 @@ SymbolGlyph(value: Resource)
 
 | 名称                       | 参数类型                            | 描述                                               |
 | ----------------------- | ----------------------------------- | ------------------------------------------- |
-| fontSize               | [number](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[string](ts-types.md#resourcestr)\|&nbsp;[Resource](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 设置symbol图标的显示大小
+| fontSize               | [number](ts-types.md#number)&nbsp;\|&nbsp;string \|&nbsp;[Resource](../arkui-ts/ts-types.md#resource) | 设置symbol图标的显示大小
 | fontColor               | Array\<[ResourceColor](ts-types.md#resourcecolor)\>| 设置symbol图标颜色| 
-| fontWeight | number&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 设置symbol图标的粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal<br/>|
+| fontWeight | [number](ts-types.md#number)&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 设置symbol图标的粗细，number类型取值[100,&nbsp;900]，取值间隔为100，默认为400，取值越大，字体越粗。string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal<br/>|
 | effectStrategy               | [SymbolEffectStrategy](#symboleffectstrategy)| 设置symbol图标的动效类型| 
 | renderingStrategy               | [SymbolRenderingStrategy](#symbolrenderingstrategy)| 设置symbol图标的渲染模式|
 
@@ -138,5 +138,4 @@ struct Index {
     }
 }
 ```
-![textExp1](figures/textExp1.png)
-
+![symbol](figures/symbolGlyph.JPG)
