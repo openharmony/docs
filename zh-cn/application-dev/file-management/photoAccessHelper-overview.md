@@ -32,6 +32,7 @@ PhotoAccessHelper提供相册管理模块相关能力，包括创建相册以及
 
 开发者在使用PhotoAccessHelper进行功能开发前，请先掌握以下内容：
 
+- [相册管理模块开发概述](#相册管理模块开发概述)
   - [获取相册管理模块实例](#获取相册管理模块实例)
   - [申请相册管理模块功能相关权限](#申请相册管理模块功能相关权限)
 
@@ -55,7 +56,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 ## 申请相册管理模块功能相关权限
 
-相册管理模块的读写操作需要相应权限，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。涉及的权限如下表。
+相册管理模块的读写操作需要相应权限，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。涉及的权限如下表。
 
 | 权限名                         | 说明                                       | 授权方式   |
 | ------------------------------ | ------------------------------------------ | ---------- |
@@ -66,8 +67,8 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 **开发步骤参考：**
 
-1. [在配置文件module.json5中声明权限](../security/accesstoken-guidelines.md#stage模型)。
-2. [向用户申请授权](../security/accesstoken-guidelines.md#stage模型-1)。
+1. [在配置文件module.json5中声明权限](../security/AccessToken/declare-permissions.md)。
+2. [向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
 > **说明：**
 >

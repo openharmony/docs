@@ -172,7 +172,7 @@ Context获取方式请参考：[获取UIAbility的上下文信息](../applicatio
 
   使用该功能前，应用需要**申请权限**：ohos.permission.CAMERA
 
-  具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+  具体申请方式及校验方式，请参考[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
   ```ts
   import camera from '@ohos.multimedia.camera';
