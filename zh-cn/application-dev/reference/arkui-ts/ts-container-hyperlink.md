@@ -9,7 +9,7 @@
 
 ## 需要权限
 
-使用网络时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
+跳转的目标应用使用网络时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 ## 子组件
 
