@@ -50,7 +50,7 @@ struct ComponentDemo {
 
 ## 打造组件定制化动效
 
-部分组件支持通过[属性动画](arkts-attribute-animation-overview.md)和[转场动画](arkts-transition-overview.md)自定义组件子Item的动效，实现定制化动画效果。例如，[Scorll](../reference/arkui-ts/ts-container-scroll.md)组件中可对各个子组件在滑动时的动画效果进行定制。
+部分组件支持通过[属性动画](arkts-attribute-animation-overview.md)和[转场动画](arkts-transition-overview.md)自定义组件子Item的动效，实现定制化动画效果。例如，[Scroll](../reference/arkui-ts/ts-container-scroll.md)组件中可对各个子组件在滑动时的动画效果进行定制。
 
 - 在滑动或者点击操作时通过改变各个Scroll子组件的仿射属性来实现各种效果。
 
@@ -58,7 +58,7 @@ struct ComponentDemo {
 
 - 在滑动回调onScrollStop或手势结束回调中对滑动的最终位置进行微调。
 
-定制Scroll组件子组件滑动动效示例代码和效果如下。
+定制Scroll组件滑动动效示例代码和效果如下。
 
 
 ```ts
