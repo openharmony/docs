@@ -1,6 +1,6 @@
-# @ohos.multimodalInput.inputEventClient (设备注入)
+# @ohos.multimodalInput.inputEventClient (输入事件注入)
 
-设备注入模块，提供设备注入能力。
+输入事件注入模块，提供输入事件注入能力。
 
 > **说明：**
 >
