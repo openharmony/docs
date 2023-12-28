@@ -1379,7 +1379,7 @@ Restores the scale to its factory settings. This API uses an asynchronous callba
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is failed, `err` is an `Error` object; otherwise, the callback cannot be used.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is failed, there is a callback and `err` is an `Error` object; otherwise, there is no callback and `err` is `undefined`.|
 
 **Error codes**
 
@@ -1411,7 +1411,7 @@ Restores the scale to its factory settings. This API uses a promise to return th
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation is failed, use the promise callback; otherwise, the callback cannot be used.|
+| Promise\<void> | Promise that returns no value. If the operation is failed, there is a callback; otherwise, there is no callback.|
 
 **Error codes**
 
