@@ -531,6 +531,10 @@ class C {
 }
 ```
 
+**说明**
+
+当前不支持静态块的语法。支持该语法后，在.ets文件中使用静态块须遵循本约束。
+
 ### 不支持index signature
 
 **规则：**`arkts-no-indexed-signatures`
