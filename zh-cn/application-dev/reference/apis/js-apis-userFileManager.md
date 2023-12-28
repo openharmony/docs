@@ -1,6 +1,6 @@
 # @ohos.filemanagement.userFileManager (用户数据管理)
 
-该模块提供用户数据管理能力，包括访问、修改用户等用户公共媒体数据信息等常用功能。
+该模块提供用户数据管理能力，包括访问、修改用户公共媒体数据信息等常用功能。
 
 > **说明：**
 >
@@ -17,7 +17,7 @@ import userFileManager from '@ohos.filemanagement.userFileManager';
 
 getUserFileMgr(context: Context): UserFileManager
 
-获取用户数据管理模块的实例，用于访问和修改用户等用户公共媒体数据信息（如音频、视频、图片、文档等）。
+获取用户数据管理模块的实例，用于访问和修改用户公共媒体数据信息（如音频、视频、图片、文档等）。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
