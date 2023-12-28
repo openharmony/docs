@@ -1016,9 +1016,8 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 **示例：**
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 async function Demo() {
-    let csm : Object = pixelMap.getColorSpace();
+    let csm = pixelMap.getColorSpace();
 }
 ```
 
