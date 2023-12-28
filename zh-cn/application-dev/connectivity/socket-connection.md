@@ -36,13 +36,13 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | constructMulticastSocketInstance() | 创建一个 MulticastSocket 对象。                                                |
 | constructLocalSocketInstance()       | 创建一个 LocalSocket 对象。                                                  |
 | constructLocalSocketServerInstance() | 创建一个 LocalSocketServer 对象。                                            |
-| listen()                           | 绑定、监听并启动服务，接收客户端的连接请求。（仅 TCP/LocalSocket 支持）               |
+| listen()                           | 绑定、监听并启动服务，接收客户端的连接请求。（仅 TCP/LocalSocket 支持）。             |
 | bind()                             | 绑定 IP 地址和端口，或是绑定本地套接字路径。                                        |
 | send()                             | 发送数据。                                                                     |
 | close()                            | 关闭连接。                                                                     |
 | getState()                         | 获取 Socket 状态。                                                             |
-| connect()                          | 连接到指定的 IP 地址和端口，或是连接到本地套接字（仅 TCP/LocalSocket 支持）           |
-| getRemoteAddress()                 | 获取对端 Socket 地址（仅 TCP 支持，需要先调用 connect 方法）                   |
+| connect()                          | 连接到指定的 IP 地址和端口，或是连接到本地套接字（仅 TCP/LocalSocket 支持）。          |
+| getRemoteAddress()                 | 获取对端 Socket 地址（仅 TCP 支持，需要先调用 connect 方法）。                   |
 | setExtraOptions()                  | 设置 Socket 连接的其他属性。                                                   |
 | getExtraOptions()                  | 获取 Socket 连接的其他属性（仅 LocalSocket 支持）。                            |
 | addMembership()                    | 加入到指定的多播组 IP 中 (仅 Multicast 支持)。                                 |
@@ -355,7 +355,7 @@ multicast.dropMembership(addr, (err) => {
 
 6. 发送数据。
 
-7. Socket 连接使用完毕后，主动关闭。
+7. Socket 连接使用完毕后，取消事件的注册，并关闭套接字。
 
 ```ts
 import socket from '@ohos.net.socket';
