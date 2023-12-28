@@ -291,7 +291,7 @@ promise.then((data:http.HttpResponse) => {
 });
 ```
 
-### request()
+### request
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
@@ -390,7 +390,7 @@ promise.then((data:http.HttpResponse) => {
 });
 ```
 
-### destroy()
+### destroy
 
 destroy(): void
 
@@ -704,7 +704,7 @@ let httpRequest = http.createHttp();
 httpRequest.off("headerReceive");
 ```
 
-### on("headersReceive")<sup>8+</sup>()
+### on("headersReceive")<sup>8+</sup>
 
 on(type: "headersReceive", callback: Callback\<Object\>): void
 
@@ -731,7 +731,7 @@ httpRequest.on("headersReceive", (header: Object) => {
 httpRequest.off("headersReceive");
 ```
 
-### off("headersReceive")<sup>8+</sup>()
+### off("headersReceive")<sup>8+</sup>
 
 off(type: "headersReceive", callback?: Callback\<Object\>): void
 
@@ -761,7 +761,7 @@ httpRequest.on("headersReceive", (header: Object) => {
 httpRequest.off("headersReceive");
 ```
 
-### once("headersReceive")<sup>8+</sup>()
+### once("headersReceive")<sup>8+</sup>
 
 once(type: "headersReceive", callback: Callback\<Object\>): void
 
@@ -787,7 +787,7 @@ httpRequest.once("headersReceive", (header: Object) => {
 });
 ```
 
-### on("dataReceive")<sup>10+</sup>()
+### on("dataReceive")<sup>10+</sup>
 
 on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
@@ -817,7 +817,7 @@ httpRequest.on("dataReceive", (data: ArrayBuffer) => {
 httpRequest.off("dataReceive");
 ```
 
-### off("dataReceive")<sup>10+</sup>()
+### off("dataReceive")<sup>10+</sup>
 
 off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 
