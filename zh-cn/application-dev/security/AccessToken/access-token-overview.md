@@ -31,7 +31,7 @@
 
   由系统独立进程实现，在应用拉起Picker，并由用户操作Picker后，应用可以获取Picker返回的资源或结果。举例说明，当应用需要读取用户图片时，可通过使用照片Picker，在用户选择所需要的图片资源后，直接返回该图片资源，而不需要授予应用读取图片文件的权限。
 
-  当前提供的Picker包括：[音频Picker](use-picker.md#audioviewpicker)、[照片Picker](use-picker.md#photoviewpicker)、[文件Picker](use-picker.md#documentviewpicker)、[联系人Picker](use-picker.md#contacts-picker)。
+  当前提供的Picker包括：[音频Picker](use-picker.md#音频picker)、[照片Picker](use-picker.md#照片picker)、[文件Picker](use-picker.md#文件picker)、[联系人Picker](use-picker.md#联系人picker)。
 
 - [安全控件](security-component-overview.md)
 
