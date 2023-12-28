@@ -73,10 +73,13 @@
 本章节通过如下典型场景来介绍Context的用法：
 
 
-- [获取应用文件路径](#获取应用文件路径)
-- [获取和修改加密分区](#获取和修改加密分区)
-- [创建其他应用或其他Module的Context](#创建其他应用或其他module的context)
-- [订阅进程内UIAbility生命周期变化](#订阅进程内uiability生命周期变化)
+- [应用上下文Context](#应用上下文context)
+  - [概述](#概述)
+  - [Context的典型使用场景](#context的典型使用场景)
+    - [获取应用文件路径](#获取应用文件路径)
+    - [获取和修改加密分区](#获取和修改加密分区)
+    - [创建其他应用或其他Module的Context](#创建其他应用或其他module的context)
+    - [订阅进程内UIAbility生命周期变化](#订阅进程内uiability生命周期变化)
 
 
 ### 获取应用文件路径
@@ -291,7 +294,7 @@ struct Page_Context {
   >
   > 当获取的是其他应用的Context时：
   >
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
   >
   > - 接口为系统接口，三方应用不支持调用。
   
@@ -313,7 +316,7 @@ struct Page_Context {
   >
   > 当获取的是其他应用的指定Module的Context时：
   >
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
   >
   > - 接口为系统接口，三方应用不支持调用。
   

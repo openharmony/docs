@@ -24,7 +24,7 @@ import installer from '@ohos.bundle.installer';
 | ohos.permission.INSTALL_SELF_BUNDLE | system_core | 允许企业MDM应用在企业设备上自升级。|
 
 
-权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
+权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
 
 ## BundleInstaller.getBundleInstaller
 

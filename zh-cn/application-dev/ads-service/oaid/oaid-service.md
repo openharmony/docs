@@ -21,7 +21,7 @@
 
 ### 开发步骤
 
-1. 在模块的module.json5文件中，申请广告跟踪权限[ohos.permission.APP_TRACKING_CONSENT](../../security/permission-list.md#ohospermissionapp_tracking_consent)。示例代码如下所示：
+1. 在模块的module.json5文件中，申请广告跟踪权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent)。示例代码如下所示：
    ```
    {
      "module": {

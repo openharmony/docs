@@ -66,7 +66,7 @@
 
 ### Stage模型
 
-1. 需要申请ohos.permission.KEEP_BACKGROUND_RUNNING权限，配置方式请参见[配置文件声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+1. 需要申请ohos.permission.KEEP_BACKGROUND_RUNNING权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
 
 2. 声明后台模式类型。
    在module.json5配置文件中为需要使用长时任务的UIAbility声明相应的长时任务类型（配置文件中填写长时任务类型的配置项）。
@@ -331,7 +331,7 @@
 
 2. 配置权限和声明后台模式类型。
 
-   在config.json文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING，配置方式请参见[配置文件声明](../security/accesstoken-guidelines.md#配置文件权限声明)。同时，为需要使用长时任务的ServiceAbility声明相应的长时任务类型。
+   在config.json文件中配置长时任务权限ohos.permission.KEEP_BACKGROUND_RUNNING，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。同时，为需要使用长时任务的ServiceAbility声明相应的长时任务类型。
    
    ```json
    "module": {

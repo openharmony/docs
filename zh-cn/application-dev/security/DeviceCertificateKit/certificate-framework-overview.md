@@ -55,7 +55,7 @@
 
 ## 约束与限制
 
-依赖加解密算法库框架的基础算法能力的部分，算法库框架不支持多线程并发操作，详情请参考[加解密算法库框架](../../security/cryptoFramework-overview.md#约束与限制)。
+依赖加解密算法库框架的基础算法能力的部分，算法库框架不支持多线程并发操作，详情请参考[加解密算法库框架](../../security/CryptoArchitectureKit/crypto-framework-overview.md#约束与限制)。
 
 
 ## 开发总览

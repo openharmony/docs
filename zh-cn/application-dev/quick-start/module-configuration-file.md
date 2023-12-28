@@ -387,7 +387,7 @@ skills示例：
 | icon | 标识当前ExtensionAbility组件的图标，取值为资源文件的索引。如果ExtensionAbility组件被配置为MainElement，该标签必须配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | label | 标识当前ExtensionAbility组件对用户显示的名称，取值为该名称的资源索引，以支持多语言。如果ExtensionAbility被配置当前Module的mainElement时，该标签必须配置，且要确保应用内唯一。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | type | 标识当前ExtensionAbility组件的类型，支持的取值如下：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<br/>-&nbsp;service：后台运行的service组件。<br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<br/>-&nbsp;fileAccess：公共数据访问的ExtensionAbility，允许应用程序提供文件和文件夹给文件管理类应用展示。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过UIExtensionComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。<br/>-&nbsp;remoteNotification：远程通知的ExtensionAbility。<br/>-&nbsp;remoteLocation：远程定位的ExtensionAbility。<br/>-&nbsp;voip：网络音视频通话的ExtensionAbility。<br/>**说明：**<br/>其中service、fileAccess和dataShare类型，仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签不可缺省。 |
-| permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为[系统预定义的权限](../security/permission-list.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
+| permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为[系统预定义的权限](../security/AccessToken/permissions-for-all.md)。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | uri | 标识当前ExtensionAbility组件提供的数据URI，取值为长度不超过255字节的字符数组，用反向域名的格式表示。<br/>**说明：**<br/>该标签在type为dataShare类型的ExtensionAbility时，不可缺省。 | 字符串 | 该标签可缺省，缺省值为空。 |
 |skills | 标识当前ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集。<br/>配置规则：entry包可以配置多个具有入口能力的skills标签（配置了ohos.want.action.home和entity.system.home）的ExtensionAbility，其中第一个配置了skills标签的ExtensionAbility中的label和icon作为服务或应用的label和icon。<br/>**说明：**<br/>服务的Feature包不能配置具有入口能力的skills标签。<br/>应用的Feature包可以配置具有入口能力的skills标签。 | 数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前ExtensionAbility组件的元信息。 | 对象 | 该标签可缺省，缺省值为空。 |
@@ -432,7 +432,7 @@ extensionAbilities示例：
 
 ## requestPermissions标签
 
-该标签标识应用运行时需向系统申请的权限集合，权限设置方式参见[指导](../security/accesstoken-guidelines.md)。
+该标签标识应用运行时需向系统申请的权限集合，权限设置方式参见[申请应用权限](../security/AccessToken/determine-application-mode.md)。
 
 > **说明：**
 >
@@ -789,8 +789,8 @@ dependencies标签示例：
 | 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
 | ----------- | ------------------------------ | -------- | ---------- |
 | uri | 标识用于访问该数据代理的URI，不同的数据代理配置的URI不可重复，且需要满足`datashareproxy://当前应用包名/xxx`的格式。  | 字符串   | 该标签不可缺省。 |
-| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 该标签可缺省，缺省值为空。 |
-| requiredWritePermission | 标识向该数据代理中写入数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 该标签可缺省，缺省值为空。 |
+| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/AccessToken/permissions-for-all.md)。 | 字符串   | 该标签可缺省，缺省值为空。 |
+| requiredWritePermission | 标识向该数据代理中写入数据所需要的权限，若不配置，则其他应用无法使用该代理。非系统应用配置的权限的等级需为system_basic或system_core，系统应用配置的权限的等级没有限制。权限等级可以参考[权限列表](../security/AccessToken/permissions-for-all.md)。 | 字符串   | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识该数据代理的元信息，只支持配置name和resource字段。 | 对象 | 该标签可缺省，缺省值为空。 |
 
 proxyData标签示例：

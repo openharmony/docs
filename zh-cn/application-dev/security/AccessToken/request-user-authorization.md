@@ -137,8 +137,9 @@
         // ...
       }
       ```
+
    - 在UI中向用户申请授权。
-      
+
       ```ts
       import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
       import common from '@ohos.app.ability.common';

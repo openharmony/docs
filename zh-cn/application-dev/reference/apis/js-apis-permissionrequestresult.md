@@ -14,7 +14,7 @@
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | 是 | 否 | 用户传入的权限。|
-| authResults | Array&lt;number&gt; | 是 | 否 | 相应请求权限的结果：<br>- -1：未授权，表示权限已设置，无需弹窗，需要用户在"设置"中修改。<br>- 0：已授权。<br>- 2：未授权，表示请求无效，可能原因有：<br>  -未在设置文件中声明目标权限。<br>  -权限名非法。<br>  -部分权限存在特殊申请条件，在申请对应权限时未满足其指定的条件，见[ohos.permission.LOCATION](../../security/permission-list.md#ohospermissionlocation)与[ohos.permission.APPROXIMATELY_LOCATION](../../security/permission-list.md#ohospermissionapproximately_location) |
+| authResults | Array&lt;number&gt; | 是 | 否 | 相应请求权限的结果：<br>- -1：未授权，表示权限已设置，无需弹窗，需要用户在"设置"中修改。<br>- 0：已授权。<br>- 2：未授权，表示请求无效，可能原因有：<br>  -未在设置文件中声明目标权限。<br>  -权限名非法。<br>  -部分权限存在特殊申请条件，在申请对应权限时未满足其指定的条件，见[ohos.permission.LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation)与[ohos.permission.APPROXIMATELY_LOCATION](../../security/AccessToken/permissions-for-all.md#ohospermissionapproximately_location) |
 
 ## 使用说明
 

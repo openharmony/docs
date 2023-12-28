@@ -46,7 +46,7 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
 ### 使用dialCall拨打电话（仅供系统应用使用）
 
 1. 声明接口调用所需要的权限：ohos.permission.PLACE_CALL。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)声明对应权限。
 2. 导入call和observer模块。
 3. 调用hasVoiceCapability，确认当前设备是否支持拨号。
 4. 调用dialCall接口，拨打电话。

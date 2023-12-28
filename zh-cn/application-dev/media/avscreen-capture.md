@@ -17,7 +17,7 @@
 
 ### 录屏取原始码流权限说明
 
-在开发前，请根据应用实际需求，参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)申请以下权限：
+在开发前，请根据应用实际需求，参考[申请应用权限](../security/AccessToken/determine-application-mode.md)申请以下权限：
 
 | 权限名 | 说明 | 授权方式 | 权限级别 |
 | ------ | ----- | --------| ------- |
@@ -230,7 +230,7 @@ int main()
 
 ### 录屏存文件权限说明
 
-在开发前，请根据应用实际需求，参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)申请以下权限：
+在开发前，请根据应用实际需求，参考[申请应用权限](../security/AccessToken/determine-application-mode.md)申请以下权限：
 
 | 权限名 | 说明 | 授权方式 | 权限级别 |
 | ------ | ----- | --------| ------- |

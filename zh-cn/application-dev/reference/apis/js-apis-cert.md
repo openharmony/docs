@@ -5968,7 +5968,7 @@ try {
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 表示校验X509证书链，使用Callback回调异步返回结果。
-由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/cert-overview.md#证书规格)
+由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/DeviceCertificateKit/certificate-framework-overview.md#证书规格)。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -6032,7 +6032,7 @@ try {
 validate(certChain : CertChainData) : Promise\<void>
 
 表示校验X509证书链，使用Promise方式异步返回结果。
-由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/cert-overview.md#证书规格)
+由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/DeviceCertificateKit/certificate-framework-overview.md#证书规格)。
 
 **系统能力：** SystemCapability.Security.Cert
 

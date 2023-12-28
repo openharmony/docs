@@ -19,11 +19,11 @@
 
 1. 使用DevEco Studio新建工程、替换full-sdk。
 
-2. 在[应用签名文件](../../security/accesstoken-overview.md#应用apl等级说明)中设置应用为系统应用，即app-feature字段为hos_system_app。
+2. 在[应用签名文件](../../security/AccessToken/app-permission-mgmt-overview.md#应用apl等级)中设置应用为系统应用，即app-feature字段为hos_system_app。
 
 3. 创建EnterpriseAdminExtensionAbility，创建过程详情请见[EnterpriseAdminExtensionAbility开发指南](../../application-models/enterprise-extensionAbility.md)。
 
-4. 声明接口所需权限。在申请权限前，请保证符合[权限使用的基本原则](../../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../../security/accesstoken-guidelines.md#acl方式声明)声明对应权限。
+4. 声明接口所需权限。在申请权限前，请保证符合[权限使用的基本原则](../../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[声明ACL权限](../../security/AccessToken/declare-permissions-in-acl.md)声明对应权限。
 
 ### API参考
 

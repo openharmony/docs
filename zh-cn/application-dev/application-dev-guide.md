@@ -29,7 +29,7 @@
 - [窗口管理](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [媒体](media/media-application-overview.md)
-- [安全](security/userauth-overview.md)
+- [安全](security/AccessToken/access-token-overview.md)
 - [AI](ai/ai-overview.md)
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [电话服务](telephony/telephony-overview.md)

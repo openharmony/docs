@@ -4,7 +4,7 @@ OEM厂商可以通过[分布式帐号SDK](../reference/apis/js-apis-distributed-
 
 ## 开发准备
 
-1. 申请权限：ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS。申请流程请参考：[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+1. 申请权限：ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS。申请流程请参考：[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 2. 导入分布式帐号模块。
 

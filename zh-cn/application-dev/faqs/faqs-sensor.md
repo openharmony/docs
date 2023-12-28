@@ -20,5 +20,5 @@ vibrate fail, error.code: 201error.message: NaN
 
 **参考链接**
 
-[权限申请](../security/accesstoken-guidelines.md)
+[声明权限](../security/AccessToken/declare-permissions.md)
 

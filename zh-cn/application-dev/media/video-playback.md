@@ -48,7 +48,7 @@
    > 
    > - 如果使用本地资源播放，必须确认资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
    > 
-   > - 如果使用网络播放路径，需[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET。
+   > - 如果使用网络播放路径，需[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
    > 
    > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法可参考[ResourceManager API参考](../reference/apis/js-apis-resource-manager.md#getrawfd9)。
    > 

@@ -141,7 +141,7 @@ Json文件共包含2个属性。
 
 ## 开发步骤
 
-1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。
+1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
 
 2. 根据指定振动效果和振动属性触发马达振动。
 

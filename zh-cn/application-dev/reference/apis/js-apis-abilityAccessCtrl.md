@@ -49,7 +49,7 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。             |
-| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
 
@@ -97,7 +97,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 要校验应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。              |
-| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
 
@@ -141,7 +141,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
-| permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 
 **返回值：**
@@ -199,7 +199,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。|
-| permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user_grant权限。当授予权限成功时，err为undefined；否则为错误对象。 |
 
@@ -254,7 +254,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
-| permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 
 **返回值：**
@@ -312,7 +312,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
-| permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user_grant权限。当撤销权限成功时，err为undefined；否则为错误对象。 |
 
@@ -367,7 +367,7 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。            |
-| permissionName | Permissions              | 是   | 查询的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions              | 是   | 查询的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
 
@@ -456,7 +456,7 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | 是   | 订阅事件类型，固定为'permissionStateChange'，权限状态变更事件。  |
 | tokenIDList        | Array&lt;number&gt;   | 是   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化。 |
-| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。|
+| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。|
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 是 | 订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
@@ -510,7 +510,7 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string         | 是   | 订阅事件类型，固定为'permissionStateChange'，权限状态变更事件。  |
 | tokenIDList        | Array&lt;number&gt;   | 是   | 订阅的tokenId列表，为空时表示订阅所有的应用的权限状态变化，必须与on的输入一致。 |
-| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionList | Array&lt;Permissions&gt;   | 是   | 订阅的权限名列表，为空时表示订阅所有的权限状态变化，必须与on的输入一致，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | 否 | 取消订阅指定tokenId与指定权限名状态变更事件的回调。|
 
 **错误码：**
@@ -558,7 +558,7 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。             |
-| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
 
@@ -604,7 +604,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | Context | 是 | 请求权限的UIAbility的UIAbilityContext。 |
-| permissionList | Array&lt;Permissions&gt; | 是 | 权限名列表，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionList | Array&lt;Permissions&gt; | 是 | 权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 | requestCallback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **错误码：**
@@ -655,7 +655,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | Context | 是 | 请求权限的UIAbility的UIAbilityContext。 |
-| permissionList | Array&lt;Permissions&gt; | 是 | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionList | Array&lt;Permissions&gt; | 是 | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
 
@@ -711,7 +711,7 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。             |
-| permissionName | string | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | string | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
 
@@ -751,7 +751,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | 是   | 要校验应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。              |
-| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |
 
 **返回值：**
 
@@ -815,4 +815,4 @@ console.log(`data->${JSON.stringify(data)}`);
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
 | change         | [PermissionStateChangeType](#permissionstatechangetype9) | 是   | 否   | 权限授权状态变化类型。        |
 | tokenID        | number                    | 是   | 否   | 被订阅的应用身份标识。 |
-| permissionName | Permissions                    | 是   | 否   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/permission-list.md)中查询。 |
+| permissionName | Permissions                    | 是   | 否   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/permissions-for-all.md)中查询。 |

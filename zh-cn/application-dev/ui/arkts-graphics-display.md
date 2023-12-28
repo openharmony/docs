@@ -38,7 +38,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 
 - 网络资源
 
-  引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。此时，Image组件的src参数为网络图片的链接。
+  引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Image组件的src参数为网络图片的链接。
 
   ```ts
   Image('https://www.example.com/example.JPG') // 实际使用时请替换为真实地址

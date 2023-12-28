@@ -40,7 +40,7 @@
 开发者通过订阅卷设备相关的广播事件来感知外置存储的插入，通过广播传递的信息获取卷设备信息后可以对卷设备进行查询以及管理操作。
 
 1. 获取权限。
-   订阅卷设备广播事件需要申请ohos.permission.STORAGE_MANAGER权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+   订阅卷设备广播事件需要申请ohos.permission.STORAGE_MANAGER权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 2. 订阅广播事件。
    需订阅的事件如下：

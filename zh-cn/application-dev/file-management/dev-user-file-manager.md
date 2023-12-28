@@ -9,7 +9,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
 ## 开发步骤
 
 1. 权限配置和导入模块。
-   申请ohos.permission.FILE_ACCESS_MANAGER和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md)。
+   申请ohos.permission.FILE_ACCESS_MANAGER和ohos.permission.GET_BUNDLE_INFO_PRIVILEGED权限，配置方式请参见[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
    > **说明：**
    >

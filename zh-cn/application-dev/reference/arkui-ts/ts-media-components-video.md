@@ -8,7 +8,7 @@
 
 ## 权限列表
 
-使用网络视频时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
+使用网络视频时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 
 ## 子组件

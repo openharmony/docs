@@ -10,7 +10,7 @@
 >
 > 当前上传应用文件功能，仅支持上传应用缓存文件路径（cacheDir）下的文件。
 >
-> 使用上传下载模块，需[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET。
+> 使用上传下载模块，需[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 
 以下示例代码演示了如何将应用缓存文件路径下的文件上传至网络服务器。
 
@@ -73,7 +73,7 @@ try {
 >
 > 当前网络资源文件仅支持下载至应用文件目录。
 >
-> 使用上传下载模块，需[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET。
+> 使用上传下载模块，需[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET。
 
 以下示例代码演示了如何将网络资源文件下载到应用文件目录：
 

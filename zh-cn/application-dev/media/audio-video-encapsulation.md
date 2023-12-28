@@ -29,7 +29,7 @@
 
 > **说明：**
 >
-> 如果调用封装能力写本地文件，需要[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
+> 如果调用封装能力写本地文件，需要[向用户申请授权](../security/AccessToken/request-user-authorization.md)：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 ### 在 CMake 脚本中链接动态库
 

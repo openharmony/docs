@@ -4,7 +4,7 @@
 页面加载是Web组件的基本功能。根据页面加载数据来源可以分为三种常用场景，包括加载网络页面、加载本地页面、加载HTML格式的富文本数据。
 
 
-页面加载过程中，若涉及网络资源获取，需要配置[ohos.permission.INTERNET](../security/accesstoken-guidelines.md)网络访问权限。
+页面加载过程中，若涉及网络资源获取，需要配置[ohos.permission.INTERNET](../security/AccessToken/declare-permissions.md)网络访问权限。
 
 
 ## 加载网络页面

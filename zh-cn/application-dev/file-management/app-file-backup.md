@@ -14,7 +14,7 @@
 
 在使用备份恢复接口之前，需要：
 
-1. [申请相关权限](../security/accesstoken-guidelines.md)：`ohos.permission.BACKUP`
+1. [申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)：`ohos.permission.BACKUP`
 
 2. 导入依赖模块：`@ohos.file.backup`
 
