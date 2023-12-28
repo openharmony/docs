@@ -1,6 +1,8 @@
 # 录像实现方案(ArkTS)
 
-当前示例提供完整的录像流程及其接口调用顺序的介绍。对于单个流程（如设备输入、会话管理、录像）的介绍请参考[相机开发指导(ArkTS)](camera-preparation.md)的具体章节。
+当前示例提供完整的录像流程介绍，方便开发者了解完整的接口调用顺序。
+
+在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[录像](camera-recording.md)等单个流程。
 
 ## 开发流程
 
@@ -10,7 +12,8 @@
 
 
 ## 完整示例
-[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
+Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';

@@ -211,10 +211,10 @@ target_link_libraries(sample PUBLIC libnative_media_avmuxer.so)
 
 10. 调用OH_AVMuxer_Destroy()销毁实例，释放资源。
 
-   ``` c++
-   if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
-       // 异常处理
-   }
-   muxer = NULL;
-   close(fd); // 关闭文件描述符
-   ```
+    ``` c++
+    if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
+        // 异常处理
+    }
+    muxer = NULL;
+    close(fd); // 关闭文件描述符
+    ```

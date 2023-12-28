@@ -78,6 +78,7 @@
 | [OH_AudioCapturer_GetCapturerInfo](#oh_audiocapturer_getcapturerinfo) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) \*sourceType) | 查询当前输入音频流工作场景类型。 | 
 | [OH_AudioCapturer_GetFrameSizeInCallback](#oh_audiocapturer_getframesizeincallback) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, int32_t \*frameSize) | 在回调中查询帧大小，它是每次回调返回的缓冲区的固定长度。 | 
 | [OH_AudioCapturer_GetTimestamp](#oh_audiocapturer_gettimestamp) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | 获取输入音频流时间戳和位置信息。 | 
+| [OH_AudioCapturer_GetFramesRead](#oh_audiocapturer_getframesread) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, int64_t *frame) | 查询自创建流以来已读取的帧数。 |
 | [OH_AudioRenderer_Release](#oh_audiorenderer_release) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | 释放输出音频流。 | 
 | [OH_AudioRenderer_Start](#oh_audiorenderer_start) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | 开始输出音频数据。 | 
 | [OH_AudioRenderer_Pause](#oh_audiorenderer_pause) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | 暂停输出音频流。 | 
@@ -578,6 +579,30 @@ OH_AudioStream_Result OH_AudioCapturer_GetEncodingType (OH_AudioCapturer * captu
 
 AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
+### OH_AudioCapturer_GetFramesRead()
+
+```
+OH_AudioStream_Result OH_AudioCapturer_GetFramesRead (OH_AudioCapturer * capturer, int64_t * frames )
+```
+
+**描述**
+
+查询自创建流以来已读取的帧数。
+
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
+| frames | 指向将为帧计数设置的变量的指针（作为返回值使用）。 | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 ### OH_AudioCapturer_GetFrameSizeInCallback()
 
