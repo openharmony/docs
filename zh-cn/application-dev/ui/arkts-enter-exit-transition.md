@@ -28,7 +28,7 @@
    private effect: object =
      TransitionEffect.OPACITY // 创建了透明度转场效果，这里没有调用animation接口，会跟随animateTo的动画参数
        // 通过combine方法，添加缩放转场效果，并指定了springMotion(0.6, 1.2)曲线
-       .combine(TransitionEffect.scale({ x: 0, y: 0 }).animation({curve: curves.springMotion(0.6, 1.2) }))
+       .combine(TransitionEffect.scale({ x: 0, y: 0 }).animation({ curve: curves.springMotion(0.6, 1.2) }))
        // 添加旋转转场效果，这里的动画参数会跟随上面的TransitionEffect，也就是springMotion(0.6, 1.2)
        .combine(TransitionEffect.rotate({ angle: 90 }))
        // 添加平移转场效果，动画参数会跟随其之上带animation的TransitionEffect，也就是springMotion(0.6, 1.2)
@@ -36,7 +36,7 @@
        // 添加move转场效果，并指定了springMotion曲线
        .combine(TransitionEffect.move(TransitionEdge.END)).animation({curve: curves.springMotion()}))
        // 添加非对称的转场效果，由于这里没有设置animation，会跟随上面的TransitionEffect的animation效果，也就是springMotion
-       .combine(TransitionEffect.asymmetric(TransitionEffect.scale({ x: 0, y: 0 }), TransitionEffect.rotate({angle: 90})));
+       .combine(TransitionEffect.asymmetric(TransitionEffect.scale({ x: 0, y: 0 }), TransitionEffect.rotate({ angle: 90 })));
    ```
 
 2. 将转场效果通过[transition](../reference/arkui-ts/ts-transition-animation-component.md)接口设置到组件。
@@ -58,7 +58,7 @@
    ...
    // 控制新增或者删除组件
    // 方式一：将控制变量放到animateTo闭包内，未通过animation接口定义动画参数的TransitionEffect将跟随animateTo的动画参数
-   animateTo({curve: curves.springMotion()}, ()=> {
+   animateTo({ curve: curves.springMotion() }, () => {
      this.isPresent = false;
    })
    
@@ -115,7 +115,7 @@ struct TransitionEffectDemo {
         .border({
           width: 5,
           radius: 10,
-          color: Color.Black,
+          color: Color.Black
         })
 
       // 第三步：新增或者删除组件触发转场，控制新增或者删除组件
@@ -135,3 +135,70 @@ struct TransitionEffectDemo {
 
 ![zh-cn_image_0000001599818064](figures/zh-cn_image_0000001599818064.gif)
 
+
+对多个组件添加转场效果时，可以通过在animation动画参数中配置不同的delay值，实现组件渐次出现消失的效果，如下述demo所示：
+
+```ts
+const ITEM_COUNTS = 9;
+const ITEM_COLOR = '#ED6F21';
+const INTERVAL = 30;
+const DURATION = 300;
+
+@Entry
+@Component
+struct Index1 {
+  @State isGridShow: boolean = false;
+
+  private dataArray: number[] = new Array(ITEM_COUNTS);
+
+  aboutToAppear(): void {
+    for (let i = 0; i < ITEM_COUNTS; i++) {
+      this.dataArray[i] = i;
+    }
+  }
+
+  build() {
+    Stack() {
+      if (this.isGridShow) {
+        Grid() {
+          ForEach(this.dataArray, (item: number, index: number) => {
+            GridItem() {
+              Stack() {
+                Text((item + 1).toString())
+              }
+              .size({ width: 50, height: 50 })
+              .backgroundColor(ITEM_COLOR)
+              .transition(TransitionEffect.OPACITY
+                .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 }))
+                // 对每个方格的转场添加delay，实现组件的渐次出现消失效果
+                .animation({ duration: DURATION, curve: Curve.Friction, delay: INTERVAL * index }))
+              .borderRadius(10)
+            }
+            // 消失时，如果不对方格的所有父控件添加转场效果，则方格的消失转场不会生效
+            // 此处让方格的父控件在出现消失转场时一直以0.99的透明度显示，使得方格的转场效果不受影响
+            .transition(TransitionEffect.opacity(0.99))
+          }, (item: number) => item.toString())
+        }
+        .columnsTemplate('1fr 1fr 1fr')
+        .rowsGap(15)
+        .columnsGap(15)
+        .size({ width: 180, height: 180 })
+        // 消失时，如果不对方格的所有父控件添加转场效果，则方格的消失转场不会生效
+        // 此处让父控件在出现消失转场时一直以0.99的透明度显示，使得方格的转场效果不受影响
+        .transition(TransitionEffect.opacity(0.99))
+      }
+    }
+    .size({ width: '100%', height: '100%' })
+    .onClick(() => {
+      animateTo({
+        duration: DURATION + INTERVAL * (ITEM_COUNTS - 1),
+        curve: Curve.Friction
+      }, () => {
+        this.isGridShow = !this.isGridShow;
+      })
+    })
+  }
+}
+```
+
+![zh-cn_image_0000001599818064](figures/zh-cn_image_0000001599818065.gif)
