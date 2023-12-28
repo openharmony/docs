@@ -1,4 +1,4 @@
-# Screen Capture (C/C++)
+# Screen Capture (for System Applications Only) (C/C++)
 
 Screen capture is mainly used to record the main screen.
 
@@ -34,7 +34,8 @@ The following walks you through how to implement simple screen capture:
     ```
 
 2. Set screen capture parameters.
-      After creating the **capture** instance, you can set the parameters required for screen capture.
+
+    After creating the **capture** instance, you can set the parameters required for screen capture.
 
     ```c++
     OH_AudioCaptureInfo miccapinfo = {
@@ -68,14 +69,14 @@ The following walks you through how to implement simple screen capture:
     ```
 
 3. Enable the microphone.
-     
+   
     ```c++
     bool isMic = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
 4. Set callback functions, which are used to listen for errors that may occur during screen capture and the generation of audio and video stream data.
-     
+   
     ```c++
     OH_AVScreenCaptureCallback callback;
     callback.onAudioBufferAvailable = OnAudioBufferAvailable;
@@ -84,43 +85,43 @@ The following walks you through how to implement simple screen capture:
     ```
 
 5. Call **StartScreenCapture** to start screen capture.
-     
+   
     ```c++
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
 6. Call **StopScreenCapture()** to stop screen capture.
-     
+   
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
 7. Call **AcquireAudioBuffer()** to obtain an audio buffer.
-     
+   
     ```c++
     OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
     ```
 
 8. Call **AcquireVideoBuffer()** to obtain a video buffer.
-     
+   
     ```c++
     OH_NativeBuffer* buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
     ```
 
 9. Call **ReleaseAudioBuffer()** to release the audio buffer.
-     
+   
     ```c++
     OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
     ```
 
 10. Call **ReleaseVideoBuffer()** to release the video buffer.
-     
+    
     ```c++
     OH_AVScreenCapture_ReleaseVideoBuffer(capture);
     ```
 
 11. Call **release()** to release the instance.
-     
+    
     ```c++
     OH_AVScreenCapture_Release(capture);
     ```
@@ -130,7 +131,7 @@ The following walks you through how to implement simple screen capture:
 Refer to the sample code below to implement screen capture using **AVScreenCapture**.
 
 Currently, the buffer holds original streams, which can be encoded and saved in MP4 format for playback. The encoding format is reserved and will be implemented in later versions.
-  
+
 ```c++
 
 #include "multimedia/player_framework/native_avscreen_capture.h"
@@ -268,7 +269,7 @@ Then perform the following steps to store a captured file:
     ```
 
 3. Set screen capture parameters.
-    
+   
     After creating the **capture** instance, you can set the parameters required for screen capture.
     
     The setting that specifies whether to record microphone audio can be configured only during the initialization triggered by **OH_AVScreenCapture_Init**. It cannot be used to control the on/off status of the microphone once the recording starts.
@@ -321,19 +322,19 @@ Then perform the following steps to store a captured file:
     ```
 
 4. Call **StartScreenCapture** to start screen capture.
-     
+   
     ```c++
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
 5. Call **StopScreenCapture()** to stop screen capture.
-     
+   
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
 6. Call **release()** to release the instance.
-     
+   
     ```c++
     OH_AVScreenCapture_Release(capture);
     ```
@@ -341,7 +342,7 @@ Then perform the following steps to store a captured file:
 ### Sample Code for Storing Captured Files
 
 Refer to the sample code below to implement captured file storage using **AVScreenCapture**.
-  
+
 ```c++
 
 #include "napi/native_api.h"
