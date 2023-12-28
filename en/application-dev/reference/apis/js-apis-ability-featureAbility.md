@@ -5,7 +5,7 @@ The **FeatureAbility** module provides APIs that enable user interaction. You ca
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module can be used only in the FA model. In the stage model, use the APIs provided by [UIAbility](js-apis-app-ability-uiAbility.md) and [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) modules instead.
+> The APIs of this module can be used only in the FA model. In the stage model, use the APIs provided by the [UIAbility](js-apis-app-ability-uiAbility.md) and [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) modules instead.
 
 ## Constraints
 
@@ -38,30 +38,6 @@ Observe the following when using this API:
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
 | callback  | AsyncCallback\<number>                   | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **0**; otherwise, **err** is a non-zero value.     |
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -121,30 +97,6 @@ Observe the following when using this API:
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
 | Promise\<number> | Promise used to return the result. If the operation is successful, **0** is returned; otherwise, a non-zero value is returned.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -226,37 +178,13 @@ Observe the following when using this API:
 
 **Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult) instead.
 
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes   | Ability to start.|
 | callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is an **AbilityResult** object; otherwise, err is an error object.     |
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 
 **Example**
 
@@ -318,30 +246,6 @@ Observe the following when using this API:
 | ---------------------------------------- | ------- |
 | Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise used to return the result.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
@@ -394,19 +298,6 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 | --------- | ------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes   | Result returned after the ability is terminated.|
 | callback  | AsyncCallback\<void>            | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.     |
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -467,19 +358,6 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 | -------------- | --------------- |
 | Promise\<void> | Promise that returns no value.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
@@ -532,12 +410,6 @@ Checks whether the main window of this ability has the focus. This API uses an a
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.<br>If the main window has the focus, **true** is returned. Otherwise, **false** is returned.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-
 **Example**
 
 ```ts
@@ -565,12 +437,6 @@ Checks whether the main window of this ability has the focus. This API uses a pr
 | ----------------- | ------------------------------------- |
 | Promise\<boolean> | Promise used to return the result. If the main window has the focus, **true** is returned. Otherwise, **false** is returned.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-
 **Example**
 
 ```ts
@@ -595,13 +461,6 @@ Obtains the Want corresponding to the ability to start. This API uses an asynchr
 | Name      | Type                           | Mandatory  | Description       |
 | -------- | ----------------------------- | ---- | --------- |
 | callback | AsyncCallback\<[Want](js-apis-application-want.md)> | Yes   | Callback used to return the Want.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -106 | Call the ability interface, the return value is wrong. |
 
 **Example**
 
@@ -631,13 +490,6 @@ Obtains the Want corresponding to the ability to start. This API uses a promise 
 | Type                     | Description              |
 | ----------------------- | ---------------- |
 | Promise\<[Want](js-apis-application-want.md)> | Promise used to return the Want.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -106 | Call the ability interface, the return value is wrong. |
 
 **Example**
 
@@ -694,19 +546,6 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 | -------- | -------------------- | ---- | -------- |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
@@ -734,19 +573,6 @@ Terminates this ability. This API uses a promise to return the result.
 | -------------- | ---------------- |
 | Promise\<void> | Promise that returns no value.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
@@ -770,7 +596,7 @@ Observe the following when using this API:
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
-**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.connectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) instead.
+**Note**: This API can be used only in the FA model. In the stage model, use [UIAbilityContext.connectServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) instead.
 
 **Parameters**
 
@@ -784,26 +610,6 @@ Observe the following when using this API:
 | Type    | Description                  |
 | ------ | -------------------- |
 | number | ID of the connected ServiceAbility. The ID starts from 0 and is incremented by 1 each time a connection is set up.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -1   | Invalid parameter. |
-| -2   | Ability not found.|
-| -3   | Permission denied.|
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16000011 | The context does not exist.        |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -847,17 +653,6 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 | ---------- | -------------------- | ---- | ----------------------- |
 | connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
 | callback   | AsyncCallback\<void> | Yes   | Callback used to return the result.               |
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -105 | Type of ability is invalid. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -914,17 +709,6 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 | -------------- | --------------- |
 | Promise\<void> | Promise that returns no value.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -105 | Type of ability is invalid. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
@@ -974,12 +758,6 @@ Obtains the window corresponding to this ability. This API uses an asynchronous 
 | -------- | ----------------------------- | ---- | ----------------------------- |
 | callback | AsyncCallback\<[window.Window](js-apis-window.md#window)> | Yes  | Callback used to return the window.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-
 **Example**
 
 ```ts
@@ -987,8 +765,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-export default {
+class FeatureAbilityClass {
+    onActive: () => void
+}
 
+let featureAbilityObj: FeatureAbilityClass =  {
   onActive() {
     console.info("onActive");
     featureAbility.getWindow((error: BusinessError, data: window.Window) => {
@@ -1000,6 +781,8 @@ export default {
     });
   }
 }
+
+export default featureAbilityObj
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
@@ -1017,12 +800,6 @@ Obtains the window corresponding to this ability. This API uses a promise to ret
 | Type                   | Description                         |
 | ----------------------- | ----------------------------- |
 | Promise\<[window.Window](js-apis-window.md#window)> | Promise used to return the window.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
 
 **Example**
 
@@ -1084,6 +861,19 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | BOUNDS_KEY<sup>7+</sup>      | 'abilityBounds' | Ability window size.|
 | WINDOW_MODE_KEY<sup>7+</sup> | 'windowMode'    | Ability window display mode.|
 | DISPLAY_ID_KEY<sup>7+</sup>  | 'displayId'     | Display device ID.|
+
+## ErrorCode
+
+Enumerates the error codes that may be returned when an ability is started.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                            | Value   | Description                                      |
+| ------------------------------ | ---- | ---------------------------------------- |
+| NO_ERROR         | 0    | No error.  |
+| INVALID_PARAMETER | -1   | Invalid parameter.|
+| ABILITY_NOT_FOUND | -2   | The ability is not found.|
+| PERMISSION_DENY   | -3   | Permission denied.  |
 
 ## DataAbilityOperationType
 

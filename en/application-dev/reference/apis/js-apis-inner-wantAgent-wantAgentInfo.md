@@ -19,9 +19,10 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | Name          | Type                           | Mandatory| Description                  |
 | -------------- | ------------------------------- | ---- | ---------------------- |
 | wants          | Array\<[Want](js-apis-app-ability-want.md)\>                   | Yes  | Array of all **Want** objects. Currently, only one Want is supported. The array is reserved for future capability expansion. If multiple values are passed in, only the first member in the array is used.   |
-| operationType<sup>(deprecated)</sup>  | [wantAgent.OperationType](js-apis-wantAgent.md#operationtype)         | No  | Operation type.<br>This attribute is supported since API version 7 and deprecated since API version 11. You are advised to use **[actionType]** instead.              |
+| operationType<sup>(deprecated)</sup>  | [wantAgent.OperationType](js-apis-wantAgent.md#operationtype)         | No  | Operation type.<br>This attribute is supported since API version 7 and deprecated since API version 11. You are advised to use actionType<sup>11+</sup> instead.              |
 | actionType<sup>11+</sup> | [abilityWantAgent.OperationType](js-apis-app-ability-wantAgent.md#operationtype)         | No  | Operation type.              |
 | requestCode    | number                          | Yes  | Request code defined by the user.|
-| wantAgentFlags<sup>(deprecated)</sup> | Array<[wantAgent.WantAgentFlags](js-apis-wantAgent.md#wantagentflags)> | No  | Array of flags for using the **WantAgent** object.<br>This attribute is supported since API version 7 and deprecated since API version 11. You are advised to use **[actionFlags]** instead.          |
+| wantAgentFlags<sup>(deprecated)</sup> | Array<[wantAgent.WantAgentFlags](js-apis-wantAgent.md#wantagentflags)> | No  | Array of flags for using the **WantAgent** object.<br>This attribute is supported since API version 7 and deprecated since API version 11. You are advised to use actionFlags<sup>11+</sup> instead.          |
 | actionFlags<sup>11+</sup> | Array<[abilityWantAgent.WantAgentFlags](js-apis-app-ability-wantAgent.md#wantagentflags)> | No  | Array of flags for using the **WantAgent** object.          |
 | extraInfo      | {[key: string]: any}            | No  | Extra information.              |
+| extraInfos      | Record\<string, Object>            | No  | Extra information. You are advised to use this attribute to replace **extraInfo**. When this attribute is set, **extraInfo** does not take effect.              |

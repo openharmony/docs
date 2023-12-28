@@ -5,7 +5,7 @@ The **particleAbility** module provides APIs for operating a DataAbility and Ser
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
-> The APIs provided by this module can be used only in the FA model. In the stage model, use the APIs provided by [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md) and [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) modules instead.
+> The APIs of this module can be used only in the FA model. In the stage model, use the APIs provided by the [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md) and [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) modules instead.
 
 ## Constraints
 
@@ -38,30 +38,6 @@ Observe the following when using this API:
 | --------- | ----------------------------------------------- | ---- | ----------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | Yes  | Ability to start.|
 | callback  | AsyncCallback\<void>                            | Yes  | Callback used to return the result. |
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -120,30 +96,6 @@ Observe the following when using this API:
 | -------------- | ------------------------- |
 | Promise\<void> | Promise used to return the result. Promise that returns no value.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 1 | Get ability error. |
-| 202 | Parameter is invalid. |
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
-| 16000011 | The context does not exist.        |
-| 16000012 | The application is controlled.        |
-| 16000013 | The application is controlled by EDM.       |
-| 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16200001 | The caller has been released. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
@@ -185,20 +137,6 @@ Terminates this ParticleAbility. This API uses an asynchronous callback to retur
 | -------- | -------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
-
 **Example**
 
 ```ts
@@ -228,20 +166,6 @@ Terminates this ParticleAbility. This API uses a promise to return the result.
 | Type          | Description                     |
 | -------------- | ------------------------- |
 | Promise\<void> | Promise used to return the result. Promise that returns no value.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 
 **Example**
 
@@ -307,27 +231,11 @@ Requests a continuous task from the system. This API uses an asynchronous callba
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | id | number | Yes| Notification ID of a continuous task.|
-  | request | [NotificationRequest](js-apis-notification.md#notificationrequest) | Yes| Notification parameter, which is used to display information in the notification bar.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -104 | Parameter is invalid. |
-| 201 | Permission denied. |
-| 202 | System API verification failed. Only system application can apply. |
-| 9800407 | The bgMode cannot be null and its type must be BackgroundMode object. |
-| 980000401 | Manager is not ready. |
-| 980000501 | Continuous task is already exist. |
-| 980000503 | Continuous Task verification failed. TASK_KEEPING background mode only supported in particular device. |
-| 980000504 | Continuous Task verification failed. The bgMode is invalid. |
-| 980000601 | Notification verification failed. The title or text of the notification cannot be empty. |
-| 980000603 | Continuous task param is null. |
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| id | number | Yes| Notification ID of a continuous task.|
+| request | [NotificationRequest](js-apis-notification.md#notificationrequest) | Yes| Notification parameter, which is used to display information in the notification bar.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
  **Example**
 
@@ -400,22 +308,6 @@ Requests a continuous task from the system. This API uses a promise to return th
 | -------------- | ------------------------- |
 | Promise\<void> | Promise used to return the result. Promise that returns no value.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -104 | Parameter is invalid. |
-| 201 | Permission denied. |
-| 202 | System API verification failed. Only system application can apply. |
-| 9800407 | The bgMode cannot be null and its type must be BackgroundMode object. |
-| 980000401 | Manager is not ready. |
-| 980000501 | Continuous task is already exist. |
-| 980000503 | Continuous Task verification failed. TASK_KEEPING background mode only supported in particular device. |
-| 980000504 | Continuous Task verification failed. The bgMode is invalid. |
-| 980000601 | Notification verification failed. The title or text of the notification cannot be empty. |
-| 980000603 | Continuous task param is null. |
-
 **Example**
 
 ```ts
@@ -470,20 +362,9 @@ Requests to cancel a continuous task from the system. This API uses an asynchron
 
  **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | The input param is invalid. |
-| 980000401 | Manager is not ready. |
-| 980000502 | Continuous Task verification failed. The application has applied for a continuous task. |
-| 980000602 | Notification verification failed. Failed to send or cancel the notification. |
-| 980000603 | Continuous task param is null. |
-
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
  **Example**
 
@@ -518,16 +399,6 @@ Requests to cancel a continuous task from the system. This API uses a promise to
 | Type          | Description                     |
 | -------------- | ------------------------- |
 | Promise\<void> | Promise used to return the result. Promise that returns no value.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | The input param is invalid. |
-| 980000401 | Manager is not ready. |
-| 980000502 | Continuous Task verification failed. The application has applied for a continuous task. |
-| 980000602 | Notification verification failed. Failed to send or cancel the notification. |
-| 980000603 | Continuous task param is null. |
 
  **Example**
 
@@ -571,26 +442,6 @@ Observe the following when using this API:
 | Type    | Description                  |
 | ------ | -------------------- |
 | number | ID of the connected ServiceAbility. The ID starts from 0 and is incremented by 1 each time a connection is set up.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -1   | Invalid parameter. |
-| -2   | Ability not found.|
-| -3   | Permission denied.|
-| 16000001 | The specified ability does not exist. |
-| 16000002 | Incorrect ability type. |
-| 16000004 | Can not start invisible component. |
-| 16000005 | The specified process does not have the permission. |
-| 16000006 | Cross-user operations are not allowed. |
-| 16000008 | The crowdtesting application expires. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
-| 16000011 | The context does not exist.        |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -636,21 +487,10 @@ Disconnects this ability from a specific ServiceAbility. This API uses an asynch
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
-  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -105 | Type of ability is invalid. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -699,17 +539,6 @@ Disconnects this ability from a specific ServiceAbility. This API uses a promise
 | connection | number               | Yes   | ID of the ServiceAbility to disconnect.|
 | Promise\<void> | Promise used to return the result. Promise that returns no value.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| -102 | Failed to acquire ability object. |
-| -105 | Type of ability is invalid. |
-| 16000011 | The context does not exist. |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
 
 ```ts
@@ -741,3 +570,12 @@ particleAbility.disconnectAbility(connId).then(() => {
     console.error(`particleAbilityTest result errCode : ${error.code}`);
 });
 ```
+## ErrorCode
+
+Enumerates the error codes that may be returned when an ability is started.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name                            | Value   | Description                                      |
+| ------------------------------ | ---- | ---------------------------------------- |
+| INVALID_PARAMETER | -1   | Invalid parameter.|

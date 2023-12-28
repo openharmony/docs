@@ -14,7 +14,7 @@ import InsightIntentContext from '@ohos.app.ability.InsightIntentContext';
 
 ## InsightIntentContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback\<void>): void
+startAbility(want: Want, callback: AsyncCallback\<void\>): void
 
 Starts an ability. The ability can be started only when it has the same bundle name as the base class for InsightIntent call execution. This API uses an asynchronous callback to return the result.
 
@@ -93,7 +93,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## InsightIntentContext.startAbility
 
-startAbility(want: Want): Promise\<void>
+startAbility(want: Want): Promise\<void\>
 
 Starts an ability. The ability can be started only when it has the same bundle name as the base class for InsightIntent call execution. This API uses a promise to return the result.
 

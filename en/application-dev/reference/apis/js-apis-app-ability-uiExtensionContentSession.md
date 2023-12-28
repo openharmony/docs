@@ -15,7 +15,7 @@ import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSessi
 
 ## UIExtensionContentSession.sendData
 
-sendData(data: { [key: string]: Object }): void
+sendData(data: Record\<string, Object>): void
 
 Sends data to the UIExtensionComponent.
 
@@ -27,7 +27,7 @@ Sends data to the UIExtensionComponent.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| data | {[key:&nbsp;string]:&nbsp;Object} | Yes| Data to send.|
+| data | Record\<string,&nbsp;Object> | Yes| Data to send.|
 
 **Error codes**
 
@@ -39,7 +39,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## UIExtensionContentSession.setReceiveDataCallback
 
-setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): void
+setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
 Sets a callback to receive data from the UIExtensionComponent.
 
@@ -51,7 +51,7 @@ Sets a callback to receive data from the UIExtensionComponent.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | (data: { [key: string]: Object }) => void | Yes| Callback used to receive data.|
+| callback | (data: Record\<string, Object>) => void | Yes| Callback used to receive data.|
 
 **Error codes**
 
@@ -636,9 +636,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void
 
-Starts an ability as the caller, with **options** specified.
+Starts an ability as the caller, with **options** specified. This API uses an asynchronous callback to return the result.
 
-This API uses an asynchronous callback to return the result. The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle.
+The initial ability places its caller information (such as the bundle name and ability name) in the **want** parameter and transfers the information to an **ExtensionAbility** at the middle layer. When the ExtensionAbility starts another ability by calling this API, the started ability can obtain the caller information of the initial ability from the **onCreate** lifecycle.
 
 **System API**: This is a system API.
 
@@ -690,7 +690,7 @@ The initial ability places its caller information (such as the bundle name and a
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
 

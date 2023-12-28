@@ -326,7 +326,7 @@ Enumerates the result codes of the request for the modal dialog box.
 | RESULT_CANCEL        | 1          | The request fails.         |
 
 ## RequestResult
-Defines the result of the request for the modal dialog box. Only the result code is included.
+Defines the result of the request for the modal dialog box. It contains **ResultCode** and **ResultWant**.
 
 ## Attributes
 
