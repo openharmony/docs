@@ -96,8 +96,6 @@ createAVPlayer(): Promise\<AVPlayer>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let avPlayer: media.AVPlayer;
 media.createAVPlayer().then((video: media.AVPlayer) => {
   if (video != null) {
@@ -192,7 +190,7 @@ media.createAVRecorder().then((recorder: media.AVRecorder) => {
   } else {
     console.error('createAVRecorder fail');
   }
-}).catch((error: Error) => {
+}).catch((error: BusinessError) => {
   console.error(`createAVRecorder catchCallback, error message:${error.message}`);
 });
 ```
@@ -274,7 +272,7 @@ media.createVideoRecorder().then((video: media.VideoRecorder) => {
   } else {
     console.error('video createVideoRecorder fail');
   }
-}).catch((error: Error) => {
+}).catch((error: BusinessError) => {
   console.error(`video catchCallback, error message:${error.message}`);
 });
 ```
@@ -310,13 +308,13 @@ import audio from '@ohos.multimedia.audio'
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags : 1
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
 }
 
 media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -361,8 +359,8 @@ import audio from '@ohos.multimedia.audio'
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags : 1
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
 }
 
 media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
@@ -484,10 +482,10 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-av
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | 是   | 是   | 流式媒体资源描述，只允许在**idle**状态下设置，静态属性。<br/>使用场景：应用播放从远端下载到本地的文件，在应用未下载完整音视频资源时，提前播放已获取的资源文件。<br/>支持的视频格式(mp4、mpeg-ts、webm、mkv)。<br>支持的音频格式(m4a、aac、mp3、ogg、wav、flac)。<br/>**使用示例**：<br/>假设用户正在从远端服务器获取音视频媒体文件，希望下载到本地的同时播放已经下载好的部分: <br/>1.用户需要获取媒体文件的总大小size（单位为字节），获取不到时设置为-1。<br/>2.用户需要实现回调函数func用于填写数据，如果size = -1，则func形式为：func(buffer: ArrayBuffer, length: number)，此时播放器只会按照顺序获取数据；否则func形式为：func(buffer: ArrayBuffer, length: number, pos: number)，播放器会按需跳转并获取数据。<br/>3.用户设置AVDataSrcDescriptor {fileSize = size, callback = func}。<br/>**注意事项**：<br/>如果播放的是mp4/m4a格式用户需要保证moov字段（媒体信息字段）在mdat字段（媒体数据字段）之前，或者moov之前的字段小于10M，否则会导致解析失败无法播放。 |
 | surfaceId<sup>9+</sup>                              | string                                                       | 是   | 是   | 视频窗口ID，默认无窗口，只允许在**initialized**状态下设置，静态属性。<br/>使用场景：视频播放的窗口渲染，纯音频播放不用设置。<br/>**使用示例**：<br/>[通过Xcomponent创建surfaceId](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。 |
 | loop<sup>9+</sup>                                   | boolean                                                      | 是   | 是   | 视频循环播放属性，默认'false'，设置为'true'表示循环播放，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。<br/>直播场景不支持loop设置。 |
-| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
+| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT_CROP，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | 是   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
-| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | 是   | 是   | 设置音频渲染信息，默认值content为CONTENT_TYPE_MUSIC，usage为STREAM_USAGE_MEDIA，rendererFlags为0。<br/>只允许在**initialized**状态下设置 |
-| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | 是   | 是   | 设置音频音效模式，默认值为EFFECT_DEFAULT，动态属性。audioRendererInfo的content和usage变动时会恢复为默认值，只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
+| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | 是   | 是   | 设置音频渲染信息，默认值usage为STREAM_USAGE_MUSIC，rendererFlags为0。<br/>只允许在**initialized**状态下设置 |
+| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | 是   | 是   | 设置音频音效模式，默认值为EFFECT_DEFAULT，动态属性。audioRendererInfo的usage变动时会恢复为默认值，只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | 是   | 否   | 音视频播放的状态，全状态有效，可查询参数。                   |
 | currentTime<sup>9+</sup>                            | number                                                       | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                       | 是   | 否   | 视频时长，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
@@ -516,9 +514,6 @@ on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReas
 **示例：**
 
 ```ts
-// 创建avPlayer实例对象
-let avPlayer = await media.createAVPlayer();
-
 avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
@@ -610,8 +605,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 avPlayer.on('error', (error: BusinessError) => {
-  console.error('error happened,and error message is :' + error.message)
-  console.error('error happened,and error code is :' + error.code)
+  console.info('error happened,and error message is :' + error.message)
+  console.info('error happened,and error code is :' + error.code)
 })
 ```
 
@@ -1796,11 +1791,6 @@ avPlayer.off('audioInterrupt')
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media'
-
-// 创建avPlayer实例对象
-let avPlayer = await media.createAVPlayer();
-
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
   console.info('audio key is ' + key); // 通过key值获取对应的value。key值具体可见[MediaDescriptionKey]
@@ -1966,7 +1956,7 @@ let avRecorderConfig: media.AVRecorderConfig = {
 
 avRecorder.prepare(avRecorderConfig).then(() => {
   console.info('prepare success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('prepare failed and catch error is ' + err.message);
 });
 ```
@@ -2051,7 +2041,7 @@ let surfaceID: string; // 该surfaceID用于传递给相机接口创造videoOutp
 avRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('getInputSurface failed and catch error is ' + err.message);
 });
 ```
@@ -2125,7 +2115,7 @@ start(): Promise\<void>
 ```ts
 avRecorder.start().then(() => {
   console.info('start AVRecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('start AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2199,7 +2189,7 @@ pause(): Promise\<void>
 ```ts
 avRecorder.pause().then(() => {
   console.info('pause AVRecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('pause AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2273,7 +2263,7 @@ resume(): Promise\<void>
 ```ts
 avRecorder.resume().then(() => {
   console.info('resume AVRecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('resume AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2351,7 +2341,7 @@ stop(): Promise\<void>
 ```ts
 avRecorder.stop().then(() => {
   console.info('stop AVRecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('stop AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2423,7 +2413,7 @@ reset(): Promise\<void>
 ```ts
 avRecorder.reset().then(() => {
   console.info('reset AVRecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('reset AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2493,7 +2483,7 @@ release(): Promise\<void>
 ```ts
 avRecorder.release().then(() => {
   console.info('release AVRecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('release AVRecorder failed and catch error is ' + err.message);
 });
 ```
@@ -2584,7 +2574,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 avRecorder.on('error', (err: BusinessError) => {
-  console.error('case avRecorder.on(error) called, errMessage is ' + err.message);
+  console.info('case avRecorder.on(error) called, errMessage is ' + err.message);
 });
 ```
 
@@ -2853,7 +2843,7 @@ let videoConfig: media.VideoRecorderConfig = {
 // promise
 videoRecorder.prepare(videoConfig).then(() => {
   console.info('prepare success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('prepare failed and catch error is ' + err.message);
 });
 ```
@@ -2943,7 +2933,7 @@ let surfaceID: string;                                               // 传递�
 videoRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('getInputSurface failed and catch error is ' + err.message);
 });
 ```
@@ -3023,7 +3013,7 @@ start(): Promise\<void>
 // promise
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('start videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3103,7 +3093,7 @@ pause(): Promise\<void>
 // promise
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('pause videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3138,7 +3128,7 @@ resume(callback: AsyncCallback\<void>): void
 
 ```ts
 // asyncallback
-videoRecorder.resume((err: Error) => {
+videoRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume videorecorder success');
   } else {
@@ -3179,7 +3169,7 @@ resume(): Promise\<void>
 // promise
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('resume videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3259,7 +3249,7 @@ stop(): Promise\<void>
 // promise
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('stop videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3331,7 +3321,7 @@ release(): Promise\<void>
 // promise
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('release videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3409,7 +3399,7 @@ reset(): Promise\<void>
 // promise
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
-}).catch((err: Error) => {
+}).catch((err: BusinessError) => {
   console.error('reset videorecorder failed and catch error is ' + err.message);
 });
 ```
@@ -3444,7 +3434,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 // 当获取videoRecordState接口出错时通过此订阅事件上报
-videoRecorder.on('error', (error: Error) => {   // 设置'error'事件回调
+videoRecorder.on('error', (error: BusinessError) => {   // 设置'error'事件回调
   console.error(`audio error called, error: ${error}`);
 })
 ```
@@ -3679,7 +3669,7 @@ play(): void
 
 ```ts
 audioPlayer.on('play', () => {    //设置'play'事件回调
-  console.log('audio play success');
+  console.info('audio play success');
 });
 audioPlayer.play();
 ```
@@ -3699,7 +3689,7 @@ pause(): void
 
 ```ts
 audioPlayer.on('pause', () => {    //设置'pause'事件回调
-  console.log('audio pause success');
+  console.info('audio pause success');
 });
 audioPlayer.pause();
 ```
@@ -3719,7 +3709,7 @@ stop(): void
 
 ```ts
 audioPlayer.on('stop', () => {    //设置'stop'事件回调
-  console.log('audio stop success');
+  console.info('audio stop success');
 });
 audioPlayer.stop();
 ```
@@ -3739,7 +3729,7 @@ reset(): void
 
 ```ts
 audioPlayer.on('reset', () => {    //设置'reset'事件回调
-  console.log('audio reset success');
+  console.info('audio reset success');
 });
 audioPlayer.reset();
 ```
@@ -3766,10 +3756,10 @@ seek(timeMs: number): void
 ```ts
 audioPlayer.on('timeUpdate', (seekDoneTime: number) => {    //设置'timeUpdate'事件回调
   if (seekDoneTime == null) {
-    console.info('audio seek fail');
+    console.error('audio seek fail');
     return;
   }
-  console.log('audio seek success. seekDoneTime: ' + seekDoneTime);
+  console.info('audio seek success. seekDoneTime: ' + seekDoneTime);
 });
 audioPlayer.seek(30000);    //seek到30000ms的位置
 ```
@@ -3795,7 +3785,7 @@ setVolume(vol: number): void
 
 ```ts
 audioPlayer.on('volumeChange', () => {    //设置'volumeChange'事件回调
-  console.log('audio volumeChange success');
+  console.info('audio volumeChange success');
 });
 audioPlayer.setVolume(1);    //设置音量到100%
 ```
@@ -3840,9 +3830,9 @@ getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 ```ts
 audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
-    console.log('audio getTrackDescription success');
+    console.info('audio getTrackDescription success');
   } else {
-    console.log(`audio getTrackDescription fail, error:${error}`);
+    console.error(`audio getTrackDescription fail, error:${error}`);
   }
 });
 ```
@@ -3868,9 +3858,9 @@ getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 ```ts
 audioPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
-  console.log('audio getTrackDescription success');
+  console.info('audio getTrackDescription success');
 }).catch((error: BusinessError) => {
-  console.info(`audio catchCallback, error:${error}`);
+  console.error(`audio catchCallback, error:${error}`);
 });
 ```
 
@@ -3896,8 +3886,8 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 
 ```ts
 audioPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
-  console.log('audio bufferingInfo type: ' + infoType);
-  console.log('audio bufferingInfo value: ' + value);
+  console.info('audio bufferingInfo type: ' + infoType);
+  console.info('audio bufferingInfo value: ' + value);
 });
 ```
 
@@ -3923,7 +3913,6 @@ on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeCh
 
 ```ts
 import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
 
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  //创建一个音频播放实例
 audioPlayer.on('dataLoad', () => {            //设置'dataLoad'事件回调，src属性设置成功后，触发此回调
@@ -3945,7 +3934,7 @@ audioPlayer.on('reset', () => {               //设置'reset'事件回调
 });
 audioPlayer.on('timeUpdate', (seekDoneTime: number) => {  //设置'timeUpdate'事件回调
   if (seekDoneTime == null) {
-    console.info('audio seek fail');
+    console.error('audio seek fail');
     return;
   }
   console.info('audio seek success, and seek time is ' + seekDoneTime);
@@ -3960,7 +3949,7 @@ audioPlayer.on('finish', () => {               //设置'finish'事件回调
   audioPlayer.stop();                        //停止播放，并触发'stop'事件回调
 });
 audioPlayer.on('error', (error: BusinessError) => {           //设置'error'事件回调
-  console.error(`audio error called, error: ${error}`);
+  console.info(`audio error called, error: ${error}`);
 });
 
 // 用户选择音频设置fd(本地播放)
@@ -3972,9 +3961,9 @@ fs.open(path).then((file) => {
   console.info('open fd success fd is' + fdPath);
   audioPlayer.src = fdPath;  //设置src属性，并触发'dataLoad'事件回调
 }, (err: BusinessError) => {
-  console.info('open fd failed err is' + err);
+  console.error('open fd failed err is' + err);
 }).catch((err: BusinessError) => {
-  console.info('open fd failed err is' + err);
+  console.error('open fd failed err is' + err);
 });
 ```
 
@@ -4001,10 +3990,10 @@ on(type: 'timeUpdate', callback: Callback\<number>): void
 ```ts
 audioPlayer.on('timeUpdate', (newTime: number) => {    //设置'timeUpdate'事件回调
   if (newTime == null) {
-    console.info('audio timeUpadate fail');
+    console.error('audio timeUpadate fail');
     return;
   }
-  console.log('audio timeUpadate success. seekDoneTime: ' + newTime);
+  console.info('audio timeUpadate success. seekDoneTime: ' + newTime);
 });
 audioPlayer.play();    //开始播放后，自动触发时间戳更新事件
 ```
@@ -4031,7 +4020,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 audioPlayer.on('error', (error: BusinessError) => {      //设置'error'事件回调
-  console.error(`audio error called, error: ${error}`); 
+  console.info(`audio error called, error: ${error}`); 
 });
 audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 ```
@@ -4282,7 +4271,7 @@ videoPlayer.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause success!');
   } else {
-    console.info('pause fail!');
+    console.error('pause fail!');
   }
 });
 ```
@@ -4447,8 +4436,6 @@ seek(timeMs: number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media'
-
 let videoPlayer: media.VideoPlayer;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
@@ -4491,9 +4478,7 @@ seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media'
-
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -4503,13 +4488,15 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let seekTime: number = 5000;
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
-  if (err == null) {
-    console.info('seek success!');
-  } else {
-    console.error('seek fail!');
-  }
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
+    if (err == null) {
+      console.info('seek success!');
+    } else {
+      console.error('seek fail!');
+    }
+  });
+}
 ```
 
 ### seek<sup>(deprecated)</sup>
@@ -4539,9 +4526,7 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media'
-
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -4551,17 +4536,19 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let seekTime: number = 5000;
-videoPlayer.seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
-  console.info('seek success');
-}).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime表示seek完成后的时间点
+    console.info('seek success');
+  }).catch((error: BusinessError) => {
+    console.error(`video catchCallback, error:${error}`);
+  });
 
-videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: number) => {
-  console.info('seek success');
-}).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
-});
+  (videoPlayer as media.VideoPlayer).seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: number) => {
+    console.info('seek success');
+  }).catch((error: BusinessError) => {
+    console.error(`video catchCallback, error:${error}`);
+  });
+}
 ```
 
 ### setVolume<sup>(deprecated)</sup>
@@ -4709,7 +4696,7 @@ videoPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.Medi
   if ((arrList) != null) {
     console.info('video getTrackDescription success');
   } else {
-    console.log(`video getTrackDescription fail, error:${error}`);
+    console.error(`video getTrackDescription fail, error:${error}`);
   }
 });
 ```
@@ -4738,10 +4725,10 @@ videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) 
   if (arrList != null) {
     console.info('video getTrackDescription success');
   } else {
-    console.log('video getTrackDescription fail');
+    console.error('video getTrackDescription fail');
   }
 }).catch((error: BusinessError) => {
-  console.info(`video catchCallback, error:${error}`);
+  console.error(`video catchCallback, error:${error}`);
 });
 ```
 
@@ -4766,9 +4753,7 @@ setSpeed(speed:number, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media'
-
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -4778,13 +4763,15 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
-videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
-  if (err == null) {
-    console.info('setSpeed success!');
-  } else {
-    console.error('setSpeed fail!');
-  }
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).setSpeed(speed, (err: BusinessError, result: number) => {
+    if (err == null) {
+      console.info('setSpeed success!');
+    } else {
+      console.error('setSpeed fail!');
+    }
+  });
+}
 ```
 
 ### setSpeed<sup>(deprecated)</sup>
@@ -4813,9 +4800,7 @@ setSpeed(speed:number): Promise\<number>
 **示例：**
 
 ```ts
-import media from '@ohos.multimedia.media'
-
-let videoPlayer: media.VideoPlayer;
+let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
@@ -4825,11 +4810,13 @@ media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   }
 });
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
-videoPlayer.setSpeed(speed).then((result: number) => {
-  console.info('setSpeed success');
-}).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
-});
+if (videoPlayer) {
+  (videoPlayer as media.VideoPlayer).setSpeed(speed).then((result: number) => {
+    console.info('setSpeed success');
+  }).catch((error: BusinessError) => {
+    console.error(`video catchCallback, error:${error}`);
+  });
+}
 ```
 
 ### on('playbackCompleted')<sup>(deprecated)</sup>
@@ -4880,8 +4867,8 @@ on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: numbe
 
 ```ts
 videoPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
-  console.log('video bufferingInfo type: ' + infoType);
-  console.log('video bufferingInfo value: ' + value);
+  console.info('video bufferingInfo type: ' + infoType);
+  console.info('video bufferingInfo value: ' + value);
 });
 ```
 
@@ -4933,8 +4920,8 @@ on(type: 'videoSizeChanged', callback: (width: number, height: number) => void):
 
 ```ts
 videoPlayer.on('videoSizeChanged', (width: number, height: number) => {
-  console.log('video width is: ' + width);
-  console.log('video height is: ' + height);
+  console.info('video width is: ' + width);
+  console.info('video height is: ' + height);
 });
 ```
 
@@ -4960,7 +4947,7 @@ on(type: 'error', callback: ErrorCallback): void
 
 ```ts
 videoPlayer.on('error', (error: BusinessError) => {      // 设置'error'事件回调
-  console.error(`video error called, error: ${error}`);
+  console.info(`video error called, error: ${error}`);
 });
 videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'事件
 ```
@@ -5022,7 +5009,7 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   location : { latitude : 30, longitude : 130},
 }
 audioRecorder.on('prepare', () => {    //设置'prepare'事件回调
-  console.log('prepare success');
+  console.info('prepare success');
 });
 audioRecorder.prepare(audioRecorderConfig);
 ```
@@ -5042,7 +5029,7 @@ start(): void
 
 ```ts
 audioRecorder.on('start', () => {    //设置'start'事件回调
-  console.log('audio recorder start success');
+  console.info('audio recorder start success');
 });
 audioRecorder.start();
 ```
@@ -5062,7 +5049,7 @@ pause():void
 
 ```ts
 audioRecorder.on('pause', () => {    //设置'pause'事件回调
-  console.log('audio recorder pause success');
+  console.info('audio recorder pause success');
 });
 audioRecorder.pause();
 ```
@@ -5082,7 +5069,7 @@ resume():void
 
 ```ts
 audioRecorder.on('resume', () => {    //设置'resume'事件回调
-  console.log('audio recorder resume success');
+  console.info('audio recorder resume success');
 });
 audioRecorder.resume();
 ```
@@ -5102,7 +5089,7 @@ stop(): void
 
 ```ts
 audioRecorder.on('stop', () => {    //设置'stop'事件回调
-  console.log('audio recorder stop success');
+  console.info('audio recorder stop success');
 });
 audioRecorder.stop();
 ```
@@ -5122,7 +5109,7 @@ release(): void
 
 ```ts
 audioRecorder.on('release', () => {    //设置'release'事件回调
-  console.log('audio recorder release success');
+  console.info('audio recorder release success');
 });
 audioRecorder.release();
 audioRecorder = undefined;
@@ -5145,7 +5132,7 @@ reset(): void
 
 ```ts
 audioRecorder.on('reset', () => {    //设置'reset'事件回调
-  console.log('audio recorder reset success');
+  console.info('audio recorder reset success');
 });
 audioRecorder.reset();
 ```
@@ -5185,26 +5172,26 @@ audioRecorder.on('error', (error: BusinessError) => {                           
   console.info(`audio error called, error: ${error}`);
 });
 audioRecorder.on('prepare', () => {                                              // 设置'prepare'事件回调
-  console.log('prepare success');
+  console.info('prepare success');
   audioRecorder.start();                                                       // 开始录制，并触发'start'事件回调
 });
 audioRecorder.on('start', () => {                                                 // 设置'start'事件回调
-  console.log('audio recorder start success');
+  console.info('audio recorder start success');
 });
 audioRecorder.on('pause', () => {                                                 // 设置'pause'事件回调
-  console.log('audio recorder pause success');
+  console.info('audio recorder pause success');
 });
 audioRecorder.on('resume', () => {                                                 // 设置'resume'事件回调
-  console.log('audio recorder resume success');
+  console.info('audio recorder resume success');
 });
 audioRecorder.on('stop', () => {                                                 // 设置'stop'事件回调
-  console.log('audio recorder stop success');
+  console.info('audio recorder stop success');
 });
 audioRecorder.on('release', () => {                                                 // 设置'release'事件回调
-  console.log('audio recorder release success');
+  console.info('audio recorder release success');
 });
 audioRecorder.on('reset', () => {                                                 // 设置'reset'事件回调
-  console.log('audio recorder reset success');
+  console.info('audio recorder reset success');
 });
 audioRecorder.prepare(audioRecorderConfig)                                        // 设置录制参数 ，并触发'prepare'事件回调      
 ```
@@ -5239,8 +5226,8 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   uri : 'fd://xx',                                                     // 文件需先由调用者创建，并给予适当的权限
   location : { latitude : 30, longitude : 130},
 }
-audioRecorder.on('error', (error: Error) => {                                  // 设置'error'事件回调
-  console.error(`audio error called, error: ${error}`);
+audioRecorder.on('error', (error: BusinessError) => {                                  // 设置'error'事件回调
+  console.info(`audio error called, error: ${error}`);
 });
 audioRecorder.prepare(audioRecorderConfig);                            // prepare不设置参数，触发'error'事件
 ```
