@@ -33,14 +33,14 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 ## 音频流音量
 
-管理音频流音量的接口是AVPlayer或AudioRenderer的setVolume()方法，使用AVPlayer设置音频流音量的示例代码如下：
+管理音频流音量的接口是AVPlayer或AudioRenderer的setVolume()方法，使用[AVPlayer](../reference/apis/js-apis-media.md#mediacreateavplayer9)设置音频流音量的示例代码如下：
 
 ```ts
 let volume = 1.0  // 指定的音量大小，取值范围为[0.00-1.00]，1表示最大音量
 avPlayer.setVolume(volume);
 ```
 
-使用AudioRenderer设置音频流音量的示例代码如下：
+使用[AudioRenderer](../reference/apis/js-apis-audio.md#audiocreateaudiorenderer8)设置音频流音量的示例代码如下：
 
 ```ts
 import { BusinessError } from '@ohos.base';
