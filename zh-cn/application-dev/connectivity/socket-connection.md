@@ -36,12 +36,12 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | constructMulticastSocketInstance() | 创建一个 MulticastSocket 对象。                                                |
 | constructLocalSocketInstance()       | 创建一个 LocalSocket 对象。                                                  |
 | constructLocalSocketServerInstance() | 创建一个 LocalSocketServer 对象。                                            |
-| listen()                           | 绑定 IP 地址和端口，监听并接受与此套接字建立的 TCPSocket 连接。（仅 TCP 支持）    |
-| bind()                             | 绑定 IP 地址和端口。                                                           |
+| listen()                           | 绑定、监听并启动服务，接收客户端的连接请求。（仅 TCP/LocalSocket 支持）               |
+| bind()                             | 绑定 IP 地址和端口，或是绑定本地套接字路径。                                        |
 | send()                             | 发送数据。                                                                     |
 | close()                            | 关闭连接。                                                                     |
 | getState()                         | 获取 Socket 状态。                                                             |
-| connect()                          | 连接到指定的 IP 地址和端口（仅 TCP 支持）                                      |
+| connect()                          | 连接到指定的 IP 地址和端口，或是连接到本地套接字（仅 TCP/LocalSocket 支持）           |
 | getRemoteAddress()                 | 获取对端 Socket 地址（仅 TCP 支持，需要先调用 connect 方法）                   |
 | setExtraOptions()                  | 设置 Socket 连接的其他属性。                                                   |
 | getExtraOptions()                  | 获取 Socket 连接的其他属性（仅 LocalSocket 支持）。                            |
@@ -59,8 +59,8 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | off(type:&nbsp;'error')            | 取消订阅 Socket 连接的 Error 事件。                                            |
 | on(type:&nbsp;'listening')         | 订阅 UDPSocket 连接的数据包消息事件（仅 UDP 支持）。                           |
 | off(type:&nbsp;'listening')        | 取消订阅 UDPSocket 连接的数据包消息事件（仅 UDP 支持）。                       |
-| on(type:&nbsp;'connect')           | 订阅 TCPSocket 的连接事件（仅 TCP 支持）。                                     |
-| off(type:&nbsp;'connect')          | 取消订阅 TCPSocket 的连接事件（仅 TCP 支持）。                                 |
+| on(type:&nbsp;'connect')           | 订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                            |
+| off(type:&nbsp;'connect')          | 取消订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                         |
 
 TLS Socket 连接主要由 tls_socket 模块提供。具体接口说明如下表。
 
