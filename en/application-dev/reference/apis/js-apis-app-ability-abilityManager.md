@@ -17,24 +17,26 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 Enumerates the ability states. This enum can be used together with [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) to return the ability state.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System API**: This is a system API.
 
-**System API**: This enum is an internal definition of a system API and cannot be called by third-party applications.
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Value| Description| 
 | -------- | -------- | -------- |
 | INITIAL | 0 | The ability is in the initial state.| 
-| FOCUS | 2 | The ability has the focus. |
+| FOCUS | 2 | The ability has the focus.|
 | FOREGROUND | 9 | The ability is in the foreground state. | 
 | BACKGROUND | 10 | The ability is in the background state. | 
 | FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. | 
-| BACKGROUNDING | 12 | The ability is in the state of being switched to the background.  | 
+| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
 
 ## updateConfiguration
 
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 Updates the configuration. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -45,7 +47,7 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | config    | [Configuration](js-apis-app-ability-configuration.md)   | Yes   | New configuration. You only need to configure the items to be updated.|
-| callback  | AsyncCallback\<void>                   | Yes   | Callback used to return the API call result. You can perform error handling or custom processing in this callback.     |
+| callback  | AsyncCallback\<void>                   | Yes   | Callback used to return the API call result. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
@@ -90,6 +92,8 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 Updates the configuration. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -104,7 +108,7 @@ Updates the configuration. This API uses a promise to return the result.
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in this callback.|
+| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -147,6 +151,8 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 Obtains the UIAbility running information. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -155,7 +161,7 @@ Obtains the UIAbility running information. This API uses an asynchronous callbac
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in this callback.     |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the ability running information. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
@@ -190,6 +196,8 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 Obtains the UIAbility running information. This API uses a promise to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -198,7 +206,7 @@ Obtains the UIAbility running information. This API uses a promise to return the
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in this callback.|
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -231,6 +239,8 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 Obtains the ExtensionAbility running information. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -240,7 +250,7 @@ Obtains the ExtensionAbility running information. This API uses an asynchronous 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | Yes| Maximum number of messages that can be obtained. The maximum value is 2<sup>31</sup>-1.|
-| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in this callback.     |
+| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
@@ -254,13 +264,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
-        if (err.code !== 0) {
-            console.log('getExtensionRunningInfos fail, err: ' + JSON.stringify(err));
+    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<abilityManager.ExtensionRunningInfo>) => {
+        if (err) {
+            console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
         } else {
             console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
         }
@@ -276,7 +287,9 @@ try {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 Obtains the ExtensionAbility running information. This API uses a promise to return the result.
- 
+
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -291,7 +304,7 @@ Obtains the ExtensionAbility running information. This API uses a promise to ret
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | Promise used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in this callback.|
+| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | Promise used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -305,14 +318,15 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
-        console.log('getExtensionRunningInfos success, data: ' + JSON.stringify(data));
-    }).catch((err) => {
-        console.log('getExtensionRunningInfos fail, err: '  + JSON.stringify(err));
+    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
+        console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
+    }).catch((err: BusinessError) => {
+        console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
     console.log('error.code: ' + JSON.stringify(paramError.code)
@@ -320,11 +334,13 @@ try {
 }
 ```
 
-## getTopAbility<sup>9+</sup>
+## getTopAbility
 
-getTopAbility(callback: AsyncCallback\<ElementName>): void;
+getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 Obtains the top ability, which is the ability that has the window focus. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -332,7 +348,7 @@ Obtains the top ability, which is the ability that has the window focus. This AP
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | Yes   | Callback used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in this callback.     |
+| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | Yes   | Callback used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
@@ -346,10 +362,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility((err, data) => { 
-    if (err.code !== 0) {
-        console.log('getTopAbility fail, err: ' + JSON.stringify(err));
+abilityManager.getTopAbility((err: BusinessError, data) => { 
+    if (err) {
+        console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
     } else {
         console.log('getTopAbility success, data: ' + JSON.stringify(data));
     }
@@ -358,17 +375,19 @@ abilityManager.getTopAbility((err, data) => {
 
 ## getTopAbility
 
-getTopAbility(): Promise\<ElementName>;
+getTopAbility(): Promise\<ElementName>
 
 Obtains the top ability, which is the ability that has the window focus. This API uses a promise to return the result.
- 
+
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| Promise used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in this callback.|
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| Promise used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in it.|
 
 **Error codes**
 

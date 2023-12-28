@@ -8,6 +8,7 @@ You can use the APIs of this module to start, terminate, connect, and disconnect
 > 
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
+>  - The APIs of this module must be used in the main thread, but not in sub-threads such as Worker and TaskPool.
 
 ## Modules to Import
 
