@@ -5,6 +5,9 @@
 
 提供管理关系数据库（RDB）方法的接口。
 
+**引用文件：** <database/rdb/relational_store.h>
+
+**库：** libnative_rdb_ndk.z.so
 **起始版本：**
 
 10
@@ -36,7 +39,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) { S1 = 1, S2, S3, S4 } | 数据库的安全级别枚举。 |
+| [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4 } | 数据库的安全级别枚举。 |
 
 
 ### 函数
