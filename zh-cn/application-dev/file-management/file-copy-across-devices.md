@@ -28,9 +28,9 @@
     let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     fs.writeSync(file.fd, 'Create file success');
     fs.closeSync(file);
-  } catch (err: BusinessError){
+   } catch (err: BusinessError) {
     console.error(`Failed to createFile. Code: ${err.code}, message: ${err.message}`);
-  }
+   }
 
    // 获取待拷贝文件uri
    let fileUri = fileUri.getUriFromPath(filePath);
@@ -46,9 +46,9 @@
     }).catch((err: BusinessError)=>{
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-  } catch (err: BusinessError) {
+   } catch (err: BusinessError) {
     console.error(`Failed to getData. Code: ${err.code}, message: ${err.message}`);
-  }
+   }
    ```
 
    B设备在获取A端沙箱文件时，从B设备的分布式路径下将对应的文件拷贝走，以此完成跨设备拷贝。
@@ -79,7 +79,7 @@
      "progressListener" : progressListener
    }
 
-  try {
+   try {
     // 将分布式路径下的文件拷贝到其他沙箱路径下
     fs.copy(srcUri, destUri, options).then(()=>{
       console.info("Succeeded in copying of paste. ");
@@ -87,7 +87,7 @@
     }).catch((err: BusinessError)=>{
       console.info(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
     })
-  } catch (err: BusinessError){
+   } catch (err: BusinessError) {
     console.error(`Failed to copy. Code: ${err.code}, message: ${err.message}`);
-  }
+   }
    ```
