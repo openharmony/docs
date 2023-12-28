@@ -39,7 +39,7 @@
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-guidelines.md)
-- [国际化](internationalization/international-overview.md)
+- [国际化](internationalization/i18n-l10n.md)
 - [应用测试](application-test/arkxtest-guidelines.md)
 - [一次开发，多端部署](key-features/multi-device-app-dev/foreword.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)

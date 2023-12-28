@@ -18,7 +18,7 @@
 
 2. 支持安装的私有凭据算法类型&签名验签支持的参数组合
 
-   证书管理安装凭据及使用凭据中的密钥进行签名、验签，依赖[通用密钥库](huks-overview.md)（HUKS）能力，其声明的算法规格详见[通用密钥库密码算法规格](huks-appendix.md)。证书管理支持的算法为其子集，当前仅支持RSA及ECC算法类型的私有凭据安装及使用。签名、验签支持的参数组合，详见HUKS声明的[签名&验签流程算法与摘要算法、填充模式的组合规格](./huks-appendix.md#签名&验签流程算法与摘要算法、填充模式的组合规格)中RSA及ECC的描述。
+   证书管理安装凭据及使用凭据中的密钥进行签名、验签，依赖[通用密钥库](../UniversalKeystoreKit/huks-overview.md)（HUKS）能力，证书管理支持的算法为其子集，当前仅支持RSA及ECC算法类型的私有凭据安装及使用。签名、验签支持的参数组合，详见HUKS声明的[签名/验签介绍及算法规格](../UniversalKeystoreKit/huks-signing-signature-verification-overview.md)中RSA及ECC的描述。
 
 
 ## 接口说明
@@ -47,7 +47,7 @@
 
 ## 开发步骤
 
-1. 申请权限。调用证书管理相关接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_CERT_MANAGER权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
+1. 申请权限。调用证书管理相关接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_CERT_MANAGER权限。更多配置信息请参考[Stage模型应用程序包结构](../../quick-start/module-configuration-file.md)。
 
 2. 导入相关模块
 

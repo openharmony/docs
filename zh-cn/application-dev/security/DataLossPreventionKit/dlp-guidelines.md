@@ -50,7 +50,7 @@
 
 开发步骤
 
-1. 引入[dlpPermission](../reference/apis/js-apis-dlppermission.md)模块。
+1. 引入[dlpPermission](../../reference/apis/js-apis-dlppermission.md)模块。
 
    ```ts
    import dlpPermission from '@ohos.dlpPermission';

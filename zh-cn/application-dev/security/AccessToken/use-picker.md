@@ -12,7 +12,7 @@ Picker由系统独立进程实现，应用可以通过拉起Picker组件，用�
 
 - [照片Picker（PhotoViewPicker）](#照片picker)：选择、保存图片文件
 
-- [联系人Picker（Contacts Picker）](#contacts-picker)：选择联系人
+- [联系人Picker（Contacts Picker）](#联系人picker)：选择联系人
 
 ## 音频Picker
 
@@ -37,7 +37,7 @@ Picker由系统独立进程实现，应用可以通过拉起Picker组件，用�
 
 - 在应用需要申请权限**ohos.permission.READ_IMAGEVIDEO**以访问用户公共目录的图片或视频文件时，可以使用FilePicker中的PhotoViewPicker替代，使用方式请参考：[选择图片或视频类文件](../../file-management/select-user-file.md#选择图片或视频类文件)。
 
-- 在应用需要申请权限**ohos.permission.WRITE_IMAGEVIDEO**以修改用户公共目录的图片或视频文件时，可以使用FilePicker中的PhotoViewPicker替代，使用方式请参考：[保存图片或视频类文件](../../file-management/select-user-file.md#保存图片或视频类文件)。
+- 在应用需要申请权限**ohos.permission.WRITE_IMAGEVIDEO**以修改用户公共目录的图片或视频文件时，可以使用FilePicker中的PhotoViewPicker替代，使用方式请参考：[保存图片或视频类文件](../../file-management/save-user-file.md#保存图片或视频类文件)。
 
 
 ## 联系人Picker
