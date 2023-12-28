@@ -41,6 +41,7 @@
   - [Sensor](_sensor.md)
   - [vibrator](_vibrator.md)
   - [Netstack](netstack.md)
+  - [NetConnection](_net_connection.md)
 - 头文件
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
   - [drawing_brush.h](drawing__brush_8h.md)
@@ -136,6 +137,8 @@
   - [net_ssl_c_type.h](net__ssl__c__type_8h.md)
   - [net_websocket.h](net__websocket_8h.md)
   - [net_websocket_type.h](net__websocket__type_8h.md)
+  - [net_connection.h](net__connection_8h.md)
+  - [net_connection_type.h](net__connection__type_8h.md)
 - 结构体
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
@@ -276,3 +279,10 @@
   - [OH_NetStack_WebsocketClient_OpenResult](_o_h___net_stack___websocket_client___open_result.md)
   - [OH_NetStack_WebsocketClient_RequestOptions](h___net_stack___websocket_client___request_options.md)
   - [OH_NetStack_WebsocketClient_Slist](_o_h___net_stack___websocket_client___slist.md)
+  - [NetConn_ConnectionProperties](_net_conn___connection_properties.md)
+  - [NetConn_HttpProxy](_net_conn___http_proxy.md)
+  - [NetConn_NetAddr](_net_conn___net_addr.md)
+  - [NetConn_NetCapabilities](_net_conn___net_capabilities.md)
+  - [NetConn_NetHandle](_net_conn___net_handle.md)
+  - [NetConn_NetHandleList](_net_conn___net_handle_list.md)
+  - [NetConn_Route](_net_conn___route.md)
