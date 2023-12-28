@@ -223,8 +223,8 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 | 名称           | 值   | 说明            |
 | -------------- | ---- | --------------- |
-| APP            | 0    | 该Bundle是普通应用程序。    |
-| ATOMIC_SERVICE | 1    | 该Bundle是原子化服务。 |
+| APP            | 0    | 该Bundle是应用。    |
+| ATOMIC_SERVICE | 1    | 该Bundle是元服务。 |
 
 ### ProfileType<sup>11+</sup>
 
