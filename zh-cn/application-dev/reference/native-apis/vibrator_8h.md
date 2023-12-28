@@ -91,7 +91,7 @@ int32_t OHOS::Sensors::OH_Vibrator_PlayVibrationCustom(Vibrator_FileDescription 
 
 | 名称 | 描述 |
 | -------- | -------- |
-| fileDescription | 自定义振动效果文件描述符，请参阅 [Vibrator_FileDescription](_vibrator.md#file_description)。 |
+| fileDescription | 自定义振动效果文件描述符，请参阅 [Vibrator_FileDescription](_vibrator.md#vibrator_filedescription)。 |
 | vibrateAttribute | 振动属性，请参阅 [Vibrator_Attribute](_vibrator.md#vibrator_attribute)。 |
 
 **返回：**
