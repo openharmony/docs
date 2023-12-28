@@ -425,7 +425,7 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void
 
-系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
+系统弹框通过该接口发起元服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
 **系统接口**：该接口为系统接口。
 
@@ -472,7 +472,7 @@ try {
 
 acquireShareData(missionId: number): Promise<{[key: string]: Object}>
 
-系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
+系统弹框通过该接口发起元服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
 
 **系统接口**：该接口为系统接口。
 
