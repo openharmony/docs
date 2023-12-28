@@ -3702,7 +3702,7 @@ let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 
 ## LocalSocket<sup>11+</sup>
 
-LocalSocket连接。在调用LocalSocket的方法前，需要先通过[socket.constructLocalSocketInstance](#socketconstructlocalsocketinstance)创建LocalSocket对象。
+LocalSocket连接。在调用LocalSocket的方法前，需要先通过[socket.constructLocalSocketInstance](#socketconstructlocalsocketinstance11)创建LocalSocket对象。
 
 ### bind<sup>11+</sup>
 
@@ -3720,7 +3720,7 @@ bind(address: LocalAddress): Promise\<void\>;
 
 | 参数名   | 类型                               | 必填 | 说明                                                   |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
-| address  | [LocalAddress](#localaddress) | 是   | 目标地址信息，参考[LocalAddress](#localaddress)。 |
+| address  | [LocalAddress](#localaddress11) | 是   | 目标地址信息，参考[LocalAddress](#localaddress11)。 |
 
 **错误码：**
 
@@ -3762,7 +3762,7 @@ connect(options: LocalConnectOptions): Promise\<void\>
 
 | 参数名  | 类型                                     | 必填 | 说明                                                         |
 | ------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [LocalConnectOptions](#localconnectoptions) | 是   | LocalSocket连接的参数，参考[LocalConnectOptions](#localconnectoptions)。 |
+| options | [LocalConnectOptions](#localconnectoptions11) | 是   | LocalSocket连接的参数，参考[LocalConnectOptions](#localconnectoptions11)。 |
 
 **返回值：**
 
@@ -3814,7 +3814,7 @@ send(options: LocalSendOptions): Promise\<void\>
 
 | 参数名  | 类型                                    | 必填 | 说明                                                         |
 | ------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [LocalSendOptions](#localsendoptions) | 是   | LocalSocket发送请求的参数，参考[LocalSendOptions](#localsendoptions)。 |
+| options | [LocalSendOptions](#localsendoptions11) | 是   | LocalSocket发送请求的参数，参考[LocalSendOptions](#localsendoptions11)。 |
 
 **返回值：**
 
@@ -3986,7 +3986,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase) | 是   | LocalSocket连接的其他属性，参考[ExtraOptionsBase](#extraoptionsbase)。 |
+| options | [ExtraOptionsBase](#extraoptionsbase10) | 是   | LocalSocket连接的其他属性，参考[ExtraOptionsBase](#extraoptionsbase10)。 |
 
 **返回值：**
 
@@ -4084,7 +4084,7 @@ on(type: 'message', callback: Callback\<{MessageReceive}\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                      |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[MessageReceive](#messagereceive)}\> | 是   | 回调函数。                            |
+| callback | Callback\<{[MessageReceive](#messagereceive11)}\> | 是   | 回调函数。                            |
 
 **示例：**
 
@@ -4115,10 +4115,10 @@ off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
 
 **参数：**
 
-| 参数名   | 类型                                             | 必填 | 说明                                 |
-| -------- | ---------------------------------------------- | ---- | ----------------------------------- |
-| type     | string                                         | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[MessageReceive](#messagereceive)}> | 否   | 回调函数。                            |
+| 参数名   | 类型                                               | 必填 | 说明                                 |
+| -------- | ------------------------------------------------ | ---- | ----------------------------------- |
+| type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<{[MessageReceive](#messagereceive11)}> | 否   | 回调函数。                            |
 
 **示例：**
 
@@ -4408,7 +4408,7 @@ listen(address: LocalAddress): Promise\<void\>
 
 | 参数名  | 类型                      | 必填 | 说明                                          |
 | ------- | ------------------------- | ---- | --------------------------------------------- |
-| address | [LocalAddress](#localaddress) | 是   | 目标地址信息。 |
+| address | [LocalAddress](#localaddress11) | 是   | 目标地址信息。 |
 
 **返回值：**
 
@@ -4491,9 +4491,9 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 **参数：**
 
-| 参数名  | 类型                                | 必填 | 说明                                                         |
-| ------- | ----------------------------------- | ---- | -------------------------------- |
-| options | [ExtraOptionsBase](#extraoptionsbase) | 是   | LocalSocketServer连接的其他属性。 |
+| 参数名  | 类型                                      | 必填 | 说明                            |
+| ------- | --------------------------------------- | ---- | ------------------------------ |
+| options | [ExtraOptionsBase](#extraoptionsbase11) | 是   | LocalSocketServer连接的其他属性。 |
 
 **返回值：**
 
@@ -4756,7 +4756,7 @@ send(options: LocalSendOptions): Promise\<void\>
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | -------------------------------------- |
-| options | [LocalSendOptions](#localsendoptions) | 是   | LocalSocketConnection发送请求的参数。 |
+| options | [LocalSendOptions](#localsendoptions11) | 是   | LocalSocketConnection发送请求的参数。 |
 
 **返回值：**
 
@@ -4837,7 +4837,7 @@ on(type: 'message', callback: Callback\<MessageReceive\>): void;
 | 参数名   | 类型                                              | 必填 | 说明                                     |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。     |
-| callback | Callback\<{[MessageReceive](#messagereceive)}\> | 是   | 回调函数。MessageReceive为接收到的消息对象。 |
+| callback | Callback\<{[MessageReceive](#messagereceive11)}\> | 是   | 回调函数。MessageReceive为接收到的消息对象。 |
 
 **错误码：**
 
@@ -4887,7 +4887,7 @@ off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[MessageReceive](#messagereceive)}\> | 否   | 回调函数。MessageReceive：接收到的消息。 |
+| callback | Callback\<{[MessageReceive](#messagereceive11)}\> | 否   | 回调函数。MessageReceive：接收到的消息。 |
 
 **错误码：**
 

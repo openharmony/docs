@@ -343,13 +343,13 @@ multicast.dropMembership(addr, (err) => {
 
 ## 应用通过 LocalSocket 进行数据传输
 
-## 开发步骤：
+### 开发步骤：
 
 1. import 需要的 socket 模块。
 
 2. 使用 constructLocalSocketInstance 接口，创建一个 LocalSocket 客户端对象。
 
-3. （可选）订阅 LocalSocket 相关的事件。
+3. 注册 LocalSocket 的消息(message)事件，以及一些其它事件(可选)。
 
 5. 连接到指定的本地套接字文件路径。
 
@@ -410,27 +410,29 @@ client.close().then(() => {
 })
 ```
 
-## 应用通过 TCP Socket Server 进行数据传输
+## 应用通过 Local Socket Server 进行数据传输
 
 ### 开发步骤
 
-服务端 TCP Socket 流程：
+服务端 LocalSocket Server 流程：
 
 1. import 需要的 socket 模块。
 
 2. 使用 constructLocalSocketServerInstance 接口，创建一个 LocalSocketServer 服务端对象。
 
-3. 绑定并创建本地套接字，启动服务。
+3. 启动服务，绑定本地套接字路径，创建出本地套接字文件，监听客户端的连接请求。
 
-4. 订阅 LocalSocketServer 的 connect 事件，用于监听客户端的连接状态。
+3. 注册 LocalSocket 的客户端连接(connect)事件，以及一些其它事件(可选)。
 
-5. 客户端与服务端建立连接后，返回一个 LocalSocketConnection 对象，在服务端得到会话连接与客户端通信。
+5. 在客户端连接上来时，通过连接事件的回调函数，获取连接会话对象。
 
-6. 订阅 LocalSocketConnection 相关的事件，通过 LocalSocketConnection 向客户端发送数据。
+6. 给会话对象 LocalSocketConnection 注册消息(message)事件，以及一些其它事件(可选)。
 
-7. 主动关闭与客户端的连接。
+7. 通过会话对象主动向客户端发送消息。
 
-8. 取消 LocalSocketConnection 和 LocalSocketServer 相关事件的订阅。
+8. 结束与客户端的通信，主动断开与客户端的连接。
+
+9. 取消 LocalSocketConnection 和 LocalSocketServer 相关事件的订阅。
 
 ```ts
 import socket from '@ohos.net.socket';
@@ -453,7 +455,7 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
     console.log("on error success");
   });
   connection.on('message', (value: MessageReceive) => {
-    const uintArray = new UInt8Array(value.message)
+    const uintArray = new UInt8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
       messageView = String.fromCharCode(uintArray[i]);
@@ -463,7 +465,7 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
   });
 
   connection.on('error', (err) => {
-    console.log("err:" + JSON.stringify(err))
+    console.log("err:" + JSON.stringify(err));
   })
 
   // 向客户端发送数据
@@ -471,9 +473,9 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
     data: 'Hello world!'
   };
   connection.send(sendOpt).then(() => {
-    console.log('send success')
+    console.log('send success');
   }).catch((err) => {
-    console.log('send failed: ' + JSON.stringify(err))
+    console.log('send failed: ' + JSON.stringify(err));
   })
 
   // 关闭与客户端的连接
@@ -484,13 +486,13 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
   });
 
   // 取消LocalSocketConnection相关的事件订阅
-  connection.off('message')
-  connection.off('error')
+  connection.off('message');
+  connection.off('error');
 });
 
 // 取消LocalSocketServer相关的事件订阅
-server.off('connect')
-server.off('error')
+server.off('connect');
+server.off('error');
 ```
 
 ## 应用通过 TLS Socket 进行加密数据传输
