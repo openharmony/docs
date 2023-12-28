@@ -722,7 +722,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
-let observer_: abilityManager.AbilityForegroundStateObserver;
+let observer_: abilityManager.AbilityForegroundStateObserver | undefined;
 // 1.注册应用启动和退出的监听器
 let observer: abilityManager.AbilityForegroundStateObserver = {
     onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
