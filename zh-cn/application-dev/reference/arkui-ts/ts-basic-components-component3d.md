@@ -11,7 +11,7 @@
 无
 
 
-## 接口
+## 接口 
 
 Component3D((sceneOptions?: SceneOptions))
 
