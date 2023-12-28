@@ -19,7 +19,7 @@ The table below lists the types of continuous tasks, which are used in various s
 | Name| Description| Item| Example Scenario|
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | Data transfer| dataTransfer | The browser downloads a large file in the background.|
-| AUDIO_PLAYBACK | Audio playback| audioPlayback | A music application plays music in the background.|
+| AUDIO_PLAYBACK | Audio and video playback| audioPlayback | A music application plays music in the background.|
 | AUDIO_RECORDING | Audio recording| audioRecording | A recorder records audio in the background.|
 | LOCATION | Positioning and navigation| location | A navigation application provides navigation in the background.|
 | BLUETOOTH_INTERACTION | Bluetooth-related task| bluetoothInteraction | Transfer a file through Bluetooth.|
@@ -30,16 +30,17 @@ The table below lists the types of continuous tasks, which are used in various s
 
 
 - When an application requests a continuous task of the DATA_TRANSFER type, the system increases the priority of the application process to reduce the probability of terminating the process. However, it still suspends the process. To use the upload and download feature, the application must call the [upload and download agent API](../reference/apis/js-apis-request.md) so that the system functions as the agent.
-- To implement background playback, the application must request an [AV session](../media/avsession-overview.md) in addition to a continuous task of the AUDIO_PLAYBACK type.
+- Only audio and video applications that use [AVSession](../media/avsession-overview.md) can request a continuous task of the AUDIO_PLAYBACK type to implement background playback.
 
 
 ### Constraints
 
-- **Ability limit**: In the stage model, only the UIAbility can request continuous tasks. In the FA model, only the ServiceAbility can request continuous tasks.
-
-- **Quantity limit**: A UIAbility (ServiceAbility in the FA model) can request only one continuous task at a time. If a UIAbility has a running continuous task, it can request another one only after the running task is finished. If an application needs to request multiple continuous tasks at the same time, it must create multiple UIAbilities. After a UIAbility requests a continuous task, all the processes of the application are not suspended.
-
-- **Running verification**: The system performs continuous task verification. If an application requests a continuous task but does not execute the task of the requested type or finishes the task, the system performs certain control. For example, if the system detects that an application has requested a continuous task of the AUDIO_PLAYBACK type but does not play audio, the system terminates the application process.
+- **Ability restrictions**: In the stage model, only the UIAbility can request continuous tasks. In the FA model, only the ServiceAbility can request continuous tasks.
+- **Quantity restrictions**: A UIAbility (ServiceAbility in the FA model) can request only one continuous task at a time. If a UIAbility has a running continuous task, it can request another one only after the running task is finished. If an application needs to request multiple continuous tasks at the same time, it must create multiple UIAbilities. After a UIAbility requests a continuous task, all the processes of the application are not suspended.
+- **Running restrictions**: The system verifies continuous tasks on mobile phones.
+   - Scenario 1: If an application requests a continuous task but does not execute or has finished the task of the requested type, the system performs certain control. For example, if the system detects that an application has requested a continuous task of the AUDIO_PLAYBACK type but does not play audio, the system terminates the application process.
+   - Scenario 2: If an application does not request a continuous task of a given type but executes such a continuous task, the system performs certain control. For example, if the system detects that an application requests a continuous task of the AUDIO_PLAYBACK type, but the application is playing audio (corresponding to the AUDIO_PLAYBACK type) and recording (corresponding to the AUDIO_RECORDING type), the system performs control on the application.
+   - Scenario 3: If the background load of the process that runs a continuous task is higher than the corresponding typical load for a long period of time, the system performs certain control.
 
 > **NOTE**
 > 
@@ -58,21 +59,26 @@ The table below uses promise as an example to describe the APIs used for develop
 
 ## How to Develop
 
+The following walks you through how to request a continuous task for recording. In this example, the application provides two buttons: **Request Continuous Task** and **Cancel Continuous Task**.
+- When a user touches **Request Continuous Task**, the application requests a continuous task for recording, and a message is displayed in the notification bar, indicating that a recording task is running.
+- When a user touches **Cancel Continuous Task**, the application cancels the continuous task, and the notification message is removed.
+
 ### Stage Model
 
 1. Request the **ohos.permission.KEEP_BACKGROUND_RUNNING** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
 2. Declare the continuous task type.
    
-   Declare the continuous task type for the target UIAbility in the **module.json5** file.
+   Declare the type of the continuous task for the target UIAbility in the **module.json5** file. (Set the corresponding configuration item in the configuration file.)
    
    ```json
     "module": {
         "abilities": [
             {
                 "backgroundModes": [
+                 // Configuration item of the continuous task type
                 "audioRecording"
-                ], // Background mode
+                ], 
             }
         ],
         ...
@@ -81,6 +87,8 @@ The table below uses promise as an example to describe the APIs used for develop
 
 3. Import the modules.
    
+   Import the modules related to continuous tasks: @ohos.resourceschedule.backgroundTaskManager and @ohos.app.ability.wantAgent. Import other modules based on the project requirements.
+
    ```ts
     import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
     import UIAbility from '@ohos.app.ability.UIAbility';
@@ -111,13 +119,14 @@ The table below uses promise as an example to describe the APIs used for develop
       startContinuousTask() {
         let wantAgentInfo: wantAgent.WantAgentInfo = {
           // List of operations to be executed after the notification is clicked.
+          // Add the bundleName and abilityName of the application to start.
           wants: [
             {
               bundleName: "com.example.myapplication",
               abilityName: "com.example.myapplication.MainAbility"
             }
           ],
-          // Type of the operation to perform after the notification is clicked.
+          // Specify the action to perform (starting the ability) after the notification is clicked.
           operationType: wantAgent.OperationType.START_ABILITY,
           // Custom request code.
           requestCode: 0,
