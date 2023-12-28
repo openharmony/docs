@@ -2635,7 +2635,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 
 如果硬件解码失败则返回IMAGE_RESULT_HW_DECODE_FAILED;
 
-如果ipc失败则返回IMAGE_RESULT_ERR_IPC
+如果ipc失败则返回IMAGE_RESULT_ERR_IPC;
 
 如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
 
@@ -2725,7 +2725,7 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 如果硬件解码失败则返回IMAGE_RESULT_HW_DECODE_FAILED;
 
-如果ipc失败则返回IMAGE_RESULT_ERR_IPC
+如果ipc失败则返回IMAGE_RESULT_ERR_IPC;
 
 如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
 
