@@ -1411,7 +1411,7 @@ factoryReset(): Promise\<void>
 
 | 类型             | 说明                         |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。当恢复出厂执行失败时，有回调；执行成功无回调。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。当恢复出厂执行失败时，有回调；执行成功无回调1。 |
 
 **错误码**：
 
