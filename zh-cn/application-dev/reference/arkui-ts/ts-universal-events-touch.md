@@ -6,7 +6,6 @@
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## 事件
 
 | 名称                                                         | 是否冒泡 | 功能描述                                                     |
@@ -25,7 +24,19 @@
 | timestamp<sup>8+</sup> | number | 事件时间戳，触发事件时距离系统启动的时间间隔。<br/>例如，当系统启动时间为2023/10/12 11:33, 在2023/10/12 11:34时触发触摸事件，时间戳返回的值为60,000,000,000ns。<br>单位：纳秒 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。 |
-| getHistoricalPoints<sup>10+</sup> | Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt;| 获取当前帧所有的历史点。不同设备每帧的触摸事件频率不同，当前帧所有的触摸事件被称为历史点。 |
+
+
+### getHistoricalPoints<sup>10+</sup>
+
+getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
+
+获取当前帧所有的历史点。不同设备每帧的触摸事件频率不同，且该接口只能在[TouchEvent](#touchevent对象说明)中调用，可以通过该接口获取触发[onTouch](#事件)时当前帧历史点的相关信息。[onTouch](#事件)一帧只会调用一次，若当前帧收到的[TouchEvent](#touchevent对象说明)大于1，会将该帧最后一个点通过[onTouch](#事件)返还，剩余点作为历史点。
+
+**返回值:**
+
+| 类型     | 描述                      |
+| ------ | ----------------------- |
+| Array&lt;[HistoricalPoint](#historicalpoint10对象说明)&gt; | 由历史点组成的数组。 |
 
 
 ## TouchObject对象说明
