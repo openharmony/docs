@@ -1,0 +1,69 @@
+# 密钥删除(ArkTS)
+
+为保证数据安全性，当不需要使用该密钥时，应该删除密钥。
+
+## 开发步骤
+
+以删除HKDF256密钥为例。
+
+1. 确定密钥别名keyAlias，密钥别名最大长度为64字节。
+
+2. 初始化密钥属性集。用于删除时指定密钥的属性TAG，比如删除的密钥范围(全量/单个)，当删除单个时，TAG字段可传空。
+
+3. 调用接口[deleteKeyItem](../../reference/apis/js-apis-huks.md#huksdeletekeyitem9)，删除密钥。
+
+```ts
+/*
+ * 以下以HKDF256密钥的Promise操作使用为例
+ */
+import huks from '@ohos.security.huks';
+import { BusinessError } from '@ohos.base';
+/* 1.确定密钥别名 */
+let keyAlias = "test_Key";
+/* 2.构造空对象 */
+let huksOptions:huks.HuksOptions = {
+  properties:[]
+}
+class throwObject{
+  isThrow=false;
+}
+function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+  return new Promise<void>((resolve, reject) => {
+    try {
+      huks.deleteKeyItem(keyAlias, huksOptions, (error, data)=> {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(data);
+        }
+      });
+    } catch (error) {
+      throwObject.isThrow = true;
+      throw(error as Error);
+    }
+  });
+}
+/* 3.删除密钥*/
+async function publicDeleteKeyFunc(keyAlias:string, huksOptions:huks.HuksOptions) {
+  console.info(`enter promise deleteKeyItem`);
+  let throwObject:throwObject = {isThrow: false};
+  try {
+    await deleteKeyItem(keyAlias, huksOptions, throwObject)
+      .then ((data) => {
+        console.info(`promise: deleteKeyItem key success, data = ${JSON.stringify(data)}`);
+      })
+      .catch((error: BusinessError) => {
+        if (throwObject.isThrow) {
+          throw(error as Error);
+        } else {
+          console.error(`promise: deleteKeyItem failed` + error);
+        }
+      });
+  } catch (error) {
+    console.error(`promise: deletKeyItem input arg invalid` + error);
+  }
+}
+async function testDerive() {
+  await publicDeleteKeyFunc(keyAlias, huksOptions);
+}
+```
