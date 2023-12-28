@@ -6950,10 +6950,10 @@ getTitleButtonRect(): TitleButtonRect;
 ```ts
 let windowClass: window.Window = window.findWindow("test");
 try {
-  let titleButtionArea = windowClass.getWindowDecorHeight();
+  let titleButtionArea = windowClass.getTitleButtonRect();
   console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtionArea));
 } catch (exception) {
-  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+  console.error('Failed to get the area of title buttons. Cause: ' + JSON.stringify(exception));
 }
 ```
 
