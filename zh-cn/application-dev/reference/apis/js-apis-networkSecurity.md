@@ -91,6 +91,7 @@ function certVerification(cert: CertBlob, caCert?: CertBlob): Promise<number>
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.                                     |
 | 2305001  | Unspecified error.                                   |
 | 2305002  | Unable to get issuer certificate.                    |
 | 2305003  | Unable to get the certificate revocation list (CRL). |
@@ -163,6 +164,7 @@ function certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.                                     |
 | 2305001  | Unspecified error.                                   |
 | 2305002  | Unable to get issuer certificate.                    |
 | 2305003  | Unable to get the certificate revocation list (CRL). |
