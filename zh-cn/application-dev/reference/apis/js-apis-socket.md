@@ -1636,7 +1636,7 @@ bind(address: NetAddress): Promise\<void\>
 **需要权限**：ohos.permission.INTERNET
 
 **系统能力**：SystemCapability.Communication.NetStack
-## socket.constructTCP
+
 **参数：**
 
 | 参数名  | 类型                               | 必填 | 说明                                                   |
