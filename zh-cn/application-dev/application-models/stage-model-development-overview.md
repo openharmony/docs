@@ -25,7 +25,7 @@
 
 - [AbilityStage](abilitystage.md)
 
-  每个Entry类型或者Feature类型的HAP在运行期都有一个AbilityStage类实例，当HAP中的代码首次被加载到进程中的时候，系统会先创建AbilityStage实例。每个在该HAP中定义的UIAbility组件，在实例化后都会与该实例产生关联。开发者可以使用AbilityStage获取该HAP中UIAbility实例的运行时信息。
+  每个Entry类型或者Feature类型的HAP在运行期都有一个AbilityStage类实例，当HAP中的代码首次被加载到进程中的时候，系统会先创建AbilityStage实例。
 
 
 ## 开发流程
