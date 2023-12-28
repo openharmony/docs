@@ -106,7 +106,7 @@ off(type: 'change', callback?: Callback&lt;MediaQueryResult&gt;): void
         }
     }
     listener.on('change', onPortrait) // 注册回调
-    listener.off('change', onPortrait) // 去注册回调
+    listener.off('change', onPortrait) // 去取消注册回调
   ```
 
 ## MediaQueryResult

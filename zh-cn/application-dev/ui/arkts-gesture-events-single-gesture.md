@@ -109,7 +109,7 @@ struct Index {
 
 
 ```ts
-PanGestureOptions(value?:{ fingers?:number; direction?:PanDirection; distance?:number})
+PanGesture(value?:{ fingers?:number; direction?:PanDirection; distance?:number})
 ```
 
 
