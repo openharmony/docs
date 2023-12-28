@@ -1572,7 +1572,7 @@ let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 
 ## TCPSocket
 
-TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance)创建TCPSocket对象。
+TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance7)创建TCPSocket对象。
 
 ### bind
 
@@ -4042,7 +4042,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 | 类型                         | 说明                                      |
 | :-------------------------- | :---------------------------------------- |
-| Promise\<ExtraOptionsBase\> | 以Promise形式返回设置LocalSocket套接字的属性。 |
+| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | 以Promise形式返回设置LocalSocket套接字的属性。 |
 
 **错误码：**
 
@@ -4118,7 +4118,7 @@ off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
 | 参数名   | 类型                                               | 必填 | 说明                                 |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
 | type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[MessageReceive](#messagereceive11)}> | 否   | 回调函数。                            |
+| callback | Callback\<{[MessageReceive](#messagereceive11)}\> | 否   | 回调函数。                            |
 
 **示例：**
 
@@ -4456,7 +4456,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 类型                                         | 说明                                            |
 | :------------------------------------------- | :--------------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取LocalSocketServer状态的结果。 |
+| Promise\<[SocketStateBase](#socketstatebase)\> | 以Promise形式返回获取LocalSocketServer状态的结果。 |
 
 **示例：**
 
@@ -4493,7 +4493,7 @@ setExtraOptions(options: ExtraOptionsBase): Promise\<void\>
 
 | 参数名  | 类型                                      | 必填 | 说明                            |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
-| options | [ExtraOptionsBase](#extraoptionsbase11) | 是   | LocalSocketServer连接的其他属性。 |
+| options | [ExtraOptionsBase](#extraoptionsbase10) | 是   | LocalSocketServer连接的其他属性。 |
 
 **返回值：**
 
@@ -4549,7 +4549,7 @@ getExtraOptions(): Promise\<ExtraOptionsBase\>;
 
 | 类型                         | 说明                        |
 | :-------------------------- | :-------------------------- |
-| Promise\<ExtraOptionsBase\> | 以Promise形式返回套接字的属性。 |
+| Promise\<[ExtraOptionsBase](#extraoptionsbase10)\> | 以Promise形式返回套接字的属性。 |
 
 **错误码：**
 
@@ -4593,7 +4593,7 @@ on(type: 'connect', callback: Callback\<LocalSocketConnection\>): void
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback<[LocalSocketConnection](#localsocketconnection11)> | 是   | 回调函数。                            |
+| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 是   | 回调函数。                            |
 
 **错误码：**
 
@@ -4629,7 +4629,7 @@ off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback<[LocalSocketConnection](#localsocketconnection11)> | 否   | 回调函数。                            |
+| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 否   | 回调函数。                            |
 
 **错误码：**
 
