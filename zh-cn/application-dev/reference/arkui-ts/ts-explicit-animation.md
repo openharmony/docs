@@ -1,6 +1,6 @@
 # 显式动画（animateTo）
 
-提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、canvas的内容、linearGradient等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
+提供全局animateTo显式动画接口来指定由于闭包代码导致的状态变化插入过渡动效。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、Canvas的内容、linearGradient等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
 
 >  **说明：**
 >
@@ -17,7 +17,7 @@ animateTo(value: AnimateParam, event: () => void): void
 | 参数    | 类型                                | 是否必填 | 描述                                    |
 | ----- | --------------------------------- | ---- | ------------------------------------- |
 | value | [AnimateParam](#animateparam对象说明) | 是    | 设置动画效果相关参数。                           |
-| event | () => void                        | 是    | 指定显示动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
+| event | () => void                        | 是    | 指定动效的闭包函数，在闭包函数中导致的状态变化系统会自动插入过渡动画。 |
 
 ## AnimateParam对象说明
 
