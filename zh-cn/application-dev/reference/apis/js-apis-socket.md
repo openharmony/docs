@@ -4092,7 +4092,7 @@ on(type: 'message', callback: Callback\<{MessageReceive}\>): void
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.on('message', (value) => {
-  const uintArray = new UInt8Array(value.message)
+  const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
     messageView = String.fromCharCode(uintArray[i]);
@@ -4127,7 +4127,7 @@ import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let messageView = '';
 let callback = (value) => {
-  const uintArray = new UInt8Array(value.message)
+  const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
     messageView = String.fromCharCode(uintArray[i]);
@@ -4860,7 +4860,7 @@ server.listen(listenAddr).then(() => {
 });
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.on('message', (value: MessageReceive) => {
-    const uintArray = new UInt8Array(value.message)
+    const uintArray = new Uint8Array(value.message)
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
       messageView = String.fromCharCode(uintArray[i]);
@@ -4901,7 +4901,7 @@ off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = (value) => {
-  const uintArray = new UInt8Array(value.message)
+  const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
     messageView = String.fromCharCode(uintArray[i]);

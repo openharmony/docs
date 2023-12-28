@@ -294,8 +294,8 @@ import socket from '@ohos.net.socket'
 let multicast = socket.constructMulticastSocketInstance();
 
 let addr : socket.NetAddress = {
-  address: '239.255.0.1'
-  port: 32123
+  address: '239.255.0.1',
+  port: 32123,
   family: 1
 }
 
@@ -363,7 +363,7 @@ import socket from '@ohos.net.socket';
 // 创建一个LocalSocket连接，返回一个LocalSocket对象。
 let client = socket.constructLocalSocketInstance();
 client.on('message', (value) => {
-  const uintArray = new UInt8Array(value.message)
+  const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
     messageView = String.fromCharCode(uintArray[i]);
@@ -454,8 +454,8 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
   connection.on("error", (err) => {
     console.log("on error success");
   });
-  connection.on('message', (value: MessageReceive) => {
-    const uintArray = new UInt8Array(value.message);
+  connection.on('message', (value: socket.MessageReceive) => {
+    const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
       messageView = String.fromCharCode(uintArray[i]);
