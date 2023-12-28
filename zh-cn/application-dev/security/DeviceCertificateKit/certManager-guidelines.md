@@ -23,7 +23,7 @@
 
 ## 接口说明
 
-详细接口说明可参考[API参考](../reference/apis/js-apis-certManager.md)。
+详细接口说明可参考[API参考](../../reference/apis/js-apis-certManager.md)。
 
 以上场景涉及的常用接口如下表所示：
 
