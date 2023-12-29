@@ -28,7 +28,7 @@
        photoSurfaceId = await receiver.getReceivingSurfaceId();
        console.info(`ImageReceived id: ${JSON.stringify(photoSurfaceId)}`);
      } else {
-       console.info('ImageReceiver is not ok');
+       console.error('ImageReceiver is not ok');
      }
      return photoSurfaceId;
    }
