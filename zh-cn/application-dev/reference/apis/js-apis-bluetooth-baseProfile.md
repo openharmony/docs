@@ -15,7 +15,7 @@ import baseProfile from '@ohos.bluetooth.baseProfile';
 ```
 
 
-## ConnectionStrategy<a name="ConnectionStrategy"></a>
+## ConnectionStrategy
 
 枚举，表示Profile的连接策略。
 
@@ -30,7 +30,7 @@ import baseProfile from '@ohos.bluetooth.baseProfile';
 | CONNECTION_STRATEGY_FORBIDDEN  | 2 | 设备不允许接受或发起配对时的连接策略。<br/>此接口为系统接口。  |
 
 
-## StateChangeParam<a name="StateChangeParam"></a>
+## StateChangeParam
 
 描述profile状态改变参数。
 
@@ -42,7 +42,7 @@ import baseProfile from '@ohos.bluetooth.baseProfile';
 | state    | ProfileConnectionState        | 是   | 否   | 表示蓝牙设备的profile连接状态。 |
 
 
-## baseProfile.setConnectionStrategy<a name="setConnectionStrategy"></a>
+## baseProfile.setConnectionStrategy
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy, callback: AsyncCallback&lt;void&gt;): void
 
@@ -88,7 +88,7 @@ try {
 }
 ```
 
-## baseProfile.setConnectionStrategy<a name="setConnectionStrategy"></a>
+## baseProfile.setConnectionStrategy
 
 setConnectionStrategy(deviceId: string, strategy: ConnectionStrategy): Promise&lt;void&gt;
 
@@ -141,7 +141,7 @@ try {
 }
 ```
 
-## baseProfile.getConnectionStrategy<a name="getConnectionStrategy"></a>
+## baseProfile.getConnectionStrategy
 
 getConnectionStrategy(deviceId: string, callback: AsyncCallback&lt;ConnectionStrategy&gt;): void
 
@@ -186,7 +186,7 @@ try {
 }
 ```
 
-## baseProfile.getConnectionStrategy<a name="getConnectionStrategy"></a>
+## baseProfile.getConnectionStrategy
 
 getConnectionStrategy(deviceId: string): Promise&lt;ConnectionStrategy&gt;
 
@@ -239,7 +239,7 @@ try {
 ```
 
 
-## baseProfile.getConnectedDevices<a name="getConnectedDevices"></a>
+## baseProfile.getConnectedDevices
 
 getConnectedDevices(): Array&lt;string&gt;
 
@@ -280,7 +280,7 @@ try {
 ```
 
 
-## baseProfile.getConnectionState<a name="getConnectionState"></a>
+## baseProfile.getConnectionState
 
 getConnectionState(deviceId: string): ProfileConnectionState
 

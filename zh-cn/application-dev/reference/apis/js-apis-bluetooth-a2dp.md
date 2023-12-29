@@ -14,7 +14,7 @@ a2dp模块提供了访问蓝牙音频接口的方法。
 import a2dp from '@ohos.bluetooth.a2dp';
 ```
 
-## a2dp.createA2dpSrcProfile<a name="createA2dpSrcProfile"></a>
+## a2dp.createA2dpSrcProfile
 
 createA2dpSrcProfile(): A2dpSourceProfile
 
@@ -46,7 +46,7 @@ try {
 使用A2dpSourceProfile方法之前需要创建该类的实例进行操作，通过createA2dpSrcProfile()方法构造此实例。
 
 
-### connect<a name="a2dp-connect"></a>
+### connect
 
 connect(deviceId: string): void
 
@@ -88,7 +88,7 @@ try {
 ```
 
 
-### disconnect<a name="a2dp-disconnect"></a>
+### disconnect
 
 disconnect(deviceId: string): void
 
@@ -175,7 +175,7 @@ try {
 }
 ```
 
-### isAbsoluteVolumeSupported<sup>11+</sup><a name="isAbsoluteVolumeSupported"></a>
+### isAbsoluteVolumeSupported<sup>11+</sup>
 
 isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -311,7 +311,7 @@ try {
 }
 ```
 
-### isAbsoluteVolumeEnabled<sup>11+</sup><a name="isAbsoluteVolumeEnabled"></a>
+### isAbsoluteVolumeEnabled<sup>11+</sup>
 
 isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 
@@ -641,7 +641,7 @@ try {
 }
 ```
 
-## PlayingState<a name="PlayingState"></a>
+## PlayingState
 
 枚举，蓝牙A2DP 播放状态。
 
@@ -653,7 +653,7 @@ try {
 | STATE_PLAYING     | 0x0001 | 表示正在播放。 |
 
 
-## CodecInfo<sup>11+</sup><a name="CodecInfo"></a>
+## CodecInfo<sup>11+</sup>
 
 编码器信息。
 
@@ -667,7 +667,7 @@ try {
 | codecSampleRate<sup>11+</sup>     | [CodecSampleRate](#codecsamplerate) | 是    | 是    | 表示编码器的采样率，默认值为CODEC_BITS_PER_SAMPLE_NONE。 |
 
 
-## CodecType<sup>11+</sup><a name="CodecType"></a>
+## CodecType<sup>11+</sup>
 
 枚举，蓝牙编码器类型。
 
@@ -681,7 +681,7 @@ try {
 | CODEC_TYPE_L2HC<sup>11+</sup>    | 2 | L2HC。|
 
 
-## CodecChannelMode<sup>11+</sup><a name="CodecChannelMode"></a>
+## CodecChannelMode<sup>11+</sup>
 
 枚举，蓝牙编码器的声道模式。
 
@@ -694,7 +694,7 @@ try {
 | CODEC_CHANNEL_MODE_STEREO<sup>11+</sup> | 2 | 双声道。  |
 
 
-## CodecBitsPerSample<sup>11+</sup><a name="CodecBitsPerSample"></a>
+## CodecBitsPerSample<sup>11+</sup>
 
 枚举，蓝牙编码器每个采样点的位数。
 
@@ -708,7 +708,7 @@ try {
 | CODEC_BITS_PER_SAMPLE_32<sup>11+</sup>   | 3 | 32位采样点的位数。|
 
 
-## CodecSampleRate<sup>11+</sup><a name="CodecSampleRate"></a>
+## CodecSampleRate<sup>11+</sup>
 
 枚举，蓝牙编码器的采样率。
 
