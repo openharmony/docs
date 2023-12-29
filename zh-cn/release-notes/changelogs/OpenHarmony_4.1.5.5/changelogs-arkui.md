@@ -19,11 +19,11 @@ a) showTips 第一个参数设置为true显示气泡，气泡样式变化
 
 变更前气泡样式：
 
-![Alt text](oldVertical.png)![Alt text](oldHorizontal.png)
+![Alt text](figures/oldVertical.png)![Alt text](figures/oldHorizontal.png)
 
 变更后气泡样式：
 
-![Alt text](newVertical.png)![Alt text](newHorizontal.png)
+![Alt text](figures/newVertical.png)![Alt text](figures/newHorizontal.png)
 
 b) showTips 第二个参数设置文本内容时，文本内容可能产生变化
 
