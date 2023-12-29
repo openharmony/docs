@@ -4,20 +4,18 @@
 
 如下例所示，在点击图片后，该图片消失，同时在另一个位置出现新的图片，二者之间内容相同，可以对它们添加一镜到底动效。左图为不添加一镜到底动效的效果，右图为添加一镜到底动效的效果，一镜到底的效果能够让二者的出现消失产生联动，使得内容切换过程显得灵动自然而不生硬。
 
-
 ![zh-cn_image_0000001599644876](figures/zh-cn_image_0000001599644876.gif)|![zh-cn_image_0000001599644877](figures/zh-cn_image_0000001599644877.gif)
 ---|---
 
-
 实现一镜到底动效的方式有多种，实际开发过程中，需要依据具体的场景，选择相应的合适的方式进行实现。以下为基本的实现方式介绍。
 
-## 1 使用geometryTransition共享元素转场实现一镜到底动效
+## 使用geometryTransition共享元素转场实现一镜到底动效
 
-[geometryTransition](../reference/arkui-ts/ts-transition-animation-geometrytransition.md)用于组件内隐式共享元素转场，在视图状态切换过程中提供丝滑的上下文继承过渡体验，是系统提供的基础的一镜到底动效接口。
+[geometryTransition](../reference/arkui-ts/ts-transition-animation-geometrytransition.md)用于组件内隐式共享元素转场，在视图状态切换过程中提供丝滑的上下文继承过渡体验。
 
 geometryTransition的使用方式为对需要添加一镜到底动效的两个组件使用geometryTransition接口绑定同一id，这样在其中一个组件消失同时另一个组件创建出现的时候，系统会对二者添加一镜到底动效。
 
-### 1.1 geometryTransition的简单使用
+### geometryTransition的简单使用
 
 对于同一个页面中的两个元素的一镜到底效果，geometryTransition接口的简单使用示例如下：
 
@@ -79,12 +77,9 @@ struct IfElseGeometryTransition {
 }
 ```
 
-效果如下图所示，如代码所描述，实现了动画打断时的接续效果。
-
 ![zh-cn_image_0000001599644878](figures/zh-cn_image_0000001599644878.gif)
 
-
-### 1.2 geometryTransition结合模态转场使用
+### geometryTransition结合模态转场使用
 
 更多的场景中，需要对一个页面的元素与另一个页面的元素添加一镜到底动效。可以通过geometryTransition搭配模态转场接口实现。以点击头像弹出个人信息页的demo为例：
 
@@ -239,11 +234,9 @@ export default struct  Post {
 
 ![zh-cn_image_0000001597320327](figures/zh-cn_image_0000001597320327.gif)
 
+## 使用transition和属性动画实现一镜到底效果
 
-
-## 2 使用transition和属性动画实现一镜到底效果
-
-除了使用geometryTransition系统接口实现一镜到底动效外，对于一些容器展开的场景，可以通过使用transition和属性动画实现一镜到底效果。
+除了使用geometryTransition实现一镜到底动效外，也可以通过使用transition搭配属性动画实现一镜到底效果。
 
 对于同一个容器展开，容器内兄弟组件消失或者出现的场景，可通过对同一个容器展开前后进行宽高位置变化并配置属性动画，对兄弟组件配置出现消失转场动画实现一镜到底效果。基本步骤为：
 
@@ -450,8 +443,7 @@ export default struct  Post {
 
 ![zh-cn_image_0000001600653160](figures/zh-cn_image_0000001600653160.gif)
 
-
-## 3 使用transition搭配zIndex实现一镜到底效果
+## 使用transition搭配zIndex实现一镜到底效果
 
 对于同一个容器展开，兄弟组件不消失的场景，可以配合改变Z轴让展开组件显示在最上层，从而实现共享元素转场。
 
@@ -464,7 +456,6 @@ export default struct  Post {
 - 通过占位容器不影响兄弟节点位置：外层容器占位，内部容器改变大小。
 
 完整示例和效果如下。
-
 
 ```ts
 // utils.ets
@@ -557,7 +548,6 @@ export struct share_zIndex_expand {
 }
 ```
 
-
 ```ts
 // Index.ets
 import { share_zIndex_expand } from './utils'
@@ -591,10 +581,15 @@ struct ShareZIndexDemo {
 
 ![zh-cn_image_0000001600332176](figures/zh-cn_image_0000001600332176.gif)
 
+## 使用属性动画实现一镜到底效果
 
-## 4 使用属性动画实现一镜到底效果
+使用属性动画也可以实现一镜到底效果。对于组件A及组件B之间添加一镜到底动效的场景，实现步骤为：
 
-使用属性动画也可以实现一镜到底效果。对于组件A及组件B之间添加一镜到底动效的场景，其方法为：先计算组件A的位置，在该位置放置一个内容与A一致的组件C，再计算组件B的位置，通过A与B的位置信息，对组件C添加一个由A位置到B位置的属性动画，在动画结束或动画过程中，隐藏组件C，显示组件B。
+- 1.获取组件A的位置信息，在该位置放置一个内容与A一致的组件C。
+
+- 2.获取组件B的位置信息，通过A与B的位置信息，对组件C添加一个由A位置到B位置的属性动画。
+
+- 3.在动画结束或动画过程中，隐藏组件C，显示组件B，完成
 
 这种实现方式相较于其他实现方式自由度较高，可以根据需要自定义动画过程中各组件的行为，相关的示例及效果如下：
 
@@ -790,7 +785,6 @@ struct Index {
   }
 }
 ```
-
 
 ![zh-cn_image_0000001599374166](figures/zh-cn_image_0000001599374166.gif)
 
