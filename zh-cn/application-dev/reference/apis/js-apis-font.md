@@ -190,7 +190,7 @@ struct FontExample {
 ## font.getUIFontConfig<sup>11+</sup>
 getUIFontConfig() : UIFontConfig
 
-获取系统的UI字体配置
+获取系统的UI字体配置。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
