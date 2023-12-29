@@ -14,7 +14,7 @@ constant模块提供了蓝牙中常量的定义。
 import constant from '@ohos.bluetooth.constant';
 ```
 
-## ProfileId<a name="ProfileId"></a>
+## ProfileId
 
 蓝牙profile枚举。
 
@@ -28,7 +28,7 @@ import constant from '@ohos.bluetooth.constant';
 | PROFILE_PAN_NETWORK | 7 | 表示PAN profile。  |
 
 
-## ProfileUuids<a name="ProfileUuids"></a>
+## ProfileUuids
 
 枚举，表示Profile的UUID。
 
@@ -64,7 +64,7 @@ import constant from '@ohos.bluetooth.constant';
 | STATE_DISCONNECTING | 3    | 表示profile正在断连。 |
 
 
-## MajorClass<a name="MajorClass"></a>
+## MajorClass
 
 枚举，蓝牙设备主要类别。
 
@@ -85,7 +85,7 @@ import constant from '@ohos.bluetooth.constant';
 | MAJOR_UNCATEGORIZED | 0x1F00 | 表示未分类设备。   |
 
 
-## MajorMinorClass<a name="MajorMinorClass"></a>
+## MajorMinorClass
 
 枚举，主要次要蓝牙设备类别。
 
@@ -180,7 +180,7 @@ import constant from '@ohos.bluetooth.constant';
 | HEALTH_GENERIC_HEALTH_MANAGER            | 0x0938 | 表示通用健康管理设备。     |
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | 表示个人移动健康设备。     |
 
-## AccessAuthorization<sup>11+</sup><a name="AccessAuthorization"></a>
+## AccessAuthorization<sup>11+</sup>
 
 枚举，访问权限。
 
