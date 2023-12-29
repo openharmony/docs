@@ -35,7 +35,7 @@ ColumnSplit()
 >
 > 与RowSplit相同，ColumnSplit的分割线可以改变上下两边子组件的高度，子组件可改变高度的范围取决于子组件的最大最小高度。
 >
-> 支持clip、margin等通用属性，clip不设置的时候默认值为true。
+> 支持[clip](ts-universal-attributes-sharp-clipping.md#clip)、[margin](ts-universal-attributes-size.md#margin)等通用属性，clip不设置的时候默认值为true。
 
 
 ## 示例
