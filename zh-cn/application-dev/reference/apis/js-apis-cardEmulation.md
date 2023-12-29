@@ -18,7 +18,6 @@
         "skills": [
           {
             "actions": [
-              "action.system.home",
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
             ]
           }
