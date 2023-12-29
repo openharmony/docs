@@ -8,11 +8,22 @@
 >
 >  不支持路由跳转。
 
-## 属性
+## bindSheet
 
-| 名称        | 参数                                       | 参数描述                                     |
-| --------- | ---------------------------------------- | ---------------------------------------- |
-| bindSheet | isShow: boolean,<br>builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [SheetOptions](#sheetoptions) | 给组件绑定半模态页面，点击后显示模态页面。<br>isShow: 是否显示半模态页面。<br>从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量<br>builder: 配置半模态页面内容。<br> options: 配置半模态页面的可选属性。 |
+bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
+
+给组件绑定半模态页面，点击后显示模态页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                        | 必填 | 说明                                                         |
+| ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| isShow  | boolean                                     | 是   | 是否显示半模态页面。<br/>从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置半模态页面内容。                                         |
+| options | [SheetOptions](#sheetoptions)               | 否   | 配置半模态页面的可选属性。                                   |
+
 > **说明：**
 >
 > 在非双向绑定情况下，以拖拽方式关闭半模态页面不会改变isShow参数的值。

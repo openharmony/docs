@@ -3,14 +3,14 @@
 
 ## When to Use
 
-RelationalStore provides a complete mechanism for local database management. It offers a series of interfaces for adding, deleting, modifying, and querying data in an RDB store. To satisfy different needs in complicated scenarios, RelationalStore also supports direct execution of SQL statements.
+RelationalStore provides a complete mechanism for local database management. It offers a series of APIs for adding, deleting, modifying, and querying data in an RDB store. To satisfy different needs in complicated scenarios, RelationalStore also supports direct execution of SQL statements.
 
 
 ## Basic concepts
 
-- **OH_Predicates**: A representation of the property or feature of a data entity, or the relationship between data entities. It is used to define operation conditions.
+- **Predicates**: a representation of the property or feature of a data entity, or the relationship between data entities. It is used to define operation conditions.
 
-- **OH_Cursor**: A set of query results, which allows access to the required data in flexible modes.
+- **ResultSet**: a set of query results, which allows access to the required data in flexible modes.
 
 
 ## Restrictions
@@ -66,7 +66,7 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
 
 ## How to Develop
 
-**Adding the Dynamic Library**
+**Adding Dynamic Link Libraries**
 
 Add the following lib to **CMakeLists.txt**.
 
@@ -77,25 +77,25 @@ libnative_rdb_ndk.z.so
 **Including Header Files**
 
 ```c++
-#include <data_asset.h>
-#include <oh_cursor.h>
-#include <oh_predicates.h>
-#include <oh_value_object.h>
-#include <oh_values_bucket.h>
-#include <relational_store.h>
-#include <relational_store_error_code.h>
+#include <database/data/data_asset.h>
+#include <database/rdb/oh_cursor.h>
+#include <database/rdb/oh_predicates.h>
+#include <database/rdb/oh_value_object.h>
+#include <database/rdb/oh_values_bucket.h>
+#include <database/rdb/relational_store.h>
+#include <database/rdb/relational_store_error_code.h>
 ```
 
-1. Obtain an **OH_Rdb_Store** instance and create the database file.<br>The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see **databaseDir** of [Context](../reference/apis/js-apis-inner-application-context.md). In the FA model, there is no interface for obtaining the database sandbox path. Use the directory of the application. For details, see **getFilesDir** of [Context](../reference/apis/js-apis-inner-app-context.md).<br>**area** specifies the security level of the directory for storing the database file. For details, see [contextConstant](../reference/apis/js-apis-app-ability-contextConstant.md). During development, you need to implement the conversion from **AreaMode** to **Rdb_SecurityArea**.<br>Example:
+1. Obtain the **OH_Rdb_Store** instance and create a database file.<br>The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see the **databaseDir** attribute of [Context](../reference/apis/js-apis-inner-application-context.md). In the FA model, there is no interface for obtaining the database sandbox path. Use the directory of the application. For details, see **getFilesDir** of [Context](../reference/apis/js-apis-inner-app-context.md). **area** indicates the security level of the directory for storing the database files. For details, see [contextConstant](../reference/apis/js-apis-app-ability-contextConstant.md). During development, you need to implement the conversion from **AreaMode** to **Rdb_SecurityArea**. <br>Example:
 
    ```c
-   // Create an OH_Rdb_Config instance.
+   // Create an OH_Rdb_Config object.
    OH_Rdb_Config config;
    // The path is the application sandbox path.
    config.dataBaseDir = "xxx";
    // Database file name.
    config.storeName = "RdbTest.db";
-   // Bundle name.
+   // Application bundle name.
    config.bundleName = "xxx";
    // Module name. 
    config.moduleName = "xxx";
@@ -113,7 +113,7 @@ libnative_rdb_ndk.z.so
    OH_Rdb_Store *store_ = OH_Rdb_GetOrOpen(&config, &errCode);
    ```
 
-2. Use **OH_Rdb_Execute** to create a table, and use **OH_Rdb_Insert** to insert data to the table created. <br>Example:
+2. Use **OH_Rdb_Execute** to create a table and use **OH_Rdb_Insert** to insert data to the table created.<br>Example:
 
    ```c
    char createTableSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, "
@@ -121,7 +121,7 @@ libnative_rdb_ndk.z.so
    // Create a table.
    OH_Rdb_Execute(store_, createTableSql);
    
-   // Create a KV pair instance.
+   // Create a key-value pair instance.
    OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
    valueBucket->putText(valueBucket, "NAME", "Lisa");
    valueBucket->putInt64(valueBucket, "AGE", 18);
@@ -137,11 +137,11 @@ libnative_rdb_ndk.z.so
 
    > **NOTE**
    >
-   > **RelationalStore** does not provide explicit flush operations for data persistence. The **insert()** method stores data persistently.
+   > **RelationalStore** does not provide explicit flush operations for data persistence. **insert()** stores data in a file persistently.
 
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Call **OH_Rdb_Update** to modify data, and call **OH_Rdb_Delete** to delete data.<br>Example:
+   Call **OH_Rdb_Update** to modify data and call **OH_Rdb_Delete** to delete data. <br>Example:
 
    ```c
    // Modify data.
@@ -292,7 +292,7 @@ libnative_rdb_ndk.z.so
    cursor->destroy(cursor);
    ```
 
-7. Obtain the last modification time of the data.<br>Call **OH_Rdb_FindModifyTime** to obtain the last modification time of data in the specified column of a table. This method returns an **OH_Cursor** object with two columns of data. The first column is the input primary key or row number, and the second column is the last modification time. <br>Example:
+7. Obtain the last modification time of the data.<br>Call **OH_Rdb_FindModifyTime** to obtain the last modification time of data in the specified column of a table. This API returns an **OH_Cursor** object with two columns of data. The first column is the input primary key or row ID, and the second column is the last modification time.<br>Example:
 
    ```c
    OH_VObject *values = OH_Rdb_CreateValueObject();
@@ -302,7 +302,7 @@ libnative_rdb_ndk.z.so
    cursor = OH_Rdb_FindModifyTime(storeTestRdbStore_, "EMPLOYEE", "ROWID", values);
    ```
 
-8. Create distributed tables. Call **OH_Rdb_SetDistributedTables** to set distributed tables for the table (created by using **OH_Rdb_Execute**). Before using this API, ensure that the cloud service is available. <br>Example:
+8. Create distributed tables.<br>Call **OH_Rdb_SetDistributedTables** to set distributed tables for the table (created by using **OH_Rdb_Execute**). Before using this API, ensure that the cloud service is available.<br>Example:
 
    ```c
    constexpr int TABLE_COUNT = 1;
@@ -311,7 +311,7 @@ libnative_rdb_ndk.z.so
    int errcode = OH_Rdb_SetDistributedTables(storeTestRdbStore_, table, TABLE_COUNT, Rdb_DistributedType::DISTRIBUTED_CLOUD, &config);
    ```
 
-9. Manually perform device-cloud synchronization for distributed tables. After setting distributed tables by using **OH_Rdb_SetDistributedTables**, call **OH_Rdb_CloudSync** to perform device-cloud synchronization for the tables. Before using this API, ensure that the cloud service is available. <br>Example:
+9. Manually perform device-cloud synchronization for distributed tables.<br>After setting distributed tables by using **OH_Rdb_SetDistributedTables**, call **OH_Rdb_CloudSync** to perform device-cloud synchronization for the tables. Before using this API, ensure that the cloud service is available.<br>Example:
 
    ```c
    // Define a callback.
@@ -323,7 +323,7 @@ libnative_rdb_ndk.z.so
    OH_Rdb_CloudSync(storeTestRdbStore_, Rdb_SyncMode::SYNC_MODE_TIME_FIRST, table, TABLE_COUNT, &callback);
    ```
 
-10. Delete the database. <br>Call **OH_Rdb_DeleteStore** to delete the RDB store and related database files.<br>Example:
+10. Delete the database.<br>Call **OH_Rdb_DeleteStore** to delete the RDB store and related database files. <br>Example:
 
       ```c
       // Close the database instance.
