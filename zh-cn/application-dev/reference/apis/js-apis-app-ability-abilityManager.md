@@ -722,7 +722,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
-let observer_: abilityManager.AbilityForegroundStateObserver;
+let observer_: abilityManager.AbilityForegroundStateObserver | undefined;
 // 1.注册应用启动和退出的监听器
 let observer: abilityManager.AbilityForegroundStateObserver = {
     onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
@@ -821,7 +821,7 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-appManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
+abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
     console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
     console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);
