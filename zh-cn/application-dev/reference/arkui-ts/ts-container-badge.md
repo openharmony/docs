@@ -30,9 +30,9 @@ Badge(value: {count: number, position?: BadgePosition \| Position, maxCount?: nu
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0时不显示信息标记。<br/>取值范围：[-2147483648,2147483647]，非整数时会舍去小数部分取整数部分，如5.5取5。 |
+| count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0时不显示信息标记。<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
 | position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position8) | 否 | 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop <br/>**说明：** <br/> Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。|
-| maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br/>默认值：99<br/>取值范围：[-2147483648,2147483647]，非整数时会舍去小数部分取整数部分，如5.5取5。 |
+| maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br/>默认值：99<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
 | style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
 ### Badge
@@ -55,11 +55,11 @@ Badge(value: {value: string, position?: BadgePosition \| Position, style: BadgeS
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称 | 描述 |
+| 名称 | 枚举值 | 描述 |
 | -------- | -------- |
-| RightTop | 圆点显示在右上角。 |
-| Right | 圆点显示在右侧纵向居中。 |
-| Left | 圆点显示在左侧纵向居中。 |
+| RightTop | 0 | 圆点显示在右上角。 |
+| Right | 1 | 圆点显示在右侧纵向居中。 |
+| Left | 2 | 圆点显示在左侧纵向居中。 |
 
 ## BadgeStyle对象说明
 
