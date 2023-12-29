@@ -342,7 +342,7 @@ import window from '@ohos.window';
 
 ##  TitleButtonRect<sup>11+</sup>
 
-标题栏三键位置矩形区域，该区域位置坐标相对窗口右上角。
+标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
@@ -3975,7 +3975,7 @@ try {
 
 on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
-开启标题栏三键位置变化的监听。
+开启标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -3983,8 +3983,8 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏三键位置变化事件。 |
-| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 是   | 回调函数。返回当前的标题栏三键区域。                         |
+| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏上的最小化、最大化、关闭按钮矩形区域变化事件。 |
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。 |
 
 **错误码：**
 
@@ -4011,7 +4011,7 @@ try {
 
 off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
 
-关闭标题栏三键位置变化的监听。
+关闭标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4019,8 +4019,8 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 
 | 参数名   | 类型                                                  | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏三键位置变化事件。 |
-| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前的标题栏三键区域。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有标题栏三键位置变化的监听。 |
+| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏上的最小化、最大化、关闭按钮矩形区域变化事件。 |
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。 |
 
 **错误码：**
 
@@ -6926,15 +6926,15 @@ try {
 
 getTitleButtonRect(): TitleButtonRect
 
-获取标题栏三键区域。
+获取标题栏上的最小化、最大化、关闭按钮矩形区域。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 **返回值：**
 
-| 类型                                  | 说明                                           |
-| ------------------------------------- | ---------------------------------------------- |
-| [TitleButtonRect](#titlebuttonrect11) | 标题栏三键区域，该区域位置坐标相对窗口右上角。 |
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| [TitleButtonRect](#titlebuttonrect11) | 标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。 |
 
 **错误码：**
 
