@@ -41,7 +41,7 @@
 
     ![输入图片说明](figures/002.png)
 
-5. 取消持续监听。
+4. 取消持续监听。
 
     ```ts
     sensor.off(sensor.SensorId.ACCELEROMETER);
