@@ -31,12 +31,12 @@
 
 3. 注册监听。可以通过on()接口监听传感器的调用结果。
 
-- 通过on()接口，实现对传感器的持续监听，传感器上报周期interval设置为100000000纳秒。
+- 通过on()接口，实现对传感器的持续监听，传感器上报模式为”game“。
 
     ```ts    
     sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
         console.info("Succeeded in obtaining data. x: " + data.x + " y: " + data.y + " z: " + data.z);
-    }, { interval: 100000000 });
+    }, { interval: 'game' });
     ```
 
     ![输入图片说明](figures/002.png)
