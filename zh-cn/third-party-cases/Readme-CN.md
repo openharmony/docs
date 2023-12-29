@@ -39,7 +39,7 @@
 - [自定义输入框](customize-the-input-box.md)
 - [如何实现内容的下拉变化](realization-of-collapsible-title-effect.md)
 - [Tab组件如何让实现增删Tab页签](How-do-you-add-or-delete-tab-tags-in-the-tab-component.md)
-- [使用Badge组件完成聊天未读消息数量显示功能](Use-the-Badge-component-to-display-the-number-of-unread-messages-in-a-chat.md)
+- [使用Badge组件完成聊天未读消息数量显示功能](Use-Badge.md)
 
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
