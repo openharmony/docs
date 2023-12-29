@@ -31,7 +31,7 @@
 
 3. 注册监听。可以通过on()接口监听传感器的调用结果。
 
-- 通过on()接口，实现对传感器的持续监听，传感器上报模式为”game“。
+- 通过on()接口，实现对传感器的持续监听，将传感器上报频率等级设为”game“。
 
     ```ts    
     sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
