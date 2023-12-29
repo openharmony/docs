@@ -56,7 +56,7 @@ Badge(value: {value: string, position?: BadgePosition \| Position, style: BadgeS
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称 | 枚举值 | 描述 |
-| -------- | -------- |
+| -------- | -------- |-------- |
 | RightTop | 0 | 圆点显示在右上角。 |
 | Right | 1 | 圆点显示在右侧纵向居中。 |
 | Left | 2 | 圆点显示在左侧纵向居中。 |
