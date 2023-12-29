@@ -36,7 +36,9 @@ struct HelloComponent {
   }
 }
 ```
-
+> **NOTE**
+>
+> To reference the custom component in another file, use the keyword **export** to export the component and then use **import** to import it to the target file.
 
 Multiple **HelloComponent** instances can be created in the **build()** function of other custom components. In this way, **HelloComponent** is reused by those custom components.
 
@@ -65,7 +67,7 @@ To fully understand the preceding example, a knowledge of the following concepts
 
 - Member functions/Variables
 
-- [Rules of for Custom Component Parameters](#rules-of-for-custom-component-parameters)
+- [Rules for Custom Component Parameters](#rules-for-custom-component-parameters)
 
 - [build Function](#build-function)
 
@@ -79,7 +81,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   >
   > The name or its class or function name of a custom component must be different from that of any built-in components.
 
-- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. One struct can be decorated by only one \@Component.
+- \@Component: The \@Component decorator can decorate only the structs declared by the **struct** keyword. After being decorated by \@Component, a struct has the componentization capability. It must implement the **build** function to describe the UI. Each struct can be decorated by only one \@Component.  
   > **NOTE**
   >
   > Since API version 9, this decorator is supported in ArkTS widgets.
@@ -100,7 +102,7 @@ To fully understand the preceding example, a knowledge of the following concepts
   }
   ```
 
-- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. At most one component can be decorated with \@Entry in a single source file. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
+- \@Entry: A custom component decorated with \@Entry is used as the default entry component of the page. Only one component can be decorated with \@Entry in a single source file. The \@Entry decorator accepts an optional parameter of type [LocalStorage](arkts-localstorage.md).
 
   > **NOTE**
   >
@@ -134,7 +136,7 @@ A custom component can also implement member variables with the following restri
 - Local initialization is optional for some member variables and mandatory for others. For details about whether local initialization or initialization from the parent component is required, see [State Management](arkts-state-management-overview.md).
 
 
-## Rules of for Custom Component Parameters
+## Rules for Custom Component Parameters
 
 As can be learnt from preceding examples, a custom component can be created from a **build** or [@Builder](arkts-builder.md) decorated function. During the creation, the custom component's parameters are initialized based on the decorator rules.
 
