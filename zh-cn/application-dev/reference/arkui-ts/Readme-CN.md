@@ -75,7 +75,7 @@
   - [Blank](ts-basic-components-blank.md)
   - [Button](ts-basic-components-button.md)
   - [CalendarPicker](ts-basic-components-calendarpicker.md)
-  - [Component3D](ts-basic-components-component3d.md )
+  - [Component3D](ts-basic-components-component3d.md)
   - [Checkbox](ts-basic-components-checkbox.md)
   - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
   - [DataPanel](ts-basic-components-datapanel.md)
