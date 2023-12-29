@@ -1,4 +1,4 @@
-# Using TonePlayer for Audio Playback (for System Applications Only)
+# Using TonePlayer for Audio Playback (for System Applications Only) (ArkTS)
 
 TonePlayer<sup>9+</sup> provides APIs for playing and managing Dual Tone Multi Frequency (DTMF) tones, such as dial tones, ringback tones, supervisory tones, and proprietary tones. The main task of the TonePlayer is to generate sine waves of different frequencies by using the built-in algorithm based on the [ToneType](../reference/apis/js-apis-audio.md#tonetype9) and add the sine waves to create a sound. The sound can then be played by using the [AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8), and the playback task can also be managed by using the [AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8). The full process includes loading the DTMF tone configuration, starting DTMF tone playing, stopping the playback, and releasing the resources associated with the **TonePlayer** object. For details about the APIs, see the [TonePlayer API Reference](../reference/apis/js-apis-audio.md#toneplayer9).
 
@@ -46,6 +46,7 @@ To implement audio playback with the TonePlayer, perform the following steps:
    
    ```ts
    import audio from '@ohos.multimedia.audio';
+   
    let audioRendererInfo: audio.AudioRendererInfo = {
      usage : audio.StreamUsage.STREAM_USAGE_DTMF,
      rendererFlags : 0
@@ -100,7 +101,6 @@ To prevent the UI thread from being blocked, most **TonePlayer** calls are async
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
-
 
 let timerPro : number;
 // Promise mode.

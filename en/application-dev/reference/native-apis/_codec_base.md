@@ -136,6 +136,8 @@ The **CodecBase** module provides the common structs, character constants, and e
 | \*[OH_MD_KEY_DESCRIPTION](#oh_md_key_description) | Defines the pointer to the description of the input media. The value is a string.| 
 | \*[OH_MD_KEY_LYRICS](#oh_md_key_lyrics) | Defines the pointer to the lyrics of the input media. The value is a string.| 
 | \*[OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count) | Defines the pointer to the track count of the input media. The value type is uint32_t.| 
+| \*[OH_MD_MAX_INPUT_BUFFER_COUNT](#oh_md_max_input_buffer_count) | Defines the pointer to the maximum number of input buffers. The value type is int32_t.| 
+| \*[OH_MD_MAX_OUTPUT_BUFFER_COUNT](#oh_md_max_output_buffer_count) | Defines the pointer to the maximum number of output buffers. The value type is int32_t.| 
 
 
 ## Type Description
@@ -1257,3 +1259,27 @@ const char* OH_MD_KEY_WIDTH
 **Description**
 
 Defines the pointer to the video width. The value type is uint32_t.
+
+
+### OH_MD_MAX_INPUT_BUFFER_COUNT
+
+  
+```
+const char* OH_MD_MAX_INPUT_BUFFER_COUNT
+```
+
+**Description**
+
+Defines the pointer to the maximum number of input buffers. The value type is int32_t.
+
+
+### OH_MD_MAX_OUTPUT_BUFFER_COUNT
+
+  
+```
+const char* OH_MD_MAX_OUTPUT_BUFFER_COUNT
+```
+
+**Description**
+
+Defines the pointer to the maximum number of output buffers. The value type is int32_t.

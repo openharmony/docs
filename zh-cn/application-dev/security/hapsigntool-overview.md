@@ -1,6 +1,8 @@
 # Hap包签名工具概述
 
-为了保证OpenHarmony应用的完整性和来源可靠，在应用构建时需要对应用进行签名。经过签名的应用才能在真机设备上安装、运行、和调试。[developtools_hapsigner仓](https://gitee.com/openharmony/developtools_hapsigner)提供了签名工具的源码，包含密钥对生成、CSR文件生成、证书生成、Profile文件签名、Hap包签名等功能。
+为了保证OpenHarmony应用和调试工具的完整性和来源可靠，需要对应用和调试工具进行签名。经过签名的应用和调试工具才能在真机设备上安装、运行、和调试。[developtools_hapsigner仓](https://gitee.com/openharmony/developtools_hapsigner)提供了签名工具的源码，包含密钥对生成、CSR文件生成、证书生成、Profile文件签名、Hap包签名、调试工具签名等功能。
+除基础的包签名外，签名工具额外提供了代码签名机制。代码签名机制可以为应用提供运行时的合法性校验以及完整性保护，杜绝未经审核的恶意代码在端侧任意执行，或应用代码被攻击者恶意篡改。
+签名工具默认开启代码签名机制，若用户确定不需要强制执行代码签名，可参考使用文档，关闭代码签名功能。签名工具当前仅支持对hap格式应用和调试工具执行代码签名。
 
 > **说明：** 
 >
@@ -8,7 +10,7 @@
 
 ## 基本概念
 
-Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用提供完整性保护和来源管控机制，该签名工具基于PKI公钥证书的机制实现，在进行开发前，开发者应了解以下基本概念：
+Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用和调试工具提供完整性保护和来源管控机制，该签名工具基于PKI公钥证书的机制实现，在进行开发前，开发者应了解以下基本概念：
 
  - 非对称密钥对：
 
@@ -25,6 +27,10 @@ Hap包签名工具支持本地签名需求的开发，为OpenHarmony应用提供
  - HAP：
 
    HAP（OpenHarmony Ability Package）是Ability的部署包，OpenHarmony应用代码围绕Ability组件展开，它是由一个或者多个Ability组成。
+
+ - 调试工具
+
+   为开发者提供c++调试功能的工具链。如：[LLDB工具](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/tools/lldb-tool.md)
 
  - Profile文件：
 

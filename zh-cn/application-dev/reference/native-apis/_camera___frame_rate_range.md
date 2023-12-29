@@ -1,0 +1,46 @@
+# Camera_FrameRateRange
+
+
+## 概述
+
+帧速率范围。
+
+**起始版本：** 11
+
+**相关模块：**[OH_Camera](_o_h___camera.md)
+
+
+## 汇总
+
+
+### 成员变量
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| [min](#min) | 最小帧速率。 | 
+| [max](#max) | 最大帧速率。 | 
+
+
+## 结构体成员变量说明
+
+
+### max
+
+```
+uint32_t Camera_FrameRateRange::max
+```
+
+**描述**
+
+最大帧速率。
+
+
+### min
+
+```
+uint32_t Camera_FrameRateRange::min
+```
+
+**描述**
+
+最小帧速率。

@@ -105,8 +105,8 @@
 
 2. 请求权限。
 
-   1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
-   2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
+   1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
+   2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
 3. 根据配置构造分布式数据库管理类实例。
 
@@ -150,8 +150,8 @@
    
    if (kvManager !== undefined) {
      kvManager = kvManager as distributedKVStore.KVManager;
-     //进行后续操作
-     //...
+     // 进行后续创建数据库等相关操作
+     // ...
    }
    ```
 
@@ -189,12 +189,12 @@
    }
    if (kvStore !== undefined) {
      kvStore = kvStore as distributedKVStore.SingleKVStore;
-       //进行后续操作
-       //...
+       // 进行后续相关数据操作，包括数据的增、删、改、查、订阅数据变化等操作
+       // ...
    }
    ```
 
-5. 订阅分布式数据变化。
+5. 订阅分布式数据变化，如需关闭订阅分布式数据变化，调用[off('dataChange')](../reference/apis/js-apis-distributedKVStore.md#offdatachange)关闭。
      
    ```ts
    try {

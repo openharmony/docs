@@ -18,7 +18,7 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [native_huks_param.h](native__huks__param_8h.md) | 提供参数集构造、使用和销毁的API。<br>**引用文件**：<huks/native_huks/native_huks_param.h> <br>**库**：libhuks_ndk.z.so | 
+| [native_huks_param.h](native__huks__param_8h.md) | 提供参数集构造、使用和销毁的API。<br>**引用文件**：<huks/native_huks_param.h> <br>**库**：libhuks_ndk.z.so | 
 
 
 ### 函数
@@ -44,7 +44,7 @@
 
   
 ```
-int32_t OH_Huks_AddParams (struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Param * params, uint32_t paramCnt )
+struct OH_Huks_Result OH_Huks_AddParams (struct OH_Huks_ParamSet * paramSet, const struct OH_Huks_Param * params, uint32_t paramCnt )
 ```
 **描述:**
 添加参数到参数集里面。

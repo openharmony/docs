@@ -1,11 +1,11 @@
-# Camera Session Management
+# Camera Session Management (ArkTS)
 
-Before using the camera application for preview, photographing, video recording, and metadata, you must create a camera session.
+Before using the camera application for preview, photographing, video recording, and metadata management, you must create a camera session.
 
 You can implement the following functions in the session:
 
 - Configure the camera input and output streams. This is mandatory for photographing.
-  Configuring an input stream is to add a device input, which means that the user selects a camera for photographing. Configuring an output stream is to select a data output mode. For example, to implement photographing, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the XComponent, and that of the photo stream is saved to the Gallery application through the **ImageReceiver** API.
+  Configuring an input stream is to add a device input, which means that the user selects a camera for photographing. Configuring an output stream is to select a data output mode. For example, to implement photographing, you must configure both the preview stream and photo stream as the output stream. The data of the preview stream is displayed on the **\<XComponent>**, and that of the photo stream is saved to the Gallery application through the **ImageReceiver** API.
 
 - Perform more operations on the camera hardware. For example, add the flash and adjust the focal length. For details about the supported configurations and APIs, see [Camera API Reference](../reference/apis/js-apis-camera.md).
 

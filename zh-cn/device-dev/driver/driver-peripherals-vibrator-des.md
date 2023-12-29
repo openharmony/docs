@@ -77,6 +77,9 @@
 | int32_t (*EnableCompositeEffect)(struct CompositeEffect *effect); | 控制马达以自定义复合效果进行周期性振动。 |
 | int32_t (*GetEffectInfo)(const char *effectType, struct EffectInfo *effectInfo); | 获取指定效果类型的振动效果信息。 |
 | int32_t (*IsVibratorRunning)(bool state); | 获取到的马达当前是否正在振动。 |
+| int32_t (*PlayHapticPattern)(const HapticPaket& pkg); | 以pkg数据包的形式下发高清振动数据进行振动。 |
+| int32_t (*GetHapticCapacity)(HapticCapacity& hapticCapacity); | 获取马达振动能力，包含是否支持高清振动、是否支持预定义波形、是否支持延时振动。 |
+| int32_t (*GetHapticStartUpTime)(int32_t mode, int32_t& startUpTime); | 获取起振延时，mode表示振动模式，startUpTime是出参，表示起振延时。 |
 
 ### 开发步骤
 

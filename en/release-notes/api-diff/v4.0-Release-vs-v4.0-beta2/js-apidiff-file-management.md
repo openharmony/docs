@@ -44,7 +44,7 @@
 |Added|NA|Class name: PhotoAccessHelper;<br>Method or attribute name: getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions): Promise\<number>;|@ohos.file.photoAccessHelper.d.ts|
 |Added|NA|Class name: PhotoViewMIMETypes;<br>Method or attribute name: IMAGE_TYPE = 'image/*'|@ohos.file.photoAccessHelper.d.ts|
 |Added|NA|Class name: PhotoViewMIMETypes;<br>Method or attribute name: VIDEO_TYPE = 'video/*'|@ohos.file.photoAccessHelper.d.ts|
-|Added|NA|Class name: PhotoViewMIMETypes;<br>Method or attribute name: IMAGE_VIDEO_TYPE = '*/*'|@ohos.file.photoAccessHelper.d.ts|
+|Added|NA|Class name: PhotoViewMIMETypes;<br>Method or attribute name: IMAGE_VIDEO_TYPE = '\*\/\*'|@ohos.file.photoAccessHelper.d.ts|
 |Added|NA|Class name: PhotoSelectOptions;<br>Method or attribute name: MIMEType?: PhotoViewMIMETypes;|@ohos.file.photoAccessHelper.d.ts|
 |Added|NA|Class name: PhotoSelectOptions;<br>Method or attribute name: maxSelectNumber?: number;|@ohos.file.photoAccessHelper.d.ts|
 |Added|NA|Class name: PhotoSelectResult;<br>Method or attribute name: photoUris: Array\<string>;|@ohos.file.photoAccessHelper.d.ts|

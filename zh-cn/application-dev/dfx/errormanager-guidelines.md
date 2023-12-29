@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-应用错误管理接口由errorManager模块提供，开发者可以通过import引入，详见[开发示例](#开发示例)。
+应用错误管理接口由[errorManager](../reference/apis/js-apis-app-ability-errorManager.md)模块提供，开发者可以通过import引入，详见[开发示例](#开发示例)。
 
 **错误管理接口功能介绍：**
 

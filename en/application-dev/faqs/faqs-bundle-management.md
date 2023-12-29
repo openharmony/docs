@@ -1,24 +1,22 @@
 # Bundle Management Development
 
-## How do I determine whether an application is a system application?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I determine whether an application is a system application? (API version 9)
 
 **Solution**
 
 Use **bundleManager.getApplicationInfo** (available only for system applications) to obtain application information, and check the value of **systemApp** in the information. The application is a system application if the value is **true**.
 
-**Reference**
+**References**
 
 [bundleManager](../reference/apis/js-apis-bundleManager.md)
 
-## How do I obtain the version code and version name of an application?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I obtain the version code and version name of an application? (API version 9)
 
 **Solution**
 
-Use **bundleManager.getBundleInfoForSelf\(\)** to obtain the bundle information, which contains the version code (specified by **BundleInfo.versionCode**) and version name (specified by **BundleInfo.versionName**) .
+Use **bundleManager.getBundleInfoForSelf()** to obtain the bundle information, which contains the version code (specified by **BundleInfo.versionCode**) and version name (specified by **BundleInfo.versionName**) .
 
 **Example**
 
@@ -39,13 +37,12 @@ try {
 }
 ```
 
-**Reference**
+**References**
 
 [getBundleInfoForSelf](../reference/apis/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)
 
-## How do I obtain the bundle name of the current application?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I obtain the bundle name of the current application? (API version 9)
 
 **Solution**
 
@@ -59,89 +56,87 @@ const context = getContext(this) as common.UIAbilityContext
 console.log(`bundleName: ${context.abilityInfo.bundleName}`)
 ```
 
-**Reference**
+**References**
 
 [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) and [AbilityInfo](../reference/apis/js-apis-bundleManager-abilityInfo.md#abilityinfo)
 
-## How do I obtain the application version number, version name, and screen resolution?
 
-Applicable to: OpenHarmony 3.2 Beta5
-
-**Solution**
-
-1.  Obtain the bundle information from the **@ohos.bundle.bundleManager** module.
-
-    The bundle information contains the application version number and version name.
-
-    ```
-    import bundleManager from '@ohos.bundle.bundleManager';
-    ...
-    bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION).then((bundleInfo)=>{
-      let versionName = bundleInfo.versionName; // Application version name.
-      let versionNo = bundleInfo.versionCode; // Application version number.
-    }).catch((error)=>{
-      console.error("get bundleInfo failed,error is "+error)
-    })
-    ```
-
-2.  Obtain **screenDensity** from the **@ohos.app.ability.Configuration** module. **screenDensity** contains the screen resolution information.
-
-    ```
-    import common from '@ohos.app.ability.common';
-    ...
-    let context = getContext(this) as common.UIAbilityContext;
-    let screenDensity = context.config.screenDensity;
-    ```
-
-
-## How do I obtain the source file path of the current application?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I obtain the application version number, version name, and screen resolution? (API version 9)
 
 **Solution**
 
--   Method 1: Use the application context to obtain the source file path.
+1. Obtain the bundle information from the **\@ohos.bundle.bundleManager** module.
 
-    ```
-    this.uiAbilityContext.abilityInfo.applicationInfo.codePath
-    ```
+   The bundle information contains the application version number and version name.
 
--   Method 2: Use **@ohos.bundle.bundleManager** to obtain the source file path.
+   ```
+   import bundleManager from '@ohos.bundle.bundleManager';
+   ...
+   bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION).then((bundleInfo)=>{
+     let versionName = bundleInfo.versionName; // Application version name.
+     let versionNo = bundleInfo.versionCode; // Application version number.
+   }).catch((error)=>{
+     console.error("get bundleInfo failed,error is "+error)
+   })
+   ```
 
-    1.  Import the **@ohos.bundle.bundleManager** module and use **bundleManager.getBundleInfoForSelf\(\)** to obtain the bundle information.
-    2.  Obtain the source file path from **bundleInfo.appInfo.codePath**.
+2. Obtain **screenDensity** from the **\@ohos.app.ability.Configuration** module. **screenDensity** contains the screen resolution information.
 
-    ```
-    import bundleManager from '@ohos.bundle.bundleManager';
-    bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION).then((bundleInfo)=>{
-      this.sourcePath = bundleInfo.appInfo.codePath;
-    })
-    ```
+   ```
+   import common from '@ohos.app.ability.common';
+   ...
+   let context = getContext(this) as common.UIAbilityContext;
+   let screenDensity = context.config.screenDensity;
+   ```
 
 
-## Can I obtain the HAP information of other applications from the current application?
+## How do I obtain the source file path of the current application? (API version 9)
 
-Applicable to: OpenHarmony 3.2 (API version 9)
+**Solution**
+
+- Method 1: Use the application context to obtain the source file path.
+
+  ```
+  this.uiAbilityContext.abilityInfo.applicationInfo.codePath
+  ```
+
+- Method 2: Use **\@ohos.bundle.bundleManager** to obtain the source file path.
+
+  1. Import the **\@ohos.bundle.bundleManager** module and use **bundleManager.getBundleInfoForSelf()** to obtain the bundle information.
+  2. Obtain the source file path from **bundleInfo.appInfo.codePath**.
+
+  ```
+  import bundleManager from '@ohos.bundle.bundleManager';
+  bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION).then((bundleInfo)=>{
+    this.sourcePath = bundleInfo.appInfo.codePath;
+  })
+  ```
+
+
+## Can I obtain the HAP information of other applications from the current application? (API version 9)
+
+**Symptom**
+
+ 
 
 **Solution**
 
 Currently, only system applications can call the API to query information about other applications.
 
-- To query information about an application in the system, you must obtain the normal-level permission **ohos.permission.GET\_BUNDLE\_INFO** and call the **bundleManager.getApplicationInfo\(\)** API.
+- To query information about an application in the system, you must obtain the normal-level permission **ohos.permission.GET_BUNDLE_INFO** and call the **bundleManager.getApplicationInfo()** API.
 
-- To query information about all applications in the system, you must obtain the system\_basic-level permission **ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED** and call the **bundleManager.getAllApplicationInfo\(\)** API.
+- To query information about all applications in the system, you must obtain the **system_basic**-level permission **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** and call the **bundleManager.getAllApplicationInfo()** API.
 
-**Reference**
+**References**
 
 [@ohos.bundle.bundleManager \(bundleManager\)](../reference/apis/js-apis-bundleManager.md)
 
-## How do I query the PID of a process?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## How do I query the PID of a process? (API version 9)
 
 **Solution**
 
-You can obtain the PID through the **@ohos.process** interface.
+You can obtain the PID through the **\@ohos.process** interface.
 
 **Example**
 
@@ -150,19 +145,18 @@ import process from '@ohos.process';
 private pid = process.pid;
 ```
 
-**Reference**
+**References**
 
-[@ohos.process \ (Obtaining Process Information\)](../reference/apis/js-apis-process.md)
+[@ohos.process (Obtaining Process Information)](../reference/apis/js-apis-process.md)
 
-## How do I disable the maximize button?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## How do I disable the maximize button? (API version 9)
 
 **Solution**
 
 You can use the **supportWindowModes** field to specify whether to display the maximize button.
 
-- **full\_screen** means that a window in full-screen mode is supported.
+- **full_screen** means that a window in full-screen mode is supported.
 
 - **split** means that a window in split-screen mode is supported.
 
@@ -196,6 +190,6 @@ You can use the **supportWindowModes** field to specify whether to display the m
 ]
 ```
 
-**Reference**
+**References**
 
 [supportWindowModes](../reference/apis/js-apis-bundleManager-abilityInfo.md)

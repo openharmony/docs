@@ -638,7 +638,7 @@ Obtains the widget information provided by all applications on the device. This 
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Example**
 
@@ -669,7 +669,7 @@ Obtains the widget information provided by all applications on the device. This 
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Example**
 
@@ -699,7 +699,7 @@ Obtains the widget information provided by a given application on the device. Th
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | bundleName | string | Yes| Bundle name of the application.|
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Example**
 
@@ -732,7 +732,7 @@ Obtains the widget information provided by a given application on the device. Th
 | ------ | ------ | ---- | ------- |
 | bundleName | string | Yes| Bundle name of the application.|
 | moduleName | string | Yes|  Module name.|
-| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained; otherwise, **error** is an error object.|
 
 **Example**
 
@@ -770,13 +770,13 @@ Obtains the widget information provided by a given application on the device. Th
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-application-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+| Promise&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
 
 **Example**
 
   ```ts
+  import formInfo from '@ohos.app.form.formInfo';
   import Base from '@ohos.base';
-
 
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
     console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
@@ -915,7 +915,7 @@ Obtains the widget state. This API uses a promise to return the result.
 
 | Type         | Description                               |
 | :------------ | :---------------------------------- |
-| Promise&lt;[FormStateInfo](js-apis-application-formInfo.md#formstateinfo)&gt; | Promise used to return the widget state obtained.|
+| Promise&lt;[formInfo.FormStateInfo](js-apis-application-formInfo.md#formstateinfo)&gt; | Promise used to return the widget state obtained.|
 
 **Example**
 

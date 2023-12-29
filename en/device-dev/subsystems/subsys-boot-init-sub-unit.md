@@ -1,6 +1,9 @@
 # Component-based Startup
+
 ## Overview
+
 ### Function Introduction
+
 This subsystem provides the following functions:
 - Builds four basic component images and provides component-based directories, including:
   - System component: **system**

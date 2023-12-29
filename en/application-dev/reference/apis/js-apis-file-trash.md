@@ -33,7 +33,7 @@ Lists the files and folders in the **Recently deleted** list.
 
   | Type| Description|
   | --- | -- |
-  | [Array\<FileInfo>](#fileinfo) | List of the files and folders obtained.|
+  | Array [\<FileInfo>](#fileinfo) | List of the files and folders obtained.|
 
 **Error codes**
 

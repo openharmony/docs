@@ -597,7 +597,7 @@ Subscribes to folding status change events of the foldable device.
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** indicates that the folding status of the device changes.|
+| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the folding status of the device changes.|
 | callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | Yes  | Callback used to return the folding status.|
 
 **Error codes**
@@ -966,4 +966,99 @@ try {
 } catch (exception) {
   console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
 }
+```
+### hasImmersiveWindow<sup>11+</sup>
+
+hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
+
+Checks whether this screen contains an immersive window. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name     | Type                       | Mandatory| Description                                                        |
+| ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| callback    | AsyncCallback&lt;boolean&gt;   | Yes  | Callback used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import display from '@ohos.display'
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+}
+
+try {
+  displayClass.hasImmersiveWindow((err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
+  });
+} catch (exception) {
+  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(exception));
+}
+```
+### hasImmersiveWindow<sup>11+</sup>
+hasImmersiveWindow(): Promise&lt;boolean&gt;
+
+Checks whether this screen contains an immersive window. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Display Error Codes](../errorcodes/errorcode-display.md).
+
+| ID| Error Message|
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import display from '@ohos.display'
+
+let displayClass: display.Display | null = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+} catch (exception) {
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+}
+
+let promise = displayClass.hasImmersiveWindow();
+promise.then((data) => {
+  console.info('Succeeded in checking whether there is immersive window. data: ' + JSON.stringify(data));
+}).catch((err: BusinessError) => {
+  console.error('Failed to check whether there is immersive window. Code: ' + JSON.stringify(exception));
+})
 ```

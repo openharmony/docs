@@ -49,12 +49,15 @@ The default duration of delayed suspension is 3 minutes when the battery level i
 
   ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
-
+  import { BusinessError } from '@ohos.base';
+  
+  // Set the reason for delayed suspension.
   let myReason = 'test requestSuspendDelay';
+  // Request delayed suspension.
   let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
       console.info("Request suspension delay will time out.");
   })
-
+  // Print the delayed suspension information.
   let id = delayInfo.requestId;
   let time = delayInfo.actualDelayTime;
   console.info("The requestId is: " + id);
@@ -81,6 +84,7 @@ Obtains the remaining duration before the application is suspended. This API use
 
   ```ts
   import backgroundTaskManager from '@ohos.backgroundTaskManager';
+  import { BusinessError } from '@ohos.base';
 
   let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
   backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId, (err: BusinessError, res: number) => {
@@ -116,6 +120,9 @@ Obtains the remaining duration before the application is suspended. This API use
 **Example**
 
 ```ts
+import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import { BusinessError } from '@ohos.base';
+
 let delayInfo = backgroundTaskManager.requestSuspendDelay("test", () => {});
     backgroundTaskManager.getRemainingDelayTime(delayInfo.requestId).then((res:number) => {
     console.log('promise => Operation getRemainingDelayTime succeeded. Data: ' + JSON.stringify(res));
@@ -209,6 +216,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(err: BusinessError, data: void) {
@@ -303,6 +312,8 @@ Stage model:
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import wantAgent, { WantAgent } from '@ohos.app.ability.wantAgent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
@@ -314,8 +325,10 @@ export default class EntryAbility extends UIAbility {
           abilityName: "EntryAbility"
         }
       ],
+      // Type of the operation to perform after the notification is clicked.
       operationType: wantAgent.OperationType.START_ABILITY,
       requestCode: 0,
+      // Execution attribute of the operation to perform after the notification is clicked.
       wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
     };
 
@@ -372,6 +385,8 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 function callback(err: BusinessError, data: void) {
@@ -418,6 +433,7 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
+// Cancel a continuous task.
 backgroundTaskManager.stopBackgroundRunning(featureAbility.getContext()).then(() => {
   console.info("Operation stopBackgroundRunning succeeded");
 }).catch((err: BusinessError) => {
@@ -431,10 +447,13 @@ Stage model:
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // Cancel a continuous task.
     backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
       console.info("Operation stopBackgroundRunning succeeded");
     }).catch((err: BusinessError) => {

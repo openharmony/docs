@@ -69,7 +69,7 @@ Data sources of the archived type can be classified into local resources, online
   API:
 
   ```
-  Image($rawfile('example1'))
+  Image($rawfile('example1.png'))
   ```
 
 - Media library **file://data/storage**
@@ -178,7 +178,8 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
        ```ts
        let code: http.ResponseCode | number = OutData.responseCode
        if (ResponseCode.ResponseCode.OK === code) {
-         let imageSource: image.ImageSource = image.createImageSource(OutData.result.toString());
+         let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
+         let imageSource: image.ImageSource = image.createImageSource(imageData);
        
          class tmp {
            height: number = 100

@@ -9,7 +9,7 @@ Component startup refers to the behavior of starting or connecting to an applica
 - Connect to the ServiceAbility and DataAbility. For example, you can use **connectAbility()** and **acquireDataAbilityHelper()**.
 
 
-To deliver a better user experience, OpenHarmony restricts the following behavior:
+To deliver a better user experience, the system restricts the following behavior:
 
 
 - A background application randomly displays a dialog box, such as an ad pop-up.
@@ -19,7 +19,7 @@ To deliver a better user experience, OpenHarmony restricts the following behavio
 - A foreground application randomly redirects to another application, for example, redirecting to the payment page of another application. This type of behavior poses security risks.
 
 
-In view of this, OpenHarmony formulates a set of component startup rules, as follows:
+In view of this, the system formulates a set of component startup rules, as follows:
 
 
 - **Before starting a component of another application, verify the visible field of the target component.**

@@ -30,7 +30,7 @@ The ES6 syntax is supported.
 - Application objects
   | Name | Type | Description |
   | -------- | -------- | -------- |
-  | $def | Object | Object that is exposed in the app.js file and obtained by `this.$app.$def`.<br/>> **NOTE**<br/>> Application objects do not support data binding. Data update should be triggered on the UI. |
+  | $def | Object | Object that is exposed in the **app.js** file and obtained by **this.$app.$def**.<br>**NOTE**<br>Application objects do not support data binding. Data update should be triggered on the UI. |
 
   Example
 
@@ -101,7 +101,7 @@ The ES6 syntax is supported.
   export default {
     data: {
       keyMap: {
-        OS: 'OpenHarmony',
+        OS: 'OS',
         Version: '2.0',
       },
     },
@@ -119,7 +119,7 @@ The ES6 syntax is supported.
   | Name | Parameter | Description |
   | -------- | -------- | -------- |
   | $element | id: string | Obtains the component with a specified ID. If no ID is specified, the root component is returned. For example code, see [Obtaining a DOM element](#obtaining-a-dom-element).<br/>Usage:<br/>```<div id='_xxx_'></div>```<br/>- this.$element('_xxx_'): Obtain the component whose ID is _xxx_.<br/>- this.$element(): Obtain the root component. |
-  | $rootElement | None | Obtains the root element.<br/>Usage: this.$rootElement().scrollTo({ duration: 500, position: 300 }), which scrolls the page by 300 px within 500 ms. |
+  | $rootElement | N/A | Obtains the root element.<br/>Usage: this.$rootElement().scrollTo({ duration: 500, position: 300 }), which scrolls the page by 300 px within 500 ms. |
   | $root | N/A | Obtains the root ViewModel instance. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel). |
   | $parent | N/A | Obtains the parent ViewModel instance. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel). |
   | $child | id: string | Obtains the ViewModel instance of a custom child component with a specified ID. For example code, see [Obtaining the ViewModel](#obtaining-the-viewmodel).<br/>Usage:<br/>this.$child('xxx'): Obtain the ViewModel instance of a custom child component whose ID is _xxx_. |
@@ -155,7 +155,7 @@ The ES6 syntax is supported.
 
 ## Obtaining a DOM Element
 
-1. Use `$refs` to obtain a DOM element.
+1. Use **$refs** to obtain a DOM element.
   
    ```html
    <!-- index.hml -->
@@ -188,7 +188,7 @@ The ES6 syntax is supported.
    };
    ```
 
-2. Call `$element` to obtain a DOM element.
+2. Call **$element** to obtain a DOM element.
   
    ```html
    <!-- index.hml -->

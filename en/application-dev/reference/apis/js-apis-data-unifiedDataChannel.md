@@ -161,7 +161,7 @@ Represents the text data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name   | Type                     | Readable| Writable| Description                                                                                                                                                 |
 | ------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br> This parameter is optional. The default value is an empty dictionary object.|
+| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe the text content. For example, a data object with the following content can be created to describe a text file:<br>{<br>"title":"Title",<br>"content":"Content"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
 
 **Example**
 
@@ -239,7 +239,7 @@ Represents the file data. It is a child class of [UnifiedRecord](#unifiedrecord)
 
 | Name     | Type                       | Readable| Writable| Description                                                                                                                                                  |
 |---------|---------------------------| ---- | ---- |------------------------------------------------------------------------------------------------------------------------------------------------------|
-| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br> This parameter is optional. The default value is an empty dictionary object.|
+| details | { [key: string]: string } | Yes  | Yes  | A dictionary type object, where both the key and value are of the string type and are used to describe file information. For example, a data object with the following content can be created to describe a file:<br>{<br>"name":"File name",<br>"type":"File type"<br>}<br>This parameter is optional. The default value is an empty dictionary object.|
 | uri     | string                    | Yes  | Yes  | URI of the file data.                                                                                                                                            |
 
 **Example**
@@ -378,7 +378,7 @@ let unifiedData = new unifiedDataChannel.UnifiedData(form);
 
 ## SystemDefinedAppItem
 
-Represents the icon data. It is a child class of [SystemDefinedRecord](#systemdefinedrecord).
+Represents the data of the home screen icon defined by the system. It is a child class of [SystemDefinedRecord](#systemdefinedrecord).
 
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 

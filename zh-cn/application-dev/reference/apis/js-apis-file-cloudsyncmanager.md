@@ -184,6 +184,108 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
     }
   });
   ```
+## ExtraData<sup>11+</sup>
+
+云端数据变更信息。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
+
+| 名称     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| eventId | string | 是   | 变更事件id|
+| extraData | string | 是   | 云端数据变更信息|
+
+
+## cloudSyncManager.notifyDataChange<sup>11+</sup> 
+
+notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
+
+异步方法通知端云服务应用的云数据变更，以Promise形式返回结果。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| userId | number | 是   | 账号Id|
+| extraData | string | 是   | 云端数据变更信息|
+
+**返回值：**
+
+| 类型                  | 说明             |
+| --------------------- | ---------------- |
+| Promise&lt;void&gt; | 使用Promise形式返回通知端云服务应用的云数据变更的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  cloudSyncManager.notifyDataChange(userId, extraData).then(() => {
+    console.info("notifyDataChange successfully");
+  }).catch((err: BusinessError) => {
+    console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## cloudSyncManager.notifyDataChange<sup>11+</sup>
+
+notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&lt;void&gt;): void
+
+异步方法通知端云服务应用的云数据变更，以callback形式返回结果。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| userId | number | 是   | 用户Id|
+| extraData | string | 是   | 云端数据变更信息|
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步通知端云服务应用的云数据变更之后的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  cloudSyncManager.notifyDataChange(userId, extraData, (err: BusinessError) => {
+    if (err) {
+      console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("notifyDataChange successfully");
+    }
+  });
+  ```
 
 ## cloudSyncManager.enableCloud
 
@@ -300,7 +402,7 @@ disableCloud(accountId: string): Promise&lt;void&gt;
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回去使能端云协同能力的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回去使能端云协同能力的结果。 |
 
 **错误码：**
 
@@ -451,9 +553,10 @@ clean(accountId: string, appActions: { [bundleName: string]: Action }, callback:
 
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
 
 **示例：**
 

@@ -58,7 +58,7 @@
      let myReason = 'test requestSuspendDelay';   // 申请原因
      let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
        // 回调函数。应用申请的短时任务即将超时，通过此函数回调应用，执行一些清理和标注工作，并取消短时任务
-       console.info('Succeeded in requesting suspend delay.');
+       console.info('suspend delay task will timeout');
        backgroundTaskManager.cancelSuspendDelay(id);
      })
      id = delayInfo.requestId;

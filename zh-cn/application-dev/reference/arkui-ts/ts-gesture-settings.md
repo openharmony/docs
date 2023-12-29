@@ -10,11 +10,12 @@
 ## 绑定手势识别
 
 通过如下属性给组件绑定手势识别，手势识别成功后可以通过事件回调通知组件。
+可以通过[触摸热区](ts-universal-attributes-touch-target.md)指定可识别手势的区域。
 
 | 名称 | 参数类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| gesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势。<br/>- gesture:&nbsp;绑定的手势类型，&nbsp;<br>- mask:&nbsp;事件响应设置。 |
-| priorityGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>- gesture: 绑定的手势类型， <br/>- mask: 事件响应设置。<br/>1、默认情况下，子组件优先识别通过gesture绑定的手势，当父组件配置priorityGesture时，父组件优先识别priorityGesture绑定的手势。<br/>2、长按手势时，设置触发长按的最短时间小的组件会优先响应，会忽略priorityGesture设置。|
+| gesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。 |
+| priorityGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定优先识别手势。<br/>- gesture: 绑定的手势类型。 <br/>- mask: 事件响应设置。<br/>1、默认情况下，子组件优先识别通过gesture绑定的手势，当父组件配置priorityGesture时，父组件优先识别priorityGesture绑定的手势。<br/>2、长按手势时，设置触发长按的最短时间小的组件会优先响应，会忽略priorityGesture设置。|
 | parallelGesture | gesture:&nbsp;[GestureType](#gesturetype),<br/>mask?:&nbsp;[GestureMask](#gesturemask枚举说明) | gesture:&nbsp;-，<br/>mask:&nbsp;GestureMask.Normal | 绑定可与子组件手势同时触发的手势。<br/>- gesture:&nbsp;绑定的手势类型。&nbsp;<br>- mask:&nbsp;事件响应设置。<br/>手势事件为非冒泡事件。父组件设置parallelGesture时，父子组件相同的手势事件都可以触发，实现类似冒泡效果。若父子组件中同时绑定单击手势事件和双击手势事件，则只响应单击手势事件。 |
 
 
@@ -34,7 +35,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | Normal | 不屏蔽子组件的手势，按照默认手势识别顺序进行识别。 |
-| IgnoreInternal | 屏蔽子组件的手势，包括子组件上系统内置的手势，如子组件为List组件时，内置的滑动手势同样会被屏蔽。 |
+| IgnoreInternal | 屏蔽子组件的手势，包括子组件上系统内置的手势，如子组件为List组件时，内置的滑动手势同样会被屏蔽。 若父子组件区域存在部分重叠，则只会屏蔽父子组件重叠的部分。|
 
 ## 响应手势事件
 
@@ -50,14 +51,14 @@
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
 | repeat | boolean | 是否为重复触发事件，用于LongPressGesture手势触发场景。 |
-| offsetX | number | 手势事件x轴相对偏移量，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。 |
-| offsetY | number | 手势事件y轴相对偏移量，单位为vp，用于PanGesture手势触发场景，从上向下滑动offsetY为正，反之为负。 |
+| offsetX | number | 手势事件x轴相对当前组件元素原始区域的偏移量，单位为vp，用于PanGesture手势触发场景，从左向右滑动offsetX为正，反之为负。 |
+| offsetY | number | 手势事件y轴相对当前组件元素原始区域的偏移量，单位为vp，用于PanGesture手势触发场景，从上向下滑动offsetY为正，反之为负。 |
 | angle | number | 用于RotationGesture手势触发场景时，表示旋转角度。<br/>用于SwipeGesture手势触发场景时，表示滑动手势的角度，即两根手指间的线段与水平方向的夹角变化的度数。<br/>**说明：**<br/>角度计算方式：滑动手势被识别到后，连接两根手指之间的线被识别为起始线条，随着手指的滑动，手指之间的线条会发生旋转，根据起始线条两端点和当前线条两端点的坐标，使用反正切函数分别计算其相对于水平方向的夹角，最后arctan2(cy2-cy1,cx2-cx1)-arctan2(y2-y1,x2-x1)为旋转的角度。以起始线条为坐标系，顺时针旋转为0到180度，逆时针旋转为-180到0度。 |
 | scale | number | 缩放比例，用于PinchGesture手势触发场景。 |
-| pinchCenterX | number | 捏合手势中心点相对于当前组件元素左上角x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
-| pinchCenterY | number | 捏合手势中心点相对于当前组件元素左上角y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
-| speed<sup>8+</sup> | number | 滑动手势速度，即所有手指滑动的平均速度，单位为vp/秒，用于SwipeGesture手势触发场景。 |
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明)[] | 触发事件的所有手指信息，用于LongPressGesture与TapGesture手势触发场景。 |
+| pinchCenterX | number | 捏合手势中心点相对于当前组件元素原始区域左上角x轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
+| pinchCenterY | number | 捏合手势中心点相对于当前组件元素原始区域左上角y轴坐标，单位为vp，用于PinchGesture手势触发场景。 |
+| speed<sup>8+</sup> | number | 滑动手势速度，即所有手指相对当前组件元素原始区域滑动的平均速度，单位为vp/秒，用于SwipeGesture手势触发场景。 |
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo对象说明)[] | 触发事件的所有手指信息，用于手势触发场景。<br/>**说明：**<br/>fingerList数组的第1个元素（即fingerList[0]）为FingerInfo对象。 |
 | timestamp<sup>8+</sup> | number | 事件时间戳。 |
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发手势事件的元素对象显示区域。 |
 | source<sup>8+</sup> | [SourceType](#sourcetype枚举说明) | 事件输入设备。 |
@@ -82,8 +83,8 @@
 | id | number | 手指的索引编号。 |
 | globalX | number | 相对于应用窗口左上角的x轴坐标。 |
 | globalY | number | 相对于应用窗口左上角的y轴坐标。 |
-| localX | number | 相对于当前组件元素左上角的x轴坐标。 |
-| localY | number | 相对于当前组件元素左上角的y轴坐标。 |
+| localX | number | 相对于当前组件元素原始区域左上角的x轴坐标。 |
+| localY | number | 相对于当前组件元素原始区域左上角的y轴坐标。 |
 
 ## SourceTool枚举说明
 | 名称 | 描述 |

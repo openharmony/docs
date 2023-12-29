@@ -85,7 +85,7 @@ config.json示例：
         // $string:MainAbility_entry_label为资源索引
         "label": "$string:MainAbility_entry_label",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "multiton"
       }
     ],
     "distro": {

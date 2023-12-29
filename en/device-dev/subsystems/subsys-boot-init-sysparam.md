@@ -2,236 +2,304 @@
 
 ## Overview
 
-### Function
+### Function Introduction
 
-The parameter management subsystem, namely, sysparam, provides easy-to-use key-value pair access interfaces for system services to customize functions based on their own system parameters.
+The parameter management module, namely, sysparam, provides an easy-to-use key-value pair access interface for system services to configure service functions based on their own system parameters.
 
-### Basic Concepts
+### System Parameter Definition
 
-#### Operation Primitives
+Each subsystem defines the system parameters of its own modules, including the system parameter name, default value, and access permission information.
 
-Figure 1 shows the primitives used to operate system parameters. For details about how they work, see Table 1.
+#### System Parameter Definition File
 
-Figure 1 Overview of system parameter operation primitives
+The system parameter definition file ends with the **.para** extension. An example of the file format is as follows:
 
-![System parameter operation primitives](figures/system-parameter-operation-primitives.png)
+```
+const.product.name=OHOS-PRODUCT
+const.os.version.api=26
+const.telephony.enable=false|true
+```
 
-**Table 1** Description of system parameter operation primitives
-
-| Operation Primitive | Description |
-| -------- | -------- |
-| get      | Obtains the value of a system parameter.       |
-| set      | Sets the value of a system parameter.       |
-| wait     | Waits for value change of a system parameter synchronously.|
-| watch    | Watches for the value change of a system parameter asynchronously.|
-
-#### Parameter Definition
+#### System Parameter Name (Key)
 
 - Naming format
 
-  A system parameter name consists of multiple segments in dotted notation. Each segment can be a string that consists of letters, digits, and underscores (_). The total length cannot exceed 96 bytes. 
+  A system parameter name consists of multiple segments in dotted notation. Each segment can be a string that consists of letters, digits, and underscores (_). The total length cannot exceed 96 bytes. System parameter names are categorized into the following two types.
 
-  Two naming formats are supported for system parameters, as described in Table 2.
+  Naming of system parameters
 
-  **Table 2** Description of system parameter naming formats
-
-  | Type | Example | Description |
-  | -------- | -------- | -------- |
-  | Parameter name | const.product.**name** | Complete system parameter name. It does not end with a period (.).          |
-  | Parameter directory | const.product **.**     | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
+  | Category| Name| Example| Description|
+  | -------- | -------- | -------- | -------- |
+  | Parameter| Parameter Name | const.product.**name** | Complete system parameter name. It does not end with a period (.).|
+  | Directory| Parameter Directory | const.**. | Name of the directory storing system parameters with the same prefix. It ends with a period (.).|
 
 - Type
 
-  System parameters are categorized into three types, as described in Table 3.
+  System parameters are categorized into three types.
 
-  **Table 3** Description of system parameter types
+  System parameter types
 
-  | Type| Prefix| Description|
+  | Category| Prefix| Description|
   | -------- | -------- | -------- |
-  | Constant| const. | Constant parameter, which will not change once a value is assigned. The value can contain a maximum of 4,096 bytes (including the end-of-text character).|
-  | Writable| Others| Writable parameter, which will be discarded after a system restart. The value can contain a maximum of 96 bytes (including the end-of-text character).|
-  | Persistent| persist. | Writable and persistent parameter, which will not be discarded after a system restart. The value can contain a maximum of 96 bytes (including the end-of-text character).|
+  | Constant| const. | Constant parameter, which will not be changed once a value is assigned. The value can contain a maximum of 4,096 bytes (including the terminator).|
+  | Writable| Others| Writable parameter, which will be lost after system restart. The value can contain a maximum of 96 bytes (including the terminator).|
+  | Persistent| persist. | Writable and persistent parameter, which will not be lost after system restart. The value can contain a maximum of 96 bytes (including the terminator).|
 
-  Given below is the general naming format for system parameters:
-  ```
+  The general naming format is as follows:
+
+  ```java
   [ const | persist ].$sub_system.$desc
   ```
-  wherein,
-  
-  - **$sub_system** is the subsystem or module name.
 
-  - **$desc** is the parameter description, which can contain multiple segments in dotted notation.
+  **$sub_system** is the name of the subsystem or module.
 
-#### Parameter Definition Rule
+  **$desc** indicates the description of a system parameter. The description can contain multiple segments in dotted notation.
 
-System parameters are defined per module on each subsystem. The parameter definition includes the system parameter name, default value, and access permission information.
+#### System Parameter Value
 
-- Value definition file
+- Types
 
-  - A value definition file of system parameters ends with the **.para** extension. The following is an example format of file content:
+Types of system parameter values
 
-    ```shell
-    # This is comment
-    const.product.name=OHOS-PRODUCT
-    const.os.version.api=26
-    const.telephony.enable=false|true
+| Category| Example| Description|
+| -------- | -------- | -------- |
+| String  | const.product.name=OHOS-PRODUCT | A multi-line string must be enclosed in double quotation marks ("").|
+| Number    | const.os.version.api=26         | Numbers do not need to be enclosed in quotation marks.|
+| Boolean    | const.telephony.enable=false    | A Boolean value can be **0**, **1**, **false**, or **true**.|
 
-    const.test.withblank=My Value
-    const.test.withcomment=MyValue # This should be omitted
-    const.test.multiline="This is a multiline parameter.
-    Line2 value.
-    Last line."
-    ```
+### System Parameter Permission Configuration
 
-  - A complete system parameter command is required to assign a value for a system parameter. See Table 4 for the value assignment modes.
+DAC and MAC are supported.
 
-    **Table 4** Description of value assignment modes
+#### Default Permission
 
-    | Type| Example| Description|
-    | -------- | -------- | -------- |
-    | String  | const.product.name=OHOS-PRODUCT | A string that spans multiple lines must be enclosed in double quotation marks ("").|
-    | Number    | const.os.version.api=26         | A number that spans multiple lines does not need to be enclosed in double quotation marks ("").|
-    | Boolean    | const.telephony.enable=false    | A Boolean value can be **0**, **1**, **false**, or **true**.|
+If no DAC or MAC permission has been defined for a system parameter, the default permission is as follows:
+
+| [DAC] User | [DAC] Group | [DAC] UGO | [MAC] SELinux Label |
+| ---------- | ----------- | --------- | ------------------- |
+| root       | root        | 775       | default_param       |
+
+Other processes access system parameters with the default permission as follows:
+
+| Operation | System Native Process| System Application Process| Third-party Application Process|
+| ----- | -------------- | ------------ | ------------ |
+| get   | Allowed          | Allowed        | Allowed        |
+| watch | Allowed          | Allowed        | Allowed        |
+| set   | Not allowed        | Not allowed      | Not allowed      |
+
+#### DAC Permission Configuration
 
 - DAC definition file
 
-  Access permissions of system parameters are managed in discretionary access control (DAC) mode. A DAC definition file ends with the **.para.dac** extension. The following is an example format of DAC information:
+  Currently, the control of system parameter access permissions is implemented in discretionary access control (DAC) mode. The access permission definition file ends with the **.para.dac** extension. It is available in the **/base/startup/init/services/etc/param/ohos.para.dac** directory of the init module. The following is an example of the file content:
 
-  ```java
-  const.product.="root:root:660"
+  ```
+  const.product.              = root:root:0775
+  persist.init.               = root:root:0775
+  startup.appspawn.           = root:root:0750
+  startup.uevent.             = ueventd:ueventd:0775
   ```
 
-  As shown in this example, a **parameter directory** can be used to define the same access permission for system parameters with the same prefix. A piece of DAC information is divided into three segments, user, group, and Ugo rule, which are separated using a semicolon (:).
+  As shown above, we can use **parameter directory** to define the same access permission for system parameters with the same prefix. The DAC information is divided into three segments, user, group, and UGO rule, which are separated using a semicolon (:).
 
-  > **NOTE**
-  > 
-  > Ugo is the abbreviation for user access, group access, ad other system user's access, respectively. These permissions are set to allow or deny access to members of their own group, or any other groups.
+  The following figure shows the structure of the UGO rule.
 
-  Figure 2 shows the Ugo rule structure.
+  **Figure 1** UGO rule structure
 
-  **Figure 2** Overview of the Ugo rule structure
+  ![UGO rule](figures/dac-definition.png)
 
-  ![Ugo rule](figures/dac-definition.png)
+#### MAC Permission Configuration
 
-- SELinux policy
+ - SELinux tag
 
-  An SELinux policy defines the access permissions for all users, programs, processes, and files.
-
-  - Adding an SELinux tag
-
-    To add an SELinux tag to system parameters, you first need to define the tag in the **/base/security/selinux/sepolicy/base/public/parameter.te** file. For example:
+    To add a SELinux tag to system parameters, you first need to define the tag in the **/base/security/selinux_adapter/sepolicy/base/public/parameter.te** file. For example:
 
     ```java
     type servicectrl_param, parameter_attr
     ```
 
-    After the tag is defined, add the system parameter prefix associated with the tag to **/base/security/selinux/sepolicy/base/public/parameter_contexts**. The following uses the prefix **ohos.servicectrl** as an example:
+    After the tag is defined, add the system parameter prefix associated with the tag to **/base/security/selinux_adapter/sepolicy/base/public/parameter_contexts**. The following uses the prefix **ohos.servicectrl** as an example:
 
     ```java
     ohos.servicectrl.           u:object_r:servicectrl_param:s0
     ```
 
-  - Granting access permissions for a process
-
-    For example, to grant access permissions such as map for the init process, add the following code to the **/base/security/selinux/sepolicy/ohos_policy/startup/init/public/init.te** file:
+  - Grant operation permissions. For example, to grant operation permissions such as map for the init process, add the following content to the **/base/security/selinux/sepolicy/ohos_policy/startup/init/public/init.te** file:
 
     ```java
     allow servicectrl_param tmpfs:filesystem associate;
     allow init servicectrl_param:file { map open read relabelto relabelfrom };
     ```
 
-  - Granting the write permission
-
-    For example, to grant the write permission for services such as **init**, **samgr**, and **hdf_devmgr**, use the following code:
+  - Set the write permission. For example, grant the system parameter write permission for services such as **init**, **samgr**, and **hdf_devmgr**.
 
     ```java
     allow { init samgr hdf_devmgr } servicectrl_param:parameter_service { set };
     ```
 
-  - Granting the read permission
-
-    If you want to grant the read permission only for certain services, replace **xxx** with these services in the following code:
+  - Set the read permission. If you want to grant the permission only for certain services, replace **xxx** with the services in the following code:
 
     ```java
     allow { xxx } servicectrl_param:file { map open read };
     ```
 
-  - Granting access permissions for all services
-
-    If you want to grant access permissions for all services, use the following code:
+  - If you want to grant the permission for all services, use the following code:
 
     ```java
     allow { domain -limit_domain } servicectrl_param:file { map open read };
     ```
 
--  System parameter tag
+#### Basic Requirements for System Parameter Permissions
 
-   You are advised to keep only two system parameter tags for each subsystem:
+The system parameters mapping to a SELinux tag take up an independent shared memory area. It is recommended that system parameters of the same type share a SELinux tag to reduce the overhead of the system shared memory.
 
-   - A private tag to control system parameter settings.
+Take the sample component as an example. You are advised to add the following types of tags for access control:
 
-   - A public tag to grant access permissions from all services.
+a) For open read-only system parameters, use **default_param** instead of defining new tags. .
 
--  Loading sequence
+b) For writable system parameters, add the **{component}_writable_param** tag.
 
-   System parameters are loaded by priority in the specified sequence, as described in Table 5.
+c) For readable system parameters (privacy data) within a component, add the **[optional]{component}_private_param** tag.
 
-    **Table 5** Description of the system parameter loading sequence
+### System Parameter Tag Configuration
 
-    | Type| Path| Description|
-    | -------- | -------- | -------- |
-    | Kernel parameters   | /proc/cmdline | Convert some values of kernel parameters into system parameters. Specifically, convert all **ohospara.xxx=valXXX** parameters to **ohos.boot.xxx=valXXX** parameters.|
-    | OS system parameters| /system/etc/param/ohos_const/*.para | Load the definition file containing OS constants preferentially.                              |
-    | Vendor parameters| /vendor/etc/param/*.para | Load the system parameters defined by vendors with the secondary priority.                            |
-    | System parameters| /system/etc/param/*.para | Load the system parameters defined by each subsystem. A system parameter will be ignored if it already exists.|
-    | Persistent parameters| /data/parameters/ | Load persistent parameters, if any, at last. Persistent parameters will overwrite the default system parameters that have been loaded.|
+#### Configuring the Size of the System Parameter Tag File
 
+By default, 1 KB memory is allocated to each tag, which can store about five system parameters. If a large number of system parameters are supported under a tag, expand the memory size for the tag in the **ohso.para.size** file.
 
-#### Tag File Size
-
-If one tag is associated with more than five system parameters, you need to set the size of the system parameter tag file in **/base/startup/init/services/etc/param/ohos.para.size**. The default value is **512**.
+This can be done through either **/system/etc/param/ohos.para.size** or **/sys_prod/etc/param/ohos.para.size**.
 
 The configuration rule is as follows:
 
 System parameter tag = Size
 
-For example:
+Example:
 
-```java
-startup_init_param=40960
+```
+devinfo_public_param=30720
+hilog_param=40960
 ```
 
+Default shared memory size of system parameters: 80 KB
+
+#### Description of System Parameter Tags
+
+  The init process creates the corresponding shared memory mapping file in the **/dev/__parameters__/** directory based on the system parameter tag. The shared memory is used to store the system parameters bound to the tag.
+
+  Example of a shared memory file:
+
+  ```
+  -rwxr-xr-- 1 root root 30720 2017-08-10 16:22 u:object_r:default_param:s0
+  -rwxr-xr-- 1 root root  1024 2017-08-10 16:22 u:object_r:devinfo_private_param:s0
+  -rwxr-xr-- 1 root root 30720 2017-08-10 16:22 u:object_r:devinfo_public_param:s0
+  -rwxr-xr-- 1 root root 40960 2017-08-10 16:22 u:object_r:hilog_param:s0
+  ```
+
+  The system parameter tags are defined in the **/base/security/selinux_adapter/sepolicy/base/public/parameter.te** file.
+
+  System parameter tag definition:
+
+  ```
+  type default_param, parameter_attr;
+  type devinfo_private_param, parameter_attr;
+  type devinfo_public_param, parameter_attr;
+  type hilog_param, parameter_attr;
+  ```
+
+  The mappings between system parameter tags and system parameters are defined in the **/base/security/selinux_adapter/sepolicy/base/public/parameter_contexts** file.
+
+  The following uses the **hilog_param** tag as an example:
+
+  ```
+  hilog.                   u:object_r:hilog_param:s0  # System parameters with the hilog. prefix are stored in the shared memory corresponding to the hilog_param tag.
+  persist.sys.hilog.       u:object_r:hilog_param:s0  # System parameters with the persist.sys.hilog. prefix are also stored in the shared memory corresponding to the hilog_param tag.
+  ```
+
+### Checking Shared Memory Usage of System Parameters
+
+    You can run the **param dump [verbose]** command to query the shared memory usage of system parameters.
+
+    The following is an example of the query result:
+
+    ```
+      Dump all parameters begin ...
+      Local security information
+      pid: 1612 uid: 0 gid: 0
+      map file: u:object_r:default_param:s0            // Name of the system parameter tag (name of the shared memory mapping file)
+      total size: 10485720                             // Size of the system parameter tag file (size of the shared memory mapped to the tag)
+      first offset: 0                                  // Offset of the first parameter node
+      current offset: 15948                            // Offset of the current parameter node
+      total node: 242                                  // Total number of nodes in the tag
+      total param node: 219                            // Total number of parameter nodes
+      total security node: 0                           // Number of SELinux nodes
+      commitId        : 26                             //
+      commitPersistId : 0                              //
+      node info:                                       // Information about all nodes under the tag
+      ... ...
+    ```
+### System Parameter Loading
+
+The following table describes the sequence of loading system parameters.
+
+| Category| Directory| Description|
+| -------- | -------- | -------- |
+| Kernel parameters  | /proc/cmdline | Convert some values of kernel parameters into system parameters. Specifically, convert all **ohospara.xxx=valXXX** parameters to **ohos.boot.xxx=valXXX** parameters.|
+| OS system parameters| /system/etc/param/ohos_const/*.para | Load the definition file containing OS constants preferentially.                   |
+| Vendor parameters| /vendor/etc/param/*.para | Load the system parameters defined by vendors with the secondary priority.                            |
+| System parameters| /system/etc/param/*.para | Load the parameters defined by each subsystem. If a system parameter already exists, ignore it.|
+| Persistent parameters| /data/parameters/ | If persistent parameters exist, load them at last. Persistent parameters will overwrite the default system parameters that have been loaded.|
+
+### Parameter and Tag Viewing
+
+Currently, parameter and tag statistics are recorded in the database by subsystem and component. You can set up the [OpenHarmony real-time architecture information collection and analysis system](https://gitee.com/handyohos/ohos_archinfo/tree/master) to view the statistics.
+
+For details about how to set up the system, see the [Analyser Module](https://gitee.com/handyohos/ohos_archinfo/blob/master/analyser/README.md) for OpenHarmony real-time architecture information analysis.
+
+For details about how to collect database information, see the [Collector Module](https://gitee.com/handyohos/ohos_archinfo/tree/master#/handyohos/ohos_archinfo/blob/master/collector/README.md) for OpenHarmony real-time architecture information collection.
+
+You can also obtain the database from the daily dayu200-db build.
+
+### Basic System Parameter Operations
+
+Operation primitives for system parameters
+
+![System parameter operation primitives](figures/system-parameter-operation-primitives.png)
+
+Description of operation primitives
+
+| Function| Description|
+| -------- | -------- |
+| get      | Obtains the value of a system parameter.       |
+| set      | Sets the value of a system parameter.       |
+| wait     | Waits for value change of a system parameter synchronously.|
+| watch    | Observes value change of a system parameter asynchronously.|
 
 ### Constraints
 
-The parameter management subsystem is available only for the mini system and standard system.
+The service management module is available only for the mini system and standard system.
 
 ## How to Develop
 
-### Application Scenario
-
+### Overview
 You can set specific system parameters as needed to meet your service demand.
 
-### Implementation Method
+### APIs
 
-The parameter management subsystem allows you to manage system parameters by running shell commands or calling **syspara** APIs.
+  - Shell commands
 
-  - Shell command mode
-
-    You can operate system parameters directly by running shell commands. This operation mode is available only for the standard system. Table 6 is a list of the shell commands.
+    You can manage system parameters by using shell commands. This operation mode is available only for the standard system. The following table lists the shell commands.
 
     **Table 6** Description of shell commands
 
-    | Command| Description|
+    | Function| Description|
     | -------- | -------- |
     | param get [**key**] | Obtains the system parameter value of the specified key. If no key name is specified, all system parameter values will be returned.|
     | param set **key value** | Sets the specified value for the specified key.|
-    | param wait **key** **value** | Waits for the system parameter value of the specified key to match the specified value. Fuzzy match is supported. For example, * indicates any value, and <strong>val</strong>* indicates matching of only the first three val characters.|
-    | param watch | Watches for the value change of a system parameter asynchronously.|
+    | param wait **key** **value** | Waits for the system parameter value of the specified key to match the specified value. Fuzzy match is supported. For example, <strong>*</strong> indicates any value, and <strong>val*</strong> indicates matching of only the first three val characters.|
 
-  - syspara API mode
+  - syspara APIs
 
-    Besides shell commands, you can use **syspara** APIs to manage system parameters. The return result is a constant string and the **free** operation is not supported. Table 7 is a list of the **syspara** APIs. 
+    The following table lists the APIs used to obtain system parameter values. The return result is a const string and the free operation is not supported.
 
     **Table 7** Description of syspara APIs
 
@@ -240,41 +308,41 @@ The parameter management subsystem allows you to manage system parameters by run
     | int&nbsp;GetParameter(const&nbsp;char\*&nbsp;key,&nbsp;const&nbsp;char\*&nbsp;def,&nbsp;char\*&nbsp;value,&nbsp;unsigned&nbsp;int&nbsp;len) | Obtains system parameters.|
     | int&nbsp;SetParameter(const&nbsp;char\*&nbsp;key,&nbsp;const&nbsp;char\*&nbsp;value) | Sets or updates system parameters.|
     | const&nbsp;char\*&nbsp;GetDeviceType(void) | Obtains the device type.|
-    | const&nbsp;char\*&nbsp;GetManufacture(void) | Obtains the device's manufacturer name.|
-    | const&nbsp;char\*&nbsp;GetBrand(void) | Obtains the device's brand name.|
-    | const&nbsp;char\*&nbsp;GetMarketName(void) | Obtains the device's marketing name.|
-    | const&nbsp;char\*&nbsp;GetProductSeries(void) | Obtains the device's product series name.|
-    | const&nbsp;char\*&nbsp;GetProductModel(void) | Obtains the device's product model.|
-    | const&nbsp;char\*&nbsp;GetSoftwareModel(void) | Obtains the device's software model.|
-    | const&nbsp;char\*&nbsp;GetHardwareModel(void) | Obtains the device's hardware model.|
-    | const&nbsp;char\*&nbsp;GetHardwareProfile(void) | Obtains the device's hardware profile.|
-    | const&nbsp;char\*&nbsp;GetSerial(void) | Obtains the device's serial number (SN).|
-    | const&nbsp;char\*&nbsp;GetOSFullName(void) | Obtains the device's OS name.|
-    | const&nbsp;char\*&nbsp;GetDisplayVersion(void) | Obtains the device's displayed software version.|
-    | const&nbsp;char\*&nbsp;GetBootloaderVersion(void) | Obtains the device's bootloader version.|
-    | const&nbsp;char\*&nbsp;GetSecurityPatchTag(void) | Obtains the device's security patch tag.|
-    | const&nbsp;char\*&nbsp;GetAbiList(void) | Obtains the list of supported application binary interfaces (ABIs).|
-    | int&nbsp;GetSdkApiVersion(void) | Obtains the SDK API version that matches the current system software.|
-    | int&nbsp;GetFirstApiVersion(void) | Obtains the first SDK API version of the system software.|
-    | const&nbsp;char\*&nbsp;GetIncrementalVersion(void) | Obtains the incremental version of the system software.|
+    | const&nbsp;char\*&nbsp;GetManufacture(void) | Obtains the device manufacturer.|
+    | const&nbsp;char\*&nbsp;GetBrand(void) | Obtains the device brand.|
+    | const&nbsp;char\*&nbsp;GetMarketName(void) | Obtains the device marketing name.|
+    | const&nbsp;char\*&nbsp;GetProductSeries(void) | Obtains the device series name.|
+    | const&nbsp;char\*&nbsp;GetProductModel(void) | Obtains the device authentication model.|
+    | const&nbsp;char\*&nbsp;GetSoftwareModel(void) | Obtains the device software model.|
+    | const&nbsp;char\*&nbsp;GetHardwareModel(void) | Obtains the device hardware model.|
+    | const&nbsp;char\*&nbsp;GetHardwareProfile(void) | Obtains the device hardware profile.|
+    | const&nbsp;char\*&nbsp;GetSerial(void) | Obtains the device serial number (SN).|
+    | const&nbsp;char\*&nbsp;GetOSFullName(void) | Obtains the operating system name.|
+    | const&nbsp;char\*&nbsp;GetDisplayVersion(void) | Obtains the software version visible to users.|
+    | const&nbsp;char\*&nbsp;GetBootloaderVersion(void) | Obtains the bootloader version of this device.|
+    | const&nbsp;char\*&nbsp;GetSecurityPatchTag(void) | Obtains the security patch tag.|
+    | const&nbsp;char\*&nbsp;GetAbiList(void) | Obtains the list of application binary interfaces (ABIs) supported on this device.|
+    | int&nbsp;GetSdkApiVersion(void) | Obtains the SDK API level that matches the current system software.|
+    | int&nbsp;GetFirstApiVersion(void) | Obtains the first SDK API level of the system software.|
+    | const&nbsp;char\*&nbsp;GetIncrementalVersion(void) | Obtains the incremental version.|
     | const&nbsp;char\*&nbsp;GetVersionId(void) | Obtains the version ID.|
     | const&nbsp;char\*&nbsp;GetBuildType(void) | Obtains the build type.|
-    | const&nbsp;char\*&nbsp;GetBuildUser(void) | Obtains the build user.|
-    | const&nbsp;char\*&nbsp;GetBuildHost(void) | Obtains the build host.|
+    | const&nbsp;char\*&nbsp;GetBuildUser(void) | Obtains the build account user name.|
+    | const&nbsp;char\*&nbsp;GetBuildHost(void) | Obtains the build host name.|
     | const&nbsp;char\*&nbsp;GetBuildTime(void) | Obtains the build time.|
-    | const&nbsp;char\*&nbsp;GetBuildRootHash(void) | Obtains the buildroot hash value of the current version.|
+    | const&nbsp;char\*&nbsp;GetBuildRootHash(void) | Obtains the buildroot hash value of this version.|
     | const&nbsp;char\*&nbsp;GetOsReleaseType(void) | Obtains the system release type.|
-    | int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | Obtains the device's unique device ID (UDID).|
-    | const char *AclGetSerial(void); | Obtains the device's SN with ACL check.|
-    | int AclGetDevUdid(char *udid, int size); | Obtains the device's UDID with ACL check.|
+    | int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | Obtains the device identifier (UDID).|
+    | const char *AclGetSerial(void); | Obtains the device SN (with ACL check).|
+    | int AclGetDevUdid(char *udid, int size); | Obtains the UDID (with ACL check).|
 
-### Development Procedure
+### Procedure
 
-#### Parameter Definition
+1. System parameter definition
 
-You can define default system parameters and implement permission control on them by configuring the <strong>.para</strong> and <strong>.para.dac</strong> files of the respective subsystem or product.
+    You can define default system parameters and implement permission control on them by configuring the subsystem or product **.para** and **.para.dac** files. 
 
-- On a standard system, use the <strong>ohos_prebuilt_para</strong> template to install the configuration file to the <strong>/etc/param/</strong> directory. The following is an example of the GN script:
+    ​    	On a standard system, use the **ohos_prebuilt_para** template to install the configuration file to the **/etc/param/** directory. The following is an example of the GN script:
 
     ```go
     import("//base/startup/init/services/etc/param/param_fixer.gni")
@@ -292,7 +360,7 @@ You can define default system parameters and implement permission control on the
     }
     ```
 
-- On a small system, run the <strong>copy</strong> command to copy the corresponding system parameter definition file to the <strong>system/etc/param</strong> directory.
+    On a small system, run the **copy** command to copy the corresponding system parameter definition file to the **system/etc/param** directory.
     ```go
     copy("ohos.para") {
       sources = [ "//base/startup/init/services/etc/param/ohos.para" ]
@@ -303,7 +371,7 @@ You can define default system parameters and implement permission control on the
       outputs = [ "$root_out_dir/system/etc/param/ohos.para.dac" ]
     }
     ```
-- On a mini system, convert all defined default system parameters into header files through **action** and compile them into the system.
+    On a mini system, convert all defined default system parameters into header files through **action** and compile them into the system.
     ```go
     action("lite_const_param_to") {
       script = "//base/startup/init/scripts/param_cfg_to_code.py"
@@ -319,7 +387,9 @@ You can define default system parameters and implement permission control on the
       outputs = [ "$target_gen_dir/${target_name}_param_cfg_to_code.log" ]
     }
     ```
-#### Development Example
+
+2. Development example
+
     ```
     // set && get
     char key1[] = "rw.sys.version";
@@ -408,3 +478,103 @@ You can define default system parameters and implement permission control on the
     GetDevUdid(value26, 65);
     printf("device udid =%s\n", value26);
     ```
+### System Parameter Error Codes
+
+**Description of system parameter error codes**
+
+| Enum                            | Value| Description                                     |
+| -------------------------------- | ------ | ----------------------------------------- |
+| PARAM_CODE_ERROR                 | -1     | System error.                                 |
+| PARAM_CODE_SUCCESS               | 0      | Operation success.                                     |
+| PARAM_CODE_INVALID_PARAM         | 100    | Empty input parameter of the system parameter API.                    |
+| PARAM_CODE_INVALID_NAME          | 101    | Invalid length or invalid characters in the system parameter key.     |
+| PARAM_CODE_INVALID_VALUE         | 102    | Invalid length or invalid characters in the system parameter value. |
+| PARAM_CODE_REACHED_MAX           | 103    | Number of tree nodes reaching the maximum.                         |
+| PARAM_CODE_NOT_SUPPORT           | 104    | API not supported.                             |
+| PARAM_CODE_TIMEOUT               | 105    | Server access timed out.                           |
+| PARAM_CODE_NOT_FOUND             | 106    | Parameter not found.                           |
+| PARAM_CODE_READ_ONLY             | 107    | System parameter read-only.                       |
+| PARAM_CODE_IPC_ERROR             | 108    | IPC communication error.                              |
+| PARAM_CODE_NODE_EXIST            | 109    | System parameter node already exists.                       |
+| PARAM_WATCHER_CALLBACK_EXIST     | 110    | Watcher callback repeatedly added.                |
+| PARAM_WATCHER_GET_SERVICE_FAILED | 111    | Failed to obtain the service for watcher.                      |
+| PARAM_CODE_MEMORY_MAP_FAILED     | 112    | Failed to create the shared memory mapping for a file.                 |
+| PARAM_WORKSPACE_NOT_INIT         | 113    | Workspace not initialized.                     |
+| PARAM_CODE_FAIL_CONNECT          | 114    | Failed to connect to paramServer.                     |
+| PARAM_CODE_MEMORY_NOT_ENOUGH     | 115    | Insufficient system parameter space.                         |
+| DAC_RESULT_INVALID_PARAM         | 1000   | Unused code, which defines the start value of permission errors.               |
+| DAC_RESULT_FORBIDED              | 1001   | DAC permission disabled.                            |
+| SELINUX_RESULT_FORBIDED          | 1002   | SELinux permission disabled.                        |
+| PARAM_CODE_MAX                   | 1003   | Maximum enum value.                               |
+
+**Key Logs for Locating Errors**
+
+- system parameter set:
+
+    SetParameter failed! the errNum is: xx!
+
+    SystemSetParameter failed! name is : xxx, errNum is: xx!
+
+- system parameter get:
+
+    GetParameter_ failed! the errNum is: xx!
+
+    SystemReadParam failed! name is: xxxx, errNum is: xx!
+
+- system parameter wait:
+
+    WaitParameter failed! the errNum is: xx!
+
+    SystemWaitParameter failed! name is: xxx, errNum is: xx!
+
+- system parameter Watcher:
+
+    WatchParameter failed! the errNum is xx!
+
+    SystemWatchParameter is failed! keyPrefix is:xxx, errNum is:xx!
+
+## FAQs
+
+### How to Set a System Parameter
+
+  1. On the shell side, run **hdc shell** to launch the shell CLI of the device, and then run **param set param.key.***system parameter key* param.value.*system parameter value* to set the system parameter. If the operation is successful, no further processing is required.
+
+  2. On the application side, call **SetParameter** to set the system parameter. For details, see [APIs](#apis).
+  
+  3. If **param set** fails, locate the fault based on the log.
+
+  If the fault is due to insufficient DAC permissions, declare the required permissions by referring to [DAC Permission Configuration](#dac-permission-configuration).
+
+  If the fault is due to insufficient SELinux permissions, grant the required permissions by referring to the **avc:  denied** alarm information.
+
+  If the fault is due to insufficient memory, expand the memory by referring to [System Parameter Tag Configuration](#system-parameter-tag-configuration).
+
+### How to Read a System Parameter
+
+  1. On the shell side, run **hdc shell** to launch the shell CLI of the device, and then run **param get param.key.***system parameter key* to obtain the system parameter. If the operation is successful, no further processing is required.
+
+  2. On the application side, call **GetParameter** to obtain the system parameter. For details, see [APIs](#apis).
+
+  3. If **param get** fails, locate the fault based on the log.
+
+  Check whether the parameter has been set. If yes, go to the next step. If no, set the system parameter.
+
+  If the fault is due to insufficient DAC permissions, declare the required permissions by referring to [DAC Permission Configuration](#dac-permission-configuration).
+
+  If the fault is due to insufficient SELinux permissions, grant the required permissions by referring to the **avc:  denied** alarm information.
+
+### How to Subscribe to System Parameter Changes
+
+  1. On the shell side, run **hdc shell** to launch the shell CLI of the device, and then run **param shell** to switch to the parameter shell CLI. Run **watcher parameter param.key.***system parameter key* to subscribe to changes of the system parameter. If there is a change in the system parameter, a message similar to "Receive parameter commit 691 change aaa.aaa 11111" is received.
+
+  2. On the application side, call **WatchParameter** to subscribe to changes of the system parameter. For details, see [APIs](#apis).
+
+  3. If **watcher parameter** fails, locate the fault based on the log.
+
+  If the fault is due to insufficient DAC permissions, declare the required permissions by referring to [DAC Permission Configuration](#dac-permission-configuration).
+
+  If the fault is due to insufficient SELinux permissions, grant the required permissions by referring to the **avc:  denied** alarm information.
+
+### How to Enable Third-Party Applications to Access System Parameters
+
+The default DAC rules grant only the **get** and **watch** permissions for third-party applications. If a third-party application requires the **set** permission, you need to reset DAC rules. In addition, SELinux permissions of third-party applications are left unspecified by default. If needed, set the SELinux permissions by referring to the [MAC Permission Configuration](#mac-permission-configuration).

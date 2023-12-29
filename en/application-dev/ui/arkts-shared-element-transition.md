@@ -9,75 +9,76 @@ Shared element transition is a type of transition achieved by animating the size
 This example implements a shared element transition for the scenario where, as a component is expanded, sibling components in the same container disappear or appear. Specifically, attribute animations are applied to width and height changes of a component before and after the expansion; enter/exit animations are applied to the sibling components as they disappear or disappear.
 
 1. Build the component to be expanded, and build two pages for it through state variables: one for the normal state and one for the expanded state.
-  
-  ```ts
-  class Tmp{
-    set(item:CradData):CradData{
-      return item
-    }
-  }
-  // Build two pages for the normal and expanded states of the same component, which are then used based on the declared state variables.
-  @Component
-  export struct MyExtendView {
-    // Declare the isExpand variable to be synced with the parent component.
-    @Link isExpand: boolean;
-    @State cardList: Array<CardData> = xxxx;
-  
-    build() {
-      List() {
-        // Customize the expanded component as required.
-        if (this.isExpand) {
-          Text('expand')
-            .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.8) }))
+
+      ```ts
+      class Tmp{
+        set(item:CradData):CradData{
+          return item
         }
-  
-        ForEach(this.cardList, (item: CradData) => {
-          let Item:Tmp = new Tmp()
-          let Imp:Tmp = Item.set(item)
-          let Mc:Record<string,Tmp> = {'cardData':Imp}
-          MyCard(Mc)
-        })
       }
-      .width(this.isExpand ? 200 : 500) // Define the attributes of the expanded component.
-      .animation({ curve: curves.springMotion()}) // Bind an animation to component attributes.
-    }
-  }
-  ```
+      // Build two pages for the normal and expanded states of the same component, which are then used based on the declared state variables.
+      @Component
+      export struct MyExtendView {
+        // Declare the isExpand variable to be synced with the parent component.
+        @Link isExpand: boolean;
+        @State cardList: Array<CardData> = xxxx;
+      
+        build() {
+          List() {
+            // Customize the expanded component as required.
+            if (this.isExpand) {
+              Text('expand')
+                .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.8) }))
+            }
+      
+            ForEach(this.cardList, (item: CradData) => {
+              let Item:Tmp = new Tmp()
+              let Imp:Tmp = Item.set(item)
+              let Mc:Record<string,Tmp> = {'cardData':Imp}
+              MyCard(Mc) // Encapsulated widget, which needs to be implemented by yourself.
+            })
+          }
+          .width(this.isExpand? 200:500) // Define the attributes of the expanded component as required.
+          .animation({ curve: curves.springMotion()}) // Bind an animation to component attributes.
+        }
+      }
+      ... 
+      ```
 
 2. Expand the component to be expanded. Use state variables to control the disappearance or appearance of sibling components, and apply the enter/exit transition to the disappearance and appearance.
-  
-  ```ts
-  class Tmp{
-    isExpand: boolean = false;
-    set(){
-      this.isExpand = !this.isExpand;
-    }
-  }
-  let Exp:Record<string,boolean> = {'isExpand': false}
-    @State isExpand: boolean = false
-    
-    ...
-    List() {
-      // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
-      if (!this.isExpand) {
-        Text ('Collapse')
-          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion(0.6, 0.9) }))
+
+      ```ts
+      class Tmp{
+        isExpand: boolean = false;
+        set(){
+          this.isExpand = !this.isExpand;
+        }
       }
-    
-      MyExtendView(Exp)
-        .onClick(() => {
-          let Epd:Tmp = new Tmp()
-          Epd.set()
-        })
-    
-      // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
-      if (this.isExpand) {
-        Text ('Expand')
-          .transition(TransitionEffect.translate(y:300).animation({ curve: curves.springMotion() }))
-      }
-    }
-  ...
-  ```
+      let Exp:Record<string,boolean> = {'isExpand': false}
+        @State isExpand: boolean = false
+        
+        ...
+        List() {
+          // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
+          if (!this.isExpand) {
+            Text ('Collapse')
+              .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion(0.6, 0.9) }))
+          }
+        
+          MyExtendView(Exp)
+            .onClick(() => {
+              let Epd:Tmp = new Tmp()
+              Epd.set()
+            })
+        
+          // Control the appearance or disappearance of sibling components through the isExpand variable, and configure the enter/exit transition.
+          if (this.isExpand) {
+            Text ('Expand')
+              .transition(TransitionEffect.translate({y:300}).animation({ curve: curves.springMotion() }))
+          }
+        }
+      ...
+      ```
 
 
 Below is the complete sample code and effect.
@@ -289,7 +290,7 @@ export struct share_zIndex_expand {
             .onClick(() => {
               // Define the animation parameters for expanding and collapsing.
               animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                if(index){
+                if(index != undefined){
                   this.curIndex = index;
                 }
                 this.isExpand = !this.isExpand;
@@ -415,17 +416,11 @@ import curves from '@ohos.curves';
 struct GeometryTransitionDemo {
   // Define the state variable used to control modal transition.
   @State isPresent: boolean = false;
-
+  @State alpha: boolean = false;
   // Use @Builder to build the modal.
   @Builder
   MyBuilder() {
     Column() {
-      Text(this.isPresent ? 'Page 2' : 'Page 1')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .margin(20)
-
       Row() {
         Text('Shared component 1')
           .fontWeight(FontWeight.Bold)
@@ -437,7 +432,7 @@ struct GeometryTransitionDemo {
       .backgroundColor(0xf56c6c)
       .width('100%')
       .aspectRatio(1)
-      .margin({ bottom: 20 })
+      .margin({ bottom: 20, top: 20})
       // New shared element, <Row, whose ID is share1.
       .geometryTransition('share1')
 
@@ -457,14 +452,20 @@ struct GeometryTransitionDemo {
       .transition(TransitionEffect.OPACITY.animation({ curve: curves.springMotion(0.6, 1.2) }))
 
     }
+    .onAppear(()=> {
+      animateTo({}, ()=>{
+        this.alpha = ! this.alpha;
+      })
+    })
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Start)
     .transition(TransitionEffect.opacity(0.99))
-    .backgroundColor(this.isPresent ? 0x909399 : Color.Transparent)
+    .backgroundColor(this.alpha ? 0x909399 : Color.Transparent)
     .clip(true)
     .onClick(() => {
       animateTo({ duration: 1000 }, () => {
+        this.alpha = ! this.alpha;
         this.isPresent = !this.isPresent;
       })
     })
@@ -472,12 +473,6 @@ struct GeometryTransitionDemo {
 
   build() {
     Column() {
-      Text('Page 1')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .margin(20)
-
       Row() {
         Text('Shared component 1')
           .fontWeight(FontWeight.Bold)
@@ -520,7 +515,7 @@ struct GeometryTransitionDemo {
 }
 ```
 
-![en-us_image_0000001597320326](figures/en-us_image_0000001597320326.gif)
+![en-us_image_0000001597320326](figures/en-us_image_0000001597320327.gif)
 
 
 
@@ -539,6 +534,7 @@ struct AutoAchieveShareTransitionDemo {
 
   // Specify whether the component is expanded.
   @State expand: boolean = false;
+  @State scrollState: boolean = true; // Scrollbar status
 
   // Attributes related to the shared element.
   @State rect_top: number = 0; // Position of the shared element.
@@ -547,6 +543,7 @@ struct AutoAchieveShareTransitionDemo {
   @State rect_right: number = 0;
 
   // Attributes related to the newly created element.
+  @State rootPosition: number = 0; // Position of the parent component
   @State item: string = ''; // Record the expanded element.
   @State cardHeight: number = 300; // Widget height.
   @State cardOpacity: number = 1; // Widget opacity.
@@ -587,6 +584,11 @@ struct AutoAchieveShareTransitionDemo {
             // Set a unique ID and obtain the attribute information of the component corresponding to the ID.
             .id(item)
             .onClick(() => {
+              let rootStrJson = getInspectorByKey('root');
+              let rootRect: itTmp = JSON.parse(rootStrJson);
+              let rootRectInfo: Array<object> = JSON.parse('[' + rootRect.$rect + ']');
+              let root_rect_top: string = JSON.parse('[' + rootRectInfo[0] + ']')[1];
+              this.rootPosition = Number(root_rect_top);
               // Obtain the position and size of the corresponding component.
               let strJson = getInspectorByKey(item);
               let rect:itTmp = JSON.parse(strJson);
@@ -604,11 +606,12 @@ struct AutoAchieveShareTransitionDemo {
               this.item = item;
               this.expand = true;
               this.count += 1;
+              this.scrollState = false;
 
               animateTo({ curve: curves.springMotion() }, () => {
-                this.layoutHeight = 2772 / 3.5;
+                this.layoutHeight = px2vp(2772);
                 this.layoutWidth = '100%';
-                this.layoutOffset = -((Number(rect_top) - 136) / 3.5);
+                this.layoutOffset = -px2vp(this.rect_top - this.rootPosition);
               })
             })
           })
@@ -616,6 +619,7 @@ struct AutoAchieveShareTransitionDemo {
         .width('100%')
         .margin({ top: 20 })
       }
+      .enabled(this.scrollState)
       .height('100%')
 
       // Create an element that is the same as the component based on the obtained component information.
@@ -658,17 +662,19 @@ struct AutoAchieveShareTransitionDemo {
         // Work out the absolute position of the new element.
         .position({
           x: this.layoutWidth == '90%' ? '5%' : 0,
-          y: (this.rect_top - 136) / 3.5
+          y: px2vp(this.rect_top - this.rootPosition)
         })
         .translate({
           y: this.layoutOffset
         })
         .onClick(() => {
           this.count -= 1;
+          this.scrollState = false;
 
           animateTo({
             curve: curves.springMotion(),
             onFinish: (() => {
+              this.scrollState = true;
               if (this.count == 0) {
                 this.expand = false;
               }
@@ -681,6 +687,7 @@ struct AutoAchieveShareTransitionDemo {
         })
       }
     }
+    .id('root')
   }
 }
 ```

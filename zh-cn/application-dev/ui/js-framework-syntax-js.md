@@ -96,7 +96,7 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
   export default {
     data: {
       keyMap: {
-        OS: 'OpenHarmony',
+        OS: 'OS',
         Version: '2.0',
       },
     },

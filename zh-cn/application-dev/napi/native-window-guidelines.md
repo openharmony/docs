@@ -124,7 +124,8 @@ libnative_window.so
     ```c++
     #include <sys/mman.h>
 
-    // 使用系统mmap接口拿到bufferHandle的内存虚拟地址
+    // 使用系统接口mmap将bufferHandle对应的共享内存映射到用户空间，可以通过映射出来的虚拟地址向bufferHandle中写入图像数据
+    // bufferHandle->virAddr是bufferHandle在共享内存中的起始地址，bufferHandle->size是bufferHandle在共享内存中的内存占用大小
     void* mappedAddr = mmap(bufferHandle->virAddr, bufferHandle->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle->fd, 0);
     if (mappedAddr == MAP_FAILED) {
         // mmap failed

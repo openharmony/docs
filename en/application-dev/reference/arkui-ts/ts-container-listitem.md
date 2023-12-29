@@ -85,11 +85,18 @@ For a list in horizontal layout, it refers to the delete option displayed below 
 | onEnterActionArea | () => void | No| Callback invoked each time the list item enters the delete area.|
 | onExitActionArea | () => void | No|Callback invoked each time the list item exits the delete area.|
 | builder |  CustomBuilder | No|Swipe action item displayed when the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).|
+| onStateChange<sup>11+</sup> | (swipeActionState) => void | No|Triggered when the swipe state of the list item changes.|
 ## ListItemOptions<sup>10+</sup>
 
 | Name | Type                                 | Mandatory| Description                                                        |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width. It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and **alignListItem** attribute at **ListItemAlign.Center**.<br>If **ListItemStyle.CARD** is set and **ListItemGroupStyle.CARD** is not, only some card styles and functions are available.|
+| style | [ListItemStyle](#listitemstyle10) | No  | Style of the list item.<br>Default value: **ListItemStyle.NONE**<br>If this parameter is set to **ListItemStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemStyle.CARD**, the default card style is applied, but only when **ListItemGroupStyle.CARD** is set for [\<ListItemGroup>](ts-container-listitemgroup.md).<br>In the default card style, the list item has a 48 vp height and 100% width.<br>It can be in focus, hover, press, selected, or disable style depending on the state.<br>**NOTE**<br>In the default card style, the list has its **listDirection** attribute fixed at **Axis.Vertical** and<br>**alignListItem** attribute at **ListItemAlign.Center**.<br>If **ListItemStyle.CARD** is set and **ListItemGroupStyle.CARD** is not, only some card styles and functions are available.|
+
+## SwipeActionOptions<sup>10+</sup>
+
+| Name                        | Type                | Mandatory| Description                                                        |
+| ---------------------------- | ------------------------ | ---- | ------------------------------------------------------------ |
+| onOffsetChange<sup>11+</sup> | (offset: number) => void | No  | Triggered when the location of the list item changes, in vp, at a swipe left or right (in vertical list layout) or up or down (in horizontal list layout).|
 
 ## ListItemStyle<sup>10+</sup>
 
@@ -97,6 +104,14 @@ For a list in horizontal layout, it refers to the delete option displayed below 
 | ---- | ------------------ |
 | NONE | No style.          |
 | CARD | Default card style.|
+
+## SwipeActionState<sup>11+</sup>
+
+| Name     | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| COLLAPSED | Collapsed state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action is hidden.|
+| EXPANDED  | Expanded state.<br>When the list item is swiped left or right (in vertical list layout) or up or down (in horizontal list layout), the swipe action is shown.<br>**NOTE**<br>This option requires a swipe action to be set for the list item.|
+| ACTIONING | Actioning state. The list item is in this state when it enters the delete area.<br>**NOTE**<br>A list item can enter this state only when it is released in a position that meets or goes beyond the specified swipe distance threshold (which must be valid) for deleting the list item.|
 
 ## Events
 

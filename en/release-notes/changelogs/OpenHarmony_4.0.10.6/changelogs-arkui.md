@@ -136,7 +136,7 @@ To retain the display effect in previous versions, you can use the following sol
 
 1. Where the back button is not displayed: Add a left offset by using **margin({left: $r('sys.float.ohos_id_max_padding_start')})**. To center the title bar on the top, use **.height ('100%').alignItems (VerticalAlign.Center)**.
 
-2. Where the back button is displayed: Add a left offset by using **margin（{left: 4})**. To center the title bar on the top, use **.height ('100%').alignItems (VerticalAlign.Center)**.
+2. Where the back button is displayed: Add a left offset by using **margin ({left: 4})**. To center the title bar on the top, use **.height ('100%').alignItems (VerticalAlign.Center)**.
 
 **Example**
 ```ts

@@ -10,7 +10,7 @@ The **Prompt** module provides APIs for creating and showing toasts, dialog boxe
 
 ## Modules to Import
 
-```js
+```ts
 import prompt from '@ohos.prompt'
 ```
 
@@ -30,8 +30,9 @@ Shows a toast.
 
 **Example**
 
-```js
-prompt.showToast({            
+```ts
+import prompt from '@ohos.prompt'
+prompt.showToast({
   message: 'Message Info',
     duration: 2000
 });
@@ -73,7 +74,8 @@ Shows a dialog box. This API uses a promise to return the result synchronously.
 
 **Example**
 
-```js
+```ts
+import prompt from '@ohos.prompt'
 prompt.showDialog({
   title: 'Title Info',
   message: 'Message Info',
@@ -91,7 +93,7 @@ prompt.showDialog({
   .then(data => {
     console.info('showDialog success, click button: ' + data.index);
   })
-  .catch(err => {
+  .catch((err:Error) => {
     console.info('showDialog error: ' + err);
   })
 ```
@@ -115,7 +117,8 @@ Shows a dialog box. This API uses an asynchronous callback to return the result.
 
 **Example**
 
-```js
+```ts
+import prompt from '@ohos.prompt'
 prompt.showDialog({
   title: 'showDialog Title Info',
   message: 'Message Info',
@@ -180,7 +183,8 @@ Shows an action menu. This API uses a callback to return the result asynchronous
 
 **Example**
 
-```js
+```ts
+import prompt from '@ohos.prompt'
 prompt.showActionMenu({
   title: 'Title Info',
   buttons: [
@@ -226,7 +230,8 @@ Shows an action menu. This API uses a promise to return the result synchronously
 
 **Example**
 
-```js
+```ts
+import prompt from '@ohos.prompt'
 prompt.showActionMenu({
   title: 'showActionMenu Title Info',
   buttons: [
@@ -243,7 +248,7 @@ prompt.showActionMenu({
   .then(data => {
     console.info('showActionMenu success, click button: ' + data.index);
   })
-  .catch(err => {
+  .catch((err:Error) => {
     console.info('showActionMenu error: ' + err);
   })
 ```

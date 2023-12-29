@@ -50,10 +50,13 @@ The Advanced Notification Manager enables you to print notifications and set not
 
 ### Setting
 
+> **NOTE**
+> 
+> The Advanced Notification Manager has two editions: **eng** and **user**. The **setting** command can be used only in the **eng** edition. If it is used in the **user** edition, the message **error: user version cannot use setting** is reported.
+
 * **Function**
 
   Sets notification parameters.
-
 * **Method**
 
   ```bash

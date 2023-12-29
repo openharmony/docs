@@ -24,7 +24,7 @@ For details about the requirements on the Linux environment, see [Quick Start](.
 
 ### Getting Started with Development
 
-The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568) as an example to illustrate charging type customization.
+The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568) as an example to illustrate power-off charging animation customization.
 
 1. Create the `animation` folder in the product directory [/vendor/hihope/rk3568](https://gitee.com/openharmony/vendor_hihope/tree/master/rk3568).
 
@@ -205,8 +205,8 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
             "//vendor/hihope/rk3568/resourceschedule:resourceschedule",
             "//vendor/hihope/rk3568/etc:product_etc_conf",
             "//vendor/hihope/rk3568/battery/profile:battery_config",
-            "//vendor/hihope/rk3568/animation/profile:animation_config"   # Add the configuration for building of animation_config.
-            "//vendor/hihope/rk3568/animation/resource/resources_config0" # Add the configuration for building of image resources.
+            "//vendor/hihope/rk3568/animation/profile:animation_config",   # Add the configuration for building of animation_config.
+            "//vendor/hihope/rk3568/animation/resource/resources_config" # Add the configuration for building of image resources.
         ]
         }
     },
@@ -314,7 +314,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
     ![animation_charging_power2](figures/animation_charging_power2.jpg)
 
-    2. %3 battery power
+    2. 3% battery power
 
     ![animation_initial_power2](figures/animation_initial_power2.jpg)
 

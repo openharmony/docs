@@ -30,6 +30,7 @@
 | [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md) | 鼠标事件。                 |
 | [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md) | 注册surface生命周期和触摸事件回调。 |
 | [OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md) | 注册鼠标事件的回调。            |
+| [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) | 定义期望帧率范围。  |
 
 
 ### 类型定义
@@ -79,6 +80,9 @@
 | [OH_NativeXComponent_GetKeyEventSourceType](#oh_nativexcomponent_getkeyeventsourcetype)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;[OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype)&nbsp;\*sourceType) | 获取传入按键事件的事件源类型。                        |
 | [OH_NativeXComponent_GetKeyEventDeviceId](#oh_nativexcomponent_getkeyeventdeviceid)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;int64_t&nbsp;\*deviceId) | 获取传入按键事件的设备id。                         |
 | [OH_NativeXComponent_GetKeyEventTimeStamp](#oh_nativexcomponent_getkeyeventtimestamp)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;int64_t&nbsp;\*timeStamp) | 获取传入按键事件的时间戳。                          |
+| [OH_NativeXComponent_SetExpectedFrameRateRange](#oh_nativexcomponent_setexpectedframeraterange) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) \*range) | 设置期望帧率范围。                                           |
+| [OH_NativeXComponent_RegisterOnFrameCallback](#oh_nativexcomponent_registeronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint64_t timestamp, uint64_t targetTimestamp)) | 为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。 |
+| [OH_NativeXComponent_UnregisterOnFrameCallback](#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component) | 为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。 |
 
 
 ### 变量
@@ -1206,6 +1210,79 @@ int32_t OH_NativeXComponent_RegisterMouseEventCallback (OH_NativeXComponent * co
 
 9
 
+### OH_NativeXComponent_RegisterOnFrameCallback()
+
+```
+int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, uint64_t timestamp, uint64_t targetTimestamp) callback )
+```
+**描述**
+
+为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| callback | 指示指向显示更新回调的指针。  |
+
+**返回：**
+
+返回执行的状态代码。
+
+**起始版本：** 
+
+11
+
+
+### OH_NativeXComponent_SetExpectedFrameRateRange()
+
+```
+int32_t OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent * component, OH_NativeXComponent_ExpectedRateRange * range )
+```
+**描述**
+
+设置期望帧率范围。
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| range | 表示指向期望帧率范围的指针。 |
+
+**返回：**
+
+返回执行的状态代码。
+
+**起始版本：** 
+
+11
+
+
+### OH_NativeXComponent_UnregisterOnFrameCallback()
+
+```
+int32_t OH_NativeXComponent_UnregisterOnFrameCallback (OH_NativeXComponent * component)
+```
+**描述**
+
+为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+
+**返回：**
+
+返回执行的状态代码。
+
+**起始版本：** 
+
+11
+<!--  -->
 
 ## 变量说明
 
@@ -1767,3 +1844,43 @@ float OH_NativeXComponent_MouseEvent::y
 **起始版本：**
 
 8
+
+### expected
+
+```
+int32_t OH_NativeXComponent_ExpectedRateRange::expected
+```
+**描述：**
+
+期望帧率。
+
+**起始版本：**
+
+11
+
+### max
+
+```
+int32_t OH_NativeXComponent_ExpectedRateRange::max
+```
+**描述：**
+
+期望帧率范围最大值。
+
+**起始版本：**
+
+11
+
+
+### min
+
+```
+int32_t OH_NativeXComponent_ExpectedRateRange::min
+```
+**描述：**
+
+期望帧率范围最小值。
+
+**起始版本：**
+
+11

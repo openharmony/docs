@@ -36,7 +36,7 @@ Describes a **FormBindingData** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | data | Object | Yes| Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format.|
-| proxies<sup>10+</sup> | Array<[ProxyData](#proxydata)> | No| Subscription information of the widget update by proxy. The default value is an empty array.<br>**Model restriction**: This API can be used only in the stage model.<br>|
+| proxies<sup>10+</sup> | Array<[proxyData](#proxydata10)> | No| Subscription information of the widget update by proxy. The default value is an empty array.<br>**Model restriction**: This API can be used only in the stage model.<br>|
 
 ## createFormBindingData
 

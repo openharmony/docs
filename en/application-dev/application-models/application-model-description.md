@@ -3,11 +3,11 @@
 
 ## Application Model Overview
 
-Along its evolution, OpenHarmony has provided two application models:
+Along its evolution, the system has provided two application models:
 
-- Feature Ability (FA) model: This model is supported by OpenHarmony API versions 7 and 8, and no longer recommended.
+- Feature Ability (FA) model: This model is supported by API versions 7 and 8, and no longer recommended.
 
-- Stage model: This model is supported since OpenHarmony API version 9. It is the mainstream model with a long evolution plan. In this model, classes such as **AbilityStage** and **WindowStage** are provided as the stage of application components and windows. That's why it is named stage model.
+- Stage model: This model is supported since API version 9. It is the mainstream model with a long evolution plan. In this model, classes such as **AbilityStage** and **WindowStage** are provided as the stage of application components and windows. That's why it is named stage model.
 
 The stage model is designed based on the following considerations:  
 
@@ -15,7 +15,7 @@ The stage model is designed based on the following considerations:
    - In the stage model, multiple application components share an ArkTS engine (VM running the programming language ArkTS) instance. This allows application components to share objects and statuses with less memory required.
    - The object-oriented development mode makes the code of complex applications easy to read, maintain, and scale.
 
-2. **Native support for [cross-device migration](hop-cross-device-migration.md) and [multi-device collaboration](hop-multi-device-collaboration.md) at the application component level**
+2. **Native support for cross-device migration and multi-device collaboration at the application component level**
 
    The stage model decouples application components from User Interfaces (UIs).
 

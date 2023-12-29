@@ -2,7 +2,7 @@
 
 ## Introduction
 
-CPU Profiler, which comes built in OpenHarmony, provides insights into your application's performance. It can measure the time spent in functions at different layers of the call stack without instrumentation, and display the profile data in the timeline.
+CPU Profiler provides insights into your application's performance. It can measure the time spent in functions at different layers of the call stack without instrumentation, and display the profile data in the timeline.
 
 In this document, you can learn how to get the most out of this tool – inspect the timing and time consumption of TS/JS code and NAPI code, identify hotspot functions and performance bottlenecks, and make informed improvements.
 

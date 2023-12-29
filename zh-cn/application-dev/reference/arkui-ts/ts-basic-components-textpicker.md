@@ -14,7 +14,7 @@
 
 ## 接口
 
-TextPicker(options?: {range: string[] | string[][] | Resource | TextPickerRangeContent[] | TextCascadePickerRangeContent[], selected?: number, value?: string})
+TextPicker(options?: {range: string[] | string[][] | Resource | TextPickerRangeContent[] | TextCascadePickerRangeContent[], selected?: number&nbsp;\|&nbsp;number[], value?: string&nbsp;\|&nbsp;string[]})
 
 根据range指定的选择范围创建文本选择器。
 

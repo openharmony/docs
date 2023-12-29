@@ -1,7 +1,7 @@
 # XML Parsing
 
 
-Data transferred in XML format must be parsed in actual use. Generally, three types of elements need to be parsed, as described in [Parsing XML Tags and Tag Values](#parsing-xml-tags-and-tag-values), [Parsing XML Attributes and Attribute Values](#parsing-xml-attributes-and-attribute-values), and [Parsing XML Event Types and Element Depths](#parsing-xml-event-types-and-element-depths).
+Data transferred in XML format must be parsed before being put in use. Generally, three types of elements in XML files need to be parsed: [XML tags and tag values](#parsing-xml-tags-and-tag-values), [XML attributes and attribute values](#parsing-xml-attributes-and-attribute-values), and [XML event types and element depths](#parsing-xml-event-types-and-element-depths).
 
 
 The **xml** module provides the **XmlPullParser** class to parse XML files. The input is an object of the ArrayBuffer or DataView type containing XML text, and the output is the parsed information.
@@ -48,11 +48,11 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
     // 1. Create an XmlPullParser object based on an object of the ArrayBuffer type.
-    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
    
     // 2. Create an XmlPullParser object based on an object of the DataView type.
-    let dataView: DataView = new DataView(arrBuffer.buffer);
-    let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
+    // let dataView: DataView = new DataView(arrBuffer.buffer as object as ArrayBuffer);
+    // let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
     ```
 
 3. Customize a callback function. In this example, the tag and tag value are directly printed.
@@ -110,7 +110,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
         '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
-    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
 3. Customize a callback function. In this example, the attribute and attribute value are directly printed.
@@ -156,7 +156,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
       '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // Encode the data to prevent garbled characters.
-    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
 3. Customize a callback function. In this example, the event type and element depth are directly printed.
@@ -194,7 +194,7 @@ The **xml** module provides the **XmlPullParser** class to parse XML files. The 
 
 ## Example Scenario
 
-The following uses invoking all parsing options as an example to describe how to parse XML tags, attributes, and event types.
+In the following example, all parsing options are invoked to parse XML tags, attributes, and event types.
 
 
 ```ts
@@ -209,7 +209,7 @@ let strXml: string =
     '</book>';
 let textEncoder: util.TextEncoder = new util.TextEncoder();
 let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml);
-let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
 let str: string = '';
 
 function tagFunc(name: string, value: string): boolean {

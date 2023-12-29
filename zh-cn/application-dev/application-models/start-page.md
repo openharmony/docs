@@ -9,21 +9,18 @@
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
-
-async function restartAbility() {
-    let wantInfo: Want = {
-        bundleName: "com.sample.MyApplication",
-        abilityName: "EntryAbility",
-        parameters: {
-            page: "pages/second"
-        }
-    };
-    featureAbility.startAbility({
-        want: wantInfo
-    }).then((data) => {
-        console.info('restartAbility success.');
-    });
-}
+```
+```ts
+(async (): Promise<void> => {
+  let wantInfo: Want = {
+    bundleName: 'com.samples.famodelabilitydevelop',
+    abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton',
+    parameters: { page: 'pages/second' }
+  };
+  featureAbility.startAbility({ want: wantInfo }).then((data) => {
+    Logger.debug(TAG, `restartAbility success : ${data}`);
+  });
+})()
 ```
 
 
@@ -32,7 +29,9 @@ async function restartAbility() {
 ```ts
 // GlobalContext.ts 构造单例对象
 export class GlobalContext {
-  private constructor() {}
+  private constructor() {
+  }
+
   private static instance: GlobalContext;
   private _objects = new Map<string, Object>();
 
@@ -55,15 +54,31 @@ export class GlobalContext {
 
 ```ts
 import Want from '@ohos.app.ability.Want';
-import { GlobalContext } from './GlobalContext';
+import featureAbility from '@ohos.ability.featureAbility';
+import bundle from '@ohos.bundle';
+import { GlobalContext } from '../utils/GlobalContext';
+import Logger from '../utils/Logger';
 
-class EntryAbility {  
-  onNewWant(want: Want) { 
-    GlobalContext.getContext().setObject("newWant", want);  
+const TAG: string = 'PageAbilitySingleton';
+
+class PageAbilitySingleton {
+  onCreate() {
+    ...
+    Logger.info(TAG, 'Application onCreate');
+  }
+
+  onDestroy() {
+    Logger.info(TAG, 'Application onDestroy');
+  }
+
+  onNewWant(want: Want) {
+    featureAbility.getWant().then((want) => {
+      GlobalContext.getContext().setObject('newWant', want);
+    })
   }
 }
 
-export default new EntryAbility()
+export default new PageAbilitySingleton();
 ```
 
 
@@ -72,34 +87,50 @@ export default new EntryAbility()
 ```ts
 import Want from '@ohos.app.ability.Want';
 import router from '@ohos.router';
-import { GlobalContext } from '../GlobalContext';
+import { GlobalContext } from '../../utils/GlobalContext';
 
 @Entry
 @Component
-struct Index {
-  @State message: string = 'Router Page'
-  
+struct First {
   onPageShow() {
-    console.info('Index onPageShow')
-    let newWant = GlobalContext.getContext().getObject("newWant") as Want
-    if (newWant.parameters) {
-      if (newWant.parameters.page) {
-        router.push({ url: newWant.parameters.page });
-        GlobalContext.getContext().setObject("newWant", undefined)
+    let newWant = GlobalContext.getContext().getObject('newWant') as Want;
+    if (newWant) {
+      if (newWant.parameters) {
+        if (newWant.parameters.page) {
+          router.push({ url: newWant.parameters.page as string});
+          GlobalContext.getContext().setObject("newWant", undefined)
+        }
       }
     }
   }
 
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
+    Column() {
+      Row() {
+        Text($r('app.string.singleton_first_title'))
+          .fontSize(24)
           .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Start)
+          .margin({ top: 12, bottom: 11, right: 24, left: 24 })
       }
       .width('100%')
+      .height(56)
+      .justifyContent(FlexAlign.Start)
+
+      Image($r('app.media.pic_empty'))
+        .width(120)
+        .height(120)
+        .margin({ top: 224 })
+
+      Text($r('app.string.no_content'))
+        .fontSize(14)
+        .margin({ top: 8, bottom: 317, right: 152, left: 152 })
+        .fontColor($r('app.color.text_color'))
+        .opacity(0.4)
     }
+    .width('100%')
     .height('100%')
+    .backgroundColor($r('app.color.backGrounding'))
   }
 }
 ```
@@ -112,47 +143,101 @@ struct Index {
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+import fs from '@ohos.file.fs';
+import promptAction from '@ohos.promptAction';
+import worker from '@ohos.worker';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilityFirst';
 
 @Entry
 @Component
-struct Index {
-  @State message: string = 'Hello World'
-
+struct PagePageAbilityFirst {
   build() {
-    Row() {
-      Button("startAbility")
-        .onClick(() => {
-          featureAbility.startAbility({
-            want: {
-              bundleName: "com.exm.myapplication",
-              abilityName: "com.exm.myapplication.EntryAbility",
-              parameters: { page: "pages/page1" }
-            }
-          }).then((data) => {
-            console.info("startAbility finish");
-          }).catch((err: BusinessError) => {
-            console.info("startAbility failed errcode:" + err.code)
+    Column() {
+      Row() {
+        Flex({ justifyContent: FlexAlign.Start, alignContent: FlexAlign.Center }) {
+          Text($r('app.string.pageAbility_first_button'))
+            .fontSize(24)
+            .fontWeight(FontWeight.Bold)
+            .textAlign(TextAlign.Start)
+            .margin({ top: 12, bottom: 11, right: 24, left: 24 })
+        }
+      }
+      .width('100%')
+      .height(56)
+      .justifyContent(FlexAlign.Start)
+      .backgroundColor($r('app.color.backGrounding'))
+
+      List({ initialIndex: 0 }) {
+        ...
+        ListItem() {
+          Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
+            Text($r('app.string.start_standard_first_button'))
+              .textAlign(TextAlign.Start)
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 17, bottom: 17, left: 12, right: 92 })
+              .fontSize(16)
+              .width(232)
+              .height(22)
+              .fontColor($r('app.color.text_color'))
+          }
+          .onClick(() => {
+            let want: Want = {
+              bundleName: 'com.samples.famodelabilitydevelop',
+              abilityName: 'com.samples.famodelabilitydevelop.PageAbilityStandard',
+              parameters: { page: 'pages/first' }
+            };
+            featureAbility.startAbility({ want: want }).then((data) => {
+              Logger.info(TAG, `startAbility finish:${data}`);
+            }).catch((err: BusinessError) => {
+              Logger.info(TAG, `startAbility failed errcode:${err.code}`);
+            })
           })
-        })
-      ...
-      Button("page2")
-        .onClick(() => {
-          featureAbility.startAbility({
-            want: {
-              bundleName: "com.exm.myapplication",
-              abilityName: "com.exm.myapplication.EntryAbility",
-              parameters: { page: "pages/page2" }
-            }
-          }).then((data) => {
-            console.info("startAbility finish");
-          }).catch((err: BusinessError) => {
-            console.info("startAbility failed errcode:" + err.code)
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 12, right: 12, left: 12 })
+
+        ListItem() {
+          Flex({ justifyContent: FlexAlign.SpaceBetween, alignContent: FlexAlign.Center }) {
+            Text($r('app.string.start_standard_second_button'))
+              .textAlign(TextAlign.Start)
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 17, bottom: 17, left: 12, right: 92 })
+              .fontSize(16)
+              .width(232)
+              .height(22)
+              .fontColor($r('app.color.text_color'))
+          }
+          .onClick(() => {
+            let want: Want = {
+              bundleName: 'com.samples.famodelabilitydevelop',
+              abilityName: 'com.samples.famodelabilitydevelop.PageAbilityStandard',
+              parameters: { page: 'pages/second' }
+            };
+            featureAbility.startAbility({ want: want }).then((data) => {
+              Logger.info(TAG, `startAbility finish:${data}`);
+            }).catch((err: BusinessError) => {
+              Logger.info(TAG, `startAbility failed errcode:${err.code}`);
+            })
           })
-        })
-      ...
+        }
+        .height(56)
+        .backgroundColor($r('app.color.start_window_background'))
+        .borderRadius(24)
+        .margin({ top: 12, right: 12, left: 12 })
+        ...
+      }
+      .height('100%')
+      .backgroundColor($r('app.color.backGrounding'))
     }
-    ...
+    .width('100%')
+    .margin({ top: 8 })
+    .backgroundColor($r('app.color.backGrounding'))
   }
 }
 ```
@@ -164,22 +249,17 @@ struct Index {
 import featureAbility from '@ohos.ability.featureAbility';
 import router from '@ohos.router';
 
-class EntryAbility {
+class PageAbilityStandard {
   onCreate() {
     featureAbility.getWant().then((want) => {
       if (want.parameters) {
         if (want.parameters.page) {
-          router.push({
-            url: want.parameters.page as string
-          })
+          router.push({ url: want.parameters.page as string });
         }
       }
     })
   }
-  onDestroy() {
-    // ...
-  }
 }
 
-export default new EntryAbility()
+export default new PageAbilityStandard();
 ```

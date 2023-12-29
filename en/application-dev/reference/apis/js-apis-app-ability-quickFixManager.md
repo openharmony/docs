@@ -4,7 +4,8 @@ The **quickFixManager** module provides APIs for quick fix. With quick fix, you 
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module are system APIs and cannot be called by third-party applications.
 
 ## Modules to Import
 
@@ -268,14 +269,14 @@ Revokes quick fix. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
 If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10).
+
+
 
 **Example**
 

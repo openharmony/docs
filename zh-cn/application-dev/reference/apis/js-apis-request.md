@@ -84,7 +84,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig<sup>6+<sup>](#uploadconfig6) | 是 | 上传的配置信息。 |
 
 
 **返回值：**
@@ -143,7 +143,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig<sup>6+<sup>](#uploadconfig6) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **错误码：**
@@ -202,7 +202,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig<sup>6+<sup>](#uploadconfig6) | 是 | 上传的配置信息。 |
 
 **返回值：**
 
@@ -249,7 +249,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig<sup>6+<sup>](#uploadconfig6) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **示例：**
@@ -395,7 +395,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
 
-取消订阅上传任务进度事件，异步方法。
+取消订阅上传任务进度事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -406,7 +406,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（上传的进度信息）。 |
-  | callback | function | 否 | 需要删除的上传任务进度的回调函数。<br/>uploadedSize：当前已上传文件的大小，单位为B。<br/>totalSize：上传文件的总大小，单位为B。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。<br/>uploadedSize：当前已上传文件的大小，单位为B。<br/>totalSize：上传文件的总大小，单位为B。 |
 
 **示例：**
 
@@ -430,7 +430,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-取消订阅上传任务HTTP标头事件，异步方法。
+取消订阅上传任务HTTP标头事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -441,7 +441,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'headerReceive'（接收响应头）。 |
-  | callback | function | 否 | HTTP&nbsp;Response&nbsp;需要删除的Header事件的回调函数。<br/>header：HTTP&nbsp;Response&nbsp;Header。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
@@ -464,7 +464,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-取消订阅上传任务完成或失败事件，异步方法。
+取消订阅上传任务完成或失败事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -475,7 +475,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 订阅的事件类型，取值为'complete'，表示上传任务完成；取值为'fail'，表示上传任务失败。|
-  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 需要删除的上传任务完成或失败的回调函数。<br/>taskstates：上传任务返回结果 |
+  | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
@@ -653,21 +653,11 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | url | string | 是 | 资源地址。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 | 请求方法：POST、PUT。缺省为POST。 |
+| index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
+| begins<sup>11+</sup> | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
+| ends<sup>11+</sup> | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
 | files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。请使用&nbsp;multipart/form-data提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
-
-## UploadConfig<sup>11+</sup>
-上传任务的配置信息。
-
-**需要权限**：ohos.permission.INTERNET
-
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.MiscServices.Upload。
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| index | number | 否 | 任务的路径索引，默认值为0。 |
-| begins | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
-| ends | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
 
 ## TaskState<sup>9+</sup>
 上传任务信息，[on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9)和[off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9)接口的回调参数。
@@ -683,7 +673,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | message | string | 是 | 上传任务结果描述信息 |
 
 ## File
-[UploadConfig](#uploadconfig)中的文件列表。
+[UploadConfig<sup>6+<sup>](#uploadconfig6)中的文件列表。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -693,12 +683,12 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | filename | string | 是 | multipart提交时，请求头中的文件名。 |
 | name | string | 是 | multipart提交时，表单项目的名称，缺省为file。 |
-| uri | string | 是 | 文件的本地存储路径。<br/>仅支持"internal"协议类型，"internal://cache/"为必填字段，示例：<br/>internal://cache/path/to/file.txt |
+| uri | string | 是 | 文件的本地存储路径。<br/>仅支持"internal"协议类型，"internal://cache/"为应用的私有目录，是必填字段，示例：<br/>internal://cache/path/to/file.txt |
 | type | string | 是 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
 ## RequestData
-[UploadConfig](#uploadconfig)中的表单数据。
+[UploadConfig<sup>6+<sup>](#uploadconfig6)中的表单数据。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -929,6 +919,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let progressCallback = (receivedSize: number, totalSize: number) => {
     console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
@@ -940,7 +931,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt; void): void
 
-取消订阅下载任务进度事件，异步方法。
+取消订阅下载任务进度事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -951,11 +942,12 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'progress'（下载的进度信息）。 |
-  | callback | function | 否 | 需要删除的下载任务进度的回调。 <br/>receivedSize：当前下载任务的进度；<br/>totalSize：下载文件的总大小。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 <br/>receivedSize：当前下载任务的进度；<br/>totalSize：下载文件的总大小。 |
 
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let progressCallback1 = (receivedSize: number, totalSize: number) => {
     console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
   };
@@ -991,6 +983,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let completeCallback = () => {
     console.info('Download task completed.');
   };
@@ -1012,7 +1005,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
-取消订阅下载任务相关的事件，异步方法。
+取消订阅下载任务相关的事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1023,11 +1016,12 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型。<br/>- 取值为'complete'，表示下载任务完成；<br/>- 取值为'pause'，表示下载任务暂停；<br/>- 取值为'remove'，表示下载任务移除。 |
-  | callback | function | 否 | 需要删除的下载任务相关的回调。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let completeCallback1 = () => {
     console.info('Download delete complete notification.');
   };
@@ -1095,6 +1089,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let failCallback = (err: number) => {
     console.error(`Failed to download the task. Code: ${err}`);
   };
@@ -1106,7 +1101,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 off(type: 'fail', callback?: (err: number) =&gt; void): void
 
-取消订阅下载任务失败事件，异步方法。
+取消订阅下载任务失败事件。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1117,11 +1112,12 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 取消订阅的事件类型，取值为'fail'（下载失败）。 |
-  | callback | function | 否 | 需要删除的下载失败的回调函数。<br/>err：下载失败的错误码。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let failCallback1 = (err: number) => {
     console.error(`Failed to download the task. Code: ${err}`);
   };
@@ -1155,6 +1151,7 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.delete().then((result: boolean) => {
     console.info('Succeeded in removing the download task.');
   }).catch((err: BusinessError) => {
@@ -1182,6 +1179,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1211,6 +1209,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
     console.info('Succeeded in querying the download task')
   }).catch((err: BusinessError) => {
@@ -1238,6 +1237,7 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
     if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
@@ -1267,6 +1267,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskMimeType().then((data: string) => {
     console.info('Succeeded in querying the download MimeType');
   }).catch((err: BusinessError) => {
@@ -1294,6 +1295,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
     if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
@@ -1323,6 +1325,7 @@ suspend(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.suspend().then((result: boolean) => {
     console.info('Succeeded in pausing the download task.');
   }).catch((err: BusinessError) => {
@@ -1350,6 +1353,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.suspend((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1379,6 +1383,7 @@ restore(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.restore().then((result: boolean) => {
     console.info('Succeeded in resuming the download task.')
   }).catch((err: BusinessError) => {
@@ -1406,6 +1411,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.restore((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1750,7 +1756,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。Wi-Fi为非计费网络，数据流量为计费网络。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径，比如：\`${featureAbility.getContext().getFilesDir()}/test.txt\`，并将文件存储在此路径下。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径，比如：\`${globalThis.abilityContext.tempDir}/test.txt\`，并将文件存储在此路径下。|
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径。|
 | networkType | number | 否 | 设置允许下载的网络类型(默认使用NETWORK_MOBILE&NETWORK_WIFI)。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载任务名称。 |
 | background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态(默认使用false)。 |
@@ -1816,6 +1822,8 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 定义自定义系统事件。用户可以使用公共事件接口获取该事件。
 上传下载 SA 具有 'ohos.permission.SEND_TASK_COMPLETE_EVENT' 该权限，用户可以配置事件的 metadata 指向的二级配置文件来拦截其他事件发送者。
 
+使用 CommonEventData 类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中 CommonEventData.code 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED; CommonEventData.data 表示任务的 taskId。
+
 事件配置信息请参考[静态订阅公共事件](../../application-models/common-event-static-subscription.md)。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
@@ -1857,7 +1865,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
 | url | string | 是 | 资源地址，其最大长度为2048个字符。 |
-| title | string | 否 | 任务标题，其最大长度为256个字符，默认值为空。 |
+| title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。 |
 | description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。 |
 | mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。<br/>-对于前端任务，有回调通知。<br/>-对于后台任务，有系统通知、检测网络连接、恢复、自动重试功能。 |
 | overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。 |
@@ -1876,6 +1884,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | gauge | boolean | 否 | 后台任务的过程进度通知策略，仅应用于后台任务，默认值为false。<br/>-false：代表仅完成或失败的通知。<br/>-true，发出每个进度已完成或失败的通知。 |
 | precise | boolean | 否 | -如果设置为true，在上传/下载无法获取文件大小时任务失败。<br/>-如果设置为false，将文件大小设置为-1时任务继续。<br/>默认值为false。 |
 | token | string | 否 | 当创建了一个带有token的任务后，token则为正常查询期间必须提供的，否则将无法通过查询进行检索。其最小为8个字节，最大为2048个字节。默认为空。 |
+| priority<sup>11+</sup> | number | 否 | 任务的优先级。任务模式相同的情况下，该配置项的数字越小优先级越高，默认值为0。 |
 | extras | object | 否 | 配置的附加功能，默认为空。 |
 
 ## State<sup>10+</sup>  
@@ -1938,7 +1947,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | after | number | 否 | 开始的Unix时间戳（毫秒），默认值为调用时刻减24小时。 |
 | state | [State](#state10) | 否 | 指定任务的状态。 |
 | action | [Action](#action10) | 否 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
-| mode | [Mode](#mode10) | 否 | 任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
+| mode | [Mode](#mode10) | 否 | 任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。<br/>-如果未填写，则查询所有任务。 |
 
 ## TaskInfo<sup>10+</sup> 
 查询结果的任务信息数据结构，提供普通查询和系统查询，两种字段的可见范围不同。
@@ -1957,6 +1966,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | description | string | 是 | 任务描述。 |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
 | mode | [Mode](#mode10) | 是 | 指定任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
+| priority<sup>11+</sup> | number | 否 | 任务配置中的优先级。前端任务的优先级比后台任务高。相同模式的任务，数字越小优先级越高。 |
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
 | gauge | boolean | 是 | 后台任务的进度通知策略。 |
@@ -2401,7 +2411,7 @@ on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
 off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅前端任务进度事件，异步方法。
+取消订阅前端任务进度事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2410,7 +2420,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码：**
 
@@ -2480,7 +2490,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅前端任务完成事件，异步方法。
+取消订阅前端任务完成事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2489,7 +2499,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 订阅的事件类型。<br>- 取值为'completed'，表示任务完成。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码：**
 
@@ -2559,7 +2569,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅前端任务失败事件，异步方法。
+取消订阅前端任务失败事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2568,7 +2578,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 订阅的事件类型。<br>- 取值为'failed'，表示任务失败。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码：**
 
@@ -2638,7 +2648,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务暂停事件，异步方法。
+取消订阅任务暂停事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2647,7 +2657,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 订阅的事件类型。<br>- 取值为'pause'，表示任务暂停。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码：**
 
@@ -2713,7 +2723,7 @@ off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务恢复事件，异步方法。
+取消订阅任务恢复事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2722,7 +2732,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 订阅的事件类型。<br>- 取值为'resume'，表示任务恢复。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码：**
 
@@ -2788,7 +2798,7 @@ off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
 off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 
-取消订阅任务删除事件，异步方法。
+取消订阅任务删除事件。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -2797,7 +2807,7 @@ off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 订阅的事件类型。<br>- 取值为'remove'，表示任务删除。 |
-  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构。 |
+  | callback | function | 否 | 需要取消订阅的回调函数。若无此参数，则取消订阅当前类型的所有回调函数。 |
 
 **错误码：**
 
@@ -3540,6 +3550,47 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 > **说明：**
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+## request.agent.getTask<sup>11+</sup>
+
+getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
+
+根据任务id查询任务。使用Promise异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | id | string | 是 | 任务id。 |
+  | token | string | 否 | 任务查询token。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[Task](#task10)&gt; | Promise对象。返回任务配置信息的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```ts
+  request.agent.getTask(context, "123456").then((task: request.agent.Task) => {
+    console.info(`Succeeded in querying a upload task. result: ${task.uid}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
 
 ## request.agent.remove<sup>10+</sup>
 

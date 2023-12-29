@@ -1,7 +1,7 @@
-# I/O Intensive Task Development
+# I/O Intensive Task Development (TaskPool)
 
 
-Asynchronous concurrency can solve the problem of a single blocking I/O operation. In the case of I/O intensive tasks, the execution of other tasks in the thread is still blocked. To resolve this issue, multithread concurrency is introduced.
+I/O intensive tasks are tasks that require frequent I/O operations such as disk read/write and network communication. While asynchronous concurrency can address the thread blocking issue for single I/O tasks, it falls short in the case of I/O intensive tasks. This is where multithread concurrency comes into play.
 
 
 The performance focus of I/O intensive tasks is not the CPU processing capability, but the speed and efficiency of I/O operations, since such a task usually requires frequent operations such as disk read/write and network communication. The following uses frequent read/write operations on a system file to simulate concurrency processing of I/O intensive tasks.
@@ -13,7 +13,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
     import fs from '@ohos.file.fs';
 
     // Define a concurrency function that internally calls I/O capabilities intensively.
-    // Implement file writing.
+    // Write data to the file.
     export async function write(data: string, filePath: string): Promise<void> {
       let file: fs.File = await fs.open(filePath, fs.OpenMode.READ_WRITE);
       await fs.write(file.fd, data);
@@ -27,7 +27,7 @@ The performance focus of I/O intensive tasks is not the CPU processing capabilit
 
     @Concurrent
     async function concurrentTest(fileList: string[]): Promise<boolean> {
-      // Write the file cyclically.
+      // Write data to the file cyclically.
       for (let i: number = 0; i < fileList.length; i++) {
         write('Hello World!', fileList[i]).then(() => {
           console.info(`Succeeded in writing the file. FileList: ${fileList[i]}`);

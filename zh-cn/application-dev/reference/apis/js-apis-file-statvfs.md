@@ -24,13 +24,13 @@ getFreeSize(path:string):Promise&lt;number&gt;
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | path   | string | 是   | 需要查询的文件系统的文件路径 |
+  | path   | string | 是   | 需要查询的文件系统的文件路径。 |
 
 **返回值：**
 
   | 类型                  | 说明           |
   | --------------------- | -------------- |
-  | Promise&lt;number&gt; | 返回空闲字节数 |
+  | Promise&lt;number&gt; | Promise对象，返回空闲字节数。 |
 
 **错误码：**
 
@@ -40,11 +40,14 @@ getFreeSize(path:string):Promise&lt;number&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let path: string = "/dev";
+  import common from '@ohos.app.ability.common';
+  
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
   statvfs.getFreeSize(path).then((number: number) => {
     console.info("getFreeSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
-    console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -60,8 +63,8 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
   | 参数名   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | 是   | 需要查询的文件系统的文件路径 |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 异步获取空闲字节数之后的回调 |
+  | path     | string                      | 是   | 需要查询的文件系统的文件路径。 |
+  | callback | AsyncCallback&lt;number&gt; | 是   | 异步获取空闲字节数之后的回调。 |
 
 **错误码：**
 
@@ -71,10 +74,13 @@ getFreeSize(path:string, callback:AsyncCallback&lt;number&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let path: string = "/dev";
+  import common from '@ohos.app.ability.common';
+  
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
   statvfs.getFreeSize(path, (err: BusinessError, number: number) => {
     if (err) {
-      console.info("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getFreeSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getFreeSize succeed, Size: " + number);
     }
@@ -93,13 +99,13 @@ getFreeSizeSync(path:string): number
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ------ | ------ | ---- | ---------------------------- |
-  | path   | string | 是   | 需要查询的文件系统的文件路径 |
+  | path   | string | 是   | 需要查询的文件系统的文件路径。 |
 
 **返回值：**
 
   | 类型                  | 说明           |
   | --------------------- | -------------- |
-  | number | 返回空闲字节数 |
+  | number | 返回空闲字节数。 |
 
 **错误码：**
 
@@ -108,7 +114,10 @@ getFreeSizeSync(path:string): number
 **示例：**
 
   ```ts
-  let path = "/dev";
+  import common from '@ohos.app.ability.common';
+  
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
   let number = statvfs.getFreeSizeSync(path);
   console.info("getFreeSizeSync succeed, Size: " + number);
   ```
@@ -125,13 +134,13 @@ getTotalSize(path: string): Promise&lt;number&gt;
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ---- | ------ | ---- | ---------------------------- |
-  | path | string | 是   | 需要查询的文件系统的文件路径 |
+  | path | string | 是   | 需要查询的文件系统的文件路径。 |
 
 **返回值：**
 
   | 类型                  | 说明         |
   | --------------------- | ------------ |
-  | Promise&lt;number&gt; | 返回总字节数 |
+  | Promise&lt;number&gt; | Promise对象，返回总字节数。 |
 
 **错误码：**
 
@@ -141,11 +150,14 @@ getTotalSize(path: string): Promise&lt;number&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let path: string = "/dev";
+  import common from '@ohos.app.ability.common';
+  
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
   statvfs.getTotalSize(path).then((number: number) => {
     console.info("getTotalSize succeed, Size: " + number);
   }).catch((err: BusinessError) => {
-    console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
+    console.error("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -161,8 +173,8 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
   | 参数名   | 类型                        | 必填 | 说明                         |
   | -------- | --------------------------- | ---- | ---------------------------- |
-  | path     | string                      | 是   | 需要查询的文件系统的文件路径 |
-  | callback | AsyncCallback&lt;number&gt; | 是   | 异步获取总字节数之后的回调   |
+  | path     | string                      | 是   | 需要查询的文件系统的文件路径。 |
+  | callback | AsyncCallback&lt;number&gt; | 是   | 异步获取总字节数之后的回调。   |
 
 **错误码：**
 
@@ -172,10 +184,13 @@ getTotalSize(path: string, callback: AsyncCallback&lt;number&gt;): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  let path: string = "/dev";
+  import common from '@ohos.app.ability.common';
+  
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
   statvfs.getTotalSize(path, (err: BusinessError, number: number) => {
     if (err) {
-      console.info("getTotalSize with error message: " + err.message + ", error code: " + err.code);
+      console.info("getTotalSize failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("getTotalSize succeed, Size: " + number);
     }
@@ -194,13 +209,13 @@ getTotalSizeSync(path: string): number
 
   | 参数名 | 类型   | 必填 | 说明                         |
   | ---- | ------ | ---- | ---------------------------- |
-  | path | string | 是   | 需要查询的文件系统的文件路径 |
+  | path | string | 是   | 需要查询的文件系统的文件路径。 |
 
 **返回值：**
 
   | 类型                  | 说明         |
   | --------------------- | ------------ |
-  | number | 返回总字节数 |
+  | number | 返回总字节数。 |
 
 **错误码：**
 
@@ -209,7 +224,10 @@ getTotalSizeSync(path: string): number
 **示例：**
 
   ```ts
-  let path = "/dev";
+  import common from '@ohos.app.ability.common';
+  
+  let context = getContext(this) as common.UIAbilityContext;
+  let path = context.filesDir;
   let number = statvfs.getTotalSizeSync(path);
   console.info("getTotalSizeSync succeed, Size: " + number);
   ```

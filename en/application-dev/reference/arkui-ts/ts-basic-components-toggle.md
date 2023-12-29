@@ -31,9 +31,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name      | Description                |
 | -------- | ---------------- |
-| Checkbox | Check box type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 14 px,<br> right: 14 px,<br> bottom: 14 px,<br> left: 14 px<br> } |
+| Checkbox | Check box type.<br>**NOTE**<br>Since API version 11, the default style of the check box is changed from rounded square to circle.<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: '14px',<br> right: '14px',<br> bottom: '14px',<br> left: '14px'<br> } |
 | Button   | Button type. The set string, if any, will be displayed inside the button.      |
-| Switch   | Switch type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 6px,<br> right: 14px,<br> bottom: 6 px,<br> left: 14 px<br> } |
+| Switch   | Switch type.<br>**NOTE**<br>The default value of the universal attribute [margin](ts-universal-attributes-size.md) is as follows:<br>{<br> top: '6px',<br> right: '14px',<br> bottom: '6px',<br> left: '14px'<br> } |
 
 ## Attributes
 

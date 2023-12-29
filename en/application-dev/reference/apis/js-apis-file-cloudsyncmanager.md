@@ -1,6 +1,6 @@
 # @ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)
 
-The **cloudSyncManager** module provides APIs for managing device-cloud synergy for applications. You can use the APIs to enable or disable device-cloud synergy, change the device-cloud synchronization switch for an application, notify cloud data changes, and clear or retain cloud files when a cloud account exits.
+The **cloudSyncManager** module provides APIs for managing device-cloud synergy for applications. You can use the APIs to enable or disable device-cloud synergy, change the device-cloud synchronization switch for an application, notify an application of cloud data changes, and clear or retain cloud files when a cloud account exits.
 
 > **NOTE**
 >
@@ -104,7 +104,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;
 
-Notifies the cloud and device services of the application data change in the cloud. This API uses a promise to return the result.
+Notifies the cloud sync service of the application data change in the cloud. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
@@ -148,7 +148,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-Notifies the cloud and device services of the application data change in the cloud. This API uses a promise to return the result.
+Notifies the cloud sync service of the application data change in the cloud. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
@@ -177,6 +177,108 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   let accountId: string = "testAccount";
   let bundleName: string = "com.example.bundle";
   cloudSyncManager.notifyDataChange(accountId, bundleName, (err: BusinessError) => {
+    if (err) {
+      console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
+    } else {
+      console.info("notifyDataChange successfully");
+    }
+  });
+  ```
+## ExtraData<sup>11+</sup>
+
+Represents the cloud data change information.
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| eventId | string | Yes  | Change event ID.|
+| extraData | string | Yes  | Change of the cloud data.|
+
+
+## cloudSyncManager.notifyDataChange<sup>11+</sup> 
+
+notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
+
+Notifies the cloud sync service of the application data change in the cloud. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| userId | number | Yes  | User ID. |
+| extraData | string | Yes  | Change of the cloud data.|
+
+**Return value**
+
+| Type                 | Description            |
+| --------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise used to return the application data change in the cloud.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  cloudSyncManager.notifyDataChange(userId, extraData).then(() => {
+    console.info("notifyDataChange successfully");
+  }).catch((err: BusinessError) => {
+    console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## cloudSyncManager.notifyDataChange<sup>11+</sup>
+
+notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&lt;void&gt;): void
+
+Notifies the cloud sync service of the application data change in the cloud. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+**System capability**: SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description|
+| ---------- | ------ | ---- | ---- |
+| userId | number | Yes  | User ID.|
+| extraData | string | Yes  | Change of the cloud data.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the application data change in the cloud.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let userId: number = 100;
+  let extraData: ExtraData = {eventId: "eventId", extraData: "data"};
+  cloudSyncManager.notifyDataChange(userId, extraData, (err: BusinessError) => {
     if (err) {
       console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -451,9 +553,10 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
-| 201 | Permission verification failed. |
-| 202 | The caller is not a system application. |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
 | 401 | The input parameter is invalid. |
+| 13600001  | IPC error. |
 
 **Example**
 

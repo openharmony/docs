@@ -12,7 +12,7 @@
 import pointer from '@ohos.multimodalInput.pointer';
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
@@ -24,7 +24,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| visible  | boolean                   | 是    | 鼠标指针是否显示。 |
+| visible  | boolean                   | 是    | 鼠标指针是否显示。true表示显示，false表示不显示 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
@@ -43,7 +43,7 @@ try {
 }
 ```
 
-## pointer.setPointerVisible<sup>9+</sup>
+## pointer.setPointerVisible
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
@@ -55,7 +55,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 | 参数名      | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| visible | boolean | 是    | 鼠标指针是否显示。 |
+| visible | boolean | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
 
 **返回值**：
 
@@ -100,7 +100,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -130,7 +130,7 @@ try {
 }
 ```
 
-## pointer.isPointerVisible<sup>9+</sup>
+## pointer.isPointerVisible
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
@@ -168,7 +168,7 @@ isPointerVisibleSync(): boolean
 
 | 参数                     | 说明                  |
 | ---------------------- | ------------------- |
-| boolean | 返回鼠标指针显示或隐藏状态。 |
+| boolean | 返回鼠标指针显示或隐藏状态。true代表显示状态，false代表隐藏状态。 |
 
 **示例**：
 
@@ -181,7 +181,7 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -214,7 +214,7 @@ try {
 }
 ```
 
-## pointer.setPointerSpeed<sup>9+</sup>
+## pointer.setPointerSpeed
 
 setPointerSpeed(speed: number): Promise&lt;void&gt;
 
@@ -275,7 +275,7 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 
@@ -307,7 +307,7 @@ try {
 }
 ```
 
-## pointer.getPointerSpeed<sup>9+</sup>
+## pointer.getPointerSpeed
 
 getPointerSpeed(): Promise&lt;number&gt;
 
@@ -376,7 +376,7 @@ setHoverScrollState(state: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state    | boolean                    | 是    | 鼠标悬停滚动开关状态。   |
+| state    | boolean                    | 是    | 鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
@@ -409,7 +409,7 @@ setHoverScrollState(state: boolean): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean | 是    | 鼠标悬停滚动开关状态。 |
+| state | boolean | 是    | 鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。 |
 
 **返回值**：
 
@@ -443,7 +443,7 @@ getHoverScrollState(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标悬停滚动开关状态。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。 |
 
 **示例**：
 
@@ -471,7 +471,7 @@ getHoverScrollState(): Promise&lt;boolean&gt;
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise实例，异步返回鼠标悬停滚动开关状态。 |
+| Promise&lt;boolean&gt; | Promise实例，异步返回鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。 |
 
 **示例**：
 
@@ -742,7 +742,7 @@ try {
 }
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
 
@@ -755,7 +755,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 | 参数名       | 类型                                       | 必填   | 说明             |
 | -------- | ---------------------------------------- | ---- | -------------- |
 | windowId | number                                   | 是    | 窗口id。    |
-| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle9)&gt; | 是    | 回调函数，异步返回鼠标样式类型。 |
+| callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | 是    | 回调函数，异步返回鼠标样式类型。 |
 
 **示例**：
 
@@ -784,7 +784,7 @@ window.getLastWindow(context, (error: BusinessError, win: window.Window) => {
 });
 ```
 
-## pointer.getPointerStyle<sup>9+</sup>
+## pointer.getPointerStyle
 
 getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
@@ -802,7 +802,7 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
 | 参数                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[PointerStyle](#pointerstyle9)&gt; | Promise实例，异步返回鼠标样式类型。 |
+| Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise实例，异步返回鼠标样式类型。 |
 
 **示例**：
 
@@ -849,7 +849,7 @@ getPointerStyleSync(windowId: number): PointerStyle
 
 | 参数                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| [PointerStyle](#pointerstyle9) | 返回鼠标样式类型。 |
+| [PointerStyle](#pointerstyle) | 返回鼠标样式类型。 |
 
 **示例**：
 
@@ -862,7 +862,7 @@ try {
 }
 ```
 
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -875,7 +875,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle, callback: AsyncCal
 | 参数名           | 类型                             | 必填   | 说明                                  |
 | ------------ | ------------------------------ | ---- | ----------------------------------- |
 | windowId     | number                         | 是    | 窗口id。                          |
-| pointerStyle | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。                             |
+| pointerStyle | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。                             |
 | callback     | AsyncCallback&lt;void&gt;      | 是    | 回调函数。 |
 
 **示例**：
@@ -903,7 +903,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
   }
 });
 ```
-## pointer.setPointerStyle<sup>9+</sup>
+## pointer.setPointerStyle
 
 setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&gt;
 
@@ -916,7 +916,7 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 | 参数名                  | 类型                             | 必填   | 说明               |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | 是    | 窗口id。       |
-| pointerStyle        | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。          |
+| pointerStyle        | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。          |
 | Promise&lt;void&gt; | void                           | 是    | Promise对象。 |
 
 **示例**：
@@ -958,7 +958,7 @@ setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 | 参数名                  | 类型                             | 必填   | 说明               |
 | ------------------- | ------------------------------ | ---- | ---------------- |
 | windowId            | number                         | 是    | 窗口id。       |
-| pointerStyle        | [PointerStyle](#pointerstyle9) | 是    | 鼠标样式id。          |
+| pointerStyle        | [PointerStyle](#pointerstyle) | 是    | 鼠标样式。          |
 
 **示例**：
 ```js
@@ -984,7 +984,7 @@ window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) =>
 });
 ```
 
-## PointerStyle<sup>9+</sup>
+## PointerStyle
 
 鼠标样式类型。
 
@@ -1118,7 +1118,7 @@ getTouchpadScrollSwitch(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴能力开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴能力开启状态。true代表开启，false代表关闭，默认为开启。 |
 
 **示例**：
 
@@ -1146,7 +1146,7 @@ getTouchpadScrollSwitch(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板滚轴能力开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板滚轴能力开启状态。true代表开启，false代表关闭，默认为开启。 |
 
 **示例**：
 
@@ -1174,7 +1174,7 @@ setTouchpadScrollDirection(state: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | 是    | state为触控板滚轴的方向。true与手指滑动的方向一致，false与手指滑动的方向相反，默认为true。   |
+| state | boolean | 是    | state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反，<br>默认为true。   |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
@@ -1207,7 +1207,7 @@ setTouchpadScrollDirection(state: boolean): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  state为触控板滚轴的方向。true与手指滑动的方向一致，false与手指滑动的方向相反，默认为true。     |
+| state | boolean| 是    |  state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true|
 
 **返回值**：
 
@@ -1241,7 +1241,7 @@ getTouchpadScrollDirection(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴方向。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true |
 
 **示例**：
 
@@ -1269,7 +1269,7 @@ getTouchpadScrollDirection(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板滚轴方向。 |
+| Promise\<boolean> | Promise实例，异步返回触控板滚轴方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true |
 
 **示例**：
 
@@ -1330,7 +1330,7 @@ setTouchpadTapSwitch(state: boolean): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  触控板轻触功能开关开启状态。 true代表轻触开启，false代表轻触关闭，默认开启。  |
+| state | boolean| 是    |  触控板轻触功能开关开启状态， true代表轻触开启，false代表轻触关闭，默认开启。  |
 
 **返回值**：
 
@@ -1364,7 +1364,7 @@ getTouchpadTapSwitch(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板轻触功能开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板轻触功能开启状态， true代表开启，false代表关闭，默认开启。 |
 
 **示例**：
 
@@ -1392,7 +1392,7 @@ getTouchpadTapSwitch(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板轻触功能开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板轻触功能开启状态，true代表开启，false代表关闭，默认开启。 |
 
 **示例**：
 
@@ -1610,7 +1610,7 @@ getTouchpadPinchSwitch(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板双指捏合功能开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板双指捏合功能开启状态。true代表功能开启，false代表功能关闭，默认开启。 |
 
 **示例**：
 
@@ -1638,7 +1638,7 @@ getTouchpadPinchSwitch(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板双指捏合功能开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板双指捏合功能开启状态。true代表功能开启，false代表功能关闭，默认开启。 |
 
 **示例**：
 
@@ -1733,7 +1733,7 @@ getTouchpadSwipeSwitch(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板多指滑动功能开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板多指滑动功能开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。 |
 
 **示例**：
 
@@ -1761,7 +1761,7 @@ getTouchpadSwipeSwitch(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板多指滑动功能开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板多指滑动功能开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。 |
 
 **示例**：
 
@@ -1801,7 +1801,7 @@ setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>):
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| RightClickType| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
+| type| [RightClickType](#rightclicktype10)| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
@@ -1834,7 +1834,7 @@ setTouchpadRightClickType(type: RightClickType): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| type| RightClickType| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
+| type| [RightClickType](#rightclicktype10)| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
 
 **返回值**：
 
@@ -1868,7 +1868,7 @@ getTouchpadRightClickType(callback: AsyncCallback\<RightClickType>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<RightClickType> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
+| callback | AsyncCallback\<[RightClickType](#rightclicktype10)> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
 
 **示例**：
 
@@ -1896,7 +1896,7 @@ getTouchpadRightClickType(): Promise\<RightClickType>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<RightClickType > | Promise实例，异步返回触控板右键菜单类型。 |
+| Promise\<[RightClickType](#rightclicktype10) > | Promise实例，异步返回触控板右键菜单类型。 |
 
 **示例**：
 
@@ -2093,6 +2093,10 @@ setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置鼠标光标颜色，使用AsyncCallback异步方式返回结果。
 
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
+
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
 **系统API**: 此接口为系统接口。
@@ -2125,6 +2129,10 @@ try {
 setPointerColor(color: number): Promise&lt;void&gt;
 
 设置鼠标光标颜色，使用Promise异步方式返回结果。
+
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2159,6 +2167,10 @@ try {
 setPointerColorSync(color: number): void;
 
 设置鼠标光标颜色，使用同步方式进行设置。
+
+**说明**
+>
+> 设置和调试时，需连接外部设备，如鼠标、蓝牙等。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -2262,4 +2274,91 @@ try {
 } catch (error) {
   console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
+```
+
+## pointer.setCustomCursor<sup>11+</sup>
+
+setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, focusY?: number): Promise&lt;void&gt;
+
+设置自定义光标样式，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| windowId  | number  | 是    | 窗口id。                          |
+| pixelMap  | [image.PixelMap](js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
+| focusX  | number | 否    | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
+| focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例**：
+
+```js
+import image from '@ohos.multimedia.image';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+const svgFileData = await getContext().resourceManager.getMediaContent($r("app.media.icon"));
+const svgBuffer = svgFileData.buffer;
+let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+  window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    let windowId = win.getWindowProperties().id;
+      try {
+        pointer.setCustomCursor(windowId, pixelMap).then(() => {
+          console.log(`setCustomCursor success`);
+        });
+      } catch (error) {
+        console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      }
+  });
+});
+```
+
+## pointer.setCustomCursorSync<sup>11+</sup>
+
+setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number, focusY?: number): void
+
+设置自定义光标样式，使用同步方式进行设置。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| windowId  | number  | 是    | 窗口id。                          |
+| pixelMap  | [image.PixelMap](js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
+| focusX  | number | 否    | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
+| focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
+
+**示例**：
+
+```js
+import image from '@ohos.multimedia.image';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+const svgFileData = await getContext().resourceManager.getMediaContent($r("app.media.icon"));
+const svgBuffer = svgFileData.buffer;
+let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+  window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+    let windowId = win.getWindowProperties().id;
+      try {
+        pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
+        console.log(`setCustomCursorSync success`);
+      } catch (error) {
+        console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      }
+  });
+});
 ```

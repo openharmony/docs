@@ -1,4 +1,4 @@
-# 多音频播放的并发策略
+# 多音频播放的并发策略(ArkTS)
 
 ## 音频打断策略
 
@@ -53,7 +53,7 @@
 
 - 若[使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)，则可以调用AudioRenderer的[on('audioInterrupt')](../reference/apis/js-apis-audio.md#onaudiointerrupt9)函数进行监听，当收到音频打断事件（InterruptEvent）时，应用需根据其内容，做出相应的调整。
 
-  为了带给用户更好的体验，针对不同的音频打断事件内容，应用需要做出相应的处理操作。此处以使用AudioRenderer开发音频播放功能为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考（若使用AVPlayer开发音频播放功能，处理方法类似），具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
+为了带给用户更好的体验，针对不同的音频打断事件内容，应用需要做出相应的处理操作。此处以使用AudioRenderer开发音频播放功能为例，展示推荐应用采取的处理方法，提供伪代码供开发者参考（若使用AVPlayer开发音频播放功能，处理方法类似），具体的代码实现，开发者可结合实际情况编写，处理方法也可自行调整。
   
 ```ts
 import audio from '@ohos.multimedia.audio';  // 导入audio模块

@@ -1,8 +1,8 @@
 # @ohos.data.dataAbility (DataAbility Predicates)
 
-**DataAbility** provides APIs for creating predicates, which implement different query methods for relational database (RDB) stores.
+The **DataAbility** module provides APIs to create predicates for querying data from relational database (RDB) stores.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
@@ -17,7 +17,7 @@ import dataAbility from '@ohos.data.dataAbility';
 
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
 
-Creates an **RdbPredicates** object from a **DataAbilityPredicates** object.
+Creates an **RdbPredicates** object with a table name and a **DataAbilityPredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -39,6 +39,7 @@ Creates an **RdbPredicates** object from a **DataAbilityPredicates** object.
   ```js
   let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
   dataAbilityPredicates.equalTo("NAME", "Rose")
+  // EMPLOYEE is a table created in a relational database.
   let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
   ```
 
@@ -46,11 +47,19 @@ Creates an **RdbPredicates** object from a **DataAbilityPredicates** object.
 
 Provides predicates for implementing diverse query methods.
 
+**Initialization**
+
+  ```js
+  let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+  ```
+
 ### equalTo
 
 equalTo(field: string, value: ValueType): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value equal to the specified value.
+Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value equals to the specified value.
+
+This API is similar to the SQL equal to (=) operator.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -79,6 +88,8 @@ notEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
 Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value not equal to the specified value.
 
+This API is similar to the SQL not equal (!=) operator.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
@@ -104,7 +115,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 beginWrap(): DataAbilityPredicates
 
-Adds a left parenthesis to this **DataAbilityPredicates**.
+Adds a left parenthesis to this **DataAbilityPredicates**. This API is similar to "(" in an SQL statement and must be used with **endWrap**.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -129,7 +140,7 @@ Adds a left parenthesis to this **DataAbilityPredicates**.
 
 endWrap(): DataAbilityPredicates
 
-Adds a right parenthesis to this **DataAbilityPredicates**.
+Adds a right parenthesis to this **DataAbilityPredicates**. This API is similar to ")" in an SQL statement and must be used with **beginWrap**.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -155,6 +166,8 @@ Adds a right parenthesis to this **DataAbilityPredicates**.
 or(): DataAbilityPredicates
 
 Adds the OR condition to this **DataAbilityPredicates**.
+
+This API is similar to the SQL **or** operator.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -227,6 +240,8 @@ beginsWith(field: string, value: string): DataAbilityPredicates
 
 Sets a **DataAbilityPredicates** object to match a string that starts with the specified value.
 
+This API is similar to the SQL modulo (%) operator.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
@@ -253,6 +268,8 @@ Sets a **DataAbilityPredicates** object to match a string that starts with the s
 endsWith(field: string, value: string): DataAbilityPredicates
 
 Sets a **DataAbilityPredicates** object to match a string that ends with the specified value.
+
+This API is similar to the SQL equal to (=) operator.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -333,6 +350,8 @@ like(field: string, value: string): DataAbilityPredicates
 
 Sets a **DataAbilityPredicates** object to match a string that is similar to the specified value.
 
+This API is similar to the SQL **like** statement.
+
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
 **Parameters**
@@ -358,7 +377,7 @@ Sets a **DataAbilityPredicates** object to match a string that is similar to the
 
 glob(field: string, value: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the specified string.
+Sets a **DataAbilityPredicates** object to match the specified string. Different from **like**, the input parameters of this API are case-sensitive.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -379,6 +398,12 @@ Sets a **DataAbilityPredicates** object to match the specified string.
 
   ```js
   dataAbilityPredicates.glob("NAME", "?h*g")
+
+  // Only the data with name of Lisa matches the specified predicate.
+  dataAbilityPredicates.glob("NAME", "Lisa")
+
+  // Only the data with name of lisa matches the specified predicate.
+  dataAbilityPredicates.glob("NAME", "lisa")
   ```
 
 ### between
@@ -549,7 +574,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 orderByAsc(field: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the column with values sorted in ascending order.
+Sets a **DataAbilityPredicates** object to sort the data records in ascending order. When there are multiple **orderByAsc**s, the first **orderByAsc** used has the highest priority.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -568,14 +593,15 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 **Example**
 
   ```js
-  dataAbilityPredicates.orderByAsc("NAME")
+  // Sort data by name first; for the records with the same name, sort them by age; for the records with the same name and age, sort them by salary in ascending order.
+  dataAbilityPredicates.orderByAsc("NAME").orderByAsc("AGE").orderByAsc("SALARY")
   ```
 
 ### orderByDesc
 
 orderByDesc(field: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the column with values sorted in descending order.
+Sets a **DataAbilityPredicates** object to sort the data records in descending order. When there are multiple **orderByDesc**s, the first **orderByDesc** used has the highest priority.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -594,7 +620,8 @@ Sets a **DataAbilityPredicates** object to match the column with values sorted i
 **Example**
 
   ```js
-  dataAbilityPredicates.orderByDesc("AGE")
+  // Sort the data by age first. For the data records with the same age, sort them by salary.
+  dataAbilityPredicates.orderByDesc("AGE").orderByDesc("SALARY")
   ```
 
 ### distinct
@@ -647,7 +674,7 @@ Set a **DataAbilityPredicates** object to specify the maximum number of records.
 
 offsetAs(rowOffset: number): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to specify the start position of the returned result.
+Sets a **DataAbilityPredicates** object to specify the start position of the returned result. This API must be used with **limitAs**.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -666,7 +693,8 @@ Sets a **DataAbilityPredicates** object to specify the start position of the ret
 **Example**
 
   ```js
-  dataAbilityPredicates.equalTo("NAME", "Rose").offsetAs(3)
+  // Display the three data records following the first three records.
+  dataAbilityPredicates.equalTo("NAME", "Rose").offsetAs(3).limitAs(3)
   ```
 
 
@@ -700,7 +728,7 @@ Sets a **DataAbilityPredicates** object to group rows that have the same value i
 
 indexedBy(field: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to specify the index column.
+Sets a **DataAbilityPredicates** object to specify the index column. Before calling this API, you need to create an index column.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -719,7 +747,38 @@ Sets a **DataAbilityPredicates** object to specify the index column.
 **Example**
 
   ```js
-  dataAbilityPredicates.indexedBy("SALARY_INDEX")
+  import rdb from '@ohos.data.rdb'; // Import the module.
+  import featureAbility from '@ohos.ability.featureAbility';
+  import dataAbility from '@ohos.data.dataAbility';
+
+  let context = getContext(this);
+
+  const STORE_CONFIG : rdb.StoreConfig= {
+      name: 'RdbTest.db', // Database file name.
+  };
+  // Table structure: EMPLOYEE (NAME, AGE, SALARY, CODES)
+  const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // SQL statement for creating a data table.
+  rdb.getRdbStore(this.context, STORE_CONFIG, 3, async (err, store) => {
+    if (err) {
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+      return;
+    }
+    console.info('Succeeded in getting RdbStore.');
+
+
+    await store.executeSql(SQL_CREATE_TABLE); // Create a data table.
+
+
+    // Create an index.
+    const SQL_CREATE_INDEX = 'CREATE INDEX SALARY_INDEX ON EMPLOYEE(SALARY)'
+    await store.executeSql(SQL_CREATE_INDEX);
+    // ...
+
+    let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
+    dataAbilityPredicates.indexedBy("SALARY_INDEX")
+
+    //  ...
+  })
   ```
 
 ### in

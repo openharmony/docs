@@ -9,11 +9,11 @@ IPC/RPC提供对远端Stub对象状态的订阅机制，在远端Stub对象消�
 
 ## Native侧接口
 
-| 接口名 | 返回值类型 | 功能描述 |
-| -------- | -------- | -------- |
-| AddDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | 订阅远端Stub对象状态。 |
-| RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | 取消订阅远端Stub对象状态。 |
-| OnRemoteDied(const wptr\<IRemoteObject> &object); | void | 当远端Stub对象死亡时回调。 |
+| 接口名                                                              |  描述                     |
+| ------------------------------------------------------------------- | ------------------------- |
+| bool AddDeathRecipient(const sptr\<DeathRecipient> &recipient);     | 订阅远端Stub对象状态。     |
+| bool RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient);  | 取消订阅远端Stub对象状态。 |
+| void OnRemoteDied(const wptr\<IRemoteObject> &object);              | 当远端Stub对象死亡时回调。 |
 
 ### 参考代码
 
@@ -80,7 +80,7 @@ bool result = object->AddDeathRecipient(deathRecipient); // 注册消亡通知
 result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 ```
 
-## JS侧接口
+## ArkTS侧接口
 
 | 接口名                                                       | 返回值类型 | 功能描述                                                     |
 | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
@@ -136,7 +136,7 @@ import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
 import hilog from '@ohos.hilog';
 
-let proxy: rpc.IRemoteObject | undefined = undefined;
+let proxy: rpc.IRemoteObject | undefined;
 let connect: common.ConnectOptions = {
   onConnect: (elementName, remoteProxy) => {
     hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called.');
@@ -162,8 +162,6 @@ this.context.connectServiceExtensionAbility(want, connect);
 上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的[unregisterDeathRecipient](../reference/apis/js-apis-rpc.md#unregisterdeathrecipient9-1)接口方法注销死亡回调
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
 import hilog from '@ohos.hilog';
 
@@ -173,8 +171,10 @@ class MyDeathRecipient implements rpc.DeathRecipient{
   }
 }
 let deathRecipient = new MyDeathRecipient();
-proxy.registerDeathRecipient(deathRecipient, 0);
-proxy.unregisterDeathRecipient(deathRecipient, 0);
+if (proxy != undefined) {
+  proxy.registerDeathRecipient(deathRecipient, 0);
+  proxy.unregisterDeathRecipient(deathRecipient, 0);
+}
 ```
 
 ## Stub感知Proxy消亡（匿名Stub的使用）

@@ -13,6 +13,7 @@ import xml from '@ohos.xml';
 
 ## XmlSerializer
 
+**XmlSerializer** provides APIs to generate an XML file.
 
 ### constructor
 
@@ -364,6 +365,7 @@ console.log(view1) // <!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">
 
 ## XmlPullParser
 
+Implements XML file parsing.
 
 ### constructor
 
@@ -384,6 +386,7 @@ Creates and returns an **XmlPullParser** object.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<!DOCTYPE note [\n<!ENTITY foo "baa">]>' +
@@ -437,6 +440,7 @@ Parses XML information.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -501,6 +505,7 @@ Obtains the column line number, starting from 1.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -541,6 +546,7 @@ Obtains the depth of this element.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -584,6 +590,7 @@ Obtains the current line number, starting from 1.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -624,6 +631,7 @@ Obtains the name of this element.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -663,6 +671,7 @@ Obtains the namespace of this element.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -702,6 +711,7 @@ Obtains the prefix of this element.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -742,6 +752,7 @@ Obtains the text of the current event.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -781,6 +792,7 @@ Checks whether the current element is empty.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -820,6 +832,7 @@ Checks whether the current text event contains only whitespace characters.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +
@@ -858,6 +871,7 @@ Obtains the number of attributes for the current start tag.
 
 ```ts
 import util from '@ohos.util';
+
 let strXml =
   '<?xml version="1.0" encoding="utf-8"?>' +
     '<note importance="high" logged="true">' +

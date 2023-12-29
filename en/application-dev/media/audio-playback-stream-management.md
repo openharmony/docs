@@ -1,4 +1,4 @@
-# Audio Playback Stream Management
+# Audio Playback Stream Management (ArkTS)
 
 An audio playback application must notice audio stream state changes and perform corresponding operations. For example, when detecting that an audio stream is being played or paused, the application must change the UI display of the **Play** button.
 
@@ -48,6 +48,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
    ```ts
    import audio from '@ohos.multimedia.audio';
    import { BusinessError } from '@ohos.base';
+   
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
@@ -56,6 +57,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
      
    ```ts
    import audio from '@ohos.multimedia.audio';
+   
    audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
@@ -94,6 +96,7 @@ For details about the APIs, see [AudioStreamManager](../reference/apis/js-apis-a
    
    ```ts
    import audio from '@ohos.multimedia.audio';
+   
    async function getCurrentAudioRendererInfoArray(): Promise<void> {
      await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
        console.info(`getCurrentAudioRendererInfoArray  Get Promise is called `);

@@ -1,4 +1,4 @@
-# 性能提升方案（仅对系统应用开放）
+# 性能提升方案(仅对系统应用开放)(ArkTS)
 
 相机启动性能受限于底层器件上电、流程Pipeline初始化等耗时操作影响，本文档将为开发者提供更进一步的指导，提升相机启动速度以及拍照返回缩略图速度。相关能力与底层器件相关，请开发者在使用前需确认是否支持相关特性。
 
@@ -31,7 +31,7 @@
 
 ![](figures/deferred-surface-sequence-diagram.png)
 
-[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
+Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
 import camera from '@ohos.multimedia.camera';
@@ -82,7 +82,7 @@ async function preview(baseContext: common.BaseContext, cameraInfo: camera.Camer
 
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
-[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
+Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
@@ -148,7 +148,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
 ![](figures/prelaunch-sequence-diagram.png)
 
-[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
+Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 - **桌面应用**
 
@@ -172,7 +172,7 @@ function showOrSavePicture(pixelMap: image.PixelMap): void {
 
   使用该功能前，应用需要**申请权限**：ohos.permission.CAMERA
 
-  具体申请方式及校验方式，请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+  具体申请方式及校验方式，请参考[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
   ```ts
   import camera from '@ohos.multimedia.camera';

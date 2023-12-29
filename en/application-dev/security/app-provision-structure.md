@@ -10,6 +10,7 @@ The **HarmonyAppProvision** file consists of several parts, which are described 
 | version-name     | Description of the version number. It is recommended that the value consist of three segments, for example, **A.B.C**.       | String  | Yes| No|
 | uuid    | Unique ID of the **HarmonyAppProvision** file.                      | String    | Yes| No|
 | type | Type of the **HarmonyAppProvision** file. The value can be **debug** (for application debugging) or **release** (for application release). The recommended value is **debug**.| String    | Yes| No|
+| app-distribution-type | Distribution type of the application. The value can be any of the following:<br>- **app_gallery**: application distributed by AppGallery.<br>- **enterprise**: enterprise application that can be installed on personal devices.<br>- **enterprise_mdm**: enterprise mobile device management (MDM) application, which can be installed only on enterprise devices. The applications of this type must have device management privileges, such as remote locking devices and installing common enterprise applications on devices.<br>- **enterprise_normal**: common enterprise application, which can be installed on enterprise devices only through an enterprise MDM application. The applications of this type do not require device management privileges.<br>- **os_integration**: preset application in the system.<br>- **crowdtesting**: crowdtesting application.<br>- **none**: other applications. | String| Yes| No|
 | issuer | Issuer of the **HarmonyAppProvision** file.       | String    | Yes| No|
 | validity    | Validity period of the **HarmonyAppProvision** file. For details, see [Internal Structure of the validity Object](#internal-structure-of-the-validity-object). | Object    | Yes| No |
 | bundle-info | Information about the application bundle and developer. For details, see [Internal Structure of the bundle-info Object](#internal-structure-of-the-bundle-info-object).        | Object    | Yes| No |
@@ -25,6 +26,7 @@ An example of the **HarmonyAppProvision** file is as follows:
     "version-name": "1.0.0",
 	"uuid": "string",
 	"type": "debug",
+	"app-distribution-type": "os_integration",
 	"validity": {
 		"not-before": 1586422743,
 		"not-after": 1617958743

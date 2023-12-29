@@ -33,6 +33,7 @@ ohos_rust_static_ffi
 ohos_rust_cargo_crate
 ohos_rust_systemtest
 ohos_rust_unittest
+ohos_rust_fuzztest
 
 #其他常用模板
 #配置文件

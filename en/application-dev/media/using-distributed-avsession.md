@@ -1,4 +1,4 @@
-# Using Distributed AVSession
+# Using Distributed AVSession (ArkTS)
 
 ## Basic Concepts
 

@@ -7,6 +7,9 @@
 >  - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 >  - I18N模块包含国际化能力增强接口（未在ECMA 402中定义），包括区域管理、电话号码处理、日历等，国际化基础能力请参考[Intl模块](js-apis-intl.md)。
+>
+>  - 从API version 11开始，本模块部分接口支持在ArkTS卡片中使用。
+
 
 
 ## 导入模块
@@ -106,7 +109,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 static getSystemLanguages(): Array&lt;string&gt;
 
-获取系统支持的语言列表。语言的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统支持的语言列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -132,7 +135,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-获取针对输入语言系统支持的国家或地区列表。国家或地区的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取针对输入语言系统支持的国家或地区列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -213,7 +216,9 @@ static isSuggested(language: string, region?: string): boolean
 
 static getSystemLanguage(): string
 
-获取系统语言。语言的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统语言。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -300,7 +305,7 @@ static setSystemLanguage(language: string): void
 
 static getSystemRegion(): string
 
-获取系统地区。地区的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统地区。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -364,7 +369,7 @@ static setSystemRegion(region: string): void
 
 static getSystemLocale(): string
 
-获取系统区域。区域的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统区域。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -429,6 +434,8 @@ static setSystemLocale(locale: string): void
 static is24HourClock(): boolean
 
 判断系统时间是否为24小时制。
+
+从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -748,7 +755,7 @@ static getUsingLocalDigit(): boolean
   ```
 
 
-## I18n.isRTL<sup>7+</sup>
+## I18n.isRTL
 
 isRTL(locale: string): boolean
 
@@ -853,8 +860,10 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 **示例：**
   ```ts
   let entityRecognizer: I18n.EntityRecognizer = new I18n.EntityRecognizer("zh-CN");
-  let text: string = "如有疑问，请联系158****2312";
-  let result: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text); // result[0].type = "phone_number", result[0].begin = 8, result[0].end = 19
+  let text1: string = "如有疑问，请联系158****2312";
+  let result1: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text1); // result1[0].type = "phone_number", result1[0].begin = 8, result1[0].end = 19
+  let text2: string = "我们2023年12月1日一起吃饭吧。";
+  let result2: Array<I18n.EntityInfoItem> = entityRecognizer.findEntityInfo(text2); // result2[0].type = "date", result2[0].begin = 2, result2[0].end = 12
   ```
 
 ## EntityInfoItem<sup>11+</sup>
@@ -865,7 +874,7 @@ findEntityInfo(text: string): Array&lt;EntityInfoItem&gt;
 
 | 名称  | 类型   | 可读   | 可写   | 说明                |
 | ---- | ---- | ---- | ---- | ----------------- |
-| type | string | 是    | 是    | 实体的类型，当前仅支持"phone_number"。 |
+| type | string | 是    | 是    | 实体的类型，当前支持"phone_number"和"date"。 |
 | begin | number | 是    | 是    | 实体的起始位置。 |
 | end | number | 是    | 是    | 实体的终止位置。 |
 
@@ -1733,7 +1742,7 @@ isBoundary(offset: number): boolean
   ```
 
 
-## I18n.getTimeZone<sup>7+</sup>
+## I18n.getTimeZone
 
 getTimeZone(zoneID?: string): TimeZone
 
@@ -1823,7 +1832,7 @@ getRawOffset(): number
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| number | 时区对象表示的时区与UTC时区的偏差。 |
+| number | 时区对象表示的时区与UTC时区的偏差，单位是毫秒。 |
 
 **示例：**
   ```ts
@@ -1844,7 +1853,7 @@ getOffset(date?: number): number
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| date | number | 否    | 待计算偏差的时刻 |
+| date | number | 否    | 待计算偏差的时刻，单位是毫秒。默认值：系统时间。 |
 
 **返回值：**
 
@@ -1871,7 +1880,7 @@ static getAvailableIDs(): Array&lt;string&gt;
 
 | 类型                  | 说明          |
 | ------------------- | ----------- |
-| Array&lt;string&gt; | 系统支持的时区ID列表 |
+| Array&lt;string&gt; | 系统支持的时区ID列表。 |
 
 **示例：**
   ```ts
@@ -1892,7 +1901,7 @@ static getAvailableZoneCityIDs(): Array&lt;string&gt;
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | 系统支持的时区城市ID列表 |
+| Array&lt;string&gt; | 系统支持的时区城市ID列表。 |
 
 **示例：**
   ```ts
@@ -1913,8 +1922,8 @@ static getCityDisplayName(cityID: string, locale: string): string
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| cityID | string | 是    | 时区城市ID |
-| locale | string | 是    | 区域ID   |
+| cityID | string | 是    | 时区城市ID。 |
+| locale | string | 是    | 区域ID。  |
 
 **返回值：**
 
@@ -2755,7 +2764,7 @@ constructor(icsPath: String)
 
 ### isHoliday<sup>11+</sup>
 
-isHoliday(date?: Date): boolean;
+isHoliday(date?: Date): boolean
 
 判断指定的日期是否是节假日。
 
@@ -2775,14 +2784,17 @@ isHoliday(date?: Date): boolean;
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
     let isHoliday = holidayManager.isHoliday();
-    console.log(isHoliday);
+    console.log(isHoliday.toString());
     let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
-    console.log(isHoliday2);
+    console.log(isHoliday2.toString());
   } catch(error) {
-    console.error(`call holidayManager.isHoliday failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call holidayManager.isHoliday failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -2817,6 +2829,8 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 **示例：**
   ```ts
+  import { BusinessError } from '@ohos.base';
+
   try {
     let holidayManager= new I18n.HolidayManager("/system/lib/US.ics");
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
@@ -2824,7 +2838,8 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
         console.log(JSON.stringify(holidayInfoItemArray[i]));
     }
   } catch(error) {
-    console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${error.code}, message: ${error.message}.`);
+    let err: BusinessError = error as BusinessError;
+    console.error(`call holidayManager.getHolidayInfoItemArray failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
 
@@ -3150,7 +3165,7 @@ getFirstPreferredLanguage(): string
 
 ### unitConvert<sup>(deprecated)</sup>
 
-static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
 
@@ -3180,7 +3195,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 ### isDigit<sup>(deprecated)</sup>
 
-static isDigit(char: string): boolean
+isDigit(char: string): boolean
 
 判断字符串char是否是数字。
 
@@ -3203,7 +3218,7 @@ static isDigit(char: string): boolean
 
 ### isSpaceChar<sup>(deprecated)</sup>
 
-static isSpaceChar(char: string): boolean
+isSpaceChar(char: string): boolean
 
 判断字符串char是否是空格符。
 
@@ -3226,7 +3241,7 @@ static isSpaceChar(char: string): boolean
 
 ### isWhitespace<sup>(deprecated)</sup>
 
-static isWhitespace(char: string): boolean
+isWhitespace(char: string): boolean
 
 判断字符串char是否是空白符。
 
@@ -3249,7 +3264,7 @@ static isWhitespace(char: string): boolean
 
 ### isRTL<sup>(deprecated)</sup>
 
-static isRTL(char: string): boolean
+isRTL(char: string): boolean
 
 判断字符串char是否是从右到左语言的字符。
 
@@ -3272,7 +3287,7 @@ static isRTL(char: string): boolean
 
 ### isIdeograph<sup>(deprecated)</sup>
 
-static isIdeograph(char: string): boolean
+isIdeograph(char: string): boolean
 
 判断字符串char是否是表意文字。
 
@@ -3295,7 +3310,7 @@ static isIdeograph(char: string): boolean
 
 ### isLetter<sup>(deprecated)</sup>
 
-static isLetter(char: string): boolean
+isLetter(char: string): boolean
 
 判断字符串char是否是字母。
 
@@ -3318,7 +3333,7 @@ static isLetter(char: string): boolean
 
 ### isLowerCase<sup>(deprecated)</sup>
 
-static isLowerCase(char: string): boolean
+isLowerCase(char: string): boolean
 
 判断字符串char是否是小写字母。
 
@@ -3341,7 +3356,7 @@ static isLowerCase(char: string): boolean
 
 ### isUpperCase<sup>(deprecated)</sup>
 
-static isUpperCase(char: string): boolean
+isUpperCase(char: string): boolean
 
 判断字符串char是否是大写字母。
 
@@ -3364,7 +3379,7 @@ static isUpperCase(char: string): boolean
 
 ### getType<sup>(deprecated)</sup>
 
-static getType(char: string): string
+getType(char: string): string
 
 获取输入字符串的一般类别值。
 

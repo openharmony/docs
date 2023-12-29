@@ -1,4 +1,4 @@
-# Video Decoding
+# Video Decoding (C/C++)
 
 You can call the native APIs provided by the **VideoDecoder** module to decode video, that is, to decode media data into a YUV file or send it for display.
 
@@ -7,7 +7,6 @@ Currently, the following decoding capabilities are supported:
 | Container Specification| Video Hardware Decoding Type      | Video Software Decoding Type  |
 | -------- | --------------------- | ---------------- |
 | mp4      | AVC (H.264), HEVC (H.265)|AVC (H.264) |
-
 
 Video software decoding and hardware decoding are different. When a decoder is created based on the MIME type, only H.264 (video/avc) is supported for software decoding, and H.264 (video/avc) and H.265 (video/hevc) are supported for hardware decoding.
 
@@ -20,6 +19,7 @@ The figure below shows the call relationship of video decoding.
 ![Call relationship of video decoding](figures/video-decode.png)
 
 ### Linking the Dynamic Library in the CMake Script
+
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
@@ -28,7 +28,16 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 ### How to Develop
 
-1. Create a decoder instance.
+1. Add the header files.
+
+   ``` c++
+   #include <multimedia/player_framework/native_avcodec_videodecoder.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+
+2. Create a decoder instance.
 
    You can create a decoder by name or MIME type.
 
@@ -38,6 +47,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     const char *name = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByName(name);
    ```
+
    ```c++
     // Create a decoder by MIME type.
     // Create an H.264 decoder for software/hardware decoding. The system creates the most appropriate decoder if multiple decoders are available.
@@ -45,6 +55,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // Create an H.265 decoder for hardware decoding.
     OH_AVCodec *videoDec = OH_VideoDecoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_HEVC);
    ```
+
    ``` c++
    // Initialize the queues.
    class VDecSignal {
@@ -62,7 +73,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    VDecSignal *signal_;
    ```
 
-2. Call **OH_VideoDecoder_SetCallback()** to set callback functions.
+3. Call **OH_VideoDecoder_SetCallback()** to set callback functions.
 
    Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
 
@@ -122,7 +133,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t ret = OH_VideoDecoder_SetCallback(videoDec, cb, signal_);
    ```
 
-3. Call **OH_VideoDecoder_Configure()** to configure the decoder.
+4. Call **OH_VideoDecoder_Configure()** to configure the decoder.
 
    The following options are mandatory: video frame width, video frame height, and video color format.
 
@@ -141,7 +152,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
    ```
 
-4. (Optional) Set the surface.
+5. (Optional) Set the surface.
 
    This step is required only when the surface is used to send the data for display. The application obtains the native window from the XComponent. For details about the process, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).
 
@@ -149,10 +160,12 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // Set the parameters of the display window.
     int32_t ret = OH_VideoDecoder_SetSurface(videoDec, window); // Obtain the window from the XComponent.
     bool isSurfaceMode = true;
-   ```
+   ```  
 
-5. (Optional) Configure the surface parameters of the decoder. This step is required only when the surface is used.
-   
+6. (Optional) Configure the surface parameters of the decoder.
+
+   This step is required only when the surface is used.
+
    ``` c++
     OH_AVFormat *format = OH_AVFormat_Create();
     // Configure the display rotation angle.
@@ -163,7 +176,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     OH_AVFormat_Destroy(format);
    ```
 
-6. Call **OH_VideoDecoder_Start()** to start the decoder.
+7. Call **OH_VideoDecoder_Start()** to start the decoder.
 
    ``` c++
     string_view outputFilePath = "/*yourpath*.yuv";
@@ -180,7 +193,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t ret = OH_VideoDecoder_Start(videoDec);
    ```
 
-7. Call **OH_VideoDecoder_PushInputData()** to push the stream to the input queue for decoding.
+8. Call **OH_VideoDecoder_PushInputData()** to push the stream to the input queue for decoding.
 
    ``` c++
     // Configure the buffer information.
@@ -196,9 +209,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t ret = OH_VideoDecoder_PushInputData(videoDec, index, info);
    ```
 
-8. In surface display mode, call **OH_VideoDecoder_RenderOutputData()** to display and release the decoded frames. In the surface no display mode or buffer mode, call **OH_VideoDecoder_FreeOutputData()** to the release decoded frames.
-   
-``` c++
+9. In surface display mode, call **OH_VideoDecoder_RenderOutputData()** to display and release the decoded frames. In the surface no display mode or buffer mode, call **OH_VideoDecoder_FreeOutputData()** to the release decoded frames.
+
+   ``` c++
     int32_t ret;
     // Write the decoded data (specified by data) to the output file.
     outFile->write(reinterpret_cast<char *>(OH_AVMemory_GetAddr(data)), data.size);
@@ -212,14 +225,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // Exception handling.
     }
    ```
-   
-9. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
-   
-   After **OH_VideoDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed.
-   
-   To continue decoding, you must call **OH_VideoDecoder_Start()** again.
 
-   ``` c++
+10. (Optional) Call **OH_VideoDecoder_Flush()** to refresh the decoder.
+   
+    After **OH_VideoDecoder_Flush()** is called, the decoder remains in the running state, but the current queue is cleared and the buffer storing the decoded data is freed.
+   
+    To continue decoding, you must call **OH_VideoDecoder_Start()** again.
+
+    ``` c++
     int32_t ret;
     // Refresh the decoder.
     ret = OH_VideoDecoder_Flush(videoDec);
@@ -228,10 +241,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // Start decoding again.
     ret = OH_VideoDecoder_Start(videoDec);
-   ```
+    ```
 
-10. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
-    
+11. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
+
     After **OH_VideoDecoder_Reset()** is called, the decoder returns to the initialized state. To continue decoding, you must call **OH_VideoDecoder_Configure()** and then **OH_VideoDecoder_Start()**.
 
     ``` c++
@@ -245,8 +258,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
      ret = OH_VideoDecoder_Configure(videoDec, format);
     ```
 
-11. Call **OH_VideoDecoder_Stop()** to stop the decoder.
-    
+12. Call **OH_VideoDecoder_Stop()** to stop the decoder.
+
     ``` c++
      int32_t ret;
      // Stop the decoder.
@@ -256,7 +269,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
      }
     ```
 
-12. Call **OH_VideoDecoder_Destroy()** to destroy the decoder instance and release resources.
+13. Call **OH_VideoDecoder_Destroy()** to destroy the decoder instance and release resources.
 
     ``` c++
      int32_t ret;

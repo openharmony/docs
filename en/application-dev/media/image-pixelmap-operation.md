@@ -1,4 +1,4 @@
-# PixelMap Operation
+# PixelMap Operation (ArkTS)
 
 To process a certain area in an image, you can perform PixelMap operations, which are usually used to beautify the image.
 
@@ -15,7 +15,7 @@ Read [Image](../reference/apis/js-apis-image.md#pixelmap7) for APIs related to P
 1. Complete [image decoding](image-decoding.md#how-to-develop) and obtain a **PixelMap** object.
 
 2. Obtain information from the **PixelMap** object.
-   
+     
    ```ts
    import image from '@ohos.multimedia.image';
    // Obtain the total number of bytes of this PixelMap object.
@@ -27,7 +27,7 @@ Read [Image](../reference/apis/js-apis-image.md#pixelmap7) for APIs related to P
    ```
 
 3. Read and modify the pixel data of the target area, and write the modified data back to the original image.
-   
+     
    ```ts
    import {BusinessError} from '@ohos.base'
    // Scenario 1: Read the pixel data of the entire image and write the modified data to an array buffer.

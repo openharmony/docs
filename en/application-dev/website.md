@@ -14,25 +14,24 @@
       - Multi-HAP Mechanism
         - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
         - [Multi-HAP Build View](quick-start/multi-hap-build-view.md)
-        - [Multi-HAP Development, Debugging, Release, and Deployment Process](quick-start/multi-hap-release-deployment.md)
+        - [Multi-HAP Development, Debugging, Release, and Deployment](quick-start/multi-hap-release-deployment.md)
         - [Multi-HAP Usage Rules](quick-start/multi-hap-rules.md)
         - [Multi-HAP Operation Mechanism and Data Communication Modes](quick-start/multi-hap-principles.md)
-      - [Application Installation and Uninstallation Process](quick-start/application-package-install-uninstall.md)
-      - [Application Package Update Process](quick-start/application-package-update.md)
+      - [Application Installation and Uninstallation](quick-start/application-package-install-uninstall.md)
+      - [Application Package Update](quick-start/application-package-update.md)
       - Shared Package
         - [Shared Package Overview](quick-start/shared-guide.md)
         - [HAR](quick-start/har-package.md)
-        - HSP
-          - [In-Application HSP Development](quick-start/in-app-hsp.md)
+        - [HSP](quick-start/in-app-hsp.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
     - Application Configuration Files in Stage Model
-      - [Application Configuration File Overview (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
+      - [Application Configuration Files (Stage Model)](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5 Configuration File](quick-start/app-configuration-file.md)
       - [module.json5 Configuration File](quick-start/module-configuration-file.md)
     - Application Configuration Files in FA Model
-      - [Application Configuration File Overview (FA Model)](quick-start/application-configuration-file-overview-fa.md)
+      - [Application Configuration Files (FA Model)](quick-start/application-configuration-file-overview-fa.md)
       - [Internal Structure of the app Tag](quick-start/app-structure.md)
       - [Internal Structure of the deviceConfig Tag](quick-start/deviceconfig-structure.md)
       - [Internal Structure of the module Tag](quick-start/module-structure.md)
@@ -43,11 +42,12 @@
     - TypeScript to ArkTS Migration Guide
       - [ArkTS Migration Background](quick-start/arkts-migration-background.md)
       - [TypeScript to ArkTS Cookbook](quick-start/typescript-to-arkts-migration-guide.md)
+      - [Adaptation Cases](quick-start/arkts-more-cases.md)
     - UI Paradigm
       - Basic Syntax
         - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
         - [Declarative UI Description](quick-start/arkts-declarative-ui-description.md)
-        - Custom Component
+        - Custom Components
           - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
           - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
         - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
@@ -77,11 +77,9 @@
         - [MVVM](quick-start/arkts-mvvm.md)
         - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
       - Rendering Control
-        - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
         - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
         - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
         - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
-        - [Best Practices for Rendering Control](quick-start/arkts-rendering-control-best-practices.md)
 - Development
   - Application Models
     - Application Model Overview
@@ -162,8 +160,6 @@
         - [Background Services](application-models/background-services.md)
       - Thread Model
         - [Thread Model Overview](application-models/thread-model-stage.md)
-        - [Using Emitter for Inter-Thread Communication](application-models/itc-with-emitter.md)
-        - [Using Worker for Inter-Thread Communication](application-models/itc-with-worker.md)
       - Mission Management
         - [Mission Management Scenarios](application-models/mission-management-overview.md)
         - [Mission and Launch Type](application-models/mission-management-launch-type.md)
@@ -202,7 +198,7 @@
           - [Starting a DataAbility](application-models/start-dataability.md)
           - [Accessing a DataAbility](application-models/access-dataability.md)
           - [DataAbility Permission Control](application-models/dataability-permission-control.md)
-        - [Widget Development](application-models/widget-development-fa.md)
+        - [Service Widget Development in FA Model](application-models/widget-development-fa.md)
         - [Context](application-models/application-context-fa.md)
         - [Want](application-models/want-fa.md)
         - [Component Startup Rules (FA Model)](application-models/component-startup-rules-fa.md)
@@ -212,7 +208,7 @@
         - [Background Services](application-models/rpc.md)
       - Thread Model
         - [Thread Model Overview](application-models/thread-model-fa.md)
-        - [Inter-Thread Communication](application-models/itc-fa-overview.md)
+        - [Using Emitter for Inter-Thread Communication](application-models/itc-with-emitter.md)
       - [Mission Management](application-models/mission-management-fa.md)
       - [Application Configuration File (FA Model)](application-models/config-file-fa.md)
     - Development of Component Interaction Between the FA Model and Stage Model
@@ -260,7 +256,7 @@
           - [Flex Layout (Flex)](ui/arkts-layout-development-flex-layout.md)
           - [Relative Layout (RelativeContainer)](ui/arkts-layout-development-relative-layout.md)
           - [Responsive Grid Layout (GridRow/GridCol)](ui/arkts-layout-development-grid-layout.md)
-          - [Media Query (mediaquery)](ui/arkts-layout-development-media-query.md)
+          - [MediaQuery (@ohos.mediaquery)](ui/arkts-layout-development-media-query.md)
           - [Creating a List (List)](ui/arkts-layout-development-create-list.md)
           - [Creating a Grid (Grid/GridItem)](ui/arkts-layout-development-create-grid.md)
           - [Creating a Swiper (Swiper)](ui/arkts-layout-development-create-looping.md)
@@ -279,10 +275,10 @@
           - [Popup](ui/arkts-popup-and-menu-components-popup.md)
           - [Menu](ui/arkts-popup-and-menu-components-menu.md)
       - Setting Page Routing and Component Navigation
-        - [Page Routing (router)](ui/arkts-routing.md)
         - Component Navigation
           - [Navigation](ui/arkts-navigation-navigation.md)
           - [Tabs](ui/arkts-navigation-tabs.md)
+        - [Page Routing (@ohos.router)](ui/arkts-routing.md)
       - Using Graphics
         - [Displaying Images (Image)](ui/arkts-graphics-display.md)
         - [Drawing Geometric Shapes (Shape)](ui/arkts-geometric-shape-drawing.md)
@@ -400,11 +396,14 @@
         - [Asynchronous Concurrency Overview](arkts-utils/async-concurrency-overview.md)
         - [Single I/O Task Development](arkts-utils/single-io-development.md)
       - Using Multithread Concurrency for Development
-        - [Multithread Concurrency Overview](arkts-utils/multi-thread-concurrency-overview.md)
+        - [Multithread Concurrency Overview (TaskPool and Worker)](arkts-utils/multi-thread-concurrency-overview.md)
         - [Comparison Between TaskPool and Worker](arkts-utils/taskpool-vs-worker.md)
-        - [CPU Intensive Task Development](arkts-utils/cpu-intensive-task-development.md)
-        - [I/O Intensive Task Development](arkts-utils/io-intensive-task-development.md)
-        - [Synchronous Task Development](arkts-utils/sync-task-development.md)
+        - [CPU Intensive Task Development (TaskPool and Worker)](arkts-utils/cpu-intensive-task-development.md)
+        - [I/O Intensive Task Development (TaskPool)](arkts-utils/io-intensive-task-development.md)
+        - [Synchronous Task Development (TaskPool and Worker)](arkts-utils/sync-task-development.md)
+      - Appendix
+        - [Comparison Between the Actor and Memory Sharing Models](arkts-utils/actor-model-development-samples.md)
+        - [\@Concurrent Decorator: Verifying Concurrent Functions](arkts-utils/arkts-concurrent.md)
     - Container
       - [Container Overview](arkts-utils/container-overview.md)
       - [Linear Containers](arkts-utils/linear-container.md)
@@ -448,7 +447,7 @@
     - [WebGL Overview](webgl/webgl-overview.md)
     - [WebGL Development](webgl/webgl-guidelines.md)
   - Media
-    - [Media Application Overview](media/media-application-overview.md)
+    - [Media Application Development Overview](media/media-application-overview.md)
     - Audio and Video
       - [Audio and Video Overview](media/av-overview.md)
       - [AVPlayer and AVRecorder](media/avplayer-avrecorder-overview.md)
@@ -459,6 +458,7 @@
         - [Using OpenSL ES for Audio Playback](media/using-opensl-es-for-playback.md)
         - [Using TonePlayer for Audio Playback (for System Applications Only)](media/using-toneplayer-for-playback.md)
         - [Using OHAudio for Audio Playback](media/using-ohaudio-for-playback.md)
+        - [Using SoundPool for Audio Playback](media/using-soundpool-for-playback.md)
         - [Audio Playback Concurrency Policy](media/audio-playback-concurrency.md)
         - [Volume Management](media/volume-management.md)
         - [Audio Effect Management](media/audio-effect-management.md)
@@ -510,7 +510,8 @@
       - Best Practices
         - [Camera Photographing Sample](media/camera-shooting-case.md)
         - [Camera Recording Sample](media/camera-recording-case.md)
-        - [Implementation Solution for Portrait Mode] (media/camera-mode.md)
+        - [Taking Photos in Portrait Mode](media/camera-mode.md)
+        - [Dual-Channel Preview](media/camera-dual-channel-preview.md)
         - [Using Performance Improvement Features (for System Applications Only)](media/camera-performance-improvement.md)
     - Image
       - [Image Overview](media/image-overview.md)
@@ -518,16 +519,23 @@
       - Image Processing
         - [Image Transformation (ArkTS)](media/image-transformation.md)
         - [Image Transformation (Native)](media/image-transformation-native.md)
+        - [PixelMap Data Processing (Native)](media/image-pixelmap-operation-native.md)
         - [Pixel Map Operation](media/image-pixelmap-operation.md)
-      - [Image Encoding](media/image-encoding.md)
+      - [Image Encoding (ArkTS)](media/image-encoding.md)
       - [Image Tool](media/image-tool.md)
   - Security
-    - Access Control 
+    - Access Control
       - [Access Control (Permission) Overview](security/accesstoken-overview.md)
       - [Applying for Permissions](security/accesstoken-guidelines.md)
       - [Verifying API Access Permissions](security/permission-verify-guidelines.md)
       - [Application Permission List](security/permission-list.md)
       - [Application Permission Group List](security/permission-group-list.md)
+    - Security Component
+      - [Security Component Overview](security/security-component-manager-overview.md)
+      - [Security Component Development](security/security-component-manager-guidelines.md)
+    - Data Loss Prevention (DLP)
+      - [DLP Overview](security/dlp-overview.md)
+      - [DLP Development](security/dlp-guidelines.md)
     - User Authentication
       - [User Authentication Overview](security/userauth-overview.md)
       - [User Authentication Development](security/userauth-guidelines.md)
@@ -597,31 +605,32 @@
         - [Sharing Data via Unified Data Channels](database/unified-data-channels.md)
   - File Management
     - [File Management Overview](file-management/file-management-overview.md)
-    - Application File
+    - Application Files
       - [Application File Overview](file-management/app-file-overview.md)
-      - [Application Sandbox Directory](file-management/app-sandbox-directory.md)
+      - [Application Sandbox](file-management/app-sandbox-directory.md)
       - Application File Access and Management
         - [Accessing Application Files](file-management/app-file-access.md)
-        - [Uploading and Downloading an Application File](file-management/app-file-upload-download.md)
+        - [Uploading and Downloading Application Files](file-management/app-file-upload-download.md)
         - [Obtaining Application and File System Space Statistics](file-management/app-fs-space-statistics.md)
-      - [Sending Files to an Application Sandbox](file-management/send-file-to-app-sandbox.md)
+      - [Pushing Files to an Application Sandbox Directory](file-management/send-file-to-app-sandbox.md)
       - [Sharing an Application File](file-management/share-app-file.md)
-      - Application Data Backup and Restoration
-        - [Application Data Backup and Restoration Overview](file-management/app-file-backup-overview.md)
-        - [Backing Up and Restoring Application Access Data](file-management/app-file-backup-extension.md)
-        - [Backing Up and Restoring Application-triggered Data (for System Applications Only)](file-management/app-file-backup.md)
-    - User File
+      - Application Data Backup and Restore
+        - [Application Data Backup and Restore Overview](file-management/app-file-backup-overview.md)
+        - [Accessing Backup and Restore](file-management/app-file-backup-extension.md)
+        - [Triggering Backup and Restore (for System Applications Only)](file-management/app-file-backup.md)
+    - User Files
       - [User File Overview](file-management/user-file-overview.md)
+      - [User File URI](file-management/user-file-uri-intro.md)
       - Selecting and Saving User Files (FilePicker)
         - [Selecting User Files](file-management/select-user-file.md)
         - [Saving User Files](file-management/save-user-file.md)
       - Album Management (photoAccessHelper)
         - [photoAccessHelper Overview](file-management/photoAccessHelper-overview.md)
-        - [Media Asset (Image and video) Management](file-management/photoAccessHelper-resource-guidelines.md)
-        - [User Album Management](file-management/photoAccessHelper-userAlbum-guidelines.md)
-        - [System Album Management](file-management/photoAccessHelper-systemAlbum-guidelines.md)
-        - [Media Asset Change Notification Management](file-management/photoAccessHelper-notify-guidelines.md)
-      - [Developing a FileManager Application (for System Applications Only)](file-management/dev-user-file-manager.md)
+        - [Managing Media Assets](file-management/photoAccessHelper-resource-guidelines.md)
+        - [Managing User Albums](file-management/photoAccessHelper-userAlbum-guidelines.md)
+        - [Managing System Albums](file-management/photoAccessHelper-systemAlbum-guidelines.md)
+        - [Observing Media Assets](file-management/photoAccessHelper-notify-guidelines.md)
+      - [Developing a File Manager Application (for System Applications Only)](file-management/dev-user-file-manager.md)
       - [Managing External Storage Devices (for System Applications Only)](file-management/manage-external-storage.md)
     - Distributed File System
       - [Distributed File System Overview](file-management/distributed-fs-overview.md)
@@ -672,10 +681,6 @@
     - Log Analysis
       - [Application Freeze (appfreeze) Log Analysis](dfx/appfreeze-guidelines.md)
       - [cppcrash Log Analysis](dfx/cppcrash-guidelines.md)
-  - Internationalization
-    - [Internationalization Overview](internationalization/international-overview.md)
-    - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
-    - [Internationalization Development (i18n)](internationalization/i18n-guidelines.md)
   - Application services
     - [OAID Service](ads-service/oaid/oaid-service.md)
   - Application Test
@@ -684,37 +689,48 @@
     - [wukong User Guide](application-test/wukong-guidelines.md)
   - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
-    - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
-    - Graphics
-      - [XComponent Development](napi/xcomponent-guidelines.md)
-      - [Drawing Development](napi/drawing-guidelines.md)
-      - [NativeBuffer Development](napi/native-buffer-guidelines.md)
-      - [NativeImage Development](napi/native-image-guidelines.md)
-      - [NativeVsync Development](napi/native-vsync-guidelines.md)
-      - [NativeWindow Development](napi/native-window-guidelines.md)
-      - [Vulkan Development](napi/vulkan-guidelines.md)
-    - Resource Management
-      - [Raw File Development](napi/rawfile-guidelines.md)
-    - AI
-      - [Using MindSpore Lite for Model Inference](napi/mindspore-lite-guidelines.md)
-      - [Using MindSpore Lite for Offline Model Conversion and Inference](napi/mindspore-lite-offline-model-guidelines.md)
-      - [Connecting the Neural Network Runtime to an AI Inference Framework](napi/neural-network-runtime-guidelines.md)
-    - Memory Management
-      - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
-    - Device Management
-      - [USB DDK Development](napi/usb-ddk-guidelines.md)
-    - Data Management
-      - [RelationalStore Development Guide](napi/native-relational-store-guidelines.md)
+      - Graphics
+        - [XComponent Development](napi/xcomponent-guidelines.md)
+        - [Drawing Development](napi/drawing-guidelines.md)
+        - [NativeBuffer Development](napi/native-buffer-guidelines.md)
+        - [NativeImage Development](napi/native-image-guidelines.md)
+        - [NativeVsync Development](napi/native-vsync-guidelines.md)
+        - [NativeWindow Development](napi/native-window-guidelines.md)
+        - [Vulkan Development](napi/vulkan-guidelines.md)
+      - Resource Management
+        - [Raw File Development](napi/rawfile-guidelines.md)
+      - Resource Scheduling
+        - [FFRT Development](napi/ffrt-guidelines.md)
+      - AI
+        - [Using MindSpore Lite for Model Inference](napi/mindspore-lite-guidelines.md)
+        - [Using MindSpore Lite for Offline Model Conversion and Inference](napi/mindspore-lite-offline-model-guidelines.md)
+        - [Connecting the Neural Network Runtime to an AI Inference Framework](napi/neural-network-runtime-guidelines.md)
+      - Memory Management
+        - [Purgeable Memory Development](napi/purgeable-memory-guidelines.md)
+      - Device Management
+        - [USB DDK Development](napi/usb-ddk-guidelines.md)
+      - Data Management
+        - [RelationalStore Development Guide](napi/native-relational-store-guidelines.md)
+      - Bundle Management
+        - [NativeBuffer Development](napi/native-bundle-guidelines.md)
+    - Hardware Compatibility
+      - [Introduction to Hardware Compatibility](napi/hw-guide.md)
+      - [OpenHarmony ABI](napi/ohos-abi.md)
+      - [CPU Features](napi/cpu-features.md)
+      - [Using Neon Instructions](napi/neon-guide.md)
   - Performance
+    - [Application Performance Improvement Overview](performance/performance-overview.md)
     - ArkTS High-Performance Programming
       - [TypeScript and JavaScript High-Performance Programming Practices and Tools](performance/high-performance-programming.md)
       - [Efficient Concurrent Programming](performance/efficient-concurrent-programming.md)
+      - [Secure and Efficient N-API Development](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
     - Reducing Frame Freezing
       - [Proper LazyForEach Usage for Optimization](performance/lazyforeach_optimization.md)
       - [Best Practices for Component Reuse](performance/component-recycle.md)
       - [High-Performance WaterFlow Development](performance/waterflow_optimization.md)
       - [Swiper High-Performance Development](performance/swiper_optimization.md)
       - [Proper State Management](performance/proper_state_management.md)
+      - [Precisely Controlling Render Scope](performance/precisely-control-render-scope.md)
       - [Reducing Frame Loss](performance/reduce-animation-frame-loss.md)
     - Improving Application Startup and Response Times
       - [Speeding Up Application Cold Start](performance/improve-application-cold-start-speed.md)
@@ -723,6 +739,8 @@
       - [Reducing Nesting](performance/reduce-view-nesting-levels.md)
       - [Proper IPC Usage](performance/reasonable-using-ipc.md)
       - [More Performance Improvement Methods](performance/arkts-performance-improvement-recommendation.md)
+    - Profiling Tools
+      - [CPU Profiler](performance/application-performance-analysis.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - Debugging Tools
@@ -978,6 +996,7 @@
         - [MediaControlExtensionContext (ExtensionAbility Context for Media Playback Control)](reference/apis/js-apis-inner-application-MediaControlExtensionContext.md)
       - multimedia
         - [ringtonePlayer (Ringtone Player)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
+        - [soundPool (Sound Pool)](reference/apis/js-apis-inner-multimedia-soundPool.md)
     - Resource Management
       - [@ohos.i18n (Internationalization)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (Internationalization)](reference/apis/js-apis-intl.md)
@@ -993,6 +1012,7 @@
         - [WorkSchedulerExtensionContext](reference/apis/js-apis-inner-application-WorkSchedulerExtensionContext.md)
     - Security
       - [@ohos.abilityAccessCtrl (Ability Access Control)](reference/apis/js-apis-abilityAccessCtrl.md)
+      - [@ohos.dlpPermission (DLP)](reference/apis/js-apis-dlppermission.md)
       - [@ohos.privacyManager (Privacy Management)](reference/apis/js-apis-privacyManager.md)
       - [@ohos.security.cert (Certificate)](reference/apis/js-apis-cert.md)
       - [@ohos.security.cryptoFramework (Crypto Framework)](reference/apis/js-apis-cryptoFramework.md)
@@ -1015,6 +1035,7 @@
       - [@ohos.data.uniformTypeDescriptor (Standard Data Definition)](reference/apis/js-apis-data-uniformTypeDescriptor.md)
       - [@ohos.data.ValuesBucket (Value Bucket)](reference/apis/js-apis-data-valuesBucket.md)
     - File Management
+      - [@ohos.application.BackupExtensionAbility (BackupExtensionAbility)](reference/apis/js-apis-application-backupExtensionAbility.md)
       - [@ohos.file.backup (Backup and Restoration)](reference/apis/js-apis-file-backup.md)
       - [@ohos.file.cloudSync (Device-Cloud Synchronization)](reference/apis/js-apis-file-cloudsync.md)
       - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](reference/apis/js-apis-file-cloudsyncmanager.md)
@@ -1026,9 +1047,11 @@
       - [@ohos.file.hash (File Hash Processing)](reference/apis/js-apis-file-hash.md)
       - [@ohos.file.photoAccessHelper (Album Management)](reference/apis/js-apis-photoAccessHelper.md)
       - [@ohos.file.picker (File Picker)](reference/apis/js-apis-file-picker.md)
+      - [@ohos.file.recent (Recent File List)](reference/apis/js-apis-file-recent.md)
       - [@ohos.file.securityLabel (Data Label)](reference/apis/js-apis-file-securityLabel.md)
       - [@ohos.file.statvfs (File System Space Statistics)](reference/apis/js-apis-file-statvfs.md)
       - [@ohos.file.storageStatistics (Application Storage Statistics)](reference/apis/js-apis-file-storage-statistics.md)
+      - [@ohos.file.trash (Trash)](reference/apis/js-apis-file-trash.md)
       - [@ohos.file.volumeManager (Volume Management)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (User Data Management)](reference/apis/js-apis-userFileManager.md)
       - [@ohos.fileshare (File Sharing)](reference/apis/js-apis-fileShare.md)
@@ -1429,25 +1452,45 @@
       - [OffscreenCanvasRenderingContext2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
     - Advanced Components
+      - [@ohos.arkui.advanced.ComposeListItem (List)](reference/arkui-ts/ts-composite-components-composelistitem.md)
+      - [@ohos.arkui.advanced.ComposeTitleBar (One- or Two-Row Title Bar with Profile Picture)](reference/arkui-ts/ts-composite-components-composetitlebar.md)
+      - [@ohos.arkui.advanced.Counter (Counter)](reference/arkui-ts/ohos-arkui-advanced-counter.md)
+      - [@ohos.arkui.advanced.Dialog (Dialog Box)](reference/arkui-ts/ts-composite-components-dialog.md)
+      - [@ohos.arkui.advanced.EditableTitleBar (Editable Title Bar)](reference/arkui-ts/ts-composite-components-editabletitlebar.md)
+      - [@ohos.arkui.advanced.Filter (Advanced Filter)](reference/arkui-ts/ts-composite-components-filter.md)
+      - [@ohos.arkui.advanced.ProgressButton (Download Button with Progress Indicator)](reference/arkui-ts/ts-composite-components-progressbutton.md)
+      - [@ohos.arkui.advanced.SelectTitleBar (Drop-down Title Bar)](reference/arkui-ts/ts-composite-components-selecttitlebar.md)
+      - [@ohos.arkui.advanced.SplitLayout (Split Layout)](reference/arkui-ts/ts-composite-components-splitlayout.md)
+      - [@ohos.arkui.advanced.SubHeader (Subheader)](reference/arkui-ts/ts-composite-components-subheader.md)
+      - [@ohos.arkui.advanced.SwipeRefresher (Swipe Refresher)](reference/arkui-ts/ts-composite-components-swiperefresher.md)
+      - [@ohos.arkui.advanced.TabTitleBar (Tab Title Bar)](reference/arkui-ts/ts-composite-components-tabtitlebar.md)
+      - [@ohos.arkui.advanced.ToolBar (Toolbar)](reference/arkui-ts/ts-composite-components-toolbar.md)
+      - [@ohos.arkui.advanced.TreeView (Tree View)](reference/arkui-ts/ts-composite-components-treeview.md)
       - [@ohos.multimedia.avCastPicker (AVCastPicker)](reference/arkui-ts/ohos-multimedia-avcastpicker.md)
+    - Security Components
+      - [Security Component Universal Attributes](reference/arkui-ts/ts-securitycomponent-attributes.md)
+      - [LocationButton](reference/arkui-ts/ts-security-components-locationbutton.md)
+      - [PasteButton](reference/arkui-ts/ts-security-components-pastebutton.md)
+      - [SaveButton](reference/arkui-ts/ts-security-components-savebutton.md)
     - Animation
-      - [AnimatorProperty](reference/arkui-ts/ts-animatorproperty.md)
-      - [Explicit Animation](reference/arkui-ts/ts-explicit-animation.md)
+      - [Property Animation (animation)](reference/arkui-ts/ts-animatorproperty.md)
+      - [Explicit Animation (animateTo)](reference/arkui-ts/ts-explicit-animation.md)
       - Transition Animation
-        - [Page Transition](reference/arkui-ts/ts-page-transition-animation.md)
-        - [Component Transition](reference/arkui-ts/ts-transition-animation-component.md)
-        - [Transition of Shared Elements](reference/arkui-ts/ts-transition-animation-shared-elements.md)
-        - [Implicit Shared Element Transition](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
-      - [Motion Path Animation](reference/arkui-ts/ts-motion-path-animation.md)
+        - [Page Transition (pageTransition)](reference/arkui-ts/ts-page-transition-animation.md)
+        - [Component Transition (transition)](reference/arkui-ts/ts-transition-animation-component.md)
+        - [Shared Element Transition (sharedTransition)](reference/arkui-ts/ts-transition-animation-shared-elements.md)
+        - [Implicit Shared Element Transition (geometryTransition)](reference/arkui-ts/ts-transition-animation-geometrytransition.md)
+      - [Motion Path Animation (motionPath)](reference/arkui-ts/ts-motion-path-animation.md)
+      - [Particle Animation (Particle)](reference/arkui-ts/ts-particle-animation.md)
     - Global UI Methods
       - Pop-up Window
-        - [Alert Dialog Box](reference/arkui-ts/ts-methods-alert-dialog-box.md)
-        - [Action Sheet](reference/arkui-ts/ts-methods-action-sheet.md)
-        - [Custom Dialog Box](reference/arkui-ts/ts-methods-custom-dialog-box.md)
-        - [Calendar Picker Dialog Box](reference/arkui-ts/ts-methods-calendarpicker-dialog.md)
-        - [Date Picker Dialog Box](reference/arkui-ts/ts-methods-datepicker-dialog.md)
-        - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
-        - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
+        - [Alert Dialog Box (AlertDialog)](reference/arkui-ts/ts-methods-alert-dialog-box.md)
+        - [Action Sheet (ActionSheet)](reference/arkui-ts/ts-methods-action-sheet.md)
+        - [Custom Dialog Box (CustomDialog)](reference/arkui-ts/ts-methods-custom-dialog-box.md)
+        - [Calendar Picker Dialog Box (CalendarPickerDialog)](reference/arkui-ts/ts-methods-calendarpicker-dialog.md)
+        - [Date Picker Dialog Box (DatePickerDialog)](reference/arkui-ts/ts-methods-datepicker-dialog.md)
+        - [Time Picker Dialog Box (TimePickerDialog)](reference/arkui-ts/ts-methods-timepicker-dialog.md)
+        - [Text Picker Dialog Box (TextPickerDialog)](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
     - [Custom Component Lifecycle](reference/arkui-ts/ts-custom-component-lifecycle.md)
     - [State Management with Application-level Variables](reference/arkui-ts/ts-state-management.md)
@@ -1455,7 +1498,7 @@
     - [Enums](reference/arkui-ts/ts-appendix-enums.md)
     - [Types](reference/arkui-ts/ts-types.md)
     - Components No Longer Maintained 
-      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)  
+      - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
     - APIs No Longer Maintained
       - [Click Control](reference/arkui-ts/ts-universal-attributes-click.md)
@@ -1675,11 +1718,12 @@
       - [reminderAgentManager Error Codes](reference/errorcodes/errorcode-reminderAgentManager.md)
       - [workScheduler Error Codes](reference/errorcodes/errorcode-workScheduler.md)
     - Security
-      - [Access Token Error Codes](reference/errorcodes/errorcode-access-token.md)
+      - [Access Control Error Codes](reference/errorcodes/errorcode-access-token.md)
       - [HUKS Error Codes](reference/errorcodes/errorcode-huks.md)
       - [Crypto Framework Error Codes](reference/errorcodes/errorcode-crypto-framework.md)
       - [Certificate Error Codes](reference/errorcodes/errorcode-cert.md)
       - [User Authentication Error Codes](reference/errorcodes/errorcode-useriam.md)
+      - [DLP Service Error Codes](reference/errorcodes/errorcode-dlp.md)
     - Data Management
       - [RDB Error Codes](reference/errorcodes/errorcode-data-rdb.md)
       - [DataShare Error Codes](reference/errorcodes/errorcode-datashare.md)
@@ -1779,6 +1823,7 @@
       - [UsbDdk](reference/native-apis/_usb_ddk.md)
       - [Hitrace](reference/native-apis/_hitrace.md)
       - [Vulkan](reference/native-apis/_vulkan.md)
+      - [Bundle](reference/native-apis/_bundle.md)
     - Header Files
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
       - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
@@ -1838,6 +1883,7 @@
       - [native_huks_api.h](reference/native-apis/native__huks__api_8h.md)
       - [native_huks_param.h](reference/native-apis/native__huks__param_8h.md)
       - [native_huks_type.h](reference/native-apis/native__huks__type_8h.md)
+      - [native_interface_bundle.h](reference/native-apis/native__interface__bundle.md)
       - [oh_cursor.h](reference/native-apis/oh__cursor_8h.md)
       - [oh_predicates.h](reference/native-apis/oh__predicates_8h.md)
       - [oh_value_object.h](reference/native-apis/oh__value__object_8h.md)
@@ -1852,6 +1898,7 @@
       - [vulkan_ohos.h](reference/native-apis/vulkan__ohos_8h.md)
     - Structs
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
+      - [OH_NativeBundle_ApplicationInfo](reference/native-apis/_o_h___native_bundle_application_info.md)
       - [OH_NativeBuffer_Config](reference/native-apis/_o_h___native_buffer___config.md)
       - [OH_NativeXComponent_Callback](reference/native-apis/_o_h___native_x_component___callback.md)
       - [OH_NativeXComponent_MouseEvent](reference/native-apis/_o_h___native_x_component___mouse_event.md)
@@ -1860,8 +1907,8 @@
       - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
       - [OHExtDataHandle](reference/native-apis/_o_h_ext_data_handle.md)
       - [OHHDRMetaData](reference/native-apis/_o_h_h_d_r_meta_data.md)
-      - [OHOS::Media::OhosImageComponent](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
-      - [OHOS::Media::OhosImageRect](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
+      - [OhosImageComponent](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
+      - [OhosImageRect](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
       - [OHOS::Media::OhosPixelMapInfo](reference/native-apis/_o_h_o_s_1_1_media_1_1_ohos_pixel_map_info.md)
       - [OhosImageDecodingOps](reference/native-apis/_ohos_image_decoding_ops.md)
       - [OhosImageReceiverInfo](reference/native-apis/_ohos_image_receiver_info.md)

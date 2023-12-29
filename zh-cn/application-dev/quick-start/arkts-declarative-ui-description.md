@@ -136,6 +136,19 @@ Column() {
     .onClick(this.myClickHandler)
   ```
 
+- 使用声明的箭头函数，可以直接调用，不需要bind this。
+
+  ```ts
+  fn = () => {
+    console.info(`counter: ${this.counter}`)
+    this.counter++
+  }
+  ...
+  Button('add counter')
+    .onClick(this.fn)
+  ```
+
+
 
 ## 配置子组件
 

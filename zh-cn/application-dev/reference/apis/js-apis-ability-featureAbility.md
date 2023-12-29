@@ -3,9 +3,9 @@
 FeatureAbility模块提供与用户进行交互的Ability的能力，包括启动新的Ability、停止Ability、获取dataAbilityHelper对象、获取当前Ability对应的窗口，连接断连Service等。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在FA模型下使用。
+>
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口仅可在FA模型下使用。Stage模型下需使用[UIAbility模块](js-apis-app-ability-uiAbility.md)和[UIAbilityContext模块](js-apis-inner-application-uiAbilityContext.md)。
 
 ## 使用限制
 
@@ -30,12 +30,14 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<number>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<number>                   | 是    | 以callback的形式返回启动Ability的结果。      |
+| callback  | AsyncCallback\<number>                   | 是    | 回调函数。当启动Ability成功，err为undefined，data为0表示启动成功，data为其他表示启动失败；否则为错误对象。      |
 
 **示例：**
 
@@ -82,6 +84,8 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability-2)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
@@ -92,7 +96,7 @@ startAbility(parameter: StartAbilityParameter): Promise\<number>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<number> | Promise形式返回启动Ability结果。 |
+| Promise\<number> | Promise对象。返回0表示启动成功，返回其他表示启动失败。 |
 
 **示例：**
 
@@ -133,6 +137,8 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[dataShare.createDataShareHelper](js-apis-data-dataShare.md#datasharecreatedatasharehelper)。
+
 **参数：**
 
 | 参数名   | 类型     | 必填   | 说明           |
@@ -170,12 +176,15 @@ startAbilityForResult(parameter: StartAbilityParameter, callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult)。
+
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | 是    | 表示被启动的Ability。 |
-| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 以callback的形式返回启动Ability结果。      |
+| callback  | AsyncCallback\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | 是    | 回调函数。当启动Ability成功，err为undefined，data为ability的启动结果；否则为错误对象。      |
 
 **示例：**
 
@@ -223,6 +232,8 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.startAbilityForResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilityforresult-2)。
+
 **参数：**
 
 | 参数名        | 类型                                       | 必填   | 说明            |
@@ -233,7 +244,7 @@ startAbilityForResult(parameter: StartAbilityParameter): Promise\<AbilityResult>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise形式返回启动Ability结果。 |
+| Promise\<[AbilityResult](js-apis-inner-ability-abilityResult.md)> | Promise对象，返回启动Ability的结果。 |
 
 **示例：**
 
@@ -279,12 +290,14 @@ terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)。
+
 **参数：**
 
 | 参数名        | 类型                              | 必填   | 说明             |
 | --------- | ------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 是    | 表示停止Ability之后返回的结果。 |
-| callback  | AsyncCallback\<void>            | 是    | 以callback的形式返回停止Ability结果。      |
+| callback  | AsyncCallback\<void>            | 是    | 回调函数。当停止当前Ability成功，err为undefined，否则为错误对象。      |
 
 **示例：**
 
@@ -331,6 +344,8 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.terminateSelfWithResult](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult-1)。
+
 **参数：**
 
 | 参数名        | 类型                              | 必填   | 说明            |
@@ -341,7 +356,7 @@ terminateSelfWithResult(parameter: AbilityResult): Promise\<void>
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回停止当前Ability结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -374,7 +389,7 @@ featureAbility.terminateSelfWithResult(
             }
         },
     }
-).then((data) => {
+).then(() => {
     console.info('==========================>terminateSelfWithResult=======================>');
 });
 ```
@@ -386,6 +401,8 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 检查Ability的主窗口是否具有窗口焦点（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[on('windowEvent')](js-apis-window.md#onwindowevent10)。
 
 **参数：**
 
@@ -437,6 +454,8 @@ getWant(callback: AsyncCallback\<Want>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbility.launchWant](js-apis-app-ability-uiAbility.md#属性)。
+
 **参数：**
 
 | 参数名       | 类型                            | 必填   | 说明        |
@@ -464,6 +483,8 @@ getWant(): Promise\<Want>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbility.launchWant](js-apis-app-ability-uiAbility.md#属性)。
+
 **返回值：**
 
 | 类型                      | 说明               |
@@ -486,6 +507,8 @@ getContext(): Context
 获取应用上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbility.context](js-apis-app-ability-uiAbility.md#属性)。
 
 **返回值：**
 
@@ -515,6 +538,8 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)。
+
 **参数：**
 
 | 参数名       | 类型                   | 必填   | 说明       |
@@ -540,17 +565,19 @@ terminateSelf(): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)。
+
 **返回值：**
 
 | 类型             | 说明               |
 | -------------- | ---------------- |
-| Promise\<void> | 以Promise的形式返回停止当前Ability结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-featureAbility.terminateSelf().then((data) => {
+featureAbility.terminateSelf().then(() => {
     console.info('==========================>terminateSelf=======================>');
 });
 ```
@@ -568,6 +595,8 @@ connectAbility(request: Want, options:ConnectOptions): number
  - 组件启动规则详见：[组件启动规则（FA模型）](../../application-models/component-startup-rules-fa.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.connectServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability)。
 
 **参数：**
 
@@ -596,13 +625,13 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}')
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`)
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}')
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`)
         },
     },
 );
@@ -616,11 +645,13 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability-1)。
+
 **参数：**
 
 | 参数名         | 类型                   | 必填   | 说明                      |
 | ---------- | -------------------- | ---- | ----------------------- |
-| connection | number               | 是    | 表示断开连接的ServiceAbility的ID |
+| connection | number               | 是    | 表示断开连接的ServiceAbility的ID。 |
 | callback   | AsyncCallback\<void> | 是    | 以callback的形式返回断开连接结果                |
 
 **示例：**
@@ -636,13 +667,13 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
         },
     },
 );
@@ -664,17 +695,19 @@ disconnectAbility(connection: number): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[UIAbilityContext.disconnectAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability)。
+
 **参数：**
 
 | 参数名         | 类型     | 必填   | 说明                      |
 | ---------- | ------ | ---- | ----------------------- |
-| connection | number | 是    | 表示断开连接的ServiceAbility的ID |
+| connection | number | 是    | 表示断开连接的ServiceAbility的ID。 |
 
 **返回值：**
 
 | 类型             | 说明              |
 | -------------- | --------------- |
-| Promise\<void> | 以Promise形式返回断开连接结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -690,21 +723,21 @@ let connectId = featureAbility.connectAbility(
     },
     {
         onConnect: (element, remote) => {
-            console.log('ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}');
+            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
         },
         onDisconnect: (element) => {
-            console.log('ConnectAbility onDisconnect element.deviceId : ${element.deviceId}');
+            console.log(`ConnectAbility onDisconnect element.deviceId : ${element.deviceId}`);
         },
         onFailed: (code) => {
-            console.error('featureAbilityTest ConnectAbility onFailed errCode : ${code}');
+            console.error(`featureAbilityTest ConnectAbility onFailed errCode : ${code}`);
         },
     },
 );
 
-featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data: ${data)}')
+featureAbility.disconnectAbility(connectId).then(() => {
+    console.log('disconnectAbility success')
 }).catch((error: BusinessError)=>{
-    console.error('featureAbilityTest result errCode : ${error.code}');
+    console.error(`featureAbilityTest result errCode : ${error.code}`);
 });
 ```
 
@@ -716,6 +749,8 @@ getWindow(callback: AsyncCallback\<window.Window>): void
 获取当前Ability对应的窗口（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[window.getLastWindow](js-apis-window.md#windowgetlastwindow9)。
 
 **参数：**
 
@@ -730,22 +765,35 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-featureAbility.getWindow((error: BusinessError, data: window.Window) => {
-    if (error && error.code !== 0) {
+class FeatureAbilityClass {
+    onActive: () => void
+}
+
+let featureAbilityObj: FeatureAbilityClass =  {
+  onActive() {
+    console.info("onActive");
+    featureAbility.getWindow((error: BusinessError, data: window.Window) => {
+      if (error && error.code !== 0) {
         console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
-    } else {
-        console.log(`getWindow success, data: ${JSON.stringify(data)}`);
-    }
-});
+      } else {
+        console.log(`getWindow success, data: ${typeof(data)}`);
+      }
+    });
+  }
+}
+
+export default featureAbilityObj
 ```
 
 ## featureAbility.getWindow<sup>7+</sup>
 
-getWindow(): Promise\<window.Window>;
+getWindow(): Promise\<window.Window>
 
 获取当前Ability对应的窗口（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[window.getLastWindow](js-apis-window.md#windowgetlastwindow9-1)。
 
 **返回值：**
 
@@ -757,10 +805,20 @@ getWindow(): Promise\<window.Window>;
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base';
+import window from '@ohos.window';
 
-featureAbility.getWindow().then((data) => {
-    console.info('getWindow data: ${typeof(data)}');
-});
+export default {
+
+  onActive() {
+    console.info("onActive");
+    featureAbility.getWindow().then((data: window.Window) => {
+        console.log(`getWindow success, data: ${typeof(data)}`);
+    }).catch((error: BusinessError)=>{
+        console.error(`getWindow fail, error: ${JSON.stringify(error)}`);
+    });
+  }
+}
 ```
 
 ## AbilityWindowConfiguration
@@ -806,17 +864,16 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 ## ErrorCode
 
-表示错误码。
+定义启动Ability时返回的错误码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
-| NO_ERROR<sup>7+</sup>          | 0    | 没有错误。 |
-| INVALID_PARAMETER<sup>7+</sup> | -1   | 无效的参数。 |
-| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | 找不到ABILITY。 |
-| PERMISSION_DENY<sup>7+</sup>   | -3   | 权限拒绝。 |
-
+| NO_ERROR         | 0    | 没有异常。   |
+| INVALID_PARAMETER | -1   | 无效的参数。 |
+| ABILITY_NOT_FOUND | -2   | 找不到ABILITY。 |
+| PERMISSION_DENY   | -3   | 权限拒绝。   |
 
 ## DataAbilityOperationType
 
@@ -830,29 +887,3 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | TYPE_UPDATE<sup>7+</sup> | 2    | 修改类型。 |
 | TYPE_DELETE<sup>7+</sup> | 3    | 删除类型。 |
 | TYPE_ASSERT<sup>7+</sup> | 4    | 声明类型。 |
-
-## flags说明
-
-表示处理Want的方式。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
-
-| 名称                                   | 值         | 说明                                       |
-| ------------------------------------ | ---------- | ---------------------------------------- |
-| FLAG_AUTH_READ_URI_PERMISSION        | 0x00000001 | 表示对URI执行读取操作的授权。                         |
-| FLAG_AUTH_WRITE_URI_PERMISSION       | 0x00000002 | 表示对URI执行写入操作的授权。                         |
-| FLAG_ABILITY_FORWARD_RESULT          | 0x00000004 | 表示将结果返回给源Ability。                               |
-| FLAG_ABILITY_CONTINUATION            | 0x00000008 | 表示是否可以将本地设备上的Ability迁移到远端设备。                  |
-| FLAG_NOT_OHOS_COMPONENT              | 0x00000010 | 表示组件是否不属于OHOS。                            |
-| FLAG_ABILITY_FORM_ENABLED            | 0x00000020 | 表示某个Ability是否已经启动。                              |
-| FLAG_AUTH_PERSISTABLE_URI_PERMISSION | 0x00000040 | 表示URI上可能持久化的授权。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                          |
-| FLAG_AUTH_PREFIX_URI_PERMISSION      | 0x00000080 | 表示按照前缀匹配的方式验证URI权限。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。                        |
-| FLAG_ABILITYSLICE_MULTI_DEVICE       | 0x00000100 | 表示支持分布式调度系统中的多设备启动。                        |
-| FLAG_START_FOREGROUND_ABILITY        | 0x00000200 | 表示无论宿主应用是否已启动，都将使用前台模式启动Ability。<br>**系统API**: 此接口为系统接口，三方应用不支持调用。           |
-| FLAG_ABILITY_CONTINUATION_REVERSIBLE | 0x00000400 | 表示迁移是否是可反向的。                               |
-| FLAG_INSTALL_ON_DEMAND               | 0x00000800 | 表示如果未安装指定的Ability，将安装该Ability。                       |
-| FLAG_INSTALL_WITH_BACKGROUND_MODE    | 0x80000000 | 表示如果未安装指定的Ability，将在后台安装该Ability。                       |
-| FLAG_ABILITY_CLEAR_MISSION           | 0x00008000 | 表示清除其他任务的操作。可以为传递给 **FeatureAbility** 中[startAbility](#featureabilitystartability)方法的参数对象[parameter](js-apis-inner-ability-startAbilityParameter.md)下的[Want](js-apis-application-want.md)设置此标志，并且必须与**flag_ABILITY_NEW_MISSION**一起使用。 |
-| FLAG_ABILITY_NEW_MISSION             | 0x10000000 | 表示在已有的任务栈上创建任务的操作。                       |
-| FLAG_ABILITY_MISSION_TOP             | 0x20000000 | 表示如果启动的Ability的现有实例已位于任务栈顶，则将重用该实例。否则，将创建一个新的Ability实例。 |
-

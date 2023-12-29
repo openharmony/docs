@@ -47,6 +47,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
+| cachedCount<sup>11+</sup> | number | Number of items to be cached. This attribute is effective only in **LazyForEach**.<br> Default value: **1**<br>**NOTE**<br>Items<br>that exceed the display and cache range are released.<br>A value less than 0 evaluates to the default value.|
+| scrollBar<sup>11+</sup>            | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Off**<br>**NOTE**<br>Until the layout of the **\<WaterFlow>** component is complete, the position and length of the scrollbar are subject to the total height and current offset of the items that have been laid out.|
+| scrollBarWidth<sup>11+</sup> | string \| number         | Width of the scrollbar. This attribute cannot be set in percentage.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>If the width of the scrollbar exceeds its height, it will change to the default value.|
+| scrollBarColor<sup>11+</sup> | string \| number \| [Color](ts-appendix-enums.md#color)   | Color of the scrollbar.|
+| edgeEffect<sup>11+</sup>     | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br>options?:[EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11)        | Effect used at the edges of the component when the boundary of the scrollable content is reached.<br>\- **value**: effect used at the edges of the **\<WaterFlow>** component when the boundary of the scrollable content is reached. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>\- **options**: whether to enable the scroll effect when the component content size is smaller than the component itself.<br>Default value: **false**|
 
 The priority of **layoutDirection** is higher than that of **rowsTemplate** and **columnsTemplate**. Depending on the **layoutDirection** settings, there are three layout modes:
 
@@ -73,6 +78,10 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | onReachStart(event: () => void) | Triggered when the component reaches the start.|
 | onReachEnd(event: () => void)   | Triggered when the component reaches the end position.|
 | onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when the component starts to scroll. The input parameters indicate the amount by which the component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by, in vp.<br>\- **state**: current scrolling state.<br>- **offsetRemain**: actual amount by which the component scrolls, in vp.<br>This event is triggered when the user starts dragging the component or the component starts inertial scrolling. This event is not triggered when the component rebounds or the scrolling controller is used.|
+| onScroll<sup>11+</sup>(event: (scrollOffset: number, scrollState: ScrollState) => void) | Triggered when the component starts to scroll.<br>- **scrollOffset**: scroll offset of each frame. The offset is positive when the component is scrolled up and negative when the list is scrolled down.<br>- [scrollState](ts-container-list.md#scrollstate): current scroll state.|
+| onScrollIndex<sup>11+</sup>(event: (first: number, last: number) => void) | Triggered when the first or last item displayed in the component changes. It is triggered once when the component is initialized.<br>- **first**: index of the first item of the component.<br>- **last**: index of the last item of the component.<br>This event is triggered when either of the preceding indexes changes.|
+| onScrollStart<sup>11+</sup>(event: () => void) | Triggered when the component starts scrolling initiated by the user's finger dragging the component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) starts.|
+| onScrollStop<sup>11+</sup>(event: () => void)          | Triggered when the component stops scrolling after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](ts-container-scroll.md#scroller) stops.|
 
 ## auto-fill
 
@@ -208,14 +217,14 @@ export class WaterFlowDataSource implements IDataSource {
 ```
 
 ```ts
-// WaterflowDemo.ets
+// Index.ets
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
 @Component
 struct WaterflowDemo {
-  @State minSize: number = 50
-  @State maxSize: number = 100
+  @State minSize: number = 80
+  @State maxSize: number = 180
   @State fontSize: number = 24
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
   scroller: Scroller = new Scroller()
@@ -256,7 +265,7 @@ struct WaterflowDemo {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ footer: () => { this.itemFoot() }, scroller: this.scroller }) {
+      WaterFlow() {
         LazyForEach(this.datasource, (item: number) => {
           FlowItem() {
             Column() {
@@ -267,34 +276,28 @@ struct WaterflowDemo {
                 .layoutWeight(1)
             }
           }
+          .onAppear(() => {
+            // Add data in advance when scrolling is about to end.
+            if (item + 20 == this.datasource.totalCount()) {
+              for (let i = 0; i < 100; i++) {
+                this.datasource.AddLastItem()
+              }
+            }
+          })
           .width('100%')
-          .height(this.itemHeightArray[item])
+          .height(this.itemHeightArray[item % 100])
           .backgroundColor(this.colors[item % 5])
         }, (item: string) => item)
       }
-      .columnsTemplate("1fr 1fr 1fr 1fr")
-      .itemConstraintSize({
-        minWidth: 0,
-        maxWidth: '100%',
-        minHeight: 0,
-        maxHeight: '100%'
-      })
-      .friction(0.6)
+      .columnsTemplate("1fr 1fr")
       .columnsGap(10)
       .rowsGap(5)
-      .onReachStart(() => {
-        console.info("onReachStart")
-      })
-      .onReachEnd(() => {
-        console.info("onReachEnd")
-      })
       .backgroundColor(0xFAEEE0)
       .width('100%')
-      .height('80%')
-      .layoutDirection(FlexDirection.Column)
+      .height('100%')
     }
   }
 }
 ```
 
-![en-us_image_WaterFlow.gif](figures/waterflow.gif)
+![en-us_image_WaterFlow.gif](figures/waterflow-perf-demo.gif)

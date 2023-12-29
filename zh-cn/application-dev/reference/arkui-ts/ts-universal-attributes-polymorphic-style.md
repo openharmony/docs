@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  从API Version 11开始支持另一种写法[attributeModifier](./ts-universal-attributes-attribute-modifier.md)，可根据开发者需要动态设置属性。
 
 
 ## 属性
@@ -24,7 +26,7 @@
 | disabled | ()=&gt;void | 否 | 组件禁用状态的样式。 |
 | focused | ()=&gt;void | 否 | 组件获焦状态的样式。 |
 | clicked | ()=&gt;void | 否 | 组件点击状态的样式。 |
-| selected<sup>10+</sup> | ()=&gt;void | 否 | 组件选中状态的样式。 |
+| selected<sup>10+</sup> | ()=&gt;void | 否 | 组件选中状态的样式。<br/>**说明：**<br/>支持选中态的组件：ListItem、GridItem、CheckBox、CheckBoxGroup、Radio、Toggle、MenuItem。 |
 
 
 ## 示例

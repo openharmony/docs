@@ -18,7 +18,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_huks_type.h](native__huks__type_8h.md) | 提供huks中的枚举变量、结构体定义与宏定义。<br>**引用文件**：<huks/native_huks/native_huks_type.h> <br>**库**：libhuks_ndk.z.so | 
+| [native_huks_type.h](native__huks__type_8h.md) | 提供huks中的枚举变量、结构体定义与宏定义。<br>**引用文件**：<huks/native_huks_type.h> <br>**库**：libhuks_ndk.z.so | 
 
 
 ### 结构体

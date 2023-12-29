@@ -4,7 +4,7 @@
 [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md) is a type of ExtensionAbility component that allows a system application to be embedded in and displayed over another application.
 
 
-The WindowExtensionAbility component must be used together with the [AbilityComponent](../reference/arkui-ts/ts-container-ability-component.md) to process services of the started application. WindowExtensionAbility is run in connection mode. A system application must use the AbilityComponent to start the WindowExtensionAbility component.
+The WindowExtensionAbility component must be used together with the [UIExtensionComponent](../reference/arkui-ts/ts-container-ui-extension-component.md) to process services of the started application. WindowExtensionAbility is run in connection mode. A system application must use the UIExtensionComponent to start the WindowExtensionAbility component.
 
 Each ExtensionAbility has its own context. For WindowExtensionAbility,
 the context is [WindowExtensionContext](../reference/apis/js-apis-inner-application-windowExtensionContext.md).  

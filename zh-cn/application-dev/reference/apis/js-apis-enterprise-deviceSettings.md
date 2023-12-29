@@ -77,7 +77,7 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| callback | AsyncCallback&lt;number&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备息屏时间，否则err为错误对象。       |
+| callback | AsyncCallback&lt;number&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备息屏时间（单位：毫秒），否则err为错误对象。       |
 
 **错误码**：
 
@@ -128,7 +128,7 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回设备息屏时间。  |
+| Promise&lt;number&gt; | Promise对象，返回设备息屏时间（单位：毫秒）。  |
 
 **错误码**：
 

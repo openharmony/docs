@@ -1,6 +1,6 @@
 # arkui子系统ChangeLog
 
-## cl.arkui.1 draggable接口不支持在ArkTS上使用
+## cl.arkui.1 Image组件的draggable接口不支持在ArkTS卡片上使用
 
 **变更级别**
 
@@ -20,10 +20,10 @@
 
 **变更的接口/组件**
 
-修改前，Image组件的draggable接口有@form标签支持在ArkTS卡片上使用。
+修改前，Image组件的draggable接口有@form标签。
 
 修改后，Image组件的draggable接口去掉@form标签不支持在ArkTS上使用。
 
 **适配指导**
 
-开发者需排查是否在ArkTS卡片上使用了Image组件的draggable接口，该接口修改前标记了@form标签但是并未实现卡片开发的能力，应删除工程中对该接口的使用。
+变更前后，Image组件的draggable接口均不支持在ArkTS卡片上使用，开发者无需适配。

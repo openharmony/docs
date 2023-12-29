@@ -39,7 +39,7 @@ The **Web** component provides the [onUrlLoadIntercept()](../reference/arkui-ts/
 
 In the following example, the frontend page **route.html** is loaded on to the application home page **Index.ets**, and the user is redirected to the application page **ProfilePage.ets** when clicking the link on the **route.html** page.
 
-- Code of the **index.ets** page:
+- Code of the **Index.ets** page:
   
   ```ts
   // index.ets

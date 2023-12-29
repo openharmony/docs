@@ -94,7 +94,7 @@ export struct VideoPlayer {
 
 ### 加载网络视频
 
-加载网络视频时，需要申请权限ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。此时，Video的src属性为网络视频的链接。
+加载网络视频时，需要申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Video的src属性为网络视频的链接。
 
 
 ```ts

@@ -1,4 +1,4 @@
-# 音频录制流管理
+# 音频录制流管理(ArkTS)
 
 对于录制音频类的应用，开发者需要关注该应用的音频流的状态以做出相应的操作，比如监听到状态为结束时，及时提示用户录制已结束。
 
@@ -48,6 +48,7 @@
    ```ts
    import audio from '@ohos.multimedia.audio';
    import { BusinessError } from '@ohos.base';
+   
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
@@ -86,7 +87,7 @@
 4. （可选）使用getCurrentAudioCapturerInfoArray()获取当前音频录制流的信息。
      该接口可获取音频录制流唯一ID，音频录制客户端的UID，音频状态以及音频捕获器的其他信息。
    > **说明：**
-   > 对所有音频流状态进行监听的应用需要[申请权限](../security/accesstoken-guidelines.md)ohos.permission.USE_BLUETOOTH，否则无法获得实际的设备名称和设备地址信息，查询到的设备名称和设备地址（蓝牙设备的相关属性）将为空字符串。
+   > 对所有音频流状态进行监听的应用需要[声明权限](../security/AccessToken/declare-permissions.md)ohos.permission.USE_BLUETOOTH，否则无法获得实际的设备名称和设备地址信息，查询到的设备名称和设备地址（蓝牙设备的相关属性）将为空字符串。
 
    ```ts
    async function getCurrentAudioCapturerInfoArray(){

@@ -21,33 +21,31 @@ Generally, a button is used to start a page. Below is an example:
     build() {
       Column() {
         Button ('Function A')
-          .margin('20%')
           .onClick(() => {
             console.info('Jump to EntryAbility funA');
             postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // Only the UIAbility of the current application is allowed.
-              'params': {
-                'targetPage': 'funA' // Process the information in the EntryAbility.
+              action: 'router',
+              abilityName: 'EntryAbility', // Only the UIAbility of the current application is allowed.
+              params: {
+                targetPage: 'funA' // Process the information in the EntryAbility.
               }
             });
           })
   
         Button ('Function B')
-          .margin('20%')
           .onClick(() => {
             console.info('Jump to EntryAbility funB');
             postCardAction(this, {
-              'action': 'router',
-              'abilityName': 'EntryAbility', // Only the UIAbility of the current application is allowed.
-              'params': {
-                'targetPage': 'funB' // Process the information in the EntryAbility.
+              action: 'router',
+              abilityName: 'EntryAbility', // Only the UIAbility of the current application is allowed.
+              params: {
+                targetPage: 'funB' // Process the information in the EntryAbility.
               }
             });
           })
       }
       .width('100%')
-      .height('100%')
+      .height('100%').justifyContent(FlexAlign.SpaceAround)
     }
   }
   ```
@@ -70,7 +68,7 @@ Generally, a button is used to start a page. Below is an example:
       // Obtain the targetPage parameter passed in the router event.
       console.info("onCreate want:" + JSON.stringify(want));
       if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
+        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
         console.info("onCreate router targetPage:" + params.targetPage);
         selectPage = params.targetPage;
       }
@@ -79,7 +77,7 @@ Generally, a button is used to start a page. Below is an example:
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
       console.info("onNewWant want:" + JSON.stringify(want));
       if (want.parameters?.params !== undefined) {
-        let params: Record<string, string> = JSON.parse(JSON.stringify(want.parameters?.params));
+        let params: Record<string, string> = JSON.parse(want.parameters?.params.toString());
         console.info("onNewWant router targetPage:" + params.targetPage);
         selectPage = params.targetPage;
       }

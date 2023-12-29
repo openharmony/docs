@@ -12,7 +12,7 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 
 - SMSC
 
-  An entity that relays, stores, or forwards SMS messages between base stations and mobile devices. It uses the GMS 03.40 protocol for sending SMS messages to or receiving SMS messages from mobile phones.
+  An entity that relays, stores, or forwards SMS messages between base stations and mobile devices. It uses the GSM 03.40 protocol for sending SMS messages to or receiving SMS messages from mobile phones.
 
 - PDU
 
@@ -31,7 +31,7 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 
 | Name                                                      | Description                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| sendMessage(options: SendMessageOptions): void               | Sends text or data SMS messages.                                                     |
+| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback<void>): void              | Sends text or data SMS messages.                                                     |
 | createMessage(pdu: Array\<number>, specification: string, callback: AsyncCallback\<ShortMessage>): void | Creates an SMS message instance based on the PDU and the specified SMS protocol.|
 | getDefaultSmsSlotId(callback: AsyncCallback\<number>): void   | Obtains the ID of the default SIM card used to send SMS messages.                                               |
 | setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void>): void | Sets the SMSC address based on the specified slot ID.               |
@@ -67,6 +67,7 @@ let destinationHost: string = '+861xxxxxxxxxx';
 let serviceCenter: string = '+861xxxxxxxxxx';
 let destinationPort: number = 1000;
 let options: sms.SendMessageOptions = {slotId, content, destinationHost, serviceCenter, destinationPort, sendCallback, deliveryCallback};
-sms.sendMessage(options);
+sms.sendShortMessage(options, (err: BusinessError) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
 ```
-

@@ -110,7 +110,7 @@ let optionsNew: AnimatorOptions = {
 };
 try {
   let animatorResult:AnimatorResult|undefined = animator.create(options)
-  animatorResult.reset(options);
+  animatorResult.reset(optionsNew);
 } catch(error) {
   let message = (error as BusinessError).message
   let code = (error as BusinessError).code

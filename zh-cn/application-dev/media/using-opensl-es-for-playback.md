@@ -1,4 +1,4 @@
-# 使用OpenSL ES开发音频播放功能
+# 使用OpenSL ES开发音频播放功能(C/C++)
 
 OpenSL ES全称为Open Sound Library for Embedded Systems，是一个嵌入式、跨平台、免费的音频处理库。为嵌入式移动多媒体设备上的应用开发者提供标准化、高性能、低延迟的API。OpenHarmony的Native API基于[Khronos Group](https://www.khronos.org/)开发的[OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API 规范实现，开发者可以通过&lt;OpenSLES.h&gt;和&lt;OpenSLES_OpenHarmony.h&gt;在OpenHarmony上使用相关API。
 
@@ -33,6 +33,7 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
 - **OpenHarmony上支持的BufferQueue接口**：
    
    以下接口需引入&lt;OpenSLES_OpenHarmony.h&gt;使用。
+
   | 接口 | 说明 | 
   | -------- | -------- |
   | SLresult (\*Enqueue) (SLOHBufferQueueItf self, const void \*buffer, SLuint32 size) | 根据情况将buffer加到相应队列中。<br/>如果是播放操作，则将带有音频数据的buffer插入到filledBufferQ_队列中；如果是录音操作，则将录音使用后的空闲buffer插入到freeBufferQ_队列中。<br/>self：表示调用该函数的BufferQueue接口对象。<br/>buffer：播放时表示带有音频数据的buffer，录音时表示已存储完录音数据后的空闲buffer。<br/>size：表示buffer的大小。 | 
@@ -43,14 +44,20 @@ OpenSL ES中提供了以下的接口，OpenHarmony当前仅实现了部分[接�
 
 ## 完整示例
 
+### 在 CMake 脚本中链接动态库
+
+``` cmake
+target_link_libraries(sample PUBLIC libOpenSLES.so)
+```
+
 参考以下示例代码，播放一个音频文件。
 
 1. 添加头文件。
      
    ```c++
-   #include <OpenSLES.h>
-   #include <OpenSLES_OpenHarmony.h>
-   #include <OpenSLES_Platform.h>
+   #include "SLES/OpenSLES.h"
+   #include "SLES/OpenSLES_OpenHarmony.h"
+   #include "SLES/OpenSLES_Platform.h"
    ```
 
 2. 使用slCreateEngine接口和获取engine实例。

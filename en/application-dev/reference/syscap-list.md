@@ -1430,6 +1430,14 @@ OAID management service
 | ------- | --- | --- | --- | --- | --- | ------------ | ------ |
 | Yes      | No  | No  | Yes  | No  | Yes  | No           | No     |
 
+## SystemCapability.Advertising.Ads
+
+Advertising
+
+| Default | Sports Watch| Smart Watch| Tablet | Head Unit | Smart TV| Smart Vision | Router |
+| ------- | --- | --- | --- | --- | --- | ------------ | ------ |
+| Yes      | No  | No  | Yes  | No  | Yes  | No           | No     |
+
 ## SystemCapability.Cloud.VAID
 
 VAID management service

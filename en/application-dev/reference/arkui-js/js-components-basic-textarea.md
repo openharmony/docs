@@ -21,19 +21,19 @@ Not supported
 
 In addition to the [universal attributes](../arkui-js/js-components-common-attributes.md), the following attributes are supported.
 
-| Name                              | Type                     | Default Value  | Mandatory  | Description                                      |
-| -------------------------------- | ----------------------- | ----- | ---- | ---------------------------------------- |
-| placeholder                      | string                  | -     | No   | Content of the hint text.                           |
-| maxlength                        | number                  | -     | No   | Maximum number of characters that can be entered in the multi-line text box.                        |
-| headericon                       | string                  | -     | No   | Icon displayed before text input. This icon does not support click events. The supported icon formats are JPG, PNG, and SVG.|
-| extend                           | boolean                 | false | No   | Whether a text box can be extended. If the value of this attribute is set to **true**, the height of the text box can adapt to the text.      |
-| value<sup>5+</sup>               | string                  | -     | No   | Content in a multi-line text box.                               |
-| showcounter<sup>5+</sup>         | boolean                 | false | No   | Whether to display the character counter for the text box. This attribute takes effect only when **maxlength** is set.      |
-| menuoptions<sup>5+</sup>         | Array&lt;MenuOption&gt; | -     | No   | Menu options displayed after users click the **More** button.                 |
-| autofocus<sup>6+</sup>           | boolean                 | false | No   | Whether to automatically obtain focus.                                 |
-| selectedstart<sup>6+</sup>       | number                  | -1    | No   | Start position for text selection.                          |
-| selectedend<sup>6+</sup>         | number                  | -1    | No   | End position for text selection.                          |
-| softkeyboardenabled<sup>6+</sup> | boolean                 | true  | No   | Whether to display the soft keyboard during editing.                           |
+| Name                            | Type                   | Default Value| Mandatory| Description                                                        |
+| -------------------------------- | ----------------------- | ------ | ---- | ------------------------------------------------------------ |
+| placeholder                      | string                  | -      | No  | Content of the hint text.                                  |
+| maxlength                        | number                  | -      | No  | Maximum number of characters that can be entered in the multi-line text box.                            |
+| headericon                       | string                  | -      | No  | Icon displayed before text input. This icon does not support click events. The supported icon formats are JPG, PNG, and SVG.|
+| extend                           | boolean                 | false  | No  | Whether a text box can be extended. If the value of this attribute is set to **true**, the height of the text box can adapt to the text.|
+| value<sup>5+</sup>               | string                  | -      | No  | Content in a multi-line text box.                                          |
+| showcounter<sup>5+</sup>         | boolean                 | false  | No  | Whether to display the character counter for the text box. This attribute takes effect only when **maxlength** is set. |
+| menuoptions<sup>5+</sup>         | Array&lt;MenuOption&gt; | -      | No  | Menu options displayed after users click the **More** button.              |
+| autofocus<sup>6+</sup>           | boolean                 | false  | No  | Whether to automatically obtain focus.                                              |
+| selectedstart<sup>6+</sup>       | number                  | -1     | No  | Start position for text selection.                                |
+| selectedend<sup>6+</sup>         | number                  | -1     | No  | End position for text selection.                                |
+| softkeyboardenabled<sup>6+</sup> | boolean                 | true   | No  | Whether to display the soft keyboard during editing.                                  |
 
 **Table 1** MenuOption<sup>5+</sup>
 
@@ -53,7 +53,7 @@ In addition to the [universal styles](../arkui-js/js-components-common-styles.md
 | font-size                | &lt;length&gt;             | 16px       | No   | Font size of the multi-line text box.                             |
 | allow-scale              | boolean                    | true       | No   | Whether the font size changes with the system's font size settings.<br>If the **config-changes** tag of **fontSize** is configured for abilities in the **config.json** file, the setting takes effect without application restart.|
 | placeholder-color        | &lt;color&gt;              | \#99000000 | No   | Color of the hint text in the multi-line text box. This attribute is available when the component type is set to one of the following: text\|email\|date\|time\|number\|password.|
-| font-weight              | number \| string           | normal     | No   | Font weight. For details, see **font-weight** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component.|
+| font-weight              | number \| string | normal     | No   | Font weight. For details, see **font-weight** of the [**\<text>**](../arkui-js/js-components-basic-text.md#styles) component.|
 | font-family              | string                     | sans-serif | No   | Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](../arkui-js/js-components-common-customizing-font.md) is used for the text.|
 | caret-color<sup>6+</sup> | &lt;color&gt;              | -          | No   | Color of the caret.                              |
 

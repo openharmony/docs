@@ -18,6 +18,7 @@
 | colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | 否   | 内容模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.System |
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10)   | 否   | 内容模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.Default |
 | scale | number   | 否   | 内容模糊效果程度。此参数为系统接口。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0]<br/>|
+| blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。           |
 
 ## 示例
 

@@ -1,4 +1,4 @@
-# OpenHarmony Application Performance Improvement Overview
+# Application Performance Improvement Overview
 
 Performance is a crucial factor of application development. Users expect applications to perform seamlessly and smoothly. As application performance largely relies on programming, frame rate, launch and response times, we can optimize these aspects to improve user experience. This document offers a few steps you can follow to improve your application performance, as well as a lineup of useful performance profiling tools.
 
@@ -6,11 +6,11 @@ Performance is a crucial factor of application development. Users expect applica
 
 To drive code execution speed – a key facet of application performance, try the following:
 - **Follow the [ArkTS high-performance programming practices](high-performance-programming.md).**
-    
+  
     Following these practices can bring in better compilation optimization by ArkCompiler, greater performant machine code, and faster program running.
     
 - **Use the AOT mode to compile and optimize applications.**
-    
+  
     ArkCompiler uses Profile-Guided-Optimization (PGO) to generate performant machine code ahead of time (AOT), speeding up applications.
 ## Reducing Frame Freezing
 
@@ -29,7 +29,7 @@ When frame freezing occurs, the user experiences stutters and lags in the applic
   Reduce unnecessary UI update operations, such as excessive UI refresh and layout calculation.
   
 - **[Improving layout performance](reduce-view-nesting-levels.md).**
-   
+  
   Layouts in the user interface (UI) are a key part of interactions between users and your application. Poorly designed layouts can lead to a slow UI, from component creation and layout to rendering. To improve layout performance, reduce nesting and prioritize high-performance layout nodes.
   
 - **Reuse components with LazyForEach.**
@@ -69,8 +69,9 @@ With performance profiling tools, you can identify performance issues in applica
   
 - **Launch Profiler**
   
+
 Use to identify performance issues with each phase of the launch process.
-  
+
 - **Frame Profiler**
   
   Use to take a deep dive into the root causes of frame freezing in the application or service.

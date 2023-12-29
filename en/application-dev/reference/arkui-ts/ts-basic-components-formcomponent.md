@@ -28,7 +28,8 @@ FormComponent(value: {
     ability: string;
     module: string;
     dimension?: FormDimension;
-    temporary?: boolean
+    temporary?: boolean;
+    renderingMode?: FormRenderingMode;
   })
 
 Creates a **FormComponent** instance to display the provided widget.
@@ -44,6 +45,7 @@ Creates a **FormComponent** instance to display the provided widget.
 | module    | string                          | Yes  | Module name of the widget.                                                         |
 | dimension | [FormDimension](#formdimension) | No  | Dimensions of the widget. The widgets in the 2 x 2, 4 x 4, and 4 x 2 dimensions are supported.<br>Default value: **Dimension_2_2**|
 | temporary | boolean                         | No  | Whether the widget is a temporary one.                                                   |
+| renderingMode<sup>11+</sup> | [FormRenderingMode](#formrenderingmode11) | No  | Widget rendering mode. The options are as follows:<br>- **FULL_COLOR** (default): full color mode, where the widget framework does not change the widget effect, which means that the widget is displayed in the effect as you set it.<br>- **SINGLE_COLOR**: single color mode, where the widget framework sets the widget background to transparent. In this mode you need to set the widget style based on the best practices.<br>**NOTE**<br>If the system does not support unified rendering, the widget framework does not set the widget background to transparent in single color mode.|
 
 ## FormDimension
 
@@ -54,6 +56,13 @@ Creates a **FormComponent** instance to display the provided widget.
 | Dimension_2_4              | 2 x 4 widget.|
 | Dimension_4_4              | 4 x 4 widget.|
 | Dimension_2_1<sup>9+</sup> | 2 x 1 widget.|
+| Dimension_1_1<sup>11+</sup> | 1 x 1 widget.|
+
+## FormRenderingMode<sup>11+</sup>
+| Name                      | Description    |
+| -------------------------- | -------- |
+| FULL_COLOR                 | Full color mode.|
+| SINGLE_COLOR               | Single color mode.|
 
 ## Attributes
 | Name       | Type                                                                                             | Mandatory| Description                                                                   |

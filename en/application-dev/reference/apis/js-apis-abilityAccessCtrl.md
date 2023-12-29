@@ -314,7 +314,7 @@ Revokes a user_grant permission from an application. This API uses an asynchrono
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
 | tokenID      | number              | Yes  | Application token ID, which can be obtained from [ApplicationInfo](js-apis-bundleManager-applicationInfo.md).          |
 | permissionName | Permissions              | Yes  | Permission to revoke. You can obtain the valid permission names in the [Application Permission List](../../security/permission-list.md).|
-| permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed.|
+| permissionFlags  | number | Yes  | Permission flag.<br>- **0**: The permission is not set by the user.<br>- **1**: A dialog box for user authorization will be displayed the next time if the user denies authorization for the permission.<br>- **2**: No dialog box will be displayed the next time if the user denies authorization for the permission. The permission must be granted by the user in **Settings**.<br>- **4**: The permission is authorized by the system and cannot be changed. |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the permission is revoked, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -618,58 +618,13 @@ For details about the error codes, see [Access Control Error Codes](../errorcode
 
 **Example**
 
-The ArkTS syntax does not support direct use of **globalThis**. A singleton map is required to enable the use of **globalThis**. You need to perform the following operations:
-
-a. Import the created singleton object **GlobalThis** to **EntryAbility.ets**.
-   ```ts
-   import {GlobalThis} from '../utils/globalThis'; // Set it based on the path of globalThis.ets.
-   ```
-b. Add the following to **onCreate**:
-   ```ts
-   GlobalThis.getInstance().setContext('context', this.context);
-   ```
-
-   > **NOTE**
-   >
-   > An alert will be generated when a **.ets** file is imported to a TS file. To prevent the alert, you need to change the file name extension of **EntryAbility.ts** to **EntryAbility.ets** and modify the file name extension in **module.json5**.
-
-The sample code of **globalThis.ets** is as follows:
-```ts
-import { Context } from '@ohos.abilityAccessCtrl';
-
-// Construct a singleton object.
-export class GlobalThis {
-    private constructor() {}
-    private static instance: GlobalThis;
-    private _uiContexts = new Map<string, Context>();
-
-    public static getInstance(): GlobalThis {
-    if (!GlobalThis.instance) {
-        GlobalThis.instance = new GlobalThis();
-    }
-    return GlobalThis.instance;
-    }
-
-    getContext(key: string): Context | undefined {
-    return this._uiContexts.get(key);
-    }
-
-    setContext(key: string, value: Context): void {
-    this._uiContexts.set(key, value);
-    }
-
-    // Set other content in the same way.
-}
-```
-
 ```ts
 import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: Context = GlobalThis.getInstance().getContext('context');
+    let context = getContext(this);
     atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
@@ -717,16 +672,13 @@ For details about the error codes, see [Access Control Error Codes](../errorcode
 
 **Example**
 
-The procedure for modifying **EntryAbility.ets** and importing **GlobalThis** is the same as the preceding procedure, and omitted here.
-
 ```ts
 import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: Context = GlobalThis.getInstance().getContext('context');
+    let context = getContext(this);
     atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);

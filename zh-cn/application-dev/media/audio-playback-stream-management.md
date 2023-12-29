@@ -1,4 +1,4 @@
-# 音频播放流管理
+# 音频播放流管理(ArkTS)
 
 对于播放音频类的应用，开发者需要关注该应用的音频流的状态以做出相应的操作，比如监听到状态为播放中/暂停时，及时改变播放按钮的UI显示。
 
@@ -47,6 +47,7 @@
    ```ts
    import audio from '@ohos.multimedia.audio';
    import { BusinessError } from '@ohos.base';
+   
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
@@ -55,6 +56,7 @@
      
    ```ts
    import audio from '@ohos.multimedia.audio';
+   
    audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
@@ -88,10 +90,11 @@
      该接口可获取音频播放流唯一ID，音频播放客户端的UID，音频状态以及音频播放器的其他信息。
    > **说明：**
    >
-   > 对所有音频流状态进行监听的应用需要[申请权限](../security/accesstoken-guidelines.md)ohos.permission.USE_BLUETOOTH，否则无法获得实际的设备名称和设备地址信息，查询到的设备名称和设备地址（蓝牙设备的相关属性）将为空字符串。
+   > 对所有音频流状态进行监听的应用需要[声明权限](../security/AccessToken/declare-permissions.md)ohos.permission.USE_BLUETOOTH，否则无法获得实际的设备名称和设备地址信息，查询到的设备名称和设备地址（蓝牙设备的相关属性）将为空字符串。
    
    ```ts
    import audio from '@ohos.multimedia.audio';
+   
    async function getCurrentAudioRendererInfoArray(): Promise<void> {
      await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
        console.info(`getCurrentAudioRendererInfoArray  Get Promise is called `);

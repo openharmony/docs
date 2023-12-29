@@ -4,16 +4,17 @@ During application development, you may need to use different resources, such as
 
 - Application resources: Configure device- or configuration-specific resources in the resource files.
 
-- System resources: Use the preset resource definitions (that is, layered parameters), with which a resource with the same ID has different values under different configurations, including device types and color modes).
+- System resources: Use the preset resource definitions (that is, [layered parameters](../../design/ux-design/design-resources.md), with which a resource with the same ID has different values under different configurations, including device types and color modes).
 
 ## Resource Categories
 
-Resource files used during application development must be stored in specified directories for management. The **resources** directory consists of three types of subdirectories: the **base** subdirectory, qualifiers subdirectories, and the **rawfile** subdirectory. The common resource files used across projects in the stage model are stored in the **resources** directory under **AppScope**.
+Resource files used during application development must be stored in specified directories for management. There are two types of resource directories, namely, resource directories and resource group directories. The resource directories are the **base**, qualifiers, and **rawfile** directories. The resource group directories are the **element**, **media**, and **profile** directories.
 
-The **base** subdirectory is provided by default, and the qualifiers subdirectories are created on your own. When your application needs to use a resource, the system preferentially searches the qualifiers subdirectories that match the current device state. The system searches the **base** subdirectory for the target resource only when the **resources** directory does not contain any qualifiers subdirectories that match the current device state or the target resource is not found in the qualifiers subdirectories. The **rawfile** directory is not searched for resources.
+> **NOTE**
+>
+> The common resource files used across projects in the stage model are stored in the **resources** directory under **AppScope**.
 
 Example of the **resources** directory:
-
 ```
 resources
 |---base
@@ -37,7 +38,7 @@ resources
 |   |   |---icon.png
 |   |---profile
 |   |   |---test_profile.json
-|---en_GB-vertical-car-mdpi // Example of a qualifiers subdirectory, which needs to be created on your own.
+|---en_GB-vertical-car-mdpi // Example of a qualifiers directory, which needs to be created on your own.
 |   |---element
 |   |   |---string.json
 |   |---media
@@ -46,21 +47,20 @@ resources
 |   |   |---test_profile.json
 |---rawfile // Other types of files are saved as raw files and will not be integrated into the resources.index file. You can customize the file name as needed.
 ```
+### Resource Directories
 
-**Table 1** Classification of the resources directory
+#### base Directory
 
-| Category  | base Subdirectory                          | Qualifiers Subdirectory                                   | rawfile Subdirectory                               |
-| ---- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| Structure| The **base** subdirectory is a default directory. If no qualifiers subdirectories in the **resources** directory of the application match the device status, the resource file in the **base** subdirectory will be automatically referenced.<br>Resource group subdirectories are located at the second level of subdirectories to store basic elements such as strings, colors, and boolean values, as well as resource files such as media, animations, and layouts. For details, see [Resource Group Subdirectories](#resource-group-subdirectories).| **en_US** and **zh_CN** are two default qualifiers subdirectories. You need to create other qualifiers subdirectories on your own. Each directory name consists of one or more qualifiers that represent the application scenarios or device characteristics. For details, see [Qualifiers Subdirectories](#qualifiers-subdirectories).<br>Resource group subdirectories are located at the second level of subdirectories to store basic elements such as strings, colors, and boolean values, as well as resource files such as media, animations, and layouts. For details, see [Resource Group Subdirectories](#resource-group-subdirectories).| You can create multiple levels of subdirectories with custom directory names. They can be used to store various resource files.<br>However, resource files in the **rawfile** subdirectory will not be matched based on the device status.|
-| Compilation| Resource files in the subdirectory are compiled into binary files, and each resource file is assigned an ID.           | Resource files in the subdirectory are compiled into binary files, and each resource file is assigned an ID.           | Resource files in the subdirectory are directly packed into the application without being compiled, and no IDs will be assigned to the resource files.   |
-| Reference| Resource files in the subdirectory are referenced based on the resource type and resource name.           | Resource files in the subdirectory are referenced based on the resource type and resource name.           | Resource files in the subdirectory are referenced based on the file path and file name.                        |
+The **base** directory is provided by default. Under this directory, the **element** subdirectory stores basic elements such as strings, colors, and boolean values, and the **media** and **profile** subdirectories store resource files such as media, animations, and layouts.<br>
+Resource files in the subdirectories are compiled into binary files, and each resource file is assigned an ID. Resource files in the subdirectory are referenced based on the resource type and resource name.
 
+#### Qualifiers Directory
 
-### Qualifiers Subdirectories
+**en_US** and **zh_CN** are two default qualifiers directories. You need to create other qualifiers directories on your own. Under this directory, the subdirectories store basic elements such as strings, colors, and boolean values, as well as resource files such as media, animations, and layouts.<br>Resource files in the subdirectories are compiled into binary files, and each resource file is assigned an ID. Resource files in the subdirectories are referenced based on the resource type and resource name.
 
-The name of a qualifiers subdirectory consists of one or more qualifiers that represent the application scenarios or device characteristics, covering the mobile country code (MCC), mobile network code (MNC), language, script, country or region, screen orientation, device type, night mode, and screen density. The qualifiers are separated using underscores (\_) or hyphens (\-). Before creating a qualifiers subdirectory, familiarize yourself with the directory naming conventions and the rules for matching qualifiers subdirectories and the device status.
+**Naming Conventions for Qualifiers Directories**
 
-**Naming Conventions for Qualifiers Subdirectories**
+The name of a qualifiers directory consists of one or more qualifiers that represent the application scenarios or device characteristics, covering the mobile country code (MCC), mobile network code (MNC), language, script, country or region, screen orientation, device type, night mode, and screen density. The qualifiers are separated using underscores (\_) or hyphens (\-). Before creating a qualifiers directory, familiarize yourself with the directory naming conventions.
 
 - Qualifiers are ordered in the following sequence: **\_MCC_MNC-language_script_country/region-orientation-device-color mode-density_**. You can select one or multiple qualifiers to name your subdirectory based on your application scenarios and device characteristics.
 
@@ -68,42 +68,38 @@ The name of a qualifiers subdirectory consists of one or more qualifiers that re
 
 - Value range of qualifiers: The value of each qualifier must meet the requirements specified in the following table. Otherwise, the resource files in the resources directory cannot be matched.
 
-**Table 2** Requirements for qualifier values
+Table 2 Requirements for qualifier values
 
 | Qualifier Type      | Description and Value Range                                 |
 | ----------- | ---------------------------------------- |
-| MCC&MNC| Indicates the MCC and MNC, which are obtained from the network where the device is registered. The MCC can be either followed by the MNC with an underscore (\_) in between or be used independently. For example, **mcc460** indicates China, and **mcc460\_mnc00** indicates China\_China Mobile.<br>For details about the value range, refer to **ITU-T E.212** (the international identification plan for public networks and subscriptions).|
+| MCC&MNC| Indicates the MCC and MNC, which are obtained from the network where the device is registered.<br>The MCC can be either followed by the MNC with an underscore (_) in between or be used independently. For example, **mcc460** represents China, and **mcc460_mnc00** represents China Mobile.<br>For details about the value range, refer to **ITU-T E.212** (the international identification plan for public networks and subscriptions).|
 | Language         | Indicates the language used by the device. The value consists of two or three lowercase letters. For example, **zh** indicates Chinese, **en** indicates English, and **mai** indicates Maithili.<br>For details about the value range, refer to **ISO 639** (codes for the representation of names of languages).|
 | Text         | Indicates the script type used by the device. The value starts with one uppercase letter followed by three lowercase letters. For example, **Hans** indicates simplified Chinese, and **Hant** indicates traditional Chinese.<br>For details about the value range, refer to **ISO 15924** (codes for the representation of names of scripts).|
 | Country/Region      | Indicates the country or region where the user is located. The value consists of two or three uppercase letters or three digits. For example, **CN** indicates China, and **GB** indicates the United Kingdom.<br>For details about the value range, refer to **ISO 3166-1** (codes for the representation of names of countries and their subdivisions).|
 | Screen orientation        | Indicates the screen orientation of the device. The value can be:<br>- **vertical**: portrait orientation<br>- **horizontal**: landscape orientation|
-| Device type       | Indicates the device type. The value can be:<br>- **car**: head unit<br>- **tablet**: tablet<br>- **tv**: smart TV<br>- **wearable**: smart wearable<br>- **2in1** |
+| Device type       | Indicates the device type. The value can be:<br>- **car**: head unit<br>- **tablet**: tablet<br>- **tv**: smart TV<br>- **wearable**: smart wearable|
 | Color mode       | Indicates the color mode of the device. The value can be:<br>- **dark**: dark mode<br>- **light**: light mode|
-| Screen density       | Indicates the screen density of the device, in dpi. The value can be:<br>- **sdpi**: screen density with small-scale dots per inch (SDPI). This value is applicable for devices with a DPI range of (0, 120].<br>- **mdpi**: medium-scale screen density (Medium-scale Dots Per Inch), applicable to DPI whose value is (120,  160] device.<br>- **ldpi**: screen density with large-scale dots per inch (LDPI). This value is applicable for devices with a DPI range of (160, 240].<br>- **xldpi**: screen density with extra-large-scale dots per inch (XLDPI). This value is applicable for devices with a DPI range of (240, 320].<br>- **xxldpi**: screen density with extra-extra-large-scale dots per inch (XXLDPI). This value is applicable for devices with a DPI range of (320, 480].<br>- **xxxldpi**: screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI). This value is applicable for devices with a DPI range of (480, 640].|
+| Screen density       | Indicates the screen density of the device, in dpi. The value can be:<br>- **sdpi**: screen density with small-scale dots per inch (SDPI). This value is applicable for devices with a DPI range of (0, 120].<br>- **mdpi**: medium-scale screen density (Medium-scale&nbsp;Dots&nbsp;Per&nbsp;Inch), applicable to DPI whose value is (120, &nbsp;160] device.<br>- **ldpi**: screen density with large-scale dots per inch (LDPI). This value is applicable for devices with a DPI range of (160, 240].<br>- **xldpi**: screen density with extra-large-scale dots per inch (XLDPI). This value is applicable for devices with a DPI range of (240, 320].<br>- **xxldpi**: screen density with extra-extra-large-scale dots per inch (XXLDPI). This value is applicable for devices with a DPI range of (320, 480].<br>- **xxxldpi**: screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI). This value is applicable for devices with a DPI range of (480, 640].|
 
-**Rules for Matching Qualifiers Subdirectories and Device Resources**
+#### rawfile Directory
 
-- Qualifiers are matched with the device resources in the following priorities: MCC&MNC > locale (options: language, language_script, language_country/region, and language_script_country/region) > screen orientation > device type > color mode > screen density.
+You can create multiple levels of subdirectories with custom names to store various resource files.<br>Resource files in the subdirectories are directly packed into the application without being compiled, and no IDs will be assigned to the resource files. The subdirectories are referenced based on the specified file path and file name.
 
-- If the qualifiers subdirectories contain the **MCC, MNC, language, script, screen orientation, device type, and color mode** qualifiers, their values must be consistent with the current device status so that the subdirectories can be used for matching the device resources. For example, the qualifiers subdirectory **zh_CN-car-ldpi** cannot be used for matching the resource files labeled **en_US**.
+### Resource Group Directories
 
+Resource group directories include **element**, **media**, and **profile**, which are used to store resource files of specific types.
 
-### Resource Group Subdirectories
+  **Table 3** Resource group directories
 
-You can create resource group subdirectories (including element, media, and profile) in the **base** and qualifiers subdirectories to store resource files of specific types.
-
-
-  **Table 3** Resource group subdirectories
-
-| Resource Group Subdirectory  | Description                                    | Resource File                                    |
-| ------- | ---------------------------------------- | ---------------------------------------- |
-| element | Indicates element resources. Each type of data is represented by a JSON file. (Only files are supported in this directory.) The options are as follows:<br>- **boolean**: boolean data<br>- **color**: color data<br>- **float**: floating-point data<br>- **intarray**: array of integers<br>- **integer**: integer data<br>- **pattern**: pattern data<br>- **plural**: plural form data<br>- **strarray**: array of strings<br>- **string**: string data| It is recommended that files in the **element** subdirectory be named the same as the following files, each of which can contain only data of the same type:<br>- boolean.json<br>- color.json<br>- float.json<br>- intarray.json<br>- integer.json<br>- pattern.json<br>- plural.json<br>- strarray.json<br>- string.json |
-| media   | Indicates media resources, including non-text files such as images, audios, and videos. (Only files are supported in this directory.)             | The file name can be customized, for example, **icon.png**.                    |
+| Directory   | Description                                    | Resource File                                    |
+| --------- | ---------------------------------------- | ---------------------------------------- |
+| element | Element resources. Each type of data is represented by a JSON file. (Only files are supported in this directory.) The options are as follows:<br>- **boolean**: boolean data<br>- **color**: color data<br>- **float**: floating-point data<br>- **intarray**: array of integers<br>- **integer**: integer data<br>- **pattern**: pattern data<br>- **plural**: plural form data<br>- **strarray**: array of strings<br>- **string**: string data| It is recommended that files in the **element** subdirectory be named the same as the following files, each of which can contain only data of the same type:<br>-&nbsp;boolean.json<br>-&nbsp;color.json<br>-&nbsp;float.json<br>-&nbsp;intarray.json<br>-&nbsp;integer.json<br>-&nbsp;pattern.json<br>-&nbsp;plural.json<br>-&nbsp;strarray.json<br>-&nbsp;string.json |
+| media   | Indicates media resources, including non-text files such as images, audios, and videos. (Only files are supported in this directory.)<br>Table 4 and Table 5 describe the types of images, audios, and videos.             | The file name can be customized, for example, **icon.png**.                    |
 | profile  | Indicates a custom configuration file. You can obtain the file content by using the [getProfileByAbility](../reference/apis/js-apis-bundleManager.md#bundlemanagergetprofilebyability) API. (Only files are supported in this directory.)      | The file name can be customized, for example, **test_profile.json**.          |
 
 **Media Resource Types**
 
-**Table 4** Image resource types
+Table 4 Image resource types
 
 | Format  | File Name Extension|
 | ---- | ----- |
@@ -114,7 +110,7 @@ You can create resource group subdirectories (including element, media, and prof
 | WEBP | .webp |
 | BMP  | .bmp  |
 
-**Table 5** Audio and video resource types
+Table 5 Audio and video resource types
 
 | Format                                  | File Name Extension        |
 | ------------------------------------ | --------------- |
@@ -206,41 +202,39 @@ The content of the **plural.json** file is as follows:
 }
 ```
 
+## Creating a Resource Directory and Resource File
+
+You can create a directory and its files under the **resources** directory based on the preceding descriptions of the qualifiers directories and resource group directories. DevEco Studio provides a wizard for you to create resource directories and resource files.
+
+### Creating a Resource Directory and Resource File
+
+Right-click the **resources** directory and choose **New** > **Resource File**. If no qualifier is selected, the file is created in a resource group directory under **base**. If one or more qualifiers are selected, the system automatically generates a subdirectory and creates the file in this subdirectory.
+
+In **File name**, enter the name of the resource file to create. In **Resource type**, select the type of the resource group, which is **element** by default. In **Root Element**, select a resource type. To select a qualifier, highlight it under **Available qualifiers** and click the right arrow. To deselect a qualifier, highlight it under **Selected qualifiers** and click the left arrow.<br>The created directory is automatically named in the format of *Qualifiers.Resource group type*. For example, if you create a subdirectory by setting **Color Mode** to **Dark** and **Resource type** to **Element**, the system automatically generates a subdirectory named **dark.element**.
+
+  ![create-resource-file-1](figures/create-resource-file-1.png)
+
+### Creating a Resource Directory
+
+Right-click the **resources** directory and choose **New** > **Resource Directory** to create a directory only. By default, the **base** directory is created. You can create qualifiers directories as required, by specifying the qualifier and resource group type.
+
+  ![create-resource-file-2](figures/create-resource-file-2.png)
+
+### Creating a Resource File
+
+Right-click a directory under **resources** and choose **New** > **XXX Resource File**. This operation creates a resource file under this directory. For example, you can create an element resource file in the **element** subdirectory.
+
+  ![create-resource-file-3](figures/create-resource-file-3.png)
+
 ## Resource Access
 
 ### Application Resources
 
-**Creating a Resource File**
+- To reference an application resource in a project, use the "$r('app.type.name')" format. **app** indicates the resource defined in the **resources** directory of the application. **type** indicates the resource type (or the location where the resource is stored). The value can be **color**, **float**, **string**, **plural**, or **media**. **name** indicates the resource name, which you set when defining the resource.
 
-You can create a subdirectory and its files under the **resources** directory based on the preceding descriptions of the qualifiers subdirectories and resource group subdirectories.
+- When referencing resources in the **rawfile** subdirectory, use the "$rawfile('filename')" format. Wherein **filename** indicates the relative path of a file in the rawfile subdirectory, which must contain the file name extension and cannot start with a slash (/).
 
-DevEco Studio provides a wizard for you to create resource directories and resource files.
-
-- Creating a Resource Directory and Resource File
-
-  Right-click the **resources** directory and choose **New > Resource File**. If no qualifier is selected, the file is created in a resource type subdirectory under **base**. If one or more qualifiers are selected, the system automatically generates a subdirectory and creates the file in this subdirectory. To select a qualifier, highlight it under **Available qualifiers** and click the right arrow. To deselect a qualifier, highlight it under **Selected qualifiers** and click the left arrow. In **File name**, enter the name of the resource file to create. In **Resource type**, select the type of the resource group, which is **element** by default. In **Root Element**, select a resource type. The created subdirectory is automatically named in the format of *Qualifiers.Resource group type*. For example, if you create a subdirectory by setting **Color Mode** to **Dark** and **Resource type** to **Element**, the system automatically generates a subdirectory named **dark.element**.
-
-  ![create-resource-file-1](figures/create-resource-file-1.png)
-
-- Creating a Resource Directory
-
-  Right-click the **resources** directory and choose **New > Resource Directory** to create a subdirectory only. By default, the **base** subdirectory is created. You can create qualifiers subdirectories as required, by specifying the qualifier and resource group type.
-
-  ![create-resource-file-2](figures/create-resource-file-2.png)
-
-- Creating a Resource File
-
-  Right-click a subdirectory under **resources** and choose **New > *XXX* Resource File**. This operation creates a resource file under this subdirectory. For example, you can create an element resource file in the **element** subdirectory.
-
-  ![create-resource-file-3](figures/create-resource-file-3.png)
-
-**Accessing Application Resources**
-
-To reference an application resource in a project, use the **"$r('app.type.name')"** format. **app** indicates the resource defined in the **resources** directory of the application. **type** indicates the resource type (or the location where the resource is stored). The value can be **color**, **float**, **string**, **plural**, or **media**. **name** indicates the resource name, which you set when defining the resource.
-
-When referencing resources in the **rawfile** subdirectory, use the **"$rawfile('filename')"** format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
-
-To obtain the descriptor of a file in the **rawfile** subdirectory, you can use the [getRawFd](../reference/apis/js-apis-resource-manager.md#getrawfd9) API, whose return value **descriptor.fd** is the file descriptor (FD). To access the file with this FD, use {fd, offset, length}.
+- To obtain the descriptor of a file in the **rawfile** subdirectory, you can use the [getRawFd](../reference/apis/js-apis-resource-manager.md#getrawfd9) API, whose return value **descriptor.fd** is the file descriptor (FD). To access the file with this FD, use {fd, offset, length}.
 
 > **NOTE**
 > 
@@ -248,7 +242,7 @@ To obtain the descriptor of a file in the **rawfile** subdirectory, you can use 
 >
 > The return value of **$r** is a **Resource** object. You can obtain the corresponding string by using the [getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) API.
 
-In the **.ets** file, you can use the resources defined in the **resources** directory. As described in [Resource Group Subdirectories](#resource-group-subdirectories), you can reference .json resource files, including **color.json**, **string.json**, and **plural.json**. The usage is as follows:
+As described in [Resource Group Directories](#resource-group-directories), you can reference .json resource files, including **color.json**, **string.json**, and** plural.json**.<br>The usage is as follows:
 
 ```ts
 Text($r('app.string.string_hello'))
@@ -280,17 +274,15 @@ Image($rawfile('newDir/newTest.png'))       // Reference an image in the rawfile
 
 ### System Resources
 
-System resources include colors, rounded corners, fonts, spacing, character strings, and images. By using system resources, you can develop different applications with the same visual style.
+Apart from custom resources, you can use system resources to develop different applications with the same visual style. For details about the system resource IDs and their values in different configurations, see [Resources](../../design/ux-design/design-resources.md).
 
-To reference a system resource, use the **"$r('sys.type.resource_id')"** format. Wherein: **sys** indicates a system resource; **type** indicates the resource type, which can be **color**, **float**, **string**, or **media**; **resource_id** indicates the resource ID.
-
+During development, the usage of layered parameters is basically the same as that of qualifiers. To reference a system resource, use the "$r('sys.type.resource_id')" format. Wherein: **sys** indicates a system resource; **type** indicates the resource type, which can be **color**, **float**, **string**, or **media**; **resource_id** indicates the resource ID.
 
 > **NOTE**
 >
-> - The use of system resources is supported in the declarative development paradigm, but not in the web-like development paradigm.
+> - The use of system resources is only supported in the declarative development paradigm.
 >
-> - For details about the implementation of preconfigured resources, visit the [OpenHarmony/resources repository](https://gitee.com/openharmony/resources/tree/master/systemres/main/resources). The directory structure there is similar to that of the **resources** directory in the project. Resource qualifiers are used to match resources with different devices and device states.
-
+> - For preset applications, you are advised to use system resources. For third-party applications, you can choose to use system resources or custom application resources as required.
 
 ```ts
 Text('Hello')
@@ -311,3 +303,15 @@ Image($r('sys.media.ohos_app_icon'))
   .height(200)
   .width(300)
 ```
+
+## Resource Matching
+
+When your application needs to use a resource, the system preferentially searches the qualifiers subdirectories that match the current device state. The system searches the **base** subdirectory for the target resource only when the **resources** directory does not contain any qualifiers subdirectories that match the current device state or the target resource is not found in the qualifiers subdirectories. The **rawfile** directory is not searched for resources.
+
+**Rules for Matching Qualifiers Subdirectories and Device Resources**
+
+- Qualifiers are matched with the device resources in the following priorities: MCC&MNC > locale (options: language, language_script, language_country/region, and language_script_country/region) > screen orientation > device type > color mode > screen density
+
+- If the qualifiers subdirectories contain the MCC, MNC, language, script, screen orientation, device type, and color mode qualifiers, their values must be consistent with the current device status so that the subdirectories can be used for matching the device resources. For example, the qualifiers subdirectory **zh_CN-car-ldpi** cannot be used for matching the resource files labeled **en_US**.
+
+For more information about how resources are loaded in applications, see the internationalization and localization documents.

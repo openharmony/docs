@@ -29,6 +29,7 @@ import common from '@ohos.app.ability.common';
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | Level-2 module **EventHub**.|
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | Level-2 module **PacMap**.|
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | Level-2 module **AbilityResult**.|
+| AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)               | Level-2 module **AbilityStartCallback**.|
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | Level-2 module **ConnectOptions**.|
 
 **Example**
@@ -45,5 +46,6 @@ let formExtensionContext: common.FormExtensionContext;
 let eventHub: common.EventHub;
 let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
+let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 ```

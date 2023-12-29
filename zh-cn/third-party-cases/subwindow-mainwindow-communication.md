@@ -178,7 +178,7 @@
             .height('100%')
           }
         ```
-    - 在主窗口中定义变量“subData”，并使用@StorageLink将其与AppStorage中的变量“data”进行双向绑定。由于主窗口的“mainData”也与“data”进行了绑定，因此，“mainData”的值可以通过“data”传递给“subData”，反之亦然。这样就实现了主窗口和子窗口之间的数据同步。
+    - 在子窗口中定义变量“subData”，并使用@StorageLink将其与AppStorage中的变量“data”进行双向绑定。由于主窗口的“mainData”也与“data”进行了绑定，因此，“mainData”的值可以通过“data”传递给“subData”，反之亦然。这样就实现了主窗口和子窗口之间的数据同步。
         ```ts
         ...
         // 使用@StorageLink将"subData"与AppStorage中的变量"data"进行双向绑定

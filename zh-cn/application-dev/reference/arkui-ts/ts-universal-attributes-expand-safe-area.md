@@ -1,10 +1,12 @@
 # 安全区域
 
-通过expandSafeArea属性支持组件扩展其安全区域，通过设置setKeyboardAvoidMode来配置虚拟键盘弹出时页面的避让模式。
+安全区域是指页面的显示区域，默认不与系统设置的非安全区域比如状态栏、导航栏区域重叠，默认情况下开发者开发的界面都被布局在安全区域内。提供属性方法允许开发者设置图片安全区域的限制，通过expandSafeArea属性支持组件扩展其安全区域，通过设置setKeyboardAvoidMode来配置虚拟键盘弹出时页面的避让模式。
 
 > **说明：**
 >
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 为了达到沉浸式的效果，Tabs和Navigation组件的expandSafeArea属性默认值为(type:[SafeAreaType.SYSTEM,], edges:[SafeAreaEdge.BOTTOM])。
 
 ## 属性
 

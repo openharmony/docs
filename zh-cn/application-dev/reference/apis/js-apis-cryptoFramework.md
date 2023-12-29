@@ -142,10 +142,19 @@ buffer数组，提供blob数据类型。
 | ECC_PK_Y_BN | 210 | ECC算法中，公钥pk（椭圆曲线上的一个点）的y坐标。 |
 | ECC_FIELD_TYPE_STR | 211 | ECC算法中，椭圆曲线的域类型（当前只支持Fp域）。 |
 | ECC_FIELD_SIZE_NUM | 212 | ECC算法中域的大小，单位为bits（注：对于Fp域，域的大小为素数p的bits长度）。 |
-| ECC_CURVE_NAME_STR | 213 | ECC算法中的SECG曲线名称。 |
+| ECC_CURVE_NAME_STR | 213 | ECC算法中的SECG(Standards for Efficient Cryptography Group)曲线名称。 |
 | RSA_N_BN | 301 | RSA算法中的模数n。 |
 | RSA_SK_BN | 302 | RSA算法中的私钥sk（即私钥指数d）。 |
 | RSA_PK_BN | 303 | RSA算法中的公钥pk（即公钥指数e）。 |
+| DH_P_BN<sup>11+</sup> | 401 | DH算法中的素数p |
+| DH_G_BN<sup>11+</sup> | 402 | DH算法中的参数g |
+| DH_L_NUM<sup>11+</sup> | 403 | DH算法中私钥长度，单位为bit. |
+| DH_SK_BN<sup>11+</sup> | 404 | DH算法中的私钥sk |
+| DH_PK_BN<sup>11+</sup> | 405 | DH算法中的公钥pk |
+| ED25519_SK_BN<sup>11+</sup> | 501 | ED25519算法中的私钥sk |
+| ED25519_PK_BN<sup>11+</sup> | 502 | ED25519算法中的公钥pk |
+| X25519_SK_BN<sup>11+</sup> | 601 | X25519算法中的私钥sk |
+| X25519_PK_BN<sup>11+</sup> | 602 | X25519算法中的公钥pk |
 
 ## AsyKeySpecType<sup>10+</sup>
 
@@ -164,7 +173,7 @@ buffer数组，提供blob数据类型。
 
 表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec10)接口设置/通过[getCipherSpec](#getcipherspec10)接口获取。
 
-当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
+当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_MD_NAME_STR参数的支持，详细规格请参考[加解密规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -174,12 +183,13 @@ buffer数组，提供blob数据类型。
 | OAEP_MGF_NAME_STR | 101 | 表示RSA算法中，使用PKCS1_OAEP模式时，掩码生成算法（目前仅支持MGF1）。 |
 | OAEP_MGF1_MD_STR | 102 | 表示RSA算法中，使用PKCS1_OAEP模式时，MGF1掩码生成功能的消息摘要算法。 |
 | OAEP_MGF1_PSRC_UINT8ARR | 103 | 表示RSA算法中，使用PKCS1_OAEP模式时，pSource的字节流。 |
+| SM2_MD_NAME_STR<sup>11+</sup> | 104 | 表示SM2算法中，使用的摘要算法名。 |
 
 ## SignSpecItem<sup>10+</sup>
 
 表示签名验签参数的枚举，这些签名验签参数支持通过[setSignSpec](#setsignspec10)、[setVerifySpec](#setverifyspec10)接口设置/通过[getSignSpec](#getsignspec10)、[getVerifySpec](#getverifyspec10)接口获取。
 
-当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
+当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_USER_ID_UINT8ARR参数的支持，详细规格请参考[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -190,6 +200,7 @@ buffer数组，提供blob数据类型。
 | PSS_MGF1_MD_STR | 102 | 表示RSA算法中，使用PSS模式时，MGF1掩码生成功能的消息摘要参数。 |
 | PSS_SALT_LEN_NUM | 103 | 表示RSA算法中，使用PSS模式时，盐值的长度，长度以字节为单位。 |
 | PSS_TRAILER_FIELD_NUM | 104 | 表示RSA算法中，使用PSS模式时，用于编码操作的整数，值为1。 |
+| SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | 表示SM2算法中，用户身份标识字段。 |
 
 ## AsyKeySpec<sup>10+</sup>
 
@@ -199,7 +210,7 @@ buffer数组，提供blob数据类型。
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 是   | 指定非对称密钥的算法名称，比如"RSA"、"DSA"、"ECC"。 |
+| algName | string | 是   | 是   | 指定非对称密钥的算法名称，比如"RSA"、"DSA"、"ECC"、"SM2"、"Ed25519"、"X25519"、"DH"。 |
 | specType | [AsyKeySpecType](#asykeyspectype10) | 是   | 是 | 指定密钥参数类型，用于区分公/私钥参数。 |
 
 ## DSACommonParamsSpec<sup>10+</sup>
@@ -370,6 +381,134 @@ buffer数组，提供blob数据类型。
 | sk | bigint | 是   | 是   | 指定RSA算法的私钥sk。 |
 | pk | bigint | 是   | 是   | 指定RSA算法的公钥pk。 |
 
+## ED25519PriKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中私钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| ---- | ------ | ---- | ---- | ------------------------- |
+| sk   | bigint | 是   | 是   | 指定ED25519算法的私钥sk。 |
+
+## ED25519PubKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中公钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| ---- | ------ | ---- | ---- | ------------------------- |
+| pk   | bigint | 是   | 是   | 指定ED25519算法的公钥pk。 |
+
+## ED25519KeyPairSpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ED25519算法中公私钥包含的全量参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                      |
+| ---- | ------ | ---- | ---- | ------------------------- |
+| sk   | bigint | 是   | 是   | 指定ED25519算法的私钥sk。 |
+| pk   | bigint | 是   | 是   | 指定ED25519算法的公钥pk。 |
+
+## X25519PriKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定X25519算法中私钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| sk   | bigint | 是   | 是   | 指定X25519算法的私钥sk。 |
+
+## X25519PubKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定X25519算法中公钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| pk   | bigint | 是   | 是   | 指定X25519算法的公钥pk。 |
+
+## X25519KeyPairSpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定X25519算法中公私钥包含的全量参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                     |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| sk   | bigint | 是   | 是   | 指定X25519算法的私钥sk。 |
+| pk   | bigint | 是   | 是   | 指定X25519算法的公钥pk。 |
+
+## DHCommonParamsSpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中公私钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称 | 类型   | 可读 | 可写 | 说明                                |
+| ---- | ------ | ---- | ---- | ----------------------------------- |
+| p    | bigint | 是   | 是   | 指定DH算法中大素数p。               |
+| g    | bigint | 是   | 是   | 指定DH算法中参数g。                 |
+| l    | number | 是   | 是   | 指定DH算法中私钥的长度，单位为bit。 |
+
+## DHPriKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中私钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| ------ | ------------------ | ---- | ---- | ------------------------------------ |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
+| sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
+
+## DHPubKeySpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中公钥包含的参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| ------ | ------------------ | ---- | ---- | ------------------------------------ |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
+| pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
+
+## DHKeyPairSpec<sup>11+</sup>
+
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DH算法中公私钥包含的全量参数。
+
+在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+| 名称   | 类型               | 可读 | 可写 | 说明                                 |
+| ------ | ------------------ | ---- | ---- | ------------------------------------ |
+| params | [DHCommonParamsSpec](#dhcommonparamsspec11) | 是   | 是   | 指定DH算法中公私钥都包含的公共参数。 |
+| sk     | bigint             | 是   | 是   | 指定DH算法的私钥sk。                 |
+| pk     | bigint             | 是   | 是   | 指定DH算法的公钥pk。                 |
+
 ## KdfSpec<sup>11+</sup>
 
 密钥派生函数参数，使用密钥派生函数进行密钥派生时，需要构建其子类对象并作为输入。
@@ -442,9 +581,14 @@ getEncoded(): DataBlob
 **示例：**
 
 ```ts
-let key: cryptoFramework.SymKey;    // The key is generated by a key generator. The generation process is omitted here.
-let encodedKey = key.getEncoded();
-console.info("key blob:" + encodedKey.data);
+import cryptoFramework from '@ohos.security.cryptoFramework';
+
+async function testGenerateAesKey() {
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES256');
+  let symKey = await symKeyGenerator.generateSymKey();
+  let encodedKey = symKey.getEncoded();
+  console.info('key hex:' + encodedKey.data);
+}
 ```
 
 ## SymKey
@@ -466,10 +610,10 @@ clearMem(): void
 ```ts
 let key: cryptoFramework.SymKey;    // The key is generated by a symKeyGenerator. The generation process is omitted here.
 let encodedKey = key.getEncoded();
-console.info("key blob: "+ encodedKey.data);    // Display key content.
+console.info('key blob: '+ encodedKey.data);    // Display key content.
 key.clearMem();
 encodedKey = key.getEncoded();
-console.info("key blob:" + encodedKey.data);    // Display all 0s.
+console.info('key blob：' + encodedKey.data);    // Display all 0s.
 ```
 
 ## PubKey
@@ -512,7 +656,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 ```ts
 let key: cryptoFramework.PubKey; // key is a public key object. The generation process is omitted here.
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-console.info("ecc item --- p: " + p.toString(16));
+console.info('ecc item --- p: ' + p.toString(16));
 ```
 
 ## PriKey
@@ -570,7 +714,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 ```ts
 let key: cryptoFramework.PriKey; // key is a private key object. The generation process is omitted here.
 let p = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-console.info("ecc item --- p: " + p.toString(16));
+console.info('ecc item --- p: ' + p.toString(16));
 ```
 
 ## KeyPair
@@ -600,7 +744,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 通过指定算法名称的字符串，获取相应的对称密钥生成器实例。
 
-支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
+支持的规格详见[对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -608,7 +752,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 待生成对称密钥生成器的算法名称。<br/>具体取值详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节中的“字符串参数”。 |
+| algName | string | 是   | 待生成对称密钥生成器的算法名称。<br/>具体取值详见[对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)”一节中的“字符串参数”。 |
 
 **返回值：**
 
@@ -674,17 +818,12 @@ generateSymKey(callback: AsyncCallback\<SymKey>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
 
-let symAlgName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
-symKeyGenerator.generateSymKey((err, symKey) => {
-  if (err) {
-    console.error(`Generate symKey failed, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Generate symKey success, algName: ${symKey.algName}`);
-  }
-})
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+  symKeyGenerator.generateSymKey((err, symKey) => {
+    console.info('Generate symKey success, algName：' + symKey.algName);
+  });
 ```
 
 ### generateSymKey
@@ -717,14 +856,13 @@ generateSymKey(): Promise\<SymKey>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let symAlgName = 'AES128';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
-symKeyGenerator.generateSymKey()
-  .then(symKey => {
-    console.info(`Generate symKey success, algName: ${symKey.algName}`);
-  }, (error: BusinessError) => {
-    console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
-  })
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  symKeyGenerator.generateSymKey()
+    .then(symKey => {
+      console.info('Generate symKey success, algName: ' + symKey.algName);
+    }, (error: BusinessError) => {
+      console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
+    });
 ```
 
 ### convertKey
@@ -759,7 +897,7 @@ convertKey(key: DataBlob, callback: AsyncCallback\<SymKey>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   let arr = [
@@ -770,16 +908,13 @@ function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   return { data: keyMaterial };
 }
 
-let symAlgName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
-let keyMaterialBlob = genKeyMaterialBlob();
-symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
-  if (err) {
-    console.error(`Convert symKey failed, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Convert symKey success, algName: ${symKey.algName}`);
-  }
-})
+function testConvertKey() {
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+  let keyMaterialBlob = genKeyMaterialBlob();
+  symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
+    console.info('Convert symKey success, algName: ' + symKey.algName);
+  });
+}
 ```
 
 ### convertKey
@@ -815,6 +950,7 @@ convertKey(key: DataBlob): Promise\<SymKey>
 **示例：**
 
 ```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
 import { BusinessError } from '@ohos.base';
 
 function genKeyMaterialBlob(): cryptoFramework.DataBlob {
@@ -826,15 +962,16 @@ function genKeyMaterialBlob(): cryptoFramework.DataBlob {
   return { data: keyMaterial };
 }
 
-let symAlgName = '3DES192';
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator(symAlgName);
-let keyMaterialBlob = genKeyMaterialBlob();
-symKeyGenerator.convertKey(keyMaterialBlob)
-  .then(symKey => {
-    console.info(`Convert symKey success, algName: ${symKey.algName}`);
-  }, (error: BusinessError) => {
-    console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
-  })
+function testConvertKey() {
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+  let keyMaterialBlob = genKeyMaterialBlob();
+  symKeyGenerator.convertKey(keyMaterialBlob)
+    .then(symKey => {
+      console.info('Convert symKey success, algName：' + symKey.algName);
+    }, (error: BusinessError) => {
+      console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
+    });
+}
 ```
 
 ## cryptoFramework.createAsyKeyGenerator
@@ -843,7 +980,7 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
 通过指定算法名称的字符串，获取相应的非对称密钥生成器实例。
 
-支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
+支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -871,7 +1008,7 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 **示例：**
 
 ```ts
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 ```
 
 ## AsyKeyGenerator
@@ -912,15 +1049,13 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 asyKeyGenerator.generateKeyPair((err, keyPair) => {
   if (err) {
     console.error("generateKeyPair: error.");
     return;
   }
-  console.info("generateKeyPair: success.");
+  console.info('generateKeyPair: success.');
 })
 ```
 
@@ -952,10 +1087,10 @@ generateKeyPair(): Promise\<KeyPair>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 let keyGenPromise = asyKeyGenerator.generateKeyPair();
-keyGenPromise.then( keyPair => {
-  console.info("generateKeyPair success.");
+keyGenPromise.then(keyPair => {
+  console.info('generateKeyPair success.');
 }).catch((error: BusinessError) => {
   console.error("generateKeyPair error.");
 });
@@ -989,20 +1124,18 @@ convertKey(pubKey: DataBlob | null, priKey: DataBlob | null, callback: AsyncCall
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
-let pubKeyBlob: cryptoFramework.DataBlob = {data: pubKeyArray}; // Data of the public key.
-let priKeyBlob: cryptoFramework.DataBlob = {data: priKeyArray}; // Data of the private key.
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray }; // 公钥二进制数据
+let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray }; // 私钥二进制数据
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 asyKeyGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
   if (err) {
     console.error("convertKey: error.");
     return;
   }
-  console.info("convertKey: success.");
-})
+  console.info('convertKey: success.');
+});
 ```
 
 ### convertKey
@@ -1042,12 +1175,12 @@ import { BusinessError } from '@ohos.base';
 
 let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
 let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
-let pubKeyBlob: cryptoFramework.DataBlob = {data: pubKeyArray}; // Data of the public key.
-let priKeyBlob: cryptoFramework.DataBlob = {data: priKeyArray}; // Data of the private key.
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray }; // 公钥二进制数据
+let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray }; // 私钥二进制数据
+let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('ECC256');
 let keyGenPromise = asyKeyGenerator.convertKey(pubKeyBlob, priKeyBlob);
-keyGenPromise.then( keyPair => {
-  console.info("convertKey success.");
+keyGenPromise.then(keyPair => {
+  console.info('convertKey success.');
 }).catch((error: BusinessError) => {
   console.error("convertKey error.");
 });
@@ -1065,7 +1198,7 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 通过指定密钥参数，获取相应的非对称密钥生成器实例。
 
-支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
+支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1093,26 +1226,27 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 **示例：**
 
 ```ts
-// Set the common parameters contained in both the DSA1024 public and private keys.
+// 配置DSA1024公钥和私钥中包含的公共参数
 function genDsa1024CommonSpecBigE() {
   let dsaCommonSpec: cryptoFramework.DSACommonParamsSpec = {
-    algName : "DSA",
-    specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
-    p : BigInt("0xed1501551b8ab3547f6355ffdc2913856ddeca198833dbd04f020e5f25e47c50e0b3894f7690a0d2ea5ed3a7be25c54292a698e1f086eb3a97deb4dbf04fcad2dafd94a9f35c3ae338ab35477e16981ded6a5b13d5ff20bf55f1b262303ad3a80af71aa6aa2354d20e9c82647664bdb6b333b7bea0a5f49d55ca40bc312a1729"),
-    q : BigInt("0xd23304044019d5d382cfeabf351636c7ab219694ac845051f60b047b"),
-    g : BigInt("0x2cc266d8bd33c3009bd67f285a257ba74f0c3a7e12b722864632a0ac3f2c17c91c2f3f67eb2d57071ef47aaa8f8e17a21ad2c1072ee1ce281362aad01dcbcd3876455cd17e1dd55d4ed36fa011db40f0bbb8cba01d066f392b5eaa9404bfcb775f2196a6bc20eeec3db32d54e94d87ecdb7a0310a5a017c5cdb8ac78597778bd"),
+    algName: "DSA",
+    specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
+    p: BigInt("0xed1501551b8ab3547f6355ffdc2913856ddeca198833dbd04f020e5f25e47c50e0b3894f7690a0d2ea5ed3a7be25c54292a698e1f086eb3a97deb4dbf04fcad2dafd94a9f35c3ae338ab35477e16981ded6a5b13d5ff20bf55f1b262303ad3a80af71aa6aa2354d20e9c82647664bdb6b333b7bea0a5f49d55ca40bc312a1729"),
+    q: BigInt("0xd23304044019d5d382cfeabf351636c7ab219694ac845051f60b047b"),
+    g: BigInt("0x2cc266d8bd33c3009bd67f285a257ba74f0c3a7e12b722864632a0ac3f2c17c91c2f3f67eb2d57071ef47aaa8f8e17a21ad2c1072ee1ce281362aad01dcbcd3876455cd17e1dd55d4ed36fa011db40f0bbb8cba01d066f392b5eaa9404bfcb775f2196a6bc20eeec3db32d54e94d87ecdb7a0310a5a017c5cdb8ac78597778bd"),
   }
   return dsaCommonSpec;
 }
-// Set full parameters contained in the DSA1024 public and private keys.
+
+// 设置DSA1024密钥对中包含的全参数
 function genDsa1024KeyPairSpecBigE() {
   let dsaCommonSpec = genDsa1024CommonSpecBigE();
   let dsaKeyPairSpec: cryptoFramework.DSAKeyPairSpec = {
-    algName : "DSA",
-    specType : cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
-    params : dsaCommonSpec,
-    sk : BigInt("0xa2dd2adb2d11392c2541930f61f1165c370aabd2d78d00342e0a2fd9"),
-    pk : BigInt("0xae6b5d5042e758f3fc9a02d009d896df115811a75b5f7b382d8526270dbb3c029403fafb8573ba4ef0314ea86f09d01e82a14d1ebb67b0c331f41049bd6b1842658b0592e706a5e4d20c14b67977e17df7bdd464cce14b5f13bae6607760fcdf394e0b73ac70aaf141fa4dafd736bd0364b1d6e6c0d7683a5de6b9221e7f2d6b"),
+    algName: "DSA",
+    specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+    params: dsaCommonSpec,
+    sk: BigInt("0xa2dd2adb2d11392c2541930f61f1165c370aabd2d78d00342e0a2fd9"),
+    pk: BigInt("0xae6b5d5042e758f3fc9a02d009d896df115811a75b5f7b382d8526270dbb3c029403fafb8573ba4ef0314ea86f09d01e82a14d1ebb67b0c331f41049bd6b1842658b0592e706a5e4d20c14b67977e17df7bdd464cce14b5f13bae6607760fcdf394e0b73ac70aaf141fa4dafd736bd0364b1d6e6c0d7683a5de6b9221e7f2d6b"),
   }
   return dsaKeyPairSpec;
 }
@@ -1161,8 +1295,6 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
@@ -1170,7 +1302,7 @@ asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
     console.error("generateKeyPair: error.");
     return;
   }
-  console.info("generateKeyPair: success.");
+  console.info('generateKeyPair: success.');
 })
 ```
 
@@ -1207,8 +1339,8 @@ import { BusinessError } from '@ohos.base';
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 let keyGenPromise = asyKeyGeneratorBySpec.generateKeyPair();
-keyGenPromise.then( keyPair => {
-  console.info("generateKeyPair success.");
+keyGenPromise.then(keyPair => {
+  console.info('generateKeyPair success.');
 }).catch((error: BusinessError) => {
   console.error("generateKeyPair error.");
 });
@@ -1242,16 +1374,14 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys.
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
   if (err) {
     console.error("generatePriKey: error.");
     return;
   }
-  console.info("generatePriKey: success.");
+  console.info('generatePriKey: success.');
 })
 ```
 
@@ -1285,11 +1415,11 @@ generatePriKey(): Promise\<PriKey>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys.
+let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 let keyGenPromise = asyKeyGeneratorBySpec.generatePriKey();
-keyGenPromise.then( priKey => {
-  console.info("generatePriKey success.");
+keyGenPromise.then(priKey => {
+  console.info('generatePriKey success.');
 }).catch((error: BusinessError) => {
   console.error("generatePriKey error.");
 });
@@ -1323,8 +1453,6 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 asyKeyGeneratorBySpec.generatePubKey((err, pubKey) => {
@@ -1332,7 +1460,7 @@ asyKeyGeneratorBySpec.generatePubKey((err, pubKey) => {
     console.error("generatePubKey: error.");
     return;
   }
-  console.info("generatePubKey: success.");
+  console.info('generatePubKey: success.');
 })
 ```
 
@@ -1369,11 +1497,107 @@ import { BusinessError } from '@ohos.base';
 let asyKeyPairSpec: cryptoFramework.DSAKeyPairSpec; // dsa as example, asyKeyPairSpec specifies full parameters contained in the private and public keys. The generation process is omitted here.
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
 let keyGenPromise = asyKeyGeneratorBySpec.generatePubKey();
-keyGenPromise.then( pubKey => {
-  console.info("generatePubKey success.");
+keyGenPromise.then(pubKey => {
+  console.info('generatePubKey success.');
 }).catch((error: BusinessError) => {
   console.error("generatePubKey error.");
 });
+```
+
+## ECCKeyUtil<sup>11+</sup>
+
+根据椭圆曲线名生成相应的非对称公共密钥参数。
+
+### genECCCommonParamsSpec<sup>11+</sup>
+
+static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
+
+根据椭圆曲线相应的NID(Name IDentifier)字符串名称生成相应的非对称公共密钥参数。详见[ECC密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#ecc)和[SM2密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#sm2)。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                           |
+| ------- | ------ | ---- | ---------------------------------------------- |
+| algName | string | 是   | 椭圆曲线相应的NID(Name IDentifier)字符串名称。 |
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [ECCCommonParamsSpec](#ecccommonparamsspec10) | 返回ECC公共密钥参数。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 801      | this operation is not supported. |
+| 17620001 | memory error.                    |
+
+**示例：**
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_brainpoolP160r1');
+    console.info('genECCCommonParamsSpec success');
+} catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error(`genECCCommonParamsSpec error, ${e.code}, ${e.message}`);
+}
+```
+
+## DHKeyUtil<sup>11+</sup>
+
+根据素数P的长度和私钥长度（bit位数）生成DH公共密钥参数。
+
+### genDHCommonParamsSpec<sup>11+</sup>
+
+static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
+
+根据素数P的长度和私钥长度（bit位数）生成DH公共密钥参数。详见[DH密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#dh)。
+
+**系统能力：** SystemCapability.Security.CryptoFramework
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                             |
+| ------ | ------ | ---- | ------------------------------------------------ |
+| pLen   | number | 是   | 用于指定DH公共密钥参数中素数P的长度，单位为bit。 |
+| skLen  | number | 否   | 用于指定DH公共密钥参数中私钥的长度，单位为bit。  |
+
+**返回值：**
+
+| 类型              | 说明                              |
+| ----------------- | --------------------------------- |
+| [DHCommonParamsSpec](#dhcommonparamsspec11) | 返回DH公共密钥参数。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 801      | this operation is not supported. |
+| 17620001 | memory error.                    |
+| 17630001 | crypto operation error.          |
+
+**示例：**
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let DHCommonParamsSpec = cryptoFramework.DHKeyUtil.genDHCommonParamsSpec(2048);
+    console.info('genDHCommonParamsSpec success');
+} catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error(`genDHCommonParamsSpec error, ${e.code}, ${e.message}`);
+}
 ```
 
 ## cryptoFramework.createCipher
@@ -1382,7 +1606,7 @@ createCipher(transformation: string): Cipher
 
 通过指定算法名称，获取相应的[Cipher](#cipher)实例。
 
-支持的规格详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节。
+支持的规格详见[对称密钥加解密算法规格](../../security/CryptoArchitectureKit/crypto-sym-encrypt-decrypt-spec.md)和[非对称密钥加解密算法规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1390,7 +1614,7 @@ createCipher(transformation: string): Cipher
 
 | 参数名         | 类型   | 必填 | 说明                                                         |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
-| transformation | string | 是   | 待生成Cipher的算法名称（含密钥长度）、加密模式以及填充方法的组合。<br/>具体取值详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节中的“字符串参数”。 |
+| transformation | string | 是   | 待生成Cipher的算法名称（含密钥长度）、加密模式以及填充方法的组合。 |
 
 > **说明：**
 >
@@ -1421,7 +1645,7 @@ import { BusinessError } from '@ohos.base';
 let cipherAlgName = '3DES192|ECB|PKCS7';
 try {
   let cipher = cryptoFramework.createCipher(cipherAlgName);
-  console.info(`cipher algName: ${cipher.algName}`);
+  console.info('cipher algName：' + cipher.algName);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`sync error, ${e.code}, ${e.message}`);
@@ -1432,7 +1656,7 @@ try {
 
 提供加解密的算法操作功能，按序调用本类中的[init()](#init-1)、[update()](#update)、[doFinal()](#dofinal)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。
 
-完整的加解密流程示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
+完整的加解密流程示例可参考开发指导中的[加解密开发指导](../../security/CryptoArchitectureKit/crypto-encryption-decryption-overview.md)。
 
 一次完整的加/解密流程在对称加密和非对称加密中略有不同：
 
@@ -1451,7 +1675,7 @@ try {
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCallback\<void>): void
 
-初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。
+初始化加解密的[cipher](#cipher)对象，通过注册回调函数获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
@@ -1476,29 +1700,11 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null, callback: AsyncCal
 | 17620002 | runtime error.                                           |
 | 17630001 | crypto operation error.|
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let symKey: cryptoFramework.SymKey;     // The process of generating the symmetric key is omitted here.
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-
-cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err, ) => {
-  if (err) {
-    console.error(`Failed to init cipher, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Init cipher success`);
-    // Perform subsequent operations such as update.
-  }
-})
-```
-
 ### init
 
 init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 
-初始化加解密的cipher对象，通过Promise获取结果。
+初始化加解密的cipher对象，通过Promise获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 必须在使用[createCipher](#cryptoframeworkcreatecipher)创建[Cipher](#cipher)实例后，才能使用本函数。
 
@@ -1528,22 +1734,6 @@ init(opMode: CryptoMode, key: Key, params: ParamsSpec | null): Promise\<void>
 | 17620002 | runtime error.                                    |
 | 17630001 | crypto operation error.|
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let symKey: cryptoFramework.SymKey;     // The process of generating the symmetric key is omitted here.
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
-  .then(() => {
-    console.info(`Init cipher success`);
-    // Perform subsequent operations such as update.
-  }, (error: BusinessError) => {
-    console.error(`Failed to init cipher, ${error.code}, ${error.message}`);
-  })
-```
-
 ### update
 
 update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
@@ -1557,7 +1747,7 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 > 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和doFinal结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
 > 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。<br/>
->    AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+>    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1579,35 +1769,6 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 | 17620002 | runtime error.                              |
 | 17630001 | crypto operation error.                     |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
-}
-
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-// The init() process is omitted here.
-let plainText: cryptoFramework.DataBlob = {data: stringToUint8Array('this is test!')};
-cipher.update(plainText, (err, output) => {       // Example of the encryption process.
-  if (err) {
-    console.error(`Failed to update cipher`);
-  } else {
-    console.info(`Update cipher success`);
-    if (output != null) {
-      // Concatenate output.data to the ciphertext.
-    }
-    // Perform subsequent operations such as doFinal().
-  }
-})
-```
-
 ### update
 
 update(data: DataBlob): Promise\<DataBlob>
@@ -1622,7 +1783,7 @@ update(data: DataBlob): Promise\<DataBlob>
 > <br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
 > 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。<br/>
->    AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+>    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1649,34 +1810,6 @@ update(data: DataBlob): Promise\<DataBlob>
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
-}
-
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-// The init() process is omitted here.
-let plainText: cryptoFramework.DataBlob = {data: stringToUint8Array('this is test!')};
-cipher.update(plainText)
-  .then((output) => {
-    console.info(`Update cipher success.`);
-    if (output != null) {
-      // Concatenate output.data to the ciphertext.
-    }
-    // Perform subsequent operations such as doFinal().
-  }, (error: BusinessError) => {
-    console.info(`Update cipher failed.`);
-  })
-```
-
 ### doFinal
 
 doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
@@ -1693,7 +1826,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用init()并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
->  4. RSA、SM2非对称加解密时多次doFinal操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+>  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1714,24 +1847,52 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 | 17620002 | runtime error.          |
 | 17630001 | crypto operation error. |
 
-**示例：**
+**以AES GCM模式加密为例：**
+
+此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
-// The init() and update() processes are omitted here.
-cipher.doFinal(data, (err, output) => {
-  if (err) {
-    console.error(`Failed to finalize cipher, ${err.code}, ${err.message}`);
-  } else {
-    console.info(`Finalize cipher success`);
-    if (output != null) {
-      // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
-    }
-  }
-})
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: cryptoFramework.DataBlob = {
+    data: dataTag
+  };
+  let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
+    iv: ivBlob,
+    aad: aadBlob,
+    authTag: tagBlob,
+    algName: "GcmParamsSpec"
+  };
+  return gcmParamsSpec;
+}
+
+function cipherByCallback() {
+  let gcmParams = genGcmParamsSpec();
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+  symKeyGenerator.generateSymKey((err, symKey) => {
+    cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams, (err,) => {
+      let message = "This is a test";
+      let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+      cipher.update(plainText, (err, encryptUpdate) => {
+        cipher.doFinal(null, (err, tag) => {
+          gcmParams.authTag = tag;
+          console.info('encryptUpdate plainText：' + encryptUpdate.data);
+        });
+      });
+    });
+  });
+}
 ```
 
 ### doFinal
@@ -1750,7 +1911,7 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用init()并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
->  4. RSA、SM2非对称加解密时多次doFinal操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+>  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1776,79 +1937,48 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 | 17620002 | runtime error.                               |
 | 17630001 | crypto operation error.                      |
 
-**示例：**
+**以AES GCM模式加密为例：**
+
+此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let cipher: cryptoFramework.Cipher;        // The process of creating a Cipher instance is omitted here.
-let data: cryptoFramework.DataBlob;           // The process of preparing the data to encrypt or decrypt is omitted here.
-// The init() and update() processes are omitted here.
-cipher.doFinal(data)
-  .then(output => {
-    console.info(`Finalize cipher success`);
-    if (output != null) {
-      // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
-    }
-  }, (error: BusinessError) => {
-    console.error(`Failed to finalize cipher, ${error.code}, ${error.message}`);
-  })
-```
-
-**使用RSA加密的callback完整示例：**
-
-```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
+function genGcmParamsSpec() {
+  let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataIv = new Uint8Array(arr);
+  let ivBlob: cryptoFramework.DataBlob = { data: dataIv };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0];
+  let dataAad = new Uint8Array(arr);
+  let aadBlob: cryptoFramework.DataBlob = { data: dataAad };
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataTag = new Uint8Array(arr);
+  let tagBlob: cryptoFramework.DataBlob = {
+    data: dataTag
+  };
+  let gcmParamsSpec: cryptoFramework.GcmParamsSpec = {
+    iv: ivBlob,
+    aad: aadBlob,
+    authTag: tagBlob,
+    algName: "GcmParamsSpec"
+  };
+  return gcmParamsSpec;
 }
 
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
-rsaGenerator.generateKeyPair((err, keyPair) => {
-  let pubKey = keyPair.pubKey;
-  cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, (err, data) => {
-    let plainText = "this is cipher text";
-    let input: cryptoFramework.DataBlob = {data: stringToUint8Array(plainText) };
-    cipher.doFinal(input, (err, data) => {
-      AlertDialog.show({ message: "EncryptOutPut is " + data.data} );
-    });
-  });
-});
-```
-
-**使用RSA加密的Promise完整示例：**
-
-```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
+async function cipherByPromise() {
+  let gcmParams = genGcmParamsSpec();
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let cipher = cryptoFramework.createCipher('AES128|GCM|PKCS7');
+  let symKey = await symKeyGenerator.generateSymKey();
+  await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, gcmParams);
+  let message = "This is a test";
+  let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+  let encryptUpdate = await cipher.update(plainText);
+  gcmParams.authTag = await cipher.doFinal(null);
+  console.info('encryptUpdate plainText: ' + encryptUpdate.data);
 }
-
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-let cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
-let keyGenPromise = rsaGenerator.generateKeyPair();
-keyGenPromise.then((rsaKeyPair: cryptoFramework.KeyPair): Promise<void> => {
-  let pubKey = rsaKeyPair.pubKey;
-  return cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null); // Pass in the private key and DECRYPT_MODE to initialize the decryption mode.
-}).then(() => {
-  let plainText = "this is cipher text";
-  let input: cryptoFramework.DataBlob = { data: stringToUint8Array(plainText) };
-  return cipher.doFinal(input);
-}).then(dataBlob => {
-  console.info("EncryptOutPut is " + dataBlob.data);
-});
 ```
-
-> **说明：**
->
-> 更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
 
 ### setCipherSpec<sup>10+</sup>
 
@@ -1887,7 +2017,7 @@ cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSo
 
 getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
-获取加解密参数。当前只支持RSA算法。
+获取加解密参数。当前只支持RSA算法和SM2算法，从API version 11开始，支持SM2算法获取加解密参数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1926,7 +2056,7 @@ createSign(algName: string): Sign
 
 Sign实例生成。
 
-支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
+支持的规格详见[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1934,7 +2064,7 @@ Sign实例生成。
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA，ECC，DSA或SM2<sup>10+</sup>。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
+| algName | string | 是   | 指定签名算法：RSA，ECC，DSA，SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
 
 **返回值**：
 
@@ -1954,18 +2084,18 @@ Sign实例生成。
 **示例：**
 
 ```ts
-let signer1 = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+let signer1 = cryptoFramework.createSign('RSA1024|PKCS1|SHA256');
 
-let signer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256");
+let signer2 = cryptoFramework.createSign('RSA1024|PSS|SHA256|MGF1_SHA256');
 
-let signer3 = cryptoFramework.createSign("ECC224|SHA256");
+let signer3 = cryptoFramework.createSign('ECC224|SHA256');
 
-let signer4 = cryptoFramework.createSign("DSA2048|SHA256");
+let signer4 = cryptoFramework.createSign('DSA2048|SHA256');
 ```
 
 ## Sign
 
-Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过[createSign(algName: string): Sign](#cryptoframeworkcreatesign)方法构造此实例。按序调用本类中的init、update、sign方法完成签名操作。签名操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过[createSign(algName: string): Sign](#cryptoframeworkcreatesign)方法构造此实例。按序调用本类中的init、update、sign方法完成签名操作。签名操作的示例代码详见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
 
@@ -1989,7 +2119,7 @@ Sign类不支持重复初始化，当业务方需要使用新密钥签名时，�
 
 init(priKey: PriKey, callback: AsyncCallback\<void>): void
 
-使用私钥初始化Sign对象，通过注册回调函数获取结果。
+使用私钥初始化Sign对象，通过注册回调函数获取结果。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
 Sign类暂不支持重复init。
 
@@ -2016,7 +2146,7 @@ Sign类暂不支持重复init。
 
 init(priKey: PriKey): Promise\<void>
 
-使用私钥初始化Sign对象，通过Promise获取结果。
+使用私钥初始化Sign对象，通过Promise获取结果。init、update、sign为三段式接口，需要成组使用。其中init和sign必选，update可选。
 
 Sign类暂不支持重复init。
 
@@ -2056,7 +2186,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 >
 > 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[sign](#sign-1)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2089,7 +2219,7 @@ update(data: DataBlob): Promise\<void>
 >
 > 根据数据量，可以不调用update（即[init](#init-3)完成后直接调用[sign](#sign-2)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2172,33 +2302,26 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 
 **callback示例：**
 
+此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
+
 ```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
-}
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let globalKeyPair: cryptoFramework.KeyPair;
-let signMessageBlob: cryptoFramework.DataBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
-let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
-let input2: cryptoFramework.DataBlob = { data: stringToUint8Array(plan2) };
-
-function signMessageCallback() {
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
-  rsaGenerator.generateKeyPair((err, keyPair) => {
-    globalKeyPair = keyPair;
-    let priKey = globalKeyPair.priKey;
-    signer.init(priKey, err => {
-      signer.update(input1, err => { // add first segment of data
-        signer.sign(input2, (err, data) => { // add second segment of data, sign input1 and input2
-          signMessageBlob = data;
-          AlertDialog.show({message: "res" +  signMessageBlob.data});
+function signByCallback() {
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pkData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: skData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let signer = cryptoFramework.createSign('RSA1024|PKCS1|SHA256');
+  rsaGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
+    signer.init(keyPair.priKey, err => {
+      signer.update(inputUpdate, err => {
+        signer.sign(inputVerify, (err, signData) => {
+          console.info('sign output is ' + signData.data);
         });
       });
     });
@@ -2208,38 +2331,32 @@ function signMessageCallback() {
 
 **Promise示例：**
 
+此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
+
 ```ts
-function stringToUint8Array(str: string) {
-  let arr = new Uint8Array(str.length);
-  for (let i = 0, j = str.length; i < j; ++i) {
-    arr[i] = str.charCodeAt(i);
-  }
-  return arr;
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = await rsaGenerator.convertKey(pubKeyBlob, priKeyBlob);
+  console.info('convertKey success');
+  return keyPair;
 }
 
-let globalKeyPair: cryptoFramework.KeyPair;
-let signMessageBlob: cryptoFramework.DataBlob;
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
-let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
-let input2: cryptoFramework.DataBlob = { data: stringToUint8Array(plan2) };
-
-function signMessagePromise() {
-  let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-  let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256"); // From API version 10, a Sign instance can be created by specifying a string parameter defining the key specifications.
-  let keyGenPromise = rsaGenerator.generateKeyPair();
-  keyGenPromise.then(keyPair => {
-    globalKeyPair = keyPair;
-    let priKey = globalKeyPair.priKey;
-    return signer.init(priKey);
-  }).then(() => {
-    return signer.update(input1);
-  }).then(() => {
-    return signer.sign(input2);
-  }).then(dataBlob => {
-    signMessageBlob = dataBlob;
-    console.info("sign output is " + signMessageBlob.data);
-  });
+async function signByPromise() {
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let keyPair = await genKeyPairByData(pkData, skData);
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputSign: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  let signer = cryptoFramework.createSign('RSA1024|PKCS1|SHA256');
+  await signer.init(keyPair.priKey);
+  await signer.update(inputUpdate);
+  let signData = await signer.sign(inputSign);
+  console.info('signData result: ' + signData.data);
 }
 ```
 
@@ -2247,9 +2364,11 @@ function signMessagePromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
+setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+
 设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。
 
-当前只支持RSA算法。
+当前只支持RSA算法、SM2算法，从API version11开始，支持SM2算法设置签名参数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2258,7 +2377,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的签名参数。 |
-| itemValue | number | 是   | 用于指定签名参数的具体值。 |
+| itemValue | number\|Uint8Array<sup>11+</sup> | 是   | 用于指定签名参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2321,7 +2440,7 @@ createVerify(algName: string): Verify
 
 Verify实例生成。
 
-支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
+支持的规格详见[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2329,7 +2448,7 @@ Verify实例生成。
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA，ECC，DSA或SM2<sup>10+</sup>，。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
+| algName | string | 是   | 指定签名算法：RSA，ECC，DSA，SM2<sup>10+</sup>或ED25519<sup>11+</sup>。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
 
 **返回值**：
 
@@ -2349,14 +2468,14 @@ Verify实例生成。
 **示例：**
 
 ```ts
-let verifyer1 = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+let verifyer1 = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
 
-let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
+let verifyer2 = cryptoFramework.createVerify('RSA1024|PSS|SHA256|MGF1_SHA256');
 ```
 
 ## Verify
 
-Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过[createVerify(algName: string): Verify](#cryptoframeworkcreateverify)方法构造此实例。按序调用本类中的init、update、verify方法完成签名操作。验签操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过[createVerify(algName: string): Verify](#cryptoframeworkcreateverify)方法构造此实例。按序调用本类中的init、update、verify方法完成签名操作。验签操作的示例代码详见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 Verify类不支持重复初始化，当业务方需要使用新密钥验签时，需要重新创建新Verify对象并调用init初始化。
 
@@ -2378,7 +2497,7 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 
 init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
-传入公钥初始化Verify对象，通过注册回调函数获取结果。
+传入公钥初始化Verify对象，通过注册回调函数获取结果。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2403,7 +2522,7 @@ init(pubKey: PubKey, callback: AsyncCallback\<void>): void
 
 init(pubKey: PubKey): Promise\<void>
 
-传入公钥初始化Verify对象，通过Promise获取结果。
+传入公钥初始化Verify对象，通过Promise获取结果。init、update、verify为三段式接口，需要成组使用。其中init和verify必选，update可选。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2441,7 +2560,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 >
 > 根据数据量，可以不调用update（即[init](#init-4)完成后直接调用[verify](#verify-1)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2474,7 +2593,7 @@ update(data: DataBlob): Promise\<void>
 >
 > 根据数据量，可以不调用update（即[init](#init-5)完成后直接调用[verify](#verify-2)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2559,44 +2678,79 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 
 **callback示例：**
 
+此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
+
 ```ts
-let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let input1: cryptoFramework.DataBlob;
-let input2: cryptoFramework.DataBlob;
-let signMessageBlob: cryptoFramework.DataBlob;// Signed data, which is omitted here.
-let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-verifyer.init(globalKeyPair.pubKey, (err, data) => {
-  verifyer.update(input1, (err, data) => {
-    verifyer.verify(input2, signMessageBlob, (err, data) => {
-      console.info("verify result is " + data);
-    })
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+function verifyByCallback() {
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  // 根据密钥数据生成的密钥和输入的验签数据，这部分代码Verify与Sign中保持一致，保证验签通过
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pkData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: skData };
+  // 该数据取自Sign中的signData.data
+  let signMessageBlob: cryptoFramework.DataBlob = { data: new Uint8Array([9, 68, 164, 161, 230, 155, 255, 153, 10, 12, 14, 22, 146, 115, 209, 167, 223, 133, 89, 173, 50, 249, 176, 104, 10, 251, 219, 104, 117, 196, 105, 65, 249, 139, 119, 41, 15, 171, 191, 11, 177, 177, 1, 119, 130, 142, 87, 183, 32, 220, 226, 28, 38, 73, 222, 172, 153, 26, 87, 58, 188, 42, 150, 67, 94, 214, 147, 64, 202, 87, 155, 125, 254, 112, 95, 176, 255, 207, 106, 43, 228, 153, 131, 240, 120, 88, 253, 179, 207, 207, 110, 223, 173, 15, 113, 11, 183, 122, 237, 205, 206, 123, 246, 33, 167, 169, 251, 237, 199, 26, 220, 152, 190, 117, 131, 74, 232, 50, 39, 172, 232, 178, 112, 73, 251, 235, 131, 209]) }
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let verifyer = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
+  rsaGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
+    verifyer.init(keyPair.pubKey, err => {
+      verifyer.update(inputUpdate, err => {
+        verifyer.verify(inputVerify, signMessageBlob, (err, res) => {
+          console.info('verify result is ' + res);
+        });
+      });
+    });
   });
-})
+}
 ```
 
 **Promise示例：**
 
+此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
+
 ```ts
-let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
-let input1: cryptoFramework.DataBlob;;
-let input2: cryptoFramework.DataBlob;;
-let signMessageBlob: cryptoFramework.DataBlob;; // Signed data, which is omitted here.
-verifyInitPromise.then((): Promise<void> => {
-  return verifyer.update(input1);
-}).then(() => {
-  return verifyer.verify(input2, signMessageBlob);
-}).then(res => {
-  console.log("Verify result is " + res);
-});
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+async function genKeyPairByData(pubKeyData: Uint8Array, priKeyData: Uint8Array) {
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyData };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyData };
+  let rsaGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+  let keyPair = await rsaGenerator.convertKey(pubKeyBlob, priKeyBlob);
+  console.info('convertKey success');
+  return keyPair;
+}
+
+async function verifyByPromise() {
+  // 根据密钥数据生成的密钥和输入的验签数据，这部分代码Verify与Sign中保持一致，保证验签通过
+  let pkData = new Uint8Array([48, 129, 159, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 3, 129, 141, 0, 48, 129, 137, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1]);
+  let skData = new Uint8Array([48, 130, 2, 120, 2, 1, 0, 48, 13, 6, 9, 42, 134, 72, 134, 247, 13, 1, 1, 1, 5, 0, 4, 130, 2, 98, 48, 130, 2, 94, 2, 1, 0, 2, 129, 129, 0, 214, 179, 23, 198, 183, 139, 148, 8, 173, 74, 56, 160, 15, 248, 244, 166, 209, 250, 142, 74, 216, 58, 117, 215, 178, 247, 254, 39, 180, 227, 85, 201, 59, 133, 209, 221, 26, 9, 116, 31, 172, 151, 252, 185, 123, 20, 25, 7, 92, 129, 5, 196, 239, 214, 126, 254, 154, 188, 239, 144, 161, 171, 65, 42, 31, 214, 93, 115, 247, 69, 94, 143, 54, 51, 25, 49, 146, 204, 205, 165, 20, 120, 35, 184, 190, 65, 106, 12, 214, 176, 57, 125, 235, 51, 88, 135, 76, 73, 109, 112, 147, 138, 198, 252, 5, 20, 245, 51, 7, 32, 108, 89, 125, 204, 50, 189, 88, 254, 255, 146, 244, 244, 149, 79, 54, 216, 45, 89, 2, 3, 1, 0, 1, 2, 129, 129, 0, 152, 111, 145, 203, 10, 88, 116, 163, 112, 126, 9, 20, 68, 34, 235, 121, 98, 14, 182, 102, 151, 125, 114, 91, 210, 122, 215, 29, 212, 5, 176, 203, 238, 146, 5, 190, 41, 21, 91, 56, 125, 239, 111, 133, 53, 200, 192, 56, 132, 202, 42, 145, 120, 3, 224, 40, 223, 46, 148, 29, 41, 92, 17, 40, 12, 72, 165, 69, 192, 211, 142, 233, 81, 202, 177, 235, 156, 27, 179, 48, 18, 85, 154, 101, 193, 45, 218, 91, 24, 143, 196, 248, 16, 83, 177, 198, 136, 77, 111, 134, 60, 219, 95, 246, 23, 5, 45, 14, 83, 29, 137, 248, 159, 28, 132, 142, 205, 99, 226, 213, 84, 232, 57, 130, 156, 81, 191, 237, 2, 65, 0, 255, 158, 212, 13, 43, 132, 244, 135, 148, 161, 232, 219, 20, 81, 196, 102, 103, 44, 110, 71, 100, 62, 73, 200, 32, 138, 114, 209, 171, 150, 179, 92, 198, 5, 190, 218, 79, 227, 227, 37, 32, 57, 159, 252, 107, 211, 139, 198, 202, 248, 137, 143, 186, 205, 106, 81, 85, 207, 134, 148, 110, 204, 243, 27, 2, 65, 0, 215, 4, 181, 121, 57, 224, 170, 168, 183, 159, 152, 8, 74, 233, 80, 244, 146, 81, 48, 159, 194, 199, 36, 187, 6, 181, 182, 223, 115, 133, 151, 171, 78, 219, 90, 161, 248, 69, 6, 207, 173, 3, 81, 161, 2, 60, 238, 204, 177, 12, 138, 17, 220, 179, 71, 113, 200, 248, 159, 153, 252, 150, 180, 155, 2, 65, 0, 190, 202, 185, 211, 170, 171, 238, 40, 84, 84, 21, 13, 144, 57, 7, 178, 183, 71, 126, 120, 98, 229, 235, 4, 40, 229, 173, 149, 185, 209, 29, 199, 29, 54, 164, 161, 38, 8, 30, 62, 83, 179, 47, 42, 165, 0, 156, 207, 160, 39, 169, 229, 81, 180, 136, 170, 116, 182, 20, 233, 45, 90, 100, 9, 2, 65, 0, 152, 255, 47, 198, 15, 201, 238, 133, 89, 11, 133, 153, 184, 252, 37, 239, 177, 65, 118, 80, 231, 190, 222, 66, 250, 118, 72, 166, 221, 67, 156, 245, 119, 138, 28, 6, 142, 107, 71, 122, 116, 200, 156, 199, 237, 152, 191, 239, 4, 184, 64, 114, 143, 81, 62, 48, 23, 233, 217, 95, 47, 221, 104, 171, 2, 64, 30, 219, 1, 230, 241, 70, 246, 243, 121, 174, 67, 66, 11, 99, 202, 17, 52, 234, 78, 29, 3, 57, 51, 123, 149, 86, 64, 192, 73, 199, 108, 101, 55, 232, 41, 114, 153, 237, 253, 52, 205, 148, 45, 86, 186, 241, 182, 183, 42, 77, 252, 195, 29, 158, 173, 3, 182, 207, 254, 61, 71, 184, 167, 184]);
+  let keyPair = await genKeyPairByData(pkData, skData);
+  let inputUpdate: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan1", 'utf-8').buffer) };
+  let inputVerify: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("This is Sign test plan2", 'utf-8').buffer) };
+  // 该数据取自Sign中的signData.data
+  let signMessageBlob: cryptoFramework.DataBlob = { data: new Uint8Array([9, 68, 164, 161, 230, 155, 255, 153, 10, 12, 14, 22, 146, 115, 209, 167, 223, 133, 89, 173, 50, 249, 176, 104, 10, 251, 219, 104, 117, 196, 105, 65, 249, 139, 119, 41, 15, 171, 191, 11, 177, 177, 1, 119, 130, 142, 87, 183, 32, 220, 226, 28, 38, 73, 222, 172, 153, 26, 87, 58, 188, 42, 150, 67, 94, 214, 147, 64, 202, 87, 155, 125, 254, 112, 95, 176, 255, 207, 106, 43, 228, 153, 131, 240, 120, 88, 253, 179, 207, 207, 110, 223, 173, 15, 113, 11, 183, 122, 237, 205, 206, 123, 246, 33, 167, 169, 251, 237, 199, 26, 220, 152, 190, 117, 131, 74, 232, 50, 39, 172, 232, 178, 112, 73, 251, 235, 131, 209]) };
+  let verifier = cryptoFramework.createVerify('RSA1024|PKCS1|SHA256');
+  await verifier.init(keyPair.pubKey);
+  await verifier.update(inputUpdate);
+  let res = await verifier.verify(inputVerify, signMessageBlob);
+  console.info('signData result: ' + res);
+}
 ```
 
 ### setVerifySpec<sup>10+</sup>
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。当前只支持RSA算法。
+setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array): void
+
+设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。
+
+当前只支持RSA算法、SM2算法，从API version 11开始，支持SM2算法设置验签参数。
 
 验签的参数应当与签名的参数保持一致。
 
@@ -2607,7 +2761,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的验签参数。 |
-| itemValue | number | 是   | 用于指定验签参数的具体值。 |
+| itemValue | number\|Uint8Array<sup>11+</sup> | 是   | 用于指定验签参数的具体值。 |
 
 **错误码：**
 以下错误码的详细介绍请参见[crypto framework错误码](../errorcodes/errorcode-crypto-framework.md)
@@ -2622,7 +2776,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 **示例：**
 
 ```ts
-let verifyer: cryptoFramework.Verify; //The process of generating the Verify instance is omitted here.
+let verifyer: cryptoFramework.Verify; // The process of generating the Verify instance is omitted here.
 let setN = 20;
 verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 ```
@@ -2662,7 +2816,7 @@ getVerifySpec(itemType: SignSpecItem): string | number
 **示例：**
 
 ```ts
-let verifyer: cryptoFramework.Verify; //The process of generating the Verify instance is omitted here.
+let verifyer: cryptoFramework.Verify; // The process of generating the Verify instance is omitted here.
 let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
 ```
 
@@ -2672,15 +2826,15 @@ createKeyAgreement(algName: string): KeyAgreement
 
 KeyAgreement实例生成。
 
-支持的规格详见框架概述“[密钥协商规格](../../security/cryptoFramework-overview.md#密钥协商规格)”一节。
+支持的规格详见[密钥协商规格](../../security/CryptoArchitectureKit/crypto-key-agreement-overview.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                              |
-| ------- | ------ | ---- | --------------------------------- |
-| algName | string | 是   | 指定密钥协商算法：目前仅支持ECC。 |
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| algName | string | 是   | 指定密钥协商算法：目前仅支持ECC，从API version 11开始，增加支持X25519和DH。 |
 
 **返回值**：
 
@@ -2700,7 +2854,7 @@ KeyAgreement实例生成。
 **示例：**
 
 ```ts
-let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
 
 ```
 
@@ -2779,13 +2933,13 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 import { BusinessError } from '@ohos.base';
 
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
 keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, secret) => {
   if (err) {
     console.error("keyAgreement error.");
     return;
   }
-  console.info("keyAgreement output is " + secret.data);
+  console.info('keyAgreement output is ' + secret.data);
 });
 ```
 
@@ -2795,10 +2949,10 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, se
 import { BusinessError } from '@ohos.base';
 
 let globalKeyPair: cryptoFramework.KeyPair; // globalKeyPair is an asymmetric key object generated by the asymmetric key generator. The generation process is omitted here.
-let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+let keyAgreement = cryptoFramework.createKeyAgreement('ECC256');
 let keyAgreementPromise = keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey);
-keyAgreementPromise.then((secret) => {
-  console.info("keyAgreement output is " + secret.data);
+keyAgreementPromise.then(secret => {
+  console.info('keyAgreement output is ' + secret.data);
 }).catch((error: BusinessError) => {
   console.error("keyAgreement error.");
 });
@@ -2810,7 +2964,7 @@ createMd(algName: string): Md
 
 生成Md实例，用于进行消息摘要的计算与操作。
 
-支持的规格详见框架概述“[MD消息摘要算法规格](../../security/cryptoFramework-overview.md#md消息摘要算法规格)”一节。
+支持的规格详见[MD消息摘要算法规格](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#支持的算法与规格)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2818,7 +2972,7 @@ createMd(algName: string): Md
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定摘要算法，支持算法请参考“[MD算法支持范围](../../security/cryptoFramework-overview.md#md消息摘要算法规格)”一节。 |
+| algName | string | 是   | 指定摘要算法，支持算法请参考[MD消息摘要算法规格](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#支持的算法与规格)。 |
 
 **返回值**：
 
@@ -2841,7 +2995,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   // Set algName based on the algorithm supported.
-  let md = cryptoFramework.createMd("SHA256");
+  let md = cryptoFramework.createMd('SHA256');
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`sync error, ${e.code}, ${e.message}`);
@@ -2864,11 +3018,11 @@ Md类，调用Md方法可以进行MD（Message Digest）摘要计算。调用前
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
 
-传入消息进行Md更新计算，通过注册回调函数更新。
+传入消息进行Md更新计算，通过注册回调函数更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导“[使用摘要操作](../../security/cryptoFramework-guidelines.md#使用摘要操作)”。
+> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2887,31 +3041,15 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-md.update(blob, (err,) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-});
-```
-
 ### update
 
 update(input: DataBlob): Promise\<void>
 
-传入消息进行Md更新计算，通过Promise更新。
+传入消息进行Md更新计算，通过Promise更新。update和digest为两段式接口，需要成组使用。其中digest必选，update可选。
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导“[使用摘要操作](../../security/cryptoFramework-guidelines.md#使用摘要操作)”。
+> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2932,23 +3070,6 @@ update(input: DataBlob): Promise\<void>
 | -------- | ---------------------- |
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-let promiseMdUpdate = md.update(blob);
-promiseMdUpdate.then(() => {
-  // do something
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
-```
 
 ### digest
 
@@ -2973,24 +3094,18 @@ digest(callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-md.update(blob, (err,) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  md.digest((err1, mdOutput) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    } else {
-      console.error("[Callback]: MD result: " + mdOutput);
-    }
+function mdByCallback() {
+  let md = cryptoFramework.createMd('SHA256');
+  md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) }, (err,) => {
+    md.digest((err, digestOutput) => {
+      console.info('[Callback]: MD result: ' + digestOutput.data);
+      console.info('[Callback]: MD len: ' + md.getMdLength());
+    });
   });
-});
+}
 ```
 
 ### digest
@@ -3018,21 +3133,16 @@ digest(): Promise\<DataBlob>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
 
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-let promiseMdUpdate = md.update(blob);
-promiseMdUpdate.then(() => {
-  let promiseMdDigest = md.digest();
-  return promiseMdDigest;
-}).then(mdOutput => {
-  console.error("[Promise]: MD result: " + mdOutput.data);
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
+async function mdByPromise() {
+  let md = cryptoFramework.createMd('SHA256');
+  await md.update({ data: new Uint8Array(buffer.from("mdTestMessage", 'utf-8').buffer) });
+  let mdOutput = await md.digest();
+  console.info('[Promise]: MD result: ' + mdOutput.data);
+  console.info('[Promise]: MD len: ' + md.getMdLength());
+}
 ```
 
 ### getMdLength
@@ -3059,23 +3169,12 @@ getMdLength(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import cryptoFramework from '@ohos.security.cryptoFramework';
 
-let md = cryptoFramework.createMd("SHA256");
-console.info("Md algName is: " + md.algName);
-
-let blob: cryptoFramework.DataBlob;
-let promiseMdUpdate = md.update(blob);
-promiseMdUpdate.then(() => {
-  let promiseMdDigest = md.digest();
-  return promiseMdDigest;
-}).then(mdOutput => {
-  console.error("[Promise]: MD result: " + mdOutput.data);
-  let mdLen = md.getMdLength();
-  console.error("MD len: " + mdLen);
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
+function getLength() {
+  let md = cryptoFramework.createMd('SHA256');
+  console.info('[Promise]: MD len: ' + md.getMdLength());
+}
 ```
 
 ## cryptoFramework.createMac
@@ -3084,7 +3183,7 @@ createMac(algName: string): Mac
 
 生成Mac实例，用于进行消息认证码的计算与操作。
 
-支持的规格详见框架概述“[HMAC消息认证码算法规格](../../security/cryptoFramework-overview.md#hmac消息认证码算法规格)”一节。
+支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac.md#支持的算法与规格)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3092,7 +3191,7 @@ createMac(algName: string): Mac
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定摘要算法，支持算法请参考“[HMAC算法支持范围](../../security/cryptoFramework-overview.md#hmac消息认证码算法规格)”一节。 |
+| algName | string | 是   | 指定摘要算法，支持算法请参考[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac.md#支持的算法与规格)。 |
 
 **返回值**：
 
@@ -3115,7 +3214,7 @@ import { BusinessError } from '@ohos.base';
 
 try {
   // Set algName based on the algorithm supported.
-  let mac = cryptoFramework.createMac("SHA256");
+  let mac = cryptoFramework.createMac('SHA256');
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`sync error, ${e.code}, ${e.message}`);
@@ -3138,11 +3237,11 @@ Mac类，调用Mac方法可以进行MAC（Message Authentication Code）加密�
 
 init(key: SymKey, callback: AsyncCallback\<void>): void
 
-使用对称密钥初始化Mac计算，通过注册回调函数获取结果。
+使用对称密钥初始化Mac计算，通过注册回调函数获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
   > **说明：**
   >
-  > 建议通过[HMAC密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)创建对称密钥生成器，调用[generateSymKey](#generatesymkey)随机生成对称密钥或调用[convertKey](#convertkey)传入与密钥规格长度一致的二进制密钥数据生成密钥。<br/>当指定“HMAC”生成对称密钥生成器时，仅支持调用[convertKey](#convertkey)传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据生成密钥。
+  > 建议通过[HMAC密钥生成规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md#hmac)创建对称密钥生成器，调用[generateSymKey](#generatesymkey)随机生成对称密钥或调用[convertKey](#convertkey)传入与密钥规格长度一致的二进制密钥数据生成密钥。<br/>当指定“HMAC”生成对称密钥生成器时，仅支持调用[convertKey](#convertkey)传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据生成密钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3161,31 +3260,11 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let mac = cryptoFramework.createMac("SHA256");
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  mac.init(symKey, (err1, ) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    }
-  });
-});
-```
-
 ### init
 
 init(key: SymKey): Promise\<void>
 
-使用对称密钥初始化Mac计算，通过Promise获取结果。
+使用对称密钥初始化Mac计算，通过Promise获取结果。init、update、doFinal为三段式接口，需要成组使用。其中init和doFinal必选，update可选。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3209,26 +3288,6 @@ init(key: SymKey): Promise\<void>
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
-promiseConvertKey.then(symKey => {
-  let promiseMacInit = mac.init(symKey);
-  return promiseMacInit;
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
-
-```
-
 ### update
 
 update(input: DataBlob, callback: AsyncCallback\<void>): void
@@ -3237,7 +3296,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> Hmac算法多次调用update更新的代码示例详见开发指导“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”。
+> Hmac算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3256,32 +3315,6 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
 
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let keyBlob: cryptoFramework.DataBlob;
-let mac = cryptoFramework.createMac("SHA256");
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  mac.init(symKey, (err1, ) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    }
-    let blob: cryptoFramework.DataBlob;
-    mac.update(blob, (err2, data) => {
-      if (err2) {
-        console.error("[Callback] err: " + err2.code);
-      }
-    });
-  });
-});
-```
-
 ### update
 
 update(input: DataBlob): Promise\<void>
@@ -3290,7 +3323,7 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> Hmac算法多次调用update更新的代码示例详见开发指导“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”。
+> Hmac算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3313,30 +3346,6 @@ update(input: DataBlob): Promise\<void>
 | -------- | ---------------------- |
 | 401 | invalid parameters.       |
 | 17630001 | crypto operation error. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
-promiseConvertKey.then(symKey => {
-  let promiseMacInit = mac.init(symKey);
-  return promiseMacInit;
-}).then(() => {
-  let blob: cryptoFramework.DataBlob;
-  let promiseMacUpdate = mac.update(blob);
-  return promiseMacUpdate;
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
-
-```
 
 ### doFinal
 
@@ -3362,35 +3371,27 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
+此外，更多Hmac的完整示例可参考开发指导中[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
-let keyBlob: cryptoFramework.DataBlob;
-let mac = cryptoFramework.createMac("SHA256");
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
-  if (err) {
-    console.error("[Callback] err: " + err.code);
-  }
-  mac.init(symKey, (err1, ) => {
-    if (err1) {
-      console.error("[Callback] err: " + err1.code);
-    }
-    let blob: cryptoFramework.DataBlob;
-    mac.update(blob, (err2, ) => {
-      if (err2) {
-        console.error("[Callback] err: " + err2.code);
-      }
-      mac.doFinal((err3, macOutput) => {
-        if (err3) {
-          console.error("[Callback] err: " + err3.code);
-        } else {
-          console.error("[Promise]: HMAC result: " + macOutput);
-        }
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+function hmacByCallback() {
+  let mac = cryptoFramework.createMac('SHA256');
+  let keyBlob: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  symKeyGenerator.convertKey(keyBlob, (err, symKey) => {
+    mac.init(symKey, (err,) => {
+      mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) }, (err,) => {
+        mac.doFinal((err, output) => {
+          console.info('[Callback]: HMAC result: ' + output.data);
+          console.info('[Callback]: MAC len: ' + mac.getMacLength());
+        });
       });
     });
   });
-});
+}
 ```
 
 ### doFinal
@@ -3417,29 +3418,23 @@ doFinal(): Promise\<DataBlob>
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
+此外，更多Hmac的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
-promiseConvertKey.then(symKey => {
-  let promiseMacInit = mac.init(symKey);
-  return promiseMacInit;
-}).then(() => {
-  let blob: cryptoFramework.DataBlob;
-  let promiseMacUpdate = mac.update(blob);
-  return promiseMacUpdate;
-}).then(() => {
-  let promiseMacDoFinal = mac.doFinal();
-  return promiseMacDoFinal;
-}).then(macOutput => {
-  console.error("[Promise]: HMAC result: " + macOutput.data);
-}).catch((error: BusinessError) => {
-  console.error("[Promise]: error: " + error.message);
-});
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import buffer from '@ohos.buffer';
+
+async function hmacByPromise() {
+  let mac = cryptoFramework.createMac('SHA256');
+  let keyBlob: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer) };
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
+  let symKey = await symKeyGenerator.convertKey(keyBlob);
+  await mac.init(symKey);
+  await mac.update({ data: new Uint8Array(buffer.from("hmacTestMessage", 'utf-8').buffer) });
+  let macOutput = await mac.doFinal();
+  console.info('[Promise]: HMAC result: ' + macOutput.data);
+  console.info('[Promise]: MAC len: ' + mac.getMacLength());
+}
 ```
 
 ### getMacLength
@@ -3468,25 +3463,25 @@ getMacLength(): number
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let mac = cryptoFramework.createMac("SHA256");
-console.info("Mac algName is: " + mac.algName);
-let keyBlob: cryptoFramework.DataBlob;
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+let mac = cryptoFramework.createMac('SHA256');
+console.info('Mac algName is: ' + mac.algName);
+let keyBlob: cryptoFramework.DataBlob;  // The generation process is omitted here.
+let symKeyGenerator = cryptoFramework.createSymKeyGenerator('AES128');
 let promiseConvertKey = symKeyGenerator.convertKey(keyBlob);
 promiseConvertKey.then(symKey => {
   let promiseMacInit = mac.init(symKey);
   return promiseMacInit;
 }).then(() => {
-  let blob: cryptoFramework.DataBlob;
+  let blob: cryptoFramework.DataBlob;  // The generation process is omitted here.
   let promiseMacUpdate = mac.update(blob);
   return promiseMacUpdate;
 }).then(() => {
   let promiseMacDoFinal = mac.doFinal();
   return promiseMacDoFinal;
 }).then(macOutput => {
-  console.error("[Promise]: HMAC result: " + macOutput.data);
+  console.info('[Promise]: HMAC result: ' + macOutput.data);
   let macLen = mac.getMacLength();
-  console.error("MAC len: " + macLen);
+  console.info('MAC len: ' + macLen);
 }).catch((error: BusinessError) => {
   console.error("[Promise]: error: " + error.message);
 });
@@ -3498,7 +3493,7 @@ createRandom(): Random
 
 生成Random实例，用于进行随机数的计算与设置种子。
 
-支持的规格详见框架概述“[随机数算法规格](../../security/cryptoFramework-overview.md#随机数)”一节。
+支持的规格详见框架概述[随机数算法规格](../../security/CryptoArchitectureKit/crypto-generate-random-number.md#支持的算法与规格)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3574,7 +3569,7 @@ rand.generateRandom(12, (err, randData) => {
   if (err) {
     console.error("[Callback] err: " + err.code);
   } else {
-    console.error("[Callback]: generate random result: " + randData.data);
+    console.info('[Callback]: generate random result: ' + randData.data);
   }
 });
 ```
@@ -3616,7 +3611,7 @@ import { BusinessError } from '@ohos.base';
 let rand = cryptoFramework.createRandom();
 let promiseGenerateRand = rand.generateRandom(12);
 promiseGenerateRand.then(randData => {
-  console.error("[Promise]: rand result: " + randData.data);
+  console.info('[Promise]: rand result: ' + randData.data);
 }).catch((error: BusinessError) => {
   console.error("[Promise]: error: " + error.message);
 });
@@ -3660,7 +3655,7 @@ let rand = cryptoFramework.createRandom();
 try {
   let randData = rand.generateRandomSync(12);
   if (randData != null) {
-    console.info("[Sync]: rand result: " + randData.data);
+    console.info('[Sync]: rand result: ' + randData.data);
   } else {
     console.error("[Sync]: get rand result fail!");
   }
@@ -3699,7 +3694,7 @@ rand.generateRandom(12, (err, randData) => {
   if (err) {
     console.error("[Callback] err: " + err.code);
   } else {
-    console.info("[Callback]: generate random result: " + randData.data);
+    console.info('[Callback]: generate random result: ' + randData.data);
     try {
       rand.setSeed(randData);
     } catch (error) {
@@ -3714,7 +3709,7 @@ rand.generateRandom(12, (err, randData) => {
 
 createKdf(algName: string): Kdf
 
-密钥派生函数（key derivation function）实例生成。<br/>支持的规格详见框架概述“[密钥派生函数规格](../../security/cryptoFramework-overview.md#密钥派生函数规格)”一节。
+密钥派生函数（key derivation function）实例生成。<br/>支持的规格详见[密钥派生函数规格](../../security/CryptoArchitectureKit/crypto-key-derivation.md#支持的算法与规格)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3722,7 +3717,7 @@ createKdf(algName: string): Kdf
 
 | 参数名  | 类型   | 必填 | 说明                              |
 | ------- | ------ | ---- | --------------------------------- |
-| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前仅支持PBKDF2算法，如"PBKDF2|SHA1"。 |
+| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前仅支持PBKDF2算法，如"PBKDF2\|SHA1"。 |
 
 **返回值**：
 
@@ -3742,7 +3737,7 @@ createKdf(algName: string): Kdf
 **示例：**
 
 ```ts
-let kdf = cryptoFramework.createKdf("PBKDF2|SHA1");
+let kdf = cryptoFramework.createKdf('PBKDF2|SHA1');
 
 ```
 
@@ -3785,8 +3780,6 @@ generateSecret(params: KdfSpec, callback: AsyncCallback\<DataBlob>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let spec: cryptoFramework.PBKDF2Spec = {
   algName: 'PBKDF2',
   password: '123456',
@@ -3800,7 +3793,7 @@ kdf.generateSecret(spec, (err, secret) => {
     console.error("key derivation error.");
     return;
   }
-  console.info("key derivation output is " + secret.data);
+  console.info('key derivation output is ' + secret.data);
 });
 ```
 
@@ -3847,8 +3840,8 @@ let spec: cryptoFramework.PBKDF2Spec = {
 };
 let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
 let kdfPromise = kdf.generateSecret(spec);
-kdfPromise.then((secret) => {
-  console.info("key derivation output is " + secret.data);
+kdfPromise.then(secret => {
+  console.info('key derivation output is ' + secret.data);
 }).catch((error: BusinessError) => {
   console.error("key derivation error.");
 });

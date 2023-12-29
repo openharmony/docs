@@ -170,7 +170,7 @@ setId(id: HiTraceId): void
 
 ```ts
 // 获取当前跟踪链中的跟踪标识。
-let traceId = hiTraceChain.GetId();
+let traceId = hiTraceChain.getId();
 // 将获取的跟踪标识设置为当前traceId。
 hiTraceChain.setId(traceId);
 ```

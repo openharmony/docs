@@ -29,7 +29,7 @@ The device restarts over and over again upon startup.
 
 **Possible Cause**
 
-Each service started by the init process has the **importance** attribute, as described in [Parameters](../subsystems/subsys-boot-init-service.md#parameters).
+Each service started by the init process has the **importance** attribute, as described in [Parameters](../subsystems/subsys-boot-init-service.md#description-of-service-process-configuration-files).
 
 - If the attribute value is **0**, the init process does not need to restart the device when the current service process exits.
 
@@ -78,7 +78,7 @@ After the ueventd service is started, the error message "Failed to get uevent so
 
 **Solution**
 
-1. For case 1, configure a socket for the ueventd service in the **.cfg** file. For details, see [Socket Configuration for the ueventd Service](../subsystems/subsys-boot-init-service.md#parameters).
+1. For case 1, configure a socket for the ueventd service in the **.cfg** file. For details, see [Socket Configuration for the ueventd Service](../subsystems/subsys-boot-init-service.md#description-of-service-process-configuration-files).
 2. For case 2, check all **.cfg** files for any duplicate ueventd service and delete it. Retain only one ueventd service with valid configuration.
 
 ### ueventd Service Exits Because of a Socket Polling Timeout

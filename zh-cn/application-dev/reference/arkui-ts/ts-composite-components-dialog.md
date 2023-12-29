@@ -43,7 +43,7 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize: S
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md) | 是 | - | 提示弹出框控制器。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 提示弹出框控制器。 | 
 | imageRes | [Resource](ts-types.md#resource) | 是 | - | 展示的图片。 | 
 | imageSize | [SizeOptions](ts-types.md#sizeoptions) | 是 | - | 自定义图片尺寸。 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 提示弹出框标题。 | 
@@ -72,8 +72,8 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 选择弹出框标题。 | 
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | 选择弹出框内容。 | 
 | selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 | 
-| confirm | boolean | 否 | 确认按钮。 | 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
+| confirm | [ButtonOptions](#buttonoptions) | 否 | 确认按钮。 | 
+| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
 
 
 ## ConfirmDialog
@@ -218,7 +218,7 @@ dialogControllerList: CustomDialogController = new CustomDialogController({
       selectedIndex: this.radioIndex,
     confirm: {
       value: '取消',
-      action: () => null,
+      action: () => {},
     },
     radioContent: [
       {
@@ -285,7 +285,7 @@ dialogControllerCheckBox: CustomDialogController = new CustomDialogController({
     checkTips: '禁止后不再提示',
     primaryButton: {
       value: '禁止',
-      action: () => null,
+      action: () => {},
     },
     secondaryButton: {
       value: '允许',
@@ -335,7 +335,7 @@ dialogControllerConfirm: CustomDialogController = new CustomDialogController({
     content: '文本文本文本文本文本',
     primaryButton: {
       value: '取消',
-      action: () => null,
+      action: () => {},
     },
     secondaryButton: {
       value: '确认',

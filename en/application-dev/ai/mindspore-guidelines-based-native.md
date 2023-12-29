@@ -2,23 +2,23 @@
 
 ## Scenarios
 
-You can use the native APIs provided by [MindSpore Lite](../reference/native-apis/_mind_spore.md) to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
+You can use the Native APIs provided by [MindSpore Lite](../reference/native-apis/_mind_spore.md) to deploy AI algorithms and provides APIs for the UI layer to invoke the algorithms for model inference. A typical scenario is the AI SDK development.
 
-## Basic concepts
+## Basic Concepts
 
-- [N-API](../reference/native-lib/third_party_napi/napi.md): a set of native APIs used to build JavaScript components. N-APIs can be used to encapsulate libraries developed using C/C++ into JavaScript modules.
+- [N-API](../reference/native-lib/third_party_napi/napi.md): a set of Native APIs used to build JavaScript components. N-APIs can be used to encapsulate C/C++ libraries into JavaScript modules.
 
-## Preparing the Environment
+## Setting Up the Environment
 
 - Install DevEco Studio 3.1.0.500 or later, and update the SDK to API version 10 or later.
 
 ## How to Develop
 
-### 1. Create a native C++ project.
+### 1. Create a Native C++ project.
 
-Open DevEco Studio, choose **File** > **New** > **Create Project** to create a native C++ template project. By default, the **entry/src/main/** directory of the created project contains the **cpp/** directory. You can store C/C++ code in this directory and provide JavaScript APIs for the UI layer to call the code.
+Open DevEco Studio, choose **File** > **New** > **Create Project** to create a Native C++ template project. By default, the **entry/src/main/** directory of the created project contains the **cpp/** directory. You can store C/C++ code in this directory and provide JavaScript APIs for the UI layer to call the code.
 
-### 2. Compile the C++ inference code.
+### 2. Write the inference code in C++.
 
 Assume that you have prepared a model in the **.ms** format.
 
@@ -122,7 +122,7 @@ void FillTensorWithRandom(OH_AI_TensorHandle msTensor) {
     }
 }
 
-// fill data to inputs tensor
+// Fill data to input tensors.
 int FillInputTensors(OH_AI_TensorHandleArray &inputs) {
     for (size_t i = 0; i < inputs.handle_num; i++) {
         FillTensorWithRandom(inputs.handle_list[i]);
@@ -219,7 +219,7 @@ target_link_libraries(mslite_napi PUBLIC ace_napi.z)
 ```
 
 
-### 3. Use N-APIs to encapsulate C++ dynamic libraries into JavaScript modules.
+### 3. Use N-APIs to encapsulate the C++ dynamic library into a JavaScript module.
 
 
 Create the **libmslite_api/** subdirectory in **entry/src/main/cpp/types/**, and create the **index.d.ts** file in the subdirectory. The file content is as follows:

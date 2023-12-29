@@ -17,9 +17,9 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 Enumerates the ability states. This enum can be used together with [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md) to return the ability state.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System API**: This is a system API.
 
-**System API**: This enum is an internal definition of a system API and cannot be called by third-party applications.
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Value| Description| 
 | -------- | -------- | -------- |
@@ -35,6 +35,8 @@ Enumerates the ability states. This enum can be used together with [AbilityRunni
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 Updates the configuration. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -72,7 +74,7 @@ const config: Configuration = {
 };
 
 try {
-    abilityManager.updateConfiguration(config, (err) => {
+    abilityManager.updateConfiguration(config, (err: BusinessError) => {
         if (err) {
             console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
         } else {
@@ -80,7 +82,9 @@ try {
         }
     });
 } catch (paramError) {
-    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -89,6 +93,8 @@ try {
 updateConfiguration(config: Configuration): Promise\<void>
 
 Updates the configuration. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -138,7 +144,9 @@ try {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error(`error.code: ${paramError.code}, error.message: ${paramError.message}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -147,6 +155,8 @@ try {
 getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): void
 
 Obtains the UIAbility running information. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -170,9 +180,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos((err, data) => {
+    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<AbilityRunningInfo>) => {
         if (err) {
             console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
         } else {
@@ -180,7 +191,9 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -189,6 +202,8 @@ try {
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 Obtains the UIAbility running information. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -215,13 +230,15 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos().then((data) => {
+    abilityManager.getAbilityRunningInfos().then((data: Array<AbilityRunningInfo>) => {
         console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -230,6 +247,8 @@ try {
 getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<ExtensionRunningInfo>>): void
 
 Obtains the ExtensionAbility running information. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -254,11 +273,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => {
+    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<abilityManager.ExtensionRunningInfo>) => {
         if (err) {
             console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
         } else {
@@ -266,7 +286,9 @@ try {
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -275,7 +297,9 @@ try {
 getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningInfo>>
 
 Obtains the ExtensionAbility running information. This API uses a promise to return the result.
- 
+
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -309,21 +333,25 @@ import { BusinessError } from '@ohos.base';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit).then((data) => {
+    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
         console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
-## getTopAbility<sup>9+</sup>
+## getTopAbility
 
-getTopAbility(callback: AsyncCallback\<ElementName>): void;
+getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 Obtains the top ability, which is the ability that has the window focus. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -345,8 +373,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilityManager.getTopAbility((err, data) => { 
+abilityManager.getTopAbility((err: BusinessError, data) => { 
     if (err) {
         console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -357,10 +386,12 @@ abilityManager.getTopAbility((err, data) => {
 
 ## getTopAbility
 
-getTopAbility(): Promise\<ElementName>;
+getTopAbility(): Promise\<ElementName>
 
 Obtains the top ability, which is the ability that has the window focus. This API uses a promise to return the result.
- 
+
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Return value**
@@ -392,13 +423,13 @@ abilityManager.getTopAbility().then((data) => {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
+acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void
 
 Called by a system dialog box to obtain shared data, which is set by the target UIAbility through **onShare()**. This API uses an asynchronous callback to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System API**: This is a system API.
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -422,7 +453,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.acquireShareData(1, (err, wantParam) => { 
+    abilityManager.acquireShareData(1, (err: BusinessError, wantParam: Record<string, Object>) => { 
         if (err) {
             console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
         } else {
@@ -430,22 +461,22 @@ try {
         }
     });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 
 ```
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
+acquireShareData(missionId: number): Promise<{[key: string]: Object}>
 
 Called by a system dialog box to obtain shared data, which is set by the target UIAbility through **onShare()**. This API uses a promise to return the result.
- 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -474,29 +505,29 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.acquireShareData(1).then((wantParam) => {
+    abilityManager.acquireShareData(1).then((wantParam: Record<string, Object>) => {
     console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
     }).catch((err: BusinessError) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void
 
-Used by the Data Loss Prevention (DLP) management application to notify a sandbox application of the data saving result. This API uses an asynchronous callback to return the result.
+Used by the [Data Loss Prevention (DLP)](js-apis-dlppermission.md) management application to notify a sandbox application of the data saving result. This API uses an asynchronous callback to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
 **System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -504,7 +535,7 @@ Used by the Data Loss Prevention (DLP) management application to notify a sandbo
 | --------- | ---------------------------------------- | ---- | -------------- |
 | parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the initiator UIAbility.|
 | requestCode | number                                        | Yes| Request code passed in by the DLP management application.         |
-| callback  | AsyncCallback<void>                             | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.        |
+| callback  | AsyncCallback<void\>                             | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.        |
 
 **Error codes**
 
@@ -533,7 +564,7 @@ let abilityResult: common.AbilityResult = {
 };
 let requestCode = 1;
 try {
-  abilityManager.notifySaveAsResult(abilityResult, requestCode, (err) => {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode, (err: BusinessError) => {
     if (err && err.code != 0) {
       console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -541,23 +572,23 @@ try {
     }
   });
 } catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
 ## notifySaveAsResult<sup>10+</sup>
 
-notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>;
+notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>
 
-Used by the DLP management application to notify a sandbox application of the data saving result. This API uses a promise to return the result.
+Used by the [Data Loss Prevention (DLP)](js-apis-dlppermission.md) management application to notify a sandbox application of the data saving result. This API uses a promise to return the result.
 
 **Model restriction**: This API can be used only in the stage model.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
 **System API**: This is a system API.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -570,7 +601,7 @@ Used by the DLP management application to notify a sandbox application of the da
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise<void>| Promise that returns no value.|
+| Promise<void\>| Promise that returns no value.|
 
 **Error codes**
 
@@ -599,14 +630,119 @@ let abilityResult: common.AbilityResult = {
 };
 let requestCode = 1;
 try {
-  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err) => {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err: BusinessError) => {
     console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
   }).then(() => {
     console.log(`notifySaveAsResult success`);
   });
 } catch (paramError) {
-  let code = (paramError as BusinessError).code;
-  let message = (paramError as BusinessError).message;
-  console.error(`error.code: ${JSON.stringify(code)}, error.message: ${JSON.stringify(message)}`);
+    let code: string = (paramError as BusinessError).code;
+    let message: string = (paramError as BusinessError).message;
+    console.error(`error.code: ${code}, error.message: ${message}`);
+}
+```
+
+## abilityManager.on<sup>11+</sup>
+
+on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void
+
+Registers an observer to listen for ability start or exit events.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. It is fixed at **'abilityForegroundState'**.|
+| observer | [AbilityForegroundStateObserver](./js-apis-inner-application-abilityForegroundStateObserver.md) | Yes| Observer used to listen for ability start or exit events.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
+let observer: abilityManager.AbilityForegroundStateObserver = {
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+};
+try {
+    abilityManager.on('abilityForegroundState', observer);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
+}
+```
+
+## abilityManager.off<sup>11+</sup>
+
+off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
+
+Deregisters the observer used to listen for ability start or exit events.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. It is fixed at **'abilityForegroundState'**.|
+| observer | [AbilityForegroundStateObserver](./js-apis-inner-application-abilityForegroundStateObserver.md) | No| Observer used to listen for ability start or exit events. If this parameter is not set, all observers associated with the specified event are deregistered. If this parameter is set, only the specified observer is deregistered.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+let observer_;
+// 1. Register an observer to listen for ability start or exit events.
+let observer: abilityManager.AbilityForegroundStateObserver = {
+    onAbilityStateChanged(abilityStateData) {
+        console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+    },
+};
+try {
+    abilityManager.on('abilityForegroundState', observer);
+    observer_ = observer;
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
+}
+
+// 2. Deregister the observer.
+try {
+    abilityManager.off('abilityForegroundState',  observer_);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`error: ${code}, ${message} `);
 }
 ```

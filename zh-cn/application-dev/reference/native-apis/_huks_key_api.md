@@ -17,7 +17,7 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [native_huks_api.h](native__huks__api_8h.md) | 声明用于访问HUKS的API。<br>**引用文件**：<huks/native_huks/api.h> <br>**库**：libhuks_ndk.z.so  | 
+| [native_huks_api.h](native__huks__api_8h.md) | 声明用于访问HUKS的API。<br>**引用文件**：<huks/native_huks_api.h> <br>**库**：libhuks_ndk.z.so  | 
 
 
 ### 函数

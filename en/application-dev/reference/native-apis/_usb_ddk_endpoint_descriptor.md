@@ -45,7 +45,7 @@ Standard endpoint descriptor.
 
 
 ```
-uint8_t* UsbDdkEndpointDescriptor::extra
+const uint8_t* UsbDdkEndpointDescriptor::extra
 ```
 
 **Description**

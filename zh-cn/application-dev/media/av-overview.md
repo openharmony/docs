@@ -18,9 +18,11 @@
 
 - 播放过程：网络协议 &gt; 容器格式 &gt; 音视频编解码 &gt; 图形/音频渲染
 
-- 网络协议：比如HLS、HTTP/HTTPS；容器格式：比如mp4，mkv，mpeg-ts，webm。
+- 网络协议：比如HLS、HTTP/HTTPS
 
-- 编码格式：比如h263/h264/h265，MPEG4/MPEG2。
+- 容器格式：比如mp4、mkv、mpeg-ts、webm
+
+- 编码格式：比如h263/h264/h265、MPEG4/MPEG2
 
 ## 音频流介绍
 
@@ -35,11 +37,9 @@
 除了基本属性，音频流还需要具备使用场景信息。基础信息只能对音频数据进行描述，但在实际的使用过程中，不同的音频流，在音量大小，设备路由，并发策略上是有区别的。系统就是通过音频流所附带的使用场景信息，为不同的音频流制定合适的处理策略，以达到更好的音频用户体验。
 
 - 播放场景
-  音频播放场景的信息，通过[StreamUsage](../reference/apis/js-apis-audio.md#streamusage)和[ContentType](../reference/apis/js-apis-audio.md#contenttype)进行描述。
+  音频播放场景的信息，通过[StreamUsage](../reference/apis/js-apis-audio.md#streamusage)进行描述。
 
   StreamUsage指音频流本身的用途类型，包括媒体、语音通信、语音播报、通知、铃声等。
-
-  ContentType指音频流中数据的内容类型，包括语音、音乐、影视、通知、铃声等。
 
 - 录制场景
   音频流录制场景的信息，通过[SourceType](../reference/apis/js-apis-audio.md#sourcetype8)进行描述。

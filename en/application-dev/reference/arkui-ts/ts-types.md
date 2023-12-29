@@ -121,6 +121,17 @@ The **Offset** type is used to describe the offset coordinates of a component in
 | dx   | [Length](#length) | Yes   | X coordinate of the offset.|
 | dy   | [Length](#length) | Yes   | Y coordinate of the offset.|
 
+## RectResult<sup>10+</sup>
+
+The **RectResult** type is used to describe the position, width, and height of a component.
+
+| Name     | Type    | Description|
+| ------- | ------ | ----------------------- |
+| x     | number | Horizontal coordinate.|
+| y     | number | Vertical coordinate.|
+| width | number | Content width.|
+| height | number | Content height.|
+
 ## ResourceColor
 
 The **ResourceColor** type is used to describe the color types of resources.
@@ -132,13 +143,15 @@ The **ResourceColor** type is used to describe the color types of resources.
 | string                              | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**|
 | [Resource](#resource)               | Color referenced from system or application resources.             |
 
-## ColoringStrategy
+## ColoringStrategy<sup>10+</sup>
 
-The **ColoringStrategy** type is used to describe the foreground colors.
+The **ColoringStrategy** type is used to describe the foreground and shadow colors.
 
 | Name    | Description             |
 | ------ | --------------- |
-| INVERT | Inverse of the component background color.|
+| INVERT | The foreground colors are the inverse of the component background colors.|
+| AVERAGE| The shadow colors of the component are the average color obtained from the component background shadow area.|
+| PRIMARY| The shadow colors of the component are the primary color obtained from the component background shadow area.|
 
 ## LengthConstrain
 
@@ -211,7 +224,7 @@ The **BorderOptions** type is used to provide border information.
 | width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | No   | Border width.  |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | No   | Border color.  |
 | radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | No   | Radius of the rounded corner border.|
-| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | No   | Border style.  |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| [EdgeStyles](#EdgeStyles9)<sup>9+</sup>| No   | Border style.  |
 
 ## ColorFilter<sup>9+</sup>
 
@@ -219,7 +232,7 @@ The **ColorFilter** type is used to create a color filter with a 4 x 5 matrix.
 
 | Name         | Type      | Mandatory  | Description                                      |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | Yes   | Constructor for creating a color filter with a 4 x 5 matrix. The input parameter is [m*n], which is the matrix value in row m and column n. The value range is [0, 1]. The matrix is row-first.|
+| constructor | number[] | Yes   | Constructor for creating a color filter with a 4 x 5 matrix. The input parameter is [m*n], which is the matrix value in row m and column n. The matrix is row-first.|
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -228,7 +241,7 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | () =&gt; any | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../quick-start/arkts-builder.md).|
+| CustomBuilder | () =&gt; any | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../quick-start/arkts-builder.md#builder).|
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
@@ -236,7 +249,7 @@ The **PixelStretchEffectOptions** type is used to describe the pixel stretch eff
 
 | Name    | Type               | Mandatory  | Description            |
 | ------ | ----------------- | ---- | -------------- |
-| left   | [Length](#length) | No   | Length by which a pixel is stretched towards the left edge of the image.  |
+| left   | [Length](#length) | No   | Length by which a pixel is stretched towards the left edge of the image.|
 | right  | [Length](#length) | No   | Length by which a pixel is stretched towards the right edge of the image.|
 | top    | [Length](#length) | No   | Length by which a pixel is stretched towards the top edge of the image.|
 | bottom | [Length](#length) | No   | Length by which a pixel is stretched towards the bottom edge of the image.|
@@ -320,7 +333,18 @@ Describes the animation information of the \<Swiper> component.
 | ------------- | ---------------------- | ---------------------------------------- |
 | currentOffset | number | Offset of the currently displayed element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
 | targetOffset | number | Offset of the target element relative to the start position of the **\<Swiper>** along the main axis. Unit: vp<br>Default value: **0**|
+| velocity | number | Hands-off velocity at the beginning of the animation. Unit: VP/S<br>Default value: **0**|
+
+## TabsAnimationEvent<sup>11+</sup>
+
+The **TabsAnimationEvent** type is used to describe the animation information of the **\<Tabs>** component.
+
+| Name           | Type                  | Description                                      |
+| ------------- | ---------------------- | ---------------------------------------- |
+| currentOffset | number | Offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
+| targetOffset | number | Offset of the target element relative to the start position of the **\<Tabs>** along the main axis. Unit: vp<br>Default value: **0**|
 | velocity | number | Hands-off velocity at the beginning of the animation. Unit: vp/s<br>Default value: **0**|
+
 ## SafeAreaType<sup>10+</sup>
 
 The **SafeAreaType** type is used to describe the types of expanded safe areas.
@@ -341,3 +365,40 @@ The **SafeAreaEdge** type is used to define the edge for expanding the safe area
 | BOTTOM | Bottom edge.|
 | START  | Start edge.|
 | END    | End edge.|
+
+## KeyboardAvoidMode<sup>11+</sup>
+
+The **KeyboardAvoidMode** type is used to define the avoidance mode for the virtual keyboard.
+
+| Name  | Description      |
+| ------ | ---------- |
+| OFFSET | Avoid the virtual keyboard through offset.|
+| RESIZE | Avoid the virtual keyboard through resizing.|
+
+## TouchPoint<sup>11+</sup>
+
+The **TouchPoint** type is used to define the coordinates of the touch point.
+
+| Name  | Description      |
+| ------ | ---------- |
+| X | X coordinate of the touch point.|
+| Y | Y coordinate of the touch point.|
+
+## TabContentAnimatedTransition<sup>11+</sup>
+
+The **TabContentAnimatedTransition** type is used to define the custom tab switching animation.
+
+| Name           | Type                  | Description                                      |
+| ------------- | ---------------------- | ---------------------------------------- |
+| timeout | number | Timeout for the custom tab switching animation. If the set timeout period expires before the **finishTransition** API of [TabContentTransitionProxy](#tabcontenttransitionproxy11) is called, the **\<Tabs>** component considers that the custom animation has ended and performs subsequent operations. Unit:ms<br>Default value: **1000**|
+| transition | (proxy: [TabContentTransitionProxy](#tabcontenttransitionproxy11)) => void | Content of the custom tab switching animation.|
+
+## TabContentTransitionProxy<sup>11+</sup>
+
+Proxy object returned during the execution of the custom tab switching animation. You can use this object to obtain the start and target pages for the custom tab switching animation. In addition, you can call the **finishTransition** API of this object to notify the **\<Tabs>**component of the ending of the custom animation.
+
+| Name           | Type                  | Description                                      |
+| ------------- | ---------------------- | ---------------------------------------- |
+| from | number | Index of the currently displayed tab before the animation starts.|
+| to | number | Index of the target tab to switch to.|
+| finishTransition() | void | Called to notify the **\<Tabs>** component that the custom animation ends.|

@@ -241,7 +241,7 @@ The image source data is abnormal.
 
 **错误信息**
 
-The image source data is incomplete.
+The image source data incomplete.
 
 **可能原因**
 

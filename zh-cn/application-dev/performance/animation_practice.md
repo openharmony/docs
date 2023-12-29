@@ -101,29 +101,37 @@ struct MyComponent {
 反例：通过设置布局属性width和height，改变组件大小。
 
 ```typescript
-    @State textWidth: number = 10;
-    @State textHeight: number = 10;
-    
-    Text()
-      .backgroundColor(Color.Blue)
-      .fontColor(Color.White)
-      .fontSize(20)
-      .width(this.textWidth)
-      .height(this.textHeight)
+@Entry
+@Component
+struct MyComponent {
+  @State textWidth: number = 10;
+  @State textHeight: number = 10;
 
-    Button('布局属性')
-      .backgroundColor(Color.Blue)
-      .fontColor(Color.White)
-      .fontSize(20)
-      .margin({ top: 30 })
-      .borderRadius(30)
-      .padding(10)
-      .onClick(() => {
-        animateTo({duration:1000}, () => {
-          this.textWidth = 100;
-          this.textHeight = 100;
+  build() {
+    Column() {
+      Text()
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .fontSize(20)
+        .width(this.textWidth)
+        .height(this.textHeight)
+
+      Button('布局属性')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .fontSize(20)
+        .margin({ top: 30 })
+        .borderRadius(30)
+        .padding(10)
+        .onClick(() => {
+          animateTo({ duration: 1000 }, () => {
+            this.textWidth = 100;
+            this.textHeight = 100;
+          })
         })
-      })
+    }
+}
+}
 ```
 
 在对组件位置或大小变化做动画时，由于布局属性的改变会触发重新测量布局，导致性能开销大。scale属性的改变不会重新触发测量布局，性能开销小。因此，在组件位置大小持续发生变化的场景，如手指缩放的动画场景，推荐使用scale。
@@ -131,31 +139,39 @@ struct MyComponent {
 正例：通过设置图形变换属性scale，改变组件大小。
 
 ```typescript
-    @State textScaleX: number = 1;
-    @State textScaleY: number = 1;
-    
-    Text()
-      .backgroundColor(Color.Blue)
-      .fontColor(Color.White)
-      .fontSize(20)
-      .width(10)
-      .height(10)
-      .scale({ x: this.textScaleX, y: this.textScaleY })
-      .margin({ top: 100 })
+@Entry
+@Component
+struct MyComponent {
+  @State textScaleX: number = 1;
+  @State textScaleY: number = 1;
 
-    Button('图形变换属性')
-      .backgroundColor(Color.Blue)
-      .fontColor(Color.White)
-      .fontSize(20)
-      .margin({ top: 60 })
-      .borderRadius(30)
-      .padding(10)
-      .onClick(() => {
-        animateTo({ duration: 1000 }, () => {
-        this.textScaleX = 10;
-        this.textScaleY = 10;
-      })
-    })
+  build() {
+    Column() {
+      Text()
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .fontSize(20)
+        .width(10)
+        .height(10)
+        .scale({ x: this.textScaleX, y: this.textScaleY })
+        .margin({ top: 100 })
+
+      Button('图形变换属性')
+        .backgroundColor(Color.Blue)
+        .fontColor(Color.White)
+        .fontSize(20)
+        .margin({ top: 60 })
+        .borderRadius(30)
+        .padding(10)
+        .onClick(() => {
+          animateTo({ duration: 1000 }, () => {
+            this.textScaleX = 10;
+            this.textScaleY = 10;
+          })
+        })
+    }
+}
+}
 ```
 
 ### 动画参数相同时使用同一个animateTo
@@ -168,12 +184,12 @@ struct MyComponent {
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 200;
+  @State textWidth: number = 200;
   @State color: Color = Color.Red;
   
   func1() {
     animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-      this.width = (this.width === 100 ? 200 : 100);
+      this.textWidth = (this.textWidth === 100 ? 200 : 100);
     });
   }
   
@@ -186,7 +202,7 @@ struct MyComponent {
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
@@ -207,12 +223,12 @@ struct MyComponent {
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 200;
+  @State textWidth: number = 200;
   @State color: Color = Color.Red;
   
   func() {
     animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-      this.width = (this.width === 100 ? 200 : 100);
+      this.textWidth = (this.textWidth === 100 ? 200 : 100);
       this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
     });
   }
@@ -220,7 +236,7 @@ struct MyComponent {
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
@@ -248,24 +264,24 @@ animateTo会将执行动画闭包前后的状态进行对比，对差异部分�
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 200;
-  @State height: number = 50;
+  @State textWidth: number = 200;
+  @State textHeight: number = 50;
   @State color: Color = Color.Red;
   
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
-        .height(this.height)
+        .height(this.textHeight)
         .onClick(() => {
-          this.width = 100;
-          // h是非动画属性
-          this.height = 100;
+          this.textWidth = 100;
+          // textHeight是非动画属性
+          this.textHeight = 100;
           animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-            this.width = 200;
+            this.textWidth = 200;
           });
           this.color = Color.Yellow;
           animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
@@ -279,8 +295,8 @@ struct MyComponent {
 }
 ```
 
-在第一个animateTo前，重新设置了width属性，所以Row组件需要更新一次。在第一个animateTo的动画闭包中，改变了width属性，所以Row组件又需要更新一次并对比产生宽高动画。第二个animateTo前，重新设置了color属性，所以Row组件又需要更新一次。在第二个animateTo的动画闭包中，改变了color属性，所以Row组件再更新一次并产生了背景色动画。Row组件总共更新了4次属性。
-此外还更改了与动画无关的状态h，如果不需要改变无关状态，则不应改变造成冗余更新。
+在第一个animateTo前，重新设置了textWidth属性，所以Row组件需要更新一次。在第一个animateTo的动画闭包中，改变了textWidth属性，所以Row组件又需要更新一次并对比产生宽高动画。第二个animateTo前，重新设置了color属性，所以Row组件又需要更新一次。在第二个animateTo的动画闭包中，改变了color属性，所以Row组件再更新一次并产生了背景色动画。Row组件总共更新了4次属性。
+此外还更改了与动画无关的状态textHeight，如果不需要改变无关状态，则不应改变造成冗余更新。
 
 正例：统一更新状态变量。
 
@@ -292,21 +308,21 @@ struct MyComponent {
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 100;
-  @State height: number = 50;
+  @State textWidth: number = 100;
+  @State textHeight: number = 50;
   @State color: Color = Color.Yellow;
   
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
-        .height(this.height)
+        .height(this.textHeight)
         .onClick(() => {
           animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-            this.width = (this.width === 100 ? 200 : 100);
+            this.textWidth = (this.textWidth === 100 ? 200 : 100);
           });
           animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
@@ -319,7 +335,7 @@ struct MyComponent {
 }
 ```
 
-在第一个animateTo之前，不存在需要更新的脏状态变量和脏节点，无需更新。在第一个animateTo的动画闭包中，改变了width属性，所以Row组件需要更新一次并对比产生宽高动画。在第二个animateTo之前，由于也没有执行额外的语句，不存在需要更新的脏状态变量和脏节点，无需更新。在第二个animateTo的动画闭包中，改变了color属性，所以Row组件再更新一次并产生了背景色动画。Row组件总共更新了2次属性。
+在第一个animateTo之前，不存在需要更新的脏状态变量和脏节点，无需更新。在第一个animateTo的动画闭包中，改变了textWidth属性，所以Row组件需要更新一次并对比产生宽高动画。在第二个animateTo之前，由于也没有执行额外的语句，不存在需要更新的脏状态变量和脏节点，无需更新。在第二个animateTo的动画闭包中，改变了color属性，所以Row组件再更新一次并产生了背景色动画。Row组件总共更新了2次属性。
 
 正例2：在animateTo之前显式的指定所有需要动画的属性初值，统一更新到节点中，然后再做动画。
 
@@ -327,28 +343,28 @@ struct MyComponent {
 @Entry
 @Component
 struct MyComponent {
-  @State width: number = 200;
-  @State height: number = 50;
+  @State textWidth: number = 200;
+  @State textHeight: number = 50;
   @State color: Color = Color.Red;
   
   build() {
     Column() {
       Row()
-        .width(this.width)
+        .width(this.textWidth)
         .height(10)
         .backgroundColor(this.color)
       Text('click')
-        .height(this.height)
+        .height(this.textHeight)
         .onClick(() => {
-          this.width = 100;
+          this.textWidth = 100;
           this.color = Color.Yellow;
           animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
-            this.width = 200;
+            this.textWidth = 200;
           });
           animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = Color.Red;
           });
-          this.height = 100;
+          this.textHeight = 100;
         })
     }
     .width('100%')
@@ -357,4 +373,4 @@ struct MyComponent {
 }
 ```
 
-在第一个animateTo之前，重新设置了width和color属性，所以Row需要更新一次。在第一个animateTo的动画闭包中，改变了width属性，所以Row组件需要更新一次并对比产生宽高动画。在第二个animateTo之前，由于没有执行额外的语句，不存在需要更新的脏状态变量和脏节点，无需更新。在第二个animateTo的动画闭包中，改变了color属性，所以Row组件再更新一次并产生了背景色动画。Row组件总共更新了3次属性。
+在第一个animateTo之前，重新设置了textWidth和color属性，所以Row需要更新一次。在第一个animateTo的动画闭包中，改变了textWidth属性，所以Row组件需要更新一次并对比产生宽高动画。在第二个animateTo之前，由于没有执行额外的语句，不存在需要更新的脏状态变量和脏节点，无需更新。在第二个animateTo的动画闭包中，改变了color属性，所以Row组件再更新一次并产生了背景色动画。Row组件总共更新了3次属性。

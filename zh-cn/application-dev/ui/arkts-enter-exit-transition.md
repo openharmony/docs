@@ -49,7 +49,7 @@
 3. 新增或者删除组件触发转场。
   
    ```ts
-   @state isPresent: boolean = true;
+   @State isPresent: boolean = true;
    ...
    if (this.isPresent) {
      Text('test')

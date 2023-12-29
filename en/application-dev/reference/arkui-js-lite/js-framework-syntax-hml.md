@@ -1,7 +1,7 @@
 # HML
 
 
-The OpenHarmony Markup Language (HML) is an HTML-like language that allows you to build pages based on components and events. Pages built using HML have advanced capabilities such as data binding, event binding, loop rendering, and conditional rendering.
+HML is an HTML-like language that allows you to build pages based on components and events. Pages built using HML have advanced capabilities such as data binding, event binding, loop rendering, and conditional rendering.
 
 
 ## HML Page Structure

@@ -15,27 +15,28 @@ You can draw custom graphics on the canvas in any of the following ways:
   @Entry
   @Component
   struct CanvasExample1 {
-  // Configure the parameters of the CanvasRenderingContext2D object, including whether to enable anti-aliasing. The value true indicates that anti-aliasing is enabled.
-   private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  // Create a CanvasRenderingContext2D object by calling CanvasRenderingContext2D object in Canvas.
-  private context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
+    // Configure the parameters of the CanvasRenderingContext2D object, including whether to enable anti-aliasing. The value true indicates that anti-aliasing is enabled.
+    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    // Create a CanvasRenderingContext2D object by calling CanvasRenderingContext2D object in Canvas.
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+  
     build() {
-  Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         // Invoke the CanvasRenderingContext2D object in Canvas.
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#F5DC62')
-          .onReady(() =>{
-           // You can draw content here.
+          .onReady(() => {
+            // You can draw content here.
             this.context.strokeRect(50, 50, 200, 150);
-        })
+          })
       }
       .width('100%')
       .height('100%')
     }
   }
-
+  
   ```
 
   ![2023022793003(1)](figures/2023022793003(1).jpg)

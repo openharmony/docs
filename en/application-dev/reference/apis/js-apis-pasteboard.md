@@ -213,7 +213,7 @@ createPlainTextData(text: string): PasteData
 Creates a **PasteData** object of the plain text type.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [pasteboard.createData](#pasteboardcreatedata9).
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -783,7 +783,7 @@ prop.additions = { 'TestOne': { 'Test': 123 }, 'TestTwo': { 'Test': 'additions' 
 prop.tag = 'TestTag';
 pasteData.setProperty(prop);
 ```
-The **localOnly** and **shareOption** attributes of [PasteDataProperty](#pastedataproperty7) are mutually exclusive. The **shareOption** attribute prevails, and its value affect the value of **localOnly**.
+The **localOnly** and **shareOption** attributes of [PasteDataProperty](#pastedataproperty7) are mutually exclusive. The **shareOption** attribute is prioritized, and its value affects the value of **localOnly**.
 ```ts
 (async () => {
     let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
@@ -1730,7 +1730,7 @@ setPasteData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 Writes a **PasteData** object to the pasteboard. This API uses an asynchronous callback to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setData](#setdata9).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setData](#setdata9).
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1761,7 +1761,7 @@ setPasteData(data: PasteData): Promise&lt;void&gt;
 Writes a **PasteData** object to the pasteboard. This API uses a promise to return the result.
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setData](#setdata9-1).
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setData](#setdata9-1).
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -1789,4 +1789,258 @@ systemPasteboard.setPasteData(pasteData).then((data: void) => {
 }).catch((err: BusinessError) => {
     console.error('Failed to set PasteData. Cause: ' + err.message);
 });
+```
+### isRemoteData<sup>11+</sup>
+
+isRemoteData(): boolean
+
+Checks whether the data in the pasteboard is from another device.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Return value**
+
+| Type   | Description                                 |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if the data in the pasteboard is from another device; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](../errorcodes/errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 12900005 | Request time out. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: boolean = systemPasteboard.isRemoteData();
+    console.info(`Succeeded in checking the RemoteData. Result: ${result}`);
+} catch (err: BusinessError) {
+    console.error('Failed to check the RemoteData. Cause:' + err.message);
+};
+```
+
+### getDataSource<sup>11+</sup>
+
+getDataSource(): string
+
+Obtains the data source.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Return value**
+
+| Type  | Description  |
+| ------ | ------ |
+| string | Data source.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](../errorcodes/errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 12900005 | Request time out. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: string = systemPasteboard.getDataSource();
+    console.info(`Succeeded in getting DataSource. Result: ${result}`);
+} catch (err: BusinessError) { 
+    console.error('Failed to get DataSource. Cause:' + err.message);
+};
+```
+
+### hasDataType<sup>11+</sup>
+
+hasDataType(mimeType: string): boolean
+
+Checks whether the pasteboard contains data of the specified type.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description              |
+| -------- | ------ | ---- | ------------------ |
+| mimeType | string | Yes  | Data type.|
+
+**Return value**
+
+| Type   | Description                                       |
+| ------- | ------------------------------------------- |
+| boolean | Returns **true** if the pasteboard contains data of the specified type; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](../errorcodes/errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401 | Type is not string. |
+| 12900005 | Request time out. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: boolean = systemPasteboard.hasDataType(pasteboard.MIMETYPE_TEXT_PLAIN);
+    console.info(`Succeeded in checking the DataType. Result: ${result}`);
+} catch (err: BusinessError) {
+    console.error('Failed to check the DataType. Cause:' + err.message);
+};
+```
+
+### clearDataSync<sup>11+</sup>
+
+clearDataSync(): void
+
+Clears the system pasteboard. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](../errorcodes/errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 12900005 | Request time out. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    systemPasteboard.clearDataSync();
+    console.info('Succeeded in clearing the pasteboard.');
+} catch (err: BusinessError) {
+    console.error('Failed to clear the pasteboard. Cause:' + err.message);
+};
+```
+
+### getDataSync<sup>11+</sup>
+
+getDataSync(): PasteData
+
+Reads data in the system pasteboard. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Return value**
+
+| Type                   | Description                |
+| ----------------------- | -------------------- |
+| [PasteData](#pastedata) | Data in the system pasteboard.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](../errorcodes/errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 12900005 | Request time out. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: PasteData = systemPasteboard.getDataSync();
+    console.info('Succeeded in getting PasteData.');
+} catch (err: BusinessError) {
+    console.error('Failed to get PasteData. Cause:' + err.message);
+};   
+```
+
+### setDataSync<sup>11+</sup>
+
+setDataSync(data: PasteData): void
+
+Writes data to the system pasteboard. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Parameters**
+
+| Name| Type                   | Mandatory| Description            |
+| ------ | ----------------------- | ---- | ---------------- |
+| data   | [PasteData](#pastedata) | Yes  | Data to be written to the pasteboard.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](../errorcodes/errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 401 | Type of data is not PasteData. |
+| 12900005 | Request time out. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    systemPasteboard.setDataSync(pasteData);
+    console.info('Succeeded in setting PasteData.');
+} catch (err: BusinessError) {
+    console.error('Failed to set PasteData. Cause:' + err.message);
+};  
+```
+
+### hasDataSync<sup>11+</sup>
+
+hasDataSync(): boolean
+
+Check whether the system pasteboard contains data. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Pasteboard
+
+**Return value**
+
+| Type   | Description                                                                   |
+| ------- | ----------------------------------------------------------------------- |
+| boolean | Callback used to return the result. Returns **true** if the system pasteboard contains data; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Pasteboard Error Codes](../errorcodes/errorcode-pasteboard.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 12900005 | Request time out. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result: boolean = systemPasteboard.HasDataSync();
+    console.info(`Succeeded in checking the PasteData. Result: ${result}`);
+} catch (err: BusinessError) {
+    console.error('Failed to check the PasteData. Cause:' + err.message);
+};    
 ```

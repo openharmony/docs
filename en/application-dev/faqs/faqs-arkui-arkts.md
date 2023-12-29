@@ -1,8 +1,7 @@
 # ArkTS Syntax Usage
 
-## How do I dynamically create components using code in ArkUI?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I dynamically create components using code in ArkUI? (API version 9)
 
 **Solution**
 
@@ -25,9 +24,8 @@ ForEach(this.nums,(item) => {
 
 [Overview of Rendering Control](../quick-start/arkts-rendering-control-overview.md)
 
-## What is the difference between an @Builder decorated method and a regular method?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## What is the difference between an @Builder decorated method and a regular method? (API version 9)
 
 **Solution**
 
@@ -37,9 +35,8 @@ The @Builder decorated method allows for use of a custom component, while regula
 
 [@BuilderParam](../quick-start/arkts-builderparam.md)
 
-## How do I define @BuilderParam decorated attributes?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I define @BuilderParam decorated attributes? (API version 9)
 
 **Solution**
 
@@ -51,16 +48,15 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
     If any parameter is passed when assigning a value to the **@BuilderParam** decorated attribute (for example, **callContent: this.specificParam1\("111"\)**), define the type of the attribute as **any** (for example, **@BuilderParam callContent: any**).
 
-
 **Reference**
 
 [@BuilderParam](../quick-start/arkts-builderparam.md)
 
-## How do I listen for object changes in an array?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I listen for object changes in an array? (API version 9)
 
 **Solution**
+
 
 To listen for object changes in an array, use the @Observed and @ObjectLink decorators. **@Observed** applies to classes, and **@ObjectLink** applies to variables.
 
@@ -106,9 +102,8 @@ To listen for object changes in an array, use the @Observed and @ObjectLink deco
 
 [\@Observed and \@ObjectLink: Observing Attribute Changes in Nested Class Objects](../quick-start/arkts-observed-and-objectlink.md)
 
-## How do I transfer values through the parent component to @Link decorated varaibles in a child component?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I transfer values through the parent component to @Link decorated varaibles in a child component? (API version 9)
 
 **Solution**
 
@@ -166,8 +161,6 @@ The **@Link** semantics are derived from the '**$**' operator. In other words, *
 [@Link](../quick-start/arkts-link.md)
 
 ## How does a component synchronize state with its grandchild components?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
 **Solution**
 
@@ -278,9 +271,7 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
     ```
 
 
-## How is a callback function defined in JS?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How is a callback function defined in JS? (API version 9)
 
 **Solution**
 
@@ -304,17 +295,13 @@ The following is an example to illustrate how to define a callback function:
     ```
 
 
-## How do I maximize performance in cases when a component needs to be updated for multiple times?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I maximize performance in cases when a component needs to be updated for multiple times? (API version 9)
 
 **Solution**
 
 Use the state management module for the purpose. Currently, the minimum update is supported. When the data dependency changes, instead of updating the entire custom component, only the view content that depends on the data is updated.
 
-## How does this of a function in an object point to the outer layer?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How does this of a function in an object point to the outer layer? (API version 9)
 
 **Solution**
 
@@ -330,9 +317,7 @@ const obj = {
 }
 ```
 
-## How do I obtain data through an API before page loading?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I obtain data through an API before page loading? (API version 9)
 
 **Symptom**
 
@@ -370,17 +355,13 @@ struct Test6Page {
 }
 ```
 
-## How do I display sensor data in the \<Text> component on the UI in real time?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I display sensor data in the \<Text> component on the UI in real time? (API version 9)
 
 **Solution**
 
 The type of data returned by the sensor is double. To display it in the \<Text> component, first convert the data from double to string.
 
-## How do I listen for screen rotation events?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I listen for screen rotation events? (API version 9)
 
 **Solution**
 
@@ -404,9 +385,7 @@ listener.off('change', onPortrait) // Deregister a callback.
 
 [@ohos.mediaquery (Media Query)](../reference/apis/js-apis-mediaquery.md)
 
-## What should I do if a singleton does not take effect after the page is changed?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## What should I do if a singleton does not take effect after the page is changed? (API version 9)
 
 **Symptom**
 
@@ -418,9 +397,7 @@ A JS file is generated for each page, and a defined singleton is generated in ea
 
 To share an instance across pages, it must be created at the UIAbility or application level.
 
-## How do I convert a string in time format to a date object?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I convert a string in time format to a date object? (API version 9)
 
 **Solution**
 
@@ -449,9 +426,7 @@ Pass the date parameters as arguments.
 -   **minutes**: number of minutes that have elapsed in the hour.
 -   **seconds**: number of seconds past a minute.
 
-## How do I convert a string to a byte array in ArkTS?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I convert a string to a byte array in ArkTS? (API version 9)
 
 **Solution**
 
@@ -467,9 +442,7 @@ stringToArray(str:string) {
 }
 ```
 
-## How do I implement string encoding and decoding in ArkTS?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I implement string encoding and decoding in ArkTS? (API version 9)
 
 **Solution**
 
@@ -479,9 +452,7 @@ You can use **TextEncoder** and **TextDecoder** provided by the **util** module.
 
 [TextEncoder](../reference/apis/js-apis-util.md#textencoder), [TextDecoder](../reference/apis/js-apis-util.md#textdecoder)
 
-## How do I import and export namespaces?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I import and export namespaces? (API version 9)
 
 **Solution**
 
@@ -505,15 +476,11 @@ Use **import** and **export** statements.
     Util.getTime()
     ```
 
-## Can relational database operations be performed in the Worker thread?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## Can relational database operations be performed in the Worker thread? (API version 9)
 
 Currently, the relational database (RDB) object in the UI main thread cannot be sent to the Worker thread for operations. To use the RDB in the Worker thread, you must obtain a new RDB object.
 
-## How do I obtain files in the resource directory of an application?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I obtain files in the resource directory of an application? (API version 9)
 
 **Solution**
 
@@ -524,9 +491,7 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
 [Resource Categories and Access](../quick-start/resource-categories-and-access.md) and [@ohos.resourceManager (Resource Manager)](../reference/apis/js-apis-resource-manager.md)
 
-## How do I convert the XML format to the JSON format?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I convert the XML format to the JSON format? (API version 9)
 
 **Symptom**
 
@@ -605,9 +570,7 @@ struct Faq_4_31 {
 }
 ```
 
-## What are the restrictions on using generator functions in TypeScript?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## What are the restrictions on using generator functions in TypeScript? (API version 9)
 
 **Solution**
 
@@ -619,9 +582,7 @@ Below are the restrictions on using generator functions in TypeScript:
 
 None of the above restrictions apply to anonymous function implementations of event handlers (such as **onClick**).
 
-## How do I set a badge for each of the four corners of an image?
-
-Applicable to: OpenHarmony 3.2 Beta5
+## How do I set a badge for each of the four corners of an image? (API version 9)
 
 **Solution**
 
@@ -653,9 +614,7 @@ struct PositionExample2 {
 }
 ```
 
-## How do I use the util.generateRandomUUID parameter?
-
-Applicable to: OpenHarmony 3.2 Beta5
+## How do I use the util.generateRandomUUID parameter? (API version 9)
 
 **Solution**
 
@@ -665,9 +624,7 @@ The bottom layer of **generateRandomUUID** uses the **Node.js crypto.randomUUID\
 
 [util.generateRandomUUID](../reference/apis/js-apis-util.md#utilgeneraterandomuuid9)
 
-## Do the Worker thread and the main thread run in the same global context?
-
-Applicable to: OpenHarmony 3.2 Beta5
+## Do the Worker thread and the main thread run in the same global context? (API version 9)
 
 **Solution**
 
@@ -677,9 +634,7 @@ No. The Worker thread and the main thread are not in the same context. They inte
 
 [@ohos.worker (Worker Startup)](../reference/apis/js-apis-worker.md)
 
-## How do I set one application icon for different device types?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I set one application icon for different device types? (API version 9)
 
 **Solution**
 
@@ -716,9 +671,7 @@ To configure your application icon to show on different device types, use resour
    .height('100%') } }
 ```
 
-## How do I prevent "this" in a method from changing to "undefined" when the method is called?
-
-Applicable to: OpenHarmony 3.2 (API version 9)
+## How do I prevent "this" in a method from changing to "undefined" when the method is called? (API version 9)
 
 **Solution**
 
@@ -726,21 +679,15 @@ Method 1: Add **.bind\(this\)** when calling the method.
 
 Method 2: Use the arrow function.
 
-## Is there any difference between the systemTime.getCurrentTime\(\) API of OpenHarmony and the new Date\(\).getTime\(\) API of JS?
-
-Applicable to: OpenHarmony 3.2 (API version 9)
+## Is there any difference between the systemTime.getCurrentTime\(\) API of OpenHarmony and the new Date\(\).getTime\(\) API of JS? (API version 9)
 
 **Solution**
 
 **systemTime.getCurrentTime\(false\)** is equivalent to **new Date\(\).getTime\(\)**, returning the number of milliseconds since January 1, 1970. **systemTime.getCurrentTime\(true\)** returns the number of nanoseconds since January 1, 1970. The system time is used in both APIs.
 
-## How do I implement the ArkTS counterpart of the JS slot feature?
-
-Applicable to: OpenHarmony 3.2 (API version 9)
+## How do I implement the ArkTS counterpart of the JS slot feature? (API version 9)
 
 **Solution**
-
-Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
 Use @Build and @BuilderParam in ArkTS.
 
@@ -748,9 +695,7 @@ Use @Build and @BuilderParam in ArkTS.
 
 [\@BuilderParam: @Builder Function Reference](../quick-start/arkts-builderparam.md).
 
-## Why is the text not centered vertically when lineHeight is set?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## Why is the text not centered vertically when lineHeight is set? (API version 9)
 
 **Cause**
 
@@ -761,9 +706,7 @@ Text in the **\<Text>** component is centered by default. You do not need to set
 [Text](../reference/arkui-ts/ts-basic-components-text.md#example-1)
 
 
-## Which API is used for URL encoding?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## Which API is used for URL encoding? (API version 9)
 
 **Solution**
 
@@ -774,9 +717,7 @@ let a = encodeURI(" ")
 console.log(a) // %20
 ```
 
-## How do I parse XML files?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I parse XML files? (API version 9)
 
 **Solution**
 
@@ -786,9 +727,7 @@ You can use the **convert** API of the **ConvertXML** module to parse XML text i
 
 [@ohos.convertxml (XML-to-JavaScript Conversion)](../reference/apis/js-apis-convertxml.md)
 
-## What should I do if the .stateStyles doesn't conform standard error is reported with the use of the @Styles decorator?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## What should I do if the .stateStyles doesn't conform standard error is reported with the use of the @Styles decorator? (API version 9)
 
 **Cause**
 
@@ -798,9 +737,7 @@ The @Styles decorator is used for non-universal attributes.
 
 Use the @Styles decorator only for non-universal attributes. Alternatively, use Builder to extract common components.
 
-## How do I use \$\$ for the \<Radio> component?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I use \$\$ for the \<Radio> component? (API version 9)
 
 **Solution**
 
@@ -813,8 +750,6 @@ When the state of the **\<Radio>** component changes, the bound variable is not 
 [$ Syntax: Two-Way Synchronization of Built-in Components](../quick-start/arkts-two-way-sync.md)
 
 ## What should I do if ForEach does not work on a real device?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Symptom**
 
@@ -837,7 +772,7 @@ Add the **metadata** configuration item to the **module.json5** file.
       {
         "name": "ArkTSPartialUpdate",
         "value": "true"
-      }
+      } ]
   }
 }
 ```

@@ -179,3 +179,17 @@ import constant from '@ohos.bluetooth.constant';
 | HEALTH_ANKLE_PROSTHESIS                  | 0x0934 | 表示脚踝假肢健康设备。     |
 | HEALTH_GENERIC_HEALTH_MANAGER            | 0x0938 | 表示通用健康管理设备。     |
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | 表示个人移动健康设备。     |
+
+## AccessAuthorization<sup>11+</sup><a name="AccessAuthorization"></a>
+
+枚举，访问权限。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                 | 值  | 说明     |
+| ------------------ | ---- | ------ |
+| UNKNOWN<sup>11+</sup> | 0    | 未知。<br/>此接口为系统接口。  |
+| ALLOWED<sup>11+</sup> | 1    | 允许。<br/>此接口为系统接口。  |
+| REJECTED<sup>11+</sup> | 2    | 拒绝。<br/>此接口为系统接口。 |

@@ -38,4 +38,4 @@ appManager.getRunningProcessInformation((error, data) => {
 | uid | number | Yes| No| User ID.|
 | processName | string | Yes| No| Process name.|
 | bundleNames | Array&lt;string&gt; | Yes| No| Names of all running bundles in the process.|
-| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate)| Yes| No| Running status of the process.|
+| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| Yes| No| Running status of the process.|

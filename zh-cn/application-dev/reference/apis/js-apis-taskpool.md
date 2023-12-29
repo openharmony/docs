@@ -8,6 +8,8 @@
 
 任务池API以数字形式返回错误码。有关各个错误码的更多信息，请参阅文档[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
 
+taskpool使用过程中的相关注意点请查[TaskPool注意事项](../../arkts-utils/taskpool-introduction.md#taskpool注意事项)。
+
 > **说明：**<br/>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -52,12 +54,12 @@ execute(func: Function, ...args: unknown[]): Promise\<unknown>
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-    console.log("printArgs: " + args);
+    console.info("printArgs: " + args);
     return args;
 }
 
 taskpool.execute(printArgs, 100).then((value: number) => { // 100: test number
-  console.log("taskpool result: " + value);
+  console.info("taskpool result: " + value);
 });
 ```
 
@@ -97,13 +99,13 @@ execute(task: Task, priority?: Priority): Promise\<unknown>
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-    console.log("printArgs: " + args);
+    console.info("printArgs: " + args);
     return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
 taskpool.execute(task).then((value: number) => {
-  console.log("taskpool result: " + value);
+  console.info("taskpool result: " + value);
 });
 ```
 
@@ -141,7 +143,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<unknown[]>
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-    console.log("printArgs: " + args);
+    console.info("printArgs: " + args);
     return args;
 }
 
@@ -197,7 +199,7 @@ cancel(task: Task): void
 function inspectStatus(arg: number): number {
   // 第一时间检查取消并回复
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled before 2s sleep.");
+    console.info("task has been canceled before 2s sleep.");
     return arg + 2;
   }
   // 2s sleep
@@ -207,7 +209,7 @@ function inspectStatus(arg: number): number {
   }
   // 第二次检查取消并作出响应
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled after 2s sleep.");
+    console.info("task has been canceled after 2s sleep.");
     return arg + 3;
   }
   return arg + 1;
@@ -220,7 +222,7 @@ let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test n
 let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
 let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
 taskpool.execute(task1).then((res: number)=>{
-  console.log("taskpool test result: " + res);
+  console.info("taskpool test result: " + res);
 });
 taskpool.execute(task2);
 taskpool.execute(task3);
@@ -264,7 +266,7 @@ function printArgs(args: number): number {
   while (Date.now() - t < 2000) {
     continue;
   }
-  console.log("printArgs: " + args);
+  console.info("printArgs: " + args);
   return args;
 }
 
@@ -282,7 +284,7 @@ setTimeout(()=>{
   try {
     taskpool.cancel(taskGroup2);
   } catch (e) {
-    console.log("taskGroup.cancel occur error:" + e);
+    console.error("taskGroup.cancel occur error:" + e);
   }
 }, 1000);
 ```
@@ -325,7 +327,7 @@ let taskpoolInfo: taskpool.TaskPoolInfo = taskpool.getTaskPoolInfo();
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-  console.log("printArgs: " + args);
+  console.info("printArgs: " + args);
   return args;
 }
 
@@ -337,15 +339,15 @@ let allCount = 100;
 for (let i: number = 0; i < allCount; i++) {
   taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
     lowCount++;
-    console.log("taskpool lowCount is :" + lowCount);
+    console.info("taskpool lowCount is :" + lowCount);
   });
   taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
     mediumCount++;
-    console.log("taskpool mediumCount is :" + mediumCount);
+    console.info("taskpool mediumCount is :" + mediumCount);
   });
   taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
     highCount++;
-    console.log("taskpool highCount is :" + highCount);
+    console.info("taskpool highCount is :" + highCount);
   });
 }
 ```
@@ -382,11 +384,49 @@ Task的构造函数。
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-  console.log("printArgs: " + args);
+  console.info("printArgs: " + args);
   return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(printArgs, "this is my first Task");
+```
+
+### constructor<sup>11+</sup>
+
+constructor(name: String, func: Function, ...args: Object[])
+
+Task的构造函数，可以指定任务名称。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型     | 必填 | 说明                                                         |
+| ------ | -------- | ---- | ------------------------------------------------------------ |
+| name   | String   | 是   | 任务名称。                                                   |
+| func   | Function | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
+| args   | Object[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 10200014 | The function is not mark as concurrent. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: number): number {
+  console.info("printArgs: " + args);
+  return args;
+}
+
+let taskName = "taskName";
+let task: taskpool.Task = new taskpool.Task(taskName, printArgs, "this is my first Task");
+let name: String = task.name;
 ```
 
 ### isCanceled<sup>10+</sup>
@@ -410,7 +450,7 @@ static isCanceled(): boolean
 function inspectStatus(arg: number): number {
     // do something
     if (taskpool.Task.isCanceled()) {
-      console.log("task has been canceled.");
+      console.info("task has been canceled.");
       // do something
       return arg + 1;
     }
@@ -429,7 +469,7 @@ function inspectStatus(arg: number): number {
 function inspectStatus(arg: number): number {
   // 第一时间检查取消并回复
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled before 2s sleep.");
+    console.info("task has been canceled before 2s sleep.");
     return arg + 2;
   }
   // 延时2s
@@ -439,7 +479,7 @@ function inspectStatus(arg: number): number {
   }
   // 第二次检查取消并作出响应
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled after 2s sleep.");
+    console.info("task has been canceled after 2s sleep.");
     return arg + 3;
   }
   return arg + 1;
@@ -447,9 +487,9 @@ function inspectStatus(arg: number): number {
 
 let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
 taskpool.execute(task).then((res: number)=>{
-  console.log("taskpool test result: " + res);
+  console.info("taskpool test result: " + res);
 }).catch((err: string) => {
-  console.log("taskpool test occur error: " + err);
+  console.error("taskpool test occur error: " + err);
 });
 // 不调用cancel，isCanceled()默认返回false，task执行的结果为101
 ```
@@ -498,14 +538,217 @@ console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
 ```
 
+### sendData<sup>11+</sup>
+
+static sendData(...args: Object[]): void
+
+在任务执行过程中向宿主线程发送消息并触发回调。使用该方法前需要先构造Task。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                              |
+| -------- | ------------- | ---- | ------------------------------------------------- |
+| args     | Object[]      | 是   | 可传输对象默认转移，作为回调函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------- |
+| 10200006  | An exception occurred during serialization. |
+| 10200022  | The function is not called in the taskpool thread. |
+| 10200023  | The function is not called in the concurrent function. |
+| 10200024  | The callback is not registered on the host side. |
+
+**示例：**
+
+```ts
+@Concurrent
+function ConcurrentFunc(num: number): number {
+  let res: number = num * 10;
+  taskpool.Task.sendData(res);
+  return num;
+}
+```
+
+### onReceiveData<sup>11+</sup>
+
+onReceiveData(callback?: Function): void
+
+为任务注册回调函数，以接收和处理来自任务池工作线程的数据。使用该方法前需要先构造Task。
+
+> **说明：**<br/>
+> 不支持给同一个任务定义多种回调函数，如果重复赋值只有最后一个会生效。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| callback | Function | 否   | 处理数据的回调函数，发送到宿主线程的数据将会作为入参传入该回调函数。不传参可以取消注册的回调函数。 |
+
+**示例：**
+
+```ts
+@Concurrent
+function ConcurrentFunc(num: number): number {
+  let res: number = num * 10;
+  taskpool.Task.sendData(res);
+  return num;
+}
+
+function pringLog(data: number): void {
+  console.info("taskpool: data is: " + data);
+}
+
+async function testFunc(): Promise<void> {
+  let task: taskpool.Task = new taskpool.Task(ConcurrentFunc, 1);
+  task.onReceiveData(pringLog);
+  let ret: number = await taskpool.execute(task) as number;
+  console.info("taskpool: result is: " + ret);
+}
+
+testFunc();
+```
+
+### addDependency<sup>11+</sup>
+
+addDependency(...tasks: Task[]): void
+
+为当前任务添加对其他任务的依赖。使用该方法前需要先构造Task。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| tasks  | [Task](#task)[] | 是   | 被依赖的任务数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------- |
+| 10200026 | There is a circular dependency. |
+
+**示例：**
+
+```ts
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	continue;
+  }
+  return args;
+}
+
+let task1:taskpool.Task = new taskpool.Task(delay, 100);
+let task2:taskpool.Task = new taskpool.Task(delay, 200);
+let task3:taskpool.Task = new taskpool.Task(delay, 200);
+
+console.info("dependency: start execute first")
+taskpool.execute(task1).then(()=>{
+  console.info("dependency: first task1 success")
+})
+taskpool.execute(task2).then(()=>{
+  console.info("dependency: first task2 success")
+})
+taskpool.execute(task3).then(()=>{
+  console.info("dependency: first task3 success")
+})
+
+console.info("dependency: add dependency start");
+task1.addDependency(task2);
+task2.addDependency(task3);
+console.info("dependency: add dependency end");
+
+console.info("dependency: start execute second")
+taskpool.execute(task1).then(() => {
+  console.info("dependency: second task1 success");
+})
+taskpool.execute(task2).then(() => {
+  console.info("dependency: second task2 success");
+})
+taskpool.execute(task3).then(() => {
+  console.info("dependency: second task3 success");
+})
+```
+
+### removeDependency<sup>11+</sup>
+
+removeDependency(...tasks: Task[]): void
+
+删除当前任务对其他任务的依赖。使用该方法前需要先构造Task。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| tasks  | [Task](#task)[] | 是   | 被依赖的任务数组。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 10200027 | The dependency does not exist. |
+
+**示例：**
+
+```ts
+@Concurrent
+function delay(args: number): number {
+  let t: number = Date.now();
+  while ((Date.now() - t) < 1000) {
+	continue;
+  }
+  return args;
+}
+
+let task1:taskpool.Task = new taskpool.Task(delay, 100);
+let task2:taskpool.Task = new taskpool.Task(delay, 200);
+let task3:taskpool.Task = new taskpool.Task(delay, 200);
+
+console.info("dependency: add dependency start");
+task1.addDependency(task2);
+task2.addDependency(task3);
+console.info("dependency: add dependency end");
+console.info("dependency: remove dependency start");
+task1.removeDependency(task2);
+task2.removeDependency(task3);
+console.info("dependency: remove dependency end");
+
+console.info("dependency: start execute")
+taskpool.execute(task1).then(() => {
+  console.info("dependency: task1 success");
+})
+taskpool.execute(task2).then(() => {
+  console.info("dependency: task2 success");
+})
+taskpool.execute(task3).then(() => {
+  console.info("dependency: task3 success");
+})
+```
+
 ### 属性
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称      | 类型      | 可读 | 可写 | 说明                                                                       |
-| --------- | --------- | ---- | ---- | ------------------------------------------------------------------------- |
-| function  | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
+| 名称      | 类型      | 可读 | 可写 | 说明                                                         |
+| --------- | --------- | ---- | ---- | ------------------------------------------------------------ |
+| function  | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
 | arguments | unknown[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+| name<sup>11+</sup>      | String    | 是   | 是   | 创建任务时指定的任务名称。                                    |
 
 ## TaskGroup<sup>10+</sup>
 
@@ -523,6 +766,28 @@ TaskGroup的构造函数。
 
 ```ts
 let taskGroup = new taskpool.TaskGroup();
+```
+
+### constructor<sup>11+</sup>
+
+constructor(name: String)
+
+TaskGroup的构造函数，可以指定任务组名称。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ | ---- | ------------ |
+| name   | String | 是   | 任务组名称。 |
+
+**示例：**
+
+```ts
+let taskGroupName = "groupName";
+let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup(taskGroupName);
+let name: String = taskGroup.name;
 ```
 
 ### addTask<sup>10+</sup>
@@ -553,7 +818,7 @@ addTask(func: Function, ...args: unknown[]): void
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-  console.log("printArgs: " + args);
+  console.info("printArgs: " + args);
   return args;
 }
 
@@ -588,7 +853,7 @@ addTask(task: Task): void
 ```ts
 @Concurrent
 function printArgs(args: number): number {
-  console.log("printArgs: " + args);
+  console.info("printArgs: " + args);
   return args;
 }
 
@@ -597,6 +862,112 @@ let task: taskpool.Task = new taskpool.Task(printArgs, 200); // 200: test number
 taskGroup.addTask(task);
 ```
 
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 名称 | 类型   | 可读 | 可写 | 说明                         |
+| ---- | ------ | ---- | ---- | ---------------------------- |
+| name<sup>11+</sup> | String | 是   | 是   | 创建任务组时指定的任务组名称。 |
+
+## SequenceRunner <sup>11+</sup>
+
+表示串行队列的任务。使用[constructor](#constructor11-3)方法构造SequenceRunner。
+
+### constructor<sup>11+</sup>
+
+constructor(priority?: Priority)
+
+SequenceRunner的构造函数。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                       |
+| -------- | --------------------- | ---- | ---------------------------------------------------------- |
+| priority | [Priority](#priority) | 否   | 指定任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
+
+**示例：**
+
+```ts
+let runner：taskpool.SequenceRunner = new taskpool.SequenceRunner();
+```
+
+### execute<sup>11+</sup>
+
+execute(task: Task): Promise\<Object>
+
+执行串行任务。使用该方法前需要先构造SequenceRunner。
+
+> **说明：**
+>
+> - 不支持加入存在依赖的任务。
+> - 前面的任务执行失败或取消不影响后续任务执行。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                             |
+| ------ | ------------- | ---- | -------------------------------- |
+| task   | [Task](#task) | 是   | 需要添加到串行任务队列中的任务。 |
+
+**返回值：**
+
+| 类型             | 说明                              |
+| ---------------- | --------------------------------- |
+| Promise\<Object> | Promise对象，返回任务执行的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 10200003 | Worker initialization failure.              |
+| 10200006 | An exception occurred during serialization. |
+| 10200025 | Add dependent task to SequenceRunner.       |
+
+**示例：**
+
+```ts
+@Concurrent
+function additionDelay(delay:number): void {
+  let start: number = new Date().getTime();
+  while (new Date().getTime() - start < delay) {
+    continue;
+  }
+}
+@Concurrent
+function waitForRunner(finalString:string): string {
+  return finalString;
+}
+async function seqRunner()
+{
+  let finalString:string = "";
+  let task1:taskpool.Task = new taskpool.Task(additionDelay, 3000);
+  let task2:taskpool.Task = new taskpool.Task(additionDelay, 2000);
+  let task3:taskpool.Task = new taskpool.Task(additionDelay, 1000);
+  let task4:taskpool.Task = new taskpool.Task(waitForRunner, finalString);
+
+  let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner();
+  runner.execute(task1).then(() => {
+    finalString += 'a';
+    console.info("seqrunner: task1 done.");
+  });
+  runner.execute(task2).then(() => {
+    finalString += 'b';
+    console.info("seqrunner: task2 done");
+  });
+  runner.execute(task3).then(() => {
+    finalString += 'c';
+    console.info("seqrunner: task3 done");
+  });
+  await runner.execute(task4);
+  console.info("seqrunner: task4 done, finalString is " + finalString);
+}
+```
 
 ## State<sup>10+</sup>
 
@@ -625,7 +996,7 @@ taskGroup.addTask(task);
 | -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
 | taskId   | number             | 是   | 否   | 任务的ID。                                                     |
 | state    | [State](#state10)  | 是   | 否   | 任务的状态。                                                    |
-| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行  |
+| duration | number             | 是   | 否   | 任务执行至当前所用的时间，单位为ms。当返回为0时，表示任务未执行；返回为空时，表示没有任务执行。  |
 
 ## ThreadInfo<sup>10+</sup>
 
@@ -672,15 +1043,15 @@ taskGroup.addTask(task);
 // 支持普通函数、引用入参传递
 @Concurrent
 function printArgs(args: number): number {
-  console.log("func: " + args);
+  console.info("func: " + args);
   return args;
 }
 async function taskpoolExecute(): Promise<void> {
   // taskpool.execute(task)
   let task: taskpool.Task = new taskpool.Task(printArgs, "create task, then execute");
-  console.log("taskpool.execute(task) result: " + await taskpool.execute(task));
+  console.info("taskpool.execute(task) result: " + await taskpool.execute(task));
   // taskpool.execute(function)
-  console.log("taskpool.execute(function) result: " + await taskpool.execute(printArgs, "execute task by func"));
+  console.info("taskpool.execute(function) result: " + await taskpool.execute(printArgs, "execute task by func"));
 }
 taskpoolExecute();
 ```
@@ -698,18 +1069,18 @@ import { c } from "./b";
 
 @Concurrent
 function printArgs(a: string): string {
-    console.log(a);
-    console.log(c);
+    console.info(a);
+    console.info(c);
     return a;
 }
 
 async function taskpoolExecute(): Promise<void> {
   // taskpool.execute(task)
   let task: taskpool.Task = new taskpool.Task(printArgs, "create task, then execute");
-  console.log("taskpool.execute(task) result: " + await taskpool.execute(task));
+  console.info("taskpool.execute(task) result: " + await taskpool.execute(task));
 
   // taskpool.execute(function)
-  console.log("taskpool.execute(function) result: " + await taskpool.execute(printArgs, "execute task by func"));
+  console.info("taskpool.execute(function) result: " + await taskpool.execute(printArgs, "execute task by func"));
 }
 
 taskpoolExecute();
@@ -729,9 +1100,9 @@ async function delayExcute(): Promise<Object> {
 
 async function taskpoolExecute(): Promise<void> {
   taskpool.execute(delayExcute).then((result: string) => {
-    console.log("taskPoolTest task result: " + result);
+    console.info("taskPoolTest task result: " + result);
   }).catch((err: string) => {
-    console.log("taskpool test occur error: " + err);
+    console.error("taskpool test occur error: " + err);
   });
 }
 
@@ -748,19 +1119,19 @@ function strSort(inPutArr: Array<string>): Array<string> {
   return newArr;
 }
 export async function func1(): Promise<void> {
-  console.log("taskpoolTest start");
+  console.info("taskpoolTest start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
   let task: taskpool.Task = new taskpool.Task(strSort, strArray);
-  console.log("func1 result:" + await taskpool.execute(task));
+  console.info("func1 result:" + await taskpool.execute(task));
 }
 
 export async function func2(): Promise<void> {
-  console.log("taskpoolTest2 start");
+  console.info("taskpoolTest2 start");
   let strArray: Array<string> = ['c test string', 'b test string', 'a test string'];
   taskpool.execute(strSort, strArray).then((result: Array<string>) => {
-    console.log("func2 result: " + result);
+    console.info("func2 result: " + result);
   }).catch((err: string) => {
-    console.log("taskpool test occur error: " + err);
+    console.error("taskpool test occur error: " + err);
   });
 }
 ```
@@ -781,7 +1152,7 @@ func2();
 function inspectStatus(arg: number): number {
   // 第一时间检查取消并回复
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled before 2s sleep.");
+    console.info("task has been canceled before 2s sleep.");
     return arg + 2;
   }
   // 2s sleep
@@ -791,7 +1162,7 @@ function inspectStatus(arg: number): number {
   }
   // 第二次检查取消并作出响应
   if (taskpool.Task.isCanceled()) {
-    console.log("task has been canceled after 2s sleep.");
+    console.info("task has been canceled after 2s sleep.");
     return arg + 3;
   }
   return arg + 1;
@@ -800,9 +1171,9 @@ function inspectStatus(arg: number): number {
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
   taskpool.execute(task).then((res: number)=>{
-    console.log("taskpool test result: " + res);
+    console.info("taskpool test result: " + res);
   }).catch((err: string) => {
-    console.log("taskpool test occur error: " + err);
+    console.error("taskpool test occur error: " + err);
   });
   // 1s后取消task
   setTimeout(()=>{
@@ -837,16 +1208,16 @@ function inspectStatus(arg: number): number {
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
   taskpool.execute(task).then((res: number)=>{
-    console.log("taskpool test result: " + res);
+    console.info("taskpool test result: " + res);
   }).catch((err: string) => {
-    console.log("taskpool test occur error: " + err);
+    console.error("taskpool test occur error: " + err);
   });
 
   setTimeout(()=>{
     try {
       taskpool.cancel(task); // 任务已执行,取消失败
     } catch (e) {
-      console.log("taskpool.cancel occur error:" + e);
+      console.error("taskpool.cancel occur error:" + e);
     }
   }, 3000); // 延时3s，确保任务已执行
 }
@@ -864,7 +1235,7 @@ function printArgs(args: number): number {
   while (Date.now() - t < 1000) {
     continue;
   }
-  console.log("printArgs: " + args);
+  console.info("printArgs: " + args);
   return args;
 }
 

@@ -6,6 +6,8 @@
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+
+
 ## Modules to Import
 
 ```ts
@@ -124,7 +126,7 @@ Starts a **photoPicker** page for the user to select one or more images/videos. 
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return a **PhotoSelectResult** object. |
+| callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return a **PhotoSelectResult** object.|
 
 **Example**
 
@@ -788,7 +790,7 @@ Defines the options for selecting images/videos.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Types of the media files to select. **IMAGE_VIDEO_TYPE** is used by default. |
+| MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Types of the media files to select. **IMAGE_VIDEO_TYPE** is used by default.|
 | maxSelectNumber       | number | No  | Maximum number of media files to select. The default value is **50**, and the maximum value is **500**.     |
 
 ## PhotoSelectResult
@@ -800,7 +802,7 @@ Defines information about the images/videos selected.
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images/videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](js-apis-photoAccessHelper.md#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected image is the original one. |
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected image is the original one.|
 
 ## PhotoSaveOptions
 
@@ -812,17 +814,31 @@ Defines the options for saving images/videos.
 | ----------------------- | ------------------- | ---- | ---------------------------- |
 | newFileNames              | Array&lt;string&gt;    | No | Names of the files to save. If this parameter is not specified, the user needs to enter the file names.|
 
+## DocumentSelectMode<sup>11+</sup>
+
+Enumerates the types of assets that can be selected by picker.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+| Name |  Value|  Description|
+| ----- |  ---- | ---- |
+| FILE  | 0  | File.|
+| FOLDER | 1  | Folder.|
+| MIXED | 2  | File and folder.|
+
 ## DocumentSelectOptions
 
 Defines the options for selecting documents.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
-| Name                   | Type               | Mandatory| Description                         |
-| ----------------------- | ------------------- | ---- | -------------------------------- |
-| maxSelectNumber<sup>10+</sup>       | number  | No  | Maximum number of documents or directories that can be selected.<br>Value range: 1 to 500 |
-| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the document or directory to select. |
-| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extension types to select. Use a comma (,) to seperate multiple file name extensions.|
+| Name                   | Type               | Mandatory| Description                                      |
+| ----------------------- | ------------------- | ---- |------------------------------------------|
+| maxSelectNumber<sup>10+</sup>       | number  | No  | Maximum number of documents or folders that can be selected.<br>Value range: 1 to 500            |
+| defaultFilePathUri<sup>10+</sup>    | string  | No  | Path of the document or directory to select.                           |
+| fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt; | No  | File name extension types to select. Use a comma (,) to separate multiple file name extensions.|
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode)         | No  | Asset types to select, for example, file, folder, or both. This parameter is supported by specific devices only.    |
+
 
 ## DocumentSaveOptions
 

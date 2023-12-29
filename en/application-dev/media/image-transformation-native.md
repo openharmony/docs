@@ -1,9 +1,8 @@
-# Image Transformation (Native)
+# Image Transformation (C/C++)
 
 You will learn how to use native image APIs to process images.
 
 ## How to Develop
-
 
 **Adding Dependencies**
 
@@ -39,6 +38,11 @@ EXTERN_C_END
 For details about the APIs, see [Image API Reference](../reference/native-apis/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs. The sample code is as follows:
+
+Open **src/main/cpp/hello.cpp**, and add the reference file.
+```c++
+#include<multimedia/image_framework/image_pixel_map_napi.h>
+```
     
 1. Obtain the **PixelMap** information and store the information to the **OhosPixelMapInfo** struct.
    ```c++
@@ -96,7 +100,15 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 
 **Calling APIs on the JS Side**
 
-1. Open **src\main\ets\pages\index.ets**, and import **libentry.so**.
+1. Open the **src\main\ets\pages\index.ets** file, import **libentry.so**, and modify the **libentry.so** file as follows:
+    ```js
+    import image from '@ohos.multimedia.image'
+    export const add:(a: number, b: number) => image.PixelMap;
+    export const transform: (a: image.PixelMap) => image.PixelMap;
+    export const testGetImageInfo: (a: image.PixelMap) => image.PixelMap;
+    export const testAccessPixels: (a: image.PixelMap) => image.PixelMap;
+    export const testUnAccessPixels: (a: image.PixelMap) => image.PixelMap;
+    ```
     
 2. Call the native APIs and pass in the JS resource object. The sample code is as follows:
 

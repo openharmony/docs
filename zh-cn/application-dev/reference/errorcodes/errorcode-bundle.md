@@ -700,3 +700,29 @@ Failed to install the HAP because debug bundle cannot be installed under non-dev
 
 **处理步骤**<br/>
 执行hdc shell param get const.security.developermode.state，若返回结果为false，说明该设备无法安装调试应用。
+
+## 17700053 非应用市场调用
+**错误信息**<br/>
+Not app gallery call.
+
+**错误描述**<br/>
+非应用市场的应用调用，仅供应用市场调用的接口。
+
+**可能原因**<br/>
+调用者不是应用市场。
+
+**处理步骤**<br/>
+请检查调用者是否是应用市场。
+
+## 17700201 abc文件校验失败
+**错误信息**<br/>
+Failed to verify abc.
+
+**错误描述**<br/>
+.abc文件路径校验失败。
+
+**可能原因**<br/>
+.abc文件不可信。
+
+**处理步骤**<br/>
+请传递可信.abc文件路径。

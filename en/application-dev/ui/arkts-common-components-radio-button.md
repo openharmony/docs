@@ -15,7 +15,7 @@ Radio(options: {value: string, group: string})
 
 In this API, **value** indicates the name of the radio button, and **group** indicates the name of the group to which the radio button belongs. You can use the **checked** attribute of the radio button to specify whether it is selected. The value **true** means that the radio button is selected.
 
-The color and shape cannot be customized for the radio button.
+The shape cannot be customized for the radio button.
 
 ```ts
 Radio({ value: 'Radio1', group: 'radioGroup' })
@@ -31,8 +31,6 @@ Radio({ value: 'Radio2', group: 'radioGroup' })
 ## Adding Events
 
 The **\<Radio>** component supports the [universal events](../reference/arkui-ts/ts-universal-events-click.md). In addition, it can be bound to the **onChange** event so that it responds with custom behavior after being selected.
-
-
 
 ```ts
   Radio({ value: 'Radio1', group: 'radioGroup' })

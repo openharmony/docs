@@ -95,7 +95,7 @@ To manually create an ActionExtensionAbility in the DevEco Studio project, perfo
 
 2. In the **ActionExtAbility** directory, right-click and choose **New > TypeScript File** to create a file named **ActionExtAbility.ts**.
 
-    ```
+    ```text
     ├── ets
     │ ├── ActionExtAbility
     │ │   ├── ActionExtAbility.ts

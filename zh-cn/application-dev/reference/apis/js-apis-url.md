@@ -145,7 +145,7 @@ for (let pair of arrayValue) { // Show keyName/valueName pairs
 
 ### forEach<sup>9+</sup>
 
-forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
+forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => void, thisArg?: Object): void
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
 
@@ -164,7 +164,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: this) => void, th
 | -------- | -------- | -------- | -------- |
 | value | string | 是 | 当前遍历到的键值。 |
 | key | string | 是 | 当前遍历到的键名。 |
-| searchParams | Object | 是 | 当前调用forEach方法的实例对象。 |
+| searchParams | [URLParams](#urlparams9) | 是 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 
@@ -666,7 +666,7 @@ for (let pair of pairs) { // Show keyName/valueName pairs
 
 ### forEach<sup>(deprecated)</sup>
 
-forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
+forEach(callbackFn: (value: string, key: string, searchParams: URLSearchParams) => void, thisArg?: Object): void
 
 通过回调函数来遍历URLSearchParams实例对象上的键值对。
 
@@ -689,7 +689,7 @@ forEach(callbackFn: (value: string, key: string, searchParams: this) => void, th
 | -------- | -------- | -------- | -------- |
 | value | string | 是 | 当前遍历到的键值。 |
 | key | string | 是 | 当前遍历到的键名。 |
-| searchParams | Object | 是 | 当前调用forEach方法的实例对象。 |
+| searchParams | [URLSearchParams](#urlsearchparamsdeprecated) | 是 | 当前调用forEach方法的实例对象。 |
 
 **示例：**
 

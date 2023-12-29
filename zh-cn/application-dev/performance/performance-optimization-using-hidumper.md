@@ -25,9 +25,9 @@ HiDumper是系统为开发、测试人员、IDE工具提供的系统信息获取
    ![WinId](figures/hidumper-winid.PNG)
 
 
-   * `hidumper -s` 导出系统全部的元能力信息。
-   * `hidumper -s WindowManagerService -a ['-a']` 以 `-a` 为参数导出当前设备打开的窗口的系统元能力信息，其中 `-a` 表示执行打印操作，`['-a']` 表示打印的具体信息。
-   * `WindowName` 表示当前打开应用的窗口名，其中 `demo0` 为示例应用的默认窗口名。
+   * `hidumper -s`: 导出系统全部的元能力信息。
+   * `hidumper -s WindowManagerService -a ['-a']`: 以 `-a` 为参数导出当前设备打开的窗口的系统元能力信息，其中 `-a` 表示执行打印操作，`['-a']` 表示打印的具体信息。
+   * `WindowName`: 表示当前打开应用的窗口名，其中 `demo0` 为示例应用的默认窗口名。
    * 常见的WindowName与内置应用窗口对应关系如下：
    
      | WindowName           | 说明   |
@@ -144,9 +144,6 @@ struct ConditionComponent {
     Depth: 6
     IsDisappearing: 0
 ```
-对比三种情况的组件数可以发现：
-* 当使用visibility属性控制组件显影时，该组件通过改变Visible属性实现功能，但组件的其他结构依然会被创建。
-* 当visibility属性为Hidden时，组件虽然不会显示，但仍然在页面中占用实际位置。
 
 ### 查看visibility属性
 
@@ -205,7 +202,7 @@ struct VisibilityComponent {
     Visible: 1
     ...
 ```
-当isVisible为None时，Row组件隐藏，此时使用HiDumper查看控件树文件，Visible属性为1，FrameRect属性内组件的宽和高为0。
+当isVisible为None时，Row组件隐藏，此时使用HiDumper查看控件树文件，Visible属性为2，FrameRect属性内组件的宽和高为0。
 ```
 |-> Row childSize:0
     ID: 13
@@ -219,6 +216,9 @@ struct VisibilityComponent {
     Visible: 2
     ...
 ```
+对比三种情况的组件数可以发现：
+* 当使用visibility属性控制组件显影时，该组件通过改变Visible属性实现功能，但组件的其他结构依然会被创建。
+* 当visibility属性为Hidden时，组件虽然不会显示，但仍然在页面中占用实际位置。
 
 ## HiDumper查看内存信息
 

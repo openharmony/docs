@@ -76,7 +76,7 @@ Sets a URI for the system ringtone. This API uses an asynchronous callback to re
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // Set the URI of the target ringtone file.
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
@@ -118,7 +118,7 @@ Sets a URI for the system ringtone. This API uses a promise to return the result
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let uri = 'file://data/test.wav'; // Set the URI of the target ringtone file.
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
@@ -152,7 +152,7 @@ Obtains the URI of a system ringtone. This API uses an asynchronous callback to 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
 systemSoundManagerInstance.getSystemRingtoneUri(context, type, (err: BusinessError, value: string) => {
@@ -192,7 +192,7 @@ Obtains the URI of a system ringtone. This API uses a promise to return the resu
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
 
 systemSoundManagerInstance.getSystemRingtoneUri(context, type).then((value: string) => {
@@ -225,9 +225,9 @@ Obtains a player to play the system ringtone. This API uses an asynchronous call
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
-let systemRingtonePlayer: systemSoundManager.RingtonePlayer = null;
+let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
 systemSoundManagerInstance.getSystemRingtonePlayer(context, type, (err: BusinessError, value: systemSoundManager.RingtonePlayer) => {
   if (err) {
@@ -267,9 +267,9 @@ Obtains a player to play the system ringtone. This API uses a promise to return 
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let context: Context = this.context;
+let context: Context = getContext(this);
 let type: systemSoundManager.RingtoneType = systemSoundManager.RingtoneType.RINGTONE_TYPE_DEFAULT;
-let systemRingtonePlayer: systemSoundManager.RingtonePlayer = null;
+let systemRingtonePlayer: systemSoundManager.RingtonePlayer | undefined = undefined;
 
 systemSoundManagerInstance.getSystemRingtonePlayer(context, type).then((value: systemSoundManager.RingtonePlayer) => {
   console.info(`Promise returned to indicate that the value of the system ringtone player is obtained.`);

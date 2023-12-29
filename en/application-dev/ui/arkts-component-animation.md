@@ -27,11 +27,13 @@ struct ComponentDemo {
     Row() {
       Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
         .select(true)
+        .shape(CheckBoxShape.ROUNDED_SQUARE)
         .selectedColor(0xed6f21)
         .size({ width: 50, height: 50 })
 
       Checkbox({ name: 'checkbox2', group: 'checkboxGroup' })
         .select(false)
+        .shape(CheckBoxShape.ROUNDED_SQUARE)
         .selectedColor(0x39a2db)
         .size({ width: 50, height: 50 })
     }
@@ -103,9 +105,9 @@ export class WindowManager {
       }
 
       let winWidth = this.getMainWindowWidth();
-      AppStorage.SetOrCreate<number>('mainWinWidth', winWidth)
+      AppStorage.setOrCreate<number>('mainWinWidth', winWidth)
       let winHeight = this.getMainWindowHeight();
-      AppStorage.SetOrCreate<number>('mainWinHeight', winHeight)
+      AppStorage.setOrCreate<number>('mainWinHeight', winHeight)
       let context:UIAbility = new UIAbility()
       context.context.eventHub.emit("windowSizeChange", winWidth, winHeight)
     })
@@ -119,10 +121,10 @@ export class WindowManager {
   }
 
   private onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
-    if (mediaQueryResult.matches == AppStorage.Get<boolean>('isLandscape')) {
+    if (mediaQueryResult.matches == AppStorage.get<boolean>('isLandscape')) {
       return
     }
-    AppStorage.SetOrCreate<boolean>('isLandscape', mediaQueryResult.matches)
+    AppStorage.setOrCreate<boolean>('isLandscape', mediaQueryResult.matches)
     this.loadDisplayInfo()
   }
 
@@ -138,8 +140,8 @@ export class WindowManager {
 
   private loadDisplayInfo() {
     this.displayInfo = display.getDefaultDisplaySync()
-    AppStorage.SetOrCreate<number>('displayWidth', this.getDisplayWidth())
-    AppStorage.SetOrCreate<number>('displayHeight', this.getDisplayHeight())
+    AppStorage.setOrCreate<number>('displayWidth', this.getDisplayWidth())
+    AppStorage.setOrCreate<number>('displayHeight', this.getDisplayHeight())
   }
 
   /**
@@ -262,29 +264,27 @@ export struct TaskSwitchMainPage {
       // <Scroll> component
       Scroll(this.scroller) {
         Row({ space: this.cardSpace }) {
-          ForEach(taskDataArr, (item:TaskData, index:number|undefined) => {
-            if(index){
-              Column()
-                .width(this.cardWidth)
-                .height(this.cardHeight)
-                .backgroundColor(item.bgColor)
-                .borderStyle(BorderStyle.Solid)
-                .borderWidth(1)
-                .borderColor(0xAFEEEE)
-                .borderRadius(15)
-                  // Calculate the affine attributes of child components.
-                .scale((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ?
-                  {
-                    x: 1.1 - Math.abs(0.5 - this.getProgress(index)),
-                    y: 1.1 - Math.abs(0.5 - this.getProgress(index))
-                  } :
-                  { x: 1, y: 1 })
-                .animation({ curve: Curve.Smooth })
-                  // Apply a pan animation.
-                .translate({ x: this.cardOffset })
-                .animation({ curve: curves.springMotion() })
-                .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
-            }
+          ForEach(taskDataArr, (item:TaskData, index) => {
+            Column()
+              .width(this.cardWidth)
+              .height(this.cardHeight)
+              .backgroundColor(item.bgColor)
+              .borderStyle(BorderStyle.Solid)
+              .borderWidth(1)
+              .borderColor(0xAFEEEE)
+              .borderRadius(15)
+                // Calculate the affine attributes of child components.
+              .scale((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ?
+                {
+                  x: 1.1 - Math.abs(0.5 - this.getProgress(index)),
+                  y: 1.1 - Math.abs(0.5 - this.getProgress(index))
+                } :
+                { x: 1, y: 1 })
+              .animation({ curve: Curve.Smooth })
+                // Apply a pan animation.
+              .translate({ x: this.cardOffset })
+              .animation({ curve: curves.springMotion() })
+              .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
           }, (item:TaskData) => item.toString())
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))

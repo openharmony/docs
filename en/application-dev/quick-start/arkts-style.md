@@ -94,7 +94,7 @@ struct FancyUse {
       Text('FancyA')
         .globalFancy ()
         .fontSize(30)
-      // Use the \@Styles decorated method defined outside a component declaration.
+      // Use the @Styles decorated method defined in a component declaration.
       Text('FancyB')
         .fancy()
         .fontSize(30)

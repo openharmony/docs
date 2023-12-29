@@ -10,9 +10,9 @@ A drag event is triggered when a component is dragged.
 
 The ArkUI framework implements the drag and drop capability for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their [draggable](ts-universal-attributes-drag-drop.md) attribute to **true**.
 
-- The following component supports drag actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
+- The following component supports drag operations by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<RichEditor>**, **\<Text>**, **\<Image>**, **\<FormComponent>**, **\<Hyperlink>**
 
-- The following component supports drop actions by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
+- The following component supports drop operations by default: **\<Search>**, **\<TextInput>**, **\<TextArea>**, **\<Video>**
 
 You can also define drag responses by implementing common drag events.
 
@@ -27,7 +27,7 @@ To enable drag and drop for other components, you need to set the **draggable** 
 | onDragEnter(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item enters a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragMove(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item moves in a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
 | onDragLeave(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item leaves a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>This event is valid only when a listener for the **onDrop** event is enabled.|
-| onDrop(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item is dropped on a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.|
+| onDrop(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void) | No      | Triggered when the dragged item is dropped on a valid drop target.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.<br>**NOTE**<br>If **event.setResult()** is not explicitly used, the default value **DRAG_SUCCESSFUL** will be used as the result.|
 | onDragEnd(event: (event?: [DragEvent](#dragevent), extraParams?: string) =&gt; void)<sup>10+</sup> | No      | Triggered when the dragging of the component bound to the event ends.<br>- **event**: information about the drag event, including the coordinates of the item that is being dragged.<br>- **extraParams**: additional information about the drag event. For details, see **[extraParams](#extraparams)**.|
 
 ## DragItemInfo
@@ -54,7 +54,7 @@ To enable drag and drop for other components, you need to set the **draggable** 
 
 | Name    | Type | Description            |
 | ------ | ------ | ---------------- |
-| useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the default drop animation when the dragging ends.|
+| useCustomDropAnimation<sup>10+</sup> | boolean | Whether to use the custom drop animation when the dragging ends.<br>If this parameter is set to **true**, the default drop animation is disabled, and the custom one is used.<br>If this parameter is set to **false** or is not set, the default drop animation is enabled. In this case, to avoid conflicts, the application should not implement any custom drop animation.|
 | setData(unifiedData: [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata))<sup>10+</sup> | void | Sets drag-related data in the drag event.|
 | getData()<sup>10+</sup> | [UnifiedData](../apis/js-apis-data-unifiedDataChannel.md#unifieddata) | Obtains drag-related data from the drag event. For details about the data obtaining result, see the error code description.|
 | getSummary()<sup>10+</sup> | [Summary](../apis/js-apis-data-unifiedDataChannel.md#summary) | Obtains the summary of drag-related data from the drag event.|
@@ -84,11 +84,11 @@ For details about the error codes, see [Drag Event Error Codes](../errorcodes/er
 
 | Name| Description|
 | ----- | ----------------- |
-| DRAG_SUCCESSFUL | The drag and drop operation succeeded.|
-| DRAG_FAILED | The drag and drop operation failed.|
-| DRAG_CANCELED | The drag and drop operation was canceled.|
-| DROP_ENABLED | The component allows for a drop operation.|
-| DROP_DISABLED | The component does not allow for a drop operation.|
+| DRAG_SUCCESSFUL | The drag and drop operation succeeded. It can be used in **onDrop**.|
+| DRAG_FAILED | The drag and drop operation failed. It can be used in **onDrop**.|
+| DRAG_CANCELED | The drag and drop operation was canceled. It can be used in **onDrop**.|
+| DROP_ENABLED | The component allows for a drop operation. It can be used in **onDragMove**.|
+| DROP_DISABLED | The component does not allow for a drop operation. It can be used in **onDragMove**.|
 
 ## Example
 
@@ -109,6 +109,15 @@ struct Index {
   @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
+  @Builder
+  pixelMapBuilder() {
+    Column() {
+      Image($r('app.media.icon'))
+        .width(120)
+        .height(120)
+        .backgroundColor(Color.Yellow)
+    }
+  }
 
   getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
   {
@@ -155,6 +164,7 @@ struct Index {
           .margin({left: 15})
           .visibility(this.imgState)
           .onDragEnd((event)=>{
+            // The result value obtained from onDragEnd is set in onDrop of the drop target.
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
               promptAction.showToast({duration: 100, message: 'Drag Success'});
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
@@ -185,6 +195,9 @@ struct Index {
           video.videoUri = '/resources/rawfile/01.mp4';
           let data: UDC.UnifiedData = new UDC.UnifiedData(video);
           (event as DragEvent).setData(data);
+          return { builder: () => {
+            this.pixelMapBuilder()
+          }, extraInfo: 'extra info' };
         })
         Column() {
           Text('this is abstract')
@@ -228,6 +241,7 @@ struct Index {
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
               })
+              // If result is explicitly set to successful, the value is passed in to onDragEnd of the drag source.
               event.setResult(DragResult.DRAG_SUCCESSFUL);
             })
           })

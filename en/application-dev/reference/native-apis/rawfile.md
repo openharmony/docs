@@ -421,9 +421,7 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 
 **Description**
 
-Reads a file in **rawfile**.
-
-You can use this function to read data of the specified length from the current position.
+Reads data of the specified raw file.
 
 **Parameters**
 
@@ -435,7 +433,7 @@ You can use this function to read data of the specified length from the current 
 
 **Returns**
 
-Returns the number of bytes read. If the read length is less than the file length, **0** is returned.
+Length of the raw file read. If **length** is less than the file length, **0** is returned.
 
 **Since**
 

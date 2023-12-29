@@ -68,7 +68,7 @@ try {
 ```
 ## securityManager.getDeviceEncryptionStatus
 
-getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus;
+getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus
 
 以同步方法查询设备文件系统加密状态。成功返回设备文件系统加密状态，失败抛出对应异常。
 
@@ -86,9 +86,9 @@ getDeviceEncryptionStatus(admin: Want): DeviceEncryptionStatus;
 
 **返回值：**
 
-| 类型             | 说明                                                   |
-| ---------------- | ------------------------------------------------------ |
-| EncryptionStatus | 文件加密状态结构体，现只含有是否进行加密字段（bool）。 |
+| 类型                   | 说明                                                   |
+| ---------------------- | ------------------------------------------------------ |
+| DeviceEncryptionStatus | 文件加密状态结构体，现只含有是否进行加密字段（bool）。 |
 
 **错误码**：
 
@@ -109,7 +109,7 @@ let wantTemp: Want = {
 };
 
 try {
-    let result: securityManager.EncryptionStatus = securityManager.getDeviceEncryptionStatus(wantTemp);
+    let result: securityManager.DeviceEncryptionStatus = securityManager.getDeviceEncryptionStatus(wantTemp);
     console.info(`Succeeded in getting device encryption status. isEncrypted: ${result.isEncrypted}`);
 } catch(err) {
     console.error(`Failed to get device encryption status. Code: ${err.code}, message: ${err.message}`);

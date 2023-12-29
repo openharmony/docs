@@ -33,6 +33,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses an asy
 **Example**
 
 ```
+import shortKey from '@ohos.multimodalInput.shortKey';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {
     if (error) {
@@ -70,6 +71,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses a prom
 **Example**
 
 ```
+import shortKey from '@ohos.multimodalInput.shortKey';
 try {
   shortKey.setKeyDownDuration("screenshot", 500).then(() => {
     console.log(`Set key down duration success`);

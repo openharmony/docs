@@ -128,6 +128,8 @@ async function example() {
 
 当需要在相册展示图片和视频、编辑预览，应用需要获取某张图片的缩略图。
 
+参考以下示例，获取图片的文件描述符fd后，需要解码为统一的PixelMap，方便在应用中进行图片显示或图片处理，具体请参考[图片解码](../media/image-decoding.md)。
+
 下面以获取一张图片的缩略图为例，缩略图尺寸为720*720。
 
 **开发步骤：**
@@ -371,8 +373,6 @@ async function example() {
 2. 创建图片-音频类型文件选择选项实例。
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   
    const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
    ```
 
@@ -380,8 +380,6 @@ async function example() {
    以下示例以图片选择为例，媒体文件类型请参见[PhotoViewMIMETypes](../reference/apis/js-apis-photoAccessHelper.md#photoviewmimetypes)。
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   
    photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
    photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目
    ```
@@ -393,9 +391,6 @@ async function example() {
    如有获取元数据需求，可以通过[文件管理接口](../reference/apis/js-apis-file-fs.md)和[文件URI](../reference/apis/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
-   
    let uris: Array<string> = [];
    const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
    photoViewPicker.select(photoSelectOptions).then((photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
@@ -409,8 +404,6 @@ async function example() {
 5. 待界面从图库返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
 
    ```ts
-   import fs from '@ohos.file.fs';
-   
    let uri: string = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
@@ -419,8 +412,6 @@ async function example() {
 6. 通过fd使用[fs.readSync](../reference/apis/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
 
    ```ts
-   import fs from '@ohos.file.fs';
-   
    let buffer = new ArrayBuffer(4096);
    let readLen = fs.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);

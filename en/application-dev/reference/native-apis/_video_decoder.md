@@ -485,7 +485,7 @@ Sets an output surface for a video decoder. This function must be called prior t
 | Name| Description| 
 | -------- | -------- |
 | codec | Pointer to an **OH_AVCodec** instance.| 
-| window | Pointer to an **OHNativeWindow** instance. For details, see **OHNativeWindow**.| 
+| window | Pointer to an **OHNativeWindow** instance. For details, see [OHNativeWindow](_native_window.md#ohnativewindow).|
 
 **Returns**
 

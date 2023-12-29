@@ -1,4 +1,4 @@
-# 异步并发概述
+# 异步并发概述 (Promise和async/await)
 
 
 Promise和async/await提供异步并发能力，是标准的JS异步语法。异步代码会被挂起并在之后继续执行，同一时间只有一段代码执行，适用于[单次I/O任务](single-io-development.md)的场景开发，例如一次网络请求、一次文件读写等操作。

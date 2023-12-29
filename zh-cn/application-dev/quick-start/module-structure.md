@@ -59,7 +59,7 @@ module示例：
         "formsEnabled": false,
         "label": "$string:MainAbility_label",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "multiton"
       }
     ],
     "distro": {
@@ -202,7 +202,7 @@ metadata对象示例：
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
 | label | 标识Ability对用户显示的名称。取值是对该名称的资源索引，支持多语言，例：$string:ability_label。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | uri | 标识Ability的统一资源标识符。该标签最大长度为255个字节。 | 字符串 | 可缺省，对于data类型的Ability不可缺省。 |
-| launchType | 标识Ability的启动模式，支持"standard"和"singleton"两种模式：<br/>standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
+| launchType | 标识Ability的启动模式，支持"multiton"和"singleton"两种模式：<br/>multiton：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
 | visible | 标识Ability是否可以被其他应用调用。<br/>true：可以被其他应用调用。<br/>false：不能被其他应用调用，包括无法被aa工具命令拉起应用。 | 布尔类型 | 可缺省，缺省值为"false"。 |
 | permissions | 标识其他应用的Ability调用此Ability时需要申请的权限集合，一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 可缺省，缺省值为空。 |
 |skills | 标识Ability能够接收的want的特征。 | 对象数组 | 可缺省，缺省值为空。 |
@@ -210,7 +210,7 @@ metadata对象示例：
 | metaData | 元数据。 | 对象 | 可缺省，缺省值为空。 |
 | type | 标识Ability的类型。取值范围如下：<br/>page：表示基于Page模板开发的FA，用于提供与用户交互的能力。<br/>service：表示基于Service模板开发的PA，用于提供后台运行任务的能力。<br/>data：表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。<br/>CA：表示支持其他应用以窗口方式调起该Ability。 | 字符串 | 不可缺省。 |
 | orientation | 标识该Ability的显示模式。该标签仅适用于page类型的Ability。取值范围如下：<br/>unspecified：由系统自动判断显示方向。<br/>landscape：横屏模式。<br/>portrait：竖屏模式。<br/>followRecent：跟随栈中最近的应用。 | 字符串 | 可缺省，缺省值为"unspecified"。 |
-| backgroundModes | 标识后台服务的类型，可以为一个服务配置多个后台服务类型。该标签仅适用于service类型的Ability。取值范围如下：<br/>dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等业务。<br/>audioPlayback：音频输出业务。<br/>audioRecording：音频输入业务。<br/>pictureInPicture：画中画、小窗口播放视频业务。<br/>voip：音视频电话、VOIP业务。<br/>location：定位、导航业务。<br/>bluetoothInteraction：蓝牙扫描、连接、传输业务。<br/>wifiInteraction：WLAN扫描、连接、传输业务。<br/>screenFetch：录屏、截屏业务。<br/>multiDeviceConnection：多设备互联业务 | 字符串数组 | 可缺省，缺省值为空。 |
+| backgroundModes | 标识后台服务的类型，可以为一个服务配置多个后台服务类型。该标签仅适用于service类型的Ability。取值范围如下：<br/>dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等。<br/>audioPlayback：音频播放。<br/>audioRecording：录音。<br/>pictureInPicture：画中画、小窗口播放视频。<br/>voip：音视频电话、VOIP。<br/>location：定位、导航。<br/>bluetoothInteraction：蓝牙扫描、连接、传输。<br/>wifiInteraction：Wi-Fi扫描、连接、传输。<br/>screenFetch：录屏、截屏。<br/>multiDeviceConnection：多设备互联。 | 字符串数组 | 可缺省，缺省值为空。 |
 | grantPermission | 指定是否可以向Ability内任何数据授予权限。 | 布尔值 | 可缺省，缺省值为空。 |
 | readPermission | 标识读取Ability的数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省为空。 |
 | writePermission | 标识向Ability写数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省为空。 |
@@ -301,7 +301,7 @@ abilities示例：
     "icon": "$media:ic_launcher",
     // $string:example 为字符串类资源
     "label": "$string:example",
-    "launchType": "standard",
+    "launchType": "multiton",
     "orientation": "unspecified",
     "permissions": [],
     "visible": true,
@@ -331,7 +331,7 @@ abilities示例：
     "description": "example play ability",
     "icon": "$media:ic_launcher",
     "label": "$string:example",
-    "launchType": "standard",
+    "launchType": "multiton",
     "orientation": "unspecified",
     "visible": false,
     "skills": [

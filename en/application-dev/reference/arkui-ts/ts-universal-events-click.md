@@ -19,8 +19,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name           | Type                                | Description                                                    |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
-| x                   | number                               | X coordinate of the click relative to the upper left corner of the component being clicked.                   |
-| y                   | number                               | Y coordinate of the click relative to the upper left corner of the component being clicked.                   |
+| x                   | number                               | X coordinate of the click relative to the upper left corner of the clicked component's original area.                   |
+| y                   | number                               | Y coordinate of the click relative to the upper left corner of the clicked component's original area.                   |
 | timestamp<sup>8+</sup> | number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts, in nanoseconds.|
 | target<sup>8+</sup> | [EventTarget](#eventtarget8) | Display area of the object that triggers the event.|
 | source<sup>8+</sup> | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.|

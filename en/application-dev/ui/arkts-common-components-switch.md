@@ -14,8 +14,11 @@ You can create a toggle by calling the following API:
 Toggle(options: { type: ToggleType, isOn?: boolean })
 ```
 
+In this API, **ToggleType** indicates the toggle type, which can be **Button**, **Checkbox**, or **Switch**, and **isOn** specifies whether the toggle is turned on.
 
-In this API, **ToggleType** indicates the toggle type, which can be **Button**, **Checkbox**, or **Switch**, and **isOn** specifies whether the toggle is turned on. The API can be called in either of the following ways:
+Since API version 11, the default style of the **\<Checkbox>** component is changed from rounded square to circle.
+
+The API can be called in either of the following ways:
 
 
 - Create a toggle that does not contain child components.
@@ -39,7 +42,6 @@ In this API, **ToggleType** indicates the toggle type, which can be **Button**, 
 
 
 - Create a toggle that contains a child component.
-  
   When **ToggleType** is set to **Button**, only one child component is allowed. If the child component has text set, the text content is displayed on the button.
 
 

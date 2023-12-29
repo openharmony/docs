@@ -32,6 +32,8 @@ function sendShortMessage(options: SendMessageOptions): Promise<void>;
 Use the new API. The sample code is as follows:
 
 ```js
+import sms from '@ohos.telephony.sms';
+
 let sendCallback = function (err, data) {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
@@ -50,6 +52,8 @@ sms.sendShortMessage(options, (err) => {
 ```
 
 ```js
+import sms from '@ohos.telephony.sms';
+
 let sendCallback = function (err, data) {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }

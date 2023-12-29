@@ -1,8 +1,8 @@
-# Video Playback
+# Video Playback (ArkTS)
 
-OpenHarmony provides two solutions for video playback development:
+The system provides two solutions for video playback development:
 
-- [AVPlayer](using-avplayer-for-playback.md) class: provides ArkTS and JS APIs to implement audio and video playback. It also supports parsing streaming media and local assets, decapsulating media assets, decoding video, and rendering video. It is applicable to end-to-end playback of media assets and can be used to play video files in MP4 and MKV formats.
+- **AVPlayer** class: provides ArkTS and JS APIs to implement audio and video playback. It also supports parsing streaming media and local assets, decapsulating media assets, decoding video, and rendering video. It is applicable to end-to-end playback of media assets and can be used to play video files in MP4 and MKV formats.
 
 - **\<Video>** component: encapsulates basic video playback capabilities. It can be used to play video files after the data source and basic information are set. However, its scalability is poor. This component is provided by ArkUI. For details about how to use this component for video playback development, see [Video Component](../ui/arkts-common-components-video-player.md).
 
@@ -22,7 +22,7 @@ For details about the state, see [AVPlayerState](../reference/apis/js-apis-media
 
 Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API reference.
 
-1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
+1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the idle state.
 
 2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
    | Event Type| Description|

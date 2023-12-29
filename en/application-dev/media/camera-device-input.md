@@ -1,4 +1,4 @@
-# Device Input Management
+# Device Input Management (ArkTS)
 
 Before developing a camera application, you must create an independent camera object. The application invokes and controls the camera object to perform basic operations such as preview, photographing, and video recording.
 
@@ -28,7 +28,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    >
    > If obtaining the object fails, the camera hardware may be occupied or unusable. If it is occupied, wait until it is released.
 
-3. Call **getSupportedCameras()** in the **CameraManager** class to obtain the list of cameras supported by the current device. The list stores the IDs of all cameras supported. If the list is not empty, each ID in the list can be used to create an independent camera object. Otherwise, no camera is available for the current device and subsequent operations cannot be performed.
+3. Call **getSupportedCameras()** in the **CameraManager** class to obtain the list of cameras supported by the current device. The list stores the IDs of all cameras supported. If the list is not empty, each ID in the list can be used to create an independent camera object. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed.
    
    ```ts
    function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
@@ -48,7 +48,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    }
    ```
 
-4. Call **getSupportedOutputCapability()** to obtain all output streams supported by the current device, such as preview streams and photo streams. The output stream is in each **profile** field under **CameraOutputCapability**.
+4. Call **getSupportedOutputCapability()** to obtain all output streams supported by the current device, such as preview streams and photo streams. The output streams supported are the value of each **profile** field under **CameraOutputCapability**.
    
    ```ts
    async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraOutputCapability | undefined> {
@@ -63,13 +63,13 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
      if (cameraInput === undefined) {
        return undefined;
      }
-     // Listen for CameraInput errors.
+     // Listen for camera input errors.
      cameraInput.on('error', cameraDevice, (error: BusinessError) => {
        console.info(`Camera input error code: ${error.code}`);
      });
      // Open the camera.
      await cameraInput.open();
-     // Obtain the output stream capabilities supported by the camera.
+     // Obtain the output streams supported by the camera.
      let cameraOutputCapability: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
      if (!cameraOutputCapability) {
        console.error("cameraManager.getSupportedOutputCapability error");
@@ -83,9 +83,9 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 ## Status Listening
 
-During camera application development, you can listen for the camera status, including the appearance of a new camera, removal of a camera, and availability of a camera. The camera ID and camera status are used in the callback function. When a new camera appears, the new camera can be added to the supported camera list.
+During camera application development, you can listen for the camera status, including the appearance of a new camera, removal of a camera, and availability of a camera. The camera ID and camera status are included in the callback function. When a new camera appears, the new camera can be added to the supported camera list.
 
-Register the 'cameraStatus' event and return the listening result through a callback, which carries the **CameraStatusInfo** parameter. For details about the parameter, see [CameraStatusInfo](../reference/apis/js-apis-camera.md#camerastatusinfo).
+Register the **'cameraStatus'** event and return the listening result through a callback, which carries the **CameraStatusInfo** parameter. For details about the parameter, see [CameraStatusInfo](../reference/apis/js-apis-camera.md#camerastatusinfo).
 
 ```ts
 function onCameraStatus(cameraManager: camera.CameraManager): void {

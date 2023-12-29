@@ -1,8 +1,7 @@
 # DFX Development
 
-## How do I flush HiLog information to disks?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9) 
+## How do I flush HiLog information to disks? (API 9)
 
 **Solution**
 
@@ -22,9 +21,8 @@ The log file is saved in the **/data/log/hilog/** directory.
 For more details about parameters, run the **hilog --help** command.
 ```
 
-## How do I print only HiLog information of the current application?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9) 
+## How do I print only HiLog information of the current application? (API 9)
 
 **Solution**
 
@@ -36,9 +34,8 @@ Use the hilog command line tool to filter the logs of the current application.
 
 **hilog -e**: matching log content based on the tag, domain, and pid by using regular expressions. Multi-layered filtering, combination filtering, and reverse filtering are supported.
 
-## How do I locate the fault when the application crashes?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9) 
+## How do I locate the fault when the application crashes? (API 9)
 
 **Solution**
 
@@ -46,25 +43,22 @@ Method 1: Locate the crash-related code based on the service log.
 
 Method 2: View the error information in the crash file. The crash file is located at **/data/log/faultlog/faultlogger/**.
 
-## Is HiLog or console recommended for log printing? How do I set the domain if HiLog is used?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9) 
+## Is HiLog or console recommended for log printing? How do I set the domain if HiLog is used? (API 9)
 
 The console encapsulates the HiLog system with the default parameter configuration. It is mainly used in the application development and debugging phase.
 
-HiLog is recommended because it supports log classification and processing in a unified manner. For details, see [@ohos.hilog (HiLog)](../reference/apis/js-apis-hilog.md#hilogisloggable).
+HiLog is recommended because it supports log classification and processing in a unified manner. For details, see [@ohos.hilog (HiLog)](../reference/apis/js-apis-hilog.md).
 
 The value of the **domain** parameter in the HiLog API ranges from **0x0** to **0xFFFF**. You are advised to customize the value as required.
 
-## What is the maximum length of a log record when HiLog is used? Is it configurable?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9) 
+## What is the maximum length of a log record when HiLog Is used? Is it configurable? (API 9)
 
 The maximum length of a log record is 1,024 characters, and it is not changeable.
 
-## What is the purpose of using private in printing of formatted logs?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## What is the purpose of using private in printing of formatted logs? (API 9)
 
 **Symptom**
 
@@ -74,35 +68,31 @@ Applicable to: OpenHarmony 3.2 Beta (API version 9)
 
 When format parameters such as **%d** and **%s** are directly used, the standard system uses **private** to replace the actual data for printing by default to prevent data leakage. To print the actual data, replace **%d** with **%{public}d** or replace **%s** with **%{public}s**.
 
-## What should I do if the hilog.debug log cannot be printed?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## What should I do if the hilog.debug log cannot be printed? (API 9)
 
 **Solution**
 
 Run **hdc std shell hilog -b D** to turn on the debugging switch.
 
-## Can I separate multiple strings by spaces in the tag parameter of the HiLog API?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## Can I separate multiple strings by spaces in the tag parameter of the HiLog API? (API 9)
 
 Yes.
 
-## How does HiLog print the log information marked with the \{private\} tag?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## How does HiLog print the log information marked with the \{private\} tag? (API 9)
 
 **Solution**
 
 To print the log information marked with the \{private\} tag, run the command to disable the privacy mode: hdc shell hilog -p off
 
-## What are the cash log collection and performance troubleshooting functions provided by the HiLog system?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## What are the cash log collection and performance troubleshooting functions provided by the HiLog system? (API 9)
 
 **Symptom**
 
-What are the cash log collection and performance troubleshooting functions provided by the HiLog system?
+How do I use the cash log collection and performance troubleshooting functions provided by the HiLog system?
 
 **Solution**
 
@@ -112,9 +102,8 @@ HiChecker: detects potential faults. For details, see [HiChecker](../reference/a
 
 hiTraceMeter: implements performance tracing. For details, see [hiTraceMeter](../reference/apis/js-apis-hitracemeter.md).
 
-## How do I control log output?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## How do I control log output? (API 9)
 
 **Symptom**
 
@@ -124,17 +113,15 @@ The output log varies according to environment requirements.
 
 You can run the following command to adjust the log level to print the desired logs:  
 
-hdc shell hilog -L <D/I/W/E/F\>
+hdc shell hilog -L &lt;D/I/W/E/F&gt;
 
-## Is there a limit on the tag length of HiLog?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## Is there a limit on the tag length of HiLog? (API 9)
 
 The length of the entire tag is 32.
 
-## How do I view the appfreeze information in the logs?
 
-Applicable to: OpenHarmony 3.2 Beta (API version 9)
+## How do I view the appfreeze information in the logs? (API 9)
 
 Try the following procedure:
 

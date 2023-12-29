@@ -1,7 +1,7 @@
 # 状态管理优秀实践
 
 
-为了帮助应用程序开发人员提高其应用程序质量，特别是在高效的状态管理方面。本章节面向开发者提供了多个在开发ArkUI应用中常见的低效开发的场景，并给出了对应的解决方案。此外，还提供了同一场景下，推荐用法和不推荐用法的对比和解释说明，更直观地展示两者区别，从而帮助开发者学习如果正确地在应用开发中使用状态变量，进行高性能开发。
+为了帮助应用程序开发人员提高其应用程序质量，特别是在高效的状态管理方面。本章节面向开发者提供了多个在开发ArkUI应用中常见的低效开发的场景，并给出了对应的解决方案。此外，还提供了同一场景下，推荐用法和不推荐用法的对比和解释说明，更直观地展示两者区别，从而帮助开发者学习如何正确地在应用开发中使用状态变量，进行高性能开发。
 
 ## 使用@ObjectLink代替@Prop减少不必要的深拷贝
 
@@ -254,9 +254,8 @@ class Translate {
 }
 @Component
 struct Title {
-  @ObjectLink translateObj: Translate;
   build() {
-    Row() { 
+    Row() {
       Image($r('app.media.icon'))
         .width(50)
         .height(50)
@@ -267,13 +266,11 @@ struct Title {
 }
 @Entry
 @Component
-struct Page {
+struct Page1 {
   @State translateObj: Translate = new Translate();
   build() {
     Column() {
-      Title({
-        translateObj: this.translateObj
-      })
+      Title()
       Stack() {
       }
       .backgroundColor("black")

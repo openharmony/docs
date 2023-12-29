@@ -3,8 +3,7 @@
 - [Using Native APIs in Application Projects](napi-guidelines.md)
 - Graphics
   - [XComponent Development](xcomponent-guidelines.md)
-  - [Drawing Development](drawing-guidelines.md)
-  - [Drawing and Display Sample](drawing-sample.md)
+  - [Using Drawing to Draw and Display Graphics](drawing-guidelines.md)
   - [NativeBuffer Development](native-buffer-guidelines.md)
   - [NativeImage Development](native-image-guidelines.md)
   - [NativeVsync Development](native-vsync-guidelines.md)
@@ -12,6 +11,8 @@
   - [Vulkan Development](vulkan-guidelines.md)
 - Resource Management
   - [Raw File Development](rawfile-guidelines.md)
+- Resource Scheduling
+  - [FFRT Development](ffrt-guidelines.md)
 - AI
   - [Using MindSpore Lite for Model Inference](mindspore-lite-guidelines.md)
   - [Using MindSpore Lite for Offline Model Conversion and Inference](mindspore-lite-offline-model-guidelines.md)

@@ -37,7 +37,7 @@ zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
 | -------------- | ------------------------------------------------------------ |
 | Promise\<void> | Promise对象，无返回值。 |
 
-**示例1：**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -55,28 +55,6 @@ let options: zlib.Options = {
 zlib.zipFile(inFile, outFile, options).then((data: void) => {
     console.info('zipFile result is ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error('error is ' + JSON.stringify(err));
-});
-```
-
-**示例2：**
-
-```typescript
-// 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
-import zlib from '@ohos.zlib';
-import { BusinessError } from '@ohos.base';
-
-let inFile = '/xxx/xxx';
-let outFile = '/xxx/xxx.zip';
-let options: zlib.Options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
-};
-
-zlib.zipFile(inFile , outFile, options).then((data: void) => {
-    console.info('zipFile result is ' + JSON.stringify(data));
-}).catch((err: BusinessError)=>{
     console.error('error is ' + JSON.stringify(err));
 });
 ```
@@ -155,7 +133,7 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 
-**示例**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -199,6 +177,12 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 | outFile | string              | 是   | 指定的压缩结果的文件路径。                                           |
 | options | [Options](#options) | 是   | 压缩的配置参数。                                               |
 
+**返回值：**
+
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise\<void> | Promise对象，无返回值。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
@@ -208,7 +192,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
 
-**示例**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -263,7 +247,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | 900002   | The input destination file is invalid. |
 | 900003 | The input source file is not ZIP format or damaged. |
 
-**示例**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -305,6 +289,12 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 | outFile | string              | 是   | 指定的解压后的文件夹路径，文件夹目录路径需要在系统中存在，不存在则会解压失败。路径必须为沙箱路径，沙箱路径可以通过context获取，具体方法可参考[application/context（Stage模型）](js-apis-inner-application-context.md)或 [app/context（FA模型）](js-apis-inner-app-context.md)。如果待解压的文件或文件夹在解压后的路径下已经存在，则会直接覆盖同名文件或同名文件夹中的同名文件。 |
 | options | [Options](#options) | 否   | 解压时的配置参数。                                           |
 
+**返回值：**
+
+| 类型           | 说明                    |
+| -------------- | ----------------------- |
+| Promise\<void> | Promise对象，无返回值。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
@@ -314,6 +304,8 @@ decompressFile(inFile: string, outFile: string, options?: Options): Promise\<voi
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
 | 900003 | The input source file is not ZIP format or damaged. |
+
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。
@@ -365,7 +357,7 @@ decompressFile(inFile: string, outFile: string, callback: AsyncCallback\<void\>)
 | 900002   | The input destination file is invalid. |
 | 900003 | The input source file is not ZIP format or damaged. |
 
-**示例**
+**示例：**
 
 ```typescript
 // 代码中使用的路径需为应用的沙箱路径，如/data/storage/el2/base/haps,也可以通过context获取。

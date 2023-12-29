@@ -1,7 +1,7 @@
 # \@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components
 
 
-\@Provide and \@Consume are used for two-way data synchronization with descendant components in scenarios where state data needs to be transferred between multiple levels. They do not involve passing a variable from component to component multiple times.
+\@Provide and \@Consume are used for two-way data synchronization with descendant components when state data needs to be transferred between multiple levels. They do not involve passing a variable from component to component multiple times.
 
 
 An \@Provide decorated state variable exists in the ancestor component and is said to be "provided" to descendent components. An \@Consume decorated state variable is used in a descendent component. It is linked to ("consumes") the provided state variable in its ancestor component.
@@ -34,7 +34,7 @@ An \@Provide decorated state variable exists in the ancestor component and is sa
 ```
 
 
-When \@Provide and \@Consume are bound through the same variable name or variable alias, the variables decorated by \@Provide and \@Consume are in a one-to-many relationship. A custom component, including its child components, cannot contain multiple \@Provide decorated variables under the same name or alias. Otherwise, a runtime error will occur.
+When \@Provide and \@Consume are bound through the same variable name or variable alias, the variables decorated by \@Provide and \@Consume are in a one-to-many relationship. A custom component, including its child components, should not contain multiple \@Provide decorated variables under the same name or alias. Otherwise, a runtime error will occur.
 
 
 ## Decorator Description
@@ -45,15 +45,15 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the variable is provided under the alias name only. If the alias is not specified, the variable is provided under the variable name.|
 | Synchronization type          | Two-way:<br>from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>Union type of the preceding types, for example, string \| number, string \| undefined, or ClassA \| null. For details, see [Union Type @Provide and @Consume](#union-type-provide-and-consume).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>**any** is not supported.<br>The type must be specified. The type of the provided and the consumed variables must be the same. |
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Provide and @Consume](#union-type-provide-and-consume).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>**any** is not supported.<br>The type must be specified. The type of the provided and the consumed variables must be the same. |
 | Initial value for the decorated variable     | Mandatory.                                   |
 
 | \@Consume Decorator| Description                                      |
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
-| Synchronization type          | from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>Union type of the preceding types, for example, string \| number, string \| undefined, or ClassA \| null. For details, see [Union Type @Provide and @Consume](#union-type-provide-and-consume).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, **@Consume a: string \| undefined** is recommended; **@Consume a: string** is not recommended.<br>The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>**any** is not supported.<br>The type must be specified. The type of the provided and the consumed variables must be the same.<br>**NOTE**<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component. |
-| Initial value for the decorated variable     | Forbidden.                              |
+| Synchronization type          | Two-way: from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Union Type @Provide and @Consume](#union-type-provide-and-consume).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScipt type check. For example, @Consume a: string \| undefined. The union types Length, ResourceStr, and ResourceColor defined by the AkrUI framework are supported.<br>**any** is not supported.<br>The type must be specified. The type of the provided and the consumed variables must be the same.<br>**NOTE**<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.|
+| Initial value for the decorated variable     | Initialization of the decorated variables is forbidden.                              |
 
 
 ## Variable Transfer/Access Rules
@@ -95,7 +95,7 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 
 - When the decorated variable is of the Boolean, string, or number type, its value change can be observed.
 
-- When the decorated variable is of the class or Object type, its value change and value changes of all its attributes, that is, the attributes that **Object.keys(observedObject)** returns.
+- When the decorated variable is of the class or Object type, its value change and value changes of all its attributes, that is, the attributes that **Object.keys(observedObject)** returns, can be observed.
 
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed.
 
@@ -229,7 +229,7 @@ struct CompA {
 
 ## Union Type @Provide and @Consume
 
-@Prop supports **undefined**, **null**, and union types. In the following example, the type of **count** is string | undefined. If the attribute or type of **count** is changed when the button in the **Parent** component is clicked, the change will be synced to the child component.
+@Provide and @Consume support **undefined**, **null**, and union types. In the following example, the type of **count** is string | undefined. If the attribute or type of **count** is changed when the button in the **Parent** component is clicked, the change will be synced to the child component.
 
 ```ts
 @Component
@@ -271,5 +271,4 @@ struct Ancestors {
   }
 }
 ```
-
 <!--no_check-->

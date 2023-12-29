@@ -24,7 +24,7 @@ This document provides the HUKS specifications. Mandatory specifications are alg
 | SM2    |        9+         | 256                |Yes|
 | SM4    |        9+         | 128                |Yes|
 
-### Specifications for the Combination of the Cipher Algorithm, Block Cipher Mode, and Padding Mode
+### Combinations of the Cipher Algorithm, Block Cipher Mode, and Padding Mode
 
 | Algorithm/Block Cipher Mode/Padding Mode| API Level| Remarks                                                        |Mandatory|
 | ----------------------- | :----: | ---------------- | :----------------: |
@@ -37,7 +37,7 @@ This document provides the HUKS specifications. Mandatory specifications are alg
 | SM2/-/NoPadding | 11+  | SM3 is used as the digest algorithm. |Yes|
 
 
-### Specifications for the Combination of the Signing & Signature Verification Algorithm, Digest Algorithm, and Padding Mode
+### Combinations of the Signing or Signature Verification Algorithm, Digest Algorithm, and Padding Mode
 
 
 | Algorithm/Digest Algorithm/Padding Mode     | API Level| Remarks|Mandatory|
@@ -61,13 +61,13 @@ This document provides the HUKS specifications. Mandatory specifications are alg
 | DH        | 8+  |             |Yes|
 | X25519  | 8+  |             |Yes|
 
-### Specifications for the Combination of the Digest Algorithm and HMAC Key Length
+### Combinations of the Digest Algorithm and HMAC Key Length
 | Digest | Key Length| API Level| Mandatory|
 | ------ | :-----------: |:-----------: |:-----------: |
 | SHA256  |An integer multiple of 8, ranging from 192 to 1024| 8+   |   Yes|
 | SHA384  |An integer multiple of 8, ranging from 256 to 1024| 8+  |  Yes|
 | SHA512  |An integer multiple of 8, ranging from 256 to 1024| 8+  | Yes|
-### Specifications for the Combination of the Derivation Algorithm and Digest
+### Combinations of the Derivation Algorithm and Digest
 
 | Algorithm/Digest|  Algorithm/Length of the Base Key    | Available Algorithm/Length of the Derived Key             | Remarks|API Level|Mandatory|
 | ----------------- |-------------------------------- | ----------------------- | ------------ |:---------: |:--:|
@@ -78,7 +78,7 @@ This document provides the HUKS specifications. Mandatory specifications are alg
 | PBKDF2/SHA384   |AES/256  | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | A derived key is the key session result obtained by the service using the Init-Update-Finish mechanism. It can be managed by the HUKS (the key is always in a TEE) or independently managed by the service based on service requirements.|8+|Yes|
 | PBKDF2/SHA512    | AES/256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | A derived key is the key session result obtained by the service using the Init-Update-Finish mechanism. It can be managed by the HUKS (the key is always in a TEE) or independently managed by the service based on service requirements.|8+|Yes|
 
-### Key Attestation
+### Key Attestation Specifications
 
 | Algorithm|API Level| Remarks | Mandatory|
 | ------------------ | :-----: | ----------------------------- | :-------:|

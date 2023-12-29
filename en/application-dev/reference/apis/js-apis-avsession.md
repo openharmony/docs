@@ -144,7 +144,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor) => {
+avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor[]) => {
   console.info(`getAllSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
   if(descriptors.length > 0 ){
     console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
@@ -187,7 +187,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getAllSessionDescriptors((err: BusinessError, descriptors: avSession.AVSessionDescriptor) => {
+avSession.getAllSessionDescriptors((err: BusinessError, descriptors: avSession.AVSessionDescriptor[]) => {
   if (err) {
     console.error(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -238,7 +238,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getHistoricalSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor) => {
+avSession.getHistoricalSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor[]) => {
   console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
   if(descriptors.length > 0 ){
     console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
@@ -284,17 +284,17 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getHistoricalSessionDescriptors(1, (err: BusinessError, descriptors: avSession.AVSessionDescriptor) => {
+avSession.getHistoricalSessionDescriptors(1, (err: BusinessError, descriptors: avSession.AVSessionDescriptor[]) => {
   if (err) {
     console.error(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
     if(descriptors.length > 0 ){
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
-        console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].type : ${descriptors[0].type}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionTag : ${descriptors[0].sessionTag}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].sessionId : ${descriptors[0].sessionId}`);
+      console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].elementName.bundleName : ${descriptors[0].elementName.bundleName}`);
     }
   }
 });
@@ -322,7 +322,7 @@ Creates a session controller based on the session ID. Multiple session controlle
 
 | Type                                                 | Description                                                        |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[AVSessionController](#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID, send commands and events to sessions, and obtain metadata and playback state information.|
+| Promise<[AVSessionController](#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID,<br>send commands and events to sessions, and obtain metadata and playback state information.|
 
 **Error codes**
 
@@ -1060,13 +1060,11 @@ Enumerates the protocol types supported by the remote device.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
-**System API**: This is a system API.
-
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| TYPE_LOCAL      | 0    | Local device.   |
-| TYPE_CAST_PLUS_MIRROR      | 1    | Cast+ mirror mode.|
-| TYPE_CAST_PLUS_STREAM      | 2    | Cast+ stream mode.|
+| TYPE_LOCAL      | 0    | Local device.<br> **System API**: This is a system API.|
+| TYPE_CAST_PLUS_MIRROR      | 1    | Cast+ mirror mode.<br> **System API**: This is a system API.|
+| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+ stream mode.|
 
 ## avSession.startCastDeviceDiscovery<sup>10+</sup>
 
@@ -2708,7 +2706,7 @@ import { BusinessError } from '@ohos.base';
 let aVCastController: avSession.AVCastController;
 currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
   aVCastController = avcontroller;
-  console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
+  console.info(`getAVCastController : SUCCESS`);
 }).catch((err: BusinessError) => {
   console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -2748,7 +2746,7 @@ currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSessio
     console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     aVCastController = avcontroller;
-    console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
+    console.info(`getAVCastController : SUCCESS`);
   }
 });
 ```
@@ -2782,7 +2780,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 import { BusinessError } from '@ohos.base';
 
 currentAVSession.getOutputDevice().then((outputDeviceInfo: avSession.OutputDeviceInfo) => {
-  console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
+  console.info(`GetOutputDevice : SUCCESS : devices length : ${outputDeviceInfo.devices.length}`);
 }).catch((err: BusinessError) => {
   console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
 })
@@ -2820,7 +2818,7 @@ currentAVSession.getOutputDevice((err: BusinessError, outputDeviceInfo: avSessio
   if (err) {
     console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
+    console.info(`GetOutputDevice : SUCCESS : devices length : ${outputDeviceInfo.devices.length}`);
   }
 });
 ```
@@ -3205,7 +3203,7 @@ currentAVSession.on('playPrevious', () => {
 
 ### on('fastForward')<sup>10+</sup>
 
-on(type: 'fastForward', callback: () => void): void
+on(type: 'fastForward', callback: (time?: number) => void): void
 
 Subscribes to fastForward command events.
 
@@ -3216,7 +3214,7 @@ Subscribes to fastForward command events.
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | Yes  | Event type. The event **'fastForward'** is triggered when the command for fast forwarding is sent to the session.|
-| callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.   |
+| callback | callback: (time?: number) => void | Yes  | Callback used for subscription. The **time** parameter in the callback indicates the time to seek to, in seconds.   |
 
 **Error codes**
 
@@ -3230,14 +3228,14 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```ts
-currentAVSession.on('fastForward', () => {
+currentAVSession.on('fastForward', (time?: number) => {
   console.info(`on fastForward entry`);
 });
 ```
 
 ### on('rewind')<sup>10+</sup>
 
-on(type:'rewind', callback: () => void): void
+on(type:'rewind', callback: (time?: number) => void): void
 
 Subscribes to rewind command events.
 
@@ -3248,7 +3246,7 @@ Subscribes to rewind command events.
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type     | string               | Yes  | Event type. The event **'rewind'** is triggered when the command for rewinding is sent to the session.|
-| callback | callback: () => void | Yes  | Callback used for subscription. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object.     |
+| callback | callback: (time?: number) => void | Yes  | Callback used for subscription. The **time** parameter in the callback indicates the time to seek to, in seconds.     |
 
 **Error codes**
 
@@ -3262,7 +3260,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```ts
-currentAVSession.on('rewind', () => {
+currentAVSession.on('rewind', (time?: number) => {
   console.info(`on rewind entry`);
 });
 ```
@@ -4080,10 +4078,10 @@ Obtains the output device information. This API returns the result synchronously
 
 For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 6600101  | Session service exception. |
-| 6600103  | The session controller does not exist. |
+| ID  | Error Message|
+|---------| --------------------------------------- |
+| 6600101 | Session service exception. |
+| 6600102 | The session does not exist. |
 
 **Example**
 
@@ -4160,7 +4158,19 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```ts
-aVCastController.setDisplaySurface().then(() => {
+import media from '@ohos.multimedia.media';
+let surfaceID: string = '';
+media.createAVRecorder().then((avRecorder) => {
+  avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
+    if (err == null) {
+      console.info('getInputSurface success');
+      surfaceID = surfaceId;
+    } else {
+      console.error('getInputSurface failed and error is ' + err.message);
+    }
+  });
+})
+aVCastController.setDisplaySurface(surfaceID).then(() => {
   console.info(`setDisplaySurface : SUCCESS`);
 });
 ```
@@ -4193,8 +4203,19 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-aVCastController.setDisplaySurface((err: BusinessError) => {
+import media from '@ohos.multimedia.media';
+let surfaceID: string = '';
+media.createAVRecorder().then((avRecorder) => {
+  avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
+    if (err == null) {
+      console.info('getInputSurface success');
+      surfaceID = surfaceId;
+    } else {
+      console.error('getInputSurface failed and error is ' + err.message);
+    }
+  });
+})
+aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
   if (err) {
     console.info(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -4685,6 +4706,77 @@ aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
 
 ```
 
+### release<sup>11+</sup>
+
+release(callback: AsyncCallback\<void>): void
+
+Releases this cast controller. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                                        |
+| -------- | -------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback\<void>       | Yes  | Callback used to return the result. If the controller is released, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | -------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.release((err: BusinessError) => {
+  if (err) {
+    console.error(`release BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info(`release successfully`);
+  }
+});
+```
+
+### release<sup>11+</sup>
+
+release(): Promise\<void>
+
+Releases this cast controller. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the controller is released, no result is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](../errorcodes/errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ------------------------------ |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+aVCastController.release().then(() => {
+  console.info(`release successfully`);
+}).catch((err: BusinessError) => {
+  console.error(`release BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+
+```
+
 ### on('playbackStateChange')<sup>10+</sup>
 
 on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void): void
@@ -5160,6 +5252,8 @@ Describes the media metadata.
 | lyric           | string                  | No  | Lyric file path (local path or network path).|
 | previousAssetId | string                  | No  | ID of the previous media asset.                                                           |
 | nextAssetId     | string                  | No  | ID of the next media asset.                                                           |
+| filter<sup>11+</sup>        | number         | No  | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype10).                  |
+| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No  | Fast-forward or rewind interval supported by the media session. The default value is **SECONDS_15**, that is, 15 seconds.                           |
 
 ## AVMediaDescription<sup>10+</sup>
 
@@ -5217,6 +5311,10 @@ Describes the information related to the media playback state.
 | activeItemId<sup>10+</sup> | number                  | No  | ID of the item that is being played.|
 | volume<sup>10+</sup> | number                  | No  | Media volume.|
 | extras<sup>10+</sup> | {[key: string]: Object}       | No  | Custom media data.|
+| maxVolume<sup>11+</sup> | number                    | No  | Maximum volume.|
+| muted<sup>11+</sup>     | boolean                   | No  | Mute status. The value **true** means the muted state.|
+| videoWidth<sup>11+</sup>  | number                  | No  | Video width of the media asset, in pixels.|
+| videoHeight<sup>11+</sup> |  number                 | No  | Video height of the media asset, in pixels.|
 
 ## PlaybackPosition<sup>10+</sup>
 
@@ -6176,7 +6274,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avsessionController.getValidCommands.then((validCommands: avSession.AVControlCommandType[]) => {
+avsessionController.getValidCommands().then((validCommands: avSession.AVControlCommandType[]) => {
   console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
 }).catch((err: BusinessError) => {
   console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -7294,7 +7392,7 @@ getAVPlaybackStateSync(): AVPlaybackState;
 
 Obtains the playback state of this session. This API returns the result synchronously.
 
-**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+**System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Return value**
 
@@ -7308,7 +7406,9 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
 
 **Example**
 
@@ -7395,7 +7495,7 @@ try {
 
 ### getAVQueueItemsSync<sup>10+</sup>
 
-getAVQueueItemsSync(): \<Array\<AVQueueItem\>\>
+getAVQueueItemsSync(): Array\<AVQueueItem\>
 
 Obtains the information related to the items in the playlist of this session. This API returns the result synchronously.
 
@@ -7584,3 +7684,15 @@ Enumerates the error codes used in the media session.
 | ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
 | ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
 | ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
+
+## SkipIntervals<sup>11+</sup>
+
+Enumerates the fast-forward or rewind intervals supported by the media session.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Name                  | Value| Description                    |
+| ---------------------- | -- | ----------------------- |
+| SECONDS_10             | 10 | The time is 10 seconds.            |
+| SECONDS_15             | 15 | The time is 15 seconds.            |
+| SECONDS_30             | 30 | The time is 30 seconds.            |

@@ -1,7 +1,7 @@
 # UI Development (ArkTS-based Declarative Development Paradigm) Overview
 
 
-Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplified, high-performance UI development framework for cross-device applications. It provides the capabilities required for building the OpenHarmony application UI, including:
+Powered by the ArkTS-based declarative development paradigm, ArkUI is a simplified, high-performance UI development framework for cross-device applications. It provides the capabilities required for building the application UI, including:
 
 
 - **ArkTS**
@@ -80,7 +80,7 @@ The table below lists the main tasks involved in UI development with ArkUI. You 
 
 | Task         | Description                                 | Guide                                    |
 | ----------- | ----------------------------------- | ---------------------------------------- |
-| Get started with ArkTS    | Learn the basic syntax, state management, and rendering control scenarios of ArkTS.        | - [Basic Syntax Overview](../quick-start/arkts-basic-syntax-overview.md)<br>- [State Management](../quick-start/arkts-state-management-overview.md)<br>- [Rendering Control](../quick-start/arkts-rendering-control-overview.md)|
+| Get started with ArkTS    | Learn the basic syntax, state management, and rendering control scenarios of ArkTS.        | - [Basic Syntax Overview](../quick-start/arkts-basic-syntax-overview.md)<br>- [State Management](../quick-start/arkts-state-management-overview.md)<br>- [Rendering Control](../quick-start/arkts-rendering-control-ifelse.md)|
 | Develop the layout       | Understand the common layouts.            | - [Layout Overview](arkts-layout-development-overview.md)<br>|
 | Add components       | Learn the usage of common built-in components, custom components, and GUI elements supported by APIs.| - [Common Components](arkts-common-components-button.md)<br>- [Custom Components](../quick-start/arkts-create-custom-components.md)<br>- [Popup and Menu](arkts-popup-and-menu-components-popup.md)|
 | Set page routing and component navigation| Learn how to set page routes and navigation between components.               | - [Page Routing](arkts-routing.md)<br>- [Navigation](arkts-navigation-navigation.md)|

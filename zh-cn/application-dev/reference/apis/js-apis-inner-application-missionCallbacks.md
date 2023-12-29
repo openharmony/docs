@@ -3,16 +3,20 @@
 作为可以[registerMissionListener](js-apis-distributedMissionManager.md#distributedmissionmanagerregistermissionlistener)的入参，表示开始同步后，建立的回调函数。
 
 > **说明：**
-> 
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
+>
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+## MissionCallback.notifyMissionsChanged
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
-| 名称                                                 | 类型     | 可读 | 可写 | 说明                               |
-| ---------------------------------------------------- | -------- | ---- | ---- | ---------------------------------- |
-| notifyMissionsChanged(deviceId: string)              | function | 是   | 否   | 通知任务变化，返回设备ID。         |
-| notifySnapshot(deviceId: string, mission: number)    | function | 是   | 否   | 通知快照变化，返回设备ID，任务ID   |
-| notifyNetDisconnect(deviceId: string, state: number) | function | 是   | 否   | 通知断开连接，返回设备ID，网络状态 |
+**系统接口**：该接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceId |  string | 是 | 通知任务变化，返回设备ID。|
 
 **示例：**
 ```ts
@@ -23,16 +27,93 @@ distributedMissionManager.registerMissionListener(
         deviceId: '123456'
     },
     {
-        notifyMissionsChanged: (deviceId) => {
+        notifyMissionsChanged: (deviceId: string) => {
             console.log(`notifyMissionsChanged deviceId: ${JSON.stringify(deviceId)}`);
         },
-        notifySnapshot: (deviceId, mission) => {
+        notifySnapshot: (deviceId: string, mission: number) => {
             console.log(`notifySnapshot deviceId: ${JSON.stringify(deviceId)}`);
             console.log(`notifySnapshot mission: ${JSON.stringify(mission)}`);
         },
-        notifyNetDisconnect: (deviceId, state) => {
+        notifyNetDisconnect: (deviceId: string, state: number) => {
             console.log(`notifyNetDisconnect deviceId: ${JSON.stringify(deviceId)}`);
             console.log(`notifyNetDisconnect state: ${JSON.stringify(state)}`);
         }
-    });
+    }
+);
 ```
+
+## MissionCallback.notifySnapshot
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统接口**：该接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceId |  string | 是 | 通知快照变化，返回设备ID。 |
+| mission |  number | 是 | 通知快照变化，任务ID。 |
+
+**示例：**
+```ts
+import distributedMissionManager from '@ohos.distributedMissionManager';
+
+distributedMissionManager.registerMissionListener(
+    {
+        deviceId: '123456'
+    },
+    {
+        notifyMissionsChanged: (deviceId: string) => {
+            console.log(`notifyMissionsChanged deviceId: ${JSON.stringify(deviceId)}`);
+        },
+        notifySnapshot: (deviceId: string, mission: number) => {
+            console.log(`notifySnapshot deviceId: ${JSON.stringify(deviceId)}`);
+            console.log(`notifySnapshot mission: ${JSON.stringify(mission)}`);
+        },
+        notifyNetDisconnect: (deviceId: string, state: number) => {
+            console.log(`notifyNetDisconnect deviceId: ${JSON.stringify(deviceId)}`);
+            console.log(`notifyNetDisconnect state: ${JSON.stringify(state)}`);
+        }
+    }
+);
+```
+
+## MissionCallback.notifyNetDisconnect
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
+
+**系统接口**：该接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| deviceId |  string | 是 | 通知断开连接，返回设备ID。 |
+| state |  number | 是 | 通知断开连接，网络状态。 |
+
+**示例：**
+```ts
+import distributedMissionManager from '@ohos.distributedMissionManager';
+
+distributedMissionManager.registerMissionListener(
+    {
+        deviceId: '123456'
+    },
+    {
+        notifyMissionsChanged: (deviceId: string) => {
+            console.log(`notifyMissionsChanged deviceId: ${JSON.stringify(deviceId)}`);
+        },
+        notifySnapshot: (deviceId: string, mission: number) => {
+            console.log(`notifySnapshot deviceId: ${JSON.stringify(deviceId)}`);
+            console.log(`notifySnapshot mission: ${JSON.stringify(mission)}`);
+        },
+        notifyNetDisconnect: (deviceId: string, state: number) => {
+            console.log(`notifyNetDisconnect deviceId: ${JSON.stringify(deviceId)}`);
+            console.log(`notifyNetDisconnect state: ${JSON.stringify(state)}`);
+        }
+    }
+);
+```
+
+

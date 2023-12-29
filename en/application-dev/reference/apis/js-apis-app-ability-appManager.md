@@ -14,7 +14,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
+isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 Checks whether this application is undergoing a stability test. This API uses an asynchronous callback to return the result.
 
@@ -22,9 +22,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. |
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite. | 
 
 **Error codes**
 
@@ -51,7 +51,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(): Promise&lt;boolean&gt;
+isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 Checks whether this application is undergoing a stability test. This API uses a promise to return the result.
 
@@ -59,9 +59,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
 
 **Error codes**
 
@@ -95,9 +95,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
 
 **Error codes**
 
@@ -130,9 +130,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. |
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;boolean&gt; | Yes|Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite. | 
 
 **Error codes**
 
@@ -166,9 +166,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
 
 **Error codes**
 
@@ -201,9 +201,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;number&gt; | Yes|Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;number&gt; | Yes|Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
 
 **Error codes**
 
@@ -231,7 +231,7 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
-Obtains information about the running processes. This API uses a promise to return the result.
+Obtains information about the running processes. This API uses a promise to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -268,7 +268,7 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
-Obtains information about the running processes. This API uses an asynchronous callback to return the result.
+Obtains information about the running processes. This API uses an asynchronous callback to return the result. If you have requested the **ohos.permission.GET_RUNNING_INFO** permission, you can obtain information about all running processes; otherwise, you can obtain only information about the current running processes.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -276,9 +276,9 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>  | Yes|Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>  | Yes|Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.| 
 
 **Error codes**
 
@@ -368,7 +368,7 @@ Checks whether the shared library is in use. This API uses an asynchronous callb
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | Yes   | Bundle name of the shared library.|
 | versionCode   | number   | Yes   | Version number of the shared library.     |
-|AsyncCallback\<boolean>> | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
+| callback    | AsyncCallback\<boolean>> | Yes   | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
 
 **Error codes**
 
@@ -394,15 +394,11 @@ appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
 });
 ```
 
-## appManager.on(type: 'applicationState', observer: ApplicationStateObserver)<sup>(deprecated)</sup>
+## appManager.on
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number;
 
 Registers an observer to listen for the state changes of all applications.
-
-> **NOTE**
->
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver)](#appmanagerontype-applicationstateevent-observer-applicationstateobserver10).
 
 **Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -464,15 +460,11 @@ try {
 }
 ```
 
-## appManager.on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>)<sup>(deprecated)</sup>
+## appManager.on
 
 on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
 
 Registers an observer to listen for the state changes of a specified application.
-
-> **NOTE**
->
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver, bundleNameList: Array\<string>)](#appmanagerontype-applicationstateevent-observer-applicationstateobserver-bundlenamelist-arraystring10).
 
 **Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -536,15 +528,58 @@ try {
 }
 ```
 
-## appManager.off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>)<sup>(deprecated)</sup>
+## appManager.on<sup>11+</sup>
+
+on(type: 'appForegroundState', observer: AppForegroundStateObserver): void
+
+Registers an observer to listen for application start or exit events. The observer can be used by a system application to observe the start or event events of all applications.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Event type. It is fixed at **'appForegroundState'**.|
+| observer | [AppForegroundStateObserver](./js-apis-inner-application-appForegroundStateObserver.md) | Yes| Observer used to listen for application start or exit events.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+
+let observer: appManager.AppForegroundStateObserver = {
+    onAppStateChanged(appStateData) {
+        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+    },
+};
+try {
+    appManager.on('appForegroundState', observer);
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
+## appManager.off
 
 off(type: 'applicationState', observerId: number,  callback: AsyncCallback\<void>): void;
 
 Deregisters the application state observer. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [appManager.off(type: 'applicationStateEvent', observerId: number)](#appmanagerofftype-applicationstateevent-observerid-number10).
 
 **Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -621,15 +656,11 @@ try {
 }
 ```
 
-## appManager.off(type: 'applicationState', observerId: number)<sup>(deprecated)</sup>
+## appManager.off
 
 off(type: 'applicationState', observerId: number): Promise\<void>;
 
 Deregisters the application state observer. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [appManager.off(type: 'applicationStateEvent', observerId: number)](#appmanagerofftype-applicationstateevent-observerid-number10).
 
 **Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -707,30 +738,24 @@ try {
 }
 ```
 
-## appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver)<sup>10+</sup>
+## appManager.off<sup>11+</sup>
 
-on(type: 'applicationStateEvent', observer: ApplicationStateObserver): number;
+off(type: 'appForegroundState', observer: AppForegroundStateObserver): void
 
-Registers an observer to listen for the state changes of all applications.
+Deregisters the observer used to listen for application start or exit events.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **'applicationStateEvent'**.|
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
-
-**Return value**
-
-| Type| Description|
-| --- | --- |
-| number | Digital code of the observer, which will be used in **off()** to deregister the observer.|
+| type | string | Yes| Event type. It is fixed at **'appForegroundState'**.|
+| observer | [AppForegroundStateObserver](./js-apis-inner-application-appForegroundStateObserver.md) | No| Observer used to listen for application start or exit events.|
 
 **Error codes**
 
@@ -745,169 +770,26 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 import { BusinessError } from '@ohos.base';
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
+let observer_;
+// 1. Register an observer to listen for application start or exit events.
+let observer: appManager.AppForegroundStateObserver = {
+    onAppStateChanged(appStateData) {
+        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
     },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
 };
 try {
-    const observerId = appManager.on('applicationStateEvent', applicationStateObserver);
-    console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
-}
-```
-
-## appManager.on(type: 'applicationStateEvent', observer: ApplicationStateObserver, bundleNameList: Array\<string>)<sup>10+</sup>
-
-on(type: 'applicationStateEvent', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number;
-
-Registers an observer to listen for the state changes of a specified application.
-
-**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **'applicationStateEvent'**.|
-| observer | [ApplicationStateObserver](./js-apis-inner-application-applicationStateObserver.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
-| bundleNameList | `Array<string>` | Yes| **bundleName** array of the application. A maximum of 128 bundle names can be passed.|
-
-**Return value**
-
-| Type| Description|
-| --- | --- |
-| number | Digital code of the observer, which will be used in **off()** to deregister the observer.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
-**Example**
-
-```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
-
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-try {
-    const observerId = appManager.on('applicationStateEvent', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
-} catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
-}
-```
-
-## appManager.off(type: 'applicationStateEvent', observerId: number)<sup>10+</sup>
-
-off(type: 'applicationStateEvent', observerId: number): void;
-
-Deregisters the application state observer. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.RUNNING_STATE_OBSERVER
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the API to call. It is fixed at **'applicationStateEvent'**.|
-| observerId | number | Yes| Digital code of the observer.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
-**Example**
-
-```ts
-import appManager from '@ohos.app.ability.appManager';
-import { BusinessError } from '@ohos.base';
-
-let observerId = 0;
-
-// 1. Register an application state observer.
-let applicationStateObserver: appManager.ApplicationStateObserver = {
-    onForegroundApplicationChanged(appStateData) {
-        console.log(`[appManager] onForegroundApplicationChanged: ${JSON.stringify(appStateData)}`);
-    },
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`[appManager] onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
-    onProcessCreated(processData) {
-        console.log(`[appManager] onProcessCreated: ${JSON.stringify(processData)}`);
-    },
-    onProcessDied(processData) {
-        console.log(`[appManager] onProcessDied: ${JSON.stringify(processData)}`);
-    },
-    onProcessStateChanged(processData) {
-        console.log(`[appManager] onProcessStateChanged: ${JSON.stringify(processData)}`);
-    }
-};
-let bundleNameList = ['bundleName1', 'bundleName2'];
-try {
-    observerId = appManager.on('applicationStateEvent', applicationStateObserver, bundleNameList);
-    console.log(`[appManager] observerCode: ${observerId}`);
+    appManager.on('appForegroundState', observer);
+    // Save the observer object.
+    observer_ = observer;
 } catch (paramError) {
     let code = (paramError as BusinessError).code;
     let message = (paramError as BusinessError).message;
     console.error(`[appManager] error: ${code}, ${message} `);
 }
 
-// 2. Deregister the application state observer.
+// 2. Deregister the observer.
 try {
-    appManager.off('applicationStateEvent', observerId);
+    appManager.off('appForegroundState',  observer_);
 } catch (paramError) {
     let code = (paramError as BusinessError).code;
     let message = (paramError as BusinessError).message;
@@ -927,6 +809,12 @@ Obtains applications that are running in the foreground. This API uses an asynch
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Yes| Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback.|
+
 **Error codes**
 
 | ID| Error Message|
@@ -934,12 +822,6 @@ Obtains applications that are running in the foreground. This API uses an asynch
 | 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Yes| Callback used to return the API call result and an array holding the application state data. You can perform error handling or custom processing in this callback.|
 
 **Example**
 
@@ -1073,11 +955,11 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Bundle name.| 
+  | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).| 
+  | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.| 
 
 **Error codes**
 
@@ -1328,11 +1210,11 @@ Obtains the memory size of a process. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1381,11 +1263,11 @@ Obtains the memory size of a process. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1426,11 +1308,11 @@ Obtains information about the running processes by bundle name. This API uses an
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1439,7 +1321,7 @@ import appManager from '@ohos.app.ability.appManager';
 import { BusinessError } from '@ohos.base';
 
 let bundleName = "bundleName";
-function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: appManager.Array<ProcessInformation>) {
+function getRunningProcessInfoByBundleNameCallback(err: BusinessError, data: Array<appManager.ProcessInformation>) {
     if (err) {
         console.error(`getRunningProcessInfoByBundleNameCallback fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -1479,11 +1361,11 @@ Obtains information about the running processes by bundle name. This API uses a 
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1525,11 +1407,11 @@ Obtains information about the running processes by bundle name and user ID. This
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1580,11 +1462,11 @@ Obtains information about the running processes by bundle name and user ID. This
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message|
 | ------- | -------- |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1599,6 +1481,101 @@ try {
         console.log('getRunningProcessInfoByBundleName success.');
     }).catch((err: BusinessError) => {
         console.error(`getRunningProcessInfoByBundleName fail, err: ${JSON.stringify(err)}`);
+    });
+} catch (paramError) {
+    let code = (paramError as BusinessError).code;
+    let message = (paramError as BusinessError).message;
+    console.error(`[appManager] error: ${code}, ${message} `);
+}
+```
+
+## appManager.isApplicationRunning<sup>11+</sup>
+
+isApplicationRunning(bundleName: string): Promise\<boolean>
+
+Checks whether an application is running. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | Yes   | Bundle name.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = "com.example.myapplication";
+appManager.isApplicationRunning(bundleName).then((data) => {
+    console.log(`The application running is: ${JSON.stringify(data)}`);
+}).catch((error: BusinessError) => {
+    console.error(`error: ${JSON.stringify(error)}`);
+});
+```
+
+## appManager.isApplicationRunning<sup>11+</sup>
+
+isApplicationRunning(bundleName: string, callback: AsyncCallback\<boolean>): void
+
+Checks whether an application is running. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | Yes   | Bundle name of the shared library.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. The value **true** means that the application is running, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from '@ohos.base';
+
+let bundleName = "com.example.myapplication";
+try {
+    appManager.isApplicationRunning(bundleName, (err, data) => {
+        if (err) {
+            console.error(`err: ${JSON.stringify(err)}`);
+        } else {
+            console.log(`The application running is: ${JSON.stringify(data)}`);
+        }
     });
 } catch (paramError) {
     let code = (paramError as BusinessError).code;
@@ -1623,13 +1600,11 @@ Enumerates the application states. This enum can be used together with [AbilityS
 | STATE_BACKGROUND        | 4   |       State indicating that the application is running in the background.          |
 | STATE_DESTROY        | 5   |           State indicating that the application is destroyed.      |
 
-## ProcessState
+## ProcessState<sup>10+</sup>
 
 Enumerates the process states. This enum can be used together with [ProcessData](js-apis-inner-application-processData.md) to return the process state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name                | Value | Description                              |
 | -------------------- | --- | --------------------------------- |
@@ -1638,5 +1613,3 @@ Enumerates the process states. This enum can be used together with [ProcessData]
 | STATE_ACTIVE  | 2   |          State indicating that the process is active.  |
 | STATE_BACKGROUND        | 3   |       State indicating that the process is running in the background.          |
 | STATE_DESTROY        | 4   |         State indicating that the process is destroyed.        |
-
-<!--no_check-->

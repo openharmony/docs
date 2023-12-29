@@ -1,4 +1,4 @@
-# 使用TonePlayer开发音频播放功能（仅对系统应用开放）
+# 使用TonePlayer开发音频播放功能(仅对系统应用开放)(ArkTS)
 
 TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，双音多频）音调的方法，包括各种系统监听音调、专有音调，如拨号音、通话回铃音等。主要工作是将需要生成音调的[ToneType](../reference/apis/js-apis-audio.md#tonetype9)类型，通过自带算法生成多个不同频率的正弦波叠加形成声音数据，通过[AudioRenderer](../reference/apis/js-apis-audio.md#audiorenderer8)进行播放，同时对播放任务进行管理。包含加载DTMF音调配置、启动DTMF音调播放、停止当前正在播放的音调、释放与此TonePlayer对象关联的资源等流程。详细API说明请参考[TonePlayer API文档](../reference/apis/js-apis-audio.md#toneplayer9)。
 
@@ -46,6 +46,7 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
      
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
@@ -100,7 +101,6 @@ async function release() {
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
-
 
 let timerPro : number;
 // promise调用方式

@@ -81,7 +81,7 @@
     build() {
       Row({ space: 10 }) {
         Text(`${this.label}`)
-          .makeMeClick(this.onClickHandler)
+          .makeMeClick(() => {this.onClickHandler()})
       }
     }
   }

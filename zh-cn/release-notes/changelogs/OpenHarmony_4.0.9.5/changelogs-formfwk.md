@@ -7,7 +7,7 @@
 
 **变更影响**
 
-对于已发布的js接口，可能影响三方应用的兼容性。
+对于已发布的ArkTS接口，可能影响三方应用的兼容性。
 
 **关键的接口/组件变更**
 
@@ -31,11 +31,13 @@
 已使用相关接口开发的应用工程，需要对接口进行适配。从OpenHarmony 4.0.9.5版本起，相关接口使用应导入@ohos.app.form.formObserver.d.ts，并申请ohos.permission.OBSERVE_FORM_RUNNING权限。
 
 **示例：**
-```js
+```ts
 import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+import Base from '@ohos.base';
 
 try {
-  formObserver.getRunningFormInfos((error, data) => {
+  formObserver.getRunningFormInfos((error: Base.BusinessError, data: formInfo.RunningFormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -53,13 +55,13 @@ try {
 
 **变更影响**
 
-对于已发布的js接口，可能影响三方应用的兼容性。
+对于已发布的ArkTS接口，可能影响三方应用的兼容性。
 
 **关键的接口/组件变更**
 
 修改前的接口原型：
 
-```js
+```ts
 function on(type: 'formAdd', observerCallback: Callback<formInfo.RunningFormInfo>, bundleName?: string): void;
 function off(type: 'formAdd', observerCallback?: Callback<formInfo.RunningFormInfo>, bundleName?: string): void;
 
@@ -91,7 +93,7 @@ function off(
 
 修改后的接口原型：
 
-```js
+```ts
 function on(type: 'formAdd', observerCallback: Callback<formInfo.RunningFormInfo>): void;
 function on(type: 'formAdd', hostBundleName: string, observerCallback: Callback<formInfo.RunningFormInfo>): void;
 function off(type: 'formAdd', hostBundleName?: string, observerCallback?: Callback<formInfo.RunningFormInfo>): void;
@@ -131,7 +133,7 @@ function off(
 已使用相关接口开发的应用工程，需要对接口进行适配。从OpenHarmony 4.0.9.5版本起，相关接口使用应注意入参顺序的调整，将callback作为最后一个参数进行接口调用。
 
 **示例：**
-```js
+```ts
 import formObserver from '@ohos.app.form.formObserver';
 
 let bundleName = 'ohos.samples.FormApplication';

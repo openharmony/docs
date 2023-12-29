@@ -1,4 +1,4 @@
-# Distributed Audio Playback (for System Applications Only)
+# Distributed Audio Playback (for System Applications Only) (ArkTS)
 
 Distributed audio playback enables an application to continue audio playback on another device in the same network.
 
@@ -12,7 +12,7 @@ When obtaining the device list on the network, you can specify **DeviceFlag** to
 
 | Name| Description| 
 | -------- | -------- |
-| NONE_DEVICES_FLAG<sup>9+</sup> | None. This is a system API.| 
+| NONE_DEVICES_FLAG<sup>9+</sup> | No device is available. This is a system API.| 
 | OUTPUT_DEVICES_FLAG | Local output device.| 
 | INPUT_DEVICES_FLAG | Local input device.| 
 | ALL_DEVICES_FLAG | Local input and output device.| 

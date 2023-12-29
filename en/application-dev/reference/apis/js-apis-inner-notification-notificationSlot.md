@@ -12,7 +12,8 @@ The **NotificationSlot** module provides APIs for defining the notification slot
 
 | Name                | Type                 | Mandatory| Description                  |
 | -------------------- | --------------------- | --- |----------------------|
-| type                 | [SlotType](js-apis-notificationManager.md#slottype) | Yes | Notification slot type.               |
+| type<sup>(deprecated)</sup> | [SlotType](js-apis-notificationManager.md#slottype) | No | Notification slot type.<br>This API is deprecated since API version 9. You are advised to use **notificationType** instead.               |
+| notificationType<sup>11+</sup>                 | [SlotType](js-apis-notificationManager.md#slottype) | No | Notification slot type.               |
 | level                | number                | No | Notification level. If this parameter is not set, the default value that corresponds to the notification slot type is used.|
 | desc                 | string                | No | Notification slot description.           |
 | badgeFlag            | boolean               | No | Whether to display the badge.             |

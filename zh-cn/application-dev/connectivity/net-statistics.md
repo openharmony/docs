@@ -19,20 +19,22 @@
 
 完整的 JS API 说明以及实例代码请参考：[statistics 链接](../reference/apis/js-apis-net-statistics.md)。
 
-| 类型                | 接口                                                                                        | 功能说明                       |
-| ------------------- | ------------------------------------------------------------------------------------------- | ------------------------------ |
-| ohos.net.statistics | getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | 获取指定网卡实时下行流量数据。 |
-| ohos.net.statistics | getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | 获取指定网卡实时上行流量数据。 |
-| ohos.net.statistics | getCellularRxBytes(callback: AsyncCallback\<number>): void;                                 | 获取蜂窝实时下行流量数据。     |
-| ohos.net.statistics | getCellularTxBytes(callback: AsyncCallback\<number>): void;                                 | 获取蜂窝实时上行流量数据。     |
-| ohos.net.statistics | getAllRxBytes(callback: AsyncCallback\<number>): void;                                      | 获取所有网卡实时下行流量数据。 |
-| ohos.net.statistics | getAllTxBytes(callback: AsyncCallback\<number>): void;                                      | 获取所有网卡实时上行流量数据。 |
-| ohos.net.statistics | getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时下行流量数据。 |
-| ohos.net.statistics | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时上行流量数据。 |
-| ohos.net.statistics | getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定网卡历史流量信息。     |
-| ohos.net.statistics | getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | 获取指定应用历史流量信息。     |
-| ohos.net.statistics | on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | 订阅流量改变事件通知。         |
-| ohos.net.statistics | off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | 取消订阅流量改变事件通知。     |
+| 接口名                                                                                      | 描述                         |
+| ------------------------------------------------------------------------------------------- | ---------------------------- |
+| getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | 获取指定网卡实时下行流量数据。 |
+| getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | 获取指定网卡实时上行流量数据。 |
+| getCellularRxBytes(callback: AsyncCallback\<number>): void;                                 | 获取蜂窝实时下行流量数据。     |
+| getCellularTxBytes(callback: AsyncCallback\<number>): void;                                 | 获取蜂窝实时上行流量数据。     |
+| getAllRxBytes(callback: AsyncCallback\<number>): void;                                      | 获取所有网卡实时下行流量数据。 |
+| getAllTxBytes(callback: AsyncCallback\<number>): void;                                      | 获取所有网卡实时上行流量数据。 |
+| getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时下行流量数据。 |
+| getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时上行流量数据。 |
+| getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定网卡历史流量信息。     |
+| getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | 获取指定应用历史流量信息。     |
+| getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                   | 获取指定socket实时下行流量数据。 |
+| getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number>): void;                   | 获取指定socket实时上行流量数据。 |
+| on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | 订阅流量改变事件通知。         |
+| off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | 取消订阅流量改变事件通知。     |
 
 ## 获取网卡/UID 的实时流量统计数据
 
@@ -40,60 +42,79 @@
 2. 获取蜂窝实时实时流量数据。
 3. 获取所有网卡实时实时流量数据。
 4. 获取指定应用实时实时流量数据。
+5. 获取指定socket实时流量数据。
 
 ```ts
 // 从@ohos.net.statistics中导入statistics命名空间
 import statistics from '@ohos.net.statistics';
 import { BusinessError } from '@ohos.base';
+import socket from "@ohos.net.socket";
 
-//获取指定网卡实时下行流量数据。
+// 获取指定网卡实时下行流量数据。
 statistics.getIfaceRxBytes('wlan0', (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 
-//获取指定网卡实时上行流量数据。
+// 获取指定网卡实时上行流量数据。
 statistics.getIfaceTxBytes('wlan0', (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 
-//获取蜂窝实时下行流量数据。
+// 获取蜂窝实时下行流量数据。
 statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 
-//获取蜂窝实时上行流量数据。
+// 获取蜂窝实时上行流量数据。
 statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 
-//获取所有网卡实时下行流量数据。
+// 获取所有网卡实时下行流量数据。
 statistics.getAllRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 
-//获取所有网卡实时上行流量数据。
+// 获取所有网卡实时上行流量数据。
 statistics.getAllTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 
-//获取指定应用实时下行流量数据。
+// 获取指定应用实时下行流量数据。
 let uid = 20010038;
 statistics.getUidRxBytes(uid, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
 });
 
-//获取指定应用实时上行流量数据。
+// 获取指定应用实时上行流量数据。
 let uids = 20010038;
 statistics.getUidTxBytes(uids, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(stats));
+});
+
+// 获取指定socket实时下行流量数据。
+let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+tcp.getSocketFd().then((sockfd: number) => {
+  statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(stats));
+  });
+});
+
+// 获取指定socket实时上行流量数据。
+tcp.getSocketFd().then((sockfd: number) => {
+  statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
+    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(stats));
+  });
 });
 ```
 
@@ -111,7 +132,7 @@ class IfaceInfo {
   startTime: number = 1685948465
   endTime: number = 16859485670
 }
-//获取指定网卡历史流量信息。
+// 获取指定网卡历史流量信息。
 statistics.getTrafficStatsByIface(new IfaceInfo(), (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
   console.log(JSON.stringify(error))
   console.log("getTrafficStatsByIface bytes of received = " + JSON.stringify(statsInfo.rxBytes));
@@ -127,7 +148,7 @@ class UidInfo {
 
 let uidInfo = new UidInfo()
 
-//获取指定应用历史流量信息。
+// 获取指定应用历史流量信息。
 statistics.getTrafficStatsByUid(uidInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
   console.log(JSON.stringify(error))
   console.log("getTrafficStatsByUid bytes of received = " + JSON.stringify(statsInfo.rxBytes));
@@ -152,10 +173,10 @@ class Data {
 let callback = (data: Data) => {
   console.log('on netStatsChange, data:' + JSON.stringify(data));
 };
-//订阅流量改变事件通知。
+// 订阅流量改变事件通知。
 statistics.on('netStatsChange', callback);
 
-//取消订阅流量改变事件通知。可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+// 取消订阅流量改变事件通知。可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 statistics.off('netStatsChange', callback);
 statistics.off('netStatsChange');
 ```

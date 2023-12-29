@@ -1,4 +1,4 @@
-# Alert Dialog Box
+# Alert Dialog Box (AlertDialog)
 
 You can set the text content and response callback for an alert dialog box.
 
@@ -29,6 +29,8 @@ You can set the text content and response callback for an alert dialog box.
 | offset     | [Offset](ts-types.md#offset) | No    | Offset of the dialog box relative to the alignment position.<br>Default value: **{ dx: 0 , dy: 0 }**|
 | gridCount  | number                       | No    | Number of grid columns occupied by the width of the dialog box.<br>Default value: **4**|
 | maskRect<sup>10+</sup>| [Rectangle](#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| showInSubWindow<sup>11+</sup> | boolean | No| Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
+| isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
 
 Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** > **style** > **defaultFocus**
 
@@ -157,6 +159,8 @@ The **Rectangle** type is used to represent a mask area of a dialog box.
 
 ## Example
 
+### Example 1
+
 ```ts
 // xxx.ets
 @Entry
@@ -266,3 +270,62 @@ struct AlertDialogExample {
 ```
 
 ![en-us_image_alert](figures/en-us_image_alert.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct AlertDialogExample {
+  build() {
+    Column({ space: 5 }) {
+        Button('one button dialog')
+        .onClick(() => {
+          AlertDialog.show(
+            {
+              title: 'title',
+              subtitle: 'subtitle',
+              message: 'text',
+              autoCancel: true,
+              alignment: DialogAlignment.Center,
+              gridCount: 4,
+              showInSubWindow: true,
+              isModal: true,
+              offset: { dx: 0, dy: -20 },
+              buttonDirection: DialogButtonDirection.HORIZONTAL,
+              buttons: [
+                {
+                  value: 'Button',
+                  action: () => {
+                    console.info('Callback when button1 is clicked')
+                  }
+                },
+                {
+                  value: 'Button',
+                  action: () => {
+                    console.info('Callback when button2 is clicked')
+                  }
+                },
+                {
+                  value: 'Button',
+                  enabled: true,
+                  defaultFocus: true,
+                  style: DialogButtonStyle.HIGHLIGHT,
+                  action: () => {
+                    console.info('Callback when button3 is clicked')
+                  }
+                },
+              ],
+              cancel: () => {
+                console.info('Closed callbacks')
+              }
+            }
+          )
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![en-us_image_alert_showinsubwindow](figures/en-us_image_alert_showinsubwindow.jpg)

@@ -1,4 +1,4 @@
-# 音视频封装
+# 音视频封装(C/C++)
 
 开发者可以调用本模块的Native API接口，完成音视频封装，即将音频、视频等编码后的媒体数据，按一定的格式存储到文件里。
 
@@ -29,7 +29,7 @@
 
 > **说明：**
 >
-> 如果调用封装能力写本地文件，需要[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
+> 如果调用封装能力写本地文件，需要[向用户申请授权](../security/AccessToken/request-user-authorization.md)：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
 ### 在 CMake 脚本中链接动态库
 
@@ -211,10 +211,10 @@ target_link_libraries(sample PUBLIC libnative_media_avmuxer.so)
 
 10. 调用OH_AVMuxer_Destroy()销毁实例，释放资源。
 
-   ``` c++
-   if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
-       // 异常处理
-   }
-   muxer = NULL;
-   close(fd); // 关闭文件描述符
-   ```
+    ``` c++
+    if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
+        // 异常处理
+    }
+    muxer = NULL;
+    close(fd); // 关闭文件描述符
+    ```

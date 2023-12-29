@@ -20,7 +20,7 @@ Before using application event logging, you need to understand the requirements 
 
 **Event Name**
 
-An event name is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter or dollar sign ($) and cannot end with an underscore (_).
+An event name is a string that contains a maximum of 48 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.
 
 **Event Type**
 
@@ -30,7 +30,7 @@ An event type is an enumerated value of [EventType](#eventtype).
 
 An event parameter is an object in key-value pair format, where the key is the parameter name and the value is the parameter value. The requirements are as follows:
 
-- A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter or dollar sign ($) and cannot end with an underscore (_).
+- A parameter name is a string that contains a maximum of 16 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.
 - A parameter value can be of the string, number, boolean, or array type.
 - If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded.
 - If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated.

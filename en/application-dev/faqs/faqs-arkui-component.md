@@ -1,8 +1,7 @@
 # ArkUI Component Development (ArkTS)
 
-## Can custom dialog boxes be defined and used in .ts files?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## Can custom dialog boxes be defined and used in .ts files? (API version 9)
 
 Unfortunately not. Custom dialog boxes require ArkTS syntax for definition and initialization. Therefore, they can be defined and used only in .ets files.
 
@@ -10,9 +9,10 @@ Unfortunately not. Custom dialog boxes require ArkTS syntax for definition and i
 
 [Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## How do I transfer variables in a custom dialog box to a page?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I transfer variables in a custom dialog box to a page? (API version 9)
+
+
 
 **Symptom**
 
@@ -150,9 +150,7 @@ The variable defined in a custom dialog box needs to be transferred to the page 
     ```
 
 
-## How do I obtain the width and height of a component?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I obtain the width and height of a component? (API version 9)
 
 **Symptom**
 
@@ -167,9 +165,7 @@ The width and height of a component need to be obtained to calculate the size an
 
 [Component Area Change Event](../reference/arkui-ts/ts-universal-component-area-change-event.md), [Click Event](../reference/arkui-ts/ts-universal-events-click.md), [Touch Event](../reference/arkui-ts/ts-universal-events-touch.md)
 
-## How do I clear the content of the \<TextInput> and \<TextArea> components by one click?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I clear the content of the \<TextInput> and \<TextArea> components by one click? (API version 9)
 
 **Symptom**
 
@@ -203,9 +199,7 @@ controller: TextInputController = new TextInputController()
 }
 ```
 
-## How do I set the position of a custom dialog box?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I set the position of a custom dialog box? (API version 9)
 
 **Symptom**
 
@@ -219,9 +213,7 @@ During initialization of the custom dialog box, set the **alignment** and **offs
 
 [Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## How do I hide the overflow content of a container component?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I hide the overflow content of a container component? (API version 9)
 
 **Symptom**
 
@@ -235,9 +227,7 @@ To clip and hide overflow content, set the **clip** universal attribute to **tru
 
 [Shape Clipping](../reference/arkui-ts/ts-universal-attributes-sharp-clipping.md)
 
-## How do I set a custom dialog box to automatically adapt its size to content?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I set a custom dialog box to automatically adapt its size to content? (API version 9)
 
 **Symptom**
 
@@ -252,9 +242,7 @@ When a custom dialog box contains a child component whose area size can be chang
 
 [Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## What is the function of the gridCount parameter in the custom dialog box?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## What is the function of the gridCount parameter in the custom dialog box? (API version 9)
 
 The **gridCount** parameter indicates the number of grid columns occupied by the dialog box. The system divides the window width into equal regions. The number of equal regions is the number of grid columns, which varies by device. For example, if the screen density of a device is 320 vp <= horizontal width < 600 vp, the number of grid columns is 4, and the valid value of **gridCount** is \[1, 4\].
 
@@ -264,9 +252,7 @@ Note: This parameter is valid only when the custom dialog box is in the default 
 
 [Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## How do I remove the white background of a custom dialog box?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I remove the white background of a custom dialog box? (API version 9)
 
 **Symptom**
 
@@ -283,9 +269,9 @@ To remove the white background, set the custom dialog box to a custom style.
 
 [Custom Dialog Box](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
 
-## How do I customize the eye icon for the password input mode of the \<TextInput> component?
+## How do I customize the eye icon for the password input mode of the \<TextInput> component? (API version 9)
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: stage model
 
 **Symptom**
 
@@ -299,9 +285,7 @@ The eye icon itself cannot be customized. You can use set the **showPasswordIcon
 
 [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)
 
-## How do I use the onSubmit event of the \<TextInput> component?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I use the onSubmit event of the \<TextInput> component? (API version 9)
 
 **Solution**
 
@@ -311,9 +295,7 @@ The **onSubmit** event is triggered when a user presses **Enter** on the (physic
 
 [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)
 
-## How do I set the caret position to the start point for when the \<TextInput> component obtains focus?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I set the caret position to the start point for when the \<TextInput> component obtains focus? (API version 9)
 
 **Symptom**
 
@@ -352,9 +334,7 @@ struct TextInputDemo {
 [TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)
 
 
-## How do I obtain the current scrolling offset of a scrollable component?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I obtain the current scrolling offset of a scrollable component? (API version 9)
 
 **Solution**
 
@@ -365,9 +345,7 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
 [Scroll](../reference/arkui-ts/ts-container-scroll.md#currentoffset)
 
-## How do I align text vertically?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I align text vertically? (API version 9)
 
 **Symptom**
 
@@ -396,9 +374,7 @@ struct Index15 {
 }
 ```
 
-## How do I set the UI of an ability to transparent?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I set the UI of an ability to transparent? (API version 9)
 
 **Solution**
 
@@ -424,9 +400,9 @@ build() {
 }
 ```
 
-## Why do the constraintSize settings fail to take effect?
+## Why do the constraintSize settings fail to take effect? (API version 9)
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model)
+Applicable to: stage model
 
 **Symptom**
 
@@ -436,17 +412,15 @@ If **constraintSize** is set for a component and the width of its child componen
 
 You can use the **\<Scroll>** component at the outer layer. In this way, when **constraintSize** is set and the space occupied by a child component exceeds the specified constraint value, a scrollbar will be displayed.
 
-## How do I set the background color to transparent?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I set the background color to transparent? (API version 9)
 
 **Solution**
 
 Set **backgroundColor** to **'\#00000000'**.
 
-## What should I do if the \<Scroll> component cannot scroll to the bottom?
+## What should I do if the \<Scroll> component cannot scroll to the bottom? (API version 9)
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model)
+Applicable to: stage model
 
 **Symptom**
 
@@ -456,9 +430,9 @@ Unless otherwise specified, the height of the **\<Scroll>** component is equal t
 
 Set the height of the **\<Scroll>** component or use the flex layout to limit this height.
 
-## How do I customize the control bar style of the \<Video> component?
+## How do I customize the control bar style of the \<Video> component? (API version 9)
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model)
+Applicable to: stage model
 
 **Solution**
 
@@ -614,9 +588,9 @@ struct StyleExample {
 
 [Polymorphic Style](../reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
 
-## What should I do if the flex width and height in the \<Scroll> component conflicts with the scrolling?
+## What should I do if the flex width and height in the \<Scroll> component conflicts with the scrolling? (API version 9)
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model)
+Applicable to: stage model
 
 **Symptom**
 
@@ -626,9 +600,9 @@ When a container component with a fixed size is added to the **\<Scroll>** compo
 
 Do not set a size for any container component in the **\<Scroll>** component. In this way, the **\<Scroll>** component can adapt its size to the content.
 
-## How does a component process click events in its child components?
+## How does a component process click events in its child components? (API version 9)
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model)
+Applicable to: stage model
 
 When a child component is initialized in the parent component, the method defined in the parent component is transferred to and invoked in the child component. This process is similar to variable transfer.
 
@@ -674,9 +648,7 @@ struct MyComponent {
 }
 ```
 
-## How do I implement a text input box that automatically brings up the soft keyboard?
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+## How do I implement a text input box that automatically brings up the soft keyboard? (API version 9)
 
 **Solution**
 
@@ -686,9 +658,7 @@ You can use **focusControl.requestFocus** to control the focus of the text input
 
 [Focus Control](../reference/arkui-ts/ts-universal-attributes-focus.md)
 
-## How do I set the controlButton attribute for the \<SideBarContainer> component?
-
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+## How do I set the controlButton attribute for the \<SideBarContainer> component? (API version 9)
 
 **Solution**
 

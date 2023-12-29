@@ -8,7 +8,7 @@
 
 ## 接口
 
-keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>)
+keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>, action?: () => void)
 
 **参数：**
 
@@ -16,6 +16,7 @@ keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>)
 | ----- | ------------------------------------- | ---- | ---------------------------------------- |
 | value | string \| [FunctionKey](#functionkey) | 是    | 热键的单个字符（可以通过键盘输入的字符）或[FunctionKey](#functionkey)。<br/> |
 | keys  | Array<[ModifierKey](#modifierkey)>    | 是    | 热键组合。<br/>                               |
+| action  | () => void    | 否    | 组合快捷键触发成功后的自定义事件回调。<br/>                               |
 
 ## ModifierKey
 
@@ -65,15 +66,15 @@ keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>)
 | 快捷键            | 组件                                       |
 | -------------- | ---------------------------------------- |
 | Ctrl + C       | [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
-| Ctrl+ A        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
-| Ctrl+ V        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
-| Ctrl+ X        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
-| Shift + 方向键    | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
-| Ctrl+ Shift+ Z | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
-| Ctrl+ Z        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
-| Ctrl+ Y        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
-| 方向键、回车键        | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
-| TAB键           | [TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ A        |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ V        |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ X        |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Shift + 方向键    |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ Shift+ Z |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ Z        |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| Ctrl+ Y        |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| 方向键、回车键        |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
+| TAB键           |  [Image](ts-basic-components-image.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md) |
 
 ## 示例
 

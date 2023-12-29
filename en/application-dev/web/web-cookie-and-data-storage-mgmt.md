@@ -7,7 +7,7 @@ A cookie is a segment of data sent from the server to the client to uniquely ide
 
 The **Web** component provides the **WebCookieManager** class for you to manage cookie information, which is stored in the **/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd** file in the application sandbox path.
 
-The following uses [setCookie()](../reference/apis/js-apis-webview.md#setcookie) as an example to describe how to set a cookie's value to **test** for **www.example.com**. For details about functions and usage of other APIs, see [WebCookieManager()](../reference/apis/js-apis-webview.md#webcookiemanager).
+The following uses [setCookie()](../reference/apis/js-apis-webview.md#setcookiedeprecated) as an example to describe how to set a cookie's value to **test** for **www\.example.com**. For details about functions and usage of other APIs, see [WebCookieManager()](../reference/apis/js-apis-webview.md#webcookiemanager).
 
 
 ```ts

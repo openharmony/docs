@@ -303,7 +303,7 @@ Obtains the network access policy for the application specified by a given UID. 
 
 ```ts
 import { BusinessError } from '@ohos.base';
-policy.getPolicyByUid(11111, (error: BusinessError, data: object) => {
+policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });

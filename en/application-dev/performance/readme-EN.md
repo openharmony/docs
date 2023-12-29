@@ -18,6 +18,8 @@
     - [Flex Layout Performance Improvement](flex-development-performance-boost.md)
     - [Improving Layout Performance](reduce-view-nesting-levels.md)
     - [IPC Usage](reasonable-using-ipc.md)
+    - [Reducing Redundant Operations on First Frame Drawing](reduce-redundant-operations-when-render-first-frame.md)
+    - [Application Animation Practice](animation_practice.md)
     - [More Performance Improvement Methods](arkts-performance-improvement-recommendation.md)
   - Profiling Tools
     - [CPU Profiler](application-performance-analysis.md)

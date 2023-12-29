@@ -24,7 +24,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | disabled | ()=&gt;void | No| Style of the component in the disabled state.|
 | focused | ()=&gt;void | No| Style of the component in the focused state.|
 | clicked | ()=&gt;void | No| Style of the component in the clicked state.|
-| selected<sup>10+</sup> | ()=&gt;void | No| Style of the component in the selected state.|
+| selected<sup>10+</sup> | ()=&gt;void | No| Style of the component in the selected state.<br>**NOTE**<br>The following components support the selected state: **\<ListItem>**, **\<GridItem>**, **\<CheckBox>**, **\<CheckBoxGroup>**, **\<Radio>**, **\<Toggle>**, and **\<MenuItem>**.|
 
 
 ## Example

@@ -93,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
+off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback\<void>): void
 
 取消监听应用内生命周期
 
@@ -211,7 +211,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback\<void>): void
 
 取消对系统环境变化的监听。使用callback异步回调。
 
@@ -248,9 +248,9 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**
+off(type: 'environment', callbackId: **number**): Prominse\<void\>
 
-取消对系统环境变化的监听。使用callback异步回调。
+取消对系统环境变化的监听。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -278,7 +278,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
 
-on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**
+on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
 注册对当前应用前后台变化的监听。使用callback异步回调。
 
@@ -320,7 +320,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
 
-off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**
+off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
 取消当前应用注册的前后台变化的全部监听。
 
@@ -346,11 +346,11 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
-获取有关运行进程的信息。
+获取有关运行进程的信息。以Promise形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -367,7 +367,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -387,19 +387,19 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void
 
-获取有关运行进程的信息。
+获取有关运行进程的信息。以Callback形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**返回值：**
+**参数：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | 是   | 获取有关运行进程的信息的回调。 |
 
 **错误码**：
 
@@ -408,7 +408,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -429,11 +429,11 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.killAllProcesses<sup>9+</sup>
+## ApplicationContext.killAllProcesses
 
 killAllProcesses(): Promise\<void\>
 
-杀死应用所在的进程。
+杀死应用所在的进程。以Promise形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -449,7 +449,7 @@ killAllProcesses(): Promise\<void\>
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -464,19 +464,19 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.killAllProcesses<sup>9+</sup>
+## ApplicationContext.killAllProcesses
 
-killAllProcesses(callback: AsyncCallback\<void\>)
+killAllProcesses(callback: AsyncCallback\<void\>): void
 
-杀死应用所在的进程。
+杀死应用所在的进程。以Callback形式返回。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**返回值：**
+**参数：**
 
-| 类型 | 说明 |
-| -------- | -------- |
-|AsyncCallback\<void\> | 以callback方式返回杀死应用所在的进程结果。 |
+| 参数名        | 类型     | 必填 | 说明                       |
+| ------------- | -------- | ---- | -------------------------- |
+| callback    | AsyncCallback\<void\>   | 是   | 以callback方式返回杀死应用所在的进程结果。 |
 
 **错误码**：
 
@@ -484,7 +484,7 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 | ------- | -------- |
 | 16000011 | The context does not exist. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -514,7 +514,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统） |
+| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -523,7 +523,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 | 16000011 | The context does not exist. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -551,7 +551,7 @@ setLanguage(language: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取  |
+| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取。  |
 
 **错误码**：
 
@@ -560,7 +560,7 @@ setLanguage(language: string): void
 | 16000011 | The context does not exist. |
 | 401 | If the input parameter is not valid parameter. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -596,7 +596,7 @@ clearUpApplicationData(): Promise\<void\>
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -622,7 +622,7 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 **参数：**
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callback | AsyncCallback\<void> | 是   | 回调方法。清理应用本身的数据成功时，err为undefined，否则返回错误对象。  |
+| callback | AsyncCallback\<void> | 是   | 回调方法。清理应用本身的数据成功时，error为undefined，否则返回错误对象。  |
 
 **错误码**：
 
@@ -631,7 +631,7 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+以上错误码详细介绍请参考[元能力子系统错误码](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -668,20 +668,20 @@ on(type: 'abilityAutoStartup', callback: AutoStartupCallback): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    let autoStartupCallback = {
-      onAutoStartupOn(data) {
-        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
-      },
-      onAutoStartupOff(data) {
-        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
-      }
-    };
     try {
-      applicationContext.on('abilityAutoStartup', autoStartupCallback);
+      applicationContext.on('abilityAutoStartup', {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+        },
+        onAutoStartupOff(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+        }
+      });
     } catch (err) {
       console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
     }
@@ -708,20 +708,20 @@ off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    let autoStartupCallback = {
-      onAutoStartupOn(data) {
-        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
-      },
-      onAutoStartupOff(data) {
-        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
-      }
-    };
     try {
-      applicationContext.off('abilityAutoStartup', autoStartupCallback);
+      applicationContext.off('abilityAutoStartup', {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+        },
+        onAutoStartupOff(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+        }
+      });
     } catch (err) {
       console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
     }
@@ -748,6 +748,7 @@ setAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -756,7 +757,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -790,6 +791,7 @@ setAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -798,9 +800,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
         console.info('====> setAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.info('====> setAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {
@@ -829,6 +831,7 @@ cancelAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -837,7 +840,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -871,6 +874,7 @@ cancelAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -879,9 +883,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
           console.info('====> cancelAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
           console.info('====> cancelAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {
@@ -910,6 +914,7 @@ isAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<boolean\>): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -918,7 +923,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: boolean) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -952,6 +957,7 @@ isAutoStartup(info: AutoStartupInfo): Promise\<boolean\>
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -960,9 +966,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: boolean) => {
         console.info('====> isAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.info('====> isAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {

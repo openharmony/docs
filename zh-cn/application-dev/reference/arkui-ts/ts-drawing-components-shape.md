@@ -142,7 +142,7 @@ struct ShapeExample {
       .strokeWidth(10)
       .strokeDashArray([20])
       .strokeLineCap(LineCapStyle.Round)
-      // 在Shape的(-80, -5)点绘制一个封闭路径,颜色0x317AF7,线条宽度10,边框颜色0xEE8443,拐角样式锐角（默认值）
+      // 在Shape的(-20, -5)点绘制一个封闭路径,颜色0x317AF7,线条宽度10,边框颜色0xEE8443,拐角样式锐角（默认值）
       Shape() {
         Path().width(200).height(60).commands('M0 0 L400 0 L400 150 Z')
       }

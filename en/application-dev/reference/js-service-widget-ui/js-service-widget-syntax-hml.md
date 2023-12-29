@@ -1,7 +1,7 @@
 # HML
 
 
-The OpenHarmony Markup Language (HML) is an HTML-like language that allows you to build pages based on components and events. HML pages provide advanced capabilities such as data binding, event binding, loop rendering, conditional rendering, and logic control.
+HML is an HTML-like language that allows you to build pages based on components and events. HML pages provide advanced capabilities such as data binding, event binding, loop rendering, conditional rendering, and logic control.
 
 
 ## Page Structure
@@ -66,7 +66,7 @@ Declare the variables used in the XML file for service widgets in the **data** f
 
 ## Event Binding
 
-Declare the events for service widgets in the **actions** field in the JSON file. Service widgets support the common click event only. The event must be declared explicitly. The event definition must contain the **action** field to describe the event type. Service widgets support redirection events (**router**) and message events (**message**). A redirection event is used for switching to the OpenHarmony application (the widget provider). A message event can transfer custom information to the service widget provider. Event parameters can be variables, which are defined using **{{}}**. If the **params** field is defined in the redirection event, you can pass **params** to the **onStart** method (as **intent**) of the started application to access the value.
+Declare the events for service widgets in the **actions** field in the JSON file. Service widgets support the common click event only. The event must be declared explicitly. The event definition must contain the **action** field to describe the event type. Service widgets support redirection events (**router**) and message events (**message**). A redirection event is used for switching to the application (the widget provider). A message event can transfer custom information to the service widget provider. Event parameters can be variables, which are defined using **{{}}**. If the **params** field is defined in the redirection event, you can pass **params** to the **onStart** method (as **intent**) of the started application to access the value.
 
 - Redirection event properties
 

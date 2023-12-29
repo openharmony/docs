@@ -8,9 +8,7 @@
 
 [入门](quick-start/start-overview.md)可以帮助开发者了解应用开发的基本方法。
 
-这一部分包含了快速构建首个应用的快速入门，以及开发OpenHarmony应用所必备的基础知识。
-
-开发的基础知识包含了OpenHarmony应用程序的包结构配置文件说明，以及资源文件的使用指导。
+通过这一部分内容的学习和初步实践，开发者可以快速构建出首个OpenHarmony应用，掌握应用程序包结构、资源文件的使用、以及ArkTS的核心功能和语法等基础知识，为后续的应用开发奠定基础。
 
 ## 开发
 
@@ -31,7 +29,7 @@
 - [窗口管理](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
 - [媒体](media/media-application-overview.md)
-- [安全](security/userauth-overview.md)
+- [安全](security/AccessToken/access-token-overview.md)
 - [AI](ai/ai-overview.md)
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [电话服务](telephony/telephony-overview.md)
@@ -41,7 +39,7 @@
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
 - [DFX](dfx/hiappevent-guidelines.md)
-- [国际化](internationalization/international-overview.md)
+- [国际化](internationalization/i18n-l10n.md)
 - [应用测试](application-test/arkxtest-guidelines.md)
 - [一次开发，多端部署](key-features/multi-device-app-dev/foreword.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)

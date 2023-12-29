@@ -96,7 +96,7 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
-    console.info('getAlbums successfullyfully, albumName: ' + album.albumUri);
+    console.info('getAlbums successfully, albumUri: ' + album.albumUri);
 
     let onCallback = (changeData: photoAccessHelper.ChangeData) => {
       console.info('onCallback successfully, changData: ' + JSON.stringify(changeData));

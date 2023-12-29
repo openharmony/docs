@@ -1,4 +1,4 @@
-# 使用SoundPool开发音频播放功能
+# 使用SoundPool开发音频播放功能(ArkTS)
 
 使用SoundPool（音频池）提供的接口，可以实现低时延短音播放。
 
@@ -30,7 +30,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
       } else {
         console.error('create SoundPool fail');
       }
-    }).catch((error: BusinessError) => {
+    }).catch((error) => {
       console.error(`soundpool catchCallback, error message:${error.message}`);
     });
     ```
@@ -82,14 +82,13 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     let soundID: number;
     let streamID: number;
     let playParameters: media.PlayParameters = {
-        loop = 0, // 循环0次
-        rate = 2, // 2倍速
-        leftVolume = 0.5, // range = 0.0-1.0
-        rightVolume = 0.5, // range = 0.0-1.0
-        priority = 0, // 最低优先级
-        parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
+        loop: 0, // 循环0次
+        rate: 2, // 2倍速
+        leftVolume: 0.5, // range = 0.0-1.0
+        rightVolume: 0.5, // range = 0.0-1.0
+        priority: 0, // 最低优先级
       }
-    soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
+    soundPool.play(soundID, playParameters, (error, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
@@ -105,7 +104,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
       console.info('setLoop success streamID:' + streamID);
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
       console.error('soundpool setLoop failed and catch error is ' + err.message);
     });
     ```
@@ -125,7 +124,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     soundPool.setVolume(streamID, 0.5, 0.5).then(() => {
       console.info('setVolume success');
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
       console.error('soundpool setVolume failed and catch error is ' + err.message);
     });
     ```
@@ -138,7 +137,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     soundPool.stop(streamID).then(() => {
       console.info('stop success');
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
       console.error('soundpool load stop and catch error is ' + err.message);
     });
     ```
@@ -151,7 +150,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     soundPool.unload(soundID).then(() => {
       console.info('unload success');
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
       console.error('soundpool unload failed and catch error is ' + err.message);
     });
     ```
@@ -179,7 +178,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     ```ts
     soundPool.release().then(() => {
       console.info('release success');
-    }).catch((err: BusinessError) => {
+    }).catch((err) => {
       console.error('soundpool release failed and catch error is ' + err.message);
     });
     ```
@@ -195,19 +194,18 @@ import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs'
 struct Soundpool {
   private soundPool: media.SoundPool;
-  private streamId: number = 0;
-  private soundId: number = 0;
-  private audioRendererInfo: audio.AudioRendererInfo = {
-    usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+  private streamId: 0;
+  private soundId: 0;
+  private audioRendererInfo: {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
     rendererFlags: 1
   }
   private PlayParameters: media.PlayParameters = {
-    loop: number = 3, // 循环4次
-    rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
-    leftVolume: number = 0.5, // range = 0.0-1.0
-    rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0, // 最低优先级
-    parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
+    loop: 3, // 循环4次
+    rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
+    leftVolume: 0.5, // range = 0.0-1.0
+    rightVolume: 0.5, // range = 0.0-1.0
+    priority: 0, // 最低优先级
   }
   private uri: string = "";
   async create(): Promise<void> {

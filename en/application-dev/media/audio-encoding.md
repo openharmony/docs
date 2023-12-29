@@ -1,4 +1,4 @@
-# Audio Encoding
+# Audio Encoding (C/C++)
 
 You can call the native APIs provided by the **AudioEncoder** module to encode audio, that is, to compress audio PCM data into a desired format.
 
@@ -28,16 +28,15 @@ Read [AudioEncoder](../reference/native-apis/_audio_encoder.md) for the API refe
 
 Refer to the code snippet below to complete the entire audio encoding process, including creating an encoder, setting encoding parameters (such as the sampling rate, bit rate, and number of audio channels), and starting, refreshing, resetting, and destroying the encoder.
 
-During application development, you must call the APIs in the defined sequence. Otherwise, an exception or undefined behavior may occur. 
-
-For details about the complete code, see [Sample](https://gitee.com/openharmony/multimedia_av_codec/blob/master/test/nativedemo/audio_demo/avcodec_audio_aac_encoder_demo.cpp).
+During application development, you must call the APIs in the defined sequence. Otherwise, an exception or undefined behavior may occur.
 
 The figure below shows the call relationship of audio encoding.
 
 ![Call relationship of audio encoding](figures/audio-encode.png)
 
 ### Linking the Dynamic Library in the CMake Script
-``` cmake
+
+```cmake
 target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
 target_link_libraries(sample PUBLIC libnative_media_core.so)
 target_link_libraries(sample PUBLIC libnative_media_aenc.so)
@@ -45,7 +44,17 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
 
 ### How to Develop
 
-1. Create an encoder instance.
+1. Add the header files.
+
+   ```cpp
+   #include <multimedia/player_framework/native_avcodec_audioencoder.h>
+   #include <multimedia/player_framework/avcodec_audio_channel_layout.h>
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   #include <multimedia/player_framework/native_avformat.h>
+   ```
+   
+2. Create an encoder instance.
 
    You can create an encoder by name or MIME type.
 
@@ -57,10 +66,12 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    const char *name = OH_AVCapability_GetName(capability);
    OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByName(name);
    ```
+
    ```cpp
    // Create an encoder by MIME type.
    OH_AVCodec *audioEnc = OH_AudioEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_AAC); 
    ```
+
    ```cpp
    // Initialize the queues.
    class AEncSignal {
@@ -79,7 +90,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    };
    AEncSignal *signal_ = new AEncSignal();
    ```
-2. Call **OH_AudioEncoder_SetCallback()** to set callback functions.
+   
+3. Call **OH_AudioEncoder_SetCallback()** to set callback functions.
 
    Register the **OH_AVCodecAsyncCallback** struct that defines the following callback function pointers:
 
@@ -139,16 +151,16 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
-3. Call **OH_AudioEncoder_Configure** to configure the encoder.
+   
+4. Call **OH_AudioEncoder_Configure** to configure the encoder.
 
    The following options are mandatory: sampling rate, bit rate, number of audio channels, audio channel type, and bit depth. The maximum input length is optional.
-
+   
    For FLAC encoding, the compliance level and sampling precision are also mandatory.
    
    The following provides the AAC invoking process.
-   ```cpp
-   #include "avcodec_audio_channel_layout.h"
    
+   ```cpp
    int32_t ret;
    // (Mandatory) Configure the audio sampling rate.
    constexpr uint32_t DEFAULT_SAMPLERATE = 44100; 
@@ -163,7 +175,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    // Configure the audio compliance level. The default value is 0, and the value ranges from -2 to 2.
    constexpr int32_t COMPLIANCE_LEVEL = 0;
    // (Mandatory) Configure the audio sampling precision. SAMPLE_S16LE, SAMPLE_S24LE, and SAMPLE_S32LE are available.
-   constexpr uint32_t BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+   constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
    // (Optional) Configure the maximum input length.
    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024*DEFAULT_CHANNEL_COUNT *sizeof(float);//aac
    OH_AVFormat *format = OH_AVFormat_Create();
@@ -180,10 +192,10 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
-   The following provides the FLAC invoking process.
-   ```cpp
-   #include "avcodec_audio_channel_layout.h"
    
+   The following provides the FLAC invoking process.
+   
+   ```cpp
    int32_t ret;
    // (Mandatory) Configure the audio sampling rate.
    constexpr uint32_t DEFAULT_SMAPLERATE = 44100; 
@@ -198,7 +210,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    // Configure the audio compliance level. The default value is 0, and the value ranges from -2 to 2.
    constexpr int32_t COMPLIANCE_LEVEL = 0;
    // (Mandatory) Configure the audio sampling precision. SAMPLE_S16LE, SAMPLE_S24LE, and SAMPLE_S32LE are available.
-   constexpr uint32_t BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
+   constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
    OH_AVFormat *format = OH_AVFormat_Create();
    // Set the format.
    OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
@@ -214,12 +226,14 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
-4. Call **OH_AudioEncoder_Prepare()** to prepare internal resources for the encoder.
+   
+5. Call **OH_AudioEncoder_Prepare()** to prepare internal resources for the encoder.
 
    ```c++
    OH_AudioEncoder_Prepare(audioEnc);
    ```
-5. Call **OH_AudioEncoder_Start()** to start the encoder.
+   
+6. Call **OH_AudioEncoder_Start()** to start the encoder.
 
    ```c++
    unique_ptr<ifstream> inputFile_ = make_unique<ifstream>();
@@ -234,14 +248,15 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
-6. Call **OH_AudioEncoder_PushInputData()** to write the data to encode.
-
+   
+7. Call **OH_AudioEncoder_PushInputData()** to write the data to encode.
+   
    To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
-
+   
    For AAC encoding, **FRAME_SIZE** (number of sampling points) is fixed at **1024**.
-
+   
    For FLAC encoding, set **FRAME_SIZE** based on the table below.
-
+   
    | Sampling Rate| FRAME_SIZE|
    | :----: | :----: |
    |  8000  |  576  |
@@ -253,7 +268,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    | 48000 |  4608  |
    | 88200 |  8192  |
    | 96000 |  8192  |
-
+   
    **NOTE**: If **FRAME_SIZE** is not set to **1024** for AAC encoding, an error code is returned. In the case of FLAC encoding, if **FRAME_SIZE** is set to a value greater than the value listed in the table for a given sampling rate, an error code is returned; if **FRAME_SIZE** is set to a value less than the value listed, the encoded file may be damaged.
    
    
@@ -282,26 +297,25 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
       }
       ```
    
-7. Call **OH_AudioEncoder_FreeOutputData()** to output the encoded stream.
+8. Call **OH_AudioEncoder_FreeOutputData()** to output the encoded stream.
 
    ```c++
    OH_AVCodecBufferAttr attr = signal_->attrQueue_.front();
    OH_AVMemory *data = signal_->outBufferQueue_.front();
    uint32_t index = signal_->outQueue_.front();
    // Write the encoded data (specified by data) to the output file.
-   outFile_->write(reinterpret_cast<char *>(OH_AVMemory_GetAdd(data)), attr.size);
+   outFile_->write(reinterpret_cast<char *>(OH_AVMemory_GetAddr(data)), attr.size);
    // Release the output buffer.
    ret = OH_AudioEncoder_FreeOutputData(audioEnc, index);
    if (ret != AV_ERR_OK) {
        // Exception handling.
    }
    if (attr.flags == AVCODEC_BUFFER_FLAGS_EOS) {
-       cout << "decode eos" << endl;
-       isRunning_.store(false);
-       break;
+       // End
    }
    ```
-8. (Optional) Call **OH_AudioEncoder_Flush()** to refresh the encoder.
+
+9. (Optional) Call **OH_AudioEncoder_Flush()** to refresh the encoder.
 
    After **OH_AudioEncoder_Flush()** is called, the current encoding queue is cleared.
 
@@ -324,23 +338,25 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
        // Exception handling.
    }
    ```
-9. (Optional) Call **OH_AudioEncoder_Reset()** to reset the encoder.
 
-   After **OH_AudioEncoder_Reset()** is called, the encoder returns to the initialized state. To continue encoding, you must call **OH_AudioEncoder_Configure()** and then **OH_AudioEncoder_Start()**.
+10. (Optional) Call **OH_AudioEncoder_Reset()** to reset the encoder.
 
-   ```c++
-   // Reset the encoder.
-   ret = OH_AudioEncoder_Reset(audioEnc);
-   if (ret != AV_ERR_OK) {
-       // Exception handling.
-   }
-   // Reconfigure the encoder.
-   ret = OH_AudioEncoder_Configure(audioEnc, format);
-   if (ret != AV_ERR_OK) {
-       // Exception handling.
-   }
-   ```
-10. Call **OH_AudioEncoder_Stop()** to stop the encoder.
+    After **OH_AudioEncoder_Reset()** is called, the encoder returns to the initialized state. To continue encoding, you must call **OH_AudioEncoder_Configure()** and then **OH_AudioEncoder_Start()**.
+
+    ```c++
+    // Reset the encoder.
+    ret = OH_AudioEncoder_Reset(audioEnc);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    // Reconfigure the encoder.
+    ret = OH_AudioEncoder_Configure(audioEnc, format);
+    if (ret != AV_ERR_OK) {
+        // Exception handling.
+    }
+    ```
+
+11. Call **OH_AudioEncoder_Stop()** to stop the encoder.
 
     ```c++
     // Stop the encoder.
@@ -349,7 +365,8 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
         // Exception handling.
     }
     ```
-11. Call **OH_AudioEncoder_Destroy()** to destroy the encoder instance and release resources.
+
+12. Call **OH_AudioEncoder_Destroy()** to destroy the encoder instance and release resources.
 
     **NOTE**: You only need to call this API once.
 

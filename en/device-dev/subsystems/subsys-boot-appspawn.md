@@ -28,6 +28,7 @@
   | AppOperateType | Application operation type. The value **0** means to obtain the default status, and the value **1** means to obtain the rendering termination status.|
 
 ### Constraints
+
 The appspawn module is used only for the standard system.
 
 ## Development Guidelines
@@ -75,7 +76,7 @@ The appspawn module is used only for the standard system.
 
 ### Available APIs
 
-  The API definitions are provided in **/interfaces/innerkits/include/client_socket.h**. Table 2 is a list of available APIs.
+The API definitions are provided in **/base/startup/appspawn/interfaces/innerkits/include/client_socket.h**. Table 2 is a list of available APIs.
 
   **Table 2**  API description
   | API| Description|

@@ -43,6 +43,7 @@
   - [HUKS错误码](errorcode-huks.md)
   - [crypto framework错误码](errorcode-crypto-framework.md)
   - [cert错误码](errorcode-cert.md)
+  - [证书管理错误码](errorcode-certManager.md)
   - [用户认证错误码](errorcode-useriam.md)
   - [DLP服务错误码](errorcode-dlp.md)
 - 数据管理
@@ -101,11 +102,13 @@
   - [系统参数错误码](errorcode-system-parameterV9.md)
   - [USB服务错误码](errorcode-usb.md)
   - [升级错误码](errorcode-update.md)
+  - [电量信息错误码](errorcode-battery-info.md)
 - 定制管理
   - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)
 - 语言基础类库
   - [语言基础类库错误码](errorcode-utils.md)
 - 应用服务
   - [广告标识服务错误码](errorcode-oaid.md)
+  - [广告服务框架错误码](errorcode-ads.md)
 - 测试
   - [uitest错误码](errorcode-uitest.md)

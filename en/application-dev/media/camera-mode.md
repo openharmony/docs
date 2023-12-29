@@ -1,4 +1,4 @@
-# Taking Photos in Portrait Mode
+# Taking Photos in Portrait Mode (ArkTS)
 
 ## How to Develop
 

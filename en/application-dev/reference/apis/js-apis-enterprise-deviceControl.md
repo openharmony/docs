@@ -47,10 +47,12 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 deviceControl.resetFactory(wantTemp, (err) => {
@@ -98,15 +100,152 @@ For details about the error codes, see [Enterprise Device Management Error Codes
 **Example**
 
 ```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
 deviceControl.resetFactory(wantTemp).then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);
 })
+```
+
+## deviceControl.shutdown<sup>11+</sup>
+
+shutdown(admin: Want): void
+
+Shuts down the device through the specified device administrator application.
+
+**Required permissions**: ohos.permission.ENTERPRISE_REBOOT
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  deviceControl.shutdown(wantTemp);
+} catch (err) {
+  console.error(`Failed to shutdown device. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## deviceControl.reboot<sup>11+</sup>
+
+reboot(admin: Want): void
+
+Reboots the device through the specified device administrator application.
+
+**Required permissions**: ohos.permission.ENTERPRISE_REBOOT
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  deviceControl.reboot(wantTemp);
+} catch (err) {
+  console.error(`Failed to reboot device. Code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## deviceControl.lockScreen<sup>11+</sup>
+
+lockScreen(admin: Want): void
+
+Locks the device screen through the specified device administrator application.
+
+**Required permissions**: ohos.permission.ENTERPRISE_LOCK_DEVICE
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory  | Description     |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+
+| ID| Error Message                                                                     |
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**Example**
+
+```ts
+import deviceControl from '@ohos.enterprise.deviceControl';
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  deviceControl.lockScreen(wantTemp);
+} catch (err) {
+  console.error(`Failed to lock screen. Code is ${err.code}, message is ${err.message}`);
+}
 ```

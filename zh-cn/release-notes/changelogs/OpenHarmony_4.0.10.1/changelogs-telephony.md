@@ -32,6 +32,8 @@ function sendShortMessage(options: SendMessageOptions): Promise<void>;
 使用变更后的接口，示例代码如下：
 
 ```js
+import sms from '@ohos.telephony.sms';
+
 let sendCallback = function (err, data) {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }
@@ -50,6 +52,8 @@ sms.sendShortMessage(options, (err) => {
 ```
 
 ```js
+import sms from '@ohos.telephony.sms';
+
 let sendCallback = function (err, data) {
     console.log(`sendCallback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 }

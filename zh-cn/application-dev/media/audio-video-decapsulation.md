@@ -1,4 +1,4 @@
-# 音视频解封装
+# 音视频解封装(C/C++)
 
 开发者可以调用本模块的Native API接口，完成音视频解封装，即从比特流数据中取出音频、视频等媒体帧数据。
 
@@ -31,8 +31,8 @@
 
 > **说明**
 >
-> - 调用解封装能力解析网络播放路径，需要[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET
-> - 调用解封装能力解析本地文件，需要[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.READ_MEDIA
+> - 调用解封装能力解析网络播放路径，需要[声明权限](../security/AccessToken/declare-permissions.md)：ohos.permission.INTERNET
+> - 调用解封装能力解析本地文件，需要[向用户申请授权](../security/AccessToken/request-user-authorization.md)：ohos.permission.READ_MEDIA
 > - 如果使用ResourceManager.getRawFd打开HAP资源文件描述符，使用方法请参考[ResourceManager API参考](../reference/apis/js-apis-resource-manager.md#getrawfd9)
 
 ### 在 CMake 脚本中链接动态库
@@ -57,12 +57,12 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 2. 创建解封装器实例对象。
 
    ``` c++
-   // 创建文件操作符 fd，打开时对文件句柄必须有读权限
-   std::string fileName = "test.mp4";
-   int fd = open(fileName.c_str(), O_RDONLY);
+   // 创建文件操作符 fd，打开时对文件句柄必须有读权限(filePath 为待解封装文件路径，需预置文件，保证路径指向的文件存在)
+   std::string filePath = "test.mp4";
+   int fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
    size_t fileSize = 0;
-   if (stat(fileName.c_str(), &fileStatus) == 0) {
+   if (stat(filePath.c_str(), &fileStatus) == 0) {
       fileSize = static_cast<size_t>(fileStatus.st_size);
    } else {
       printf("get stat failed");

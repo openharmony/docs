@@ -29,7 +29,7 @@ init.cfg文件内容不符合JSON语法格式。
 
 **可能原因**
 
-init服务中定义“importance”的属性（详见[参数说明](../subsystems/subsys-boot-init-service.md#参数说明)描述）。
+init服务中定义“importance”的属性（详见[参数说明](../subsystems/subsys-boot-init-service.md#服务进程配置文件说明)描述）。
 
 - 属性值为0时，表示当前服务进程退出，设备不重启。
 
@@ -78,7 +78,7 @@ ueventd服务启动后，打印日志 “Failed to get uevent socket, try to cre
 
 **解决办法**
 
-1. cfg文件没有配置socket，需要在cfg文件中对ueventd服务进行socket配置，具体可参看init.cfg中ueventd[服务的socket配置](../subsystems/subsys-boot-init-service.md#参数说明)。
+1. cfg文件没有配置socket，需要在cfg文件中对ueventd服务进行socket配置，具体可参看init.cfg中ueventd[服务的socket配置](../subsystems/subsys-boot-init-service.md#服务进程配置文件说明)。
 2. 重复配置socket，需要查看所有cfg文件找到重复配置的ueventd服务，并将其删除，保留一个有效的ueventd服务配置。
 
 ### ueventd服务轮询socket超时，并自动退出

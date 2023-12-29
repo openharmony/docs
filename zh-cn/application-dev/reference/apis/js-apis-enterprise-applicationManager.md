@@ -18,7 +18,7 @@ import applicationManager from '@ohos.enterprise.applicationManager';
 
 ## applicationManager.addDisallowedRunningBundles
 
-addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前用户下运行，否则允许运行。使用callback异步回调。
 
@@ -67,7 +67,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
 
 ## applicationManager.addDisallowedRunningBundles
 
-addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在指定用户（通过userId指定）下运行，否则允许运行。使用callback异步回调。
 
@@ -116,7 +116,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
 
 ## applicationManager.addDisallowedRunningBundles
 
-addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前/指定用户下运行。使用promise异步回调。
 
@@ -169,7 +169,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() =>
 
 ## applicationManager.removeDisallowedRunningBundles
 
-removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用在应用运行黑名单中移除应用，在黑名单存在的情况下，在应用运行黑名单中的应用不允许在当前用户下运行。使用callback异步回调。
 
@@ -217,7 +217,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
 
 ## applicationManager.removeDisallowedRunningBundles
 
-removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 指定设备管理应用在应用运行黑名单中移除应用，在黑名单存在的情况下，在应用运行黑名单中的应用不允许在指定用户（通过userId指定）下运行。使用callback异步回调。
 
@@ -266,7 +266,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) =
 
 ## applicationManager.removeDisallowedRunningBundles
 
-removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 指定当前/指定用户下的设备管理应用在应用运行黑名单中移除应用，使用promise异步回调。
 
@@ -319,7 +319,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(()
 
 ## applicationManager.getDisallowedRunningBundles
 
-getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 指定设备管理应用获取当前用户下的应用运行黑名单。使用callback异步回调。
 
@@ -365,7 +365,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, (err, result) => {
 
 ## applicationManager.getDisallowedRunningBundles
 
-getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 指定设备管理应用获取指定用户（通过userId指定）下的应用运行黑名单。使用callback异步回调。
 
@@ -412,7 +412,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100, (err, result) => {
 
 ## applicationManager.getDisallowedRunningBundles
 
-getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
+getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
 指定设备管理应用获取当前/指定用户下的应用运行黑名单，使用promise异步回调。
 
@@ -459,4 +459,159 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100).then((result) => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to get disallowed running bundles. Code is ${err.code}, message is ${err.message}`);
 });
+```
+
+## applicationManager.addAutoStartApps<sup>11+</sup>
+
+addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
+
+以同步方法指定设备管理应用添加开机自启动应用名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| autoStartApps | Array\<[Want](js-apis-app-ability-want.md)> | 是    | 开机自启动应用。数组长度上限长度为10。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let autoStartApps: Array<Want> = [
+  {
+    bundleName: 'com.example.autoStartApplication',
+    abilityName: 'EntryAbility',
+  }
+];
+
+try {
+  applicationManager.addAutoStartApps(wantTemp, autoStartApps);
+  console.info(`Succeeded in adding auto start applications`);
+} catch(err) {
+  console.error(`Failed to add auto start applications. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## applicationManager.removeAutoStartApps<sup>11+</sup>
+
+removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
+
+以同步方法指定设备管理应用删除开机自启动应用名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| autoStartApps | Array\<[Want](js-apis-app-ability-want.md)> | 是    | 开机自启动应用。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let autoStartApps: Array<Want> = [
+  {
+    bundleName: 'com.example.autoStartApplication',
+    abilityName: 'EntryAbility',
+  }
+];
+
+try {
+  applicationManager.removeAutoStartApps(wantTemp, autoStartApps);
+  console.info(`Succeeded in removing auto start applications`);
+} catch(err) {
+  console.error(`Failed to remove auto start applications. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## applicationManager.getAutoStartApps<sup>11+</sup>
+
+getAutoStartApps(admin: Want): Array\<Want>
+
+以同步方法指定设备管理应用查询开机自启动应用名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**系统API：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+
+**返回值：**
+
+| 类型                   | 说明                      |
+| --------------------- | ------------------------- |
+| Array\<[Want](js-apis-app-ability-want.md)> | 应用自启动名单数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](../errorcodes/errorcode-enterpriseDeviceManager.md)
+
+| 错误码ID | 错误信息                                                                     |          
+| ------- | ---------------------------------------------------------------------------- |
+| 9200001 | the application is not an administrator of the device.                        |
+| 9200002 | the administrator application does not have permission to manage the device. |
+
+**示例：**
+
+```ts
+import Want from '@ohos.app.ability.Want';
+
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let res: Array<Want> = applicationManager.getAutoStartApps(wantTemp);
+  console.info(`Succeeded in adding auto start apps: ${res}`);
+} catch(err) {
+  console.error(`Failed to auto start apps. Code: ${err.code}, message: ${err.message}`);
+}
 ```

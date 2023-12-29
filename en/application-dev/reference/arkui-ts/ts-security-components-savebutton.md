@@ -98,7 +98,7 @@ struct Index {
             try {
               const context = getContext(this);
               let helper = photoAccessHelper.getPhotoAccessHelper(context);
-              // After onClick is triggered, the createAsset API can be called within 5 seconds to create an image file. After 5 seconds have elapsed, the permission to call createAsset is revoked.
+              // After onClick is triggered, the createAsset API can be called within 10 seconds to create an image file. After 10 seconds have elapsed, the permission to call createAsset is revoked.
               let uri = await helper.createAsset(photoAccessHelper.PhotoType.IMAGE, 'png');
               // Use the URI to open the file. The write process is not time bound.
               let file = await fs.open(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);

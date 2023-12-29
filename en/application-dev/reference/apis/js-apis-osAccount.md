@@ -1795,6 +1795,7 @@ Creates an OS account and associates it with the specified domain account. This 
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -1848,6 +1849,7 @@ Creates an OS account and associates it with the specified domain account. This 
 | -------- | ------------------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or domainInfo. |
+| 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -4059,7 +4061,7 @@ A constructor used to create an instance for user authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Example** 
+**Example**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   ```
@@ -4080,7 +4082,7 @@ Obtains version information.
 | :----- | :----------- |
 | number | Version information obtained.|
 
-**Example** 
+**Example**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   let version: number = userAuth.getVersion();
@@ -4119,7 +4121,7 @@ Obtains the available status of the authentication capability corresponding to t
 | 12300001 | System service exception. |
 | 12300002 | Invalid authType or authTrustLevel. |
 
-**Example** 
+**Example**
   ```ts
   let userAuth = new account_osAccount.UserAuth();
   let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
@@ -4217,7 +4219,7 @@ Obtains the executor property based on the request. This API uses a promise to r
   import { BusinessError } from '@ohos.base';
   let userAuth = new account_osAccount.UserAuth();
   let keys: Array<account_osAccount.GetPropertyType> = [
-    account_osAccount.GetPropertyType.AUTH_SUB_TYPE, 
+    account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
     account_osAccount.GetPropertyType.REMAIN_TIMES,
     account_osAccount.GetPropertyType.FREEZING_TIME
   ];
@@ -4367,7 +4369,7 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | ID| Error Message         |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid challenge, authType, or authTrustLevel. |
+| 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300105 | Unsupported authTrustLevel. |
@@ -4428,7 +4430,7 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | ID| Error Message         |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid userId, challenge, authType, or authTrustLevel. |
+| 12300002 | Invalid userId, challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300105 | Unsupported authTrustLevel. |
@@ -4516,7 +4518,7 @@ A constructor used to create an instance for PIN authentication.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Example** 
+**Example**
   ```ts
   let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
   ```
@@ -4690,7 +4692,7 @@ Authenticates a domain account.
 
 **Example**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {
@@ -4754,7 +4756,7 @@ Authenticates a domain account in a pop-up window.
 
 **Example**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -4805,7 +4807,7 @@ Authenticates a domain account by the authorization token.
 
 **Example**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -4873,7 +4875,7 @@ Obtains information about a domain account.
         message: ""
       };
       let accountInfo: account_osAccount.DomainAccountInfo = {
-        domain: options.domain,
+        domain: options.domain ? options.domain : "",
         accountName: options.accountName,
         accountId: 'xxxx'
       };
@@ -4962,7 +4964,7 @@ Binds a domain account.
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5012,7 +5014,7 @@ Unbinds a domain account.
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5058,12 +5060,12 @@ Checks whether the specified domain account token is valid.
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| token | Uint8Array | Yes| Domain account token to check.|
+| token | Uint8Array | Yes| Domain account token.|
 | callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5113,7 +5115,7 @@ Obtains the domain access token based on the specified conditions.
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5174,7 +5176,7 @@ Registers a domain plug-in.
 
 **Example**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
          callback: account_osAccount.IUserAuthCallback) => {},
@@ -5288,7 +5290,9 @@ Authenticates this domain account in a pop-up window.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>;
+
+No permission is required since API version 11. Use the SDK of the latest version.
 
 **Parameters**
 
@@ -5335,7 +5339,9 @@ Authenticates a domain account in a pop-up window.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>;
+
+No permission is required since API version 11. Use the SDK of the latest version.
 
 **Parameters**
 
@@ -5677,6 +5683,107 @@ Obtains information about the specified domain account. This API uses a promise 
   }
   ```
 
+### getAccessToken<sup>11+</sup>
+
+getAccessToken(businessParams: { [key: string]: Object }, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+Obtains the service access token of this domain account. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| businessParams | { [key: string]: Object }  | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
+| callback | AsyncCallback&lt;Uint8Array&gt;  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, an error object is returned.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid business parameters. |
+| 12300003 | Domain account not found. |
+| 12300013 | Network exception. |
+| 12300014 | Domain account not authenticated. |
+| 12300111 | Operation timeout. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let businessParams: Record<string, Object> = {
+    'clientId': 'xxx',
+    'secretId': 'yyy'
+  };  // depends on the implementation of the domain plugin
+  try {
+    account_osAccount.DomainAccountManager.getAccessToken(businessParams,
+      (err: BusinessError, result: Uint8Array) => {
+      if (err) {
+        console.log('getAccessToken failed, error: ' + JSON.stringify(err));
+      } else {
+        console.log('getAccessToken result: ' + result);
+      }
+    });
+  } catch (err) {
+    console.log('getAccessToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
+### getAccessToken<sup>11+</sup>
+
+getAccessToken(businessParams: { [key: string]: Object }): Promise&lt;Uint8Array&gt;
+
+Obtains the service access token of this domain account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Parameters**
+
+| Name     | Type                                   | Mandatory| Description            |
+| ---------- | --------------------------------------- | ---- | --------------- |
+| businessParams | { [key: string]: Object } | Yes  | Service parameters. The specific formats vary depending on the domain plug-in.|
+
+**Return value**
+
+| Type                     | Description                    |
+| :------------------------ | ----------------------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the service access token obtained.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid business parameters. |
+| 12300003 | Domain account not found. |
+| 12300013 | Network exception. |
+| 12300014 | Domain account not authenticated. |
+| 12300111 | Operation timeout. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  let businessParams: Record<string, Object> = {
+    'clientId': 'xxx',
+    'secretId': 'yyy'
+  };  // depends on the implementation of the domain plugin
+  try {
+    account_osAccount.DomainAccountManager.getAccessToken(businessParams)
+      .then((result: Uint8Array) => {
+      console.log('getAccessToken result: ' + result);
+    }).catch((err: BusinessError) => {
+      console.log('getAccessToken failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.log('getAccessToken exception = ' + JSON.stringify(err));
+  }
+  ```
+
 ## UserIdentityManager<sup>8+</sup>
 
 Provides APIs for user identity management (IDM).
@@ -5693,7 +5800,7 @@ A constructor used to create an instance for user IDM.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-**Example** 
+**Example**
   ```ts
   let userIDM = new account_osAccount.UserIdentityManager();
   ```
@@ -6679,6 +6786,7 @@ Defines the domain account information.
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
 | accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: It is a system API and is left blank by default.|
+| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: It is a system API. The default value is **false**. |
 
 ## Constraints
 

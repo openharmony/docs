@@ -35,7 +35,7 @@ Before sharing an application file, you need to [obtain the application file pat
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import fileuri from '@ohos.file.fileuri';
+   import fileUri from '@ohos.file.fileuri';
    import window from '@ohos.window';
    
    export default class EntryAbility extends UIAbility {
@@ -43,7 +43,7 @@ Before sharing an application file, you need to [obtain the application file pat
        // Obtain the application sandbox path of the file.
        let pathInSandbox = this.context.filesDir + "/test.txt";
        // Convert the application sandbox path into a URI.
-       let uri = fileuri.getUriFromPath(pathInSandbox);
+       let uri = fileUri.getUriFromPath(pathInSandbox);
        // The obtained URI is file://com.example.demo/data/storage/el2/base/files/test.txt.
      }
    }
@@ -57,7 +57,7 @@ Before sharing an application file, you need to [obtain the application file pat
    > The write permission granted includes the read permission.
 
    ```ts
-   import fileuri from '@ohos.file.fileuri';
+   import fileUri from '@ohos.file.fileuri';
    import window from '@ohos.window';
    import wantConstant from '@ohos.app.ability.wantConstant';
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -69,7 +69,7 @@ Before sharing an application file, you need to [obtain the application file pat
        // Obtain the application sandbox path of the file.
        let filePath = this.context.filesDir + '/test.txt';
        // Convert the application sandbox path into a URI.
-       let uri = fileuri.getUriFromPath(filePath);
+       let uri = fileUri.getUriFromPath(filePath);
        let want: Want  = {
          // Grant the read and write permissions on the shared file to the target application.
          flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,

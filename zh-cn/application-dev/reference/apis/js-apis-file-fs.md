@@ -16,8 +16,6 @@ import fs from '@ohos.file.fs';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
-**Stage模型**
-
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import window from '@ohos.window';
@@ -30,18 +28,8 @@ import fs from '@ohos.file.fs';
   }
   ```
 
-**FA模型**
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
-FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fs.stat
 
@@ -55,7 +43,7 @@ stat(file: string | number): Promise&lt;Stat&gt;
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string\|number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
+| file   | string \| number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
 
 **返回值：**
 
@@ -75,7 +63,7 @@ stat(file: string | number): Promise&lt;Stat&gt;
   fs.stat(filePath).then((stat: fs.Stat) => {
     console.info("get file info succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("get file info failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -91,7 +79,7 @@ stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
 
 | 参数名   | 类型                               | 必填 | 说明                           |
 | -------- | ---------------------------------- | ---- | ------------------------------ |
-| file     | string\|number                            | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。     |
+| file     | string \| number                            | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。     |
 | callback | AsyncCallback&lt;[Stat](#stat)&gt; | 是   | 异步获取文件的信息之后的回调。 |
 
 **错误码：**
@@ -104,7 +92,7 @@ stat(file: string | number, callback: AsyncCallback&lt;Stat&gt;): void
   import { BusinessError } from '@ohos.base';
   fs.stat(pathDir, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
-      console.info("get file info failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("get file info failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("get file info succeed, the size of file is " + stat.size);
     }
@@ -123,7 +111,7 @@ statSync(file: string | number): Stat
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string\|number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
+| file   | string \| number | 是   | 文件应用沙箱路径path或已打开的文件描述符fd。 |
 
 **返回值：**
 
@@ -178,7 +166,7 @@ access(path: string): Promise&lt;boolean&gt;
       console.info("file not exists");
     }
   }).catch((err: BusinessError) => {
-    console.info("access failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("access failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -208,7 +196,7 @@ access(path: string, callback: AsyncCallback&lt;boolean&gt;): void
   let filePath = pathDir + "/test.txt";
   fs.access(filePath, (err: BusinessError, res: boolean) => {
     if (err) {
-      console.info("access failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("access failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (res) {
         console.info("file exists");
@@ -257,7 +245,7 @@ accessSync(path: string): boolean
     }
   } catch(error) {
     let err: BusinessError = error as BusinessError;
-    console.info("accessSync failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("accessSync failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -274,7 +262,7 @@ close(file: number | File): Promise&lt;void&gt;
 
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | file   | number\|[File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
+  | file   | number \| [File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
 
 **返回值：**
 
@@ -295,7 +283,7 @@ close(file: number | File): Promise&lt;void&gt;
   fs.close(file).then(() => {
     console.info("close file succeed");
   }).catch((err: BusinessError) => {
-    console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -311,7 +299,7 @@ close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名      | 类型                        | 必填   | 说明           |
   | -------- | ------------------------- | ---- | ------------ |
-  | file       | number\|[File](#file)                  | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
+  | file       | number \| [File](#file)                  | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件之后的回调。 |
 
 **错误码：**
@@ -326,7 +314,7 @@ close(file: number | File, callback: AsyncCallback&lt;void&gt;): void
   let file = fs.openSync(filePath);
   fs.close(file, (err: BusinessError) => {
     if (err) {
-      console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("close file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close file succeed");
     }
@@ -345,7 +333,7 @@ closeSync(file: number | File): void
 
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | file   | number\|[File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
+  | file   | number \| [File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd，关闭后file对象或文件描述符不再具备实际意义，不可再用于进行读写等操作。 |
 
 **错误码：**
 
@@ -359,6 +347,167 @@ closeSync(file: number | File): void
   fs.closeSync(file);
   ```
 
+## fs.copy<sup>11+</sup>
+
+copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
+
+拷贝文件或者目录，使用Promise异步返回。
+
+支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。
+跨端拷贝时，限制同时最多存在10个拷贝任务；单次拷贝的文件数量不得超过500个。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型                         | 必填   | 说明                                       |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
+  | destUri | string | 是    | 目标文件或目录的uri。                          |
+  | options | [CopyOptions](#copyoptions11)| 否| options中提供拷贝进度回调。|
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise\<void> | Promise对象。无返回值。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fileUri from '@ohos.file.fileuri';
+
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+
+let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
+
+let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
+  console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
+};
+let options: fs.CopyOptions = {
+  "progressListener" : progressListener
+}
+try {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, options).then(()=>{
+    console.info("Succeeded in copying. ");
+  }).catch((err: BusinessError)=>{
+    console.error(`Failed to copy: ${JSON.stringify(err)}`);
+  })
+} catch(err) {
+  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+}
+```
+
+## fs.copy<sup>11+</sup>
+
+copy(srcUri: string, destUri: string, callback: AsyncCallback\<void>): void
+
+拷贝文件或者目录，使用callback异步回调。
+
+支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。
+跨端拷贝时，限制同时最多存在10个拷贝任务；单次拷贝的文件数量不得超过500个。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型                         | 必填   | 说明                                       |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
+  | destUri | string | 是    | 目标文件或目录的uri。                          |
+  | callback | AsyncCallback\<void>| 是| 异步拷贝之后的回调。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fileUri from '@ohos.file.fileuri';
+
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+
+let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
+
+try {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to copy: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info("Succeeded in copying. ");
+  })
+} catch(err) {
+  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+}
+```
+
+## fs.copy<sup>11+</sup>
+
+copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallback\<void>): void
+
+拷贝文件或者目录，使用callback异步回调。
+
+支持跨设备拷贝。强制覆盖拷贝。入参支持文件或目录URI。
+跨端拷贝时，限制同时最多存在10个拷贝任务；单次拷贝的文件数量不得超过500个。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型                         | 必填   | 说明                                       |
+  | ---- | -------------------------- | ---- | ---------------------------------------- |
+  | srcUri  | string | 是    | 待复制文件或目录的uri。                      |
+  | destUri | string | 是    | 目标文件或目录的uri。                          |
+  | options | [CopyOptions](#copyoptions11) |是| 拷贝进度回调。                          |
+  | callback | AsyncCallback\<void>| 是| 异步拷贝之后的回调。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+import fileUri from '@ohos.file.fileuri';
+
+let srcDirPathLocal: string = pathDir + "/src";
+let dstDirPathLocal: string = pathDir + "/dest";
+
+let srcDirUriLocal: string = fileUri.getUriFromPath(srcDirPathLocal);
+let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
+
+try {
+  let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
+    console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
+  };
+  let options: fs.CopyOptions = {
+    "progressListener" : progressListener
+  }
+  fs.copy(srcDirUriLocal, dstDirUriLocal, options, (err: BusinessError) => {
+    if (err) {
+      console.error(`Failed to copy: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info("Succeeded in copying. ");
+  })
+} catch(err) {
+  console.error(`Failed to copy: ${JSON.stringify(err)}`);
+}
+```
+
 ## fs.copyFile
 
 copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt;void&gt;
@@ -371,8 +520,8 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string\|number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
-  | dest | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
+  | src  | string \| number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
+  | dest | string \| number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **返回值：**
@@ -394,7 +543,7 @@ copyFile(src: string | number, dest: string | number, mode?: number): Promise&lt
   fs.copyFile(srcPath, dstPath, 0).then(() => {
     console.info("copy file succeed");
   }).catch((err: BusinessError) => {
-    console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("copy file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -410,8 +559,8 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
 
   | 参数名      | 类型                         | 必填   | 说明                                       |
   | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string\|number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
-  | dest     | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
+  | src      | string \| number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
+  | dest     | string \| number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | mode     | number                     | 是    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
   | callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
 
@@ -427,7 +576,7 @@ copyFile(src: string | number, dest: string | number, mode: number, callback: As
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, 0, (err: BusinessError) => {
     if (err) {
-      console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy file succeed");
     }
@@ -446,8 +595,8 @@ copyFile(src: string | number, dest: string | number, callback: AsyncCallback&lt
 
   | 参数名      | 类型                         | 必填   | 说明                                       |
   | -------- | -------------------------- | ---- | ---------------------------------------- |
-  | src      | string\|number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
-  | dest     | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
+  | src      | string \| number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
+  | dest     | string \| number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | callback | AsyncCallback&lt;void&gt;  | 是    | 异步复制文件之后的回调。                             |
 
 **错误码：**
@@ -462,7 +611,7 @@ copyFile(src: string | number, dest: string | number, callback: AsyncCallback&lt
   let dstPath = pathDir + "/dstDir/test.txt";
   fs.copyFile(srcPath, dstPath, (err: BusinessError) => {
     if (err) {
-      console.info("copy file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy file succeed");
     }
@@ -482,8 +631,8 @@ copyFileSync(src: string | number, dest: string | number, mode?: number): void
 
   | 参数名  | 类型                         | 必填   | 说明                                       |
   | ---- | -------------------------- | ---- | ---------------------------------------- |
-  | src  | string\|number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
-  | dest | string\|number | 是    | 目标文件路径或目标文件的文件描述符。                          |
+  | src  | string \| number | 是    | 待复制文件的路径或待复制文件的文件描述符。                      |
+  | dest | string \| number | 是    | 目标文件路径或目标文件的文件描述符。                          |
   | mode | number                     | 否    | mode提供覆盖文件的选项，当前仅支持0，且默认为0。<br/>0：完全覆盖目标文件，未覆盖部分将被裁切掉。 |
 
 **错误码：**
@@ -534,7 +683,7 @@ copyDir(src: string, dest: string, mode?: number): Promise\<void>
   fs.copyDir(srcPath, destPath, 0).then(() => {
     console.info("copy directory succeed");
   }).catch((err: BusinessError) => {
-    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -570,10 +719,10 @@ copyDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
   fs.copyDir(srcPath, destPath, 0, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
     }  
@@ -613,10 +762,10 @@ copyDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
   fs.copyDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
       for (let i = 0; i < err.data.length; i++) {
-        console.info("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+        console.error("copy directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("copy directory succeed");
     }  
@@ -655,7 +804,7 @@ copyDirSync(src: string, dest: string, mode?: number): void
     console.info("copy directory succeed");
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.info("copy directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("copy directory failed with error message: " + err.message + ", error code: " + err.code);
   }
   ```
 
@@ -728,7 +877,7 @@ mkdir(path: string): Promise&lt;void&gt;
   fs.mkdir(dirPath).then(() => {
     console.info("mkdir succeed");
   }).catch((err: BusinessError) => {
-    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -765,7 +914,7 @@ mkdir(path: string, recursion: boolean): Promise<void>
   fs.mkdir(dirPath, true).then(() => {
     console.info("mkdir succeed");
   }).catch((err: BusinessError) => {
-    console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -795,7 +944,7 @@ mkdir(path: string, callback: AsyncCallback&lt;void&gt;): void
   let dirPath = pathDir + "/testDir";
   fs.mkdir(dirPath, (err: BusinessError) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("mkdir succeed");
     }
@@ -829,7 +978,7 @@ mkdir(path: string, recursion: boolean, callback: AsyncCallback&lt;void&gt;): vo
   let dirPath = pathDir + "/testDir1/testDir2/testDir3";
   fs.mkdir(dirPath, true, (err: BusinessError) => {
     if (err) {
-      console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("mkdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("mkdir succeed");
     }
@@ -921,7 +1070,7 @@ open(path: string, mode?: number): Promise&lt;File&gt;
     console.info("file fd: " + file.fd);
     fs.closeSync(file);
   }).catch((err: BusinessError) => {
-    console.info("open file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("open file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -954,7 +1103,7 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err: BusinessError, file: fs.File) => {
     if (err) {
-      console.info("open failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
     }
@@ -987,7 +1136,7 @@ open(path: string, callback: AsyncCallback&lt;File&gt;): void
   let filePath = pathDir + "/test.txt";
   fs.open(filePath, (err: BusinessError, file: fs.File) => {
     if (err) {
-      console.info("open failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
     }
@@ -1031,7 +1180,7 @@ openSync(path: string, mode?: number): File
 
 ## fs.read
 
-read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Promise&lt;number&gt;
+read(fd: number, buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
 
 从文件读取数据，使用Promise异步返回。
 
@@ -1043,7 +1192,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
 | ------- | ----------- | ---- | ------------------------------------------------------------ |
 | fd      | number      | 是   | 已打开的文件描述符。                                     |
 | buffer  | ArrayBuffer | 是   | 用于保存读取到的文件数据的缓冲区。                           |
-| options | Object      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
+| options | [ReadOptions](#readoptions11)      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
 
 **返回值：**
 
@@ -1068,7 +1217,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.info(`The content of file: ${buf.toString()}`);
   }).catch((err: BusinessError) => {
-    console.info("read file data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("read file data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -1076,7 +1225,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
 
 ## fs.read
 
-read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; }, callback: AsyncCallback&lt;number&gt;): void
+read(fd: number, buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;number&gt;): void
 
 从文件读取数据，使用callback异步回调。
 
@@ -1088,8 +1237,8 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                                   | 是    | 已打开的文件描述符。                             |
   | buffer   | ArrayBuffer                              | 是    | 用于保存读取到的文件数据的缓冲区。                        |
-  | options | Object      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
-  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。                             |
+  | options | [ReadOptions](#readoptions11)      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
+  | callback | AsyncCallback&lt;number&gt; | 是    | 异步读取数据之后的回调。返回读取的实际数据长度。                             |
 
 **错误码：**
 
@@ -1105,7 +1254,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
   let arrayBuffer = new ArrayBuffer(4096);
   fs.read(file.fd, arrayBuffer, (err: BusinessError, readLen: number) => {
     if (err) {
-      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read file data succeed");
       let buf = buffer.from(arrayBuffer, 0, readLen);
@@ -1117,7 +1266,7 @@ read(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: numb
 
 ## fs.readSync
 
-readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number
+readSync(fd: number, buffer: ArrayBuffer, options?: ReadOptions): number
 
 以同步方法从文件读取数据。
 
@@ -1129,7 +1278,7 @@ readSync(fd: number, buffer: ArrayBuffer, options?: { offset?: number; length?: 
   | ------- | ----------- | ---- | ---------------------------------------- |
   | fd      | number      | 是    | 已打开的文件描述符。                             |
   | buffer  | ArrayBuffer | 是    | 用于保存读取到的文件数据的缓冲区。                        |
-  | options | Object      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
+  | options | [ReadOptions](#readoptions11)      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。|
 
 **返回值：**
 
@@ -1183,7 +1332,7 @@ rmdir(path: string): Promise&lt;void&gt;
   fs.rmdir(dirPath).then(() => {
     console.info("rmdir succeed");
   }).catch((err: BusinessError) => {
-    console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("rmdir failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1213,7 +1362,7 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
   let dirPath = pathDir + "/testDir";
   fs.rmdir(dirPath, (err: BusinessError) => {
     if (err) {
-      console.info("rmdir failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("rmdir failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("rmdir succeed");
     }
@@ -1277,7 +1426,7 @@ unlink(path: string): Promise&lt;void&gt;
   fs.unlink(filePath).then(() => {
     console.info("remove file succeed");
   }).catch((err: BusinessError) => {
-    console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("remove file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1307,7 +1456,7 @@ unlink(path: string, callback: AsyncCallback&lt;void&gt;): void
   let filePath = pathDir + "/test.txt";
   fs.unlink(filePath, (err: BusinessError) => {
     if (err) {
-      console.info("remove file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("remove file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("remove file succeed");
     }
@@ -1342,7 +1491,7 @@ unlinkSync(path: string): void
 
 ## fs.write
 
-write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; encoding?: string; }): Promise&lt;number&gt;
+write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
 将数据写入文件，使用Promise异步返回。
 
@@ -1353,8 +1502,8 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 已打开的文件描述符。                             |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | options | [WriteOptions](#writeoptions11)                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
 
 **返回值：**
 
@@ -1376,7 +1525,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
   fs.write(file.fd, str).then((writeLen: number) => {
     console.info("write data to file succeed and size is:" + writeLen);
   }).catch((err: BusinessError) => {
-    console.info("write data to file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("write data to file failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -1384,7 +1533,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
 
 ## fs.write
 
-write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
+write(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入文件，使用callback异步回调。
 
@@ -1395,8 +1544,8 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
   | 参数名      | 类型                              | 必填   | 说明                                       |
   | -------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd       | number                          | 是    | 已打开的文件描述符。                             |
-  | buffer   | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
+  | buffer   | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | options | [WriteOptions](#writeoptions11)                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
   | callback | AsyncCallback&lt;number&gt;     | 是    | 异步将数据写入完成后执行的回调函数。                       |
 
 **错误码：**
@@ -1412,7 +1561,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
   let str: string = "hello, world";
   fs.write(file.fd, str, (err: BusinessError, writeLen: number) => {
     if (err) {
-      console.info("write data to file failed with error message:" + err.message + ", error code: " + err.code);
+      console.error("write data to file failed with error message:" + err.message + ", error code: " + err.code);
     } else {
       console.info("write data to file succeed and size is:" + writeLen);
     }
@@ -1422,7 +1571,7 @@ write(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; len
 
 ## fs.writeSync
 
-writeSync(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; encoding?: string; }): number
+writeSync(fd: number, buffer: ArrayBuffer | string, options?: WriteOptions): number
 
 以同步方法将数据写入文件。
 
@@ -1433,8 +1582,8 @@ writeSync(fd: number, buffer: ArrayBuffer | string, options?: { offset?: number;
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
   | fd      | number                          | 是    | 已打开的文件描述符。                             |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | options | [WriteOptions](#writeoptions11)                          | 否    | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。当前仅支持&nbsp;'utf-8'。|
 
 **返回值：**
 
@@ -1469,7 +1618,7 @@ truncate(file: string | number, len?: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
-| file   | string\|number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
+| file   | string \| number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
 | len    | number | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 
 **返回值：**
@@ -1491,7 +1640,7 @@ truncate(file: string | number, len?: number): Promise&lt;void&gt;
   fs.truncate(filePath, len).then(() => {
     console.info("truncate file succeed");
   }).catch((err: BusinessError) => {
-    console.info("truncate file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("truncate file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1507,7 +1656,7 @@ truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt
 
 | 参数名   | 类型                      | 必填 | 说明                             |
 | -------- | ------------------------- | ---- | -------------------------------- |
-| file     | string\|number                    | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
+| file     | string \| number                    | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
 | len      | number                    | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数，本调用无返回值。   |
 
@@ -1523,7 +1672,7 @@ truncate(file: string | number, len?: number, callback: AsyncCallback&lt;void&gt
   let len: number = 5;
   fs.truncate(filePath, len, (err: BusinessError) => {
     if (err) {
-      console.info("truncate failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("truncate failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("truncate succeed");
     }
@@ -1542,7 +1691,7 @@ truncateSync(file: string | number, len?: number): void
 
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
-| file   | string\|number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
+| file   | string \| number | 是   | 文件的应用沙箱路径或已打开的文件描述符fd。       |
 | len    | number | 否   | 文件截断后的长度，以字节为单位。默认为0。 |
 
 **错误码：**
@@ -1596,7 +1745,7 @@ readLines(filePath: string, options?: Options): Promise&lt;ReaderIterator&gt;
       console.info("content: " + it.value);
     }
   }).catch((err: BusinessError) => {
-    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1631,7 +1780,7 @@ readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;Reader
   };
   fs.readLines(filePath, options, (err: BusinessError, readerIterator: fs.ReaderIterator) => {
     if (err) {
-      console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
         console.info("content: " + it.value);
@@ -1640,7 +1789,7 @@ readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;Reader
   });
   ```
 
-## fs.readLinesSync
+## fs.readLinesSync<sup>11+</sup>
 
 readLinesSync(filePath: string, options?: Options): ReaderIterator
 
@@ -1673,7 +1822,7 @@ readLinesSync(filePath: string, options?: Options): ReaderIterator
   let options: Options = {
     encoding: 'utf-8'
   };
-  let readerIterator = fs.readLines(filePath, options);
+  let readerIterator = fs.readLinesSync(filePath, options);
   for (let it = readerIterator.next(); !it.done; it = readerIterator.next()) {
     console.info("content: " + it.value);
   }
@@ -1683,7 +1832,7 @@ readLinesSync(filePath: string, options?: Options): ReaderIterator
 
 文件读取迭代器。在调用ReaderIterator的方法前，需要先通过readLines方法（同步或异步）来构建一个ReaderIterator实例。
 
-### next
+### next<sup>11+</sup>
 
 next(): ReaderIteratorResult
 
@@ -1715,7 +1864,7 @@ next(): ReaderIteratorResult
       console.info("content: " + it.value);
     }
   }).catch((err: BusinessError) => {
-    console.info("readLines failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("readLines failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1732,7 +1881,7 @@ next(): ReaderIteratorResult
 
 ## fs.readText
 
-readText(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }): Promise&lt;string&gt;
+readText(filePath: string, options?: ReadTextOptions): Promise&lt;string&gt;
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用Promise异步返回。
 
@@ -1743,7 +1892,7 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | 是   | 文件的应用沙箱路径。                                   |
-| options  | Object | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认文件长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+| options  | [ReadTextOptions](#readtextoptions11) | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认文件长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
 
 **返回值：**
 
@@ -1763,13 +1912,13 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
   fs.readText(filePath).then((str: string) => {
     console.info("readText succeed:" + str);
   }).catch((err: BusinessError) => {
-    console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
 ## fs.readText
 
-readText(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }, callback: AsyncCallback&lt;string&gt;): void
+readText(filePath: string, options?: ReadTextOptions, callback: AsyncCallback&lt;string&gt;): void
 
 基于文本方式读取文件（即直接读取文件的文本内容），使用callback异步回调。
 
@@ -1780,7 +1929,7 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
 | 参数名   | 类型                        | 必填 | 说明                                                         |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
 | filePath | string                      | 是   | 文件的应用沙箱路径。                                   |
-| options  | Object                      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认文件长度。<br/>-&nbsp;encoding，string类型，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+| options  | [ReadTextOptions](#readtextoptions11)                      | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认文件长度。<br/>-&nbsp;encoding，string类型，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
 | callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回读取文件的内容。                         |
 
 **错误码：**
@@ -1803,7 +1952,7 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
   option.length = stat.size;
   fs.readText(filePath, option, (err: BusinessError, str: string) => {
     if (err) {
-      console.info("readText failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("readText succeed:" + str);
     }
@@ -1812,7 +1961,7 @@ readText(filePath: string, options?: { offset?: number; length?: number; encodin
 
 ## fs.readTextSync
 
-readTextSync(filePath: string, options?: { offset?: number; length?: number; encoding?: string; }): string
+readTextSync(filePath: string, options?: ReadTextOptions): string
 
 以同步方法基于文本方式读取文件（即直接读取文件的文本内容）。
 
@@ -1823,7 +1972,7 @@ readTextSync(filePath: string, options?: { offset?: number; length?: number; enc
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | filePath | string | 是   | 文件的应用沙箱路径。                                   |
-| options  | Object | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认文件长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
+| options  | [ReadTextOptions](#readtextoptions11) | 否   | 支持如下选项：<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读取。<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认文件长度。<br/>-&nbsp;encoding，string类型，当数据是&nbsp;string&nbsp;类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'，仅支持&nbsp;'utf-8'。 |
 
 **返回值：**
 
@@ -1870,7 +2019,7 @@ lstat(path: string): Promise&lt;Stat&gt;
 
   | 类型                           | 说明         |
   | ---------------------------- | ---------- |
-  | Promise&lt;[Stat](#stat)&gt; | promise对象，返回文件对象，表示文件的具体信息，详情见stat。 |
+  | Promise&lt;[Stat](#stat)&gt; | Promise对象，返回文件对象，表示文件的具体信息，详情见stat。 |
 
 **错误码：**
 
@@ -1884,7 +2033,7 @@ lstat(path: string): Promise&lt;Stat&gt;
   fs.lstat(filePath).then((stat: fs.Stat) => {
     console.info("lstat succeed, the size of file is " + stat.size);
   }).catch((err: BusinessError) => {
-    console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("lstat failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -1914,7 +2063,7 @@ lstat(path: string, callback: AsyncCallback&lt;Stat&gt;): void
   let filePath = pathDir + "/linkToFile";
   fs.lstat(filePath, (err: BusinessError, stat: fs.Stat) => {
     if (err) {
-      console.info("lstat failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("lstat failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("lstat succeed, the size of file is" + stat.size);
     }
@@ -1987,7 +2136,7 @@ rename(oldPath: string, newPath: string): Promise&lt;void&gt;
   fs.rename(srcFile, dstFile).then(() => {
     console.info("rename succeed");
   }).catch((err: BusinessError) => {
-    console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("rename failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2019,7 +2168,7 @@ rename(oldPath: string, newPath: string, callback: AsyncCallback&lt;void&gt;): v
   let dstFile = pathDir + "/new.txt";
   fs.rename(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
-      console.info("rename failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("rename failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("rename succeed");
     }
@@ -2086,7 +2235,7 @@ fsync(fd: number): Promise&lt;void&gt;
   fs.fsync(file.fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("sync data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -2119,7 +2268,7 @@ fsync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   let file = fs.openSync(filePath);
   fs.fsync(file.fd, (err: BusinessError) => {
     if (err) {
-      console.info("fsync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("fsync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fsync succeed");
     }
@@ -2188,7 +2337,7 @@ fdatasync(fd: number): Promise&lt;void&gt;
   fs.fdatasync(file.fd).then(() => {
     console.info("sync data succeed");
   }).catch((err: BusinessError) => {
-    console.info("sync data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("sync data failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -2221,7 +2370,7 @@ fdatasync(fd: number, callback: AsyncCallback&lt;void&gt;): void
   let file = fs.openSync(filePath);
   fs.fdatasync (file.fd, (err: BusinessError) => {
     if (err) {
-      console.info("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("fdatasync failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdatasync succeed");
     }
@@ -2290,7 +2439,7 @@ symlink(target: string, srcPath: string): Promise&lt;void&gt;
   fs.symlink(srcFile, dstFile).then(() => {
     console.info("symlink succeed");
   }).catch((err: BusinessError) => {
-    console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("symlink failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2322,7 +2471,7 @@ symlink(target: string, srcPath: string, callback: AsyncCallback&lt;void&gt;): v
   let dstFile = pathDir + "/test";
   fs.symlink(srcFile, dstFile, (err: BusinessError) => {
     if (err) {
-      console.info("symlink failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("symlink failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("symlink succeed");
     }
@@ -2357,11 +2506,7 @@ symlinkSync(target: string, srcPath: string): void
   ```
 
 ## fs.listFile
-listFile(path: string, options?: {
-    recursion?: boolean;
-    listNum?: number;
-    filter?: Filter;
-}): Promise<string[]>
+listFile(path: string, options?: ListFileOptions): Promise<string[]>
 
 列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤，使用Promise异步返回。
 
@@ -2372,7 +2517,7 @@ listFile(path: string, options?: {
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | path | string | 是    | 文件夹的应用沙箱路径。 |
-  | options | Object | 否    | 文件过滤选项。默认不进行过滤。 |
+  | options | [ListFileOptions](#listfileoptions11) | 否    | 文件过滤选项。默认不进行过滤。 |
 
 **options参数说明：**
 
@@ -2380,7 +2525,7 @@ listFile(path: string, options?: {
   | ------ | ------ | ---- | --------------------------- |
   | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
-  | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
+  | filter | [Filter](#filter10) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
 **返回值：**
 
@@ -2413,16 +2558,12 @@ listFile(path: string, options?: {
       console.info("fileName: %s", filenames[i]);
     }
   }).catch((err: BusinessError) => {
-    console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("list file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
 ## fs.listFile
-listFile(path: string, options?: {
-    recursion?: boolean;
-    listNum?: number;
-    filter?: Filter;
-}, callback: AsyncCallback<string[]>): void
+listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string[]>): void
 
 列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤，使用Callback异步回调。
 
@@ -2433,7 +2574,7 @@ listFile(path: string, options?: {
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | path | string | 是    | 文件夹的应用沙箱路径。 |
-  | options | Object | 否    | 文件过滤选项。默认不进行过滤。 |
+  | options | [ListFileOptions](#listfileoptions11) | 否    | 文件过滤选项。默认不进行过滤。 |
   | callback | AsyncCallback&lt;string[]&gt; | 是    | 异步列出文件名数组之后的回调。              |
 
 **options参数说明：**
@@ -2442,7 +2583,7 @@ listFile(path: string, options?: {
   | ------ | ------ | ---- | --------------------------- |
   | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。|
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
-  | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
+  | filter | [Filter](#filter10) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
 **错误码：**
 
@@ -2465,7 +2606,7 @@ listFile(path: string, options?: {
   option.filter.lastModifiedAfter = new Date().getTime();
   fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
-      console.info("list file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("listFile succeed");
       for (let i = 0; i < filenames.length; i++) {
@@ -2477,11 +2618,7 @@ listFile(path: string, options?: {
 
 ## fs.listFileSync
 
-listFileSync(path: string, options?: {
-    recursion?: boolean;
-    listNum?: number;
-    filter?: Filter;
-}): string[]
+listFileSync(path: string, options?: ListFileOptions): string[]
 
 以同步方式列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤。
 
@@ -2492,7 +2629,7 @@ listFileSync(path: string, options?: {
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
   | path | string | 是    | 文件夹的应用沙箱路径。 |
-  | options | Object | 否    | 文件过滤选项。默认不进行过滤。 |
+  | options | [ListFileOptions](#listfileoptions11) | 否    | 文件过滤选项。默认不进行过滤。 |
 
 **options参数说明：**
 
@@ -2500,7 +2637,7 @@ listFileSync(path: string, options?: {
   | ------ | ------ | ---- | --------------------------- |
   | recursion | boolean | 否    | 是否递归子目录下文件名，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。 |
   | listNum | number | 否    | 列出文件名数量。当设置0时，列出所有文件，默认为0。 |
-  | filter | [Filter](#filter) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
+  | filter | [Filter](#filter10) | 否    | 文件过滤选项。当前仅支持后缀名匹配、文件名模糊查询、文件大小过滤、最近修改时间过滤。 |
 
 **返回值：**
 
@@ -2604,7 +2741,7 @@ moveDir(src: string, dest: string, mode?: number): Promise\<void>
   fs.moveDir(srcPath, destPath, 1).then(() => {
     console.info("move directory succeed");
   }).catch((err: BusinessError) => {
-    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2639,11 +2776,11 @@ moveDir(src: string, dest: string, mode: number, callback: AsyncCallback\<void, 
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, 1, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < data.length; i++) {
-        console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
+      for (let i = 0; i < err.data.length; i++) {
+        console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
     }  
@@ -2682,11 +2819,11 @@ moveDir(src: string, dest: string, callback: AsyncCallback\<void, Array\<Conflic
   let destPath = pathDir + "/destDir/";
   fs.moveDir(srcPath, destPath, (err: BusinessError<Array<ConflictFiles>>) => {
     if (err && err.code == 13900015) {
-      for (let i = 0; i < data.length; i++) {
-        console.info("move directory failed with conflicting files: " + data[i].srcFile + " " + data[i].destFile);
+      for (let i = 0; i < err.data.length; i++) {
+        console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
       }
     } else if (err) {
-      console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move directory succeed");
     }  
@@ -2717,15 +2854,23 @@ moveDirSync(src: string, dest: string, mode?: number): void
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  // move directory from srcPath to destPath
-  let srcPath = pathDir + "/srcDir/";
-  let destPath = pathDir + "/destDir/";
-  try {
-    fs.moveDirSync(srcPath, destPath, 1);
-    console.info("move directory succeed");
-  } catch (err) {
-    console.info("move directory failed with error message: " + err.message + ", error code: " + err.code);
+import fs, { ConflictFiles } from '@ohos.file.fs';
+// move directory from srcPath to destPath
+let srcPath = pathDir + "/srcDir/";
+let destPath = pathDir + "/destDir/";
+try {
+  fs.moveDirSync(srcPath, destPath, 1);
+  console.info("move directory succeed");
+} catch (error) {
+  let err: BusinessError<Array<ConflictFiles>> = error as BusinessError<Array<ConflictFiles>>;
+  if (err.code == 13900015) {
+    for (let i = 0; i < err.data.length; i++) {
+      console.error("move directory failed with conflicting files: " + err.data[i].srcFile + " " + err.data[i].destFile);
+    }
+  } else {
+    console.error("move directory failed with error message: " + err.message + ", error code: " + err.code);
   }
+}
   ```
 
 ## fs.moveFile
@@ -2763,7 +2908,7 @@ moveFile(src: string, dest: string, mode?: number): Promise\<void>
   fs.moveFile(srcPath, destPath, 0).then(() => {
     console.info("move file succeed");
   }).catch((err: BusinessError) => {
-    console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2796,7 +2941,7 @@ moveFile(src: string, dest: string, mode: number, callback: AsyncCallback\<void>
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, 0, (err: BusinessError) => {
     if (err) {
-      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
     }  
@@ -2830,7 +2975,7 @@ moveFile(src: string, dest: string, callback: AsyncCallback\<void>): void
   let destPath = pathDir + "/dest.txt";
   fs.moveFile(srcPath, destPath, (err: BusinessError) => {
     if (err) {
-      console.info("move file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("move file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("move file succeed");
     }  
@@ -2878,7 +3023,7 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | prefix | string | 是    | 以“XXXXXX”结尾目录路径。路径末尾的 "XXXXXX" 字符将被替换为随机字符，以创建一个唯一的目录名。 |
+  | prefix | string | 是    | 指定目录路径，命名时需要以"XXXXXX"作为结尾。路径末尾的"XXXXXX"字符串将被替换为随机字符，以创建唯一的目录名。 |
 
 **返回值：**
 
@@ -2897,7 +3042,7 @@ mkdtemp(prefix: string): Promise&lt;string&gt;
   fs.mkdtemp(pathDir + "/XXXXXX").then((dir: string) => {
     console.info("mkdtemp succeed:" + dir);
   }).catch((err: BusinessError) => {
-    console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -2913,7 +3058,7 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
 
   | 参数名      | 类型                          | 必填   | 说明                          |
   | -------- | --------------------------- | ---- | --------------------------- |
-  | prefix   | string                      | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
+  | prefix   | string                      | 是    | 指定目录路径，命名时需要以"XXXXXX"作为结尾。路径末尾的"XXXXXX"字符串将被替换为随机字符，以创建唯一的目录名。 |
   | callback | AsyncCallback&lt;string&gt; | 是    | 异步创建临时目录之后的回调。              |
 
 **错误码：**
@@ -2926,7 +3071,7 @@ mkdtemp(prefix: string, callback: AsyncCallback&lt;string&gt;): void
   import { BusinessError } from '@ohos.base';
   fs.mkdtemp(pathDir + "/XXXXXX", (err: BusinessError, res: string) => {
     if (err) {
-      console.info("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("mkdtemp failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("mkdtemp succeed");
     }
@@ -2945,7 +3090,7 @@ mkdtempSync(prefix: string): string
 
   | 参数名    | 类型     | 必填   | 说明                          |
   | ------ | ------ | ---- | --------------------------- |
-  | prefix | string | 是    | 用随机产生的字符串替换以“XXXXXX”结尾目录路径。 |
+  | prefix | string | 是    | 指定目录路径，命名时需要以"XXXXXX"作为结尾。路径末尾的"XXXXXX"字符串将被替换为随机字符，以创建唯一的目录名。 |
 
 **返回值：**
 
@@ -3002,7 +3147,7 @@ createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAcc
 **参数：**
 |    参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
-|     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
+|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
 |     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 
 **返回值：**
@@ -3025,7 +3170,7 @@ createRandomAccessFile(file: string | File, mode?: number): Promise&lt;RandomAcc
     console.info("randomAccessFile fd: " + randomAccessFile.fd);
     randomAccessFile.close();
   }).catch((err: BusinessError) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -3043,7 +3188,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
 
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
-|     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
+|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
 |     mode     | number | 是   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 | callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
 
@@ -3056,9 +3201,9 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  fs.createRandomAccessFile(file, fs.OpenMode.READ_ONLY (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
+  fs.createRandomAccessFile(file, fs.OpenMode.READ_ONLY, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
     if (err) {
-      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("randomAccessFile fd: " + randomAccessFile.fd);
       randomAccessFile.close();
@@ -3079,7 +3224,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
 
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
-|     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
+|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
 | callback | AsyncCallback&lt;[RandomAccessFile](#randomaccessfile)&gt; | 是   | 异步创建RandomAccessFile对象之后的回调。                                   |
 
 **错误码：**
@@ -3093,7 +3238,7 @@ createRandomAccessFile(file: string | File, mode: number, callback: AsyncCallbac
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   fs.createRandomAccessFile(file, (err: BusinessError, randomAccessFile: fs.RandomAccessFile) => {
     if (err) {
-      console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("randomAccessFile fd: " + randomAccessFile.fd);
       randomAccessFile.close();
@@ -3114,7 +3259,7 @@ createRandomAccessFileSync(file: string | File, mode?: number): RandomAccessFile
 
 |  参数名    | 类型     | 必填   | 说明                          |
 | ------------ | ------ | ------ | ------------------------------------------------------------ |
-|     file     | string\|[File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
+|     file     | string \| [File](#file) | 是    | 文件的应用沙箱路径或已打开的File对象 |
 |     mode     | number | 否   | 创建文件RandomAccessFile对象的[选项](#openmode)，仅当传入文件沙箱路径时生效，必须指定如下选项中的一个，默认以只读方式创建：<br/>-&nbsp;OpenMode.READ_ONLY(0o0)：只读创建。<br/>-&nbsp;OpenMode.WRITE_ONLY(0o1)：只写创建。<br/>-&nbsp;OpenMode.READ_WRITE(0o2)：读写创建。<br/>给定如下功能选项，以按位或的方式追加，默认不给定任何额外选项：<br/>-&nbsp;OpenMode.CREATE(0o100)：若文件不存在，则创建文件。<br/>-&nbsp;OpenMode.TRUNC(0o1000)：如果RandomAccessFile对象存在且以只写或读写的方式创建文件，则将其长度裁剪为零。<br/>-&nbsp;OpenMode.APPEND(0o2000)：以追加方式打开，后续写将追加到RandomAccessFile对象末尾。<br/>-&nbsp;OpenMode.NONBLOCK(0o4000)：如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续&nbsp;IO&nbsp;进行非阻塞操作。<br/>-&nbsp;OpenMode.DIR(0o200000)：如果path不指向目录，则出错。不允许附加写权限。<br/>-&nbsp;OpenMode.NOFOLLOW(0o400000)：如果path指向符号链接，则出错。<br/>-&nbsp;OpenMode.SYNC(0o4010000)：以同步IO的方式创建RandomAccessFile对象。 |
 
 **返回值：**
@@ -3166,12 +3311,11 @@ createStream(path: string, mode: string): Promise&lt;Stream&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
+  fs.createStream(filePath, "a+").then((stream: fs.Stream) => {
+    stream.closeSync();
     console.info("createStream succeed");
   }).catch((err: BusinessError) => {
-    console.info("createStream failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
-    stream.closeSync();
+    console.error("createStream failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3203,7 +3347,7 @@ createStream(path: string, mode: string, callback: AsyncCallback&lt;Stream&gt;):
   let filePath = pathDir + "/test.txt";
   fs.createStream(filePath, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
-      console.info("create stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("create stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("createStream succeed");
     }
@@ -3279,11 +3423,11 @@ fdopenStream(fd: number, mode: string): Promise&lt;Stream&gt;
   let file = fs.openSync(filePath);
   fs.fdopenStream(file.fd, "r+").then((stream: fs.Stream) => {
     console.info("openStream succeed");
-    stream.closeSync();
-  }).catch((err: BusinessError) => {
-    console.info("openStream failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
     fs.closeSync(file);
+  }).catch((err: BusinessError) => {
+    console.error("openStream failed with error message: " + err.message + ", error code: " + err.code);
+  }).finally(() => {
+    stream.closeSync();
   });
   ```
 
@@ -3315,12 +3459,12 @@ fdopenStream(fd: number, mode: string, callback: AsyncCallback&lt;Stream&gt;): v
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.fdopenStream(file.fd, "r+", (err: BusinessError, stream: fs.Stream) => {
     if (err) {
-      console.info("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("fdopen stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("fdopen stream succeed");
-      stream.closeSync();
+      fs.closeSync(file);
     }
-    fs.closeSync(file);
+    stream.closeSync();
   });
   ```
 
@@ -3355,8 +3499,8 @@ fdopenStreamSync(fd: number, mode: string): Stream
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY | fs.OpenMode.CREATE);
   let stream = fs.fdopenStreamSync(file.fd, "r+");
-  stream.closeSync();
   fs.closeSync(file);
+  stream.closeSync();
   ```
 
 ## fs.createWatcher<sup>10+</sup>
@@ -3416,7 +3560,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 
   | 参数名  | 类型     | 必填   | 说明                                       |
   | ---- | ------ | ---- | ---------------------------------------- |
-  | event   | WatchEvent | 是    | 回调的事件类。                             |
+  | event   | [WatchEvent](#watchevent10) | 是    | 回调的事件类。                             |
  
 ## WatchEvent<sup>10+</sup>
 
@@ -3431,6 +3575,35 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 | fileName | string | 是    | 否    | 发生监听事件的文件名。 |
 | event | number | 是    | 否    | 监听变动的事件集，多个事件通过或(\|)的方式进行集合。<br/>-&nbsp;0x1: IN_ACCESS， 文件被访问。<br/>-&nbsp;0x2: IN_MODIFY，文件内容被修改。<br/>-&nbsp;0x4: IN_ATTRIB，文件元数据被修改。<br/>-&nbsp;0x8: IN_CLOSE_WRITE，文件在打开时进行了写操作，然后被关闭。<br/>-&nbsp;0x10: IN_CLOSE_NOWRITE，文件或目录在打开时未进行写操作，然后被关闭。<br/>-&nbsp;0x20: IN_OPEN，文件或目录被打开。 <br/>-&nbsp;0x40: IN_MOVED_FROM，监听目录中文件被移动走。<br/>-&nbsp;0x80: IN_MOVED_TO，监听目录中文件被移动过来。<br/>-&nbsp;0x100: IN_CREATE，监听目录中文件或子目录被创建。<br/>-&nbsp;0x200: IN_DELETE，监听目录中文件或子目录被删除。<br/>-&nbsp;0x400: IN_DELETE_SELF，监听的目录被删除，删除后监听停止。<br/>-&nbsp;0x800: IN_MOVE_SELF，监听的文化或目录被移动，移动后监听继续。<br/>-&nbsp;0xfff: IN_ALL_EVENTS，监听以上所有事件。 |
 | cookie | number | 是    | 否    | 绑定相关事件的cookie。当前仅支持事件IN_MOVED_FROM与IN_MOVED_TO，同一个文件的移动事件IN_MOVED_FROM和IN_MOVED_TO具有相同的cookie值。 |
+
+## Progress<sup>11+</sup>
+
+拷贝进度回调数据
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称   | 类型   | 可读   | 可写   | 说明      |
+| ---- | ------ | ---- | ---- | ------- |
+| processedSize | number | 是    | 否    | 已拷贝的数据大小。 |
+| totalSize | number | 是    | 否    | 待拷贝的数据总大小。 |
+
+## CopyOptions<sup>11+</sup>
+
+拷贝进度回调监听
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称   | 类型   | 可读   | 可写   | 说明      |
+| ---- | ------ | ---- | ---- | ------- |
+| progressListener | [ProgressListener](#progresslistener) | 是    | 是    | 拷贝进度监听。 |
+
+## ProgressListener
+
+拷贝进度监听。
+
+| 类型 | 说明 |
+| ----| ------|
+|(progress: [Progress](#progress11)) => void| 拷贝进度监听|
 
 ## Stat
 
@@ -3450,6 +3623,7 @@ createWatcher(path: string, events: number, listener: WatchEventListener): Watch
 | atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。        |
 | mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。        |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
+| location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
 
 ### isBlockDevice
 
@@ -3461,7 +3635,7 @@ isBlockDevice(): boolean
 
 **返回值：**
 
-  | 类型      | 说明               |
+  | 类型     | 说明               |
   | ------- | ---------------- |
   | boolean | 表示文件是否是块特殊设备。 |
 
@@ -3657,7 +3831,7 @@ close(): Promise&lt;void&gt;
   stream.close().then(() => {
     console.info("close fileStream succeed");
   }).catch((err: BusinessError) => {
-    console.info("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("close fileStream  failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3687,7 +3861,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
   let stream = fs.createStreamSync(filePath, "r+");
   stream.close((err: BusinessError) => {
     if (err) {
-      console.info("close stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("close stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("close stream succeed");
     }
@@ -3740,8 +3914,9 @@ flush(): Promise&lt;void&gt;
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush().then(() => {
     console.info("flush succeed");
+    stream.close();
   }).catch((err: BusinessError) => {
-    console.info("flush failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("flush failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -3771,9 +3946,10 @@ flush(callback: AsyncCallback&lt;void&gt;): void
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flush((err: BusinessError) => {
     if (err) {
-      console.info("flush stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("flush stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("flush succeed");
+      stream.close();
     }
   });
   ```
@@ -3796,11 +3972,12 @@ flushSync(): void
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   stream.flushSync();
+  stream.close();
   ```
 
 ### write
 
-write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; encoding?: string; }): Promise&lt;number&gt;
+write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
 将数据写入流文件，使用Promise异步返回。
 
@@ -3810,8 +3987,8 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | options | [WriteOptions](#writeoptions11)                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
 
 **返回值：**
 
@@ -3839,14 +4016,15 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   option.length = 5;
   stream.write("hello, world", option).then((number: number) => {
     console.info("write succeed and size is:" + number);
+    stream.close();
   }).catch((err: BusinessError) => {
-    console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("write failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
 ### write
 
-write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
+write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入流文件，使用callback异步回调。
 
@@ -3856,8 +4034,8 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
   | 参数名   | 类型                            | 必填 | 说明                                                         |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer\|string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
+  | buffer   | ArrayBuffer \| string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | options  | [WriteOptions](#writeoptions11)                          | 否   | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
   | callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
 
 **错误码：**
@@ -3880,10 +4058,11 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   option.length = 5;
   stream.write("hello, world", option, (err: BusinessError, bytesWritten: number) => {
     if (err) {
-      console.info("write stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("write stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
+        stream.close();
       }
     }
   });
@@ -3891,7 +4070,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
 ### writeSync
 
-writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; encoding?: string; }): number
+writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 
 以同步方法将数据写入流文件。
 
@@ -3901,8 +4080,8 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | options | [WriteOptions](#writeoptions11)                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件的位置。可选，默认从当前位置开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
 
 **返回值：**
 
@@ -3928,11 +4107,12 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
   option.offset = 5;
   option.length = 5;
   let num = stream.writeSync("hello, world", option);
+  stream.close();
   ```
 
 ### read
 
-read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Promise&lt;number&gt;
+read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
 
 从流文件读取数据，使用Promise异步返回。
 
@@ -3943,7 +4123,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | 是    | 用于读取文件的缓冲区。                              |
-  | options | Object      | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
+  | options | [ReadOptions](#readoptions11)      | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。 |
 
 **返回值：**
 
@@ -3974,14 +4154,15 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
     console.info("read data succeed");
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.log(`The content of file: ${buf.toString()}`);
+    stream.close();
   }).catch((err: BusinessError) => {
-    console.info("read data failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("read data failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
 ### read
 
-read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }, callback: AsyncCallback&lt;number&gt;): void
+read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;number&gt;): void
 
 从流文件读取数据，使用callback异步回调。
 
@@ -3992,7 +4173,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   | 参数名      | 类型                                       | 必填   | 说明                                       |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | 是    | 用于读取文件的缓冲区。                              |
-  | options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读. |
+  | options  | [ReadOptions](#readoptions11)                                   | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读. |
   | callback | AsyncCallback&lt;number&gt; | 是    | 异步从流文件读取数据之后的回调。                         |
 
 **错误码：**
@@ -4016,18 +4197,19 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   option.length = 5;
   stream.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
     if (err) {
-      console.info("read stream failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("read data succeed");
       let buf = buffer.from(arrayBuffer, 0, readLen);
       console.log(`The content of file: ${buf.toString()}`);
+      stream.close();
     }
   });
   ```
 
 ### readSync
 
-readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number
+readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 
 以同步方法从流文件读取数据。
 
@@ -4038,7 +4220,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | 是    | 用于读取文件的缓冲区。                              |
-  | options | Object      | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>  |
+  | options | [ReadOptions](#readoptions11)      | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件的位置。可选，默认从当前位置开始读。<br/>  |
 
 **返回值：**
 
@@ -4064,6 +4246,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   option.length = 5;
   let buf = new ArrayBuffer(4096);
   let num = stream.readSync(buf, option);
+  stream.close();
   ```
 
 ## File
@@ -4141,7 +4324,7 @@ lock(exclusive?: boolean): Promise\<void>
   file.lock(true).then(() => {
     console.log("lock file succeed");
   }).catch((err: BusinessError) => {
-    console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     fs.closeSync(file);
   });
@@ -4174,7 +4357,7 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
   let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true, (err: BusinessError) => {
     if (err) {
-      console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("lock file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.log("lock file succeed");
     }
@@ -4291,7 +4474,7 @@ close(): void
 
 ### write<sup>10+</sup>
 
-write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; encoding?: string; }): Promise&lt;number&gt;
+write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&gt;
 
 将数据写入文件，使用Promise异步返回。
 
@@ -4301,8 +4484,8 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | options | [WriteOptions](#writeoptions11)                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
 
 **返回值：**
 
@@ -4331,10 +4514,10 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   option.offset = 1;
   option.length = 5;
   let arrayBuffer = new ArrayBuffer(bufferLength);
-  randomaccessfile.write(arrayBuffer, option).then((bytesWritten: number) => {
+  randomAccessFile.write(arrayBuffer, option).then((bytesWritten: number) => {
     console.info("randomAccessFile bytesWritten: " + bytesWritten);
   }).catch((err: BusinessError) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     randomAccessFile.close();
     fs.closeSync(file);
@@ -4344,7 +4527,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
 ### write<sup>10+</sup>
 
-write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; encoding?: string; }, callback: AsyncCallback&lt;number&gt;): void
+write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallback&lt;number&gt;): void
 
 将数据写入文件，使用callback异步回调。
 
@@ -4354,8 +4537,8 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
   | 参数名   | 类型                            | 必填 | 说明                                                         |
   | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-  | buffer   | ArrayBuffer\|string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options  | Object                          | 否   | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
+  | buffer   | ArrayBuffer \| string | 是   | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | options  | [WriteOptions](#writeoptions11)                          | 否   | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
   | callback | AsyncCallback&lt;number&gt;     | 是   | 异步写入完成后执行的回调函数。                               |
 
 **错误码：**
@@ -4380,7 +4563,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
   let arrayBuffer = new ArrayBuffer(bufferLength);
   randomAccessFile.write(arrayBuffer, option, (err: BusinessError, bytesWritten: number) => {
     if (err) {
-      console.info("write failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("write failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (bytesWritten) {
         console.info("write succeed and size is:" + bytesWritten);
@@ -4393,7 +4576,7 @@ write(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number
 
 ### writeSync<sup>10+</sup>
 
-writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: number; encoding?: string; }): number
+writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 
 以同步方法将数据写入文件。
 
@@ -4403,8 +4586,8 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
 
   | 参数名     | 类型                              | 必填   | 说明                                       |
   | ------- | ------------------------------- | ---- | ---------------------------------------- |
-  | buffer  | ArrayBuffer\|string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
-  | options | Object                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
+  | buffer  | ArrayBuffer \| string | 是    | 待写入文件的数据，可来自缓冲区或字符串。                     |
+  | options | [WriteOptions](#writeoptions11)                          | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望写入数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。<br/>-&nbsp;encoding，string类型，当数据是string类型时有效，表示数据的编码方式，默认&nbsp;'utf-8'。仅支持&nbsp;'utf-8'。|
 
 **返回值：**
 
@@ -4429,13 +4612,13 @@ writeSync(buffer: ArrayBuffer | string, options?: { offset?: number; length?: nu
   let option = new Option();
   option.offset = 5;
   option.length = 5;
-  let bytesWritten = randomaccessfile.writeSync("hello, world", option);
+  let bytesWritten = randomAccessFile.writeSync("hello, world", option);
   randomAccessFile.close();
   ```
 
 ### read<sup>10+</sup>
 
-read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Promise&lt;number&gt;
+read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
 
 从文件读取数据，使用Promise异步返回。
 
@@ -4446,7 +4629,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | 是    | 用于读取文件的缓冲区。                              |
-  | options | Object      | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。 |
+  | options | [ReadOptions](#readoptions11)      | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。 |
 
 **返回值：**
 
@@ -4474,10 +4657,10 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
   option.offset = 1;
   option.length = 5;
   let arrayBuffer = new ArrayBuffer(bufferLength);
-  randomaccessfile.read(arrayBuffer, option).then((readLength: number) => {
+  randomAccessFile.read(arrayBuffer, option).then((readLength: number) => {
     console.info("randomAccessFile readLength: " + readLength);
   }).catch((err: BusinessError) => {
-    console.info("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
   }).finally(() => {
     randomAccessFile.close();
     fs.closeSync(file);
@@ -4486,7 +4669,7 @@ read(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): Prom
 
 ### read<sup>10+</sup>
 
-read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length?: number; }, callback: AsyncCallback&lt;number&gt;): void
+read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;number&gt;): void
 
 从文件读取数据，使用callback异步回调。
 
@@ -4497,7 +4680,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   | 参数名      | 类型                                       | 必填   | 说明                                       |
   | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
   | buffer   | ArrayBuffer                              | 是    | 用于读取文件的缓冲区。                              |
-  | options  | Object                                   | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读. |
+  | options  | [ReadOptions](#readoptions11)                                   | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读. |
   | callback | AsyncCallback&lt;number&gt; | 是    | 异步从流文件读取数据之后的回调。                         |
 
 **错误码：**
@@ -4520,9 +4703,9 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
   option.offset = 1;
   option.length = 5;
   let arrayBuffer = new ArrayBuffer(length);
-  randomaccessfile.read(arrayBuffer, option, (err: BusinessError, readLength: number) => {
+  randomAccessFile.read(arrayBuffer, option, (err: BusinessError, readLength: number) => {
     if (err) {
-      console.info("read failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       if (readLength) {
         console.info("read succeed and size is:" + readLength);
@@ -4535,7 +4718,7 @@ read(buffer: ArrayBuffer, options?: { position?: number; offset?: number; length
 
 ### readSync<sup>10+</sup>
 
-readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): number
+readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 
 以同步方法从文件读取数据。
 
@@ -4546,7 +4729,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   | 参数名     | 类型          | 必填   | 说明                                       |
   | ------- | ----------- | ---- | ---------------------------------------- |
   | buffer  | ArrayBuffer | 是    | 用于读取文件的缓冲区。                              |
-  | options | Object      | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。<br/>  |
+  | options | [ReadOptions](#readoptions11)      | 否    | 支持如下选项：<br/>-&nbsp;length，number类型，表示期望读取数据的长度。可选，默认缓冲区长度。<br/>-&nbsp;offset，number类型，表示期望读取文文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。<br/>  |
 
 **返回值：**
 
@@ -4566,7 +4749,7 @@ readSync(buffer: ArrayBuffer, options?: { offset?: number; length?: number; }): 
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let length: number = 4096;
   let arrayBuffer = new ArrayBuffer(length);
-  let readLength = randomaccessfile.readSync(arrayBuffer);
+  let readLength = randomAccessFile.readSync(arrayBuffer);
   randomAccessFile.close();
   fs.closeSync(file);
   ```
@@ -4684,3 +4867,61 @@ open接口flags参数常量。文件打开标签。
 | SEEK_SET | 0     | 文件起始位置处。           |
 | SEEK_CUR    | 1     | 当前文件偏置指针位置处。 |
 | SEEK_END    | 2     | 文件末尾位置处。 |
+
+## LocationType<sup>11+</sup>
+
+枚举，文件位置，表示该文件是否在本地或者云端存在。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 值       | 说明                |
+| ----------- | --------------- | ------------------ |
+| LOCAl | 1     | 文件在本地存在           |
+| CLOUD    | 2     | 文件在云端存在 |
+
+## ReadOptions<sup>11+</sup>
+
+可选项类型，支持read接口使用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 类型       | 说明                |
+| ----------- | --------------- | ------------------ |
+| length | number     | 期望读取数据的长度。可选，默认缓冲区长度。           |
+|  offset    | number     | 期望读取文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始读。 |
+
+## ReadTextOptions<sup>11+</sup>
+
+可选项类型，支持readText接口使用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 类型       | 说明                |
+| ----------- | --------------- | ------------------ |
+| length | number     | 期望读取数据的长度。可选，默认文件长度。           |
+|  offset    | number     | 期望读取文件的位置。可选，默认从当前位置开始读取。 |
+| encoding    | string | 当数据是 string 类型时有效，表示数据的编码方式，默认 'utf-8'，仅支持 'utf-8'。       |
+
+## WriteOptions<sup>11+</sup>
+
+可选项类型，支持write接口使用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 类型       | 说明                |
+| ----------- | --------------- | ------------------ |
+| length | number     | 期望写入数据的长度。可选，默认缓冲区长度。           |
+|  offset    | number     | 期望写入文件位置（基于当前filePointer加上offset的位置）。可选，默认从偏置指针（filePointer）开始写。 |
+| encoding    | string | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |
+
+## ListFileOptions<sup>11+</sup>
+
+可选项类型，支持listFile接口使用。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+| 名称        | 类型       | 说明                |
+| ----------- | --------------- | ------------------ |
+| recursion | boolean     | 是否递归子目录下文件名。可选，默认为false。当recursion为false时，返回当前目录下满足过滤要求的文件名及文件夹名。当recursion为true时，返回此目录下所有满足过滤要求的文件的相对路径（以/开头）。           |
+|  listNum    | number     | 列出文件名数量。可选，当设置0时，列出所有文件，默认为0。 |
+| filter    | [Filter](#filter10) | 当数据是string类型时有效，表示数据的编码方式，默认 'utf-8'。仅支持 'utf-8'。       |

@@ -18,6 +18,7 @@ You can apply foreground blur effects to a component.
 | colorMode     | [ThemeColorMode](ts-appendix-enums.md#themecolormode10) | No  | Color mode used for the foreground blur.<br>Default value: **ThemeColorMode.System**|
 | adaptiveColor | [AdaptiveColor](ts-appendix-enums.md#adaptivecolor10)   | No  | Adaptive color mode.<br>Default value: **AdaptiveColor.Default**|
 | scale | number   | No  | Foreground blur scale. This API is a system API.<br>Default value: **1.0**<br>Value range: [0.0, 1.0]<br>|
+| blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | No   | Grayscale blur parameters.          |
 
 ## Example
 

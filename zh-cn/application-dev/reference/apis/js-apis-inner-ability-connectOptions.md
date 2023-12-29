@@ -28,6 +28,9 @@ import common from '@ohos.app.ability.common';
   import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
   import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import bundleManager from '@ohos.bundle.bundleManager';
+  import rpc from '@ohos.rpc';
 
   let connectWant: Want = {
     bundleName: 'com.example.myapp',
@@ -35,19 +38,20 @@ import common from '@ohos.app.ability.common';
   };
 
   let connectOptions: common.ConnectOptions = {
-    onConnect(elementName, remote) { 
-        console.log('onConnect elementName: ${elementName}');
+    onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+      console.log(`onConnect elementName: ${elementName}`);
     },
-    onDisconnect(elementName) { 
-        console.log('onDisconnect elementName: ${elementName}');
+    onDisconnect(elementName: bundleManager.ElementName) {
+      console.log(`onDisconnect elementName: ${elementName}`);
     },
-    onFailed(code) { 
-        console.error('onFailed code: ${code}');
+    onFailed(code: number) {
+      console.error(`onFailed code: ${code}`);
     }
   };
 
+
   class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
       let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
     }
   }

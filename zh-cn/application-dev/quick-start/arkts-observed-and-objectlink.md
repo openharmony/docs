@@ -38,7 +38,7 @@
 | ----------------- | ---------------------------------------- |
 | 装饰器参数             | 无                                        |
 | 同步类型              | 不与父组件中的任何类型同步变量。                         |
-| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date或者Array的class实例，示例见[观察变化](#观察变化)。<br/>支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
+| 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>不支持简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、Map、Set、Array的class实例，示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
 \@ObjectLink装饰的数据为可读示例。
@@ -184,6 +184,10 @@ struct ViewB {
   }
 }
 ```
+
+继承Map的class时，可以观察到Map整体的赋值，同时可通过调用Map的接口`set`, `clear`, `delete` 更新Map的值。详见[继承Map类](#继承map类)。
+
+继承Set的class时，可以观察到Set整体的赋值，同时可通过调用Set的接口`add`, `clear`, `delete` 更新Set的值。详见继承Set类。
 
 
 ### 框架行为
@@ -474,11 +478,163 @@ struct IndexPage {
 }
 ```
 
+### 继承Map类
+
+\@ObjectLink支持\@Observed装饰继承Map类和Map类型，在下面的示例中，myMap类型为MyMap<number, string>，点击Button改变myMap的属性，视图会随之刷新。
+
+```ts
+@Observed
+class ClassA {
+  public a: MyMap<number, string>;
+  constructor(a: MyMap<number, string>) {
+    this.a = a;
+  }
+}
+
+
+@Observed
+export class MyMap<K, V> extends Map<K, V> {
+
+  public name: string;
+
+  constructor(name?: string, args?: [K, V][]) {
+    super(args);
+    this.name = name ? name: "My Map";
+  }
+
+  getName() {
+    return this.name;
+  }
+}
+
+@Entry
+@Component
+struct MapSampleNested {
+  @State message: ClassA = new ClassA(new MyMap("myMap", [[0, "a"], [1, "b"], [3, "c"]]));
+
+  build() {
+    Row() {
+      Column() {
+        MapSampleNestedChild({myMap: this.message.a})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct MapSampleNestedChild {
+  @ObjectLink myMap: MyMap<number, string>
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.myMap.entries()), (item: [number, string]) => {
+          Text(`${item[0]}`).fontSize(30)
+          Text(`${item[1]}`).fontSize(30)
+          Divider()
+        })
+
+        Button('set new one').onClick(() =>{
+          this.myMap.set(4, "d")
+        })
+        Button('clear').onClick(() =>{
+          this.myMap.clear()
+        })
+        Button('replace the first one').onClick(() =>{
+          this.myMap.set(0, "aa")
+        })
+        Button('delete the first one').onClick(() =>{
+          this.myMap.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### 继承Set类
+
+\@ObjectLink支持\@Observed装饰继承Set类和Set类型，在下面的示例中，mySet类型为MySet<number>，点击Button改变mySet的属性，视图会随之刷新。
+
+```ts
+@Observed
+class ClassA {
+  public a: MySet<number>;
+  constructor(a: MySet<number>) {
+    this.a = a;
+  }
+}
+
+
+@Observed
+export class MySet<T> extends Set<T>  {
+
+  public name: string;
+
+  constructor(name?: string, args?: T[]) {
+    super(args);
+    this.name = name ? name: "My Set";
+  }
+
+  getName() {
+    return this.name;
+  }
+}
+
+@Entry
+@Component
+struct SetSampleNested {
+  @State message: ClassA = new ClassA( new MySet("Set", [0, 1, 2 ,3,4 ]));
+
+  build() {
+    Row() {
+      Column() {
+        SetSampleNestedChild({mySet: this.message.a})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+@Component
+struct SetSampleNestedChild {
+  @ObjectLink mySet: MySet<number>
+
+  build() {
+    Row() {
+      Column() {
+        ForEach(Array.from(this.mySet.entries()), (item: number) => {
+          Text(`${item}`).fontSize(30)
+          Divider()
+        })
+        Button('set new one').onClick(() =>{
+          this.mySet.add(5)
+        })
+        Button('clear').onClick(() =>{
+          this.mySet.clear()
+        })
+        Button('delete the first one').onClick(() =>{
+          this.mySet.delete(0)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
 ## ObjectLink支持联合类型
 
 @ObjectLink支持@Observed装饰类和undefined或null组成的联合类型，在下面的示例中，count类型为ClassA | ClassB | undefined，点击父组件Page2中的Button改变count的属性或者类型，Child中也会对应刷新。
 
 ```ts
+@Observed
 class ClassA {
   public a: number;
 
@@ -487,6 +643,7 @@ class ClassA {
   }
 }
 
+@Observed
 class ClassB {
   public b: number;
 
@@ -977,37 +1134,45 @@ incrSubCounter和setSubCounter都是同一个SubCounter的函数。在第一个�
 
 ```ts
 let nextId = 1;
+
 @Observed
 class SubCounter {
   counter: number;
+
   constructor(c: number) {
     this.counter = c;
   }
 }
+
 @Observed
 class ParentCounter {
   id: number;
   counter: number;
   subCounter: SubCounter;
+
   incrCounter() {
     this.counter++;
   }
+
   incrSubCounter(c: number) {
     this.subCounter.counter += c;
   }
+
   setSubCounter(c: number): void {
     this.subCounter.counter = c;
   }
+
   constructor(c: number) {
     this.id = nextId++;
     this.counter = c;
     this.subCounter = new SubCounter(c);
   }
 }
+
 @Component
 struct CounterComp {
   @ObjectLink value: ParentCounter;
-  @ObjectLink subValue: SubCounter;
+
   build() {
     Column({ space: 10 }) {
       Text(`${this.value.counter}`)
@@ -1015,28 +1180,39 @@ struct CounterComp {
         .onClick(() => {
           this.value.incrCounter();
         })
-      Text(`${this.subValue.counter}`)
-        .onClick(() => {
-          this.subValue.counter += 1;
-        })
+      CounterChild({ subValue: this.value.subCounter })
       Divider().height(2)
     }
   }
 }
+
+@Component
+struct CounterChild {
+  @ObjectLink subValue: SubCounter;
+
+  build() {
+    Text(`${this.subValue.counter}`)
+      .onClick(() => {
+        this.subValue.counter += 1;
+      })
+  }
+}
+
 @Entry
 @Component
 struct ParentComp {
   @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+
   build() {
     Row() {
       Column() {
-        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter })
-        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter })
-        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
           (item: ParentCounter) => {
-            CounterComp({ value: item, subValue: item.subCounter })
+            CounterComp({ value: item })
           },
           (item: ParentCounter) => item.id.toString()
         )
@@ -1063,7 +1239,6 @@ struct ParentComp {
 }
 ```
 
-
 ### \@Prop与\@ObjectLink的差异
 
 在下面的示例代码中，\@ObjectLink修饰的变量是对数据源的引用，即在this.value.subValue和this.subValue都是同一个对象的不同引用，所以在点击CounterComp的click handler，改变this.value.subCounter.counter，this.subValue.counter也会改变，对应的组件Text(`this.subValue.counter: ${this.subValue.counter}`)会刷新。
@@ -1075,6 +1250,7 @@ let nextId = 1;
 @Observed
 class SubCounter {
   counter: number;
+
   constructor(c: number) {
     this.counter = c;
   }
@@ -1085,15 +1261,19 @@ class ParentCounter {
   id: number;
   counter: number;
   subCounter: SubCounter;
+
   incrCounter() {
     this.counter++;
   }
+
   incrSubCounter(c: number) {
     this.subCounter.counter += c;
   }
+
   setSubCounter(c: number): void {
     this.subCounter.counter = c;
   }
+
   constructor(c: number) {
     this.id = nextId++;
     this.counter = c;
@@ -1104,11 +1284,10 @@ class ParentCounter {
 @Component
 struct CounterComp {
   @ObjectLink value: ParentCounter;
-  @ObjectLink subValue: SubCounter;
+
   build() {
     Column({ space: 10 }) {
-      Text(`this.subValue.counter: ${this.subValue.counter}`)
-        .fontSize(30)
+      CountChild({ subValue: this.value.subCounter })
       Text(`this.value.counter：increase 7 `)
         .fontSize(30)
         .onClick(() => {
@@ -1120,20 +1299,31 @@ struct CounterComp {
   }
 }
 
+@Component
+struct CountChild {
+  @ObjectLink subValue: SubCounter;
+
+  build() {
+    Text(`this.subValue.counter: ${this.subValue.counter}`)
+      .fontSize(30)
+  }
+}
+
 @Entry
 @Component
 struct ParentComp {
   @State counter: ParentCounter[] = [new ParentCounter(1), new ParentCounter(2), new ParentCounter(3)];
+
   build() {
     Row() {
       Column() {
-        CounterComp({ value: this.counter[0], subValue: this.counter[0].subCounter })
-        CounterComp({ value: this.counter[1], subValue: this.counter[1].subCounter })
-        CounterComp({ value: this.counter[2], subValue: this.counter[2].subCounter })
+        CounterComp({ value: this.counter[0] })
+        CounterComp({ value: this.counter[1] })
+        CounterComp({ value: this.counter[2] })
         Divider().height(5)
         ForEach(this.counter,
           (item: ParentCounter) => {
-            CounterComp({ value: item, subValue: item.subCounter })
+            CounterComp({ value: item })
           },
           (item: ParentCounter) => item.id.toString()
         )
@@ -1256,7 +1446,7 @@ struct SubCounterComp {
 }
 @Component
 struct CounterComp {
-  @ObjectLink value: ParentCounter;
+  @Prop value: ParentCounter;
   build() {
     Column({ space: 10 }) {
       Text(`this.value.incrCounter(): this.value.counter: ${this.value.counter}`)

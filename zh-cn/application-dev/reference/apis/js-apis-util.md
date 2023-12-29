@@ -25,20 +25,94 @@ format(format: string,  ...args: Object[]): string
 
 | 参数名  | 类型     | 必填 | 说明           |
 | ------- | -------- | ---- | -------------- |
-| format  | string   | 是   | 式样化字符串。 |
-| ...args | Object[] | 否   | 替换式样化字符串通配符的数据，此参数缺失时，默认返回第一个参数。 |
+| format  | string   | 是   | 格式化字符串，可以包含零个或多个占位符，用于指定要插入的参数的位置和格式。 |
+| ...args | Object[] | 否   | 替换format参数中占位符的数据，此参数缺失时，默认返回第一个参数。|
 
 **返回值：**
 
-| 类型   | 说明                         |
-| ------ | ---------------------------- |
-| string | 按特定格式式样化后的字符串。 |
+| 类型   | 说明              |
+| ------ | -----------------|
+| string | 格式化后的字符串。 |
+
+
+**格式说明符：**
+
+| 格式说明符 | 说明                          |
+| ------ | -------------------------------- |
+| %s     | 将参数转换为字符串，用于除Object，BigInt和-0之外的所有值。|
+| %d     | 将参数作为十进制整数进行格式化输出，用于除Symbol和BigInt之外的所有值。|
+| %i     | 将字符串转换为十进制整数，用于除BigInt和Symbol之外的所有值。|
+| %f     | 将字符串转换为浮点数，用于除Bigint和Symbol之外的所有值。|
+| %j     | 将JavaScript对象转换为JSON字符串进行格式化输出。|
+| %o     | 用于将JavaScript对象进行格式化输出，将对象转换为字符串表示，但不包含对象的原型链信息。|
+| %O     | 用于将JavaScript对象进行格式化输出，将对象转换为字符串表示。|
+| %c     | 只在浏览器环境中有效。其余环境不会产生样式效果。|
+| %%     | 转义百分号的特殊格式化占位符。|
 
 **示例：**
 
 ```ts
-let res = util.format("This is : %s", "hello world!");
-console.log(res);
+import util from '@ohos.util';
+
+interface utilAddresstype {
+  city: string;
+  country: string;
+}
+interface utilPersontype {
+  name: string;
+  age: number;
+  address: utilAddresstype;
+}
+
+let name = 'John';
+let age = 20;
+let formattedString = util.format('My name is %s and I am %s years old', name, age);
+console.log(formattedString);
+// 输出结果：My name is John and I am 20 years old
+let num = 10.5;
+formattedString = util.format('The number is %d', num);
+console.log(formattedString);
+// 输出结果：The number is 10.5
+num = 100.5;
+formattedString = util.format('The number is %i', num);
+console.log(formattedString);
+// 输出结果：The number is 100
+const pi = 3.141592653;
+formattedString = util.format('The value of pi is %f', pi);
+console.log(formattedString);
+// 输出结果：The value of pi is 3.141592653
+const obj: Record<string,number | string> = { "name": 'John', "age": 20 };
+formattedString = util.format('The object is %j', obj);
+console.log(formattedString);
+// 输出结果：The object is {"name":"John","age":20}
+const person: utilPersontype = {
+  name: 'John',
+  age: 20,
+  address: {
+    city: 'New York',
+    country: 'USA'
+  }
+};
+console.log(util.format('Formatted object using %%O: %O', person));
+console.log(util.format('Formatted object using %%o: %o', person));
+/*
+输出结果：
+Formatted object using %O: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+Formatted object using %o: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+*/
+const percentage = 80;
+let arg = 'homework';
+formattedString = util.format('John finished %d%% of the %s', percentage, arg);
+console.log(formattedString);
+// 输出结果：John finished 80% of the homework
 ```
 
 ## util.errnoToString<sup>9+</sup>
@@ -139,21 +213,16 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 **示例：**
 
 ```ts
-function fun(num, callback) {
-  if (typeof num === 'number') {
-      callback(null, num + 3);
-  } else {
-      callback("type err");
-  }
+async function fn() {
+  return 'hello world';
 }
-
-const addCall = util.promisify(fun);
+const addCall = util.promisify(util.callbackWrapper(fn));
 (async () => {
   try {
-      let res = await addCall(2);
-      console.log(res);
+    let res: string = await addCall();
+    console.log(res);
   } catch (err) {
-      console.log(err);
+    console.log(err);
   }
 })();
 ```
@@ -183,8 +252,7 @@ generateRandomUUID(entropyCache?: boolean): string
 ```ts
 let uuid = util.generateRandomUUID(true);
 console.log("RFC 4122 Version 4 UUID:" + uuid);
-// 输出：
-// RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
+// 输出随机生成的UUID
 ```
 
 ## util.generateRandomBinaryUUID<sup>9+</sup>
@@ -357,9 +425,15 @@ TextDecoder的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**示例：**
+
+```ts
+let result = new util.TextDecoder();
+let retStr = result.encoding;
+```
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
+create(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
 
 替代有参构造功能。
 
@@ -370,7 +444,7 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): Te
 | 参数名   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
-| options  | Object | 否   | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
+| options  | object | 否   | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
 **表1.1**options
 
@@ -382,8 +456,8 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): Te
 **示例：**
 
 ```ts
-let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
-let retStr = result.encoding
+let result = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+let retStr = result.encoding;
 ```
 
 ### decodeWithStream<sup>9+</sup>
@@ -399,7 +473,7 @@ decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
-| options | Object | 否 | 解码相关选项参数。 |
+| options | object | 否 | 解码相关选项参数。 |
 
 **表2** options
 
@@ -446,7 +520,7 @@ TextDecoder的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | encoding | string | 否 | 编码格式，默认值是'utf-8'。 |
-| options | Object | 否 | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
+| options | object | 否 | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
   **表1** options
 
@@ -478,7 +552,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
-| options | Object | 否 | 解码相关选项参数。 |
+| options | object | 否 | 解码相关选项参数。 |
 
 **表2** options
 
@@ -559,7 +633,7 @@ let textEncoder = new util.TextEncoder("utf-8");
 
 encodeInto(input?: string): Uint8Array
 
-通过输入参数编码后输出对应文本。
+通过输入参数编码后输出Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -573,7 +647,7 @@ encodeInto(input?: string): Uint8Array
 
 | 类型       | 说明               |
 | ---------- | ------------------ |
-| Uint8Array | 返回编码后的文本。 |
+| Uint8Array | 返回编码后的Uint8Array对象。 |
 
 **示例：**
 
@@ -588,7 +662,7 @@ result = textEncoder.encodeInto("\uD800¥¥");
 
 encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: number }
 
-放置生成的UTF-8编码文本。
+对字符串进行编码，将结果写入dest数组。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -601,18 +675,18 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: 
 
 **返回值：**
 
-| 类型       | 说明               |
-| ---------- | ------------------ |
-| Uint8Array | 返回编码后的文本。 |
+| 类型      | 说明               |
+| --------- | ------------------ |
+| object | 返回一个对象，read表示已编码的字符数，write表示编码字符所占用的字节数。 |
 
 **示例：**
 
 ```ts
-let that = new util.TextEncoder()
-let buffer = new ArrayBuffer(4)
-let dest = new Uint8Array(buffer)
-let result = new Object()
-result = that.encodeIntoUint8Array('abcd', dest)
+let that = new util.TextEncoder();
+let buffer = new ArrayBuffer(4);
+let dest = new Uint8Array(buffer);
+let result = new Object();
+result = that.encodeIntoUint8Array('abcd', dest);
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -643,11 +717,11 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 **示例：**
 
 ```ts
-let that = new util.TextEncoder()
-let buffer = new ArrayBuffer(4)
-let dest = new Uint8Array(buffer)
-let result = new Object()
-result = that.encodeInto('abcd', dest)
+let that = new util.TextEncoder();
+let buffer = new ArrayBuffer(4);
+let dest = new Uint8Array(buffer);
+let result = new Object();
+result = that.encodeInto('abcd', dest);
 ```
 
 ### encode<sup>(deprecated)</sup>
@@ -740,7 +814,7 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 
 | 类型 | 说明 |
 | -------- | -------- |
-| object | 返回有理数类的对象。 |
+| Object | 返回RationalNumber对象。 |
 
 **示例：**
 
@@ -752,7 +826,7 @@ let rational = util.RationalNumber.createRationalFromString("3/4");
 
 compare​(another: RationalNumber): number​
 
-将当前的RationalNumber对象与给定的对象进行比较。
+将当前RationalNumber对象与目标RationalNumber对象进行比较，并返回比较结果。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1037,7 +1111,7 @@ toString​(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回Numerator/Denominator格式的字符串，例如3/5，如果当前对象的分子和分母都为0，则返回NaN。 |
+| string | 返回Numerator/Denominator格式的字符串，例如3/5，如果当前对象的分子为0，则返回0/1。如果当前对象的分母为0，则返回Infinity。如果当前对象的分子和分母都为0，则返回NaN。|
 
 **示例：**
 
@@ -1203,10 +1277,9 @@ updateCapacity(newCapacity: number): void
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number>= new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.updateCapacity(100);
 ```
-
 
 ### toString<sup>9+</sup>
 
@@ -1225,13 +1298,14 @@ toString(): string
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.get(2);
-pro.remove(20);
-let result = pro.toString();
+pro.get(3);
+console.log(pro.toString());
+// 输出结果：LRUCache[ maxSize = 64, hits = 1, misses = 1, hitRate = 50% ]
+// maxSize: 缓存区最大值 hits: 查询值匹配成功的次数 misses: 查询值匹配失败的次数 hitRate: 查询值匹配率
 ```
-
 
 ### getCapacity<sup>9+</sup>
 
@@ -1250,7 +1324,7 @@ getCapacity(): number
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 let result = pro.getCapacity();
 ```
 
@@ -1265,7 +1339,7 @@ clear(): void
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.length;
 pro.clear();
@@ -1275,22 +1349,34 @@ pro.clear();
 
 getCreateCount(): number
 
-获取createDefault()返回值的次数。
+获取创建对象的次数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
 
-| 类型   | 说明                              |
-| ------ | --------------------------------- |
-| number | 返回createDefault()返回值的次数。 |
+| 类型   | 说明                |
+| ------ | -------------------|
+| number | 返回创建对象的次数。 |
 
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
-pro.put(1,8);
-let result = pro.getCreateCount();
+// 创建新类ChildLruBuffer继承LRUCache，重写createDefault方法，返回一个非undefined的值。
+class ChildLruBuffer extends util.LRUCache<number, number> {
+  constructor() {
+    super();
+  }
+
+  createDefault(key: number): number {
+    return key;
+  }
+}
+let lru = new ChildLruBuffer();
+lru.put(2,10);
+lru.get(3);
+lru.get(5);
+let res = lru.getCreateCount();
 ```
 
 ### getMissCount<sup>9+</sup>
@@ -1310,7 +1396,7 @@ getMissCount(): number
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.get(2);
 let result = pro.getMissCount();
@@ -1320,7 +1406,7 @@ let result = pro.getMissCount();
 
 getRemovalCount(): number
 
-获取从缓冲区中逐出值的次数。
+获取缓冲区键值对回收的次数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1328,12 +1414,12 @@ getRemovalCount(): number
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 返回从缓冲区中驱逐的次数。 |
+| number | 返回缓冲区键值对回收的次数。 |
 
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.updateCapacity(2);
 pro.put(50,22);
@@ -1357,7 +1443,7 @@ getMatchCount(): number
 **示例：**
 
   ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  let pro: util.LRUCache<number, number> = new util.LRUCache();
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
@@ -1380,7 +1466,7 @@ getPutCount(): number
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.getPutCount();
 ```
@@ -1402,7 +1488,7 @@ isEmpty(): boolean
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.isEmpty();
 ```
@@ -1430,7 +1516,7 @@ get(key: K): V | undefined
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result  = pro.get(2);
 ```
@@ -1459,7 +1545,7 @@ put(key: K,value: V): V
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 let result = pro.put(2,10);
 ```
 
@@ -1480,7 +1566,7 @@ values(): V[]
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number|string,number|string> = new util.LRUCache();
+let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
 pro.put(2,10);
 pro.put(2,"anhu");
 pro.put("afaf","grfb");
@@ -1504,7 +1590,7 @@ keys(): K[]
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number>= new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.keys();
 ```
@@ -1521,18 +1607,18 @@ remove(key: K): V | undefined
 
 | 参数名 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | 是   | 要删除的密钥。 |
+| key    | K    | 是   | 要删除的键值。 |
 
 **返回值：**
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回一个空的Optional对象，如果key为null，则抛出异常。 |
+| V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回undefined，如果key为null，则抛出异常。 |
 
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number>= new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 let result = pro.remove(20);
 ```
@@ -1570,8 +1656,8 @@ class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
     }
   }
 }
-let lru : ChildLruBuffer<number,number|null>= new ChildLruBuffer();
-lru.afterRemoval(false,10,30,null);
+let lru : ChildLruBuffer<number, number>= new ChildLruBuffer();
+lru.afterRemoval(false, 10, 30, 50);
 ```
 
 ### contains<sup>9+</sup>
@@ -1597,12 +1683,12 @@ contains(key: K): boolean
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number|object,number> = new util.LRUCache();
+let pro : util.LRUCache<number | object, number> = new util.LRUCache();
 pro.put(2,10);
 class Lru{
-s : string = ""
+s : string = "";
 }
-let obj : Lru = {s : "key" }
+let obj : Lru = {s : "key" };
 let result = pro.contains(obj);
 ```
 
@@ -1629,7 +1715,7 @@ createDefault(key: K): V
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 let result = pro.createDefault(50);
 ```
 
@@ -1650,9 +1736,14 @@ entries(): IterableIterator&lt;[K,V]&gt;
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
-let result = pro.entries();
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro.entries();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
 ```
 
 ### [Symbol.iterator]<sup>9+</sup>
@@ -1660,6 +1751,10 @@ let result = pro.entries();
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 返回一个键值对形式的二维数组。
+
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1672,9 +1767,14 @@ let result = pro.entries();
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number,number> = new util.LRUCache();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
-let result = pro[Symbol.iterator]();
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro[Symbol.iterator]();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
 ```
 
 ## ScopeComparable<sup>8+</sup>
@@ -2295,7 +2395,7 @@ Base64Helper的构造函数。
 
 encodeSync(src: Uint8Array): Uint8Array
 
-通过输入参数编码后输出对应文本。
+通过输入参数编码后输出Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2303,13 +2403,13 @@ encodeSync(src: Uint8Array): Uint8Array
 
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | 是   | 编码输入Uint8数组。 |
+| src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
 
 **返回值：**
 
 | 类型       | 说明                          |
 | ---------- | ----------------------------- |
-| Uint8Array | 返回编码后新分配的Uint8数组。 |
+| Uint8Array | 返回编码后的Uint8Array对象。 |
 
 **示例：**
 
@@ -2332,7 +2432,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | 是   | 编码输入Uint8数组。 |
+| src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。|
 
 **返回值：**
@@ -2354,7 +2454,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
-通过输入参数解码后输出对应文本。
+通过输入参数解码后输出对应Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2362,14 +2462,14 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 | 参数名 | 类型                           | 必填 | 说明                          |
 | ------ | ------------------------------ | ---- | ----------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 解码输入Uint8数组或者字符串。 |
+| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 待解码Uint8Array对象或者字符串。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
 | 类型       | 说明                          |
 | ---------- | ----------------------------- |
-| Uint8Array | 返回解码后新分配的Uint8数组。 |
+| Uint8Array | 返回解码后新分配的Uint8Array对象。 |
 
 **示例：**
 
@@ -2384,7 +2484,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步编码后输出对应文本。
+通过输入参数异步编码后输出对应Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2392,13 +2492,13 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | 是   | 异步编码输入Uint8数组。 |
+| src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
 
 **返回值：**
 
 | 类型                      | 说明                              |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | 返回异步编码后新分配的Uint8数组。 |
+| Promise&lt;Uint8Array&gt; | 返回异步编码后新分配的Uint8Array对象。 |
 
 **示例：**
 
@@ -2408,7 +2508,7 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
   let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{
     for (let i = 0; i < rarray.length; i++) {
-      console.log(val[i].toString())
+      console.log(val[i].toString());
     }
   })
   ```
@@ -2426,7 +2526,7 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | 是   | 异步编码输入Uint8数组。 |
+| src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   |  从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
@@ -2450,7 +2550,7 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步解码后输出对应文本。
+通过输入参数异步解码后输出对应Uint8Array对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2458,14 +2558,14 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 | 参数名 | 类型                           | 必填 | 说明                              |
 | ------ | ------------------------------ | ---- | --------------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8数组或者字符串。 |
+| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8Array对象或者字符串。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
 | 类型                      | 说明                              |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | 返回异步解码后新分配的Uint8数组。 |
+| Promise&lt;Uint8Array&gt; | 返回异步解码后新分配的Uint8Array对象。 |
 
 **示例：**
 
@@ -2484,10 +2584,10 @@ Base64编码格式枚举。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称   | 值                     | 说明             |
-| -------- | ------------------------ | ---------------- |
-| BASIC | 0 | 表示BASIC编码格式 |
-| MIME | 1 | 表示MIME编码格式。 |
+| 名称   |值| 说明               |
+| ----- |---| ----------------- |
+| BASIC | 0 | 表示BASIC编码格式。|
+| MIME  | 1 | 表示MIME编码格式。 |
 
 
 ## types<sup>8+</sup>
@@ -2910,8 +3010,9 @@ isGeneratorObject(value: Object): boolean
 **示例：**
 
   ```ts
+  // 本接口不支持在.ets文件中使用。
   let that = new util.types();
-  function* foo() {}
+  function* foo() {};
   const generator = foo();
   let result = that.isGeneratorObject(generator);
   ```
@@ -3316,6 +3417,7 @@ isSymbolObject(value: Object): boolean
 **示例：**
 
   ```ts
+  // 本接口不支持在.ets文件中使用。
   let that = new util.types();
   const symbols = Symbol('foo');
   let result = that.isSymbolObject(Object(symbols));
@@ -3488,7 +3590,7 @@ isWeakMap(value: Object): boolean
 
   ```ts
   let that = new util.types();
-  let value : WeakMap<object,number> = new WeakMap();
+  let value : WeakMap<object, number> = new WeakMap();
   let result = that.isWeakMap(value);
   ```
 
@@ -3583,6 +3685,10 @@ isModuleNamespaceObject(value: Object): boolean
 
 检查输入的value是否是Module Namespace Object类型。
 
+> **说明：**
+>
+> 本接口不支持在.ets文件中使用
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -3600,6 +3706,7 @@ isModuleNamespaceObject(value: Object): boolean
 **示例：**
 
   ```ts
+  // 本接口不支持在.ets文件中使用。
   import url from '@ohos.url'
   let that = new util.types();
   let result = that.isModuleNamespaceObject(url);
@@ -5061,7 +5168,7 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
   let rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (let i = 0; i < rarray.length; i++) {        
-          console.log(val[i].toString())
+          console.log(val[i].toString());
       }
   })
   ```

@@ -22,7 +22,7 @@ import web_webview from '@ohos.web.webview';
 
 ## once
 
-once(type: string, headers: Callback\<void\>): void
+once(type: string, callback: Callback\<void\>): void
 
 Registers a one-time callback for web events of the specified type.
 
@@ -33,7 +33,7 @@ Registers a one-time callback for web events of the specified type.
 | Name | Type             | Mandatory| Description                 |
 | ------- | ---------------- | ---- | -------------------- |
 | type     | string          | Yes  | Web event type. The value can be **"webInited"**, indicating completion of web initialization.     |
-| headers | Callback\<void\> | Yes  | Callback to register.|
+| callback | Callback\<void\> | Yes  | Callback to register.|
 
 **Example**
 
@@ -843,7 +843,7 @@ struct WebComponent {
 
 accessForward(): boolean
 
-Checks whether moving to the next page can be performed on the current page.
+Checks whether going to the next page can be performed on the current page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -851,7 +851,7 @@ Checks whether moving to the next page can be performed on the current page.
 
 | Type   | Description                             |
 | ------- | --------------------------------- |
-| boolean | Returns **true** if moving to the next page can be performed on the current page; returns **false** otherwise.|
+| boolean | Returns **true** if going to the next page can be performed on the current page; returns **false** otherwise.|
 
 **Error codes**
 
@@ -1359,6 +1359,7 @@ class testObj {
   }
 
   test(): string {
+    console.log('ArkUI Web Component');
     return "ArkUI Web Component";
   }
 
@@ -1367,11 +1368,26 @@ class testObj {
   }
 }
 
+class webObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
+  }
+}
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: testObj = new testObj();
+  @State webTestObj: webObj = new webObj();
   build() {
     Column() {
       Button('refresh')
@@ -1387,6 +1403,7 @@ struct Index {
         .onClick(() => {
           try {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1408,12 +1425,19 @@ HTML file to be loaded:
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <p id="webDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
       let str=objName.test();
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
     }
 </script>
 </html>
@@ -1935,7 +1959,7 @@ HTML file to be loaded:
 
 zoom(factor: number): void
 
-Zooms in or out of this web page.
+Zooms in or out of this web page. This API is effective only when [zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess) is **true**.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1979,6 +2003,7 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+        .zoomAccess(true)
     }
   }
 }
@@ -2261,7 +2286,7 @@ Creates web message ports. For the complete sample code, see [onMessageEventExt]
 
 | Type                  | Description             |
 | ---------------------- | ----------------- |
-| [WebMessagePort](#webmessageport) | List of web message ports.|
+| Array\<[WebMessagePort](#webmessageport)> | List of web message ports.|
 
 **Error codes**
 
@@ -2908,8 +2933,8 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 
 | Name  | Type             | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| baseName | string                | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| baseName | string                | Yes  |  Save path of the web page. The value cannot be null.                                |
+| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the save path if the operation is successful and null otherwise.                  |
 
 **Error codes**
@@ -2970,8 +2995,8 @@ Stores this web page. This API uses a promise to return the result.
 
 | Name  | Type| Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| baseName | string   | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| baseName | string   | Yes  | Save path of the web page. The value cannot be null.                                |
+| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
 
 **Return value**
 
@@ -3510,7 +3535,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-Sets the **window.navigator.isOnLine** attribute in JavaScript.
+Sets the **window.navigator.onLine** attribute in JavaScript.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3518,7 +3543,7 @@ Sets the **window.navigator.isOnLine** attribute in JavaScript.
 
 | Name| Type   | Mandatory| Description                             |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | Yes  | Whether to enable **window.navigator.isOnLine**.|
+| enable | boolean | Yes  | Whether to enable **window.navigator.onLine**.|
 
 **Error codes**
 
@@ -3962,7 +3987,6 @@ Obtain the path of the application cache file.
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4049,7 +4073,6 @@ Obtain the path of the application cache file.
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4591,7 +4614,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-Set a custom user agent.
+Sets a custom user agent.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4628,6 +4651,120 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.setCustomUserAgent(this.userAgent);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setDownloadDelegate<sup>11+</sup>
+
+setDownloadDelegate(delegate: WebDownloadDelegate): void
+
+Sets a **WebDownloadDelegate** object for this **\<Web>** component. The delegate is used to receive the download and download progress triggered on the page.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| delegate      | [WebDownloadDelegate](#webdownloaddelegate11)  | Yes  | Delegate used to receive the download progress.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### startDownload<sup>11+</sup>
+
+startDownload(url: string): void
+
+.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| url      | string  | Yes  | Download URL.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -4692,6 +4829,127 @@ struct WebComponent {
 }
 ```
 
+### setConnectionTimeout<sup>11+</sup>
+
+static setConnectionTimeout(timeout: number): void
+
+Sets the network connection timeout. You can use the **onErrorReceive** method in the **\<Web>** component to obtain the timeout error code.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| timeout        | number  | Yes  | Socket connection timeout, in seconds.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('setConnectionTimeout')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.setConnectionTimeout(5);
+            console.log("setConnectionTimeout: 5s");
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+        .onErrorReceive((event) => {
+          if (event) {
+            console.log('getErrorInfo:' + event.error.getErrorInfo())
+            console.log('getErrorCode:' + event.error.getErrorCode())
+          }
+        })
+    }
+  }
+}
+```
+
+### postUrl<sup>11+</sup>
+
+static postUrl(url: string, postData: ArrayBuffer): void
+
+Loads the specified URL with **postData** using the POST method. If **url** is not a network URL, it will be loaded with [loadUrl](#loadurl) instead, and the **postData** parameter will be ignored.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type            | Mandatory| Description                 |
+| ------- | ---------------- | ---- | :-------------------- |
+| url     | string \| Resource | Yes  | URL to load.     |
+| postData | ArrayBuffer | No  | Data to transfer using the POST method. The request must be encoded in "application/x-www-form-urlencoded" format.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+| 17100002 | Invalid url.                                                 |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+class testObj {
+  constructor() {
+  }
+
+  test(str: string): ArrayBuffer {
+    let buf = new ArrayBuffer(str.length);
+    let buff = new Uint8Array(buf);
+
+    for (let i = 0; i < str.length; i++) {
+      buff[i] = str.charCodeAt(i);
+    }
+    return buf;
+  }
+}
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State testObjtest: testObj = new testObj();
+
+  build() {
+    Column() {
+      Button('postUrl')
+        .onClick(() => {
+          try {
+            // Convert data to the ArrayBuffer type.
+            let postData = this.testObjtest.test("Name=test&Password=test");
+            this.controller.postUrl('www.example.com', postData);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: '', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebCookieManager
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookieManager** instance.
@@ -4700,11 +4958,15 @@ Implements a **WebCookieManager** instance to manage behavior of cookies in **\<
 >
 > You must load the **\<Web>** component before calling APIs in **WebCookieManager**.
 
-### getCookie
+### getCookie<sup>(deprecated)</sup>
 
 static getCookie(url: string): string
 
 Obtains the cookie corresponding to the specified URL.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [fetchCookieSync](###fetchCookieSync11) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4758,11 +5020,199 @@ struct WebComponent {
 }
 ```
 
-### setCookie
+### fetchCookieSync<sup>11+</sup>
+
+static fetchCookieSync(url: string): string
+
+Obtains the cookie corresponding to the specified URL.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Cookie value corresponding to the specified URL.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookieSync')
+        .onClick(() => {
+          try {
+            let value = web_webview.WebCookieManager.fetchCookieSync('https://www.example.com');
+            console.log("fetchCookieSync cookie = " + value);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### fetchCookie<sup>11+</sup>
+
+static fetchCookie(url: string, callback: AsyncCallback\<string>): void
+
+Obtains the cookie value of a specified URL. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+| callback | AsyncCallback\<string> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
+| 17100002 | Invalid url.                                           |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.fetchCookie('https://www.example.com', (error, cookie) => {
+              if (error) {
+                console.log('error: ' + JSON.stringify(error));
+                return;
+              }
+              if (cookie) {
+                console.log('fetchCookie cookie = ' + cookie);
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### fetchCookie<sup>11+</sup>
+
+static fetchCookie(url: string): Promise\<string>
+
+Obtains the cookie value of a specified URL. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Promise\<string> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 401 | Invalid input parameter.                                           |
+| 17100002 | Invalid url.                                           |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('fetchCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.fetchCookie('https://www.example.com')
+              .then(cookie => {
+                console.log("fetchCookie cookie = " + cookie);
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.log('error: ' + JSON.stringify(error));
+              })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+
+### setCookie<sup>(deprecated)</sup>
 
 static setCookie(url: string, value: string): void
 
 Sets a cookie for the specified URL.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [configCookieSync](###configCookieSync11+) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4800,6 +5250,184 @@ struct WebComponent {
         .onClick(() => {
           try {
             web_webview.WebCookieManager.setCookie('https://www.example.com', 'a=b');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookieSync<sup>11+</sup>
+
+static configCookieSync(url: string, value: string): void
+
+Sets a cookie for the specified URL.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
+| value  | string | Yes  | Cookie value to set.     |
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookieSync')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'a=b');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookie<sup>11+</sup>
+
+static configCookie(url: string, value: string, callback: AsyncCallback\<void>): void
+
+Sets the value of a single cookie for a specified URL. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
+| value  | string | Yes  | Cookie value to set.     |
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                              |
+| -------- | ------------------------------------------------------ |
+| 401      | Invalid input parameter.                               |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookie('https://www.example.com', "a=b", (error) => {
+              if (error) {
+                console.log("error: " + JSON.stringify(error));
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### configCookie<sup>11+</sup>
+
+static configCookie(url: string, value: string): Promise\<void>
+
+Sets the value of a single cookie for a specified URL. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                     |
+| ------ | ------ | ---- | :------------------------ |
+| url    | string | Yes  | URL of the cookie to set. A complete URL is recommended.|
+| value  | string | Yes  | Cookie value to set.     |
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Promise\<string> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                               |
+| -------- | ------------------------------------------------------ |
+| 401      | Invalid input parameter.                               |
+| 17100002 | Invalid url.                                           |
+| 17100005 | Invalid cookie value.                                  |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('configCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.configCookie('https://www.example.com', 'a=b')
+              .then(() => {
+                console.log('configCookie success!');
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.log('error: ' + JSON.stringify(error));
+              })
           } catch (error) {
             let e:business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -5107,11 +5735,15 @@ struct WebComponent {
 }
 ```
 
-### deleteEntireCookie
+### deleteEntireCookie<sup>(deprecated)</sup>
 
 static deleteEntireCookie(): void
 
 Deletes all cookies.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [clearAllCookiesSync](###clearAllCookiesSync11+) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5138,11 +5770,142 @@ struct WebComponent {
 }
 ```
 
-### deleteSessionCookie
+### clearAllCookiesSync<sup>11+</sup>
+
+static clearAllCookiesSync(): void
+
+Deletes all cookies.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearAllCookiesSync')
+        .onClick(() => {
+          web_webview.WebCookieManager.clearAllCookiesSync();
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearAllCookies<sup>11+</sup>
+
+static clearAllCookies(callback: AsyncCallback\<void>): void
+
+Clears all cookies. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                              |
+| -------- | ---------------------- | ---- | :------------------------------------------------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearAllCookies')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearAllCookies((error) => {
+              if (error) {
+                console.log("error: " + error);
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearAllCookies<sup>11+</sup>
+
+static clearAllCookies(): Promise\<void>
+
+Clears all cookies. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type            | Description                                     |
+| ---------------- | ----------------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearAllCookies')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearAllCookies()
+              .then(() => {
+                console.log("clearAllCookies success!");
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.error("error: " + error);
+              });
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### deleteSessionCookie<sup>(deprecated)</sup>
 
 static deleteSessionCookie(): void
 
 Deletes all session cookies.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [clearSessionCookiesync](###clearSessionCookieSync11+) instead.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5162,6 +5925,133 @@ struct WebComponent {
       Button('deleteSessionCookie')
         .onClick(() => {
           web_webview.WebCookieManager.deleteSessionCookie();
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearSessionCookieSync<sup>11+</sup>
+
+static clearSessionCookieSync(): void
+
+Deletes all session cookies.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearSessionCookieSync')
+        .onClick(() => {
+          web_webview.WebCookieManager.clearSessionCookieSync();
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearSessionCookie<sup>11+</sup>
+
+static clearSessionCookie(callback: AsyncCallback\<void>): void
+
+Clears all session cookies. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                              |
+| -------- | ---------------------- | ---- | :------------------------------------------------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearSessionCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearSessionCookie((error) => {
+              if (error) {
+                console.log("error: " + error);
+              }
+            })
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### clearSessionCookie<sup>11+</sup>
+
+static clearSessionCookie(): Promise\<void>
+
+Clears all session cookies. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type            | Description                                     |
+| ---------------- | ----------------------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('clearSessionCookie')
+        .onClick(() => {
+          try {
+            web_webview.WebCookieManager.clearSessionCookie()
+              .then(() => {
+                console.log("clearSessionCookie success!");
+              })
+              .catch((error:business_error.BusinessError) => {
+                console.error("error: " + error);
+              });
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
         })
       Web({ src: 'www.example.com', controller: this.controller })
     }
@@ -6878,3 +7768,2040 @@ Describes the mode in which the **\<Web>** component uses HTTPDNS.
 | OFF                                  | 0 |HTTPDNS is not used. This value can be used to revoke the previously used HTTPDNS configuration.|
 | AUTO                                 | 1 |HTTPDNS is used in automatic mode. When the specified HTTPDNS server is unavailable for resolution, the component will fall back to the system DNS server.|
 | SECURE_ONLY                          | 2 |The specified HTTPDNS server is forcibly used for DNS resolution.|
+
+## WebDownloadState<sup>11+</sup>
+
+Describes the state of a download task.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| IN_PROGRESS                                  | 0 |The download task is in progress.|
+| COMPLETED                                 | 1 |The download task is completed.|
+| CANCELED                          | 2 |The download task has been canceled.|
+| INTERRUPTED                          | 3 |The download task is interrupted.|
+| PENDING                          | 4 |The download task is pending.|
+| PAUSED                          | 5 |The download task is paused.|
+| UNKNOWN                          | 6 |The state of the download task is unknown.|
+
+## WebDownloadErrorCode<sup>11+</sup>
+
+Describes the download task error code.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name         | Value| Description                                     |
+| ------------- | -- |----------------------------------------- |
+| ERROR_UNKNOWN                                  | 0 |Unknown error.|
+| FILE_FAILED | 1 |  Failed to operate the file.|
+| FILE_ACCESS_DENIED | 2 | No permission to access the file.|
+| FILE_NO_SPACE | 3 | The disk space is insufficient.|
+| FILE_NAME_TOO_LONG | 5 | The file name is too long.|
+| FILE_TOO_LARGE | 6 | The file is too large.|
+| FILE_TRANSIENT_ERROR | 10 |  Some temporary issues occur, such as insufficient memory, files in use, and too many files open at the same time.|
+| FILE_BLOCKED | 11 |  Access to the file is blocked due to certain local policies.|
+| FILE_TOO_SHORT | 13 |  The file to resume downloading is not long enough. It may not exist.|
+| FILE_HASH_MISMATCH | 14 |  Hash mismatch.|
+| FILE_SAME_AS_SOURCE | 15 |  The file already exists.|
+| NETWORK_FAILED | 20 |  Common network error.|
+| NETWORK_TIMEOUT | 21 | Network connection timeout.|
+| NETWORK_DISCONNECTED | 22 | Network disconnected.|
+| NETWORK_SERVER_DOWN | 23 |  The server is shut down.|
+| NETWORK_INVALID_REQUEST | 24 |  Invalid network request. The request may be redirected to an unsupported scheme or an invalid URL.|
+| SERVER_FAILED | 30 | The server returns a general error.|
+| SERVER_NO_RANGE | 31 |  The server does not support the range request.|
+| SERVER_BAD_CONTENT | 33 |   The server does not have the requested data.|
+| SERVER_UNAUTHORIZED | 34 |  The file cannot be downloaded from the server.|
+| SERVER_CERT_PROBLEM | 35 |  The server certificate is incorrect.|
+| SERVER_FORBIDDEN | 36 |  The access to the server is forbidden.|
+| SERVER_UNREACHABLE | 37 |  The server cannot be accessed.|
+| SERVER_CONTENT_LENGTH_MISMATCH | 38 |  The received data does not match the content length.|
+| SERVER_CROSS_ORIGIN_REDIRECT | 39 | An unexpected cross-site redirection occurs.|
+| USER_CANCELED | 40 | The user cancels the download.|
+| USER_SHUTDOWN | 41 | The user closes the application.|
+| CRASH | 50 | The application crashes.|
+
+## WebDownloadItem<sup>11+</sup>
+
+ Implements a **WebDownloadItem** object. You can use this object to perform operations on the corresponding download task.
+
+> **NOTE**
+>
+> During the download, the download process is notified to the user through **WebDownloadDelegate**. The user can operate the download task through the **WebDownloadItem** parameter.
+
+### getGuid<sup>11+</sup>
+
+getGuid(): string
+
+Obtains the unique ID of this download task.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Unique ID of the download task.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getCurrentSpeed<sup>11+</sup>
+
+getCurrentSpeed(): number
+
+Obtains the download speed, in bytes per second.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Download speed, in bytes per second.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update current speed: " + webDownloadItem.getCurrentSpeed());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getPercentComplete<sup>11+</sup>
+
+getPercentComplete(): number
+
+Obtains the download progress. The value **100** indicates that the download is complete.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Download progress. The value **100** indicates that the download is complete.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getTotalBytes<sup>11+</sup>
+
+getTotalBytes(): number
+
+Obtains the total length of the file to be downloaded.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Total length of the file to be downloaded.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update total bytes: " + webDownloadItem.getTotalBytes());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getState<sup>11+</sup>
+
+getState(): WebDownloadState
+
+Obtains the download state.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| [WebDownloadState](#webdownloadstate11) | Download state.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update download state: " + webDownloadItem.getState());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getLastErrorCode<sup>11+</sup>
+
+getLastErrorCode(): number
+
+Obtains the download error code.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Error code returned when the download error occurs.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              console.log("download error code: " + webDownloadItem.getLastErrorCode());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getMethod<sup>11+</sup>
+
+getMethod(): string
+
+Obtains the request mode of this download task.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Request mode of the download task.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("Download will start. Method:" + webDownloadItem.getMethod());
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getMimeType<sup>11+</sup>
+
+getMimeType(): string
+
+Obtains the MIME type of this download task (for example, a sound file may be marked as audio/ogg, and an image file may be image/png).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | MIME type (for example, audio/ogg for a sound file, and image/png for an image file).|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("Download will start. MIME type:" + webDownloadItem.getMimeType());
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getUrl<sup>11+</sup>
+
+getUrl(): string
+
+Obtains the download request URL.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Download request URL.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download, url:" + webDownloadItem.getUrl());
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getSuggestedFileName<sup>11+</sup>
+
+getSuggestedFileName(): string
+
+Obtains the suggested file name for this download task.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Suggested file name.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download, suggest name:" + webDownloadItem.getSuggestedFileName());
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getReceivedBytes<sup>11+</sup>
+
+getReceivedBytes(): number
+
+Obtains the number of received bytes.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| number | Number of received bytes.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              console.log("download update received bytes: " + webDownloadItem.getReceivedBytes());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### getFullPath<sup>11+</sup>
+
+getFullPath(): string
+
+Obtains the full path of the downloaded file on the disk.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Full path of the downloaded file on the disk.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+              console.log("download finish full path: " + webDownloadItem.getFullPath());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### serialize<sup>11+</sup>
+
+serialize(): Uint8Array
+
+Serializes the failed download to a byte array.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Uint8Array | Byte array into which the failed download is serialized.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### deserialize<sup>11+</sup>
+
+static deserialize(serializedData: Uint8Array): WebDownloadItem
+
+Deserializes the serialized byte array into a **WebDownloadItem** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| Uint8Array | Byte array into which the download is serialized.|
+
+**Return value**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| [WebDownloadItem](#webdownloaditem11) | **WebDownloadItem** object.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### start<sup>11+</sup>
+
+start(downloadPath: string): void
+
+Starts a download. This API must be used in the **onBeforeDownload** callback of **WebDownloadDelegate**. If it is not called in the callback, the download task remains in the PENDING state.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Type  | Description                     |
+| ------ | ------------------------- |
+| string | Path (including the file name) of the file to download.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### cancel<sup>11+</sup>
+
+cancel(): void
+
+Cancels a download task.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### pause<sup>11+</sup>
+
+pause(): void
+
+Pauses a download task.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100019 | The download has not been started yet. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+        Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### resume<sup>11+</sup>
+
+resume(): void
+
+Resumes a download task.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100016 | The download is not paused. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+## WebDownloadDelegate<sup>11+</sup>
+
+ Implements a **WebDownloadDelegate** class. You can use the callbacks of this class to notify users of the download state.
+
+### onBeforeDownload<sup>11+</sup>
+
+onBeforeDownload(): void
+
+Invoked to notify users before the download starts. **WebDownloadItem.start("xxx")** must be called in this API, with a download path provided. Otherwise, the download remains in the PENDING state.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### onDownloadUpdated<sup>11+</sup>
+
+onDownloadUpdated(): void
+
+Invoked when the download progress is updated.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### onDownloadFinish<sup>11+</sup>
+
+onDownloadFinish(): void
+
+Invoked when the download is complete.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### onDownloadFailed<sup>11+</sup>
+
+onDownloadFailed(callback: Callback\<WebDownloadItem>): void
+
+Invoked when the download fails.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+## WebDownloadManager<sup>11+</sup>
+
+Implements a **WebDownloadManager** class. You can use the APIs of this class to resume failed download tasks.
+
+### setDownloadDelegate<sup>11+</sup>
+
+static setDownloadDelegate(delegate: WebDownloadDelegate): void
+
+Sets the delegate used to receive download progress triggered from **WebDownloadManager**.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| delegate      | [WebDownloadDelegate](#webdownloaddelegate11)  | Yes  | Delegate used to receive the download progress.|
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### resumeDownload<sup>11+</sup>
+
+static resumeDownload(webDownloadItem: WebDownloadItem): void
+
+Resumes a download task.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type   |  Mandatory | Description                                           |
+| ---------------| ------- | ---- | ------------- |
+| webDownloadItem      | [WebDownloadItem](#webdownloaditem11)  | Yes  | Download task to resume.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100018 | No WebDownloadDelegate has been set yet. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  delegate: web_webview.WebDownloadDelegate = new web_webview.WebDownloadDelegate();
+  failedDownload: Uint8Array;
+  download: WebDownloadItem;
+
+  build() {
+    Column() {
+      Button('setDownloadDelegate')
+        .onClick(() => {
+          try {
+            this.delegate.onBeforeDownload((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("will start a download.");
+              // Pass in a download path and start the download.
+              webDownloadItem.start("xxxxxxxx");
+            })
+            this.delegate.onDownloadUpdated((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download update percent complete: " + webDownloadItem.getPercentComplete());
+              this.download = webDownloadItem;
+            })
+            this.delegate.onDownloadFailed((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download failed guid: " + webDownloadItem.getGuid());
+              // Serialize the failed download to a byte array.
+              failedDownload = webDownloadItem.serialize();
+            })
+            this.delegate.onDownloadFinish((webDownloadItem: web_webview.WebDownloadItem) => {
+              console.log("download finish guid: " + webDownloadItem.getGuid());
+            })
+            this.controller.setDownloadDelegate(this.delegate);
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('startDownload')
+        .onClick(() => {
+          try {
+            this.controller.startDownload('wwww.example.com');
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resumeDownload')
+        .onClick(() => {
+          try {
+            web_webview.WebDownloadManager.resumeDownload(web_webview.WebDownloadItem.deserialize(this.failedDownload));
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('cancel')
+        .onClick(() => {
+          try {
+            this.download.cancel();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('pause')
+        .onClick(() => {
+          try {
+            this.download.pause();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('resume')
+        .onClick(() => {
+          try {
+            this.download.resume();
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```

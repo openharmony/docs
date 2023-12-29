@@ -1,4 +1,4 @@
-# OpenHarmony Application Animation Practice
+# Application Animation Practice
 
 ## Introduction
 Animations add a lively, delightful touch to your application. Yet, they must be handled carefully to avoid performance issues. This topic describes how to make smart use of animations in applications, and examines how less frequent layout and property changes and avoidance of redundant re-renders can reduce performance overhead.

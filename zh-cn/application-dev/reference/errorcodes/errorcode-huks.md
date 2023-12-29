@@ -237,3 +237,17 @@ Failed to obtain the ``${messageInfo}`` information via UserIAM.
 **处理步骤**
 
 开发者等待一段时间后尝试再次触发调用。
+
+## 12000016 需要锁屏密码但未设置
+
+**错误信息**
+
+Device password is required but not set.
+
+**可能原因**
+
+业务限制了密钥只有在设置了锁屏密码时才可用，但未设置锁屏密码。
+
+**处理步骤**
+
+设置锁屏密码，或更换密钥的使用限制。

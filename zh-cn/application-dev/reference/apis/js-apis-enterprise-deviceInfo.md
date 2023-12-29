@@ -114,7 +114,7 @@ deviceInfo.getDeviceSerial(wantTemp).then((result) => {
 
 ## deviceInfo.getDisplayVersion
 
-getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
+getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 指定设备管理应用获取设备版本号，使用callback异步回调。
 

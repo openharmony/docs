@@ -1,7 +1,7 @@
 # Stage模型应用程序包结构
 
 
-基于[Stage模型](application-configuration-file-overview-stage.md)开发的应用，经编译打包后，其应用程序包结构如下图“应用程序包结构（Stage模型）”所示。开发者需要熟悉应用程序包结构相关的基本概念。
+在基于[Stage模型](application-configuration-file-overview-stage.md)开发应用之前，开发者需要熟悉开发态的应用程序结构、以及编译打包后的应用程序包结构。
 
 
 - 在开发态，一个应用包含一个或者多个Module，可以在[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio/)工程中[创建一个或者多个Module](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/add_new_module-0000001053223741-V3)。Module是应用/服务的基本功能单元，包含了源代码、资源文件、第三方库及应用/服务配置文件，每一个Module都可以独立进行编译和运行。Module分为“Ability”和“Library”两种类型，“Ability”类型的Module对应于编译后的HAP（Harmony Ability Package）；“Library”类型的Module对应于[HAR](har-package.md)（Harmony Archive），或者[HSP](shared-guide.md)（Harmony Shared Package）。
@@ -23,8 +23,8 @@
   - libs目录用于存放库文件。库文件是应用依赖的第三方代码（.so二进制文件）。
   - resources目录用于存放应用的资源文件（字符串、图片等），便于开发者使用和维护，详见[资源文件的使用](resource-categories-and-access.md)。
   - resources.index是资源索引表，由IDE编译工程时生成。
-  - module.json是HAP的配置文件，内容由工程配置中的module.json5和app.json5组成，该文件是HAP中必不可少的文件。IDE会自动生成一部分默认配置，开发者按需修改其中的配置。详细字段请参见[应用配置文件](application-configuration-file-overview-stage.md)。
-  - pack.info是Bundle中用于描述每个HAP属性的文件，例如app中的bundleName和versionCode信息、module中的name、type和abilities等信息，由IDE工具生成Bundle包时自动生成。
+  - module.json是HAP的配置文件，是HAP中非常重要的组成部分，内容由工程配置中的module.json5和app.json5组成。IDE会自动生成一部分默认配置，开发者按需修改其中的配置。详细字段请参见[应用配置文件](application-configuration-file-overview-stage.md)。
+  - pack.info是Bundle中用于描述每个HAP属性的文件，例如app中的bundleName和versionCode信息、module中的name、type和abilities等信息，由IDE工具构建Bundle包时自动生成。
 
    **图2** 应用程序包结构（Stage模型）  
      ![app-pack-stage](figures/app-pack-stage.png)

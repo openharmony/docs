@@ -11,7 +11,7 @@ In API references, the earliest versions of APIs and components are specified in
 
 ## Application Model Description
 
-Along its evolution, OpenHarmony has provided two application models: FA model and stage model. For their differences, see [Interpretation of the Application Model](../../application-models/application-model-description.md).
+Along its evolution, the system has provided two application models: FA model and stage model. For their differences, see [Interpretation of the Application Model](../../application-models/application-model-description.md).
 
 - If all the APIs of a module support only one model, the following description is provided at the beginning of the reference document: "The APIs of this module can be used only in the FA model." or "The APIs of this module can be used only in the stage model."
 - If certain APIs of a module support only one model, the following description is provided individually for these APIs: "This API can be used only in the FA model." or "This API can be used only in the stage model."

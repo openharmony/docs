@@ -20,7 +20,7 @@ Canvas(context?: CanvasRenderingContext2D)
 
 | 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                         |
 | ------- | ---------------------------------------- | ---- | ---- | ---------------------------- |
-| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 否    | -    | 见CanvasRenderingContext2D对象。 |
+| context | [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md) | 否    | -    | 不支持多个Canvas共用一个CanvasRenderingContext2D对象，具体描述见CanvasRenderingContext2D对象。 |
 
 ## 属性
 

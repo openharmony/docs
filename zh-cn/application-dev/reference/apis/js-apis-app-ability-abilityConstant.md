@@ -41,6 +41,7 @@ Ability初次启动原因，该类型为枚举，可配合[Ability](js-apis-app-
 | APP_RECOVERY           | 4    | 设置应用恢复后，应用故障时自动恢复启动ability。 |
 | SHARE<sup>10+</sup>           | 5    | 通过原子化服务分享启动ability。 |
 | AUTO_STARTUP<sup>11+</sup>           | 8    | 通过设置开机自启动来启动Ability。 |
+| INSIGHT_INTENT<sup>11+</sup>           | 9    | 通过洞察意图来启动Ability。 |
 
 **示例：**
 
@@ -83,7 +84,7 @@ import Want from '@ohos.app.ability.Want';
 
 class MyAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.ABILITY_NOT_RESPONDING) {
+        if (launchParam.lastExitReason === AbilityConstant.LastExitReason.APP_FREEZE) {
             console.log('The ability has exit last because the ability was not responding.');
         }
     }

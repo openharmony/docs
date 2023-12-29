@@ -2349,7 +2349,7 @@ function setExposureMode(captureSession: camera.CaptureSession): void {
 
 getMeteringPoint(): Point
 
-查询曝光区域中心点。（该接口目前为预留，将在3.2版本开放）
+查询曝光区域中心点。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3005,7 +3005,7 @@ getActiveVideoStabilizationMode(): VideoStabilizationMode
 
 | 类型        | 说明                          |
 | ---------- | ----------------------------- |
-| VideoStabilizationMode    | 视频防抖是否正在使用。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| [VideoStabilizationMode](#videostabilizationmode)    | 视频防抖是否正在使用。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
 
 **错误码：**
 

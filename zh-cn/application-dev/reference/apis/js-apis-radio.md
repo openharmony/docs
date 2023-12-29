@@ -15,7 +15,7 @@ import radio from '@ohos.telephony.radio';
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>\): void
+getRadioTech\(slotId: number, callback: AsyncCallback<[NetworkRadioTech](#networkradiotech11)\>\): void
 
 获取当前接入的CS域和PS域无线接入技术。使用callback异步回调。
 
@@ -28,7 +28,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech:[RadioTechnology](#radiotechnology)}\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[NetworkRadioTech](#networkradiotech11)\> | 是   | 回调函数。返回当前接入的CS域和PS域无线接入技术。 |
 
 **错误码：**
 
@@ -49,19 +49,19 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-class Tech {
-    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-}
-radio.getRadioTech(slotId, (err: BusinessError, data: Tech) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) => {
+    if (err) {
+        console.error(`getRadioTech failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getRadioTech success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioTech: RadioTechnology\}\>
+getRadioTech\(slotId: number\): Promise<\[NetworkRadioTech](#networkradiotech11)\>
 
 获取当前接入的CS域和PS域无线接入技术。使用Promise异步回调。
 
@@ -79,7 +79,7 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 
 | 类型                                                         | 说明                                            |
 | ------------------------------------------------------------ | ----------------------------------------------- |
-| Promise<{psRadioTech: [RadioTechnology](#radiotechnology), csRadioTech: [RadioTechnology](#radiotechnology)}> | 以Promise形式返回获取当前接入的CS域和PS域技术。 |
+| Promise\<[NetworkRadioTech](#networkradiotech11)\> | 以Promise形式返回当前接入的CS域和PS域技术。 |
 
 **错误码：**
 
@@ -100,14 +100,10 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
-class Tech {
-    psRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-    csRadioTech: radio.RadioTechnology = radio.RadioTechnology.RADIO_TECHNOLOGY_UNKNOWN;
-}
-radio.getRadioTech(slotId).then((data: Tech) => {
-    console.log(`getRadioTech success, data->${JSON.stringify(data)}`);
+radio.getRadioTech(slotId).then((data: radio.NetworkRadioTech) => {
+    console.log(`getRadioTech success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getRadioTech failed, err->${JSON.stringify(err)}`);
+    console.error(`getRadioTech failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -126,7 +122,7 @@ getNetworkState\(callback: AsyncCallback\<NetworkState\>\): void
 
 | 参数名   | 类型                                           | 必填 | 说明       |
 | -------- | ---------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。返回当前网络状态。 |
 
 **错误码：**
 
@@ -147,7 +143,11 @@ getNetworkState\(callback: AsyncCallback\<NetworkState\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.getNetworkState((err: BusinessError, data: radio.NetworkState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkState failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkState success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -167,7 +167,7 @@ getNetworkState\(slotId: number, callback: AsyncCallback\<NetworkState\>\): void
 | 参数名   | 类型                                           | 必填 | 说明                                   |
 | -------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[NetworkState](#networkstate)\> | 是   | 回调函数。返回当前网络状态。                             |
 
 **错误码：**
 
@@ -189,7 +189,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getNetworkState(slotId, (err: BusinessError, data: radio.NetworkState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkState failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkState success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -238,7 +242,7 @@ let slotId: number = 0;
 radio.getNetworkState(slotId).then((data: radio.NetworkState) => {
     console.log(`getNetworkState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getNetworkState failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNetworkState failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -256,7 +260,7 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback\<NetworkSelecti
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[NetworkSelectionMode](#networkselectionmode)\> | 是   | 回调函数。返回当前选网模式。                             |
 
 **错误码：**
 
@@ -277,7 +281,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getNetworkSelectionMode(slotId, (err: BusinessError, data: radio.NetworkSelectionMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkSelectionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkSelectionMode success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -323,7 +331,7 @@ let slotId: number = 0;
 radio.getNetworkSelectionMode(slotId).then((data: radio.NetworkSelectionMode) => {
     console.log(`getNetworkSelectionMode success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -362,7 +370,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getISOCountryCodeForNetwork(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getISOCountryCodeForNetwork failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getISOCountryCodeForNetwork success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -408,7 +420,7 @@ let slotId: number = 0;
 radio.getISOCountryCodeForNetwork(slotId).then((data: string) => {
     console.log(`getISOCountryCodeForNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getISOCountryCodeForNetwork failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getISOCountryCodeForNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -456,7 +468,7 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number\> | 是   | 回调函数 |
+| callback | AsyncCallback\<number\> | 是   | 回调函数。返回主卡所在卡槽的索引号。 |
 
 **错误码：**
 
@@ -464,6 +476,7 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -475,7 +488,11 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.getPrimarySlotId((err: BusinessError, data: number) => {
-   console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getPrimarySlotId failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getPrimarySlotId success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -551,7 +568,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getSignalInformation(slotId, (err: BusinessError, data: Array<radio.SignalInformation>) => {
-   console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getSignalInformation failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getSignalInformation success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -755,7 +776,7 @@ isRadioOn\(callback: AsyncCallback\<boolean\>\): void
 
 | 参数名   | 类型                     | 必填 | 说明                                                    |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。返回主卡的Radio状态。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
 **错误码：**
 
@@ -776,7 +797,11 @@ isRadioOn\(callback: AsyncCallback\<boolean\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.isRadioOn((err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isRadioOn failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`isRadioOn success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -796,7 +821,7 @@ isRadioOn\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                     | 必填 | 说明                                                    |
 | -------- | ------------------------ | ---- | ------------------------------------------------------- |
 | slotId   | number                   | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                  |
-| callback | AsyncCallback\<boolean\> | 是   | 回调函数。<br/>- true：Radio打开<br/>- false：Radio关闭 |
+| callback | AsyncCallback\<boolean\> | 是   | 回调函数。返回指定卡槽的Radio状态。<br/>- true：Radio打开<br/>- false：Radio关闭 |
 
 **错误码：**
 
@@ -818,7 +843,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.isRadioOn(slotId, (err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`isRadioOn failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`isRadioOn success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -906,7 +935,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getOperatorName(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getOperatorName failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getOperatorName success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -952,7 +985,7 @@ let slotId: number = 0;
 radio.getOperatorName(slotId).then((data: string) => {
     console.log(`getOperatorName success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getOperatorName failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1004,7 +1037,7 @@ setPrimarySlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                  | 必填 | 说明                                   |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。返回设置主卡的执行结果。        |
 
 **错误码：**
 
@@ -1028,7 +1061,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.setPrimarySlotId(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setPrimarySlotId failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setPrimarySlotId success.`);
 });
 ```
 
@@ -1081,7 +1118,7 @@ let slotId: number = 0;
 radio.setPrimarySlotId(slotId).then(() => {
     console.log(`setPrimarySlotId success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setPrimarySlotId failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1089,7 +1126,7 @@ radio.setPrimarySlotId(slotId).then(() => {
 
 getIMEI\(callback: AsyncCallback\<string\>\): void
 
-获取设备的指定卡槽的IMEI。使用callback异步回调。
+获取设备的主卡的IMEI。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1101,7 +1138,7 @@ getIMEI\(callback: AsyncCallback\<string\>\): void
 
 | 参数名   | 类型                    | 必填 | 说明                                       |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备主卡的IMEI。如果IMEI不存在，则返回空字符串。 |
 
 **错误码：**
 
@@ -1123,7 +1160,11 @@ getIMEI\(callback: AsyncCallback\<string\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.getIMEI((err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getIMEI failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getIMEI success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1145,7 +1186,7 @@ getIMEI\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                       |
 | -------- | ----------------------- | ---- | ------------------------------------------ |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
-| callback | AsyncCallback\<string\> | 是   | 回调函数，如果IMEI不存在，则返回空字符串。 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备指定卡槽的IMEI。如果IMEI不存在，则返回空字符串。 |
 
 **错误码：**
 
@@ -1168,7 +1209,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getIMEI(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getIMEI failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getIMEI success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1195,7 +1240,7 @@ getIMEI\(slotId?: number\): Promise\<string\>
 
 | 类型              | 说明                                       |
 | ----------------- | ------------------------------------------ |
-| Promise\<string\> | 以Promise形式异步返回IMEI；如果IMEI不存在，则返回空字符串。 |
+| Promise\<string\> | 以Promise形式异步返回设备指定卡槽的IMEI。如果IMEI不存在，则返回空字符串。 |
 
 **错误码：**
 
@@ -1240,7 +1285,7 @@ getMEID\(callback: AsyncCallback\<string\>\): void
 
 | 参数名   | 类型                    | 必填 | 说明       |
 | -------- | ----------------------- | ---- | ---------- |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备的指定卡槽的MEID。 |
 
 **错误码：**
 
@@ -1262,7 +1307,11 @@ getMEID\(callback: AsyncCallback\<string\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.getMEID((err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getMEID failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getMEID success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1284,7 +1333,7 @@ getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备的指定卡槽的MEID。      |
 
 **错误码：**
 
@@ -1307,7 +1356,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getMEID(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getMEID failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getMEID success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1367,7 +1420,7 @@ radio.getMEID(slotId).then((data: string) => {
 
 getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
-获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
+获取设备主卡的唯一设备ID。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1379,7 +1432,7 @@ getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
 | 参数名   | 类型                    | 必填 | 说明       |
 | -------- | ----------------------- | ---- | ---------- |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备主卡的唯一设备ID。 |
 
 **错误码：**
 
@@ -1401,7 +1454,11 @@ getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.getUniqueDeviceId((err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getUniqueDeviceId failed, callback: err->${JSON.stringify(err)}}`);
+        return;
+    }
+    console.log(`getUniqueDeviceId success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1423,7 +1480,7 @@ getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | -------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回指定卡槽的唯一设备ID。      |
 
 **错误码：**
 
@@ -1446,7 +1503,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getUniqueDeviceId(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getUniqueDeviceId failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getUniqueDeviceId success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1518,7 +1579,7 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。返回更新小区位置请求的结果。 |
 
 **错误码：**
 
@@ -1540,7 +1601,11 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.sendUpdateCellLocationRequest((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`sendUpdateCellLocationRequest failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`sendUpdateCellLocationRequest success.`);
 });
 ```
 
@@ -1561,7 +1626,7 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback\<void\>\)
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
 | slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。返回更新小区位置请求的结果。 |
 
 **错误码：**
 
@@ -1584,7 +1649,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.sendUpdateCellLocationRequest(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`sendUpdateCellLocationRequest failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`sendUpdateCellLocationRequest success.`);
 });
 ```
 
@@ -1610,7 +1679,7 @@ sendUpdateCellLocationRequest\(slotId?: number\): Promise\<void\>
 
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
-| Promise\<void\> | 以Promise形式返回结果。 |
+| Promise\<void\> | 以Promise形式返回更新小区位置请求的结果。 |
 
 **错误码：**
 
@@ -1635,7 +1704,7 @@ let slotId: number = 0;
 radio.sendUpdateCellLocationRequest(slotId).then(() => {
     console.log(`sendUpdateCellLocationRequest success.`);
 }).catch((err: BusinessError) => {
-    console.log(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`sendUpdateCellLocationRequest failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1655,7 +1724,7 @@ getCellInformation\(callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。返回小区信息。 |
 
 **错误码：**
 
@@ -1677,7 +1746,11 @@ getCellInformation\(callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.getCellInformation((err: BusinessError, data: Array<radio.CellInformation>) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getCellInformation failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getCellInformation success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1699,7 +1772,7 @@ getCellInformation\(slotId: number, callback: AsyncCallback\<Array\<CellInformat
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。               |
+| callback | AsyncCallback\<Array<[CellInformation](#cellinformation8)\>\> | 是   | 回调函数。返回小区信息。 |
 
 **错误码：**
 
@@ -1722,7 +1795,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getCellInformation(slotId, (err: BusinessError, data: Array<radio.CellInformation>) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getCellInformation failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getCellInformation success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1749,7 +1826,7 @@ getCellInformation\(slotId?: number\): Promise\<Array\<CellInformation\>\>
 
 | 类型                                                    | 说明                    |
 | ------------------------------------------------------- | ----------------------- |
-| Promise\<Array<[CellInformation](#cellinformation8)\>\> | 以Promise形式返回结果。 |
+| Promise\<Array<[CellInformation](#cellinformation8)\>\> | 以Promise形式返回小区信息结果。 |
 
 **错误码：**
 
@@ -1795,7 +1872,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 | 参数名   | 类型                                                        | 必填 | 说明               |
 | -------- | ----------------------------------------------------------- | ---- | ------------------ |
 | options  | [NetworkSelectionModeOptions](#networkselectionmodeoptions) | 是   | 网络选择模式选项。 |
-| callback | AsyncCallback\<void\>                                       | 是   | 回调函数。         |
+| callback | AsyncCallback\<void\>                                       | 是   | 回调函数。返回设置网络选择模式的结果。     |
 
 **错误码：**
 
@@ -1829,7 +1906,11 @@ let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
     resumeSelection: true
 }
 radio.setNetworkSelectionMode(networkSelectionModeOptions, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setNetworkSelectionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setNetworkSelectionMode success.`);
 });
 ```
 
@@ -1855,7 +1936,7 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise\<void\>
 
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
-| Promise\<void\> | 以Promise形式返回结果。 |
+| Promise\<void\> | 以Promise形式返回设置网络选择模式的结果。 |
 
 **错误码：**
 
@@ -1891,7 +1972,7 @@ let networkSelectionModeOptions: radio.NetworkSelectionModeOptions = {
 radio.setNetworkSelectionMode(networkSelectionModeOptions).then(() => {
     console.log(`setNetworkSelectionMode success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setNetworkSelectionMode failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1912,7 +1993,7 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback\<NetworkSea
 | 参数名   | 类型                                                         | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | 是   | 回调函数。           |
+| callback | AsyncCallback\<[NetworkSearchResult](#networksearchresult)\> | 是   | 回调函数。返回网络搜索信息。 |
 
 **错误码：**
 
@@ -1934,7 +2015,11 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback\<NetworkSea
 import { BusinessError } from '@ohos.base';
 
 radio.getNetworkSearchInformation(0, (err: BusinessError, data: radio.NetworkSearchResult) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkSearchInformation failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkSearchInformation success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -1960,7 +2045,7 @@ getNetworkSearchInformation\(slotId: number\): Promise\<NetworkSearchResult\>
 
 | 类型                                                   | 说明                    |
 | ------------------------------------------------------ | ----------------------- |
-| Promise\<[NetworkSearchResult](#networksearchresult)\> | 以Promise形式返回结果。 |
+| Promise\<[NetworkSearchResult](#networksearchresult)\> | 以Promise形式返回网络搜索信息。 |
 
 **错误码：**
 
@@ -1984,7 +2069,7 @@ import { BusinessError } from '@ohos.base';
 radio.getNetworkSearchInformation(0).then((data: radio.NetworkSearchResult) => {
     console.log(`getNetworkSearchInformation success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getNetworkSearchInformation failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNetworkSearchInformation failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1992,7 +2077,7 @@ radio.getNetworkSearchInformation(0).then((data: radio.NetworkSearchResult) => {
 
 getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
-获取Nr选项模式 。使用callback异步回调。
+获取Nr选项模式。使用callback异步回调。
 
 > **说明：**
 >
@@ -2006,7 +2091,7 @@ getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
 | 参数名   | 类型                                            | 必填 | 说明       |
 | -------- | ----------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | 是   | 回调函数。返回Nr选项模式。 |
 
 **错误码：**
 
@@ -2027,7 +2112,11 @@ getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.getNrOptionMode((err: BusinessError, data: radio.NrOptionMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNrOptionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNrOptionMode success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2051,7 +2140,7 @@ getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 | 参数名   | 类型                                            | 必填 | 说明                                   |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------- |
 | slotId   | number                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | 是   | 回调函数。                    |
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | 是   | 回调函数。返回Nr选项模式。 |
 
 **错误码：**
 
@@ -2073,7 +2162,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getNrOptionMode(slotId, (err: BusinessError, data: radio.NrOptionMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNrOptionModecallback failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNrOptionModecallback success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2086,7 +2179,7 @@ getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 10开始废弃。建议使用[getNROptionMode](#radiogetnroptionmode10)替代。
+> 从 API version 8开始支持，从API version 10开始废弃。建议使用[getNROptionMode](#radiogetnroptionmode10-1)替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2102,7 +2195,7 @@ getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
 | 类型                                               | 说明                    |
 | -------------------------------------------------- | ----------------------- |
-| Promise\<[NrOptionMode](#nroptionmodedeprecated)\> | 以Promise形式返回结果。  |
+| Promise\<[NrOptionMode](#nroptionmodedeprecated)\> | 以Promise形式返回Nr选项模式。  |
 
 **错误码：**
 
@@ -2146,7 +2239,7 @@ turnOnRadio\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。返回打开Radio的操作结果。 |
 
 **错误码：**
 
@@ -2168,7 +2261,11 @@ turnOnRadio\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.turnOnRadio((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`turnOnRadio failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`turnOnRadio success.`);
 });
 ```
 
@@ -2177,7 +2274,7 @@ radio.turnOnRadio((err: BusinessError) => {
 
 turnOnRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
-打开Radio。使用callback异步回调。
+打开指定卡槽的Radio。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2190,7 +2287,7 @@ turnOnRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                  | 必填 | 说明                                   |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。返回打开指定卡槽的Radio的操作结果。      |
 
 **错误码：**
 
@@ -2213,7 +2310,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.turnOnRadio(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`turnOnRadio failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`turnOnRadio success.`);
 });
 ```
 
@@ -2240,7 +2341,7 @@ turnOnRadio(slotId?: number): Promise\<void\>
 
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
-| Promise\<void\> | 以Promise形式返回结果。 |
+| Promise\<void\> | 以Promise形式返回打开Radio的操作结果。 |
 
 **错误码：**
 
@@ -2285,7 +2386,7 @@ turnOffRadio\(callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                  | 必填 | 说明       |
 | -------- | --------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。返回关闭Radio的操作结果。 |
 
 **错误码：**
 
@@ -2307,7 +2408,11 @@ turnOffRadio\(callback: AsyncCallback\<void\>\): void
 import { BusinessError } from '@ohos.base';
 
 radio.turnOffRadio((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`turnOffRadio failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`turnOffRadio success.`);
 });
 ```
 
@@ -2316,7 +2421,7 @@ radio.turnOffRadio((err: BusinessError) => {
 
 turnOffRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
-关闭Radio。使用callback异步回调。
+关闭指定卡槽的Radio。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2329,7 +2434,7 @@ turnOffRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 | 参数名   | 类型                  | 必填 | 说明                                   |
 | -------- | --------------------- | ---- | -------------------------------------- |
 | slotId   | number                | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<void\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<void\> | 是   | 回调函数。返回关闭指定卡槽的Radio的操作结果。 |
 
 **错误码：**
 
@@ -2352,7 +2457,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.turnOffRadio(slotId, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`turnOffRadio failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`turnOffRadio success.`);
 });
 ```
 
@@ -2379,7 +2488,7 @@ turnOffRadio\(slotId?: number\): Promise\<void\>
 
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
-| Promise\<void\> | 以Promise形式返回结果。 |
+| Promise\<void\> | 以Promise形式返回关闭Radio的操作结果。 |
 
 **错误码：**
 
@@ -2426,7 +2535,7 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 | ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId      | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式。                       |
-| callback    | AsyncCallback\<void\>                          | 是   | 回调函数。                             |
+| callback    | AsyncCallback\<void\>                          | 是   | 回调函数。返回设置首选网络的结果。|
 
 **错误码：**
 
@@ -2450,7 +2559,11 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.PreferredNetworkMode = radio.PreferredNetworkMode.PREFERRED_NETWORK_MODE_GSM;
 radio.setPreferredNetwork(slotId, mode, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setPreferredNetwork failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setPreferredNetwork success.`);
 });
 ```
 
@@ -2471,13 +2584,13 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode\): Promis
 | 参数名      | 类型                                           | 必填 | 说明                                   |
 | ----------- | ---------------------------------------------- | ---- | -------------------------------------- |
 | slotId      | number                                         | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式。                       |
+| networkMode | [PreferredNetworkMode](#preferrednetworkmode8) | 是   | 设置首选网络模式。|
 
 **返回值：**
 
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
-| Promise\<void\> | 以Promise形式返回结果。 |
+| Promise\<void\> | 以Promise形式返回返回设置首选网络的结果。 |
 
 **错误码：**
 
@@ -2503,7 +2616,7 @@ let mode: radio.PreferredNetworkMode = radio.PreferredNetworkMode.PREFERRED_NETW
 radio.setPreferredNetwork(slotId, mode).then(() => {
     console.log(`setPreferredNetwork success.`);
 }).catch((err: BusinessError) => {
-    console.log(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2524,7 +2637,7 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback\<PreferredNetworkMo
 | 参数名   |                              类型                               | 必填 | 说明                                   |
 | -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
 | slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 是   | 回调函数。返回首选网络类型。|
 
 **错误码：**
 
@@ -2547,7 +2660,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getPreferredNetwork(slotId, (err: BusinessError, data: radio.PreferredNetworkMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getPreferredNetwork failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getPreferredNetwork success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2573,7 +2690,7 @@ getPreferredNetwork\(slotId: number\): Promise\<PreferredNetworkMode\>
 
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
-| Promise\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 以Promise形式返回结果。 |
+| Promise\<[PreferredNetworkMode](#preferrednetworkmode8)\> | 以Promise形式返回首选网络类型。 |
 
 **错误码：**
 
@@ -2598,7 +2715,7 @@ let slotId: number = 0;
 radio.getPreferredNetwork(slotId).then((data: radio.PreferredNetworkMode) => {
     console.log(`getPreferredNetwork success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getPreferredNetwork failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2620,7 +2737,7 @@ getImsRegInfo\(slotId: number, imsType: ImsServiceType, callback: AsyncCallback\
 | -------- | ------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                     | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | imsType  | [ImsServiceType](#imsservicetype9)         | 是   | IMS服务类型。                          |
-| callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback<[ImsRegInfo](#imsreginfo9)\> | 是   | 回调函数。返回指定IMS服务类型的IMS注册状态信息。|
 
 **错误码：**
 
@@ -2644,7 +2761,11 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.getImsRegInfo(slotId, mode, (err: BusinessError, data: radio.ImsRegInfo) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getImsRegInfo failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getImsRegInfo success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2671,7 +2792,7 @@ getImsRegInfo\(slotId: number, imsType: ImsServiceType\): Promise\<ImsRegInfo\>
 
 | 类型                                  | 说明                    |
 | ------------------------------------- | ----------------------- |
-| Promise\<[ImsRegInfo](#imsreginfo9)\> | 以Promise形式返回结果。 |
+| Promise\<[ImsRegInfo](#imsreginfo9)\> | 以Promise形式返回指定IMS服务类型的IMS注册状态信息。 |
 
 **错误码：**
 
@@ -2697,7 +2818,7 @@ let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.getImsRegInfo(slotId, mode).then((data: radio.ImsRegInfo) => {
     console.log(`getImsRegInfo success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getImsRegInfo failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getImsRegInfo failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2717,10 +2838,10 @@ on\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 
 | 参数名   | 类型                                 | 必填 | 说明                                   |
 | -------- | ------------------------------------ | ---- | -------------------------------------- |
-| type     | string                               | 是   | 监听IMS注册状态的变化。                |
+| type     | string                               | 是   | 填写'imsRegStateChange'，表示IMS注册状态变化事件。                |
 | slotId   | number                               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | imsType  | [ImsServiceType](#imsservicetype9)   | 是   | IMS服务类型。                          |
-| callback | Callback<[ImsRegInfo](#imsreginfo9)> | 是   | 回调函数。                             |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | 是   | 回调函数。返回IMS注册状态信息。              |
 
 **错误码：**
 
@@ -2744,7 +2865,7 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+    console.log(`on imsRegStateChange success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2764,10 +2885,10 @@ off\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callbac
 
 | 参数名   | 类型                                 | 必填 | 说明                                   |
 | -------- | ------------------------------------ | ---- | -------------------------------------- |
-| type     | string                               | 是   | 取消监听IMS注册状态的变化。     |
+| type     | string                               | 是   | 填写'imsRegStateChange'，表示IMS注册状态变化事件。     |
 | slotId   | number                               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | imsType  | [ImsServiceType](#imsservicetype9)   | 是   | IMS服务类型。                          |
-| callback | Callback<[ImsRegInfo](#imsreginfo9)> | 否   | 回调函数。不填该参数不影响取消订阅。 |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | 否   | 回调函数。返回IMS注册状态信息。缺省时，表示注销所有已注册事件回调。需与on('imsRegStateChange')的callback一致。   |
 
 **错误码：**
 
@@ -2791,7 +2912,7 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
-    console.log(`callback: data->${JSON.stringify(data)}`);
+    console.log(`off imsRegStateChange success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2813,7 +2934,7 @@ getBasebandVersion\(slotId: number, callback: AsyncCallback\<string\>\): void
 | 参数名   | 类型                    | 必填 | 说明                                   |
 | -------- | ----------------------- | ---- | ------------------------------------- |
 | slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<string\> | 是   | 回调函数。获取的基带版本号。            |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。返回设备的基带版本号。            |
 
 **错误码：**
 
@@ -2836,7 +2957,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getBasebandVersion(slotId, (err: BusinessError, data: string) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getBasebandVersion failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getBasebandVersion success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2897,7 +3022,7 @@ radio.getBasebandVersion(slotId).then((data: string) => {
 
 setNROptionMode\(slotId: number, mode: NROptionMode, callback: AsyncCallback\<void\>\): void
 
-设置Nr选项模式 。使用callback异步回调。
+设置NR选项模式。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2911,7 +3036,7 @@ setNROptionMode\(slotId: number, mode: NROptionMode, callback: AsyncCallback\<vo
 | -------- | ------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
 | mode     | [NROptionMode](#nroptionmode10)                  | 是   | NR的选择模式。                          |
-| callback | AsyncCallback\<void\>                            | 是   | 回调函数。                              |
+| callback | AsyncCallback\<void\>                            | 是   | 回调函数。返回设置NR选项模式的结果。 |
 
 **错误码：**
 
@@ -2935,7 +3060,11 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let mode: radio.NROptionMode = radio.NROptionMode.NR_OPTION_NSA_ONLY;
 radio.setNROptionMode(slotId, mode, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setNROptionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setNROptionMode success.`);
 });
 ```
 
@@ -2944,7 +3073,7 @@ radio.setNROptionMode(slotId, mode, (err: BusinessError) => {
 
 setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
 
-设置Nr选项模式 。使用Promise异步回调。
+设置NR选项模式 。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2957,13 +3086,13 @@ setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
 | 参数名 |              类型               | 必填 | 说明                                   |
 | ------ | ------------------------------- | ---- | ------------------------------------- |
 | slotId | number                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| mode   | [NROptionMode](#nroptionmode10) | 是   | NR的选择模式。                         |
+| mode   | [NROptionMode](#nroptionmode10) | 是   | NR的选项模式。   |
 
 **返回值：**
 
 |        类型       |            说明         |
 | ----------------- | ----------------------- |
-| Promise\<void\>   | 以Promise形式返回结果。  |
+| Promise\<void\>   | 以Promise形式返回设置NR选项模式的结果。  |
 
 **错误码：**
 
@@ -3009,7 +3138,7 @@ getNROptionMode\(slotId: number, callback: AsyncCallback\<NROptionMode\>\): void
 | 参数名   | 类型                                              | 必填 | 说明                                   |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------- |
 | slotId   | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
-| callback | AsyncCallback\<[NROptionMode](#nroptionmode10)\> | 是   | 回调函数。                              |
+| callback | AsyncCallback\<[NROptionMode](#nroptionmode10)\> | 是   | 回调函数。返回NR选项模式。           |
 
 **错误码：**
 
@@ -3031,7 +3160,11 @@ import { BusinessError } from '@ohos.base';
 
 let slotId: number = 0;
 radio.getNROptionMode(slotId, (err: BusinessError, data: radio.NROptionMode) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNROptionMode failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNROptionMode success, callback: data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -3039,7 +3172,7 @@ radio.getNROptionMode(slotId, (err: BusinessError, data: radio.NROptionMode) => 
 
 getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
 
-获取Nr选项模式 。使用Promise异步回调。
+获取NR选项模式 。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3055,7 +3188,7 @@ getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
 
 | 类型                                      | 说明                    |
 | ----------------------------------------- | ----------------------- |
-| Promise\<[NROptionMode](#nroptionmode10)\> | 以Promise形式返回结果。 |
+| Promise\<[NROptionMode](#nroptionmode10)\> | 以Promise形式返回NR选项模式。 |
 
 **错误码：**
 
@@ -3102,7 +3235,7 @@ getNetworkCapability\(slotId: number, type: NetworkCapabilityType, callback: Asy
 | -------- | -----------------------------------------------------------------------| ---- | ----------------------------------- |
 | slotId   | number                                                                 | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | type     | [NetworkCapabilityType](#networkcapabilitytype10)                      | 是   | 网络能力类型。                        |
-| callback | AsyncCallback\<[NetworkCapabilityState](#networkcapabilitystate10)\>   | 是   | 回调函数。                            |
+| callback | AsyncCallback\<[NetworkCapabilityState](#networkcapabilitystate10)\>   | 是   | 回调函数。返回指定网络类型的开关状态。 |
 
 **错误码：**
 
@@ -3126,7 +3259,11 @@ import { BusinessError } from '@ohos.base';
 let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
 radio.getNetworkCapability(slotId, type, (err: BusinessError, data: radio.NetworkCapabilityState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if (err) {
+        console.error(`getNetworkCapability failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`getNetworkCapability success, callback: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3154,7 +3291,7 @@ getNetworkCapability\(slotId: number, type: NetworkCapabilityType\): Promise\<Ne
 
 | 类型                                                         | 说明                    |
 | ------------------------------------------------------------- | ----------------------- |
-| Promise\<[NetworkCapabilityState](#networkcapabilitystate10)\> | 以Promise形式返回结果。 |
+| Promise\<[NetworkCapabilityState](#networkcapabilitystate10)\> | 以Promise形式返回指定网络类型的开关状态。 |
 
 **错误码：**
 
@@ -3180,7 +3317,7 @@ let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE
 radio.getNetworkCapability(slotId, type).then((data: radio.NetworkCapabilityState) => {
     console.log(`getNetworkCapability success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.log(`getNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`getNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -3205,7 +3342,7 @@ setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: Networ
 | slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | type     | [NetworkCapabilityType](#networkcapabilitytype10)               | 是   | 网络能力类型。                        |
 | state    | [NetworkCapabilityState](#networkcapabilitystate10)             | 是   | 网络能力状态。                        |
-| callback | AsyncCallback\<void\>                                           | 是   | 回调函数。                            |
+| callback | AsyncCallback\<void\>                                           | 是   | 回调函数。返回设置指定网络类型的开关状态的结果。 |
 
 **错误码：**
 
@@ -3230,7 +3367,11 @@ let slotId: number = 0;
 let type: radio.NetworkCapabilityType = radio.NetworkCapabilityType.SERVICE_TYPE_NR;
 let state: radio.NetworkCapabilityState = radio.NetworkCapabilityState.SERVICE_CAPABILITY_ON;
 radio.setNetworkCapability(slotId, type, state, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if (err) {
+        console.error(`setNetworkCapability failed, callback: err->${JSON.stringify(err)}`);
+        return;
+    }
+    console.log(`setNetworkCapability success.`);
 });
 ```
 
@@ -3259,7 +3400,7 @@ setNetworkCapability\(slotId: number, type: NetworkCapabilityType, state: Networ
 
 | 类型            | 说明                    |
 | --------------- | ----------------------- |
-| Promise\<void\> | 以Promise形式返回结果。 |
+| Promise\<void\> | 以Promise形式返回设置指定网络类型的开关状态的结果。 |
 
 **错误码：**
 
@@ -3286,10 +3427,71 @@ let state: radio.NetworkCapabilityState = radio.NetworkCapabilityState.SERVICE_C
 radio.setNetworkCapability(slotId, type, state).then(() => {
     console.log(`setNetworkCapability success`);
 }).catch((err: BusinessError) => {
-    console.log(`setNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
+    console.error(`setNetworkCapability failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
+## radio.factoryReset<sup>11+</sup>
+
+factoryReset\(slotId: number\): Promise\<void\>
+
+重置网络状态设置。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   |                              类型                               | 必填 | 说明                                   |
+| -------- | --------------------------------------------------------------- | ---- | -------------------------------------- |
+| slotId   | number                                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型            | 说明                    |
+| --------------- | ----------------------- |
+| Promise\<void\> | 以Promise形式返回重置网络状态设置的结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let slotId: number = 0;
+radio.factoryReset(slotId).then(() => {
+    console.log(`factoryReset success`);
+}).catch((err: BusinessError) => {
+    console.error(`factoryReset failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## NetworkRadioTech<sup>11+</sup>
+
+网络中packet service (PS) 和 circuit service (CS) 无线接入技术。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+|      名称       |           类型              | 必填 |      说明          |
+| --------------- | --------------------------- | ---- | ------------------ |
+| psRadioTech     | [RadioTechnology](#radiotechnology) | 是   | PS无线接入技术。 |
+| csRadioTech     | [RadioTechnology](#radiotechnology) | 是   | CS无线接入技术。 |
 
 ## RadioTechnology
 
@@ -3305,7 +3507,7 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 | RADIO_TECHNOLOGY_WCDMA    | 3    | 无线接入技术WCDMA（Wideband Code Division Multiple Access）。 |
 | RADIO_TECHNOLOGY_HSPA     | 4    | 无线接入技术HSPA（High Speed Packet Access）。               |
 | RADIO_TECHNOLOGY_HSPAP    | 5    | 无线接入技术HSPAP（High Speed packet access (HSPA+) ）。     |
-| RADIO_TECHNOLOGY_TD_SCDMA | 6    | 无线接入技术TDSCDMA（TimeDivision-Synchronous Code Division Multiple Access）。 |
+| RADIO_TECHNOLOGY_TD_SCDMA | 6    | 无线接入技术TD_SCDMA（TimeDivision-Synchronous Code Division Multiple Access）。 |
 | RADIO_TECHNOLOGY_EVDO     | 7    | 无线接入技术EVDO（Evolution Data Only）。                   |
 | RADIO_TECHNOLOGY_EHRPD    | 8    | 无线接入技术EHRPD（Evolved High Rate Package Data）。        |
 | RADIO_TECHNOLOGY_LTE      | 9    | 无线接入技术LTE（Long Term Evolution）。                     |
@@ -3445,7 +3647,7 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_GSM                 | 38   | 首选NR LTE TDSCDMA GSM网络模式。              |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA               | 39   | 首选NR LTE TDSCDMA WCDMA网络模式。            |
 | PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM           | 40   | 首选NR LTE TDSCDMA WCDMA GSM网络模式。        |
-| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | 首选NR LTE TDSCDMA WCDMA GSM网络模式。        |
+| PREFERRED_NETWORK_MODE_NR_LTE_TDSCDMA_WCDMA_GSM_EVDO_CDMA | 41   | 首选NR LTE TDSCDMA WCDMA GSM EVDO CDMA网络模式。        |
 | PREFERRED_NETWORK_MODE_MAX_VALUE                          | 99   | 首选网络模式最大值。                          |
 
 ## CellInformation<sup>8+</sup>
@@ -3460,7 +3662,7 @@ radio.setNetworkCapability(slotId, type, state).then(() => {
 | isCamped          | boolean                                 |  是  | 获取服务单元的状态。<br>**系统接口：** 此接口为系统接口。          |
 | timeStamp         | number                                  |  是  | 获取单元格信息时获取时间戳。<br>**系统接口：** 此接口为系统接口。    |
 | signalInformation | [SignalInformation](#signalinformation) |  是  | 信号信息。                                                   |
-| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息  <br>**系统接口：** 此接口为系统接口。|
+| data              | [CdmaCellInformation](#cdmacellinformation8) \| [GsmCellInformation](#gsmcellinformation8) \| [LteCellInformation](#ltecellinformation8) \| [NrCellInformation](#nrcellinformation8) \| [TdscdmaCellInformation](#tdscdmacellinformation8)\|[WcdmaCellInformation](#wcdmacellinformation8) |  是  | Cdma小区信息 \|Gsm小区信息\|Lte小区信息\|Nr小区信息\|Tdscdma小区信息\|Wcdma小区信息。  <br>**系统接口：** 此接口为系统接口。|
 
 ## CdmaCellInformation<sup>8+</sup>
 
@@ -3473,8 +3675,8 @@ CDMA小区信息。
 | 名称      | 类型   | 必填 | 说明         |
 | --------- | ------ | ---- | ------------ |
 | baseId    | number |  是  | 基站Id。     |
-| latitude  | number |  是  | 经度。       |
-| longitude | number |  是  | 纬度。       |
+| latitude  | number |  是  | 纬度。       |
+| longitude | number |  是  | 经度。       |
 | nid       | number |  是  | 网络识别码。 |
 | sid       | number |  是  | 系统识别码。 |
 
@@ -3512,7 +3714,7 @@ LTE小区信息。
 | bandwidth     | number  |  是  | 带宽。                  |
 | mcc           | string  |  是  | 移动国家码。            |
 | mnc           | string  |  是  | 移动网号。              |
-| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接 |
+| isSupportEndc | boolean |  是  | 是否支持新无线电_双连接。 |
 
 ## NrCellInformation<sup>8+</sup>
 

@@ -1,4 +1,4 @@
-# Using AudioRenderer for Audio Playback
+# Using AudioRenderer for Audio Playback (ArkTS)
 
 The AudioRenderer is used to play Pulse Code Modulation (PCM) audio data. Unlike the AVPlayer, the AudioRenderer can perform data preprocessing before audio input. Therefore, the AudioRenderer is more suitable if you have extensive audio development experience and want to implement more flexible playback features.
 
@@ -10,7 +10,7 @@ The figure below shows the state changes of the AudioRenderer. After an **AudioR
 
 To prevent the UI thread from being blocked, most **AudioRenderer** calls are asynchronous. Each API provides the callback and promise functions. The following examples use the callback functions.
 
-**Figure 1** AudioRenderer state transition 
+**Figure 1** AudioRenderer state transition
 
 ![AudioRenderer state transition](figures/audiorenderer-status-change.png)
 
@@ -29,97 +29,102 @@ During application development, you are advised to use **on('stateChange')** to 
 ### How to Develop
 
 1. Set audio rendering parameters and create an **AudioRenderer** instance. For details about the parameters, see [AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8).
-   
-   ```ts
-   import audio from '@ohos.multimedia.audio';
-   
-   let audioStreamInfo: audio.AudioStreamInfo = {
-     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-     channels: audio.AudioChannel.CHANNEL_1,
-     sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-     encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-   };
-   
-   let audioRendererInfo: audio.AudioRendererInfo = {
-     content: audio.ContentType.CONTENT_TYPE_SPEECH,
-     usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-     rendererFlags: 0
-   };
-   
-   let audioRendererOptions: audio.AudioRendererOptions = {
-     streamInfo: audioStreamInfo,
-     rendererInfo: audioRendererInfo
-   };
-   
-   audio.createAudioRenderer(audioRendererOptions, (err, data) => {
-     if (err) {
+     
+    ```ts
+    import audio from '@ohos.multimedia.audio';
+
+    let audioStreamInfo: audio.AudioStreamInfo = {
+      samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+      channels: audio.AudioChannel.CHANNEL_1,
+      sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+      encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+    };
+
+    let audioRendererInfo: audio.AudioRendererInfo = {
+      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
+      rendererFlags: 0
+    };
+
+    let audioRendererOptions: audio.AudioRendererOptions = {
+      streamInfo: audioStreamInfo,
+      rendererInfo: audioRendererInfo
+    };
+
+    audio.createAudioRenderer(audioRendererOptions, (err, data) => {
+      if (err) {
       console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
       return;
-     } else {
+      } else {
       console.info('Invoke createAudioRenderer succeeded.');
       let audioRenderer = data;
-     }
-   });
-   ```
-   
-2. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
+      }
+    });
+    ```
 
-   ```ts
-   audioRenderer.start((err: BusinessError) => {
-     if (err) {
-       console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('Renderer start success.');
-     }
-   });
-   ```
+2. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
+     
+    ```ts
+    import { BusinessError } from '@ohos.base';
+
+    audioRenderer.start((err: BusinessError) => {
+      if (err) {
+        console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Renderer start success.');
+      }
+    });
+    ```
 
 3. Specify the address of the file to render. Open the file and call **write()** to continuously write audio data to the buffer for rendering and playing. To implement personalized playback, process the audio data before writing it.
-
-   ```ts
-   import fs from '@ohos.file.fs';
-   
-   let context = getContext(this);
-   async function read() {
-     const bufferSize: number = await audioRenderer.getBufferSize();
-     let path = context.filesDir;
      
-     const filePath = path + '/voice_call_data.wav';
-     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-     let buf = new ArrayBuffer(bufferSize);
-     let readsize: number = await fs.read(file.fd, buf);
-     let writeSize: number = await audioRenderer.write(buf);
-   }
-   ```
+    ```ts
+    import fs from '@ohos.file.fs';
+
+    let context = getContext(this);
+    async function read() {
+      const bufferSize: number = await audioRenderer.getBufferSize();
+      let path = context.filesDir;
+      
+      const filePath = path + '/voice_call_data.wav';
+      let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+      let buf = new ArrayBuffer(bufferSize);
+      let readsize: number = await fs.read(file.fd, buf);
+      let writeSize: number = await audioRenderer.write(buf);
+    }
+    ```
 
 4. Call **stop()** to stop rendering.
+     
+    ```ts
+    import { BusinessError } from '@ohos.base';
 
-   ```ts
-   audioRenderer.stop((err: BusinessError) => {
-     if (err) {
-       console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('Renderer stopped.');
-     }
-   });
-   ```
+    audioRenderer.stop((err: BusinessError) => {
+      if (err) {
+        console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Renderer stopped.');
+      }
+    });
+    ```
 
 5. Call **release()** to release the instance.
+     
+    ```ts
+    import { BusinessError } from '@ohos.base';
 
-   ```ts
-   audioRenderer.release((err: BusinessError) => {
-     if (err) {
-       console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
-     } else {
-       console.info('Renderer released.');
-     } 
-   });
-   ```
+    audioRenderer.release((err: BusinessError) => {
+      if (err) {
+        console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
+      } else {
+        console.info('Renderer released.');
+      } 
+    });
+    ```
 
 ### Sample Code
 
 Refer to the sample code below to render an audio file using AudioRenderer.
-
+  
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
@@ -135,8 +140,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_MUSIC, // Media type.
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // Audio stream usage type.
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type.
   rendererFlags: 0 // AudioRenderer flag.
 }
 let audioRendererOptions: audio.AudioRendererOptions = {
@@ -201,9 +205,8 @@ async function start() {
       // buf indicates the audio data to be written to the buffer. Before calling AudioRenderer.write(), you can preprocess the audio data for personalized playback. The AudioRenderer reads the audio data written to the buffer for rendering.
       
       let writeSize: number = await (renderModel as audio.AudioRenderer).write(buf);
-        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // The rendering stops if the AudioRenderer is in the released state.
+        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // Release the instance if the AudioRenderer is in the released state.
         fs.close(file);
-        await (renderModel as audio.AudioRenderer).stop();
       }
       if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RUNNING) {
         if (i === len - 1) { // The rendering stops if the file finishes reading.

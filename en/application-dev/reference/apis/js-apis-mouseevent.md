@@ -81,9 +81,8 @@ Enumerates tool types.
 | ------- | ------| ----- |
 | UNKNOWN<sup>11+</sup> | 0 | Unknown. |
 | MOUSE<sup>11+</sup>  | 1 | Mouse.|
-| TOUCHSCREEN<sup>11+</sup> | 2 | Touchscreen.|
+| JOYSTICK<sup>11+</sup> | 2 | Joystick.|
 | TOUCHPAD<sup>11+</sup> | 3 | Touchpad.|
-| JOYSTICK<sup>11+</sup> | 4 | Joystick.|
 
 ## MouseEvent
 

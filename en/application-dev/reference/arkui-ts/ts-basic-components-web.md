@@ -26,9 +26,9 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 **Parameters**
 
-| Name       | Type                                    | Mandatory  | Description   |
-| ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md#resourcestr)               | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
+| Name       | Type                                    | Mandatory  | Description                                    |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| src        | [ResourceStr](ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
@@ -133,8 +133,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```
 
   2. Modify the **EntryAbility.ts** file.
-
-    The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
+  The following uses **filesDir** as an example to describe how to obtain the path of the sandbox. For details about how to obtain other paths, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
   ```ts
   // xxx.ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -165,13 +164,15 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 ## Attributes
 
-Only the following universal attributes are supported: [width](ts-universal-attributes-size.md#Attributes), [height](ts-universal-attributes-size.md#attributes), [padding](ts-universal-attributes-size.md#Attributes), [margin](ts-universal-attributes-size.md#attributes), and [border](ts-universal-attributes-border.md#attributes).
+The following universal attributes are supported: [aspectRatio](ts-universal-attributes-layout-constraints.md#attributes), [backdropBlur](ts-universal-attributes-image-effect.md#attributes), [backgroundColor](ts-universal-attributes-attribute-modifier.md#attributes), [bindContentCover](ts-universal-attributes-modal-transition.md#attributes), [bindContextMenu](ts-universal-attributes-menu.md#attributes), [bindMenu](ts-universal-attributes-menu.md#attributes), [bindSheet](ts-universal-attributes-sheet-transition.md#attributes), [blur](ts-universal-attributes-image-effect.md#attributes), [border](ts-universal-attributes-border.md#attributes), [borderColor](ts-universal-attributes-border.md#attributes), [borderRadius](ts-universal-attributes-border.md#attributes), [borderStyle](ts-universal-attributes-border.md#attributes), [borderWidth](ts-universal-attributes-border.md#attributes), [clip](ts-universal-attributes-sharp-clipping.md#attributes), [constraintSize](ts-universal-attributes-size.md#attributes), [defaultFocus](ts-universal-attributes-focus.md#attributes), [focusable](ts-universal-attributes-focus.md#attributes), [tabIndex](ts-universal-attributes-focus.md#attributes), [groupDefaultFocus](ts-universal-attributes-focus.md#attributes), [focusOnTouch](ts-universal-attributes-focus.md#attributes), [displayPriority](ts-universal-attributes-layout-constraints.md#attributes), [draggable](ts-universal-attributes-drag-drop.md#attributes), [enabled](ts-universal-attributes-enable.md#attributes), [flexBasis](ts-universal-attributes-flex-layout.md#attributes), [flexGrow](ts-universal-attributes-flex-layout.md#attributes), [flexShrink](ts-universal-attributes-flex-layout.md#attributes), [layoutWeight](ts-universal-attributes-flex-layout.md#attributes), [id](ts-universal-attributes-component-id.md#attributes), [gridOffset](ts-universal-attributes-grid.md#attributes), [gridSpan](ts-universal-attributes-grid.md#attributes), [useSizeType](ts-universal-attributes-grid.md#attributes), [height](ts-universal-attributes-size.md#attributes), [touchable](ts-universal-attributes-click.md#attributes), [margin](ts-universal-attributes-size.md#attributes), [markAnchor](ts-universal-attributes-location.md#attributes), [mask](ts-universal-attributes-sharp-clipping.md#attributes), [offset](ts-universal-attributes-location.md#attributes), [width](ts-universal-attributes-size.md#attributes), [zIndex](ts-universal-attributes-z-order.md#attributes), [visibility](ts-universal-attributes-visibility.md#attributes), [rotate](ts-universal-attributes-transformation.md#attributes), [scale](ts-universal-attributes-transformation.md#attributes), [transform](ts-universal-attributes-transformation.md#attributes), [responseRegion](ts-universal-attributes-touch-target.md#attributes), [padding](ts-universal-attributes-size.md#attributes), [size](ts-universal-attributes-size.md#attributes), [stateStyles](ts-universal-attributes-polymorphic-style.md#attributes), [opacity](ts-universal-attributes-opacity.md#attributes), [shadow](ts-universal-attributes-image-effect.md#attributes), [gesture](ts-gesture-settings.md#binding gesture recognition), [sharedTransition](ts-transition-animation-shared-elements.md#attributes), and [transition](ts-transition-animation-component.md#attributes).
 
 ### domStorageAccess
 
 domStorageAccess(domStorageAccess: boolean)
 
 Sets whether to enable the DOM Storage API. By default, this feature is disabled.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
 
@@ -264,15 +265,15 @@ Sets whether to enable automatic image loading. By default, this feature is enab
 javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Array\<string\>,
     controller: WebviewController | WebController})
 
-Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated.
+Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. The parameters cannot be updated. Only one object can be registered through this API. To register multiple objects, use [registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy).
 
 **Parameters**
 
-| Name       | Type                                    | Mandatory  | Default Value | Description                     |
-| ---------- | ---------------------------------------- | ---- | ---- | ------------------------- |
-| object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.   |
-| name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.|
-| methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side. |
+| Name       | Type                                    | Mandatory  | Default Value | Description                                    |
+| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.                  |
+| name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.               |
+| methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side.                |
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
@@ -343,6 +344,37 @@ Sets whether JavaScript scripts can be executed. By default, JavaScript scripts 
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
+      }
+    }
+  }
+  ```
+
+### overScrollMode<sup>11+</sup>
+
+overScrollMode(mode: OverScrollMode)
+
+Sets the overscroll mode, which is disabled by default. When the overscroll mode is enabled and the boundary of the scrolling area is reached, the **\<Web>** component plays a bounce effect animation.
+
+**Parameters**
+
+| Name | Type                                   | Mandatory  | Default Value                 | Description              |
+| ---- | --------------------------------------- | ---- | -------------------- | ------------------ |
+| mode | [OverScrollMode](#overscrollmode11) | Yes   | OverScrollMode.NEVER | Whether to enable the overscroll mode.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: OverScrollMode = OverScrollMode.ALWAYS
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .overScrollMode(this.mode)
       }
     }
   }
@@ -543,8 +575,8 @@ Sets whether video playback must be started by user gestures. This API is not ap
 
 **Parameters**
 
-| Name   | Type   | Mandatory  | Default Value | Description             |
-| ------ | ------- | ---- | ---- | ----------------- |
+| Name   | Type   | Mandatory  | Default Value | Description               |
+| ------ | ------- | ---- | ---- | ------------------- |
 | access | boolean | Yes   | true | Whether video playback must be started by user gestures.|
 
 **Example**
@@ -571,7 +603,7 @@ Sets whether video playback must be started by user gestures. This API is not ap
 
 multiWindowAccess(multiWindow: boolean)
 
-Sets whether to enable the multi-window permission.
+Sets whether to enable the multi-window permission. By default, this feature is disabled.
 Enabling the multi-window permission requires implementation of the **onWindowNew** event. For the sample code, see [onWindowNew](#onwindownew9).
 
 **Parameters**
@@ -607,8 +639,8 @@ Sets whether to display the horizontal scrollbar, including the default system s
 
 **Parameters**
 
-| Name        | Type   | Mandatory  | Default Value  | Description        |
-| ----------- | ------- | ---- | ----- | ------------ |
+| Name                | Type   | Mandatory  | Default Value | Description        |
+| ------------------- | ------- | ---- | ---- | ------------ |
 | horizontalScrollBar | boolean | Yes   | true | Whether to display the horizontal scrollbar.|
 
 **Example**
@@ -661,9 +693,9 @@ Sets whether to display the vertical scrollbar, including the default system scr
 
 **Parameters**
 
-| Name        | Type   | Mandatory  | Default Value  | Description        |
-| ----------- | ------- | ---- | ----- | ------------ |
-| verticalScrollBarAccess | boolean | Yes   | true | Whether to display the vertical scrollbar.|
+| Name              | Type   | Mandatory  | Default Value | Description        |
+| ----------------- | ------- | ---- | ---- | ------------ |
+| verticalScrollBar | boolean | Yes   | true | Whether to display the vertical scrollbar.|
 
 **Example**
 
@@ -759,8 +791,8 @@ This API is deprecated since API version 9. You are advised to use [textZoomRati
 
 **Parameters**
 
-| Name          | Type  | Mandatory  | Default Value | Description           |
-| ------------- | ------ | ---- | ---- | --------------- |
+| Name         | Type  | Mandatory  | Default Value | Description                            |
+| ------------ | ------ | ---- | ---- | -------------------------------- |
 | textZoomAtio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
 
 **Example**
@@ -789,8 +821,8 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
 
 **Parameters**
 
-| Name          | Type  | Mandatory  | Default Value | Description           |
-| ------------- | ------ | ---- | ---- | --------------- |
+| Name          | Type  | Mandatory  | Default Value | Description                            |
+| ------------- | ------ | ---- | ---- | -------------------------------- |
 | textZoomRatio | number | Yes   | 100  | Text zoom ratio to set. The value is an integer. The value range is (0, +∞).|
 
 **Example**
@@ -821,9 +853,9 @@ Sets the scale factor of the entire page. The default value is 100%.
 
 **Parameters**
 
-| Name    | Type  | Mandatory  | Default Value | Description           |
-| ------- | ------ | ---- | ---- | --------------- |
-| percent | number | Yes   | 100  | Scale factor of the entire page.|
+| Name    | Type  | Mandatory  | Default Value | Description                         |
+| ------- | ------ | ---- | ---- | ----------------------------- |
+| percent | number | Yes   | 100  | Scale factor of the entire page.<br>Value range: 1 to 100|
 
 **Example**
 
@@ -889,9 +921,9 @@ Sets whether to block online downloads.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                           |
-| ------ | -------- | ---- | ------ | ----------------------------------- |
-| block  | boolean  | Yes  | false  | Whether to block online downloads.|
+| Name  | Type   | Mandatory  | Default Value  | Description               |
+| ----- | ------- | ---- | ----- | ------------------- |
+| block | boolean | Yes   | false | Whether to block online downloads.|
 
 **Example**
 
@@ -920,9 +952,9 @@ Sets the default fixed font size for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                    |
-| ------ | -------- | ---- | ------ | ---------------------------- |
-| size   | number   | Yes  | 13     | Default fixed font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
+| Name | Type  | Mandatory  | Default Value | Description                                    |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| size | number | Yes   | 13   | Default fixed font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
 
 **Example**
 
@@ -951,9 +983,9 @@ Sets the default font size for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                |
-| ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | Yes  | 16     | Default font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
+| Name | Type  | Mandatory  | Default Value | Description                                    |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| size | number | Yes   | 16   | Default font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
 
 **Example**
 
@@ -982,9 +1014,9 @@ Sets the minimum font size for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                |
-| ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | Yes  | 8      | Minimum font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
+| Name | Type  | Mandatory  | Default Value | Description                                    |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| size | number | Yes   | 8    | Minimum font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
 
 **Example**
 
@@ -1013,9 +1045,9 @@ Sets the minimum logical font size for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                |
-| ------ | -------- | ---- | ------ | ------------------------ |
-| size   | number   | Yes  | 8      | Minimum logical font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1. |
+| Name | Type  | Mandatory  | Default Value | Description                                    |
+| ---- | ------ | ---- | ---- | ---------------------------------------- |
+| size | number | Yes   | 8    | Minimum logical font size to set, in px. The value ranges from -2^31 to 2^31-1. In actual rendering, values greater than 72 are handled as 72, and values less than 1 are handled as 1.|
 
 **Example**
 
@@ -1044,9 +1076,9 @@ Sets the fixed font family for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value   | Description                    |
-| ------ | -------- | ---- | --------- | ---------------------------- |
-| family | string   | Yes  | monospace | Fixed font family to set.|
+| Name   | Type  | Mandatory  | Default Value      | Description               |
+| ------ | ------ | ---- | --------- | ------------------- |
+| family | string | Yes   | monospace | Fixed font family to set.|
 
 **Example**
 
@@ -1075,9 +1107,9 @@ Sets the sans serif font family for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value    | Description                         |
-| ------ | -------- | ---- | ---------- | --------------------------------- |
-| family | string   | Yes  | sans-serif | Sans serif font family to set.|
+| Name   | Type  | Mandatory  | Default Value       | Description                    |
+| ------ | ------ | ---- | ---------- | ------------------------ |
+| family | string | Yes   | sans-serif | Sans serif font family to set.|
 
 **Example**
 
@@ -1106,9 +1138,9 @@ Sets the serif font family for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value| Description                    |
-| ------ | -------- | ---- | ------ | ---------------------------- |
-| family | string   | Yes  | serif  | Serif font family to set.|
+| Name   | Type  | Mandatory  | Default Value  | Description               |
+| ------ | ------ | ---- | ----- | ------------------- |
+| family | string | Yes   | serif | Serif font family to set.|
 
 **Example**
 
@@ -1137,9 +1169,9 @@ Sets the standard font family for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value    | Description                       |
-| ------ | -------- | ---- | ---------- | ------------------------------- |
-| family | string   | Yes  | sans serif | Standard font family to set.|
+| Name   | Type  | Mandatory  | Default Value       | Description                  |
+| ------ | ------ | ---- | ---------- | ---------------------- |
+| family | string | Yes   | sans serif | Standard font family to set.|
 
 **Example**
 
@@ -1168,9 +1200,9 @@ Sets the fantasy font family for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value | Description                      |
-| ------ | -------- | ---- | ------- | ------------------------------ |
-| family | string   | Yes  | fantasy | Fantasy font family to set.|
+| Name   | Type  | Mandatory  | Default Value    | Description                 |
+| ------ | ------ | ---- | ------- | --------------------- |
+| family | string | Yes   | fantasy | Fantasy font family to set.|
 
 **Example**
 
@@ -1199,9 +1231,9 @@ Sets the cursive font family for the web page.
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value | Description                      |
-| ------ | -------- | ---- | ------- | ------------------------------ |
-| family | string   | Yes  | cursive | Cursive font family to set.|
+| Name   | Type  | Mandatory  | Default Value    | Description                 |
+| ------ | ------ | ---- | ------- | --------------------- |
+| family | string | Yes   | cursive | Cursive font family to set.|
 
 **Example**
 
@@ -1230,9 +1262,9 @@ Sets the web dark mode. By default, web dark mode is disabled. When it is enable
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value | Description                      |
-| ------ | ----------- | ---- | --------------- | ------------------ |
-|  mode  | [WebDarkMode](#webdarkmode9) | Yes  | WebDarkMode.Off | Web dark mode to set.|
+| Name | Type                            | Mandatory  | Default Value            | Description                  |
+| ---- | -------------------------------- | ---- | --------------- | ---------------------- |
+| mode | [WebDarkMode](#webdarkmode9) | Yes   | WebDarkMode.Off | Web dark mode to set.|
 
 **Example**
 
@@ -1261,9 +1293,9 @@ Sets whether to enable forcible dark mode for the web page. By default, this fea
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value | Description                      |
-| ------ | ------- | ---- | ----- | ------------------ |
-| access | boolean | Yes  | false | Whether to enable forcible dark mode for the web page.|
+| Name   | Type   | Mandatory  | Default Value  | Description           |
+| ------ | ------- | ---- | ----- | --------------- |
+| access | boolean | Yes   | false | Whether to enable forcible dark mode for the web page.|
 
 **Example**
 
@@ -1314,26 +1346,26 @@ Sets whether to enable smooth pinch mode for the web page.
 
 **Parameters**
 
-| Name   | Type| Mandatory| Default Value| Description                  |
-| --------- | -------- | ---- | ------ | -------------------------- |
-| isEnabled | boolean  | Yes  | false  | Whether to enable smooth pinch mode for the web page.|
+| Name      | Type   | Mandatory  | Default Value  | Description         |
+| --------- | ------- | ---- | ----- | ------------- |
+| isEnabled | boolean | Yes   | false | Whether to enable smooth pinch mode for the web page.|
 
 **Example**
 
   ```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController()
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-        .pinchSmooth(true)
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .pinchSmooth(true)
+      }
     }
   }
-}
   ```
 
 ### allowWindowOpenMethod<sup>10+</sup>
@@ -1357,9 +1389,9 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value | Description                      |
-| ------ | ------- | ---- | ----- | ------------------ |
-| flag | boolean | Yes  | Subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is set, the default value of **flag** is **true**. Otherwise, the default value of **flag** is **false**. | Whether to allow a new window to automatically open through JavaScript.|
+| Name | Type   | Mandatory  | Default Value                                     | Description                     |
+| ---- | ------- | ---- | ---------------------------------------- | ------------------------- |
+| flag | boolean | Yes   | Subject to the settings of the **persist.web.allowWindowOpenMethod.enabled** system attribute. If this attribute is set, the default value of **flag** is **true**. Otherwise, the default value of **flag** is **false**.| Whether to allow a new window to automatically open through JavaScript.|
 
 **Example**
 
@@ -1432,9 +1464,9 @@ Sets the web-based media playback policy, including the validity period for auto
 
 **Parameters**
 
-| Name| Type| Mandatory| Default Value | Description                      |
-| ------ | ----------- | ---- | --------------- | ------------------ |
-| options | [WebMediaOptions](#webmediaoptions10) | Yes  | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed.|
+| Name    | Type                                 | Mandatory  | Default Value                                     | Description                                    |
+| ------- | ------------------------------------- | ---- | ---------------------------------------- | ---------------------------------------- |
+| options | [WebMediaOptions](#webmediaoptions10) | Yes   | {resumeInterval: 0, audioExclusive: true} | Web-based media playback policy. The default value of **resumeInterval** is **0**, indicating that the playback is not automatically resumed.|
 
 **Example**
 
@@ -1455,9 +1487,154 @@ Sets the web-based media playback policy, including the validity period for auto
   }
   ```
 
+### javaScriptOnDocumentStart<sup>11+</sup>
+
+javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
+
+Injects a JavaScript script into the **\<Web>** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+
+> **NOTE**
+>
+> - The script runs before any JavaScript code of the page, when the DOM tree may not have been loaded or rendered.
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Default Value | Description              |
+| ------- | ----------------------------------- | ---- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | -    | Script item array to be injected.|
+
+**Example in the .ets file**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct Index {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    private localStorage: string =
+        "if (typeof(Storage) !== 'undefined') {" +
+        "   localStorage.setItem('color', 'Red');" +
+        "}";
+    @State scripts: Array<ScriptItem> = [
+        { script: this.localStorage, scriptRules: ["*"] }
+    ];
+    build() {
+        Column({ space: 20 }) {
+            Web({ src: $rawfile('index.html'), controller: this.controller })
+                .javaScriptAccess(true)
+                .domStorageAccess(true)
+                .backgroundColor(Color.Grey)
+                .javaScriptOnDocumentStart(this.scripts)
+                .width('100%')
+                .height('100%')
+        }
+    }
+}
+  ```
+**Example in the HTML file**
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
+      Hello world!
+      <div id="result"></div>
+  </body>
+  <script type="text/javascript">
+    function bodyOnLoadLocalStorage() {
+      if (typeof(Storage) !== 'undefined') {
+        document.getElementById('result').innerHTML = localStorage.getItem('color');
+      } else {
+        document.getElementById('result').innerHTML = 'Your browser does not support localStorage.';
+      }
+    }
+  </script>
+</html>
+```
+
+### layoutMode<sup>11+</sup>
+
+layoutMode(mode: WebLayoutMode)
+
+Sets the web layout mode.
+
+> **NOTE**
+>
+> Currently, only two web layout modes are supported: **WebLayoutMode.NONE** and **WebLayoutMode.FIT_CONTENT** (default).
+
+**Parameters**
+
+| Name | Type                                 | Mandatory  | Default Value               | Description                 |
+| ---- | ------------------------------------- | ---- | ------------------ | --------------------- |
+| mode | [WebLayoutMode](#weblayoutmode11) | Yes   | WebLayoutMode.NONE | Web layout mode.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    @State mode: WebLayoutMode = WebLayoutMode.FIT_CONTENT
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .layoutMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### nestedScroll<sup>11+</sup>
+
+nestedScroll(value: NestedScrollOptions)
+
+Sets nested scrolling options.
+
+> **NOTE**
+>
+> - You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.
+> - You can set separate nested scrolling modes for the forward and backward directions.
+> - The default mode is **NestedScrollOptions.SELF_FIRST**.
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory  | Description            |
+| ----- | ---------------------------------------- | ---- | ---------------- |
+| value | [NestedScrollOptions](#nestedscrolloptions11) | Yes   | Nested scrolling options.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .nestedScroll({
+            scrollForward: NestedScrollOptions.SELF_FIRST,
+            scrollBackward: NestedScrollOptions.SELF_FIRST,
+          })
+      }
+    }
+  }
+  ```
+
 ## Events
 
-The universal events are not supported.
+The following universal events are supported: [onAppear](ts-universal-events-show-hide.md#events), [onDisAppear](ts-universal-events-show-hide.md#events), [onBlur](ts-universal-focus-event.md#events), [onFocus](ts-universal-focus-event.md#events), [onDragEnd](ts-universal-events-drag-drop.md#events). [onDragEnter](ts-universal-events-drag-drop.md#events), [onDragStart](ts-universal-events-drag-drop.md#events), [onDragMove](ts-universal-events-drag-drop.md#events), [onDragLeave](ts-universal-events-drag-drop.md#events), [onDrop](ts-universal-events-drag-drop.md#events), [onHover](ts-universal-mouse-key.md#events), [onMouse](ts-universal-mouse-key.md#events), [onKeyEvent](ts-universal-events-key.md#events), [onTouch](ts-universal-events-touch.md#events), and [onVisibleAreaChange](ts-universal-component-visible-area-change-event.md#events).
 
 ### onAlert
 
@@ -1646,7 +1823,7 @@ Called when **confirm()** is invoked by the web page.
 
 | Type     | Description                                      |
 | ------- | ---------------------------------------- |
-| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the **\<Web>** component cannot trigger the system dialog box.|
+| boolean | If the callback returns **true**, the application can use the system dialog box (allows the confirm and cancel operations) and invoke the **JsResult** API to instruct the **\<Web>** component to exit the current page based on the user operation. If the callback returns **false**, the custom dialog box drawn in the function is ineffective.|
 
 **Example**
 
@@ -1725,6 +1902,8 @@ Called when **confirm()** is invoked by the web page.
 ### onPrompt<sup>9+</sup>
 
 onPrompt(callback: (event?: { url: string; message: string; value: string; result: JsResult }) => boolean)
+
+Triggered when **prompt()** is invoked by the web page.
 
 **Parameters**
 
@@ -1865,12 +2044,12 @@ Instructs the main application to start downloading a file.
 
 **Parameters**
 
-| Name               | Type         | Description                               |
-| ------------------ | ------------- | ----------------------------------- |
-| url                | string        | URL for the download task.                          |
-| userAgent          | string        | User agent used for download.                          |
-| contentDisposition | string        | Content-Disposition response header returned by the server, which may be empty.|
-| mimetype           | string        | MIME type of the content returned by the server.               |
+| Name               | Type  | Description                               |
+| ------------------ | ------ | ----------------------------------- |
+| url                | string | URL for the download task.                          |
+| userAgent          | string | User agent used for download.                         |
+| contentDisposition | string | Content-Disposition response header returned by the server, which may be empty.|
+| mimetype           | string | MIME type of the content returned by the server.               |
 | contentLength      | number | Length of the content returned by the server.                        |
 
 **Example**
@@ -1957,10 +2136,10 @@ Called when an HTTP error (the response code is greater than or equal to 400) oc
 
 **Parameters**
 
-| Name    | Type                                    | Description           |
-| ------- | ---------------------------------------- | --------------- |
-| request | [WebResourceRequest](#webresourcerequest) | Encapsulation of a web page request.     |
-| response | [WebResourceResponse](#webresourceresponse)    | Encapsulation of a resource response.|
+| Name     | Type                                    | Description      |
+| -------- | ---------------------------------------- | ---------- |
+| request  | [WebResourceRequest](#webresourcerequest) | Encapsulation of a web page request.|
+| response | [WebResourceResponse](#webresourceresponse) | Encapsulation of a resource response.|
 
 **Example**
 
@@ -2619,7 +2798,7 @@ Called when an SSL error occurs during resource loading.
 
 ### onClientAuthenticationRequest<sup>9+</sup>
 
-onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string>, issuers : Array<string>}) => void)
+onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationHandler, host : string, port : number, keyTypes : Array<string\>, issuers : Array<string\>}) => void)
 
 Called when an SSL client certificate request is received.
 
@@ -2630,11 +2809,13 @@ Called when an SSL client certificate request is received.
 | handler  | [ClientAuthenticationHandler](#clientauthenticationhandler9) | User operation. |
 | host     | string                                   | Host name of the server that requests a certificate.   |
 | port     | number                                   | Port number of the server that requests a certificate.   |
-| keyTypes | Array<string\>                            | Acceptable asymmetric private key types.   |
-| issuers  | Array<string\>                            | Issuer of the certificate that matches the private key.|
+| keyTypes | Array<string\>                           | Acceptable asymmetric private key types.   |
+| issuers  | Array<string\>                           | Issuer of the certificate that matches the private key.|
 
   **Example**
+
   This example shows two-way authentication when interconnection with certificate management is not supported.
+
   ```ts
   // xxx.ets API9
   import web_webview from '@ohos.web.webview'
@@ -2674,148 +2855,152 @@ Called when an SSL client certificate request is received.
 
   This example shows two-way authentication when interconnection with certificate management is supported.
 
-  1. Construct the singleton object **GlobalContext**.
-  ```ts
-  // GlobalContext.ts
-  export class GlobalContext {
-    private constructor() {}
-    private static instance: GlobalContext;
-    private _objects = new Map<string, Object>();
+1. Construct the singleton object **GlobalContext**.
 
-    public static getContext(): GlobalContext {
-      if (!GlobalContext.instance) {
-        GlobalContext.instance = new GlobalContext();
-      }
-      return GlobalContext.instance;
-    }
+   ```ts
+   // GlobalContext.ts
+   export class GlobalContext {
+     private constructor() {}
+     private static instance: GlobalContext;
+     private _objects = new Map<string, Object>();
 
-    getObject(value: string): Object | undefined {
-      return this._objects.get(value);
-    }
+     public static getContext(): GlobalContext {
+       if (!GlobalContext.instance) {
+         GlobalContext.instance = new GlobalContext();
+       }
+       return GlobalContext.instance;
+     }
 
-    setObject(key: string, objectClass: Object): void {
-      this._objects.set(key, objectClass);
-    }
-  }
-  ```
+     getObject(value: string): Object | undefined {
+       return this._objects.get(value);
+     }
 
-  2. Implement two-way authentication.
-  ```ts
-  // xxx.ets API10
-  import common from '@ohos.app.ability.common';
-  import Want from '@ohos.app.ability.Want';
-  import web_webview from '@ohos.web.webview'
-  import { BusinessError } from '@ohos.base';
-  import bundleManager from '@ohos.bundle.bundleManager'
-  import { GlobalContext } from '../GlobalContext'
+     setObject(key: string, objectClass: Object): void {
+       this._objects.set(key, objectClass);
+     }
+   }
+   ```
 
-  let uri = "";
+   ​
 
-  export default class CertManagerService {
-    private static sInstance: CertManagerService;
-    private authUri = "";
-    private appUid = "";
+2. Implement two-way authentication.
 
-    public static getInstance(): CertManagerService {
-      if (CertManagerService.sInstance == null) {
-        CertManagerService.sInstance = new CertManagerService();
-      }
-      return CertManagerService.sInstance;
-    }
+   ```ts
+   // xxx.ets API10
+   import common from '@ohos.app.ability.common';
+   import Want from '@ohos.app.ability.Want';
+   import web_webview from '@ohos.web.webview'
+   import { BusinessError } from '@ohos.base';
+   import bundleManager from '@ohos.bundle.bundleManager'
+   import { GlobalContext } from '../GlobalContext'
 
-    async grantAppPm(callback: (message: string) => void) {
-      let message = '';
-      let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
-      // Note: Replace com.example.myapplication with the actual application name.
-      try {
-        bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
-          console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
-          this.appUid = data.appInfo.uid.toString();
-        }).catch((err: BusinessError) => {
-          console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
-        });
-      } catch (err) {
-        let message = (err as BusinessError).message;
-        console.error('getBundleInfoForSelf failed: %{public}s', message);
-      }
+   let uri = "";
 
-      // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
-      let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
-      await abilityContext.startAbilityForResult(
-        {
-          bundleName: "com.ohos.certmanager",
-          abilityName: "MainAbility",
-          uri: "requestAuthorize",
-          parameters: {
-            appUid: this.appUid, // Pass the UID of the requesting application.
-          }
-        } as Want)
-        .then((data: common.AbilityResult) => {
-          if (!data.resultCode && data.want) {
-            if (data.want.parameters) {
-              this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
-            }
-          }
-        })
-      message += "after grantAppPm authUri: " + this.authUri;
-      uri = this.authUri;
-      callback(message)
-    }
-  }
+   export default class CertManagerService {
+     private static sInstance: CertManagerService;
+     private authUri = "";
+     private appUid = "";
 
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
-    @State message: string ='Hello World' // message is used for debugging and observation.
-    certManager = CertManagerService.getInstance();
+     public static getInstance(): CertManagerService {
+       if (CertManagerService.sInstance == null) {
+         CertManagerService.sInstance = new CertManagerService();
+       }
+       return CertManagerService.sInstance;
+     }
 
-    build() {
-      Row() {
-        Column() {
-          Row() {
-            // Step 1: Perform authorization to obtain the URI.
-            Button('GrantApp')
-              .onClick(() => {
-                this.certManager.grantAppPm((data) => {
-                  this.message = data;
-                });
-              })
-            // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
-            Button("ClientCertAuth")
-              .onClick(() => {
-                this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
-              })
-          }
+     async grantAppPm(callback: (message: string) => void) {
+       let message = '';
+       let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION;
+       // Note: Replace com.example.myapplication with the actual application name.
+       try {
+         bundleManager.getBundleInfoForSelf(bundleFlags).then((data) => {
+           console.info('getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(data));
+           this.appUid = data.appInfo.uid.toString();
+         }).catch((err: BusinessError) => {
+           console.error('getBundleInfoForSelf failed. Cause: %{public}s', err.message);
+         });
+       } catch (err) {
+         let message = (err as BusinessError).message;
+         console.error('getBundleInfoForSelf failed: %{public}s', message);
+       }
 
-          Web({ src: 'https://www.example1.com', controller: this.controller })
-            .fileAccess(true)
-            .javaScriptAccess(true)
-            .domStorageAccess(true)
-            .onlineImageAccess(true)
+       // Note: Add GlobalContext.getContext().setObject("AbilityContext", this.context) to the onCreate function in the MainAbility.ts file.
+       let abilityContext = GlobalContext.getContext().getObject("AbilityContext") as common.UIAbilityContext
+       await abilityContext.startAbilityForResult(
+         {
+           bundleName: "com.ohos.certmanager",
+           abilityName: "MainAbility",
+           uri: "requestAuthorize",
+           parameters: {
+             appUid: this.appUid, // Pass the UID of the requesting application.
+           }
+         } as Want)
+         .then((data: common.AbilityResult) => {
+           if (!data.resultCode && data.want) {
+             if (data.want.parameters) {
+               this.authUri = data.want.parameters.authUri as string; // Obtain the returned authUri after successful authorization.
+             }
+           }
+         })
+       message += "after grantAppPm authUri: " + this.authUri;
+       uri = this.authUri;
+       callback(message)
+     }
+   }
 
-          .onClientAuthenticationRequest((event) => {
-            AlertDialog.show({
-              title: 'ClientAuth',
-              message: 'Text',
-              confirm: {
-                value: 'Confirm',
-                action: () => {
-                  event.handler.confirm(uri);
-                }
-              },
-              cancel: () => {
-                event.handler.cancel();
-              }
-            })
-          })
-        }
-      }
-      .width('100%')
-      .height('100%')
-    }
-  }
-  ```
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: web_webview.WebviewController = new web_webview.WebviewController();
+     @State message: string ='Hello World' // message is used for debugging and observation.
+     certManager = CertManagerService.getInstance();
+
+     build() {
+       Row() {
+         Column() {
+           Row() {
+             // Step 1: Perform authorization to obtain the URI.
+             Button('GrantApp')
+               .onClick(() => {
+                 this.certManager.grantAppPm((data) => {
+                   this.message = data;
+                 });
+               })
+             // Step 2: After the authorization, in two-way authentication, the onClientAuthenticationRequest callback is used to send the URI to the web server for authentication.
+             Button("ClientCertAuth")
+               .onClick(() => {
+                 this.controller.loadUrl('https://www.example2.com'); // Server website that supports two-way authentication.
+               })
+           }
+
+           Web({ src: 'https://www.example1.com', controller: this.controller })
+             .fileAccess(true)
+             .javaScriptAccess(true)
+             .domStorageAccess(true)
+             .onlineImageAccess(true)
+
+           .onClientAuthenticationRequest((event) => {
+             AlertDialog.show({
+               title: 'ClientAuth',
+               message: 'Text',
+               confirm: {
+                 value: 'Confirm',
+                 action: () => {
+                   event.handler.confirm(uri);
+                 }
+               },
+               cancel: () => {
+                 event.handler.cancel();
+               }
+             })
+           })
+         }
+       }
+       .width('100%')
+       .height('100%')
+     }
+   }
+   ```
 
 ### onPermissionRequest<sup>9+</sup>
 
@@ -2957,8 +3142,8 @@ Called when the scrollbar of the page scrolls.
 
 **Parameters**
 
-| Name    | Type  | Description        |
-| ------- | ------ | ------------ |
+| Name    | Type  | Description                  |
+| ------- | ------ | ---------------------- |
 | xOffset | number | Position of the scrollbar on the x-axis relative to the leftmost of the web page.|
 | yOffset | number | Position of the scrollbar on the y-axis relative to the top of the web page.|
 
@@ -3186,12 +3371,12 @@ If opening a new window is not needed, set the parameter to **null** when callin
 
 **Parameters**
 
-| Name          | Type                                    | Description                      |
-| ------------- | ---------------------------------------- | -------------------------- |
-| isAlert       | boolean                                  | Whether to open the target URL in a new window. The value **true** means to open the target URL in a new window, and **false** means to open the target URL in a new tab.|
-| isUserTrigger | boolean                                  | Whether the creation is triggered by the user. The value **true** means that the creation is triggered by the user, and **false** means the opposite.  |
-| targetUrl     | string                                   | Target URL.                    |
-| handler       | [ControllerHandler](#controllerhandler9) | **WebviewController** instance for setting the new window. |
+| Name          | Type                                    | Description                         |
+| ------------- | ---------------------------------------- | ----------------------------- |
+| isAlert       | boolean                                  | Whether to open the target URL in a new window. The value **true** means to open the target URL in a new window, and **false** means to open the target URL in a new tab.   |
+| isUserTrigger | boolean                                  | Whether the creation is triggered by the user. The value **true** means that the creation is triggered by the user, and **false** means the opposite.     |
+| targetUrl     | string                                   | Target URL.                       |
+| handler       | [ControllerHandler](#controllerhandler9) | **WebviewController** instance for setting the new window.|
 
 **Example**
 
@@ -3330,8 +3515,8 @@ Called when the web form data is resubmitted.
 
 **Parameters**
 
-| Name | Type                                            | Description              |
-| ------- | ---------------------------------------------------- | ---------------------- |
+| Name    | Type                                    | Description       |
+| ------- | ---------------------------------------- | ----------- |
 | handler | [DataResubmissionHandler](#dataresubmissionhandler9) | Handler for resubmitting web form data.|
 
 **Example**
@@ -3391,9 +3576,9 @@ Called when the old page is not displayed and the new page is about to be visibl
 
 **Parameters**
 
-| Name| Type| Description                                         |
-| ------ | -------- | ------------------------------------------------- |
-| url    | string   | URL of the new page that is able to be visible when the old page is not displayed.|
+| Name | Type  | Description                      |
+| ---- | ------ | -------------------------- |
+| url  | string | URL of the new page that is able to be visible when the old page is not displayed.|
 
 **Example**
 
@@ -3423,14 +3608,14 @@ Called when the key event is intercepted and before it is consumed by the webvie
 
 **Parameters**
 
-| Name| Type                                               | Description            |
-| ------ | ------------------------------------------------------- | -------------------- |
-| event  | [KeyEvent](ts-universal-events-key.md#keyevent) | Key event that is triggered.|
+| Name  | Type                                    | Description          |
+| ----- | ---------------------------------------- | -------------- |
+| event | [KeyEvent](ts-universal-events-key.md#keyevent) | Key event that is triggered.|
 
 **Return value**
 
-| Type   | Description                                                        |
-| ------- | ------------------------------------------------------------ |
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
 | boolean | Whether to continue to transfer the key event to the webview kernel.|
 
 **Example**
@@ -3465,10 +3650,10 @@ Called when an apple-touch-icon URL is received.
 
 **Parameters**
 
-| Name     | Type| Description                          |
-| ----------- | -------- | ---------------------------------- |
-| url         | string   | Received apple-touch-icon URL.|
-| precomposed | boolean  | Whether the apple-touch-icon is precomposed.|
+| Name        | Type   | Description                       |
+| ----------- | ------- | --------------------------- |
+| url         | string  | Received apple-touch-icon URL.|
+| precomposed | boolean | Whether the apple-touch-icon is precomposed.  |
 
 **Example**
 
@@ -3498,8 +3683,8 @@ Called when this web page receives a new favicon.
 
 **Parameters**
 
-| Name | Type                                      | Description                           |
-| ------- | ---------------------------------------------- | ----------------------------------- |
+| Name    | Type                                    | Description                     |
+| ------- | ---------------------------------------- | ------------------------- |
 | favicon | [PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object of the received favicon.|
 
 **Example**
@@ -3533,8 +3718,8 @@ Called when the audio playback status changes on the web page.
 
 **Parameters**
 
-| Name | Type                                      | Description                           |
-| ------- | ---------------------------------------------- | ----------------------------------- |
+| Name    | Type   | Description                              |
+| ------- | ------- | ---------------------------------- |
 | playing | boolean | Audio playback status on the current page. The value **true** means that audio is being played, and **false** means the opposite.|
 
 **Example**
@@ -3567,10 +3752,10 @@ Called when the web page content is first rendered.
 
 **Parameters**
 
-| Name                |  Type | Description                           |
-| -----------------------| -------- | ----------------------------------- |
-| navigationStartTick    | number   | Navigation start time, in microseconds.|
-| firstContentfulPaintMs | number   | Time between navigation and when the content is first rendered, in milliseconds.|
+| Name                   | Type  | Description                             |
+| ---------------------- | ------ | --------------------------------- |
+| navigationStartTick    | number | Navigation start time, in microseconds.         |
+| firstContentfulPaintMs | number | Time between navigation and when the content is first rendered, in milliseconds.|
 
 **Example**
 
@@ -3605,8 +3790,8 @@ Called when the **\<Web>** component is about to access a URL. This API is used 
 
 **Parameters**
 
-| Name | Type                                    | Description     |
-| ------- | ---------------------------------------- | --------- |
+| Name    | Type                                    | Description       |
+| ------- | ---------------------------------------- | ----------- |
 | request | [WebResourceRequest](#webresourcerequest) | Information about the URL request.|
 
 **Return value**
@@ -3729,8 +3914,8 @@ Called to indicate the offset by which the web page overscrolls.
 
 **Parameters**
 
-| Name    | Type  | Description        |
-| ------- | ------ | ------------ |
+| Name    | Type  | Description               |
+| ------- | ------ | ------------------- |
 | xOffset | number | Horizontal overscroll offset based on the leftmost edge of the web page.|
 | yOffset | number | Vertical overscroll offset based on the top edge of the web page.|
 
@@ -3761,7 +3946,6 @@ Called to indicate the offset by which the web page overscrolls.
 onControllerAttached(callback: () => void)
 
 Called when the controller is successfully bound to the **\<Web>** component. The controller must be WebviewController.
-
 As the web page is not yet loaded when this callback is called, APIs for operating the web page cannot be used in the callback, for example, [zoomIn](../apis/js-apis-webview.md#zoomin) and [zoomOut](../apis/js-apis-webview.md#zoomout). Other APIs, such as [loadUrl](../apis/js-apis-webview.md#loadurl) and [getWebId](../apis/js-apis-webview.md#getwebid), which do not involve web page operations, can be used properly.
 
 **Example**
@@ -3926,8 +4110,8 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 
 **Parameters**
 
-| Name       | Type         | Mandatory  | Default Value | Description                     |
-| ---------- | ------------- | ---- | ---- | ------------------------- |
+| Name       | Type                                    | Mandatory  | Default Value | Description                                    |
+| ---------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
 | controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component. If opening a new window is not needed, set it to **null**.|
 
 ## WebResourceError
@@ -4030,8 +4214,8 @@ Obtains the request method.
 
 **Return value**
 
-| Type     | Description                  |
-| ------- | -------------------- |
+| Type    | Description     |
+| ------ | ------- |
 | string | Request method.|
 
 ## Header
@@ -4127,9 +4311,9 @@ Sets the data in the resource response.
 
 **Parameters**
 
-| Name| Type        | Mandatory| Default Value| Description                                                    |
-| ------ | ---------------- | ---- | ------ | ------------------------------------------------------------ |
-| data   | string \| number \| [Resource](ts-types.md)<sup>10+</sup>| Yes  | -      | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **\<Web>** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application.|
+| Name | Type                                    | Mandatory  | Default Value | Description                                    |
+| ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
+| data | string \| number \| [Resource](ts-types.md)<sup>10+</sup> | Yes   | -    | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **\<Web>** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application.|
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -4199,9 +4383,9 @@ Sets whether the resource response data is ready.
 
 **Parameters**
 
-| Name | Type| Mandatory| Default Value| Description                  |
-| ------- | -------- | ---- | ------ | -------------------------- |
-| IsReady | boolean  | Yes  | true   | Whether the resource response data is ready.|
+| Name    | Type   | Mandatory  | Default Value | Description         |
+| ------- | ------- | ---- | ---- | ------------- |
+| IsReady | boolean | Yes   | true | Whether the resource response data is ready.|
 
 ## FileSelectorResult<sup>9+</sup>
 
@@ -4231,8 +4415,8 @@ Obtains the title of this file selector.
 
 **Return value**
 
-| Type    | Description      |
-| ------ | -------- |
+| Type    | Description        |
+| ------ | ---------- |
 | string | Title of the file selector.|
 
 ### getMode<sup>9+</sup>
@@ -4355,9 +4539,9 @@ Instructs the **\<Web>** component to use the specified credentials (obtained fr
 
 **Parameters**
 
-| Name  | Type | Mandatory | Description |
-| ------- | ------ | ----  | ------------- |
-| authUri | string | Yes   | Key value of the credentials. |
+| Name    | Type  | Mandatory  | Description   |
+| ------- | ------ | ---- | ------- |
+| authUri | string | Yes   | Key value of the credentials.|
 
 ### cancel<sup>9+</sup>
 
@@ -4413,8 +4597,8 @@ Grants the permission for resources requested by the web page.
 
 **Parameters**
 
-| Name      | Type           | Mandatory  | Default Value | Description         |
-| --------- | --------------- | ---- | ---- | ------------- |
+| Name      | Type           | Mandatory  | Default Value | Description           |
+| --------- | --------------- | ---- | ---- | --------------- |
 | resources | Array\<string\> | Yes   | -    | List of resources that can be requested by the web page with the permission to grant.|
 
 ## ScreenCaptureHandler<sup>10+</sup>
@@ -4449,44 +4633,44 @@ Grants the screen capture permission.
 
 **Parameters**
 
-| Name      | Type           | Mandatory  | Default Value | Description         |
-| --------- | --------------- | ---- | ---- | ------------- |
+| Name   | Type                                    | Mandatory  | Default Value | Description   |
+| ------ | ---------------------------------------- | ---- | ---- | ------- |
 | config | [ScreenCaptureConfig](#screencaptureconfig10) | Yes   | -    | Screen capture configuration.|
 
 ## ContextMenuSourceType<sup>9+</sup>
-| Name                  | Description        |
-| -------------------- | ---------- |
-| None        | Other event sources. |
-| Mouse       | Mouse event. |
-| LongPress   | Long press event. |
+| Name       | Description     |
+| --------- | ------- |
+| None      | Other event sources.|
+| Mouse     | Mouse event.  |
+| LongPress | Long press event.  |
 
 ## ContextMenuMediaType<sup>9+</sup>
 
-| Name          | Description         |
-| ------------ | ----------- |
-| None      | Non-special media or other media types.|
-| Image     | Image.    |
+| Name   | Description           |
+| ----- | ------------- |
+| None  | Non-special media or other media types.|
+| Image | Image.          |
 
 ## ContextMenuInputFieldType<sup>9+</sup>
 
-| Name          | Description         |
-| ------------ | ----------- |
-| None      | Non-input field.      |
-| PlainText | Plain text field, such as the text, search, or email field.  |
-| Password  | Password field.    |
-| Number    | Numeric field.    |
-| Telephone | Phone number field.|
-| Other     | Field of any other type.    |
+| Name       | Description                         |
+| --------- | --------------------------- |
+| None      | Non-input field.                      |
+| PlainText | Plain text field, such as the text, search, or email field.|
+| Password  | Password field.                      |
+| Number    | Numeric field.                      |
+| Telephone | Phone number field.                    |
+| Other     | Field of any other type.                      |
 
 ## ContextMenuEditStateFlags<sup>9+</sup>
 
-| Name        | Description        |
-| ------------ | ----------- |
-| NONE         | Editing is not allowed.  |
-| CAN_CUT      | The cut operation is allowed.  |
-| CAN_COPY     | The copy operation is allowed.  |
-| CAN_PASTE    | The paste operation is allowed.  |
-| CAN_SELECT_ALL  | The select all operation is allowed.|
+| Name            | Description   |
+| -------------- | ----- |
+| NONE           | Editing is not allowed.|
+| CAN_CUT        | The cut operation is allowed.|
+| CAN_COPY       | The copy operation is allowed.|
+| CAN_PASTE      | The paste operation is allowed.|
+| CAN_SELECT_ALL | The select all operation is allowed.|
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -4572,8 +4756,8 @@ Obtains the media type of this web page element.
 
 **Return value**
 
-| Type                                      | Description         |
-| ---------------------------------------- | ----------- |
+| Type                                      | Description       |
+| ---------------------------------------- | --------- |
 | [ContextMenuMediaType](#contextmenumediatype9) | Media type of the web page element.|
 
 ### getSelectionText<sup>9+</sup>
@@ -4584,8 +4768,8 @@ Obtains the selected text.
 
 **Return value**
 
-| Type     | Description                       |
-| ------- | ------------------------- |
+| Type    | Description                  |
+| ------ | -------------------- |
 | string | Selected text for the context menu. If no text is selected, null is returned.|
 
 ### getSourceType<sup>9+</sup>
@@ -4596,8 +4780,8 @@ Obtains the event source of the context menu.
 
 **Return value**
 
-| Type                                      | Description         |
-| ---------------------------------------- | ----------- |
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
 | [ContextMenuSourceType](#contextmenusourcetype9) | Event source of the context menu.|
 
 ### getInputFieldType<sup>9+</sup>
@@ -4608,8 +4792,8 @@ Obtains the input field type of this web page element.
 
 **Return value**
 
-| Type                                      | Description         |
-| ---------------------------------------- | ----------- |
+| Type                                      | Description    |
+| ---------------------------------------- | ------ |
 | [ContextMenuInputFieldType](#contextmenuinputfieldtype9) | Input field type.|
 
 ### isEditable<sup>9+</sup>
@@ -4620,8 +4804,8 @@ Checks whether this web page element is editable.
 
 **Return value**
 
-| Type     | Description                       |
-| ------- | ------------------------- |
+| Type     | Description                        |
+| ------- | -------------------------- |
 | boolean | Returns **true** if the web page element is editable; returns **false** otherwise.|
 
 ### getEditStateFlags<sup>9+</sup>
@@ -4632,8 +4816,8 @@ Obtains the edit state flag of this web page element.
 
 **Return value**
 
-| Type     | Description                       |
-| ------- | ------------------------- |
+| Type    | Description                                      |
+| ------ | ---------------------------------------- |
 | number | Edit state flag of the web page element. For details, see [ContextMenuEditStateFlags](#contextmenueditstateflags9).|
 
 ## WebContextMenuResult<sup>9+</sup>
@@ -4753,6 +4937,13 @@ Enumerates the reasons why the rendering process exits.
 | Phone         | Phone number.                   |
 | Unknown       | Unknown content.                   |
 
+ ## OverScrollMode<sup>11+</sup>
+
+| Name    | Description         |
+| ------ | ----------- |
+| NEVER  | The overscroll mode is disabled.|
+| ALWAYS | The overscroll mode is enabled.|
+
 ## SslError<sup>9+</sup>
 
 Enumerates the error codes returned by **onSslErrorEventReceive** API.
@@ -4766,41 +4957,61 @@ Enumerates the error codes returned by **onSslErrorEventReceive** API.
 
 ## ProtectedResourceType<sup>9+</sup>
 
-| Name       | Description           | Remarks                        |
-| --------- | ------------- | -------------------------- |
-| MidiSysex | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
-| VIDEO_CAPTURE<sup>10+</sup> | Video capture resource, such as a camera.| |
-| AUDIO_CAPTURE<sup>10+</sup> | Audio capture resource, such as a microphone.| |
+| Name                         | Description           | Remarks                        |
+| --------------------------- | ------------- | -------------------------- |
+| MidiSysex                   | MIDI SYSEX resource.| Currently, only permission events can be reported. MIDI devices are not yet supported.|
+| VIDEO_CAPTURE<sup>10+</sup> | Video capture resource, such as a camera. |                            |
+| AUDIO_CAPTURE<sup>10+</sup> | Audio capture resource, such as a microphone.|                            |
 
 ## WebDarkMode<sup>9+</sup>
-| Name     | Description                                  |
-| ------- | ------------------------------------ |
-| Off     | The web dark mode is disabled.                    |
-| On      | The web dark mode is enabled.                    |
-| Auto    | The web dark mode setting follows the system settings.                |
+| Name  | Description          |
+| ---- | ------------ |
+| Off  | The web dark mode is disabled.  |
+| On   | The web dark mode is enabled.  |
+| Auto | The web dark mode setting follows the system settings.|
 
 ## WebCaptureMode<sup>10+</sup>
 
-| Name       | Description           |
-| --------- | ------------- |
+| Name         | Description     |
+| ----------- | ------- |
 | HOME_SCREEN | Capture of the home screen.|
 
 ## WebMediaOptions<sup>10+</sup>
 
 Describes the web-based media playback policy.
 
-| Name          | Type      | Readable| Writable| Mandatory| Description                        |
-| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
-| resumeInterval |  number   |  Yes | Yes  |  No |Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second.|
-| audioExclusive |  boolean  |  Yes | Yes  |  No | Whether the audio of multiple **\<Web>** instances in an application is exclusive.   |
+| Name            | Type     | Readable  | Writable  | Mandatory  | Description                                      |
+| -------------- | ------- | ---- | ---- | ---- | ---------------------------------------- |
+| resumeInterval | number  | Yes   | Yes   | No   | Validity period for automatically resuming a paused web audio, in seconds. The maximum validity period is 60 seconds. Due to the approximate value, the validity period may have a deviation of less than 1 second.|
+| audioExclusive | boolean | Yes   | Yes   | No   | Whether the audio of multiple **\<Web>** instances in an application is exclusive.                      |
 
 ## ScreenCaptureConfig<sup>10+</sup>
 
 Provides the web screen capture configuration.
 
-| Name          | Type      | Readable| Writable| Mandatory| Description                        |
-| -------------- | --------- | ---- | ---- | --- | ---------------------------- |
-| captureMode |  [WebCaptureMode](#webcapturemode10)  |  Yes | Yes |  Yes | Web screen capture mode.|
+| Name         | Type                                     | Readable  | Writable  | Mandatory  | Description        |
+| ----------- | --------------------------------------- | ---- | ---- | ---- | ---------- |
+| captureMode | [WebCaptureMode](#webcapturemode10) | Yes   | Yes   | Yes   | Web screen capture mode.|
+
+## WebLayoutMode<sup>11+</sup>
+| Name         | Description                |
+| ----------- | ------------------ |
+| NONE        | The web layout follows the system.        |
+| FIT_CONTENT | The web layout adapts to the page size.|
+
+## NestedScrollOptions<sup>11+</sup>
+| Name            | Type              | Description                  |
+| -------------- | ---------------- | -------------------- |
+| scrollForward  | NestedScrollMode | Nested scrolling options when the component scrolls forward.|
+| scrollBackward | NestedScrollMode | Nested scrolling options when the component scrolls backward.|
+
+## NestedScrollMode<sup>11+</sup>
+| Name          | Description                                      |
+| ------------ | ---------------------------------------- |
+| SELF_ONLY    | The scrolling is contained within the component, and no scroll chaining occurs, that is, the parent component does not scroll when the component scrolling reaches the boundary.                          |
+| SELF_FIRST   | The component scrolls first, and when it hits the boundary, the parent component scrolls. When the parent component hits the boundary, its edge effect is displayed. If no edge effect is specified for the parent component, the edge effect of the child component is displayed instead.|
+| PARENT_FIRST | The parent component scrolls first, and when it hits the boundary, the component scrolls. When the component hits the boundary, its edge effect is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
+| PARALLEL     | The component and its parent component scroll at the same time. When both the component and its parent component hit the boundary, the edge effect of the component is displayed. If no edge effect is specified for the component, the edge effect of the parent component is displayed instead.|
 
 ## DataResubmissionHandler<sup>9+</sup>
 
@@ -4872,11 +5083,13 @@ This API is deprecated since API version 9. You are advised to use [WebviewContr
 let webController: WebController = new WebController()
 ```
 
-### getCookieManager<sup>9+</sup>
+### getCookieManager<sup>(deprecated)</sup>
 
 getCookieManager(): WebCookie
 
 Obtains the cookie management object of the **\<Web>** component.
+
+This API is deprecated since API version 9. You are advised to use [getCookie](../apis/js-apis-webview.md#getcookiedeprecated) instead.
 
 **Return value**
 
@@ -5492,7 +5705,7 @@ This API is deprecated since API version 9. You are advised to use [runJavaScrip
         Text(this.webResult).fontSize(20)
         Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(e => {
+        .onPageEnd(() => {
           this.controller.runJavaScript({
             script: 'test()',
             callback: (result: string)=> {
@@ -5593,7 +5806,7 @@ setCookie(): boolean
 
 Sets the cookie. This API returns the result synchronously. Returns **true** if the operation is successful; returns **false** otherwise.
 
-This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie) instead.
+This API is deprecated since API version 9. You are advised to use [setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookiedeprecated) instead.
 
 **Return value**
 
@@ -5614,3 +5827,12 @@ This API is deprecated since API version 9. You are advised to use [saveCookieAs
 | Type     | Description                  |
 | ------- | -------------------- |
 | boolean | Operation result.|
+
+## ScriptItem<sup>11+</sup>
+
+Describes the **ScriptItem** object injected to the **\<Web>** component through the [javaScriptOnDocumentStart](#javascriptondocumentstart11) attribute.
+
+| Name         | Type            | Mandatory  | Description                   |
+| ----------- | -------------- | ---- | --------------------- |
+| script      | string         | Yes   | JavaScript script to be injected and executed.|
+| scriptRules | Array\<string> | Yes   | Matching rules for allowed sources.         |

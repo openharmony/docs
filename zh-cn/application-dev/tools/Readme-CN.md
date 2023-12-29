@@ -5,6 +5,7 @@
 - 打包拆包工具
   - [打包工具](packing-tool.md)
   - [拆包工具](unpacking-tool.md)
+- [扫描工具](app-check-tool.md)
 - [cem工具](cem-tool.md)
 - [anm工具](anm-tool.md)
 - [restool工具](restool.md)

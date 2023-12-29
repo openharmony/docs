@@ -40,11 +40,11 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
     **Table 1** Configuration items for the thermal scene
 
-    | Configuration Item| Configuration Item Description| Parameter| Parameter Description| Parameter Type| Value Range|
+    | Configuration Item| Description| Parameter| Parameter Description| Parameter Type| Value Range|
     | -------- | -------- | -------- | -------- | -------- | -------- |
-    | name="scene" | One or more application scenarios specified by enum values.| param | Application scenarios: photographing, calling, and gaming.| enum | cam, call, and game|
+    | name="scene" | One or more thermal scenes specified by enum values.| param | Available thermal scenes: photographing, calling, and gaming.| enum | cam, call, and game|
 
-    **screen** and **charge** indicate the status of the application scenario; and specifically, whether the screen is turned on and whether the battery is being charged.
+    **screen** and **charge** indicate the thermal status of the application; and specifically, whether the screen is turned on and whether the battery is being charged.
     
     ```shell
     <state>
@@ -53,8 +53,17 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
         <item name="charge"/>
     </state>
     ```
+4. An external system can call the **UpdateThermalState** API of the thermal service to set the thermal status.
+```cpp
+bool UpdateThermalState(const std::string& tag, const std::string& val, bool isImmed = false)
+```
+| Parameter| Description| Type|
+|---|---|---|
+| tag | Scenario tag.| string |
+| val | Scenario status value.| string |
+| isImmed | Whether to update the thermal control action value immediately.| bool |
 
-4. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn) file in the default thermal scene configuration folder to pack the `thermal_service_config.xml` file to the `/vendor/etc/thermal_config` directory. The configuration is as follows:
+5. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn) file in the default thermal scene configuration folder to pack the `thermal_service_config.xml` file to the `/vendor/etc/thermal_config` directory. The configuration is as follows:
 
     ```shell
     import("//build/ohos.gni")                      # Reference build/ohos.gni.
@@ -67,7 +76,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     }
     ```
 
-5. Add the build target to `module_list` in [ohos.build](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/ohos.build) in the `/vendor/hihope/rk3568` directory. For example:
+6. Add the build target to `module_list` in [ohos.build](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/ohos.build). For example:
 
     ```json
     {
@@ -88,13 +97,13 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ```
     In the preceding code, `//vendor/hihope/rk3568/thermal/` is the folder path, `profile` is the folder name, and `thermal_service_config` is the build target.
 
-6. Build the customized version by referring to [Quick Start](../quick-start/quickstart-overview.md).
+7. Build the customized version by referring to [Quick Start](../quick-start/quickstart-overview.md).
 
     ```shell
     ./build.sh --product-name rk3568 --ccache
     ```
 
-7. Burn the customized version to the DAYU200 development board.
+8. Burn the customized version to the DAYU200 development board.
 
 ### Debugging and Verification
 

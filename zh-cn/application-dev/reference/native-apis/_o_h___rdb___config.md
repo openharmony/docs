@@ -28,3 +28,4 @@
 | [moduleName](_r_d_b.md#modulename) | 应用模块名。 |
 | [isEncrypt](_r_d_b.md#isencrypt) | 指定数据库是否加密。 |
 | [securityLevel](_r_d_b.md#securitylevel) | 数据库安全级别。 |
+| [area](_r_d_b.md#area)<sup>11+</sup> | 设置数据库安全区域等级[Rdb_SecurityArea](_r_d_b.md#rdb_securityarea)。 |

@@ -220,3 +220,58 @@ struct SwiperExample {
 **变更影响**
 
 menus整体向右侧偏移12vp，最右图标距离右边缘的间距由原36vp变更为24vp。
+
+## cl.arkui.8 像素取整变更
+
+**变更影响**
+
+对于有小数的坐标点和宽高值会四舍五入为整数。
+
+API Version 9：像素点坐标、控件宽高、边框宽度不会取整。
+
+API Version 10: 像素点坐标、控件宽高、边框宽度会取整。
+
+**示例：**
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Row() {
+        Row() {
+          Row() {
+            Row() {
+              Row()
+                .width('100%')
+                .height('100%')
+                .border({width: '1', color: 'blue'})
+            }
+            .width('100%')
+            .height('100%')
+            .border({width: '1', color: 'red'})
+          }
+          .width('100%')
+          .height('100%')
+          .border({width: '1', color: 'blue'})
+        }
+        .width('100%')
+        .height('100%')
+        .border({width: '1', color: 'red'})
+      }
+      .width('81')
+      .height('81')
+      .border({width: '1', color: 'blue'})
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+API Version 9：像素点坐标、控件宽高、边框宽度不会取整。
+
+![Navigation](figures/pixl_round_api9.png) 
+
+API Version 10: 左边框、上边框宽度向上取整，右边框、下边框宽度向下取整。
+
+![Navigation](figures/pixl_round_api10.png)

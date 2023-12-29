@@ -1,12 +1,12 @@
-# Video Recording
+# Video Recording (ArkTS)
 
-OpenHarmony provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
+The system provides the AVRecorder for you to develop the video recording service. The AVRecorder supports audio recording, audio encoding, video encoding, audio encapsulation, and video encapsulation. It is applicable to simple video recording scenarios and can be used to generate local video files directly.
 
 You will learn how to use the AVRecorder to complete the process of starting, pausing, resuming, and stopping recording.
 
 During application development, you can use the **state** attribute of the AVRecorder to obtain the AVRecorder state or call **on('stateChange')** to listen for state changes. Your code must meet the state machine requirements. For example, **pause()** is called only when the AVRecorder is in the **started** state, and **resume()** is called only when it is in the **paused** state.
 
-**Figure 1** Recording state transition 
+**Figure 1** Recording state transition
 
 ![Recording state change](figures/video-recording-status-change.png)
 
@@ -16,29 +16,32 @@ For details about the state, see [AVRecorderState](../reference/apis/js-apis-med
 
 > **NOTE**
 > 
-> The AVRecorder only processes video data. To complete video recording, it must work with the video data collection module, which transfers the captured video data to the AVRecorder for data processing through the surface. A typical video data collection module is the camera module, which currently is available only to system applications. For details, see [Camera](../reference/apis/js-apis-camera.md).
+> The AVRecorder only processes video data. To complete video recording, it must work with the video data collection module, which transfers the captured video data to the AVRecorder for data processing through the surface. Currently, the commonly used data collection module is the camera module. For details, see [Camera Recording](camera-recording.md).
 
 Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API reference.
 
 1. Create an **AVRecorder** instance. The AVRecorder is the **idle** state.
-     
+   
    ```ts
-   import media from '@ohos.multimedia.media'
+   import media from '@ohos.multimedia.media';
+   
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
-     avRecorder = recorder
+     avRecorder = recorder;
    }, (error: Error) => {
-     console.error('createAVRecorder failed')
+     console.error('createAVRecorder failed');
    })
    ```
 
 2. Set the events to listen for.
-   | Event Type| Description| 
+   | Event Type| Description|
    | -------- | -------- |
-   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.| 
-   | error | Mandatory; used to listen for AVRecorder errors.| 
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVRecorder.|
+   | error | Mandatory; used to listen for AVRecorder errors.|
 
    ```ts
+   import media from '@ohos.multimedia.media';
+   
    // Callback function for state changes.
    avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.info('current state is: ' + state);
@@ -62,10 +65,13 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
    > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../reference/apis/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../file-management/app-file-access.md).
 
    ```ts
+   import media from '@ohos.multimedia.media';
+   import { BusinessError } from '@ohos.base';
+   
    let avProfile: media.AVRecorderProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
      videoBitrate: 200000, // Video bit rate.
-     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
+     videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
      videoFrameWidth: 640, // Video frame width.
      videoFrameHeight: 480, // Video frame height.
      videoFrameRate: 30 // Video frame rate.
@@ -74,33 +80,36 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
      videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
      profile : avProfile,
      url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
-     rotation: 0, // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
+     rotation: 0 // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
    }
    avRecorder.prepare(avConfig).then(() => {
-     console.info('avRecorder prepare success')
-   }, (error: Error) => {
-     console.error('avRecorder prepare failed')
+     console.info('avRecorder prepare success');
+   }, (error: BusinessError) => {
+     console.error('avRecorder prepare failed');
    })
    ```
 
 4. Obtain the surface ID required for video recording.
+
    Call **getInputSurface()**. The returned surface ID is transferred to the video data collection module (video input source), which is the camera module in the sample code.
 
-     The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
-     
+   The video data collection module obtains the surface based on the surface ID and transmits video data to the AVRecorder through the surface. Then the AVRecorder processes the video data.
+   
    ```ts
+   import { BusinessError } from '@ohos.base';
+   
    avRecorder.getInputSurface().then((surfaceId: string) => {
-     console.info('avRecorder getInputSurface success')
-   }, (error: Error) => {
-     console.error('avRecorder getInputSurface failed')
+     console.info('avRecorder getInputSurface success');
+   }, (error: BusinessError) => {
+     console.error('avRecorder getInputSurface failed');
    })
    ```
 
 5. Initialize the video data input source.
 
-   This step is performed in the video data collection module. For the camera module, you need to create a **Camera** instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Recording](camera-recording-case.md).
+   This step is performed in the video data collection module. For the camera module, you need to create a **Camera** instance, obtain the camera list, create a camera input stream, and create a video output stream. For details, see [Camera Recording](camera-recording.md).
 
-6. Start recording. 
+6. Start recording.
 
    Start the input source to input video data, for example, by calling **camera.VideoOutput.start**. Then call **AVRecorder.start()** to switch the AVRecorder to the **started** state.
 
@@ -119,18 +128,19 @@ Read [AVRecorder](../reference/apis/js-apis-media.md#avrecorder9) for the API re
 
 Refer to the sample code below to complete the process of starting, pausing, resuming, and stopping recording.
 
-  
+
 ```ts
-import media from '@ohos.multimedia.media'
+import media from '@ohos.multimedia.media';
 import { BusinessError } from '@ohos.base';
-const TAG = 'VideoRecorderDemo:'
+
+const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
     videoBitrate : 100000, // Video bit rate.
-    videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. Both MPEG-4 and AVC are supported.
+    videoCodec: media.CodecMimeType.VIDEO_MPEG4, // Video file encoding format. Both MPEG-4 and AVC are supported.
     videoFrameWidth: 640, // Video frame width.
     videoFrameHeight: 480, // Video frame height.
     videoFrameRate: 30 // Video frame rate.
@@ -139,7 +149,7 @@ export class VideoRecorderDemo {
     videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // Video source type. YUV and ES are supported.
     profile : this.avProfile,
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
-    rotation: 0, // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
+    rotation: 0 // Video rotation angle. The default value is 0, indicating that the video is not rotated. The value can be 0, 90, 180, or 270.
   }
 
   // Set AVRecorder callback functions.

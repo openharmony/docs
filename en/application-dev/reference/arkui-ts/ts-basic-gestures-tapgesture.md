@@ -25,6 +25,11 @@ TapGesture(value?: { count?: number, fingers?: number })
 | -------- | -------- |
 | onAction(event: (event?: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Callback invoked when a tap gesture is recognized.|
 
+## Attributes
+
+| Name| Type   |Description                                       |
+| ----  | ------  | ---------------------------------------- |
+| tag<sup>11+</sup>   | string  | Tag for the tap gesture. It is used to distinguish the gesture during custom gesture judgment.|
 
 ## Example
 

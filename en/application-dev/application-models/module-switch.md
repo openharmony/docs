@@ -24,7 +24,7 @@ When switching an application from the FA model to the stage model, migrate the 
 | distroFilter | Distribution rules of the application.| distributionFilter_config.json| In the stage model, the **distributionFilter_config.json** file is defined in **resources/base/profile** in the developer view.|
 | reqCapabilities | Device capabilities required for running the application.| / | This configuration is not supported in the stage model.|
 | commonEvents | Common events.| common_event_config.json| In the stage model, the **common_event_config.json** file is defined in **resources/base/profile** in the developer view.|
-| entryTheme | Keyword of an OpenHarmony internal theme.| / | This configuration is not supported in the stage model.|
+| entryTheme | Keyword of an internal theme.| / | This configuration is not supported in the stage model.|
 
 
 **Table 2** metaData comparison

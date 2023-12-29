@@ -30,44 +30,50 @@ let context = featureAbility.getContext()
 1. 查询Bundle信息。
    
    ```ts
-    import featureAbility from '@ohos.ability.featureAbility'
-
-    class Entry {
-      onCreate() {
-        // 获取context并调用相关方法
-        let context = featureAbility.getContext();
-        context.getBundleName((data, bundleName)=>{
-          console.info("ability bundleName:" + bundleName)
-        });
-        console.info('Application onCreate')
-      }
-      onDestroy() {
-        console.info('Application onDestroy')
-      }
-    }
-
-    export default new Entry()
+   import featureAbility from '@ohos.ability.featureAbility';
+   import Logger from '../utils/Logger';
+   
+   const TAG: string = 'MainAbility';
+   
+   class MainAbility {
+     onCreate() {
+       // 获取context并调用相关方法
+       let context = featureAbility.getContext();
+       context.getBundleName((data, bundleName) => {
+         Logger.info(TAG, 'ability bundleName:' + bundleName);
+       });
+       Logger.info(TAG, 'Application onCreate');
+     }
+     ...
+   }
+   
+   export default new MainAbility();
    ```
-
+   
 2. 设置当前featureAbility的显示方向。
    
    ```ts
-    import featureAbility from '@ohos.ability.featureAbility'
-    import bundleManager from '@ohos.bundle.bundleManager';
-
-    class Entry {
-      onCreate() {
-        // 获取context并调用相关方法
-        let context = featureAbility.getContext();
-        context.setDisplayOrientation(bundleManager.DisplayOrientation.LANDSCAPE).then(() => {
-          console.info("Set display orientation.")
-        })
-        console.info('Application onCreate')
-      }
-      onDestroy() {
-        console.info('Application onDestroy')
-      }
-    }
-
-    export default new Entry();
+   import featureAbility from '@ohos.ability.featureAbility';
+   import bundle from '@ohos.bundle';
+   import Logger from '../utils/Logger';
+   
+   const TAG: string = 'PageAbilitySingleton';
+   
+   class PageAbilitySingleton {
+     onCreate() {
+       // 获取context并调用相关方法
+       let context = featureAbility.getContext();
+       context.setDisplayOrientation(bundle.DisplayOrientation.PORTRAIT).then(() => {
+         Logger.info(TAG, 'Set display orientation.')
+       })
+       Logger.info(TAG, 'Application onCreate');
+     }
+   
+     onDestroy() {
+       Logger.info(TAG, 'Application onDestroy');
+     }
+     ...  
+   }
+   
+   export default new PageAbilitySingleton();
    ```

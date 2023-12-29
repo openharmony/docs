@@ -12,17 +12,14 @@
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
-featureAbility.startAbility(
-    {
-        want: {
-            bundleName: "com.ohos.stage",
-            abilityName: "EntryAbility"
-        }
-    }
-).then((code) => {
-    console.info('Ability verify code: ' + JSON.stringify(code));
+let want: Want = {
+  bundleName: 'ohos.samples.etsclock',
+  abilityName: 'MainAbility'
+};
+featureAbility.startAbility({ want }).then((code) => {
+  Logger.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
 }).catch((error: BusinessError) => {
-    console.error("Ability failed: " + JSON.stringify(error));
+  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -38,16 +35,14 @@ startAbilityForResult和startAbility的区别是当UIAbility销毁的时候会�
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
-featureAbility.startAbilityForResult(
-    {
-        want: {
-            bundleName: "com.ohos.stage",
-            abilityName: "com.ohos.stage.EntryAbility"
-        }
-    }).then((result) => {
-    console.info('Ability verify result: ' + JSON.stringify(result));
+let want: Want = {
+  bundleName: 'ohos.samples.etsclock',
+  abilityName: 'MainAbility'
+};
+featureAbility.startAbilityForResult({ want }).then((result) => {
+  Logger.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
 }).catch((error: BusinessError) => {
-    console.error("Ability failed: " + JSON.stringify(error));
+  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -61,16 +56,14 @@ featureAbility.startAbilityForResult(
 import particleAbility from '@ohos.ability.particleAbility';
 import { BusinessError } from '@ohos.base';
 
-particleAbility.startAbility(
-    {
-        want: {
-            bundleName: "com.ohos.stage",
-            abilityName: "com.ohos.stage.EntryAbility"
-        }
-    }
-).then(() => {
-    console.info('Start Ability successfully.');
+let want: Want = {
+  bundleName: 'ohos.samples.etsclock',
+  abilityName: 'MainAbility'
+};
+particleAbility.startAbility({ want }).then(() => {
+  hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Start Ability successfully.');
 }).catch((error: BusinessError) => {
-    console.error("Ability failed: " + JSON.stringify(error));
+  hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Ability failed: ' + JSON.stringify(error));
 });
+hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility ServiceAbility onStart');
 ```

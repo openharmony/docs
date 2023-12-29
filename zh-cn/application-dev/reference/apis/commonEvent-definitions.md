@@ -907,4 +907,4 @@
   - 订阅者所需权限：无
 
 * [COMMON_EVENT_SMS_RECEIVE_COMPLETED](./common_event/commonEvent-mms.md)
-表示设备接收到信息的动作
+表示设备接收到信息的动作。

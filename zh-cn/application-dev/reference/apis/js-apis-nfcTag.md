@@ -123,7 +123,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## tag.getNfcATag
+## tag.getNfcATag<sup>(deprecated)</sup>
 
 getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
@@ -138,7 +138,7 @@ getNfcATag(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#tagInfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -158,7 +158,7 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -174,7 +174,7 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 | -------- | ----------------------------------------- |
 | 3100201  | Tag running state is abnormal in service. |
 
-## tag.getNfcBTag
+## tag.getNfcBTag<sup>(deprecated)</sup>
 
 getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
@@ -189,7 +189,7 @@ getNfcBTag(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -209,7 +209,7 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -225,7 +225,7 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 | -------- | ----------------------------------------- |
 | 3100201  | Tag running state is abnormal in service. |
 
-## tag.getNfcFTag
+## tag.getNfcFTag<sup>(deprecated)</sup>
 
 getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
@@ -240,7 +240,7 @@ getNfcFTag(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -260,7 +260,7 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -276,7 +276,7 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 | -------- | ----------------------------------------- |
 | 3100201  | Tag running state is abnormal in service. |
 
-## tag.getNfcVTag
+## tag.getNfcVTag<sup>(deprecated)</sup>
 
 getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
@@ -291,7 +291,7 @@ getNfcVTag(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -311,7 +311,7 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -339,7 +339,7 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -367,7 +367,7 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -395,7 +395,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -422,7 +422,7 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 **参数：**
 | 参数名  | 类型                | 必填 | 说明                                                          |
 | ------- | ------------------- | ---- | ------------------------------------------------------------- |
-| taginfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
+| tagInfo | [TagInfo](#taginfo) | 是   | 包含Tag技术类型和相关参数，从tag.getTagInfo(want: Want)获取。 |
 
 **返回值：**
 
@@ -482,7 +482,7 @@ getTagInfo(want: [Want](js-apis-app-ability-want.md#Want)): [TagInfo](#taginfo)
 
 ## tag.registerForegroundDispatch<sup>10+</sup>
 
-registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void;
+registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
 注册对NFC Tag前台应用读卡事件的监听，通过discTech设置支持的Tag技术类型，通过Callback方式获取读取到Tag的[TagInfo](#taginfo)信息。需要与取消监听接口[tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10)成对使用，如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
 
@@ -504,7 +504,7 @@ registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elem
 
 ## tag.unregisterForegroundDispatch<sup>10+</sup>
 
-unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md)): void;
+unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elementName.md)): void
 
 取消注册对NFC Tag前台应用读卡事件的监听。如果已注册事件监听，需要在页面退出前台或页面销毁前调用取消注册。
 
@@ -516,13 +516,13 @@ unregisterForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-el
 
 | 参数名       | 类型     | 必填 | 说明                                                    |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName、moduleName三项）。          |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName两项）。          |
 
 **示例：**
 
 ```js
-import Want from '@ohos.app.ability.Want'
-import UIAbility from '@ohos.app.ability.UIAbility'
+import Want from '@ohos.app.ability.Want';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import tag from '@ohos.nfc.tag';
 import { BusinessError } from '@ohos.base';
 import bundleManager from '@ohos.bundle.bundleManager';
@@ -583,9 +583,132 @@ export default class MainAbility extends UIAbility {
 }
 ```
 
+## tag.on<sup>11+</sup>
+
+on(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
+
+应用的页面处于前台时可以通过该接口设置NFC的读卡器模式，通过discTech设置支持的Tag技术类型，通过Callback方式获取到Tag的[TagInfo](#taginfo)信息。需要与取消读卡器模式的[tag.off](#tagoff11)成对使用，如果已通过on进行设置，需要在页面退出前台或页面销毁时调用[tag.off](#tagoff11)
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型     | 必填 | 说明                                                    |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| type    | string  | 是   | 要注册的回调类型。 |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 应用程序的element名称，必须至少包含bundleName、abilityName两项。          |
+| discTech         |  number[]   | 是   | 读卡器模式支持的技术类型，每个number值表示所支持技术类型的常量值型，根据number值设置NFC读卡轮询的Tag技术类型（支持[NFC_A](#技术类型定义), [NFC_B](#技术类型定义), [NFC_F](#技术类型定义), [NFC_V](#技术类型定义), 技术类型定义中的其他技术类型不属于NFC读卡轮询的Tag技术类型）并关闭卡模拟；当数组长度为0时，同时关闭读卡轮询和卡模拟。 |
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 是   | 读卡器模式监听回调函数，返回读到的Tag信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100202  | element状态无效. |
+
+**示例：**
+
+示例请参见[tag.off](#tagoff11)接口的示例。
+
+## tag.off<sup>11+</sup>
+
+off(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
+
+退出NFC读卡器模式。如果已通过[tag.on](#tagon11)设置NFC的读卡器模式，需要在页面退出前台或页面销毁时调用off进行取消。
+
+**需要权限：** ohos.permission.NFC_TAG
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**参数：**
+
+| 参数名       | 类型     | 必填 | 说明                                                    |
+| ------------ | -------- | ---- | ------------------------------------------------------- |
+| type    | string  | 是   | 要注销的回调类型。 |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 应用程序的element名称，必须至少包含bundleName、abilityName两项。          |
+| callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 否   | 前台读卡监听回调函数，返回读到的tag信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](../errorcodes/errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 3100203  | 调用了on之后，才能调用off. |
+
+**示例：**
+
+```js
+import Want from '@ohos.app.ability.Want';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import tag from '@ohos.nfc.tag';
+import { BusinessError } from '@ohos.base';
+import bundleManager from '@ohos.bundle.bundleManager';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+let elementName : bundleManager.ElementName;
+
+function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
+    if (err as BusinessError) {
+        if (!err) {
+            console.log("offCallback: tag found tagInfo = ", JSON.stringify(tagInfo));
+        } else {
+            console.error("offCallback err: " + (err as BusinessError).message);
+            return;
+        }
+    }
+  // other Operations of taginfo
+}
+
+export default class MainAbility extends UIAbility {
+    OnCreate(want : Want, launchParam : AbilityConstant.LaunchParam) {
+        console.log("OnCreate");
+        elementName = {
+            bundleName: want.bundleName as string,
+            abilityName: want.abilityName as string,
+            moduleName: want.moduleName as string
+        }
+    }
+
+    onForeground() {
+        console.log("on start");
+        try {
+            tag.on('readerMode', elementName, discTech, readerModeCb);
+        } catch (e) {
+            console.error("tag.on error: " + (e as BusinessError).message);
+        }
+    }
+
+    onBackground() {
+        console.log("onBackground");
+        try {
+            tag.off('readerMode', elementName, readerModeCb);
+        } catch (e) {
+            console.error("tag.off error: " + (e as BusinessError).message);
+        }
+    }
+
+    onWindowStageDestroy() {
+        console.log("onWindowStageDestroy");
+        try {
+            tag.off('readerMode', elementName, readerModeCb);
+        } catch (e) {
+            console.error("tag.off error: " + (e as BusinessError).message);
+        }
+    }
+
+  // override other lifecycle functions
+}
+```
+
 ## tag.ndef.makeUriRecord<sup>9+</sup>
 
-makeUriRecord(uri: string): [NdefRecord](#ndefrecord9);
+makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 
 根据输入的URI，构建NDEF标签的Record数据对象。
 
@@ -624,7 +747,7 @@ try {
 
 ## tag.ndef.makeTextRecord<sup>9+</sup>
 
-makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9);
+makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 
 根据输入的文本数据和编码类型，构建NDEF标签的Record。
 
@@ -666,7 +789,7 @@ try {
 
 ## tag.ndef.makeMimeRecord<sup>9+</sup>
 
-makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9);
+makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 
 根据输入的MIME数据和类型，构建NDEF标签的Record。
 
@@ -706,7 +829,7 @@ try {
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
 
-makeExternalRecord(domainName: string, type: string, externalData: number[]): [NdefRecord](#ndefrecord9);
+makeExternalRecord(domainName: string, type: string, externalData: number[]): [NdefRecord](#ndefrecord9)
 
 根据应用程序特定的外部数据，构建NDEF标签的Record。
 
@@ -749,7 +872,7 @@ try {
 
 ## tag.ndef.messageToBytes<sup>9+</sup>
 
-messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): number[];
+messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): number[]
 
 把输入的NDEF消息数据对象，转换为字节格式的数据。
 
@@ -863,7 +986,7 @@ NFC服务在读取到标签时给出的对象，通过改对象属性，应用�
 | ----------------------------- | ------------------------------------------------------------- | -------- | -------- | -------------------------------------------------------------------------------------------- |
 | uid<sup>9+</sup>              | number[]                                                      | 是       | 否       | 标签的uid，每个number值是十六进制表示，范围是0x00~0xFF。                                     |
 | technology<sup>9+</sup>       | number[]                                                      | 是       | 否       | 支持的技术类型，每个number值表示所支持技术类型的常量值。                                     |
-| supportedProfiles             | number[]                                                      | 是       | 否       | 支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#tagtaginfo)替代。            |
+| supportedProfiles             | number[]                                                      | 是       | 否       | 支持的技术类型，从API9开始不支持，使用[tag.TagInfo#technology](#taginfo)替代。            |
 | extrasData<sup>9+</sup>       | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | 是       | 否       | 标签所支持技术的扩展属性值。<br>**系统接口：** 此接口为系统接口。                            |
 | tagRfDiscId<sup>9+</sup>      | number                                                        | 是       | 否       | 标签发现时分配的ID值。<br>**系统接口：** 此接口为系统接口。                                  |
 | remoteTagService<sup>9+</sup> | [rpc.RemoteObject](js-apis-rpc.md#remoteobject)               | 是       | 否       | NFC服务进程的远端对象，用于客户端和服务之间的接口通信。<br>**系统接口：** 此接口为系统接口。 |

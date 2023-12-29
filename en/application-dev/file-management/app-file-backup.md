@@ -8,8 +8,6 @@ The backup and restoration framework provides a complete data backup and restora
 
 - [Restore application data](#restoring-application-data): Restore the application data based on the application information in the capability files.
 
-- [Install the application during data restoration](#installing-the-application-during-data-restoration): Install the application if the application with data to be restored has not been installed. As an extended function of application data restoration, this function allows the application to be installed on the device before data restoration.
-
 ## How to Develop
 
 For details about the APIs to be used, see [Backup and Restoration](../reference/apis/js-apis-file-backup.md).
@@ -110,6 +108,7 @@ You can save the file to a local directory as required.
   let g_session: backup.SessionBackup;
   function createSessionBackup(): backup.SessionBackup {
     let generalCallbacks: backup.GeneralCallbacks = {
+      // onFileReady is called to return a data complete notification to the application. Avoid time-consuming implementations in onFileReady. You can use asynchronous threads to process data based on the file FD.
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
           console.info('onFileReady err: ' + JSON.stringify(err));
@@ -119,6 +118,7 @@ You can save the file to a local directory as required.
           if (!fs.accessSync(bundlePath)) {
             fs.mkdirSync(bundlePath);
           }
+          // Calling copyFileSync causes one more memory copy. To reduce memory consumption, you can use the FD returned by onFileReady for data processing, and close the FD after data is processed.
           fs.copyFileSync(file.fd, bundlePath + `/${file.uri}`);
           fs.closeSync(file.fd);
           console.info('onFileReady success');
@@ -171,7 +171,7 @@ You can save the file to a local directory as required.
 
 You can select the application data to be restored based on the application information in the capability files.
 
-The Backup and Restore service returns the file handle of the application data to be restored in the [onFileReady](../reference/apis/js-apis-file-backup.md#onfileready) callback registered when the **SessionRestore** instance is created. The file handle is obtained by [getFileHandle](../reference/apis/js-apis-file-backup.md#getfilehandle). Then, the data to be restored is written to the file handle based on the [uri](../reference/apis/js-apis-file-backup.md#filemeta) returned. After the data is written, use [publishFile()](../reference/apis/js-apis-file-backup.md#publishfile) to notify the service that the data write is complete.
+The Backup and Restore service returns the FD of the application data to be restored in the [onFileReady](../reference/apis/js-apis-file-backup.md#onfileready) callback registered when the **SessionRestore** instance is created. The file handle is obtained by [getFileHandle](../reference/apis/js-apis-file-backup.md#getfilehandle). Then, the data to be restored is written to the file handle based on the [uri](../reference/apis/js-apis-file-backup.md#filemeta) returned. After the data is written, use [publishFile()](../reference/apis/js-apis-file-backup.md#publishfile) to notify the service that the data write is complete.
 
 When all the data of the application is ready, the service starts to restore the application data.
 
@@ -254,127 +254,4 @@ When all the data of the application is ready, the service starts to restore the
     await g_session.getFileHandle(handle);
     console.info('getFileHandle success');
   }
- ```
-
-## Installing the Application During Data Restoration
-
-If the application has not been installed, you can install the application and then restore the application data. To achieve this purpose, the value of **needToInstall** in **bundleInfos** in the [capability file](#obtaining-capability-files) must be **true**.
-
-> **NOTE**
->
-> - [Application data backup](#backing-up-application-data) does not support backup of the application installation package. Therefore, you need to obtain the application installation package.
-> - To obtain the file handle of an application installation package, call [getFileHandle()](../reference/apis/js-apis-file-backup.md#getfilehandle) with **FileMeta.uri** set to **/data/storage/el2/restore/bundle.hap**. The file handle of the application installation package is returned through the **onFileReady()** callback registered when the instance is created. The returned **File.uri** is **data/storage/el2/restore/bundle.hap**.
-
-**Example**
-
- ```ts
-  import backup from '@ohos.file.backup';
-  import common from '@ohos.app.ability.common';
-  import fs from '@ohos.file.fs';
-  import { BusinessError } from '@ohos.base';
-
-  // Obtain the sandbox path.
-  let context = getContext(this) as common.UIAbilityContext;
-  let filesDir = context.filesDir;
-  // Create a SessionRestore instance for data restoration.
-  let g_session: backup.SessionRestore;
-  async function publishFile(file: backup.File): Promise<void> {
-    let fileMeta: backup.FileMeta = {
-      bundleName: file.bundleName,
-      uri: file.uri
-    }
-    await g_session.publishFile(fileMeta);
-  }
-  function createSessionRestore(): backup.SessionRestore {
-    let generalCallbacks: backup.GeneralCallbacks = {
-      onFileReady: (err: BusinessError, file: backup.File) => {
-        if (err) {
-          console.info('onFileReady err: ' + JSON.stringify(err));
-        }
-        let bundlePath: string = '';
-        if( file.uri == "/data/storage/el2/restore/bundle.hap" )
-        {
-          // Set the path of the application installation package based on actual situation.
-        } else {
-          // Set bundlePath based on the actual situation.
-        }
-        if (!fs.accessSync(bundlePath)) {
-          console.info('onFileReady bundlePath err : ' + bundlePath);
-        }
-        fs.copyFileSync(bundlePath, file.fd);
-        fs.closeSync(file.fd);
-        // After the data is transferred, notify the server that the files are ready.
-        publishFile(file);
-        console.info('onFileReady success');
-      },
-      onBundleBegin: (err: BusinessError, bundleName: string) => {
-        if (err) {
-          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
-        }
-        console.info('onBundleBegin success');
-      },
-      onBundleEnd: (err: BusinessError, bundleName: string) => {
-        if (err) {
-          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
-        }
-        console.info('onBundleEnd success');
-      },
-      onAllBundlesEnd: (err: BusinessError) => {
-        if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
-        }
-        console.info('onAllBundlesEnd success');
-      },
-      onBackupServiceDied: () => {
-        console.info('service died');
-      }
-    }
-    let sessionRestore = new backup.SessionRestore(generalCallbacks);
-    return sessionRestore;
-  }
-
-  async function restore02 (): Promise<void> {
-    g_session = createSessionRestore();
-    const restoreApps: string[] = [
-      "com.example.hiworld",
-    ]
-    let fpath = filesDir + '/localCapabilities.json';
-    let file = fs.openSync(fpath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-    let content = "{\"bundleInfos\" :[{\"allToBackup\" : false,\"extensionName\" : \"\"," +
-    "\"name\" : \"cn.openharmony.inputmethodchoosedialog\",\"needToInstall\" : true,\"spaceOccupied\" : 0," +
-    "\"versionCode\" : 1000000,\"versionName\" : \"1.0.0\"}],\"deviceType\" : \"default\",\"systemFullName\"   : \"OpenHarmony-4.0.6.2(Canary1)\"}";
-    fs.writeSync(file.fd, content);
-    fs.fsyncSync(file.fd);
-    await g_session.appendBundles(file.fd, restoreApps);
-    console.info('appendBundles success');
-
-    // Obtain the file handle of the application to be installed.
-    let handle: backup.FileMeta = {
-      bundleName: restoreApps[0],
-      uri: "/data/storage/el2/restore/bundle.hap"
-    }
-    await g_session.getFileHandle(handle);
-    handle.uri = "manage.json";
-    await g_session.getFileHandle(handle);
-    handle.uri = "1.tar";
-    await g_session.getFileHandle(handle);
-    console.info('getFileHandle success');
-  }
- ```
-
-  **Capability file example**
- ```json
- {
-  "bundleInfos" :[{
-    "allToBackup" : true,
-    "extensionName" : "BackupExtensionAbility",
-    "name" : "com.example.hiworld",
-    "needToInstall" : true,
-    "spaceOccupied" : 0,
-    "versionCode" : 1000000,
-    "versionName" : "1.0.0"
-    }],
-  "deviceType" : "default",
-  "systemFullName" : "OpenHarmony-4.0.0.0"
- }
  ```

@@ -2,6 +2,8 @@
 
 The **\<TextArea>** component provides multi-line text input and automatically wraps text so that each line does not have more than the width of the component.
 
+If the component does not have its height set, it adapts its height to the content. If the component does not have its width set, it takes the maximum available width.
+
 >  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
@@ -33,22 +35,23 @@ Among the [universal attributes](ts-universal-attributes-size.md) and [universal
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | placeholderColor          | [ResourceColor](ts-types.md#resourcecolor)                   | Placeholder text color.<br>The default value follows the theme.              |
 | placeholderFont           | [Font](ts-types.md#font)                                     | Placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.|
-| textAlign                 | [TextAlign](ts-appendix-enums.md#textalign)                  | Horizontal alignment of the text.<br>Default value: **TextAlign.Start**<br>**NOTE**<br>Available options are **TextAlign.Start**, **TextAlign.Center**, and **TextAlign.End**.<br>To set vertical alignment for the text, use the [align](ts-universal-attributes-location.md) attribute. The **align** attribute alone does not control the horizontal position of the text. In other words, **Alignment.TopStart**, **Alignment.Top**, and **Alignment.TopEnd** produce the same effect, top-aligning the text; **Alignment.Start**, **Alignment.Center**, and **Alignment.End** produce the same effect, centered-aligning the text vertically; **Alignment.BottomStart**, **Alignment.Bottom**, and **Alignment.BottomEnd** produce the same effect, bottom-aligning the text.|
+| textAlign                 | [TextAlign](ts-appendix-enums.md#textalign)                  | Horizontal alignment of the text.<br>Default value: **TextAlign.Start**<br>**NOTE**<br>Available options are **TextAlign.Start**, **TextAlign.Center**, and **TextAlign.End**.<br>To set vertical alignment for the text, use the [align](ts-universal-attributes-location.md) attribute. The **align** attribute alone does not control the horizontal position of the text. In other words, **Alignment.TopStart**, **Alignment.Top**, and **Alignment.TopEnd** produce the same effect, top-aligning the text; **Alignment.Start**, **Alignment.Center**, and **Alignment.End** produce the same effect, centered-aligning the text vertically; **Alignment.BottomStart**, **Alignment.Bottom**, and **Alignment.BottomEnd** produce the same effect, bottom-aligning the text.<br>Since API version 11, **textAlign** can be set to **TextAlign.JUSTIFY**.|
 | caretColor                | [ResourceColor](ts-types.md#resourcecolor)                   | Color of the caret in the text box.<br>Default value: **'#007DFF'**                |
 | inputFilter<sup>8+</sup>  | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) => void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The specified regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
-| copyOption<sup>9+</sup>   | [CopyOptions](ts-appendix-enums.md#copyoptions9)             | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but the copy and cut operations are not.|
+| copyOption<sup>9+</sup>   | [CopyOptions](ts-appendix-enums.md#copyoptions9)             | Whether copy and paste is allowed.<br>Default value: **CopyOptions.LocalDevice**<br>If this attribute is set to **CopyOptions.None**, the paste operation is allowed, but the copy and cut operations are not.<br>|
 | maxLength<sup>10+</sup>   | number                                                       | Maximum number of characters in the text input.<br>By default, there is no maximum number of characters.<br>When the maximum number of characters is reached, no more characters can be entered, and the border turns red.|
-| showCounter<sup>10+</sup> | boolean                                                      | Whether to show the number of entered characters when **maxLength** is set.<br>Default value: **false**  |
-| style<sup>10+</sup>       | [TextContentStyle](ts-appendix-enums.md#textcontentstyle10)  | Style of the component.<br>Default value: **TextContentStyle.DEFAULT**   |
+| showCounter<sup>10+</sup> | value: boolean, options<sup>11+</sup>?: [InputCounterOptions](ts-basic-components-textinput.md#inputcounteroptions11) | Counter settings. **options** can be set only when **value** is set to **true**, in which case a character counter is displayed below the text box. This attribute must be used together with **maxlength**. The character counter is displayed in this format: Number of characters that have been entered/Maximum number of characters allowed. It is visible when the number of characters that have been entered is greater than the maximum number of characters multiplied by the threshold percentage value.|
+| style<sup>10+</sup>       | [TextContentStyle](ts-appendix-enums.md#textcontentstyle10)  | Style of the component.<br>Default value: **TextContentStyle.DEFAULT**|
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
 | selectionMenuHidden<sup>10+</sup> | boolean                                                      | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
 | barState<sup>10+</sup> | [BarState](ts-appendix-enums.md#BarState) | Scrollbar state when the inline input style is used.<br>Default value: **BarState.Auto**|
-| maxLines<sup>10+</sup> | number | Maximum number of lines that can be displayed when the inline input style is used.<br>Default value: **3**|
+| maxLines<sup>10+</sup> | number | Maximum number of lines that can be displayed when the inline input style is used.<br>Default value: **3**<br>**NOTE**<br>Value range: (0, +∞)|
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [TextAreaController](#textareacontroller8).[stopEditing](#stopediting10) API to close the keyboard.|
-
+| type<sup>11+</sup>                     | [TextAreaType](#textareatype11)     | Text box type.<br>Default value: **TextAreaType.Normal**       |
+| selectAll<sup>11+</sup> | boolean | Whether to select all text in the initial state.<br>Default value: **false**  |
 >  **NOTE**
 >
->  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows:<br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 8 vp,<br> left: 16 vp<br> }  <br>Since API version 11, **.width('auto')** can be set for the **\<TextArea>** component. Under this setting, the component auto-adapts its width to the text width, while respecting the **constraintSize** configuration and the maximum and minimum width restrictions received by the parent container. For details, see [Size](ts-universal-attributes-size.md#attributes).
 
 ## Events
 
@@ -147,6 +150,31 @@ Obtains the number of lines of the edited text.
 | ----- | -------- |
 | number| Number of lines of the edited text.|
 
+## TextAreaType<sup>11+</sup>
+
+| Name                | Description           |
+| ------------------ | ------------- |
+| Normal   | Normal input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters.|
+| Email    | Email address input mode. The value can contain digits, letters, underscores (_), and at signs (@). Only one at sign (@) is allowed.|
+| Number   | Digit input mode.     |
+| PhoneNumber | Phone number input mode.<br>The value can contain digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited.|
+
+### getCaretOffset<sup>11+</sup>
+
+getCaretOffset(): CaretOffset
+
+Returns the position information of the caret.
+
+**Return value**
+
+| Type                     | Description              |
+| ----------------------- | ---------------- |
+| [CaretOffset](ts-basic-components-textinput.md#caretoffset11) | Position of the caret relative to the text box.|
+
+> **NOTE**
+>
+> If this API is called when the caret position is updated in the current frame, it will not take effect.
+
 ## Example
 
 ### Example 1
@@ -157,6 +185,7 @@ Obtains the number of lines of the edited text.
 @Component
 struct TextAreaExample {
   @State text: string = ''
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
   controller: TextAreaController = new TextAreaController()
 
   build() {
@@ -183,6 +212,12 @@ struct TextAreaExample {
         .onClick(() => {
           // Move the caret to after the first entered character.
           this.controller.caretPosition(1)
+        })
+      Button('Get CaretOffset')
+        .backgroundColor('#007DFF')
+        .margin(15)
+        .onClick(() => {
+          this.positionInfo = this.controller.getCaretOffset()
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -272,3 +307,30 @@ struct TextAreaExample {
 ```
 
 ![customKeyboard](figures/textAreaCustomKeyboard.png)
+
+### Example 4
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = ''
+  controller: TextAreaController = new TextAreaController()
+
+  build() {
+    Column() {
+      TextArea({ text: this.text, controller: this.controller })
+        .placeholderFont({ size: 16, weight: 400 })
+        .width(336)
+        .height(56)
+        .maxLength(6)
+        .showCounter(true, { thresholdPercentage: 50 })
+		// The character counter is in this format: Number of characters that have been entered/Maximum number of characters allowed, which is specified by maxLength().
+        // The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by 50% (threshold percentage).
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+```
+
+![TextAreaCounter](figures/TextAreaCounter.jpg)

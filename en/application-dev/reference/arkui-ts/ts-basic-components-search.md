@@ -38,10 +38,12 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | searchIcon<sup>10+</sup>   | [IconOptions](#iconoptions10)                                                  | Style of the search icon on the left.                                      |
 | cancelButton<sup>10+</sup> | {<br>style? : [CancelButtonStyle](#cancelbuttonstyle10)<br>icon?: [IconOptions](#iconoptions10) <br>} | Style of the Cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>} |
 | fontColor<sup>10+</sup>    | [ResourceColor](ts-types.md#resourcecolor)                   | Font color of the input text.<br>Default value: **'#FF182431'**<br>**NOTE**<br>[Universal text attributes](ts-universal-attributes-text-style.md) **fontSize**, **fontStyle**, **fontWeight**, and **fontFamily** are set in the **textFont** attribute.|
-| caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10)                                                  | Caret style.<br>Default value:<br>{<br>width: 1.5vp<br>color: '#007DFF'<br>} |
+| caretStyle<sup>10+</sup>  | [CaretStyle](#caretstyle10)                                                  | Caret style.<br>Default value:<br>{<br>width: '1.5vp',<br>color: '#007DFF'<br>} |
 | enableKeyboardOnFocus<sup>10+</sup> | boolean | Whether to enable the input method when the component obtains focus.<br>Default value: **true**  |
 | selectionMenuHidden<sup>10+</sup> | boolean | Whether to display the text selection menu when the text box is long-pressed or right-clicked.<br>Default value: **false**|
 | customKeyboard<sup>10+</sup> | [CustomBuilder](ts-types.md#custombuilder8) | Custom keyboard.<br>**NOTE**<br>When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.<br>The custom keyboard's height can be set through the **height** attribute of the custom component's root node, and its width is fixed at the default value.<br>The custom keyboard is displayed on top of the current page, without compressing or raising the page.<br>The custom keyboard cannot obtain the focus, but it blocks gesture events.<br>By default, the custom keyboard is closed when the input component loses the focus. You can also use the [stopEditing](#stopediting10) API to close the keyboard.|
+| type<sup>11+</sup>                     | [SearchType](#searchtype11)     | Input box type.<br>Default value: **SearchType.Normal**       |
+| maxLength<sup>11+</sup>   | number                                                       | Maximum number of characters in the text input.<br>By default, no maximum number limit is imposed.<br>When the maximum number is reached, no more characters can be entered.|
 
 ## IconOptions<sup>10+</sup>
 
@@ -72,6 +74,15 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | CONSTANT  | The Cancel button is always displayed.|
 | INVISIBLE | The Cancel button is always hidden.|
 | INPUT     | The Cancel button is displayed when there is text input.|
+
+## SearchType<sup>11+</sup>
+
+| Name                | Description           |
+| ------------------ | ------------- |
+| Normal   | Normal input mode.<br>In this mode, the following are allowed: digits, letters, underscores (_), spaces, and special characters.|
+| Email    | Email address input mode. In this mode, the following are allowed: digits, letters, underscores (_), and at signs (@); only one at sign (@) can exist.|
+| Number   | Digit input mode.     |
+| PhoneNumber | Phone number input mode.<br>In this mode, the following are allowed: digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#); the length is not limited.|
 
 ## Events
 
@@ -129,6 +140,7 @@ Obtains the position of the edited text area relative to the component and its s
 >
 > - The returned position information is the offset of the first character relative to the search icon in the **\<Search>** component.
 > - If no text is entered, the return value contains the position information, but the size is 0.
+> -  
 
 ### RectResult<sup>10+</sup>
 
@@ -154,6 +166,25 @@ Obtains the number of lines of the edited text.
 | ----- | -------- |
 | number| Number of lines of the edited text.|
 
+### getCaretOffset<sup>11+</sup>
+
+getCaretOffset(): CaretOffset
+
+Returns the location information of the caret.
+
+**Return value**
+
+| Type                     | Description              |
+| ----------------------- | ---------------- |
+| [CaretOffset](ts-basic-components-textinput.md#caretoffset11) | Position of the caret relative to the input box.|
+
+> **NOTE**
+>
+> - The returned position information is the offset of the first character relative to the search icon in the **\<Search>** component.
+> - If no text is entered, the return value contains the location relative to the **\<Search>** component.
+> - The location information in the return value is the location of the caret relative to the editable component.
+> - If this API is called when the caret position is updated in the current frame, it will not take effect.
+
 ##  Example
 
 ### Example 1
@@ -165,10 +196,11 @@ Obtains the number of lines of the edited text.
 struct SearchExample {
   @State changeValue: string = ''
   @State submitValue: string = ''
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
   controller: SearchController = new SearchController()
 
   build() {
-    Column() {
+    Column({space: 10}) {
       Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
       Text('onChange:' + this.changeValue).fontSize(18).margin(15)
       Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
@@ -190,6 +222,10 @@ struct SearchExample {
         .onClick(() => {
           // Move the caret to after the first entered character.
           this.controller.caretPosition(1)
+        })
+      Button('Get CaretOffset')
+        .onClick(() => {
+          this.positionInfo = this.controller.getCaretOffset()
         })
     }.width('100%')
   }
@@ -223,6 +259,7 @@ struct SearchButtoonExample {
         })
         .width('90%')
         .height(40)
+        .maxLength(20)
         .backgroundColor('#F5F5F5')
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })

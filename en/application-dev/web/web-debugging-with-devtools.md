@@ -1,7 +1,7 @@
 # Debugging Frontend Pages by Using DevTools
 
 
-The **Web** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use [setWebDebuggingAccess()](../reference/apis/js-apis-webview.md#setwebdebuggingaccess) to enable frontend page debugging for the **Web** component.
+The **Web** component supports debugging of web frontend pages by using DevTools, a web frontend development and debugging tool that allows you to debug an application's frontend pages on a PC. Before you do this, use [setWebDebuggingAccess()](../reference/apis/js-apis-webview.md#setwebdebuggingaccess) to enable frontend page debugging for the **Web** component and make sure the test device connected to the PC runs 4.1.0 or a later version.
 
 
 To use DevTools for frontend page debugging, perform the following steps:

@@ -28,6 +28,7 @@ import ability from '@ohos.ability.ability';
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
 import rdb from '@ohos.data.rdb';
+import { BusinessError } from '@ohos.base';
 
 // 批量执行数据库操作
 function executeBatchOperation() {
@@ -72,7 +73,7 @@ function executeBatchOperation() {
             console.error(`executeBatch error: ${JSON.stringify(err)}`);
         });
     } catch (err) {
-        console.error(`executeBatch error: ${JSON.stringify(err)}`);
+        console.error(`executeBatch error: ${JSON.stringify(err as BusinessError)}`);
     }
 }
 ```

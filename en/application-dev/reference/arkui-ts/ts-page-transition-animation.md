@@ -1,4 +1,4 @@
-# Page Transition
+# Page Transition (pageTransition)
 
 You can customize the page entrance and exit animations in the **pageTransition** API for transition between pages. For details, see [Page Transition Animation](../../ui/arkts-page-transition-animation.md).
 
@@ -46,8 +46,8 @@ You can customize the page entrance and exit animations in the **pageTransition*
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onEnter(event: (type?: RouteType, progress?: number) =&gt; void) | Invoked once every animation frame until the entrance animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current entrance animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
-| onExit(event: (type?: RouteType, progress?: number) =&gt; void) | Invoked once every animation frame until the exit animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current exit animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
+| onEnter(event: (type?: [RouteType](#routetype), progress?: number) =&gt; void) | Invoked once every animation frame until the entrance animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current entrance animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
+| onExit(event: (type?: [RouteType](#routetype), progress?: number) =&gt; void) | Invoked once every animation frame until the exit animation ends, when the value of **progress** changes from 0 to 1. The input parameter is the normalized progress of the current exit animation. The value range is 0–1.<br>- **type**: route type.<br>- **progress**: current progress.<br> <br> |
 
 
 ## Example
