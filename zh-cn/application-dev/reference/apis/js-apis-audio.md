@@ -6163,6 +6163,8 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 根据输入指令，开启/关闭空间音频渲染效果，使用callback方式异步返回结果。
 
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
@@ -6180,6 +6182,7 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
 | 202     | Not system App.                             |
 | 401     | Input parameter type or number mismatch.    |
 | 6800101 | Invalid parameter error.                    |
@@ -6205,6 +6208,8 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 
 根据输入指令，开启/关闭空间音频渲染效果，使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
@@ -6227,6 +6232,7 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201     | Permission denied. Return by promise.       |
 | 202     | Not system App.                             |
 | 401     | Input parameter type or number mismatch.    |
 
@@ -6359,6 +6365,8 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 根据输入指令，开启/关闭头动跟踪效果，使用callback方式异步返回结果。
 
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
@@ -6376,6 +6384,7 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
 | 202     | Not system App.                             |
 | 401     | Input parameter type or number mismatch.    |
 | 6800101 | Invalid parameter error.                    |
@@ -6401,6 +6410,8 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 根据输入指令，开启/关闭头动跟踪效果，使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
@@ -6423,6 +6434,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201     | Permission denied. Return by promise.       |
 | 202     | Not system App.                             |
 | 401     | Input parameter type or number mismatch.    |
 
@@ -6555,6 +6567,8 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 
 更新空间化设备状态，同步返回结果。
 
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
 **系统接口：** 该接口为系统接口
 
 **系统能力：** SystemCapability.Multimedia.Audio.Spatialization
@@ -6571,6 +6585,7 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
 | 202     | Not system App.                             |
 | 401     | Input parameter type or number mismatch.    |
 | 6800101 | Invalid parameter error.                    |

@@ -61,8 +61,8 @@ Provides the coordinates of a point.
 
 | Name| Type  | Readable| Writable| Description            |
 | ---- | ------ | ---- | ---- | ---------------- |
-| x    | number | Yes  | No  | X-coordinate of a point.|
-| y    | number | Yes  | No  | Y-coordinate of a point.|
+| x    | number | Yes  | No  | X coordinate of a point.|
+| y    | number | Yes  | No  | Y coordinate of a point.|
 
 ## Rect<sup>9+</sup>
 
@@ -72,10 +72,10 @@ Provides bounds information of a component.
 
 | Name  | Type  | Readable| Writable| Description                     |
 | ------ | ------ | ---- | ---- | ------------------------- |
-| left   | number | Yes  | No  | X-coordinate of the upper left corner of the component bounds.|
-| top    | number | Yes  | No  | Y-coordinate of the upper left corner of the component bounds.|
-| right  | number | Yes  | No  | X-coordinate of the lower right corner of the component bounds.|
-| bottom | number | Yes  | No  | Y-coordinate of the lower right corner of the component bounds.|
+| left   | number | Yes  | No  | X coordinate of the upper left corner of the component bounds.|
+| top    | number | Yes  | No  | Y coordinate of the upper left corner of the component bounds.|
+| right  | number | Yes  | No  | X coordinate of the lower right corner of the component bounds.|
+| bottom | number | Yes  | No  | Y coordinate of the lower right corner of the component bounds.|
 
 ## WindowMode<sup>9+</sup>
 
@@ -109,12 +109,13 @@ Provides the flag attributes of this window.
 
 **System capability**: SystemCapability.Test.UiTest
 
-| Name      | Type   | Readable| Writable| Description                      |
-| ---------- | ------- | ---- | ---- | -------------------------- |
-| bundleName | string  | Yes  | No  | Bundle name of the application to which the window belongs.      |
-| title      | string  | Yes  | No  | Title of the window.          |
-| focused    | boolean | Yes  | No  | Whether the window is in focused state.    |
-| actived    | boolean | Yes  | No  | Whether the window is interacting with the user.|
+| Name                | Type   | Readable| Writable| Description                                                        |
+| -------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
+| bundleName           | string  | Yes  | No  | Bundle name of the application to which the window belongs.                                        |
+| title                | string  | Yes  | No  | Title of the window.                                            |
+| focused              | boolean | Yes  | No  | Whether the window is in focused state.                                      |
+| actived(deprecated)  | boolean | Yes  | No  | Whether the window is interacting with the user.<br>Since API version 11, this parameter is renamed **active**.|
+| active<sup>11+</sup> | boolean | Yes  | No  | Whether the window is interacting with the user.                                  |
 
 ## UiDirection<sup>10+</sup>
 
@@ -157,7 +158,7 @@ Provides information about the UI event.
 
 Since API version 9, the UiTest framework provides a wide range of UI component feature description APIs in the **On** class to filter and match components.
 
-The API capabilities provided by the **On** class exhibit the following features:
+The APIs provided by the **On** class exhibit the following features:
 
 - Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
 - Provide multiple match patterns for component attributes.
@@ -554,7 +555,7 @@ Specifies that the target component is located within the given attribute compon
 ```ts
 import { On, ON } from '@ohos.UiTest';
 // Use the static constructor ON to create an On object and specify that the target component is located within the given attribute component.
-let on:On = ON.text('java').within(ON.type('Scroll'));  // Search for the child component whose text is 123 within the <Scroller> component.
+let on:On = ON.text('java').within(ON.type('Scroll'));  // Search for the child component whose text is java within the <Scroller> component.
 ```
 
 ### inWindow<sup>10+</sup>
@@ -582,6 +583,34 @@ Specifies that the target component is located within the given application wind
 ```ts
 import { On, ON } from '@ohos.UiTest';
 let on:On = ON.inWindow('com.uitestScene.acts'); // Use the static constructor ON to create an On object and specify that the target component is located within the given application window.
+```
+
+### description<sup>11+</sup>
+
+description(val: string, pattern?: MatchPattern): On
+
+Specifies the description of the target component. Multiple match patterns are supported.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name | Type                         | Mandatory| Description                                               |
+| ------- | ----------------------------- | ---- | --------------------------------------------------- |
+| val     | string                        | Yes  | Description of the component.                                   |
+| pattern | [MatchPattern](#matchpattern) | No  | Match pattern. The default value is [EQUALS](#matchpattern).|
+
+**Return value**
+
+| Type      | Description                                     |
+| ---------- | ----------------------------------------- |
+| [On](#on9) | **On** object.|
+
+**Example**
+
+```ts
+import { On, ON } from '@ohos.UiTest';
+let on:On = ON.description('123'); // Use the static constructor ON to create an On object and specify the description attribute of the target component.
 ```
 
 ## Component<sup>9+</sup>
@@ -892,8 +921,8 @@ Obtains the long-clickable status of this component.
 
 **Return value**
 
-| Type             | Description                                                        |
-| ----------------- | ------------------------------------------------------------ |
+| Type             | Description                                              |
+| ----------------- |--------------------------------------------------|
 | Promise\<boolean> | Promise used to return the long-clickable status of the component. The value **true** means that the component is long-clickable, and **false** means the opposite.|
 
 **Error codes**
@@ -1123,7 +1152,7 @@ Obtains the selected status of this component.
 
 | Type             | Description                                               |
 | ----------------- | --------------------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the component is selected, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the selected status of the component. The value **true** means that the component is selected, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1192,6 +1221,7 @@ Clears text in this component. This API is applicable to text boxes.
 **System capability**: SystemCapability.Test.UiTest
 
 **Error codes**
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
@@ -1420,11 +1450,45 @@ async function demo() {
 }
 ```
 
+### getDescription<sup>11+</sup>
+
+getDescription(): Promise\<string>
+
+Obtains the description of this component.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type            | Description                             |
+| ---------------- | --------------------------------- |
+| Promise\<string> | Promise used to return the description of the component.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                        |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.      |
+
+**Example**
+
+```ts
+import { Component, Driver, ON } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('Button'));
+  let description = await button.getDescription();
+}
+```
+
 ## Driver<sup>9+</sup>
 
 The **Driver** class is the main entry to the UiTest framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
 
-All APIs provided by this class, except for **Driver.create()**, use a promise to return the result and must be invoked using **await**.
+All APIs provided by this class, except **Driver.create()**, use a promise to return the result and must be invoked using **await**.
 
 ### create<sup>9+</sup>
 
@@ -1879,10 +1943,10 @@ Swipes on this **Driver** object from the given start point to the given end poi
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | Yes  | X-coordinate of the start point.                      |
-| starty | number | Yes  | Y-coordinate of the start point.                      |
-| endx   | number | Yes  | X-coordinate of the end point.                      |
-| endy   | number | Yes  | Y-coordinate of the end point.                      |
+| startx | number | Yes  | X coordinate of the start point.                      |
+| starty | number | Yes  | Y coordinate of the start point.                      |
+| endx   | number | Yes  | X coordinate of the end point.                      |
+| endy   | number | Yes  | Y coordinate of the end point.                      |
 | speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
@@ -1915,10 +1979,10 @@ Drags this **Driver** object from the given start point to the given end point.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | Yes  | X-coordinate of the start point.                      |
-| starty | number | Yes  | Y-coordinate of the start point.                      |
-| endx   | number | Yes  | X-coordinate of the end point.                      |
-| endy   | number | Yes  | Y-coordinate of the end point.                      |
+| startx | number | Yes  | X coordinate of the start point.                      |
+| starty | number | Yes  | Y coordinate of the start point.                      |
+| endx   | number | Yes  | X coordinate of the end point.                      |
+| endy   | number | Yes  | Y coordinate of the end point.                      |
 | speed  | number | No  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
@@ -1957,7 +2021,7 @@ Captures the current screen of this **Driver** object and saves it as a PNG imag
 
 | Type             | Description                                  |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | Promise used to return the operation result. The value **true** means that the operation is successful.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the operation is successful.|
 
 **Error codes**
 
@@ -2362,7 +2426,7 @@ Captures the specified area of the current screen and saves the captured screens
 
 | Type             | Description                                  |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | Promise used to return the operation result. The value **true** means that the operation is successful.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the operation is successful.|
 
 **Error codes**
 
@@ -2495,9 +2559,9 @@ Creates a UI event listener.
 
 **Return value**
 
-| Type                                           | Description                                 |
-| ----------------------------------------------- | ------------------------------------- |
-| Promise\<[UIEventObserver](#uieventobserver10)> | Promise used to return the target window.|
+| Type                                  | Description                                 |
+| ------------------------------------ | ------------------------------------- |
+|[UIEventObserver](#uieventobserver10) | UI event listener.|
 
 **Error codes**
 
@@ -2593,7 +2657,7 @@ async function demo() {
 
 mouseLongClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>
 
-Injects a long-press action of the mouse device at the specified coordinates, with the optional key or key combination. For example, if the value of **Key** is **2072**, the **Ctrl** button is long-pressed with the mouse device.
+Injects a long-click action of the mouse device at the specified coordinates, with the optional key or key combination. For example, if the value of **Key** is **2072**, the **Ctrl** button is long-clicked with the mouse device.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2601,7 +2665,7 @@ Injects a long-press action of the mouse device at the specified coordinates, wi
 
 | Name| Type                         | Mandatory| Description               |
 | ------ | ----------------------------- | ---- | ------------------- |
-| p      | [Point](#point9)              | Yes  | Coordinates of the long-press of the mouse device.   |
+| p      | [Point](#point9)              | Yes  | Coordinates of the long-click of the mouse device.   |
 | btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.   |
 | key1   | number                        | No  | The first key value.|
 | key2   | number                        | No  | The second key value.|
@@ -2969,11 +3033,13 @@ async function demo() {
 }
 ```
 
-### isActived<sup>9+</sup>
+### isActived<sup>(deprecated)</sup>
 
 isActived(): Promise\<boolean>
 
 Checks whether this window is active.
+
+This API is supported since API version 9 and deprecated since API version 11. You are advised to use [isActive<sup>11+</sup>](#isactive11) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3249,13 +3315,47 @@ async function demo() {
 }
 ```
 
+### isActive<sup>11+</sup>
+
+isActive(): Promise\<boolean>
+
+Checks whether this window is active.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type             | Description                                                        |
+| ----------------- | ------------------------------------------------------------ |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the window is active, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                        |
+| -------- | ------------------------------------------------ |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.         |
+
+**Example**
+
+```ts
+import { Driver, UiWindow } from '@ohos.UiTest';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let window: UiWindow = await driver.findWindow({active: true});
+  let focused = await window.isActive();
+}
+```
+
 ## UIEventObserver<sup>10+</sup>
 
 UI event listener.
 
 ### once('toastShow')
 
-once(type: 'toastShow', callback: Callback\<UIElementInfo>):void;
+once(type: 'toastShow', callback: Callback\<UIElementInfo>): void;
 
 Subscribes to events of the toast component. This API uses a callback to return the result.
 
@@ -3319,15 +3419,15 @@ async function demo() {
 
 The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.
 
-The API capabilities provided by the **By** class exhibit the following features:
+The APIs provided by the **By** class exhibit the following features:
 
-- Allows one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
+- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
 - Provide multiple match patterns for component attributes.
 - Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning.
 
 All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
 
-This API is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
+This class is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
 
 ```ts
 import { BY } from '@ohos.UiTest';
@@ -3668,7 +3768,7 @@ let by: By = BY.type('Text').isAfter(BY.text('123')); // Search for the first <T
 In **UiTest**, the **UiComponent** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
-This API is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
+This class is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
 
 ### click<sup>(deprecated)</sup>
 
@@ -3981,7 +4081,7 @@ This API is deprecated since API version 9. You are advised to use [isSelected<s
 
 | Type             | Description                                                 |
 | ----------------- | ----------------------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the component is selected, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the selected status of the component. The value **true** means that the component is selected, and **false** means the opposite.|
 
 **Example**
 
@@ -4061,8 +4161,7 @@ async function demo() {
 ## UiDriver<sup>(deprecated)</sup>
 
 The **UiDriver** class is the main entry to the UiTest framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
-
-All APIs provided by this class, except for **UiDriver.create()**, use a promise to return the result and must be invoked using **await**.
+All APIs provided by this class, except **UiDriver.create()**, use a promise to return the result and must be invoked using **await**.
 
 This class is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
 
@@ -4358,10 +4457,10 @@ This API is deprecated since API version 9. You are advised to use [swipe<sup>9+
 
 | Name| Type  | Mandatory| Description                                  |
 | ------ | ------ | ---- | -------------------------------------- |
-| startx | number | Yes  | X-coordinate of the start point.|
-| starty | number | Yes  | Y-coordinate of the start point.|
-| endx   | number | Yes  | X-coordinate of the end point.|
-| endy   | number | Yes  | Y-coordinate of the end point.|
+| startx | number | Yes  | X coordinate of the start point.|
+| starty | number | Yes  | Y coordinate of the start point.|
+| endx   | number | Yes  | X coordinate of the end point.|
+| endy   | number | Yes  | Y coordinate of the end point.|
 
 **Example**
 
@@ -4393,7 +4492,7 @@ This API is deprecated since API version 9. You are advised to use [screenCap<su
 
 | Type             | Description                                  |
 | ----------------- | -------------------------------------- |
-| Promise\<boolean> | Promise used to return the operation result. The value **true** means that the operation is successful.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the operation is successful.|
 
 **Example**
 

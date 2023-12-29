@@ -48,7 +48,7 @@ hap级别的快速修复信息。
 
 applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<void>): void;
 
-快速修复的补丁安装接口。
+快速修复的补丁安装接口。使用callback异步回调。
 
 **需要权限**: ohos.permission.INSTALL_BUNDLE
 
@@ -61,7 +61,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | hapModuleQuickFixFiles | Array\<string> | 是 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 |
-  | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当快速修复的补丁安装成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -99,7 +99,7 @@ import quickFixManager from '@ohos.app.ability.quickFixManager';
 
 applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
-快速修复的补丁安装接口。
+快速修复的补丁安装接口。使用Promise异步回调。
 
 **需要权限**: ohos.permission.INSTALL_BUNDLE
 
@@ -117,7 +117,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise\<void> | 返回相应结果。 |
+  | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -152,7 +152,7 @@ import { BusinessError } from '@ohos.base';
 
 getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<ApplicationQuickFixInfo>): void;
 
-获取应用的快速修复信息。
+获取应用的快速修复信息。使用callback异步回调。
 
 **需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -165,7 +165,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 |应用Bundle名称。  |
-| callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 以callback形式返回应用的快速修复信息。 |
+| callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 回调函数。返回应用的快速修复信息。 |
 
 **错误码**：
 
@@ -199,7 +199,7 @@ import quickFixManager from '@ohos.app.ability.quickFixManager';
 
 getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo>;
 
-获取应用的快速修复信息。
+获取应用的快速修复信息。使用Promise异步回调。
 
 **需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -217,7 +217,7 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 以Promise形式返回应用的快速修复信息。 |
+  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise对象。返回应用的快速修复信息。 |
 
 **错误码**：
 
@@ -263,7 +263,7 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | bundleName | string | 是 | 需要撤销补丁的应用Bundle名称。 |
-  | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
+  | callback | AsyncCallback\<void> | 是 | 回调函数。当撤销快速修复成功时，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -291,7 +291,7 @@ import quickFixManager from '@ohos.app.ability.quickFixManager';
 
 revokeQuickFix(bundleName: string): Promise\<void>;
 
-撤销快速修复的接口，使用Promise方式返回结果。
+撤销快速修复的接口。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.INSTALL_BUNDLE
 
@@ -309,7 +309,7 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Promise\<void> | 返回相应结果。 |
+  | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 

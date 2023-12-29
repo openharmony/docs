@@ -29,7 +29,7 @@ Span(value: string | Resource)
 
 ## 属性
 
-通用属性方法仅支持[通用文本样式](ts-universal-attributes-text-style.md)。
+通用属性方法仅支持[文本通用](ts-universal-attributes-text-style.md)。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |

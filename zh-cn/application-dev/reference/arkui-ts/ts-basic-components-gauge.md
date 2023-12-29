@@ -78,7 +78,7 @@ Gauge(options:{value: number, min?: number, max?: number})
 @Entry
 @Component
 struct Gauge1 {
-  @Builder DescriptionBuilder() {
+  @Builder descriptionBuilder() {
     Text('说明文本')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
@@ -130,7 +130,7 @@ struct Gauge1 {
       .height('80%')
       .strokeWidth(18)
       .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
-      .description(this.DescriptionBuilder)
+      .description(this.descriptionBuilder)
       .padding(18)
     }.margin({ top: 40 }).width('100%').height('100%')
   }
@@ -144,7 +144,7 @@ struct Gauge1 {
 @Entry
 @Component
 struct Gauge2 {
-  @Builder DescriptionBuilderImage() {
+  @Builder descriptionBuilderImage() {
     Image($r('sys.media.ohos_ic_public_clock')).width(72).height(72)
   }
 
@@ -170,7 +170,7 @@ struct Gauge2 {
       .width('80%')
       .height('80%')
       .strokeWidth(18)
-      .description(this.DescriptionBuilderImage)
+      .description(this.descriptionBuilderImage)
       .padding(18)
     }.margin({ top: 40 }).width('100%').height('100%')
   }
@@ -184,7 +184,7 @@ struct Gauge2 {
 @Entry
 @Component
 struct Gauge3 {
-  @Builder DescriptionBuilder() {
+  @Builder descriptionBuilder() {
     Text('说明文本')
       .maxFontSize('30sp')
       .minFontSize("10.0vp")
@@ -226,7 +226,7 @@ struct Gauge3 {
         .width('80%')
         .height('80%')
         .strokeWidth(18)
-        .description(this.DescriptionBuilder)
+        .description(this.descriptionBuilder)
         .trackShadow({ radius: 7, offsetX: 7, offsetY: 7 })
         .padding(18)
       }.margin({ top: 40 }).width('100%').height('100%')

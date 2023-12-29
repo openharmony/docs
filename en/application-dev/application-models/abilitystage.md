@@ -12,9 +12,9 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 
 1. In the **ets** directory of the **Module** project, right-click and choose **New > Directory** to create a directory named **myabilitystage**.
 
-2. In the **myabilitystage** directory, right-click and choose **New > TypeScript File** to create a file named **MyAbilityStage.ts**.
+2. In the **myabilitystage** directory, right-click and choose **New > TypeScript File** to create a file named **MyAbilityStage.ets**.
 
-3. Open the **MyAbilityStage.ts** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
+3. Open the **MyAbilityStage.ets** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
@@ -37,7 +37,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
      "module": {
        "name": "entry",
        "type": "entry",
-       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
        ...
      }
    }

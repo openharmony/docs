@@ -548,7 +548,7 @@ function divide (a: number, b: number): number{
 function process (a: number, b: number) {
   try {
     let res = divide(a, b)
-    console.log(res)
+    console.log('result: ' + res)
   } catch (x) {
     console.log('some error')
   }

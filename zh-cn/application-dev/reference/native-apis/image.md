@@ -191,7 +191,7 @@
 | [OhosImageSource::uri](#uri) = nullptr | 图像源资源标识符，接受文件资源或者base64资源。 | 
 | [OhosImageSource::uriSize](#urisize) = 0 | 图像源资源长度。 | 
 | [OhosImageSource::fd](#fd) = -1 | 图像源文件资源描述符。 | 
-| [OhosImageSource::buffer](#buffer-12) = nullptr | 图像源缓冲区资源，解手格式化包缓冲区或者base64缓冲区。 | 
+| [OhosImageSource::buffer](#buffer-12) = nullptr | 图像源缓冲区资源，接受格式化包缓冲区或者base64缓冲区。 | 
 | [OhosImageSource::bufferSize](#buffersize-12) = 0 | 图像源缓冲区资源大小。 | 
 | [OhosImageSourceDelayTimeList::delayTimeList](#delaytimelist) | 图像源延迟时间列表头地址。 | 
 | [OhosImageSourceDelayTimeList::size](#size-47) = 0 | 图像源延迟时间列表大小。 | 
@@ -318,7 +318,7 @@ typedef void(* OH_Image_Receiver_On_Callback) ()
 ### OhosPixelMapInfos
 
 ```
-typedef struct OhosPixelMapInfosOhosPixelMapInfos
+typedef struct OhosPixelMapInfos
 ```
 
 **描述**
@@ -612,7 +612,7 @@ int32_t OHOS::Media::OH_AccessPixels (napi_env env, napi_value value, void ** ad
 | -------- | -------- |
 | env | napi的环境指针。 | 
 | value | 应用层的 **PixelMap** 对象。 | 
-| addrPtr | 用于指向的内存地址的双指针对象。 | 
+| addrPtr | 用于指向的内存地址的二级指针对象。 | 
 
 **参见：**
 
@@ -689,7 +689,7 @@ int32_t OH_Image_ClipRect (const ImageNative * native, struct OhosImageRect * re
 
 **参见：**
 
-ImageNative, [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
+[ImageNative](image.md#imagenative), [OhosImageRect](_o_h_o_s_1_1_media_1_1_ohos_image_rect.md)
 
 
 ### OH_Image_Format()
@@ -728,7 +728,7 @@ int32_t OH_Image_Format (const ImageNative * native, int32_t * format )
 
 **参见：**
 
-ImageNative
+[ImageNative](image.md#imagenative)
 
 
 ### OH_Image_GetComponent()
@@ -767,7 +767,7 @@ int32_t OH_Image_GetComponent (const ImageNative * native, int32_t componentType
 
 **参见：**
 
-ImageNative, [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
+[ImageNative](image.md#imagenative), [OhosImageComponent](_o_h_o_s_1_1_media_1_1_ohos_image_component.md)
 
 
 ### OH_Image_InitImageNative()
@@ -795,7 +795,7 @@ ImageNative* OH_Image_InitImageNative (napi_env env, napi_value source )
 
 **参见：**
 
-ImageNative, OH_Image_Release
+[ImageNative](image.md#imagenative), [OH_Image_Release](image.md#oh_image_release)
 
 
 ### OH_Image_Receiver_CreateImageReceiver()
@@ -828,7 +828,9 @@ int32_t OH_Image_Receiver_CreateImageReceiver (napi_env env, struct OhosImageRec
 
 如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果参数无效或从surface获取参数失败则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+
+从surface获取参数失败则返回IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED；
 
 如果创建surface失败则返回IMAGE_RESULT_CREATE_SURFACE_FAILED；
 
@@ -956,7 +958,9 @@ int32_t OH_Image_Receiver_GetReceivingSurfaceId (const ImageReceiverNative * nat
 
 如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果参数无效或从surface获取参数失败则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+
+从surface获取参数失败则返回IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED；
 
 如果获取surface失败则返回IMAGE_RESULT_GET_SURFACE_FAILED；
 
@@ -1071,7 +1075,9 @@ int32_t OH_Image_Receiver_On (const ImageReceiverNative * native, OH_Image_Recei
 
 如果图像类型不支持失败则返回IMAGE_RESULT_DATA_UNSUPPORT；
 
-如果媒体类型不支持失败则返回IMAGE_RESULT_MEDIA_DATA_UNSUPPORT。
+如果注册监听失败则返回IMAGE_RESULT_REGISTER_LISTENER_FAILED；
+
+如果注册内存失败则返回IMAGE_RESULT_REGISTER_BUFFER_FAILED。
 
 
 **参见：**
@@ -1108,7 +1114,9 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 
 如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果参数无效或从surface获取参数失败则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+
+如果从surface获取参数失败返回IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED；
 
 如果创建surface失败则返回IMAGE_RESULT_CREATE_SURFACE_FAILED；
 
@@ -1120,7 +1128,7 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 
 如果图像类型不支持失败则返回IMAGE_RESULT_DATA_UNSUPPORT；
 
-如果媒体类型不支持失败则返回IMAGE_RESULT_MEDIA_DATA_UNSUPPORT。
+如果申请内存失败则返回IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED。
 
 
 **参见：**
@@ -1157,7 +1165,9 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 
 如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果参数无效或从surface获取参数失败则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+
+如果从surface获取参数失败返回IMAGE_RESULT_SURFACE_GET_PARAMETER_FAILED；
 
 如果创建surface失败则返回IMAGE_RESULT_CREATE_SURFACE_FAILED；
 
@@ -1169,7 +1179,7 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 
 如果图像类型不支持失败则返回IMAGE_RESULT_DATA_UNSUPPORT；
 
-如果媒体类型不支持失败则返回IMAGE_RESULT_MEDIA_DATA_UNSUPPORT。
+如果申请内存失败则返回IMAGE_RESULT_SURFACE_REQUEST_BUFFER_FAILED。
 
 **参见：**
 
@@ -1202,9 +1212,9 @@ int32_t OH_Image_Receiver_Release (ImageReceiverNative * native)
 
 如果参数错误则返回IMAGE_RESULT_BAD_PARAMETER；
 
-如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER；
+如果JNI环境异常则返回IMAGE_RESULT_JNI_ENV_ABNORMAL；
 
-如果图像类型不支持失败则返回IMAGE_RESULT_DATA_UNSUPPORT。
+如果参数无效则返回IMAGE_RESULT_INVALID_PARAMETER。
 
 
 **参见：**
@@ -1244,7 +1254,7 @@ int32_t OH_Image_Release (ImageNative * native)
 
 **参见：**
 
-ImageNative, OH_Image_InitImageNative
+[ImageNative](image.md#imagenative), [OH_Image_InitImageNative](image.md#oh_image_initimagenative)
 
 
 ### OH_Image_Size()
@@ -1282,7 +1292,7 @@ int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 
 **参见：**
 
-ImageNative, [OhosImageSize](_ohos_image_size.md)
+[ImageNative](image.md#imagenative), [OhosImageSize](_ohos_image_size.md)
 
 
 ### OH_ImagePacker_Create()
@@ -2510,7 +2520,7 @@ int32_t OH_PixelMap_AccessPixels (const NativePixelMap * native, void ** addr )
 | 名称 | 描述 | 
 | -------- | -------- |
 | native | NativePixelMap的指针。 | 
-| addr | 用于指向的内存地址的双指针对象。 | 
+| addr | 用于指向的内存地址的二级指针对象。 | 
 
 **返回：**
 
@@ -2549,6 +2559,8 @@ int32_t OH_PixelMap_AccessPixels (const NativePixelMap * native, void ** addr )
 如果注册插件失败则返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
 如果创建插件失败则返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID；
 
 如果透明度类型错误则返回IMAGE_RESULT_ALPHA_TYPE_ERROR；
 
@@ -2632,6 +2644,8 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 如果图像不支持硬件解码则返回IMAGE_RESULT_HW_DECODE_UNSUPPORT;
 
 如果硬件解码失败则返回IMAGE_RESULT_HW_DECODE_FAILED;
+
+如果ipc失败则返回IMAGE_RESULT_ERR_IPC;
 
 如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
 
@@ -2721,6 +2735,8 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 如果硬件解码失败则返回IMAGE_RESULT_HW_DECODE_FAILED;
 
+如果ipc失败则返回IMAGE_RESULT_ERR_IPC;
+
 如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
 
 如果透明度类型错误则返回IMAGE_RESULT_ALPHA_TYPE_ERROR;
@@ -2792,6 +2808,8 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 
 如果创建插件失败则返回IMAGE_RESULT_PLUGIN_CREATE_FAILED;
 
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
+
 如果透明度类型错误则返回IMAGE_RESULT_ALPHA_TYPE_ERROR;
 
 如果内存分配类型错误则返回IMAGE_RESULT_ALLOCATER_TYPE_ERROR。
@@ -2859,9 +2877,11 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 
 如果创建插件失败则返回IMAGE_RESULT_PLUGIN_CREATE_FAILED;
 
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
+
 如果透明度类型错误则返回IMAGE_RESULT_ALPHA_TYPE_ERROR;
 
-如果内存分配类型错误则返回IMAGE_RESULT_ALLOCATER_TYPE_ERROR 。
+如果内存分配类型错误则返回IMAGE_RESULT_ALLOCATER_TYPE_ERROR。
 
 
 **参见：**
@@ -2902,7 +2922,7 @@ int32_t OH_PixelMap_GetBytesNumberPerRow (const NativePixelMap * native, int32_t
 
 如果图像输入数据失败则返回IMAGE_RESULT_DATA_ABNORMAL；
 
-如果图像类型不支持则返回IMAGE_RESULT_DATA_UNSUPPORT。
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID。
 
 **参见：**
 
@@ -2942,7 +2962,7 @@ int32_t OH_PixelMap_GetDensity (const NativePixelMap * native, int32_t * density
 
 如果图像输入数据失败则返回IMAGE_RESULT_DATA_ABNORMAL；
 
-如果图像类型不支持则返回IMAGE_RESULT_DATA_UNSUPPORT。
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID。
 
 **参见：**
 
@@ -3006,6 +3026,8 @@ int32_t OH_PixelMap_GetImageInfo (const NativePixelMap * native, OhosPixelMapInf
 
 如果创建插件失败则返回IMAGE_RESULT_PLUGIN_CREATE_FAILED;
 
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
+
 如果透明度类型错误则返回IMAGE_RESULT_ALPHA_TYPE_ERROR;
 
 如果内存分配类型错误则返回IMAGE_RESULT_ALLOCATER_TYPE_ERROR。
@@ -3048,7 +3070,7 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 
 如果图像输入数据失败则返回IMAGE_RESULT_DATA_ABNORMAL;
 
-如果图像类型不支持则返回IMAGE_RESULT_DATA_UNSUPPORT。
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID。
 
 **参见：**
 
@@ -3116,7 +3138,7 @@ int32_t OH_PixelMap_IsSupportAlpha (const NativePixelMap * native, int32_t * alp
 
 如果图像输入数据失败则返回IMAGE_RESULT_DATA_ABNORMAL;
 
-如果图像类型不支持则返回IMAGE_RESULT_DATA_UNSUPPORT。
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID。
 
 **参见：**
 
@@ -3179,6 +3201,8 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 如果注册插件失败则返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED;
 
 如果创建插件失败则返回IMAGE_RESULT_PLUGIN_CREATE_FAILED;
+
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
 
 如果透明度类型错误则返回IMAGE_RESULT_ALPHA_TYPE_ERROR;
 
@@ -3249,6 +3273,8 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 
 如果创建插件失败则返回IMAGE_RESULT_PLUGIN_CREATE_FAILED;
 
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
+
 如果透明度类型错误则返回IMAGE_RESULT_ALPHA_TYPE_ERROR;
 
 如果内存分配类型错误则返回IMAGE_RESULT_ALLOCATER_TYPE_ERROR。
@@ -3292,7 +3318,7 @@ int32_t OH_PixelMap_SetAlphaAble (const NativePixelMap * native, int32_t alpha )
 
 如果图像输入数据失败则返回IMAGE_RESULT_DATA_ABNORMAL；
 
-如果图像类型不支持则返回IMAGE_RESULT_DATA_UNSUPPORT。
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID。
 
 
 **参见：**
@@ -3333,7 +3359,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 
 如果图像输入数据失败则返回IMAGE_RESULT_DATA_ABNORMAL；
 
-如果图像类型不支持则返回IMAGE_RESULT_DATA_UNSUPPORT。
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID。
 
 **参见：**
 
@@ -3373,7 +3399,7 @@ int32_t OH_PixelMap_SetOpacity (const NativePixelMap * native, float opacity )
 
 如果图像输入数据失败则返回IMAGE_RESULT_DATA_ABNORMAL；
 
-如果图像类型不支持则返回IMAGE_RESULT_DATA_UNSUPPORT。
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID。
 
 **参见：**
 
@@ -3437,6 +3463,8 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 如果注册插件失败则返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
 如果创建插件失败则返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID;
 
 如果透明度类型错误则返回IMAGE_RESULT_ALPHA_TYPE_ERROR；
 
@@ -3503,6 +3531,8 @@ int32_t OH_PixelMap_UnAccessPixels (const NativePixelMap * native)
 
 如果创建插件失败则返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
+如果参数无效则返回IMAGE_RESULT_INDEX_INVALID；
+
 如果透明度类型错误则返回IMAGE_RESULT_ALPHA_TYPE_ERROR；
 
 如果内存分配类型错误则返回IMAGE_RESULT_ALLOCATER_TYPE_ERROR。
@@ -3567,7 +3597,7 @@ uint8_t* OhosImageSource::buffer = nullptr
 
 **描述**
 
-图像源缓冲区资源，解手格式化包缓冲区或者base64缓冲区
+图像源缓冲区资源，接受格式化包缓冲区或者base64缓冲区
 
 **起始版本：** 10
 

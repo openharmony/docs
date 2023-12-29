@@ -121,7 +121,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为ServiceExtAbility。
 
-2. 在ServiceExtAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ServiceExtAbility.ets。
+2. 在ServiceExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为ServiceExtAbility.ets。
 
     ```
     ├── ets
@@ -187,7 +187,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
            "description": "service",
            "type": "service",
            "exported": true,
-           "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+           "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets"
          }
        ]
      }
@@ -479,7 +479,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
 - **通过callerTokenId对客户端进行鉴权**
 
-  通过调用[getCallingTokenId()](../reference/apis/js-apis-rpc.md#getcallingtokenid)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstokensync)接口判断客户端是否有某个具体权限，由于当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/permission-list.md)。示例代码如下：
+  通过调用[getCallingTokenId()](../reference/apis/js-apis-rpc.md#getcallingtokenid)接口获取客户端的tokenID，再调用[verifyAccessTokenSync()](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstokensync)接口判断客户端是否有某个具体权限，由于当前不支持自定义权限，因此只能校验当前[系统所定义的权限](../security/AccessToken/permissions-for-all.md)。示例代码如下：
 
   ```ts
   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';

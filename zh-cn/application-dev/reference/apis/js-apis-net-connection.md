@@ -1474,7 +1474,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
-使用默认网络解析主机名以获取所有IP地址，使用callback方式作为异步方法。
+使用对应网络解析主机名以获取所有IP地址，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1512,7 +1512,7 @@ connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.Ne
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
-使用默认网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
+使用对应网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 

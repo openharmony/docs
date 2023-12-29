@@ -6,16 +6,94 @@
 >
 >  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## outline
 
-## 属性
+outline(value: OutlineOptions)
 
-| 名称         | 参数类型                                                     | 描述                                                         |
-| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| outline       | {<br/>width?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明),<br/>radius?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明),<br/>style?:&nbsp;[OutlineStyle](ts-appendix-enums.md#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明)<br/>} | 统一外描边样式设置接口。<br/>-&nbsp;width：设置外描边宽度。<br/>默认值：0，外描边效果width为必设项，否则不显示外描边。<br/>-&nbsp;color：设置外描边颜色。<br/>默认值：Color.Black。<br/>-&nbsp;radius：设置外描边圆角半径。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。<br/>-&nbsp;style：设置外描边样式。<br/>默认值：OutlineStyle.SOLID。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
-| outlineStyle  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles对象说明) | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
-| outlineWidth  | [Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths对象说明) | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0，外描边效果width为必设项。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
-| outlineColor  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors对象说明) | 设置元素的外描边颜色。<br/>默认值：Color.Black。 <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
-| outlineRadius | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses对象说明) | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。<br/>从API version 11开始，该接口支持在ArkTS卡片中使用。|
+统一外描边样式设置接口。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                      | 必填 | 说明 |
+| ------ | ----------------------------------------- | ---- | ---- |
+| value  | [OutlineOptions](#outlineoptions对象说明) | 是   |      |
+
+## outlineStyle
+
+outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
+
+设置元素的外描边样式。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                  |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| value  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明) | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID |
+
+## outlineWidth
+
+outlineWidth(value: Dimension | EdgeOutlineWidths)
+
+设置元素的外描边宽度。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明) | 是   | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0，外描边效果width为必设项。 |
+
+## outlineColor
+
+outlineColor(value: ResourceColor | EdgeColors)
+
+设置元素的外描边颜色。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                             |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明) | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black。 |
+
+## outlineRadius
+
+outlineRadius(value: Dimension | OutlineRadiuses)
+
+设置元素的外描边圆角半径。
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明) | 是   | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
+
+## OutlineOptions对象说明
+
+| 名称   | 类型                                                         | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明) | 设置外描边宽度，不支持百分比。<br/>默认值：0，外描边效果width为必设项，否则不显示外描边。 |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明) | 设置外描边颜色。<br/>默认值：Color.Black。                   |
+| radius | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明) | 设置外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
+| style  | [OutlineStyle](ts-appendix-enums.md#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明) | 设置外描边样式。<br/>默认值：OutlineStyle.SOLID。            |
 
 ## EdgeOutlineWidths对象说明
 
@@ -73,15 +151,18 @@ struct OutlineExample {
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
         // 线段
         Text('DASHED')
+          .backgroundColor(Color.Pink)
           .outlineStyle(OutlineStyle.DASHED).outlineWidth(5).outlineColor(0xAFEEEE).outlineRadius(10)
           .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
         // 点线
         Text('DOTTED')
+          .backgroundColor(Color.Pink)
           .outline({ width: 5, color: 0x317AF7, radius: 10, style: OutlineStyle.DOTTED })
           .width(120).height(120).textAlign(TextAlign.Center).fontSize(16)
       }.width('100%').height(150)
 
       Text('.outline')
+        .backgroundColor(Color.Pink)
         .fontSize(50)
         .width(300)
         .height(300)

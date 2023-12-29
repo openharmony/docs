@@ -593,7 +593,7 @@ export default class FuncAbility extends UIAbility {
    import Want from '@ohos.app.ability.Want';
    import window from '@ohos.window';
    
-   import { Router, UIContext } from '@ohos.arkui.UIContext';
+   import { UIContext } from '@ohos.arkui.UIContext';
    
    const DOMAIN_NUMBER: number = 0xFF00;
    const TAG: string = '[EntryAbility]';
@@ -795,7 +795,6 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
    import type window from '@ohos.window';
    import type { Caller } from '@ohos.app.ability.UIAbility';
 
-   const TAG: string = '[CalleeAbility]';
    const MSG_SEND_METHOD: string = 'CallSendMsg';
    const DOMAIN_NUMBER: number = 0xFF00;
 

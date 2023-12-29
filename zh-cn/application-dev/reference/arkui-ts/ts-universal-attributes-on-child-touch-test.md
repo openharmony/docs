@@ -6,12 +6,25 @@ ArkUI在处理触屏事件时，会在触屏事件触发前进行按压点和组
 >  - 从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  - onClick以及旋转、捏合手势经过自定义事件分发之后可能会因为触摸热区没有命中导致事件不响应。
 
-## 事件
+## onChildTouchTest
 
+onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult 
 
-| **名称**               | **描述**                                  |
-| -------------------- | ---------------------------------------- |
-| onChildTouchTest(event: (value: Array<[TouchTestInfo>](#touchtestinfo说明)) => [TouchResult](#touchresult说明))     | 当前组件可通过设置回调来自定义子节点如何去做触摸测试。<br>- value: 包含子节点信息的数组，详见[TouchTestInfo](#touchtestinfo说明)。<br>返回值：子节点进行触摸测试的方式，详见[TouchResult](#touchresult说明)。
+当前组件可通过设置回调来自定义子节点如何去做触摸测试。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                   |
+| ------ | ------------------------------------------ | ---- | ---------------------- |
+| value  | Array<[TouchTestInfo>](#touchtestinfo说明) | 否   | 包含子节点信息的数组。 |
+
+**返回值：** 
+
+| 类型                                | 说明                       |
+| ----------------------------------- | -------------------------- |
+| [TouchTestInfo](#touchtestinfo说明) | 子节点进行触摸测试的方式。 |
 
 >**说明：**
 >子节点信息数组中只包含命名节点的信息，即开发者通过id属性设置了id的节点。
@@ -37,16 +50,14 @@ ArkUI在处理触屏事件时，会在触屏事件触发前进行按压点和组
 | strategy  | [TouchTestStrategy](##TouchTestStrategy枚举说明) | 是    | 事件派发策略。                     |
 | id ?   | string | 否    | 通过id属性设置的组件id。<br>当strategy为TouchTestStrategy.DEFUALT时，id是可选的；当strategy是TouchTestStrategy.FORWARD_COMPEITION或TouchTestStrategy.FORWARD时，id是必需的（如果没有返回id，则当成TouchTestStrategy.DEFAULT处理）。 |
 
-
-
 ## TouchTestStrategy枚举说明
 
 
-  | 名称          | 描述                                       |
-  | ------------| ----------------------------------------- |
-  | DEFAULT     | 自定义分发不产生影响，继续走组件系统默认分发机制。 |
-  | FORWARD_COMPETITION       | 定向派发到指定子节点，同时走ArkUI触摸测试流程。 |
-  | FORWARD | 定向派发到指定子节点，不走ArkUI触摸测试流程。 |
+| 名称          | 描述                                       |
+| ------------| ----------------------------------------- |
+| DEFAULT     | 自定义分发不产生影响，继续走组件系统默认分发机制。 |
+| FORWARD_COMPETITION       | 定向派发到指定子节点，同时走ArkUI触摸测试流程。 |
+| FORWARD | 定向派发到指定子节点，不走ArkUI触摸测试流程。 |
 
 ## 示例
 

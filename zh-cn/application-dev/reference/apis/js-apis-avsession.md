@@ -104,7 +104,7 @@ let sessionId: string;  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
     sessionId = currentAVSession.sessionId;
@@ -433,7 +433,7 @@ let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
     if (currentAVSession !== undefined) {
@@ -492,7 +492,7 @@ let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
     if (currentAVSession !== undefined) {
@@ -1567,7 +1567,7 @@ let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
     if (currentAVSession !== undefined) {
@@ -1633,7 +1633,7 @@ let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
     if (currentAVSession !== undefined) {
@@ -1694,7 +1694,7 @@ let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
     if (currentAVSession !== undefined) {
@@ -1770,7 +1770,7 @@ let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
     if (currentAVSession !== undefined) {
@@ -1835,7 +1835,7 @@ let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
     if (currentAVSession !== undefined) {
@@ -1900,7 +1900,7 @@ let sessionId: string = "";  //供后续函数入参使用
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
     if (currentAVSession !== undefined) {
@@ -2171,7 +2171,7 @@ setAVCallState(state: AVCallState): Promise\<void>
 
 | 参数名 | 类型                      | 必填 | 说明         |
 | ------ | ------------------------- | ---- | ------------ |
-| state   | [AVCallState](#avcallstate11) | 是   | 通话会话元数据。 |
+| state   | [AVCallState](#avcallstate11) | 是   | 通话状态。 |
 
 **返回值：**
 
@@ -2209,7 +2209,7 @@ currentAVSession.setAVCallState(calldata).then(() => {
 
 setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 
-设置通话会话元数据。结果通过callback异步回调方式返回。
+设置通话状态。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2217,7 +2217,7 @@ setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                  |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state     | [AVCallState](#avcallstate11) | 是   | 通话会话元数据。                          |
+| state     | [AVCallState](#avcallstate11) | 是   | 通话状态。                          |
 | callback | AsyncCallback\<void>      | 是   | 回调函数。当通话元数据设置成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -2294,7 +2294,7 @@ let playbackState: avSession.AVPlaybackState = {
 currentAVSession.setAVPlaybackState(playbackState).then(() => {
   console.info(`SetAVPlaybackState successfully`);
 }).catch((err: BusinessError) => {
-  console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.error(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -2338,7 +2338,7 @@ let PlaybackState: avSession.AVPlaybackState = {
 };
 currentAVSession.setAVPlaybackState(PlaybackState, (err: BusinessError) => {
   if (err) {
-    console.info(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     console.info(`SetAVPlaybackState successfully`);
   }
@@ -2531,7 +2531,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -2541,7 +2541,7 @@ if (currentAVSession !== undefined) {
   (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}).then(() => {
     console.info(`dispatchSessionEvent successfully`);
   }).catch((err: BusinessError) => {
-    console.info(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
   })
 }
 ```
@@ -2587,7 +2587,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -2639,53 +2639,41 @@ import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
 import avSession from '@ohos.multimedia.avsession';
 
-let value: Uint8Array | undefined = undefined;
-let imageSource: image.ImageSource | undefined = undefined;
-resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI').then((data) => {
-  value = data;
-});
-if (value !== undefined) {
-  imageSource = image.createImageSource((value as Uint8Array).buffer);
-}
-let imagePixel: image.PixelMap | undefined = undefined;
-if (imageSource !== undefined) {
-  (imageSource as image.ImageSource).createPixelMap({desiredSize:{width: 150, height: 150}}).then((data) => {
-    imagePixel = data;
+async function setAVQueueItems() {
+  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let imageSource= await image.createImageSource(value.buffer);
+  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+  let queueItemDescription_1: avSession.AVMediaDescription = {
+    assetId: '001',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    mediaImage : imagePixel,
+    extras: {extras:'any'}
+  };
+  let queueItem_1: avSession.AVQueueItem = {
+    itemId: 1,
+    description: queueItemDescription_1
+  };
+  let queueItemDescription_2: avSession.AVMediaDescription = {
+    assetId: '002',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    mediaImage: imagePixel,
+    extras: {extras:'any'}
+  };
+  let queueItem_2: avSession.AVQueueItem = {
+    itemId: 2,
+    description: queueItemDescription_2
+  };
+  let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
+  currentAVSession.setAVQueueItems(queueItemsArray).then(() => {
+    console.info(`SetAVQueueItems successfully`);
   }).catch((err: BusinessError) => {
-    console.error(`createPixelMap BusinessError: code: ${err.code}, message: ${err.message}`);
-  })
+    console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+  });
 }
-
-let queueItemDescription_1: avSession.AVMediaDescription = {
-  assetId: '001',
-  title: 'music_name',
-  subtitle: 'music_sub_name',
-  description: 'music_description',
-  mediaImage : imagePixel,
-  extras: {extras:'any'}
-};
-let queueItem_1: avSession.AVQueueItem = {
-  itemId: 1,
-  description: queueItemDescription_1
-};
-let queueItemDescription_2: avSession.AVMediaDescription = {
-  assetId: '002',
-  title: 'music_name',
-  subtitle: 'music_sub_name',
-  description: 'music_description',
-  mediaImage: imagePixel,
-  extras: {extras:'any'}
-};
-let queueItem_2: avSession.AVQueueItem = {
-  itemId: 2,
-  description: queueItemDescription_2
-};
-let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
-currentAVSession.setAVQueueItems(queueItemsArray).then(() => {
-  console.info(`SetAVQueueItems successfully`);
-}).catch((err: BusinessError) => {
-  console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
-});
 ```
 
 ### setAVQueueItems<sup>10+</sup>
@@ -2720,54 +2708,43 @@ import resourceManager from '@ohos.resourceManager';
 import { BusinessError } from '@ohos.base';
 import avSession from '@ohos.multimedia.avsession';
 
-let value: Uint8Array | undefined = undefined;
-let imageSource: image.ImageSource | undefined = undefined;
-resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI').then((data) => {
-  value = data;
-});
-if (value !== undefined) {
-  imageSource = image.createImageSource((value as Uint8Array).buffer);
+async function setAVQueueItems() {
+  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let imageSource= await image.createImageSource(value.buffer);
+  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+  let queueItemDescription_1: avSession.AVMediaDescription = {
+    assetId: '001',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    mediaImage : imagePixel,
+    extras: {extras:'any'}
+  };
+  let queueItem_1: avSession.AVQueueItem = {
+    itemId: 1,
+    description: queueItemDescription_1
+  };
+  let queueItemDescription_2: avSession.AVMediaDescription = {
+    assetId: '002',
+    title: 'music_name',
+    subtitle: 'music_sub_name',
+    description: 'music_description',
+    mediaImage: imagePixel,
+    extras: {extras:'any'}
+  };
+  let queueItem_2: avSession.AVQueueItem = {
+    itemId: 2,
+    description: queueItemDescription_2
+  };
+  let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
+  currentAVSession.setAVQueueItems(queueItemsArray, (err: BusinessError) => {
+    if (err) {
+      console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info(`SetAVQueueItems successfully`);
+    }
+  });
 }
-let imagePixel: image.PixelMap | undefined = undefined;
-if (imageSource !== undefined) {
-  (imageSource as image.ImageSource).createPixelMap({desiredSize:{width: 150, height: 150}}).then((data) => {
-    imagePixel = data;
-  }).catch((err: BusinessError) => {
-    console.error(`createPixelMap BusinessError: code: ${err.code}, message: ${err.message}`);
-  })
-}
-let queueItemDescription_1: avSession.AVMediaDescription = {
-  assetId: '001',
-  title: 'music_name',
-  subtitle: 'music_sub_name',
-  description: 'music_description',
-  mediaImage : imagePixel,
-  extras: {extras:'any'}
-};
-let queueItem_1: avSession.AVQueueItem = {
-  itemId: 1,
-  description: queueItemDescription_1
-};
-let queueItemDescription_2: avSession.AVMediaDescription = {
-  assetId: '002',
-  title: 'music_name',
-  subtitle: 'music_sub_name',
-  description: 'music_description',
-  mediaImage: imagePixel,
-  extras: {extras:'any'}
-};
-let queueItem_2: avSession.AVQueueItem = {
-  itemId: 2,
-  description: queueItemDescription_2
-};
-let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
-currentAVSession.setAVQueueItems(queueItemsArray, (err: BusinessError) => {
-  if (err) {
-    console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`SetAVQueueItems successfully`);
-  }
-});
 ```
 
 ### setAVQueueTitle<sup>10+</sup>
@@ -2844,9 +2821,9 @@ import { BusinessError } from '@ohos.base';
 let queueTitle = 'QUEUE_TITLE';
 currentAVSession.setAVQueueTitle(queueTitle, (err: BusinessError) => {
   if (err) {
-    console.info(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.error(`SetAVQueueTitle successfully`);
+    console.info(`SetAVQueueTitle successfully`);
   }
 });
 ```
@@ -2896,7 +2873,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -2905,7 +2882,7 @@ if (currentAVSession !== undefined) {
   (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}).then(() => {
     console.info(`setExtras successfully`);
   }).catch((err: BusinessError) => {
-    console.info(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
   })
 }
 ```
@@ -2950,7 +2927,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -3954,7 +3931,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -4631,7 +4608,7 @@ import { BusinessError } from '@ohos.base';
 
 currentAVSession.stopCasting((err: BusinessError) => {
   if (err) {
-    console.info(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     console.info(`stopCasting successfully`);
   }
@@ -4668,7 +4645,7 @@ import { BusinessError } from '@ohos.base';
 currentAVSession.stopCasting().then(() => {
   console.info(`stopCasting successfully`);
 }).catch((err: BusinessError) => {
-  console.info(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -4702,8 +4679,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let currentOutputDevice: avSession.OutputDeviceInfo = currentAVSession.getOutputDeviceSync();
-} catch (err: BusinessError) {
-  console.info(`getOutputDeviceSync error, error code: ${err.code}, error message: ${err.message}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getOutputDeviceSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -4829,7 +4807,7 @@ media.createAVRecorder().then((avRecorder) => {
 })
 aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
   if (err) {
-    console.info(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     console.info(`setDisplaySurface : SUCCESS`);
   }
@@ -5243,7 +5221,7 @@ let playItem: avSession.AVQueueItem = {
 aVCastController.start(playItem).then(() => {
   console.info(`start successfully`);
 }).catch((err: BusinessError) => {
-  console.info(`start BusinessError: code: ${err.code}, message: ${err.message}`);
+  console.error(`start BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -5973,8 +5951,8 @@ on(type: 'error', callback: ErrorCallback): void
 import { BusinessError } from '@ohos.base'
 
 aVCastController.on('error', (error: BusinessError) => {
-  console.error('error happened,and error message is :' + error.message)
-  console.error('error happened,and error code is :' + error.code)
+  console.info('error happened,and error message is :' + error.message)
+  console.info('error happened,and error code is :' + error.code)
 })
 ```
 
@@ -7357,7 +7335,7 @@ let context: Context = getContext(this);
 let sessionId: string = "";
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -7376,7 +7354,7 @@ if (avSessionController !== undefined) {
   (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
     console.info(`SendCommonCommand successfully`);
   }).catch((err: BusinessError) => {
-    console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
   })
 }
 ```
@@ -7425,7 +7403,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -7442,7 +7420,7 @@ let commandName = "my_command";
 if (avSessionController !== undefined) {
   (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
     if(err) {
-        console.info(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+        console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
     }
   })
 }
@@ -7487,7 +7465,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -7504,7 +7482,7 @@ if (avSessionController !== undefined) {
   (avSessionController as avSession.AVSessionController).getExtras().then((extras) => {
     console.info(`getExtras : SUCCESS : ${extras}`);
   }).catch((err: BusinessError) => {
-    console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
   });
 }
 ```
@@ -7548,7 +7526,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -7786,7 +7764,7 @@ on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback:
 
 | 参数名   | 类型       | 必填 | 说明      |
 | --------| -----------|-----|------------|
-| type     | string    | 是   | 事件回调类型，支持事件`'callMetadataChange'`：当通话元数据变化时，触发该事件。 |
+| type     | string    | 是   | 事件回调类型，支持事件`'callStateChange'`：当通话状态变化时，触发该事件。 |
 | filter   | Array<keyof&nbsp;[AVCallState](#avcallstate11)\>&nbsp;&#124;&nbsp;'all' | 是   | 'all' 表示关注通话状态所有字段变化；Array<keyof&nbsp;[AVCallState](#avcallstate11)\> 表示关注Array中的字段变化。 |
 | callback | Callback<[AVCallState](#avcallstate11)\>       | 是   | 回调函数，参数callstate是变化后的通话状态。|
 
@@ -7823,7 +7801,7 @@ off(type: 'callStateChange', callback?: Callback\<AVCallState>): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'callMetadataChange'`。    |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'callStateChange'`。    |
 | callback | Callback<[AVCallState](#avcallstate11)\>           | 否   | 回调函数，参数callstate是变化后的通话原数据。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。      |
 
 **错误码：**
@@ -8127,7 +8105,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -8338,7 +8316,7 @@ let context: Context = getContext(this);
 
 avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
   if (err) {
-    console.info(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
+    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     currentAVSession = data;
   }
@@ -8419,8 +8397,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let playbackState: avsession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
-} catch (err: BusinessError) {
-  console.info(`getAVPlaybackStateSync error, error code: ${err.code}, error message: ${err.message}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.info(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8454,8 +8433,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let metaData: avsession.AVMetadata = avsessionController.getAVMetadataSync();
-} catch (err: BusinessError) {
-  console.info(`getAVMetadataSync error, error code: ${err.code}, error message: ${err.message}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.info(`getAVMetadataSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8471,7 +8451,7 @@ getAVCallState(): Promise\<AVCallState>
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
-| Promise<[AVCallState](#avcallstate11)\> | Promise对象，返回会话元数据。 |
+| Promise<[AVCallState](#avcallstate11)\> | Promise对象，返回通话状态。 |
 
 **错误码：**
 
@@ -8507,7 +8487,7 @@ getAVCallState(callback: AsyncCallback\<AVCallState>): void
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[AVCallState](#avcallstate11)\> | 是   | 回调函数，返回会话元数据。 |
+| callback | AsyncCallback<[AVCallState](#avcallstate11)\> | 是   | 回调函数，返回通话状态。 |
 
 **错误码：**
 
@@ -8638,8 +8618,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let currentQueueTitle: string = avsessionController.getAVQueueTitleSync();
-} catch (err: BusinessError) {
-  console.info(`getAVQueueTitleSync error, error code: ${err.code}, error message: ${err.message}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getAVQueueTitleSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8674,8 +8655,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let currentQueueItems: Array<avsession.AVQueueItem> = avsessionController.getAVQueueItemsSync();
-} catch (err: BusinessError) {
-  console.info(`getAVQueueItemsSync error, error code: ${err.code}, error message: ${err.message}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getAVQueueItemsSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8709,8 +8691,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let currentOutputDevice: avSession.OutputDeviceInfo = avsessionController.getOutputDeviceSync();
-} catch (err: BusinessError) {
-  console.info(`getOutputDeviceSync error, error code: ${err.code}, error message: ${err.message}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getOutputDeviceSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8745,8 +8728,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let isActive: boolean = avsessionController.isActiveSync();
-} catch (err: BusinessError) {
-  console.info(`isActiveSync error, error code: ${err.code}, error message: ${err.message}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`isActiveSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 
@@ -8781,8 +8765,9 @@ import { BusinessError } from '@ohos.base';
 
 try {
   let validCommands: Array<avSession.AVControlCommandType> = avsessionController.getValidCommandsSync();
-} catch (err: BusinessError) {
-  console.info(`getValidCommandsSync error, error code: ${err.code}, error message: ${err.message}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getValidCommandsSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
 

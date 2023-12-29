@@ -403,7 +403,7 @@ power.isScreenOn()
 .then((data: boolean) => {
     console.info('screen on status is ' + data);
 })
-.catch((err: { code: number, message: string }) => {
+.catch((err: Error) => {
     console.error('check screen status failed, err: ' + err);
 })
 ```

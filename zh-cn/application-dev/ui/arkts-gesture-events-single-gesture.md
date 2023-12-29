@@ -317,9 +317,12 @@ struct Index {
               console.info('RotationGesture is onActionCancel');
             })
         )
+        .height(200)
+        .width(300)
+        .padding(20)
+        .border({ width: 3 })
+        .margin(100)
     }
-    .height(200)
-    .width(250)
   }
 }
 ```

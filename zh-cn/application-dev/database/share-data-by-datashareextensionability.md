@@ -55,9 +55,9 @@
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为DataShareExtAbility。
 
-2. 在DataShareAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为DataShareExtAbility.ts。
+2. 在DataShareAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DataShareExtAbility.ets。
 
-3. 在DataShareExtAbility.ts文件中，导入
+3. 在DataShareExtAbility.ets文件中，导入
 `@ohos.application.DataShareExtensionAbility`模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块。
    
    ```ts
@@ -142,7 +142,7 @@
    ```json
    "extensionAbilities": [
      {
-       "srcEntry": "./ets/DataShareExtAbility/DataShareExtAbility.ts",
+       "srcEntry": "./ets/DataShareExtAbility/DataShareExtAbility.ets",
        "name": "DataShareExtAbility",
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",

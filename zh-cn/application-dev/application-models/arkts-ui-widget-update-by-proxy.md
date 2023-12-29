@@ -42,10 +42,13 @@
 
 相应的卡片代理刷新配置有所不同，下面分别介绍具体开发方式。
 
+## 数据提供方开发步骤
+
+参考[数据管理](../database/share-data-by-silent-access.md)开发指南。
 
 ## 卡片提供方开发步骤（过程数据）
 
-- 配置form_config.json文件中的`dataProxyEnabled`字段为`true`，以启用卡片代理刷新功能。
+- 配置form_config.json文件中的`dataProxyEnabled`字段为`true`，以启用卡片代理刷新功能，当订阅的过程数据更新时，系统会自动更新卡片数据。
   ```json
   {
     "forms": [
@@ -157,8 +160,8 @@
   ]
   }
   ```
-  
-- 在[onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板[addTemplate](../reference/apis/js-apis-data-dataShare.md#addtemplate10)，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。
+
+- 在[onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板[addTemplate](../reference/apis/js-apis-data-dataShare.md#addtemplate10)，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。当订阅的持久化数据更新时，系统会自动更新卡片数据。
 
   > **说明：**
   >
@@ -231,10 +234,6 @@
     }
   }
   ```
-
-## 数据提供方开发步骤
-
-参考[数据管理](../database/share-data-by-silent-access.md)开发指南。
 
 ## 相关实例
 
