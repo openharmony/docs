@@ -21,10 +21,10 @@
     - Graphics
         - [XComponent Development](xcomponent-guidelines.md)
         - [Using Drawing to Draw and Display Graphics](drawing-guidelines.md)
-        - [NativeBuffer Development](native-buffer-guidelines.md)
-        - [NativeImage Development](native-image-guidelines.md)
-        - [NativeVsync Development](native-vsync-guidelines.md)
-        - [NativeWindow Development](native-window-guidelines.md)
+        - [Native Buffer Development](native-buffer-guidelines.md)
+        - [Native Image Development](native-image-guidelines.md)
+        - [Native Vsync Development](native-vsync-guidelines.md)
+        - [Native Window Development](native-window-guidelines.md)
         - [Vulkan Development](vulkan-guidelines.md)
     - Resource Management
         - [Raw File Development](rawfile-guidelines.md)
@@ -53,5 +53,3 @@
     - [OpenHarmony ABIs](ohos-abi.md)
     - [CPU Features](cpu-features.md)
     - [Using Neon Instructions](neon-guide.md)
-
-<!--no_check-->
