@@ -42,7 +42,7 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-appendix-enums.md#blurstyle9) | 否 | 半模态面板的模糊背景。默认无模糊背景。 |
 | maskColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 半模态页面的背景蒙层颜色。 |
 | title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | 否 | 半模态面板的标题。 |
-| enableOutsideInteractive<sup>11+</sup> | boolean | 否 | 半模态所在页面是否允许交互。<br/>**说明：**<br/>设置为true时允许交互，不显示蒙层；设置为false时不允许交互，显示蒙层；若不进行设置，默认底部弹窗与居中弹窗不允许交互，跟手弹窗允许交互。 |
+| enableOutsideInteractive<sup>11+</sup> | boolean | 否 | 半模态所在页面是否允许交互。<br/>**说明：**<br/>设置为true时允许交互，不显示蒙层；设置为false时不允许交互，显示蒙层；若不进行设置，默认底部弹窗与居中弹窗不允许交互，跟手弹窗允许交互。当设置为true时，maskColor设置无效。 |
 | onAppear        | () => void                               | 否    | 半模态页面显示回调函数。    |
 | onDisappear     | () => void                               | 否    | 半模态页面回退回调函数。    |
 | shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | 否 | 半模态页面交互式关闭回调函数。<br/>**说明：**<br/>当用户执行下拉关闭/back事件/点击蒙层关闭/关闭按钮关闭交互操作时，如果注册该回调函数，则不会立刻关闭。 |
@@ -57,11 +57,11 @@ bindSheet(isShow: boolean, builder: CustomBuilder, options?: SheetOptions)
 
 ## SheetType<sup>11+</sup>
 
-| 名称   | 参数描述   |
-| ------ | ---------- |
-| BOTTOM | 底部弹窗。 |
-| CENTER | 居中弹窗。 |
-| POPUP  | 跟手弹窗。 |
+| 名称   | 参数描述                                               |
+| ------ | ------------------------------------------------------ |
+| BOTTOM | 底部弹窗。                                             |
+| CENTER | 居中弹窗。                                             |
+| POPUP  | 跟手弹窗。跟手弹窗面板不支持跟手滑动，下滑面板不关闭。 |
 
 ## SheetDismiss<sup>11+</sup>
 
