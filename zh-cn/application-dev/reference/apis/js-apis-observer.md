@@ -443,7 +443,7 @@ observer.on('callStateChange', (data: observer.CallStateInfo) => {
 
 ## observer.on('callStateChange')
 
-on(type: 'callStateChange', options: ObserverOptions, callback: Callback<CallStateInfo>): void
+on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallStateInfo\>): void
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
 
