@@ -69,19 +69,19 @@
 ## 接收指定网络的状态变化通知
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
-2. 从@ohos.net.connection.d.ts中导入connection命名空间。
+1. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
-3. 调用createNetConnection方法，指定网络能力、网络类型和超时时间（可选，如不传入代表默认网络；创建不同于默认网络时可通过指定这些参数完成），创建一个NetConnection对象。
+2. 调用createNetConnection方法，指定网络能力、网络类型和超时时间（可选，如不传入代表默认网络；创建不同于默认网络时可通过指定这些参数完成），创建一个NetConnection对象。
 
-4. 调用该对象的on()方法，传入type和callback，订阅关心的事件。
+3. 调用该对象的on()方法，传入type和callback，订阅关心的事件。
 
-5. 调用该对象的register()方法，订阅指定网络状态变化的通知。
+4. 调用该对象的register()方法，订阅指定网络状态变化的通知。
 
-6. 当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
+5. 当网络可用时，会收到netAvailable事件的回调；当网络不可用时，会收到netUnavailable事件的回调。
 
-7. 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
+6. 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
 
 ```ts
 // 引入包名
@@ -126,7 +126,7 @@ conn.unregister((err: BusinessError, data: void) => {
 ### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
@@ -175,7 +175,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 ### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.GET_NETWORK_INFO。
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 
@@ -302,7 +302,7 @@ connection.getAllNets((err: BusinessError, data: connection.NetHandle[]) => {
 ### 开发步骤
 
 1. 声明接口调用所需要的权限：ohos.permission.INTERNET
-此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/AccessToken/app-permission-mgmt-overview.md#权限使用的基本原则)。然后参考[访问控制-声明权限](../security/AccessToken/declare-permissions.md)声明对应权限。
 
 2. 从@ohos.net.connection.d.ts中导入connection命名空间。
 

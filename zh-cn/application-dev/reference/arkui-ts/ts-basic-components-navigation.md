@@ -477,7 +477,7 @@ struct NavigationExample {
                 .fontSize(16)
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: number) => item.toString())
         }
         .height(324)

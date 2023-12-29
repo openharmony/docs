@@ -173,7 +173,7 @@ buffer数组，提供blob数据类型。
 
 表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec10)接口设置/通过[getCipherSpec](#getcipherspec10)接口获取。
 
-当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_MD_NAME_STR参数的支持，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
+当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_MD_NAME_STR参数的支持，详细规格请参考[加解密规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -189,7 +189,7 @@ buffer数组，提供blob数据类型。
 
 表示签名验签参数的枚举，这些签名验签参数支持通过[setSignSpec](#setsignspec10)、[setVerifySpec](#setverifyspec10)接口设置/通过[getSignSpec](#getsignspec10)、[getVerifySpec](#getverifyspec10)接口获取。
 
-当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_USER_ID_UINT8ARR参数的支持，详细规格请参考框架概述[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)
+当前只支持RSA算法和SM2算法，从API version 11开始，增加对SM2_USER_ID_UINT8ARR参数的支持，详细规格请参考[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -744,7 +744,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 通过指定算法名称的字符串，获取相应的对称密钥生成器实例。
 
-支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
+支持的规格详见[对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -752,7 +752,7 @@ createSymKeyGenerator(algName: string): SymKeyGenerator
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 待生成对称密钥生成器的算法名称。<br/>具体取值详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节中的“字符串参数”。 |
+| algName | string | 是   | 待生成对称密钥生成器的算法名称。<br/>具体取值详见[对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md)”一节中的“字符串参数”。 |
 
 **返回值：**
 
@@ -980,7 +980,7 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 
 通过指定算法名称的字符串，获取相应的非对称密钥生成器实例。
 
-支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
+支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1198,7 +1198,7 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 通过指定密钥参数，获取相应的非对称密钥生成器实例。
 
-支持的规格详见框架概述“[密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)”一节。
+支持的规格详见[非对称密钥生成和转换规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1512,7 +1512,7 @@ keyGenPromise.then(pubKey => {
 
 static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
 
-根据椭圆曲线相应的NID(Name IDentifier)字符串名称生成相应的非对称公共密钥参数。详见概述“[ECC密钥生成规格](../../security/cryptoFramework-overview.md#ecc密钥生成规格)”和“[SM2密钥生成规格](../../security/cryptoFramework-overview.md#sm2密钥生成规格)”章节。
+根据椭圆曲线相应的NID(Name IDentifier)字符串名称生成相应的非对称公共密钥参数。详见[ECC密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#ecc)和[SM2密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#sm2)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1559,7 +1559,7 @@ try {
 
 static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
 
-根据素数P的长度和私钥长度（bit位数）生成DH公共密钥参数。详见概述”[DH密钥生成规格](../../security/cryptoFramework-overview.md#dh密钥生成规格)“一节。
+根据素数P的长度和私钥长度（bit位数）生成DH公共密钥参数。详见[DH密钥生成规格](../../security/CryptoArchitectureKit/crypto-asym-key-generation-conversion-spec.md#dh)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1606,7 +1606,7 @@ createCipher(transformation: string): Cipher
 
 通过指定算法名称，获取相应的[Cipher](#cipher)实例。
 
-支持的规格详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节。
+支持的规格详见[对称密钥加解密算法规格](../../security/CryptoArchitectureKit/crypto-sym-encrypt-decrypt-spec.md)和[非对称密钥加解密算法规格](../../security/CryptoArchitectureKit/crypto-asym-encrypt-decrypt-spec.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1614,7 +1614,7 @@ createCipher(transformation: string): Cipher
 
 | 参数名         | 类型   | 必填 | 说明                                                         |
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
-| transformation | string | 是   | 待生成Cipher的算法名称（含密钥长度）、加密模式以及填充方法的组合。<br/>具体取值详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节中的“字符串参数”。 |
+| transformation | string | 是   | 待生成Cipher的算法名称（含密钥长度）、加密模式以及填充方法的组合。 |
 
 > **说明：**
 >
@@ -1656,7 +1656,7 @@ try {
 
 提供加解密的算法操作功能，按序调用本类中的[init()](#init-1)、[update()](#update)、[doFinal()](#dofinal)方法，可以实现对称加密/对称解密/非对称加密/非对称解密。
 
-完整的加解密流程示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
+完整的加解密流程示例可参考开发指导中的[加解密开发指导](../../security/CryptoArchitectureKit/crypto-encryption-decryption-overview.md)。
 
 一次完整的加/解密流程在对称加密和非对称加密中略有不同：
 
@@ -1747,7 +1747,7 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 > 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和doFinal结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
 > 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。<br/>
->    AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+>    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1783,7 +1783,7 @@ update(data: DataBlob): Promise\<DataBlob>
 > <br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
 > 2. 根据数据量，可以不调用update（即init完成后直接调用doFinal）或多次调用update。<br/>
 >    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。<br/>
->    AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+>    AES使用多次update操作的示例代码详见[使用AES对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-cbc-by-segment.md)。
 > 3. RSA、SM2非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1826,7 +1826,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用init()并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
->  4. RSA、SM2非对称加解密时多次doFinal操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+>  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1848,7 +1848,8 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 | 17630001 | crypto operation error. |
 
 **以AES GCM模式加密为例：**
-此外，更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节
+
+此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -1910,7 +1911,7 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用init()并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和init时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
->  4. RSA、SM2非对称加解密时多次doFinal操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+>  4. 非对称加解密时多次doFinal操作的示例代码详见[使用RSA非对称密钥分段加解密](../../security/CryptoArchitectureKit/crypto-rsa-asym-encrypt-decrypt-by-segment.md)，SM2和RSA的操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1937,7 +1938,8 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 | 17630001 | crypto operation error.                      |
 
 **以AES GCM模式加密为例：**
-此外，更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节
+
+此外，更多加解密流程的完整示例可参考[加解密开发指导](../../security/CryptoArchitectureKit/crypto-aes-sym-encrypt-decrypt-gcm.md)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2054,7 +2056,7 @@ createSign(algName: string): Sign
 
 Sign实例生成。
 
-支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
+支持的规格详见[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2093,7 +2095,7 @@ let signer4 = cryptoFramework.createSign('DSA2048|SHA256');
 
 ## Sign
 
-Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过[createSign(algName: string): Sign](#cryptoframeworkcreatesign)方法构造此实例。按序调用本类中的init、update、sign方法完成签名操作。签名操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过[createSign(algName: string): Sign](#cryptoframeworkcreatesign)方法构造此实例。按序调用本类中的init、update、sign方法完成签名操作。签名操作的示例代码详见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
 
@@ -2184,7 +2186,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 >
 > 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[sign](#sign-1)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2217,7 +2219,7 @@ update(data: DataBlob): Promise\<void>
 >
 > 根据数据量，可以不调用update（即[init](#init-3)完成后直接调用[sign](#sign-2)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 签名使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2299,7 +2301,8 @@ sign(data: DataBlob | null): Promise\<DataBlob>
 | 17630001 | crypto operation error. |
 
 **callback示例：**
-此外，更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
+
+此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2327,7 +2330,8 @@ function signByCallback() {
 ```
 
 **Promise示例：**
-此外，更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
+
+此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2436,7 +2440,7 @@ createVerify(algName: string): Verify
 
 Verify实例生成。
 
-支持的规格详见框架概述“[签名验签规格](../../security/cryptoFramework-overview.md#签名验签规格)”一节。
+支持的规格详见[签名验签规格](../../security/CryptoArchitectureKit/crypto-sign-sig-verify-overview.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2471,7 +2475,7 @@ let verifyer2 = cryptoFramework.createVerify('RSA1024|PSS|SHA256|MGF1_SHA256');
 
 ## Verify
 
-Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过[createVerify(algName: string): Verify](#cryptoframeworkcreateverify)方法构造此实例。按序调用本类中的init、update、verify方法完成签名操作。验签操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过[createVerify(algName: string): Verify](#cryptoframeworkcreateverify)方法构造此实例。按序调用本类中的init、update、verify方法完成签名操作。验签操作的示例代码详见[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 Verify类不支持重复初始化，当业务方需要使用新密钥验签时，需要重新创建新Verify对象并调用init初始化。
 
@@ -2556,7 +2560,7 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 >
 > 根据数据量，可以不调用update（即[init](#init-4)完成后直接调用[verify](#verify-1)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2589,7 +2593,7 @@ update(data: DataBlob): Promise\<void>
 >
 > 根据数据量，可以不调用update（即[init](#init-5)完成后直接调用[verify](#verify-2)）或多次调用update。<br/>
 > 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
-> 验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 验签使用多次update操作的示例代码详见[使用RSA密钥对分段签名验签](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1-by-segment.md)，其余算法操作类似。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2673,7 +2677,8 @@ verify(data: DataBlob | null, signatureData: DataBlob): Promise\<boolean>
 | 17630001 | crypto operation error. |
 
 **callback示例：**
-此外，更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
+
+此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2704,7 +2709,8 @@ function verifyByCallback() {
 ```
 
 **Promise示例：**
-此外，更多签名验签的完整示例可参考开发指导中的“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”一节。
+
+此外，更多签名验签的完整示例可参考[签名验签开发指导](../../security/CryptoArchitectureKit/crypto-rsa-sign-sig-verify-pkcs1.md)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2820,7 +2826,7 @@ createKeyAgreement(algName: string): KeyAgreement
 
 KeyAgreement实例生成。
 
-支持的规格详见框架概述“[密钥协商规格](../../security/cryptoFramework-overview.md#密钥协商规格)”一节。
+支持的规格详见[密钥协商规格](../../security/CryptoArchitectureKit/crypto-key-agreement-overview.md)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2958,7 +2964,7 @@ createMd(algName: string): Md
 
 生成Md实例，用于进行消息摘要的计算与操作。
 
-支持的规格详见框架概述“[MD消息摘要算法规格](../../security/cryptoFramework-overview.md#md消息摘要算法规格)”一节。
+支持的规格详见[MD消息摘要算法规格](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#支持的算法与规格)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2966,7 +2972,7 @@ createMd(algName: string): Md
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定摘要算法，支持算法请参考“[MD算法支持范围](../../security/cryptoFramework-overview.md#md消息摘要算法规格)”一节。 |
+| algName | string | 是   | 指定摘要算法，支持算法请参考[MD消息摘要算法规格](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#支持的算法与规格)。 |
 
 **返回值**：
 
@@ -3016,7 +3022,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导“[使用摘要操作](../../security/cryptoFramework-guidelines.md#使用摘要操作)”。
+> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3043,7 +3049,7 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> Md算法多次调用update更新的代码示例详见开发指导“[使用摘要操作](../../security/cryptoFramework-guidelines.md#使用摘要操作)”。
+> Md算法多次调用update更新的代码示例详见开发指导[消息摘要计算](../../security/CryptoArchitectureKit/crypto-generate-message-digest.md#分段摘要算法)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3177,7 +3183,7 @@ createMac(algName: string): Mac
 
 生成Mac实例，用于进行消息认证码的计算与操作。
 
-支持的规格详见框架概述“[HMAC消息认证码算法规格](../../security/cryptoFramework-overview.md#hmac消息认证码算法规格)”一节。
+支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac.md#支持的算法与规格)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3185,7 +3191,7 @@ createMac(algName: string): Mac
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定摘要算法，支持算法请参考“[HMAC算法支持范围](../../security/cryptoFramework-overview.md#hmac消息认证码算法规格)”一节。 |
+| algName | string | 是   | 指定摘要算法，支持算法请参考[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac.md#支持的算法与规格)。 |
 
 **返回值**：
 
@@ -3235,7 +3241,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 
   > **说明：**
   >
-  > 建议通过[HMAC密钥生成规格](../../security/cryptoFramework-overview.md#密钥生成规格)创建对称密钥生成器，调用[generateSymKey](#generatesymkey)随机生成对称密钥或调用[convertKey](#convertkey)传入与密钥规格长度一致的二进制密钥数据生成密钥。<br/>当指定“HMAC”生成对称密钥生成器时，仅支持调用[convertKey](#convertkey)传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据生成密钥。
+  > 建议通过[HMAC密钥生成规格](../../security/CryptoArchitectureKit/crypto-sym-key-generation-conversion-spec.md#hmac)创建对称密钥生成器，调用[generateSymKey](#generatesymkey)随机生成对称密钥或调用[convertKey](#convertkey)传入与密钥规格长度一致的二进制密钥数据生成密钥。<br/>当指定“HMAC”生成对称密钥生成器时，仅支持调用[convertKey](#convertkey)传入长度在[1,4096]范围内（单位为byte）的任意二进制密钥数据生成密钥。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3290,7 +3296,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> Hmac算法多次调用update更新的代码示例详见开发指导“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”。
+> Hmac算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3317,7 +3323,7 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> Hmac算法多次调用update更新的代码示例详见开发指导“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”。
+> Hmac算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3364,7 +3370,8 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 | 17630001 | crypto operation error. |
 
 **示例：**
-此外，更多Hmac的完整示例可参考开发指导中的“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”一节。
+
+此外，更多Hmac的完整示例可参考开发指导中[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -3410,7 +3417,8 @@ doFinal(): Promise\<DataBlob>
 | 17630001 | crypto operation error. |
 
 **示例：**
-此外，更多Hmac的完整示例可参考开发指导中的“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”一节。
+
+此外，更多Hmac的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -3485,7 +3493,7 @@ createRandom(): Random
 
 生成Random实例，用于进行随机数的计算与设置种子。
 
-支持的规格详见框架概述“[随机数算法规格](../../security/cryptoFramework-overview.md#随机数)”一节。
+支持的规格详见框架概述[随机数算法规格](../../security/CryptoArchitectureKit/crypto-generate-random-number.md#支持的算法与规格)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -3701,7 +3709,7 @@ rand.generateRandom(12, (err, randData) => {
 
 createKdf(algName: string): Kdf
 
-密钥派生函数（key derivation function）实例生成。<br/>支持的规格详见框架概述“[密钥派生函数规格](../../security/cryptoFramework-overview.md#密钥派生函数规格)”一节。
+密钥派生函数（key derivation function）实例生成。<br/>支持的规格详见[密钥派生函数规格](../../security/CryptoArchitectureKit/crypto-key-derivation.md#支持的算法与规格)。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 

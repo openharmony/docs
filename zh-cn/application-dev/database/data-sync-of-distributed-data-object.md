@@ -90,6 +90,13 @@
 
 - 在设备A上创建持久化对象并同步后持久化到设备B后，A设备的APP退出，设备B打开APP，创建持久化对象，加入同一个Session，数据可以恢复到A设备退出前的数据。
 
+### 资产同步机制
+
+在分布式对象中，可以使用[资产类型](../reference/apis/js-apis-data-commonType.md#asset)来描述本地实体资产文件，在分布式对象跨设备同步数据时，资产类型所描述的文件也会随着数据的同步到相应的设备。
+
+### 融合资产冲突解决机制
+
+当分布式对象中包含的资产和关系型数据库中包含的资产指向同一个实体资产文件，即两个资产的Uri相同时，就会存在冲突，我们把这种资产称为融合资产。如果需要分布式数据管理进行融合资产的冲突解决，需要先进行资产的绑定。当应用退出session后，绑定关系随之消失。
 
 ## 约束限制
 
@@ -107,7 +114,7 @@
 
 - 考虑到性能和用户体验，最多不超过3个设备进行数据协同。
 
-- 如对复杂类型的数据进行修改，仅支持修改根属性，暂不支持下级属性修改。
+- 如对复杂类型的数据进行修改，仅支持修改根属性，暂不支持下级属性修改。([资产同步机制](#资产同步机制)中，资产类型的数据支持下一级属性修改)
 
 - 支持JS接口间的互通，与其他语言不互通。
 
@@ -130,6 +137,7 @@
 | off(type: 'status', callback?: (sessionId: string, networkId: string, status: 'online' \|'offline' ) => void): void | 取消监听分布式数据对象的上下线。 |
 | save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void | 保存分布式数据对象。 |
 | revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void | 撤回保存的分布式数据对象。 |
+| bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;void&gt;): void | 绑定融合资产。 |
 
 
 ## 开发步骤
@@ -144,8 +152,8 @@
 
 2. 请求权限。
 
-   1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
-   2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
+   1. 需要申请ohos.permission.DISTRIBUTED_DATASYNC权限，配置方式请参见[声明权限](../security/AccessToken/declare-permissions.md)。
+   2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/AccessToken/request-user-authorization.md)。
 
 3. 创建并得到一个分布式数据对象实例。
 
@@ -344,6 +352,133 @@
     localObject.setSessionId(() => {
       console.info('leave all session.');
     });
+    ```
+
+13. 资产同步机制示例代码
+
+    发起端
+
+    ```ts
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import window from '@ohos.window';
+    import distributedDataObject from '@ohos.data.distributedDataObject';
+    import relationalStore from '@ohos.data.relationalStore';
+
+    class Memo {
+      title: string;
+      content: string;
+      mark: boolean;
+      attachment: relationalStore.Asset;
+    
+      constructor(title: string, content: string, mark: boolean, attachment: relationalStore.Asset) {
+        this.title = title;
+        this.content = content;
+        this.mark = mark;
+        this.attachment = attachment;
+      }
+    }
+
+    class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage: window.WindowStage) {
+          let attachment: relationalStore.Asset = {
+          name: '1.txt',
+          uri: 'file://com.example.objecttest/data/storage/el2/distributedfiles/dir/1.txt',
+          path: '/dir/1.txt',
+          createTime: '2023-12-27 10:00:00',
+          modifyTime: '2023-12-27 10:00:00',
+          size: '1',
+          status: relationalStore.AssetStatus.ASSET_NORMAL
+        };
+        let memo: Memo = new Memo('my note', 'hello world', true, attachment);
+        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, memo);
+        localObject.setSessionId('123456', () => {consele.log('join session success.')});
+        ...
+      }
+    }
+    ```
+
+    接收端
+
+    ```ts
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import window from '@ohos.window';
+    import distributedDataObject from '@ohos.data.distributedDataObject';
+    import relationalStore from '@ohos.data.relationalStore';
+
+    class Memo {
+      title: string | undefined;
+      content: string | undefined;
+      mark: boolean | undefined;
+      attachment: relationalStore.Asset;
+    
+      constructor(title: string | undefined, content: string | undefined, mark: boolean | undefined, attachment: relationalStore.Asset) {
+        this.title = title;
+        this.content = content;
+        this.mark = mark;
+        this.attachment = attachment;
+      }
+    }
+
+    class EntryAbility extends UIAbility {
+      onWindowStageCreate(windowStage: window.WindowStage) {
+        let attachment: relationalStore.Asset = {
+          name: undefined,
+          uri: undefined,
+          path: undefined,
+          createTime: undefined,
+          modifyTime: undefined,
+          size: undefined,
+          status: undefined
+        };
+        let memo: Memo = new Memo(undefined, undefined, undefined, attachment); //接收端将属性值设为undefined来接收数据
+        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, memo);
+        localObject.on('changed',(sessionId, fields)=>{
+            //fields包含"attachment"代表attachment记录的附件已经迁移完成
+          }
+        });
+        localObject.setSessionId('123456');
+        ...
+      }
+    }
+    ```
+
+14. 融合资产绑定
+
+    ```ts
+    import commonType from '@ohos.data.commonType';
+
+    let assetObject: commonType.Asset = {
+      name: '1.txt',
+      uri: 'file://com.example.objecttest/data/storage/el2/distributedfiles/dir/1.txt',
+      path: '/dir/1.txt',
+      createTime: '2023-12-27 10:00:00',
+      modifyTime: '2023-12-27 10:00:00',
+      size: '1',
+      status: relationalStore.AssetStatus.ASSET_NORMAL
+    }
+
+    g_object = distributedObject.create(this.context, {
+      title: "initial title",
+      attachments: assetObject
+    })
+
+    g_object.setSessionId("123456");
+    const bindInfo: distributedObject.BindInfo = {
+      storeName: "storeName",
+      tableName: "tableName",
+      primaryKey: {
+        "uuid": "uuid1"
+      },
+      field: "attachments",
+      assetName: assetObject.name
+    }
+
+    g_object.bindAssetStore("attachments", bindInfo, (err) => {
+      if (err) {
+        globalThis.SetLog('bindAssetStore failed.');
+      }
+      globalThis.SetLog('bindAssetStore success.');
+    })
     ```
 
 ## 相关实例

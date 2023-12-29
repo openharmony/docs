@@ -4,7 +4,7 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
 
 ## 开发准备
 
-1. 申请权限，申请流程请参考：[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+1. 申请权限，申请流程请参考：[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
    - ohos.permission.MANAGE_LOCAL_ACCOUNTS
    - ohos.permission.GET_DOMAIN_ACCOUNTS
 
