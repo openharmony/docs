@@ -273,7 +273,7 @@ Web({ src: 'www.example.com', controller: this.controller })
 
 **参考链接**
 
-[GET\_NETWORK\_INFO](../security/permission-list.md#ohospermissionget_network_info)
+[GET\_NETWORK\_INFO](../security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
 
 
 ## 如何自定义拼接设置UserAgent参数(API 9)

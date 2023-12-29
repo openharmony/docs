@@ -705,6 +705,21 @@ getDragPreview(): DragPreview
 
 请参考[animate](js-apis-arkui-dragController.md#animate11)
 
+### keyframeAnimateTo<sup>11+</sup>
+
+keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
+
+产生关键帧动画。该接口的使用说明请参考[keyframeAnimateTo](../arkui-ts/ts-keyframeAnimateTo.md)。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称         | 参数类型                                              | 是否必填 | 描述                         |
+| ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
+| param        | [KeyframeAnimateParam](../arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
+| keyframes    | Array&lt;[KeyframeState](../arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            | 
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。

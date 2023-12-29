@@ -14,6 +14,9 @@
 
 ## 开发音频录制应用须知
 
-应用可以调用麦克风录制音频，但该行为属于隐私敏感行为，在调用麦克风前，需要先向用户申请权限“ohos.permission.MICROPHONE”。
+应用可以调用麦克风录制音频，但该行为属于隐私敏感行为，在调用麦克风前，需要先向用户申请权限“ohos.permission.MICROPHONE”:
 
-权限申请的流程请参考[访问控制授权申请指导](../security/accesstoken-guidelines.md)。如何使用和管理麦克风请参考[管理麦克风](mic-management.md)。
+1. [声明权限](../security/AccessToken/declare-permissions.md)。
+2. [向用户申请授权](../security/AccessToken/request-user-authorization.md)。
+
+如何使用和管理麦克风请参考[管理麦克风](mic-management.md)。

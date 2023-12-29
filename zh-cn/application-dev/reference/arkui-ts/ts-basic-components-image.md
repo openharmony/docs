@@ -9,7 +9,7 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 
 ## 需要权限
 
-使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
+使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 
 ## 子组件
@@ -208,7 +208,7 @@ struct ImageExample1 {
 
 加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用[HTTP](../../connectivity/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../media/image-overview.md)。
 
-使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
+使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 ```ts
 @Entry
