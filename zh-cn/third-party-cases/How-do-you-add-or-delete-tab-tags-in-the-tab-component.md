@@ -7,7 +7,7 @@
 ## 效果呈现
 
 如下动图所示：
-![动图](./figures/ adds-or-deletes-tab.gif)
+![动图](./figures/adds-or-deletes-tab.gif)
 
 
 ## 环境要求
