@@ -29,9 +29,7 @@
 
 2. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
 
-3. 注册监听。可以通过on()接口监听传感器的调用结果。
-
-- 通过on()接口，实现对传感器的持续监听，将传感器上报频率等级设为”game“。
+3. 注册监听。通过on()接口，实现对传感器的持续监听，将传感器上报频率等级设为”game“。
 
     ```ts    
     sensor.on(sensor.SensorId.ACCELEROMETER, (data: sensor.AccelerometerResponse) => {
