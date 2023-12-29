@@ -5,6 +5,50 @@
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+## **声明aid**
+
+开发卡模拟相关应用时，需要在应用的属性配置文件中，声明与NFC相关的属性值，比如，在module.json5文件中，声明下面属性值：
+```json
+{
+  "module": {
+    // other declared attributes.
+    "abilities": [
+      {
+        // other declared attributes.
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
+            ]
+          }
+        ],
+        "metadata": [
+          {
+            "name": "payment-aid",
+            "value": "your payment aid"
+          },
+          {
+            "name": "other-aid",
+            "value": "your other aid"
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.NFC_CARD_EMULATION",
+        // should add variable card_emulation_reason in string.json
+        "reason": "$string:card_emulation_reason",
+      }
+    ]
+  }
+}
+```
+> **注意：**
+1. 声明"actions"字段的内容填写，必须是"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"，不能更改。
+2. 声明aid时，name必须为payment-aid，或者other-aid。填写错误会造成解析失败。
+3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_CARD_EMULATION"，不能更改。
 
 ## 导入模块
 
