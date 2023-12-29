@@ -15,7 +15,7 @@ import connection from '@ohos.bluetooth.connection';
 ```
 
 
-## connection.pairDevice<a name="pairDevice"></a>
+## connection.pairDevice
 
 pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -55,7 +55,7 @@ try {
 ```
 
 
-## connection.pairDevice<a name="pairDevice"></a>
+## connection.pairDevice
 
 pairDevice(deviceId: string): Promise&lt;void&gt;
 
@@ -200,7 +200,7 @@ try {
 ```
 
 
-## connection.cancelPairedDevice<a name="cancelPairedDevice"></a>
+## connection.cancelPairedDevice
 
 cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -241,7 +241,7 @@ try {
 ```
 
 
-## connection.cancelPairedDevice<a name="cancelPairedDevice"></a>
+## connection.cancelPairedDevice
 
 cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 
@@ -287,7 +287,7 @@ try {
 ```
 
 
-## connection.cancelPairingDevice<a name="cancelPairingDevice"></a>
+## connection.cancelPairingDevice
 
 cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -328,7 +328,7 @@ try {
 ```
 
 
-## connection.cancelPairingDevice<a name="cancelPairingDevice"></a>
+## connection.cancelPairingDevice
 
 cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 
@@ -374,7 +374,7 @@ try {
 ```
 
 
-## connection.getRemoteDeviceName<a name="getRemoteDeviceName"></a>
+## connection.getRemoteDeviceName
 
 getRemoteDeviceName(deviceId: string): string
 
@@ -418,7 +418,7 @@ try {
 ```
 
 
-## connection.getRemoteDeviceClass<a name="getRemoteDeviceClass"></a>
+## connection.getRemoteDeviceClass
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
@@ -462,7 +462,7 @@ try {
 ```
 
 
-## connection.getLocalName<a name="getLocalName"></a>
+## connection.getLocalName
 
 getLocalName(): string
 
@@ -499,7 +499,7 @@ try {
 ```
 
 
-## connection.getPairedDevices<a name="getPairedDevices"></a>
+## connection.getPairedDevices
 
 getPairedDevices(): Array&lt;string&gt;
 
@@ -537,7 +537,7 @@ try {
 ```
 
 
-## connection.getPairState<sup>11+</sup><a name="getPairState"></a>
+## connection.getPairState<sup>11+</sup>
 
 getPairState(deviceId: string): BondState
 
@@ -582,7 +582,7 @@ try {
 ```
 
 
-## connection.getProfileConnectionState<a name="getProfileConnectionState"></a>
+## connection.getProfileConnectionState
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
@@ -628,7 +628,7 @@ try {
 ```
 
 
-## connection.setDevicePairingConfirmation<a name="setDevicePairingConfirmation"></a>
+## connection.setDevicePairingConfirmation
 
 setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
@@ -672,7 +672,7 @@ try {
 ```
 
 
-## connection.setDevicePinCode<a name="setDevicePinCode"></a>
+## connection.setDevicePinCode
 
 setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -715,7 +715,7 @@ try {
 ```
 
 
-## connection.setDevicePinCode<a name="setDevicePinCode-1"></a>
+## connection.setDevicePinCode
 
 setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
@@ -766,7 +766,7 @@ try {
 ```
 
 
-## connection.setLocalName<a name="setLocalName"></a>
+## connection.setLocalName
 
 setLocalName(name: string): void
 
@@ -804,7 +804,7 @@ try {
 ```
 
 
-## connection.setBluetoothScanMode<a name="setBluetoothScanMode"></a>
+## connection.setBluetoothScanMode
 
 setBluetoothScanMode(mode: ScanMode, duration: number): void
 
@@ -844,7 +844,7 @@ try {
 ```
 
 
-## connection.getBluetoothScanMode<a name="getBluetoothScanMode"></a>
+## connection.getBluetoothScanMode
 
 getBluetoothScanMode(): ScanMode
 
@@ -882,7 +882,7 @@ try {
 ```
 
 
-## connection.startBluetoothDiscovery<a name="startBluetoothDiscovery"></a>
+## connection.startBluetoothDiscovery
 
 startBluetoothDiscovery(): void
 
@@ -918,7 +918,7 @@ try {
 ```
 
 
-## connection.stopBluetoothDiscovery<a name="stopBluetoothDiscovery"></a>
+## connection.stopBluetoothDiscovery
 
 stopBluetoothDiscovery(): void
 
@@ -950,7 +950,7 @@ try {
 ```
 
 
-## connection.isBluetoothDiscovering<sup>11+</sup><a name="isBluetoothDiscovering"></a>
+## connection.isBluetoothDiscovering<sup>11+</sup>
 
 isBluetoothDiscovering(): boolean
 
@@ -989,7 +989,7 @@ try {
 ```
 
 
-## connection.getLocalProfileUuids<a name="getLocalProfileUuids"></a>
+## connection.getLocalProfileUuids
 
 getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
@@ -1031,7 +1031,7 @@ try {
 ```
 
 
-## connection.getLocalProfileUuids<a name="getLocalProfileUuids"></a>
+## connection.getLocalProfileUuids
 
 getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
@@ -1075,7 +1075,7 @@ try {
 ```
 
 
-## connection.getRemoteProfileUuids<a name="getRemoteProfileUuids"></a>
+## connection.getRemoteProfileUuids
 
 getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
@@ -1119,7 +1119,7 @@ try {
 ```
 
 
-## connection.getRemoteProfileUuids<a name="getRemoteProfileUuids"></a>
+## connection.getRemoteProfileUuids
 
 getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
@@ -1379,7 +1379,7 @@ try {
 ```
 
 
-## connection.getRemoteProductId<sup>11+</sup><a name="getRemoteProductId"></a>
+## connection.getRemoteProductId<sup>11+</sup>
 
 getRemoteProductId(deviceId: string): string
 
@@ -1667,7 +1667,7 @@ try {
 ```
 
 
-## BondStateParam<a name="BondStateParam"></a>
+## BondStateParam
 
 描述配对状态参数。
 
@@ -1679,7 +1679,7 @@ try {
 | state    | BondState   | 是    | 否    | 表示配对设备的状态。 |
 
 
-## PinRequiredParam<a name="PinRequiredParam"></a>
+## PinRequiredParam
 
 描述配对请求参数。
 
@@ -1692,7 +1692,7 @@ try {
 | pinType | [PinType](#pintype) | 是    | 否    | 表示要配对的设备类型。<br/>此接口为系统接口。   |
 
 
-## DeviceClass<a name="DeviceClass"></a>
+## DeviceClass
 
 描述蓝牙设备的类别。
 
@@ -1705,7 +1705,7 @@ try {
 | classOfDevice   | number                              | 是    | 否    | 表示设备类别。          |
 
 
-## BluetoothTransport<a name="BluetoothTransport"></a>
+## BluetoothTransport
 
 枚举，表示设备类型。例如传统蓝牙设备或低功耗蓝牙设备，支持双模默认使用TRANSPORT_BR_EDR。
 
@@ -1717,7 +1717,7 @@ try {
 | TRANSPORT_LE  | 1 | 表示低功耗蓝牙(BLE)设备。  |
 
 
-## ScanMode<a name="ScanMode"></a>
+## ScanMode
 
 枚举，扫描模式。
 
@@ -1733,7 +1733,7 @@ try {
 | SCAN_MODE_CONNECTABLE_LIMITED_DISCOVERABLE | 5    | 可连接limited发现模式。 |
 
 
-## BondState<a name="BondState"></a>
+## BondState
 
 枚举，配对状态。
 
@@ -1746,7 +1746,7 @@ try {
 | BOND_STATE_BONDED  | 2    | 已配对。   |
 
 
-## PinType<a name="PinType"></a>
+## PinType
 
 枚举，蓝牙配对类型。
 
