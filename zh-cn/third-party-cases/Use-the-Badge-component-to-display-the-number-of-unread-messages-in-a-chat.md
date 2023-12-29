@@ -6,7 +6,7 @@
 ## 效果呈现
 
 如下动图所示：
-![效果图](./images/badge.gif)
+![效果图](./figures/badge.gif)
 
 
 ## 环境要求
