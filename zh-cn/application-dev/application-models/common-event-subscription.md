@@ -44,10 +44,10 @@
    // 创建订阅者回调
    commonEventManager.createSubscriber(this.subscribeInfo, (err: Base.BusinessError, data: commonEventManager.CommonEventSubscriber) => {
      if (err) {
-       Logger.error(TAG, `Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     Logger.info(TAG, 'Succeeded in creating subscriber.');
+     console.info('Succeeded in creating subscriber.');
      this.subscriber = data;
      
      // 订阅公共事件回调
@@ -62,16 +62,16 @@
    if (this.subscriber !== null) {
      commonEventManager.subscribe(this.subscriber, (err: Base.BusinessError, data: commonEventManager.CommonEventData) => {
        if (err) {
-         Logger.error(TAG, `Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+         console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
          return;
        }
        promptAction.showToast({
          message: JSON.stringify(data)
        });
-       Logger.info(TAG, `Receive CommonEventData = ` + JSON.stringify(data));
+       console.info(`Receive CommonEventData = ` + JSON.stringify(data));
      })
     ...
    } else {
-     Logger.error(TAG, `Need create subscriber`);
+     console.error(`Need create subscriber`);
    }
    ```

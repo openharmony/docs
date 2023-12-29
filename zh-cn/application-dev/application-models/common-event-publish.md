@@ -36,10 +36,10 @@
    // 发布公共事件
    commonEventManager.publish('usual.event.SCREEN_OFF', (err: Base.BusinessError) => {
      if (err) {
-       Logger.error(TAG, `PublishCallBack err = ${JSON.stringify(err)}`);
+       console.info(`PublishCallBack err = ${JSON.stringify(err)}`);
      } else {
        ...
-       Logger.info(TAG, `Publish success`);
+       console.info(`Publish success`);
      }
    });
    ```
@@ -72,10 +72,10 @@
    // 发布公共事件
    commonEventManager.publish('usual.event.SCREEN_OFF', options, (err: Base.BusinessError) => {
      if (err) {
-       Logger.error(TAG, 'PublishCallBack err = ' + JSON.stringify(err));
+       console.error('PublishCallBack err = ' + JSON.stringify(err));
      } else {
        ...
-       Logger.info(TAG, 'Publish success');
+       console.info('Publish success');
      }
    });
    ```
