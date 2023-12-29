@@ -166,10 +166,6 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
    | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |
    | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header 拼接 |                 -                  |      |   必须（和上述ID和Setup二选一）    |  -   |
    
-   
-   
-   - AAC解码 需要额外标识是否为adts类型否则会被认为是latm类型
-   
    ```cpp
    // 设置解码分辨率
    int32_t ret;
