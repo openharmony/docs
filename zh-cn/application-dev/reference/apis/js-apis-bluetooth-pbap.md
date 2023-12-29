@@ -15,7 +15,7 @@ import pbap from '@ohos.bluetooth.pbap';
 ```
 
 
-## pbap.createPbapServerProfile<a name="createPbapServerProfile"></a>
+## pbap.createPbapServerProfile
 
 createPbapServerProfile(): PbapServerProfile
 
@@ -47,7 +47,7 @@ try {
 使用PbapServerProfile方法之前需要创建该类的实例进行操作，通过createPbapServerProfile()方法构造此实例。
 
 
-### disconnect<a name="PbapServerProfile-disconnect"></a>
+### disconnect
 
 disconnect(deviceId: string): void
 
@@ -88,7 +88,7 @@ try {
 }
 ```
 
-### setShareType<a name="PbapServerProfile-setShareType"></a>
+### setShareType
 
 setShareType(deviceId: string, type: ShareType, callback: AsyncCallback&lt;void&gt;): void
 
@@ -134,7 +134,7 @@ try {
 ```
 
 
-### setShareType<a name="PbapServerProfile-setShareType"></a>
+### setShareType
 
 setShareType(deviceId: string, type: ShareType): Promise&lt;void&gt;
 
@@ -184,7 +184,7 @@ try {
 }
 ```
 
-### getShareType<a name="PbapServerProfile-getShareType"></a>
+### getShareType
 
 getShareType(deviceId: string, callback: AsyncCallback&lt;ShareType&gt;): void
 
@@ -228,7 +228,7 @@ try {
 }
 ```
 
-### getShareType<a name="PbapServerProfile-getShareType"></a>
+### getShareType
 
 getShareType(deviceId: string): Promise&lt;ShareType&gt;
 
@@ -277,7 +277,7 @@ try {
 }
 ```
 
-### setPhoneBookAccessAuthorization<a name="PbapServerProfile-setPhoneBookAccessAuthorization"></a>
+### setPhoneBookAccessAuthorization
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization, callback: AsyncCallback&lt;void&gt;): void
 
@@ -323,7 +323,7 @@ try {
 ```
 
 
-### setPhoneBookAccessAuthorization<a name="PbapServerProfile-setPhoneBookAccessAuthorization"></a>
+### setPhoneBookAccessAuthorization
 
 setPhoneBookAccessAuthorization(deviceId: string, authorization: AccessAuthorization): Promise&lt;void&gt;
 
@@ -373,7 +373,7 @@ try {
 }
 ```
 
-### getPhoneBookAccessAuthorization<a name="PbapServerProfile-getPhoneBookAccessAuthorization"></a>
+### getPhoneBookAccessAuthorization
 
 getPhoneBookAccessAuthorization(deviceId: string, callback: AsyncCallback&lt;AccessAuthorization&gt;): void
 
@@ -417,7 +417,7 @@ try {
 }
 ```
 
-### getPhoneBookAccessAuthorization<a name="PbapServerProfile-getPhoneBookAccessAuthorization"></a>
+### getPhoneBookAccessAuthorization
 
 getPhoneBookAccessAuthorization(deviceId: string): Promise&lt;AccessAuthorization&gt;
 
@@ -466,7 +466,7 @@ try {
 }
 ```
 
-## ShareType<a name="ShareType"></a>
+## ShareType
 
 枚举，共享类型。
 
