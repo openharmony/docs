@@ -34,13 +34,6 @@
 | queryAllAutoStartupApplications(info: AutoStartupInfo, callback: AsyncCallback<void>)| 无权限管控 | 需要ohos.permission.MANAGE_APP_BOOT权限 |
 | queryAllAutoStartupApplications(info: AutoStartupInfo)| 无权限管控 | 需要ohos.permission.MANAGE_APP_BOOT权限 |
 
-
-变更前：
-  - 系统应用无需任何权限限制可正常调用。
-
-变更后：
-  - 系统应用需要申请相应权限才可正常调用，若权限申请错误或未申请相应权限，将返回201表示权限校验失败。
-
 **适配指导**
 
 调用on、off、setApplicationAutoStartup方法(callback方式)、setApplicationAutoStartup方法(promise方式)、cancelApplicationAutoStartup方法(callback方式)、cancelApplicationAutoStartup方法(promise方式)、queryAllAutoStartupApplications方法(callback方式)、queryAllAutoStartupApplications方法(promise方式)接口时，需申请相应的权限才可正常使用。
