@@ -89,93 +89,45 @@
 import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
 import zlib from '@ohos.zlib';
-import request from '@ohos.request';
 ```
 2. 创建压缩上传相关类：
   
 ```ts
 class ZipUpload {
-  // 后台任务
-  private backgroundTask: request.agent.Task | undefined = undefined;
   // 创建任务前存放的uri
   private waitList: Array<string> = [];
+  // 需要上传的文件uri
+  private fileUris: Array<string> = [];
   ...
 }
 ```
-3. 获取cache目录，新建用于接收图库选择图片的临时文件夹：
+3. 建立用于接收图库图片的临时文件夹，并将整个临时文件夹打包添加到待上传list内：
   
 ```ts
- // 文件压缩处理
- async zipUploadFiles(fileUris: Array<string>): Promise<void> {
-   this.context = getContext(this) as common.UIAbilityContext;
-   let cacheDir = this.context.cacheDir;
-   let tempDir = fs.mkdtempSync(`${cacheDir}/XXXXXX`);
-   ...
- }
-```
-4. 将图库图片获取的uri放入fileUris中，遍历复制到临时文件夹：
-  
-```ts
-... // 选择图库图片放入fileUris内
-for (let i = 0; i < fileUris.length; i++) {
-  let fileName = fileUris[i].split('/').pop();
-  let resourceFile: fs.File = fs.openSync(fileUris[i], fs.OpenMode.READ_ONLY);
-  fs.copyFileSync(resourceFile.fd, `${tempDir}/${fileName}`, 0);
-  fs.closeSync(resourceFile);
+// 文件压缩处理
+async zipUploadFiles(fileUris: Array<string>): Promise<void> {
+  this.context = getContext(this) as common.UIAbilityContext;
+  let cacheDir = this.context.cacheDir;
+  let tempDir = fs.mkdtempSync(`${cacheDir}/XXXXXX`);
+  // 将图库图片获取的uri放入fileUris中，遍历复制到临时文件夹
+  for (let i = 0; i < fileUris.length; i++) {
+    let fileName = fileUris[i].split('/').pop();
+    let resourceFile: fs.File = fs.openSync(fileUris[i], fs.OpenMode.READ_ONLY);
+    fs.copyFileSync(resourceFile.fd, `${tempDir}/${fileName}`, 0);
+    fs.closeSync(resourceFile);
+  }
+  // 文件压缩，将之前生成的临时文件夹内打包到test.zip内
+  let options: zlib.Options = {
+    level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+    memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
+    strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
+  };
+  let data = await zlib.compressFile(tempDir, `${cacheDir}/test.zip`, options);
+  // 删除临时文件夹
+  fs.rmdirSync(tempDir);
+  // 将生成的zip包放到传输队列
+  this.waitList.push(`${cacheDir}/test.zip`);
 }
-...
-```
-5. 文件压缩，将之前生成的临时文件夹内打包到test.zip内：
-```ts
-...
-let options: zlib.Options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
-};
-let data = await zlib.compressFile(tempDir, `${cacheDir}/test.zip`, options);
-// 删除临时文件夹
-fs.rmdirSync(tempDir);
-// 将生成的zip包放到传输队列
-this.waitList.push(`${cacheDir}/test.zip`);
-this.createBackgroundTask(this.waitList);
-...
-```
-6. 创建文件上传后台任务：
-  
-```ts
-// 上传配置
-private config: request.agent.Config = {
-  action: request.agent.Action.UPLOAD,
-  headers: HEADER,
-  url: '',
-  mode: request.agent.Mode.BACKGROUND,
-  method: 'POST',
-  title: 'upload',
-  network: request.agent.Network.ANY,
-  data: [],
-  token: 'UPLOAD_TOKEN'
-}
-
-...
-// 转换uri
-private async getFilesAndData(cacheDir: string, fileUris: Array<string>): Promise<Array<request.agent.FormItem>> {
-...
-}
-
-...
-// 创建文件上传后台任务
-async createBackgroundTask(fileUris: Array<string>) {
- // 获取上传url
-  this.config.url = 'http://XXX.XXX.XXX.XXX';
-  this.config.data = await this.getFilesAndData(this.context.cacheDir, fileUris);
-  this.backgroundTask = await request.agent.create(this.context, this.config);
-}
-...
-```
-7. 开始任务：
-```ts
-await this.backgroundTask.start();
 ```
 ### 断点续传
 
@@ -195,6 +147,8 @@ await this.backgroundTask.start();
   
 
 通过结合应用端和服务器端的相关技术，可以共同实现高效且可靠的文件断点续传功能，提供更好的用户体验并确保数据传输的稳定性。
+
+本文基于[上传和下载（API 10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)中的后台上传场景，给出了部分断点续传的示例代码，具体可以参考该工程。
 
 #### 文件上传
 
@@ -418,3 +372,9 @@ async deleteAllBackTasks() {
   }
 }
 ```
+
+## 相关实例
+
+针对断点续传，有以下相关实例可以参考：  
+
+- [上传和下载（API 10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/UploadAndDownLoad)
