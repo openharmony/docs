@@ -158,6 +158,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowY()代替。 |
+|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
 
 **错误码：**
 
@@ -177,6 +178,16 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 | DRAG_CANCELED | 拖拽取消，在onDrop中使用。 |
 | DROP_ENABLED | 组件允许落入，在onDragMove中使用。 |
 | DROP_DISABLED | 组件不允许落入，在onDragMove中使用。 |
+
+## DragBehavior<sup>10+</sup>
+
+需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#ondrop)回调时才能够生效。
+
+| 名称 | 描述 |
+| ----- | ----------------- |
+| COPY | 复制模式角标。 |
+| MOVE| 剪贴模式角标。 |
+
 
 ## 示例
 
