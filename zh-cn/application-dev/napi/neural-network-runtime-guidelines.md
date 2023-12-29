@@ -1,4 +1,4 @@
-# Neural Network Runtime对接AI推理框架开发指导
+# Neural Network Runtime应用开发指导
 
 ## 场景介绍
 
@@ -15,11 +15,11 @@ Neural Network Runtime作为AI推理引擎和加速芯片的桥梁，为AI推理
 
 Neural Network Runtime部件的环境要求如下：
 
-- 系统版本：OpenHarmony master分支。
+- 系统接口版本：API 9及以上。
 - 开发环境：Ubuntu 18.04及以上。
-- 接入设备：OpenHarmony定义的标准设备，并且系统中内置的硬件加速器驱动，已通过HDI接口对接Neural Network Runtime。
+- 接入设备：系统定义的标准设备，系统中内置AI硬件驱动并已接入Neural Network Runtime。
 
-由于Neural Network Runtime通过OpenHarmony Native API对外开放，需要通过OpenHarmony的Native开发套件编译Neural Network Runtime应用。在社区的[每日构建](http://ci.openharmony.cn/workbench/cicd/dailybuild/dailylist)下载对应系统版本的ohos-sdk压缩包，从压缩包中提取对应平台的Native开发套件。以Linux为例，Native开发套件的压缩包命名为`native-linux-{版本号}.zip`。
+由于Neural Network Runtime通过OpenHarmony Native API对外开放，需要通过OpenHarmony的Native开发套件编译Neural Network Runtime应用。在社区的每日构建中下载对应系统版本的ohos-sdk压缩包，从压缩包中提取对应平台的Native开发套件。以Linux为例，Native开发套件的压缩包命名为`native-linux-{版本号}.zip`。
 
 ### 环境搭建
 
