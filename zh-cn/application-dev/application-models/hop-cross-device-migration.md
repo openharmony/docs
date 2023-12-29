@@ -31,7 +31,7 @@
 
 1. 在源端，通过`UIAbility`的[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调，开发者可以保存待接续的业务数据。例如，在浏览器应用中完成跨端迁移，开发者需要使用[`onContinue()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncontinue)回调保存页面URL等业务内容，而系统将自动保存页面状态，如当前浏览进度。
 2. 分布式框架提供了跨设备应用界面、页面栈以及业务数据的保存和恢复机制，它负责将数据从源端发送到对端。 
-3. 在对端，同一`UIAbility`可以通过[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)接口来恢复业务数据。
+3. 在对端，同一`UIAbility`可以通过[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)（冷启动）和[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)（热启动）接口来恢复业务数据。
 
 
 ## 约束限制
