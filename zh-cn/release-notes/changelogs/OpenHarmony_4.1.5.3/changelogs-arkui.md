@@ -227,6 +227,20 @@ UX能力增强。
 
 气泡避让，不用考虑安全边距问题，随着父组件的弹出方向进行避让。
 
+4.PopupOptions类型气泡有按钮时点击气泡区域外消失。
+
+5.PopupOptions类型气泡文本超长时添加scroll可以滑动显示。（超长规格：showInSubWindow=true时最大高度为设备屏幕高度，showInSubWindow=false时最大高度为应用窗口高度。高度限定逻辑=最大高度-状态栏高度（没有时高度为0）-dock栏高度（没有时高度为0）-40VP-40VP。）
+
+6.PopupOptions类型气泡文本颜色取分层参数中ohos_id_color_text_primary值。
+
+7.PopupOptions类型气泡按钮颜色取分层参数中ohos_id_color_text_primary_activated值。
+
+8.PopupOptions类型气泡按钮布局使用Flex可超长换行。
+
+9.CustomPopupOptions类型气泡支持获焦能力。
+
+10.showInSubWindow=true时最大高度为设备屏幕高度，showInSubWindow=false时最大高度为应用窗口高度。高度限定逻辑=最大高度-状态栏高度（没有时高度为0）-dock栏高度（没有时高度为0）-40VP-40VP。
+
 **API Level**
 
 11
