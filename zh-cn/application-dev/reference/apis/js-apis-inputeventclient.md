@@ -1,6 +1,6 @@
-# @ohos.multimodalInput.inputEventClient (按键注入)
+# @ohos.multimodalInput.inputEventClient (输入事件注入)
 
-按键注入模块，提供按键注入能力。
+输入事件注入模块，提供输入事件注入能力。
 
 > **说明：**
 >

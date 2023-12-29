@@ -4,7 +4,7 @@
 在卡片上通常需要展示本地图片或从网络上下载的图片，获取本地图片和网络图片需要通过FormExtensionAbility来实现，如下示例代码介绍了如何在卡片上显示本地图片和网络图片。
 
 
-1. 下载网络图片需要使用到网络能力，需要申请ohos.permission.INTERNET权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md)。
+1. 下载网络图片需要使用到网络能力，需要申请ohos.permission.INTERNET权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 2. 在EntryFormAbility中的onAddForm生命周期回调中实现本地文件的刷新。
 

@@ -3913,6 +3913,8 @@ email.email = "xxx@email.com";
 
 ```js
 let holder: contact.Holder = {
+  bundleName: "com.ohos.contacts",
+  displayName: "displayName",
   holderId: 0
 };
 ```
@@ -4309,7 +4311,8 @@ portrait.uri = "uri";
 
 ```js
 let postalAddress: contact.PostalAddress = {
-    city: "city"
+    city: "city",
+    postalAddress: "postalAddress"
 };
 ```
 
@@ -4318,6 +4321,7 @@ let postalAddress: contact.PostalAddress = {
 ```js
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
+postalAddress.postalAddress = "postalAddress";
 ```
 
 

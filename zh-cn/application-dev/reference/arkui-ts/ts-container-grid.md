@@ -162,14 +162,14 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 @Entry
 @Component
 struct GridExample {
-  @State Number: String[] = ['0', '1', '2', '3', '4']
+  @State numbers: String[] = ['0', '1', '2', '3', '4']
   scroller: Scroller = new Scroller()
 
   build() {
     Column({ space: 5 }) {
       Grid() {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
             GridItem() {
               Text(day)
                 .fontSize(16)
@@ -191,8 +191,8 @@ struct GridExample {
 
       Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
       Grid(this.scroller) {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
             GridItem() {
               Text(day)
                 .fontSize(16)
@@ -331,7 +331,7 @@ struct GridExample {
 @Entry
 @Component
 struct GridExample {
-  @State Number: String[] = ['0', '1', '2', '3', '4']
+  @State numbers: String[] = ['0', '1', '2', '3', '4']
   scroller: Scroller = new Scroller()
   layoutOptions1: GridLayoutOptions = {
     regularSize: [1, 1],        // 只支持[1, 1]
@@ -352,8 +352,8 @@ struct GridExample {
   build() {
     Column({ space: 5 }) {
       Grid(this.scroller, this.layoutOptions1) {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
             GridItem() {
               Text(day)
                 .fontSize(16)
@@ -376,8 +376,8 @@ struct GridExample {
       Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
       // 不使用scroll，需要undefined占位
       Grid(undefined, this.layoutOptions2) {
-        ForEach(this.Number, (day: string) => {
-          ForEach(this.Number, (day: string) => {
+        ForEach(this.numbers, (day: string) => {
+          ForEach(this.numbers, (day: string) => {
             GridItem() {
               Text(day)
                 .fontSize(16)

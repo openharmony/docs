@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import fileuri from "@ohos.file.fileuri";
+import fileUri from "@ohos.file.fileuri";
 ```
 
 使用该功能模块前，需要先获取其应用沙箱路径，开发示例如下：
@@ -63,8 +63,8 @@ constructor是FileUri的构造函数。
 
   ```ts
   let path = pathDir + '/test';
-  let uri = fileuri.getUriFromPath(path);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
-  let fileUriObject = new fileuri.FileUri(uri);
+  let uri = fileUri.getUriFromPath(path);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
+  let fileUriObject = new fileUri.FileUri(uri);
   console.info("The name of FileUri is " + fileUriObject.name);
   ```
 
@@ -86,11 +86,11 @@ toString(): string
 
   ```ts
   let path = pathDir + '/test';
-  let fileUriObject = new fileuri.FileUri(path);
+  let fileUriObject = new fileUri.FileUri(path);
   console.info("The uri of FileUri is " + fileUriObject.toString());
   ```
 
-## fileuri.getUriFromPath
+## fileUri.getUriFromPath
 
 getUriFromPath(path: string): string
 
@@ -121,5 +121,5 @@ getUriFromPath(path: string): string
 
   ```ts
   let filePath = pathDir + "/test";
-  let uri = fileuri.getUriFromPath(filePath);
+  let uri = fileUri.getUriFromPath(filePath);
   ```

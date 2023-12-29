@@ -9,7 +9,7 @@ The **deviceInfo** module provides product information.
 ## Modules to Import
 
 ```ts
-import deviceInfo from '@ohos.deviceInfo'
+import deviceInfo from '@ohos.deviceInfo';
 ```
 
 ## Attributes
@@ -58,7 +58,7 @@ import deviceInfo from '@ohos.deviceInfo'
 **Example**
 
 ```ts
-    import deviceinfo from '@ohos.deviceInfo'
+    import deviceinfo from '@ohos.deviceInfo';
 
     let deviceTypeInfo: string = deviceinfo.deviceType;
     console.info('the value of the deviceType is :' + deviceTypeInfo);

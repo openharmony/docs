@@ -5,6 +5,10 @@
 
 用于存储键值对的类型。
 
+**引用文件：** <database/rdb/oh_values_bucket.h>
+
+**库：** libnative_rdb_ndk.z.so
+
 **起始版本：**
 
 10

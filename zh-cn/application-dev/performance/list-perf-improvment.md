@@ -81,18 +81,19 @@ LazyForEach懒加载API提供了cachedCount属性，用于配置可缓存列表�
 在List、Grid等容器组件下使用LazyForEach懒加载的示意代码如下：
 
 ```ts
-// LazyForEach要遍历的数据源，为实现接口IDataSource的实例   
+// LazyForEach要遍历的数据源，为实现接口IDataSource的实例   
 private dataList = ...
 build() {
   Column() {
     List() {
-      LazyForEach(this.dataList, // 数据源          
+      LazyForEach(this.dataList, // 数据源          
         (item: ListItemData) => { // 根据列表项数据生成对应的组件  
           ListItem() {
             this.initItem(item)
-          },(item: ListItemData) => item.itemId // 生成列表项键值)}
-        }
-    }
+          }
+        },(item: ListItemData) => item.itemId) // 生成列表项键值
+      }
+   }
 }
 ```
 
@@ -156,6 +157,7 @@ export struct ChatListDisplayView {
     async aboutToAppear(): Promise<void> {  
     await makeDataLocal(this.chatList_Lazy)  
     ......  
+   }
 }
 ```
 
@@ -171,9 +173,11 @@ build() {
         ......  
         this.chatViewBuilder(msg)  
         ......  
+        }
        }, (msg: ChatModel) => msg.user.userId)  
        ......  
     }  
+  }
 }
 ```
 

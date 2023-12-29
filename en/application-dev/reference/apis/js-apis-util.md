@@ -69,11 +69,11 @@ const pi = 3.141592653;
 formattedString = util.format('The value of pi is %f', pi);
 console.log(formattedString);
 // Output: The value of pi is 3.141592653
-const obj = { name: 'John', age: 20 };
+const obj: Record<string,number | string> = { "name": 'John', "age": 20 };
 formattedString = util.format('The object is %j', obj);
 console.log(formattedString);
 // Output: The object is {"name":"John","age":20}.
-const person = {
+const person: utilPersontype = {
   name: 'John',
   age: 20,
   address: {
@@ -1645,8 +1645,8 @@ class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
     }
   }
 }
-let lru : ChildLruBuffer<number,number|null>= new ChildLruBuffer();
-lru.afterRemoval(false,10,30,null);
+let lru : ChildLruBuffer<number, number>= new ChildLruBuffer();
+lru.afterRemoval(false, 10, 30, 50);
 ```
 
 ### contains<sup>9+</sup>
@@ -2573,10 +2573,10 @@ Enumerates the Base64 encoding formats.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name  | Value                    | Description            |
-| -------- | ------------------------ | ---------------- |
+| Name  |Value| Description              |
+| ----- |---| ----------------- |
 | BASIC | 0 | Basic format.|
-| MIME | 1 | MIME format.|
+| MIME  | 1 | MIME format.|
 
 
 ## types<sup>8+</sup>
@@ -2999,6 +2999,7 @@ Checks whether the input value is a generator object.
 **Example**
 
   ```ts
+  // This API cannot be used in .ets files.
   let that = new util.types();
   function* foo() {}
   const generator = foo();
@@ -3405,6 +3406,7 @@ Checks whether the input value is a symbol object.
 **Example**
 
   ```ts
+  // This API cannot be used in .ets files.
   let that = new util.types();
   const symbols = Symbol('foo');
   let result = that.isSymbolObject(Object(symbols));

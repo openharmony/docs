@@ -5,11 +5,11 @@ The **\<ColumnSplit>** component lays out child components vertically and insert
 >  **NOTE**
 >
 > This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
-
 ## Child Components
 
 Supported
 
+This component limits the height of its child components. During initialization, the layout of the component is calculated based on the height of its child components. After initialization, changes to the height of the child components do not take effect. Still, the space occupied by the child components can be changed by dragging the dividers between them.
 ## APIs
 
 ColumnSplit()

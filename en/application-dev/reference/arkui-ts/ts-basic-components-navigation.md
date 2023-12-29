@@ -1,6 +1,6 @@
 # Navigation
 
-The **\<Navigation>** component typically functions as the root container of a page and displays the title bar, toolbar, and navigation bar based on the attribute settings.
+The **\<Navigation>** component is the root view container for navigation. It typically functions as the root container of a page and includes a title bar, content area, and toolbar. The content area switches between the home page content (child components of **\<Navigation>**) and non-home page content (child components of [\<NavDestination>](ts-basic-components-navdestination.md)) through routing.
 
 > **NOTE**
 >
@@ -12,6 +12,8 @@ The **\<Navigation>** component typically functions as the root container of a p
 Supported
 
 Since API version 9, it is recommended that this component be used together with the **[\<NavRouter>](ts-basic-components-navrouter.md)** component.
+
+Since API version 10, it is recommended that this component be used together with the **[\<NavPathStack>](#navpathstack10)** component and **navDestination** attribute.
 
 ## APIs
 
@@ -82,7 +84,7 @@ Pushes the navigation destination page specified by **info** to the navigation s
 
 pushPathByName(name: string, param: unknown): void
 
-Pushes the navigation destination page specified by **name** to the navigation stack.
+Pushes the navigation destination page specified by **name**, with the data specified by **param**, to the navigation stack.
 
 **Parameters**
 

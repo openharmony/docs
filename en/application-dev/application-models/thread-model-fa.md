@@ -19,7 +19,7 @@ There are three types of threads in the FA model:
 
   Performs time-consuming operations.
 
-Based on the OpenHarmony thread model, different services run on different threads. Service interaction requires inter-thread communication. Threads can communicate with each other in Emitter or Worker mode. Emitter is mainly used for event synchronization between threads, and Worker is mainly used to execute time-consuming tasks.
+Based on the thread model, different services run on different threads. Service interaction requires inter-thread communication. Threads can communicate with each other in [Emitter](itc-with-emitter.md) or Worker mode. Emitter is mainly used for event synchronization between threads, and Worker is mainly used to execute time-consuming tasks.
 
 > **NOTE**
 >

@@ -26,12 +26,12 @@ HAP信息，系统应用可以通过[bundleManager.getBundleInfo](js-apis-bundle
 | installationFree                  | boolean                                                      | 是   | 否   | 模块是否支持免安装。       |
 | hashValue                         | string                                                       | 是   | 否   | 模块的Hash值。              |
 | moduleType                        | [ModuleType](js-apis-bundleManager.md#moduletype)            | 是   | 否   | 标识当前模块的类型。      |
-| preloads                          | Array\<[PreloadItem](#preloaditem)>                          | 是   | 否   | 原子化服务中模块的预加载列表。|
+| preloads                          | Array\<[PreloadItem](#preloaditem)>                          | 是   | 否   | 元服务中模块的预加载列表。|
 | dependencies                      | Array\<[Dependency](#dependency)>                            | 是   | 否   | 模块运行依赖的动态共享库列表。  |
 
 ## PreloadItem
 
-描述原子化服务中模块的预加载模块信息。
+描述元服务中模块的预加载模块信息。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 

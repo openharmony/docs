@@ -172,5 +172,3 @@ httpRequest.requestInStream(
 - [上传和下载（ArkTS）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Connectivity/UploadAndDownLoad)
 
 - [Http（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Connectivity/Http)
-
-- [新闻数据加载（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)
