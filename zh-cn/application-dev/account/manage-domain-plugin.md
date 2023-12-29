@@ -15,7 +15,7 @@ OEM厂商可以采用插件方式定制化域帐号管理能力，系统提供�
    import { AsyncCallback, BusinessError } from '@ohos.base';
    ```
 
-3. 获取获取系统帐号管理对象。
+3. 获取系统帐号管理对象。
 
    ```ts
    let accountMgr = account_osAccount.getAccountManager()
