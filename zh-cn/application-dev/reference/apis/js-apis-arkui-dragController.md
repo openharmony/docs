@@ -5,9 +5,9 @@
 > **说明：**
 >
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
+> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+> 从API version 11开始，可以通过使用UIContext中的[getDragController](./js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 > 示例效果请以真机运行为准，当前 IDE 预览器不支持。
-
 
 ## 导入模块
 
@@ -249,11 +249,13 @@ startDrag(): Promise&lt;void&gt;
 
 启动拖拽服务，返回Promise对象，回调启动成功和失败的结果。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **错误码：**
 
 | 错误码ID | 错误信息      |
 | -------- | ------------- |
-| 100001   | If some internal handling failed |
+| 100001   | if some internal handling failed. |
 
 **示例：**
 ```ts
@@ -271,7 +273,7 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名     | 类型  | 必填    | 描述             |
+| 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即注册监听拖拽状态改变事件。|
 |  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 是      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态。|
@@ -292,7 +294,7 @@ dragAction.on('statusChange', (dragAndDropInfo)=>{
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
-| 参数名     | 类型  | 必填    | 描述             |
+| 参数名     | 类型  | 必填    | 说明             |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | 是      | 监听事件，固定为'statusChange'，即取消监听拖拽状态改变事件。|
 |  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt; | 否      | 回调函数，返回当前的[DragAndDropInfo](#draganddropinfo)组件状态， 不设置取消所有监听。|
@@ -575,3 +577,4 @@ struct DragControllerPage {
     .height('100%')
   }
 }
+
