@@ -248,43 +248,43 @@ getUIFontConfig() : [UIFontConfig](#uifontconfig11)
 ```ts
 // xxx.ets
 import font from '@ohos.font';
-
 @Entry
 @Component
 struct FontExample {
- build() {
-   Column() {
-     Button("getUIFontConfig")
-       .width('60%')
-       .height('6%')
-       .onClick(()=>{
-         let fontConfig = font.getUIFontConfig();
-         console.log("font-dir -----------" + String(fontConfig.fontDir.length));
-         for (let i = 0; i < fontConfig.fontDir.length; i ++) {
-           console.log(fontConfig.fontDir[i]);
-         }
-         console.log("--------------------");
-         console.log("generic-------------" + String(fontConfig.generic.length));
-         for (let i = 0; i < fontConfig.generic.length; i ++){
-           console.log("family:", fontConfig.generic[i].family);
-           for (let j = 0; j < fontConfig.generic[i].alias.length; j ++){
-             console.log(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
-           }
-           for (let j = 0; j < fontConfig.generic[i].adjust.length; j ++){
-             console.log(fontConfig.generic[i].adjust[j].weight + " " + fontConfig.generic[i].adjust[j].to);
-           }
-         }
-         console.log("--------------------");
-         console.log("fallback------------" + String(fontConfig.fallbackGroups.length));
-         for (let i = 0; i < fontConfig.fallbackGroups.length; i ++){
-           console.log("fontSetName:", fontConfig.fallbackGroups[i].fontSetName);
-           for (let j = 0; j < fontConfig.fallbackGroups[i].fallback.length; j ++){
-             console.log("language:", fontConfig.fallbackGroups[i].fallback[j].language + " family:" + fontConfig.fallbackGroups[i].fallback[j].family);
-           }
-         }
-         console.log("--------------------");
-       })
-   }.width('100%')
- }
+  build() {
+    Column() {
+      Button("getUIFontConfig")
+        .width('60%')
+        .height('6%')
+        .margin(50)
+        .onClick(()=>{
+          let fontConfig = font.getUIFontConfig();
+          console.log("font-dir -----------" + String(fontConfig.fontDir.length));
+          for (let i = 0; i < fontConfig.fontDir.length; i ++) {
+            console.log(fontConfig.fontDir[i]);
+          }
+          console.log("--------------------");
+          console.log("generic-------------" + String(fontConfig.generic.length));
+          for (let i = 0; i < fontConfig.generic.length; i ++){
+            console.log("family:" + fontConfig.generic[i].family);
+            for (let j = 0; j < fontConfig.generic[i].alias.length; j ++){
+              console.log(fontConfig.generic[i].alias[j].name + " " + fontConfig.generic[i].alias[j].weight);
+            }
+            for (let j = 0; j < fontConfig.generic[i].adjust.length; j ++){
+              console.log(fontConfig.generic[i].adjust[j].weight + " " + fontConfig.generic[i].adjust[j].to);
+            }
+          }
+          console.log("--------------------");
+          console.log("fallback------------" + String(fontConfig.fallbackGroups.length));
+          for (let i = 0; i < fontConfig.fallbackGroups.length; i ++){
+            console.log("fontSetName:" + fontConfig.fallbackGroups[i].fontSetName);
+            for (let j = 0; j < fontConfig.fallbackGroups[i].fallback.length; j ++){
+              console.log("language:" + fontConfig.fallbackGroups[i].fallback[j].language + " family:" + fontConfig.fallbackGroups[i].fallback[j].family);
+            }
+          }
+          console.log("--------------------");
+        })
+    }.width('100%')
+  }
 }
 ```
