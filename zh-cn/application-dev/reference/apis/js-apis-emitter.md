@@ -358,7 +358,7 @@ let count = emitter.getListenerCount("eventId");
 
 | 名称 | 类型           | 可读 | 可写 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，支持的数据类型Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive(除去symbol)、RegExp、Set、String、TypedArray,数据大小最大为16M。 |
+| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，支持数据类型Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive(除了symbol)、RegExp、Set、String、TypedArray,数据大小最大为16M。 |
 
 ## Options<sup>11+</sup>
 
