@@ -353,7 +353,7 @@ async function createTonePlayerBefore(){
 | ALARM<sup>10+</sup>          | 4      | 闹钟。     |
 | ACCESSIBILITY<sup>10+</sup>  | 5      | 无障碍。   |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
-| ULTRASONIC<sup>10+</sup>     | 10     | 超声波。<br/>此接口为系统接口。|
+| ULTRASONIC<sup>10+</sup>     | 10     | 超声波（目前仅提供给MSDP使用）。<br/>此接口为系统接口。|
 | ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口。|
 
 ## InterruptRequestResultType<sup>9+</sup>
@@ -549,23 +549,23 @@ async function createTonePlayerBefore(){
 | ------------------------------------------| ------ |---------------------------------|
 | STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。                           |
 | STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
-| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。                             |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。                           | 
-| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。                           |
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。                             |
-| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。                           |
-| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | 通知铃声。<br/> 从 API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_RINGTONE替代。                          |
-| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。                             |
-| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。                             |
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。                            |
-| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。   |
-| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。                          |
-| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。                           |
-| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物。                           |
-| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。                             |
-| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | 拨号音。<br/>此接口为系统接口。              |
-| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | 强制音(如相机快门音)。<br/>此接口为系统接口。      |
-| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | 超声波。<br/>此接口为系统接口。              |
+| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。                                                                                                                                         |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。                                                                                                                                       | 
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。                                                                                                                                       |
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。                                                                                                                                         |
+| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。                                                                                                                                       |
+| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | 通知铃声。<br/> 从 API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_RINGTONE替代。                                                                          |
+| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。                                                                                                                                         |
+| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。                                                                                                                                         |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。                                                                                                                                        |
+| STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9      | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。                                                                                                               |
+| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。                                                                                                                                      |
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。                                                                                                                                       |
+| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物。                                                                                                                                       |
+| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。                                                                                                                                         |
+| STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | 拨号音。<br/>此接口为系统接口。                                                                                                                          |
+| STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | 强制音(如相机快门音)。<br/>此接口为系统接口。                                                                                                                  |
+| STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | 超声波（目前仅提供给MSDP使用）。<br/>此接口为系统接口。                                                                                                            |
 
 
 ## InterruptRequestType<sup>9+</sup>
@@ -679,7 +679,7 @@ async function createTonePlayerBefore(){
 | ------------- | --------------------------- | ---- | ---------------- |
 | content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数。 |
 | usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
-| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。js接口暂不支持低时延音频渲染器。 |
+| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 |
 
 ## InterruptResult<sup>9+</sup>
 
@@ -738,7 +738,7 @@ async function createTonePlayerBefore(){
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                    |
 | volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。  |
 | updateUi   | boolean                             | 是   | 在UI中显示音量变化，true为显示，false为不显示。             |
-| volumeGroupId | number                           | 是   | 音量组id。可用于getGroupManager入参。<br/>此接口为系统接口。 |
+| volumeGroupId | number                           | 是   | 音量组id，可用于getGroupManager入参。<br/>此接口为系统接口。 |
 | networkId  | string                              | 是   | 网络id。<br/>此接口为系统接口。                       |
 
 ## MicStateChangeEvent<sup>9+</sup>
@@ -842,7 +842,7 @@ async function createTonePlayerBefore(){
 | 名称          | 类型                      | 必填 | 说明             |
 | :------------ | :------------------------ | :--- | :--------------- |
 | source        | [SourceType](#sourcetype) | 是   | 音源类型。       |
-| capturerFlags | number                    | 是   | 音频采集器标志。 |
+| capturerFlags | number                    | 是   | 音频采集器标志。<br>0代表普通音频采集器，1代表低时延音频采集器。ArkTS接口暂不支持低时延音频采集器。 |
 
 ## SourceType<sup>8+</sup><a name="sourcetype"></a>
 
@@ -2458,9 +2458,9 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 
 **参数：**
 
-| 参数名     | 类型                                                         | 必填 | 说明                 |
-| ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| groupId    | number                                    | 是   | 音量组id。     |
+| 参数名     | 类型                                                         | 必填 | 说明                                                        |
+| ---------- | ------------------------------------------------------------ | ---- |-----------------------------------------------------------|
+| groupId    | number                                    | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。                          |
 | callback   | AsyncCallback&lt;[AudioVolumeGroupManager](#audiovolumegroupmanager9)&gt; | 是   | 回调函数。当获取音频组管理器成功，err为undefined，data为获取到的音频组管理器对象；否则为错误对象。 |
 
 **示例：**
@@ -2489,9 +2489,9 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填 | 说明              |
-| ---------- | ---------------------------------------- | ---- | ---------------- |
-| groupId    | number                                   | 是   | 音量组id。     |
+| 参数名     | 类型                                      | 必填 | 说明                               |
+| ---------- | ---------------------------------------- | ---- |----------------------------------|
+| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
@@ -2522,9 +2522,9 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 **参数：**
 
-| 参数名     | 类型                                      | 必填 | 说明              |
-| ---------- | ---------------------------------------- | ---- | ---------------- |
-| groupId    | number                                   | 是   | 音量组id。     |
+| 参数名     | 类型                                      | 必填 | 说明                               |
+| ---------- | ---------------------------------------- | ---- |----------------------------------|
+| groupId    | number                                   | 是   | 音量组id，默认使用LOCAL_VOLUME_GROUP_ID。 |
 
 **返回值：**
 
