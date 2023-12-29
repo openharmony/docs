@@ -14,9 +14,11 @@ The following uses the NDK project template of DevEco Studio to create an NDK pr
    - If a project is already open, choose **File** > **New** > **Create Project** on the menu bar.
 
 2. On the **Choose Your Ability Template** page, select **Native C++** as the template, and click **Next**.
+   
    ![en-us_image_0000001782486161](figures/en-us_image_0000001782486161.png)
-
+   
 3. On the project configuration page, configure basic project information and click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
-   The **cpp** directory is contained in the **entry/src/main** directory of the project.
+
+   The main code of your application is in the **cpp** directory under **entry/src/main** of the project.
 
    ![oh-menu](figures/oh-menu.PNG)

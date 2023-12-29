@@ -1,16 +1,16 @@
 # Building an NDK Project with Prebuilt Libraries
 
 
-In an NDK project, you can use the CMake syntax rules to import and use prebuilt libraries. When prebuilt libraries are referenced, the prebuilt libraries in the **libs **directory of the module and the prebuilt libraries declared in the **CMakeList.txt** script are packaged.
+In an NDK project, you can use the CMake syntax to import and use prebuilt libraries. When prebuilt libraries are referenced, the prebuilt libraries in the **libs** directory of the module and the prebuilt libraries declared in the **CMakeList.txt** script are packaged.
 
 
-For example, to use the prebuilt library **libavcodec_ffmpeg.so** in a project, save it during development to the path shown below.
+For example, the prebuilt library **libavcodec_ffmpeg.so** is located in the following directory during development.
 
 
 ![Snipaste_2023-10-30_14-39-27](figures/Snipaste_2023-10-30_14-39-27.png)
 
 
-Add the required prebuilt library through **add_library** in the **CMakeLists.txt** script of the module and declare information such as the path to the prebuilt library. Then you can declare the link to the prebuilt library in **target_link_libraries**. The following is an example of the script:
+To use it in your project, add it through **add_library** in the **CMakeLists.txt** script of the module and declare information such as the path to the prebuilt library. Then you can declare the link to the prebuilt library in **target_link_libraries**. The following is an example of the script:
 
 
 ```
