@@ -136,7 +136,7 @@ struct TransitionEffectDemo {
 ![zh-cn_image_0000001599818064](figures/zh-cn_image_0000001599818064.gif)
 
 
-对多个组件添加转场效果时，可以通过在animation动画参数中配置不同的delay值，实现组件渐次出现消失的效果，如下述demo所示：
+对多个组件添加转场效果时，可以通过在animation动画参数中配置不同的delay值，实现组件渐次出现消失的效果：
 
 ```ts
 const ITEM_COUNTS = 9;
