@@ -17,10 +17,13 @@ Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicas
 
 应用通过 Socket 进行数据传输，支持 TCP/UDP/Multicast/TLS 协议。主要场景有：
 
-- 应用通过 TCP/UDP/Multicast/Local Socket 进行数据传输
+- 应用通过 TCP/UDP Socket进行数据传输
 - 应用通过 TCP Socket Server 进行数据传输
+- 应用通过 Multicast Socket 进行数据传输
+- 应用通过 Local Socket进行数据传输
 - 应用通过 Local Socket Server 进行数据传输
 - 应用通过 TLS Socket 进行加密数据传输
+- 应用通过 TLS Socket Server 进行加密数据传输
 
 ## 接口说明
 
@@ -422,7 +425,7 @@ client.close().then(() => {
 
 3. 启动服务，绑定本地套接字路径，创建出本地套接字文件，监听客户端的连接请求。
 
-3. 注册 LocalSocket 的客户端连接(connect)事件，以及一些其它事件(可选)。
+4. 注册 LocalSocket 的客户端连接(connect)事件，以及一些其它事件(可选)。
 
 5. 在客户端连接上来时，通过连接事件的回调函数，获取连接会话对象。
 
@@ -649,6 +652,96 @@ tlsTwoWay.close((err: BusinessError) => {
   tlsTwoWay.off('connect');
   tlsTwoWay.off('close');
 });
+```
+
+## 应用通过 TLS Socket Server 进行加密数据传输
+
+### 开发步骤
+
+服务端 TLS Socket 流程：
+
+1. import 需要的 socket 模块。
+
+2. 启动服务，绑定 IP 和端口号，监听客户端连接，创建并初始化 TLS 会话，加载证书密钥并验证。
+
+3. 订阅 TLSSocketServer 的连接事件。
+
+4. 收到客户端连接，通过回调得到 TLSSocketConnection 对象。
+
+5. 订阅 TLSSocketConnection 相关的事件。
+
+6. 发送数据。
+
+7. TLSSocketConnection 连接使用完毕后，断开连接。
+
+8. 取消订阅 TLSSocketConnection 以及 TLSSocketServer 的相关事件。
+
+```ts
+import socket from "@ohos.net.socket";
+import { BusinessError } from '@ohos.base';
+let tlsServer: socket.TLSSocketServer = socket.constructTLSSocketServerInstance();
+let tlsConnectOptions: socket.TLSConnectOptions = {
+  address: {
+    address: '192.168.xx.xxx',
+    port: 8080
+  },
+  secureOptions: {
+    key: "xxxx",
+    cert: "xxxx",
+    ca: ["xxxx"],
+    password: "xxxx",
+    protocols: socket.Protocol.TLSv12,
+    useRemoteCipherPrefer: true,
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
+    cipherSuite: "AES256-SHA256"
+  },
+  ALPNProtocols: ["spdy/1", "http/1.1"]
+}
+tlsServer.listen(tlsConnectOptions).then(() => {
+  console.log("listen callback success");
+}).catch((err: BusinessError) => {
+  console.log("failed" + err);
+});
+
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+let callback = (value: SocketInfo) => {
+  let messageView = '';
+  for (let i: number = 0; i < value.message.byteLength; i++) {
+    let uint8Array = new Uint8Array(value.message)
+    let messages = uint8Array[i]
+    let message = String.fromCharCode(messages);
+    messageView += message;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+}
+tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
+  client.on('message', callback);
+
+  // 发送数据
+  client.send('Hello, client!').then(() => {
+    console.log('send success');
+  }).catch((err: BusinessError) => {
+    console.log('send fail');
+  });
+
+  // 断开连接
+  client.close().then(() => {
+    console.log('close success');
+  }).catch((err: BusinessError) => {
+    console.log('close fail');
+  });
+
+  // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+  client.off('message', callback);
+  client.off('message');
+});
+
+// 取消订阅tlsServer的相关事件
+tlsServer.off('connect');
 ```
 
 ## 相关实例
