@@ -32,8 +32,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| x  | Length \| GridRowSizeOption | No  | Gutter in the horizontal direction.   |
-| y  | Length \| GridRowSizeOption | No  | Gutter in the vertical direction.     |
+| x  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | No  | Horizontal spacing between grid child components.   |
+| y  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | No  | Vertical spacing between grid child components.   |
 
 ## GridRowColumnOption
 
@@ -58,12 +58,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | Length | No   | Device of the minimum size.   |
-| sm  | Length | No   | Small-sized device.     |
-| md  | Length | No   | Medium-sized device.   |
-| lg  | Length | No   | Large-sized device.     |
-| xl  | Length | No   | Extra-large-sized device.   |
-| xxl | Length | No   | Ultra-large-sized device.   |
+| xs  | [Length](ts-types.md#length) | No   | Gutter size for minimum device width.   |
+| sm  | [Length](ts-types.md#length) | No   | Gutter size for small device width.     |
+| md  | [Length](ts-types.md#length) | No   | Gutter size for medium device width.   |
+| lg  | [Length](ts-types.md#length) | No   | Gutter size for large device width.     |
+| xl  | [Length](ts-types.md#length) | No   | Gutter size for extra large device width.   |
+| xxl | [Length](ts-types.md#length) | No   | Gutter size for extra extra large device width.   |
 
 ## BreakPoints
 

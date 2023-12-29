@@ -20,7 +20,7 @@ The **\<RelativeContainer>** component is used for element alignment in complex 
    * If offset is required after the alignment, it can be set through **offset**. 
  * Exceptions
    * When a mutual or circular dependency occurs, none of the child components in the container are drawn. 
-   * If anchors are set for more than two positions in a single direction but the anchor positions are reversed, the size of the child component is 0, which means that the child component is not drawn.
+   * If anchors are set for two or more positions in a single direction but the anchor positions are reversed, the size of the child component is 0, which means that the child component is not drawn. 
    * If the container does not have width and height set, it as well as its child components will not be drawn.  
 
 ## Child Components

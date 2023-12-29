@@ -226,6 +226,8 @@ struct IdExample {
             y: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
             screenX: rect.left + (rect.right - rect.left) / 2, // X coordinate of the component center.
             screenY: rect.top + (rect.bottom - rect.top) / 2, // Y coordinate of the component center.
+            stopPropagation: () => {
+            },
             timestamp: 1,
             target: {
               area: {
@@ -265,7 +267,9 @@ struct IdExample {
             keySource: 4,
             deviceId: 0,
             metaKey: 0,
-            timestamp: 0
+            timestamp: 0,
+            stopPropagation: () => {
+            }
           }
           sendKeyEvent(keyEvent) // Send a key event.
         }, 2000)

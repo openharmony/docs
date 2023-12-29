@@ -139,7 +139,7 @@ Scrolls to the item with the specified index.
 
 >  **NOTE**
 >
->  Only the **\<Grid>**, **\<List>**, and **\<WaterFlow>** components are supported.
+>  This API only works for the **\<Grid>**, **\<List>**, and **\<WaterFlow>** components.
 
 **Parameters**
 
@@ -158,7 +158,7 @@ Scrolls by the specified amount.
 
 >  **NOTE**
 >
->  Only the **\<Scroll>**, **\<ScrollBar>**, **\<Grid>**, and **\<List>** components are supported.
+>  This API is available for the **\<Scroll>**, **\<List>**, **\<Grid>**, and **\<WaterFlow>** components.
 
 **Parameters**
 
