@@ -9,6 +9,6 @@
   - [明文导入密钥](../security/UniversalKeystoreKit/huks-import-key-in-plaintext-arkts.md)
   - [加密导入密钥](../security/UniversalKeystoreKit/huks-import-wrapped-key-arkts.md)
 - 加密/解密
-  - [加密/解密介绍及算法规格](huks-encryption-decryption-overview.md)
-  - [加解密](huks-encryption-decryption-arkts.md)
-- [密钥删除](huks-delete-key-arkts.md)
+  - [加密/解密介绍及算法规格](../security/UniversalKeystoreKit/huks-encryption-decryption-overview.md)
+  - [加解密](../security/UniversalKeystoreKit/huks-encryption-decryption-arkts.md)
+- [密钥删除](../security/UniversalKeystoreKit/huks-delete-key-arkts.md)
