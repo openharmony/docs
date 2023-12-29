@@ -144,7 +144,7 @@ getPlayingState(deviceId: string): PlayingState
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| device | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址。 |
 
 **返回值：**
 

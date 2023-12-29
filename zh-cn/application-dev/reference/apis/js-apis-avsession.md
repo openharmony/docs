@@ -2171,7 +2171,7 @@ setAVCallState(state: AVCallState): Promise\<void>
 
 | 参数名 | 类型                      | 必填 | 说明         |
 | ------ | ------------------------- | ---- | ------------ |
-| state   | [AVCallState](#avcallstate11) | 是   | 通话会话元数据。 |
+| state   | [AVCallState](#avcallstate11) | 是   | 通话状态。 |
 
 **返回值：**
 
@@ -2209,7 +2209,7 @@ currentAVSession.setAVCallState(calldata).then(() => {
 
 setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 
-设置通话会话元数据。结果通过callback异步回调方式返回。
+设置通话状态。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -2217,7 +2217,7 @@ setAVCallState(state: AVCallState, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                  |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state     | [AVCallState](#avcallstate11) | 是   | 通话会话元数据。                          |
+| state     | [AVCallState](#avcallstate11) | 是   | 通话状态。                          |
 | callback | AsyncCallback\<void>      | 是   | 回调函数。当通话元数据设置成功，err为undefined，否则返回错误对象。 |
 
 **错误码：**
@@ -7785,7 +7785,7 @@ on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback:
 
 | 参数名   | 类型       | 必填 | 说明      |
 | --------| -----------|-----|------------|
-| type     | string    | 是   | 事件回调类型，支持事件`'callMetadataChange'`：当通话元数据变化时，触发该事件。 |
+| type     | string    | 是   | 事件回调类型，支持事件`'callStateChange'`：当通话状态变化时，触发该事件。 |
 | filter   | Array<keyof&nbsp;[AVCallState](#avcallstate11)\>&nbsp;&#124;&nbsp;'all' | 是   | 'all' 表示关注通话状态所有字段变化；Array<keyof&nbsp;[AVCallState](#avcallstate11)\> 表示关注Array中的字段变化。 |
 | callback | Callback<[AVCallState](#avcallstate11)\>       | 是   | 回调函数，参数callstate是变化后的通话状态。|
 
@@ -7822,7 +7822,7 @@ off(type: 'callStateChange', callback?: Callback\<AVCallState>): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'callMetadataChange'`。    |
+| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'callStateChange'`。    |
 | callback | Callback<[AVCallState](#avcallstate11)\>           | 否   | 回调函数，参数callstate是变化后的通话原数据。<br>该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。      |
 
 **错误码：**
@@ -8468,7 +8468,7 @@ getAVCallState(): Promise\<AVCallState>
 
 | 类型                                | 说明                          |
 | ----------------------------------- | ----------------------------- |
-| Promise<[AVCallState](#avcallstate11)\> | Promise对象，返回会话元数据。 |
+| Promise<[AVCallState](#avcallstate11)\> | Promise对象，返回通话状态。 |
 
 **错误码：**
 
@@ -8504,7 +8504,7 @@ getAVCallState(callback: AsyncCallback\<AVCallState>): void
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | ----------------------------------------- | ---- | -------------------------- |
-| callback | AsyncCallback<[AVCallState](#avcallstate11)\> | 是   | 回调函数，返回会话元数据。 |
+| callback | AsyncCallback<[AVCallState](#avcallstate11)\> | 是   | 回调函数，返回通话状态。 |
 
 **错误码：**
 

@@ -501,7 +501,6 @@ Stack({ alignContent: Alignment.Bottom }) {
   List({ space: 20, scroller: this.listScroller }) {
     // ...
   }
-  // ...
 
   Button() {
     // ...
@@ -510,7 +509,6 @@ Stack({ alignContent: Alignment.Bottom }) {
     // 点击按钮时，指定跳转位置，返回列表顶部
     this.listScroller.scrollToIndex(0)
   })
-  // ...
 }
 ```
 

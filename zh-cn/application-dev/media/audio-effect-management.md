@@ -138,7 +138,7 @@
 对于播放音频类的系统级应用，开发者可以查询空间音频渲染与头动跟踪的开关状态，以及系统/指定设备是否支持空间音频渲染与头动跟踪能力。
 
 对于空间音频控制类的系统级应用（比如空间音频UX等），开发者在查询上述状态和能力之外，还可以对空间音频渲染和头动跟踪的开关进行设置，以及更新空间化设备的状态，指明特定空间化设备是否支持空间音频渲染和头动跟踪能力。
-在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 ### 获取空间音频管理接口
 
@@ -249,7 +249,7 @@
 
 系统应用开发者可以通过[setSpatializationEnabled](../reference/apis/js-apis-audio.md#setspatializationenabled11)接口开启/关闭空间音频渲染的效果，入参为true时为开启空间音频渲染，入参为false时为关闭空间音频渲染。
 
-在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 在开启空间音频渲染时，需要先确保系统和当前发声设备都具有空间音频渲染的能力，同时，如果音频流的AudioEffectMode为EFFECT_NONE，则无论是否开启空间音频渲染，都不会有空间音频渲染效果。
 
@@ -308,7 +308,7 @@
 
 系统应用开发者可以通过[setHeadTrackingEnabled](../reference/apis/js-apis-audio.md#setheadtrackingenabled11)接口开启/关闭头动跟踪的效果，入参为true时为开启头动跟踪，入参为false时为关闭头动跟踪。
 
-在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 在开启头动跟踪时，需要先确保系统和当前发声设备都具有头动跟踪的能力。同时，如果音频流的AudioEffectMode为EFFECT_NONE，则无论是否开启头动跟踪，都不会有头动跟踪效果。
 
@@ -365,7 +365,7 @@
 
 系统应用开发者可以通过[updateSpatialDeviceState](../reference/apis/js-apis-audio.md#updatespatialdevicestate11)接口更新空间化设备状态，空间化设备状态包含设备的地址、是否具有空间音频渲染的能力、是否具有头动跟踪的能力和设备的形态类型。
 
-在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+在使用此功能前，应用需要先申请权限`ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS`，申请方式请参考：[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 空间化设备状态AudioSpatialDeviceState的具体信息可以参考[AudioSpatialDeviceState](../reference/apis/js-apis-audio.md#audiospatialdevicestate)。
 

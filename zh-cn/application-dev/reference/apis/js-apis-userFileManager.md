@@ -1,6 +1,6 @@
 # @ohos.filemanagement.userFileManager (用户数据管理)
 
-该模块提供用户数据管理能力，包括访问、修改用户等用户公共媒体数据信息等常用功能。
+该模块提供用户数据管理能力，包括访问、修改用户公共媒体数据信息等常用功能。
 
 > **说明：**
 >
@@ -17,7 +17,7 @@ import userFileManager from '@ohos.filemanagement.userFileManager';
 
 getUserFileMgr(context: Context): UserFileManager
 
-获取用户数据管理模块的实例，用于访问和修改用户等用户公共媒体数据信息（如音频、视频、图片、文档等）。
+获取用户数据管理模块的实例，用于访问和修改用户公共媒体数据信息（如音频、视频、图片、文档等）。
 
 **模型约束**： 此接口仅可在Stage模型下使用。
 
@@ -1605,7 +1605,7 @@ on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 | 参数名    | 类型                                        | 必填 | 说明                                                         |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | 是   | FileAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri10)的值。 |
-| forSubUri | boolean                                     | 是   | 是否模糊监听，uri为相册uri时，forSubUri 为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为fileAsset时，forSubUri 为true、false没有区别，uri为DefaultChangeUri时，forSubUri必须为true，如果为false将找不到该uri，收不到任何消息。 |
+| forSubUri | boolean                                     | 是   | 是否模糊监听，uri为相册uri时，forSubUri 为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为fileAsset时，forSubUri 为true、false没有区别。uri为DefaultChangeUri时，forSubUri必须为true，如果为false将找不到该uri，收不到任何消息。 |
 | callback  | Callback&lt;[ChangeData](#changedata10)&gt; | 是   | 返回要监听的[ChangeData](#changedata10)。注：uri可以注册多个不同的callback监听，[off<sup>10+</sup>](#off10)可以关闭该uri所有监听，也可以关闭指定callback的监听。 |
 
 **错误码：**
@@ -4318,9 +4318,9 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
-| LOCAL |  1 |  文件只存在于本端设备。 |
+| LOCAL |  1 |  文件只存在于本地。 |
 | CLOUD |  2 |  文件只存在于云端。 |
-| BOTH |  3 |  文件在本地和云中都存在。 |
+| BOTH |  3 |  文件在本地和云端中都存在。 |
 
 ## AlbumType<sup>10+</sup>
 

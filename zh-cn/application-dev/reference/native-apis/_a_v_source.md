@@ -26,7 +26,7 @@ AVSource模块提供用于构造音视频资源对象功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| \*[OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | 为统一资源标识符对应的的资源对象创建OH_AVSource实例对象。 | 
+| \*[OH_AVSource_CreateWithURI](#oh_avsource_createwithuri) (char \*uri) | 为统一资源标识符对应的资源对象创建OH_AVSource实例对象。 | 
 | \*[OH_AVSource_CreateWithFD](#oh_avsource_createwithfd) (int32_t fd, int64_t offset, int64_t size) | 为文件描述符对应的资源对象创建OH_AVSource实例对象。 | 
 | [OH_AVSource_Destroy](#oh_avsource_destroy) (OH_AVSource \*source) | 销毁OH_AVSource实例并清理内部资源。同一实例只能被销毁一次。 | 
 | \*[OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) (OH_AVSource \*source) | 获取媒体资源文件的基础信息。 | 
@@ -47,7 +47,7 @@ OH_AVSource* OH_AVSource_CreateWithFD (int32_t fd, int64_t offset, int64_t size)
 
 为文件描述符对应的资源对象创建OH_AVSource实例对象。
 
-可以通过调用OH_AVSource_Destroy释放实例
+可以通过调用OH_AVSource_Destroy释放实例。
 
 该接口如果传入offset不为文件起始位置，或size不为文件大小时，可能会因数据获取不完整导致 OH_AVSource创建失败、后续解封装失败等未定义错误。
 

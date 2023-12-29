@@ -7,13 +7,34 @@
 >  - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  - 目前仅支持通过外接鼠标触发。
 
+## onHover
 
-## 事件
+onHover(event: (isHover: boolean, event: HoverEvent) => void)
 
-| 名称                                       | 支持冒泡 | 描述                                       |
-| ---------------------------------------- | ---- | ---------------------------------------- |
-| onHover(event:&nbsp;(isHover?:&nbsp;boolean,&nbsp;event<sup>10+</sup>?:&nbsp;HoverEvent)&nbsp;=&gt;&nbsp;void) | 是    | 鼠标进入或退出组件时触发该回调。<br/>isHover: 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。<br/>event: 设置阻塞事件冒泡属性。 |
-| onMouse(event:&nbsp;(event?:&nbsp;MouseEvent)&nbsp;=&gt;&nbsp;void) | 是    | 当前组件被鼠标按键点击时或者鼠标在组件上悬浮移动时，触发该回调，event返回值包含触发事件时的时间戳、鼠标按键、动作、鼠标位置在整个屏幕上的坐标和相对于当前组件的坐标。 |
+鼠标进入或退出组件时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名              | 类型                                | 必填 | 说明                                                         |
+| ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| isHover             | boolean                             | 否   | 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。 |
+| event<sup>10+</sup> | [HoverEvent](#hoverevent10对象说明) | 否   | 设置阻塞事件冒泡属性。                                       |
+
+## onMouse
+
+onMouse(event: (event: MouseEvent) => void)
+
+当前组件被鼠标按键点击时或者鼠标在组件上悬浮移动时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                                         |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| onMouse | [MouseEvent](#mouseevent对象说明) | 否   | 返回触发事件时的时间戳、鼠标按键、动作、鼠标位置在整个屏幕上的坐标和相对于当前组件的坐标。 |
 
 
 ## MouseEvent对象说明

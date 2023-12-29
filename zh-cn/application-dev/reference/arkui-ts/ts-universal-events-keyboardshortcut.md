@@ -6,9 +6,13 @@
 >
 >  从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 接口
+## keyboardShortcut
 
 keyboardShortcut(value: string | [FunctionKey], keys: Array<[ModifierKey]>, action?: () => void)
+
+设置组件的自定义组合键。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 

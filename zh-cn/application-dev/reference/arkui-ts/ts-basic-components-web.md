@@ -8,7 +8,7 @@
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
 ## 需要权限
-访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
+访问在线网页时需添加网络权限：ohos.permission.INTERNET，具体申请方式请参考[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 ## 子组件
 
@@ -803,6 +803,36 @@ cacheMode(cacheMode: CacheMode)
       }
     }
   }
+  ```
+
+### copyOptions<sup>11+</sup>
+
+copyOptions(value: CopyOptions)
+
+设置剪贴板复制范围选项。
+
+**参数：**
+
+| 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
+| --------- | --------------------------- | ---- | ----------------- | --------- |
+| value | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是    | CopyOptions.Cross_Device | 要设置的剪贴板复制范围选项。 |
+
+**示例：**
+
+  ```ts
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .copyOptions(CopyOptions.None)
+    }
+  }
+}
   ```
 
 ### textZoomAtio<sup>(deprecated)</sup>
@@ -1655,6 +1685,37 @@ nestedScroll(value: NestedScrollOptions)
     }
   }
   ```
+### enableNativeEmbedMode<sup>11+</sup>
+enableNativeEmbedMode(mode: boolean)
+
+设置是否开启同层渲染功能，默认不开启。
+
+
+**参数：**
+
+| 参数名   | 参数类型                      | 必填   | 默认值                | 参数描述             |
+| ----- | ---------------------------------------- | ---- | ------------------| ---------------- |
+| mode |  boolean | 是    | false | 是否开启同层渲染功能。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableNativeEmbedMode(true)
+      }
+    }
+  }
+  ```
+
+
 
 ## 事件
 
@@ -4098,6 +4159,112 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnav
   }
   ```
 
+### onNativeEmbedLifecycleChange<sup>11+</sup>
+
+onNativeEmbedLifecycleChange(callback: NativeEmbedDataInfo)
+
+当Embed标签生命周期变化时触发该回调。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| event       | [NativeEmbedDataInfo](#nativeembeddatainfo11) | Embed标签生命周期变化时触发该回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State embedStatus: string = ''
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onNativeEmbedLifecycleChange((event) => {
+            if (event.status == NativeEmbedStatus.CREATE) {
+              this.embedStatus = 'Create'
+            }
+            if (event.status == NativeEmbedStatus.UPDATE) {
+              this.embedStatus = 'Update'
+            }
+            if (event.status == NativeEmbedStatus.DESTROY) {
+              this.embedStatus = 'Destroy'
+            }
+            console.log("status = " + this.embedStatus);
+            console.log("surfaceId = " + event.surfaceId);
+            console.log("embedId = " + event.embedId);
+            if(event.info){
+              console.log("id = " + event.info.id);
+              console.log("type = " + event.info.type);
+              console.log("src = " + event.info.src);
+              console.log("width = " + event.info.width);
+              console.log("height = " + event.info.height);
+              console.log("url = " + event.info.url);
+            }
+        })
+      }
+    }
+  }
+  ```
+
+### onNativeEmbedGestureEvent<sup>11+</sup>
+
+onNativeEmbedGestureEvent(callback: NativeEmbedTouchInfo)
+
+当手指触摸到Embed标签时触发该回调。
+
+**参数：**
+
+| 参数名          | 类型                                                                         | 说明                    |
+| -------------- | --------------------------------------------------------------------------- | ---------------------- |
+| event       | [NativeEmbedTouchInfo](#nativeembeddatainfo11) | 手指触摸到Embed标签时触发该回调。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    @State eventType: string = ''
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onNativeEmbedGestureEvent((event) => {
+          if (event && event.touchEvent){
+            if (event.touchEvent.type == TouchType.Down) {
+              this.eventType = 'Down'
+            }
+            if (event.touchEvent.type == TouchType.Up) {
+              this.eventType = 'Up'
+            }
+            if (event.touchEvent.type == TouchType.Move) {
+              this.eventType = 'Move'
+            }
+            if (event.touchEvent.type == TouchType.Cancel) {
+              this.eventType = 'Cancel'
+            }
+            console.log("embedId = " + event.embedId);
+            console.log("touchType = " + this.eventType);
+            console.log("x = " + event.touchEvent.touches[0].x);
+            console.log("y = " + event.touchEvent.touches[0].y);
+            console.log("Component globalPos:(" + event.touchEvent.target.area.globalPosition.x + "," + event.touchEvent.target.area.globalPosition.y + ")");
+            console.log("width = " + event.touchEvent.target.area.width);
+            console.log("height = " + event.touchEvent.target.area.height);
+          }
+        })
+      }
+    }
+  }
+  ```
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -5964,3 +6131,43 @@ type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedD
 | 参数名                | 参数类型                                           | 参数描述                |
 | -------------------- | ------------------------------------------------ | ------------------- |
 | loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | 提供已提交跳转的网页的详细信息。 |
+
+## NativeEmbedStatus<sup>11+</sup>
+
+定义Embed标签生命周期。
+
+| 名称                           | 描述           |
+| ----------------------------- | ------------ |
+| CREATE                        | Embed标签创建。   |
+| UPDATE                        | Embed标签更新。   |
+| DESTROY                       | Embed标签销毁。 |
+## NativeEmbedInfo<sup>11+</sup>
+
+提供Embed标签的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| id     | number             | 是    | Embed标签的id信息。 |
+| type  | string                              | 是    | Embed标签的type信息。  |
+| src | string                              | 是    | Embed标签的src信息。  |
+| width  | number  | 是    | Embed标签的宽。       |
+| height | number                              | 是    | Embed标签的高。  |
+| url | string                              | 是    | Embed标签的url信息。  |
+## NativeEmbedDataInfo<sup>11+</sup>
+
+提供Embed标签生命周期变化的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| status     | [NativeEmbedStatus](#nativeembedstatus11)             | 是    | Embed标签生命周期状态。 |
+| surfaceId  | string                              | 是    | NativeImage的psurfaceid。  |
+| embedId | string                              | 是    | Embed标签的唯一id。  |
+| info  | [NativeEmbedInfo](#nativeembedinfo11)  | 是    | Embed标签的详细信息。       |
+## NativeEmbedTouchInfo<sup>11+</sup>
+
+提供手指触摸到Embed标签的详细信息。
+
+| 名称             | 类型                                  | 必填   | 描述                    |
+| -----------     | ------------------------------------ | ---- | --------------------- |
+| embedId     | string   | 是    | Embed标签的唯一id。 |
+| touchEvent  | [TouchEvent](ts-universal-events-touch.md#touchevent对象说明)  | 是    | 手指触摸动作信息。  |

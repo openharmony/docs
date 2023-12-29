@@ -1,35 +1,12 @@
 # 安全
 
-- 访问控制  
-  - [访问控制（权限）开发概述](accesstoken-overview.md)
-  - [访问控制授权申请指导](accesstoken-guidelines.md)
-  - [访问控制权限校验指导](permission-verify-guidelines.md)
-  - [应用权限列表](permission-list.md)
-  - [应用权限组列表](permission-group-list.md)
-- 安全控件
-  - [安全控件开发概述](security-component-manager-overview.md)
-  - [安全控件开发指导](security-component-manager-guidelines.md)
-- 数据防泄漏（DLP）
-  - [数据防泄漏（DLP）开发概述](dlp-overview.md)
-  - [数据防泄漏（DLP）开发指导](dlp-guidelines.md)
-- 用户认证
-  - [用户认证开发概述](userauth-overview.md)
-  - [用户认证开发指导](userauth-guidelines.md)
-- 通用密钥库
-  - [通用密钥库开发概述](huks-overview.md)
-  - [通用密钥库开发指导(ArkTS)](huks-guidelines.md)
-  - [通用密钥库开发指导(Native)](native-huks-guidelines.md)
-  - [通用密钥库密码算法规格](huks-appendix.md)
-- 加解密算法库框架
-  - [加解密算法库框架概述](cryptoFramework-overview.md)
-  - [加解密算法库框架开发指导](cryptoFramework-guidelines.md)
-- 证书
-  - [证书概述](cert-overview.md)
-  - [证书开发指导](cert-guidelines.md)
-- 证书管理
-  - [证书管理开发指导](certManager-guidelines.md)
+- [访问控制](AccessToken/Readme-CN.md)
+- [数据防泄漏（DLP）](DataLossPreventionKit/Readme-CN.md)
+- [用户认证](UserAuthenticationKit/Readme-CN.md)
+- [通用密钥库](UniversalKeystoreKit/Readme-CN.md)
+- [加解密算法库框架](CryptoArchitectureKit/Readme-CN.md)
+- [证书](DeviceCertificateKit/Readme-CN.md)
 - Hap包签名工具
   - [Hap包签名工具概述](hapsigntool-overview.md)
   - [Hap包签名工具指导](hapsigntool-guidelines.md)
   - [HarmonyAppProvision配置文件](app-provision-structure.md)
-

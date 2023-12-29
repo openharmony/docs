@@ -27,9 +27,9 @@ want的Params操作的常量。
 | DLP_PARAMS_INDEX        | ohos.dlp.params.index              | 指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
 | ABILITY_BACK_TO_OTHER_MISSION_STACK   | ability.params.backToOtherMissionStack     | 表示是否支持跨任务链返回。  |
 | ABILITY_RECOVERY_RESTART<sup>10+</sup> | ohos.ability.params.abilityRecoveryRestart | 指示当前Ability是否发生了故障恢复重启。 |
-| CONTENT_TITLE_KEY<sup>10+</sup>       | ohos.extra.param.key.contentTitle  | 指示原子化服务支持分享标题的参数的操作。  |
-| SHARE_ABSTRACT_KEY<sup>10+</sup>      | ohos.extra.param.key.shareAbstract | 指示原子化服务支持分享内容的参数的操作。  |
-| SHARE_URL_KEY<sup>10+</sup>           | ohos.extra.param.key.shareUrl      | 指示原子化服务支持分享链接的参数的操作。  |
+| CONTENT_TITLE_KEY<sup>10+</sup>       | ohos.extra.param.key.contentTitle  | 指示元服务支持分享标题的参数的操作。  |
+| SHARE_ABSTRACT_KEY<sup>10+</sup>      | ohos.extra.param.key.shareAbstract | 指示元服务支持分享内容的参数的操作。  |
+| SHARE_URL_KEY<sup>10+</sup>           | ohos.extra.param.key.shareUrl      | 指示元服务支持分享链接的参数的操作。  |
 | SUPPORT_CONTINUE_PAGE_STACK_KEY<sup>10+</sup>    | ohos.extra.param.key.supportContinuePageStack  | 指示在跨端迁移过程中是否迁移页面栈信息，默认值为true，自动迁移页面栈信息。|
 | SUPPORT_CONTINUE_SOURCE_EXIT_KEY<sup>10+</sup>  | ohos.extra.param.key.supportContinueSourceExit      | 指示跨端迁移源端应用是否退出，默认值为true，源端应用自动退出。|
 

@@ -29,7 +29,7 @@ getContext(type: string, options?: CanvasRenderingContext2DSettings): OffscreenC
 | 参数名       | 参数类型                                     | 必填   | 描述                     |
 | --------- | ---------------------------------------- | ---- | ---------------------- |
 | contextId | string                                   | 是    | 仅支持&nbsp;'2d'。         |
-| options   | [CanvasRenderingContext2DSettings](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 否    | 用于在离屏画布上进行绘制矩形、文本、图片等。 |
+| options   | [CanvasRenderingContext2DSettings](#canvasrenderingcontext2dsettings) | 否    | 当前仅支持配置是否开启抗锯齿功能，默认为关闭。 |
 
 **返回值：**  
 
@@ -37,6 +37,15 @@ getContext(type: string, options?: CanvasRenderingContext2DSettings): OffscreenC
 | ---------------------------------------- | --------------------------- |
 | [OffscreenCanvasRenderingContext2D](../arkui-js/js-offscreencanvasrenderingcontext2d.md) | 2D绘制对象，用于在画布组件上绘制矩形、文本、图片等。 |
 
+### CanvasRenderingContext2DSettings
+
+CanvasRenderingContext2DSettings(antialias?: boolean)
+
+用来配置OffscreenCanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。
+
+| 参数名       | 类型      | 说明                  |
+| --------- | ------- | ------------------- |
+| antialias | boolean | 是否开启抗锯齿功能，默认为false。 |
 
 ### toDataURL
 

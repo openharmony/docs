@@ -575,7 +575,7 @@ class EntryAbility extends UIAbility {
 | ------- | -------------------- |
 | null<sup>10+</sup>    | 表示值类型为空。   |
 | number  | 表示值类型为数字。   |
-| string  | 表示值类型为字符。   |
+| string  | 表示值类型为字符串。  |
 | boolean | 表示值类型为布尔值。 |
 | Uint8Array<sup>10+</sup>           | 表示值类型为Uint8类型的数组。            |
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |

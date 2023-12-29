@@ -22,7 +22,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
 
-权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)
+权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 

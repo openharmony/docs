@@ -204,6 +204,7 @@
 - 动画
   - [属性动画（animation）](ts-animatorproperty.md)
   - [显式动画（animateTo）](ts-explicit-animation.md)
+  - [关键帧动画（keyframeAnimateTo）](ts-keyframeAnimateTo.md)
   - 转场动画
     - [页面间转场（pageTransition）](ts-page-transition-animation.md)
     - [组件内转场（transition）](ts-transition-animation-component.md)
