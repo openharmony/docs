@@ -92,9 +92,9 @@
 
 ### 资产同步机制
 
-在分布式对象中，可以使用[资产类型](../reference/apis/js-apis-data-relationalStore.md#asset10)来描述本地实体资产文件，在分布式对象跨设备同步数据时，资产类型所描述的文件也会随着数据的同步到相应的设备。
+在分布式对象中，可以使用[资产类型](../reference/apis/js-apis-data-commonType.md#asset)来描述本地实体资产文件，在分布式对象跨设备同步数据时，资产类型所描述的文件也会随着数据的同步到相应的设备。
 
-### 融合资产冲突解决
+### 融合资产冲突解决机制
 
 当分布式对象中包含的资产和关系型数据库中包含的资产指向同一个实体资产文件，即两个资产的Uri相同时，就会存在冲突，我们把这种资产称为融合资产。如果需要分布式数据管理进行融合资产的冲突解决，需要先进行资产的绑定。当应用退出session后，绑定关系随之消失。
 
@@ -448,13 +448,13 @@
     import commonType from '@ohos.data.commonType';
 
     let assetObject: commonType.Asset = {
-      name: "test.txt",
-      uri: "file://com.huawei.hmos.notepad/data/storage/el2/distributedfiles/dir/test.    txt",
-      path: "dir/test.txt",
-      createTime: "createTime_111",
-      modifyTime: "modifyTime_111",
-      size: "size_111",
-      status: commonType.AssetStatus.ASSET_NORMAL
+      name: '1.txt',
+      uri: 'file://com.example.objecttest/data/storage/el2/distributedfiles/dir/1.txt',
+      path: '/dir/1.txt',
+      createTime: '2023-12-27 10:00:00',
+      modifyTime: '2023-12-27 10:00:00',
+      size: '1',
+      status: relationalStore.AssetStatus.ASSET_NORMAL
     }
 
     g_object = distributedObject.create(this.context, {
