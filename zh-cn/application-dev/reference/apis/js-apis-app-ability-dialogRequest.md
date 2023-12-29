@@ -328,7 +328,7 @@ getRequestCallback(want: Want): RequestCallback
 ## RequestResult
 模态弹框请求结果，当前只包含结果码，即RequestResult只当前只有ResultCode这一个成员。
 
-## 属性
+### 属性
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
