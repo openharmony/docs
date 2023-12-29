@@ -3973,7 +3973,7 @@ try {
 
 ### on('windowTitleButtonRectChange')<sup>11+</sup>
 
-on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void;
+on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
 
 开启标题栏三键位置变化的监听。
 
@@ -3988,7 +3988,7 @@ on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -4024,7 +4024,7 @@ off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -6809,7 +6809,7 @@ setWindowDecorVisible(isVisible: boolean): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -6820,39 +6820,38 @@ setWindowDecorVisible(isVisible: boolean): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage) {
-        // 为主窗口加载对应的目标页面。
-        windowStage.loadContent("pages/page", (err) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content.');
-        });
-        // 获取应用主窗口。
-        let mainWindow = null;
-        
-        windowStage.getMainWindow((err, data) => {
-            if (err.code) {
-                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
-                return;
-            }
-            mainWindow = data;
-            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-
-            let isVisible = false;
-            // 调用setWindowDecorVisible接口。
-            mainWindow.setWindowDecorVisible(isVisible, (err) => {
-                if (err.code) {
-                    console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(err));
-                    return;
-                }
-                console.info('Succeeded in setting the visibility of window decor.');
-            });
-        })
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 为主窗口加载对应的目标页面。
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // 获取应用主窗口。
+      let mainWindow: window.Window = window.findWindow("test");
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        mainWindow = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+        let isVisible = false;
+        // 调用setWindowDecorVisible接口
+        try {
+            mainWindow.setWindowDecorVisible(isVisible);
+        } catch (exception) {
+            console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
+        }
+      })
+    });
+  }
 };
 ```
 
@@ -6872,7 +6871,7 @@ setWindowDecorHeight(height: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -6892,7 +6891,7 @@ try {
 
 ###  getWindowDecorHeight<sup>11+</sup>
 
-getWindowDecorHeight(): number;
+getWindowDecorHeight(): number
 
 获取窗口标题栏高度。
 
@@ -6906,7 +6905,7 @@ getWindowDecorHeight(): number;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -6925,7 +6924,7 @@ try {
 
 ###  getTitleButtonRect<sup>11+</sup>
 
-getTitleButtonRect(): TitleButtonRect;
+getTitleButtonRect(): TitleButtonRect
 
 获取标题栏三键区域。
 
@@ -6939,7 +6938,7 @@ getTitleButtonRect(): TitleButtonRect;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcodes/errorcode-window.md)。
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
@@ -6950,8 +6949,8 @@ getTitleButtonRect(): TitleButtonRect;
 ```ts
 let windowClass: window.Window = window.findWindow("test");
 try {
-  let titleButtionArea = windowClass.getTitleButtonRect();
-  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtionArea));
+  let titleButtonArea = windowClass.getTitleButtonRect();
+  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
 } catch (exception) {
   console.error('Failed to get the area of title buttons. Cause: ' + JSON.stringify(exception));
 }
