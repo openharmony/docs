@@ -1,4 +1,4 @@
-# ArkUI Kit
+# ArkUI
 
 - [ArkUI 简介](../ui/arkui-overview.md)
 - UI开发（ArkTS声明式开发范式）
