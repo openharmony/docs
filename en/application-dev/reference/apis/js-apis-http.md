@@ -46,15 +46,15 @@ httpRequest.request(
   "EXAMPLE_URL",
   {
     method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
-    // You can add header fields based on service requirements.
-    header: new Header('application/json'),
     // This parameter is used to transfer data when the POST request is used.
     extraData: new ExtraData('data to send'),
     expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
     usingCache: true, // Optional. The default value is true.
     priority: 1, // Optional. The default value is 1.
-    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    // You can add header fields based on service requirements.
+    header: new Header('application/json'),
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
     usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
     caPath: "", // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
@@ -77,8 +77,7 @@ httpRequest.request(
     httpRequest.off('headersReceive');
     // Call destroy() to destroy the JavaScript object after the HTTP request is complete.
     httpRequest.destroy();
-  }
-);
+  }});
 ```
 
 > **NOTE**
@@ -967,7 +966,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.                                                  |
-| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format. If **Content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding and this field is usually in the String format. If **Content-Type** is **text/xml**, this field is usually in the String format. If **Content-Type** is **application/json**, this field is usually in the Object format. If **Content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format. If **Content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format. The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this field serves as the content of the HTTP request and is encoded in UTF-8 format. If **Content-Type** is **application/x-www-form-urlencoded**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding and this field is usually in the String format. If **Content-Type** is **text/xml**, this field is usually in the String format. If **Content-Type** is **application/json**, this field is usually in the Object format. If **Content-Type** is **application/octet-stream**, this field is usually in the ArrayBuffer format. If **Content-Type** is **multipart/form-data** and the content to be uploaded is a file, this field is usually in the ArrayBuffer format. The preceding information is for reference only and may vary according to the actual situation.<br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.|
 | <span name="expectDataType">[expectDataType<sup>9+</sup>](#result)</span>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**.  |
 | priority<sup>9+</sup>        | number                          | No  | Priority. The value range is [1,1000]. The default value is **1**.                          |
@@ -975,7 +974,7 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.                            |
-| usingProxy<sup>10+</sup>     | boolean \| Object               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **object** type, the specified network proxy is used.
+| usingProxy<sup>10+</sup>     | boolean \| Object               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **object** type, the specified network proxy is used.|
 | caPath<sup>10+</sup>     | string               | No  | Path of CA certificates. If a path is set, the system uses the CA certificates in this path. If a path is not set, the system uses the preset CA certificate, namely, **/etc/ssl/certs/cacert.pem**. This path is the sandbox mapping path, which can be obtained through **Global.getContext().filesDir**. Currently, only **.pem** certificates are supported.                            |
 
 ## RequestMethod<sup>6+</sup>

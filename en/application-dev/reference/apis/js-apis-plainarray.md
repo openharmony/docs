@@ -632,6 +632,10 @@ plainArray.forEach((value: string, index?: number) => {
 
 Obtains an iterator object that contains key-value pairs, where the key is of the number type.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**

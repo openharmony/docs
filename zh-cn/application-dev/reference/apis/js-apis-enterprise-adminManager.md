@@ -610,7 +610,7 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>): void
 
 设置指定的设备管理应用的企业信息。使用callback异步回调。
 
@@ -628,7 +628,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 | -------------- | ----------------------------------- | ---- | ---------------------- |
 | admin          | [Want](js-apis-app-ability-want.md) | 是    | 设备管理应用。                |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | 是    | 设备管理应用的企业信息。           |
-| callback       | AsyncCallback\<void>;               | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
+| callback       | AsyncCallback\<void>              | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -662,7 +662,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 设置指定的设备管理应用的企业信息。使用promise异步回调。
 
@@ -847,7 +847,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -903,7 +903,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
 }).catch((err: BusinessError) => {
@@ -950,7 +950,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -1006,7 +1006,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 }).catch((err: BusinessError) => {
@@ -1127,8 +1127,6 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 
 **系统API**: 此接口为系统接口。
 
-**模型约束**: 此接口仅可在Stage模型下使用。
-
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ---- | ------------------------------- |
 | name        | string   | 是   | 表示设备管理应用所属企业的名称。 |
@@ -1142,8 +1140,6 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 
 **系统API**: 此接口为系统接口。
 
-**模型约束**: 此接口仅可在Stage模型下使用。
-
 | 名称                | 值  | 说明    |
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通设备管理应用。 |
@@ -1156,8 +1152,6 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
 **系统API**: 此接口为系统接口。
-
-**模型约束**: 此接口仅可在Stage模型下使用。
 
 | 名称                        | 值  | 说明           |
 | -------------------------- | ---- | ------------- |

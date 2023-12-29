@@ -19,20 +19,20 @@
 
 完整的 JS API 说明以及实例代码请参考：[statistics 链接](../reference/apis/js-apis-net-statistics.md)。
 
-| 类型                | 接口                                                                                        | 功能说明                       |
-| ------------------- | ------------------------------------------------------------------------------------------- | ------------------------------ |
-| ohos.net.statistics | getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | 获取指定网卡实时下行流量数据。 |
-| ohos.net.statistics | getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | 获取指定网卡实时上行流量数据。 |
-| ohos.net.statistics | getCellularRxBytes(callback: AsyncCallback\<number>): void;                                 | 获取蜂窝实时下行流量数据。     |
-| ohos.net.statistics | getCellularTxBytes(callback: AsyncCallback\<number>): void;                                 | 获取蜂窝实时上行流量数据。     |
-| ohos.net.statistics | getAllRxBytes(callback: AsyncCallback\<number>): void;                                      | 获取所有网卡实时下行流量数据。 |
-| ohos.net.statistics | getAllTxBytes(callback: AsyncCallback\<number>): void;                                      | 获取所有网卡实时上行流量数据。 |
-| ohos.net.statistics | getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时下行流量数据。 |
-| ohos.net.statistics | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时上行流量数据。 |
-| ohos.net.statistics | getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定网卡历史流量信息。     |
-| ohos.net.statistics | getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | 获取指定应用历史流量信息。     |
-| ohos.net.statistics | on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | 订阅流量改变事件通知。         |
-| ohos.net.statistics | off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | 取消订阅流量改变事件通知。     |
+| 接口名                                                                                      | 描述                         |
+| ------------------------------------------------------------------------------------------- | ---------------------------- |
+| getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | 获取指定网卡实时下行流量数据。 |
+| getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | 获取指定网卡实时上行流量数据。 |
+| getCellularRxBytes(callback: AsyncCallback\<number>): void;                                 | 获取蜂窝实时下行流量数据。     |
+| getCellularTxBytes(callback: AsyncCallback\<number>): void;                                 | 获取蜂窝实时上行流量数据。     |
+| getAllRxBytes(callback: AsyncCallback\<number>): void;                                      | 获取所有网卡实时下行流量数据。 |
+| getAllTxBytes(callback: AsyncCallback\<number>): void;                                      | 获取所有网卡实时上行流量数据。 |
+| getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时下行流量数据。 |
+| getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | 获取指定应用实时上行流量数据。 |
+| getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | 获取指定网卡历史流量信息。     |
+| getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | 获取指定应用历史流量信息。     |
+| on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | 订阅流量改变事件通知。         |
+| off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | 取消订阅流量改变事件通知。     |
 
 ## 获取网卡/UID 的实时流量统计数据
 

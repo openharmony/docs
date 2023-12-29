@@ -35,7 +35,6 @@ Environment是ArkUI框架在应用程序启动时创建的单例对象。它为A
 ```ts
 // 将设备languageCode存入AppStorage中
 Environment.envProp('languageCode', 'en');
-let enable: undefined = AppStorage.get<undefined>('languageCode');
 
 @Entry
 @Component
@@ -78,7 +77,7 @@ Environment和UIContext相关联，需要在[UIContext](../reference/apis/js-api
 
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 

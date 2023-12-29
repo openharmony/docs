@@ -5,6 +5,10 @@
 
 表示关系型数据库（RDB）的谓词。
 
+**引用文件：** <database/rdb/oh_predicates.h>
+
+**库：** libnative_rdb_ndk.z.so
+
 **起始版本：**
 
 10
@@ -36,4 +40,4 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_OrderType](_r_d_b.md#oh_ordertype) { ASC = 0, DESC = 1 } | 排序方式。 |
+| [OH_OrderType](_r_d_b.md#oh_ordertype-1) { ASC = 0, DESC = 1 } | 排序方式。 |

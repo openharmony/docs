@@ -12,7 +12,7 @@ You can use the APIs of this module to start StaticSubscriberExtensionAbilities.
 ## Modules to Import
 
 ```ts
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
 ```
 
 ## Usage
@@ -20,12 +20,8 @@ import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriber
 Before using the **StaticSubscriberExtensionContext** module, you must first obtain a **StaticSubscriberExtensionAbility** instance.
 
 ```ts
-import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
-import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext'
-
-export default class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
-    context: StaticSubscriberExtensionContext = this.context;
-};
+import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
+import StaticSubscriberExtensionContext from '@ohos.application.StaticSubscriberExtensionContext';
 ```
 
 ## StaticSubscriberExtensionContext.startAbility
@@ -53,8 +49,6 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 16000001 | The specified ability does not exist.                        |
@@ -71,35 +65,44 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
-  };
+let want: Want = {
+  bundleName: "com.example.myapp",
+  abilityName: "MyAbility"
+};
 
-  try {
-    this.context.startAbility(want, (error: BusinessError) => {
-      if (error) {
-        // Process service logic errors.
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // Carry out normal service processing.
-      console.log('startAbility succeed');
-    });
-  } catch (paramError) {
-    // Process input parameter errors.
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-    ' error.message: ' + JSON.stringify(message));
+class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
+  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+
+    try {
+      this.context.startAbility(want, (error: BusinessError) => {
+        if (error) {
+          // Process service logic errors.
+          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+            ' error.message: ' + JSON.stringify(error.message));
+          return;
+        }
+        // Carry out normal service processing.
+        console.log('startAbility succeed');
+      });
+    } catch (paramError) {
+      // Process input parameter errors.
+      let code = (paramError as BusinessError).code;
+      let message = (paramError as BusinessError).message;
+      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+        ' error.message: ' + JSON.stringify(message));
+    }
   }
+}
   ```
 
 ## StaticSubscriberExtensionContext.startAbility
@@ -132,8 +135,6 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 16000001 | The specified ability does not exist.                        |
@@ -150,33 +151,41 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | 16200001 | The caller has been released.                                |
 | 16300003 | The target application is not self application.              |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
-  import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-  let want: Want = {
-    bundleName: "com.example.myapp",
-    abilityName: "MyAbility"
-  };
+let want: Want = {
+  bundleName: "com.example.myapp",
+  abilityName: "MyAbility"
+};
 
-  try {
-    this.context.startAbility(want)
-      .then(() => {
-        // Carry out normal service processing.
-        console.log('startAbility succeed');
-      })
-      .catch((error: BusinessError) => {
-        // Process service logic errors.
-        console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
-        ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // Process input parameter errors.
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
-    ' error.message: ' + JSON.stringify(message));
+class MyStaticSubscriberExtensionAbility extends StaticSubscriberExtensionAbility {
+  onReceiveEvent(event: CommonEventManager.CommonEventData) {
+    console.log(`onReceiveEvent, event: ${JSON.stringify(event)}`);
+    try {
+      this.context.startAbility(want)
+        .then(() => {
+          // Carry out normal service processing.
+          console.log('startAbility succeed');
+        })
+        .catch((error: BusinessError) => {
+          // Process service logic errors.
+          console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+            ' error.message: ' + JSON.stringify(error.message));
+        });
+    } catch (paramError) {
+      // Process input parameter errors.
+      let code = (paramError as BusinessError).code;
+      let message = (paramError as BusinessError).message;
+      console.log('startAbility failed, error.code: ' + JSON.stringify(code) +
+        ' error.message: ' + JSON.stringify(message));
+    }
   }
+}
   ```

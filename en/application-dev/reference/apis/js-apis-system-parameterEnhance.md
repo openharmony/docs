@@ -51,7 +51,7 @@ For details about the error codes, see [System Parameter Error Codes](../errorco
 
 ```ts
 try {
-    let info = systemparameter.getSync("const.ohos.apiversion");
+    let info: string = systemparameter.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 } catch(e) {
     console.log("getSync unexpected error: " + e);
@@ -181,7 +181,7 @@ For details about the error codes, see [System Parameter Error Codes](../errorco
 import { BusinessError } from '@ohos.base';
 
 try {
-    let p = systemparameter.get("const.ohos.apiversion");
+    let p: Promise<string> = systemparameter.get("const.ohos.apiversion");
     p.then((value: string) => {
         console.log("get test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
@@ -309,7 +309,7 @@ For details about the error codes, see [System Parameter Error Codes](../errorco
 import { BusinessError } from '@ohos.base';
 
 try {
-    let p = systemparameter.set("test.parameter.key", "testValue");
+    let p: Promise<void>  = systemparameter.set("test.parameter.key", "testValue");
     p.then((value: void) => {
         console.log("set test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {

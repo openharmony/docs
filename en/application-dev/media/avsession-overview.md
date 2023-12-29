@@ -20,7 +20,7 @@ Be familiar with the following basic concepts before development:
 
 - Controller
 
-  A system application that accesses AVSession to provide global control on audio and video playback behavior. Typical controllers on OpenHarmony devices are Media Controller and AI Voice. The following sections use Media Controller as an example of the controller. After accessing AVSession, the controller obtains the latest media information and sends control commands to the audio and video applications through AVSession.
+  A system application that accesses AVSession to provide global control on audio and video playback behavior. Typical controllers are Media Controller and AI Voice. The following sections use Media Controller as an example of the controller. After accessing AVSession, the controller obtains the latest media information and sends control commands to the audio and video applications through AVSession.
 
 - AVSessionController
 
@@ -29,7 +29,6 @@ Be familiar with the following basic concepts before development:
 - AVSessionManager
 
   An object that provides the capability of managing sessions. It can create an **AVSession** object, create an **AVSessionController** object, send control commands, and listen for session state changes.
-
 
 ## AVSession Interaction Process
 

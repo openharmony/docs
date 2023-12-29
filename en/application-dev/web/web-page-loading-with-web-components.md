@@ -12,7 +12,7 @@ If acquisition of network resources is involved in page loading, you need to dec
 You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis/js-apis-webview.md#loadurl) if you want to change the network page displayed by the **Web** component.
 
 
-In the following example, after the **www.example.com** page is loaded by the **Web** component, **loadUrl** is called to change the displayed page to **www.example1.com**.
+In the following example, after the **www.\example.com** page is loaded by the **Web** component, **loadUrl** is called to change the displayed page to **www\.example1.com**.
 
 
 
@@ -129,9 +129,9 @@ struct WebComponent {
           try {
             // Upon button clicking, call loadData to load HTML rich text data.
             this.controller.loadData(
-              '<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>',
-              'text/html',
-              'UTF-8'
+              "<html><body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+              "text/html",
+              "UTF-8"
             );
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;

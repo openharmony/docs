@@ -1,47 +1,47 @@
-# Pushing Files to an Application Sandbox
+# Pushing Files to an Application Sandbox Directory
 
-During the development and debugging process of an application, you may need to push files to the application sandbox for intra-application access or for testing purposes. In this case, you can use either of the following methods:
+During the development and debugging process of an application, you may need to push files to the application sandbox directory for intra-application access or for testing purposes. You can use either of the following methods to push files:
 
 - Use DevEco Studio to push the files to the application installation directory. For details, see [Application Installation Resource Access](../quick-start/resource-categories-and-access.md#resource-access).
 
-- Use the hdc tool to push files to the application sandbox directory on the device. This section describes the second method.
+- Use the hdc tool to push files to the application sandbox directory on the device, which is described below.
 
-However, the file directories visible to the debugged process in the hdc shell are different from the application sandbox directories visible to the application. You need to understand the mappings between the application sandbox directories and the physical (real) directories.
+The directories displayed in the hdc shell in the debugging process are different from the application sandbox paths visible to the application. You need to understand the mappings between them.
 
-## Mappings Between Application Sandbox Directories and Physical Directories
+## Mappings Between Application Sandbox Paths and Physical Paths
 
-The read and write operations performed based on the application sandbox paths via APIs are performed on the files in the physical directories after address conversion. The following table lists the mappings between application sandbox paths and physical paths.
+The read and write operations performed based on the application sandbox paths via APIs are performed on the files in the physical directories after address conversion. The following table lists their mappings.
 
-**Table 1** Mapping between application sandbox paths and physical paths
+**Table 1** Mappings between application sandbox paths and physical paths
 
 | Application Sandbox Path| Physical Path in hdc| Description|
 | -------- | -------- | -------- |
 | /data/storage/el1/bundle | /data/app/el1/bundle/public/&lt;PACKAGENAME&gt; | Application installation package directory.|
-| /data/storage/el1/base | /data/app/el1/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | Application directory of encryption level (el) 1.|
-| /data/storage/el2/base | /data/app/el2/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | Application directory of el 2.|
+| /data/storage/el1/base | /data/app/el1/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | Application directory of encryption level 1.|
+| /data/storage/el2/base | /data/app/el2/&lt;USERID&gt;/base/&lt;PACKAGENAME&gt; | Application directory of encryption level 2.|
 | /data/storage/el1/database | /data/app/el1/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | Database directory of the application under **el1/**.|
 | /data/storage/el2/database | /data/app/el2/&lt;USERID&gt;/database/&lt;PACKAGENAME&gt; | Database directory of the application under **el2/**.|
 | /data/storage/el2/distributedfiles | /mnt/hmdfs/&lt;USERID&gt;/account/merge_view/data/&lt;PACKAGENAME&gt; | Distributed data directory of the application under **el2/**.|
 
 ## Development Example
 
-The following uses the application bundle **com.ohos.example** as an example. If the application sandbox path is **/data/storage/el1/bundle**, the physical path is **/data/app/el1/bundle/public/<PACKAGENAME>**, that is, **/data/app/el1/bundle/public/com.ohos.example**.
+The following uses the bundle **com.ohos.example** as an example. If the application sandbox path is **/data/storage/el1/bundle**, the physical path is **/data/app/el1/bundle/public/com.ohos.example**.
 
-Run the following command to push files:
-
-```
-hdc file send ${Path of the local files to send} /data/app/el1/bundle/public/com.ohos.example/
-```
-
-After the file is pushed, set **user_id** and **group_id** of the file to the **user_id** of the application. You can run the following command to query the **user_id** of the application. The value in the first column of the process is the **user_id** of the application.
+Run the following command to push a file:
 
 ```
-ps -ef | grep com.ohos.example
+hdc file send ${Path of the local file to send}/data/app/el1/bundle/public/com.ohos.example/
+```
+
+After the file is pushed, set **user_id** and **group_id** of the file to **user_id** of the application. You can run the following command to query **user_id** of the application, which is the value in the first column of the process.
+
+```
+hdc shell ps -ef | grep com.ohos.example
 ```
 
 Run the following command to set **user_id** and **group_id**:
 ```
-chown ${user_id}:${user_id} ${file_path}
+hdc shell chown ${user_id}:${user_id} ${ file_path}
 ```
 
 ## Switching to the Application View
@@ -54,4 +54,4 @@ ps -ef|grep [hapName]             // Obtain the process identifier (PID) of the 
 nsenter -t [hapPid] -m /bin/sh    // Enter the application sandbox environment based on the PID.
 ```
 
-The application view is in use, and the path you see is the application sandbox path.
+Now the application view is in use, and the paths you see are the application sandbox paths.

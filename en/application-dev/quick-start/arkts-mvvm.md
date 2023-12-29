@@ -15,7 +15,7 @@ Rendering or re-rendering the UI based on state – a collection of arrays, obje
   - The view model structure should always be designed to adapt to the build and update of custom components. It is for this purpose that the model and view model are separated.
 
 
-A number of issues with UI construction and update arise from a poor view model design, which does not well support the rendering of custom components, or does not have a view model as a mediator, resulting in the custom component being forcibly adapted to the model. For example, a data model where an application directly reads data from the SQL database into the memory cannot directly adapt to the rendering of custom components. In this scenario, the view model adaptation must be considered during application development.
+A number of issues with UI construction and update arise from a poor view model design, which does not well support the rendering of custom components, or does not have a view model as a mediator, resulting in the custom component being forcibly adapted to the model. For example, a data model where an application directly reads data from the SQL database into the memory cannot well adapt to the rendering of custom components. In this scenario, the view model adaptation must be considered during application development.
 
 
 ![en-us_image_0000001653986573](figures/en-us_image_0000001653986573.png)
@@ -629,7 +629,7 @@ In the nesting scenario, use the \@Observed decorator as follows:
 
 ### Differences Between \@Prop and \@ObjectLink in Nested Data Structures
 
-In the following example: 
+In the following example:
 
 - The parent component **ViewB** renders \@State arrA: Array\<ClassA>. \@State can observe the allocation of new arrays, and insertion, deletion, and replacement of array items.
 
@@ -1288,12 +1288,12 @@ The update process is as follows:
    build() {
      Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
        Text("Me:")
-       PersonView({ person: this.me, phones: this.me.phones, selectedPerson: this.$selectedPerson })
+       PersonView({ person: this.me, phones: this.me.phones, selectedPerson: this.selectedPerson })
 
        Divider().height(8)
 
        ForEach(this.contacts, (contact: Person) => {
-         PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.$selectedPerson })
+         PersonView({ person: contact, phones: contact.phones as ObservedArray<string>, selectedPerson: this.selectedPerson })
        },
          (contact: Person): string => { return contact.id_; }
        )
@@ -1302,7 +1302,7 @@ The update process is as follows:
 
        Text("Edit:")
        PersonEditView({
-         selectedPerson: this.$selectedPerson,
+         selectedPerson: this.selectedPerson,
          name: this.selectedPerson.name,
          address: this.selectedPerson.address,
          phones: this.selectedPerson.phones

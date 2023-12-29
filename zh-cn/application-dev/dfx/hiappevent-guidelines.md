@@ -31,15 +31,15 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 
 | 接口名                                                       | 描述                                                 |
 | ------------------------------------------------------------ | ---------------------------------------------------- |
-| write(AppEventInfo info, AsyncCallback\<void> callback): void | 应用事件异步打点方法，使用callback方式作为异步回调。 |
-| write(AppEventInfo info): Promise\<void>                     | 应用事件异步打点方法，使用Promise方式作为异步回调。  |
+| write(info: AppEventInfo, callback: AsyncCallback\<void>): void | 应用事件异步打点方法，使用callback方式作为异步回调。 |
+| write(info: AppEventInfo): Promise\<void>                    | 应用事件异步打点方法，使用Promise方式作为异步回调。  |
 
 **订阅接口功能介绍：**
 
-| 接口名                                             | 描述                                         |
-| -------------------------------------------------- | -------------------------------------------- |
-| addWatcher(Watcher watcher): AppEventPackageHolder | 添加应用事件观察者，以添加对应用事件的订阅。 |
-| removeWatcher(Watcher watcher): void               | 移除应用事件观察者，以移除对应用事件的订阅。 |
+| 接口名                                              | 描述                                         |
+| --------------------------------------------------- | -------------------------------------------- |
+| addWatcher(watcher: Watcher): AppEventPackageHolder | 添加应用事件观察者，以添加对应用事件的订阅。 |
+| removeWatcher(watcher: Watcher): void               | 移除应用事件观察者，以移除对应用事件的订阅。 |
 
 ## 开发步骤
 

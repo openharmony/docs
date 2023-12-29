@@ -659,11 +659,11 @@ For details about the error codes, see [Traffic Management Error Codes](../error
 ```js
 import statistics from '@ohos.net.statistics';
 
- class IFace {
-    iFace: string = ""
-    uid?: number = 0
-  }
- statistics.on('netStatsChange', (data:IFace) => {
+class IFace {
+  iface: string = ""
+  uid?: number = 0
+}
+statistics.on('netStatsChange', (data: IFace) => {
   console.log('on netStatsChange' + JSON.stringify(data));
 });
 ```
@@ -704,12 +704,12 @@ For details about the error codes, see [Traffic Management Error Codes](../error
 ```js
 import statistics from '@ohos.net.statistics';
 
- class IFace {
-    iFace: string = ""
-    uid?: number = 0
-  }
-let callback =( data:IFace) => {
-    console.log("on netStatsChange, data:" + JSON.stringify(data));
+class IFace {
+  iface: string = ""
+  uid?: number = 0
+}
+let callback: (data: IFace) => void = (data: IFace) => {
+    console.log("on netStatsChange, iFace:" + data.iface + " uid: " + data.uid);
 }
 statistics.on('netStatsChange', callback);
 // You can pass the callback of the on method to cancel listening for a certain type of callback. If you do not pass the callback, you will cancel listening for all callbacks.

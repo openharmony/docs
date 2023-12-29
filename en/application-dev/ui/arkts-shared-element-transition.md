@@ -9,7 +9,7 @@ Shared element transition is a type of transition achieved by animating the size
 This example implements a shared element transition for the scenario where, as a component is expanded, sibling components in the same container disappear or appear. Specifically, attribute animations are applied to width and height changes of a component before and after the expansion; enter/exit animations are applied to the sibling components as they disappear or disappear.
 
 1. Build the component to be expanded, and build two pages for it through state variables: one for the normal state and one for the expanded state.
-  
+
   ```ts
   class Tmp{
     set(item:CradData):CradData{
@@ -45,7 +45,7 @@ This example implements a shared element transition for the scenario where, as a
   ```
 
 2. Expand the component to be expanded. Use state variables to control the disappearance or appearance of sibling components, and apply the enter/exit transition to the disappearance and appearance.
-  
+
   ```ts
   class Tmp{
     isExpand: boolean = false;
@@ -415,17 +415,11 @@ import curves from '@ohos.curves';
 struct GeometryTransitionDemo {
   // Define the state variable used to control modal transition.
   @State isPresent: boolean = false;
-
+  @State alpha: boolean = false;
   // Use @Builder to build the modal.
   @Builder
   MyBuilder() {
     Column() {
-      Text(this.isPresent ? 'Page 2' : 'Page 1')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .margin(20)
-
       Row() {
         Text('Shared component 1')
           .fontWeight(FontWeight.Bold)
@@ -437,7 +431,7 @@ struct GeometryTransitionDemo {
       .backgroundColor(0xf56c6c)
       .width('100%')
       .aspectRatio(1)
-      .margin({ bottom: 20 })
+      .margin({ bottom: 20, top: 20})
       // New shared element, <Row, whose ID is share1.
       .geometryTransition('share1')
 
@@ -457,14 +451,20 @@ struct GeometryTransitionDemo {
       .transition(TransitionEffect.OPACITY.animation({ curve: curves.springMotion(0.6, 1.2) }))
 
     }
+    .onAppear(()=> {
+      animateTo({}, ()=>{
+        this.alpha = ! this.alpha;
+      })
+    })
     .width('100%')
     .height('100%')
     .justifyContent(FlexAlign.Start)
     .transition(TransitionEffect.opacity(0.99))
-    .backgroundColor(this.isPresent ? 0x909399 : Color.Transparent)
+    .backgroundColor(this.alpha ? 0x909399 : Color.Transparent)
     .clip(true)
     .onClick(() => {
       animateTo({ duration: 1000 }, () => {
+        this.alpha = ! this.alpha;
         this.isPresent = !this.isPresent;
       })
     })
@@ -472,12 +472,6 @@ struct GeometryTransitionDemo {
 
   build() {
     Column() {
-      Text('Page 1')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .margin(20)
-
       Row() {
         Text('Shared component 1')
           .fontWeight(FontWeight.Bold)
@@ -520,7 +514,7 @@ struct GeometryTransitionDemo {
 }
 ```
 
-![en-us_image_0000001597320326](figures/en-us_image_0000001597320326.gif)
+![en-us_image_0000001597320326](figures/en-us_image_0000001597320327.gif)
 
 
 

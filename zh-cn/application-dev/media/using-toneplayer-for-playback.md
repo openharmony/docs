@@ -46,6 +46,7 @@ TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，�
      
 ```ts
 import audio from '@ohos.multimedia.audio';
+
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
@@ -100,7 +101,6 @@ async function release() {
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
-
 
 let timerPro : number;
 // promise调用方式

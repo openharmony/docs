@@ -2,9 +2,8 @@
 This **wifiext** module provides WLAN extension interfaces for non-universal products.
 
 > **NOTE**
->
-> - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs described in this document are used only for non-universal products, such as routers.
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+The APIs described in this document are used only for non-universal products, such as routers.
 
 
 ## Modules to Import
@@ -63,7 +62,7 @@ Obtains the supported power modes. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Promise used to return the power modes obtained.|
+  | Promise&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Promise used to return the power modes obtained.|
 
 **Error codes**
 
@@ -77,7 +76,7 @@ For details about the error codes, see [Wi-Fi Error Codes](../errorcodes/errorco
 
 Enumerates the power modes.
 
-**System capability**: SystemCapability.Communication.WiFi.AP.Extension
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
@@ -100,7 +99,7 @@ Obtains the supported power modes. This API uses an asynchronous callback to ret
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If **err** is not **0**, an error has occurred.|
+  | callback | AsyncCallback&lt;Array&lt;[PowerMode](#powermode9)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power modes obtained. If the operation fails, **err** is not **0**.|
 
 **Error codes**
 
@@ -124,7 +123,7 @@ Obtains the power mode. This API uses a promise to return the result.
 
   | Type| Description|
   | -------- | -------- |
-  | Promise&lt;[PowerMode](#powermode)&gt; | Promise used to return the power modes obtained.|
+  | Promise&lt;[PowerMode](#powermode9)&gt; | Promise used to return the power modes obtained.|
 
 **Error codes**
 
@@ -148,7 +147,7 @@ Obtains the power mode. This API uses an asynchronous callback to return the res
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerMode](#powermode)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If **err** is not **0**, an error has occurred.|
+  | callback | AsyncCallback&lt;[PowerMode](#powermode9)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power mode obtained. If the operation fails, **err** is not **0**.|
 
 **Error codes**
 
@@ -172,7 +171,7 @@ setPowerMode(mode: PowerMode) : void;
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | model | [PowerMode](#powermode) | Yes| Power mode to set.|
+  | model | [PowerMode](#powermode9) | Yes| Power mode to set.|
 
 **Error codes**
 

@@ -42,7 +42,7 @@ The permission usage record includes the application identity (token ID) of the 
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -60,7 +60,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0).then(() => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0).then(() => {
         console.log('addPermissionUsedRecord success');
     }).catch((err: BusinessError) => {
         console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
@@ -86,14 +86,14 @@ The permission usage record includes the application identity (token ID) of the 
 | Name  | Type                | Mandatory| Description                                      |
 | -------- | -------------------  | ---- | ------------------------------------------ |
 | tokenID   |  number   | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).             |
-| permissionName | Permissions | Yes  | Name of the permission.|
+| permissionName | Permissions | Yes  | Application permission name. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | successCount | number | Yes  | Number of successful accesses.|
 | failCount | number | Yes  | Number of failed accesses.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -111,7 +111,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err: BusinessError, data: void) => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.READ_AUDIO', 1, 0, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -147,7 +147,7 @@ Obtains historical permission usage records. This API uses a promise to return t
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -203,7 +203,7 @@ Obtains historical permission usage records. This API uses an asynchronous callb
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -257,7 +257,7 @@ Starts to use a permission and flushes the permission usage record. This API is 
 | Name         | Type  | Mandatory| Description                                 |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to use.                    |
+| permissionName | Permissions | Yes  | Name of the permission to use. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -267,7 +267,7 @@ Starts to use a permission and flushes the permission usage record. This API is 
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -286,7 +286,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
         console.log('startUsingPermission success');
     }).catch((err: BusinessError) => {
         console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -311,12 +311,12 @@ Starts to use a permission and flushes the permission usage record. This API is 
 | Name         | Type                 | Mandatory| Description                                 |
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
-| permissionName | Permissions                | Yes  | Permission to use.                    |
+| permissionName | Permissions                | Yes  | Name of the permission to use. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -335,7 +335,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -362,7 +362,7 @@ Stops using a permission. This API is called by a system application and uses a 
 | Name         | Type  | Mandatory| Description                                 |
 | -------------- | ------ | ---- | ------------------------------------ |
 | tokenID        | number | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
-| permissionName | Permissions | Yes  | Permission to use.                    |
+| permissionName | Permissions | Yes  | Name of the permission to use. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 
 **Return value**
 
@@ -372,7 +372,7 @@ Stops using a permission. This API is called by a system application and uses a 
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -391,7 +391,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO').then(() => {
         console.log('stopUsingPermission success');
     }).catch((err: BusinessError) => {
         console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -416,12 +416,12 @@ Stops using a permission. This API is called by a system application and uses a 
 | Name         | Type                 | Mandatory| Description                                 |
 | -------------- | --------------------- | ---- | ------------------------------------ |
 | tokenID        | number                | Yes  | Application token ID of the invoker. The value can be obtained from [ApplicationInfo](js-apis-bundle-ApplicationInfo.md).|
-| permissionName | Permissions                | Yes  | Permission to use.                     |
+| permissionName | Permissions                | Yes  | Name of the permission to use. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | callback       | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -440,7 +440,7 @@ import { BusinessError } from '@ohos.base';
 
 let tokenID: number = 0; // You can use getApplicationInfo to obtain accessTokenId.
 try {
-    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err: BusinessError, data: void) => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.READ_AUDIO', (err: BusinessError, data: void) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -470,13 +470,13 @@ The same callback cannot be registered for the **permissionList**s with common v
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | Yes  | Event type to subscribe to. The value is **'activeStateChange'**, which indicates the permission usage change event.  |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left empty, the usage changes of all permissions are observed.          |
+| type               | string                | Yes  | Event type. The value is **'activeStateChange'**, which indicates the permission usage change.  |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of the permissions to be observed. If this parameter is left empty, this API subscribes to the permission usage status change of all permissions. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | Yes| Callback invoked to return a change in the permission usage.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -504,7 +504,7 @@ try {
 
 ## privacyManager.off
 
-off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void;
+off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callback?: Callback&lt;ActiveChangeResponse&gt;): void
 
 Unsubscribes from the permission usage status changes of the specified permissions.
 
@@ -518,13 +518,13 @@ If no callback is passed in **privacyManager.off**, all callbacks of **permissio
 
 | Name            | Type                  | Mandatory| Description                                                         |
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
-| type               | string                | Yes  | Event type to subscribe to. The value is **'activeStateChange'**, which indicates the permission usage change event.  |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions to be observed. If this parameter is left blank, the usage changes of all permissions are unsubscribed from. The value must be the same as that specified in **on()**.|
+| type               | string                | Yes  | Event type. The value is **'activeStateChange'**, which indicates the permission usage change.  |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permissions. The value must be the same as that of **on()**. If this parameter is left empty, this API unsubscribes from the permission usage change of all permissions. Valid permission names can be obtained in the [Application Permission List](../../security/permission-list.md).|
 | callback | Callback&lt;[ActiveChangeResponse](#activechangeresponse)&gt; | No| Callback for the permission usage change event.|
 
 **Error codes**
 
-For details about the error codes, see [Ability Access Control Error Codes](../errorcodes/errorcode-access-token.md).
+For details about the error codes, see [Access Control Error Codes](../errorcodes/errorcode-access-token.md).
 
 | ID| Error Message|
 | -------- | -------- |
@@ -580,11 +580,11 @@ Represents the permission usage records of all applications.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name      | Type            | Mandatory  | Description                                      |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| beginTime | number         | Yes   | Start time of the query, in ms.|
-| endTime | number         | Yes   | End time of the query, in ms.|
-| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | Yes   | Permission usage records.                                |
+| Name      | Type            | Readable| Writable| Description                                      |
+| --------- | -------------- | ---- | ---- | ---------------------------------------- |
+| beginTime | number         | Yes   | No   | Start time of the query, in ms.|
+| endTime   | number         | Yes   | No   | End time of the query, in ms.|
+| bundleRecords  | Array&lt;[BundleUsedRecord](#bundleusedrecord)&gt;         | Yes   | No   | Permission usage records.                                |
 
 ## BundleUsedRecord
 
@@ -592,13 +592,13 @@ Represents the permission access records of an application.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name      | Type            | Mandatory  | Description                                      |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| tokenId  | number         | Yes   | Token ID of the application (invoker).                                |
-| isRemote | boolean         | Yes   | Whether the token ID belongs to the application on a remote device. The default value is **false**.|
-| deviceId  | string         | Yes   | ID of the device hosting the target application.                                |
-| bundleName | string         | Yes   | Bundle name of the target application.|
-| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | Yes   | Permission usage records of the target application.                                |
+| Name      | Type            | Readable| Writable| Description                                      |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| tokenId  | number         | Yes   | No   | Token ID of the application (invoker).                                |
+| isRemote | boolean         | Yes   | No   | Whether the token ID belongs to the application on a remote device. The default value is **false**.|
+| deviceId  | string         | Yes   | No   | ID of the device hosting the target application.                                |
+| bundleName | string         | Yes   | No   | Bundle name of the target application.|
+| permissionRecords  | Array&lt;[PermissionUsedRecord](#permissionusedrecord)&gt;         | Yes   | No   | Permission usage records of the target application.                                |
 
 ## PermissionUsedRecord
 
@@ -606,16 +606,16 @@ Represents the usage records of a permission.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name      | Type            | Mandatory  | Description                                      |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| permissionName  | Permissions         | Yes   | Name of the permission.                                |
-| accessCount | number         | Yes   | Total number of times that the permission is accessed.|
-| rejectCount | number         | Yes   | Total number of times that the access to the permission is rejected.|
-| lastAccessTime | number         | Yes   | Last time when the permission was accessed, accurate to ms.|
-| lastRejectTime | number         | Yes   | Last time when the access to the permission was rejected, accurate to ms.|
-| lastAccessDuration | number         | Yes   | Last access duration, in ms.|
-| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
-| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
+| Name      | Type            | Readable| Writable| Description                                      |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| permissionName  | Permissions         | Yes   | No   | Name of the permission.                                |
+| accessCount | number         | Yes   | No   | Total number of times that the permission is accessed.|
+| rejectCount | number         | Yes   | No   | Total number of times that the access to the permission is rejected.|
+| lastAccessTime | number         | Yes   | No   | Last time when the permission was accessed, accurate to ms.|
+| lastRejectTime | number         | Yes   | No   | Last time when the access to the permission was rejected, accurate to ms.|
+| lastAccessDuration | number         | Yes   | No   | Last access duration, in ms.|
+| accessRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | No   | Successful access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
+| rejectRecords  | Array&lt;[UsedRecordDetail](#usedrecorddetail)&gt;         | Yes   | No   | Rejected access records. This parameter is valid only when **flag** is **FLAG_PERMISSION_USAGE_DETAIL**. By default, 10 records are provided.                                |
 
 ## UsedRecordDetail
 
@@ -623,11 +623,12 @@ Represents the details of a single access record.
 
 **System capability**: SystemCapability.Security.AccessToken
 
-| Name      | Type            | Mandatory  | Description                                      |
-| -------- | -------------- | ---- | ---------------------------------------- |
-| status  | number         | Yes   | Access status.                                |
-| timestamp | number         | Yes   | Access timestamp, in ms.|
-| accessDuration  | number         | Yes   | Access duration, in ms.                                |
+| Name      | Type            | Readable| Writable| Description                                      |
+| -------- | -------------- | ---- | ---- | ---------------------------------------- |
+| status  | number         | Yes   | No   | Access status.                                |
+| timestamp | number         | Yes   | No   | Access timestamp, in ms.|
+| accessDuration  | number         | Yes   | No   | Access duration, in ms.                                |
+
 
 ## PermissionActiveStatus
 
@@ -650,6 +651,6 @@ Defines the detailed permission usage information.
 | Name          | Type                   | Readable| Writable| Description                  |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
 | tokenId        | number                 | Yes  | No  | Token ID of the application.   |
-| permissionName | Permissions                 | Yes  | No  | Name of the permission.|
+| permissionName | Permissions            | Yes  | No  | Name of the permission.|
 | deviceId       | string                 | Yes  | No  | Device ID.                |
 | activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | Yes  | No  | Permission usage status.       |

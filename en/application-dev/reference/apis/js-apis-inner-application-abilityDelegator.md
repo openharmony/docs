@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-The **AbilityDelegator** module provides APIs for managing **AbilityMonitor** instances that are used to monitor the lifecycle state changes of a specified ability. You can use the APIs to add and remove **AbilityMonitor** instances, wait for an ability to reach the **onCreate** lifecycle state, set the waiting time, obtain the lifecycle state of an ability, obtain the top ability of the current application, and start an ability.
+The **AbilityDelegator** module provides APIs for managing [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instances that are used to monitor the lifecycle state changes of a specified ability. You can use the APIs to add and remove **AbilityMonitor** instances, wait for an ability to reach the **onCreate** lifecycle state, set the waiting time, obtain the lifecycle state of an ability, obtain the top ability of the current application, and start an ability.
 
 > **NOTE**
 > 
@@ -23,7 +23,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ### addAbilityMonitor<sup>9+</sup>
 
-addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void;
+addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 Adds an **AbilityMonitor** instance. This API uses an asynchronous callback to return the result.
 
@@ -69,7 +69,7 @@ abilityDelegator.addAbilityMonitor(monitor, (error: BusinessError) => {
 
 ### addAbilityMonitor<sup>9+</sup>
 
-addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
+addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 Adds an **AbilityMonitor** instance. This API uses a promise to return the result.
 
@@ -119,9 +119,9 @@ abilityDelegator.addAbilityMonitor(monitor).then(() => {
 
 ### addAbilityMonitorSync<sup>10+</sup>
 
-addAbilityMonitorSync(monitor: AbilityMonitor): void;
+addAbilityMonitorSync(monitor: AbilityMonitor): void
 
-Adds an **AbilityMonitor** instance. This API is a synchronous API.
+Adds an **AbilityMonitor** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -135,15 +135,21 @@ Adds an **AbilityMonitor** instance. This API is a synchronous API.
 
 | ID| Error Message|
 | ------- | -------- |
-| 16000100 | AddAbilityMonitor failed. |
-| 401  | If the input parameter is not valid parameter. |
+| 16000100 | AddAbilityMonitorSync failed. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+function onAbilityCreateCallback(data: UIAbility) {
+    console.info('onAbilityCreateCallback');
+}
 
 let monitor = {
     abilityName: 'abilityname',
@@ -156,7 +162,7 @@ abilityDelegator.addAbilityMonitorSync(monitor);
 
 ### removeAbilityMonitor<sup>9+</sup>
 
-removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void;
+removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 
 Removes an **AbilityMonitor** instance. This API uses an asynchronous callback to return the result.
 
@@ -203,7 +209,7 @@ abilityDelegator.removeAbilityMonitor(monitor, (error: BusinessError) => {
 
 ### removeAbilityMonitor<sup>9+</sup>
 
-removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
+removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>
 
 Removes an **AbilityMonitor** instance. This API uses a promise to return the result.
 
@@ -254,9 +260,9 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
 
 ### removeAbilityMonitorSync<sup>10+</sup>
 
-removeAbilityMonitorSync(monitor: AbilityMonitor): void;
+removeAbilityMonitorSync(monitor: AbilityMonitor): void
 
-Deletes an **AbilityMonitor** instance. This API is a synchronous API.
+Removes an **AbilityMonitor** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -270,15 +276,21 @@ Deletes an **AbilityMonitor** instance. This API is a synchronous API.
 
 | ID| Error Message|
 | ------- | -------- |
-| 16000100 | RemoveAbilityMonitor failed. |
-| 401  | If the input parameter is not valid parameter. |
+| 16000100 | RemoveAbilityMonitorSync failed. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+function onAbilityCreateCallback(data: UIAbility) {
+    console.info('onAbilityCreateCallback');
+}
 
 let monitor = {
     abilityName: 'abilityname',
@@ -291,7 +303,7 @@ abilityDelegator.removeAbilityMonitorSync(monitor);
 
 ### waitAbilityMonitor<sup>9+</sup>
 
-waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void;
+waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void
 
 Waits for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
 
@@ -342,7 +354,7 @@ abilityDelegator.waitAbilityMonitor(monitor, (error : BusinessError, data : UIAb
 
 ### waitAbilityMonitor<sup>9+</sup>
 
-waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void;
+waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void
 
 Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
 
@@ -397,7 +409,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (error : BusinessError, da
 
 ### waitAbilityMonitor<sup>9+</sup>
 
-waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbility>;
+waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbility>
 
 Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses a promise to return the result.
 
@@ -442,14 +454,14 @@ let monitor: AbilityDelegatorRegistry.AbilityMonitor = {
 };
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.waitAbilityMonitor(monitor).then((data : BusinessError) => {
+abilityDelegator.waitAbilityMonitor(monitor).then((data : UIAbility) => {
     console.info('waitAbilityMonitor promise');
 });
 ```
 
 ### getAppContext<sup>9+</sup>
 
-getAppContext(): Context;
+getAppContext(): Context
 
 Obtains the application context.
 
@@ -474,7 +486,7 @@ let context = abilityDelegator.getAppContext();
 
 ### getAbilityState<sup>9+</sup>
 
-getAbilityState(ability: UIAbility): number;
+getAbilityState(ability: UIAbility): number
 
 Obtains the lifecycle state of an ability.
 
@@ -513,7 +525,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 ### getCurrentTopAbility<sup>9+</sup>
 
-getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
+getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void
 
 Obtains the top ability of this application. This API uses an asynchronous callback to return the result.
 
@@ -552,7 +564,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 ### getCurrentTopAbility<sup>9+</sup>
 
-getCurrentTopAbility(): Promise\<UIAbility>;
+getCurrentTopAbility(): Promise\<UIAbility>
 
 Obtains the top ability of this application. This API uses a promise to return the result.
 
@@ -590,7 +602,7 @@ abilityDelegator.getCurrentTopAbility().then((data : UIAbility) => {
 
 ### startAbility<sup>9+</sup>
 
-startAbility(want: Want, callback: AsyncCallback\<void>): void;
+startAbility(want: Want, callback: AsyncCallback\<void>): void
 
 Starts an ability. This API uses an asynchronous callback to return the result.
 
@@ -646,7 +658,7 @@ abilityDelegator.startAbility(want, (err : BusinessError, data : void) => {
 
 ### startAbility<sup>9+</sup>
 
-startAbility(want: Want): Promise\<void>;
+startAbility(want: Want): Promise\<void>
 
 Starts an ability. This API uses a promise to return the result.
 
@@ -707,7 +719,7 @@ abilityDelegator.startAbility(want).then((data: void) => {
 
 ### doAbilityForeground<sup>9+</sup>
 
-doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
+doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
 Schedules the lifecycle state of an ability to **Foreground**. This API uses an asynchronous callback to return the result.
 
@@ -718,7 +730,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses an 
 | Name  | Type                   | Mandatory| Description                                                   |
 | -------- | ----------------------- | ---- | ------------------------------------------------------- |
 | ability  | UIAbility               | Yes  | Target ability.                                        |
-| callback | AsyncCallback\<void>    | Yes  | Callback used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
+| callback | AsyncCallback\<void>    | Yes  | Callback used to return the result.                                      |
 
 **Error codes**
 
@@ -750,7 +762,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 ### doAbilityForeground<sup>9+</sup>
 
-doAbilityForeground(ability: UIAbility): Promise\<void>;
+doAbilityForeground(ability: UIAbility): Promise\<void>
 
 Schedules the lifecycle state of an ability to **Foreground**. This API uses a promise to return the result.
 
@@ -766,7 +778,7 @@ Schedules the lifecycle state of an ability to **Foreground**. This API uses a p
 
 | Type             | Description                                                        |
 | ----------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise used to return the result.<br>\- **true**: The operation is successful.<br>\- **false**: The operation failed.|
+| Promise\<void> | Promise used to return the result.                                   |
 
 **Error codes**
 
@@ -798,7 +810,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 ### doAbilityBackground<sup>9+</sup>
 
-doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
+doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void
 
 Schedules the lifecycle state of an ability to **Background**. This API uses an asynchronous callback to return the result.
 
@@ -841,7 +853,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 ### doAbilityBackground<sup>9+</sup>
 
-doAbilityBackground(ability: UIAbility): Promise\<void>;
+doAbilityBackground(ability: UIAbility): Promise\<void>
 
 Schedules the lifecycle state of an ability to **Background**. This API uses a promise to return the result.
 
@@ -889,7 +901,7 @@ abilityDelegator.getCurrentTopAbility((err : BusinessError, data : UIAbility) =>
 
 ### printSync<sup>9+</sup>
 
-printSync(msg: string): void;
+printSync(msg: string): void
 
 Prints log information to the unit test console.
 
@@ -915,7 +927,7 @@ abilityDelegator.printSync(msg);
 
 ### print
 
-print(msg: string, callback: AsyncCallback\<void>): void;
+print(msg: string, callback: AsyncCallback\<void>): void
 
 Prints log information to the unit test console. This API uses an asynchronous callback to return the result.
 
@@ -945,7 +957,7 @@ abilityDelegator.print(msg, (err : BusinessError) => {
 
 ### print
 
-print(msg: string): Promise\<void>;
+print(msg: string): Promise\<void>
 
 Prints log information to the unit test console. This API uses a promise to return the result.
 
@@ -979,7 +991,7 @@ abilityDelegator.print(msg).then(() => {
 
 ### executeShellCommand
 
-executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void;
+executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 
 Executes a shell command. This API uses an asynchronous callback to return the result.
 
@@ -1011,7 +1023,7 @@ abilityDelegator.executeShellCommand(cmd, (err : BusinessError, data: AbilityDel
 
 ### executeShellCommand
 
-executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<ShellCmdResult>): void;
+executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<ShellCmdResult>): void
 
 Executes a shell command with the timeout period specified. This API uses an asynchronous callback to return the result.
 
@@ -1045,7 +1057,7 @@ abilityDelegator.executeShellCommand(cmd, timeout, (err : BusinessError, data: A
 
 ### executeShellCommand
 
-executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>;
+executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 
 Executes a shell command with the timeout period specified. This API uses a promise to return the result.
 
@@ -1083,7 +1095,7 @@ abilityDelegator.executeShellCommand(cmd, timeout).then((data) => {
 
 ### finishTest<sup>9+</sup>
 
-finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void;
+finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void
 
 Finishes the test and prints log information to the unit test console. This API uses an asynchronous callback to return the result.
 
@@ -1122,7 +1134,7 @@ abilityDelegator.finishTest(msg, 0, (err : BusinessError) => {
 
 ### finishTest<sup>9+</sup>
 
-finishTest(msg: string, code: number): Promise\<void>;
+finishTest(msg: string, code: number): Promise\<void>
 
 Finishes the test and prints log information to the unit test console. This API uses a promise to return the result.
 
@@ -1165,7 +1177,7 @@ abilityDelegator.finishTest(msg, 0).then(() => {
 
 ### addAbilityStageMonitor<sup>9+</sup>
 
-addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
+addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void
 
 Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API uses an asynchronous callback to return the result.
 
@@ -1205,7 +1217,7 @@ abilityDelegator.addAbilityStageMonitor({
 
 ### addAbilityStageMonitor<sup>9+</sup>
 
-addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
+addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
 Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API uses a promise to return the result.
 
@@ -1249,9 +1261,9 @@ abilityDelegator.addAbilityStageMonitor({
 
 ### addAbilityStageMonitorSync<sup>10+</sup>
 
-addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
+addAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
-Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API is a synchronous API.
+Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes of an ability stage. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1260,20 +1272,20 @@ Adds an **AbilityStageMonitor** instance to monitor the lifecycle state changes 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | Yes      | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) instance.|
-| callback | AsyncCallback\<void>                                         | Yes      | Callback used to return the result.                                          |
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------- |
-| 16000100 | AddAbilityStageMonitor failed. |
-| 401 | If the input parameter is not valid parameter. |
+| 16000100 | AddAbilityStageMonitorSync failed. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
@@ -1287,7 +1299,7 @@ abilityDelegator.addAbilityStageMonitorSync(monitor);
 
 ### removeAbilityStageMonitor<sup>9+</sup>
 
-removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void;
+removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<void>): void
 
 Removes an **AbilityStageMonitor** instance from the application memory. This API uses an asynchronous callback to return the result.
 
@@ -1327,9 +1339,9 @@ abilityDelegator.removeAbilityStageMonitor({
 
 ### removeAbilityStageMonitor<sup>9+</sup>
 
-removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
+removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>
 
-Removes an **AbilityStageMonitor** object from the application memory. This API uses a promise to return the result.
+Removes an **AbilityStageMonitor** instance from the application memory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1371,9 +1383,9 @@ abilityDelegator.removeAbilityStageMonitor({
 
 ### removeAbilityStageMonitorSync<sup>10+</sup>
 
-removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void;
+removeAbilityStageMonitorSync(monitor: AbilityStageMonitor): void
 
-Removes an **AbilityStageMonitor** instance from the application memory. This API is a synchronous API.
+Removes an **AbilityStageMonitor** instance from the application memory. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1387,14 +1399,15 @@ Removes an **AbilityStageMonitor** instance from the application memory. This AP
 
 | ID| Error Message|
 | ------- | -------- |
-| 16000100 | RemoveAbilityStageMonitor failed. |
-| 401 | If the input parameter is not valid parameter. |
+| 16000100 | removeAbilityStageMonitorSync failed. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
 ```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
@@ -1408,7 +1421,7 @@ abilityDelegator.removeAbilityStageMonitorSync(monitor);
 
 ### waitAbilityStageMonitor<sup>9+</sup>
 
-waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<AbilityStage>): void;
+waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<AbilityStage>): void
 
 Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
 
@@ -1434,6 +1447,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { BusinessError } from '@ohos.base';
 
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
@@ -1448,7 +1462,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 ### waitAbilityStageMonitor<sup>9+</sup>
 
-waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>;
+waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise\<AbilityStage>
 
 Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses a promise to return the result.
 
@@ -1494,9 +1508,9 @@ abilityDelegator.waitAbilityStageMonitor({
 
 ### waitAbilityStageMonitor<sup>9+</sup>
 
-waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void;
+waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback: AsyncCallback\<AbilityStage>): void
 
-Waits a period of time for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
+Waits for an **AbilityStage** instance that matches the conditions set in an **AbilityStageMonitor** instance and returns the **AbilityStage** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1533,4 +1547,3 @@ abilityDelegator.waitAbilityStageMonitor({
 }, timeout, (err : BusinessError, data : AbilityStage) => {
     console.info('waitAbilityStageMonitor callback');
 });
-```

@@ -12,7 +12,7 @@ When needed, you can obscure content of a component.
 
 | Name   | Type                                    | Description                                 |
 | -----| ------------------------------------------ | ------------------------------------ |
-| obscured | Array<[ObscuredReasons](ts-appendix-enums.md#obscuredreasons10)> | How the component content is obscured.<br>Default value: **[]**<br>This API is supported in ArkTS widgets.<br>This API only works for the [\<Image>](ts-basic-components-image.md) and [\<Text>](ts-basic-components-text.md) components.<br>**NOTE**<br>To obscure an image when it is being loaded, you must set the width and height of the **\<Image>** component. |
+| obscured | Array<[ObscuredReasons](ts-appendix-enums.md#obscuredreasons10)> | How the component content is obscured.<br>Default value: **[]**<br>This API is supported in ArkTS widgets.<br>This API only works for the [\<Image>](ts-basic-components-image.md) and [\<Text>](ts-basic-components-text.md) components.<br>**NOTE**<br>To obscure an image when it is being loaded, you must set the width and height of the **\<Image>** component.<br>Obscuring is not available for **\<Text>** components that have child components.|
 
 ## Example
 

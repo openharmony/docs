@@ -7,15 +7,11 @@
 
 包含构造和销毁构造器，设置音频流属性，回调等相关接口。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块：**
-
-[OHAudio](_o_h_audio.md)
+**相关模块：** [OHAudio](_o_h_audio.md)
 
 
 ## 汇总

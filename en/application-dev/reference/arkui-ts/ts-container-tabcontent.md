@@ -426,7 +426,6 @@ struct TabBarStyleExample {
 
 ```ts
 // xxx.ets
-// xxx.ets
 @Entry
 @Component
 struct TabsAttr {

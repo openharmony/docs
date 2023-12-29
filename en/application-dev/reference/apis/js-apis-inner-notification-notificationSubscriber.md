@@ -14,7 +14,7 @@ import notificationSubscribe from '@ohos.notificationSubscribe';
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-### onConsume
+## onConsume
 
 onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
 
@@ -28,7 +28,7 @@ Called when a new notification is received.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | Yes| Information about the notification received.|
+| onConsume | (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void | Yes| Information about the notification received.|
 
 **Example**
 
@@ -56,7 +56,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onCancel
+## onCancel
 
 onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
 
@@ -70,7 +70,7 @@ Called when a notification is canceled.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | Yes| Information about the notification to cancel.|
+| onCancel | (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void | Yes| Information about the notification to cancel.|
 
 **Example**
 
@@ -85,7 +85,7 @@ let subscribeCallback = (err: Base.BusinessError) => {
   }
 };
 
-function onCancelCallback(data: notificationSubscribe.SubscribeCallbackData) {
+let onCancelCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
   console.info('===> onCancel in test');
   let req = data.request;
   console.info('===> onCancel callback req.id:' + req.id);
@@ -98,7 +98,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onUpdate
+## onUpdate
 
 onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void
 
@@ -112,7 +112,7 @@ Called when notification sorting is updated.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| data | [NotificationSortingMap](js-apis-notification.md#notificationsortingmap) | Yes| Latest notification sorting list.|
+| onUpdate | (data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void | Yes| Latest notification sorting list.|
 
 **Example**
 
@@ -136,7 +136,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onConnect
+## onConnect
 
 onConnect?:() => void
 
@@ -145,6 +145,12 @@ Called when the subscription is complete.
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------------ | ------------------------ | ---- | -------------------------- |
+| onConnect | () => void | Yes| Callback invoked when the subscription is complete.|
 
 **Example**
 
@@ -170,7 +176,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onDisconnect
+## onDisconnect
 
 onDisconnect?:() => void
 
@@ -179,6 +185,12 @@ Called when unsubscription is complete.
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------------ | ------------------------ | ---- | -------------------------- |
+| onDisconnect | () => void | Yes| Callback invoked when unsubscription is complete.|
 
 **Example**
 
@@ -218,7 +230,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
-### onDestroy
+## onDestroy
 
 onDestroy?:() => void
 
@@ -228,6 +240,11 @@ Called when the service is disconnected.
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| ------------ | ------------------------ | ---- | -------------------------- |
+| onDestroy | () => void | Yes| Callback invoked when the service is disconnected.|
 **Example**
 
 ```ts
@@ -252,9 +269,9 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onDoNotDisturbDateChange<sup>8+</sup>
+## onDoNotDisturbDateChange<sup>8+</sup>
 
-onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
+onDoNotDisturbDateChange?:(mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
 Called when the DND time settings are changed.
 
@@ -266,12 +283,13 @@ Called when the DND time settings are changed.
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#DoNotDisturbDate) | Yes| DND time setting updates.|
+| onDoNotDisturbDateChange | (mode: notificationManager.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void | Yes| DND time setting updates.|
 
 **Example**
 
 ```ts
 import Base from '@ohos.base';
+import NotificationManager from '@ohos.notificationManager';
 
 let subscribeCallback = (err: Base.BusinessError) => {
   if (err) {
@@ -293,9 +311,9 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 
-### onEnabledNotificationChanged<sup>8+</sup>
+## onEnabledNotificationChanged<sup>8+</sup>
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)) => void
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void
 
 Listens for the notification enabled status changes.
 
@@ -305,9 +323,9 @@ Listens for the notification enabled status changes.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)\> | Yes| Callback used to return the result.|
+| Name| Type                                                                                                          | Mandatory| Description|
+| ------------ |--------------------------------------------------------------------------------------------------------------| ---- | -------------------------- |
+| onEnabledNotificationChanged | (callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -335,7 +353,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onBadgeChanged<sup>10+</sup>
+## onBadgeChanged<sup>10+</sup>
 
  onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata10)) => void
 
@@ -349,7 +367,7 @@ Listens for the change of the notification badge number.
 
 | Name  | Type                                                        | Mandatory| Description                      |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata10)\> | Yes  | Callback used to return the result.|
+| onBadgeChanged | (data: [BadgeNumberCallbackData](#badgenumbercallbackdata10)) => void | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -381,13 +399,13 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-| Name           | Type                                             | Readable| Writable| Description    |
-| --------------- | ------------------------------------------------- | ---- | --- | -------- |
-| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest#notificationrequest)       | Yes | No | Notification content.|
+| Name           | Type                                                                | Readable| Writable| Description    |
+| --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
+| request         | [NotificationRequest](js-apis-notification.md#notificationrequest) | Yes | No | Notification content.|
 | sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md) | Yes | No | Notification sorting information.|
-| reason          | number                                            | Yes | No | Reason for deletion.|
-| sound           | string                                            | Yes | No | Sound used for notification.|
-| vibrationValues | Array\<number\>                                   | Yes | No | Vibration used for notification.|
+| reason          | number                                                             | Yes | No | Reason for deletion. The options are as follows:<br>**1**: The notification is deleted after being clicked.<br>**2**: The notification is deleted by the user.|
+| sound           | string                                                             | Yes | No | Sound used for notification.|
+| vibrationValues | Array\<number\>                                                    | Yes | No | Vibration used for notification.|
 
 
 ## EnabledNotificationCallbackData<sup>8+</sup>

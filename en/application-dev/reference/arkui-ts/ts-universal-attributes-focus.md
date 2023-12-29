@@ -12,7 +12,7 @@ Focus control attributes set whether a component is focusable and how it partici
 | Name              | Type| Description                                  |
 | -------------------- | -------- | ---------------------------------------- |
 | focusable            | boolean  | Whether the current component is focusable.<br>**NOTE**<br>Components that have default interaction logic, such as **\<Button>** and **\<TextInput>**, are focusable by default. Other components, such as **\<Text>** and **\<Image>**, are not focusable by default. Only focusable components can trigger a [focus event](ts-universal-focus-event.md).|
-| tabIndex<sup>9+<sup> | number   | How the current component participates in sequential keyboard navigation.<br>- **tabIndex** >= 0: The component is focusable in sequential keyboard navigation, with its order defined by the value. A component with a larger value gains focus later than one with a smaller value. If multiple components share the same **tabIndex** value, they gain focus in the order they appear in the component tree.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**|
+| tabIndex<sup>9+<sup> | number   | Tab order of the component in sequential focus navigation with the **Tab** key. When components with positive **tabIndex** values are present, only these components are reachable through sequential focus navigation, and they are navigated cyclically in ascending order based on the **tabIndex** value. When components with positive **tabIndex** values are not present, those components with a **tabIndex** value of **0** are navigated based on the preset focus navigation rule.<br>- **tabIndex** >= 0: The component is focusable and can be reached through sequential keyboard navigation.<br>- **tabIndex** < 0 (usually **tabIndex** = -1): The component is focusable, but cannot be reached through sequential keyboard navigation.<br>Default value: **0**|
 | defaultFocus<sup>9+<sup> | boolean  | Whether to set the component as the default focus of the page. This attribute takes effect only when the page is new and accessed for the first time.<br>Default value: **false**|
 | groupDefaultFocus<sup>9+<sup> | boolean  | Whether to set the component as the default focus of the parent container. This attribute takes effect only when the container is new and obtains focus for the first time.<br>Default value: **false**<br>**NOTE**<br>This attribute must be used together with **tabIndex**. When **tabIndex** is set for a container and **groupDefaultFocus** is set for a component in the container, the focus is automatically shifted to that component when the container obtains focus for the first time.<br>|
 | focusOnTouch<sup>9+<sup> | boolean | Whether the component is focusable on touch.<br>Default value: **false**<br>**NOTE**<br>The component can obtain focus only when it is touchable or clickable.|
@@ -176,19 +176,19 @@ struct FocusableExample {
 ```
 Diagrams:
 
-When you press the Tab button for the first time, the focus switches to the component bound to **defaultFocus**.
+When you press the **Tab** key for the first time, the focus switches to the component bound to **defaultFocus**.
 
 ![defaultFocus](figures/defaultFocus.png)
 
-When you press the Tab button for the second time, the focus switches to the container that matches **tabIndex(1)** and automatically moves to the component bound to **groupDefaultFocus**.
+When you press the **Tab** key for the second time, the focus switches to the container that matches **tabIndex(1)** and automatically moves to the component bound to **groupDefaultFocus**.
 
 ![groupDefaultFocus1](figures/groupDefaultFocus1.png)
 
-When you press the Tab button for the third time, the focus switches to the container that matches **tabIndex(2)** and automatically moves to the component bound to **groupDefaultFocus**.
+When you press the **Tab** key for the third time, the focus switches to the container that matches **tabIndex(2)** and automatically moves to the component bound to **groupDefaultFocus**.
 
 ![groupDefaultFocus2](figures/groupDefaultFocus2.png)
 
-When you press the Tab button for the fourth time, the focus switches to the container that matches **tabIndex(3)** and automatically moves to the component bound to **groupDefaultFocus**.
+When you press the **Tab** key for the fourth time, the focus switches to the container that matches **tabIndex(3)** and automatically moves to the component bound to **groupDefaultFocus**.
 
 ![groupDefaultFocus3](figures/groupDefaultFocus3.png)
 
@@ -198,7 +198,7 @@ Click the component bound to **focusOnTouch**. The component then obtains focus.
 
 ### Example 2
 
-This example shows how to use **focusControl.requestFocus** to move th focus to the specified component.
+This example shows how to use **focusControl.requestFocus** to move the focus to the specified component.
 
 ```ts
 // requestFocus.ets
@@ -267,7 +267,7 @@ struct RequestFocusExample {
 
 Diagrams:
 
-Press the Tab button to activate the focus state.
+Press the **Tab** key to activate the focus state.
 
 Below shows how the UI behaves when you request focus for a component that does not exist.
 

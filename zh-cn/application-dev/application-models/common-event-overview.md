@@ -1,7 +1,7 @@
 # 公共事件简介
 
 
-OpenHarmony通过CES（Common Event Service，公共事件服务）为应用程序提供订阅、发布、退订公共事件的能力。
+CES（Common Event Service，公共事件服务）为应用程序提供订阅、发布、退订公共事件的能力。
 
 
 公共事件从系统角度可分为：系统公共事件和自定义公共事件。

@@ -13,6 +13,9 @@
 | NOTIFICATION_CONTENT_PICTURE | 图片类型。 |
 
 目前，系统仅支持通知栏订阅通知，将通知显示在通知栏中。基本类型通知的效果示意如下图所示。
+> **说明：**
+> 
+> 根据设计样式的不同，通知的实际显示效果可能有所差异。本文中所涉及的通知效果图仅供参考，请以实际运行结果为准。
 
 **图1** 基础类型通知呈现效果示意图  
 ![zh-cn_image_0000001466462305](figures/zh-cn_image_0000001466462305.png)
@@ -108,7 +111,7 @@
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'test_longTitle',
+            longTitle: 'longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
@@ -132,11 +135,11 @@
       import image from '@ohos.multimedia.image';
 
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
-      let color = new ArrayBuffer(0);
+      let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
         size: {
-          height: 0,
-          width: 0
+          height: 1,
+          width: 1
         }
       }).then((data: image.PixelMap) => {
         imagePixelMap = data;

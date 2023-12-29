@@ -294,7 +294,7 @@ Obtains the first element of this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element obtained.|
+| T | First element of the T type obtained.|
 
 **Error codes**
 
@@ -327,7 +327,7 @@ Obtains the last element of this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Element obtained.|
+| T | Last element of the T type obtained.|
 
 **Error codes**
 
@@ -353,6 +353,10 @@ let result = deque.getLast();
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 

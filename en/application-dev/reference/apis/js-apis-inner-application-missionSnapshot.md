@@ -20,7 +20,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | Yes| Yes| Ability information of the mission.|
-| snapshot | [image.PixelMap](js-apis-image.md) | Yes| Yes| Snapshot of the mission.|
+| snapshot | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes| Yes| Snapshot of the mission.|
 
 ## How to Use
 

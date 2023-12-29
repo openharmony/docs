@@ -8,12 +8,13 @@ The multimedia subsystem provides a set of simple and easy-to-use APIs for you t
 
 This subsystem offers the following audio and video services:
 
-- Audio and video playback, implemented by the [AVPlayer](#avplayer9)<sup>9+</sup> class. This class has integrated [AudioPlayer](#audioplayerdeprecated)<sup>6+</sup> and [VideoPlayer](#videoplayer)<sup>8+</sup>, with the state machine and error codes upgraded. It is recommended.
-- Audio and video recording, implemented by the [AVRecorder](#avrecorder9)<sup>9+</sup> class. This class has integrated [AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup> and [VideoRecorder](#videorecorder9)<sup>9+</sup>. It is recommended.
-- Audio playback, implemented by the [AudioPlayer](#audioplayerdeprecated)<sup>6+</sup> class. It is deprecated. You are advised to use [AVPlayer](#avplayer9)<sup>9+</sup>.
-- Video playback, implemented by the [VideoPlayer](#videoplayerdeprecated)<sup>8+</sup> class. It is deprecated. You are advised to use [AVPlayer](#avplayer9)<sup>9+</sup>.
-- Audio recording, implemented by the [AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup> class. It is deprecated. You are advised to use [AVRecorder](#avrecorder9)<sup>9+</sup>.
-- Video recording, implemented by the [VideoRecorder](#videorecorder9)<sup>9+</sup> class. It is deprecated. You are advised to use [AVRecorder](#avrecorder9)<sup>9+</sup>.
+- Audio and video playback ([AVPlayer](#avplayer9)<sup>9+</sup>)
+
+  The **AVPlayer** class has integrated [AudioPlayer](#audioplayerdeprecated)<sup>6+</sup> and [VideoPlayer](#videoplayerdeprecated)<sup>8+</sup>, with the state machine and error codes upgraded. It is recommended.
+  
+- Audio and video recording [AVRecorder](#avrecorder9)<sup>9+</sup>)
+
+  The **AVRecorder** class has integrated [AudioRecorder](#audiorecorderdeprecated)<sup>6+</sup> and [VideoRecorder](#videorecorder9)<sup>9+</sup>. It is recommended.
 
 ## Modules to Import
 
@@ -26,6 +27,12 @@ import media from '@ohos.multimedia.media';
 createAVPlayer(callback: AsyncCallback\<AVPlayer>): void
 
 Creates an **AVPlayer** instance. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> - A maximum of 13 instances can be created in video-only playback scenarios.
+> - A maximum of 16 instances can be created in both audio and video playback scenarios.
+> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, a maximum of 6 instances can be created in video-only playback scenarios.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -64,6 +71,12 @@ media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
 createAVPlayer(): Promise\<AVPlayer>
 
 Creates an **AVPlayer** instance. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> - A maximum of 13 instances can be created in video-only playback scenarios.
+> - A maximum of 16 instances can be created in both audio and video playback scenarios.
+> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, a maximum of 6 instances can be created in video-only playback scenarios.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -104,7 +117,11 @@ media.createAVPlayer().then((video: media.AVPlayer) => {
 createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 
 Creates an **AVRecorder** instance. This API uses an asynchronous callback to return the result.
-Only one **AVRecorder** instance can be created per device.
+
+> **NOTE**
+>
+> - A maximum of 2 instances can be created in audio and video recording scenarios.
+> - Only one instance can perform audio recording on a device at one time, since all the applications share the audio channel. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -142,7 +159,11 @@ media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
 createAVRecorder(): Promise\<AVRecorder>
 
 Creates an **AVRecorder** instance. This API uses a promise to return the result.
-Only one **AVRecorder** instance can be created per device.
+
+> **NOTE**
+>
+> - A maximum of 2 instances can be created in audio and video recording scenarios.
+> - Only one instance can perform audio recording on a device at one time, since all the applications share the audio channel. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -182,6 +203,7 @@ media.createAVRecorder().then((recorder: media.AVRecorder) => {
 createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
 Creates a **VideoRecorder** instance. This API uses an asynchronous callback to return the result.
+
 Only one **VideoRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
@@ -222,6 +244,7 @@ media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => 
 createVideoRecorder(): Promise\<VideoRecorder>
 
 Creates a **VideoRecorder** instance. This API uses a promise to return the result.
+
 Only one **VideoRecorder** instance can be created per device.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
@@ -286,9 +309,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import audio from '@ohos.multimedia.audio'
+
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_SPEECH,
   usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
   rendererFlags : 1
 }
@@ -336,9 +360,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import audio from '@ohos.multimedia.audio'
+
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_SPEECH,
   usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
   rendererFlags : 1
 }
@@ -350,12 +375,12 @@ media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) =
   } else {
     console.error('create SoundPool fail');
   }
-}).catch((error) => {
+}, (error: BusinessError) => {
   console.error(`soundpool catchCallback, error message:${error.message}`);
 });
 ```
 
-## AVErrorCode<sup>9+</sup><a name=averrorcode></a>
+## AVErrorCode<sup>9+</sup>
 
 Enumerates the [media error codes](../errorcodes/errorcode-media.md).
 
@@ -451,13 +476,13 @@ A playback management class that provides APIs to manage and play media assets. 
 
 For details about the audio and video playback demo, see [Audio Playback](../../media/using-avplayer-for-playback.md) and [Video Playback](../../media/video-playback.md).
 
-### Attributes<a name=avplayer_attributes></a>
+### Attributes
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx|
+| url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx|
 | fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | FD of the media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.|
 | dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Descriptor of a streaming media asset. It is a static attribute and can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, WebM, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.|
 | surfaceId<sup>9+</sup>                              | string                                                       | Yes  | Yes  | Video window ID. By default, there is no video window. It is a static attribute and can be set only when the AVPlayer is in the initialized state.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
@@ -476,7 +501,7 @@ For details about the audio and video playback demo, see [Audio Playback](../../
 
 After the resource handle (FD) is transferred to the AVPlayer, do not use the resource handle to perform read and write operations, including but not limited to transferring it to multiple AVPlayers. Competition occurs when multiple AVPlayers use the same resource handle to read and write files at the same time, resulting in playback errors.
 
-### on('stateChange')<sup>9+</sup><a name = stateChange_on></a>
+### on('stateChange')<sup>9+</sup>
 
 on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReason) => void): void
 
@@ -494,43 +519,46 @@ Subscribes to AVPlayer state changes.
 **Example**
 
 ```ts
+// Create an AVPlayer instance.
+let avPlayer = await media.createAVPlayer();
+
 avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
   switch (state) {
     case 'idle':
-      console.info('state idle called')
+      console.info('state idle called');
       break;
     case 'initialized':
-      console.info('initialized prepared called')
+      console.info('initialized prepared called');
       break;
     case 'prepared':
-      console.info('state prepared called')
+      console.info('state prepared called');
       break;
     case 'playing':
-      console.info('state playing called')
+      console.info('state playing called');
       break;
     case 'paused':
-      console.info('state paused called')
+      console.info('state paused called');
       break;
     case 'completed':
-      console.info('state completed called')
+      console.info('state completed called');
       break;
     case 'stopped':
-      console.info('state stopped called')
+      console.info('state stopped called');
       break;
     case 'released':
-      console.info('state released called')
+      console.info('state released called');
       break;
     case 'error':
-      console.info('state error called')
+      console.info('state error called');
       break;
     default:
-      console.info('unkown state :' + state)
+      console.info('unknown state :' + state);
       break;
   }
 })
 ```
 
-### off('stateChange')<sup>9+</sup><a name = stateChange_off></a>
+### off('stateChange')<sup>9+</sup>
 
 off(type: 'stateChange'): void
 
@@ -550,7 +578,7 @@ Unsubscribes from AVPlayer state changes.
 avPlayer.off('stateChange')
 ```
 
-### on('error')<sup>9+</sup><a name = error_on></a>
+### on('error')<sup>9+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -565,23 +593,21 @@ Subscribes to AVPlayer errors. This event is used only for error prompt and does
 | type     | string   | Yes  | Event type, which is **'error'** in this case. This event can be triggered by both user operations and the system.|
 | callback | function | Yes  | Callback used to return the error code ID and error message.|
 
-The AVPlayer provides the following error types<a name = error_info></a>:
-
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
 
-| ID| Error Message             | Description                                                        |
-| -------- | --------------------- | ------------------------------------------------------------ |
-| 201      | No Permission:        | No permission to perform the operation. The [AVPlayer state](#avplayerstate9) is error.|
-| 401      | Invalid Parameter:    | Incorrect input parameter, causing an invalid call.                                    |
-| 801      | Unsupport Capability: | Unsupported API, causing an invalid call.                             |
-| 5400101  | No Memory:            | Insufficient memory. The [AVPlayer state](#avplayerstate9) is error.|
-| 5400102  | Operate Not Permit:   | Unsupported operation in the current state, causing an invalid call.                      |
-| 5400103  | IO Error:             | A stream exception is detected during playback. The [AVPlayer state](#avplayerstate9) is error.|
-| 5400104  | Network Timeout:      | The response times out due to a network error. The [AVPlayer state](#avplayerstate9) is error.|
-| 5400105  | Service Died:         | The playback process is dead. The [AVPlayer state](#avplayerstate9) is error. In this case, you need to release the instance and then create an instance again.|
-| 5400106  | Unsupport Format:     | Unsupported file format. The [AVPlayer state](#avplayerstate9) is error.|
+| ID| Error Message             |
+| -------- | --------------------- |
+| 201      | Permission denied     |
+| 401      | The parameter check failed. |
+| 801      | Capability not supported. |
+| 5400101  | No Memory.            |
+| 5400102  | Operation not allowed.|
+| 5400103  | I/O error             |
+| 5400104  | Time out              |
+| 5400105  | Service Died.         |
+| 5400106  | Unsupport Format.     |
 
 **Example**
 
@@ -592,7 +618,7 @@ avPlayer.on('error', (error: BusinessError) => {
 })
 ```
 
-### off('error')<sup>9+</sup><a name = error_off></a>
+### off('error')<sup>9+</sup>
 
 off(type: 'error'): void
 
@@ -612,11 +638,11 @@ Unsubscribes from AVPlayer errors.
 avPlayer.off('error')
 ```
 
-### prepare<sup>9+</sup><a name=avplayer_prepare></a>
+### prepare<sup>9+</sup>
 
 prepare(callback: AsyncCallback\<void>): void
 
-Prepares for audio and video playback. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the initialized state.
+Prepares for audio and video playback. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the initialized state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -651,7 +677,7 @@ avPlayer.prepare((err: BusinessError) => {
 
 prepare(): Promise\<void>
 
-Prepares for audio and video playback. This API uses a promise to return the result. It can be called only when the AVPlayer is in the initialized state.
+Prepares for audio and video playback. This API uses a promise to return the result. It can be called only when the AVPlayer is in the initialized state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -680,7 +706,7 @@ avPlayer.prepare().then(() => {
 })
 ```
 
-### play<sup>9+</sup><a name=avplayer_play></a>
+### play<sup>9+</sup>
 
 play(callback: AsyncCallback\<void>): void
 
@@ -746,7 +772,7 @@ avPlayer.play().then(() => {
 })
 ```
 
-### pause<sup>9+</sup><a name=avplayer_pause></a>
+### pause<sup>9+</sup>
 
 pause(callback: AsyncCallback\<void>): void
 
@@ -812,7 +838,7 @@ avPlayer.pause().then(() => {
 })
 ```
 
-### stop<sup>9+</sup><a name=avplayer_stop></a>
+### stop<sup>9+</sup>
 
 stop(callback: AsyncCallback\<void>): void
 
@@ -878,7 +904,7 @@ avPlayer.stop().then(() => {
 })
 ```
 
-### reset<sup>9+</sup><a name=avplayer_reset></a>
+### reset<sup>9+</sup>
 
 reset(callback: AsyncCallback\<void>): void
 
@@ -944,7 +970,7 @@ avPlayer.reset().then(() => {
 })
 ```
 
-### release<sup>9+</sup><a name=avplayer_release></a>
+### release<sup>9+</sup>
 
 release(callback: AsyncCallback\<void>): void
 
@@ -971,7 +997,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 ```ts
 avPlayer.release((err: BusinessError) => {
   if (err == null) {
-    console.info('reset success');
+    console.info('release success');
   } else {
     console.error('release filed,error message is :' + err.message)
   }
@@ -1010,7 +1036,7 @@ avPlayer.release().then(() => {
 })
 ```
 
-### getTrackDescription<sup>9+</sup><a name=avplayer_gettrackdescription></a>
+### getTrackDescription<sup>9+</sup>
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
@@ -1039,7 +1065,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
   if ((arrList) != null) {
     console.info('getTrackDescription success');
   } else {
-    console.log(`video getTrackDescription fail, error:${error}`);
+    console.error(`video getTrackDescription fail, error:${error}`);
   }
 });
 ```
@@ -1072,15 +1098,15 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   console.info('getTrackDescription success');
 }).catch((error: BusinessError) => {
-  console.info(`video catchCallback, error:${error}`);
+  console.error(`video catchCallback, error:${error}`);
 });
 ```
 
-### seek<sup>9+</sup><a name=avplayer_seek></a>
+### seek<sup>9+</sup>
 
 seek(timeMs: number, mode?:SeekMode): void
 
-Seeks to the specified playback position. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the seek operation takes effect by subscribing to the [seekDone](#seekDone_on) event.
+Seeks to the specified playback position. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the seek operation takes effect by subscribing to the [seekDone](#onseekdone9) event.
 This API is not supported in live mode.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1099,7 +1125,7 @@ let seekTime: number = 1000
 avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
 ```
 
-### on('seekDone')<sup>9+</sup><a name = seekDone_on></a>
+### on('seekDone')<sup>9+</sup>
 
 on(type: 'seekDone', callback: Callback\<number>): void
 
@@ -1122,7 +1148,7 @@ avPlayer.on('seekDone', (seekDoneTime:number) => {
 })
 ```
 
-### off('seekDone')<sup>9+</sup><a name = seekDone_off></a>
+### off('seekDone')<sup>9+</sup>
 
 off(type: 'seekDone'): void
 
@@ -1146,7 +1172,7 @@ avPlayer.off('seekDone')
 
 setSpeed(speed: PlaybackSpeed): void
 
-Sets the playback speed. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [speedDone](#speedDone_on) event.
+Sets the playback speed. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [speedDone](#onspeeddone9) event.
 This API is not supported in live mode.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
@@ -1163,7 +1189,7 @@ This API is not supported in live mode.
 avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X)
 ```
 
-### on('speedDone')<sup>9+</sup><a name = speedDone_on></a>
+### on('speedDone')<sup>9+</sup>
 
 on(type: 'speedDone', callback: Callback\<number>): void
 
@@ -1186,7 +1212,7 @@ avPlayer.on('speedDone', (speed:number) => {
 })
 ```
 
-### off('speedDone')<sup>9+</sup><a name = speedDone_off></a>
+### off('speedDone')<sup>9+</sup>
 
 off(type: 'speedDone'): void
 
@@ -1210,7 +1236,7 @@ avPlayer.off('speedDone')
 
 setBitrate(bitrate: number): void
 
-Sets the bit rate, which is valid only for HTTP Live Streaming (HLS) streams. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [bitrateDone](#bitrateDone_on) event.
+Sets the bit rate, which is valid only for HTTP Live Streaming (HLS) streams. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [bitrateDone](#onbitratedone9) event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1218,7 +1244,7 @@ Sets the bit rate, which is valid only for HTTP Live Streaming (HLS) streams. Th
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| bitrate | number | Yes  | Bit rate to set. You can obtain the available bit rates of the current HLS stream by subscribing to the [availableBitrates](#availableBitrates_on) event. If the bit rate to set is not in the list of the available bit rates, the AVPlayer selects from the list the minimum bit rate that is closed to the bit rate to set. If the length of the available bit rate list obtained through the event is 0, no bit rate can be set and the **bitrateDone** callback will not be triggered.|
+| bitrate | number | Yes  | Bit rate to set. You can obtain the available bit rates of the current HLS stream by subscribing to the [availableBitrates](#onavailablebitrates9) event. If the bit rate to set is not in the list of the available bit rates, the AVPlayer selects from the list the minimum bit rate that is closed to the bit rate to set. If the length of the available bit rate list obtained through the event is 0, no bit rate can be set and the **bitrateDone** callback will not be triggered.|
 
 **Example**
 
@@ -1227,7 +1253,7 @@ let bitrate: number = 96000
 avPlayer.setBitrate(bitrate)
 ```
 
-### on('bitrateDone')<sup>9+</sup><a name = bitrateDone_on></a>
+### on('bitrateDone')<sup>9+</sup>
 
 on(type: 'bitrateDone', callback: Callback\<number>): void
 
@@ -1250,7 +1276,7 @@ avPlayer.on('bitrateDone', (bitrate:number) => {
 })
 ```
 
-### off('bitrateDone')<sup>9+</sup><a name = bitrateDone_off></a>
+### off('bitrateDone')<sup>9+</sup>
 
 off(type: 'bitrateDone'): void
 
@@ -1270,7 +1296,7 @@ Unsubscribes from the event that checks whether the bit rate is successfully set
 avPlayer.off('bitrateDone')
 ```
 
-### on('availableBitrates')<sup>9+</sup><a name = availableBitrates_on></a>
+### on('availableBitrates')<sup>9+</sup>
 
 on(type: 'availableBitrates', callback: (bitrates: Array\<number>) => void): void
 
@@ -1293,7 +1319,7 @@ avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
 })
 ```
 
-### off('availableBitrates')<sup>9+</sup><a name = availableBitrates_off></a>
+### off('availableBitrates')<sup>9+</sup>
 
 off(type: 'availableBitrates'): void
 
@@ -1317,7 +1343,7 @@ avPlayer.off('availableBitrates')
 
 setVolume(volume: number): void
 
-Sets the volume. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [volumeChange](#volumeChange_on) event.
+Sets the volume. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [volumeChange](#onvolumechange9) event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1334,7 +1360,7 @@ let volume: number = 1.0
 avPlayer.setVolume(volume)
 ```
 
-### on('volumeChange')<sup>9+</sup><a name = volumeChange_on></a>
+### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<number>): void
 
@@ -1357,7 +1383,7 @@ avPlayer.on('volumeChange', (vol: number) => {
 })
 ```
 
-### off('volumeChange')<sup>9+</sup><a name = volumeChange_off></a>
+### off('volumeChange')<sup>9+</sup>
 
 off(type: 'volumeChange'): void
 
@@ -1377,11 +1403,11 @@ Unsubscribes from the event that checks whether the volume is successfully set.
 avPlayer.off('volumeChange')
 ```
 
-### on('endOfStream')<sup>9+</sup><a name = endOfStream_on></a>
+### on('endOfStream')<sup>9+</sup>
 
 on(type: 'endOfStream', callback: Callback\<void>): void
 
-Subscribes to the event that indicates the end of the stream being played. If **loop=1** is set, the AVPlayer seeks to the beginning of the stream and plays the stream again. If **loop** is not set, the completed state is reported through the [stateChange](#stateChange_on) event.
+Subscribes to the event that indicates the end of the stream being played. If **loop=1** is set, the AVPlayer seeks to the beginning of the stream and plays the stream again. If **loop** is not set, the completed state is reported through the [stateChange](#onstatechange9) event.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1400,7 +1426,7 @@ avPlayer.on('endOfStream', () => {
 })
 ```
 
-### off('endOfStream')<sup>9+</sup><a name = endOfStream_off></a>
+### off('endOfStream')<sup>9+</sup>
 
 off(type: 'endOfStream'): void
 
@@ -1420,7 +1446,7 @@ Unsubscribes from the event that indicates the end of the stream being played.
 avPlayer.off('endOfStream')
 ```
 
-### on('timeUpdate')<sup>9+</sup><a name = timeUpdate_on></a>
+### on('timeUpdate')<sup>9+</sup>
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
@@ -1444,7 +1470,7 @@ avPlayer.on('timeUpdate', (time:number) => {
 })
 ```
 
-### off('timeUpdate')<sup>9+</sup><a name = timeUpdate_off></a>
+### off('timeUpdate')<sup>9+</sup>
 
 off(type: 'timeUpdate'): void
 
@@ -1464,7 +1490,7 @@ Unsubscribes from playback position changes.
 avPlayer.off('timeUpdate')
 ```
 
-### on('durationUpdate')<sup>9+</sup><a name = durationUpdate_on></a>
+### on('durationUpdate')<sup>9+</sup>
 
 on(type: 'durationUpdate', callback: Callback\<number>): void
 
@@ -1488,7 +1514,7 @@ avPlayer.on('durationUpdate', (duration: number) => {
 })
 ```
 
-### off('durationUpdate')<sup>9+</sup><a name = durationUpdate_off></a>
+### off('durationUpdate')<sup>9+</sup>
 
 off(type: 'durationUpdate'): void
 
@@ -1508,7 +1534,7 @@ Unsubscribes from media asset duration changes.
 avPlayer.off('durationUpdate')
 ```
 
-### on('bufferingUpdate')<sup>9+</sup><a name = bufferingUpdate_on></a>
+### on('bufferingUpdate')<sup>9+</sup>
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
@@ -1531,7 +1557,7 @@ avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number
 })
 ```
 
-### off('bufferingUpdate')<sup>9+</sup><a name = bufferingUpdate_off></a>
+### off('bufferingUpdate')<sup>9+</sup>
 
 off(type: 'bufferingUpdate'): void
 
@@ -1551,7 +1577,7 @@ Unsubscribes from audio and video buffer changes.
 avPlayer.off('bufferingUpdate')
 ```
 
-### on('startRenderFrame')<sup>9+</sup><a name = startRenderFrame_on></a>
+### on('startRenderFrame')<sup>9+</sup>
 
 on(type: 'startRenderFrame', callback: Callback\<void>): void
 
@@ -1574,7 +1600,7 @@ avPlayer.on('startRenderFrame', () => {
 })
 ```
 
-### off('startRenderFrame')<sup>9+</sup><a name = startRenderFrame_off></a>
+### off('startRenderFrame')<sup>9+</sup>
 
 off(type: 'startRenderFrame'): void
 
@@ -1594,7 +1620,7 @@ Unsubscribes from the event that indicates rendering starts for the first frame.
 avPlayer.off('startRenderFrame')
 ```
 
-### on('videoSizeChange')<sup>9+</sup><a name = videoSizeChange_on></a>
+### on('videoSizeChange')<sup>9+</sup>
 
 on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
 
@@ -1617,7 +1643,7 @@ avPlayer.on('videoSizeChange', (width: number, height: number) => {
 })
 ```
 
-### off('videoSizeChange')<sup>9+</sup><a name = videoSizeChange_off></a>
+### off('videoSizeChange')<sup>9+</sup>
 
 off(type: 'videoSizeChange'): void
 
@@ -1637,7 +1663,7 @@ Unsubscribes from video size changes.
 avPlayer.off('videoSizeChange')
 ```
 
-### on('audioInterrupt')<sup>9+</sup><a name = audioInterrupt_on></a>
+### on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
 
@@ -1662,7 +1688,7 @@ avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
 })
 ```
 
-### off('audioInterrupt')<sup>9+</sup><a name = audioInterrupt_off></a>
+### off('audioInterrupt')<sup>9+</sup>
 
 off(type: 'audioInterrupt'): void
 
@@ -1682,9 +1708,9 @@ Unsubscribes from the audio interruption event.
 avPlayer.off('audioInterrupt')
 ```
 
-## AVPlayerState<sup>9+</sup><a name = avplayerstate></a>
+## AVPlayerState<sup>9+</sup>
 
-Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](#stateChange_on) event. For details about the rules for state transition, see [Audio Playback](../../media/using-avplayer-for-playback.md).
+Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](##onstatechange9) event. For details about the rules for state transition, see [Audio Playback](../../media/using-avplayer-for-playback.md).
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1698,7 +1724,7 @@ Enumerates the states of the [AVPlayer](#avplayer9). Your application can proact
 |            completed            | string | The AVPlayer enters this state when a media asset finishes playing and loop playback is not set (no **loop = 1**). In this case, if **play()** is called, the AVPlayer enters the playing state and replays the media asset; if **stop()** is called, the AVPlayer enters the stopped state.|
 |             stopped             | string | The AVPlayer enters this state when **stop()** is called in the prepared, playing, paused, or completed state. In this case, the playback engine retains the attributes but releases the memory resources. You can call **prepare()** to prepare the resources again, call **reset()** to reset the attributes, or call **release()** to destroy the playback engine.|
 |            released             | string | The AVPlayer enters this state when **release()** is called. The playback engine associated with the **AVPlayer** instance is destroyed, and the playback process ends. This is the final state.|
-| error<a name = error_state></a> | string | The AVPlayer enters this state when an irreversible error occurs in the playback engine. You can call **reset()** to reset the attributes or call **release()** to destroy the playback engine. For details on the errors, see [Error Classification](#error_info).<br>**NOTE** Relationship between the error state and the [on('error')](#error_on) event<br>1. When the AVPlayer enters the error state, the [on('error')](#error_on) event is triggered. You can obtain the detailed error information through this event.<br>2. When the AVPlayer enters the error state, the playback service stops. This requires the client to design a fault tolerance mechanism to call **reset()** or **release()**.<br>3. The client receives [on('error')](#error_on) event but the AVPlayer does not enter the error state. This situation occurs due to either of the following reasons:<br>Cause 1: The client calls an API in an incorrect state or passes in an incorrect parameter, and the AVPlayer intercepts the call. If this is the case, the client must correct its code logic.<br>Cause 2: A stream error is detected during playback. As a result, the container and decoding are abnormal for a short period of time, but continuous playback and playback control operations are not affected. If this is the case, the client does not need to design a fault tolerance mechanism.|
+| error | string | The AVPlayer enters this state when an irreversible error occurs in the playback engine. You can call **reset()** to reset the attributes or call **release()** to destroy the playback engine. For details on the errors, see [Media Error Codes](../errorcodes/errorcode-media.md).<br>**NOTE** Relationship between the error state and the [on('error')](#onerror9) event<br>1. When the AVPlayer enters the error state, the **on('error')** event is triggered. You can obtain the detailed error information through this event.<br>2. When the AVPlayer enters the error state, the playback service stops. This requires the client to design a fault tolerance mechanism to call **reset()** or **release()**.<br>3. The client receives **on('error')** event but the AVPlayer does not enter the error state. This situation occurs due to either of the following reasons:<br>Cause 1: The client calls an API in an incorrect state or passes in an incorrect parameter, and the AVPlayer intercepts the call. If this is the case, the client must correct its code logic.<br>Cause 2: A stream error is detected during playback. As a result, the container and decoding are abnormal for a short period of time, but continuous playback and playback control operations are not affected. If this is the case, the client does not need to design a fault tolerance mechanism.|
 
 ## AVFileDescriptor<sup>9+</sup>
 
@@ -1708,7 +1734,7 @@ Describes an audio and video file asset. It is used to specify a particular asse
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| fd     | number | Yes  | Resource handle, which is obtained by calling **resourceManager.getRawFileDescriptor**.    |
+| fd     | number | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](js-apis-resource-manager.md#getrawfd9).    |
 | offset | number | Yes  | Resource offset, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
 | length | number | Yes  | Resource length, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse audio and video assets.|
 
@@ -1774,6 +1800,10 @@ Defines media information in key-value mode.
 
 ```ts
 import media from '@ohos.multimedia.media'
+
+// Create an AVPlayer instance.
+let avPlayer = await media.createAVPlayer();
+
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
   console.info('audio key is ' + key); // Specify a key. For details about the keys, see [MediaDescriptionKey].
@@ -1786,7 +1816,7 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
       printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
     }
   } else {
-    console.log(`audio getTrackDescription fail, error:${error}`);
+    console.error(`audio getTrackDescription fail, error:${error}`);
   }
 });
 ```
@@ -1809,7 +1839,7 @@ For details about the audio and video recording demo, see [Audio Recording](../.
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
 | state9+ | [AVRecorderState](#avrecorderstate9) | Yes  | No  | AVRecorder state.|
 
-### prepare<sup>9+</sup><a name=avrecorder_prepare></a>
+### prepare<sup>9+</sup>
 
 prepare(config: AVRecorderConfig, callback: AsyncCallback\<void>): void
 
@@ -1845,28 +1875,28 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 ```ts
 // Configure the parameters based on those supported by the hardware device.
-let AVRecorderProfile: media.AVRecorderProfile = {
+let avRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : media.CodecMimeType.AUDIO_AAC,
   audioSampleRate : 48000,
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : media.CodecMimeType.VIDEO_AVC,
+  videoCodec : media.CodecMimeType.VIDEO_MPEG4,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
-let AVRecorderConfig: media.AVRecorderConfig = {
+let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
-  profile : AVRecorderProfile,
+  profile : avRecorderProfile,
   url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
 }
 
-avRecorder.prepare(AVRecorderConfig, (err: BusinessError) => {
+avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
   } else {
@@ -1916,35 +1946,35 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 ```ts
 // Configure the parameters based on those supported by the hardware device.
-let AVRecorderProfile: media.AVRecorderProfile = {
+let avRecorderProfile: media.AVRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
   audioCodec : media.CodecMimeType.AUDIO_AAC,
   audioSampleRate : 48000,
   fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : media.CodecMimeType.VIDEO_AVC,
+  videoCodec : media.CodecMimeType.VIDEO_MPEG4,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
-let AVRecorderConfig: media.AVRecorderConfig = {
+let avRecorderConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
-  profile : AVRecorderProfile,
+  profile : avRecorderProfile,
   url : 'fd://', // Before passing in an FD to this parameter, the file must be created by the caller and granted with the read and write permissions. Example value: fd://45.
   rotation: 0, // The value can be 0, 90, 180, or 270. If any other value is used, prepare() reports an error.
   location : { latitude : 30, longitude : 130 }
 }
 
-avRecorder.prepare(AVRecorderConfig).then(() => {
+avRecorder.prepare(avRecorderConfig).then(() => {
   console.info('prepare success');
 }).catch((err: Error) => {
   console.error('prepare failed and catch error is ' + err.message);
 });
 ```
 
-### getInputSurface<sup>9+</sup><a name=avrecorder_getinputsurface></a>
+### getInputSurface<sup>9+</sup>
 
 getInputSurface(callback: AsyncCallback\<string>): void
 
@@ -2029,7 +2059,7 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
 });
 ```
 
-### start<sup>9+</sup><a name=avrecorder_start></a>
+### start<sup>9+</sup>
 
 start(callback: AsyncCallback\<void>): void
 
@@ -2103,7 +2133,7 @@ avRecorder.start().then(() => {
 });
 ```
 
-### pause<sup>9+</sup><a name=avrecorder_pause></a>
+### pause<sup>9+</sup>
 
 pause(callback: AsyncCallback\<void>): void
 
@@ -2177,7 +2207,7 @@ avRecorder.pause().then(() => {
 });
 ```
 
-### resume<sup>9+</sup><a name=avrecorder_resume></a>
+### resume<sup>9+</sup>
 
 resume(callback: AsyncCallback\<void>): void
 
@@ -2251,7 +2281,7 @@ avRecorder.resume().then(() => {
 });
 ```
 
-### stop<sup>9+</sup><a name=avrecorder_stop></a>
+### stop<sup>9+</sup>
 
 stop(callback: AsyncCallback\<void>): void
 
@@ -2329,7 +2359,7 @@ avRecorder.stop().then(() => {
 });
 ```
 
-### reset<sup>9+</sup><a name=avrecorder_reset></a>
+### reset<sup>9+</sup>
 
 reset(callback: AsyncCallback\<void>): void
 
@@ -2401,7 +2431,7 @@ avRecorder.reset().then(() => {
 });
 ```
 
-### release<sup>9+</sup><a name=avrecorder_release></a>
+### release<sup>9+</sup>
 
 release(callback: AsyncCallback\<void>): void
 
@@ -2471,7 +2501,7 @@ avRecorder.release().then(() => {
 });
 ```
 
-### on('stateChange')<sup>9+</sup><a name=avrecorder_onstatechange></a>
+### on('stateChange')<sup>9+</sup>
 
 on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeReason) => void): void
 
@@ -2485,6 +2515,15 @@ Subscribes to AVRecorder state changes. An application can subscribe to only one
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'stateChange'** in this case. This event can be triggered by both user operations and the system.|
 | callback | function | Yes  | Callback invoked when the event is triggered. It reports the following information:<br>**state**: [AVRecorderState](#avrecorderstate9), indicating the AVRecorder state.<br>**reason**: [StateChangeReason](#statechangereason9), indicating the reason for the state transition.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 5400103  | IO error. Return by callback.     |
+| 5400105  | Service died. Return by callback. |
 
 **Example**
 
@@ -2514,7 +2553,7 @@ Unsubscribes from AVRecorder state changes.
 avRecorder.off('stateChange');
 ```
 
-### on('error')<sup>9+</sup><a name=avrecorder_onerror></a>
+### on('error')<sup>9+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -2566,19 +2605,6 @@ Unsubscribes from AVRecorder errors. After the unsubscription, your application 
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'error'** in this case.<br>This event is triggered when an error occurs during recording.|
 
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
-
-| ID| Error Message                                           |
-| -------- | ------------------------------------------------   |
-| 5400101  | No memory. Return by callback.                     |
-| 5400102  | Operation not allowed. Return by callback.         |
-| 5400103  | I/O error. Return by callback.                     |
-| 5400104  | Time out. Return by callback.                      |
-| 5400105  | Service died. Return by callback.                  |
-| 5400106  | Unsupport format. Return by callback.              |
-
 **Example**
 
 ```ts
@@ -2593,13 +2619,13 @@ Enumerates the AVRecorder states. You can obtain the state through the **state**
 
 | Name    | Type  | Description                                                        |
 | -------- | ------ | ------------------------------------------------------------ |
-| idle     | string | The AVRecorder enters this state when the AVRecorder is just created or the [reset()](#avrecorder_reset) API is called in any non-released state. In this state, you can call [prepare()](#avrecorder_prepare) to set recording parameters.  |
-| prepared | string | The AVRecorder enters this state when the parameters are set. In this state, you can call [start()](#avrecorder_start) to start recording.|
-| started  | string | The AVRecorder enters this state when the recording starts. In this state, you can call [pause()](#avrecorder_pause) to pause the recording or call [stop()](#avrecorder_stop) to stop recording.|
-| paused   | string | The AVRecorder enters this state when the recording is paused. In this state, you can call [resume()](#avrecorder_resume) to continue the recording or call [stop()](#avrecorder_stop) to stop recording.|
-| stopped  | string | The AVRecorder enters this state when the recording stops. In this state, you can call [prepare()](#avrecorder_prepare) to set recording parameters.|
-| released | string | The AVRecorder enters this state when the recording resources are released. In this state, no operation can be performed. In any other state, you can call [release()](#avrecorder_release) to enter the released state.|
-| error    | string | The AVRecorder enters this state when an irreversible error occurs in the **AVRecorder** instance. In this state, the [on('error') event](#avrecorder_onerror) is reported, with the detailed error cause. In the error state, you must call [reset()](#avrecorder_reset) to reset the **AVRecorder** instance or call [release()](#avrecorder_release) to release the resources.|
+| idle     | string | The AVRecorder enters this state after it is just created or the [AVRecorder.reset()](#reset9-2) API is called when the AVRecorder is in any state except released. In this state, you can call [AVRecorder.prepare()](#prepare9-2) to set recording parameters.  |
+| prepared | string | The AVRecorder enters this state when the parameters are set. In this state, you can call [AVRecorder.start()](#start9) to start recording.|
+| started  | string | The AVRecorder enters this state when the recording starts. In this state, you can call [AVRecorder.pause()](#pause9-2) to pause recording or call [AVRecorder.stop()](#stop9-2) to stop recording.|
+| paused   | string | The AVRecorder enters this state when the recording is paused. In this state, you can call [AVRecorder.resume()](#resume9) to continue recording or call [AVRecorder.stop()](#stop9-2) to stop recording.|
+| stopped  | string | The AVRecorder enters this state when the recording stops. In this state, you can call [AVRecorder.prepare()](#prepare9-2) to set recording parameters so that the AVRecorder enters the prepared state again.|
+| released | string | The AVRecorder enters this state when the recording resources are released. In this state, no operation can be performed. In any other state, you can call [AVRecorder.release()](#release9-2) to enter the released state.|
+| error    | string | The AVRecorder enters this state when an irreversible error occurs in the **AVRecorder** instance. In this state, the [AVRecorder.on('error') event](#onerror9-1) is reported, with the detailed error cause. In the error state, you must call [AVRecorder.reset()](#reset9-2) to reset the **AVRecorder** instance or call [AVRecorder.release()](#release9-2) to release the resources.|
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -2699,9 +2725,9 @@ Implements video recording. Before calling any API in the **VideoRecorder** clas
 | ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
 | state<sup>9+</sup> | [VideoRecordState](#videorecordstate9) | Yes  | No  | Video recording state.|
 
-### prepare<sup>9+</sup><a name=videorecorder_prepare1></a>
+### prepare<sup>9+</sup>
 
-prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void;
+prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void
 
 Sets video recording parameters. This API uses an asynchronous callback to return the result.
 
@@ -2732,26 +2758,28 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // Configure the parameters based on those supported by the hardware device.
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm',
+  audioCodec : media.CodecMimeType.AUDIO_AAC,
   audioSampleRate : 48000,
-  fileFormat : 'mp4',
+  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc',
+  videoCodec : media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
 
 let videoConfig: media.VideoRecorderConfig = {
-  audioSourceType : 1,
-  videoSourceType : 0,
+  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
   url : 'fd://xx',   // The file must be created by the caller and granted with proper permissions.
-  orientationHint : 0,
+  rotation : 0,
   location : { latitude : 30, longitude : 130 },
 }
 
@@ -2765,9 +2793,9 @@ videoRecorder.prepare(videoConfig, (err: BusinessError) => {
 })
 ```
 
-### prepare<sup>9+</sup><a name=videorecorder_prepare2></a>
+### prepare<sup>9+</sup>
 
-prepare(config: VideoRecorderConfig): Promise\<void>;
+prepare(config: VideoRecorderConfig): Promise\<void>
 
 Sets video recording parameters. This API uses a promise to return the result.
 
@@ -2807,22 +2835,22 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
-  audioCodec : 'audio/mp4a-latm',
+  audioCodec : media.CodecMimeType.AUDIO_AAC,
   audioSampleRate : 48000,
-  fileFormat : 'mp4',
+  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
   videoBitrate : 2000000,
-  videoCodec : 'video/avc',
+  videoCodec : media.CodecMimeType.VIDEO_AVC,
   videoFrameWidth : 640,
   videoFrameHeight : 480,
   videoFrameRate : 30
 }
 
 let videoConfig: media.VideoRecorderConfig = {
-  audioSourceType : 1,
-  videoSourceType : 0,
+  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
   url : 'fd://xx',   // The file must be created by the caller and granted with proper permissions.
-  orientationHint : 0,
+  rotation : 0,
   location : { latitude : 30, longitude : 130 },
 }
 
@@ -2836,13 +2864,13 @@ videoRecorder.prepare(videoConfig).then(() => {
 
 ### getInputSurface<sup>9+</sup>
 
-getInputSurface(callback: AsyncCallback\<string>): void;
+getInputSurface(callback: AsyncCallback\<string>): void
 
 Obtains the surface required for recording. This API uses an asynchronous callback to return the result. The caller obtains the **surfaceBuffer** from this surface and fills in the corresponding data.
 
 Note that the video data must carry the timestamp (in ns) and buffer size, and the start time of the timestamp must be based on the system startup time.
 
-This API can be called only after [prepare()](#videorecorder_prepare1) is called.
+This API can be called only after prepare() is called.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2867,8 +2895,10 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 // asyncallback
-let surfaceID: string;                                               // Surface ID passed to the external system.
+let surfaceID: string; // Surface ID passed to the external system.
 videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
@@ -2887,7 +2917,7 @@ getInputSurface(): Promise\<string>;
 
 Note that the video data must carry the timestamp (in ns) and buffer size, and the start time of the timestamp must be based on the system startup time.
 
-This API can be called only after [prepare()](#videorecorder_prepare1) is called.
+This API can be called only after prepare() is called.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2922,13 +2952,13 @@ videoRecorder.getInputSurface().then((surfaceId: string) => {
 });
 ```
 
-### start<sup>9+</sup><a name=videorecorder_start1></a>
+### start<sup>9+</sup>
 
-start(callback: AsyncCallback\<void>): void;
+start(callback: AsyncCallback\<void>): void
 
-Starts video recording. This API uses an asynchronous callback to return the result.
+Starts recording. This API uses an asynchronous callback to return the result.
 
-This API can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) are called, because the data source must pass data to the surface first.
+This API can be called only after prepare() and getInputSurface() are called, because the data source must pass data to the surface first.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -2963,13 +2993,13 @@ videoRecorder.start((err: BusinessError) => {
 });
 ```
 
-### start<sup>9+</sup><a name=videorecorder_start2></a>
+### start<sup>9+</sup>
 
-start(): Promise\<void>;
+start(): Promise\<void>
 
-Starts video recording. This API uses a promise to return the result.
+Starts recording. This API uses a promise to return the result.
 
-This API can be called only after [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) are called, because the data source must pass data to the surface first.
+This API can be called only after prepare() and getInputSurface() are called, because the data source must pass data to the surface first.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3002,13 +3032,13 @@ videoRecorder.start().then(() => {
 });
 ```
 
-### pause<sup>9+</sup><a name=videorecorder_pause1></a>
+### pause<sup>9+</sup>
 
-pause(callback: AsyncCallback\<void>): void;
+pause(callback: AsyncCallback\<void>): void
 
-Pauses video recording. This API uses an asynchronous callback to return the result.
+Pauses recording. This API uses an asynchronous callback to return the result.
 
-This API can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
+This API can be called only after start() is called. You can resume recording by calling resume().
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3043,13 +3073,13 @@ videoRecorder.pause((err: BusinessError) => {
 });
 ```
 
-### pause<sup>9+</sup><a name=videorecorder_pause2></a>
+### pause<sup>9+</sup>
 
-pause(): Promise\<void>;
+pause(): Promise\<void>
 
-Pauses video recording. This API uses a promise to return the result.
+Pauses recording. This API uses a promise to return the result.
 
-This API can be called only after [start()](#videorecorder_start1) is called. You can resume recording by calling [resume()](#videorecorder_resume1).
+This API can be called only after start() is called. You can resume recording by calling resume().
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3082,11 +3112,11 @@ videoRecorder.pause().then(() => {
 });
 ```
 
-### resume<sup>9+</sup><a name=videorecorder_resume1></a>
+### resume<sup>9+</sup>
 
-resume(callback: AsyncCallback\<void>): void;
+resume(callback: AsyncCallback\<void>): void
 
-Resumes video recording. This API uses an asynchronous callback to return the result.
+Resumes recording. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3121,11 +3151,11 @@ videoRecorder.resume((err: Error) => {
 });
 ```
 
-### resume<sup>9+</sup><a name=videorecorder_resume2></a>
+### resume<sup>9+</sup>
 
-resume(): Promise\<void>;
+resume(): Promise\<void>
 
-Resumes video recording. This API uses a promise to return the result.
+Resumes recording. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3158,13 +3188,13 @@ videoRecorder.resume().then(() => {
 });
 ```
 
-### stop<sup>9+</sup><a name=videorecorder_stop1></a>
+### stop<sup>9+</sup>
 
-stop(callback: AsyncCallback\<void>): void;
+stop(callback: AsyncCallback\<void>): void
 
-Stops video recording. This API uses an asynchronous callback to return the result.
+Stops recording. This API uses an asynchronous callback to return the result.
 
-To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) again.
+To start another recording, you must call prepare() and getInputSurface() again.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3199,13 +3229,13 @@ videoRecorder.stop((err: BusinessError) => {
 });
 ```
 
-### stop<sup>9+</sup><a name=videorecorder_stop2></a>
+### stop<sup>9+</sup>
 
-stop(): Promise\<void>;
+stop(): Promise\<void>
 
-Stops video recording. This API uses a promise to return the result.
+Stops recording. This API uses a promise to return the result.
 
-To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) again.
+To start another recording, you must call prepare() and getInputSurface() again.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3238,9 +3268,9 @@ videoRecorder.stop().then(() => {
 });
 ```
 
-### release<sup>9+</sup><a name=videorecorder_release1></a>
+### release<sup>9+</sup>
 
-release(callback: AsyncCallback\<void>): void;
+release(callback: AsyncCallback\<void>): void
 
 Releases the video recording resources. This API uses an asynchronous callback to return the result.
 
@@ -3275,9 +3305,9 @@ videoRecorder.release((err: BusinessError) => {
 });
 ```
 
-### release<sup>9+</sup><a name=videorecorder_release2></a>
+### release<sup>9+</sup>
 
-release(): Promise\<void>;
+release(): Promise\<void>
 
 Releases the video recording resources. This API uses a promise to return the result.
 
@@ -3310,13 +3340,13 @@ videoRecorder.release().then(() => {
 });
 ```
 
-### reset<sup>9+</sup><a name=videorecorder_reset1></a>
+### reset<sup>9+</sup>
 
-reset(callback: AsyncCallback\<void>): void;
+reset(callback: AsyncCallback\<void>): void
 
 Resets video recording. This API uses an asynchronous callback to return the result.
 
-To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) again.
+To start another recording, you must call prepare() and getInputSurface() again.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3350,13 +3380,13 @@ videoRecorder.reset((err: BusinessError) => {
 });
 ```
 
-### reset<sup>9+</sup><a name=videorecorder_reset2></a>
+### reset<sup>9+</sup>
 
-reset(): Promise\<void>;
+reset(): Promise\<void>
 
 Resets video recording. This API uses a promise to return the result.
 
-To start another recording, you must call [prepare()](#videorecorder_prepare1) and [getInputSurface()](#getinputsurface9) again.
+To start another recording, you must call prepare() and getInputSurface() again.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
@@ -3396,6 +3426,8 @@ Subscribes to video recording error events. After an error event is reported, yo
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 
+**System API**: This is a system API.
+
 **Parameters**
 
 | Name  | Type         | Mandatory| Description                                                        |
@@ -3416,7 +3448,7 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 ```ts
 // This event is reported when an error occurs during the retrieval of videoRecordState.
-videoRecorder.on('error', (error: Error) => {                                  // Set the 'error' event callback.
+videoRecorder.on('error', (error: Error) => {   // Set the 'error' event callback.
   console.error(`audio error called, error: ${error}`);
 })
 ```
@@ -3478,7 +3510,7 @@ Describes the video recording profile.
 | videoFrameHeight | number                                       | Yes  | Height of the recorded video frame.|
 | videoFrameRate   | number                                       | Yes  | Video frame rate.  |
 
-## media.createAudioPlayer<sup>(deprecated)</sup><a name=createaudioplayer></a>
+## media.createAudioPlayer<sup>(deprecated)</sup>
 
 createAudioPlayer(): AudioPlayer
 
@@ -3502,7 +3534,7 @@ Creates an **AudioPlayer** instance in synchronous mode.
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();
 ```
 
-## media.createVideoPlayer<sup>(deprecated)</sup><a name=createvideoplayer></a>
+## media.createVideoPlayer<sup>(deprecated)</sup>
 
 createVideoPlayer(callback: AsyncCallback\<VideoPlayer>): void
 
@@ -3572,7 +3604,7 @@ media.createVideoPlayer().then((video: media.VideoPlayer) => {
 });
 ```
 
-## media.createAudioRecorder<sup>(deprecated)</sup><a name=createaudiorecorder></a>
+## media.createAudioRecorder<sup>(deprecated)</sup>
 
 createAudioRecorder(): AudioRecorder
 
@@ -3581,7 +3613,7 @@ Only one **AudioRecorder** instance can be created per device.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [createAVRecorder](#mediacreateavrecorder9) instead.
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [createAVRecorder](#mediacreateavrecorder9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -3597,13 +3629,13 @@ Only one **AudioRecorder** instance can be created per device.
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder();
 ```
 
-## MediaErrorCode<sup>(deprecated)</sup><a name=mediaerrorcode></a>
+## MediaErrorCode<sup>(deprecated)</sup>
 
 Enumerates the media error codes.
 
 > **NOTE**
 >
-> This enum is supported since API version 8 and deprecated since API version 9. You are advised to use [Media Error Codes](../errorcodes/errorcode-media.md) instead.
+> This enum is supported since API version 8 and deprecated since API version 9. You are advised to use [Media Error Codes](#averrorcode9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -3628,25 +3660,29 @@ Enumerates the media error codes.
 
 Provides APIs to manage and play audio. Before calling any API in **AudioPlayer**, you must use [createAudioPlayer()](#mediacreateaudioplayerdeprecated) to create an **AudioPlayer** instance.
 
-### Attributes<a name=audioplayer_attributes></a>
+### Attributes<sup>(deprecated)</sup>
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
 | Name                           | Type                                                  | Readable| Writable| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, and WAV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
+| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, and WAV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of the audio file. This attribute is required when audio assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
 | loop                            | boolean                                                | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
 | currentTime                     | number                                                 | Yes  | No  | Current audio playback position, in ms.                      |
 | duration                        | number                                                 | Yes  | No  | Audio duration, in ms.                                |
-| state                           | [AudioState](#audiostate)                              | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
+| state                           | [AudioState](#audiostatedeprecated)                              | Yes  | No  | Audio playback state. This state cannot be used as the condition for triggering the call of **play()**, **pause()**, or **stop()**.|
 
-### play<a name=audioplayer_play></a>
+### play<sup>(deprecated)</sup>
 
 play(): void
 
-Starts to play an audio asset. This API can be called only after the [dataLoad](#audioplayer_on) event is triggered.
+Starts to play an audio asset. This API can be called only after the **'dataLoad'** event is triggered.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer.play](#play9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3659,11 +3695,15 @@ audioPlayer.on('play', () => {    // Set the 'play' event callback.
 audioPlayer.play();
 ```
 
-### pause<a name=audioplayer_pause></a>
+### pause<sup>(deprecated)</sup>
 
 pause(): void
 
 Pauses audio playback.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer.pause](#pause9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3676,11 +3716,15 @@ audioPlayer.on('pause', () => {    // Set the 'pause' event callback.
 audioPlayer.pause();
 ```
 
-### stop<a name=audioplayer_stop></a>
+### stop<sup>(deprecated)</sup>
 
 stop(): void
 
 Stops audio playback.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer.stop](#stop9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3693,11 +3737,15 @@ audioPlayer.on('stop', () => {    // Set the 'stop' event callback.
 audioPlayer.stop();
 ```
 
-### reset<sup>7+</sup><a name=audioplayer_reset></a>
+### reset<sup>(deprecated)</sup>
 
 reset(): void
 
 Resets the audio asset to be played.
+
+> **NOTE**
+>
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [AVPlayer.reset](#reset9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3710,11 +3758,15 @@ audioPlayer.on('reset', () => {    // Set the 'reset' event callback.
 audioPlayer.reset();
 ```
 
-### seek<a name=audioplayer_seek></a>
+### seek<sup>(deprecated)</sup>
 
 seek(timeMs: number): void
 
 Seeks to the specified playback position.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer.seek](#seek9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3737,11 +3789,15 @@ audioPlayer.on('timeUpdate', (seekDoneTime: number) => {    // Set the 'timeUpda
 audioPlayer.seek(30000); // Seek to 30000 ms.
 ```
 
-### setVolume<a name=audioplayer_setvolume></a>
+### setVolume<sup>(deprecated)</sup>
 
 setVolume(vol: number): void
 
 Sets the volume.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer.setVolume](#setvolume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3760,11 +3816,15 @@ audioPlayer.on('volumeChange', () => {    // Set the 'volumeChange' event callba
 audioPlayer.setVolume(1);    // Set the volume to 100%.
 ```
 
-### release<a name=audioplayer_release></a>
+### release<sup>(deprecated)</sup>
 
 release(): void
 
 Releases the audio playback resources.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer.release](#release9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3775,11 +3835,15 @@ audioPlayer.release();
 audioPlayer = undefined;
 ```
 
-### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription1></a>
+### getTrackDescription<sup>(deprecated)</sup>
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
-Obtains the audio track information. This API uses an asynchronous callback to return the result. It can be called only after the [dataLoad](#audioplayer_on) event is triggered.
+Obtains the audio track information. This API uses an asynchronous callback to return the result. It can be called only after the **'dataLoad'** event is triggered.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.getTrackDescription](#gettrackdescription9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3801,11 +3865,15 @@ audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.Medi
 });
 ```
 
-### getTrackDescription<sup>8+</sup><a name=audioplayer_gettrackdescription2></a>
+### getTrackDescription<sup>(deprecated)</sup>
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
-Obtains the audio track information. This API uses a promise to return the result. It can be called only after the [dataLoad](#audioplayer_on) event is triggered.
+Obtains the audio track information. This API uses a promise to return the result. It can be called only after the **'dataLoad'** event is triggered.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.getTrackDescription](#gettrackdescription9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3825,11 +3893,15 @@ audioPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) 
 });
 ```
 
-### on('bufferingUpdate')<sup>8+</sup>
+### on('bufferingUpdate')<sup>(deprecated)</sup>
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
 Subscribes to the audio buffering update event. This API works only under online playback.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.on('bufferingUpdate')](#onbufferingupdate9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3849,11 +3921,15 @@ audioPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: num
 });
 ```
 
- ### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')<a name = audioplayer_on></a>
+### on('play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange')<sup>(deprecated)</sup>
 
 on(type: 'play' | 'pause' | 'stop' | 'reset' | 'dataLoad' | 'finish' | 'volumeChange', callback: () => void): void
 
 Subscribes to the audio playback events.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer.on('stateChange')](#onstatechange9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3861,7 +3937,7 @@ Subscribes to the audio playback events.
 
 | Name  | Type      | Mandatory| Description                                                        |
 | -------- | ---------- | ---- | ------------------------------------------------------------ |
-| type     | string     | Yes  | Event type. The following events are supported:<br>- 'play': triggered when the [play()](#audioplayer_play) API is called and audio playback starts.<br>- 'pause': triggered when the [pause()](#audioplayer_pause) API is called and audio playback is paused.<br>- 'stop': triggered when the [stop()](#audioplayer_stop) API is called and audio playback stops.<br>- 'reset': triggered when the [reset()](#audioplayer_reset) API is called and audio playback is reset.<br>- 'dataLoad': triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- 'finish': triggered when the audio playback is finished.<br>- 'volumeChange': triggered when the [setVolume()](#audioplayer_setvolume) API is called and the playback volume is changed.|
+| type     | string     | Yes  | Event type. The following events are supported:<br>- 'play': triggered when the **play()** API is called and audio playback starts.<br>- 'pause': triggered when the **pause()** API is called and audio playback is paused.<br>- 'stop': triggered when the **stop()** API is called and audio playback stops.<br>- 'reset': triggered when the **reset()** API is called and audio playback is reset.<br>- 'dataLoad': triggered when the audio data is loaded, that is, when the **src** attribute is configured.<br>- 'finish': triggered when the audio playback is finished.<br>- 'volumeChange': triggered when the **setVolume()** API is called and the playback volume is changed.|
 | callback | () => void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
@@ -3923,11 +3999,15 @@ fs.open(path).then((file) => {
 });
 ```
 
-### on('timeUpdate')
+### on('timeUpdate')<sup>(deprecated)</sup>
 
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
 Subscribes to the **'timeUpdate'** event. This event is reported every second when the audio playback is in progress.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer.on('timeUpdate')](#ontimeupdate9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3951,11 +4031,15 @@ audioPlayer.on('timeUpdate', (newTime: number) => {    // Set the 'timeUpdate' e
 audioPlayer.play();    // The 'timeUpdate' event is triggered when the playback starts.
 ```
 
-### on('error')
+### on('error')<sup>(deprecated)</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to audio playback error events. After an error event is reported, you must handle the event and exit the playback.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVPlayer.on('error')](#onerror9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
@@ -3993,38 +4077,42 @@ Enumerates the audio playback states. You can obtain the state through the **sta
 | stopped | string | Audio playback is stopped. The audio player is in this state after the **'stop'** event is triggered.     |
 | error   | string | Audio playback is in the error state.                                    |
 
-## VideoPlayer<sup>(deprecated)</sup><a name=videoplayer></a>
+## VideoPlayer<sup>(deprecated)</sup>
 
 > **NOTE**
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer](#avplayer9) instead.
 
-Provides APIs to manage and play video. Before calling any API of **VideoPlayer**, you must use [createVideoPlayer()](#createvideoplayer) to create a **VideoPlayer** instance.
+Provides APIs to manage and play video. Before calling any API of **VideoPlayer**, you must use [createVideoPlayer()](#mediacreatevideoplayerdeprecated) to create a **VideoPlayer** instance.
 
-### Attributes<a name=videoplayer_attributes></a>
+### Attributes
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
 | Name                           | Type                                                  | Readable| Writable| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>                | string                                                 | Yes  | Yes  | Video URL. The mainstream video formats (MP4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http://xx<br>3. HTTPS: https://xx<br>4. HLS: http://xx or https://xx<br>|
+| url<sup>8+</sup>                | string                                                 | Yes  | Yes  | Video URL. The mainstream video formats (MP4, MPEG-TS, WebM, and MKV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>|
 | fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of a video file. This attribute is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
 | loop<sup>8+</sup>               | boolean                                                | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
 | videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | Yes  | Yes  | Video scale type.                                              |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
 | currentTime<sup>8+</sup>        | number                                                 | Yes  | No  | Current video playback position, in ms.                      |
 | duration<sup>8+</sup>           | number                                                 | Yes  | No  | Video duration, in ms. The value **-1** indicates the live mode.            |
-| state<sup>8+</sup>              | [VideoPlayState](#videoplayerstate)                    | Yes  | No  | Video playback state.                                            |
+| state<sup>8+</sup>              | [VideoPlayState](#videoplaystatedeprecated)                    | Yes  | No  | Video playback state.                                            |
 | width<sup>8+</sup>              | number                                                 | Yes  | No  | Video width, in pixels.                                  |
 | height<sup>8+</sup>             | number                                                 | Yes  | No  | Video height, in pixels.                                  |
 
-### setDisplaySurface<sup>8+</sup>
+### setDisplaySurface<sup>(deprecated)</sup>
 
 setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
 Sets **SurfaceId**. This API uses an asynchronous callback to return the result.
 
 *Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.surfaceId](#attributes) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4048,13 +4136,17 @@ videoPlayer.setDisplaySurface(surfaceId, (err: BusinessError) => {
 });
 ```
 
-### setDisplaySurface<sup>8+</sup>
+### setDisplaySurface<sup>(deprecated)</sup>
 
 setDisplaySurface(surfaceId: string): Promise\<void>
 
 Sets **SurfaceId**. This API uses a promise to return the result.
 
 *Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.surfaceId](#attributes) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4081,11 +4173,15 @@ videoPlayer.setDisplaySurface(surfaceId).then(() => {
 });
 ```
 
-### prepare<sup>8+</sup>
+### prepare<sup>(deprecated)</sup>
 
 prepare(callback: AsyncCallback\<void>): void
 
 Prepares for video playback. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.prepare](#prepare9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4107,11 +4203,15 @@ videoPlayer.prepare((err: BusinessError) => {
 });
 ```
 
-### prepare<sup>8+</sup>
+### prepare<sup>(deprecated)</sup>
 
 prepare(): Promise\<void>
 
 Prepares for video playback. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.prepare](#prepare9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4131,11 +4231,15 @@ videoPlayer.prepare().then(() => {
 });
 ```
 
-### play<sup>8+</sup>
+### play<sup>(deprecated)</sup>
 
-play(callback: AsyncCallback\<void>): void;
+play(callback: AsyncCallback\<void>): void
 
 Starts to play video assets. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.play](#play9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4157,11 +4261,15 @@ videoPlayer.play((err: BusinessError) => {
 });
 ```
 
-### play<sup>8+</sup>
+### play<sup>(deprecated)</sup>
 
-play(): Promise\<void>;
+play(): Promise\<void>
 
 Starts to play video assets. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.play](#play9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4181,11 +4289,14 @@ videoPlayer.play().then(() => {
 });
 ```
 
-### pause<sup>8+</sup>
+### pause<sup>(deprecated)</sup>
 
 pause(callback: AsyncCallback\<void>): void
 
 Pauses video playback. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.pause](#pause9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4207,11 +4318,15 @@ videoPlayer.pause((err: BusinessError) => {
 });
 ```
 
-### pause<sup>8+</sup>
+### pause<sup>(deprecated)</sup>
 
 pause(): Promise\<void>
 
 Pauses video playback. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.pause](#pause9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4231,11 +4346,15 @@ videoPlayer.pause().then(() => {
 });
 ```
 
-### stop<sup>8+</sup>
+### stop<sup>(deprecated)</sup>
 
 stop(callback: AsyncCallback\<void>): void
 
 Stops video playback. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.stop](#stop9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4257,11 +4376,15 @@ videoPlayer.stop((err: BusinessError) => {
 });
 ```
 
-### stop<sup>8+</sup>
+### stop<sup>(deprecated)</sup>
 
 stop(): Promise\<void>
 
 Stops video playback. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.stop](#stop9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4281,11 +4404,15 @@ videoPlayer.stop().then(() => {
 });
 ```
 
-### reset<sup>8+</sup>
+### reset<sup>(deprecated)</sup>
 
 reset(callback: AsyncCallback\<void>): void
 
 Resets the video asset to be played. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.reset](#reset9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4307,11 +4434,15 @@ videoPlayer.reset((err: BusinessError) => {
 });
 ```
 
-### reset<sup>8+</sup>
+### reset<sup>(deprecated)</sup>
 
 reset(): Promise\<void>
 
 Resets the video asset to be played. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.reset](#reset9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4331,11 +4462,15 @@ videoPlayer.reset().then(() => {
 });
 ```
 
-### seek<sup>8+</sup>
+### seek<sup>(deprecated)</sup>
 
 seek(timeMs: number, callback: AsyncCallback\<number>): void
 
 Seeks to the specified playback position. The previous key frame at the specified position is played. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.seek](#seek9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4349,6 +4484,18 @@ Seeks to the specified playback position. The previous key frame at the specifie
 **Example**
 
 ```ts
+import media from '@ohos.multimedia.media'
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
+
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
   if (err == null) {
@@ -4359,11 +4506,15 @@ videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
 });
 ```
 
-### seek<sup>8+</sup>
+### seek<sup>(deprecated)</sup>
 
 seek(timeMs: number, mode:SeekMode, callback: AsyncCallback\<number>): void
 
 Seeks to the specified playback position. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.seek](#seek9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4379,6 +4530,16 @@ Seeks to the specified playback position. This API uses an asynchronous callback
 
 ```ts
 import media from '@ohos.multimedia.media'
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
   if (err == null) {
@@ -4389,11 +4550,15 @@ videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, r
 });
 ```
 
-### seek<sup>8+</sup>
+### seek<sup>(deprecated)</sup>
 
 seek(timeMs: number, mode?:SeekMode): Promise\<number>
 
 Seeks to the specified playback position. If **mode** is not specified, the previous key frame at the specified position is played. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.seek](#seek9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4414,6 +4579,16 @@ Seeks to the specified playback position. If **mode** is not specified, the prev
 
 ```ts
 import media from '@ohos.multimedia.media'
+
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime indicates the position after the seek operation is complete.
   console.info('seek success');
@@ -4428,11 +4603,15 @@ videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: nu
 });
 ```
 
-### setVolume<sup>8+</sup>
+### setVolume<sup>(deprecated)</sup>
 
 setVolume(vol: number, callback: AsyncCallback\<void>): void
 
 Sets the volume. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.setVolume](#setvolume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4456,11 +4635,15 @@ videoPlayer.setVolume(vol, (err: BusinessError) => {
 });
 ```
 
-### setVolume<sup>8+</sup>
+### setVolume<sup>(deprecated)</sup>
 
 setVolume(vol: number): Promise\<void>
 
 Sets the volume. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.setVolume](#setvolume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4487,11 +4670,15 @@ videoPlayer.setVolume(vol).then(() => {
 });
 ```
 
-### release<sup>8+</sup>
+### release<sup>(deprecated)</sup>
 
 release(callback: AsyncCallback\<void>): void
 
 Releases the video playback resources. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.release](#release9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4513,11 +4700,15 @@ videoPlayer.release((err: BusinessError) => {
 });
 ```
 
-### release<sup>8+</sup>
+### release<sup>(deprecated)</sup>
 
 release(): Promise\<void>
 
 Releases the video playback resources. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.release](#release9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4537,11 +4728,15 @@ videoPlayer.release().then(() => {
 });
 ```
 
-### getTrackDescription<sup>8+</sup>
+### getTrackDescription<sup>(deprecated)</sup>
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
 Obtains the video track information. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.getTrackDescription](#gettrackdescription9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4563,11 +4758,15 @@ videoPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.Medi
 });
 ```
 
-### getTrackDescription<sup>8+</sup>
+### getTrackDescription<sup>(deprecated)</sup>
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
 Obtains the video track information. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.getTrackDescription](#gettrackdescription9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4591,11 +4790,15 @@ videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) 
 });
 ```
 
-### setSpeed<sup>8+</sup>
+### setSpeed<sup>(deprecated)</sup>
 
 setSpeed(speed:number, callback: AsyncCallback\<number>): void
 
 Sets the video playback speed. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.setSpeed](#setspeed9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4610,8 +4813,17 @@ Sets the video playback speed. This API uses an asynchronous callback to return 
 
 ```ts
 import media from '@ohos.multimedia.media'
-let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
   if (err == null) {
     console.info('setSpeed success!');
@@ -4621,11 +4833,15 @@ videoPlayer.setSpeed(speed, (err: BusinessError, result: number) => {
 });
 ```
 
-### setSpeed<sup>8+</sup>
+### setSpeed<sup>(deprecated)</sup>
 
 setSpeed(speed:number): Promise\<number>
 
 Sets the video playback speed. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.setSpeed](#setspeed9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4645,8 +4861,17 @@ Sets the video playback speed. This API uses a promise to return the result.
 
 ```ts
 import media from '@ohos.multimedia.media'
-let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 
+let videoPlayer: media.VideoPlayer;
+media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
+  if (video != null) {
+    videoPlayer = video;
+    console.info('video createVideoPlayer success');
+  } else {
+    console.error(`video createVideoPlayer fail, error:${error}`);
+  }
+});
+let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 videoPlayer.setSpeed(speed).then((result: number) => {
   console.info('setSpeed success');
 }).catch((error: BusinessError) => {
@@ -4654,11 +4879,15 @@ videoPlayer.setSpeed(speed).then((result: number) => {
 });
 ```
 
-### on('playbackCompleted')<sup>8+</sup>
+### on('playbackCompleted')<sup>(deprecated)</sup>
 
 on(type: 'playbackCompleted', callback: Callback\<void>): void
 
 Subscribes to the video playback completion event.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.on('stateChange')](#onstatechange9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4677,11 +4906,15 @@ videoPlayer.on('playbackCompleted', () => {
 });
 ```
 
-### on('bufferingUpdate')<sup>8+</sup>
+### on('bufferingUpdate')<sup>(deprecated)</sup>
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
 Subscribes to the video buffering update event. Only network playback supports this subscription.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.on('bufferingUpdate')](#onbufferingupdate9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4701,11 +4934,15 @@ videoPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: num
 });
 ```
 
-### on('startRenderFrame')<sup>8+</sup>
+### on('startRenderFrame')<sup>(deprecated)</sup>
 
 on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 Subscribes to the frame rendering start event.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.on('startRenderFrame')](#onstartrenderframe9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4724,11 +4961,15 @@ videoPlayer.on('startRenderFrame', () => {
 });
 ```
 
-### on('videoSizeChanged')<sup>8+</sup>
+### on('videoSizeChanged')<sup>(deprecated)</sup>
 
 on(type: 'videoSizeChanged', callback: (width: number, height: number) => void): void
 
 Subscribes to the video width and height change event.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.on('videoSizeChange')](#onvideosizechange9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4748,11 +4989,15 @@ videoPlayer.on('videoSizeChanged', (width: number, height: number) => {
 });
 ```
 
-### on('error')<sup>8+</sup>
+### on('error')<sup>(deprecated)</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to video playback error events. After an error event is reported, you must handle the event and exit the playback.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.on('error')](#onerror9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -4772,7 +5017,7 @@ videoPlayer.on('error', (error: BusinessError) => {      // Set the 'error' even
 videoPlayer.url = 'fd://error';  // Set an incorrect URL to trigger the 'error' event.
 ```
 
-## VideoPlayState<sup>(deprecated)</sup><a name=videoplayerstate></a>
+## VideoPlayState<sup>(deprecated)</sup>
 
 Enumerates the video playback states. You can obtain the state through the **state** attribute.
 
@@ -4797,13 +5042,17 @@ Enumerates the video playback states. You can obtain the state through the **sta
 >
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder](#avrecorder9) instead.
 
-Implements audio recording. Before calling any API of **AudioRecorder**, you must use [createAudioRecorder()](#mediacreateaudiorecorder) to create an **AudioRecorder** instance.
+Implements audio recording. Before calling any API of **AudioRecorder**, you must use [createAudioRecorder()](#mediacreateaudiorecorderdeprecated) to create an **AudioRecorder** instance.
 
-### prepare<a name=audiorecorder_prepare></a>
+### prepare<sup>(deprecated)</sup>
 
 prepare(config: AudioRecorderConfig): void
 
 Prepares for recording.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder.prepare](#prepare9-2) instead.
 
 **Required permissions:** ohos.permission.MICROPHONE
 
@@ -4833,12 +5082,15 @@ audioRecorder.on('prepare', () => {    // Set the 'prepare' event callback.
 audioRecorder.prepare(audioRecorderConfig);
 ```
 
-
-### start<a name=audiorecorder_start></a>
+### start<sup>(deprecated)</sup>
 
 start(): void
 
-Starts audio recording. This API can be called only after the [prepare](#audiorecorder_on) event is triggered.
+Starts audio recording. This API can be called only after the **'prepare'** event is triggered.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder.start](#start9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4851,11 +5103,15 @@ audioRecorder.on('start', () => {    // Set the 'start' event callback.
 audioRecorder.start();
 ```
 
-### pause<a name=audiorecorder_pause></a>
+### pause<sup>(deprecated)</sup>
 
 pause():void
 
-Pauses audio recording. This API can be called only after the [start](#audiorecorder_on) event is triggered.
+Pauses audio recording. This API can be called only after the **'start'** event is triggered.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder.pause](#pause9-2) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4868,11 +5124,15 @@ audioRecorder.on('pause', () => {    // Set the 'pause' event callback.
 audioRecorder.pause();
 ```
 
-### resume<a name=audiorecorder_resume></a>
+### resume<sup>(deprecated)</sup>
 
 resume():void
 
-Resumes audio recording. This API can be called only after the [pause](#audiorecorder_on) event is triggered.
+Resumes audio recording. This API can be called only after the **'pause'** event is triggered.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder.resume](#resume9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4885,11 +5145,15 @@ audioRecorder.on('resume', () => { // Set the 'resume' event callback.
 audioRecorder.resume();
 ```
 
-### stop<a name=audiorecorder_stop></a>
+### stop<sup>(deprecated)</sup>
 
 stop(): void
 
 Stops audio recording.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder.stop](#stop9-2) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4902,11 +5166,15 @@ audioRecorder.on('stop', () => {    // Set the 'stop' event callback.
 audioRecorder.stop();
 ```
 
-### release<a name=audiorecorder_release></a>
+### release<sup>(deprecated)</sup>
 
 release(): void
 
 Releases the audio recording resources.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder.release](#release9-2) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4920,13 +5188,17 @@ audioRecorder.release();
 audioRecorder = undefined;
 ```
 
-### reset<a name=audiorecorder_reset></a>
+### reset<sup>(deprecated)</sup>
 
 reset(): void
 
 Resets audio recording.
 
-Before resetting audio recording, you must call [stop()](#audiorecorder_stop) to stop recording. After audio recording is reset, you must call [prepare()](#audiorecorder_prepare) to set the recording parameters for another recording.
+Before resetting audio recording, you must call **stop()** to stop recording. After audio recording is reset, you must call **prepare()** to set the recording configurations for another recording.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder.reset](#reset9-2) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4939,11 +5211,15 @@ audioRecorder.on('reset', () => {    // Set the 'reset' event callback.
 audioRecorder.reset();
 ```
 
-### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')<a name=audiorecorder_on></a>
+### on('prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset')<sup>(deprecated)</sup>
 
 on(type: 'prepare' | 'start' | 'pause' | 'resume' | 'stop' | 'release' | 'reset', callback: () => void): void
 
 Subscribes to the audio recording events.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder.on('stateChange')](#onstatechange9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 
@@ -4951,7 +5227,7 @@ Subscribes to the audio recording events.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The following events are supported:<br>- 'prepare': triggered when the [prepare](#audiorecorder_prepare) API is called and the audio recording parameters are set.<br>- 'start': triggered when the [start](#audiorecorder_start) API is called and audio recording starts.<br>- 'pause': triggered when the [pause](#audiorecorder_pause) API is called and audio recording is paused.<br>- 'resume': triggered when the [resume](#audiorecorder_resume) API is called and audio recording is resumed.<br>- 'stop': triggered when the [stop](#audiorecorder_stop) API is called and audio recording stops.<br>- 'release': triggered when the [release](#audiorecorder_release) API is called and the recording resources are released.<br>- 'reset': triggered when the [reset](#audiorecorder_reset) API is called and audio recording is reset.|
+| type     | string   | Yes  | Event type. The following events are supported:<br>- 'prepare': triggered when the **prepare()** API is called and the audio recording parameters are set.<br>- 'start': triggered when the **start()** API is called and audio recording starts.<br>- 'pause': triggered when the **pause()** API is called and audio recording is paused.<br>- 'resume': triggered when the **resume()** API is called and audio recording is resumed.<br>- 'stop': triggered when the **stop()** API is called and audio recording stops.<br>- 'release': triggered when the **release()** API is called and the recording resources are released.<br>- 'reset': triggered when the **reset()** API is called and audio recording is reset.|
 | callback | ()=>void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
@@ -4995,11 +5271,15 @@ audioRecorder.on('reset', () => {                                               
 audioRecorder.prepare(audioRecorderConfig)                                       // Set recording parameters and trigger the 'prepare' event callback.     
 ```
 
-### on('error')
+### on('error')<sup>(deprecated)</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to audio recording error events. After an error event is reported, you must handle the event and exit the recording.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AVRecorder.on('error')](#onerror9-1) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.AudioRecorder
 

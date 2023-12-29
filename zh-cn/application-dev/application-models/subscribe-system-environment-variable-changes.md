@@ -6,7 +6,7 @@
 
 系统配置的变化通常由“设置”中的选项或“控制中心”中的图标触发。订阅系统环境变量变化，可以使应用程序更加智能地响应系统环境变化，从而提供更好的用户体验。查看当前支持订阅变化的系统环境变量，请参见[Configuration](../reference/apis/js-apis-app-ability-configuration.md)。
 
-基于OpenHarmony应用模型，可以通过以下几种方式来实现订阅系统环境变量的变化。
+基于当前的应用模型，可以通过以下几种方式来实现订阅系统环境变量的变化。
 
 - [使用ApplicationContext订阅回调](#使用applicationcontext订阅回调)
 - [在AbilityStage组件容器中订阅回调](#在abilitystage组件容器中订阅回调)

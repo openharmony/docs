@@ -87,11 +87,11 @@ interface ParticleOptions<
 | -------- | -------- | -------- | -------- |
 | emitter | [EmitterOptions](#emitteroptions)<[PARTICLE](#particletype)> | Yes| Particle emitter.|
 | color | [ParticleColorPropertyOptions](#particlecolorpropertyoptions)<[COLOR_UPDATER](#particleupdater)> | No| Particle color.<br>**NOTE**<br>Default value: **{ range:[Color.White,Color.White] }.** Colors cannot be set for image particles.|
-| opacity | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [OPACITY_UPDATER](#particleupdater)> | No| Particle opacity.<br>Default value: **{range: [1.0,1.0] }**|
-| scale | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [SCALE_UPDATER](#particleupdater)> | No| Particle scale.<br>Default value: **{range: [1.0,1.0] }**|
-| velocity | {<br>speed: [number, number];<br>angle: [number, number];<br>} |No| Particle velocity.<br>**NOTE**<br>**speed** indicates the time rate at which the particle moves, and **angle** indicates the direction (in angles) in which the particle moves.<br>Default value: **{speed: [0.0,0.0],angle: [0.0,0.0] }**|
-| acceleration | {<br>speed?: [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_SPEED_UPDATER](#particleupdater)>;<br>angle?:  [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_ANGLE_UPDATER](#particleupdater)>;<br>} | No| Particle acceleration.<br>**NOTE**<br>**speed** indicates the acceleration speed, and **angle** indicates the acceleration direction (in angles).<br>Default value: **{speed:{range: [0.0,0.0] },angle:{range: [0.0,0.0] }}**|
-| spin | [ParticlePropertyOptions](#particlepropertyoptions)<number, [SPIN_UPDATER](#particleupdater)> | No| Particle spin angle.<br>Default value: **{range: [0.0,0.0] }**|
+| opacity | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [OPACITY_UPDATER](#particleupdater)> | No| Particle opacity.<br>Default value: **{ range:[1.0,1.0] }**|
+| scale | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [SCALE_UPDATER](#particleupdater)> | No| Particle scale.<br>Default value: **{ range:[1.0,1.0] }**|
+| velocity | {<br>speed: [number, number];<br>angle: [number, number];<br>} |No| Particle velocity.<br>**NOTE**<br>**speed** indicates the time rate at which the particle moves. **angle** indicates the direction (in angles) in which the particle moves, with the geometric center of the element as the coordinate origin and the horizontal direction as the x-axis. A positive number indicates clockwise rotation.|<br>Default value: **{speed: [0.0,0.0],angle: [0.0,0.0] }**|
+| acceleration | {<br>speed?: [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_SPEED_UPDATER](#particleupdater)>;<br>angle?:  [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_ANGLE_UPDATER](#particleupdater)>;<br>} | No| Particle acceleration.<br>**NOTE**<br>**speed** indicates the acceleration speed, and **angle** indicates the acceleration direction (in angles).<br>Default value: **{ speed:{range:[0.0,0.0]},angle:{range:[0.0,0.0]} }**|
+| spin | [ParticlePropertyOptions](#particlepropertyoptions)<number, [SPIN_UPDATER](#particleupdater)> | No| Particle spin angle.<br>Default value: **{range:[0.0,0.0]}**<br>Direction: A positive number indicates clockwise spinning, and a negative number indicates anticlockwise spinning.|
 
 
 ## EmitterOptions
@@ -113,7 +113,7 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
 ```
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| particle | {<br>type: [PARTICLE](#particletype),<br>config: [ParticleConfigs](#particleconfigs),<br>count: number,<br>lifetime?: number<br>} | Yes| Particle configuration.<br>- **type**: particle type, which can be **IMAGE** or **POINT**.<br>- **config**: configuration of the particle type.<br>- The value type of **config** is subject to the value of **type**.<br>1. If **type** is **ParticleType.POINT**, the **config** type is [PointParticleParameters](#pointparticleparameters).<br>2. If **type** is **ParticleType.IMAGE**, the **config** type is [ImageParticleParameters](#imageparticleparameters).<br>- **count**: number of particles. The value is greater than or equal to -1. The value **-1** indicates that the number of particles is infinite.<br>- **lifetime**: lifetime of a single particle. The default value is **1000** (that is, 1000 ms, 1s). The value is greater than or equal to -1. The value **-1** indicates that the lifetime of the particle is infinite.|
+| particle | {<br>type: [PARTICLE](#particletype),<br>config: [ParticleConfigs](#particleconfigs),<br>count: number,<br>lifetime?: number<br>} | Yes| Particle configuration.<br>- **type**: particle type, which can be **IMAGE** or **POINT**.<br>- **config**: configuration of the particle type.<br>- The value type of **config** is subject to the value of **type**.<br>1. If **type** is **ParticleType.POINT**, the **config** type is [PointParticleParameters](#pointparticleparameters).<br>2. If **type** is **ParticleType.IMAGE**, the **config** type is [ImageParticleParameters](#imageparticleparameters).<br>- **count**: number of particles. The value is greater than or equal to -1. The value **-1** indicates that the number of particles is infinite. Default value: **0**<br>- **lifetime**: lifetime of a single particle. The default value is **1000** (that is, 1000 ms, 1s). The value is greater than or equal to -1. The value **-1** indicates that the lifetime of the particle is infinite. A value greater than -1 evaluates to the default value.|
 | emitRate | number | No| Emit rate (that is, the number of particles emitted per second). Default value: **5**|
 | shape | [ParticleEmitterShape](#particleemittershape) | No| Emitter shape. Default value: **ParticleEmitterShape.RECTANGLE**|
 | position | [Dimension, Dimension] | No| Emitter position (distance from the upper left corner of the component).<br>Default value: **[0.0, 0.0]**|
@@ -142,7 +142,7 @@ interface PointParticleParameters {
 ```
 | Parameter  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
-| radius      | [VP](ts-types.md#vp)| Yes   | Particle radius.|
+| radius      | [VP](ts-types.md#vp10)| Yes   | Particle radius.|
 
 ## ImageParticleParameters
 ```typescript
@@ -154,7 +154,7 @@ interface ImageParticleParameters {
 ```
 | Parameter  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
-| src      | [ResourceStr](ts-types.md#resourcestr) | Yes   | Image path. SVG and GIF images are not supported.|
+| src      | [ResourceStr](ts-types.md#resourcestr) | Yes   | Image path. SVG images are not supported.|
 | size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\]| Yes   | Image size.|
 | objectFit| [ImageFit](ts-appendix-enums.md#imagefit)| No   | Image display mode.|
 
@@ -191,7 +191,7 @@ interface ParticleColorPropertyUpdaterConfigs {
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | [ParticleUpdater.NONE]|void | Yes| The color does not change. The default value is **undefined**.|
-| [ParticleUpdater.RANDOM] | {<br>  r: [number, number];<br>  g: [number, number];<br>  b: [number, number];<br>  a: [number, number];<br>} | Yes| The color changes randomly. The color changes randomly.The target color is obtained by changing the value of each of the R, R, B, A channels and taking in the current color value.|
+| [ParticleUpdater.RANDOM] | {<br>  r: [number, number];<br>  g: [number, number];<br>  b: [number, number];<br>  a: [number, number];<br>} | Yes| The color changes randomly, with the per-second change difference being a value randomly generated from the range. The target color is obtained by applying the change difference to the current color value of each of the R, G, B, A channels.  |
 | [ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<[ResourceColor](ts-types.md#resourcecolor)\>> | Yes| The color changes with the animation curve. The array type indicates that multiple animation segments can be set for the current attribute, for example, 0-3000 ms, 3000-5000 ms, and 5000-8000 ms.|
 
 ## ParticlePropertyOptions
@@ -206,7 +206,7 @@ interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
 ```
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [number, number] | Yes| Initial attribute value range of the particle. The initial attribute value of particles generated by the particle emitter is randomly selected in this range.<br>**NOTE**<br>The default values of different attributes are different:<br>1. Default value of the **opacity** attribute: **range: [1.0,1.0]**<br>2. Default value of the **scale** attribute: **range:[1.01.0]**<br>3. Default value of the acceleration **speed** attribute: **range: [0.0,0.0]**<br>4. Default value of the acceleration **angle** attribute: **range:[0.0,0.0]**<br>5. Default value of the **spin** attribute: **range: [0.0,0.0]**|
+| range | [number, number] | Yes| Initial attribute value range of the particle. The initial attribute value of particles generated by the particle emitter is randomly selected in this range.<br>**NOTE**<br>If an attribute is set to an invalid value, the default value will be used. If the maximum value is less than the minimum value, the default range will be used.<br>The default value varies by attribute:<br>1. **opacity** attribute: **range:[1.0,1.0]**; the value ranges from 0 to 1; the default value is **0.0**.<br>2. **scale** attribute: **range:[1.0,1.0]**; the value is greater than or equal to 0; the default value is **1.0**.<br>3. **speed** attribute in **acceleration**: **range:[0.0,0.0]**; the value is greater than or equal to 0; the default value is **0.0**.<br>4. **angle** attribute in **acceleration**: **range:[0.0,0.0]**; the value is greater than or equal to 0; the default value is **0.0**.<br>5. **spin** attribute: **range:[0.0,0.0]**; the default value is **0.0**.|
 | updater | {type: [UPDATER](#particleupdater);config: [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[UPDATER];} | No| How the attribute is updated. The available options of **type** are as follows:<br>1. **ParticleUpdater.NONE**: The attribute does not change. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.NONE].<br>2. **ParticleUpdater.RANDOM**: The attribute changes randomly. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.RANDOM].<br>3. **ParticleUpdater.CURVE**: The attribute changes with the animation curve. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.CURVE].|
 
 
@@ -220,8 +220,8 @@ interface ParticlePropertyUpdaterConfigs<T> {
 ```
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| [[ParticleUpdater.NONE]|void | Yes| The attribute does not change. The default value is **undefined**.|
-| [ParticleUpdater.RANDOM] | [number, number] | Yes| The attribute changes randomly, with the change difference being a value randomly generated from the range.<br>The target attribute value is obtained by applying the change difference to the current attribute value. For example, if the current attribute value is **0.2** and **config** is set to **[0.1,1.0]**, then:<br>1. When the random change difference is 0.5, the target attribute value is 0.2 + 0.5 = 0.7.<br>2. The change difference may also be a negative value. For example, if the current attribute value is **0.2** and **config** is set to **[-3.0,2.0]**, then when the random change difference is **-2.0**, the target attribute value is 0.2 - 2.0 = -1.8.<br>**NOTE**<br>**config** sets the value range of the change difference. While the change difference does not have a maximum or minimum value limit, the target attribute value does. Therefore, if the target attribute value is greater than the maximum attribute value, the maximum attribute value will be used instead; if the target attribute value is less than the minimum attribute value, the minimum attribute value will be used instead.<br>For example, if the value range of **opacity** is **[0.0,1.0]**, then if the target attribute value is greater than 1.0, **1.0** will be used instead.|
+| [ParticleUpdater.NONE]|void | Yes| The attribute does not change. The default value is **undefined**.|
+| [ParticleUpdater.RANDOM] | [number, number] | Yes| The attribute changes randomly, with the per-second change difference being a value randomly generated from the range.<br>The target attribute value is obtained by applying the change difference to the current attribute value. For example, if the current attribute value is **0.2** and **config** is set to **[0.1,1.0]**, then:<br>1. When the random change difference is 0.5, the target attribute value is 0.2 + 0.5 = 0.7.<br>2. The change difference may also be a negative value. For example, if the current attribute value is **0.2** and **config** is set to **[-3.0,2.0]**, then when the random change difference is **-2.0**, the target attribute value is 0.2 - 2.0 = -1.8.<br>**NOTE**<br>**config** sets the value range of the change difference. While the change difference does not have a maximum or minimum value limit, the target attribute value does. Therefore, if the target attribute value is greater than the maximum attribute value, the maximum attribute value will be used instead; if the target attribute value is less than the minimum attribute value, the minimum attribute value will be used instead.<br>For example, if the value range of **opacity** is **[0.0,1.0]**, then if the target attribute value is greater than 1.0, **1.0** will be used instead.|
 | [ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<number\>> | Yes| The attribute changes with the animation curve. The array type indicates that multiple animation segments can be set for the current attribute, for example, 0-3000 ms, 3000-5000 ms, and 5000-8000 ms.|
 
 
@@ -238,8 +238,8 @@ interface ParticlePropertyAnimation<T> {
 ```
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|from| T | Yes| Initial value of the attribute.|
-| to | T | Yes| Target value of the attribute.|
+|from| T | Yes| Initial value of the attribute. If the value is invalid, the default value will be used.|
+| to | T | Yes| Target value of the attribute. If the value is invalid, the default value will be used.|
 |startMillis|number | Yes| Start time of the animation.|
 |endMillis|number | Yes| End time of the animation.|
 |curve|[Curve](ts-appendix-enums.md#curve) \| [ICurve](../apis/js-apis-curve.md#icurve)| No| Animation curve.<br>Default value: **Curve.Linear**|
@@ -346,7 +346,7 @@ struct ParticleExample {
             }
           },
           opacity:{
-            range: [0.0,0.0],// The initial value of particle opacity is randomly generated from 0.0 to 1.0.
+            range:[0.0,1.0],// The initial value of particle opacity is randomly generated from 0.0 to 1.0.
             updater:{
               type:ParticleUpdater.CURVE,// Opacity changes randomly.
               config:[

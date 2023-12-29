@@ -11,6 +11,10 @@
 
 仅可包含子组件[TabContent](ts-container-tabcontent.md)。
 
+>  **说明：**
+>
+>  Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
+
 
 ## 接口
 
@@ -21,7 +25,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 | 参数名         | 参数类型                              | 必填   | 参数描述                                     |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
-| index       | number                            | 否    | 设置初始页签索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>设置不同值时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>设置不同值时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
 
 ## BarPosition枚举说明
@@ -41,9 +45,9 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 | vertical                         | boolean                                  | 设置为false是为横向Tabs，设置为true时为纵向Tabs。<br/>默认值：false |
 | scrollable                       | boolean                                  | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。<br/>默认值：true |
 | barMode                          | [BarMode](#barmode枚举说明),[ScrollableBarModeOptions](#scrollablebarmodeoptions10对象说明) | TabBar布局模式，BarMode为必选项，ScrollableBarModeOptions为可选项，具体描述见BarMode枚举说明、ScrollableBarModeOptions对象说明。从API version 10开始，支持ScrollableBarModeOptions参数。其中ScrollableBarModeOptions参数仅Scrollable模式下有效，非必填参数。<br/>默认值：BarMode.Fixed |
-| barWidth                         | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。 |
+| barWidth                         | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。<br/>默认值：<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle)的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle)的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。 |
 | barHeight                        | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置SubTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabbarStyle样式且vertical属性为false时，默认值为56vp。<br/>**说明：** <br/>设置为小于0或大于Tabs高度值时，按默认值显示。 |
-| animationDuration                | number                                   | TabContent滑动动画时长。不设置时，点击切换页签无动画，滑动切换有动画；设置时，点击切换和滑动切换都有动画。<br/>默认值：300 <br/>**说明：** <br/>设置为小于0或百分比时，按默认值显示。 |
+| animationDuration                | number                                   | 点击TabBar页签切换TabContent的动画时长。不设置时，点击TabBar页签切换TabContent无动画。<br/>默认值：300 <br/>**说明：** <br/>该参数不支持百分比设置；设置为小于0时，按默认值300ms显示。 |
 | divider<sup>10+</sup>            | [DividerStyle](#dividerstyle10对象说明) \| null | 用于设置区分TabBar和TabContent的分割线样式设置分割线样式，默认不显示分割线。<br/> DividerStyle: 分割线的样式；<br/> null: 不显示分割线。 |
 | fadingEdge<sup>10+</sup>         | boolean                                  | 设置页签超过容器宽度时是否渐隐消失。<br />默认值：true         |
 | barOverlap<sup>10+</sup>         | boolean                                  | 设置TabBar是否背后变模糊并叠加在TabContent之上。<br />默认值：false |
@@ -120,7 +124,7 @@ changeIndex(value: number): void
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value | number | 是    | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，该事件失效。 |
+| value | number | 是    | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，取默认值0。 |
 
 
 ## 示例
@@ -137,7 +141,7 @@ struct TabsExample {
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
-  @Builder TabBuilder(index: number, name: string) {
+  @Builder tabBuilder(index: number, name: string) {
     Column() {
       Text(name)
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
@@ -157,19 +161,19 @@ struct TabsExample {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#00CB87')
-        }.tabBar(this.TabBuilder(0, 'green'))
+        }.tabBar(this.tabBuilder(0, 'green'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#007DFF')
-        }.tabBar(this.TabBuilder(1, 'blue'))
+        }.tabBar(this.tabBuilder(1, 'blue'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#FFBF00')
-        }.tabBar(this.TabBuilder(2, 'yellow'))
+        }.tabBar(this.tabBuilder(2, 'yellow'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#E67C92')
-        }.tabBar(this.TabBuilder(3, 'pink'))
+        }.tabBar(this.tabBuilder(3, 'pink'))
       }
       .vertical(false)
       .barMode(BarMode.Fixed)

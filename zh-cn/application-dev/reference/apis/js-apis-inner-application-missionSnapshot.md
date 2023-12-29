@@ -20,7 +20,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | 是 | 是 | 表示该任务的组件信息。 |
-| snapshot | [image.PixelMap](js-apis-image.md) | 是 | 是 | 表示任务快照。 |
+| snapshot | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 是 | 表示任务快照。 |
 
 ## 使用说明
 

@@ -14,11 +14,14 @@
    ```
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。其中：
    > 
-   > - Python要求安装Python 3.8及以上版本，此处以Python 3.8为例。
+   > - 以上安装命令适用于Ubuntu18.04，其他版本请根据安装包名称采用对应的安装命令。其中：
    > 
-   > - Java要求java8及以上版本，此处以java8为例。
+   >   - Python要求安装Python 3.8及以上版本，此处以Python 3.8为例。
+   > 
+   >   - Java要求java8及以上版本，此处以java8为例。
+   >
+   > - 若您使用的是Ubuntu20及以上版本，由于gcc-multilib和gcc-arm-linux-gnueabi互斥，请勿安装gcc-arm-linux-gnueabi。
 
 2. 将Python 3.8设置为默认Python版本。
    

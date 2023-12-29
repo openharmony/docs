@@ -1,7 +1,7 @@
 # deviceConfig内部结构
 
 
-deviceConfig包含设备上的应用配置信息，可以包含default，tv，car，wearable等属性。default标签内的配置适用于所有通用设备，其他设备类型如果有特殊的需求，则需要在该设备类型的标签下进行配置。
+deviceConfig包含设备上的应用配置信息，可以包含default、tv、car、wearable等属性。default标签内的配置适用于所有通用设备，其他设备类型如果有特殊的需求，则需要在该设备类型的标签下进行配置。
 
 ## deviceConfig对象内部结构
 
@@ -9,14 +9,14 @@ deviceConfig包含设备上的应用配置信息，可以包含default，tv，ca
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| default | 能够使用全部系统能力的OpenHarmony设备。 | 对象 | 可缺省，缺省值为空。 |
+| default | 能够使用全部系统能力的设备。 | 对象 | 可缺省，缺省值为空。 |
 | tablet | 标识平板的应用配置信息。 | 对象 | 可缺省，缺省值为空。 |
 | tv | 标识智慧屏特有的应用配置信息。 | 对象 | 可缺省，缺省值为空。 |
 | car | 标识车机特有的应用配置信息。 | 对象 | 可缺省，缺省值为空。 |
 | wearable | 标识智能穿戴特有的应用配置信息。 | 对象 | 可缺省，缺省值为空。 |
 
 
-上表中各类设备对象的内部结构说明请见表2。
+上表中各类设备对象的内部结构说明参见[deviceConfig设备对象内部结构](#deviceconfig设备对象内部结构)。
 
 ## deviceConfig设备对象内部结构
 
@@ -27,7 +27,7 @@ deviceConfig包含设备上的应用配置信息，可以包含default，tv，ca
 | process | 标识应用或者Ability的进程名。如果在deviceConfig标签下配置了process标签，则该应用的所有Ability都运行在这个进程中。如果在abilities标签下也为某个Ability配置了process标签，则该Ability就运行在这个进程中。该标签最大长度为31。 | 字符串 | 可缺省，缺省值为空。 |
 | keepAlive | 标识应用是否始终保持运行状态，仅支持系统应用配置，三方应用配置不生效。该标签为布尔类型，可缺省，缺省值为false，如果配置为true，应用将始终保持为运行状态，并在系统启动的时候被系统驱动起来，应用进程退出后，系统也会重新启动应用进程。 | 布尔值 | 可缺省，缺省值为false。 |
 | supportBackup | 标识应用是否支持备份和恢复。如果配置为"false"，则不支持为该应用执行备份或恢复操作。 | 布尔值 | 可缺省，缺省值为false。 |
-| compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。如果配置为"false"，则libs库以不压缩的方式存储，HAP在安装时无需解压libs，运行时会直接从HAP内加载libs库。 | 布尔值 | 可缺省，缺省值为true。 |
+| compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。如果配置为"false"，则libs库以不压缩的方式存储。 | 布尔值 | 可缺省，缺省值为true。 |
 | network | 标识网络安全性配置。该标签允许应用通过配置文件的安全声明来自定义其网络安全，无需修改应用代码。 | 对象 | 可缺省，缺省值为空。 |
 
 ## network对象的内部结构
@@ -36,7 +36,7 @@ deviceConfig包含设备上的应用配置信息，可以包含default，tv，ca
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| cleartextTraffic | 标识是否允许应用使用明文网络流量（例如，明文HTTP）。<br/>true：允许应用使用明文流量的请求。false：拒绝应用使用明文流量的请求。 | 布尔值 | 可缺省，缺省值为false。 |
+| cleartextTraffic | 标识是否允许应用使用明文网络流量（例如，明文HTTP）。<br/>-&nbsp;true：允许应用使用明文流量的请求。<br/>-&nbsp;false：拒绝应用使用明文流量的请求。 | 布尔值 | 可缺省，缺省值为false。 |
 | securityConfig | 标识应用的网络安全配置信息。 | 对象 | 可缺省，缺省为空。 |
 
 ## securityConfig对象的内部结构
@@ -53,8 +53,8 @@ deviceConfig包含设备上的应用配置信息，可以包含default，tv，ca
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| cleartextPermitted | 标识自定义的网域范围内是否允许明文流量传输。当cleartextTraffic和security同时存在时，自定义网域是否允许明文流量传输以cleartextPermitted的取值为准。true：允许明文流量传输。false：拒绝明文流量传输。 | 布尔类型 | 可缺省，缺省值为空。 |
-| domains | 标识域名配置信息，包含两个参数：subdomains和name。subdomains(布尔类型)：表示是否包含子域名。如果为"true"，此网域规则将与相应网域及所有子网域（包括子网域的子网域）匹配。否则，该规则仅适用于精确匹配项。name(字符串)：表示域名名称。 | 对象数组 | 可缺省，缺省值为空。 |
+| cleartextPermitted | 标识自定义的网域范围内是否允许明文流量传输。当cleartextTraffic和security同时存在时，自定义网域是否允许明文流量传输以cleartextPermitted的取值为准。<br/>-&nbsp;true：允许明文流量传输。<br/>-&nbsp;false：拒绝明文流量传输。 | 布尔类型 | 可缺省，缺省值为空。 |
+| domains | 标识域名配置信息，包含两个参数：subdomains和name。<br/>-&nbsp;subdomains：表示是否包含子域名，为布尔类型。取值为"true"时，表示该规则将与相应网域及所有子网域（包括子网域的子网域）匹配；取值为"false"时，表示该规则仅适用于精确匹配项。<br/>-&nbsp;name：表示域名名称，为字符串类型。 | 对象数组 | 可缺省，缺省值为空。 |
 
 deviceConfig示例
 

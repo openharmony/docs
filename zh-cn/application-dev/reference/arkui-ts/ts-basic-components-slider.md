@@ -25,7 +25,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | value | number | 否 | 当前进度值。<br/>默认值：参数min<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min/max，靠近min取min，靠近max取max。 |
-| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0或百分比的值时，按默认值显示。 |
+| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0的值时，按默认值显示。 |
 | style | [SliderStyle](#sliderstyle枚举说明) | 否 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
 | reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向，横向Slider默认为从左往右滑动，竖向Slider默认为从上往下滑动。<br/>默认值：false |
@@ -39,7 +39,9 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | OutSet | 滑块在滑轨上。 |
 | InSet | 滑块在滑轨内。 |
 
-支持除触摸热区以外的通用属性设置。
+## 属性
+
+支持除触摸热区以外的[通用属性](ts-universal-attributes-size.md)。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
@@ -54,7 +56,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置刻度颜色。 |
 | trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | 设置底板圆角半径。 |
 | blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | 设置滑块大小。 |
-| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10) | 设置滑块形状参数。 |
+| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10对象说明) | 设置滑块形状参数。 |
 | stepSize<sup>10+</sup> | [Length](ts-types.md#length) | 设置刻度大小（直径）。 |
 
 ## SliderBlockStyle<sup>10+</sup>对象说明
@@ -63,9 +65,9 @@ Slider组件滑块形状参数。
 
 | 名称  | 类型                                                         | 必填 | 说明                                                         |
 | ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type  | [SliderBlockType](#sliderblocktype10)                        | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
+| type  | [SliderBlockType](#sliderblocktype10枚举说明)                | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
 | image | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 设置滑块图片资源。<br />图片显示区域大小由blockSize属性控制，请勿输入尺寸过大的图片。 |
-| shape | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp; | 否   | 设置滑块使用的自定义形状。                                              |
+| shape | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp; | 否   | 设置滑块使用的自定义形状。                                   |
 
 ## SliderBlockType<sup>10+</sup>枚举说明
 

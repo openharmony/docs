@@ -4367,7 +4367,7 @@ Performs authentication of the current user. This API uses an asynchronous callb
 | ID| Error Message         |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid challenge, authType, or authTrustLevel. |
+| 12300002 | Invalid challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300105 | Unsupported authTrustLevel. |
@@ -4428,7 +4428,7 @@ Performs authentication of the specified user. This API uses an asynchronous cal
 | ID| Error Message         |
 | -------- | --------------------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid userId, challenge, authType, or authTrustLevel. |
+| 12300002 | Invalid userId, challenge, authType or authTrustLevel. |
 | 12300101 | Credential is incorrect. |
 | 12300102 | Credential not enrolled. |
 | 12300105 | Unsupported authTrustLevel. |
@@ -4690,7 +4690,7 @@ Authenticates a domain account.
 
 **Example**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {
@@ -4754,7 +4754,7 @@ Authenticates a domain account in a pop-up window.
 
 **Example**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -4805,7 +4805,7 @@ Authenticates a domain account by the authorization token.
 
 **Example**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -4962,7 +4962,7 @@ Binds a domain account.
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5012,7 +5012,7 @@ Unbinds a domain account.
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5058,12 +5058,12 @@ Checks whether the specified domain account token is valid.
 | Name     | Type                                   | Mandatory| Description            |
 | ---------- | --------------------------------------- | ---- | --------------- |
 | domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | Yes  | Domain account information.|
-| token | Uint8Array | Yes| Domain account token to check.|
+| token | Uint8Array | Yes| Domain account token.|
 | callback   | AsyncCallback&lt;boolean&gt; | Yes  | Callback invoked to return the result.|
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5113,7 +5113,7 @@ Obtains the domain access token based on the specified conditions.
 
 **Example**
   ```ts
-  import { AsyncCallback, BusinessError } from './@ohos.base';
+  import { AsyncCallback, BusinessError } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
           callback: account_osAccount.IUserAuthCallback) => {},
@@ -5174,7 +5174,7 @@ Registers a domain plug-in.
 
 **Example**
   ```ts
-  import { AsyncCallback } from './@ohos.base';
+  import { AsyncCallback } from '@ohos.base';
   let plugin: account_osAccount.DomainPlugin = {
     auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
          callback: account_osAccount.IUserAuthCallback) => {},

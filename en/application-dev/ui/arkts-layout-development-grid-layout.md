@@ -21,7 +21,7 @@ The [\<GridRow>](../reference/arkui-ts/ts-container-gridrow.md) component is the
 
 ### Grid Breakpoints
 
-The grid system defines breakpoints, which are screen width types in effect, based on the horizontal width (screen density pixels, in vp) of the screens. You can use the breakpoints to meet specific layout requirements.
+The grid system defines breakpoints, which are screen width types in effect, based on the horizontal width ([screen density pixels](../reference/arkui-ts/ts-pixel-units.md), in vp) of the screens. You can use the breakpoints to meet specific layout requirements. You can use the breakpoints to meet specific layout requirements.
 
 By default, the grid system provides four breakpoints: xs, sm, md, and lg.
 
@@ -103,7 +103,7 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
 
 
   ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
+  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown,Color.Red, Color.Orange, Color.Yellow, Color.Green];
   ...
   GridRow() {
     ForEach(this.bgColors, (item:Color, index?:number|undefined) => {

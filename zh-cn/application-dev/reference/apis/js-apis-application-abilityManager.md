@@ -19,21 +19,21 @@ Ability的状态信息。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**: 此接口为系统接口。
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
-| INITIAL | 0 | 表示ability为initial状态。| 
-| FOREGROUND | 9 | 表示ability为foreground状态。  | 
-| BACKGROUND | 10 | 表示ability为background状态。  | 
-| FOREGROUNDING | 11 | 表示ability为foregrounding状态。  | 
-| BACKGROUNDING | 12 | 表示ability为backgrounding状态。  | 
+| INITIAL | 0 | 表示Ability为初始化状态。| 
+| FOREGROUND | 9 | 表示Ability处于前台。  | 
+| BACKGROUND | 10 | 表示Ability处于后台。  | 
+| FOREGROUNDING | 11 | 表示Ability处于前台调度中。  | 
+| BACKGROUNDING | 12 | 表示Ability处于后台调度中。  | 
 
 ## updateConfiguration
 
 updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
-通过修改配置来更新配置（callback形式）。
+通过修改配置来更新配置。使用callback异步回调。
 
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
@@ -44,7 +44,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | config    | [Configuration](js-apis-application-configuration.md)   | 是    | 新的配置项。 |
-| callback  | AsyncCallback\<void>                   | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<void>                   | 是    | 回调函数，当通过修改配置来更新配置成功，err为undefined，否则为错误对象。      |
 
 **示例**：
 
@@ -65,11 +65,13 @@ abilityManager.updateConfiguration(config, () => {
 
 updateConfiguration(config: Configuration): Promise\<void>
 
-通过修改配置来更新配置（Promise形式）。
+通过修改配置来更新配置。使用Promise异步回调。
 
 **需要权限**: ohos.permission.UPDATE_CONFIGURATION
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**: 此接口为系统接口。
 
 **参数**：
 
@@ -81,7 +83,7 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<void> | 返回执行结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例**：
 
@@ -105,17 +107,19 @@ abilityManager.updateConfiguration(config).then(() => {
 
 getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): void
 
-获取Ability运行相关信息（callback形式）。
+获取Ability运行相关信息。使用callback异步回调。
 
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
+**系统接口**: 此接口为系统接口。
+
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 被指定的回调方法。      |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 回调函数，返回Ability运行相关信息      |
 
 **示例**：
 
@@ -131,17 +135,19 @@ abilityManager.getAbilityRunningInfos((err,data) => {
 
 getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
-获取Ability运行相关信息（Promise形式）。
+获取Ability运行相关信息。使用Promise异步回调。
 
 **需要权限**: ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
+**系统接口**: 此接口为系统接口。
+
 **返回值：**
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | 返回执行结果。 |
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise对象，返回Ability运行相关信息。 |
 
 **示例**：
 

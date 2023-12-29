@@ -25,14 +25,14 @@ import controller from '@ohos.nfc.controller';
 | STATE_ON | 3      | NFC已打开状态。 |
 | STATE_TURNING_OFF | 4      | NFC正在关闭状态。 |
 
-## controller.isNfcAvailable
+## controller.isNfcAvailable<sup>(deprecated)</sup>
 
 isNfcAvailable(): boolean
 
 查询设备是否有NFC能力。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用canIUse("SystemCapability.Communication.NFC.Core")替代。
+> 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用[canIUse("SystemCapability.Communication.NFC.Core")](../native-apis/init.md)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.Core
 
@@ -43,7 +43,7 @@ isNfcAvailable(): boolean
 | boolean | true: 设备具备NFC能力，&nbsp;false: 设备不具备NFC能力。 |
 
 
-## controller.openNfc
+## controller.openNfc<sup>(deprecated)</sup>
 
 openNfc(): boolean
 
@@ -80,7 +80,7 @@ enableNfc(): void
 | ------- | -------|
 | 3100101 | NFC state is abnormal in service. |
 
-## controller.closeNfc
+## controller.closeNfc<sup>(deprecated)</sup>
 
 closeNfc(): boolean
 
@@ -196,7 +196,7 @@ try {
   controller.enableNfc();
   console.log("controller enableNfc success");
 } catch (busiError) {
-  console.log("controller enableNfc busiError: " + busiError);
+  console.error("controller enableNfc busiError: " + busiError);
 }
 
 // close nfc, require permission: ohos.permission.MANAGE_SECURE_SETTINGS
@@ -210,7 +210,7 @@ try {
   controller.disableNfc();
   console.log("controller disableNfc success");
 } catch (busiError) {
-  console.log("controller disableNfc busiError: " + busiError);
+  console.error("controller disableNfc busiError: " + busiError);
 }
 
 // unregister callback

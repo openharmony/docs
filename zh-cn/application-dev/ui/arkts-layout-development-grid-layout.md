@@ -21,7 +21,7 @@
 
 ### 栅格系统断点
 
-栅格系统以设备的水平宽度（屏幕密度像素值，单位vp）作为断点依据，定义设备的宽度类型，形成了一套断点规则。开发者可根据需求在不同的断点区间实现不同的页面布局效果。
+栅格系统以设备的水平宽度（[屏幕密度像素值](../reference/arkui-ts/ts-pixel-units.md)，单位vp）作为断点依据，定义设备的宽度类型，形成了一套断点规则。开发者可根据需求在不同的断点区间实现不同的页面布局效果。
 
 栅格系统默认断点将设备宽度分为xs、sm、md、lg四类，尺寸范围如下：
 
@@ -103,7 +103,7 @@ GridRow中通过columns设置栅格布局的总列数。
 
 
   ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
+  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown,Color.Red, Color.Orange, Color.Yellow, Color.Green];
   ...
   GridRow() {
     ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
@@ -201,7 +201,7 @@ GridRow中通过columns设置栅格布局的总列数。
 
   ![zh-cn_image_0000001563060689](figures/zh-cn_image_0000001563060689.gif)
 
-  若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里只设置sm:4, md:8，则较小尺寸的xs:12，较大尺寸的参照md的设置，lg:10, xl:10, xxl:10
+  若只设置sm, md的栅格总列数，则较小的尺寸使用默认columns值12，较大的尺寸使用前一个尺寸的columns。这里只设置sm:4, md:8，则较小尺寸的xs:12，较大尺寸的参照md的设置，lg:8, xl:8, xxl:8
 
 
 ### 排列方向

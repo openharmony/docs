@@ -111,7 +111,7 @@
 
 ## 开发步骤
 
-   以Js侧获取rawfile文件列表、rawfile文件内容、rawfile描述符{fd, offset, length}三种调用方式为例。
+   以ArkTS侧获取rawfile文件列表、rawfile文件内容、rawfile描述符{fd, offset, length}三种调用方式为例。
 
 **1. 创建工程**
 
@@ -121,7 +121,7 @@
 
 创建完成后，IDE会在工程生成cpp目录，目录有libentry/index.d.ts、hello.cpp、CMakeLists.txt等文件。
 
-1. 打开src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加资源的librawfile.z.so以及日志依赖libhilog_ndk.z.so
+1. 打开src/main/cpp/CMakeLists.txt，在target_link_libraries依赖中添加资源的librawfile.z.so以及日志依赖libhilog_ndk.z.so。
 
     ```c++
     target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so librawfile.z.so)
@@ -167,6 +167,10 @@
 3. 在hello.cpp文件中获取Js的资源对象，并转为Native的资源对象，即可调用资源的Native接口，获取rawfile列表、rawfile文件内容以及rawfile描述符{fd, offset, length}三种调用方式示例代码如下：
 
     ```c++
+    #include <rawfile/raw_file.h>
+    #include <rawfile/raw_dir.h>
+    #include <rawfile/raw_file_manager.h>
+
     // 示例一：获取rawfile文件列表 GetFileList
     static napi_value GetFileList(napi_env env, napi_callback_info info)
     {

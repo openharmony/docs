@@ -10,6 +10,7 @@
     - [Multithread Concurrency Overview](multi-thread-concurrency-overview.md)
     - [Comparison Between the Actor and Memory Sharing Models](actor-model-development-samples.md)
     - [Comparison Between TaskPool and Worker](taskpool-vs-worker.md)
+    - [\@Concurrent Decorator: Verifying Concurrent Functions](arkts-concurrent.md)
     - [CPU Intensive Task Development](cpu-intensive-task-development.md)
     - [I/O Intensive Task Development](io-intensive-task-development.md)
     - [Synchronous Task Development](sync-task-development.md)

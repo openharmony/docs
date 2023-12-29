@@ -82,7 +82,7 @@ Apart from\@Styles used to extend styles, AkrUI also provides \@Extend, which al
     build() {
       Row({ space: 10 }) {
         Text(`${this.label}`)
-          .makeMeClick(this.onClickHandler)
+          .makeMeClick(() => {this.onClickHandler()})
       }
     }
   }

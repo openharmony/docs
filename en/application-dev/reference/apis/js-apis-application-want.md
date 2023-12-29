@@ -32,20 +32,26 @@ import Want from '@ohos.application.Want';
 
 - Basic usage (called in a UIAbility object, where context in the example is the context object of the UIAbility).
 
-  ```ts
+    ```ts
     import Want from '@ohos.application.Want';
     import { BusinessError } from '@ohos.base';
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
     let want: Want = {
-        'deviceId': '', // An empty deviceId indicates the local device.
-        'bundleName': 'com.example.myapplication',
-        'abilityName': 'EntryAbility',
+    'deviceId': '', // An empty deviceId indicates the local device.
+    'bundleName': 'com.example.myapplication',
+    'abilityName': 'EntryAbility',
     };
-    this.context.startAbility(want, (error: BusinessError) => {
+    class MyAbility extends UIAbility{
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
+        this.context.startAbility(want, (error: BusinessError) => {
         // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
         console.error('error.code = ${error.code}');
-    });
-  ```
+        });
+    }
+    }
+    ```
 
 - Data is transferred through user-defined fields. The following data types are supported (called in a UIAbility object, where context in the example is the context object of the UIAbility):
 
@@ -120,28 +126,36 @@ import Want from '@ohos.application.Want';
         ```
     * File descriptor (FD)
         ```ts
-            import fs from '@ohos.file.fs';
-            import Want from '@ohos.application.Want';
-            import { BusinessError } from '@ohos.base';
+        import fs from '@ohos.file.fs';
+        import Want from '@ohos.application.Want';
+        import { BusinessError } from '@ohos.base';
+        import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+        import UIAbility from '@ohos.app.ability.UIAbility';
 
-            let fd: number = 0;
-            try {
-                fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
-            } catch(e) {
-                console.error(`openSync fail: ${JSON.stringify(e)}`);
-            }
-            let want: Want = {
-                deviceId: '', // An empty deviceId indicates the local device.
-                bundleName: 'com.example.myapplication',
-                abilityName: 'EntryAbility',
-                parameters: {
-                    'keyFd':{'type':'FD', 'value':fd}
-                }
-            };
+
+        let fd: number = 0;
+        try {
+        fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
+        } catch(e) {
+        console.error(`openSync fail: ${JSON.stringify(e)}`);
+        }
+        let want: Want = {
+        deviceId: '', // An empty deviceId indicates the local device.
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility',
+        parameters: {
+            'keyFd':{'type':'FD', 'value':fd}
+        }
+        };
+
+        class MyAbility extends UIAbility{
+        onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
             this.context.startAbility(want, (error: BusinessError) => {
-                // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
-                console.error('error.code = ${error.code}');
+            // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
+            console.error('error.code = ${error.code}');
             });
+        }
+        }
         ```
 
 - For more details and examples, see [Want](../../application-models/want-overview.md).

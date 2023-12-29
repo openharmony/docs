@@ -7,21 +7,20 @@ The **Web** component supports customization of the response to intercepted page
 When a resource loading request is initiated on a web page, the application layer will receive the request. The application layer then constructs a local resource response and sends it to the web kernel. On receiving the response, the web kernel parses the response and loads page resources accordingly.
 
 
-In the following example, the **Web** component intercepts the web page request **https://www.intercept.com/test.html** and constructs a custom response in the application code.
+In the following example, the **Web** component intercepts the web page request **https://www.example.com/test.html** and constructs a custom response in the application code.
 
 
-- Code of the **example.html** page:
+- Code of the **index.html** page:
 
   ```html
   <!DOCTYPE html>
   <html>
   <head>
       <meta charset="utf-8">
-      <title>example</title>
   </head>
   <body>
   <!-- Page resource request ->
-  <a href="https://www.intercept.com/test.html">intercept test!</a>
+  <a href="https://www.example.com/test.html">intercept test!</a>
   </body>
   </html>
   ```
@@ -49,13 +48,13 @@ In the following example, the **Web** component intercepts the web page request 
     '</html>'
     build() {
       Column() {
-        Web({ src: $rawfile('example.html'), controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
           .onInterceptRequest((event) => {
             if (event) {
               console.info('url:' + event.request.getRequestUrl());
               // Intercept the web page request.
-              if (event.request.getRequestUrl() !== 'https://www.intercept.com/test.html') {
-                return this.responseResource;
+              if (event.request.getRequestUrl() !== 'https://www.example.com/test.html') {
+                return null;
               }
             }
             // Construct a custom response.

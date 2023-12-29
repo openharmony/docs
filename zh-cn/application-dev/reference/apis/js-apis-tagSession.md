@@ -20,7 +20,7 @@ tagSession是所有[NFC Tag技术类型](js-apis-nfctech.md)的基类， 提供�
 
 具体使用时,请根据实际采用的Nfc tag技术，选择对应的方法，具体请参见[nfcTag](js-apis-nfcTag.md)文档。
 
-### tagSession.getTagInfo
+### tagSession.getTagInfo<sup>(deprecated)</sup>
 
 getTagInfo(): tag.TagInfo
 
@@ -51,7 +51,7 @@ let tagInfo : TagInfo = tag.getIsoDep(tagInfo).getTagInfo();
 console.log("tag tagInfo: " + tagInfo);
 ```
 
-### tagSession.connectTag
+### tagSession.connectTag<sup>(deprecated)</sup>
 
 connectTag(): boolean;
 
@@ -116,7 +116,7 @@ try {
 }
 ```
 
-### tagSession.reset()
+### tagSession.reset()<sup>(deprecated)</sup>
 
 reset(): void
 
@@ -174,7 +174,7 @@ try {
 }
 ```
 
-### tagSession.isTagConnected
+### tagSession.isTagConnected<sup>(deprecated)</sup>
 
 isTagConnected(): boolean
 
@@ -233,7 +233,7 @@ try {
 }
 ```
 
-### tagSession.getMaxSendLength
+### tagSession.getMaxSendLength<sup>(deprecated)</sup>
 
 getMaxSendLength(): number
 
@@ -302,7 +302,7 @@ try {
 }
 ```
 
-### tagSession.getSendDataTimeout
+### tagSession.getSendDataTimeout<sup>(deprecated)</sup>
 
 getSendDataTimeout(): number
 
@@ -373,7 +373,7 @@ try {
 }
 ```
 
-### tagSession.setSendDataTimeout
+### tagSession.setSendDataTimeout<sup>(deprecated)</sup>
 
 setSendDataTimeout(timeout: number): boolean
 
@@ -452,7 +452,7 @@ try {
 }
 ```
 
-### tagSession.sendData
+### tagSession.sendData<sup>(deprecated)</sup>
 
 sendData(data: number[]): Promise<number[]>
 
@@ -502,7 +502,7 @@ tag.getIsoDep(tagInfo).sendData(cmdData).then((response) => {
 });
 ```
 
-### tagSession.sendData
+### tagSession.sendData<sup>(deprecated)</sup>
 
 sendData(data: number[], callback: AsyncCallback<number[]>): void
 

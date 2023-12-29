@@ -133,14 +133,14 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 
 | 类名               | 接口原型                                                     | 类型     | 接口详细描述                                                            |
 | ------------------ | ------------------------------------------------------------ | -------- |-------------------------------------------------------------------|
-| UncompressEntrance | UncomperssResult parseApp(String appPath,String parseMode,String deviceType,String hapName) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app包路径，解析参数 返回值：UncomperssResult |
-| UncompressEntrance | UncomperssResult parseApp(InputStream input,String parseMode,String deviceType,String hapName,String outPath) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app文件流，解析参数 返回值：UncomperssResult |
-| UncompressEntrance | UncomperssResult parseHap(String hapPath)                    | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包路径，解析参数 返回值：UncomperssResult    |
-| UncompressEntrance | UncomperssResult parseHap(InputStream input)                 | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包文件流，解析参数 返回值：UncomperssResult   |
+| UncompressEntrance | UncompressResult parseApp(String appPath,String parseMode,String deviceType,String hapName) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app包路径，解析参数 返回值：UncompressResult |
+| UncompressEntrance | UncompressResult parseApp(InputStream input,String parseMode,String deviceType,String hapName,String outPath) | Java接口 | 接口功能：根据参数解析app包的pack.info信息 输入参数：app文件流，解析参数 返回值：UncompressResult |
+| UncompressEntrance | UncompressResult parseHap(String hapPath)                    | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包路径，解析参数 返回值：UncompressResult    |
+| UncompressEntrance | UncompressResult parseHap(InputStream input)                 | Java接口 | 接口功能：根据参数解析app包的json配置文件 输入参数：hap包文件流，解析参数 返回值：UncompressResult   |
 
 ## 拆包工具信息字段
 
-### UncomperssResult（Bundle信息）结构体信息
+### UncompressResult（Bundle信息）结构体信息
 
 | 字段            | 类型               | 描述                                     | 备注 |
 | ----------------| ------------------ |----------------------------------------| ---- |
@@ -194,7 +194,7 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | description                    | String  | 标识应用的描述信息                                                                     | stage模型新增   |
 | minCompatibleVersionCode       | int     | 标识应用能够兼容的最低版本号                                                                | NA          |
 | distributedNotificationEnabled | boolean | 标记该应用是否开启分布式通知                                                              | stage模型新增   |
-| bundleType                     | String  | 标识bundle的类型，取值：<br/>- app：普通应用<br/>- atomicService：元服务 <br/>- shared：应用间共享库 | NA   |
+| bundleType                     | String  | 标识bundle的类型，取值：<br/>- app：应用<br/>- atomicService：元服务 <br/>- shared：应用间共享库 | NA   |
 | compileSdkVersion              | String  | 标识编译该应用时使用的sdk版本                                                              | 仅限API10及以后的应用   |
 | compileSdkType                 | String  | 标识编译该应用时使用的sdk类别                                                              | 仅限API10及以后的应用   |
 | labels                         | HashMap\<String, String> | 标识多语言应用程序AppJson的标签。 | NA          |

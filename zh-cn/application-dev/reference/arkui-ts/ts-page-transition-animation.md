@@ -46,8 +46,8 @@
 
 | 事件                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onEnter(event: (type?:&nbsp;RouteType,&nbsp;progress?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到入场动画结束，progress从0变化到1。 |
-| onExit(event: (type?:&nbsp;RouteType,&nbsp;progress?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到退场动画结束，progress从0变化到1。 |
+| onEnter(event: (type?:&nbsp;[RouteType](#routetype枚举说明),&nbsp;progress?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到入场动画结束，progress从0变化到1。 |
+| onExit(event: (type?:&nbsp;[RouteType](#routetype枚举说明),&nbsp;progress?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到退场动画结束，progress从0变化到1。 |
 
 
 ## 示例

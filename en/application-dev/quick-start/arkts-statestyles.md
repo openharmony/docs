@@ -106,19 +106,21 @@ struct CompWithInlineStateStyles {
   normalColor: Color = Color.Green
 
   build() {
-    Button('clickMe').height(100).width(100)
-      .stateStyles({
-        normal: {
-          .backgroundColor(this.normalColor)
-        },
-        focused: {
-          .backgroundColor(this.focusedColor)
-        }
-      })
-      .onClick(() => {
-        this.focusedColor = Color.Pink
-      })
-      .margin('30%')
+    Column() {
+      Button('clickMe').height(100).width(100)
+        .stateStyles({
+          normal: {
+            .backgroundColor(this.normalColor)
+          },
+          focused: {
+            .backgroundColor(this.focusedColor)
+          }
+        })
+        .onClick(() => {
+          this.focusedColor = Color.Pink
+        })
+        .margin('30%')
+    }
   }
 }
 ```

@@ -93,18 +93,18 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为ShareExtAbility。
 
-2. 在ShareExtAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ShareExtAbility.ts。
+2. 在ShareExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为ShareExtAbility.ets。
 
     ```
     ├── ets
     │ ├── ShareExtAbility
-    │ │   ├── ShareExtAbility.ts
+    │ │   ├── ShareExtAbility.ets
     └
     ```
 
-3. ShareExtAbility.ts文件中，增加导入ShareExtensionAbility的依赖包，自定义类继承ShareExtensionAbility并实现生命周期回调。
+3. ShareExtAbility.ets文件中，增加导入ShareExtensionAbility的依赖包，自定义类继承ShareExtensionAbility并实现生命周期回调。
 
-   ```ts
+  ```ts
   import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
   import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
   import Want from '@ohos.app.ability.Want';
@@ -145,7 +145,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
       console.info(TAG, `onDestroy`);
     }
   }
-   ```
+  ```
 
 4. 在工程Module对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中注册ShareExtensionAbility，type标签需要设置为“share”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
@@ -160,7 +160,7 @@ ShareExtensionAbility生命周期回调，在销毁时回调，执行资源清�
            "description": "share",
            "type": "share",
            "exported": true,
-           "srcEntry": "./ets/ShareExtAbility/ShareExtAbility.ts"
+           "srcEntry": "./ets/ShareExtAbility/ShareExtAbility.ets"
          }
        ]
      }

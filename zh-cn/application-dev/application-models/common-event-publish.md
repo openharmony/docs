@@ -30,11 +30,11 @@
    import Base from '@ohos.base';
    ```
 
-2. 传入需要发布的事件名称和回调函数，发布事件。
+2. 传入需要发布的事件名称和回调函数，发布事件。以发布自定义事件"custom_event"为例：
    
    ```ts
    // 发布公共事件
-   commonEventManager.publish("usual.event.SCREEN_OFF", (err: Base.BusinessError) => {
+   commonEventManager.publish("custom_event", (err: Base.BusinessError) => {
        if (err) {
            console.error(`[CommonEvent] PublishCallBack err=${JSON.stringify(err)}`);
        } else {
@@ -69,7 +69,7 @@
    
    ```ts
    // 发布公共事件
-   commonEventManager.publish("usual.event.SCREEN_OFF", options, (err: Base.BusinessError) => {
+   commonEventManager.publish("custom_event", options, (err: Base.BusinessError) => {
        if (err) {
            console.error('[CommonEvent] PublishCallBack err=' + JSON.stringify(err));
        } else {

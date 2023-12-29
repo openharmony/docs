@@ -162,11 +162,15 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodEngine()
-  .on('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
-    let keyboardController = kbController;
-    let textInputClient = textClient;
-});
+try {
+  inputMethodEngine.getInputMethodEngine()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
+      let keyboardController = kbController;
+      let textInputClient = textClient;
+  });
+} catch(err) {
+  console.error(`Failed to inputStart: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('inputStart')
@@ -187,10 +191,14 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodEngine()
-  .off('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
-    console.log('delete inputStart notification.');
-});
+try {
+  inputMethodEngine.getInputMethodEngine()
+    .off('inputStart', (kbController: inputMethodEngine.KeyboardController, textClient: inputMethodEngine.TextInputClient) => {
+      console.log('delete inputStart notification.');
+  });
+} catch(err) {
+  console.error(`Failed to inputStart: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('keyboardShow'|'keyboardHide')
@@ -211,12 +219,16 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodEngine().on('keyboardShow', () => {
-  console.log('inputMethodEngine keyboardShow.');
+try {
+  inputMethodEngine.getInputMethodEngine().on('keyboardShow', () => {
+    console.log('inputMethodEngine keyboardShow.');
+  });
+  inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
+    console.log('inputMethodEngine keyboardHide.');
 });
-inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
-  console.log('inputMethodEngine keyboardHide.');
-});
+} catch(err) {
+  console.error(`Failed to InputMethodEngine: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('keyboardShow'|'keyboardHide')
@@ -263,11 +275,15 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility()
-  .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
-    let keyboardController = kbController;
-    let inputClient = client;
-});
+try {
+  inputMethodEngine.getInputMethodAbility()
+    .on('inputStart', (kbController: inputMethodEngine.KeyboardController, client: inputMethodEngine.InputClient) => {
+      let keyboardController = kbController;
+      let inputClient = client;
+  });
+} catch(err) {
+    console.error(`Failed to InputMethodAbility: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('inputStart')<sup>9+</sup>
@@ -309,9 +325,13 @@ on(type: 'inputStop', callback: () => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
-  console.log('inputMethodAbility inputStop');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
+    console.log('inputMethodAbility inputStop');
+  });
+} catch(err) {
+    console.error(`Failed to inputStop: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('inputStop')<sup>9+</sup>
@@ -332,9 +352,13 @@ off(type: 'inputStop', callback: () => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
-  console.log('inputMethodAbility delete inputStop notification.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
+    console.log('inputMethodAbility delete inputStop notification.');
+  });
+} catch(err) {
+    console.error(`Failed to inputStop: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('setCallingWindow')<sup>9+</sup>
@@ -355,9 +379,13 @@ on(type: 'setCallingWindow', callback: (wid: number) => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid: number) => {
-  console.log('inputMethodAbility setCallingWindow');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid: number) => {
+    console.log('inputMethodAbility setCallingWindow');
+  });
+} catch(err) {
+    console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('setCallingWindow')<sup>9+</sup>
@@ -378,9 +406,13 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid: number) => {
-  console.log('inputMethodAbility delete setCallingWindow notification.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid: number) => {
+    console.log('inputMethodAbility delete setCallingWindow notification.');
+  });
+} catch(err) {
+    console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('keyboardShow'|'keyboardHide')<sup>9+</sup>
@@ -401,12 +433,16 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().on('keyboardShow', () => {
-  console.log('InputMethodAbility keyboardShow.');
-});
-inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
-  console.log('InputMethodAbility keyboardHide.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().on('keyboardShow', () => {
+    console.log('InputMethodAbility keyboardShow.');
+  });
+  inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
+    console.log('InputMethodAbility keyboardHide.');
+  });
+} catch(err) {
+    console.error(`Failed to keyboard: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('keyboardShow'|'keyboardHide')<sup>9+</sup>
@@ -427,12 +463,16 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('keyboardShow', () => {
-  console.log('InputMethodAbility delete keyboardShow notification.');
-});
-inputMethodEngine.getInputMethodAbility().off('keyboardHide', () => {
-  console.log('InputMethodAbility delete keyboardHide notification.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().off('keyboardShow', () => {
+    console.log('InputMethodAbility delete keyboardShow notification.');
+  });
+  inputMethodEngine.getInputMethodAbility().off('keyboardHide', () => {
+    console.log('InputMethodAbility delete keyboardHide notification.');
+  });
+} catch(err) {
+    console.error(`Failed to keyboard: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('setSubtype')<sup>9+</sup>
@@ -453,9 +493,13 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
-  console.log('InputMethodAbility setSubtype.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
+    console.log('InputMethodAbility setSubtype.');
+  });
+} catch(err) {
+    console.error(`Failed to setSubtype: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('setSubtype')<sup>9+</sup>
@@ -476,9 +520,13 @@ off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => v
 **示例：**
 
 ```ts
-inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
-  console.log('InputMethodAbility delete setSubtype notification.');
-});
+try {
+  inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
+    console.log('InputMethodAbility delete setSubtype notification.');
+  });
+} catch(err) {
+    console.error(`Failed to setSubtype: ${JSON.stringify(err)}`);
+}
 ```
 
 ### createPanel<sup>10+</sup>
@@ -506,6 +554,8 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -553,6 +603,8 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -567,7 +619,7 @@ inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo)
 
 ### destroyPanel<sup>10+</sup>
 
-destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
+destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void
 
 销毁输入法面板。使用callback异步回调。
 
@@ -583,6 +635,8 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -618,7 +672,7 @@ try {
 
 ### destroyPanel<sup>10+</sup>
 
-destroyPanel(panel: Panel): Promise\<void>;
+destroyPanel(panel: Panel): Promise\<void>
 
 销毁输入法面板。使用promise异步回调。
 
@@ -638,6 +692,8 @@ destroyPanel(panel: Panel): Promise\<void>;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let panelInfo: inputMethodEngine.PanelInfo = {
   type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
   flag: inputMethodEngine.PanelFlag.FLG_FIXED
@@ -684,24 +740,28 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 **参数：**
 
-| 参数名   | 类型                            | 必填 | 说明                                                         |
-| -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                            | 必填 | 说明                                                  |
+| -------- | ------------------------------- | ---- |-----------------------------------------------------|
 | type   | string         | 是   | 设置监听类型。<br/>- 'keyDown'表示键盘按下。<br/>- 'keyUp'表示键盘抬起。 |
-| callback | (event: [KeyEvent](#keyevent)) => boolean | 是 | 回调函数，返回按键信息。 |
+| callback | (event: [KeyEvent](#keyevent)) => boolean | 是 | 回调函数，返回按键信息。 若按键事件被事件订阅者消费，则callback应返回true，否则返回false。   |
 
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
-  console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
-  console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
-  return true;
-});
-inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
-  console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
-  console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
-  return true;
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
+    console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
+    console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
+    return true;
+  });
+  inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
+    console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
+    console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
+    return true;
+  });
+} catch(err) {
+    console.error(`Failed to KeyboardDelegate: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('keyDown'|'keyUp')
@@ -722,14 +782,18 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
-  console.log('delete keyUp notification.');
-  return true;
-});
-inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
-  console.log('delete keyDown notification.');
-  return true;
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
+    console.log('delete keyUp notification.');
+    return true;
+  });
+  inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
+    console.log('delete keyDown notification.');
+    return true;
+  });
+} catch(err) {
+    console.error(`Failed to keyevent: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('keyEvent')<sup>10+</sup>
@@ -750,12 +814,18 @@ on(type: 'keyEvent', callback: (event: InputKeyEvent) => boolean): void
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: InputKeyEvent) => {
-  console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
-  console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
-  console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
-  return true;
-});
+import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+
+try {
+  inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
+    console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
+    console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
+    console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
+    return true;
+  });
+} catch(err) {
+    console.error(`Failed to inputMethodEngine: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('keyEvent')<sup>10+</sup>
@@ -776,11 +846,17 @@ off(type: 'keyEvent', callback?: (event: InputKeyEvent) => boolean): void
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent: InputKeyEvent) => {
-  console.log('This is a callback function which will be deregistered.');
-  return true;
-});
-inputMethodEngine.getKeyboardDelegate().off('keyEvent');
+import type { KeyEvent } from '@ohos.multimodalInput.keyEvent';
+
+try {
+  inputMethodEngine.getKeyboardDelegate().off('keyEvent', (keyEvent: KeyEvent) => {
+    console.log('This is a callback function which will be deregistered.');
+    return true;
+  });
+  inputMethodEngine.getKeyboardDelegate().off('keyEvent');
+} catch(err) {
+    console.error(`Failed to keyEvent: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('cursorContextChange')
@@ -801,11 +877,15 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x: number, y: number, height: number) => {
-  console.log('inputMethodEngine cursorContextChange x:' + x);
-  console.log('inputMethodEngine cursorContextChange y:' + y);
-  console.log('inputMethodEngine cursorContextChange height:' + height);
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x: number, y: number, height: number) => {
+    console.log('inputMethodEngine cursorContextChange x:' + x);
+    console.log('inputMethodEngine cursorContextChange y:' + y);
+    console.log('inputMethodEngine cursorContextChange height:' + height);
+  });
+} catch(err) {
+    console.error(`Failed to cursorContextChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('cursorContextChange')
@@ -827,9 +907,13 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
   **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x: number, y: number, height: number) => {
-  console.log('delete cursorContextChange notification.');
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x: number, y: number, height: number) => {
+    console.log('delete cursorContextChange notification.');
+  });
+} catch(err) {
+    console.error(`Failed to cursorContextChange: ${JSON.stringify(err)}`);
+}
 ```
 ### on('selectionChange')
 
@@ -849,13 +933,17 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate()
-  .on('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => {
-    console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
-    console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
-    console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
-    console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
-  });
+try {
+  inputMethodEngine.getKeyboardDelegate()
+    .on('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => {
+      console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
+      console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
+      console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
+      console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
+    });
+} catch(err) {
+    console.error(`Failed to selectionChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('selectionChange')
@@ -876,10 +964,14 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate()
-  .off('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number)  => {
-    console.log('delete selectionChange notification.');
-  });
+try {
+  inputMethodEngine.getKeyboardDelegate()
+    .off('selectionChange', (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number)  => {
+      console.log('delete selectionChange notification.');
+    });
+} catch(err) {
+    console.error(`Failed to selectionChange: ${JSON.stringify(err)}`);
+}
 ```
 
 
@@ -901,9 +993,13 @@ on(type: 'textChange', callback: (text: string) => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('textChange', (text: string) => {
-  console.log('inputMethodEngine textChange. text:' + text);
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().on('textChange', (text: string) => {
+    console.log('inputMethodEngine textChange. text:' + text);
+  });
+} catch(err) {
+    console.error(`Failed to textChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('textChange')
@@ -924,9 +1020,13 @@ off(type: 'textChange', callback?: (text: string) => void): void
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().off('textChange', (text: string) => {
-  console.log('delete textChange notification. text:' + text);
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().off('textChange', (text: string) => {
+    console.log('delete textChange notification. text:' + text);
+  });
+} catch(err) {
+    console.error(`Failed to textChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('editorAttributeChanged')<sup>10+</sup>
@@ -947,9 +1047,13 @@ on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): v
 **示例：**
 
 ```ts
-inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr: inputMethodEngine.EditorAttribute) => {
-  console.log(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
-});
+try {
+  inputMethodEngine.getKeyboardDelegate().on('editorAttributeChanged', (attr: inputMethodEngine.EditorAttribute) => {
+    console.log(`Succeeded in receiving attribute of editor, inputPattern = ${attr.inputPattern}, enterKeyType = ${attr.enterKeyType}`);
+  });
+} catch(err) {
+    console.error(`Failed to textChange: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('editorAttributeChanged')<sup>10+</sup>
@@ -995,6 +1099,8 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.setUiContent('pages/page2/page2', (err: BusinessError) => {
     if (err) {
@@ -1031,6 +1137,8 @@ setUiContent(path: string): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.setUiContent('pages/page2/page2').then(() => {
     console.log('Succeeded in setting the content.');
@@ -1061,6 +1169,8 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
@@ -1100,6 +1210,8 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let storage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp',121);
 try {
@@ -1136,6 +1248,8 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.resize(500, 1000, (err: BusinessError) => {
     if (err) {
@@ -1151,7 +1265,7 @@ try {
 
 ### resize<sup>10+</sup>
 
-resize(width: number, height: number): Promise\<void>;
+resize(width: number, height: number): Promise\<void>
 
 改变当前输入法面板的大小，使用Promise异步回调。
 
@@ -1177,6 +1291,8 @@ resize(width: number, height: number): Promise\<void>;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.resize(500, 1000).then(() => {
     console.log('Succeeded in changing the panel size.');
@@ -1207,6 +1323,8 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.moveTo(300, 300, (err: BusinessError) =>{
     if (err) {
@@ -1244,6 +1362,8 @@ moveTo(x: number, y: number): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   panel.moveTo(300, 300).then(() => {
     console.log('Succeeded in moving the panel.');
@@ -1259,7 +1379,7 @@ try {
 
 show(callback: AsyncCallback\<void>): void
 
-显示当前输入法面板，使用callback异步回调。
+显示当前输入法面板，使用callback异步回调。输入法应用与编辑框绑定成功后可正常调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1272,6 +1392,8 @@ show(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.show((err: BusinessError) => {
   if (err) {
     console.error(`Failed to show panel: ${JSON.stringify(err)}`);
@@ -1285,7 +1407,7 @@ panel.show((err: BusinessError) => {
 
 show(): Promise\<void>
 
-显示当前输入法面板，使用promise异步回调。
+显示当前输入法面板，使用promise异步回调。输入法应用与编辑框绑定成功后可正常调用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1298,6 +1420,8 @@ show(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.show().then(() => {
   console.log('Succeeded in showing the panel.');
 }).catch((err: BusinessError) => {
@@ -1322,6 +1446,8 @@ hide(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
@@ -1348,6 +1474,8 @@ hide(): Promise\<void>
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 panel.hide().then(() => {
   console.log('Succeeded in hiding the panel.');
 }).catch((err: BusinessError) => {
@@ -1373,9 +1501,13 @@ on(type: 'show', callback: () => void): void
 **示例：**
 
 ```ts
-panel.on('show', () => {
-  console.log('Panel is showing.');
-});
+try {
+  panel.on('show', () => {
+    console.log('Panel is showing.');
+  });
+} catch(err) {
+    console.error(`Failed to show: ${JSON.stringify(err)}`);
+}
 ```
 
 ### on('hide')<sup>10+</sup>
@@ -1396,9 +1528,13 @@ on(type: 'hide', callback: () => void): void
 **示例：**
 
 ```ts
-panel.on('hide', () => {
-  console.log('Panel is hiding.');
-});
+try {
+  panel.on('hide', () => {
+    console.log('Panel is hiding.');
+  });
+} catch(err) {
+    console.error(`Failed to hide: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('show')<sup>10+</sup>
@@ -1419,7 +1555,11 @@ off(type: 'show', callback?: () => void): void
 **示例：**
 
 ```ts
-panel.off('show');
+try {
+  panel.off('show');
+} catch(err) {
+    console.error(`Failed to show: ${JSON.stringify(err)}`);
+}
 ```
 
 ### off('hide')<sup>10+</sup>
@@ -1440,7 +1580,11 @@ off(type: 'hide', callback?: () => void): void
 **示例：**
 
 ```ts
-panel.off('hide');
+try {
+  panel.off('hide');
+} catch(err) {
+    console.error(`Failed to hide: ${JSON.stringify(err)}`);
+}
 ```
 
 ### changeFlag<sup>10+</sup>
@@ -1460,8 +1604,12 @@ changeFlag(flag: PanelFlag): void
 **示例：**
 
 ```ts
-let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
-panel.changeFlag(panelFlag);
+try {
+  let panelFlag = inputMethodEngine.PanelFlag.FLG_FIXED;
+  panel.changeFlag(panelFlag);
+} catch(err) {
+    console.error(`Failed to panelFlag: ${JSON.stringify(err)}`);
+}
 ```
 
 ## KeyboardController
@@ -1493,6 +1641,8 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hide((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hide: ${JSON.stringify(err)}`);
@@ -1527,6 +1677,8 @@ hide(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hide().then(() => {
   console.log('Succeeded in hiding keyboard.');
 }).catch((err: BusinessError) => {
@@ -1555,6 +1707,8 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hideKeyboard((err: BusinessError) => {
   if (err) {
     console.error(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
@@ -1585,6 +1739,8 @@ hideKeyboard(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 keyboardController.hideKeyboard().then(() => {
   console.log('Succeeded in hiding keyboard.');
 }).catch((err: BusinessError) => {
@@ -1669,6 +1825,8 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
  **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 try {
   inputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
@@ -1718,6 +1876,8 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 try {
   inputClient.sendKeyFunction(action).then((result: boolean) => {
@@ -1761,6 +1921,8 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getForward(length, (err: BusinessError, text: string) => {
@@ -1807,6 +1969,8 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getForward(length).then((text: string) => {
@@ -1887,6 +2051,8 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getBackward(length, (err: BusinessError, text: string) => {
@@ -1933,6 +2099,8 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.getBackward(length).then((text: string) => {
@@ -2013,6 +2181,8 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
@@ -2023,7 +2193,7 @@ try {
     if (result) {
       console.log('Succeeded in deleting forward.');
     } else {
-      console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+      console.error(`Failed to deleteForward.`);
     }
   });
 } catch (err) {
@@ -2063,6 +2233,8 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteForward(length).then((result: boolean) => {
@@ -2141,6 +2313,8 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 try {
   inputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
@@ -2151,7 +2325,7 @@ try {
     if (result) {
       console.log('Succeeded in deleting backward.');
     } else {
-      console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
+      console.error(`Failed to deleteBackward.`);
     }
   });
 } catch (err) {
@@ -2191,6 +2365,8 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 inputClient.deleteBackward(length).then((result: boolean) => {
   if (result) {
@@ -2265,6 +2441,8 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
@@ -2310,6 +2488,8 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.insertText('test').then((result: boolean) => {
     if (result) {
@@ -2384,6 +2564,8 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
@@ -2419,12 +2601,18 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```ts
-inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
-}).catch((err: BusinessError) => {
-  console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
-});
+import { BusinessError } from '@ohos.base';
+
+try {
+  inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
+    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+    console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
+}
 ```
 
 ### getEditorAttributeSync<sup>10+</sup>
@@ -2486,6 +2674,8 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP, (err: BusinessError) => {
     if (err) {
@@ -2530,6 +2720,8 @@ moveCursor(direction: number): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.moveCursor(inputMethodEngine.Direction.CURSOR_UP).then(() => {
     console.log('Succeeded in moving cursor.');
@@ -2601,6 +2793,8 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRange(range, (err: BusinessError) => {
@@ -2647,6 +2841,8 @@ selectByRange(range: Range): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let range: inputMethodEngine.Range = { start: 0, end: 1 };
   inputClient.selectByRange(range).then(() => {
@@ -2721,6 +2917,8 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
   inputClient.selectByMovement(movement, (err: BusinessError) => {
@@ -2767,6 +2965,8 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   let movement: inputMethodEngine.Movement = { direction: 1 };
   inputClient.selectByMovement(movement).then(() => {
@@ -2840,6 +3040,8 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.getTextIndexAtCursor((err: BusinessError, index: number) => {
   if (err) {
     console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
@@ -2875,6 +3077,8 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 inputClient.getTextIndexAtCursor().then((index: number) => {
   console.log('Succeeded in getTextIndexAtCursor: ' + index);
 }).catch((err: BusinessError) => {
@@ -2947,6 +3151,8 @@ sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err: BusinessError) => {
     if (err) {
@@ -2996,6 +3202,8 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 try {
   inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
     console.log('Succeeded in sending extend action.');
@@ -3092,6 +3300,8 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getForward(length, (err: BusinessError, text: string) => {
   if (err) {
@@ -3129,6 +3339,8 @@ getForward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getForward(length).then((text: string) => {
   console.log('Succeeded in getting forward, text: ' + text);
@@ -3159,6 +3371,8 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getBackward(length, (err: BusinessError, text: string) => {
   if (err) {
@@ -3196,6 +3410,8 @@ getBackward(length:number): Promise&lt;string&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.getBackward(length).then((text: string) => {
   console.log('Succeeded in getting backward: ' + JSON.stringify(text));
@@ -3226,6 +3442,8 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteForward(length, (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3267,6 +3485,8 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteForward(length).then((result: boolean) => {
   if (result) {
@@ -3301,6 +3521,8 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteBackward(length, (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3342,6 +3564,8 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let length = 1;
 textInputClient.deleteBackward(length).then((result: boolean) => {
   if (result) {
@@ -3375,6 +3599,8 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 textInputClient.sendKeyFunction(action, (err: BusinessError, result: boolean) => {
   if (err) {
@@ -3416,6 +3642,8 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 let action = 1;
 textInputClient.sendKeyFunction(action).then((result: boolean) => {
   if (result) {
@@ -3450,6 +3678,8 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.insertText('test', (err: BusinessError, result: boolean) => {
   if (err) {
     console.error(`Failed to insertText: ${JSON.stringify(err)}`);
@@ -3490,6 +3720,8 @@ insertText(text:string): Promise&lt;boolean&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.insertText('test').then((result: boolean) => {
   if (result) {
     console.log('Succeeded in inserting text.');
@@ -3522,6 +3754,8 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethodEngine.EditorAttribute) => {
   if (err) {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
@@ -3553,6 +3787,8 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@ohos.base';
+
 textInputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
   console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
   console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));

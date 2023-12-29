@@ -4,11 +4,24 @@ Different devices support different codecs. Before invoking or configuring a cod
 
 You can call the native APIs provided by the **AVCapability** module to check whether related capabilities are supported.
 
+## Linking the Dynamic Library in the CMake Script
+
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+```
+
 ## How to Develop
 
 Read [AVCapability](../reference/native-apis/_a_v_capability.md) for the API reference.
 
-1. Obtain a codec capability instance.
+1. Add the header files.
+
+   ```c
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   ```
+
+2. Obtain a codec capability instance.
 
     ```c
     // Obtain a codec capability instance based on the MIME type and encoder flag.
@@ -18,7 +31,8 @@ Read [AVCapability](../reference/native-apis/_a_v_capability.md) for the API ref
     OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, SOFTWARE);
     ```
 
-2. Query the specifications provided by the codec capability instance.
+3. Query parameters.
+
     ```c
     // Check whether the codec capability instance describes a hardware codec.
     bool isHardware = OH_AVCapability_IsHardware(capability);
@@ -105,7 +119,7 @@ Read [AVCapability](../reference/native-apis/_a_v_capability.md) for the API ref
 
     // Obtain the height range supported.
     OH_AVRange heightRange;
-    int32_t ret = OH_AVCapability_GetVideoWidthRange(capability, &heightRange);
+    int32_t ret = OH_AVCapability_GetVideoHeightRange(capability, &heightRange);
     if (ret != AV_ERR_OK) {
         // Exception processing.
     }

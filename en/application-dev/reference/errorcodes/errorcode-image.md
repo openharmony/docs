@@ -1,10 +1,11 @@
 # Image Error Codes
 
+
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
 
-## 62980098 Shared Memory Error
+## 62980096 Operation Failed
 
 **Error Message**
 
@@ -205,7 +206,7 @@ Check the operation procedure or use another image.
 
 **Error Message**
 
-The image source data is incomplete.
+The image source data incomplete.
 
 **Possible Cause**
 

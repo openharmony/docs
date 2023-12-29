@@ -380,7 +380,7 @@ The preceding example includes two parts: default focus and active navigation.
 **Active navigation:**
 
 
-Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component unfocusable. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component, which is an unfocusable **\<Text>** component. Therefore, the system searches for the next focusable component, finds and moves the focus to the **\<Row>** container, and calculates the positions of **Button1** and **Button2** based on the [rule for focusing on a container component](#rules-of-focus-navigation). Because **Button2** is larger than **Button1**, the focus automatically moves to **Button2**.
+Pressing **F** on the keyboard triggers **onKeyEvent**, which sets **focusable** to **false** and makes the **\<Text>** component **unfocusable**. In this case, the focus automatically shifts. According to the description in passive focus, the system automatically searches for the immediate focusable component above the **\<Text>** component. Because the component immediately above is an unfocusable **\<Text>** component, the system searches for the next focusable component, which is the **\<Row>** container in this example. The system calculates the positions of **Button1** and **Button2** based on the [rule for focusing on a container component](#rules-of-focus-navigation). Because **Button2** is larger than Button1, the focus automatically moves to **Button2**.
 
 
 ## Setting Default Focus
@@ -1030,7 +1030,7 @@ No related attributes are set for Button-B, and therefore it cannot be focused o
 
 >**NOTE**
 >
->Due to the feature of the focused state, the focused state is cleared immediately after the screen receives a touch event. Therefore, each time a component is clicked, you need to press the Tab key again to display the focused state again. In this way, you can know the component where the focus is located.
+>The focused state is cleared immediately after the screen receives a touch event. Therefore, each time a component is touched, the **Tab** key needs to be pressed again to show the focused state again and find the component that has the focus.
 
 
 ### focusControl.requestFocus

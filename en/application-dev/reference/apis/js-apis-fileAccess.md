@@ -33,7 +33,7 @@ Obtains information about all Wants with **extension** set to **fileAccess** in 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -68,11 +68,11 @@ Obtains information about all Wants with **extension** set to **fileAccess** in 
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | callback | AsyncCallback&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | Yes| Promise used to return the Want information obtained.|
+  | callback | AsyncCallback&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | Yes| Callback invoked to return the Want information obtained.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -99,7 +99,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessHelper
 
-Synchronously creates a **Helper** object to connect to the specified Wants. The **Helper** object provides file access and management capabilities.
+Creates a **Helper** object to bind with the specified Wants. This API returns the result synchronously. The **Helper** object provides file access and management capabilities.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -112,7 +112,7 @@ Synchronously creates a **Helper** object to connect to the specified Wants. The
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
   | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the ability.|
-  | wants | Array&lt;[Want](js-apis-app-ability-want.md)&gt; | Yes| Wants to connect.|
+  | wants | Array&lt;[Want](js-apis-app-ability-want.md)&gt; | Yes| Wants to start the abilities.|
 
 **Return value**
 
@@ -122,7 +122,7 @@ Synchronously creates a **Helper** object to connect to the specified Wants. The
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -157,7 +157,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 createFileAccessHelper(context: Context) : FileAccessHelper
 
-Synchronously creates a **Helper** object to connect to all file management services in the system.
+Creates a **Helper** object to bind with all file management services in the system. This API returns the result synchronously.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -179,7 +179,7 @@ Synchronously creates a **Helper** object to connect to all file management serv
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -204,7 +204,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 ## FileInfo
 
-Provides the file or directory attribute information and APIs.
+Provides APIs for managing file or folder attribute information.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -216,19 +216,19 @@ Provides the file or directory attribute information and APIs.
 
 | Name| Type  | Readable| Writable| Description    |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | Yes| No| URI of the file or directory.|
-| relativePath<sup>10+</sup> | string | Yes| No| Relative path of the file or directory.|
-| fileName | string | Yes| No| Name of the file or directory.|
-| mode | number | Yes| No| Permissions on the file or directory.|
-| size | number | Yes| No|  Size of the file or directory.|
-| mtime | number | Yes| No|  Time when the file or directory was last modified.|
-| mimeType | string | Yes| No|  Multipurpose Internet Mail Extensions (MIME) type of the file or directory.|
+| uri | string | Yes| No| URI of the file or folder.|
+| relativePath<sup>10+</sup> | string | Yes| No| Relative path of the file or folder.|
+| fileName | string | Yes| No| Name of the file or folder.|
+| mode | number | Yes| No| Permissions on the file or folder.|
+| size | number | Yes| No|  Size of the file or folder.|
+| mtime | number | Yes| No|  Time when the file or folder was last modified.|
+| mimeType | string | Yes| No|  Multipurpose Internet Mail Extensions (MIME) type of the file or folder.|
 
 ### listFile
 
 listFile(filter?: Filter) : FileIterator
 
-Synchronously obtains a **FileIterator** object that lists the next-level files (directories) matching the conditions of the filter from a directory and returns [FileInfo](#fileinfo) using [next()](#next). Currently, only built-in storage devices support the file filter.
+Obtains a **FileIterator** object that lists the next-level files (folders) matching the specified conditions of this directory. This API returns the result synchronously. [FileInfo](#fileinfo) is returned by [next()](#next). Currently, only built-in storage devices support the file filter.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -240,7 +240,7 @@ Synchronously obtains a **FileIterator** object that lists the next-level files 
 
   | Name| Type| Mandatory| Description|
   | --- | --- | -- | -- |
-  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -250,7 +250,7 @@ Synchronously obtains a **FileIterator** object that lists the next-level files 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -286,7 +286,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 scanFile(filter?: Filter) : FileIterator;
 
-Synchronously obtains a **FileIterator** object that recursively retrieves the files matching the conditions of the filter from a directory and returns [FileInfo](#fileinfo) using [next()](#next). Currently, this API supports only built-in storage devices.
+Obtains a **FileIterator** object that recursively retrieves the files matching the specified conditions of this directory. This API returns the result synchronously. [FileInfo](#fileinfo) is returned by [next()](#next). Currently, this API supports only built-in storage devices.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -298,7 +298,7 @@ Synchronously obtains a **FileIterator** object that recursively retrieves the f
 
   | Name| Type| Mandatory| Description|
   | --- | --- | -- | -- |
-  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -308,7 +308,7 @@ Synchronously obtains a **FileIterator** object that recursively retrieves the f
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -354,7 +354,7 @@ Provides the **FileIterator** object.
 
 next() : { value: FileInfo, done: boolean }
 
-Obtains information about the next-level files or directories.
+Obtains information about the next-level files or folders.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -366,15 +366,15 @@ Obtains information about the next-level files or directories.
 
 | Type| Description|
 | --- | -- |
-| {value: [FileInfo](#fileinfo), done: boolean} | File or directory information obtained. This method traverses the specified directory until **true** is returned. The **value** field contains the file or directory information obtained.|
+| {value: [FileInfo](#fileinfo), done: boolean} | File or folder information obtained. This API traverses the directory until **true** is returned. The **value** field contains the file or folder information obtained.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## RootInfo
 
-Provides the device's root attribute information and APIs.
+Provides APIs for managing the device's root attribute information.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -396,7 +396,7 @@ Provides the device's root attribute information and APIs.
 
 listFile(filter?: Filter) : FileIterator
 
-Synchronously obtains a **FileIterator** object that lists the first-level files (directories) matching the conditions of the filter from the device root directory and returns [FileInfo](#fileinfo) using [next()](#next). Currently, only built-in storage devices support the file filter.
+Obtains a **FileIterator** object that lists the first-level files (directories) matching the specified conditions from the device root directory. This API returns the result synchronously. [FileInfo](#fileinfo) is return by [next()](#next-1). Currently, only built-in storage devices support the file filter.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -408,7 +408,7 @@ Synchronously obtains a **FileIterator** object that lists the first-level files
 
   | Name| Type| Mandatory| Description|
   | --- | --- | -- | -- |
-  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -418,7 +418,7 @@ Synchronously obtains a **FileIterator** object that lists the first-level files
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -454,7 +454,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 scanFile(filter?: Filter) : FileIterator
 
-Synchronously obtains a **FileIterator** object that recursively retrieves the files matching the conditions of the filter from the device root directory and returns [FileInfo](#fileinfo)using [next()](#next). Currently, this API supports only built-in storage devices.
+Obtains a **FileIterator** object that recursively retrieves the files matching the specified conditions from the device root directory. This API returns the result synchronously. [FileInfo](#fileinfo) is returned by [next()](#next-1). Currently, this API supports only built-in storage devices.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -466,7 +466,7 @@ Synchronously obtains a **FileIterator** object that recursively retrieves the f
 
   | Name| Type| Mandatory| Description|
   | --- | --- | -- | -- |
-  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object that specifies the conditions for listing files. |
 
 **Return value**
 
@@ -476,7 +476,7 @@ Synchronously obtains a **FileIterator** object that recursively retrieves the f
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -522,7 +522,7 @@ Provides an iterator object of the device root directory.
 
 next() : { value: RootInfo, done: boolean }
 
-Obtains the root directory of the next-level device.
+Obtains the next-level root directory.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -534,11 +534,11 @@ Obtains the root directory of the next-level device.
 
 | Type| Description|
 | --- | -- |
-| {value: [RootInfo](#rootinfo), done: boolean} | Root directory information obtained. This method traverses the directory until **true** is returned. The **value** field contains the root directory information.|
+| {value: [RootInfo](#rootinfo), done: boolean} | Root directory information obtained. This API traverses the directory until **true** is returned. The **value** field contains the root directory information obtained.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## FileAccessHelper
 
@@ -552,8 +552,8 @@ Provides a **FileAccessHelper** object.
 
 getRoots() : Promise&lt;RootIterator&gt;
 
-Obtains information about the device root nodes of the file management service connected to the **Helper** object. This API uses a promise to return a **RootIterator** object,
-which returns [RootInfo](#rootinfo) by using [next](#next-1).
+Obtains information about the device root nodes of the file management services associated with the **Helper** object. This API uses a promise to return
+a **RootIterator** object. You can use [next](#next-1) to return [RootInfo](#rootinfo).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -563,11 +563,11 @@ which returns [RootInfo](#rootinfo) by using [next](#next-1).
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;[RootIterator](#rootiterator)&gt; | Promise used to return the **RootIterator** object obtained.|
+| Promise&lt;[RootIterator](#rootiterator)&gt; | Promise used to return a **RootIterator** object.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -602,8 +602,8 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void
 
-Obtains information about the device root nodes of the file management service connected to the **Helper** object. This API uses an asynchronous callback to return a **RootIterator** object,
-which returns [RootInfo](#rootinfo) by using [next](#next-1).
+Obtains information about the device root nodes of the file management services associated with the **Helper** object. This API uses an asynchronous callback to return
+a **RootIterator** object. You can use [next](#next-1) to return [RootInfo](#rootinfo).
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -613,11 +613,11 @@ which returns [RootInfo](#rootinfo) by using [next](#next-1).
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| callback | AsyncCallback&lt;[RootIterator](#rootiterator)&gt; | Yes| Callback invoked to return the **RootIterator** object obtained.|
+| callback | AsyncCallback&lt;[RootIterator](#rootiterator)&gt; | Yes| Callback invoked to return a **RootIterator** object.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -673,7 +673,7 @@ Creates a file in a directory. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -718,7 +718,7 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -748,7 +748,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
-Creates a directory. This API uses a promise to return the result.
+Creates a folder in a directory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -758,18 +758,18 @@ Creates a directory. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| parentUri | string | Yes| URI of the destination directory for the directory to create.|
-| displayName | string | Yes| Name of the directory to create.|
+| parentUri | string | Yes| URI of the destination directory for the folder to create.|
+| displayName | string | Yes| Name of the folder to create.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;string&gt; | Promise used to return the URI of the directory created.|
+| Promise&lt;string&gt; | Promise used to return the URI of the folder created.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -798,7 +798,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void
 
-Creates a directory. This API uses an asynchronous callback to return the result.
+Creates a folder. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -808,13 +808,13 @@ Creates a directory. This API uses an asynchronous callback to return the result
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| parentUri | string | Yes| URI of the destination directory for the directory to create.|
-| displayName | string | Yes| Name of the directory to create.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the directory created.|
+| parentUri | string | Yes| URI of the destination directory for the folder to create.|
+| displayName | string | Yes| Name of the folder to create.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the folder created.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -865,7 +865,7 @@ Opens a file. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -906,7 +906,7 @@ Opens a file. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -934,7 +934,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 delete(uri: string) : Promise&lt;number&gt;
 
-Deletes a file or directory. This API uses a promise to return the result.
+Deletes a file or folder. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -944,17 +944,17 @@ Deletes a file or directory. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| uri | string | Yes| URI of the file or directory to delete.|
+| uri | string | Yes| URI of the file or folder to delete.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;number&gt | Promise used to return the result.|
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -981,7 +981,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
 
-Deletes a file or directory. This API uses an asynchronous callback to return the result.
+Deletes a file or folder. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -991,12 +991,12 @@ Deletes a file or directory. This API uses an asynchronous callback to return th
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| uri | string | Yes| URI of the file or directory to delete.|
+| uri | string | Yes| URI of the file or folder to delete.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1025,7 +1025,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 
-Moves a file or directory. This API uses a promise to return the result. Currently, this API does not support move of files or directories across devices.
+Moves a file or folder. This API uses a promise to return the result. Currently, this API does not support move of files or folders across devices.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1035,18 +1035,18 @@ Moves a file or directory. This API uses a promise to return the result. Current
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| sourceFile | string | Yes| URI of the file or directory to move.|
-| destFile | string | Yes| URI of the destination directory, to which the file or directory will be moved.|
+| sourceFile | string | Yes| URI of the file or folder to move.|
+| destFile | string | Yes| URI of the destination directory, to which the file or folder is moved.|
 
 **Return value**
 
 | Type| Description|
 | ----- | ------ |
-| Promise&lt;string&gt; | Promise used to return the URI of the file or directory in the destination directory.|
+| Promise&lt;string&gt; | Promise used to return the URI of the file or folder in the destination directory.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1073,7 +1073,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;) : void
 
-Moves a file or directory. This API uses an asynchronous callback to return the result. Currently, this API does not support move of files or directories across devices.
+Moves a file or folder. This API uses an asynchronous callback to return the result. Currently, this API does not support move of files or folders across devices.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1083,13 +1083,13 @@ Moves a file or directory. This API uses an asynchronous callback to return the 
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| sourceFile | string | Yes| URI of the file or directory to move.|
-| destFile | string | Yes| URI of the destination directory, to which the file or directory will be moved.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the file or directory in the destination directory.|
+| sourceFile | string | Yes| URI of the file or folder to move.|
+| destFile | string | Yes| URI of the destination directory, to which the file or folder is moved.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the file or folder in the destination directory.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1119,7 +1119,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 rename(uri: string, displayName: string) : Promise&lt;string&gt;
 
-Renames a file or directory. This API uses a promise to return the result.
+Renames a file or folder. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1129,18 +1129,18 @@ Renames a file or directory. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| uri | string | Yes| URI of the file or directory to rename.|
-| displayName | string | Yes| New name of the file or directory, which can contain the file name extension.|
+| uri | string | Yes| URI of the file or folder to rename.|
+| displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
 
 **Return value**
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;string&gt; | Promise used to return the URI of the renamed file or directory.|
+| Promise&lt;string&gt; | Promise used to return the URI of the renamed file or folder.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1166,7 +1166,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void
 
-Renames a file or directory. This API uses an asynchronous callback to return the result.
+Renames a file or folder. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1176,13 +1176,13 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| uri | string | Yes| URI of the file or directory to rename.|
-| displayName | string | Yes| New name of the file or directory, which can contain the file name extension.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the renamed file or directory.|
+| uri | string | Yes| URI of the file or folder to rename.|
+| displayName | string | Yes| New name of the file or folder, which can contain the file name extension.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the renamed file or folder.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1210,7 +1210,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 access(sourceFileUri: string) : Promise&lt;boolean&gt;
 
-Checks whether a file or directory exists. This API uses a promise to return the result.
+Checks whether a file or folder exists. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1220,7 +1220,7 @@ Checks whether a file or directory exists. This API uses a promise to return the
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| sourceFileUri | string | Yes| URI of the file or directory to check.|
+| sourceFileUri | string | Yes| URI of the file or folder to check.|
 
 **Return value**
 
@@ -1230,7 +1230,7 @@ Checks whether a file or directory exists. This API uses a promise to return the
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1260,7 +1260,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
 
-Checks whether a file or directory exists. This API uses an asynchronous callback to return the result.
+Checks whether a file or folder exists. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1270,12 +1270,12 @@ Checks whether a file or directory exists. This API uses an asynchronous callbac
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| sourceFileUri | string | Yes| URI of the file or directory to check.|
+| sourceFileUri | string | Yes| URI of the file or folder to check.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result.|
 
 **Error codes**
 
-For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1307,7 +1307,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
 
 getFileInfoFromUri(uri: string) : Promise\<FileInfo>
 
-Obtains a **FileInfo** object based on the specified URI. This API uses a promise to return the result.
+Obtains a **FileInfo** object based on a URI. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1317,7 +1317,7 @@ Obtains a **FileInfo** object based on the specified URI. This API uses a promis
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| uri | string | Yes| URI of the file or directory.|
+| uri | string | Yes| URI of the file or folder.|
 
 **Return value**
 
@@ -1348,7 +1348,7 @@ Obtains a **FileInfo** object based on the specified URI. This API uses a promis
 
 getFileInfoFromUri(uri: string, callback: AsyncCallback\<FileInfo>) : void
 
-Obtains a **FileInfo** object based on the specified URI. This API uses an asynchronous callback to return the result.
+Obtains a **FileInfo** object based on a URI. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1358,7 +1358,7 @@ Obtains a **FileInfo** object based on the specified URI. This API uses an async
 
   | Name| Type| Mandatory| Description|
   | --- | --- | --- | -- |
-  | uri | string | Yes| URI of the file or directory.|
+  | uri | string | Yes| URI of the file or folder.|
   | callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | Yes| Callback invoked to return the **FileInfo** object obtained.|
 
 **Example**
@@ -1389,7 +1389,7 @@ Obtains a **FileInfo** object based on the specified URI. This API uses an async
 
 getFileInfoFromRelativePath(relativePath: string) : Promise\<FileInfo>
 
-Obtains a **FileInfo** object based on the **relativePath**. This API uses a promise to return the result.
+Obtains a **FileInfo** object based on a relative path. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1399,7 +1399,7 @@ Obtains a **FileInfo** object based on the **relativePath**. This API uses a pro
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| relativePath | string | Yes| Relative path of the file or directory.|
+| relativePath | string | Yes| Relative path of the file or folder.|
 
 **Return value**
 
@@ -1429,7 +1429,7 @@ Obtains a **FileInfo** object based on the **relativePath**. This API uses a pro
 
 getFileInfoFromRelativePath(relativePath: string, callback: AsyncCallback\<FileInfo>) : void
 
-Obtains a **FileInfo** object based on the **relativePath**. This API uses an asynchronous callback to return the result.
+Obtains a **FileInfo** object based on a relative path. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1439,7 +1439,7 @@ Obtains a **FileInfo** object based on the **relativePath**. This API uses an as
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| relativePath | string | Yes| Relative path of the file or directory.|
+| relativePath | string | Yes| Relative path of the file or folder.|
 | callback | AsyncCallback&lt;[FileInfo](#fileinfo)&gt; | Yes| Callback invoked to return the **FileInfo** object obtained.|
 
 **Example**
@@ -1468,7 +1468,7 @@ Obtains a **FileInfo** object based on the **relativePath**. This API uses an as
 
 query(uri:string, metaJson: string) : Promise&lt;string&gt;
 
-Queries the attribute information about a file or directory based on the URI. This API uses a promise to return the result.
+Queries the attribute information about a file or folder based on a URI. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1478,14 +1478,14 @@ Queries the attribute information about a file or directory based on the URI. Th
 
 | Name  | Type  | Mandatory| Description                                                |
 | -------- | ------ | ---- | ---------------------------------------------------- |
-| uri      | string | Yes  | URI of the file or directory (obtained from [FileInfo](#fileinfo)).|
+| uri      | string | Yes  | File or folder URI obtained from [FileInfo](#fileinfo).|
 | metaJson | string | Yes  | Attribute [FILEKEY](#filekey10) to query.       |
 
 **Return value**
 
 | Type                 | Description                            |
 | :-------------------- | :------------------------------- |
-| Promise&lt;string&gt; | Promised used to return the attribute queried and the value obtained.|
+| Promise&lt;string&gt; | Promise used to return the file attribute and the value obtained.|
 
 **Example**
 
@@ -1510,7 +1510,7 @@ Queries the attribute information about a file or directory based on the URI. Th
 
 query(uri:string, metaJson: string, callback: AsyncCallback&lt;string&gt;) : void
 
-Queries the attribute information about a file or directory based on the URI. This API uses an asynchronous callback to return the result.
+Queries the attribute information about a file or folder based on a URI. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1520,9 +1520,9 @@ Queries the attribute information about a file or directory based on the URI. Th
 
 | Name  | Type                       | Mandatory| Description                                                |
 | -------- | --------------------------- | ---- | ---------------------------------------------------- |
-| uri      | string | Yes  | URI of the file or directory (obtained from [FileInfo](#fileinfo)).|
+| uri      | string | Yes  | File or folder URI obtained from [FileInfo](#fileinfo).|
 | metaJson | string | Yes  | Attribute [FILEKEY](#filekey10) to query.       |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the attribute queried and the value obtained.                    |
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the file attribute and the value obtained.                    |
 
 **Example**
 
@@ -1552,7 +1552,7 @@ Queries the attribute information about a file or directory based on the URI. Th
 
 copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;CopyResult&gt;&gt;
 
-Copies a file or directory. This API uses a promise to return the result.
+Copies a file or folder. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1570,7 +1570,7 @@ Copies a file or directory. This API uses a promise to return the result.
 
 | Type                                                   | Description                                                        |
 | :------------------------------------------------------ | :----------------------------------------------------------- |
-| Promise&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Promise used to return the result. If the file or directory is copied successfully, no information is returned. If the file copy fails, **copyResult** is returned.|
+| Promise&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Promise used to return the result. If the file or folder is copied successfully, no information is returned. If the file copy fails, a **copyResult** array is returned.|
 
 Example 1: Copy a file with **force** unspecified.
 
@@ -1602,7 +1602,7 @@ Example 1: Copy a file with **force** unspecified.
   }
   ```
 
-Example 2: Copy a file or directory when **force** set to **true**.
+Example 2: Copy a file or folder when **force** set to **true**.
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1636,7 +1636,7 @@ Example 2: Copy a file or directory when **force** set to **true**.
 
 copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;CopyResult&gt;&gt;) : void
 
-Copies a file or directory. This API uses an asynchronous callback to return the result.
+Copies a file or folder. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1648,7 +1648,7 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | sourceUri | string                                           | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
 | destUri   | string                                           | Yes  | URI of the file or folder created, for example, **file://docs/storage/Users/currentUser/Download/test**.        |
-| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or directory is copied successfully, no information is returned. If the file copy fails, **copyResult** is returned.|
+| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or folder is copied successfully, no information is returned. If the file copy fails, a **copyResult** array is returned.|
 
 **Example**
 
@@ -1686,7 +1686,7 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 
 copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback&lt;Array&lt;CopyResult&gt;&gt;) : void
 
-Copies a file or directory. This API uses an asynchronous callback to return the result.
+Copies a file or folder. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1699,7 +1699,7 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 | sourceUri | string                                           | Yes  | URI of the file or folder to copy, for example, **file://docs/storage/Users/currentUser/Download/1.txt**. |
 | destUri   | string                                           | Yes  | URI of the file or folder created, for example, **file://docs/storage/Users/currentUser/Download/test**.        |
 | force     | boolean                                          | Yes  | Whether to forcibly overwrite the file with the same name. <br>If **force** is **true**, the file with the same name will be overwritten. If **force** is **false** or not specified, the file with the same name will not be overwritten.|
-| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or directory is copied successfully, no information is returned. If the file copy fails, **copyResult** is returned.|
+| callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or folder is copied successfully, no information is returned. If the file copy fails, a **copyResult** array is returned.|
 
 **Example**
 
@@ -1737,7 +1737,7 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 
 registerObserver(uri: string, notifyForDescendants: boolean, callback: Callback&lt;NotifyMessage&gt;): void
 
-Registers a callback to listen for the specified URI. URIs and callbacks can be in many-to-many relationships. You are advised to use one callback to observe one URI.
+Registers a callback to listen for a URI. URIs and callbacks can be in many-to-many relationships. You are advised to use one callback to listen for one URI.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -1747,7 +1747,7 @@ Registers a callback to listen for the specified URI. URIs and callbacks can be 
 
 | Name              | Type                                             | Mandatory| Description                          |
 | -------------------- | ------------------------------------------------- | ---- | ------------------------------ |
-| uri                  | string                                            | Yes  | URI of the file or directory to observe.               |
+| uri                  | string                                            | Yes  | URI of the file or folder to observe.               |
 | notifyForDescendants | boolean                                           | Yes  | Whether to observe changes of the files in the directory.|
 | callback             | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | Yes  | Callback invoked to return the notification.                  |
 
@@ -1880,10 +1880,10 @@ Unregisters a callback that is used to listen for the specified URI.
 
 | Name  | Type                                             | Mandatory| Description                     |
 | -------- | ------------------------------------------------- | ---- | ------------------------- |
-| uri      | string                                            | Yes  | URI of the target file or directory.          |
+| uri      | string                                            | Yes  | URI of the file or folder.          |
 | callback | Callback&lt;[NotifyMessage](#notifymessage10)&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks of the specified URI will be unregistered.|
 
-**Example 1: Deregister a callback of the specified URI.**
+**Example 1: Unregister a callback of the specified URI.**
 
   ```ts
   import { BusinessError } from '@ohos.base';
@@ -1993,8 +1993,8 @@ Defines the information returned when the file copy operation fails. If the copy
 
 | Name     | Type  | Readable| Writable| Description               |
 | --------- | ------ | ---- | ---- | ----------------- |
-| sourceUri | string | Yes  | No  | URI of the source file or directory.                                        |
-| destUri   | string | Yes  | No  | URI of the conflict file. If the error is not caused by a conflict, **destUri** is empty.|
+| sourceUri | string | Yes  | No  | URI of the source file or folder.                                        |
+| destUri   | string | Yes  | No  | URI of the conflicting file. If the error is not caused by a conflict, **destUri** is empty.|
 | errCode   | number | Yes  | No  | Error code.                                                |
 | errMsg    | string | Yes  | No  | Error information.                                              |
 
@@ -2024,9 +2024,9 @@ Enumerates the keys of the file attributes to query.
 | ------------- | ------------- | ----------------------------------- |
 | DISPLAY_NAME  | 'display_name'  | Name of the file.                             |
 | DATE_ADDED    | 'date_added'   | Date when the file was created, for example, **1501925454**.     |
-| DATE_MODIFIED | 'date_modified' | Date when a file was modified, for example, **1665310670**.     |
+| DATE_MODIFIED | 'date_modified' | Date when the file was modified, for example, **1665310670**.     |
 | RELATIVE_PATH | 'relative_path' | Relative path of the file, for example, **Pictures/Screenshots/**.|
-| FILE_SIZE     | 'size'          | Size of a file, in bytes.       |
+| FILE_SIZE     | 'size'          | Size of the file, in bytes.       |
 
 ## NotifyType<sup>10+</sup>
 

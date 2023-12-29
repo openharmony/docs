@@ -3,13 +3,11 @@
 
 ## 概述
 
-提供音频模块Native接口定义。
+提供音频模块C接口定义。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
-
-10
+**起始版本：** 10
 
 
 ## 汇总
@@ -48,14 +46,17 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AudioStream_Result](#oh_audiostream_result) { AUDIOSTREAM_SUCCESS, AUDIOSTREAM_ERROR_INVALID_PARAM, AUDIOSTREAM_ERROR_ILLEGAL_STATE, AUDIOSTREAM_ERROR_SYSTEM } | 音频结果码。 | 
-| [OH_AudioStream_Type](#oh_audiostream_type) { AUDIOSTREAM_TYPE_RENDERER = 1, AUDIOSTREAM_TYPE_CAPTURER = 2 } | 音频流类型。 | 
+| [OH_AudioStream_Result](#oh_audiostream_result) { AUDIOSTREAM_SUCCESS, AUDIOSTREAM_ERROR_INVALID_PARAM, AUDIOSTREAM_ERROR_ILLEGAL_STATE, AUDIOSTREAM_ERROR_SYSTEM } | 音频错误码。 | 
+| [OH_AudioStream_Type](#oh_audiostream_type) { AUDIOSTREAM_TYPE_RERNDERER = 1, AUDIOSTREAM_TYPE_CAPTURER = 2 } | 音频流类型。 | 
 | [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) { AUDIOSTREAM_SAMPLE_U8 = 0, AUDIOSTREAM_SAMPLE_S16LE = 1, AUDIOSTREAM_SAMPLE_S24LE = 2, AUDIOSTREAM_SAMPLE_S32LE = 3 } | 定义音频流采样格式。 | 
-| [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { **AUDIOSTREAM_ENCODING_TYPE_RAW** = 0 } | 定义音频流编码类型。 | 
-| [OH_AudioStream_Usage](#oh_audiostream_usage) { **AUDIOSTREAM_USAGE_UNKNOWN** = 0, **AUDIOSTREAM_USAGE_MUSIC** = 1, **AUDIOSTREAM_USAGE_COMMUNICATION** = 2, **AUDIOSTREAM_USAGE_GAME** = 11 } | 定义音频流使用场景。 | 
-| [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) { AUDIOSTREAM_LATENCY_MODE_NORMAL = 0, AUDIOSTREAM_LATENCY_MODE_FAST = 1} | 定义音频时延模式。 | 
+| [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { AUDIOSTREAM_ENCODING_TYPE_RAW = 0 } | 定义音频流编码类型。 | 
+| [OH_AudioStream_Usage](#oh_audiostream_usage) { AUDIOSTREAM_USAGE_UNKNOWN = 0, AUDIOSTREAM_USAGE_MUSIC = 1, AUDIOSTREAM_USAGE_COMMUNICATION = 2, AUDIOSTREAM_USAGE_GAME = 11 } | 定义音频流使用场景。 | 
+| [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) { AUDIOSTREAM_LATENCY_MODE_NORMAL } | 定义音频时延模式。 | 
 | [OH_AudioStream_State](#oh_audiostream_state) {<br/>AUDIOSTREAM_STATE_INVALID = -1, AUDIOSTREAM_STATE_PREPARED = 1, AUDIOSTREAM_STATE_RUNNING = 2, AUDIOSTREAM_STATE_STOPPED = 3,<br/>AUDIOSTREAM_STATE_RELEASED = 4, AUDIOSTREAM_STATE_PAUSED = 5<br/>} | 定义音频流的状态。 | 
-| [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) { **AUDIOSTREAM_SOURCE_TYPE_INVALID** = -1, **AUDIOSTREAM_SOURCE_TYPE_MIC**, **AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION** = 1, **AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION** = 7 } | 定义音频流使用场景。 | 
+| [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) { AUDIOSTREAM_SOURCE_TYPE_INVALID = -1, AUDIOSTREAM_SOURCE_TYPE_MIC, AUDIOSTREAM_SOURCE_TYPE_VOICE_RECOGNITION = 1, AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION = 7 } | 定义音频流使用场景。 | 
+| [OH_AudioStream_Event](#oh_audiostream_event) { AUDIOSTREAM_EVENT_ROUTING_CHANGED } | 定义音频事件。 | 
+| [OH_AudioInterrupt_ForceType](#oh_audiointerrupt_forcetype) { AUDIOSTREAM_INTERRUPT_FORCE, AUDIOSTREAM_INTERRUPT_SHAR } | 定义音频中断类型。 | 
+| [OH_AudioInterrupt_Hint](#oh_audiointerrupt_hint) {<br/>AUDIOSTREAM_INTERRUPT_HINT_NONE, AUDIOSTREAM_INTERRUPT_HINT_RESUME, AUDIOSTREAM_INTERRUPT_HINT_PAUSE, AUDIOSTREAM_INTERRUPT_HINT_STOP,<br/>AUDIOSTREAM_INTERRUPT_HINT_DUCK, AUDIOSTREAM_INTERRUPT_HINT_UNDUCK<br/>} | 定义音频中断类型。 | 
 
 
 ### 函数
@@ -75,10 +76,12 @@
 | [OH_AudioCapturer_GetSampleFormat](#oh_audiocapturer_getsampleformat) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) \*sampleFormat) | 查询当前输入音频流采样格式。 | 
 | [OH_AudioCapturer_GetEncodingType](#oh_audiocapturer_getencodingtype) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | 查询当前输入音频流编码类型。 | 
 | [OH_AudioCapturer_GetCapturerInfo](#oh_audiocapturer_getcapturerinfo) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, [OH_AudioStream_SourceType](#oh_audiostream_sourcetype) \*sourceType) | 查询当前输入音频流工作场景类型。 | 
+| [OH_AudioCapturer_GetFrameSizeInCallback](#oh_audiocapturer_getframesizeincallback) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, int32_t \*frameSize) | 在回调中查询帧大小，它是每次回调返回的缓冲区的固定长度。 | 
+| [OH_AudioCapturer_GetTimestamp](#oh_audiocapturer_gettimestamp) ([OH_AudioCapturer](#oh_audiocapturer) \*capturer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | 获取输入音频流时间戳和位置信息。 | 
 | [OH_AudioRenderer_Release](#oh_audiorenderer_release) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | 释放输出音频流。 | 
 | [OH_AudioRenderer_Start](#oh_audiorenderer_start) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | 开始输出音频数据。 | 
 | [OH_AudioRenderer_Pause](#oh_audiorenderer_pause) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | 暂停输出音频流。 | 
-| [OH_AudioRenderer_Stop](#oh_audiorenderer_stop) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | 停止输出音频流 | 
+| [OH_AudioRenderer_Stop](#oh_audiorenderer_stop) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | 停止输出音频流。 | 
 | [OH_AudioRenderer_Flush](#oh_audiorenderer_flush) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer) | 丢弃已经写入的音频数据。 | 
 | [OH_AudioRenderer_GetCurrentState](#oh_audiorenderer_getcurrentstate) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_State](#oh_audiostream_state) \*state) | 查询当前输出音频流状态。 | 
 | [OH_AudioRenderer_GetSamplingRate](#oh_audiorenderer_getsamplingrate) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*rate) | 查询当前输出音频流采样率。 | 
@@ -88,6 +91,9 @@
 | [OH_AudioRenderer_GetLatencyMode](#oh_audiorenderer_getlatencymode) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_LatencyMode](#oh_audiostream_latencymode) \*latencyMode) | 查询当前输出音频流时延模式。 | 
 | [OH_AudioRenderer_GetRendererInfo](#oh_audiorenderer_getrendererinfo) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_Usage](#oh_audiostream_usage) \*usage) | 查询当前输出音频流工作场景类型。 | 
 | [OH_AudioRenderer_GetEncodingType](#oh_audiorenderer_getencodingtype) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) \*encodingType) | 查询当前输出音频流编码类型。 | 
+| [OH_AudioRenderer_GetFramesWritten](#oh_audiorenderer_getframeswritten) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int64_t \*frames) | 查询自创建流以来已写入的帧数。 | 
+| [OH_AudioRenderer_GetTimestamp](#oh_audiorenderer_gettimestamp) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp) | 获取输出音频流时间戳和位置信息。 | 
+| [OH_AudioRenderer_GetFrameSizeInCallback](#oh_audiorenderer_getframesizeincallback) ([OH_AudioRenderer](#oh_audiorenderer) \*renderer, int32_t \*frameSize) | 在回调中查询帧大小。 | 
 | [OH_AudioStreamBuilder_Create](#oh_audiostreambuilder_create) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*\*builder, [OH_AudioStream_Type](#oh_audiostream_type) type) | 创建一个输入或者输出类型的音频流构造器。 | 
 | [OH_AudioStreamBuilder_Destroy](#oh_audiostreambuilder_destroy) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder) | 销毁一个音频流构造器。 | 
 | [OH_AudioStreamBuilder_SetSamplingRate](#oh_audiostreambuilder_setsamplingrate) ([OH_AudioStreamBuilder](#oh_audiostreambuilder) \*builder, int32_t rate) | 设置音频流的采样率属性。 | 
@@ -116,168 +122,212 @@
 
 ### OH_AudioCapturer
 
-  
 ```
 typedef struct OH_AudioCapturerStruct OH_AudioCapturer
 ```
 
-**描述：**
+**描述**
 
 声明输入音频流。
 
 输入音频流的实例被用来获取音频数据。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
-
-10
+**起始版本：** 10
 
 
 ### OH_AudioCapturer_Callbacks
 
-  
 ```
 typedef struct OH_AudioCapturer_Callbacks_Struct OH_AudioCapturer_Callbacks
 ```
 
-**描述：**
+**描述**
 
 声明输入音频流的回调函数指针。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
-
-10
+**起始版本：** 10
 
 
 ### OH_AudioRenderer
 
-  
 ```
 typedef struct OH_AudioRendererStruct OH_AudioRenderer
 ```
 
-**描述：**
+**描述**
 
 声明输出音频流。
 
 输出音频流的实例被用来播放音频数据。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
-
-10
+**起始版本：** 10
 
 
 ### OH_AudioRenderer_Callbacks
 
-  
 ```
 typedef struct OH_AudioRenderer_Callbacks_Struct OH_AudioRenderer_Callbacks
 ```
 
-**描述：**
+**描述**
 
 声明输出音频流的回调函数指针。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
-
-10
+**起始版本：** 10
 
 
 ### OH_AudioStreamBuilder
 
-  
 ```
 typedef struct OH_AudioStreamBuilderStruct OH_AudioStreamBuilder
 ```
 
-**描述：**
+**描述**
 
 声明音频流的构造器。
 
 构造器实例通常被用来设置音频流属性和创建音频流。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
-
-10
+**起始版本：** 10
 
 
 ## 枚举类型说明
 
 
+### OH_AudioInterrupt_ForceType
+
+```
+enum OH_AudioInterrupt_ForceType
+```
+
+**描述**
+
+定义音频中断类型。
+
+通常用来描述音频中断事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AUDIOSTREAM_INTERRUPT_FORCE | 强制类型，系统更改音频状态。 | 
+| AUDIOSTREAM_INTERRUPT_SHAR | 共享类型，应用程序更改音频状态。 | 
+
+
+### OH_AudioInterrupt_Hint
+
+```
+enum OH_AudioInterrupt_Hint
+```
+
+**描述**
+
+定义音频中断类型。
+
+通常用来描述音频中断事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AUDIOSTREAM_INTERRUPT_HINT_NONE | 不提示。 | 
+| AUDIOSTREAM_INTERRUPT_HINT_RESUME | 恢复流提示。 | 
+| AUDIOSTREAM_INTERRUPT_HINT_PAUSE | 暂停流提示。 | 
+| AUDIOSTREAM_INTERRUPT_HINT_STOP | 停止流提示。 | 
+| AUDIOSTREAM_INTERRUPT_HINT_DUCK | 短暂降低音量。 | 
+| AUDIOSTREAM_INTERRUPT_HINT_UNDUCK | 恢复音量。 | 
+
+
 ### OH_AudioStream_EncodingType
 
-  
 ```
 enum OH_AudioStream_EncodingType
 ```
 
-**描述：**
+**描述**
 
 定义音频流编码类型。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-  | 枚举值 | 描述 | 
+| 枚举值 | 描述 | 
 | -------- | -------- |
 | AUDIOSTREAM_ENCODING_TYPE_RAW | PCM编码。 | 
 
 
+### OH_AudioStream_Event
+
+```
+enum OH_AudioStream_Event
+```
+
+**描述**
+
+定义音频事件。
+
+通常用来描述音频事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**起始版本：** 10
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| AUDIOSTREAM_EVENT_ROUTING_CHANGED | 音频的路由已更改。 | 
+
+
 ### OH_AudioStream_LatencyMode
 
-  
 ```
 enum OH_AudioStream_LatencyMode
 ```
 
-**描述：**
+**描述**
 
 定义音频时延模式。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-  | 枚举值 | 描述 | 
+| 枚举值 | 描述 | 
 | -------- | -------- |
 | AUDIOSTREAM_LATENCY_MODE_NORMAL | 该模式代表一个普通时延的音频流。 | 
-| AUDIOSTREAM_LATENCY_MODE_FAST | 该模式代表一个低时延的音频流。 | 
 
 
 ### OH_AudioStream_Result
 
-  
 ```
 enum OH_AudioStream_Result
 ```
 
-**描述：**
+**描述**
 
-音频结果码。
+音频错误码。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-  | 枚举值 | 描述 | 
+| 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIOSTREAM_SUCCESS | 操作成功 | 
+| AUDIOSTREAM_SUCCESS | 操作成功。 | 
 | AUDIOSTREAM_ERROR_INVALID_PARAM | 入参错误。 | 
 | AUDIOSTREAM_ERROR_ILLEGAL_STATE | 非法状态。 | 
 | AUDIOSTREAM_ERROR_SYSTEM | 系统通用错误。 | 
@@ -285,22 +335,19 @@ enum OH_AudioStream_Result
 
 ### OH_AudioStream_SampleFormat
 
-  
 ```
 enum OH_AudioStream_SampleFormat
 ```
 
-**描述：**
+**描述**
 
 定义音频流采样格式。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-  | 枚举值 | 描述 | 
+| 枚举值 | 描述 | 
 | -------- | -------- |
 | AUDIOSTREAM_SAMPLE_U8 | Unsigned 8位。 | 
 | AUDIOSTREAM_SAMPLE_S16LE | Short 16位小端。 | 
@@ -310,24 +357,21 @@ enum OH_AudioStream_SampleFormat
 
 ### OH_AudioStream_SourceType
 
-  
 ```
 enum OH_AudioStream_SourceType
 ```
 
-**描述：**
+**描述**
 
 定义音频流使用场景。
 
 通常用来描述音频输入流的使用场景。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-  | 枚举值 | 描述 | 
+| 枚举值 | 描述 | 
 | -------- | -------- |
 | AUDIOSTREAM_SOURCE_TYPE_INVALID | 不合法状态。 | 
 | AUDIOSTREAM_SOURCE_TYPE_MIC | 录音。 | 
@@ -337,22 +381,19 @@ enum OH_AudioStream_SourceType
 
 ### OH_AudioStream_State
 
-  
 ```
 enum OH_AudioStream_State
 ```
 
-**描述：**
+**描述**
 
 定义音频流的状态。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-  | 枚举值 | 描述 | 
+| 枚举值 | 描述 | 
 | -------- | -------- |
 | AUDIOSTREAM_STATE_INVALID | 不合法的状态。 | 
 | AUDIOSTREAM_STATE_PREPARED | 准备状态。 | 
@@ -364,22 +405,19 @@ enum OH_AudioStream_State
 
 ### OH_AudioStream_Type
 
-  
 ```
 enum OH_AudioStream_Type
 ```
 
-**描述：**
+**描述**
 
 音频流类型。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-  | 枚举值 | 描述 | 
+| 枚举值 | 描述 | 
 | -------- | -------- |
 | AUDIOSTREAM_TYPE_RENDERER | 该类型代表音频流是输出流。 | 
 | AUDIOSTREAM_TYPE_CAPTURER | 该类型代表音频流是输入流。 | 
@@ -387,24 +425,21 @@ enum OH_AudioStream_Type
 
 ### OH_AudioStream_Usage
 
-  
 ```
 enum OH_AudioStream_Usage
 ```
 
-**描述：**
+**描述**
 
 定义音频流使用场景。
 
 通常用来描述音频输出流的使用场景。
 
-\@syscap SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Core
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-  | 枚举值 | 描述 | 
+| 枚举值 | 描述 | 
 | -------- | -------- |
 | AUDIOSTREAM_USAGE_UNKNOWN | 未定义。 | 
 | AUDIOSTREAM_USAGE_MUSIC | 音乐。 | 
@@ -417,16 +452,19 @@ enum OH_AudioStream_Usage
 
 ### OH_AudioCapturer_Flush()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Flush (OH_AudioCapturer * capturer)
 ```
 
-**描述：**
+**描述**
 
 丢弃获取的音频数据。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -436,23 +474,22 @@ OH_AudioStream_Result OH_AudioCapturer_Flush (OH_AudioCapturer * capturer)
 
 AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
-**起始版本：**
-
-10
-
 
 ### OH_AudioCapturer_GetCapturerInfo()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo (OH_AudioCapturer * capturer, OH_AudioStream_SourceType * sourceType )
 ```
 
-**描述：**
+**描述**
 
-查询当前输入音频流工作场景类型。
+查询当前音频流工作场景类型。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -461,25 +498,24 @@ OH_AudioStream_Result OH_AudioCapturer_GetCapturerInfo (OH_AudioCapturer * captu
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_GetChannelCount()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetChannelCount (OH_AudioCapturer * capturer, int32_t * channelCount )
 ```
 
-**描述：**
+**描述**
 
-查询当前输入音频流通道数。
+查询当前音频流通道数。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -488,25 +524,24 @@ OH_AudioStream_Result OH_AudioCapturer_GetChannelCount (OH_AudioCapturer * captu
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_GetCurrentState()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetCurrentState (OH_AudioCapturer * capturer, OH_AudioStream_State * state )
 ```
 
-**描述：**
+**描述**
 
-查询当前输入音频流状态。
+查询当前音频流状态。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -515,25 +550,24 @@ OH_AudioStream_Result OH_AudioCapturer_GetCurrentState (OH_AudioCapturer * captu
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_GetEncodingType()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetEncodingType (OH_AudioCapturer * capturer, OH_AudioStream_EncodingType * encodingType )
 ```
 
-**描述：**
+**描述**
 
-查询当前输入音频流编码类型。
+查询当前音频流编码类型。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -542,25 +576,50 @@ OH_AudioStream_Result OH_AudioCapturer_GetEncodingType (OH_AudioCapturer * captu
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
-**起始版本：**
 
-10
+### OH_AudioCapturer_GetFrameSizeInCallback()
+
+```
+OH_AudioStream_Result OH_AudioCapturer_GetFrameSizeInCallback (OH_AudioCapturer * capturer, int32_t * frameSize )
+```
+
+**描述**
+
+在回调中查询帧大小，它是每次回调返回的缓冲区的固定长度。
+
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
+| frameSize | 指向将为帧大小设置的变量的指针。 | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_GetLatencyMode()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode (OH_AudioCapturer * capturer, OH_AudioStream_LatencyMode * latencyMode )
 ```
 
-**描述：**
+**描述**
 
-查询当前输入音频流时延模式。
+查询当前音频流时延模式。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -569,25 +628,24 @@ OH_AudioStream_Result OH_AudioCapturer_GetLatencyMode (OH_AudioCapturer * captur
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_GetSampleFormat()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat (OH_AudioCapturer * capturer, OH_AudioStream_SampleFormat * sampleFormat )
 ```
 
-**描述：**
+**描述**
 
 查询当前输入音频流采样格式。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -596,25 +654,24 @@ OH_AudioStream_Result OH_AudioCapturer_GetSampleFormat (OH_AudioCapturer * captu
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_GetSamplingRate()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate (OH_AudioCapturer * capturer, int32_t * rate )
 ```
 
-**描述：**
+**描述**
 
 查询当前输入音频流采样率。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -623,25 +680,24 @@ OH_AudioStream_Result OH_AudioCapturer_GetSamplingRate (OH_AudioCapturer * captu
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_GetStreamId()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_GetStreamId (OH_AudioCapturer * capturer, uint32_t * streamId )
 ```
 
-**描述：**
+**描述**
 
 查询当前输入音频流ID。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -650,129 +706,168 @@ OH_AudioStream_Result OH_AudioCapturer_GetStreamId (OH_AudioCapturer * capturer,
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
-**起始版本：**
 
-10
+### OH_AudioCapturer_GetTimestamp()
+
+```
+OH_AudioStream_Result OH_AudioCapturer_GetTimestamp (OH_AudioCapturer * capturer, clockid_t clockId, int64_t * framePosition, int64_t * timestamp )
+```
+
+**描述**
+
+获取输入音频流时间戳和位置信息。
+
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
+| clockId | CLOCK_MONOTONIC。 | 
+| framePosition | 指向要接收位置的变量的指针。 | 
+| timestamp | 指向接收时间戳的变量的指针。 | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_Pause()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Pause (OH_AudioCapturer * capturer)
 ```
 
-**描述：**
+**描述**
 
 暂停输入音频流。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
 
+**需要权限：**
+
+ohos.permission.MICROPHONE
+
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_Release()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Release (OH_AudioCapturer * capturer)
 ```
 
-**描述：**
+**描述**
 
 释放输入音频流。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
 
+**需要权限：**
+
+ohos.permission.MICROPHONE
+
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_Start()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Start (OH_AudioCapturer * capturer)
 ```
 
-**描述：**
+**描述**
 
 开始获取音频数据。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
 
+**需要权限：**
+
+ohos.permission.MICROPHONE
+
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioCapturer_Stop()
 
-  
 ```
 OH_AudioStream_Result OH_AudioCapturer_Stop (OH_AudioCapturer * capturer)
 ```
 
-**描述：**
+**描述**
 
 停止输入音频流
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | capturer | 指向[OH_AudioStreamBuilder_GenerateCapturer](#oh_audiostreambuilder_generatecapturer)创建的音频流实例。 | 
 
+**需要权限：**
+
+ohos.permission.MICROPHONE
+
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_Flush()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Flush (OH_AudioRenderer * renderer)
 ```
 
-**描述：**
+**描述**
 
 丢弃已经写入的音频数据。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -780,25 +875,24 @@ OH_AudioStream_Result OH_AudioRenderer_Flush (OH_AudioRenderer * renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_GetChannelCount()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetChannelCount (OH_AudioRenderer * renderer, int32_t * channelCount )
 ```
 
-**描述：**
+**描述**
 
 查询当前输出音频流通道数。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -807,25 +901,24 @@ OH_AudioStream_Result OH_AudioRenderer_GetChannelCount (OH_AudioRenderer * rende
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_GetCurrentState()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetCurrentState (OH_AudioRenderer * renderer, OH_AudioStream_State * state )
 ```
 
-**描述：**
+**描述**
 
 查询当前输出音频流状态。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -834,25 +927,24 @@ OH_AudioStream_Result OH_AudioRenderer_GetCurrentState (OH_AudioRenderer * rende
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_GetEncodingType()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetEncodingType (OH_AudioRenderer * renderer, OH_AudioStream_EncodingType * encodingType )
 ```
 
-**描述：**
+**描述**
 
 查询当前输出音频流编码类型。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -861,25 +953,76 @@ OH_AudioStream_Result OH_AudioRenderer_GetEncodingType (OH_AudioRenderer * rende
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
-**起始版本：**
 
-10
+### OH_AudioRenderer_GetFrameSizeInCallback()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetFrameSizeInCallback (OH_AudioRenderer * renderer, int32_t * frameSize )
+```
+
+**描述**
+
+在回调中查询帧大小，它是一个固定的长度，每次回调都要填充流。
+
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| frameSize | 指向将为帧大小设置的变量的指针。 | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
+
+
+### OH_AudioRenderer_GetFramesWritten()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetFramesWritten (OH_AudioRenderer * renderer, int64_t * frames )
+```
+
+**描述**
+
+查询自创建流以来已写入的帧数。
+
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| frames | 指向将为帧计数设置的变量的指针。 | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_GetLatencyMode()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode (OH_AudioRenderer * renderer, OH_AudioStream_LatencyMode * latencyMode )
 ```
 
-**描述：**
+**描述**
 
 查询当前输出音频流时延模式。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -888,25 +1031,24 @@ OH_AudioStream_Result OH_AudioRenderer_GetLatencyMode (OH_AudioRenderer * render
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_GetRendererInfo()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo (OH_AudioRenderer * renderer, OH_AudioStream_Usage * usage )
 ```
 
-**描述：**
+**描述**
 
 查询当前输出音频流工作场景类型。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -915,25 +1057,24 @@ OH_AudioStream_Result OH_AudioRenderer_GetRendererInfo (OH_AudioRenderer * rende
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_GetSampleFormat()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat (OH_AudioRenderer * renderer, OH_AudioStream_SampleFormat * sampleFormat )
 ```
 
-**描述：**
+**描述**
 
 查询当前输出音频流采样格式。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -942,25 +1083,24 @@ OH_AudioStream_Result OH_AudioRenderer_GetSampleFormat (OH_AudioRenderer * rende
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_GetSamplingRate()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate (OH_AudioRenderer * renderer, int32_t * rate )
 ```
 
-**描述：**
+**描述**
 
 查询当前输出音频流采样率。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -969,25 +1109,24 @@ OH_AudioStream_Result OH_AudioRenderer_GetSamplingRate (OH_AudioRenderer * rende
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_GetStreamId()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_GetStreamId (OH_AudioRenderer * renderer, uint32_t * streamId )
 ```
 
-**描述：**
+**描述**
 
 查询当前输出音频流ID。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -996,25 +1135,52 @@ OH_AudioStream_Result OH_AudioRenderer_GetStreamId (OH_AudioRenderer * renderer,
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
-**起始版本：**
 
-10
+### OH_AudioRenderer_GetTimestamp()
+
+```
+OH_AudioStream_Result OH_AudioRenderer_GetTimestamp (OH_AudioRenderer * renderer, clockid_t clockId, int64_t * framePosition, int64_t * timestamp )
+```
+
+**描述**
+
+获取输出音频流时间戳和位置信息。
+
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| renderer | 指向[OH_AudioStreamBuilder_GenerateRenderer](#oh_audiostreambuilder_generaterenderer)创建的音频流实例。 | 
+| clockId | CLOCK_MONOTONIC | 
+| framePosition | 指向要接收位置的变量的指针。 | 
+| timestamp | 指向接收时间戳的变量的指针。 | 
+
+**返回：**
+
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_Pause()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Pause (OH_AudioRenderer * renderer)
 ```
 
-**描述：**
+**描述**
 
 暂停输出音频流。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1022,25 +1188,24 @@ OH_AudioStream_Result OH_AudioRenderer_Pause (OH_AudioRenderer * renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_Release()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Release (OH_AudioRenderer * renderer)
 ```
 
-**描述：**
+**描述**
 
 释放输出音频流。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1048,25 +1213,24 @@ OH_AudioStream_Result OH_AudioRenderer_Release (OH_AudioRenderer * renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_Start()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Start (OH_AudioRenderer * renderer)
 ```
 
-**描述：**
+**描述**
 
 开始输出音频数据。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1074,25 +1238,24 @@ OH_AudioStream_Result OH_AudioRenderer_Start (OH_AudioRenderer * renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioRenderer_Stop()
 
-  
 ```
 OH_AudioStream_Result OH_AudioRenderer_Stop (OH_AudioRenderer * renderer)
 ```
 
-**描述：**
+**描述**
 
-停止输出音频流
+停止输出音频流。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1100,56 +1263,54 @@ OH_AudioStream_Result OH_AudioRenderer_Stop (OH_AudioRenderer * renderer)
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_Create()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_Create (OH_AudioStreamBuilder ** builder, OH_AudioStream_Type type )
 ```
 
-**描述：**
+**描述**
 
 创建一个输入或者输出类型的音频流构造器。
 
 当构造器不再使用时，需要调用OH_AudioStreamBuilder_Destroy()销毁它。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
 | builder | 该引用指向创建的构造器的结果。 | 
-| type | 构造器的流类型。AUDIOSTREAM_TYPE_RENDERER or AUDIOSTREAM_TYPE_CAPTURER | 
+| type | 构造器的流类型。AUDIOSTREAM_TYPE_RERNDERER or AUDIOSTREAM_TYPE_CAPTURER | 
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_Destroy()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_Destroy (OH_AudioStreamBuilder * builder)
 ```
 
-**描述：**
+**描述**
 
 销毁一个音频流构造器。
 
 当构造器不再使用时，需要调用该函数销毁它。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1157,25 +1318,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Destroy (OH_AudioStreamBuilder * bui
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_GenerateCapturer()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer (OH_AudioStreamBuilder * builder, OH_AudioCapturer ** audioCapturer )
 ```
 
-**描述：**
+**描述**
 
 创建输入音频流实例。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1184,25 +1344,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateCapturer (OH_AudioStreamBuil
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_GenerateRenderer()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer (OH_AudioStreamBuilder * builder, OH_AudioRenderer ** audioRenderer )
 ```
 
-**描述：**
+**描述**
 
 创建输出音频流实例。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1211,25 +1370,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_GenerateRenderer (OH_AudioStreamBuil
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_SetCapturerCallback()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback (OH_AudioStreamBuilder * builder, OH_AudioCapturer_Callbacks callbacks, void * userData )
 ```
 
-**描述：**
+**描述**
 
 设置输入音频流的回调。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1239,25 +1397,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerCallback (OH_AudioStreamB
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_SetCapturerInfo()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo (OH_AudioStreamBuilder * builder, OH_AudioStream_SourceType sourceType )
 ```
 
-**描述：**
+**描述**
 
 设置输入音频流的工作场景。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1266,25 +1423,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetCapturerInfo (OH_AudioStreamBuild
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_SetChannelCount()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount (OH_AudioStreamBuilder * builder, int32_t channelCount )
 ```
 
-**描述：**
+**描述**
 
 设置音频流的通道数属性。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1293,25 +1449,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelCount (OH_AudioStreamBuild
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_SetEncodingType()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType (OH_AudioStreamBuilder * builder, OH_AudioStream_EncodingType encodingType )
 ```
 
-**描述：**
+**描述**
 
 设置音频流的编码类型属性。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1320,25 +1475,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetEncodingType (OH_AudioStreamBuild
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_SetLatencyMode()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetLatencyMode (OH_AudioStreamBuilder * builder, OH_AudioStream_LatencyMode latencyMode )
 ```
 
-**描述：**
+**描述**
 
 设置音频流的时延模式。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1347,25 +1501,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetLatencyMode (OH_AudioStreamBuilde
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_SetRendererCallback()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererCallback (OH_AudioStreamBuilder * builder, OH_AudioRenderer_Callbacks callbacks, void * userData )
 ```
 
-**描述：**
+**描述**
 
 设置输出音频流的回调。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1375,25 +1528,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererCallback (OH_AudioStreamB
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_SetRendererInfo()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo (OH_AudioStreamBuilder * builder, OH_AudioStream_Usage usage )
 ```
 
-**描述：**
+**描述**
 
 设置输出音频流的工作场景。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1402,25 +1554,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInfo (OH_AudioStreamBuild
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_SetSampleFormat()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat (OH_AudioStreamBuilder * builder, OH_AudioStream_SampleFormat format )
 ```
 
-**描述：**
+**描述**
 
 设置音频流的采样格式属性。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1429,25 +1580,24 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSampleFormat (OH_AudioStreamBuild
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ### OH_AudioStreamBuilder_SetSamplingRate()
 
-  
 ```
 OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate (OH_AudioStreamBuilder * builder, int32_t rate )
 ```
 
-**描述：**
+**描述**
 
 设置音频流的采样率属性。
 
-**参数：**
+**起始版本：** 10
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数:**
 
 | 名称 | 描述 | 
 | -------- | -------- |
@@ -1456,11 +1606,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_SetSamplingRate (OH_AudioStreamBuild
 
 **返回：**
 
-AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
-
-**起始版本：**
-
-10
+AUDIOSTREAM_SUCCESS 或者一个预期之外的错误。
 
 
 ## 变量说明
@@ -1468,31 +1614,25 @@ AUDIOSTREAM_SUCCESS 或者一个不期望发生的错误。
 
 ### OH_AudioCapturer_OnReadData
 
-  
 ```
 int32_t(* OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnReadData) (OH_AudioCapturer *capturer, void *userData, void *buffer, int32_t lenth)
 ```
 
-**描述：**
+**描述**
 
 该函数指针将指向用于读取音频数据的回调函数。
 
-**起始版本：**
-
-10
+**起始版本：** 10
 
 
 ### OH_AudioRenderer_OnWriteData
 
-  
 ```
 int32_t(* OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnWriteData) (OH_AudioRenderer *renderer, void *userData, void *buffer, int32_t lenth)
 ```
 
-**描述：**
+**描述**
 
 该函数指针将指向用于写入音频数据的回调函数。
 
-**起始版本：**
-
-10
+**起始版本：** 10

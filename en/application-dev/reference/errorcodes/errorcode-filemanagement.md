@@ -7,7 +7,7 @@
 The error codes of the file management subsystem include the following:
 
 - [Basic File IO Error Codes](#basic-file-io-error-codes)
-- [User Data Management Error Codes](#user-data-management-error-code)
+- [User Data Management Error Codes](#user-data-management-error-codes)
 - [User File Access Error Codes](#user-file-access-error-codes)
 - [Space Statistics Error Codes](#space-statistics-error-codes)
 - [Device-Cloud Synchronization Error Codes](#device-cloud-synchronization-error-codes)
@@ -116,7 +116,7 @@ The parameter list is too long.
 
 Reduce the number of parameters.
 
-### 13900008 Invalid File Descriptor
+### 13900008 File Descriptor Corrupted
 
 **Error Message**
 
@@ -572,7 +572,7 @@ The file descriptor is corrupted.
 
 Check that the file descriptor is valid.
 
-### 13900040 System Call Interrupted
+### 13900040 System Call Not Started
 
 **Error Message**
 
@@ -673,6 +673,34 @@ The file is moved to the Recycle Bin.
 **Solution**
 
 Check whether the file is in the Recycle Bin.
+
+### 14000011 Internal System Error
+
+**Error Message**
+
+System inner fail
+
+**Possible Causes**
+
+An unidentified error occurs in the system.
+
+**Solution**
+
+Clear the background or restart the device.
+
+### 14000014 Invalid Member Name
+
+**Error Message**
+
+Member is not a valid PhotoKey
+
+**Possible Causes**
+
+The input string is not a member name of a class or interface.
+
+**Solution**
+
+Ensure that the input string is the member name of the class or interface.
 
 ## Space Statistics Error Codes
 

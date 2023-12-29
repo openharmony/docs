@@ -54,8 +54,8 @@ ImageAnimator()
 | onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)  | 状态回调，动画开始播放时触发。 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)  | 状态回调，动画暂停播放时触发。 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 | onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画重复播放时触发。  |
-| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画取消播放时触发。 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
-| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画播放完成时触发。 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画返回最初状态时触发。 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 状态回调，动画播放完成时或者停止播放时触发。 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例

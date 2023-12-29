@@ -4,11 +4,24 @@
 
 开发者可以调用本模块的Native API接口，查询相关能力的支持情况。
 
+## 在 CMake 脚本中链接动态库
+
+``` cmake
+target_link_libraries(sample PUBLIC libnative_media_codecbase.so)
+```
+
 ## 开发步骤
 
 详细的API说明请参考[API文档](../reference/native-apis/_a_v_capability.md)。
 
-1. 获得能力
+1. 添加头文件。
+
+   ```c
+   #include <multimedia/player_framework/native_avcapability.h>
+   #include <multimedia/player_framework/native_avcodec_base.h>
+   ```
+
+2. 获得能力。
 
     ```c
     // 根据mime type、是否编码器获得能力
@@ -18,7 +31,8 @@
     OH_AVCapability *capability = OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, SOFTWARE);
     ```
 
-2. 查询参数
+3. 查询参数。
+
     ```c
     // 查询当前能力是否支持硬件
     bool isHardware = OH_AVCapability_IsHardware(capability);
@@ -105,7 +119,7 @@
 
     // 查询当前能力中，高的范围
     OH_AVRange heightRange;
-    int32_t ret = OH_AVCapability_GetVideoWidthRange(capability, &heightRange);
+    int32_t ret = OH_AVCapability_GetVideoHeightRange(capability, &heightRange);
     if (ret != AV_ERR_OK) {
         // 处理异常
     }

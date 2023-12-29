@@ -19,20 +19,20 @@ The following describes the development procedure specific to each application s
 
 For the complete list of APIs and example code, see [Traffic Management](../reference/apis/js-apis-net-statistics.md).
 
-| Type               | API                                                                                       | Description                      |
-| ------------------- | ------------------------------------------------------------------------------------------- | ------------------------------ |
-| ohos.net.statistics | getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | Obtains the real-time downlink data traffic of the specified NIC. |
-| ohos.net.statistics | getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | Obtains the real-time uplink data traffic of the specified NIC. |
-| ohos.net.statistics | getCellularRxBytes(callback: AsyncCallback\<number>): void;                                 | Obtains the real-time downlink data traffic of the cellular network.    |
-| ohos.net.statistics | getCellularTxBytes(callback: AsyncCallback\<number>): void;                                 | Obtains the real-time uplink data traffic of the cellular network.    |
-| ohos.net.statistics | getAllRxBytes(callback: AsyncCallback\<number>): void;                                      | Obtains the real-time downlink data traffic of the all NICs. |
-| ohos.net.statistics | getAllTxBytes(callback: AsyncCallback\<number>): void;                                      | Obtains the real-time uplink data traffic of the all NICs. |
-| ohos.net.statistics | getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | Obtains the real-time downlink data traffic of the specified application. |
-| ohos.net.statistics | getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | Obtains the real-time uplink data traffic of the specified application. |
-| ohos.net.statistics | getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC.     |
-| ohos.net.statistics | getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | Obtains the historical data traffic of the specified application.     |
-| ohos.net.statistics | on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | Subscribes to traffic change events.        |
-| ohos.net.statistics | off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | Unsubscribes from traffic change events.    |
+| API                                                                                     | Description                        |
+| ------------------------------------------------------------------------------------------- | ---------------------------- |
+| getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | Obtains the real-time downlink data traffic of the specified NIC. |
+| getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;                       | Obtains the real-time uplink data traffic of the specified NIC. |
+| getCellularRxBytes(callback: AsyncCallback\<number>): void;                                 | Obtains the real-time downlink data traffic of the cellular network.    |
+| getCellularTxBytes(callback: AsyncCallback\<number>): void;                                 | Obtains the real-time uplink data traffic of the cellular network.    |
+| getAllRxBytes(callback: AsyncCallback\<number>): void;                                      | Obtains the real-time downlink data traffic of the all NICs. |
+| getAllTxBytes(callback: AsyncCallback\<number>): void;                                      | Obtains the real-time uplink data traffic of the all NICs. |
+| getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | Obtains the real-time downlink data traffic of the specified application. |
+| getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;                         | Obtains the real-time uplink data traffic of the specified application. |
+| getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsInfo>): void; | Obtains the historical data traffic of the specified NIC.     |
+| getTrafficStatsByUid(uidInfo: UidInfo, callback: AsyncCallback\<NetStatsInfo>): void;       | Obtains the historical data traffic of the specified application.     |
+| on(type: 'netStatsChange', callback: Callback\<{ iface: string, uid?: number }>): void      | Subscribes to traffic change events.        |
+| off(type: 'netStatsChange', callback?: Callback\<{ iface: string, uid?: number }>): void;   | Unsubscribes from traffic change events.    |
 
 ## Obtaining Real-Time Traffic Data by NIC or UID
 

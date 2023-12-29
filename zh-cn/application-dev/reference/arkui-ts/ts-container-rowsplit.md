@@ -8,8 +8,9 @@
 
 ## 子组件
 
-可以包含子组件
+可以包含子组件。
 
+该组件会限制子组件的宽度。初始化时，该组件的布局是按照子组件的宽度来计算的。初始化后，后续动态修改子组件的宽度则不生效，使用的宽度为该组件分割线的间距，该宽度可以通过手势移动分割线进行变更。
 ## 接口
 
 RowSplit()
@@ -25,7 +26,7 @@ RowSplit()
 >
 > RowSplit的分割线可以改变左右两边子组件的宽度，子组件可改变宽度的范围取决于子组件的最大最小宽度。
 >
-> 支持clip、margin等通用属性，clip不设置的时候默认值为true。
+> 支持[clip](ts-universal-attributes-sharp-clipping)、[margin](ts-universal-attributes-size)等通用属性，clip不设置的时候默认值为true。
 
 
 ## 示例

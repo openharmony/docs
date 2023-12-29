@@ -13,7 +13,7 @@ import deviceStandby from '@ohos.resourceschedule.deviceStandby';
 
 ## deviceStandby.getExemptedApps
 
-getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;ExemptedAppInfo&gt;>): void;
+getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;ExemptedAppInfo&gt;>): void
 
 获取进入待机模式的应用名单，使用Callback异步回调。
 
@@ -21,13 +21,13 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数**：
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| [ResourceTypes](#resourcetype)|number | 是    | 资源类型。 |
+| ResourceTypes|number | 是    | 资源类型，类型具体说明请参考[ResourceType](#resourcetype)。 |
 | callback | AsyncCallback<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 是    |豁免应用信息 。|
 
 **错误码**：
@@ -47,7 +47,7 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let resourceTypes: deviceStandby.ResourceType  = deviceStandby.ResourceType.TIMER;
+let resourceTypes: deviceStandby.ResourceType  = deviceStandby.ResourceType.TIMER | deviceStandby.ResourceType.NETWORK;
 deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<deviceStandby.ExemptedAppInfo>) => {
   if (err) {
     console.log('DEVICE_STANDBY getExemptedApps callback failed. code is: ' + err.code + ',message is: ' + err.message);
@@ -62,7 +62,7 @@ deviceStandby.getExemptedApps(resourceTypes, (err: BusinessError, res: Array<dev
 
 ## deviceStandby.getExemptedApps
 
-getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
+getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>
 
 获取进入待机模式的应用名单，使用Promise异步回调。
 
@@ -70,13 +70,13 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数**：
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| [ResourceTypes](#resourcetype)|number | 是    |资源类型。|
+| ResourceTypes|number | 是    |资源类型，类型具体说明请参考[ResourceType](#resourcetype)。|
 
 **返回值**：
 
@@ -101,7 +101,7 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let resourceTypes: deviceStandby.ResourceType = deviceStandby.ResourceType.TIMER;
+let resourceTypes: deviceStandby.ResourceType = deviceStandby.ResourceType.TIMER | deviceStandby.ResourceType.NETWORK;
 deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<deviceStandby.ExemptedAppInfo>) => {
   console.log('DEVICE_STANDBY getExemptedApps promise success.');
   for (let i = 0; i < res.length; i++) {
@@ -114,7 +114,7 @@ deviceStandby.getExemptedApps(resourceTypes).then( (res: Array<deviceStandby.Exe
 
 ## deviceStandby.requestExemptionResource
 
-requestExemptionResource(request: ResourceRequest): void;
+requestExemptionResource(request: ResourceRequest): void
 
 应用订阅申请豁免，使应用临时不进入待机管控。
 
@@ -122,7 +122,7 @@ requestExemptionResource(request: ResourceRequest): void;
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数**：
 
@@ -157,7 +157,7 @@ deviceStandby.requestExemptionResource(resRequest);
 
 ## deviceStandby.releaseExemptionResource
 
-releaseExemptionResource(request: ResourceRequest): void;
+releaseExemptionResource(request: ResourceRequest): void
 
 取消应用订阅申请豁免。
 
@@ -165,7 +165,7 @@ releaseExemptionResource(request: ResourceRequest): void;
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 **参数**：
 
@@ -204,17 +204,17 @@ deviceStandby.releaseExemptionResource(resRequest);
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 |名称   |值   |说明|
 | ------------ | ------------ |--------------|
-|NETWORK    |1   |网络访问资源|
-|RUNNING_LOCK    |2   |cpu-runninglock资源|
-|TIMER     |4   | timer任务资源|
-|WORK_SCHEDULER     |8   | work任务资源|
-|AUTO_SYNC      |16   | 自动同步的资源 |
-|PUSH     |32   | pushkit资源|
-|FREEZE       |64   | 冻结应用资源|
+|NETWORK    |1   |网络访问资源。|
+|RUNNING_LOCK    |2   |cpu-runninglock资源。|
+|TIMER     |4   | timer任务资源。|
+|WORK_SCHEDULER     |8   | work任务资源。|
+|AUTO_SYNC      |16   | 自动同步的资源。 |
+|PUSH     |32   | pushkit资源。|
+|FREEZE       |64   | 冻结应用资源。|
 
 ## ExemptedAppInfo
 
@@ -222,13 +222,13 @@ deviceStandby.releaseExemptionResource(resRequest);
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 |名称  |类型   | 必填   |说明   |
 | ------------ | ------------ |------------ | ------------ |
-|[resourceTypes](#resourcetype)   | number  | 是   |应用的资源类型   |
-|name   |string   | 是   |  应用名  |
-|duration   | number  | 是   | 豁免时长 |
+|resourceTypes   | number  | 是   |资源类型，类型具体说明请参考[ResourceType](#resourcetype)。   |
+|name   |string   | 是   |  应用名。  |
+|duration   | number  | 是   | 豁免时长。 |
 
 ## ResourceRequest
 
@@ -236,12 +236,12 @@ deviceStandby.releaseExemptionResource(resRequest);
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
-**系统API:** 此接口为系统接口。
+**系统API：** 此接口为系统接口。
 
 |名称   |类型   | 必填   |说明   |
 | ------------ | ------------ |------------| ------------ |
-|[resourceTypes](#resourcetype)   | number  | 是   |应用的资源类型   |
-|uid   | number  | 是   |应用uid   |
-|name   |string   | 是   | 应用名称  |
-|duration   | number  | 是   | 豁免时长 |
-|reason   |string   | 是   |  申请原因  |
+|resourceTypes   | number  | 是   |资源类型，类型具体说明请参考[ResourceType](#resourcetype)。   |
+|uid   | number  | 是   |应用uid。   |
+|name   |string   | 是   | 应用名称。  |
+|duration   | number  | 是   | 豁免时长。 |
+|reason   |string   | 是   |  申请原因。  |

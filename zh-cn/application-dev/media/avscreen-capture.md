@@ -6,7 +6,7 @@
 
 录屏模块和窗口（Window）、图形（Graphic）等模块完成整个视频采集的流程。
 
-当前在进行屏幕录制时默认使用主屏，图形默认根据主屏生产录屏帧数据到显示数据缓冲队列，录屏框架从显示数据缓冲队列获取数据进行相应消费处理。
+当前在进行屏幕录制时默认使用主屏，图形默认根据主屏生产录屏帧数据到显示数据缓冲队列，录屏框架从显示数据缓冲队列获取数据进行相应处理。
 
 ## 开发指导
 
@@ -24,14 +24,14 @@
 | ohos.permission.CAPTURE_SCREEN | 允许应用截取屏幕图像。| system_grant | system_core |
 | ohos.permission.MICROPHONE | 允许应用使用麦克风（可选）。<br>如需录制麦克风源的音频，需要申请该权限。| user_grant | normal |
 
-### 开发步骤及注意事项
+### 录屏取原始码流开发步骤及注意事项
 
 开发者可以通过以下几个步骤来实现一个简单的屏幕录制功能。
 
 1. 创建AVScreenCapture实例capture。
 
     ```c++
-    OH_AVScreenCapture* capture = AVScreenCapture_Create();
+    OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
     ```
 
 2. 配置屏幕录制参数。
@@ -45,8 +45,8 @@
     };
 
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = display->GetWidth(),
-        .videoFrameHeight = display->Height(),
+        .videoFrameWidth = 720,
+        .videoFrameHeight = 1080,
         .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
     };
 
@@ -58,16 +58,11 @@
         .videoCapInfo = videocapinfo
     };
 
-    OH_RecorderInfo recorderinfo = {
-        .url = name
-    };
-
     OH_AVScreenCaptureConfig config = {
         .captureMode = OH_CAPTURE_HOME_SCREEN,
         .dataType = OH_ORIGINAL_STREAM,
         .audioInfo = audioinfo,
-        .videoInfo = videoinfo,
-        .recorderInfo = recorderinfo
+        .videoInfo = videoinfo
     };
 
     OH_AVScreenCapture_Init(capture, config);
@@ -98,7 +93,7 @@
 6. 调用StopScreenCapture()方法停止录制。
      
     ```c++
-    OH_AVScreenCapture_StopScreenCapture(capture_);
+    OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
 7. 调用AcquireAudioBuffer()获取音频原始码流数据
@@ -131,10 +126,10 @@
     OH_AVScreenCapture_Release(capture);
     ```
 
-### 完整示例
+### 录屏取原始码流完整示例
 
 下面展示了使用AVScreenCapture屏幕录制的完整示例代码。
-目前阶段流程结束后返回的buffer为原始码流，针对原始码流可以进行编码并以mp4等文件格式保存以供播放。编码格式与文件格式当前阶段仅作预留，待后续版本实现。
+目前阶段流程结束后返回的buffer为原始码流，针对原始码流可以进行编码并以mp4等文件格式保存以供播放。编码格式当前阶段仅作预留，待后续版本实现。
   
 ```c++
 
@@ -148,7 +143,7 @@ void OnError(struct OH_AVScreenCapture *capture, int32_t errorCode)
     (void) errorCode;
 }
 
-void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH_AudioCapSourceType type)
+void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH_AudioCaptureSourceType type)
 {
     if (isReady) {
         OH_AudioBuffer *audiobuffer = (struct OH_AudioBuffer*) malloc (sizeof(OH_AudioBuffer));
@@ -167,7 +162,7 @@ void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH
     }
 }
 
-void OnVideoBufferAvailable(struct OH_ScreenCapture *capture, bool isReady)
+void OnVideoBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady)
 {
     if (isReady) {
         int32_t fence = 0;
@@ -193,8 +188,8 @@ int main()
     //设置回调
     struct OH_AVScreenCaptureCallback callback;
     callback.onError = OnError;
-    callack.onAudioBufferAvailable = OnAudioBufferAvailable ; 
-    callack.onVideoBufferAvailable = OnVideoBufferAvailable;
+    callback.onAudioBufferAvailable = OnAudioBufferAvailable ; 
+    callback.onVideoBufferAvailable = OnVideoBufferAvailable;
     int32_t ret = OH_AVScreenCapture_SetCallback(capture, callback);
     //初始化录屏，传入配置信息OH_AVScreenRecorderConfig
     OH_AudioCaptureInfo miccapinfo = {
@@ -217,11 +212,9 @@ int main()
         .captureMode = OH_CAPTURE_HOME_SCREEN,
         .dataType = OH_ORIGINAL_STREAM,
         .audioInfo = audioinfo,
-        .videoInfo = videoinfo,
-        .recorderInfo = recorderinfo
+        .videoInfo = videoinfo
     };
-    OH_AVScreenCapture_Init(capture, config);
-    int32_t ret = OH_AVScreenCapture_Init(capture, &config);
+    int32_t ret = OH_AVScreenCapture_Init(capture, config);
     //开始录屏
     int32_t ret = OH_AVScreenCapture_StartScreenCapture(capture);
     //mic开关设置

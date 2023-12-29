@@ -1,4 +1,4 @@
-# RelationalStore Development Guide
+# RelationalStore Development
 
 
 ## When to Use
@@ -44,12 +44,12 @@ For details about the APIs, see [RDB](../reference/native-apis/_r_d_b.md).
 **Adding the Dynamic Library**
 
 Add the following lib to **CMakeLists.txt**.
+
 ```txt
-native_rdb_ndk_header.so
+libnative_rdb_ndk.z.so
 ```
 
 **Including Header Files**
-
 ```c++
 #include <oh_cursor.h>
 #include <oh_predicates.h>
@@ -60,22 +60,18 @@ native_rdb_ndk_header.so
 
 ```
 
-1. Obtain an OH_Rdb_Store instance and create a database file. 
-
-   The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see the **databaseDir** attribute of [Context](../reference/apis/js-apis-inner-application-context.md). In the FA model, there is no interface for obtaining the database sandbox path. Use the directory of the application. For details, see **getFilesDir** of [Context](../reference/apis/js-apis-inner-app-context.md). 
-
-   Example:
+1. Obtain an **OH_Rdb_Store** instance and create the database file.<br>The **dataBaseDir** variable specifies the application sandbox path. In the stage model, you are advised to use the database directory. For details, see **databaseDir** of [Context](../reference/apis/js-apis-inner-application-context.md). In the FA model, there is no interface for obtaining the database sandbox path. Use the directory of the application. For details, see **getFilesDir** of [Context](../reference/apis/js-apis-inner-app-context.md).<br>Example:
 
    ```c
-   // Create an OH_Rdb_Config object.
+   // Create an OH_Rdb_Config instance.
    OH_Rdb_Config config;
    // The path is the application sandbox path.
    config.dataBaseDir = "xxx";
    // Database file name.
    config.storeName = "RdbTest.db";
-   // Application bundle name.
+   // Bundle name.
    config.bundleName = "xxx";
-   // Module name.
+   // Module name. 
    config.moduleName = "xxx";
    // Security level of the database file.
    config.securityLevel = OH_Rdb_SecurityLevel::S1;
@@ -89,9 +85,7 @@ native_rdb_ndk_header.so
    OH_Rdb_Store *store_ = OH_Rdb_GetOrOpen(&config, &errCode);
    ```
 
-2. After obtaining the OH_Rdb_Store instance, call **OH_Rdb_Execute** to create a table and call **OH_Rdb_Insert** to insert data to the table created.
-
-   Example:
+2. Use **OH_Rdb_Execute** to create a table, and use **OH_Rdb_Insert** to insert data to the table created. <br>Example:
 
    ```c
    char createTableSql[] = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, "
@@ -99,7 +93,7 @@ native_rdb_ndk_header.so
    // Create a table.
    OH_Rdb_Execute(store_, createTableSql);
    
-   // Create a key-value pair instance.
+   // Create a KV pair instance.
    OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
    valueBucket->putText(valueBucket, "NAME", "Lisa");
    valueBucket->putInt64(valueBucket, "AGE", 18);
@@ -115,13 +109,11 @@ native_rdb_ndk_header.so
 
    > **NOTE**
    >
-   > **RelationalStore** does not provide explicit flush operations for data persistence. **insert()** stores data in a file persistently.
+   > **RelationalStore** does not provide explicit flush operations for data persistence. The **insert()** method stores data persistently.
 
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Call **OH_Rdb_Update** to modify data and call **OH_Rdb_Delete** to delete data.
-
-   Example:
+   Call **OH_Rdb_Update** to modify data, and call **OH_Rdb_Delete** to delete data. <br>Example:
 
    ```c
    // Modify data.
@@ -163,9 +155,7 @@ native_rdb_ndk_header.so
 
 4. Query data based on the conditions specified by **Predicates**.
 
-   Call **OH_Rdb_Query** to query data. The data obtained is returned in a **OH_Cursor** object.
-
-   Example:
+   Call **OH_Rdb_Query** to query data. The data obtained is returned in an **OH_Cursor** object. <br>Example:
 
    ```c
    OH_Predicates *predicates = OH_Rdb_CreatePredicates("EMPLOYEE");
@@ -189,11 +179,9 @@ native_rdb_ndk_header.so
    cursor->destroy(cursor);
    ```
 
-5. Delete the database.
+5. Delete an RDB store.
 
-   Call **OH_Rdb_DeleteStore** to delete an RDB store and related database files.
-
-   Example:
+   Call **OH_Rdb_DeleteStore** to delete the RDB store and related database files.<br>Example:
 
 
    ```c

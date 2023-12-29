@@ -18,7 +18,7 @@ import applicationManager from '@ohos.enterprise.applicationManager';
 
 ## applicationManager.addDisallowedRunningBundles
 
-addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 Adds the applications that are not allowed to run by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -67,7 +67,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
 
 ## applicationManager.addDisallowedRunningBundles
 
-addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Adds the applications that are not allowed to run by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -116,7 +116,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
 
 ## applicationManager.addDisallowedRunningBundles
 
-addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 Adds the applications that are not allowed to run by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
@@ -132,7 +132,7 @@ Adds the applications that are not allowed to run by the current or specified us
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to add.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be run by the specified user.<br> - If **userId** is not passed in, the applications cannot be run by the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the applications cannot be run by the specified user.<br>- If **userId** is not passed in, the applications cannot be run by the current user.|
 
 **Return value**
 
@@ -169,7 +169,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() =>
 
 ## applicationManager.removeDisallowedRunningBundles
 
-removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void
 
 Removes the applications that are not allowed to run by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -217,7 +217,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
 
 ## applicationManager.removeDisallowedRunningBundles
 
-removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
+removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Removes the applications that are not allowed to run by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -266,7 +266,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) =
 
 ## applicationManager.removeDisallowedRunningBundles
 
-removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
+removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;
 
 Removes the applications that are not allowed to run by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
@@ -282,7 +282,7 @@ Removes the applications that are not allowed to run by the current or specified
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
 | appIds    | Array&lt;string&gt;                | Yes   | IDs of the applications to remove.                 |
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be run by the specified user.<br> - If **userId** is not passed in, the applications cannot be run by the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the applications cannot be run by the specified user.<br>- If **userId** is not passed in, the applications cannot be run by the current user.|
 
 **Return value**
 
@@ -319,7 +319,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(()
 
 ## applicationManager.getDisallowedRunningBundles
 
-getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains the applications that are not allowed to run by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -365,7 +365,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, (err, result) => {
 
 ## applicationManager.getDisallowedRunningBundles
 
-getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
+getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains the applications that are not allowed to run by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -412,7 +412,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100, (err, result) => {
 
 ## applicationManager.getDisallowedRunningBundles
 
-getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
+getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains the applications that are not allowed to run by the current or specified user through the specified device administrator application. This API uses a promise to return the result.
 
@@ -427,7 +427,7 @@ Obtains the applications that are not allowed to run by the current or specified
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br> - If **userId** is passed in, the applications cannot be run by the specified user.<br> - If **userId** is not passed in, the applications cannot be run by the current user.|
+| userId     | number                             | No   | User ID, which must be greater than or equal to 0.<br>- If **userId** is passed in, the applications cannot be run by the specified user.<br>- If **userId** is not passed in, the applications cannot be run by the current user.|
 
 **Return value**
 

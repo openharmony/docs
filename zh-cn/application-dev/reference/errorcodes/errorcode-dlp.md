@@ -141,7 +141,7 @@ No permission to invoke this api, it is for DLP sandbox app.
 请确认调用场景后重试。
 
 
-## 19100007 需DLP沙箱应用
+## 19100007 DLP沙箱应用不允许调用此接口
 
 **错误信息**
 

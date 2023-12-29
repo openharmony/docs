@@ -19,7 +19,7 @@ import window from '@ohos.window';
  * @param mainWindow 主窗口对象
  */
 async function enterImmersion(mainWindow: window.Window) { 
-  mainWindow.on("systemBarTintChange", (data) => {
+  window.on("systemBarTintChange", (data) => {
     let avoidAreaRect = data.regionTint[0].region; //data.regionTint是个数组，包含状态栏、导航栏的矩形区域坐标。
   })
   await mainWindow.setFullScreen(true)
@@ -88,7 +88,7 @@ try {
     });} catch (exception) {
     console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
 }
-//2.窗口实例使用setPreferredOrientation方法，设置窗口的显示方向，PROTRAIT为固定竖屏，其他方向可参照参考链接
+//2.窗口实例使用setPreferredOrientation方法，设置窗口的显示方向，PORTRAIT为固定竖屏，其他方向可参照参考链接
 let orientation = window.Orientation.PORTRAIT;
 if (windowClass) {
     windowClass.setPreferredOrientation(orientation, (err) => {

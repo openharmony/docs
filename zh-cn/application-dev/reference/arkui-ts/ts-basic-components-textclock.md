@@ -27,7 +27,7 @@ TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController 
 
 | 名称   | 参数类型    | 描述                                                         |
 | ------ | --------------- | ------------------------------------------------------------ |
-| format | string    | 设置显示时间格式。<br/>日期间隔符固定为"/"，时间间隔符为":"。<br/>如yyyyMMdd，yyyy-MM-dd显示为yyyy/MM/dd，<br/>hhmmss显示为hh:mm:ss。 <br/>时间格式只用写一位即可，如"hhmmss"等同于"hms"。<br/>支持的时间格式化字符串：<br/>- YYYY/yyyy：完整年份。<br/>- YY/yy：年份后两位。<br/>- M：月份(若想使用01月则使用MM)。<br/>- d：日期(若想使用01日则使用dd)。<br/>- D：年中日(一年中的第几天)。<br/>- H：24小时制。<br/>- h：12小时制。<br/>- m：分钟。<br/>- s：秒。<br/>- SSS：毫秒。<br/>若格式未匹配，则使用默认值。<br/>默认值： 'hms'|
+| format | string    | 设置显示时间格式。<br/>日期间隔符固定为"/"，时间间隔符为":"。<br/>如yyyyMMdd，yyyy-MM-dd显示为yyyy/MM/dd，<br/>hhmmss显示为hh:mm:ss。 <br/>时间格式只用写一位即可，如"hhmmss"等同于"hms"。<br/>支持的时间格式化字符串：<br/>- YYYY/yyyy：完整年份。<br/>- YY/yy：年份后两位。<br/>- M：月份(若想使用01月则使用MM)。<br/>- d：日期(若想使用01日则使用dd)。<br/>- D：年中日(一年中的第几天)。<br/>- H：24小时制。<br/>- h：12小时制。<br/>- m：分钟。<br/>- s：秒。<br/>- SSS：毫秒。<br/>若格式未匹配，则使用默认值。<br/>默认值： 'hms'。<br/>时间更新频率最高为一秒一次，不建议单独设置毫秒格式。|
 
 ## 事件
 

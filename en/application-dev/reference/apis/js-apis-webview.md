@@ -2,7 +2,7 @@
 
 # @ohos.web.webview (Webview)
 
-The **Webview** module provides APIs for web control. It can be used with the **[<Web\>](../arkui-ts/ts-basic-components-web.md)** component, which can be used to display web pages.
+The **Webview** module provides APIs for web control. It can be used with the [<Web\>](../arkui-ts/ts-basic-components-web.md) component, which can be used to display web pages.
 
 > **NOTE**
 >
@@ -33,7 +33,7 @@ Registers a one-time callback for web events of the specified type.
 | Name | Type             | Mandatory| Description                 |
 | ------- | ---------------- | ---- | -------------------- |
 | type     | string          | Yes  | Web event type. The value can be **"webInited"**, indicating completion of web initialization.     |
-| headers | Callback\<void\> | Yes  | Callback to register.|
+| callback | Callback\<void\> | Yes  | Callback to register.|
 
 **Example**
 
@@ -121,7 +121,7 @@ struct WebComponent {
 
 onMessageEvent(callback: (result: WebMessage) => void): void
 
-Registers a callback to receive messages from the HTML5 side. For the complete sample code, see [postMessage](#postmessage).
+Registers a callback to receive messages from the HTML side. For the complete sample code, see [postMessage](#postmessage).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -267,13 +267,13 @@ struct WebComponent {
             }
           }
           catch (error) {
-            let e: business_error.BusinessError = resError as business_error.BusinessError;
+            let e: business_error.BusinessError = error as business_error.BusinessError;
             console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
           }
         })
 
       Web({ src: $rawfile('index.html'), controller: this.controller })
-        .onPageEnd((e) => {
+        .onPageEnd(() => {
           console.log("In ArkTS side message onPageEnd init mesaage channel");
           // 1. Create a message port.
           this.ports = this.controller.createWebMessagePorts(true);
@@ -324,8 +324,8 @@ struct WebComponent {
                 }
               }
             }
-            catch (resError) {
-              let e: business_error.BusinessError = resError as business_error.BusinessError;
+            catch (error) {
+              let e: business_error.BusinessError = error as business_error.BusinessError;
               console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
             }
           });
@@ -843,7 +843,7 @@ struct WebComponent {
 
 accessForward(): boolean
 
-Checks whether moving to the next page can be performed on the current page.
+Checks whether going to the next page can be performed on the current page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -851,7 +851,7 @@ Checks whether moving to the next page can be performed on the current page.
 
 | Type   | Description                             |
 | ------- | --------------------------------- |
-| boolean | Returns **true** if moving to the next page can be performed on the current page; returns **false** otherwise.|
+| boolean | Returns **true** if going to the next page can be performed on the current page; returns **false** otherwise.|
 
 **Error codes**
 
@@ -1359,6 +1359,7 @@ class testObj {
   }
 
   test(): string {
+    console.log('ArkUI Web Component');
     return "ArkUI Web Component";
   }
 
@@ -1367,12 +1368,26 @@ class testObj {
   }
 }
 
+class webObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
+  }
+}
+
 @Entry
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   @State testObjtest: testObj = new testObj();
-
+  @State webTestObj: webObj = new webObj();
   build() {
     Column() {
       Button('refresh')
@@ -1388,6 +1403,7 @@ struct Index {
         .onClick(() => {
           try {
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1409,12 +1425,19 @@ HTML file to be loaded:
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <p id="webDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
+      // This function call expects to return "ArkUI Web Component"
       let str=objName.test();
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
     }
 </script>
 </html>
@@ -1760,7 +1783,7 @@ struct WebComponent {
       Text(this.msg2).fontSize(20)
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onPageEnd(e => {
+        .onPageEnd(() => {
           this.controller.runJavaScriptExt('test()')
             .then((result) => {
               try {
@@ -1831,7 +1854,7 @@ function test() {
 
 deleteJavaScriptRegister(name: string): void
 
-Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately without invoking the [refresh](#refresh) API.
+Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. After the deletion, the [refresh](#refresh) API must be called.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1857,14 +1880,45 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
+class testObj {
+  constructor() {
+  }
+
+  test(): string {
+    return "ArkUI Web Component";
+  }
+
+  toString(): void {
+    console.log('Web Component toString');
+  }
+}
+
 @Entry
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State name: string = 'Object';
-
+  @State testObjtest: testObj = new testObj();
+  @State name: string = 'objName';
   build() {
     Column() {
+      Button('refresh')
+        .onClick(() => {
+          try {
+            this.controller.refresh();
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Button('Register JavaScript To Window')
+        .onClick(() => {
+          try {
+            this.controller.registerJavaScriptProxy(this.testObjtest, this.name, ["test", "toString"]);
+          } catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
       Button('deleteJavaScriptRegister')
         .onClick(() => {
           try {
@@ -1874,17 +1928,38 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
     }
   }
 }
+```
+
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+      <button type="button" onclick="htmlTest()">Click Me!</button>
+      <p id="demo"></p>
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+      let str=objName.test();
+      document.getElementById("demo").innerHTML=str;
+      console.log('objName.test result:'+ str)
+    }
+</script>
+</html>
 ```
 
 ### zoom
 
 zoom(factor: number): void
 
-Zooms in or out of this web page.
+Zooms in or out of this web page. This API is effective only when [zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess) is **true**.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1928,6 +2003,7 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+        .zoomAccess(true)
     }
   }
 }
@@ -1966,7 +2042,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State searchString: string = "xxx";
+  @State searchString: string = "Hello World";
 
   build() {
     Column() {
@@ -1979,7 +2055,7 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .onSearchResultReceive(ret => {
           if (ret) {
             console.log("on search result receive:" + "[cur]" + ret.activeMatchOrdinal +
@@ -1989,6 +2065,17 @@ struct WebComponent {
     }
   }
 }
+```
+
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>Hello World Highlight Hello World</p>
+  </body>
+</html>
 ```
 
 ### clearMatches
@@ -2030,11 +2117,13 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
+
+For details about the HTML file loaded, see the HMTL file loaded using [searchAllAsync](#searchallasync).
 
 ### searchNext
 
@@ -2081,11 +2170,13 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
+
+For details about the HTML file loaded, see the HMTL file loaded using [searchAllAsync](#searchallasync).
 
 ### clearSslCache
 
@@ -2195,7 +2286,7 @@ Creates web message ports. For the complete sample code, see [onMessageEventExt]
 
 | Type                  | Description             |
 | ---------------------- | ----------------- |
-| Array\<WebMessagePort> | List of web message ports.|
+| Array\<[WebMessagePort](#webmessageport)> | List of web message ports.|
 
 **Error codes**
 
@@ -2240,7 +2331,7 @@ struct WebComponent {
 
 postMessage(name: string, ports: Array\<WebMessagePort>, uri: string): void
 
-Sends a web message to an HTML5 window.
+Sends a web message to an HTML window.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -2842,8 +2933,8 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 
 | Name  | Type             | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| baseName | string                | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| baseName | string                | Yes  |  Save path of the web page. The value cannot be null.                                |
+| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the save path if the operation is successful and null otherwise.                  |
 
 **Error codes**
@@ -2904,8 +2995,8 @@ Stores this web page. This API uses a promise to return the result.
 
 | Name  | Type| Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| baseName | string   | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| baseName | string   | Yes  | Save path of the web page. The value cannot be null.                                |
+| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. |
 
 **Return value**
 
@@ -3485,10 +3576,32 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
+```
+
+HTML file to be loaded:
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<body>
+<h1>online attribute </h1>
+<p id="demo"></p>
+<button onclick="func()">click</button>
+<script>
+    let online = navigator.onLine;
+    document.getElementById ("demo").innerHTML = "Browser online:" + online;
+
+    function func(){
+      var online = navigator.onLine;
+      document.getElementById ("demo").innerHTML = "Browser online:" + online;
+    }
+</script>
+</body>
+</html>
 ```
 
 ### hasImage
@@ -3874,7 +3987,6 @@ Obtain the path of the application cache file.
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -3961,7 +4073,6 @@ Obtain the path of the application cache file.
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4030,7 +4141,7 @@ struct WebComponent {
 
 getCertificate(): Promise<Array<cert.X509Cert>>
 
-Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](./js-apis-cert.md) of the current website.
+Obtains the certificate information of this website. When the **\<Web>** component is used to load an HTTPS website, SSL certificate verification is performed. This API uses a promise to return the [X.509 certificate](./js-apis-cert.md#x509cert) of the current website.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -4503,7 +4614,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-Set a custom user agent.
+Sets a custom user agent.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -5122,7 +5233,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5136,12 +5247,56 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+HTML file to be loaded:
+ ```html
+  <!-- index.html -->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript">
+
+      var db = openDatabase('mydb','1.0','Test DB',2 * 1024 * 1024);
+      var msg;
+
+      db.transaction(function(tx){
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
+        tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
+        msg = '<p>Data table created, with two data records inserted.</p>';
+
+        document.querySelector('#status').innerHTML = msg;
+      });
+
+      db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+          var len = results.rows.length,i;
+          msg = "<p>Number of records: " + len + "</p>";
+
+          document.querySelector('#status').innerHTML += msg;
+
+              for(i = 0; i < len; i++){
+                msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+
+          document.querySelector('#status').innerHTML += msg;
+          }
+        },null);
+      });
+
+      </script>
+  </head>
+  <body>
+  <div id="status" name="status">Status</div>
+  </body>
+  </html>
+  ```
 
 ### getOrigins
 
@@ -5199,12 +5354,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+For details about the HTML file loaded, see the HTML file loaded using the [deleteOrigin](#deleteorigin) API.
 
 ### getOrigins
 
@@ -5262,12 +5419,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+For details about the HTML file loaded, see the HTML file loaded using the [deleteOrigin](#deleteorigin) API.
 
 ### getOriginQuota
 
@@ -5303,7 +5462,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5323,12 +5482,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+For details about the HTML file loaded, see the HTML file loaded using the [deleteOrigin](#deleteorigin) API.
 
 ### getOriginQuota
 
@@ -5369,7 +5530,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5389,12 +5550,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+For details about the HTML file loaded, see the HTML file loaded using the [deleteOrigin](#deleteorigin) API.
 
 ### getOriginUsage
 
@@ -5430,7 +5593,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5450,12 +5613,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+For details about the HTML file loaded, see the HTML file loaded using the [deleteOrigin](#deleteorigin) API.
 
 ### getOriginUsage
 
@@ -5496,7 +5661,7 @@ import business_error from '@ohos.base';
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  origin: string = "file:///";
+  origin: string = "resource://rawfile/";
 
   build() {
     Column() {
@@ -5516,12 +5681,14 @@ struct WebComponent {
           }
 
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+For details about the HTML file loaded, see the HTML file loaded using the [deleteOrigin](#deleteorigin) API.
 
 ### deleteAllData
 
@@ -5554,12 +5721,14 @@ struct WebComponent {
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .databaseAccess(true)
     }
   }
 }
 ```
+
+For details about the HTML file loaded, see the HTML file loaded using the [deleteOrigin](#deleteorigin) API.
 
 ## WebDataBase
 
@@ -6291,6 +6460,7 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 getArrayBuffer(): ArrayBuffer
 
 Obtains raw binary data of the data object. For the complete sample code, see [runJavaScriptExt](#runjavascriptext10).
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Return value**
@@ -6319,7 +6489,7 @@ Obtains array-type data of the data object. For the complete sample code, see [r
 
 | Type          | Description         |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | Data of the array type.|
+| Array\<string \| number \| boolean\> | Data of the array type.|
 
 **Error codes**
 
@@ -6446,7 +6616,7 @@ Obtains array-type data of the data object. For the complete sample code, see [o
 
 | Type          | Description         |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | Data of the array type.|
+| Array\<string \| number \| boolean\> | Data of the array type.|
 
 **Error codes**
 

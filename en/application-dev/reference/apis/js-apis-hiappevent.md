@@ -20,7 +20,7 @@ Before using application event logging, you need to understand the requirements 
 
 **Event Name**
 
-An event name is a string that contains a maximum of 48 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter or dollar sign ($) and cannot end with an underscore (_).
+An event name is a string that contains a maximum of 48 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.
 
 **Event Type**
 
@@ -30,8 +30,8 @@ An event type is an enumerated value of [EventType](#eventtype).
 
 An event parameter is an object in key-value pair format, where the key is the parameter name and the value is the parameter value. The requirements are as follows:
 
-- A parameter name is a string that contains a maximum of 16 characters, including digits (0 to 9), letters (a to z), and underscores (\_). It must start with a letter or dollar sign ($) and cannot end with an underscore (_).
-- A parameter value can be of the string, number, boolean, or array type.
+- A parameter name is a string that contains a maximum of 16 characters, including the dollar sign ($), digits (0 to 9), letters (a to z), and underscore (_). It must start with a letter or dollar sign ($) and end with a digit or letter.
+- A parameter value can be a string, number, boolean, or array.
 - If the parameter value is a string, its maximum length is 8*1024 characters. If this limit is exceeded, excess characters will be discarded.
 - If the parameter value is a number, the value must be within the range of **Number.MIN_SAFE_INTEGER** to **Number.MAX_SAFE_INTEGER**. Otherwise, uncertain values may be generated.
 - If the parameter value is an array, the elements in the array must be of the same type, which can only be string, number, or boolean. In addition, the number of elements must be less than 100. If this limit is exceeded, excess elements will be discarded.
@@ -39,7 +39,7 @@ An event parameter is an object in key-value pair format, where the key is the p
 
 **Event Callback**
 
-Event callback can be a callback or promise that carries the return value obtained by invoking the event logging API. You can add the processing of the return value in the event callback as follows:
+An event callback can be a callback or promise that carries the return value obtained by invoking the event logging API. You can add the processing of the return value in the event callback as follows:
 
 - If the return value is **0**, the event verification is successful, and the event will be directly written to the event file. 
 - If the return value is greater than **0**, invalid parameters are present in the event, and the event will be written to the event file after the invalid parameters are ignored.

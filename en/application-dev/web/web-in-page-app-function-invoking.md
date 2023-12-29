@@ -3,8 +3,10 @@
 
 You can use the **Web** component to register application code with frontend pages. After the registration is done, frontend pages can use the registered object names to call application functions.
 
+Two methods are available for registering the application code:
 
-Two methods are available for registering the application code:<br>Call [javaScriptProxy()](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization.<br> Call [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization.
+- Call [javaScriptProxy()](../reference/arkui-ts/ts-basic-components-web.md#javascriptproxy) during **Web** component initialization.
+- Call [registerJavaScriptProxy()](../reference/apis/js-apis-webview.md#registerjavascriptproxy) after **Web** component initialization.
 
 
 The following example registers the **test()** function with the frontend page. This way, the **test()** function can be triggered and run on the frontend page.
@@ -89,7 +91,7 @@ The following example registers the **test()** function with the frontend page. 
         Button('Register JavaScript To Window')
           .onClick(() => {
             try {
-              this.webviewController.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+              this.webviewController.registerJavaScriptProxy(this.testObj, "testObjName", ["test", "toString"]);
             } catch (error) {
               let e: business_error.BusinessError = error as business_error.BusinessError;
               console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -117,7 +119,7 @@ The following example registers the **test()** function with the frontend page. 
   <p id="demo"></p>
   <script>
       function callArkTS() {
-          let str = objName.test();
+          let str = testObjName.test();
           document.getElementById("demo").innerHTML = str;
           console.info('ArkTS Hello World! :' + str);
       }

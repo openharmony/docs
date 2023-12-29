@@ -59,7 +59,7 @@ The table below lists the main APIs used for transient task development. For det
      let myReason = 'test requestSuspendDelay'; // Reason for the request.
      let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
        // Callback function, which is triggered when the transient task is about to time out. The application can carry out data clear and annotation, and cancel the task in the callback.
-       console.info('Succeeded in requesting suspend delay.');
+       console.info('suspend delay task will timeout');
        backgroundTaskManager.cancelSuspendDelay(id);
      })
      id = delayInfo.requestId;

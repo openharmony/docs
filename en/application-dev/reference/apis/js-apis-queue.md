@@ -217,6 +217,10 @@ queue.forEach((value : number, index ?: number) : void => {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**

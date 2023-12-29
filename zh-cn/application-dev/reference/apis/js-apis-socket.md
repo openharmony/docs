@@ -12,7 +12,7 @@
 import socket from '@ohos.net.socket';
 ```
 
-## socket.constructUDPSocketInstance<sup>7+</sup>
+## socket.constructUDPSocketInstance
 
 constructUDPSocketInstance(): UDPSocket
 
@@ -33,11 +33,11 @@ import socket from '@ohos.net.socket';
 let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
 ```
 
-## UDPSocket<sup>7+</sup>
+## UDPSocket
 
 UDPSocket连接。在调用UDPSocket的方法前，需要先通过[socket.constructUDPSocketInstance](#socketconstructudpsocketinstance)创建UDPSocket对象。
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -81,7 +81,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 });
 ```
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -128,7 +128,7 @@ udp.bind(bindAddr).then(() => {
 });
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -178,7 +178,7 @@ udp.send(sendOptions, (err: BusinessError) => {
 });
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: UDPSendOptions): Promise\<void\>
 
@@ -231,7 +231,7 @@ udp.send(sendOptions).then(() => {
 });
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -263,7 +263,7 @@ udp.close((err: BusinessError) => {
 })
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(): Promise\<void\>
 
@@ -293,7 +293,7 @@ udp.close().then(() => {
 });
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
@@ -345,7 +345,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(): Promise\<SocketStateBase\>
 
@@ -389,7 +389,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 });
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
@@ -451,7 +451,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
@@ -516,7 +516,7 @@ udp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### on('message')<sup>7+</sup>
+### on('message')
 
 on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -554,7 +554,7 @@ udp.on('message', (value: SocketInfo) => {
 });
 ```
 
-### off('message')<sup>7+</sup>
+### off('message')
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -598,7 +598,7 @@ udp.off('message', callback);
 udp.off('message');
 ```
 
-### on('listening' | 'close')<sup>7+</sup>
+### on('listening' | 'close')
 
 on(type: 'listening' | 'close', callback: Callback\<void\>): void
 
@@ -627,7 +627,7 @@ udp.on('close', () => {
 });
 ```
 
-### off('listening' | 'close')<sup>7+</sup>
+### off('listening' | 'close')
 
 off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
@@ -667,7 +667,7 @@ udp.off('close', callback2);
 udp.off('close');
 ```
 
-### on('error')<sup>7+</sup>
+### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -693,7 +693,7 @@ udp.on('error', (err: BusinessError) => {
 });
 ```
 
-### off('error')<sup>7+</sup>
+### off('error')
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -726,7 +726,7 @@ udp.off('error', callback);
 udp.off('error');
 ```
 
-## NetAddress<sup>7+</sup>
+## NetAddress
 
 目标地址信息。
 
@@ -738,7 +738,7 @@ udp.off('error');
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
 | family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。 |
 
-## UDPSendOptions<sup>7+</sup>
+## UDPSendOptions
 
 UDPSocket发送参数。
 
@@ -746,10 +746,10 @@ UDPSocket发送参数。
 
 | 名称  | 类型                               | 必填 | 说明           |
 | ------- | ---------------------------------- | ---- | -------------- |
-| data    | string \| ArrayBuffer<sup>7+</sup>                          | 是   | 发送的数据。   |
+| data    | string \| ArrayBuffer                          | 是   | 发送的数据。   |
 | address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
 
-## UDPExtraOptions<sup>7+</sup>
+## UDPExtraOptions
 
 UDPSocket连接的其他属性。
 
@@ -763,7 +763,7 @@ UDPSocket连接的其他属性。
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。      |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms），默认为0。 |
 
-## SocketStateBase<sup>7+</sup>
+## SocketStateBase
 
 Socket的状态信息。
 
@@ -775,7 +775,7 @@ Socket的状态信息。
 | isClose     | boolean | 是   | 是否关闭。 |
 | isConnected | boolean | 是   | 是否连接。 |
 
-## SocketRemoteInfo<sup>7+</sup>
+## SocketRemoteInfo
 
 Socket的连接信息。
 
@@ -794,7 +794,7 @@ UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 
-## socket.constructTCPSocketInstance<sup>7+</sup>
+## socket.constructTCPSocketInstance
 
 constructTCPSocketInstance(): TCPSocket
 
@@ -815,11 +815,11 @@ import socket from "@ohos.net.socket";
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
 ```
 
-## TCPSocket<sup>7+</sup>
+## TCPSocket
 
 TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance)创建TCPSocket对象。
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -867,7 +867,7 @@ tcp.bind(bindAddr, (err: BusinessError) => {
 })
 ```
 
-### bind<sup>7+</sup>
+### bind
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -918,7 +918,7 @@ tcp.bind(bindAddr).then(() => {
 });
 ```
 
-### connect<sup>7+</sup>
+### connect
 
 connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
@@ -968,7 +968,7 @@ tcp.connect(tcpconnectoptions, (err: BusinessError) => {
 })
 ```
 
-### connect<sup>7+</sup>
+### connect
 
 connect(options: TCPConnectOptions): Promise\<void\>
 
@@ -1021,7 +1021,7 @@ tcp.connect(tcpconnectoptions).then(() => {
 });
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -1077,7 +1077,7 @@ tcp.connect(tcpconnectoptions, () => {
 })
 ```
 
-### send<sup>7+</sup>
+### send
 
 send(options: TCPSendOptions): Promise\<void\>
 
@@ -1136,7 +1136,7 @@ tcp.connect(tcpconnectoptions, () => {
 })
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -1174,7 +1174,7 @@ tcp.close((err: BusinessError) => {
 })
 ```
 
-### close<sup>7+</sup>
+### close
 
 close(): Promise\<void\>
 
@@ -1209,7 +1209,7 @@ tcp.close().then(() => {
 });
 ```
 
-### getRemoteAddress<sup>7+</sup>
+### getRemoteAddress
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
@@ -1260,7 +1260,7 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### getRemoteAddress<sup>7+</sup>
+### getRemoteAddress
 
 getRemoteAddress(): Promise\<NetAddress\>
 
@@ -1311,7 +1311,7 @@ tcp.connect(tcpconnectoptions).then(() => {
 });
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
@@ -1362,7 +1362,7 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### getState<sup>7+</sup>
+### getState
 
 getState(): Promise\<SocketStateBase\>
 
@@ -1493,7 +1493,7 @@ tcp.getSocketFd().then((data: number) => {
 })
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
@@ -1555,7 +1555,7 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### setExtraOptions<sup>7+</sup>
+### setExtraOptions
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
@@ -1620,7 +1620,7 @@ tcp.connect(tcpconnectoptions, () => {
 });
 ```
 
-### on('message')<sup>7+</sup>
+### on('message')
 
 on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1657,7 +1657,7 @@ tcp.on('message', (value: SocketInfo) => {
 });
 ```
 
-### off('message')<sup>7+</sup>
+### off('message')
 
 off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1701,7 +1701,7 @@ tcp.off('message', callback);
 tcp.off('message');
 ```
 
-### on('connect' | 'close')<sup>7+</sup>
+### on('connect' | 'close')
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
@@ -1730,7 +1730,7 @@ tcp.on('close', () => {
 });
 ```
 
-### off('connect' | 'close')<sup>7+</sup>
+### off('connect' | 'close')
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
@@ -1770,7 +1770,7 @@ tcp.off('close', callback2);
 tcp.off('close');
 ```
 
-### on('error')<sup>7+</sup>
+### on('error')
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -1796,7 +1796,7 @@ tcp.on('error', (err: BusinessError) => {
 });
 ```
 
-### off('error')<sup>7+</sup>
+### off('error')
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -1829,7 +1829,7 @@ tcp.off('error', callback);
 tcp.off('error');
 ```
 
-## TCPConnectOptions<sup>7+</sup>
+## TCPConnectOptions
 
 TCPSocket连接的参数。
 
@@ -1840,7 +1840,7 @@ TCPSocket连接的参数。
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
 | timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
 
-## TCPSendOptions<sup>7+</sup>
+## TCPSendOptions
 
 TCPSocket发送请求的参数。
 
@@ -1848,10 +1848,10 @@ TCPSocket发送请求的参数。
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| data     | string\| ArrayBuffer<sup>7+</sup>  | 是   | 发送的数据。                                                 |
+| data     | string\| ArrayBuffer  | 是   | 发送的数据。                                                 |
 | encoding | string | 否   | 字符编码(UTF-8，UTF-16BE，UTF-16LE，UTF-16，US-AECII，ISO-8859-1)，默认为UTF-8。 |
 
-## TCPExtraOptions<sup>7+</sup>
+## TCPExtraOptions
 
 TCPSocket连接的其他属性。
 
@@ -1910,7 +1910,7 @@ listen(address: NetAddress, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                          |
 | -------- | ------------------------- | ---- | --------------------------------------------- |
-| address  | [NetAddress](#netaddress7) | 是   | 目标地址信息。 |
+| address  | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
 | callback | AsyncCallback\<void\>     | 是   | 回调函数。                                    |
 
 **错误码：**
@@ -1962,7 +1962,7 @@ listen(address: NetAddress): Promise\<void\>
 
 | 参数名  | 类型                      | 必填 | 说明                                          |
 | ------- | ------------------------- | ---- | --------------------------------------------- |
-| address | [NetAddress](#netaddress7) | 是   | 目标地址信息。 |
+| address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
 
 **返回值：**
 
@@ -2017,7 +2017,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 | 参数名   | 类型                                               | 必填 | 说明       |
 | -------- | -------------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[SocketStateBase](#socketstatebase7)> | 是   | 回调函数。 |
+| callback | AsyncCallback<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。 |
 
 **错误码：**
 
@@ -2072,7 +2072,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 类型                                         | 说明                                       |
 | :------------------------------------------- | :----------------------------------------- |
-| Promise<[SocketStateBase](#socketstatebase7)> | 以Promise形式返回获取TCPSocket状态的结果。 |
+| Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TCPSocket状态的结果。 |
 
 **错误码：**
 
@@ -2124,7 +2124,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                                         |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions7) | 是   | TCPSocketServer连接的其他属性。 |
+| options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocketServer连接的其他属性。 |
 | callback | AsyncCallback\<void\>               | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -2191,7 +2191,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 参数名  | 类型                                | 必填 | 说明                                                         |
 | ------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPExtraOptions](#tcpextraoptions7) | 是   | TCPSocketServer连接的其他属性。 |
+| options | [TCPExtraOptions](#tcpextraoptions) | 是   | TCPSocketServer连接的其他属性。 |
 
 **返回值：**
 
@@ -2422,7 +2422,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                              | 必填 | 说明                                                         |
 | -------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options  | [TCPSendOptions](#tcpsendoptions7) | 是   | TCPSocketConnection发送请求的参数。 |
+| options  | [TCPSendOptions](#tcpsendoptions) | 是   | TCPSocketConnection发送请求的参数。 |
 | callback | AsyncCallback\<void\>             | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -2466,7 +2466,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 | 参数名  | 类型                              | 必填 | 说明                                                         |
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [TCPSendOptions](#tcpsendoptions7) | 是   | TCPSocketConnection发送请求的参数。 |
+| options | [TCPSendOptions](#tcpsendoptions) | 是   | TCPSocketConnection发送请求的参数。 |
 
 **返回值：**
 
@@ -2597,7 +2597,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 | 参数名   | 类型                                     | 必填 | 说明       |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback<[NetAddress](#netaddress7)> | 是   | 回调函数。 |
+| callback | AsyncCallback<[NetAddress](#netaddress)> | 是   | 回调函数。 |
 
 **错误码：**
 
@@ -2642,7 +2642,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 | 类型                               | 说明                                        |
 | :--------------------------------- | :------------------------------------------ |
-| Promise<[NetAddress](#netaddress7)> | 以Promise形式返回获取对端socket地址的结果。 |
+| Promise<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。 |
 
 **错误码：**
 
@@ -2680,7 +2680,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
 
 **错误码：**
 
@@ -2729,7 +2729,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。                                |
 
 **错误码：**
 
@@ -4472,7 +4472,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                         |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[SocketStateBase](#socketstatebase7)> | 是   | 回调函数。成功返回TLSSocketServer状态，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<[SocketStateBase](#socketstatebase)> | 是   | 回调函数。成功返回TLSSocketServer状态，失败返回错误码，错误信息。 |
 
 **错误码：**
 
@@ -4534,7 +4534,7 @@ getState(): Promise\<SocketStateBase\>
 
 | 类型                                           | 说明                                                         |
 | :--------------------------------------------- | :----------------------------------------------------------- |
-| Promise\<[SocketStateBase](#socketstatebase7)> | 以Promise形式返回获取TLSSocketServer状态的结果。失败返回错误码，错误信息。 |
+| Promise\<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TLSSocketServer状态的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
 
@@ -4593,7 +4593,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                                 | 必填 | 说明                                             |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| options  | [TCPExtraOptions](#tcpextraoptions7) | 是   | TLSSocketServer连接的其他属性。                  |
+| options  | [TCPExtraOptions](#tcpextraoptions) | 是   | TLSSocketServer连接的其他属性。                  |
 | callback | AsyncCallback\<void\>                | 是   | 回调函数。成功返回空，失败返回错误码，错误信息。 |
 
 **错误码：**
@@ -4667,7 +4667,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 | 参数名  | 类型                                 | 必填 | 说明                            |
 | ------- | ------------------------------------ | ---- | ------------------------------- |
-| options | [TCPExtraOptions](#tcpextraoptions7) | 是   | TLSSocketServer连接的其他属性。 |
+| options | [TCPExtraOptions](#tcpextraoptions) | 是   | TLSSocketServer连接的其他属性。 |
 
 **返回值：**
 
@@ -5501,7 +5501,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 | 参数名   | 类型                                        | 必填 | 说明                                                         |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[NetAddress](#netaddress7)\> | 是   | 回调函数。成功返回对端的socket地址，失败返回错误码，错误信息。 |
+| callback | AsyncCallback\<[NetAddress](#netaddress)\> | 是   | 回调函数。成功返回对端的socket地址，失败返回错误码，错误信息。 |
 
 **错误码：**
 
@@ -5562,7 +5562,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 | 类型                                 | 说明                                                         |
 | :----------------------------------- | :----------------------------------------------------------- |
-| Promise\<[NetAddress](#netaddress7)> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
+| Promise\<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
 
@@ -5982,7 +5982,7 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 是   | 回调函数。                                |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 是   | 回调函数。                                |
 
 **错误码：**
 
@@ -6053,7 +6053,7 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 | 参数名   | 类型                                                         | 必填 | 说明                                      |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
 | type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo7)}> | 否   | 回调函数。                                |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。                                |
 
 **错误码：**
 

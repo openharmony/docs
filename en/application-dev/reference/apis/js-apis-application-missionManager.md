@@ -18,7 +18,7 @@ ohos.permission.MANAGE_MISSIONS
 
 ## missionManager.registerMissionListener
 
-registerMissionListener(listener: MissionListener): number;
+registerMissionListener(listener: MissionListener): number
 
 Registers a listener to observe the mission status.
 
@@ -60,7 +60,7 @@ let listenerid = missionManager.registerMissionListener({
 
 ## missionManager.unregisterMissionListener
 
-unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
+unregisterMissionListener(listenerId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Deregisters a mission status listener. This API uses an asynchronous callback to return the result.
 
@@ -101,7 +101,7 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
 
 ## missionManager.unregisterMissionListener
 
-unregisterMissionListener(listenerId: number): Promise&lt;void&gt;;
+unregisterMissionListener(listenerId: number): Promise&lt;void&gt;
 
 Deregisters a mission status listener. This API uses a promise to return the result.
 
@@ -148,7 +148,7 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void;
+getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionInfo&gt;): void
 
 Obtains the information about a given mission. This API uses an asynchronous callback to return the result.
 
@@ -192,7 +192,7 @@ Obtains the information about a given mission. This API uses an asynchronous cal
 
 ## missionManager.getMissionInfo
 
-getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;;
+getMissionInfo(deviceId: string, missionId: number): Promise&lt;MissionInfo&gt;
 
 Obtains the information about a given mission. This API uses a promise to return the result.
 
@@ -229,7 +229,7 @@ Obtains the information about a given mission. This API uses a promise to return
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void;
+getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Array&lt;MissionInfo&gt;&gt;): void
 
 Obtains information about all missions. This API uses an asynchronous callback to return the result.
 
@@ -265,7 +265,7 @@ Obtains information about all missions. This API uses an asynchronous callback t
 
 ## missionManager.getMissionInfos
 
-getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;;
+getMissionInfos(deviceId: string, numMax: number): Promise&lt;Array&lt;MissionInfo&gt;&gt;
 
 Obtains information about all missions. This API uses a promise to return the result.
 
@@ -302,7 +302,7 @@ Obtains information about all missions. This API uses a promise to return the re
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void;
+getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&lt;MissionSnapshot&gt;): void
 
 Obtains the snapshot of a given mission. This API uses an asynchronous callback to return the result.
 
@@ -347,7 +347,7 @@ Obtains the snapshot of a given mission. This API uses an asynchronous callback 
 
 ## missionManager.getMissionSnapShot
 
-getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;;
+getMissionSnapShot(deviceId: string, missionId: number): Promise&lt;MissionSnapshot&gt;
 
 Obtains the snapshot of a given mission. This API uses a promise to return the result.
 
@@ -393,7 +393,7 @@ Obtains the snapshot of a given mission. This API uses a promise to return the r
 
 ## missionManager.lockMission
 
-lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Locks a given mission. This API uses an asynchronous callback to return the result.
 
@@ -433,7 +433,7 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
 
 ## missionManager.lockMission
 
-lockMission(missionId: number): Promise&lt;void&gt;;
+lockMission(missionId: number): Promise&lt;void&gt;
 
 Locks a given mission. This API uses a promise to return the result.
 
@@ -479,7 +479,7 @@ Locks a given mission. This API uses a promise to return the result.
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Unlocks a given mission. This API uses an asynchronous callback to return the result.
 
@@ -519,7 +519,7 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 
 ## missionManager.unlockMission
 
-unlockMission(missionId: number): Promise&lt;void&gt;;
+unlockMission(missionId: number): Promise&lt;void&gt;
 
 Unlocks a given mission. This API uses a promise to return the result.
 
@@ -568,7 +568,7 @@ Unlocks a given mission. This API uses a promise to return the result.
 
 ## missionManager.clearMission
 
-clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Clears a given mission, regardless of whether it is locked. This API uses an asynchronous callback to return the result.
 
@@ -608,7 +608,7 @@ Clears a given mission, regardless of whether it is locked. This API uses an asy
 
 ## missionManager.clearMission
 
-clearMission(missionId: number): Promise&lt;void&gt;;
+clearMission(missionId: number): Promise&lt;void&gt;
 
 Clears a given mission, regardless of whether it is locked. This API uses a promise to return the result.
 
@@ -654,7 +654,7 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(callback: AsyncCallback&lt;void&gt;): void;
+clearAllMissions(callback: AsyncCallback&lt;void&gt;): void
 
 Clears all unlocked missions. This API uses an asynchronous callback to return the result.
 
@@ -663,6 +663,12 @@ Clears all unlocked missions. This API uses an asynchronous callback to return t
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -677,7 +683,7 @@ Clears all unlocked missions. This API uses an asynchronous callback to return t
 
 ## missionManager.clearAllMissions
 
-clearAllMissions(): Promise&lt;void&gt;;
+clearAllMissions(): Promise&lt;void&gt;
 
 Clears all unlocked missions. This API uses a promise to return the result.
 
@@ -707,7 +713,7 @@ Clears all unlocked missions. This API uses a promise to return the result.
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
 Switches a given mission to the foreground. This API uses an asynchronous callback to return the result.
 
@@ -747,7 +753,7 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
+moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
 Switches a given mission to the foreground, with the startup parameters for the switching specified. This API uses an asynchronous callback to return the result.
 
@@ -788,7 +794,7 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 ## missionManager.moveMissionToFront
 
-moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;;
+moveMissionToFront(missionId: number, options?: StartOptions): Promise&lt;void&gt;
 
 Switches a given mission to the foreground, with the startup parameters for the switching specified. This API uses a promise to return the result.
 

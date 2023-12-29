@@ -33,7 +33,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getDefaultCellularDataSlotId((err: BusinessError, data: number) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`getDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`getDefaultCellularDataSlotId success`);
+    }
 });
 ```
 
@@ -128,7 +132,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.setDefaultCellularDataSlotId(0, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}.`);
+    if(err){
+        console.error(`setDefaultCellularDataSlotId fail,callback: err->${JSON.stringify(err)}.`);
+    }else{
+        console.log(`setDefaultCellularDataSlotId success`);
+    }
 });
 ```
 
@@ -206,7 +214,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataFlowType((err: BusinessError, data: data.DataFlowType) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`getCellularDataFlowType fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`getCellularDataFlowType success`);
+    }
 });
 ```
 
@@ -231,9 +243,9 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataFlowType().then((data: data.DataFlowType) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`getCellularDataFlowType success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getCellularDataFlowType fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -258,7 +270,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataState((err: BusinessError, data: data.DataConnectState) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`getCellularDataState fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`getCellularDataState success`);
+    }
 });
 ```
 
@@ -283,9 +299,9 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.getCellularDataState().then((data: data.DataConnectState) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`getCellularDataState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`getCellularDataState fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -325,7 +341,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataEnabled((err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`isCellularDataEnabled fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`isCellularDataEnabled success`);
+    }
 });
 ```
 
@@ -363,9 +383,9 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataEnabled().then((data: boolean) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`isCellularDataEnabled success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isCellularDataEnabled fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -406,7 +426,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataRoamingEnabled(0, (err: BusinessError, data: boolean) => {
-    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    if(err){
+        console.error(`isCellularDataRoamingEnabled fail,callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+    }else{
+        console.log(`isCellularDataRoamingEnabled success`);
+    }
 });
 ```
 
@@ -452,9 +476,9 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.isCellularDataRoamingEnabled(0).then((data: boolean) => {
-    console.log(`test success, promise: data->${JSON.stringify(data)}`);
+    console.log(`isCellularDataRoamingEnabled success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`test fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`isCellularDataRoamingEnabled fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -497,7 +521,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularData((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if(err){
+        console.error(`enableCellularData fail,callback: err->${JSON.stringify(err)}`);
+    }else{
+        console.log(`enableCellularData success`);
+    }
 });
 ```
 
@@ -583,7 +611,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularData((err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if(err){
+        console.error(`disableCellularData fail,callback: err->${JSON.stringify(err)}`);
+    }else{
+        console.log(`disableCellularData success`);
+    }
 });
 ```
 
@@ -670,7 +702,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.enableCellularDataRoaming(0, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if(err){
+        console.error(`enableCellularDataRoaming fail,callback: err->${JSON.stringify(err)}`);
+    }else{
+        console.log(`enableCellularDataRoaming success`);
+    }
 });
 ```
 
@@ -765,7 +801,11 @@ import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 
 data.disableCellularDataRoaming(0, (err: BusinessError) => {
-    console.log(`callback: err->${JSON.stringify(err)}`);
+    if(err){
+        console.error(`disableCellularDataRoaming fail,callback: err->${JSON.stringify(err)}`);
+    }else{
+        console.log(`disableCellularDataRoaming success`);
+    }
 });
 ```
 

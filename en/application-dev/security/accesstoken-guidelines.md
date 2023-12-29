@@ -66,7 +66,7 @@ If your application is developed based on the stage model, declare the required 
 
 ### FA Model
 
-If your application is developed based on the FA model, declare the required permissions in **config.json**.
+If your application is developed based on the FA model, declare the required permissions in [**config.json**](../quick-start/application-configuration-file-overview-fa.md#configuration-file-internal-structure).
 
 ```json
 {
@@ -102,7 +102,7 @@ If your application is developed based on the FA model, declare the required per
 
 The **reason** field (reason for applying for the permission) is mandatory when a user_grant permission is required. You need to configure each permission required by your application in the application configuration file.
 
-When the user_grant permissions are authorized by the user in a dialog box, the [permission group](accesstoken-overview.md#permission group and sub-permissions) is displayed. For details about the permission groups, see [Application Permission List](permission-group-list.md).
+When the user_grant permissions are authorized by the user in a dialog box, the [permission group](accesstoken-overview.md#permission-groups-and-permissions) is displayed. For details about the permission groups, see [Application Permission Group List](permission-group-list.md).
 
 The **reason** field must comply with the following specifications:
 
@@ -156,7 +156,7 @@ User authorization is required when an application needs to access user privacy 
 
 > **NOTE**
 >
-> Each time before an API protected by a user_grant permission is called, **[requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)** will be called to request user authorization. After the permission is granted, the user may revoke the authorization in **Settings**. Therefore, the previous authorization status cannot be persistent.
+> Each time before an API protected by a user_grant permission is called, [requestPermissionsFromUser()](../reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) will be called to request user authorization. After the permission is granted, the user may revoke the authorization in **Settings**. Therefore, the previous authorization status cannot be persistent.
 
 ### Stage Model
 
@@ -266,7 +266,7 @@ Example: Apply for the permission for an application to access the Calendar.
    @Component
    struct Index {
     reqPermissionsFromUser(permissions: Array<Permissions>): void {
-      let context: Context  = getContext(this) as common.UIAbilityContext;
+      let context: Context = getContext(this) as common.UIAbilityContext;
       let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
       // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
       atManager.requestPermissionsFromUser(context, permissions).then((data: PermissionRequestResult) => {
@@ -349,40 +349,40 @@ Example: Apply for the permission for an application to access the Calendar.
    import common from '@ohos.app.ability.common';
 
    function openPermissionsInSystemSettings(): void {
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    let wantInfo: Want = {
-      action: 'action.settings.app.info',
-      parameters: {
-        settingsParamBundleName: 'com.example.myapplication' // Open the Details page of the application.
-      }
-    }
-    context.startAbility(wantInfo).then(() => {
-      // ...
-    }).catch((err: BusinessError) => {
-      // ...
-    })
+     let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
+     let wantInfo: Want = {
+       action: 'action.settings.app.info',
+       parameters: {
+         settingsParamBundleName: 'com.example.myapplication' // Open the Details page of the application.
+       }
+     }
+     context.startAbility(wantInfo).then(() => {
+       // ...
+     }).catch((err: BusinessError) => {
+       // ...
+     })
    }
    ```
 
 ### FA Model
 
-Call [requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7) to request user authorization.
+Call [context.requestPermissionsFromUser()](../reference/apis/js-apis-inner-app-context.md#contextrequestpermissionsfromuser7) to request user authorization.
 
 ```ts
 import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
 
 reqPermissions() {
-    let context = featureAbility.getContext();
-    let array:Array<string> = ["ohos.permission.PERMISSION2"];
-    // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
-    context.requestPermissionsFromUser(array, 1).then(data => {
-        console.log("data:" + JSON.stringify(data));
-        console.log("data permissions:" + JSON.stringify(data.permissions));
-        console.log("data result:" + JSON.stringify(data.authResults));
-    }, (err: BusinessError) => {
-        console.error('Failed to start ability', err.code);
-    });
+  let context = featureAbility.getContext();
+  let array:Array<string> = ["ohos.permission.PERMISSION2"];
+  // The return value of requestPermissionsFromUser determines whether to display a dialog box to request user authorization.
+  context.requestPermissionsFromUser(array, 1).then(data => {
+      console.log("data:" + JSON.stringify(data));
+      console.log("data permissions:" + JSON.stringify(data.permissions));
+      console.log("data result:" + JSON.stringify(data.authResults));
+  }, (err: BusinessError) => {
+      console.error('Failed to start ability', err.code);
+  });
 }
 ```
 
@@ -391,7 +391,6 @@ reqPermissions() {
 The user_grant permissions can be pre-authorized in the [**install_list_permission.json** file](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) in the **/system/etc/app/** directory of the device. When the device starts, it loads the **install_list_permission.json** file. When the applications are installed, the user_grant permissions are authorized. 
 
 The **install_list_permissions.json** file contains the following fields:
-
 - **bundleName**: bundle name of the application.
 - **app_signature**: fingerprint information of the application. For details, see **Configuration in install_list_capability.json** in the [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 - **permissions**: The **name** field specifies the name of the user_grant permission to pre-authorize. The **userCancellable** field specifies whether the user can revoke the pre-authorization. The value **true** means the user can revoke the pre-authorization; the value **false** means the opposite.
@@ -400,16 +399,16 @@ The **install_list_permissions.json** file contains the following fields:
 [
   // ...
   {
-    "bundleName": "com.example.myapplication", // Bundle name.
-    "app_signature": ["****"], // Fingerprint information.
+    "bundleName": "com.example.myapplication",   // Bundle name.
+    "app_signature": ["****"],                   // Fingerprint information.
     "permissions":[
       {
-        "name": "ohos.permission.PERMISSION_X", // Permission to pre-authorize.
-        "userCancellable": false // The user cannot revoke the authorization.
+        "name": "ohos.permission.PERMISSION_X",  // Permission to pre-authorize.
+        "userCancellable": false                 // The user cannot revoke the authorization.
       },
       {
-        "name": "ohos.permission.PERMISSION_X", // Permission to pre-authorize.
-        "userCancellable": true // The user can revoke the authorization.
+        "name": "ohos.permission.PERMISSION_X",  // Permission to pre-authorize.
+        "userCancellable": true                  // The user can revoke the authorization.
       }
     ]
   }

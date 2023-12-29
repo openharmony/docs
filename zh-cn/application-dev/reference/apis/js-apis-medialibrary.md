@@ -82,7 +82,7 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 > **说明：**
 >
 > - 此接口从API version 9开始废弃。请使用[getAssets](js-apis-photoAccessHelper.md#getassets)替代。
-> - 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+> - 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[Changelog：mediaLibrary接口兼容性变更](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -155,7 +155,7 @@ getFileAssets(options: MediaFetchOptions): Promise&lt;FetchFileResult&gt;
 > **说明：**
 >
 > - 此接口从API version 9开始废弃。请使用[getAssets](js-apis-photoAccessHelper.md#getassets-1)替代。
-> - 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+> - 在API version 10上，摒弃了物理目录作为相册的设计，采用了逻辑相册的设计，一个相册中可以添加多个文件，一个文件也可以在多个相册中呈现。新的设计将带来parent、albumId、albumUri和albumName属性使用上的不兼容，无法作为MediaFetchOptions的参数在getFileAssets接口中使用。请参考[Changelog：mediaLibrary接口兼容性变更](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -285,7 +285,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string, cal
 > **说明：**
 >
 > - 此接口从API version 9开始废弃。请使用[createAsset](js-apis-photoAccessHelper.md#createasset)替代。
-> - 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+> - 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[Changelog：mediaLibrary接口兼容性变更](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -327,7 +327,7 @@ createAsset(mediaType: MediaType, displayName: string, relativePath: string): Pr
 > **说明：**
 >
 > - 此接口从API version 9开始废弃。请使用[createAsset](js-apis-photoAccessHelper.md#createasset-1)替代。
-> - 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+> - 由于API version 10的SDK上relativePath和相册没有关联关系，文件创建成功后，relativePath的最后一级目录不会作为相册呈现。变更详情请参考[Changelog：mediaLibrary接口兼容性变更](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -558,7 +558,7 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&
 > **说明：**
 >
 > - 此接口从API version 9开始废弃。请使用[getAlbums](js-apis-photoAccessHelper.md#getalbums)替代。
-> - 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件，当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+> - 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件，当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[Changelog：mediaLibrary接口兼容性变更](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -598,7 +598,7 @@ getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 > **说明：**
 >
 > - 此接口从API version 9开始废弃。请使用[getAlbums](js-apis-photoAccessHelper.md#getalbums-2)替代。
-> - 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件.当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+> - 由于API version 10的SDK上relativePath和相册没有关联关系，在使用getAlbums时不支持relativePath作为查询条件.当前仅支持“Camera”和“ScreenShots”两类相册，变更详情请参考[Changelog：mediaLibrary接口兼容性变更](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA
 
@@ -1268,7 +1268,7 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 > **说明：**
 >
 > - 此接口从API version 9开始废弃。请使用[commitModify](js-apis-photoAccessHelper.md#commitmodify)替代。
-> - 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+> - 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[Changelog：mediaLibrary接口兼容性变更](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 
@@ -1310,7 +1310,7 @@ commitModify(): Promise&lt;void&gt;
 > **说明：**
 >
 > - 此接口从API version 9开始废弃。请使用[commitModify](js-apis-photoAccessHelper.md#commitmodify-1)替代。
-> 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[changelogs-mediaLibrary.md](../../../release-notes/changelogs/OpenHarmony_4.0.8.2/changelogs-mediaLibrary.md)。
+> 由于API version 10的SDK上audio没有orientation属性，在使用commitModify接口时将无法对audio资源的orientation属性进行修改。请参考[Changelog：mediaLibrary接口兼容性变更](../../../release-notes/changelogs/v4.0-beta2/changelogs-medialibrary.md)。
 
 **需要权限**：ohos.permission.READ_MEDIA, ohos.permission.WRITE_MEDIA
 

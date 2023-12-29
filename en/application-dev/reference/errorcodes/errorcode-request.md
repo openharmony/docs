@@ -58,6 +58,24 @@ The task fails to be created.
 
 Verify the task settings.
 
+## 13499999 Other Error
+
+**Error Message**
+
+other error.
+
+**Description**
+
+This error code is reported when a special error occurs in invoking the **uploadFile** or **downloadFile** API.
+
+**Possible Causes**
+
+The task fails to be created.
+
+**Solution**
+
+Verify the task settings.
+
 
 ## 21900004 Application Task Queue Full
 
@@ -127,7 +145,7 @@ The task to remove or query does not exist.
 
 **Error Message**
 
-task mode error.
+task state error.
 
 **Description**
 

@@ -683,6 +683,59 @@ let ws = webSocket.createWebSocket();
 ws.off('error');
 ```
 
+### on('dataEnd')<sup>11+</sup>
+
+on(type: 'dataEnd', callback: Callback\<void\>): void
+
+Enables listening for the **dataEnd** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  |       Type       | Mandatory|                  Description                  |
+| -------- | ---------------- | ---- | --------------------------------------- |
+| type     | string           | Yes  | Event type.<br />**dataEnd**: event indicating the data receiving over the WebSocket connection has ended.|
+| callback | Callback\<void\> | Yes  | Callback used to return the result.                             |
+
+**Example**
+
+```js
+import webSocket from '@ohos.net.webSocket';
+import { BusinessError } from '@ohos.base';
+
+let ws = webSocket.createWebSocket();
+ws.on('dataEnd', (err: BusinessError) => {
+  console.log("on dataEnd, error:" + JSON.stringify(err))
+});
+```
+
+### off('dataEnd')<sup>11+</sup>
+
+off(type: 'dataEnd', callback?: Callback\<void\>): void
+
+Disables listening for the **dataEnd** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+**Parameters**
+
+| Name  |        Type      | Mandatory|                Description                   |
+| -------- | ---------------- | ---- | -------------------------------------- |
+| type     | string           | Yes  | Event type.<br />**dataEnd**: event indicating the data receiving over the WebSocket connection has ended.|
+| callback | Callback\<void\> | No  | Callback used to return the result.                            |
+
+**Example**
+
+```js
+import webSocket from '@ohos.net.webSocket';
+let ws = webSocket.createWebSocket();
+ws.off('dataEnd');
+```
+
 ## WebSocketRequestOptions
 
 Defines the optional parameters carried in the request for establishing a WebSocket connection.

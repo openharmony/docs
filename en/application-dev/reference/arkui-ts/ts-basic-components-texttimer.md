@@ -32,7 +32,7 @@ TextTimer(options?: { isCountDown?: boolean, count?: number, controller?: TextTi
 
 | Name                                      | Description                                    |
 | ---------------------------------------- | ---------------------------------------- |
-| onTimer(event: (utc: number, elapsedTime: number) =&gt; void) | Triggered when the time text changes.<br>**utc**: Linux timestamp, which is the amount of time that has elapsed since January 1, 1970, in the minimum unit of the format.<br>**elapsedTime**: elapsed time of the timer, in the minimum unit of the format.|
+| onTimer(event: (utc: number, elapsedTime: number) =&gt; void) | Triggered when the time text changes.<br>**utc**: Linux timestamp, which is the amount of time that has elapsed since January 1, 1970, in the minimum unit of the format.<br>**elapsedTime**: elapsed time of the timer, in the minimum unit of the format.<br> **NOTE**<br>This event is not triggered when the screen is locked or the application is running in the background.|
 
 ## TextTimerController
 

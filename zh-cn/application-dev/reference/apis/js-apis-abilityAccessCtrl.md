@@ -172,7 +172,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
         console.log('grantUserGrantedPermission success');
     }).catch((err: BusinessError) => {
         console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -225,7 +225,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err: BusinessError, data: void) => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -285,7 +285,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags).then(() => {
         console.log('revokeUserGrantedPermission success');
     }).catch((err: BusinessError) => {
         console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -338,7 +338,7 @@ let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager()
 let tokenID: number = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags: number = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err: BusinessError, data: void) => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.READ_AUDIO', permissionFlags, (err: BusinessError, data: void) => {
         if (err) {
             console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -617,59 +617,14 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **示例：**
 
-ArkTS语法不支持直接使用globalThis，需要通过一个单例的map来做中转。开发者需要：
-
-a. 在EntryAbility.ets中导入构建的单例对象GlobalThis。
-   ```ts
-   import { GlobalThis } from '../utils/globalThis'; // 需要根据globalThis.ets的路径自行适配
-   ```
-b. 在onCreate中添加:
-   ```ts
-   GlobalThis.getInstance().setContext('context', this.context);
-   ```
-
-   > **说明：**
-   >
-   > 由于在ts中引入ets文件会有告警提示，需要将EntryAbility.ts的文件后缀修改为EntryAbility.ets，并在module.json5中同步修改。
-
-**globalThis.ets示例代码如下：**
-```ts
-import { Context } from '@ohos.abilityAccessCtrl';
-
-// 构造单例对象
-export class GlobalThis {
-    private constructor() {}
-    private static instance: GlobalThis;
-    private _uiContexts = new Map<string, Context>();
-
-    public static getInstance(): GlobalThis {
-    if (!GlobalThis.instance) {
-        GlobalThis.instance = new GlobalThis();
-    }
-    return GlobalThis.instance;
-    }
-
-    getContext(key: string): Context | undefined {
-    return this._uiContexts.get(key);
-    }
-
-    setContext(key: string, value: Context): void {
-    this._uiContexts.set(key, value);
-    }
-
-    // 其他需要传递的内容依此扩展
-}
-```
-
 ```ts
 import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
-import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: Context = GlobalThis.getInstance().getContext('context');
+    let context = getContext(this);
     atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA'], (err: BusinessError, data: PermissionRequestResult)=>{
     console.info('data:' + JSON.stringify(data));
     console.info('data permissions:' + data.permissions);
@@ -717,16 +672,13 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 **示例：**
 
-修改EntryAbility.ets和导入GlobalThis等步骤同上，此处不再重复
-
 ```ts
 import abilityAccessCtrl, { Context, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import { GlobalThis } from '../utils/globalThis';
 
 let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
 try {
-    let context: Context = GlobalThis.getInstance().getContext('context');
+    let context = getContext(this);
     atManager.requestPermissionsFromUser(context, ['ohos.permission.CAMERA']).then((data: PermissionRequestResult) => {
         console.info('data:' + JSON.stringify(data));
         console.info('data permissions:' + data.permissions);

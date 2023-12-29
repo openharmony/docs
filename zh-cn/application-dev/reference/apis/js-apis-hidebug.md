@@ -171,7 +171,7 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hiviewdfx-hidebug.md)。
+以下错误码的详细介绍请参见[Hidebug错误码](../errorcodes/errorcode-hiviewdfx-hidebug.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -181,31 +181,39 @@ getServiceDump(serviceid : number, fd : number, args : Array\<string>) : void
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs'
-import hidebug from '@ohos.hidebug'
-import common from '@ohos.app.ability.common'
-import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import fs from '@ohos.file.fs';
+import hidebug from '@ohos.hidebug';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
-let applicationContext: common.Context | null = null;
-try {
-  applicationContext = this.context.getApplicationContext();
-} catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+export default class HidebugTest extends UIAbility {
+  public testfunc() {
+    let applicationContext: common.Context | null = null;
+    try {
+      applicationContext = this.context.getApplicationContext();
+    } catch (error) {
+      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+    }
+
+    let filesDir: string = applicationContext!.filesDir;
+    let path: string = filesDir + "/serviceInfo.txt";
+    console.info("output path: " + path);
+    let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    let serviceId: number = 10;
+    let args: Array<string> = new Array("allInfo");
+
+    try {
+      hidebug.getServiceDump(serviceId, file.fd, args);
+    } catch (error) {
+      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+    }
+    fs.closeSync(file);
+  }
 }
 
-let filesDir: string = applicationContext!.filesDir;
-let path: string = filesDir + "/serviceInfo.txt";
-console.info("output path: " + path);
-let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-let serviceId: number = 10;
-let args: Array<string> = new Array("allInfo");
-
-try {
-  hidebug.getServiceDump(serviceId, file.fd, args);
-} catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
-}
-fs.closeSync(file);
+let t = new HidebugTest();
+t.testfunc();
 ```
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>
@@ -224,7 +232,7 @@ startJsCpuProfiling(filename : string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -233,8 +241,8 @@ startJsCpuProfiling(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -262,8 +270,8 @@ stopJsCpuProfiling() : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -290,7 +298,7 @@ dumpJsHeapData(filename : string) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------------------------- |
@@ -299,8 +307,8 @@ dumpJsHeapData(filename : string) : void
 **示例：**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.dumpJsHeapData("heapData");

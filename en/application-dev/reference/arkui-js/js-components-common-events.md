@@ -20,9 +20,9 @@ Different from private events, universal events can be bound to most components.
 | touchmove                | TouchEvent | Triggered when the tapping moves.                            | Yes<sup>5+</sup>                                      | Yes<sup>5+</sup>|
 | touchcancel              | TouchEvent | Triggered when the tapping is interrupted.                      | Yes<sup>5+</sup>                                      | Yes<sup>5+</sup>|
 | touchend                 | TouchEvent | Triggered when the tapping ends.                          | Yes<sup>5+</sup>                                      | Yes<sup>5+</sup>|
-| click                    | -          | Triggered when a component is clicked.                                        | Yes<sup>6+</sup>                                      | No             |
-| doubleclick<sup>7+</sup> | -          | Triggered when a component is double-clicked.                                          | No<br>Bubbling is supported since API version 9. | No             |
-| longpress                | -          | Triggered when a component is long pressed.                                        | No<br>Bubbling is supported since API version 9. | No             |
+| click                    | BaseEvent  | Triggered when a component is clicked.                                        | Yes<sup>6+</sup>                                      | No             |
+| doubleclick<sup>7+</sup> | BaseEvent  | Triggered when a component is double-clicked.                                          | No<br> Bubbling is supported since API version 9.| No             |
+| longpress                | BaseEvent  | Triggered when a component is long pressed.                                        | No<br>Bubbling is supported since API version 9. | No             |
 | swipe<sup>5+</sup>       | SwipeEvent | Triggered when a user quickly swipes on a component. For details about **SwipeEvent**, see Table 4.     | No<br>Bubbling is supported since API version 9. | No             |
 | attached<sup>6+</sup>    | -          | Triggered after the current component node is mounted to the render tree.                            | No                                                   | No             |
 | detached<sup>6+</sup>    | -          | Triggered when the current component node is removed from the render tree.                          | No                                                   | No             |

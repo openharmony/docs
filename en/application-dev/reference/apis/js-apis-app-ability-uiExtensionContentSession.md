@@ -41,7 +41,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): void
 
-Sets the callback used to receive data from the UIExtensionComponent.
+Sets a callback to receive data from the UIExtensionComponent.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

@@ -25,6 +25,8 @@
     - [概述](animation-overview.md)
     - [设计原则](animation-design-principles.md)
     - [动效属性](animation-attributes.md)
+    - [转场动效](transition-animation.md)
+    - [手势动效](gesture-animation.md)
 - 多态控件
     - [概述](multimodal-component-overview.md)
     - [底部页签](multimodal-bottom-tab.md)

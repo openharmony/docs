@@ -355,6 +355,7 @@ OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow **win
 **描述：**
 
 从视频编码器获取输入Surface，必须在调用Prepare之前调用此接口。
+应用负责管理window的生命周期，结束时调用OH_NativeWindow_DestroyNativeWindow()释放。
 
 \@syscap SystemCapability.Multimedia.Media.VideoEncoder
 

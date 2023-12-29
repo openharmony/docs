@@ -4,7 +4,7 @@
 应用需要接收通知，必须先发起订阅，通知子系统提供两种接口：订阅所有应用发布的通知和订阅某些应用发布的通知。
 
 
-系统提供NotificationSubscriber对象，用于提供订阅成功、通知接收、通知取消、订阅取消等回调接口，将变化信息回调给订阅者。
+系统提供[NotificationSubscriber](../reference/apis/js-apis-inner-notification-notificationSubscriber.md)对象，用于提供订阅成功、通知接收、通知取消、订阅取消等回调接口，将变化信息回调给订阅者。
 
 
 ## 接口说明
@@ -30,6 +30,7 @@
 | onDestroy?:()&nbsp;=&gt;&nbsp;void                           | 与通知子系统断开回调。   |
 | onDoNotDisturbDateChange?:(mode:&nbsp;notification.DoNotDisturbDate)&nbsp;=&gt;&nbsp;void | 免打扰时间选项变更回调。 |
 | onEnabledNotificationChanged?:(callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | 通知开关变更回调。       |
+| onBadgeChanged?:(data:&nbsp;BadgeNumberCallbackData)&nbsp;=&gt;&nbsp;void | 应用角标个数变化回调。 |
 
 
 ## 开发步骤

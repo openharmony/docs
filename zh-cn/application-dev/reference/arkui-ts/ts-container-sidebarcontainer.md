@@ -26,7 +26,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| type | SideBarContainerType | 否 | 设置侧边栏的显示类型。<br/>默认值：SideBarContainerType.Embed |
+| type | [SideBarContainerType](#sidebarcontainertype枚举说明) | 否 | 设置侧边栏的显示类型。<br/>默认值：SideBarContainerType.Embed |
 
 ## SideBarContainerType枚举说明
 
@@ -85,8 +85,8 @@ SideBarContainer( type?: SideBarContainerType )
 >
 >  当showSideBar属性未设置时，依据组件大小进行自动显示：
 >
->  - 小于520vp：默认不显示侧边栏。
->  - 大于等于520vp：默认显示侧边栏。
+>  - 小于minSideBarWidth + minContentWidth：默认不显示侧边栏。
+>  - 大于等于minSideBarWidth + minContentWidth：默认显示侧边栏。
 
 ## 事件
 

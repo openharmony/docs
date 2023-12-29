@@ -62,7 +62,7 @@ This example is used to clarify the processing steps of custom component updates
 struct TotalView {
   @Prop @Watch('onCountUpdated') count: number = 0;
   @State total: number = 0;
-  // @Watch cb
+  // @Watch callback
   onCountUpdated(propName: string): void {
     this.total += this.count;
   }

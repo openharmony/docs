@@ -257,7 +257,8 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains the IDs of all input devices. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
+> NOTE<br>
+> This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -285,7 +286,8 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the IDs of all input devices. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
+> NOTE<br>
+> This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -309,7 +311,8 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 Obtains information about an input device. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
+> NOTE<br>
+> This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -339,7 +342,8 @@ getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 Obtains information about an input device. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
+> NOTE<br>
+> This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -377,7 +381,7 @@ Obtains the key codes supported by the input device. This API uses an asynchrono
 | Name    | Type                                     | Mandatory| Description                                                  |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number                                    | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt;                      | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)                      | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -406,7 +410,7 @@ Obtains the key codes supported by the input device. This API uses a promise to 
 | Name    | Type                | Mandatory| Description                                                  |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt; | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
 
 **Return value**
 
@@ -440,7 +444,7 @@ Checks whether the input device supports the specified keycode value.
 | Name    | Type                | Mandatory| Description                                                  |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt; | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
 
 **Return value**
 
@@ -496,7 +500,7 @@ try {
 
 getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
-Obtains the keyboard type of an input device. This API uses an asynchronous callback to return the result.
+Obtains the keyboard type of an input device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 

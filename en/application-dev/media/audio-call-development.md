@@ -9,7 +9,7 @@ The sample code below demonstrates the basic process of using the AudioRenderer 
 ## Using AudioRenderer to Play the Peer Voice
 
 This process is similar to the process of [using AudioRenderer to develop audio playback](using-audiorenderer-for-playback.md). The key differences lie in the **audioRendererInfo** parameter and audio data source. In the **audioRendererInfo** parameter used for audio calling, **content** must be set to **CONTENT_TYPE_SPEECH**, and **usage** must be set to **STREAM_USAGE_VOICE_COMMUNICATION**.
-  
+
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';
@@ -27,7 +27,6 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
   // Parameters corresponding to the call scenario need to be used.
-  content: audio.ContentType.CONTENT_TYPE_SPEECH, // Audio content type: speech.
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION, // Audio stream usage type: voice communication.
   rendererFlags: 0 // AudioRenderer flag. The default value is 0.
 }
@@ -161,7 +160,7 @@ async function release() {
 ## Using AudioCapturer to Record the Local Voice
 
 This process is similar to the process of [using AudioCapturer to develop audio recording](using-audiocapturer-for-recording.md). The key differences lie in the **audioCapturerInfo** parameter and audio data stream direction. In the **audioCapturerInfo** parameter used for audio calling, **source** must be set to **SOURCE_TYPE_VOICE_COMMUNICATION**.
-  
+
 ```ts
 import audio from '@ohos.multimedia.audio';
 import fs from '@ohos.file.fs';

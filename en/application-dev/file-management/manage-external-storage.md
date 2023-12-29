@@ -15,11 +15,8 @@ External storage devices are managed by the StorageManager and StorageDaemon ser
   - If the check fails, the volume state changes to **UNMOUNTED**.
 
 - For a volume in the **MOUNTED** state:
-  - If the user chooses **Eject device**, the volume state changes to **EJECTING** and the COMMON_EVENT_VOLUME_EJECT is broadcast. After StorageDaemon unmounts the volume, the volume state changes to **UNMOUNTED** and COMMON_EVENT_VOLUME_UNMOUNTED is broadcast.
-    
-    For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
-    
-  - If the user removes the card, the volume status changes to **EJECTING** and then to **UNMOUNTED**, and the broadcasts of the corresponding states are sent. After the card is removed, the volume information is deleted and the COMMON_EVENT_VOLUME_BAD_REMOVAL broadcast is sent.
+  - If the user chooses **Eject device**, the volume state changes to **EJECTING** and COMMON_EVENT_VOLUME_EJECT is broadcast. After StorageDaemon unmounts the volume, the volume state changes to **UNMOUNTED** and COMMON_EVENT_VOLUME_UNMOUNTED is broadcast.<br>For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
+  - If the user removes the device, the volume state changes to **EJECTING** and then to **UNMOUNTED**, and the broadcasts of the corresponding states are sent. After the device is removed, the volume information is deleted and the COMMON_EVENT_VOLUME_BAD_REMOVAL broadcast is sent.
 
 ## Available APIs
 

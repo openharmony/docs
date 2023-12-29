@@ -41,19 +41,14 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
+  let context = getContext(this) as Context;
   contact.addContact(
-    globalThis.context as Context,
+    context,
     {name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
-    }, (err, data) => {
+    }, (err: BusinessError, data) => {
       if (err) {
         console.log(`addContact callback: err->${JSON.stringify(err)}`);
         return;
@@ -86,11 +81,11 @@ addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`addContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -132,22 +127,17 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
+  let context = getContext(this) as Context;
   let promise = contact.addContact(
-    globalThis.context as Context,
+    context,
     {name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   });
   promise.then((data) => {
     console.log(`addContact success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
     console.error(`addContact fail: err->${JSON.stringify(err)}`);
   });
 ```
@@ -160,7 +150,7 @@ addContact(contact: Contact): Promise&lt;number&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[addContact](#contactaddcontact10-1)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -181,14 +171,14 @@ addContact(contact: Contact): Promise&lt;number&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.addContact({
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   });
   promise.then((data) => {
       console.log(`addContact success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`addContact fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -221,15 +211,10 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }  
-  contact.deleteContact(globalThis.context as Context, 'xxx', (err) => {
+  let context = getContext(this) as Context;
+  contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
           console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -262,8 +247,8 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.deleteContact('xxx', (err) => {
+  import { BusinessError } from '@ohos.base';
+  contact.deleteContact('xxx', (err: BusinessError) => {
       if (err) {
           console.log(`deleteContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -306,18 +291,13 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.deleteContact(globalThis.context as Context, 'xxx');
+  let context = getContext(this) as Context;
+  let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
       console.log(`deleteContact success`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`deleteContact fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -330,7 +310,7 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[deleteContact](#contactdeletecontact10-1)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -351,11 +331,11 @@ deleteContact(key: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
       console.log(`deleteContact success`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`deleteContact fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -389,19 +369,14 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.updateContact(globalThis.context as Context, {
+  let context = getContext(this) as Context;
+  contact.updateContact(context, {
       id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
-  }, (err) => {
+  }, (err: BusinessError) => {
       if (err) {
           console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -434,12 +409,12 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
-  }, (err) => {
+  }, (err: BusinessError) => {
       if (err) {
           console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -478,21 +453,16 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.updateContact(globalThis.context as Context, {
+  let context = getContext(this) as Context;
+  contact.updateContact(context, {
       id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError) => {
       if (err) {
           console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -509,7 +479,7 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-1)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -526,14 +496,14 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err：BusinessError) => {
       if (err) {
           console.log(`updateContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -577,24 +547,19 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.updateContact(globalThis.context as Context, {
+  let context = getContext(this) as Context;
+  let promise = contact.updateContact(context, {
       id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
       console.log('updateContact success');
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`updateContact fail: err->${JSON.stringify(err)}`);
   });
 ```
@@ -607,7 +572,7 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[updateContact](#contactupdatecontact10-2)
 
 **需要权限**：ohos.permission.WRITE_CONTACTS
 
@@ -628,13 +593,13 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.updateContact({
       id: 1,
       name: {fullName: 'xxx'},
       phoneNumbers: [{phoneNumber: '138xxxxxxxx'}]
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
       console.log('updateContact success');
@@ -672,15 +637,15 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
+  let context = getContext(this) as Context;
   class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage){
       globalThis.context = this.context;
     }
   }
-  contact.isLocalContact(globalThis.context as Context, /*id*/1, (err, data) => {
+  contact.isLocalContact(context, /*id*/1, (err, data) => {
       if (err) {
           console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -713,7 +678,7 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.isLocalContact(/*id*/1, (err, data) => {
       if (err) {
           console.log(`isLocalContact callback: err->${JSON.stringify(err)}`);
@@ -756,18 +721,13 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.isLocalContact(globalThis.context as Context, /*id*/1);
+  let context = getContext(this) as Context;
+  let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
       console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`isLocalContact fail: err->${JSON.stringify(err)}`);
   });
 ```
@@ -779,7 +739,7 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 判断当前联系人id是否在电话簿中，使用Promise方式作为异步方法。
 
 > **说明**
->从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10)
+>从API version 7 开始支持，从API 10 开始废弃，建议使用[isLocalContact](#contactislocalcontact10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -800,11 +760,11 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
       console.log(`isLocalContact success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`isLocalContact fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -837,15 +797,10 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.isMyCard(globalThis.context as Context, /*id*/1, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
           return;
@@ -877,8 +832,8 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.isMyCard(/*id*/1, (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.isMyCard(/*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.log(`isMyCard callback: err->${JSON.stringify(err)}`);
           return;
@@ -921,18 +876,13 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.isMyCard(globalThis.context as Context, /*id*/1);
+  let context = getContext(this) as Context;
+  let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
       console.log(`isMyCard success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`isMyCard fail: err->${JSON.stringify(err)}`);
   });
 ```
@@ -945,7 +895,7 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[isMyCard](#contactismycard10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -966,11 +916,11 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
       console.log(`isMyCard success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`isMyCard fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -1002,15 +952,10 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryMyCard(globalThis.context as Context, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
           return;
@@ -1042,8 +987,8 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.queryMyCard((err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.queryMyCard((err: BusinessError, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
           return;
@@ -1080,17 +1025,12 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryMyCard(globalThis.context as Context, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryMyCard(context, {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
           return;
@@ -1107,7 +1047,7 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1123,10 +1063,10 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryMyCard({
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryMyCard callback: err->${JSON.stringify(err)}`);
           return;
@@ -1168,20 +1108,15 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.queryMyCard(globalThis.context as Context, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+  let context = getContext(this) as Context;
+  let promise = contact.queryMyCard(context, {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
       console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryMyCard fail: err->${JSON.stringify(err)}`);
   });
 ```
@@ -1194,7 +1129,7 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryMyCard](#contactquerymycard10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1214,13 +1149,13 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.queryMyCard({
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
       console.log(`queryMyCard success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryMyCard fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -1236,6 +1171,8 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 >
 > 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
 
+**需要权限**：ohos.permission.READ_CONTACTS
+
 **系统能力**：SystemCapability.Applications.Contacts
 
 **参数：**
@@ -1247,8 +1184,8 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.selectContact((err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.selectContact((err: BusinessError, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1266,7 +1203,9 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[selectContacts](#contactselectcontacts10-1)
+
+**需要权限**：ohos.permission.READ_CONTACTS
 
 **系统能力**：SystemCapability.Applications.Contacts
 
@@ -1279,11 +1218,11 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.selectContact();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`selectContact fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -1311,8 +1250,8 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.selectContacts((err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.selectContacts((err: BusinessError, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1344,11 +1283,11 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.selectContacts();
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`selectContact fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -1377,10 +1316,10 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.selectContacts({
     isMultiSelect:false
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`selectContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1413,11 +1352,11 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
       console.log(`selectContact success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`selectContact fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -1450,15 +1389,10 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContact(globalThis.context as Context, 'xxx', (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1491,8 +1425,8 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.queryContact('xxx', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.queryContact('xxx', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1531,19 +1465,14 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContact(globalThis.context as Context, 'xxx', {
+  let context = getContext(this) as Context;
+  contact.queryContact(context, 'xxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1560,7 +1489,7 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1577,12 +1506,12 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1620,17 +1549,12 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContact(globalThis.context as Context, 'xxx', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryContact(context, 'xxx', {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1647,7 +1571,7 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1664,10 +1588,10 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContact('xxx', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1706,21 +1630,16 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContact(globalThis.context as Context, 'xxx', {
+  let context = getContext(this) as Context;
+  contact.queryContact(context, 'xxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1737,7 +1656,7 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-3)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1755,14 +1674,14 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContact callback: err->${JSON.stringify(err)}`);
           return;
@@ -1806,24 +1725,19 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.queryContact(globalThis.context as Context, 'xxx', {
+  let context = getContext(this) as Context;
+  let promise = contact.queryContact(context, 'xxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
       console.log(`queryContact success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryContact fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -1836,7 +1750,7 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContact](#contactquerycontact10-4)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -1858,17 +1772,17 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.queryContact('xxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
       console.log(`queryContact success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryContact fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -1900,15 +1814,10 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContacts(globalThis.context as Context, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
@@ -1940,8 +1849,8 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.queryContacts((err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.queryContacts((err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
@@ -1978,19 +1887,14 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContacts(globalThis.context as Context, {
+  let context = getContext(this) as Context;
+  contact.queryContacts(context, {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
@@ -2007,7 +1911,7 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2023,12 +1927,12 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContacts({
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
@@ -2065,17 +1969,12 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContacts(globalThis.context as Context, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryContacts(context, {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
@@ -2092,7 +1991,7 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2108,10 +2007,10 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContacts({
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
@@ -2149,21 +2048,16 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContacts(globalThis.context as Context, {
+  let context = getContext(this) as Context;
+  contact.queryContacts(context, {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
@@ -2180,7 +2074,7 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-3)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2197,14 +2091,14 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContacts({
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContacts callback: err->${JSON.stringify(err)}`);
           return;
@@ -2246,24 +2140,19 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.queryContacts(globalThis.context as Context, {
+  let context = getContext(this) as Context;
+  let promise = contact.queryContacts(context, {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
       console.log(`queryContacts success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -2276,7 +2165,7 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContacts](#contactquerycontacts10-4)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2298,17 +2187,17 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 **示例：**
 
 ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.queryContacts({
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
       console.log(`queryContacts success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryContacts fail: err->${JSON.stringify(err)}`);
   });
 ```
@@ -2341,15 +2230,10 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
@@ -2382,8 +2266,8 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.queryContactsByPhoneNumber('138xxxxxxxx', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
@@ -2422,19 +2306,14 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+  let context = getContext(this) as Context;
+  contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
@@ -2451,7 +2330,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2468,12 +2347,12 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
@@ -2511,17 +2390,12 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
@@ -2538,7 +2412,7 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2555,10 +2429,10 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
@@ -2597,21 +2471,16 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+  let context = getContext(this) as Context;
+  contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
@@ -2628,7 +2497,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-3)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2646,14 +2515,14 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByPhoneNumber callback: err->${JSON.stringify(err)}`);
           return;
@@ -2697,24 +2566,19 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.queryContactsByPhoneNumber(globalThis.context as Context, '138xxxxxxxx', {
+  let context = getContext(this) as Context;
+  let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
       console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryContactsByPhoneNumber fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -2727,7 +2591,7 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByPhoneNumber](#contactquerycontactsbyphonenumber10-4)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2750,17 +2614,17 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
       console.log(`queryContactsByPhoneNumber success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryContactsByPhoneNumber fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -2793,15 +2657,10 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
@@ -2834,8 +2693,8 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.queryContactsByEmail('xxx@email.com', (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
@@ -2873,19 +2732,14 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+  let context = getContext(this) as Context;
+  contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
@@ -2902,7 +2756,7 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -2919,12 +2773,12 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
@@ -2962,17 +2816,12 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+  let context = getContext(this) as Context;
+  contact.queryContactsByEmail(context, 'xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
@@ -2989,7 +2838,7 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3006,10 +2855,10 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContactsByEmail('xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
@@ -3048,21 +2897,16 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+  let context = getContext(this) as Context;
+  contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
@@ -3079,7 +2923,7 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-3)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3097,14 +2941,14 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
       displayName: ""
   }, {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryContactsByEmail callback: err->${JSON.stringify(err)}`);
           return;
@@ -3148,15 +2992,10 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.queryContactsByEmail(globalThis.context as Context, 'xxx@email.com', {
+  let context = getContext(this) as Context;
+  let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 0,
       bundleName: "",
       displayName: ""
@@ -3165,7 +3004,7 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
   });
   promise.then((data) => {
       console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryContactsByEmail fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -3178,7 +3017,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryContactsByEmail](#contactquerycontactsbyemail10-4)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3201,7 +3040,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.queryContactsByEmail('xxx@email.com', {
       holderId: 0,
       bundleName: "",
@@ -3211,7 +3050,7 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
   });
   promise.then((data) => {
       console.log(`queryContactsByEmail success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryContactsByEmail fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -3243,15 +3082,10 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryGroups(globalThis.context as Context, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
@@ -3283,8 +3117,8 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.queryGroups((err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.queryGroups((err: BusinessError, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
@@ -3321,19 +3155,14 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryGroups(globalThis.context as Context, {
+  let context = getContext(this) as Context;
+  contact.queryGroups(context, {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
@@ -3350,7 +3179,7 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3366,12 +3195,12 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryGroups({
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryGroups callback: err->${JSON.stringify(err)}`);
           return;
@@ -3413,22 +3242,17 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.queryGroups(globalThis.context as Context, {
+  let context = getContext(this) as Context;
+  let promise = contact.queryGroups(context, {
       holderId: 0,
       bundleName: "",
       displayName: ""
   });
   promise.then((data) => {
       console.log(`queryGroups success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryGroups fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -3441,7 +3265,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryGroups](#contactquerygroups10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3462,7 +3286,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.queryGroups({
       holderId: 0,
       bundleName: "",
@@ -3470,7 +3294,7 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
   });
   promise.then((data) => {
       console.log(`queryGroups success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryGroups fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -3502,15 +3326,10 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryHolders(globalThis.context as Context, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
           return;
@@ -3542,8 +3361,8 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.queryHolders((err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.queryHolders((err: BusinessError, data) => {
       if (err) {
           console.log(`queryHolders callback: err->${JSON.stringify(err)}`);
           return;
@@ -3584,18 +3403,13 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.queryHolders(globalThis.context as Context);
+  let context = getContext(this) as Context;
+  let promise = contact.queryHolders(context);
   promise.then((data) => {
       console.log(`queryHolders success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryHolders fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -3608,7 +3422,7 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryHolders](#contactqueryholders10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3623,11 +3437,11 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.queryHolders();
   promise.then((data) => {
       console.log(`queryHolders success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryHolders fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -3660,15 +3474,10 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryKey(globalThis.context as Context, /*id*/1, (err, data) => {
+  let context = getContext(this) as Context;
+  contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
           return;
@@ -3701,8 +3510,8 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
-  contact.queryKey(/*id*/1, (err, data) => {
+  import { BusinessError } from '@ohos.base';
+  contact.queryKey(/*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
           return;
@@ -3740,19 +3549,14 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  contact.queryKey(globalThis.context as Context, /*id*/1, {
+  let context = getContext(this) as Context;
+  contact.queryKey(context, /*id*/1, {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
           return;
@@ -3769,7 +3573,7 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10-1)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3786,12 +3590,12 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
       displayName: ""
-  }, (err, data) => {
+  }, (err: BusinessError, data) => {
       if (err) {
           console.log(`queryKey callback: err->${JSON.stringify(err)}`);
           return;
@@ -3834,22 +3638,17 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   // 获取context
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage){
-      globalThis.context = this.context;
-    }
-  }
-  let promise = contact.queryKey(globalThis.context as Context, /*id*/1, {
+  let context = getContext(this) as Context;
+  let promise = contact.queryKey(context, /*id*/1, {
       holderId: 0,
       bundleName: "",
       displayName: ""
   });
   promise.then((data) => {
       console.log(`queryKey success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryKey fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -3862,7 +3661,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 > **说明**
 >
-> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10)
+> 从API version 7 开始支持，从API 10 开始废弃，建议使用[queryKey](#contactquerykey10-2)
 
 **需要权限**：ohos.permission.READ_CONTACTS
 
@@ -3884,7 +3683,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  // 当前示例代码仅使用与js源文件
+  import { BusinessError } from '@ohos.base';
   let promise = contact.queryKey(/*id*/1, {
       holderId: 0,
       bundleName: "",
@@ -3892,7 +3691,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
   });
   promise.then((data) => {
       console.log(`queryKey success: data->${JSON.stringify(data)}`);
-  }).catch((err) => {
+  }).catch((err: BusinessError) => {
       console.error(`queryKey fail: err->${JSON.stringify(err)}`);
   });
   ```
@@ -3951,8 +3750,7 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 
 ```js
-// 当前示例代码仅使用与js源文件
-let myContact = {
+let myContact: contact.Contact = {
     phoneNumbers: [{
         phoneNumber: "138xxxxxxxx"
     }],
@@ -3970,7 +3768,6 @@ let myContact = {
   或使用new一个Contact对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let myContact = new contact.Contact();
 let name = new contact.Name();
 name.fullName = "fullName";
@@ -3999,8 +3796,7 @@ myContact.phoneNumbers = [phoneNumber];
 
 
 ```js
-// 当前示例代码仅使用与js源文件
-let contactAttributes = {
+let contactAttributes: contact.ContactAttributes = {
     attributes: [
         contact.Attribute.ATTR_EMAIL,
         contact.Attribute.ATTR_NAME,
@@ -4013,7 +3809,6 @@ let contactAttributes = {
 
 
 ```js
-// 当前示例代码仅使用与js源文件
 let contactAttributes = new contact.ContactAttributes();
 contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 ```
@@ -4048,7 +3843,6 @@ contactAttributes.attributes = [contact.Attribute.ATTR_EMAIL];
 使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
 
@@ -4085,8 +3879,7 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let email = {
+let email: contact.Email = {
     email: "xxx@email.com",
     displayName: "displayName"
 }
@@ -4096,7 +3889,6 @@ let email = {
   或使用new一个Email对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let email = new contact.Email();
 email.email = "xxx@email.com";
 ```
@@ -4120,8 +3912,9 @@ email.email = "xxx@email.com";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let holder = {
+let holder: contact.Holder = {
+  bundleName: "com.ohos.contacts",
+  displayName: "displayName",
   holderId: 0
 };
 ```
@@ -4129,7 +3922,6 @@ let holder = {
   或使用new一个Holder对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let holder = new contact.Holder();
 holder.holderId = 0;
 ```
@@ -4166,8 +3958,7 @@ holder.holderId = 0;
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let event = {
+let event: contact.Event = {
     eventDate: "xxxxxx"
 };
 ```
@@ -4175,7 +3966,6 @@ let event = {
   或使用new一个Event对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
 ```
@@ -4198,8 +3988,7 @@ event.eventDate = "xxxxxx";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let group = {
+let group: contact.Group = {
     groupId: 1,
     title: "title"
 };
@@ -4208,7 +3997,6 @@ let group = {
   或使用new一个Group对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let group = new contact.Group();
 group.title = "title";
 ```
@@ -4249,8 +4037,7 @@ group.title = "title";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let imAddress = {
+let imAddress: contact.ImAddress = {
     imAddress: "imAddress",
     labelName: "labelName"
 };
@@ -4260,7 +4047,6 @@ let imAddress = {
   或使用new一个ImAddress对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
 ```
@@ -4290,8 +4076,7 @@ imAddress.imAddress = "imAddress";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let name = {
+let name: contact.Name = {
     familyName: "familyName",
     fullName: "fullName"
 };
@@ -4300,7 +4085,6 @@ let name = {
   或使用new一个name对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let name = new contact.Name();
 name.familyName = "familyName";
 name.fullName = "fullName";
@@ -4323,8 +4107,7 @@ name.fullName = "fullName";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let nickName = {
+let nickName: contact.NickName = {
     nickName: "nickName"
 };
 ```
@@ -4332,7 +4115,6 @@ let nickName = {
   或使用new一个NickName对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let nickName = new contact.NickName();
 nickName.nickName = "nickName";
 ```
@@ -4354,8 +4136,7 @@ nickName.nickName = "nickName";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let note = {
+let note: contact.Note() = {
     noteContent: "noteContent"
 };
 ```
@@ -4363,7 +4144,6 @@ let note = {
   或使用new一个Note对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let note = new contact.Note();
 note.noteContent = "noteContent";
 ```
@@ -4386,8 +4166,7 @@ note.noteContent = "noteContent";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let organization = {
+let organization: contact.Organization = {
     name: "name",
     title: "title"
 };
@@ -4396,7 +4175,6 @@ let organization = {
   或使用new一个Organization对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let organization = new contact.Organization();
 organization.name = "name";
 organization.title = "title";
@@ -4451,8 +4229,7 @@ organization.title = "title";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let phoneNumber = {
+let phoneNumber: contact.PhoneNumber = {
     phoneNumber: "138xxxxxxxx",
     labelId: contact.PhoneNumber.NUM_HOME
 };
@@ -4461,7 +4238,6 @@ let phoneNumber = {
   或使用new一个PhoneNumber对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
 ```
@@ -4483,8 +4259,7 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let portrait = {
+let portrait: contact.Portrait = {
     uri: "uri"
 };
 ```
@@ -4492,7 +4267,6 @@ let portrait = {
   或使用new一个Portrait对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let portrait = new contact.Portrait();
 portrait.uri = "uri";
 ```
@@ -4536,18 +4310,18 @@ portrait.uri = "uri";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let postalAddress = {
-    city: "city"
+let postalAddress: contact.PostalAddress = {
+    city: "city",
+    postalAddress: "postalAddress"
 };
 ```
 
   或使用new一个PostalAddress对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
+postalAddress.postalAddress = "postalAddress";
 ```
 
 
@@ -4593,8 +4367,7 @@ postalAddress.city = "city";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let relation = {
+let relation: contact.Relation = {
     relationName: "relationName",
     labelId: contact.Relation.RELATION_ASSISTANT
 };
@@ -4603,7 +4376,6 @@ let relation = {
   或使用new一个Relation对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let relation = new contact.Relation();
 relation.relationName = "relationName";
 relation.labelId = contact.Relation.RELATION_ASSISTANT;
@@ -4640,8 +4412,7 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-var sipAddress = {
+let sipAddress: contact.SipAddress = {
     sipAddress: "sipAddress"
 };
 ```
@@ -4649,7 +4420,6 @@ var sipAddress = {
   或使用new一个SipAddress对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
 ```
@@ -4671,8 +4441,7 @@ sipAddress.sipAddress = "sipAddress";
   使用JSON格式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
-let website = {
+let website: contact.Website = {
     website: "website"
 };
 ```
@@ -4680,7 +4449,6 @@ let website = {
   或使用new一个Website对象的方式创建数据：
 
 ```js
-// 当前示例代码仅使用与js源文件
 let website = new contact.Website();
 website.website = "website";
 ```

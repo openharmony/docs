@@ -4,7 +4,7 @@
 IDE支持在一个应用工程中进行多个HAP的开发与构建，如下图所示。
 
 
-  **图1** 多HAP构建视图  
+**图1** 多HAP构建视图
 ![hap-multi-view](figures/hap-multi-view.png)
 
 

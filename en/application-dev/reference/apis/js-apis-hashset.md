@@ -2,7 +2,7 @@
 
 **HashSet** is implemented based on [HashMap](js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
 
-Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allows only unique elements. However, null values are allowed in **HashSet**, but not allowed in **TreeSet**.
+Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allow only unique elements. However, null values are allowed in **HashSet**, but not in **TreeSet**, because null values may affect the order of elements in the container.
 
 **Recommended use case**: Use **HashSet** when you need a set that has only unique elements or need to deduplicate a set.
 
@@ -339,7 +339,7 @@ let hashSet: HashSet<string> = new HashSet();
 hashSet.add("squirrel");
 hashSet.add("sparrow");
 let iter = hashSet.entries();
-let temp: IteratorResult<string> = iter.next();
+let temp: IteratorResult<[string, string]> = iter.next();
 while(!temp.done) {
   console.log("key:" + temp.value[0]);
   console.log("value:" + temp.value[1]);
@@ -355,6 +355,10 @@ while(!temp.done) {
 Obtains an iterator, each item of which is a JavaScript object.
 
 **System capability**: SystemCapability.Utils.Lang
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **Return value**
 

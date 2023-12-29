@@ -10,7 +10,7 @@
 
 | 名称         | 参数类型                        | 描述                                         |
 | ---------- | ---------------------------- | ------------------------------------------ |
-| visibility | [Visibility](ts-appendix-enums.md#visibility) | 控制当前组件显示或隐藏。注意，即使组件处于隐藏状态，在页面刷新时仍存在重新创建过程，因此当对性能有严格要求时建议使用[条件渲染](../../quick-start/arkts-rendering-control-ifelse.md)代替。<br>默认值：Visibility.Visible<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| visibility | [Visibility](ts-appendix-enums.md#visibility) | 控制当前组件显示或隐藏。根据具体场景需要可使用[条件渲染](../../quick-start/arkts-rendering-control-ifelse.md)代替。<br>默认值：Visibility.Visible<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 示例

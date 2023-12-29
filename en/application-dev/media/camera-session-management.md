@@ -19,7 +19,6 @@ After the session configuration is complete, the application must commit the con
    ```ts
    import camera from '@ohos.multimedia.camera';
    import { BusinessError } from '@ohos.base';
-   import featureAbility from '@ohos.ability.featureAbility';
    ```
 
 2. Call **createCaptureSession()** in the **CameraManager** class to create a session.

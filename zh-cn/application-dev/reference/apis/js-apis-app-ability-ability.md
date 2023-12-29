@@ -15,7 +15,7 @@ import Ability from '@ohos.app.ability.Ability';
 
 ## Ability.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 当系统配置更新时调用。
 
@@ -42,7 +42,7 @@ class MyUIAbility extends UIAbility {
 
 ## Ability.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 当内存到达不同级别时系统回调该方法。
 

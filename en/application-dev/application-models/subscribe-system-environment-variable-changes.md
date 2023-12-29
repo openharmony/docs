@@ -6,7 +6,7 @@ By subscribing to the changes of system environment variables, the application c
 
 The system environment variable changes are usually triggered by options in **Settings** or icons in **Control Panel**. For details about the system environment variables that support subscription, see [Configuration](../reference/apis/js-apis-app-ability-configuration.md).
 
-In OpenHarmony, you can subscribe to system environment variable changes in the following ways:
+You can subscribe to system environment variable changes in the following ways:
 
 - [Using ApplicationContext for Subscription](#using-applicationcontext-for-subscription)
 - [Using AbilityStage for Subscription](#using-abilitystage-for-subscription)

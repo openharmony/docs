@@ -49,7 +49,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | closeEffect | boolean | Whether to disable the rotation and shadow effects for the component.<br>Default value: **false**<br>**NOTE**<br> This attribute enables or disables the shadow effect only when **trackShadow** is not set.<br> The shadow effect enabled through this attribute is in the default style.|
 | valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | Array of data segment colors. A value of the **ResourceColor** type indicates a solid color, and A value of the **LinearGradient** type indicates a color gradient.|
 | trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Background color.<br>The value is in hexadecimal ARGB notation. The first two digits indicate opacity.<br>Default value: **'#08182431'**|
-| strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | Stroke width of the border.<br>Default value: **24**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>This attribute does not take effect when the data panel type is **DataPanelType.Line**.|
+| strokeWidth<sup>10+</sup> | [Length](ts-types.md#length) | Stroke width of the border.<br>Default value: **24**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>This attribute does not take effect when the data panel type is **DataPanelType.Line**.|
 | trackShadow<sup>10+</sup> | [DataPanelShadowOptions](#datapanelshadowoptions10) | Shadow style.<br>**NOTE**<br>If this attribute is set to **null**, the shadow effect is disabled.|
 
 
@@ -79,7 +79,7 @@ Describes the gradient color stop.
 | Name         | Type| Mandatory| Description|
 | ------------- | ------- | ---- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color value.|
-| offset | [Length](ts-types.md#Length) | Yes| Gradient color stop (proportion value between 0 and 1). A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.|
+| offset | [Length](ts-types.md#length) | Yes| Gradient color stop (proportion value between 0 and 1). A value less than 0 evaluates to the value **0**. A value greater than 1 evaluates to the value **1**.|
 
 
 

@@ -2,49 +2,26 @@
 
 ## When to Use
 
-With device usage statistics APIs, you can have a better understanding of the application, notification, and system usage. For example, in application usage statistics, you can query the application usage, event log, and application group.
-The application records (usage history statistics and event records) cached by components are updated to the database for persistent storage within 30 minutes after an event is reported.
+Device usage statistics include the usage of applications, notifications, and the system. For example, you can use the APIs for application usage statistics to obtain information about the application usage, event logs, and application groups.
+
+The application records (usage history statistics and event records) cached by components are flushed to the database for persistent storage within 30 minutes after an event is reported.
 
 ## Available APIs
-Import the **stats** package to implement registration:
+Before using the APIs, import the **usageStatistics** module:
 ```ts
 import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 ```
 
-**Table 1** Major APIs for device usage statistics
+For details about the APIs, see [@ohos.resourceschedule.usageStatistics (Device Usage Statistics)](../reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md).
 
-| API| Description|
-| -------- | -------- |
-| function queryBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleEvents&gt;&gt;): void | Queries events of all applications based on the specified start time and end time.|
-| function queryBundleStatsInfos(begin: number, end: number, callback: AsyncCallback&lt;BundleStatsMap&gt;): void | Queries the application usage duration statistics based on the specified start time and end time.|
-| function queryCurrentBundleEvents(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleEvents&gt;&gt;): void | Queries events of this application based on the specified start time and end time.|
-| function queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStatsInfo&gt;&gt;): void | Queries the application usage duration statistics in the specified time frame at the specified interval (daily, weekly, monthly, or annually).|
-| function queryAppGroup(callback: AsyncCallback&lt;number&gt;): void | Queries the priority group of this application. This API uses an asynchronous callback to return the result.|
-| function queryAppGroup(): Promise&lt;number&gt;; | Queries the priority group of this application. This API uses a promise to return the result.|
-|function queryAppGroupSync(): number; | Queries the priority group of this application. This is a synchronous API.|
-| function queryAppGroup(bundleName : string, callback: AsyncCallback&lt;number&gt;): void | Queries the priority group of the application specified by **bundleName**. This API uses an asynchronous callback to return the result.|
-| function queryAppGroup(bundleName : string): Promise&lt;number&gt;; | Queries the priority group of the application specified by **bundleName**. If **bundleName** is not specified, the priority group of the current application is queried. This API uses a promise to return the result.|
-|function queryAppGroupSync(bundleName: string): number; |  Queries the priority group of the application specified by **bundleName**. If **bundleName** is not specified, the priority group of the current application is queried. This is a synchronous API.|
-| function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether the application specified by **bundleName** is in the idle state. |
-|function isIdleStateSync(bundleName: string): boolean; | Checks whether the application specified by **bundleName** is in the idle state. This is a synchronous API.|
-| function queryModuleUsageRecords(callback: AsyncCallback&lt;HapModuleInfo&gt;): void | Obtains a maximum of 1000 FA usage records.|
-| function queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;HapModuleInfo&gt;): void | Obtains the number of FA usage records specified by **maxNum**, which cannot exceed 1000.|
-| function queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | Queries the number of notifications from all applications based on the specified start time and end time.|
-| function queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | Queries statistics about system events (hibernation, wakeup, unlocking, and screen locking) that occur between the specified start time and end time.|
-| function setAppGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void | Sets the group for the application specified by **bundleName**. This API uses an asynchronous callback to return the result.|
-| function setAppGroup(bundleName : string, newGroup : GroupType): Promise&lt;void&gt;; | Sets the group for the application specified by **bundleName**. This API uses a promise to return the result.|
-| function registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, callback: AsyncCallback&lt;void&gt;): void | Registers a callback for application group changes. When an application group of the user changes, the change is returned to all applications that have registered the callback. This API uses an asynchronous callback to return the result.|
-| function registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;): Promise&lt;void&gt;; | Registers a callback for application group changes. When an application group of the user changes, the change is returned to all applications that have registered the callback. This API uses a promise to return the result.|
-| function unregisterAppGroupCallBack(callback: AsyncCallback&lt;void&gt;): void | Deregisters the callback for application group changes. This API uses an asynchronous callback to return the result.|
-| function unregisterAppGroupCallBack(): Promise&lt;void&gt;; | Deregisters the callback for application group changes. This API uses a promise to return the result.|
 
 ## How to Develop
 
-1. Before obtaining the device usage statistics, check whether the **ohos.permission.BUNDLE_ACTIVE_INFO** permission is configured.
+1. Before obtaining the device usage statistics, check that the application has the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
    
-    For details about how to configure a permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
+    For details about how to request the permission, see [Declaring Permissions](../security/accesstoken-guidelines.md).
 
-2. Query events of all applications based on the specified start time and end time. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+2. Query events of all applications based on the specified start time and end time. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -57,7 +34,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
             console.log('BUNDLE_ACTIVE queryBundleEvents promise result ' + JSON.stringify(res[i]));
         }
     }).catch((err : BusinessError)=> {
-        console.log('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -74,7 +51,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
     ```
 
-3. Query the application usage duration statistics based on the specified start time and end time. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+3. Query the application usage duration based on the specified start time and end time. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -84,7 +61,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
         console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -98,7 +75,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
     ```
 
-4. Query events of this application based on the specified start time and end time. This requires no permission to be configured.
+4. Query events of this application based on the specified start time and end time. No permission is required for calling the **queryCurrentBundleEvents()** API.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -111,7 +88,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise result ' + JSON.stringify(res[i]));
         }
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryCurrentBundleEvents promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -128,7 +105,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
     ```
 
-5. Query the application usage duration statistics in the specified time frame at the specified interval (daily, weekly, monthly, or annually). This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+5. Query the application usage duration in the specified time frame at the specified interval (daily, weekly, monthly, or annually). The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -141,7 +118,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise result ' + JSON.stringify(res[i]));
         }
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -159,7 +136,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
     ```
 
-6. Query the priority group of the current application. This requires no permission to be configured.
+6. Query the priority group of the current application. No permission is required for calling the **queryAppGroup()** API.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -168,7 +145,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.queryAppGroup().then( (res : number) => {
         console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Callback mode
@@ -180,12 +157,12 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         }
     });
 
-    // Synchronous API
+    // Synchronous mode
     let priorityGroup = usageStatistics.queryAppGroupSync();
 
     ```
 
-7. Check whether the application specified by **bundleName** is in the idle state. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+7. Check whether the application specified by **bundleName** is in the idle state. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -194,7 +171,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.isIdleState("com.ohos.camera").then( (res : boolean) => {
         console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE isIdleState promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -206,11 +183,11 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         }
     });
 
-    // Synchronous API
+    // Synchronous mode
     let isIdleState = usageStatistics.isIdleStateSync("com.ohos.camera");
     ```
 
-8. Obtain the number of FA usage records specified by **maxNum**. If **maxNum** is not specified, the default value **1000** is used. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+8. Obtain the number of FA usage records specified by **maxNum**. If **maxNum** is not specified, the default value **1000** is used. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -223,7 +200,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
         }
     }).catch( (err : BusinessError)=> {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Promise mode when maxNum is not specified
@@ -234,7 +211,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise result ' + JSON.stringify(res[i]));
         }
     }).catch( (err : BusinessError)=> {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryModuleUsageRecords promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -264,7 +241,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
     ```
 
-9. Query the number of notifications from all applications based on the specified start time and end time. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+9. Query the number of notifications from all applications based on the specified start time and end time. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -274,7 +251,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
         console.log('BUNDLE_ACTIVE queryNotificationEventStats promise result ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryNotificationEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -288,7 +265,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
     ```
 
-10. Query statistics about system events (hibernation, wakeup, unlocking, and screen locking) that occur between the specified start time and end time. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+10. Query statistics about system events (hibernation, wakeup, lock, and unlock) that occur between the specified start time and end time. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -298,7 +275,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
         console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
         console.log('BUNDLE_ACTIVE queryDeviceEventStates promise result ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryDeviceEventStats promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -312,7 +289,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
     ```
 
-11. Query the priority group of the application specified by **bundleName**. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+11. Query the priority group of the application specified by **bundleName**. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
      ```ts
     import { BusinessError } from '@ohos.base';
@@ -322,7 +299,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.queryAppGroup(bundleName).then( (res : number) => {
         console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode when bundleName is specified
@@ -336,7 +313,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
      ```
 
-12. Set the priority group of for application specified by **bundleName**. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+12. Set the priority group of for application specified by **bundleName**. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -348,7 +325,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.setAppGroup(bundleName, newGroup).then( () => {
         console.log('BUNDLE_ACTIVE setAppGroup promise succeeded.');
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE setAppGroup promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -363,7 +340,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
     ```
 
-13. Register a callback for application group changes. When an application group of the user changes, the change is returned to all applications that have registered the callback. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+13. Register a callback for application group changes. When an application group of the user changes, the change is returned to all applications that have registered the callback. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
@@ -380,7 +357,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     usageStatistics.registerAppGroupCallBack(onBundleGroupChanged).then( () => {
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise succeeded.');
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE registerAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
     // Asynchronous callback mode
@@ -401,19 +378,19 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     });
     ```
 
-14. Deregister the callback for application group changes. This requires the **ohos.permission.BUNDLE_ACTIVE_INFO** permission to be configured.
+14. Deregister the callback for application group changes. The caller must have the **ohos.permission.BUNDLE_ACTIVE_INFO** permission.
 
     ```ts
     import { BusinessError } from '@ohos.base';
 
-    // promise
+    // Promise mode
     usageStatistics.unregisterAppGroupCallBack().then( () => {
         console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
     }).catch( (err : BusinessError) => {
-        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE unregisterAppGroupCallBack promise failed. code is: ' + err.code + ',message is: ' + err.message);
     });
 
-    // callback
+    // Callback mode
     usageStatistics.unregisterAppGroupCallBack((err : BusinessError) => {
         if(err) {
         console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);

@@ -1,4 +1,4 @@
-# 同步任务开发指导
+# 同步任务开发指导 (TaskPool和Worker)
 
 
 同步任务是指在多个线程之间协调执行的任务，其目的是确保多个任务按照一定的顺序和规则执行，例如使用锁来防止数据竞争。
@@ -120,7 +120,8 @@ struct Index {
                 w.postMessage({'type': 0, 'data': 'data'})
                 // 向Worker子线程发送Get消息
                 w.postMessage({'type': 1})
-                // 销毁线程
+                // ...
+                // 根据实际业务，选择时机以销毁线程
                 w.terminate()
               })
           }

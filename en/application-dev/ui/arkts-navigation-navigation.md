@@ -5,7 +5,7 @@ Generally, the [\<Navigation>](../reference/arkui-ts/ts-basic-components-navigat
 
 The pages of the **\<Navigation>** component include the home page and content page. The home page consists of the title bar, content area, and toolbar. You can use [\<NavRouter>](../reference/arkui-ts/ts-basic-components-navrouter.md) as a child component in the content area to implement a navigation bar. The content page displays the content of the [\<NavDestination>](../reference/arkui-ts/ts-basic-components-navdestination.md) child component.
 
-As a special child component of **\<Navigation>**, **\<NavRouter>** provides default processing logic for responding to clicks, eliminating the need for manual logic definition. It has only two root nodes, the second of which is **\<NavDestination>**. As a special child component of **\<NavRouter>**, **\<NavDestination>** makes up the content page of the **\<Navigation>** component. When the user clicks the **\<NavRouter>** component, the corresponding **\<NavDestination>** content area is displayed.
+As a special child component of **\<Navigation>**, **\<NavRouter>** provides default processing logic for responding to clicks, eliminating the need for manual logic definition. It has only two child components, the second of which must be **\<NavDestination>**. As a special child component of **\<NavRouter>**, **\<NavDestination>** makes up the content page of the **\<Navigation>** component. When the user clicks the **\<NavRouter>** component, the corresponding **\<NavDestination>** content area is displayed.
 
 
 ## Setting the Page Display Mode

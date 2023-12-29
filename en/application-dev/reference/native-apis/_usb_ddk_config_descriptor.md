@@ -46,7 +46,7 @@ Standard configuration descriptor.
 
 
 ```
-uint8_t* UsbDdkConfigDescriptor::extra
+const uint8_t* UsbDdkConfigDescriptor::extra
 ```
 
 **Description**

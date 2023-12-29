@@ -132,7 +132,7 @@ The **ResourceColor** type is used to describe the color types of resources.
 | string                              | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**|
 | [Resource](#resource)               | Color referenced from system or application resources.             |
 
-## ColoringStrategy
+## ColoringStrategy<sup>10+</sup>
 
 The **ColoringStrategy** type is used to describe the foreground colors.
 

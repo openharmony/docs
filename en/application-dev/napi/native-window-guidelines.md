@@ -1,8 +1,8 @@
-# NativeWindow Development
+# Native Window Development
 
 ## When to Use
 
-**NativeWindow** is a local platform-based window that represents the producer of a graphics queue. It provides APIs for you to request and flush a buffer and configure buffer attributes.
+Native Window is a local platform-based window that represents the producer of a graphics queue. It provides APIs for you to request and flush a buffer and configure buffer attributes.
 
 The following scenarios are common for NativeWindow development:
 
@@ -125,7 +125,8 @@ libnative_window.so
     ```c++
     #include <sys/mman.h>
 
-    // Use mmap() to obtain the memory virtual address of buffer handle.
+    // Use mmap() to map the shared memory corresponding to the buffer handle to the user space. Image data can be written to the buffer handle by using the mapped virtual address.
+    // bufferHandle->virAddr indicates the start address of the buffer handle in the shared memory, and bufferHandle->size indicates the memory usage of the buffer handle in the shared memory.
     void* mappedAddr = mmap(bufferHandle->virAddr, bufferHandle->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle->fd, 0);
     if (mappedAddr == MAP_FAILED) {
         // mmap failed

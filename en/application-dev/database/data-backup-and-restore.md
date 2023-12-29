@@ -1,4 +1,4 @@
-# Database Backup and Restoration
+# Database Backup and Restore
 
 
 ## When to Use
@@ -10,7 +10,7 @@ An important operation being performed by an application is interrupted.
 The database is unavailable due to data loss or corruption, or dirty data.
 
 
-Both KV stores and RDB stores support database backup and restoration. In addition, KV stores allow you to delete database backups to release local storage space.
+Both KV stores and RDB stores support database backup and restore. In addition, KV stores allow you to delete database backups to release local storage space.
 
 
 ## Backing Up, Restoring, and Deleting a KV Store
@@ -197,11 +197,11 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
    ```ts
    import { ValuesBucket } from '@ohos.data.ValuesBucket';
 
-   let key1 = "NAME";
-   let key2 = "AGE";
-   let key3 = "SALARY";
-   let key4 = "CODES";
-   let value1 = "Rose";
+   let key1 = 'NAME';
+   let key2 = 'AGE';
+   let key3 = 'SALARY';
+   let key4 = 'CODES';
+   let value1 = 'Rose';
    let value2 = 22;
    let value3 = 200.5;
    let value4 = new Uint8Array([1, 2, 3, 4, 5]);
@@ -231,7 +231,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
          console.error(`Failed to backup data. Code:${err.code},message:${err.message}`);
          return;
        }
-       console.info(`Succeeded in backuping data.`);
+       console.info('Succeeded in backuping data.');
      })
    }
    ```
@@ -259,7 +259,7 @@ You can use **backup()** to back up an RDB store, and use **restore()** to resto
          console.error(`Failed to restore data. Code:${err.code},message:${err.message}`);
          return;
        }
-       console.info(`Succeeded in restoring data.`);
+       console.info('Succeeded in restoring data.');
      })
    }
    ```

@@ -14,7 +14,7 @@ For details about how to apply for permissions, see [Access Control Development]
 
 The following table provides only a simple description of the related APIs. For details, see [API Reference](../reference/apis/js-apis-http.md).
 
-| API                                   | Description                           |
+| API                                   | Description                               |
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | Creates an HTTP request.                 |
 | request()                                 | Initiates an HTTP request to a given URL.    |
@@ -103,7 +103,7 @@ httpRequest.request(
 
 ```ts
 // Import the http namespace.
-import http from '@ohos.net.http'
+import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
@@ -124,8 +124,8 @@ httpRequest.on('dataEnd', () => {
 });
 // Subscribe to events indicating progress of receiving HTTP streaming responses.
 class Data {
-  receiveSize: number = 0
-  totalSize: number = 0
+  receiveSize: number = 0;
+  totalSize: number = 0;
 }
 httpRequest.on('dataReceiveProgress', (data: Data) => {
   console.log("dataReceiveProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);

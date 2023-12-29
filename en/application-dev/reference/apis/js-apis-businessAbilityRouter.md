@@ -77,12 +77,13 @@ import { BusinessError } from '@ohos.base';
 let filter: businessAbilityRouter.BusinessAbilityFilter = {businessType: businessAbilityRouter.BusinessType.SHARE};
 
 try {
-    businessAbilityRouter.queryBusinessAbilityInfo(filter)
-        .then(() => {
-            console.info('queryBusinessAbilityInfo success');
-        }).catch((error: BusinessError) => {
+    businessAbilityRouter.queryBusinessAbilityInfo(filter, (error, data) => {
+        if (error) {
             console.error('queryBusinessAbilityInfo failed ' + error.message);
-        });
+            return;
+        }
+        console.info('queryBusinessAbilityInfo success');
+    });
 } catch (error) {
     let message = (error as BusinessError).message;
     console.error('queryBusinessAbilityInfo failed ' + message);
@@ -122,13 +123,12 @@ import { BusinessError } from '@ohos.base';
 let filter: businessAbilityRouter.BusinessAbilityFilter = {businessType: businessAbilityRouter.BusinessType.SHARE};
 
 try {
-    businessAbilityRouter.queryBusinessAbilityInfo(filter, (error, data) => {
-        if (error) {
+    businessAbilityRouter.queryBusinessAbilityInfo(filter)
+        .then(() => {
+            console.info('queryBusinessAbilityInfo success');
+        }).catch((error: BusinessError) => {
             console.error('queryBusinessAbilityInfo failed ' + error.message);
-            return;
-        }
-        console.info('queryBusinessAbilityInfo success');
-    });
+        });
 } catch (error) {
     let message = (error as BusinessError).message;
     console.error('queryBusinessAbilityInfo failed ' + message);

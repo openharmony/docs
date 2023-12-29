@@ -38,7 +38,7 @@ import pointer from '@ohos.multimodalInput.pointer';
 // 1. Switch to the full-screen playback mode.
 // 2. Hide the mouse pointer.
 try {
-  pointer.setPointerVisible(false, (error) => {
+  pointer.setPointerVisible(false, (error: Error) => {
     if (error) {
       console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -52,7 +52,7 @@ try {
 // 3. Exit the full-screen playback mode.
 // 4. Display the mouse pointer.
 try {
-  pointer.setPointerVisible(true, (error) => {
+  pointer.setPointerVisible(true, (error: Error) => {
     if (error) {
       console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -77,12 +77,13 @@ When designing a color picker, you can have the mouse pointer switched to the co
 5. Set the mouse pointer to the default style.
 
 ```js
+import { BusinessError }  from '@ohos.base';
 import pointer from '@ohos.multimodalInput.pointer';
 import window from '@ohos.window';
 
 // 1. Enable the color pickup function.
 // 2. Obtain the window ID.
-window.getLastWindow(this.context, (error, windowClass) => {
+window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -102,7 +103,7 @@ window.getLastWindow(this.context, (error, windowClass) => {
   }
 });
 // 4. End color pickup.
-window.getLastWindow(this.context, (error, windowClass) => {
+window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;

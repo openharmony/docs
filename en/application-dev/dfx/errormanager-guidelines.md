@@ -6,7 +6,7 @@ If coding specification issues or errors exist in the code of an application, th
 
 ## Available APIs
 
-Application error management APIs are provided by the **errorManager** module. For details about how to import the module to use related APIs, see [Development Example](#development-example).
+Application error management APIs are provided by the [errorManager](../reference/apis/js-apis-app-ability-errorManager.md) module. For details about how to import the module to use related APIs, see [Development Example](#development-example).
 
 **Table 1** Description of application error management APIs
 
@@ -60,44 +60,44 @@ let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("[Demo] EntryAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate");
         registerId = errorManager.on("error", callback);
         abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] EntryAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy");
         errorManager.off("error", registerId, (result) => {
-            console.log("[Demo] result " + result.code + ";" + result.message)
+            console.log("[Demo] result " + result.code + ";" + result.message);
         });
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created for this ability.
-        console.log("[Demo] EntryAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate");
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
         });
     }
 
     onWindowStageDestroy() {
         // Main window is destroyed to release UI resources.
-        console.log("[Demo] EntryAbility onWindowStageDestroy")
+        console.log("[Demo] EntryAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability is brought to the foreground.
-        console.log("[Demo] EntryAbility onForeground")
+        console.log("[Demo] EntryAbility onForeground");
     }
 
     onBackground() {
         // Ability is brought back to the background.
-        console.log("[Demo] EntryAbility onBackground")
+        console.log("[Demo] EntryAbility onBackground");
     }
 };
 ```

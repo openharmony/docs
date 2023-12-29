@@ -1,6 +1,6 @@
 # @ohos.app.ability.Want (Want)
 
-Want is a carrier for information transfer between objects (application components). Want can be used as a parameter of **startAbility** to specify a startup target and information that needs to be carried during startup, for example, **bundleName** and **abilityName**, which respectively indicate the bundle name of the target ability and the ability name in the bundle. When UIAbility A needs to start UIAbility B and transfer some data to UIAbility B, it can use Want a carrier to transfer the data.
+Want is a carrier for information transfer between objects (application components). Want can be used as a parameter of **startAbility** to specify a startup target and information that needs to be carried during startup, for example, **bundleName** and **abilityName**, which respectively indicate the bundle name of the target ability and the ability name in the bundle. When UIAbilityA needs to start UIAbilityB and transfer some data to UIAbilityB, it can use Want a carrier to transfer the data.
 
 > **NOTE**
 >
@@ -44,7 +44,7 @@ import Want from '@ohos.app.ability.Want';
     abilityName: 'FuncAbility',
     moduleName: 'entry', // moduleName is optional.
   };
-  
+
   context.startAbility(want, (err) => {
     // Start an ability explicitly. The bundleName, abilityName, and moduleName parameters work together to uniquely identify an ability.
     console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
@@ -66,7 +66,7 @@ import Want from '@ohos.app.ability.Want';
             keyForString: 'str',
           },
         };
-        
+
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
@@ -85,7 +85,7 @@ import Want from '@ohos.app.ability.Want';
             keyForDouble: 99.99,
           },
         };
-        
+
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
@@ -103,7 +103,7 @@ import Want from '@ohos.app.ability.Want';
             keyForBool: true,
           },
         };
-        
+
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
@@ -126,7 +126,7 @@ import Want from '@ohos.app.ability.Want';
             },
           },
         };
-        
+
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
@@ -147,20 +147,20 @@ import Want from '@ohos.app.ability.Want';
             keyForArrayObject: [{ obj1: 'aaa' }, { obj2: 100 }],
           },
         };
-        
+
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
     * FD
       ```ts
-        import fs from '@ohos.file.fs';        
+        import fs from '@ohos.file.fs';
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
         import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        
+
         let fd: number = 0;
         try {
           fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
@@ -178,12 +178,14 @@ import Want from '@ohos.app.ability.Want';
             'keyFd': { 'type': 'FD', 'value': fd } // {'type':'FD', 'value':fd} is a fixed usage, indicating that the data is a file descriptor.
           }
         };
-        
+
         context.startAbility(want, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
-    - Usage of **parameters**: The following uses **ability.params.backToOtherMissionStack** as an example. When a ServiceExtensionAbility starts a UIAbility, redirection back across mission stacks is supported.
+    - Usage of **parameter**:
+
+      The following uses **ability.params.backToOtherMissionStack** as an example. When a ServiceExtensionAbility starts a UIAbility, redirection back across mission stacks is supported.
 
       ```ts
         // (1) UIAbility1 starts a ServiceExtensionAbility.
@@ -199,7 +201,7 @@ import Want from '@ohos.app.ability.Want';
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
-    
+
       ```ts
         // (2) The ServiceExtensionAbility starts UIAbility2, carrying **"ability.params.backToOtherMissionStack": true** during the startup.
         import common from '@ohos.app.ability.common';
@@ -218,7 +220,40 @@ import Want from '@ohos.app.ability.Want';
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
-
-    > **NOTE**
-    >
-    > In the preceding example, when the ServiceExtensionAbility starts UIAbility2, **"ability.params.backToOtherMissionStack": true** is carried, indicating that redirection back across mission stacks is supported. Therefore, when you press **Back** on the page of UIAbility 2, the page of UIAbility1 page is displayed. However, if **ability.params.backToOtherMissionStack** is not carried or if **"ability.params.backToOtherMissionStack": false** is carried, the page of UIAbility1 is not displayed when you press **Back** on the page of UIAbility 2.
+  
+      > **NOTE**
+      >
+      > In the preceding example, when the ServiceExtensionAbility starts UIAbility2, **"ability.params.backToOtherMissionStack": true** is carried, indicating that redirection back across mission stacks is supported. Therefore, when you press **Back** on the page of UIAbility2, the page of UIAbility1 page is displayed. However, if **ability.params.backToOtherMissionStack** is not carried or if **"ability.params.backToOtherMissionStack": false** is carried, the page of UIAbility1 is not displayed when you press **Back** on the page of UIAbility2.
+  
+      **parameter** carries customized parameters. It is transferred by UIAbilityA to UIAbilityB and obtained from UIAbilityB.
+  
+      ```ts
+          //(1) UIAbilityA calls startAbility to start UIAbilityB.
+          import common from '@ohos.app.ability.common';
+          import Want from '@ohos.app.ability.Want';
+  
+          let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+          let want: Want = {
+            bundleName: 'com.example.myapplication',
+            abilityName: 'UIAbilityB',
+            parameters: {
+              developerParameters: 'parameters',
+            },
+          };
+          context.startAbility(want, (err) => {
+            console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+          });
+      ```
+  
+      ```ts
+          // (2) If the UIAbilityB instance is started for the first time, it enters the onCreate lifecycle.
+          import UIAbility from '@ohos.app.ability.UIAbility';
+          import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+          import Want from '@ohos.app.ability.Want';
+  
+          class UIAbilityB extends UIAbility {
+              onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+                  console.log(`onCreate, want parameters: ${want.parameters.developerParameters}`);
+              }
+          }
+      ```

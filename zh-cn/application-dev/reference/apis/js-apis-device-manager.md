@@ -1131,7 +1131,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
     userId: "123"
   }
   try {
-    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    let jsonCredentialInfo = JSON.stringify(credentialInfo);
     dmInstance.requestCredentialRegisterInfo(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
@@ -1212,7 +1212,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
   }
 
   try {
-    var jsonCredentialInfo = JSON.stringify(credentialInfo)
+    let jsonCredentialInfo = JSON.stringify(credentialInfo);
     dmInstance.importCredential(jsonCredentialInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("importCredential result:" + JSON.stringify(data));
@@ -1265,7 +1265,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
   }
 
   try {
-    var jsonQueryInfo = JSON.stringify(queryInfo)
+    let jsonQueryInfo = JSON.stringify(queryInfo);
     dmInstance.deleteCredential(jsonQueryInfo, (err: BusinessError, data: Data) => {
       if (data) {
           console.info("deleteCredential result:" + JSON.stringify(data));

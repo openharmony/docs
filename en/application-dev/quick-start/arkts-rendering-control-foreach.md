@@ -319,7 +319,7 @@ struct CalendarExample {
 }
 ```
 
-The preceding example has two issues:
+The preceding example has two drawbacks:
 
 1. The code readability is poor.
 
