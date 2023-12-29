@@ -31,10 +31,10 @@
 
 | 接口名                                                       | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback<void>): void              | 发送文本或数据SMS消息。                                                      |
-| createMessage(pdu: Array\<number>, specification: string, callback: AsyncCallback\<ShortMessage>): void | 基于协议数据单元（PDU）和指定的SMS协议创建SMS消息实例。 |
-| getDefaultSmsSlotId(callback: AsyncCallback\<number>): void   | 获取用于发送短信的默认SIM卡。                                                |
-| setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void>): void | 根据指定的插槽ID设置短信服务中心的地址。                |
+| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback\<void\>): void              | 发送文本或数据SMS消息。                                                      |
+| createMessage(pdu: Array\<number\>, specification: string, callback: AsyncCallback\<ShortMessage\>): void | 基于协议数据单元（PDU）和指定的SMS协议创建SMS消息实例。 |
+| getDefaultSmsSlotId(callback: AsyncCallback\<number\>): void   | 获取用于发送短信的默认SIM卡。                                                |
+| setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void\>): void | 根据指定的插槽ID设置短信服务中心的地址。                |
 | getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | 根据指定的插槽ID获取短信服务中心地址。                                  |
 
 
