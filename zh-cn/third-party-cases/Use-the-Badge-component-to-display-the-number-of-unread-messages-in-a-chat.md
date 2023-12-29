@@ -26,7 +26,7 @@
 
 1. 聊天列表组件，包含三部分：聊天对象的头像，聊天对象昵称，用户聊天记录最后一条详情。其中未读聊天信息数量显示在头像的右上角。因此头像部分需要放入容器组件Badge中。Badge中需要设置消息数量，提示显示位置，最大消息数量，显示样式。
     聊天列表组件代码如下：
-    ```typescript
+    ```ts
     @Component
     struct MyComposeTitleBar {
       @ObjectLink simplifyChatInfo: SimplifyChatInfo;
@@ -66,7 +66,7 @@
     }
     }
     ```
-```
+
     
 3. 创建用于表征聊天列表数据的类，该类需要被@Observed修饰，是的类中数据可以被Badge组件观察。
 
