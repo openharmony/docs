@@ -1,4 +1,4 @@
-# 元数据
+# 元数据(ArkTS)
 
 元数据（Metadata）是对相机返回的图像信息数据的描述和上下文，针对图像信息，提供的更详细的数据，如照片或视频中，识别人像的取景框坐标等信息。
 
@@ -24,7 +24,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
        metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
      } catch (error) {
        let err = error as BusinessError;
-       console.info('Failed to createMetadataOutput, error code: '+ err.code);
+       console.error('Failed to createMetadataOutput, error code: '+ err.code);
      }
      return metadataOutput;
    }
@@ -37,7 +37,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
      metadataOutput.start().then(() => {
        console.info('Callback returned with metadataOutput started.');
      }).catch((err: BusinessError) => {
-       console.info('Failed to metadataOutput start, error code: '+ err.code);
+       console.error('Failed to metadataOutput start, error code: '+ err.code);
      });
    }
    ```
@@ -49,7 +49,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
      metadataOutput.stop().then(() => {
        console.info('Callback returned with metadataOutput stopped.');
      }).catch((err: BusinessError) => {
-       console.info('Failed to metadataOutput stop '+ err.code);
+       console.error('Failed to metadataOutput stop '+ err.code);
      });
    }
    ```
