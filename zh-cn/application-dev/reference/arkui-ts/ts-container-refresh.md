@@ -43,7 +43,7 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , fr
 ## RefreshStatus枚举说明
 
 | 名称       | 具体值       | 描述                   |
-| -------- | -------------------- |
+| -------- | -------- | -------------------- |
 | INACTIVE | 0 | 默认未下拉状态。             |
 | DRAG     | 1 | 下拉中，下拉距离小于刷新距离。      |
 | OVER_DRAG | 2 | 下拉中，下拉距离超过刷新距离。      |
