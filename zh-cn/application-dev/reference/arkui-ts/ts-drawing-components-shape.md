@@ -36,9 +36,9 @@ Shape(value?: PixelMap)
 | 名称 | 类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
 | viewPort | {<br/>x?:&nbsp;number \| string,<br/>y?:&nbsp;number \| string,<br/>width?:&nbsp;number \| string,<br/>height?:&nbsp;number \| string<br/>} | { x:0, y:0, width:0, height:0 } | 形状的视口。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。<br/>异常值按照默认值处理。 |
-| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
+| fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | 设置填充区域颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
-| stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框线条。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值不会绘制边框线条。 |
+| stroke | [ResourceColor](ts-types.md#resourcecolor) | - | 设置边框颜色，不设置时，默认没有边框线条。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值不会绘制边框线条。 |
 | strokeDashArray | Array&lt;Length&gt; | [] | 设置边框间隙。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 边框绘制起点的偏移量。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**  <br/>异常值按照默认值处理。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置边框端点绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|

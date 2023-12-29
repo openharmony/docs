@@ -33,10 +33,10 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 | 名称     | 类型                                | 默认值  | 描述                                     |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| commands | string                              | ''   | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
-| fill | [ResourceColor](ts-types.md) | Color.Black | 设置填充区域颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
+| commands | string                              | ''   | 路径绘制的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md#像素单位转换)。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
+| fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | 设置填充区域颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
 | fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
-| stroke | [ResourceColor](ts-types.md) | - |设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>异常值不会绘制边框。|
+| stroke | [ResourceColor](ts-types.md#resourcecolor) | - |设置边框颜色，不设置时，默认没有边框。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>异常值不会绘制边框。|
 | strokeDashArray | Array&lt;Length&gt; | [] | 设置线条间隙。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 线条绘制起点的偏移量。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
