@@ -1,6 +1,6 @@
 # 设置任务快照的图标和名称
 
-设置任务快照的图标和名称是为了提高用户界面的可视化性和用户体验，以便更好地管理和跟踪应用程序中的任务和功能。通过为每个任务快照设置不同的图标和名称，可以更轻松地区分和识别每个任务和功能。
+设置任务快照的图标和名称是为了提高用户界面的可视化性和用户体验，以便更好地管理和跟踪应用程序中的任务和功能。通过为每个任务快照设置不同的图标和名称，可以更轻松地区分和识别每个任务的功能。
 
 默认情况下任务快照的图标和名称采用的是[module.json5配置文件](../quick-start/module-configuration-file.md)的[abilities标签](../quick-start/module-configuration-file.md#abilities标签)中的icon和label字段，如下图所示。
 
@@ -22,11 +22,12 @@
 
 ```ts
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 let context: common.UIAbilityContext = ...; // UIAbilityContext
 let pixelMap: PixelMap = ...; // 图片的PixelMap信息
 
-context.setMissionIcon(pixelMap, (err) => {
+context.setMissionIcon(pixelMap, (err: BusinessError) => {
   if (err.code) {
     console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
   }
