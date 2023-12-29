@@ -2133,7 +2133,7 @@
 
 **起始版本**：11
 
-## ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+### ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
 允许应用管理系统音效。
 
