@@ -49,7 +49,6 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
             .javaScriptAccess(true)
            //需要使能multiWindowAccess
             .multiWindowAccess(true)
-            .allowWindowOpenMethod(true)
             .onWindowNew((event) => {
             if (this.dialogController) {
               this.dialogController.close()
