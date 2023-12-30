@@ -47,11 +47,11 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
     // 1.基于ArrayBuffer构造XmlPullParser对象
-    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
    
     // 2.基于DataView构造XmlPullParser对象
-    let dataView: DataView = new DataView(arrBuffer.buffer);
-    let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
+    // let dataView: DataView = new DataView(arrBuffer.buffer as object as ArrayBuffer);
+    // let that: xml.XmlPullParser = new xml.XmlPullParser(dataView, 'UTF-8');
     ```
 
 3. 自定义回调函数，本例直接打印出标签及标签值。
@@ -109,7 +109,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
         '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
-    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
 3. 自定义回调函数，本例直接打印出属性及属性值。
@@ -155,7 +155,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
       '</note>';
     let textEncoder: util.TextEncoder = new util.TextEncoder();
     let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml); // 对数据编码，防止包含中文字符乱码
-    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+    let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
     ```
 
 3. 自定义回调函数，本例直接打印元素事件类型及元素深度。
@@ -208,7 +208,7 @@ let strXml: string =
     '</book>';
 let textEncoder: util.TextEncoder = new util.TextEncoder();
 let arrBuffer: Uint8Array = textEncoder.encodeInto(strXml);
-let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer, 'UTF-8');
+let that: xml.XmlPullParser = new xml.XmlPullParser(arrBuffer.buffer as object as ArrayBuffer, 'UTF-8');
 let str: string = '';
 
 function tagFunc(name: string, value: string): boolean {
