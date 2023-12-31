@@ -14,9 +14,9 @@ The following demonstrates how to implement cross-language interaction by implem
 
 ## Creating a Native C++ Project
 
-- In DevEco Studio, choose **New** > **Create Project**, select the **Native C++** template, click **Next**, select the API version, set the project name, and click **Finish**.
+In DevEco Studio, choose **New** > **Create Project**, select the **Native C++** template, click **Next**, select the API version, set the project name, and click **Finish**.
 
-- The main code of the project created consists of two parts: **cpp** and **ets**.
+The main code of the project created consists of two parts: **cpp** and **ets**.
 
 **Project Directory Structure**
 
