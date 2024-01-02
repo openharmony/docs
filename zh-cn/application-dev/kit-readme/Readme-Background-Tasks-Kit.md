@@ -1,6 +1,6 @@
-## Background Tasks Kit
+# BackgroundTasks Kit
 
-- [Kit简介](../task-management/background-task-overview.md)
+- [BackgroundTasks Kit简介](../task-management/background-task-overview.md)
 - [短时任务](../task-management/transient-task.md)
 - [长时任务](../task-management/continuous-task.md)
 - [延迟任务](../task-management/work-scheduler.md)
