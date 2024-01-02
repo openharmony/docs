@@ -909,7 +909,7 @@ addMembership(multicastAddress: NetAddress): Promise\<void\>;
 
 ```ts
 import socket from "@ohos.net.socket";
-let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
   port: 8080
@@ -1008,7 +1008,7 @@ dropMembership(multicastAddress: NetAddress): Promise\<void\>;
 
 ```ts
 import socket from "@ohos.net.socket";
-let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 let addr: socket.NetAddress = {
   address: '239.255.0.1',
   port: 8080
@@ -1108,7 +1108,7 @@ setMulticastTTL(ttl: number): Promise\<void\>;
 
 ```ts
 import socket from "@ohos.net.socket";
-let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setMulticastTTL(8).then(() => {
   console.log('set ttl success');
 }).catch((err) => {
@@ -1199,7 +1199,7 @@ getMulticastTTL(): Promise\<number\>;
 
 ```ts
 import socket from "@ohos.net.socket";
-let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getMulticastTTL().then((value) => {
   console.log('ttl: ', JSON.stringify(value));
 }).catch((err) => {
@@ -1291,7 +1291,7 @@ setLoopbackMode(flag: boolean): Promise\<void\>;
 
 ```ts
 import socket from "@ohos.net.socket";
-let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.setLoopbackMode(false).then(() => {
   console.log('set loopback mode success');
 }).catch((err) => {
@@ -1380,7 +1380,7 @@ getLoopbackMode(): Promise\<boolean\>;
 
 ```ts
 import socket from "@ohos.net.socket";
-let multicast: socket.MulticastSocket = socket.constructLocalSocketInstance();
+let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
 multicast.getLoopbackMode().then((value) => {
   console.log('loopback mode: ', JSON.stringify(value));
 }).catch((err) => {
