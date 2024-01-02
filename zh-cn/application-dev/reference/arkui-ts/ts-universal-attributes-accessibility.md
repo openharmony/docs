@@ -20,7 +20,7 @@ accessibilityGroup(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 无障碍组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
 
-## accessibilityText
+## accessibilityText<sup>11</sup>
 
 accessibilityText(value: string)
 
@@ -74,7 +74,7 @@ accessibilityVirtualNode(builder: CustomBuilder)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) \ | 是   | 无障碍虚拟子节点，使开发者可以对自绘制组件传入一个自定义的CustomBuilder，该CustomBuilder中的组件在后端仅做布局不做显示，辅助应用获取无障碍节点信息时会返回CustomBuilder中的节点信息。 |
+| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是   | 无障碍虚拟子节点，使开发者可以对自绘制组件传入一个自定义的CustomBuilder，该CustomBuilder中的组件在后端仅做布局不做显示，辅助应用获取无障碍节点信息时会返回CustomBuilder中的节点信息。 |
 
 ## 示例
 
@@ -88,7 +88,7 @@ struct Index {
     Column() {
       Text(`virtual node`)
         .fontSize(10)
-        .backgroundColor(Color.red)
+        .backgroundColor(Color.Red)
         .width(10)
         .height(10)
         .align(Alignment.Center)
