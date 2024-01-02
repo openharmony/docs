@@ -3932,7 +3932,7 @@ off(type: 'play', callback?: () => void): void
 
 取消会话播放事件监听，关闭后，不再进行该事件回调。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
+取消回调时，需要更新支持的命令列表。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3964,7 +3964,7 @@ off(type: 'pause', callback?: () => void): void
 
 取消会话暂停事件监听，关闭后，不再进行该事件回调。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
+取消回调时，需要更新支持的命令列表。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3996,7 +3996,7 @@ off(type: 'stop', callback?: () => void): void
 
 取消会话停止事件监听，关闭后，不再进行该事件回调。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
+取消回调时，需要更新支持的命令列表。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4028,7 +4028,7 @@ off(type: 'playNext', callback?: () => void): void
 
 取消会话播放下一首事件监听，关闭后，不再进行该事件回调。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
+取消回调时，需要更新支持的命令列表。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4060,7 +4060,7 @@ off(type: 'playPrevious', callback?: () => void): void
 
 取消会话播放上一首事件监听，关闭后，不再进行该事件回调。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
+取消回调时，需要更新支持的命令列表。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4092,7 +4092,7 @@ off(type: 'fastForward', callback?: () => void): void
 
 取消会话快进事件监听，关闭后，不再进行该事件回调。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
+取消回调时，需要更新支持的命令列表。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
