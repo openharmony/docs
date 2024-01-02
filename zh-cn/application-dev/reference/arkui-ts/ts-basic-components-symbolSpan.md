@@ -22,7 +22,8 @@ SymbolSpan(value: Resource)
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | value | [Resource](../arkui-ts/ts-types.md#resource)| 是 | SymbolSpan组件的资源名，如 $r('sys.symbol.ohos_wifi')。 |
- >  **说明：**
+>  **说明：**
+>
 >  $r('sys.symbol.ohos_wifi')中引用的资源为系统预置，SymbolSpan仅支持系统预置的symbol资源名，引用非symbol资源将不显示内容。
 
 ## 属性
@@ -52,7 +53,7 @@ struct Index {
     Column() {
       Row() {
         Column(){
-          Text("字重：细")
+          Text("细")
           Text(){
             SymbolSpan($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Lighter)

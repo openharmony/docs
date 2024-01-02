@@ -96,7 +96,7 @@ RichEditor(value: RichEditorOptions)
 | textStyle | [RichEditorTextStyleResult](#richeditortextstyleresult) | 是 | 文本Span样式信息。 |
 | offsetInSpan | [number, number] | 是 | 文本Span内容里有效内容的起始和结束位置。 |
 | valueResource<sup>11+</sup> | [Resource](ts-types.md#resource) | 否 | 组件SymbolSpan内容。 |
-| SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否 | 组件symbolspan样式信息。 |
+| SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否 | 组件SymbolSpan样式信息。 |
 
 
 ## RichEditorSpanPosition
