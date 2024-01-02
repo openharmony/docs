@@ -667,7 +667,7 @@ Nullable\<T> {
 | ----        |  ----   |   ---- | --------------------------  |
 | grayscale   |  [number, number]   |   是   |  灰阶模糊参数，参数取值范围[0,127] 。 |
 
-## BackgroundBrightnessOptions<sup>11+<sup>
+## BackgroundEffectOptions<sup>11+<sup>
 背景光源参数。
  | 名称        |   类型         |   必填 |  说明                        |
 | ----         |  ----         |   ---- | --------------------------  |
