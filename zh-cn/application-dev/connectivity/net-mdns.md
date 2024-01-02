@@ -47,41 +47,10 @@ MDNS管理的典型场景有：
 ```ts
 // 从@ohos.net.mdns中导入mdns命名空间
 import mdns from '@ohos.net.mdns';
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import featureAbility from '@ohos.ability.featureAbility';
-import window from '@ohos.window';
 
-// 构造单例对象
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-// Stage模型获取context
-class EntryAbility extends UIAbility {
-  value: number = 0;
-  onWindowStageCreate(windowStage: window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 
 class ServiceAttribute {
   key: string = "111"
@@ -100,19 +69,19 @@ let localServiceInfo: mdns.LocalServiceInfo = {
 }
 
 // addLocalService添加本地服务
-mdns.addLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.addLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // resolveLocalService解析本地服务对象（非必要，根据需求使用）
-mdns.resolveLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 
 // removeLocalService移除本地服务
-mdns.removeLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
@@ -170,7 +139,7 @@ let context = GlobalContext.getContext().getObject("value");
 
 // 创建DiscoveryService对象，用于发现指定服务类型的MDNS服务
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 
 class DataServiceInfo{
   serviceInfo: mdns.LocalServiceInfo|null = null

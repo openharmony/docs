@@ -819,7 +819,7 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| type     | [ChangedType](#changedtype) | 是 | 否 | 输入设备插入或者移除。|
+| type     | [ChangedType](#changedtype9)| 是 | 否 | 输入设备插入或者移除。|
 | deviceId | number                      | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 
 ## InputDeviceData
@@ -832,7 +832,7 @@ try {
 | --------- | ------ | ---- | ---- | ------- |
 | id                   | number                                 | 是 | 否 | 输入设备的唯一标识，同一个物理设备反复插拔，设备id会发生变化。 |
 | name                 | string                                 | 是 | 否 | 输入设备的名字。                                             |
-| sources              | Array&lt;[SourceType](#sourcetype)&gt; | 是 | 否 | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
+| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | 是 | 否 | 输入设备支持的源类型。比如有的键盘上附带触摸板，则此设备有keyboard和touchpad两种输入源。 |
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | 是 | 否 | 输入设备的轴信息。                                           |
 | bus<sup>9+</sup>     | number                                 | 是 | 否 | 输入设备的总线类型。                                         |
 | product<sup>9+</sup> | number                                 | 是 | 否 | 输入设备的产品信息。                                         |
@@ -867,7 +867,7 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| source                  | [SourceType](#sourcetype) | 是 | 否 | 轴的输入源类型。 |
+| source                  | [SourceType](#sourcetype9) | 是 | 否 | 轴的输入源类型。 |
 | axis                    | [AxisType](#axistype9)    | 是 | 否 | 轴的类型。    |
 | max                     | number                    | 是 | 否 | 轴的最大值。   |
 | min                     | number                    | 是 | 否 | 轴的最小值。   |

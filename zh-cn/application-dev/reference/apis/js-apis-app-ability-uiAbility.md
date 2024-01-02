@@ -212,7 +212,7 @@ UIAbility生命周期回调，当应用从前台转到后台时触发。
 
 ## UIAbility.onContinue
 
-onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult
+onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueResult
 
 当Ability准备迁移时触发，保存数据。
 
@@ -222,7 +222,7 @@ onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResu
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | want相关参数。 |
 
 **返回值：**
 
@@ -306,7 +306,7 @@ onDump(params: Array\<string>): Array\<string>
 
 ## UIAbility.onSaveState
 
-onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult
+onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnSaveResult
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
@@ -317,7 +317,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Objec
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reason | [AbilityConstant.StateType](js-apis-app-ability-abilityConstant.md#abilityconstantstatetype) | 是 | 回调保存状态的原因。 |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | want相关参数。 |
 
 **返回值：**
 
@@ -342,7 +342,7 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onShare<sup>10+</sup>
 
-onShare(wantParam:{ [key: string]: Object }): void
+onShare(wantParam: Record&lt;string, Object&gt;): void
 
 在跨端分享场景下，在UIAbility中设置分享方设备要分享的数据。
 
@@ -352,7 +352,7 @@ onShare(wantParam:{ [key: string]: Object }): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | 待分享的数据。 |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | 是 | 待分享的数据。 |
 
 **示例：**
 
@@ -735,7 +735,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback) | 是 | 返回onRemoteStateChange回调结果。 |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback10) | 是 | 返回onRemoteStateChange回调结果。 |
 
 **错误码：**
 

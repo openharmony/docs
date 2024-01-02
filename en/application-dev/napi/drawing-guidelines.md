@@ -2,18 +2,18 @@
 
 ## When to Use
 
-The native Drawing module provides APIs for drawing 2D graphics and text.
+The native drawing module provides APIs for drawing 2D graphics and text.
 
-The graphics and text drawn by using the APIs cannot be directly displayed on the screen. To display them, use the capabilities provided by the **\<XComponent>** and native Window module.
+The graphics and text drawn by using the APIs cannot be directly displayed on the screen. To display the drawn graphics and text, you'll need the capabilities provided by the **\<XComponent>** and native Window module.
 
 ## Available APIs
 
-The table below lists the common APIs provided by Drawing. For details about the APIs, see [Drawing](../reference/native-apis/_drawing.md).
+The table below lists the common native drawing APIs. For details about all the APIs, see [Drawing](../reference/native-apis/_drawing.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
 | OH_Drawing_BitmapCreate (void) | Creates a bitmap object.|
-| OH_Drawing_BitmapBuild (OH_Drawing_Bitmap *, const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat *) | Initializes the width and height of a bitmap object and sets the pixel format for the bitmap.|
+| OH_Drawing_BitmapBuild (OH_Drawing_Bitmap *, const uint32_t width, const uint32_t height, const OH_Drawing_BitmapFormat *) | Initializes the width and height of a bitmap and sets the pixel format for the bitmap.|
 | OH_Drawing_CanvasCreate (void) | Creates a canvas object.|
 | OH_Drawing_CanvasBind (OH_Drawing_Canvas *, OH_Drawing_Bitmap *) | Binds a bitmap to a canvas so that the content drawn on the canvas is output to the bitmap. (This process is called CPU rendering.)|
 | OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas *, const OH_Drawing_Brush *) | Attaches a brush to a canvas so that the canvas will use the style and color of the brush to fill in a shape.|
@@ -22,7 +22,7 @@ The table below lists the common APIs provided by Drawing. For details about the
 | OH_Drawing_PathCreate (void) | Creates a path object.|
 | OH_Drawing_PathMoveTo (OH_Drawing_Path *, float x, float y) | Sets the start point of a path.|
 | OH_Drawing_PathLineTo (OH_Drawing_Path *, float x, float y) | Draws a line segment from the last point of a path to the target point.|
-| OH_Drawing_PathClose (OH_Drawing_Path *) | Closes a path. A line segment from the start point to the last point of the path is added.|
+| OH_Drawing_PathClose (OH_Drawing_Path *) | Draws a line segment from the current point to the start point of a path.|
 | OH_Drawing_PenCreate (void) | Creates a pen object.|
 | OH_Drawing_PenSetAntiAlias (OH_Drawing_Pen *, bool) | Checks whether anti-aliasing is enabled for a pen. If anti-aliasing is enabled, edges will be drawn with partial transparency.|
 | OH_Drawing_PenSetWidth (OH_Drawing_Pen *, float width) | Sets the thickness for a pen. This thickness determines the width of the outline of a shape.|
@@ -30,14 +30,14 @@ The table below lists the common APIs provided by Drawing. For details about the
 | OH_Drawing_BrushSetColor (OH_Drawing_Brush *, uint32_t color) | Sets the color for a brush. The color will be used by the brush to fill in a shape.|
 | OH_Drawing_CreateTypographyStyle (void) | Creates a **TypographyStyle** object.|
 | OH_Drawing_CreateTextStyle (void) | Creates a **TextStyle** object.|
-| OH_Drawing_TypographyHandlerAddText (OH_Drawing_TypographyCreate *, const char *) | Sets the text content.|
+| OH_Drawing_TypographyHandlerAddText (OH_Drawing_TypographyCreate *, const char *) | Adds text to the canvas.|
 | OH_Drawing_TypographyPaint (OH_Drawing_Typography *, OH_Drawing_Canvas *, double, double) | Paints text on the canvas.|
 
 ## How to Develop
 
 ### Development Process
 
-First, use the canvas and brush of the native Drawing module to draw a basic 2D graphic, write the graphics content to the buffer provided by the native Window module, and flush the buffer to the graphics queue. Then use the **\<XComponent>** to connect the C++ code layer to the ArkTS layer. In this way, the drawing and display logic of the C++ code is called at the ArkTS layer, and the graphic is displayed on the screen.
+First, use the canvas and brush of the native drawing module to draw a basic 2D graphic, write the graphics content to the buffer provided by the native Window module, and flush the buffer to the graphics queue. Then use the **\<XComponent>** to connect the C++ code layer to the ArkTS layer. In this way, the drawing and display logic of the C++ code is called at the ArkTS layer, and the graphic is displayed on the screen.
 
 The following walks you through on how to draw and display 2D graphics and texts.
 ### Adding Dependencies
@@ -89,7 +89,7 @@ libnative_drawing.so
               XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry' })
               .onLoad((xComponentContext) => {
                   this.xComponentContext = xComponentContext as XComponentContext;
-              }).width('640px') // Multiples of 64
+              }).width('640px') // Multiple of 64
           }.height('88%')
         }
       }
@@ -137,7 +137,7 @@ libnative_drawing.so
         }
     }
     ```
-3. Register a callback, named **OnSurfaceCreated**, and obtain an **OHNativeWindow** instance through the callback. You are advised to store the **OHNativeWindow** instance in a singleton.
+3. Register a callback, named **OnSurfaceCreated**, and obtain an **OHNativeWindow** instance through the callback. You are advised to save the **OHNativeWindow** instance in a singleton.
     ```c++
     // Define a callback.
     void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
@@ -152,7 +152,6 @@ libnative_drawing.so
         }
         std::string id(idStr);
         auto render = SampleBitMap::GetInstance(id);
-        OHNativeWindow *nativeWindow = static_cast<OHNativeWindow *>(window);
         render->SetNativeWindow(nativeWindow);
 
         uint64_t width;
@@ -168,7 +167,23 @@ libnative_drawing.so
     {
         // Obtain an OHNativeWindow instance.
         OHNativeWindow* nativeWindow = static_cast<OHNativeWindow*>(window);
-        // ...
+        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+        if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+            DRAWING_LOGE("OnSurfaceChangedCB: Unable to get XComponent id");
+            return;
+        }
+        std::string id(idStr);
+        auto render = SampleBitMap::GetInstance(id);
+
+        uint64_t width;
+        uint64_t height;
+        int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
+        if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
+            render->SetHeight(height);
+            render->SetWidth(width);
+            DRAWING_LOGI("Surface Changed : xComponent width = %{public}llu, height = %{public}llu", width, height);
+        }
     }
     void OnSurfaceDestroyedCB(OH_NativeXComponent* component, void* window)
     {
@@ -198,13 +213,15 @@ libnative_drawing.so
     OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback);
     ```
 
-Now, the drawing environment is set up. You can use the native Drawing APIs to draw graphics.
+Now, the drawing environment is set up. You can use the native drawing APIs to draw graphics.
 
 ### Drawing a 2D Graphic
 
-Follow the steps below to draw a 2D graphic by using the canvas and brush of the native Drawing module.
+Follow the steps below to draw a 2D graphic by using the canvas and brush of the native drawing module.
 
-1. **Create a bitmap object.** Use **OH_Drawing_BitmapCreate** in **drawing_bitmap.h** to create a bitmap object (named **cBitmap** in this example), and use **OH_Drawing_BitmapBuild** to specify its length, width, and pixel format.
+1. **Create a bitmap object.**
+
+    Use **OH_Drawing_BitmapCreate** in **drawing_bitmap.h** to create a bitmap object (named **cBitmap** in this example), and use **OH_Drawing_BitmapBuild** to specify its length, width, and pixel format.
 
     ```c++
     // Create a bitmap object.
@@ -215,7 +232,9 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
     OH_Drawing_BitmapBuild(cBitmap, width, height, &cFormat);
     ```
 
-2. **Create a canvas object.** Use **OH_Drawing_CanvasCreate** in **drawing_canvas.h** to create a canvas object (named **cCanvas** in this example), and use **OH_Drawing_CanvasBind** to bind **cBitmap** to this canvas. The content drawn on the canvas will be output to the bound **cBitmap** object.
+2. **Create a canvas object.**
+
+    Use **OH_Drawing_CanvasCreate** in **drawing_canvas.h** to create a canvas object (named **cCanvas** in this example), and use **OH_Drawing_CanvasBind** to bind **cBitmap** to this canvas. The content drawn on the canvas will be output to the bound **cBitmap** object.
 
     ```c++
     // Create a canvas object.
@@ -226,7 +245,9 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
     OH_Drawing_CanvasClear(cCanvas, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0xFF, 0xFF));
     ```
 
-3. **Construct a shape.** Use the APIs provided in **drawing_path.h** to draw a pentagram **cPath**.
+3. **Construct a shape.**
+
+    Use the APIs provided in **drawing_path.h** to draw a pentagram **cPath**.
 
     ```c++
     int len = height_ / 4;
@@ -240,7 +261,7 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
     float bY = aY + std::sqrt((cX - dX) * (cX - dX) + (len / 2.0) * (len / 2.0));
     float eX = aX - (len / 2.0);
     float eY = bY;
-
+    
     // Create a path object and use the APIs to draw a pentagram.
     OH_Drawing_Path* cPath = OH_Drawing_PathCreate();
     // Specify the start point of the path.
@@ -254,10 +275,16 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
     OH_Drawing_PathClose(cPath);
     ```
 
-4. **Set the brush and pen styles.** Use **OH_Drawing_PenCreate** in **drawing_pen.h** to create a pen object (named **cPen** in this example), and set the attributes such as the anti-aliasing, color, and thickness. The pen is used to outline a shape. Use **OH_Drawing_BrushCreate** in **drawing_brush.h** to create a brush object (named **cBrush** in this example), and set the brush color. The brush is used to fill in a shape. Use **OH_Drawing_CanvasAttachPen** and **OH_Drawing_CanvasAttachBrush** in **drawing_canvas.h** to attach the pen and brush to the canvas.
+4. **Set the brush and pen styles.**
+
+    Use **OH_Drawing_PenCreate** in **drawing_pen.h** to create a pen object (named **cPen** in this example), and set the attributes such as the anti-aliasing, color, and thickness. The pen is used to outline a shape.
+
+    Use **OH_Drawing_BrushCreate** in **drawing_brush.h** to create a brush object (named **cBrush** in this example), and set the brush color. The brush is used to fill in a shape.
+
+    Use **OH_Drawing_CanvasAttachPen** and **OH_Drawing_CanvasAttachBrush** in **drawing_canvas.h** to attach the pen and brush to the canvas.
 
     ```c++
-    // Create a pen object and set the anti-aliasing, color, and thickness.
+    // Create a pen object and set the anti-aliasing, color, and thickness attributes.
     OH_Drawing_Pen* cPen = OH_Drawing_PenCreate();
     OH_Drawing_PenSetAntiAlias(cPen, true);
     OH_Drawing_PenSetColor(cPen, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
@@ -265,16 +292,18 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
     OH_Drawing_PenSetJoin(cPen, LINE_ROUND_JOIN);
     // Attach the pen to the canvas.
     OH_Drawing_CanvasAttachPen(cCanvas, cPen);
-
+    
     // Create a brush object and set the color.
     OH_Drawing_Brush* cBrush = OH_Drawing_BrushCreate();
     OH_Drawing_BrushSetColor(cBrush, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0xFF, 0x00));
-
+    
     // Attach the brush to the canvas.
     OH_Drawing_CanvasAttachBrush(cCanvas, cBrush);
     ```
 
-5. **Draw a shape.** Use **OH_Drawing_CanvasDrawPath** in **drawing_canvas.h** to draw a pentagon on the canvas.
+5. **Draw a shape.**
+
+    Use **OH_Drawing_CanvasDrawPath** in **drawing_canvas.h** to draw a pentagon on the canvas.
 
     ```c++
     // Draw a pentagon on the canvas. The outline of the pentagon is drawn by the pen, and the color is filled in by the brush.
@@ -283,8 +312,8 @@ Follow the steps below to draw a 2D graphic by using the canvas and brush of the
 
 ### Drawing Text
 
-Follow the steps below to use the text drawing feature of the native Drawing module.
-1. **Create a canvas and a bitmap.**
+Follow the steps below to use the text drawing feature of the native drawing module.
+1. **Create a bitmap and a canvas.**
 
     ```c++
     // Create a bitmap.
@@ -313,7 +342,7 @@ Follow the steps below to use the text drawing feature of the native Drawing mod
     // Set the text color, for example, black.
     OH_Drawing_TextStyle* txtStyle = OH_Drawing_CreateTextStyle();
     OH_Drawing_SetTextStyleColor(txtStyle, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0x00, 0x00));
-    // Set text attributes such as the font size and weight.
+    // Set other text attributes such as the font size and weight.
     double fontSize = width_ / 15;
     OH_Drawing_SetTextStyleFontSize(txtStyle, fontSize);
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
@@ -347,7 +376,7 @@ Follow the steps below to use the text drawing feature of the native Drawing mod
     ```
 ### Displaying the Graphics and Text Drawn
 
-You have used the native Drawing APIs to draw a pentagon and text. Now you need to display them on the screen by using the native Window APIs.
+You have drawn a pentagon and text by using the native drawing APIs. Now you need to display them on the screen by using the native Window APIs.
 
 1. Request a native window buffer by using the native window pointer saved in the **OnSurfaceCreatedCB** callback.
     ```c++
@@ -361,7 +390,7 @@ You have used the native Drawing APIs to draw a pentagon and text. Now you need 
 3. Call **mmap()** to obtain the memory virtual address of the buffer handle.
     ```c++
     mappedAddr_ = static_cast<uint32_t *>(
-        // Use mmap() to map the shared memory corresponding to the buffer handle to the user space. Image data can be written to the buffer handle by using the mapped virtual address.
+        // Use mmap() to map the shared memory corresponding to the buffer handle to the user space. Image data can be written to the buffer handle by using the obtained virtual address.
         // bufferHandle->virAddr indicates the start address of the buffer handle in the shared memory, and bufferHandle->size indicates the memory usage of the buffer handle in the shared memory.
         mmap(bufferHandle_->virAddr, bufferHandle_->size, PROT_READ | PROT_WRITE, MAP_SHARED, bufferHandle_->fd, 0));
     if (mappedAddr_ == MAP_FAILED) {
@@ -391,7 +420,7 @@ You have used the native Drawing APIs to draw a pentagon and text. Now you need 
     ```
 6. Release the memory.
 
-    Release the memory used by the native Drawing module.
+    Release the memory used by the native drawing module.
 
     ```c++
     // Unmap the memory.
@@ -430,7 +459,7 @@ You have used the native Drawing APIs to draw a pentagon and text. Now you need 
         SampleBitMap::Release(id);
     }
     ```
-### Code Invocation
+### Calling Code
 
 The preceding code is the C++ code at the native layer. To call the code, use the ArkTS layer code for interconnection.
 1. Define an ArkTS API file and name it **XComponentContext.ts**, which is used to connect to the C++ code.
@@ -440,7 +469,7 @@ The preceding code is the C++ code at the native layer. To call the code, use th
       drawText(): void;
     };
     ```
-    Add the initialization function and code to the Drawing related files.
+    Add the initialization function and code to the drawing related files.
     ```c++
     void SampleBitMap::Export(napi_env env, napi_value exports) {
         if ((env == nullptr) || (exports == nullptr)) {
@@ -510,7 +539,3 @@ The preceding code is the C++ code at the native layer. To call the code, use th
     | ------------------------------------ |-----------------------------------------------| --------------------------------------------------- |
     | ![main](./figures/drawIndex.jpg) | ![Draw Path](./figures/drawPath.jpg) | ![Draw Text](./figures/drawText.jpg) |
 
-##  Samples
-The preceding code snippets are the key code for drawing. For details about the complete code, see the following sample.
-
-- [Native Drawing (API10)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkDrawing)

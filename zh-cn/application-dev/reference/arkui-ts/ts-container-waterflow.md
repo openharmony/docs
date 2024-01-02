@@ -78,7 +78,7 @@ layoutDirection优先级高于rowsTemplate和columnsTemplate。根据layoutDirec
 | onReachStart(event: () => void) | 瀑布流组件到达起始位置时触发。 |
 | onReachEnd(event: () => void)   | 瀑布流组件到底末尾位置时触发。 |
 | onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | 瀑布流开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，瀑布流将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动WaterFlow、WaterFlow惯性划动时每帧开始时触发；List超出边缘回弹、使用滚动控制器的滚动不会触发。|
-| onScroll<sup>11+</sup>(event: (scrollOffset: number, scrollState: ScrollState) => void) | 瀑布流滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，瀑布流的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>- [scrollState](ts-container-list.md#scrollstate枚举说明): 当前滑动状态。 |
+| onScroll<sup>11+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) | 瀑布流滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，瀑布流的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>- scrollState: 当前滑动状态。 |
 | onScrollIndex<sup>11+</sup>(event: (first: number, last: number) => void) | 当前瀑布流显示的起始位置/终止位置的子组件发生变化时触发。瀑布流初始化时会触发一次。<br/>- first: 当前显示的WaterFlow起始位置的索引值。<br/>- last: 当前显示的瀑布流终止位置的索引值。<br/>瀑布流显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。 |
 | onScrollStart<sup>11+</sup>(event: () => void) | 瀑布流滑动开始时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
 | onScrollStop<sup>11+</sup>(event: () => void)          | 瀑布流滑动停止时触发。手指拖动瀑布流或瀑布流的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
@@ -163,43 +163,43 @@ export class WaterFlowDataSource implements IDataSource {
   }
 
   // 增加数据
-  public Add1stItem(): void {
+  public add1stItem(): void {
     this.dataArray.splice(0, 0, this.dataArray.length)
     this.notifyDataAdd(0)
   }
 
   // 在数据尾部增加一个元素
-  public AddLastItem(): void {
+  public addLastItem(): void {
     this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length)
     this.notifyDataAdd(this.dataArray.length - 1)
   }
 
   // 在指定索引位置增加一个元素
-  public AddItem(index: number): void {
+  public addItem(index: number): void {
     this.dataArray.splice(index, 0, this.dataArray.length)
     this.notifyDataAdd(index)
   }
 
   // 删除第一个元素
-  public Delete1stItem(): void {
+  public delete1stItem(): void {
     this.dataArray.splice(0, 1)
     this.notifyDataDelete(0)
   }
 
   // 删除第二个元素
-  public Delete2ndItem(): void {
+  public delete2ndItem(): void {
     this.dataArray.splice(1, 1)
     this.notifyDataDelete(1)
   }
 
   // 删除最后一个元素
-  public DeleteLastItem(): void {
+  public deleteLastItem(): void {
     this.dataArray.splice(-1, 1)
     this.notifyDataDelete(this.dataArray.length)
   }
 
   // 重新加载数据
-  public Reload(): void {
+  public reload(): void {
     this.dataArray.splice(1, 1)
     this.dataArray.splice(3, 2)
     this.notifyDataReload()
@@ -213,13 +213,13 @@ import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
 @Component
-struct WaterflowDemo {
+struct WaterFlowDemo {
   @State minSize: number = 80
   @State maxSize: number = 180
   @State fontSize: number = 24
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
   scroller: Scroller = new Scroller()
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
@@ -257,7 +257,7 @@ struct WaterflowDemo {
   build() {
     Column({ space: 2 }) {
       WaterFlow() {
-        LazyForEach(this.datasource, (item: number) => {
+        LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
@@ -269,9 +269,9 @@ struct WaterflowDemo {
           }
           .onAppear(() => {
             // 即将触底时提前增加数据
-            if (item + 20 == this.datasource.totalCount()) {
+            if (item + 20 == this.dataSource.totalCount()) {
               for (let i = 0; i < 100; i++) {
-                this.datasource.AddLastItem()
+                this.dataSource.addLastItem()
               }
             }
           })
@@ -301,11 +301,11 @@ import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
 @Component
-struct WaterflowDemo {
+struct WaterFlowDemo {
   @State minSize: number = 80
   @State maxSize: number = 180
   @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
@@ -330,7 +330,7 @@ struct WaterflowDemo {
   build() {
     Column({ space: 2 }) {
       WaterFlow() {
-        LazyForEach(this.datasource, (item: number) => {
+        LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')

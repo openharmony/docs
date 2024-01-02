@@ -2537,8 +2537,7 @@ import print from '@ohos.print';
 import { BusinessError } from '@ohos.base';
 
 let jobId : string = '1';
-let type : string = 'spooler_closed_for_started';
-print.notifyPrintService(jobId, type).then((data : void) => {
+print.notifyPrintService(jobId, 'spooler_closed_for_started').then((data : void) => {
     console.log('queryPrintJobById data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
     console.log('queryPrintJobById error : ' + JSON.stringify(error));

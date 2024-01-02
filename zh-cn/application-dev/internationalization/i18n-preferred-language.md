@@ -30,7 +30,7 @@
 3. 设置应用的偏好语言。将应用偏好语言设置为目标语言后，该应用的界面会切换为目标语言。设置应用的偏好语言仅影响应用本身，不会影响系统语言设置。
    ```ts
     try {  
-      I18n.System.getAppPreferredLanguage(“zh-Hans“); // 设置应用偏好语言为zh-Hans
+      I18n.System.setAppPreferredLanguage("zh-Hans"); // 设置应用偏好语言为zh-Hans
     } catch(error) {
       let err: BusinessError = error as BusinessError;
       console.error(`call System.setAppPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);

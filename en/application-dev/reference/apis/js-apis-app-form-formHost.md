@@ -2009,3 +2009,303 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
+
+## setRouterProxy<sup>11+</sup>
+
+setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Sets a router proxy for widgets and obtains the Want information required for redirection. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+>- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see [UIAbilityContext.startAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+>
+>- Only one router proxy can be set for a widget. If multiple proxies are set, only the last proxy takes effect.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| formIds  | Array&lt;string&gt;       | Yes  | Array of widget IDs.                                              |
+| proxy    | Callback&lt;Want&gt;      | Yes  | Callback used to return the Want information required for redirection.                        |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the router proxy is set, **error** is **undefined**; otherwise, an exception is thrown.|
+
+**Error codes**
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+**Example**
+
+```ts
+import common from '@ohos.app.ability.common';
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+@Entry
+@Component
+struct CardExample {
+  private context = getContext(this) as common.UIAbilityContext;
+  @State formId:number = 0;
+  @State fwidth:number = 420;
+  @State fheight:number = 280;
+
+  build() {
+    Column() {
+      FormComponent({
+        id:this.formId,
+        name:"widget",
+        bundle:"com.example.cardprovider",
+        ability:"EntryFormAbility",
+        module:"entry",
+        dimension:FormDimension.Dimension_2_2,
+        temporary:false,
+      })
+        .allowUpdate(true)
+        .size({width:this.fwidth,height:this.fheight})
+        .visibility(Visibility.Visible)
+        .onAcquired((form)=>{
+          console.log(`testTag form info : ${JSON.stringify(form)}`);
+          this.formId = form.id;
+          try {
+            let formIds: string[] = [ this.formId.toString() ];
+            formHost.setRouterProxy(formIds, (want: Want) => {
+              console.info(`formHost recv router event, want: ${JSON.stringify(want)}`);
+              // The widget host processes the redirection.
+              this.context.startAbility(want, (err: Base.BusinessError) => {
+                console.info(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
+              });
+            }, (err: Base.BusinessError) => {
+              console.error(`set router proxy error, code: ${err.code}, message: ${err.message}`);
+            })
+          } catch (e) {
+            console.log('formHost setRouterProxy catch exception: ' + JSON.stringify(e));
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+## setRouterProxy<sup>11+</sup>
+
+setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;): Promise&lt;void&gt;
+
+Sets a router proxy for widgets and obtains the Want information required for redirection. This API uses a promise to return the result.
+
+> **NOTE**
+>
+>- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see [UIAbilityContext.startAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+>
+>- Only one router proxy can be set for a widget. If multiple proxies are set, only the last proxy takes effect.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name | Type                | Mandatory| Description                                |
+| ------- | -------------------- | ---- | ------------------------------------ |
+| formIds | Array&lt;string&gt;  | Yes  | Array of widget IDs.                      |
+| proxy   | Callback&lt;Want&gt; | Yes  | Callback used to return the Want information required for redirection.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+**Example**
+
+```ts
+import common from '@ohos.app.ability.common';
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+@Entry
+@Component
+struct CardExample {
+  private context = getContext(this) as common.UIAbilityContext;
+  @State formId:number = 0;
+  @State fwidth:number = 420;
+  @State fheight:number = 280;
+
+  build() {
+    Column() {
+      FormComponent({
+        id:this.formId,
+        name:"widget",
+        bundle:"com.example.cardprovider",
+        ability:"EntryFormAbility",
+        module:"entry",
+        dimension:FormDimension.Dimension_2_2,
+        temporary:false,
+      })
+        .allowUpdate(true)
+        .size({width:this.fwidth,height:this.fheight})
+        .visibility(Visibility.Visible)
+        .onAcquired((form)=>{
+          console.log(`testTag form info : ${JSON.stringify(form)}`);
+          this.formId = form.id;
+          try {
+            let formIds: string[] = [ this.formId.toString() ];
+            formHost.setRouterProxy(formIds, (want: Want) => {
+              console.info(`formHost recv router event, want: ${JSON.stringify(want)}`);
+              // The widget host processes the redirection.
+              this.context.startAbility(want, (err: Base.BusinessError) => {
+                console.info(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
+              });
+            }).then(() => {
+              console.info('formHost set router proxy success');
+            }).catch((err: Base.BusinessError) => {
+              console.error(`set router proxy error, code: ${err.code}, message: ${err.message}`);
+            })
+          } catch (e) {
+            console.log('formHost setRouterProxy catch exception: ' + JSON.stringify(e));
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+## clearRouterProxy<sup>11+</sup>
+
+clearRouterProxy(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+Clears the router proxy set for widgets. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                                        |
+| -------- | ------------------------- | ---- | ------------------------------------------------------------ |
+| formIds  | Array&lt;string&gt;;      | Yes  | Array of widget IDs.                                              |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the router proxy is cleared, **error** is **undefined**; otherwise, an exception is thrown.|
+
+**Error codes**
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.clearRouterProxy(formIds, (err: Base.BusinessError) => {
+    if (err) {
+        conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+    }
+  });
+} catch (e: Base.BusinessError) {
+  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## clearRouterProxy<sup>11+</sup>
+
+clearRouterProxy(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
+
+Clears the router proxy set for widgets. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name | Type               | Mandatory| Description          |
+| ------- | ------------------- | ---- | -------------- |
+| formIds | Array&lt;string&gt; | Yes  | Array of widget IDs.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401      | If the input parameter is not valid parameter.               |
+| 16500050 | An IPC connection error happened.                            |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501003 | The form can not be operated by the current application.     |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+import Base from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+try {
+  let formIds: string[] = [ '12400633174999288' ];
+  formHost.clearRouterProxy(formIds).then(() => {
+    console.log('formHost clear rourter proxy success');
+  }).catch((err: Base.BusinessError) => {
+    conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+  });
+} catch (e: Base.BusinessError) {
+  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+}
+```
+
+## 

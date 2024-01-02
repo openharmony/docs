@@ -552,9 +552,9 @@ export default class MainAbility extends Ability {
       this.curBp = newBp
       this.myWidth = newWd
       // 使用状态变量记录当前断点值
-      AppStorage.SetOrCreate('currentBreakpoint', this.curBp)
+      AppStorage.setOrCreate('currentBreakpoint', this.curBp)
       // 使用状态变量记录当前minContentWidth值
-      AppStorage.SetOrCreate('myWidth', this.myWidth)
+      AppStorage.setOrCreate('myWidth', this.myWidth)
     }
   }
 

@@ -8,13 +8,20 @@
 >  
 > - popup弹窗的显示状态在onStateChange事件回调中反馈，其显隐与组件的创建或销毁无强对应关系。
 
+## bindPopup
 
-## 接口
+bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
+给组件绑定Popup弹窗。
 
-| 名称        | 参数类型                                     | 描述                                       |
-| --------- | ---------------------------------------- | ---------------------------------------- |
-| bindPopup | show:&nbsp;boolean,<br/>popup:&nbsp;[PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 给组件绑定Popup弹窗，设置参数show为true弹出弹框。<br/>show:&nbsp;弹窗显示状态，默认值为false，隐藏弹窗。popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致popup弹窗显示位置及形状错误。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。<br/>show:&nbsp;弹窗显示状态，默认值为false，隐藏弹窗。popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致popup弹窗显示位置及形状错误。<br/>popup:&nbsp;配置当前弹窗提示的参数。 |
+| popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出弹窗的参数                                           |
 
 ## PopupOptions类型说明
 
@@ -37,6 +44,10 @@
 | autoCancel<sup>11+</sup>              | boolean                                                      | 否   | 页面有操作时，是否自动关闭气泡。<br/>默认值：true            |
 | width<sup>11+</sup>                   | [Dimension](ts-types.md#dimension10)                         | 否   | 弹窗宽度。                                                   |
 | arrowPointPosition<sup>11+</sup>      | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | 否   | 气泡尖角相对于父组件显示位置，气泡尖角在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。以上所有位置点均位于父组件区域的范围内，不会超出父组件的边界范围。 |
+| arrowWidth<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置箭头宽度。<br/>默认值：16.0_vp <br />**说明：**<br />不支持设置百分比。                          |
+| arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置箭头高度。<br/>默认值：8.0_vp <br />**说明：**<br />不支持设置百分比。                          |
+| radius<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置气泡圆角半径。<br/>默认值：20.0_vp                          |
+| shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)    | 否   | 设置气泡阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD      |
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
@@ -62,6 +73,10 @@
 | offset<sup>10+</sup>         | [Position](ts-types.md#position8)                            | 否   | 设置popup组件相对于placement设置的显示位置的偏移。<br />**说明：**<br />不支持设置百分比。 |
 | width<sup>11+</sup> | [Dimension](ts-types.md#dimension10) | 否 | 弹窗宽度。 |
 | arrowPointPosition<sup>11+</sup> | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | 否 | 气泡尖角相对于父组件显示位置，气泡尖角在垂直和水平方向上有 ”Start“、”Center“、”End“三个位置点可选。以上所有位置点均位于父组件区域的范围内，不会超出父组件的边界范围。 |
+| arrowWidth<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置箭头宽度。<br/>默认值：16.0_vp <br />**说明：**<br />不支持设置百分比。                          |
+| arrowHeight<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置箭头高度。<br/>默认值：8.0_vp <br />**说明：**<br />不支持设置百分比。                          |
+| radius<sup>11+</sup>             | [Dimension](ts-types.md#Dimension10)                                                      | 否   | 设置气泡圆角半径。<br/>默认值：20.0_vp                          |
+| shadow<sup>11+</sup>             | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)    | 否   | 设置气泡阴影。<br/>默认值：ShadowStyle.OUTER_DEFAULT_MD      |
 
 ## 
 
@@ -382,3 +397,35 @@ struct PopupExample {
 ```
 
 ![](figures/popup_6.png)
+
+### 示例7
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct PopupExample {
+  @State customPopup: boolean = false
+
+  build() {
+    Column() {
+      Button("popup")
+        .onClick(()=>{
+          this.customPopup = !this.customPopup
+        })
+        .bindPopup(this.customPopup, {
+          message: "this is a popup",
+          popupColor: Color.Pink,
+          arrowHeight: 20,
+          arrowWidth: 20,
+          radius: 20,
+          shadow: ShadowStyle.OUTER_DEFAULT_XS
+        })
+    }
+    .width('100%')
+  }
+}
+```
+
+![](figures/popup_8.png)

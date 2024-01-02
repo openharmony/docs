@@ -3991,7 +3991,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('requestPhotoDemo')
-    let options = {
+    let options: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     }
@@ -4055,7 +4055,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('requestPhotoDemo')
-    let options = {
+    let options: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     }
@@ -4118,7 +4118,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function example() {
   try {
     console.info('cancelPhotoRequestDemo')
-    let options = {
+    let options: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     }
@@ -5905,7 +5905,7 @@ async function example() {
 | 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
 | ASSETS_MODE   | 0       | 按系统预置的隐藏相册显示隐藏文件，即显示系统中所有的隐藏文件。    |
-| ALBUMS_MODE    | 1    | 按相册显示隐藏文件（即显示系统中所有包含隐藏文件的相册，除系统预置的隐藏相册本身和回收站相册以外。）  |
+| ALBUMS_MODE    | 1    | 按相册显示隐藏文件（即显示系统中所有包含隐藏文件的相册，除系统预置的隐藏相册本身和回收站相册以外）。  |
 
 ## PhotoCreateOptions
 
@@ -5952,7 +5952,7 @@ async function example() {
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
-| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## FormInfo<sup>11+</sup>
 
@@ -6017,6 +6017,30 @@ async function example() {
 | VIDEO_TYPE |  'video/*' | 视频类型。 |
 | IMAGE_VIDEO_TYPE |  '\*/*' | 图片和视频类型。 |
 
+## RecommendationType<sup>11+</sup>
+
+枚举，推荐的照片类型。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- | ---- |
+| QR_OR_BAR_CODE  |  1 | 二维码或条码。 |
+| QR_CODE |  2 | 二维码。 |
+| BAR_CODE |  3 | 条码。 |
+| ID_CARD |  4 | 身份证。 |
+| PROFILE_PICTURE |  5 | 头像。 |
+
+## RecommendationOptions<sup>11+</sup>
+
+照片推荐选项(基于照片数据分析结果，依赖设备适配)。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                    | 类型                | 必填 | 说明                          |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| recommendationType | [RecommendationType](#recommendationtype11)   | 否   | 可选择的照片推荐类型，若无此参数，则默认为不推荐照片。 |
+
 ## PhotoSelectOptions
 
 图库选择选项。
@@ -6030,6 +6054,7 @@ async function example() {
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | 否   | 支持拍照。 |
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 支持编辑照片。      |
 | isSearchSupported<sup>11+</sup> | boolean  | 否   | 支持搜索。 |
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | 否   | 支持照片推荐。      |
 
 ## PhotoSelectResult
 

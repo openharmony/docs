@@ -115,6 +115,7 @@ struct FocusEventExample {
     Column({ space: 20 }) {
       // 通过外接键盘的上下键可以让焦点在三个按钮间移动，按钮获焦时颜色变化，失焦时变回原背景色
       Button('First Button')
+        .defaultFocus(true)
         .width(260)
         .height(70)
         .backgroundColor(this.oneButtonColor)
@@ -411,7 +412,7 @@ import promptAction from '@ohos.promptAction';
 
 class MyDataSource implements IDataSource {
   private list: number[] = [];
-  private listener: DataChangeListener|undefined = undefined;
+  private listener: DataChangeListener | undefined = undefined;
 
   constructor(list: number[]) {
     this.list = list;
@@ -433,33 +434,37 @@ class MyDataSource implements IDataSource {
   }
 }
 
-class swcf{
-  swiperController:SwiperController|undefined
-  fun(index:number){
-    if(this.swiperController){
-      if(index==0){
+class swcf {
+  swiperController: SwiperController | undefined
+
+  fun(index: number) {
+    if (this.swiperController) {
+      if (index == 0) {
         this.swiperController.showPrevious();
-      }else{
+      } else {
         this.swiperController.showNext();
       }
     }
   }
 }
-class TmpM{
-  left:number = 20
-  bottom:number = 20
-  right:number = 20
+
+class TmpM {
+  left: number = 20
+  bottom: number = 20
+  right: number = 20
 }
-let MarginTmp:TmpM = new TmpM()
+
+let MarginTmp: TmpM = new TmpM()
+
 @Entry
 @Component
 struct SwiperExample {
   private swiperController: SwiperController = new SwiperController()
-  @State tmp:promptAction.ShowToastOptions = {'message':'Button OK on clicked'}
+  @State tmp: promptAction.ShowToastOptions = { 'message': 'Button OK on clicked' }
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list:number[] = []
+    let list: number[] = []
     for (let i = 1; i <= 4; i++) {
       list.push(i);
     }
@@ -470,9 +475,9 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Row({ space: 20 }) {
+          Row({ space: 10 }) {
             Column() {
-              Button('1').width(200).height(200)
+              Button('1').width(120).height(120)
                 .fontSize(40)
                 .backgroundColor('#dadbd9')
             }
@@ -480,15 +485,15 @@ struct SwiperExample {
             Column({ space: 20 }) {
               Row({ space: 20 }) {
                 Button('2')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('3')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -497,15 +502,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('4')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('5')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -514,15 +519,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('6')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('7')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -530,13 +535,13 @@ struct SwiperExample {
               }
             }
           }
-          .width(480)
-          .height(380)
+          .width(320)
+          .height(300)
           .justifyContent(FlexAlign.Center)
           .borderWidth(2)
           .borderColor(Color.Gray)
           .backgroundColor(Color.White)
-        }, (item:string):string => item)
+        }, (item: string): string => item)
       }
       .cachedCount(2)
       .index(0)
@@ -550,6 +555,7 @@ struct SwiperExample {
         console.info(index.toString());
       })
       .margin({ left: 20, top: 20, right: 20 })
+
       Row({ space: 40 }) {
         Button('←')
           .fontSize(40)
@@ -570,14 +576,14 @@ struct SwiperExample {
             swf.fun(1)
           })
       }
-      .width(480)
+      .width(320)
       .height(50)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
       .borderColor(Color.Gray)
       .backgroundColor('#f7f6dc')
 
-      Row({ space: 40 }) {
+      Row({ space: 20 }) {
         Button('Cancel')
           .fontSize(30)
           .fontColor('#787878')
@@ -597,7 +603,7 @@ struct SwiperExample {
             promptAction.showToast(this.tmp);
           })
       }
-      .width(480)
+      .width(320)
       .height(80)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
@@ -605,7 +611,7 @@ struct SwiperExample {
       .backgroundColor('#dff2e4')
       .margin(MarginTmp)
     }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 20 })
+    .margin({ left: 50, top: 50, right: 50 })
   }
 }
 ```
@@ -683,7 +689,7 @@ tabIndex用于设置自定义TAB键走焦顺序，默认值为0。使用“TAB/S
 struct MouseExample {
   build() {
     Column() {
-      Button('1').width(200).height(200)
+      Button('1').width(120).height(120)
         .fontSize(40)
         .backgroundColor('#dadbd9')
         .tabIndex(1)    // Button-1设置为第一个tabIndex节点
@@ -824,9 +830,9 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Row({ space: 20 }) {    // 设置该Row组件为tabIndex的第一个节点
+          Row({ space: 10 }) {    // 设置该Row组件为tabIndex的第一个节点
             Column() {
-              Button('1').width(200).height(200)
+              Button('1').width(120).height(120)
                 .fontSize(40)
                 .backgroundColor('#dadbd9')
                 .groupDefaultFocus(true)    // 设置Button-1为第一个tabIndex的默认焦点
@@ -835,15 +841,15 @@ struct SwiperExample {
             Column({ space: 20 }) {
               Row({ space: 20 }) {
                 Button('2')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('3')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -852,15 +858,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('4')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('5')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -869,15 +875,15 @@ struct SwiperExample {
 
               Row({ space: 20 }) {
                 Button('6')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
                   .backgroundColor('#dadbd9')
                 Button('7')
-                  .width(100)
-                  .height(100)
+                  .width(70)
+                  .height(70)
                   .fontSize(40)
                   .type(ButtonType.Normal)
                   .borderRadius(20)
@@ -885,8 +891,8 @@ struct SwiperExample {
               }
             }
           }
-          .width(480)
-          .height(380)
+          .width(320)
+          .height(300)
           .justifyContent(FlexAlign.Center)
           .borderWidth(2)
           .borderColor(Color.Gray)
@@ -926,7 +932,7 @@ struct SwiperExample {
             this.swiperController.showNext();
           })
       }
-      .width(480)
+      .width(320)
       .height(50)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
@@ -934,7 +940,7 @@ struct SwiperExample {
       .backgroundColor('#f7f6dc')
       .tabIndex(2)
 
-      Row({ space: 40 }) {    // 设置该Row组件为第三个tabIndex节点
+      Row({ space: 20 }) {    // 设置该Row组件为第三个tabIndex节点
         Button('Cancel')
           .fontSize(30)
           .fontColor('#787878')
@@ -956,7 +962,7 @@ struct SwiperExample {
           })
           .groupDefaultFocus(true)    // 设置Button-OK为第三个tabIndex节点的默认焦点
       }
-      .width(480)
+      .width(320)
       .height(80)
       .justifyContent(FlexAlign.Center)
       .borderWidth(2)
@@ -965,7 +971,7 @@ struct SwiperExample {
       .margin({ left: 20, bottom: 20, right: 20 })
       .tabIndex(3)
     }.backgroundColor('#f2f2f2')
-    .margin({ left: 50, top: 50, right: 20 })
+    .margin({ left: 50, top: 50, right: 50 })
   }
 }
 ```

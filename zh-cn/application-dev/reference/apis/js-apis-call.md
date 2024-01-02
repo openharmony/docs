@@ -416,7 +416,7 @@ hasCall\(\): Promise\<boolean\>
 
 | 类型                   | 说明                                    |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否存在通话。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否存在通话。返回true表示当前存在通话，false表示当前不存在通话。 |
 
 **示例：**
 
@@ -442,7 +442,7 @@ hasCallSync\(\): boolean
 
 | 类型                   | 说明          |
 | ---------------------- |-------------|
-| boolean | 返回判断是否存在通话。 |
+| boolean | 返回判断是否存在通话。返回true表示当前存在通话，false表示当前不存在通话。 |
 
 **示例：**
 
@@ -652,7 +652,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 
 | 类型                   | 说明                                                |
 | ---------------------- | --------------------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。返回true表示是紧急电话号码，返回false表示不是紧急电话号码。 |
 
 **错误码：**
 
@@ -2549,7 +2549,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 import { BusinessError } from '@ohos.base';
 
 call.startDTMF(1, "0", (err: BusinessError) => {
-    id (err) {
+    if (err) {
         console.error(`startDTMF fail, err->${JSON.stringify(err)}`);
     } else {
         console.log(`startDTMF success.`);
@@ -4840,7 +4840,7 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明                                   |
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回判断Ims开关是否启用的结果。           |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回判断Ims开关是否启用的结果。true表示Ims开关启用，false表示未启用。 |
 
 **错误码：**
 
@@ -5294,7 +5294,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 
 | 类型                   | 说明                                          |
 | ---------------------- | --------------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回是否可以设置呼叫转移时间。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回是否可以设置呼叫转移时间。返回true表示可以设置，返回false表示不可以设置。 |
 
 **错误码：**
 
@@ -5731,6 +5731,24 @@ IP多媒体系统调用模式。
 | callId          | number                                   | 是   | 呼叫Id         |
 | callState       | [DetailedCallState](#detailedcallstate7) | 是   | 详细呼叫状态   |
 | conferenceState | [ConferenceState](#conferencestate7)     | 是   | 会议状态       |
+| voipCallAttribute | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息       |
+
+## VoipCallAttribute<sup>11+</sup>
+
+VoIP通话信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+|      名称       | 类型               | 必填 | 说明           |
+| --------------- | ------------------- | ---- | -------------- |
+| voipCallId   | string    | 是   | VoIP通话唯一Id       |
+| userName  | string    | 是   | 用户昵称 |
+| userProfile       | [image.PixelMap](js-apis-image.md#pixelmap7)    | 是   | 用户头像图片  |
+| extensionId      | string     | 是   |  三方应用进程Id  |
+| abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
+| voipBundleName    | string     | 是   |  三方应用包名  |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -5761,6 +5779,7 @@ IP多媒体系统调用模式。
 | TYPE_IMS      | 1    | IMS通话      |
 | TYPE_OTT      | 2    | OTT通话      |
 | TYPE_ERR_CALL | 3    | 其他类型通话 |
+| TYPE_VOIP<sup>11+</sup> | 4    | VoIP通话 |
 
 ## VideoStateType<sup>7+</sup>
 

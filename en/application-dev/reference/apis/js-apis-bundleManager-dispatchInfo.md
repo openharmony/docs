@@ -1,6 +1,6 @@
 # DispatchInfo
 
-The **DispatchInfo** module provides version information about the **dispatchInfo** struct and dispatch API. The information can be obtained through [freeInstall.getDispatchInfo](js-apis-freeInstall.md).
+The **DispatchInfo** module provides version information about the **dispatchInfo** struct and dispatch API. The information can be obtained through [freeInstall.getDispatchInfo](js-apis-freeInstall.md#getdispatchinfo).
 
 > **NOTE**
 >

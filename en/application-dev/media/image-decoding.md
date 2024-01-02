@@ -67,15 +67,25 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
       // Code on the FA model
       // Import the resourceManager module.
       import resourceManager from '@ohos.resourceManager';
-      const resourceMgr = await resourceManager.getResourceManager();
+      import {BusinessError} from '@ohos.base';
+      resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
+         console.log("Succeeded in getting resourceManager")
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get resourceManager")
+      });
       ```
 
       The method of obtaining the resource manager varies according to the application model. After obtaining the resource manager, call **resourceMgr.getRawFileContent()** to obtain the array buffer of the resource file.
 
       ```ts
-      const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-      // Obtain the array buffer of the image.
-      const buffer = fileData.buffer;
+      resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
+         console.log("Succeeded in getting RawFileContent")
+         // Obtain the array buffer of the image.
+         const buffer = fileData.buffer;
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get RawFileContent")
+      });
+      
       ```
    - Method 4: Obtain the raw file descriptor of the resource file through the resource manager. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9-1).
         
@@ -90,13 +100,23 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
       // Code on the FA model
       // Import the resourceManager module.
       import resourceManager from '@ohos.resourceManager';
-      const resourceMgr = await resourceManager.getResourceManager();
+      import {BusinessError} from '@ohos.base';
+      resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
+         console.log("Succeeded in getting resourceManager")
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get resourceManager")
+      });
       ```
 
       The method of obtaining the resource manager varies according to the application model. After obtaining the resource manager, call **resourceMgr.getRawFd()** to obtain the raw file descriptor of the resource file.
 
       ```ts
-      const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
+      
+      resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
+         console.log("Succeeded in getting resourceManager")
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get resourceManager")
+      });
       ```
 
 
@@ -127,12 +147,17 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
 4. Set **DecodingOptions** and decode the image to obtain a pixel map.
      
    ```ts
+   import {BusinessError} from '@ohos.base';
    let decodingOptions : image.DecodingOptions = {
        editable: true,
        desiredPixelFormat: 3,
    }
    // Create a pixel map and perform rotation and scaling on it.
-   const pixelMap : image.PixelMap = await imageSource.createPixelMap(decodingOptions);
+   imageSource.createPixelMap(decodingOptions).then((pixelMap : image.PixelMap) => {
+      console.log("Succeeded in creating PixelMap")
+   }).catch((err : BusinessError) => {
+      console.error("Failed to create PixelMap")
+   });
    ```
 
    After the decoding is complete and the pixel map is obtained, you can perform subsequent [image processing](image-transformation.md).
@@ -155,23 +180,34 @@ Read [Image](../reference/apis/js-apis-image.md#imagesource) for APIs related to
 2. Create an **ImageSource** instance.
    - Create an **ImageSource** instance by using the array buffer of **test.jpg** in the **rawfile** folder.
      ```ts
-     const fileData : Uint8Array = await resourceMgr.getRawFileContent('test.jpg');
-     // Obtain the array buffer of the image.
-     const buffer = fileData.buffer;
-
-     const imageSource : image.ImageSource = image.createImageSource(buffer);
+      resourceMgr.getRawFileContent('test.jpg').then((fileData : Uint8Array) => {
+         console.log("Succeeded in getting RawFileContent")
+         // Obtain the array buffer of the image.
+         const buffer = fileData.buffer;
+         const imageSource : image.ImageSource = image.createImageSource(buffer);
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get RawFileContent")
+      });
      ```
 
    - Create an **ImageSource** instance by using the raw file descriptor of **test.jpg** in the **rawfile** folder.
      ```ts
-     const rawFileDescriptor : resourceManager.RawFileDescriptor = await resourceMgr.getRawFd('test.jpg');
-
-     const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
+      resourceMgr.getRawFd('test.jpg').then((rawFileDescriptor : resourceManager.RawFileDescriptor) => {
+         console.log("Succeeded in getting RawFd")
+         const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
+      }).catch((err : BusinessError) => {
+         console.error("Failed to get RawFd")
+      });
      ```
 3. Create a **PixelMap** instance.
      
    ```ts
-   const pixelMap : image.PixelMap = await imageSource.createPixelMap();
+   imageSource.createPixelMap().then((image.PixelMap) => {
+      console.log("Succeeded in creating PixelMap")
+      const imageSource : image.ImageSource = image.createImageSource(rawFileDescriptor);
+   }).catch((err : BusinessError) => {
+      console.error("Failed to creating PixelMap")
+   });
    ```
 
 4. Release the **PixelMap** instance.

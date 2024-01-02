@@ -195,7 +195,7 @@ EXTERN_C_END
 
 **JS侧调用**
 
-1. 打开src\main\ets\pages\index.ets, 导入"libentry.so", 修改"libentry.so"中文件, 如下所示:
+1. 打开src\main\cpp\types\libentry\index.d.ts（其中libentry根据工程名生成），导入如下引用文件:
 
     ```js
     import image from '@ohos.multimedia.image'
@@ -203,8 +203,8 @@ EXTERN_C_END
     export const createPixelMapTest: () => image.PixelMap;
     export const transform: (a: image.PixelMap) => image.PixelMap;
     ```
-    
-2. 调用Native接口，传入JS的资源对象。示例如下:
+
+2. 打开src\main\ets\pages\index.ets, 导入"libentry.so"(根据工程名生成)；调用Native接口，传入JS的资源对象。示例如下:
 
     ```js
     import testNapi from 'libentry.so'

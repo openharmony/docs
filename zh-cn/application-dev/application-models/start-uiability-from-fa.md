@@ -11,18 +11,17 @@
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[EntryAbility]';
 
-featureAbility.startAbility(
-    {
-        want: {
-            bundleName: "com.ohos.stage",
-            abilityName: "EntryAbility"
-        }
-    }
-).then((code) => {
-    console.info('Ability verify code: ' + JSON.stringify(code));
+let want: Want = {
+  bundleName: 'ohos.samples.etsclock',
+  abilityName: 'MainAbility'
+};
+featureAbility.startAbility({ want }).then((code) => {
+  console.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
 }).catch((error: BusinessError) => {
-    console.error("Ability failed: " + JSON.stringify(error));
+  console.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -37,17 +36,17 @@ startAbilityForResult和startAbility的区别是当UIAbility销毁的时候会�
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[EntryAbility]';
 
-featureAbility.startAbilityForResult(
-    {
-        want: {
-            bundleName: "com.ohos.stage",
-            abilityName: "com.ohos.stage.EntryAbility"
-        }
-    }).then((result) => {
-    console.info('Ability verify result: ' + JSON.stringify(result));
+let want: Want = {
+  bundleName: 'ohos.samples.etsclock',
+  abilityName: 'MainAbility'
+};
+featureAbility.startAbilityForResult({ want }).then((result) => {
+  console.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
 }).catch((error: BusinessError) => {
-    console.error("Ability failed: " + JSON.stringify(error));
+  console.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -60,17 +59,17 @@ featureAbility.startAbilityForResult(
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[ServiceAbility]';
 
-particleAbility.startAbility(
-    {
-        want: {
-            bundleName: "com.ohos.stage",
-            abilityName: "com.ohos.stage.EntryAbility"
-        }
-    }
-).then(() => {
-    console.info('Start Ability successfully.');
+let want: Want = {
+  bundleName: 'ohos.samples.etsclock',
+  abilityName: 'MainAbility'
+};
+particleAbility.startAbility({ want }).then(() => {
+  console.info(TAG, 'StartUIAbility Start Ability successfully.');
 }).catch((error: BusinessError) => {
-    console.error("Ability failed: " + JSON.stringify(error));
+  console.error(TAG, 'StartUIAbility Ability failed: ' + JSON.stringify(error));
 });
+console.info(TAG, 'StartUIAbility ServiceAbility onStart');
 ```

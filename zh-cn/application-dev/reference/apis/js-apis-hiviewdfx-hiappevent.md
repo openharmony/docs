@@ -42,7 +42,6 @@ addProcessor(processor: Processor): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
@@ -51,7 +50,7 @@ try {
     };
     let id: number = hiAppEvent.addProcessor(processor);
     hilog.info(0x0000, 'hiAppEvent', `addProcessor event was successful, id=${id}`);
-} catch (error: BusinessError) {
+} catch (error) {
     hilog.info(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
 }
 ```
@@ -111,7 +110,6 @@ removeProcessor(id: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
@@ -120,7 +118,7 @@ try {
     };
     let id: number = hiAppEvent.addProcessor(processor);
     hiAppEvent.removeProcessor(id);
-} catch (error: BusinessError) {
+} catch (error) {
     hilog.info(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
 }
 ```
@@ -320,12 +318,11 @@ setUserId(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserId('key', 'value');
-} catch (error: BusinessError) {
+} catch (error) {
   hilog.error(0x0000, 'hiAppEvent', `failed to setUseId event, code=${error.code}`);
 }
 ```
@@ -359,14 +356,13 @@ getUserId(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserId('key', 'value');
 try {
   let value: string = hiAppEvent.getUserId('key');
   hilog.info(0x0000, 'hiAppEvent', `getUseId event was successful, userId=${value}`);
-} catch (error: BusinessError) {
+} catch (error) {
   hilog.error(0x0000, 'hiAppEvent', `failed to getUseId event, code=${error.code}`);
 }
 ```
@@ -395,12 +391,11 @@ setUserProperty(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserProperty('key', 'value');
-} catch (error: BusinessError) {
+} catch (error) {
   hilog.info(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
 }
 ```
@@ -434,14 +429,13 @@ getUserProperty(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserProperty('key', 'value');
 try {
   let value: string = hiAppEvent.getUserProperty('key');
   hilog.info(0x0000, 'hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);
-} catch (error: BusinessError) {
+} catch (error) {
   hilog.error(0x0000, 'hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
 }
 ```

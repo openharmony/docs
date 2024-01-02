@@ -163,15 +163,16 @@ The application file paths obtained by the preceding contexts are different.
 
 ### Obtaining and Modifying Encryption Levels
 
-Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection. For private files, such as alarms and wallpapers, the application must place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password. For sensitive files, such as personal privacy data, the application must place them in a directory with the user-level encryption (EL2).
+Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection.
 
-In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. The proper use of EL1 and the EL2 can efficiently improve the security.
+In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. For details about the permissions required for a specific encryption level, see **AreaMode** in [ContextConstant](../reference/apis/js-apis-app-ability-contextConstant.md).
 
-> **NOTE**
->
-> - AreaMode.EL1: device-level encryption. Directories with this encryption level are accessible after the device is powered on.
->
-> - AreaMode.EL2: user-level encryption. Directories with this encryption level are accessible only after the device is powered on and the password is entered (for the first time).
+<ul>
+<li>EL1: For private files, such as alarms and wallpapers, the application can place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password.</li>
+<li>EL2: For sensitive files, such as personal privacy data, the application can place them in a directory with the user-level encryption (EL2).</li>
+<li>EL3: For step recording, file download, or music playback that needs to read, write, and create files when the screen is locked, the application can place these files in EL3.</li>
+<li>EL4: For files that are related to user security information and do not need to be read, written, or created when the screen is locked, the application can place them in EL4.</li>
+</ul>
 
 You can obtain and set the encryption level by reading and writing the **area** attribute in [Context](../reference/apis/js-apis-inner-application-context.md).
 
@@ -184,15 +185,19 @@ import Want from '@ohos.app.ability.Want';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // Before storing common information, switch the encryption level to EL1.
-    if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
-      this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
-    }
+    this.context.area = contextConstant.AreaMode.EL1; // Change the encryption level.
     // Store common information.
 
     // Before storing sensitive information, switch the encryption level to EL2.
-    if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
-      this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
-    }
+    this.context.area = contextConstant.AreaMode.EL2; // Change the encryption level.
+    // Store sensitive information.
+
+    // Before storing sensitive information, switch the encryption level to EL3.
+    this.context.area = contextConstant.AreaMode.EL3; // Change the encryption level.
+    // Store sensitive information.
+
+    // Before storing sensitive information, switch the encryption level to EL4.
+    this.context.area = contextConstant.AreaMode.EL4; // Change the encryption level.
     // Store sensitive information.
   }
 }

@@ -248,7 +248,7 @@ The framework supports multiple test case execution modes, which are triggered b
 | random | Whether to execute test cases in random sequence.| **true**/**false** (default value)                                          | -s random true                      |
 | testType     | Type of the test case to be executed.                                     | function, performance, power, reliability, security, global, compatibility, user, standard, safety, resilience| -s testType function                      |
 | level        | Level of the test case to be executed.                                     | 0, 1, 2, 3, 4                                                   | -s level 0                                |
-| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small        |
+| size         | Size of the test case to be executed.                                   | small, medium, large                                        | -s size small        
 | stress       | Number of times that the test case is executed.                                   |  Positive integer                                        | -s stress 1000                            |
 
 **Running Commands**
@@ -289,37 +289,37 @@ Example 5: Execute specified test cases, separated by commas (,).
 Example 6: Set the timeout interval for executing a test case.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner  -s timeout 15000
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s timeout 15000
 ```
 
 Example 7: Enable break-on-error mode.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s breakOnError true
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s breakOnError true
 ```
 
 Example 8: Execute test cases of the specified type.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s testType function
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s testType function
 ```
 
 Example 9: Execute test cases at the specified level.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s level 0
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s level 0
 ```
 
 Example 10: Execute test cases with the specified size.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s size small
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s size small
 ```
 
 Example 11: Execute test cases for a specified number of times.
 
 ```shell  
-  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s stress 1000
+  hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner -s stress 1000
 ```
 
 **Viewing the Test Result**
@@ -353,7 +353,7 @@ OHOS_REPORT_STATUS: consuming=4
 | OHOS_REPORT_STATUS: numtests | Total number of test cases in the test package.|
 | OHOS_REPORT_STATUS: stream | Error information of the current test case.|
 | OHOS_REPORT_STATUS: test| Name of the current test case.|
-| OHOS_REPORT_STATUS_CODE | Execution result of the current test case.<br>**0**: pass.<br>**1**: error.<br>**2**: fail. |
+| OHOS_REPORT_STATUS_CODE | Execution result of the current test case.<br>**0**: pass.<br>**1**: error.<br>**2**: fail.|
 | OHOS_REPORT_STATUS: consuming | Time spent in executing the current test case, in milliseconds.|
 
 - After the commands are executed, the log information similar to the following is displayed:
@@ -444,7 +444,7 @@ Supported operation types: click, double-click, long press, fling, swipe, drag, 
 | doubleClick | Simulates a double-click.                                 | point_x (X coordinate of the double-click point. Mandatory.)<br> point_y (Y coordinate of the double-click point. Mandatory.)                                                                                                                                                   | hdc shell uitest uiInput doubleClick point_x point_y                                |
 | longClick   | Simulates a long-click.                                 | point_x (X coordinate of the long-click point. Mandatory.)<br> point_y (Y coordinate of the long-click point. Mandatory.)                                                                                                                                                   | hdc shell uitest uiInput longClick point_x point_y                                  |
 | fling       | Simulates a fling.                                 | from_x (X coordinate of the fling start point. Mandatory.)<br> from_y (Y coordinate of the fling start point. Mandatory.)<br> to_x (X coordinate of the fling end point. Mandatory.)<br> to_y (Y coordinate of the fling end point. Mandatory.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Optional.)| hdc shell uitest uiInput fling from_x from_y to_x to_y swipeVelocityPps_ stepLength |
-| swipe       | Simulates a swipe.                                 | from_x (X coordinate of the swipe start point. Mandatory.)<br> from_y (Y coordinate of the swipe start point. Mandatory.)<br> to_x (X coordinate of the swipe end point. Mandatory.)<br> to_y (Y coordinate of the swipe end point. Mandatory.)<br> swipeVelocityPps_ (Swipe speed. Value range: 200-40000. Default value: 600. Optional.)                                      | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
+| swipe       | Simulates a swipe.                                 | from_x (X coordinate of the swipe start point. Mandatory.)<br> from_y (Y coordinate of the fling start point. Mandatory.)<br> to_x (X coordinate of the fling end point. Mandatory.)<br> to_y (Y coordinate of the swipe end point. Mandatory.)<br> swipeVelocityPps_ (Swipe speed. Value range: 200-40000. Default value: 600. Optional.)                                      | hdc shell uitest uiInput swipe from_x from_y to_x to_y swipeVelocityPps_            |
 | drag        | Simulates a drag and drop.                                 | from_x (X coordinate of the drag point. Mandatory.)<br> from_y (Y coordinate of the drag point. Mandatory.)<br> to_x (X coordinate of the drop point. Mandatory.)<br> to_y (Y coordinate of the drop point. Mandatory.)<br> swipeVelocityPps_ (Drag speed. Value range: 200-40000. Default value: 600. Optional.)                                      | hdc shell uitest uiInput drag from_x from_y to_x to_y swipeVelocityPps_             |
 | dircFling   | Simulates a directional fling.                             | direction (Fling direction. Value range: [0, 1, 2, 3]. Fling direction: [left, right, up, down]. Default value: 0. Optional.)<br> swipeVelocityPps_ (Fling speed. Value range: 200-40000. Default value: 600. Optional.)<br> stepLength (Fling step. Default value: Fling distance/50. Optional.)                                                                                                                                 | hdc shell uitest uiInput dircFling direction swipeVelocityPps_ stepLength                                       |
 | input       | Simulates text input in a text box.                            | point_x (X coordinate of the text box. Mandatory.)<br> point_y (Y coordinate of the text box. Mandatory.)<br> input (Text entered.)                                                                                                                                | hdc shell uitest uiInput input point_x point_y text                                 |
@@ -597,6 +597,7 @@ The UI test case fails to be executed. The HiLog file contains the error message
 **Solution**
 
 1. Check the case implementation and add the **await** operator to the asynchronous API.
+
 2. Do not execute UI test cases in multiple processes.
 
 #### The failure log contains "does not exist on current UI! Check if the UI has changed after you got the widget object"

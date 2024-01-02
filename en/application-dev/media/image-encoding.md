@@ -60,9 +60,8 @@ Method 1: Use **PixelMap** to encode the image and pack it into a file.
    ```ts
    import {BusinessError} from '@ohos.base'
    import fs from '@ohos.file.fs'
-   import featureAbility from '@ohos.ability.featureAbility'
-   const context : _Context = featureAbility.getContext();
-   const path : string = context.getCacheDir() + "pixel_map.jpg";
+   const context : Context = getContext(this);
+   const path : string = context.cacheDir + "/pixel_map.jpg";
    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(pixelMap, file.fd, packOpts).then(() => {
        // Pack the image into the file.
@@ -76,9 +75,8 @@ Method 2: Use **ImageSource** to encode the image and pack it into a file.
    ```ts
    import {BusinessError} from '@ohos.base'
    import fs from '@ohos.file.fs'
-   import featureAbility from '@ohos.ability.featureAbility'
-   const context : _Context = featureAbility.getContext();
-   const filePath : string = context.getCacheDir() + "/image_source.jpg";
+   const context : Context = getContext(this);
+   const filePath : string = context.cacheDir + "/image_source.jpg";
    let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
    imagePackerApi.packToFile(imageSource, file.fd, packOpts).then(() => {
        // Pack the image into the file.

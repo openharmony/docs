@@ -28,12 +28,12 @@ For the complete list of APIs and example code, see [Ethernet Connection](../ref
 
 | Type| API| Description|
 | ---- | ---- | ---- |
-| ohos.net.ethernet | function setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void | Configures the network attributes of the specified Ethernet network. This API uses an asynchronous callback to return the result.|
-| ohos.net.ethernet | function getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void | Obtains the network attributes of the specified Ethernet network. This API uses an asynchronous callback to return the result.|
-| ohos.net.ethernet | function isIfaceActive(iface: string, callback: AsyncCallback\<number>): void | Checks whether the specified network port is active. This API uses an asynchronous callback to return the result.|
-| ohos.net.ethernet | function getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void; | Obtains the list of all active network ports. This API uses an asynchronous callback to return the result.|
-| ohos.net.ethernet | function on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void; | Subscribes to interface state change events.|
-| ohos.net.ethernet | function off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void; | Unsubscribes from interface state change events.|
+| setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void | Configures the network attributes of the specified Ethernet network. This API uses an asynchronous callback to return the result.|
+| getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void | Obtains the network attributes of the specified Ethernet network. This API uses an asynchronous callback to return the result.|
+| isIfaceActive(iface: string, callback: AsyncCallback\<number>): void | Checks whether the specified network port is active. This API uses an asynchronous callback to return the result.|
+| getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void; | Obtains the list of all active network ports. This API uses an asynchronous callback to return the result.|
+| on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void; | Subscribes to interface state change events.|
+| off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void; | Unsubscribes from interface state change events.|
 
 ## Ethernet Connection – DHCP Mode
 

@@ -21,7 +21,7 @@ import bundleManager from '@ohos.bundle.bundleManager';
 |ohos.permission.CHANGE_ABILITY_ENABLED_STATE| system_basic | 设置禁用使能所需的权限。  |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
-权限等级参考[权限等级说明](../../security/accesstoken-overview.md#权限等级说明)。
+权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
 
 ## 枚举
 
@@ -223,8 +223,8 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
 | 名称           | 值   | 说明            |
 | -------------- | ---- | --------------- |
-| APP            | 0    | 该Bundle是普通应用程序。    |
-| ATOMIC_SERVICE | 1    | 该Bundle是原子化服务。 |
+| APP            | 0    | 该Bundle是应用。    |
+| ATOMIC_SERVICE | 1    | 该Bundle是元服务。 |
 
 ### ProfileType<sup>11+</sup>
 

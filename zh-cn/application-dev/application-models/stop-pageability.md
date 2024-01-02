@@ -16,15 +16,15 @@
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility'
-
-(async () => {
+```
+```ts
+(async (): Promise<void> => {
   try {
-    console.info('Begin to terminateSelf')
-    await featureAbility.terminateSelf()
-    console.info('terminateSelf succeed')
-  } 
-  catch (error) {
-    console.error('terminateSelf failed with ' + error)
+    Logger.info(TAG, 'Begin to terminateSelf');
+    await featureAbility.terminateSelf();
+    Logger.info(TAG, 'terminateSelf succeed');
+  } catch (error) {
+    Logger.error(TAG, 'terminateSelf failed with ' + error);
   }
 })()
 ```

@@ -6,13 +6,25 @@
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## onAppear
 
-## 事件
+onAppear(event: () => void)
 
-| 名称                                             | 支持冒泡 | 功能描述                                                     |
-| ------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onAppear(event:&nbsp;()&nbsp;=&gt;&nbsp;void)    | 否       | 组件挂载显示时触发此回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| onDisAppear(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | 否       | 组件卸载消失时触发此回调。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+组件挂载显示时触发此回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## onDisAppear
+
+onDisAppear(event: () => void)
+
+组件卸载消失时触发此回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ## 示例

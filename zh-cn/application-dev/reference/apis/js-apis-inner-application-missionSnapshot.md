@@ -1,11 +1,11 @@
 # MissionSnapshot
 
-一个任务的任务快照对象，可以通过[getMissionSnapShot](js-apis-app-ability-missionManager.md#missionmanagergetmissionsnapshot)获取。
+一个任务的任务快照对象，可以通过[missionManager.getMissionSnapShot](js-apis-app-ability-missionManager.md#missionmanagergetmissionsnapshot)获取。
 
 > **说明：**
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口均为系统接口，三方应用不支持调用
+> 本模块接口均为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
@@ -20,7 +20,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | ability | ElementName | 是 | 是 | 表示该任务的组件信息。 |
-| snapshot | [image.PixelMap](js-apis-image.md#pixelmap7) | 是 | 是 | 表示任务快照。 |
+| snapshot | [PixelMap](js-apis-image.md#pixelmap7) | 是 | 是 | 表示任务快照。 |
 
 ## 使用说明
 

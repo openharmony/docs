@@ -91,7 +91,7 @@ subscriber.getCode().then((code:number) => {
 
 getCodeSync(): number
 
-getCode的同步接口
+getCode的同步接口。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -171,7 +171,7 @@ subscriber.setCode(1).then(() => {
 
 setCodeSync(code: number): void
 
-setCode的同步接口
+setCode的同步接口。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -250,7 +250,7 @@ subscriber.getData().then((data:string) => {
 
 getDataSync(): string
 
-getData的同步接口
+getData的同步接口。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -442,7 +442,7 @@ try {
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
-以回调形式查询当前公共事件的是否为有序公共事件。
+以回调形式查询当前公共事件是否为有序公共事件。
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
@@ -452,7 +452,7 @@ isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为有序公共事件。 |
+| callback | AsyncCallback\<boolean> | 是   | 当前公共事件是否为有序公共事件。 |
 
 **示例：**
 
@@ -472,7 +472,7 @@ subscriber.isOrderedCommonEvent(isOrderedCB);
 
 isOrderedCommonEvent(): Promise\<boolean>
 
-以Promise形式查询当前公共事件的是否为有序公共事件。
+以Promise形式查询当前公共事件是否为有序公共事件。
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
@@ -482,7 +482,7 @@ isOrderedCommonEvent(): Promise\<boolean>
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| Promise\<boolean> | 当前公共事件的是否为有序公共事件。 |
+| Promise\<boolean> | 当前公共事件是否为有序公共事件。 |
 
 **示例：**
 
@@ -498,7 +498,7 @@ subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
 
 isOrderedCommonEventSync(): boolean
 
-isOrderedCommonEvent的同步接口
+isOrderedCommonEvent的同步接口。
 
 返回true代表是有序公共事件，false代表不是有序公共事件。
 
@@ -508,7 +508,7 @@ isOrderedCommonEvent的同步接口
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| boolean | 当前公共事件的是否为有序公共事件。 |
+| boolean | 当前公共事件是否为有序公共事件。 |
 
 **示例：**
 
@@ -531,7 +531,7 @@ isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 当前公共事件的是否为粘性公共事件。 |
+| callback | AsyncCallback\<boolean> | 是   | 当前公共事件是否为粘性公共事件。 |
 
 **示例：**
 
@@ -561,7 +561,7 @@ isStickyCommonEvent(): Promise\<boolean>
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| Promise\<boolean> | 当前公共事件的是否为粘性公共事件。 |
+| Promise\<boolean> | 当前公共事件是否为粘性公共事件。 |
 
 **示例：**
 
@@ -587,7 +587,7 @@ isStickyCommonEvent的同步接口。
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| boolean | 当前公共事件的是否为粘性公共事件。 |
+| boolean | 当前公共事件是否为粘性公共事件。 |
 
 **示例：**
 
@@ -652,7 +652,7 @@ subscriber.abortCommonEvent().then(() => {
 
 abortCommonEventSync(): void
 
-abortCommonEvent的同步接口
+abortCommonEvent的同步接口。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 
@@ -718,7 +718,7 @@ subscriber.clearAbortCommonEvent().then(() => {
 
 clearAbortCommonEventSync(): void
 
-clearAbortCommonEvent的同步接口
+clearAbortCommonEvent的同步接口。
 
 **系统能力**：`SystemCapability.Notification.CommonEvent`
 

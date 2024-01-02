@@ -23,9 +23,25 @@ To enable drag and drop for other components, you need to set the **draggable** 
 | -------- | -------- | -------- |
 | allowDrop | Array\<[UniformDataType](../apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)> | Type of data that can be dropped to the component.<br>Default value: empty<br>|
 | draggable | boolean | Whether the component is draggable.<br>Default value: **false**<br>|
+| dragPreview<sup>11+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) | Preview displayed when the component is dragged. This attribute has effect for **onDragStart** only.<br>If the component supports drag and drop and a preview is specified through [bindContextMenu](ts-universal-attributes-menu.md#attributes), that specified preview is displayed when the component is dragged. The priority of the background image returned in [onDragStart](ts-universal-events-drag-drop.md#events) is lower than that of the preview set in [dragPreview](ts-universal-attributes-drag-drop.md#attributes). This means that, once set, the latter will be used in place of the former. Because [CustomBuilder](ts-types.md#custombuilder8) can be used only after offline rendering, it may increase performance overhead and latency. In light of this, you are advised to use [PixelMap](../apis/js-apis-image.md#pixelmap7) in [DragItemInfo](ts-universal-events-drag-drop.md#dragiteminfo) to set the preview.<br>Default value: empty<br>|
+| dragPreviewOptions<sup>11+</sup> | [DragPreviewOptions<sup>11+</sup>](#dragpreviewoptions11) | How the background image is processed when the component is dragged.<br>Default value: **DragPreviewMode.AUTO**<br>|
 
+## DragPreviewOptions<sup>11+</sup>
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| mode | [DragPreviewMode](#dragpreviewmode11) | No| How the background image is processed when the component is dragged.<br>Default value: **DragPreviewMode.AUTO**<br>|
+
+## DragPreviewMode<sup>11+</sup>
+
+| Name| Description|
+| -------- | -------- |
+| AUTO  | The system automatically changes the position of the dragged point based on the scenario and automatically scales the background image based on set rules.|
+| DISABLE_SCALE  | The system does not scale the background image.|
 
 ## Example
+### Example 1
+Example of using the **allowDrop** and **draggable** attributes:
 
 ```ts
 // xxx.ets
@@ -143,5 +159,95 @@ struct ImageExample {
 ```
 
 ![dragImage1.jpeg](figures/dragImage1.jpeg)
+
 ![dragImage2.jpeg](figures/dragImage2.jpeg)
+
 ![dragImage3.jpeg](figures/dragImage3.jpeg)
+
+### Example 2
+Example of using the **dragPreview** attribute:
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DragPreviewDemo{
+  @Builder dragPreviewBuilder() {
+    Column() {
+      Text("dragPreview")
+        .width(150)
+        .height(50)
+        .fontSize(20)
+        .borderRadius(10)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+    }
+  }
+
+  @Builder MenuBuilder() {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+      Text("menu item 1")
+        .fontSize(15)
+        .width(100)
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+      Divider()
+        .height(5)
+      Text("menu item 2")
+        .fontSize(15)
+        .width(100)
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .fontColor(Color.Black)
+        .backgroundColor(Color.Pink)
+    }
+    .width(100)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Image('/resource/image.jpeg')
+          .width("30%")
+          .draggable(true)
+          .bindContextMenu(this.MenuBuilder, ResponseType.LongPress)
+          .onDragStart(() => {
+            console.log("Image onDragStart")
+          })
+          .dragPreview(this.dragPreviewBuilder)
+      }
+      .width("100%")
+    }
+    .height("100%")
+  }
+}
+```
+
+![dragPreview.gif](figures/dragPreview.gif)
+
+### Example 3
+Example of using the **dragPreviewOptions** attribute:
+```ts
+// xxx.ets
+@Entry
+@Component
+struct dragPreviewOptionsDemo{
+  build() {
+    Row() {
+      Column() {
+        Image('/resource/image.jpeg')
+          .margin({ top: 10 })
+          .width("100%")
+          .draggable(true)
+          .dragPreviewOptions({ mode: DragPreviewMode.AUTO })
+      }
+      .width("100%")
+      .height("100%")
+    }
+  }
+}
+```
+
+![dragPreviewOptions.gif](figures/dragPreviewOptions.gif)

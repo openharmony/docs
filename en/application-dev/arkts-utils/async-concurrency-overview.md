@@ -1,4 +1,4 @@
-# Asynchronous Concurrency Overview
+# Asynchronous Concurrency Overview (Promise and Async/Await)
 
 
 Promise and async/await are standard JavaScript syntax that provides asynchronous concurrency. Asynchronous code ensures that actions initiated now finish later. It allows the execution of only one segment of code at a time and is therefore applicable to the development of a [single I/O task](single-io-development.md), for example, a network request or a file read/write operation.
@@ -11,7 +11,7 @@ Promise and async/await allow an application to perform other operations without
 
 Promise is an object used to process asynchronous operations. It converts asynchronous operations into a style similar to synchronous operations for easier code writing and maintenance. Promise provides a state mechanism to manage different phases of asynchronous operations. It also provides methods to register callback functions to handle the success or failure of these operations.
 
-Promise has three states: pending, fulfilled, and rejected. After being created, a Promise object is in the pending state and changes to the fulfilled or rejected state when the asynchronous operation is complete.
+Promise has three states: pending, fulfilled, and rejected. A Promise object is in the pending state after being created and changes to the fulfilled or rejected state when the asynchronous operation is complete.
 
 The most common usage for Promise is to instantiate a Promise object through a constructor and pass in a function (usually named **executor**) with two parameters. The **executor** function receives two parameters: **resolve** and **reject**, which represent the callback functions that should be called when the asynchronous operation succeeds and fails, respectively. The code snippet below creates a Promise object and simulates an asynchronous operation:
 
@@ -29,7 +29,7 @@ setTimeout(() => {
 })
 ```
 
-In the preceding code, the **setTimeout** function simulates an asynchronous operation that randomly generates a number one second later. If the random number is greater than 0.5, the **resolve** callback function is executed and the generated random number is passed in as a parameter. Otherwise, the **reject** callback function is executed and an error object is passed in as a parameter.
+In the preceding code, the **setTimeout** function simulates an asynchronous operation that generates a random number one second later. If the random number is greater than 0.5, the **resolve** callback function is executed and the random number is passed in as a parameter. Otherwise, the **reject** callback function is executed and an error object is passed in as a parameter.
 
 After the Promise object is created, you can use the **then** and **catch** methods to register the callback functions for the fulfilled and rejected states. The **then** method can receive two parameters: one for processing the fulfilled state and the other for processing the rejected state. If only one parameter is passed in, the callback function is executed as long as the state changes. The **catch** method receives a callback function to process the failure result, that is, capture the exception thrown when the Promise state changes to **rejected** or the operation fails. The code snippet below shows the use of **then** and **catch** methods:
 
