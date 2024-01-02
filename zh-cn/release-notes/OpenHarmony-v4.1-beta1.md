@@ -480,7 +480,7 @@ OpenHarmony 4.1 Beta1版本开始提供首批API Level 11接口。
 | 软件 | 版本 | 备注 | 
 | -------- | -------- | -------- |
 | OpenHarmony | 4.1 Beta1 | NA | 
-| Public SDK | Ohos_sdk_public 4.1.5.5 (API Version 11 Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
+| Public SDK | Ohos_sdk_public 4.1.5.3 (API Version 11 Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
 | HUAWEI DevEco Studio（可选） | 4.1 Beta1 | OpenHarmony应用开发推荐使用。<br />*获取方式待补充。* | 
 | HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[请点击这里获取](https://device.harmonyos.com/cn/develop/ide#download)。 | 
 
@@ -559,9 +559,9 @@ OpenHarmony 4.1 Beta1版本开始提供首批API Level 11接口。
 | Hi3516解决方案-LiteOS（二进制） | 4.1 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_taurus_LiteOS.tar.gz.sha256) | 316 MB |
 | Hi3516解决方案-Linux（二进制）  | 4.1 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/hispark_taurus_Linux.tar.gz.sha256) | 213 MB |
 | RK3568标准系统解决方案（二进制）        | 4.1 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/dayu200_standard_arm32.tar.gz.sha256) | 	7.9 GB |
-| 标准系统Public SDK包（Mac）             | 4.1.5.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/ohos-sdk-mac-public.tar.gz.sha256) | 926 MB |
-| 标准系统Public SDK包（Mac-M1）             | 4.1.5.5     | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 883 MB |
-| 标准系统Public SDK包（Windows/Linux）   | 4.1.5.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.2 GB |
+| 标准系统Public SDK包（Mac）             | 4.1.5.3      | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/ohos-sdk-mac-public.tar.gz.sha256) | 926 MB |
+| 标准系统Public SDK包（Mac-M1）             | 4.1.5.3     | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 883 MB |
+| 标准系统Public SDK包（Windows/Linux）   | 4.1.5.3      | [站点](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.1-Beta1/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.2 GB |
 
 ## 更新说明
 
