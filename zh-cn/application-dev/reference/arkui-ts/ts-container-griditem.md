@@ -22,14 +22,7 @@ GridItem(value?: GridItemOptions)
 
 | 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有GridItemStyle枚举类型的style参数。 |
-
-### GridItem<sup>(deprecated)</sup>
-
-GridItem()
-
-从API version 11开始, 该接口不再维护，推荐使用GridItem<sup>11+</sup>。
-
+| value  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有[GridItemStyle](#griditemstyle11枚举说明)枚举类型的style参数。 |
 
 ## 属性
 
@@ -67,14 +60,14 @@ GridItem()
 
 | 名称  | 参数类型                                  | 必填 | 描述                                                         |
 | ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [GridItemStyle](#griditemstyle11枚举说明) | 否   | 设置GridItem样式。<br/>默认值: GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
+| style | [GridItemStyle<sup>11+</sup>](#griditemstyle11枚举说明) | 否   | 设置GridItem样式。<br/>默认值: GridItemStyle.NONE<br/>设置为GridItemStyle.NONE时无样式。<br/>设置为GridItemStyle.PLAIN时，显示Hover、Press态样式。 |
 
 ## GridItemStyle<sup>11+</sup>枚举说明
 
-| 名称  | 描述                     |
-| ----- | ------------------------ |
-| NONE  | 无样式。                 |
-| PLAIN | 显示Hover、Press态样式。 |
+| 名称  |枚举值| 描述                     |
+| ----- |----| ------------------------ |
+| NONE  |  0 | 无样式。                 |
+| PLAIN |  1 | 显示Hover、Press态样式。 |
 
 > **说明：**
 >
@@ -85,7 +78,7 @@ GridItem()
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | GridItem元素被鼠标框选的状态改变时触发回调。<br/>isSelected：进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
+| onSelect<sup>8+</sup>(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) | GridItem元素被鼠标框选的状态改变时触发回调。<br/>isSelected：进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
 
 ## 示例
 

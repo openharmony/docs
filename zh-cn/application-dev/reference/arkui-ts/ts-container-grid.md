@@ -40,7 +40,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | 参数名   | 参数类型                                    | 必填 | 参数描述                                                     |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他[滚动类组件](ts-container-list.md)绑定同一个滚动控制对象。 |
-| layoutOptions<sup>10+</sup> | GridLayoutOptions | 否 | 滚动Grid布局选项。 |
+| layoutOptions<sup>10+</sup> | [GridLayoutOptions<sup>10+</sup>](#gridlayoutoptions10) | 否 | 滚动Grid布局选项。 |
 
 ## GridLayoutOptions<sup>10+</sup>
 
@@ -62,14 +62,14 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | -------- | -------- | -------- |
 | columnsTemplate | string | 设置当前网格布局列的数量或最小列宽值，不设置时默认1列。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'&nbsp;是将父组件分3列，将父组件允许的宽分为4等份，第一列占1份，第二列占1份，第三列占2份。<br/>columnsTemplate('repeat(auto-fit, track-size)')是设置最小列宽值为track-size，自动计算列数和实际列宽。<br/>columnsTemplate('repeat(auto-fill, track-size)')是设置固定列宽值为track-size，自动计算列数。<br/>其中repeat、auto-fit、auto-fill为关键字。track-size为列宽，支持的单位包括px、vp、%或有效数字，track-size至少包括一个有效列宽。<br/>**说明：** <br/>设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。 |
 | rowsTemplate | string | 设置当前网格布局行的数量或最小行高值，不设置时默认1行。<br/>例如,&nbsp;'1fr&nbsp;1fr&nbsp;2fr'是将父组件分三行，将父组件允许的高分为4等份，第一行占1份，第二行占一份，第三行占2份。<br/>rowsTemplate('repeat(auto-fit, track-size)')是设置最小行高值为track-size，自动计算行数和实际行高。<br/>rowsTemplate('repeat(auto-fill, track-size)')是设置固定行高值为track-size，自动计算行数。<br/>其中repeat、auto-fit、auto-fill为关键字。track-size为行高，支持的单位包括px、vp、%或有效数字，track-size至少包括一个有效行高。<br/>**说明：** <br/>设置为'0fr'，则这一行的行宽为0，这一行GridItem不显示。设置为其他非法值，按固定1行处理。 |
-| columnsGap | [Length](ts-types.md#length) | 设置列与列的间距。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
-| rowsGap | [Length](ts-types.md#length) | 设置行与行的间距。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
+| columnsGap | [Length](ts-types.md#length) | 设置列与列的间距。<br/>默认值：0<br/><br/>单位：vp<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
+| rowsGap | [Length](ts-types.md#length) | 设置行与行的间距。<br/>默认值：0<br/><br/>单位：vp<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | scrollBar      | [BarState](ts-appendix-enums.md#barstate) | 设置滚动条状态。<br/>默认值：BarState.Off<br/>**说明：** <br/>API version 9及以下版本默认值为BarState.Off，API version 10的默认值为BarState.Auto。 |
 | scrollBarColor | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 设置滚动条的颜色。 |
 | scrollBarWidth | string \| number    | 设置滚动条的宽度。宽度设置后，滚动条正常状态和按压状态宽度均为滚动条的宽度值。<br/>默认值：4<br/>单位：vp |
 | cachedCount | number                                   | 设置预加载的GridItem的数量，只在[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)中生效。具体使用可参考[减少应用白块说明](../../performance/arkts-performance-improvement-recommendation.md#减少应用滑动白块)。<br/>默认值：1<br/>**说明：** <br>设置缓存后会在Grid显示区域上下各缓存cachedCount*列数个GridItem。<br/>[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的GridItem会被释放。<br/>设置为小于0的值时，按默认值显示。 |
 | editMode <sup>8+</sup>                   | boolean | 设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部[GridItem](ts-container-griditem.md)。<br/>默认值：flase |
-| layoutDirection<sup>8+</sup>             | [GridDirection](#griddirection8枚举说明) | 设置布局的主轴方向。<br/>默认值：GridDirection.Row |
+| layoutDirection<sup>8+</sup>             | [GridDirection<sup>8+</sup>](#griddirection8枚举说明) | 设置布局的主轴方向。<br/>默认值：GridDirection.Row |
 | maxCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最大列数<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最大行数。<br/>默认值：Infinity<br/>**说明：** <br/>当maxCount小于minCount时，maxCount和minCount都按默认值处理。<br/>设置为小于1的值时，按默认值显示。 |
 | minCount<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示可显示的最小列数。<br/>当layoutDirection是Column/ColumnReverse时，表示可显示的最小行数。<br/>默认值：1<br/>**说明：** <br/>设置为小于1的值时，按默认值显示。 |
 | cellLength<sup>8+</sup> | number  | 当layoutDirection是Row/RowReverse时，表示一行的高度。<br/>当layoutDirection是Column/ColumnReverse时，表示一列的宽度。<br/>默认值：第一个元素的大小 |
@@ -77,7 +77,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 | supportAnimation<sup>8+</sup> | boolean | 是否支持动画。当前支持GridItem拖拽动画。<br/>默认值：false<br/>**说明：**<br/> 仅在滚动模式下（只设置rowsTemplate、columnsTemplate其中一个）支持动画。|
 | edgeEffect<sup>10+</sup> | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect), <br/>options?:[EdgeEffectOptions<sup>11+</sup>](ts-container-scroll.md#edgeeffectoptions11对象说明) | 设置边缘滑动效果。<br/>\- value: 设置Grid组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：EdgeEffect.None<br/>\- options：设置组件内容大小小于组件自身时，是否开启滑动效果。<br/>默认值：false|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   设置是否支持滚动手势，当设置为false时，无法通过手指或者鼠标滚动，但不影响控制器的滚动接口。<br/>默认值：true      |
-| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](ts-container-scroll.md#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
+| nestedScroll<sup>10+</sup>                 | [NestedScrollOptions<sup>10+</sup>](ts-container-scroll.md#nestedscrolloptions10对象说明)         | 嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。 |
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | 设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。<br/>默认值：非可穿戴设备为0.6，可穿戴设备为0.9<br/>**说明：** <br/>设置为小于等于0的值时，按默认值处理 |
 
 Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为以下三种布局模式：
@@ -109,12 +109,12 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 
 ## GridDirection<sup>8+</sup>枚举说明
 
-| 名称   | 描述                                   |
-| ------ | -------------------------------------- |
-| Row  | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
-| Column | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
-| RowReverse    | 主轴布局方向沿水平方向反向布局，即自右往左先填满一行，再去填下一行。 |
-| ColumnReverse   | 主轴布局方向沿垂直方向反向布局，即自下往上先填满一列，再去填下一列。 |
+| 名称   |枚举值| 描述                                   |
+| ------ |------| -------------------------------------- |
+| Row  |  0  | 主轴布局方向沿水平方向布局，即自左往右先填满一行，再去填下一行。 |
+| Column |  1  | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
+| RowReverse    |  2  | 主轴布局方向沿水平方向反向布局，即自右往左先填满一行，再去填下一行。 |
+| ColumnReverse   |  3  | 主轴布局方向沿垂直方向反向布局，即自下往上先填满一列，再去填下一列。 |
 
 > **说明：** 
 >
@@ -127,16 +127,16 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 | 名称 | 功能描述 |
 | -------- | -------- |
 | onScrollIndex(event: (first: number, last<sup>10+</sup>: number) => void) | 当前网格显示的起始位置/终止位置的item发生变化时触发。网格初始化时会触发一次。<br/>- first: 当前显示的网格起始位置的索引值。<br/>- last: 当前显示的网格终止位置的索引值。<br/>Grid显示区域上第一个子组件/最后一个组件的索引值有变化就会触发。 |
-| onItemDragStart(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 被拖拽网格元素索引值。<br/>**说明：** <br/>返回void表示不能拖拽。<br/>手指长按GridItem时触发该事件。<br/>由于拖拽检测也需要长按，且事件处理机制优先触发子组件事件，GridItem上绑定LongPressGesture时无法触发拖拽；如有长按和拖拽同时使用的需求可以使用通用拖拽事件。 |
-| onItemDragEnter(event: (event: ItemDragInfo) => void) | 拖拽进入网格元素范围内时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。 |
-| onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
-| onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
-| onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。 |
-| onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute) | 当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。<br/>- index: 当前显示的网格起始位置的索引值。<br/>- offset: 当前显示的网格起始位置元素相对网格显示起始位置的偏移。<br/>- ComputedBarAttribute: 见[ComputedBarAttribute对象说明](#computedbarattribute对象说明)。  |
+| onItemDragStart<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number) => (() => any) \| void) | 开始拖拽网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 被拖拽网格元素索引值。<br/>**说明：** <br/>返回void表示不能拖拽。<br/>手指长按GridItem时触发该事件。<br/>由于拖拽检测也需要长按，且事件处理机制优先触发子组件事件，GridItem上绑定LongPressGesture时无法触发拖拽；如有长按和拖拽同时使用的需求可以使用通用拖拽事件。 |
+| onItemDragEnter<sup>8+</sup>(event: (event: ItemDragInfo) => void) | 拖拽进入网格元素范围内时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。 |
+| onItemDragMove<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
+| onItemDragLeave<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
+| onItemDrop<sup>8+</sup>(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。 |
+| onScrollBarUpdate<sup>10+</sup>(event: (index: number, offset: number) => ComputedBarAttribute) | 当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。<br/>- index: 当前显示的网格起始位置的索引值。<br/>- offset: 当前显示的网格起始位置元素相对网格显示起始位置的偏移。<br/>- ComputedBarAttribute: 见[ComputedBarAttribute对象说明](#computedbarattribute对象说明)。  |
 | onScroll<sup>10+</sup>(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void) | 网格滑动时触发。<br/>- scrollOffset: 每帧滚动的偏移量，Grid的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>- scrollState: 当前滑动状态。 |
 | onReachStart<sup>10+</sup>(event: () => void)          | 网格到达起始位置时触发。<br/>**说明：** <br>Grid初始化时会触发一次，Grid滚动到起始位置时触发一次。Grid边缘效果为弹簧效果时，划动经过起始位置时触发一次，回弹回起始位置时再触发一次。 |
 | onReachEnd<sup>10+</sup>(event: () => void)            | 网格到达末尾位置时触发。<br/>**说明：** <br/>Grid边缘效果为弹簧效果时，划动经过末尾位置时触发一次，回弹回末尾位置时再触发一次。 |
-| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动Grid、Grid惯性划动时每帧开始时触发；Grid超出边缘回弹、使用滚动控制器的滚动不会触发。<br/>**说明：** <br/>当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量，当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
+| onScrollFrameBegin<sup>10+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain: number }) | 网格开始滑动时触发，事件参数传入即将发生的滑动量，事件处理函数中可根据应用场景计算实际需要的滑动量并作为事件处理函数的返回值返回，网格将按照返回值的实际滑动量进行滑动。<br/>\- offset：即将发生的滑动量，单位vp。<br/>\- state：当前滑动状态。<br/>- offsetRemain：实际滑动量，单位vp。<br/>触发该事件的条件：手指拖动Grid、Grid惯性划动时每帧开始时触发；Grid超出边缘回弹、使用滚动控制器的滚动不会触发。<br/>**说明：** <br/>当gridDirection的值为Axis.Vertical时，返回垂直方向滑动量，当gridDirection的值为Axis.Horizontal时，返回水平方向滑动量。 |
 | onScrollStart<sup>10+</sup>(event: () => void) | 网格滑动开始时触发。手指拖动网格或网格的滚动条触发的滑动开始时，会触发该事件。使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画开始时会触发该事件。 |
 | onScrollStop<sup>10+</sup>(event: () => void)          | 网格滑动停止时触发。手指拖动网格或网格的滚动条触发的滑动，手指离开屏幕并且滑动停止时会触发该事件；使用[Scroller](ts-container-scroll.md#scroller)滑动控制器触发的带动画的滑动，动画停止会触发该事件。 |
 
