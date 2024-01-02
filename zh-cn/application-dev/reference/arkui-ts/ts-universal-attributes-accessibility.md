@@ -20,7 +20,7 @@ accessibilityGroup(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 无障碍组，设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
 
-## accessibilityText<sup>11</sup>
+## accessibilityText<sup>11+</sup>
 
 accessibilityText(value: string)
 
