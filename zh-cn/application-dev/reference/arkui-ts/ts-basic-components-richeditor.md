@@ -795,7 +795,7 @@ struct Index {
   }
 }
 ```
-![richeditor](figures/richeditor.mp4)
+![richeditor](figures/richeditor.gif)
 
 ### 示例2
 
