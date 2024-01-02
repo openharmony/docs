@@ -12,8 +12,8 @@
 
 **变更影响**
 
-该变更为不兼容变更。</br>
-1、使用blendMode接口时，开发者调用接口枚举发生变化。枚举NORMAL变为NONE，SOURCE_IN变为SRC_IN, DESTINATION_IN变为DST_IN。</br>
+该变更为不兼容变更。<br>
+1、使用blendMode接口时，开发者调用接口枚举发生变化。枚举NORMAL变为NONE，SOURCE_IN变为SRC_IN, DESTINATION_IN变为DST_IN。<br>
 2、接口行为由当前控件背景与子节点内容进行混合改为当前控件内容（含子节点内容）与下方画布（可能为离屏画布）已有内容进行混合。
 
 **API Level**
@@ -30,8 +30,8 @@ blendMode接口枚举和接口行为进行非兼容性变更。
 
 **适配指导**
 
-1、开发者需将原先调用枚举由NORMAL改为NONE，SOURCE_IN改为SRC_IN，DESTINATION_IN改为DST_IN。</br>
-2、由于接口行为发生改变，之前的接口内含两次离屏，第一次离屏用来绘制控件背景，第二次离屏用来绘制子节点内容。当前接口仅可支持一次离屏，需调用BlendApplyType.OFFSCREEN来触发离屏，接口默认无离屏。若想与原有接口行为保持一致，接口需调用两次来保持两次离屏。其中第一次离屏用来绘制控件背景，第二次离屏用来绘制子节点内容。</br>
+1、开发者需将原先调用枚举由NORMAL改为NONE，SOURCE_IN改为SRC_IN，DESTINATION_IN改为DST_IN。<br>
+2、由于接口行为发生改变，之前的接口内含两次离屏，第一次离屏用来绘制控件背景，第二次离屏用来绘制子节点内容。当前接口仅可支持一次离屏，需调用BlendApplyType.OFFSCREEN来触发离屏，接口默认无离屏。若想与原有接口行为保持一致，接口需调用两次来保持两次离屏。其中第一次离屏用来绘制控件背景，第二次离屏用来绘制子节点内容。<br>
 示例代码：
 ```ts
 // xxx.ets
