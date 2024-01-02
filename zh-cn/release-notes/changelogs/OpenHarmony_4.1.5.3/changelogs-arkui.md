@@ -244,3 +244,103 @@ UX能力增强。
 1.根据用户需求自定义背景色。
 
 2.根据避让规则进行适配。
+
+## cl.Arkui.6 弹窗类组件支持可显示在子窗口
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX能力增强
+
+**变更影响**
+
+该变更为兼容性变更，为AlterDialog、ActionSheet组件以及promptAction的showDialog和showActionMenu这几种弹窗的接口添加CustomDialog组件已有的showInSubWindow属性，默认值为false。手动设置为true时，该弹窗会创建在子窗口上，可显示在应用窗口外。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5开始。
+
+**变更的接口/组件**
+
+API 11前，只有CustomDialog组件的CustomDialogControllerOptions接口有showInSubWindow属性，showInSubWindow默认值为false，手动设置为true时，该弹窗会创建在子窗口上，可显示在应用窗口外，设置为false时，弹窗创建在应用窗口上。
+
+API 11及以后，AlterDialog、CustomDialog、ActionSheet组件以及promptAction的showDialog和showActionMenu接口创建的弹窗都有showInSubWindow属性，showInSubWindow默认值为false，手动设置为true时，该弹窗会创建在子窗口上，可显示在应用窗口外，设置为false时，弹窗创建在应用窗口上。
+
+**适配指导**
+
+新功能实现兼容原有功能，不涉及适配。
+
+## cl.Arkui.7 CustomDialog组件的蒙层范围的更改
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX一致性需求变更
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，showInSubWindow为true时，CustomDialog的蒙层范围为子窗口范围，showInSubWindow为false时，CustomDialog的蒙层范围为应用窗口范围。
+
+变更后，无论showInSubWindow为true还是false，CustomDialog的蒙层范围都为应用窗口的范围。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5开始。
+
+**变更的接口/组件**
+
+API 11前，showInSubWindow为true时，CustomDialog的蒙层范围为子窗口范围，showInSubWindow为false时，CustomDialog的蒙层范围为应用窗口范围。
+
+API 11及以后，无论showInSubWindow为true还是false，CustomDialog的蒙层范围都为应用窗口的范围。
+
+**适配指导**
+
+原有的showInSubWindow为true时自定义弹窗蒙层范围固定为为子窗口范围，现在showInSubWindow为true时自定义弹窗弹窗蒙层范围是应用窗口的范围，可以通过控制应用窗口的范围控制蒙层范围。
+
+## cl.Arkui.8 弹窗类组件组件的蒙层是否显示的可配置
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX能力增强
+
+**变更影响**
+
+该变更为兼容性变更，为AlterDialog、CustomDialog、ActionSheet组件以及promptAction的showDialog和showActionMenu这几种弹窗的接口添加isModal属性，默认值为true。isModal属性为true时，弹窗有蒙层，isModal属性为false时，弹窗无蒙层。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5开始。
+
+**变更的接口/组件**
+
+API 11前，无isModal属性，所有弹窗都有蒙层。
+
+API 11及以后，添加isModal属性，默认值为true。isModal属性为true时，弹窗有蒙层，isModal属性为false时，弹窗无蒙层。
+
+**适配指导**
+
+新功能实现兼容原有功能，不涉及适配。
