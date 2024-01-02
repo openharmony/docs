@@ -242,10 +242,8 @@ On the target page, call the **router.getParams()** API at the position where pa
 ```ts
 import router from '@ohos.router';
 onPageShow() {
-  const params:Object = router.getParams(); // Obtain the passed parameter object.
-  if (params) {
-    const info:string = params['info']; // Obtain the value of the info attribute.
-  }
+  const params:Record<string,Object> = {'':router.getParams()}; // Obtain the passed parameter object.
+  const info:Object = params['']; // Obtain the value of the info attribute.
 }
 ```
 
