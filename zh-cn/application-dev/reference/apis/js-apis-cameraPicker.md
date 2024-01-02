@@ -1,4 +1,4 @@
-# @ohos.multimedia.camerapicker (相机选择器)
+# @ohos.multimedia.cameraPicker (相机选择器)
 
 > **说明：**
 >
@@ -7,14 +7,14 @@
 ## 导入模块
 
 ```ts
-import picker from '@ohos.multimedia.camerapicker';
+import picker from '@ohos.multimedia.cameraPicker';
 ```
 
-## picker.takePhoto
+## pick
 
-takePhoto(context: Context, photoProfile: PhotoProfileForPicker): Promise\<PickerResult\>
+pick(context: Context, mediaTypes: Array<PickerMediaType>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
-拉起相机选择器，进入拍照模式。操作结束通过Promise获取结果。
+拉起相机选择器，根据媒体类型进入相应的模式。操作结束通过Promise形式获取结果。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -23,7 +23,8 @@ takePhoto(context: Context, photoProfile: PhotoProfileForPicker): Promise\<Picke
 | 参数名          | 类型                                                   | 必填 | 说明                           |
 | -------------- | ------------------------------------------------------ | ---- | ---------------------------- |
 | context        | [BaseContext](js-apis-inner-application-baseContext.md)| 是   | 应用上下文。                   |
-| photoProfile   | [PhotoProfileForPicker](#photoprofileforpicker)        | 是   | photoProfile对象。            |
+| mediaTypes     | [PickerMediaType](#pickermediatype)                    | 是   | 媒体类型。                    |
+| pickerProfile  | [PickerProfile](#pickerprofile)                        | 是   | pickerProfile对象。            |
 
 **返回值：**
 
@@ -38,99 +39,41 @@ takePhoto(context: Context, photoProfile: PhotoProfileForPicker): Promise\<Picke
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 let context = getContext(this) as common.Context;
-let photoProfile: picker.PhotoProfileForPicker = {
-    cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
-    saveUri: ''
-};
-let pickerResult: picker.PickerResult = {
-    resultCode: -1,
-    resultUri: ''
-};
 
-async function takePhoto(context: Context, photoProfile: PhotoProfileForPicker): picker.PickerResult {
+async function pick(context: Context, mediaTypes: Array<picker.PickerMediaType>, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
   try {
-    this.pickerResult = await picker.takePhoto(context, photoProfile);
-    console.log(`takePhoto is called. resultCode: ${this.pickerResult.resultCode}. resultUri: ${this.pickerResult.resultUri}`);
+    let pickerResult: picker.PickerResult = await picker.pick(context, mediaTypes, pickerProfile);
+    console.log(`the pick is called. resultCode: ${pickerResult.resultCode}, resultUri: ${pickerResult.resultUri}`);
   } catch (error) {
     let err = error as BusinessError;
-    console.error(`The takePhoto call failed. error code: ${err.code}`);
+    console.error(`the pick call failed. error code: ${err.code}`);
   }
-  return this.pickerResult;
+  return pickerResult;
 }
 ```
 
-## picker.recordVideo
+## PickerMediaType
 
-recordVideo(context: Context, videoProfile: VideoProfileForPicker): Promise\<PickerResult\>
-
-拉起相机选择器，进入录制模式。操作结束通过Promise获取结果。
+枚举，相机选择器的媒体类型。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-**参数：**
-
-| 参数名          | 类型                                                   | 必填 | 说明                           |
-| -------------- | ------------------------------------------------------ | ---- | ---------------------------- |
-| context        | [BaseContext](js-apis-inner-application-baseContext.md)| 是   | 应用上下文。                   |
-| videoProfile   | [VideoProfileForPicker](#videoprofileforpicker)        | 是   | videoProfile对象。            |
-
-**返回值：**
-
-| 类型                                             | 说明                                                                                   |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Promise\<PickerResult\>                         | 使用Promise的方式获取相机选择器的处理结果。具体类型[PickerResult](#pickerresult)           |
+| 名称             | 值    | 说明     |
+| ----------------| ----  | ---------|
+| PHOTO           | photo | 拍照模式  |
+| VIDEO           | video | 录制模式  |
 
 
-**示例：**
+## PickerProfile
 
-```ts
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
-let context = getContext(this) as common.Context;
-let videoProfile: picker.VideoProfileForPicker = {
-    cameraPosition: camera.CameraPosition.CAMERA_POSITION_FRONT,
-    saveUri: '',
-    videoDuration: 0
-};
-let pickerResult: picker.PickerResult = {
-    resultCode: -1,
-    resultUri: ''
-};
-
-async function recordVideo(context: Context, videoProfile: VideoProfileForPicker): picker.PickerResult {
-  try {
-    this.pickerResult = await picker.recordVideo(context, videoProfile);
-    console.log(`recordVideo is called. resultCode: ${this.pickerResult.resultCode}. resultUri: ${this.pickerResult.resultUri}`);
-  } catch (error) {
-    let err = error as BusinessError;
-    console.error(`The recordVideo call failed. error code: ${err.code}`);
-  }
-  return this.pickerResult;
-}
-```
-
-## PhotoProfileForPicker
-
-相机选择器的照片信息。
+相机选择器的配置信息。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称           | 类型                               | 必填   | 说明         |
 | -------------- | --------------------------------- | ----- | ------------ |
 | position       | [CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
-| saveUri        | string                            | 是    | 保存图片的uri地址。|
-
-
-## VideoProfileForPicker
-
-相机选择器的视频信息。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称           | 类型                               | 必填   | 说明         |
-| -------------- | --------------------------------- | ----- | ------------ |
-| position       | [CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
-| saveUri        | string                            | 是    | 保存视频的uri地址。|
+| saveUri        | string                            | 是    | 保存配置信息的uri地址。|
 | videoDuration  | number                            | 是    | 录制的最大时长。|
 
 
@@ -140,7 +83,8 @@ async function recordVideo(context: Context, videoProfile: VideoProfileForPicker
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称           | 类型                               | 必填   | 说明                            |
-| -------------- | --------------------------------- | ----- | -------------------------------- |
-| resultCode     | number                            | 是    | 处理的结果，成功返回0，失败返回-1。 |
-| resultUri      | string                            | 是    | 返回的uri地址。                   |
+| 名称           | 类型                                | 必填  | 说明                            |
+| -------------- | ---------------------------------- | ----- | -------------------------------- |
+| resultCode     | number                             | 是    | 处理的结果，成功返回0，失败返回-1。 |
+| resultUri      | string                             | 是    | 返回的uri地址。                   |
+| mediaType      | [PickerMediaType](#pickermediatype)| 是    | 返回的媒体类型。                  |
