@@ -3743,7 +3743,7 @@ let address : socket.LocalAddress = {
 client.bind(address).then(() => {
   console.log('bind success')
 }).catch((err) => {
-  console.log('failed to bind: ' + JSON.stringify(err))
+  console.error('failed to bind: ' + JSON.stringify(err))
 })
 ```
 
@@ -3795,7 +3795,7 @@ let connectOpt: socket.LocalConnectOptions = {
 client.connect(connectOpt).then(() => {
   console.log('connect success')
 }).catch((err) => {
-  console.log('connect fail: ' + JSON.stringify(err));
+  console.error('connect fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -3844,7 +3844,7 @@ let connectOpt: socket.LocalConnectOptions = {
 client.connect(connectOpt).then(() => {
   console.log('connect success')
 }).catch((err) => {
-  console.log('connect failed: ' + JSON.stringify(err))
+  console.error('connect failed: ' + JSON.stringify(err))
 })
 let sendOpt: socket.LocalSendOptions = {
   data: 'Hello world!'
@@ -3852,7 +3852,7 @@ let sendOpt: socket.LocalSendOptions = {
 client.send(sendOpt).then(() => {
   console.log('send success')
 }).catch((err) => {
-  console.log('send fail: ' + JSON.stringify(err))
+  console.error('send fail: ' + JSON.stringify(err))
 })
 ```
 
@@ -3885,7 +3885,7 @@ let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 client.close().then(() => {
   console.log('close success');
 }).catch((err) => {
-  console.log('close fail: ' + JSON.stringify(err));
+  console.error('close fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -3923,10 +3923,10 @@ client.connect(connectOpt).then(() => {
   client.getState().then(() => {
     console.log('getState success');
   }).catch((err) => {
-    console.log('getState fail: ' + JSON.stringify(err))
+    console.error('getState fail: ' + JSON.stringify(err))
   });
 }).catch((err) => {
-  console.log('connect fail: ' + JSON.stringify(err));
+  console.error('connect fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -3962,12 +3962,12 @@ let connectOpt: socket.LocalConnectOptions = {
 client.connect(connectOpt).then(() => {
   console.log('connect ok')
 }).catch((err) => {
-  console.log('connect fail: ' + JSON.stringify(err))
+  console.error('connect fail: ' + JSON.stringify(err))
 })
 client.getSocketFd().then((data: number) => {
   console.info("fd: " + data);
 }).catch((err) => {
-  console.info("getSocketFd faile: " + JSON.stringify(err));
+  console.error("getSocketFd faile: " + JSON.stringify(err));
 })
 ```
 
@@ -4022,10 +4022,10 @@ client.connect(connectOpt).then(() => {
   client.setExtraOptions(options).then(() => {
     console.log('setExtraOptions success');
   }).catch((err) => {
-    console.log('setExtraOptions fail: ' + JSON.stringify(err));
+    console.error('setExtraOptions fail: ' + JSON.stringify(err));
   });
 }).catch((err) => {
-  console.log('connect fail: ' + JSON.stringify(err));
+  console.error('connect fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -4068,10 +4068,10 @@ client.connect(connectOpt).then(() => {
   client.getExtraOptions().then((options : socket.ExtraOptionsBase) => {
     console.log('options: ' + JSON.stringify(options));
   }).catch((err) => {
-    console.log('setExtraOptions fail: ' + JSON.stringify(err));
+    console.error('setExtraOptions fail: ' + JSON.stringify(err));
   });
 }).catch((err) => {
-  console.log('connect fail: ' + JSON.stringify(err));
+  console.error('connect fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -4088,7 +4088,7 @@ on(type: 'message', callback: Callback\<{LocalSocketMessageInfo}\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                      |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 是   | 回调函数。                            |
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 是   | 以callback的形式异步返回接收的消息。|
 
 **示例：**
 
@@ -4122,7 +4122,7 @@ off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
 | 参数名   | 类型                                               | 必填 | 说明                                 |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
 | type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 否   | 回调函数。                            |
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 否   | 指定传入on中的callback取消一个订阅。|
 
 **示例：**
 
@@ -4156,7 +4156,7 @@ on(type: 'connect', callback: Callback\<void\>): void;
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。                                             |
-| callback | Callback\<void\> | 是   | 回调函数。                                                  |
+| callback | Callback\<void\> | 是   | 以callback的形式异步返回与服务端连接的结果。                     |
 
 **示例：**
 
@@ -4181,7 +4181,7 @@ off(type: 'connect', callback?: Callback\<void\>): void;
 | 参数名   | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | --------------------------------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。                                             |
-| callback | Callback\<void\> | 是   | 回调函数。                                                  |
+| callback | Callback\<void\> | 是   | 指定传入on中的callback取消一个订阅。                           |
 
 **示例：**
 
@@ -4213,7 +4213,7 @@ on(type: 'close', callback: Callback\<void\>): void;
 | 参数名   | 类型             | 必填 | 说明                        |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。                 |
+| callback | Callback\<void\> | 否   | 以callback的形式异步返回关闭localsocket的结果。|
 
 **示例：**
 
@@ -4242,7 +4242,7 @@ off(type: 'close', callback?: Callback\<void\>): void;
 | 参数名   | 类型             | 必填 | 说明                        |
 | -------- | ---------------- | ---- | ------------------------ |
 | type     | string           | 是   | 订阅LocalSocket的关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。                 |
+| callback | Callback\<void\> | 否   | 取消指定传入on中的callback取消一个订阅。|
 
 **示例：**
 
@@ -4271,7 +4271,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ---------------------------- |
 | type     | string        | 是   | 订阅LocalSocket的error事件。   |
-| callback | ErrorCallback | 是   | 回调函数。                     |
+| callback | ErrorCallback | 是   | 以callback的形式异步返回出现错误的结果。|
 
 **示例：**
 
@@ -4299,7 +4299,7 @@ off(type: 'error', callback?: ErrorCallback): void;
 | 参数名   | 类型          | 必填 | 说明                             |
 | -------- | ------------- | ---- | ----------------------------- |
 | type     | string        | 是   | 取消订阅LocalSocket的error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                      |
+| callback | ErrorCallback | 否   | 指定传入on中的callback取消一个订阅。|
 
 **示例：**
 
@@ -4441,7 +4441,7 @@ let addr: socket.LocalAddress = {
 server.listen(addr).then(() => {
   console.log('listen success');
 }).catch((err) => {
-  console.log('listen fail: ' + JSON.stringify(err));
+  console.error('listen fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -4473,12 +4473,12 @@ let listenAddr: socket.LocalAddress = {
 server.listen(listenAddr).then(() => {
   console.log("listen success");
 }).catch((err) => {
-  console.log("listen fail: " + JSON.stringify(err));
+  console.error("listen fail: " + JSON.stringify(err));
 })
 server.getState().then((data: socket.SocketStateBase) => {
   console.log('getState success: ' + JSON.stringify(data));
 }).catch((err) => {
-  console.log('getState fail: ' + JSON.stringify(err));
+  console.error('getState fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -4523,7 +4523,7 @@ let listenAddr: socket.NetAddress = {
 server.listen(listenAddr).then(() => {
   console.log("listen success");
 }).catch((err) => {
-  console.log("listen fail: " + JSON.stringify(err));
+  console.error("listen fail: " + JSON.stringify(err));
 })
 
 let options: socket.ExtraOptionsBase = {
@@ -4534,7 +4534,7 @@ let options: socket.ExtraOptionsBase = {
 server.setExtraOptions(options).then(() => {
   console.log('setExtraOptions success');
 }).catch((err) => {
-  console.log('setExtraOptions fail: ' + JSON.stringify(err));
+  console.error('setExtraOptions fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -4572,12 +4572,12 @@ let listenAddr: socket.NetAddress = {
 server.listen(listenAddr).then(() => {
   console.log("listen success");
 }).catch((err) => {
-  console.log("listen fail: " + JSON.stringify(err));
+  console.error("listen fail: " + JSON.stringify(err));
 })
 server.getExtraOptions().then((options) => {
   console.log('options: ' + JSON.stringify(options));
 }).catch((err) => {
-  console.log('getExtraOptions fail: ' + JSON.stringify(err));
+  console.error('getExtraOptions fail: ' + JSON.stringify(err));
 });
 ```
 
@@ -4597,7 +4597,7 @@ on(type: 'connect', callback: Callback\<LocalSocketConnection\>): void
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 是   | 回调函数。                            |
+| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 是   | 以callback的形式异步返回接收到客户端连接的结果。|
 
 **错误码：**
 
@@ -4633,7 +4633,7 @@ off(type: 'connect', callback?: Callback\<LocalSocketConnection\>): void
 | 参数名   | 类型                            | 必填 | 说明                                  |
 | -------- | ------------------------------- | ---- | ------------------------------------- |
 | type     | string                          | 是   | 订阅的事件类型。'connect'：连接事件。 |
-| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 否   | 回调函数。                            |
+| callback | Callback\<[LocalSocketConnection](#localsocketconnection11)\> | 否   | 指定传入on的一个callback取消注册。|
 
 **错误码：**
 
@@ -4673,7 +4673,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                           |
+| callback | ErrorCallback | 是   | 以callback的形式异步返回出现错误的结果。|
 
 **错误码：**
 
@@ -4687,7 +4687,7 @@ on(type: 'error', callback: ErrorCallback): void
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('error', (err) => {
-  console.log("on error, err:" + JSON.stringify(err))
+  console.error("on error, err:" + JSON.stringify(err))
 });
 ```
 
@@ -4707,7 +4707,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                           |
+| callback | ErrorCallback | 否   | 指定传入on的一个callback取消订阅。   |
 
 **错误码：**
 
@@ -4721,7 +4721,7 @@ off(type: 'error', callback?: ErrorCallback): void
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 let callback = (err) => {
-  console.log("on error, err:" + JSON.stringify(err));
+  console.error("on error, err:" + JSON.stringify(err));
 }
 server.on('error', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -4788,7 +4788,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.send(sendOptions).then(() => {
     console.log('send success');
   }).catch((err) => {
-    console.log('send fail: ' + JSON.stringify(err));
+    console.error('send fail: ' + JSON.stringify(err));
   });
 });
 ```
@@ -4821,9 +4821,9 @@ import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.close().then(() => {
-  	console.log('close success');
+    console.log('close success');
   }).catch((err) => {
-  	console.log('close fail: ' + JSON.stringify(err));
+    console.error('close fail: ' + JSON.stringify(err));
   });
 });
 ```
@@ -4841,7 +4841,7 @@ on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 | 参数名   | 类型                                              | 必填 | 说明                                     |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。     |
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 是   | 回调函数。LocalSocketMessageInfo为接收到的消息对象。 |
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 是   | 以callback的形式异步返回接收到的来自客户端的消息。 |
 
 **错误码：**
 
@@ -4860,7 +4860,7 @@ let listenAddr: socket.LocalAddress = {
 server.listen(listenAddr).then(() => {
   console.log("listen success");
 }).catch((err) => {
-  console.log("listen fail: " + JSON.stringify(err));
+  console.error("listen fail: " + JSON.stringify(err));
 });
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.on('message', (value: socket.LocalSocketMessageInfo) => {
@@ -4891,7 +4891,7 @@ off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 否   | 回调函数。LocalSocketMessageInfo：接收到的消息。 |
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 否   | 指定传入on的一个callback取消注册。 |
 
 **错误码：**
 
@@ -4934,7 +4934,7 @@ on(type: 'close', callback: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 是   | 回调函数。                          |
+| callback | Callback\<void\> | 是   | 以callback的形式异步返回会话关闭的结果。 |
 
 **错误码：**
 
@@ -4970,7 +4970,7 @@ off(type: 'close', callback?: Callback\<void\>): void
 | 参数名   | 类型             | 必填 | 说明                                |
 | -------- | ---------------- | ---- | ----------------------------------- |
 | type     | string           | 是   | 订阅的事件类型。'close'：关闭事件。 |
-| callback | Callback\<void\> | 否   | 回调函数。                          |
+| callback | Callback\<void\> | 否   | 指定传入on的一个callback取消订阅。 |
 
 **错误码：**
 
@@ -5007,7 +5007,7 @@ on(type: 'error', callback: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。                           |
+| callback | ErrorCallback | 是   | 以callback的形式异步返回出现错误的结果。|
 
 **错误码：**
 
@@ -5022,7 +5022,7 @@ import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.on('error', (err) => {
-    console.log("on error, err:" + JSON.stringify(err))
+    console.error("on error, err:" + JSON.stringify(err))
   });
 });
 ```
@@ -5043,7 +5043,7 @@ off(type: 'error', callback?: ErrorCallback): void
 | 参数名   | 类型          | 必填 | 说明                                 |
 | -------- | ------------- | ---- | ------------------------------------ |
 | type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
-| callback | ErrorCallback | 否   | 回调函数。                           |
+| callback | ErrorCallback | 否   | 指定传入on的一个callback取消订阅。   |
 
 **错误码：**
 
@@ -5056,7 +5056,7 @@ off(type: 'error', callback?: ErrorCallback): void
 ```ts
 import socket from "@ohos.net.socket";
 let callback = (err) => {
-  console.log("on error, err: " + JSON.stringify(err));
+  console.error("on error, err: " + JSON.stringify(err));
 }
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
 server.on('connect', (connection: socket.LocalSocketConnection) => {
