@@ -354,11 +354,11 @@ multicast.dropMembership(addr, (err) => {
 
 3. 注册 LocalSocket 的消息(message)事件，以及一些其它事件(可选)。
 
-5. 连接到指定的本地套接字文件路径。
+4. 连接到指定的本地套接字文件路径。
 
-6. 发送数据。
+5. 发送数据。
 
-7. Socket 连接使用完毕后，取消事件的注册，并关闭套接字。
+6. Socket 连接使用完毕后，取消事件的注册，并关闭套接字。
 
 ```ts
 import socket from '@ohos.net.socket';
