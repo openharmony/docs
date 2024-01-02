@@ -4077,7 +4077,7 @@ client.connect(connectOpt).then(() => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<{MessageReceive}\>): void
+on(type: 'message', callback: Callback\<{LocalSocketMessageInfo}\>): void
 
 订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4088,7 +4088,7 @@ on(type: 'message', callback: Callback\<{MessageReceive}\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                      |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[MessageReceive](#messagereceive11)}\> | 是   | 回调函数。                            |
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 是   | 回调函数。                            |
 
 **示例：**
 
@@ -4108,7 +4108,7 @@ client.on('message', (value) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
+off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
 
 取消订阅LocalSocket连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4122,7 +4122,7 @@ off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
 | 参数名   | 类型                                               | 必填 | 说明                                 |
 | -------- | ------------------------------------------------ | ---- | ----------------------------------- |
 | type     | string                                           | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[MessageReceive](#messagereceive11)}\> | 否   | 回调函数。                            |
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 否   | 回调函数。                            |
 
 **示例：**
 
@@ -4315,7 +4315,7 @@ client.off('error', callback);
 client.off('error');
 ```
 
-## MessageReceive<sup>11+</sup>
+## LocalSocketMessageInfo<sup>11+</sup>
 
 LocalSocket客户端与服务端通信时接收的数据。
 
@@ -4830,7 +4830,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### on('message')<sup>11+</sup>
 
-on(type: 'message', callback: Callback\<MessageReceive\>): void;
+on(type: 'message', callback: Callback\<LocalSocketMessageInfo\>): void;
 
 订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4841,7 +4841,7 @@ on(type: 'message', callback: Callback\<MessageReceive\>): void;
 | 参数名   | 类型                                              | 必填 | 说明                                     |
 | -------- | ----------------------------------------------- | ---- | --------------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。     |
-| callback | Callback\<{[MessageReceive](#messagereceive11)}\> | 是   | 回调函数。MessageReceive为接收到的消息对象。 |
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 是   | 回调函数。LocalSocketMessageInfo为接收到的消息对象。 |
 
 **错误码：**
 
@@ -4863,7 +4863,7 @@ server.listen(listenAddr).then(() => {
   console.log("listen fail: " + JSON.stringify(err));
 });
 server.on('connect', (connection: socket.LocalSocketConnection) => {
-  connection.on('message', (value: socket.MessageReceive) => {
+  connection.on('message', (value: socket.LocalSocketMessageInfo) => {
     const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
@@ -4877,7 +4877,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
 
 ### off('message')<sup>11+</sup>
 
-off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
+off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
 
 取消订阅LocalSocketConnection连接的接收消息事件。使用callback方式作为异步方法。
 
@@ -4891,7 +4891,7 @@ off(type: 'message', callback?: Callback\<{MessageReceive}\>): void
 | 参数名   | 类型                                              | 必填 | 说明                                 |
 | -------- | ----------------------------------------------- | ---- | ----------------------------------- |
 | type     | string                                          | 是   | 订阅的事件类型。'message'：接收消息事件。 |
-| callback | Callback\<{[MessageReceive](#messagereceive11)}\> | 否   | 回调函数。MessageReceive：接收到的消息。 |
+| callback | Callback\<{[LocalSocketMessageInfo](#localsocketmessageinfo11)}\> | 否   | 回调函数。LocalSocketMessageInfo：接收到的消息。 |
 
 **错误码：**
 
