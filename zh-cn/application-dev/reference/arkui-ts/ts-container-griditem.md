@@ -22,7 +22,7 @@ GridItem(value<sup>11+</sup>?: GridItemOptions<sup>11+</sup>)
 
 | 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value<sup>11+</sup>  | [GridItemOptions<sup>11+</sup>](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有[GridItemStyle](#griditemstyle11枚举说明)枚举类型的style参数。 |
+| value<sup>11+</sup>  | [GridItemOptions<sup>11+</sup>](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有[GridItemStyle<sup>11+</sup>](#griditemstyle11枚举说明)枚举类型的style参数。 |
 
 ## 属性
 
