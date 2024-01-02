@@ -33,7 +33,7 @@
     - [Developing Audio Call (ArkTS)](audio-call-development.md)
   - [Video Playback (ArkTS)](video-playback.md)
   - [Video Recording (ArkTS)](video-recording.md)
-  - [Screen Capture (C/C++)](avscreen-capture.md)
+  - [Screen Capture (for System Applications Only) (C/C++)](avscreen-capture.md)
   - [Obtaining Audio/Video Metadata (ArkTS)](avmetadataextractor.md)
   - [Obtaining Video Thumbnails (ArkTS)](avimagegenerator.md)
   - Audio and Video Codecs
@@ -66,7 +66,7 @@
   - Camera Best Practices (ArkTS)
     - [Sample Implementation of Camera Photographing (ArkTS)](camera-shooting-case.md)
     - [Sample Implementation of Camera Recording (ArkTS)](camera-recording-case.md)
-    - [Taking Photos in Portrait Mode (ArkTS)](camera-mode.md)
+    - [Taking Photos in Portrait Mode (for System Applications Only) (ArkTS)](camera-mode.md)
     - [Dual-Channel Preview (ArkTS)](camera-dual-channel-preview.md)
     - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](camera-performance-improvement.md)
   - Camera Development (C/C++)

@@ -1,13 +1,10 @@
 # 对所有应用开放
 
-
 在申请目标权限前，建议开发者先阅读[申请应用权限](determine-application-mode.md)，对权限的工作流程有基本了解后，再结合以下权限字段的具体说明，判断应用能否申请目标权限，提高开发效率。
-
 
 ## system_grant（系统授权）权限列表
 
 以下权限的授权方式均为[system_grant](app-permission-mgmt-overview.md#system_grant系统授权)，申请方式请参考[声明权限](declare-permissions.md)。
-
 
 ### ohos.permission.USE_BLUETOOTH
 
@@ -33,7 +30,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.PREPARE_APP_TERMINATE
 
 允许应用关闭前执行自定义的预关闭动作。
@@ -45,7 +41,6 @@
 **ACL使能**：true
 
 **起始版本**：10
-
 
 ### ohos.permission.PRINT
 
@@ -59,7 +54,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.DISCOVER_BLUETOOTH
 
 允许应用配置本地蓝牙，查找远端设备且与之配对连接。
@@ -71,7 +65,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.ACCELEROMETER
 
@@ -85,7 +78,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.ACCESS_BIOMETRIC
 
 允许应用使用生物特征识别能力进行身份认证。
@@ -97,7 +89,6 @@
 **ACL使能**：true
 
 **起始版本**：6
-
 
 ### ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -111,7 +102,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.GET_NETWORK_INFO
 
 允许应用获取数据网络信息。
@@ -123,7 +113,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.GET_WIFI_INFO
 
@@ -137,7 +126,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.GYROSCOPE
 
 允许应用读取陀螺仪传感器的数据。
@@ -149,7 +137,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.INTERNET
 
@@ -163,7 +150,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.KEEP_BACKGROUND_RUNNING
 
 允许Service Ability在后台持续运行。
@@ -175,7 +161,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.NFC_CARD_EMULATION
 
@@ -189,7 +174,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.NFC_TAG
 
 允许应用读写Tag卡片。
@@ -201,7 +185,6 @@
 **ACL使能**：false
 
 **起始版本**：7
-
 
 ### ohos.permission.PRIVACY_WINDOW
 
@@ -215,7 +198,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.PUBLISH_AGENT_REMINDER
 
 允许该应用使用后台代理提醒。
@@ -227,7 +209,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.SET_NETWORK_INFO
 
@@ -241,7 +222,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.SET_WIFI_INFO
 
 允许应用配置Wi-Fi设备。
@@ -253,7 +233,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.VIBRATE
 
@@ -267,7 +246,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 允许应用根据包名清理相关后台进程。
@@ -279,7 +257,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.COMMONEVENT_STICKY
 
@@ -293,7 +270,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.MODIFY_AUDIO_SETTINGS
 
 允许应用修改音频设置。
@@ -305,7 +281,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.RUNNING_LOCK
 
@@ -319,7 +294,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.SET_WALLPAPER
 
 允许应用设置壁纸。
@@ -332,7 +306,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.ACCESS_CERT_MANAGER
 
 允许应用进行查询证书及私有凭据等操作。
@@ -344,7 +317,6 @@
 **ACL使能**：false
 
 **起始版本**：9
-
 
 ### ohos.permission.hsdr.HSDR_ACCESS
 
@@ -382,11 +354,33 @@
 
 **起始版本**：11
 
+### ohos.permission.STORE_PERSISTENT_DATA
+
+允许应用存储持久化的数据，该数据直到设备恢复出厂设置或重装系统才会被清除。
+
+**权限级别**: normal
+
+**授权方式**：system_grant
+
+**ACL使能**: false
+
+**起始版本**: 11
+
+### ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
+
+允许应用使用外接设备增强功能。
+
+**权限级别**: normal
+
+**授权方式**：system_grant
+
+**ACL使能**：false
+
+**起始版本**：11
 
 ## user_grant（用户授权）权限列表
 
 以下权限的授权方式均为[user_grant（用户授权）](app-permission-mgmt-overview.md#user_grant用户授权)，申请方式请参考[声明权限](declare-permissions.md) &gt; [向用户申请授权](request-user-authorization.md) 。
-
 
 ### ohos.permission.ACCESS_BLUETOOTH
 
@@ -400,7 +394,6 @@
 
 **起始版本**：10
 
-
 ### ohos.permission.MEDIA_LOCATION
 
 允许应用访问用户媒体文件中的地理位置信息。
@@ -412,7 +405,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.APP_TRACKING_CONSENT
 
@@ -426,7 +418,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.ACTIVITY_MOTION
 
 允许应用读取用户的运动状态。
@@ -438,7 +429,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.CAMERA
 
@@ -452,7 +442,6 @@
 
 **起始版本**：9
 
-
 ### ohos.permission.DISTRIBUTED_DATASYNC
 
 允许不同设备间的数据交换。
@@ -464,7 +453,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
 
 ### ohos.permission.LOCATION_IN_BACKGROUND
 
@@ -480,7 +468,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.LOCATION
 
 允许应用获取设备位置信息。
@@ -495,7 +482,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.APPROXIMATELY_LOCATION
 
 允许应用获取设备模糊位置信息。
@@ -507,7 +493,6 @@
 **ACL使能**：false
 
 **起始版本**：9
-
 
 ### ohos.permission.MICROPHONE
 
@@ -521,7 +506,6 @@
 
 **起始版本**：8
 
-
 ### ohos.permission.READ_CALENDAR
 
 允许应用读取日历信息。
@@ -533,7 +517,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.READ_HEALTH_DATA
 
@@ -547,7 +530,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.READ_MEDIA
 
 允许应用读取用户外部存储中的媒体文件信息。
@@ -560,7 +542,6 @@
 
 **起始版本**：7
 
-
 ### ohos.permission.WRITE_CALENDAR
 
 允许应用添加、移除或更改日历活动。
@@ -572,7 +553,6 @@
 **ACL使能**：true
 
 **起始版本**：8
-
 
 ### ohos.permission.WRITE_MEDIA
 
