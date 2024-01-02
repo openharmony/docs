@@ -37,7 +37,11 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 2. 创建编解码器实例对象。
 
-   应用可以通过名称或媒体类型创建解码器。
+   应用可以通过名称或媒体类型创建解码器。示例中的变量说明如下：
+
+   - videoDec：视频解码器实例的指针；
+   - capability：编解码器能力查询实例的指针；
+   - OH_AVCODEC_MIMETYPE_VIDEO_AVC：AVC格式视频码流的名称。
 
    ``` c++
     // 通过 codecname 创建解码器, 应用有特殊需求，比如选择支持某种分辨率规格的解码器，可先查询capability，再根据codec name创建解码器。

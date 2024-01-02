@@ -18,16 +18,23 @@
 
 ## 接口
 
-Video(value: {src?: string | Resource, currentProgressRate?: number | string | PlaybackSpeed, previewUri?: string | PixelMap | Resource, controller?: VideoController}) 
+Video(value: VideoOptions)
 
 **参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| value | [VideoOptions](#videooptions对象说明) | 是 | 视频信息。 |
+
+##  VideoOptions对象说明
 
 | 参数名              | 参数类型                                                     | 必填 | 参数描述                                                     |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | src                 | string \| [Resource](ts-types.md#resource)                            | 否   | 视频播放源的路径，支持本地视频路径和网络路径。<br>支持在resources下面的video或rawfile文件夹里放置媒体资源。<br>支持dataability://的路径前缀，用于访问通过Data Ability提供的视频路径，具体路径信息详见 [DataAbility说明](../../application-models/dataability-overview.md)。<br/>- 支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源。需要保证目录包路径下的文件有可读权限。<br/>**说明：**<br/>视频支持的格式是：mp4、mkv、webm、TS。 |
-| currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;PlaybackSpeed<sup>8+</sup> | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
-| previewUri          | string&nbsp;\|PixelMap&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。                 |
+| currentProgressRate | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[PlaybackSpeed<sup>8+</sup>](#playbackspeed8枚举说明) | 否   | 视频播放倍速。<br/>**说明：**<br/>number取值仅支持：0.75，1.0，1.25，1.75，2.0。<br/>默认值：1.0 \| PlaybackSpeed.Speed_Forward_1_00_X |
+| previewUri          | string&nbsp;\| [PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。                     |
+
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
 
@@ -139,7 +146,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 | 参数名      | 参数类型     | 必填   | 参数描述           |
 | -------- | -------- | ---- | -------------- |
 | value    | number   | 是    | 视频播放进度位置，单位为s。 |
-| seekMode | SeekMode | 是    | 跳转模式。          |
+| seekMode | [SeekMode](#seekmode8枚举说明) | 是    | 跳转模式。          |
 
 ## SeekMode<sup>8+</sup>枚举说明
 

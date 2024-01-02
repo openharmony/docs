@@ -328,7 +328,7 @@ getRequestCallback(want: Want): RequestCallback
 ## RequestResult
 模态弹框请求结果，包含结果码ResultCode和请求结果ResultWant。
 
-## 属性
+### 属性
 
 **模型约束**：此接口仅可在Stage模型下使用。
 

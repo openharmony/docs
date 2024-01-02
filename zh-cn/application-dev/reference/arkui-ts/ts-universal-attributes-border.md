@@ -6,18 +6,95 @@
 >
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  从API Version 9开始，父节点的border显示在子节点内容之上。
 
+## border
 
-## 属性
+border(value: BorderOptions)
 
-| 名称         | 参数类型                                                     | 描述                                                         |
-| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| border       | {<br/>width?:&nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)<sup>9+</sup>,<br/>color?: &nbsp;[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup>,<br/>radius?: &nbsp;[Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup>,<br/>style?:&nbsp;[BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9对象说明)<sup>9+</sup><br/>} | 统一边框样式设置接口。<br/>-&nbsp;width：设置边框宽度。<br/>-&nbsp;color：设置边框颜色。<br/>-&nbsp;radius：设置边框圆角半径。<br/>-&nbsp;style：设置边框样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。 |
-| borderStyle  | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 设置元素的边框样式。<br/>默认值：BorderStyle.Solid<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| borderWidth  | [Length](ts-types.md#length) \| [EdgeWidths](#edgewidths9对象说明)<sup>9+</sup> | 设置元素的边框宽度，不支持百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| borderColor  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors9对象说明)<sup>9+</sup> | 设置元素的边框颜色。<br/>默认值：Color.Black<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup> | 设置元素的边框圆角半径，不支持百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+设置边框样式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                    | 必填 | 说明                                                         |
+| ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [BorderOptions](#borderoptions对象说明) | 是   | 统一边框样式设置接口。<br/>**说明：** <br/>边框宽度默认值为0，即不显示边框。<br/>从API Version 9开始，父节点的border显示在子节点内容之上。 |
+
+## borderStyle
+
+borderStyle(value: BorderStyle | EdgeStyles)
+
+设置元素的边框线条样式。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                               |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
+| value  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 是   | 设置元素的边框样式。<br/>默认值：BorderStyle.Solid |
+
+## borderWidth
+
+borderWidth(value: Length | EdgeWidths)
+
+设置边框的宽度。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                               |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)<sup>9+</sup> | 是   | 设置元素的边框宽度，不支持百分比。 |
+
+## borderColor
+
+borderColor(value: ResourceColor | EdgeColors)
+
+设置边框的颜色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                         |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup> | 是   | 设置元素的边框颜色。<br/>默认值：Color.Black |
+
+## borderRadius
+
+borderRadius(value: Length | BorderRadiuses)
+
+设置边框的圆角。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| value  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup> | 是   | 设置元素的边框圆角半径，不支持百分比。 |
+
+## BorderOptions对象说明
+
+| 名称   | 参数类型                                                     | 必填 | 描述               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| width  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[EdgeWidths](#edgewidths9对象说明)<sup>9+</sup> | 否   | 设置边框宽度。     |
+| color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors9对象说明)<sup>9+</sup> | 否   | 设置边框颜色。     |
+| radius | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](#borderradiuses9对象说明)<sup>9+</sup> | 否   | 设置边框圆角半径。 |
+| style  | [BorderStyle](ts-appendix-enums.md#borderstyle)&nbsp;\|&nbsp;[EdgeStyles](#edgestyles9对象说明)<sup>9+</sup> | 否   | 设置边框样式。     |
 
 ## EdgeWidths<sup>9+</sup>对象说明
 

@@ -480,7 +480,7 @@ struct IndexPage {
 
 ### 继承Map类
 
-\@ObjectLink支持\@Observed装饰继承Map类和Map类型，在下面的示例中，myMap类型为MyMap<number, string>，点击Button改变myMap的属性，视图会随之刷新。
+\@ObjectLink支持\@Observed装饰继承Map类和Map类型，在下面的示例中，myMap类型为MyMap\<number, string\>，点击Button改变myMap的属性，视图会随之刷新。
 
 ```ts
 @Observed
@@ -558,7 +558,7 @@ struct MapSampleNestedChild {
 
 ### 继承Set类
 
-\@ObjectLink支持\@Observed装饰继承Set类和Set类型，在下面的示例中，mySet类型为MySet<number>，点击Button改变mySet的属性，视图会随之刷新。
+\@ObjectLink支持\@Observed装饰继承Set类和Set类型，在下面的示例中，mySet类型为MySet\<number\>，点击Button改变mySet的属性，视图会随之刷新。
 
 ```ts
 @Observed

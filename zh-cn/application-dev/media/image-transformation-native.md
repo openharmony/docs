@@ -100,7 +100,7 @@ EXTERN_C_END
 
 **JS侧调用**
 
-1. 打开src\main\ets\pages\index.ets, 导入"libentry.so", 修改"libentry.so"中文件, 如下所示:
+1. 打开src\main\cpp\types\libentry\index.d.ts(其中libentry根据工程名生成)，导入如下引用文件:
     ```js
     import image from '@ohos.multimedia.image'
     export const add:(a: number, b: number) => image.PixelMap;
@@ -109,8 +109,8 @@ EXTERN_C_END
     export const testAccessPixels: (a: image.PixelMap) => image.PixelMap;
     export const testUnAccessPixels: (a: image.PixelMap) => image.PixelMap;
     ```
-    
-2. 调用Native接口，传入JS的资源对象。示例如下:
+
+2. 打开src\main\ets\pages\index.ets, 导入"libentry.so"(根据工程名生成)；调用Native接口，传入JS的资源对象。示例如下:
 
     ```js
     import testNapi from 'libentry.so'
@@ -134,16 +134,15 @@ EXTERN_C_END
                 image.createPixelMap(color, opts)
                 .then( (pixelmap : image.PixelMap) => {
                     this._PixelMap = pixelmap;
+                    testNapi.testGetImageInfo(this._PixelMap);
+                    console.info("Test GetImageInfo success");
+
+                    testNapi.testAccessPixels(this._PixelMap);
+                    console.info("Test AccessPixels success");
+
+                    testNapi.testUnAccessPixels(this._PixelMap);
+                    console.info("Test UnAccessPixels success");
                 })
-
-                testNapi.testGetImageInfo(this._PixelMap);
-                console.info("Test GetImageInfo success");
-
-                testNapi.testAccessPixels(this._PixelMap);
-                console.info("Test AccessPixels success");
-
-                testNapi.testUnAccessPixels(this._PixelMap);
-                console.info("Test UnAccessPixels success");
             })
         }
         .width('100%')
