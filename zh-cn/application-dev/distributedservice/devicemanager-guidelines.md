@@ -224,12 +224,12 @@
 
 4. 创建设备管理实例，设备管理实例是分布式设备管理方法的调用入口，并注册设备上下线回调。
 
-  ```ts
-  try {
-    let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
-    dmInstance.on('deviceStateChange', data => this.log("discoverSuccess on:" + JSON.stringify(data)));
-  } catch(err) {
-    let e: BusinessError = err as BusinessError;
-    console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
-  }
-  ``` 
+   ```ts
+   try {
+     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
+     dmInstance.on('deviceStateChange', data => this.log("discoverSuccess on:" + JSON.stringify(data)));
+   } catch(err) {
+     let e: BusinessError = err as BusinessError;
+     console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
+   }
+   ``` 
