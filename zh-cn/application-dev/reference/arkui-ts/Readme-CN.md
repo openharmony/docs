@@ -78,6 +78,7 @@
   - [Component3D](ts-basic-components-component3d.md)
   - [Checkbox](ts-basic-components-checkbox.md)
   - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
+  - [ContainerSpan](ts-basic-components-containerspan.md)
   - [DataPanel](ts-basic-components-datapanel.md)
   - [DatePicker](ts-basic-components-datepicker.md)
   - [Divider](ts-basic-components-divider.md)

@@ -9,7 +9,7 @@
 
 ## 子组件
 
-可以包含[Span](ts-basic-components-span.md)和[ImageSpan](ts-basic-components-imagespan.md)子组件。
+可以包含[Span](ts-basic-components-span.md)、[ImageSpan](ts-basic-components-imagespan.md)、[ContainerSpan](ts-basic-components-containerspan.md)子组件。
 
 
 ## 接口
