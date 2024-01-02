@@ -1612,6 +1612,57 @@ struct Index {
 </html>
 ```
 
+### javaScriptOnDocumentEnd<sup>11+</sup>
+
+javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
+
+**参数：**
+
+| 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述               |
+| ------- | ----------------------------------- | ---- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的的ScriptItem数组 |
+
+**ets示例：**
+
+  ```ts
+// xxx.ets
+import Webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct Index {
+  controller: Webview.WebviewController = new Webview.WebviewController()
+
+  build() {
+    Column({ space: 20 }) {
+      Web({
+        src: "www.baidu.com",
+        controller: this.controller
+      })
+        .javaScriptAccess(true)
+        .onConsole((event) => {
+          console.log("onConsole:" + event?.message.getMessage());
+          return false
+        })
+        .javaScriptOnDocumentEnd([
+          {
+            script: "console.log ('injected js is run:javaScriptOnDocumentEnd===============');",
+            scriptRules: ["*"]
+          },
+        ])
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
 ### layoutMode<sup>11+</sup>
 
 layoutMode(mode: WebLayoutMode)
