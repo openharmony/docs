@@ -65,7 +65,7 @@ The local time of different countries and regions varies according to their long
 
 ### Dual-Clock Application
 
-1. Import the **i18n** module.
+1. Import the **i18n** and **intl** modules.
    ```ts
    import I18n from '@ohos.i18n';
    import Intl from '@ohos.intl';

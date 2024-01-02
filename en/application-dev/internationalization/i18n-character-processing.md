@@ -7,7 +7,7 @@ Character rules vary greatly in different languages, and it is usually difficult
 ## How to Develop
 
 
-### Character Attribute
+### Character Type Identification Using Character Attributes
 
 Character attributes are used to determine the character type, for example, digit, letter, or space, and check whether a character is of the right-to-left (RTL) language or whether a character is an ideographic character (for example, Chinese, Japanese, or Korean).
 
