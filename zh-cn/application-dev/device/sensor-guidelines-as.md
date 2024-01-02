@@ -24,7 +24,6 @@
 
    ```ts
    import sensor from '@ohos.sensor';
-   import { BusinessError } from '@ohos.base';
    ```
 
 2. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
