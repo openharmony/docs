@@ -3494,8 +3494,6 @@ on(type:'playPrevious', callback: () => void): void
 
 设置播放上一首命令监听事件。注册该监听，说明应用支持上一首指令。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
-
 每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
