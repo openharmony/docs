@@ -33,35 +33,38 @@ onSuccess(): void
   import hilog from '@ohos.hilog';
   import window from '@ohos.window';
   import { BusinessError } from '@ohos.base';
-
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let storage = new LocalStorage(
-      {
-        'message': "Index Page",
-        'context': this.context,
-      });
-    windowStage.loadContent('pages/Index', storage, (err, data) => {
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-
-      // 获取应用主窗口。
-      windowStage.getMainWindow((err: BusinessError, data: window.Window) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+  import { UIContext } from '@ohos.arkui.UIContext';
+  import common from '@ohos.app.ability.common';
+  
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage): void {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+      let localStorageData: Record<string, string | common.UIAbilityContext> = {
+          'message': "AutoFill Page",
+          'context': this.context,
+      };
+      let storage = new LocalStorage(localStorageData);
+      windowStage.loadContent('pages/Index', storage, (err, data) => {
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
           return;
         }
-        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        // get UIContext instance
-        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-        PersistentStorage.PersistProp("uiContext", uiContext);
-      })
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
+        // Obtain the main window.
+        windowStage.getMainWindow((err: BusinessError, data: window.Window) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // get UIContext instance.
+          let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+          PersistentStorage.persistProp("uiContext", uiContext);
+        })
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
   }
   ```
 
@@ -83,7 +86,7 @@ onSuccess(): void
   
         Button('onSuccess')
           .onClick(() => {
-            let uiContext = AppStorage.Get<UIContext>("uiContext");
+            let uiContext = AppStorage.get<UIContext>("uiContext");
             console.log("uiContext: ", JSON.stringify(uiContext));
             autoFillManager.requestAutoSave(uiContext, {
               onSuccess: () => {
@@ -114,35 +117,38 @@ onFailure(): void
   import hilog from '@ohos.hilog';
   import window from '@ohos.window';
   import { BusinessError } from '@ohos.base';
+  import { UIContext } from '@ohos.arkui.UIContext';
+  import common from '@ohos.app.ability.common';
 
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let storage = new LocalStorage(
-      {
-        'message': "Index Page",
-        'context': this.context,
-      });
-    windowStage.loadContent('pages/Index', storage, (err, data) => {
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-
-      // 获取应用主窗口。
-      windowStage.getMainWindow((err: BusinessError, data: window.Window) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage): void {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+      let localStorageData: Record<string, string | common.UIAbilityContext> = {
+          'message': "AutoFill Page",
+          'context': this.context,
+      };
+      let storage = new LocalStorage(localStorageData);
+      windowStage.loadContent('pages/Index', storage, (err, data) => {
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
           return;
         }
-        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        // get UIContext instance
-        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-        PersistentStorage.PersistProp("uiContext", uiContext);
-      })
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
+        // Obtain the main window.
+        windowStage.getMainWindow((err: BusinessError, data: window.Window) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // get UIContext instance.
+          let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+          PersistentStorage.persistProp("uiContext", uiContext);
+        })
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
   }
   ```
 
@@ -164,7 +170,7 @@ onFailure(): void
   
         Button('onFailure')
           .onClick(() => {
-            let uiContext = AppStorage.Get<UIContext>("uiContext");
+            let uiContext = AppStorage.get<UIContext>("uiContext");
             console.log("uiContext: ", JSON.stringify(uiContext));
             autoFillManager.requestAutoSave(uiContext, {
               onFailure: () => {
@@ -208,35 +214,38 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
   import hilog from '@ohos.hilog';
   import window from '@ohos.window';
   import { BusinessError } from '@ohos.base';
-
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    let storage = new LocalStorage(
-      {
-        'message': "Index Page",
-        'context': this.context,
-      });
-    windowStage.loadContent('pages/Index', storage, (err, data) => {
-      if (err.code) {
-        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
-        return;
-      }
-
-      // 获取应用主窗口。
-      windowStage.getMainWindow((err: BusinessError, data: window.Window) => {
-        let errCode: number = err.code;
-        if (errCode) {
-          console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+  import { UIContext } from '@ohos.arkui.UIContext';
+  import common from '@ohos.app.ability.common';
+  
+  export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage: window.WindowStage): void {
+      // Main window is created, set main page for this ability
+      hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+      let localStorageData: Record<string, string | common.UIAbilityContext> = {
+          'message': "AutoFill Page",
+          'context': this.context,
+      };
+      let storage = new LocalStorage(localStorageData);
+      windowStage.loadContent('pages/Index', storage, (err, data) => {
+        if (err.code) {
+          hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
           return;
         }
-        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-        // get UIContext instance
-        let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-        PersistentStorage.PersistProp("uiContext", uiContext);
-      })
-      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
-    });
+        // Obtain the main window.
+        windowStage.getMainWindow((err: BusinessError, data: window.Window) => {
+          let errCode: number = err.code;
+          if (errCode) {
+            console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+            return;
+          }
+          console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+          // get UIContext instance.
+          let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+          PersistentStorage.persistProp("uiContext", uiContext);
+        })
+        hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      });
+    }
   }
   ```
 
@@ -259,7 +268,7 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
   
         Button('requestAutoSave')
           .onClick(() => {
-            let uiContext = AppStorage.Get<UIContext>("uiContext");
+            let uiContext = AppStorage.get<UIContext>("uiContext");
             console.log("uiContext: ", JSON.stringify(uiContext));
             try {
               autoFillManager.requestAutoSave(uiContext, {
