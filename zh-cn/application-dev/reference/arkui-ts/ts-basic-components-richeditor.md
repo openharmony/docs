@@ -724,7 +724,7 @@ struct Index {
               {
                 style:
                 {
-                  fontSize: 50,
+                  fontSize: 30
                 }
               })
             this.controller.addImageSpan($r("app.media.icon"),
