@@ -44,19 +44,19 @@
 
 1. 导入featureAbility模块，相关窗口的API都是通过该模块提供。
   
-  ```ts
-   import featureAbility from '@ohos.ability.featureAbility';
-  ``` 
+   ```ts
+    import featureAbility from '@ohos.ability.featureAbility';
+   ``` 
   
 2. 调用窗口API拉起用户授权弹框
   
-  ```ts
-   let context = featureAbility.getContext();
-   context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 000, function(err, result){
-     console.log("reqPermission" + JSON.stringify(err));
-     console.log("reqPermission" + JSON.stringify(result));
-   });
-  ```
+   ```ts
+    let context = featureAbility.getContext();
+    context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 000, function(err, result){
+      console.log("reqPermission" + JSON.stringify(err));
+      console.log("reqPermission" + JSON.stringify(result));
+    });
+   ```
 
 ## 设备发现开发指导
 
@@ -74,54 +74,54 @@
 
 2. 导入deviceManager模块，所有与设备管理相关的功能API，都是通过该模块提供的。
    
-  ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
-  ```
+   ```ts
+    import deviceManager from '@ohos.distributedDeviceManager';
+   ```
 
 3. 导入BusinessError模块，用于获取deviceManager模块相关接口抛出的错误码。
    
-  ```ts
-   import { BusinessError } from '@ohos.base';
-  ```
+   ```ts
+    import { BusinessError } from '@ohos.base';
+   ```
 
 4. 创建设备管理实例，设备管理实例是分布式设备管理方法的调用入口，并注册发现设备的回调。
 
-  ```ts
-   try {
-     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
-     dmInstance.on('discoverSuccess', data => this.log("discoverSuccess on:" + JSON.stringify(data)));
-     dmInstance.on('discoverFail', data => this.log("discoverFail on:" + JSON.stringify(data)));
-   } catch(err) {
-     let e: BusinessError = err as BusinessError;
-     console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
-   }
-  ``` 
+   ```ts
+    try {
+      let dmInstance = deviceManager.createDeviceManager('ohos.samples.jshelloworld');
+      dmInstance.on('discoverSuccess', data => this.log("discoverSuccess on:" + JSON.stringify(data)));
+      dmInstance.on('discoverFail', data => this.log("discoverFail on:" + JSON.stringify(data)));
+    } catch(err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('createDeviceManager errCode:' + e.code + ',errMessage:' + e.message);
+    }
+   ``` 
 
 5. 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
    
-  ```ts
-   interface DiscoverParam {
-     discoverTargetType: number;
-   }
-   interface FilterOptions {
-     availableStatus: number;
-     discoverDistance: number;
-     authenticationStatus: number;
-     authorizationType: number;
-   }
-   let discoverParam: Record<string, number> = {
-     'discoverTargetType': 1
-   };
-   let filterOptions: Record<string, number> = {
-     'availableStatus': 0
-   };
-   try {
-     dmInstance.startDiscovering(discoverParam, filterOptions);
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error('startDiscovering errCode:' + e.code + ',errMessage:' + e.message);
-   }
-  ```
+   ```ts
+    interface DiscoverParam {
+      discoverTargetType: number;
+    }
+    interface FilterOptions {
+      availableStatus: number;
+      discoverDistance: number;
+      authenticationStatus: number;
+      authorizationType: number;
+    }
+    let discoverParam: Record<string, number> = {
+      'discoverTargetType': 1
+    };
+    let filterOptions: Record<string, number> = {
+      'availableStatus': 0
+    };
+    try {
+      dmInstance.startDiscovering(discoverParam, filterOptions);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('startDiscovering errCode:' + e.code + ',errMessage:' + e.message);
+    }
+   ```
 
 ## 设备绑定开发指导
 
@@ -141,31 +141,31 @@
    
 3. 选择不可信设备id，发起设备绑定。
 
-  ```ts
-   class Data {
-     deviceId: string = '';
-   }
-   let deviceId = 'XXXXXXXX';
-   let bindParam: Record<string, string | number> = {
-     'bindType': 1, 
-     'targetPkgName': 'xxxx',
-     'appName': 'xxxx',
-     'appOperation': 'xxxx',
-     'customDescription': 'xxxx'
-   };
-   try {
-     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
-       if (err) {
-         console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
-         return;
-       }
-       console.info('bindTarget result:' + JSON.stringify(data));
-     });
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error('bindTarget errCode:' + e.code + ',errMessage:' + e.message);
-   }
-  ``` 
+   ```ts
+    class Data {
+      deviceId: string = '';
+    }
+    let deviceId = 'XXXXXXXX';
+    let bindParam: Record<string, string | number> = {
+      'bindType': 1, 
+      'targetPkgName': 'xxxx',
+      'appName': 'xxxx',
+      'appOperation': 'xxxx',
+      'customDescription': 'xxxx'
+    };
+    try {
+      dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
+        if (err) {
+          console.error('bindTarget errCode:' + err.code + ',errMessage:' + err.message);
+          return;
+        }
+        console.info('bindTarget result:' + JSON.stringify(data));
+      });
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('bindTarget errCode:' + e.code + ',errMessage:' + e.message);
+    }
+   ``` 
 
 ## 设备信息查询开发指导
 
@@ -187,14 +187,14 @@
 
 4. 查询周围上线并且可行的设备
 
-  ```ts
-   try {
-     let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
-   }
-  ``` 
+   ```ts
+    try {
+      let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
+    }
+   ``` 
 
 ## 设备上下线监听开发指导
 
