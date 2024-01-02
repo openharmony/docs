@@ -20,7 +20,7 @@ applicationReservedFlag命名过于复杂，不易理解，且当前存储信息
 
 **删除的接口/组件**
 
-| 接口声明 | 废弃说明 |
+| 接口声明 | 删除说明 |
 | --------------- | ------- |
 | enum ApplicationReservedFlag | 不再需要该枚举来获取相应信息。 |
 | readonly applicationReservedFlag: number; | 命名过于复杂，不易理解，当前存储信息没有使用方。 |
