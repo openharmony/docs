@@ -53,8 +53,8 @@
   ```ts
   let context = featureAbility.getContext();
   context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 000, function(err, result){
-      console.log("reqPermission" + JSON.stringify(err));
-      console.log("reqPermission" + JSON.stringify(result));
+    console.log("reqPermission" + JSON.stringify(err));
+    console.log("reqPermission" + JSON.stringify(result));
   });
   ```
 
@@ -101,25 +101,25 @@
    
   ```ts
   interface DiscoverParam {
-      discoverTargetType: number;
+    discoverTargetType: number;
   }
   interface FilterOptions {
-      availableStatus: number;
-      discoverDistance: number;
-      authenticationStatus: number;
-      authorizationType: number;
+    availableStatus: number;
+    discoverDistance: number;
+    authenticationStatus: number;
+    authorizationType: number;
   }
   let discoverParam: Record<string, number> = {
-      'discoverTargetType': 1
+    'discoverTargetType': 1
   };
   let filterOptions: Record<string, number> = {
-      'availableStatus': 0
+    'availableStatus': 0
   };
   try {
-      dmInstance.startDiscovering(discoverParam, filterOptions);
+    dmInstance.startDiscovering(discoverParam, filterOptions);
   } catch (err) {
-      let e: BusinessError = err as BusinessError;
-      console.error('startDiscovering errCode:' + e.code + ',errMessage:' + e.message);
+    let e: BusinessError = err as BusinessError;
+    console.error('startDiscovering errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
