@@ -230,3 +230,67 @@ struct OffscreenCanvasExamplePage {
 
 ![zh-cn_image_0000001194032666](figures/offscreen_canvas.png)
 
+
+## OffscreenCanvas支持并发线程绘制
+
+从API version 11开始，应用使用开启Worker线程，支持使用postMessage将OffscreenCanvas实例传到worker中进行绘制，并使用onmessage接收Worker线程发送的绘制结果进行显示。
+
+**示例：**
+
+```ts
+import worker from '@ohos.worker';
+
+@Entry
+@Component
+struct OffscreenCanvasExamplePage {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ts');
+
+  build() {
+    Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
+      Column() {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .borderWidth(5)
+          .borderColor('#057D02')
+          .backgroundColor('#FFFFFF')
+          .onReady(() => {
+            let offCanvas = new OffscreenCanvas(600, 800)
+            this.myWorker.postMessage({ myOffCanvas: offCanvas });
+            this.myWorker.onmessage = (e): void => {
+              if (e.data.myImage) {
+                let image: ImageBitmap = e.data.myImage
+                this.context.transferFromImageBitmap(image)
+              }
+            }
+            
+          })
+      }.width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+Worker线程在onmessage中接收到主线程postMessage发送的OffscreenCanvas，并进行绘制。
+
+**示例：**
+
+```ts
+workerPort.onmessage = (e: MessageEvents) => {
+  if (e.data.myOffCanvas) {
+    let offCanvas: OffscreenCanvas = e.data.myOffCanvas
+    let offContext = offCanvas.getContext("2d")
+    offContext.fillStyle = '#CDCDCD'
+    offContext.fillRect(0, 0, 200, 150)
+    let image = offCanvas.transferToImageBitmap()
+    workerPort.postMessage({ myImage: image });
+  }
+}
+```
+
+![zh-cn_image_0000001194032666](figures/offscreen_canvas_width.png)
+
