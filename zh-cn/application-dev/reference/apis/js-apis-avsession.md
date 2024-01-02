@@ -205,7 +205,7 @@ avSession.getAllSessionDescriptors((err: BusinessError, descriptors: avSession.A
 
 getHistoricalSessionDescriptors(maxSize?: number): Promise\<Array\<Readonly\<AVSessionDescriptor>>>
 
-获取所有会话的相关描述。这些会话已被销毁。结果通过Promise异步回调方式返回。
+获取所有已被销毁的会话相关描述。结果通过Promise异步回调方式返回。
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
 
@@ -256,7 +256,7 @@ avSession.getHistoricalSessionDescriptors().then((descriptors: avSession.AVSessi
 
 getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void
 
-获取所有会话的相关描述。这些会话已被销毁。结果通过callback异步回调方式返回。
+获取所有已被销毁的会话相关描述。结果通过callback异步回调方式返回。
 
 **需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES。
 
@@ -1164,7 +1164,7 @@ avSession.sendSystemControlCommand(avcommand).then(() => {
 | --------------------------- | ---- | ----------- |
 | TYPE_LOCAL      | 0    | 本地设备，包括设备本身的内置扬声器或音频插孔、A2DP 设备。 <br> **系统接口：** 该接口为系统接口。 |
 | TYPE_CAST_PLUS_MIRROR      | 1    | Cast+的镜像模式 <br> **系统接口：** 该接口为系统接口。 |
-| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式，指示媒体正在其他设备上呈现 |
+| TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+的Stream模式。表示媒体正在其他设备上展示。 |
 
 ## avSession.startCastDeviceDiscovery<sup>10+</sup>
 
@@ -1500,7 +1500,7 @@ getAVCastController(sessionId: string, callback: AsyncCallback\<AVCastController
 
 设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。
 
-此功能可在两端使用，以获得相同的控制器进行播放控制。
+此功能在本端和远端都可以使用，通过该接口可以获取一个相同的控制器，进行投播音频的播放控制。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -2990,7 +2990,7 @@ currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSe
 
 getAVCastController(callback: AsyncCallback\<AVCastController>): void
 
-设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于强制转换状态，则控制器将返回 null。
+设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3027,7 +3027,7 @@ currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastContr
 
 getAVCastController(): Promise\<AVCastController>
 
-设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于强制转换状态，则控制器将返回 null。
+设备建立连接后，获取投播控制器。结果通过callback异步回调方式返回。如果 avsession 未处于投播状态，则控制器将返回 null。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3356,11 +3356,9 @@ currentAVSession.destroy((err: BusinessError) => {
 
 on(type: 'play', callback: () => void): void
 
-设置播放命令监听事件。只要注册了，就说明该能力支持此命令。
+设置播放命令监听事件。注册该监听，说明应用支持播放指令。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
-
-每个播放命令只支持注册一个回调，新的回调将替换前一个回调。
+每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3392,11 +3390,9 @@ currentAVSession.on('play', () => {
 
 on(type: 'pause', callback: () => void): void
 
-设置暂停命令监听事件。只要注册了，就说明该能力支持此命令。
+设置暂停命令监听事件。注册该监听，说明应用支持暂停指令。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
-
-每个播放命令只支持注册一个回调，新的回调将替换前一个回调。
+每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3428,11 +3424,9 @@ currentAVSession.on('pause', () => {
 
 on(type:'stop', callback: () => void): void
 
-设置停止命令监听事件。只要注册了，就说明该能力支持此命令。
+设置停止命令监听事件。注册该监听，说明应用支持停止指令。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
-
-每个播放命令只支持注册一个回调，新的回调将替换前一个回调。
+每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3464,11 +3458,9 @@ currentAVSession.on('stop', () => {
 
 on(type:'playNext', callback: () => void): void
 
-设置播放下一首命令监听事件。只要注册了，就说明该能力支持此命令。
+设置播放下一首命令监听事件。注册该监听，说明应用支持下一首指令。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
-
-每个播放命令只支持注册一个回调，新的回调将替换前一个回调。
+每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3500,11 +3492,11 @@ currentAVSession.on('playNext', () => {
 
 on(type:'playPrevious', callback: () => void): void
 
-设置播放上一首命令监听事件。只要注册了，就说明该能力支持此命令。
+设置播放上一首命令监听事件。注册该监听，说明应用支持上一首指令。
 
 如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
 
-每个播放命令只支持注册一个回调，新的回调将替换前一个回调。
+每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3536,11 +3528,9 @@ currentAVSession.on('playPrevious', () => {
 
 on(type: 'fastForward', callback: (time?: number) => void): void
 
-设置快进命令监听事件。只要注册了，就说明该能力支持此命令。
+设置快进命令监听事件。注册该监听，说明应用支持快进指令。
 
-如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
-
-每个播放命令只支持注册一个回调，新的回调将替换前一个回调。
+每个播放命令仅支持注册一个回调，如果注册新的回调，将替换前一个回调。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -3944,6 +3934,8 @@ off(type: 'play', callback?: () => void): void
 
 取消会话播放事件监听，关闭后，不再进行该事件回调。
 
+如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -3973,6 +3965,8 @@ currentAVSession.off('play');
 off(type: 'pause', callback?: () => void): void
 
 取消会话暂停事件监听，关闭后，不再进行该事件回调。
+
+如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4004,6 +3998,8 @@ off(type: 'stop', callback?: () => void): void
 
 取消会话停止事件监听，关闭后，不再进行该事件回调。
 
+如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -4033,6 +4029,8 @@ currentAVSession.off('stop');
 off(type: 'playNext', callback?: () => void): void
 
 取消会话播放下一首事件监听，关闭后，不再进行该事件回调。
+
+如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4064,6 +4062,8 @@ off(type: 'playPrevious', callback?: () => void): void
 
 取消会话播放上一首事件监听，关闭后，不再进行该事件回调。
 
+如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
+
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
@@ -4093,6 +4093,8 @@ currentAVSession.off('playPrevious');
 off(type: 'fastForward', callback?: () => void): void
 
 取消会话快进事件监听，关闭后，不再进行该事件回调。
+
+如果取消回调，则需要取消 {@link off}。取消回调时，需要更新支持的命令列表。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
@@ -4710,7 +4712,7 @@ try {
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令           |
-| parameter | [LoopMode](#loopmode10) &#124; string &#124; number &#124; media.PlaybackSpeed | 否   | 命令对应的参数 |
+| parameter | [LoopMode](#loopmode10) &#124; string &#124; number &#124; [media.PlaybackSpeed](../js-apis-media.md#playbackspeed8) | 否   | 命令对应的参数 |
 
 ## AVCastController<sup>10+</sup>
 
