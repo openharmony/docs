@@ -1,0 +1,60 @@
+# 输入监听开发指导
+
+## 场景介绍
+
+输入监听提供监听按键，触控板特殊手势等能力。使用场景例如：当用户需要应用在触控板三指上划实现特定功能时，开发者可以通过监听三指上划判断特定功能是否启用。
+
+## 导入模块
+
+```js
+import inputMonitor from '@ohos.multimodalInput.inputMonitor';
+```
+
+## 接口说明
+输入监听常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputMonitor文档](../reference/apis/js-apis-inputMonitor.md)。
+
+| 实例名 | 接口名  | 说明 |
+| ----------- | ------------------------------------------------------------ | -------------------------- |
+| inputMonitor | function on(type: 'mouse', receiver: Callback<MouseEvent>): void；|监听鼠标事件。 |
+| inputMonitor | function on(type: 'touch', receiver: TouchEventReceiver): void； | 监听触屏事件。 |
+| inputMonitor | function on(type: 'pinch', receiver: TouchEventReceiver): void； | 监听捏合事件。 |
+| inputMonitor | function on(type: 'threeFingersSwipe', receiver: Callback<ThreeFingersSwipe>): void； | 监听三指上划事件。 |
+| inputMonitor | function on(type: 'threeFingersTap', receiver: Callback<ThreeFingersSwipe>): void； | 监听三指清点事件。 |
+| inputMonitor | function on(type: 'fourFingersSwipe', receiver: Callback<FourFingersSwipe>): void； | 监听四指滑动事件。 |
+| inputMonitor | function on(type: 'rotate', fingers: number, receiver: Callback<Rotate>): void | 监听旋转事件。 |
+| inputMonitor | function off(type: 'mouse', receiver: Callback<MouseEvent>): void；|取消监听鼠标事件。 |
+| inputMonitor | function off(type: 'touch', receiver: TouchEventReceiver): void； | 取消监听触屏事件。 |
+| inputMonitor | function off(type: 'pinch', receiver: TouchEventReceiver): void； | 取消监听捏合事件。 |
+| inputMonitor | function off(type: 'threeFingersSwipe', receiver: Callback<ThreeFingersSwipe>): void； | 取消监听三指上划事件。 |
+| inputMonitor | function off(type: 'threeFingersTap', receiver: Callback<ThreeFingersSwipe>): void； | 取消监听三指清点事件。 |
+| inputMonitor | function off(type: 'fourFingersSwipe', receiver: Callback<FourFingersSwipe>): void； | 取消监听四指滑动事件。 |
+| inputMonitor | function off(type: 'rotate', fingers: number, receiver: Callback<Rotate>): void | 取消监听旋转事件。 |
+
+## 开发步骤
+
+调用[on](../reference/apis/js-apis-inputMonitor.md#inputmonitoronmouse9)监听鼠标事件，调用[off](../reference/apis/js-apis-inputMonitor.md#inputmonitoroffmouse9)取消监听鼠标事件，
+
+```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
+
+try {
+  inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {//监听鼠标事件
+    console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+    return false;
+  });
+} catch (error) {
+  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+
+let callback = (mouseEvent: MouseEvent) => {//取消监听鼠标事件
+  console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+  return false;
+};
+try {
+  inputMonitor.on('mouse', callback);
+  inputMonitor.off('mouse');
+  console.log(`Monitor off success`);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
