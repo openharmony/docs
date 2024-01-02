@@ -758,7 +758,7 @@ ws.off('dataEnd');
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | header | Object | 否   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。 |
 | caPath<sup>11+</sup> | string | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
-| clientCert<sup>11+</sup> | ClientCert | 否   | 支持传输客户端证书。 |
+| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否   | 支持传输客户端证书。 |
 
 ## ClientCert<sup>11+</sup>
 
