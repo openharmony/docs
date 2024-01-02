@@ -1080,7 +1080,7 @@ int32_t OH_NativeXComponent_GetXComponentSize (OH_NativeXComponent * component, 
 ### OH_NativeXComponent_RegisterBlurEventCallback()
 
 ```
-int32_t OH_NativeXComponent_RegisterBlurEventCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, void *window) callback )
+int32_t OH_NativeXComponent_RegisterBlurEventCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
 ```
 
 **描述:**
@@ -1132,7 +1132,7 @@ int32_t OH_NativeXComponent_RegisterCallback (OH_NativeXComponent * component, O
 ### OH_NativeXComponent_RegisterFocusEventCallback()
 
 ```
-int32_t OH_NativeXComponent_RegisterFocusEventCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, void *window) callback )
+int32_t OH_NativeXComponent_RegisterFocusEventCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
 ```
 
 **描述:**
@@ -1158,7 +1158,7 @@ int32_t OH_NativeXComponent_RegisterFocusEventCallback (OH_NativeXComponent * co
 ### OH_NativeXComponent_RegisterKeyEventCallback()
 
 ```
-int32_t OH_NativeXComponent_RegisterKeyEventCallback (OH_NativeXComponent * component, void(*)(OH_NativeXComponent *component, void *window) callback )
+int32_t OH_NativeXComponent_RegisterKeyEventCallback (OH_NativeXComponent * component, void(*callback)(OH_NativeXComponent *component, void *window))
 ```
 
 **描述:**
