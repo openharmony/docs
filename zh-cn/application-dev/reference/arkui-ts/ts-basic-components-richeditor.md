@@ -413,10 +413,10 @@ closeSelectionMenu(): void
 @Entry
 @Component
 struct Index {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller };
-  private start: number = -1;
-  private end: number = -1;
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+  private start: number = -1
+  private end: number = -1
   @State message: string = "[-1, -1]"
   @State content: string = ""
 
@@ -449,16 +449,16 @@ struct Index {
           })
         })
         Button("获取选择内容").onClick(() => {
-          this.content = "";
+          this.content = ""
           this.controller.getSpans({
             start: this.start,
             end: this.end
           }).forEach(item => {
             if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
-              this.content += (item as RichEditorImageSpanResult).valueResourceStr;
+              this.content += (item as RichEditorImageSpanResult).valueResourceStr
               this.content += "\n"
             } else {
-              this.content += (item as RichEditorTextSpanResult).value;
+              this.content += (item as RichEditorTextSpanResult).value
               this.content += "\n"
             }
           })
@@ -468,8 +468,8 @@ struct Index {
             start: this.start,
             end: this.end
           })
-          this.start = -1;
-          this.end = -1;
+          this.start = -1
+          this.end = -1
           this.message = "[" + this.start + ", " + this.end + "]"
         })
       }
@@ -506,15 +506,15 @@ struct Index {
               })
           })
           .onSelect((value: RichEditorSelection) => {
-            this.start = value.selection[0];
-            this.end = value.selection[1];
+            this.start = value.selection[0]
+            this.end = value.selection[1]
             this.message = "[" + this.start + ", " + this.end + "]"
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
             console.log("---------------------- aboutToIMEInput ----------------------")
             console.log("insertOffset:" + value.insertOffset)
             console.log("insertValue:" + value.insertValue)
-            return true;
+            return true
           })
           .onIMEInputComplete((value: RichEditorTextSpanResult) => {
             console.log("---------------------- onIMEInputComplete ---------------------")
@@ -539,7 +539,7 @@ struct Index {
                 console.log("text:" + (item as RichEditorTextSpanResult).value)
               }
             })
-            return true;
+            return true
           })
           .onDeleteComplete(() => {
             console.log("---------------------- onDeleteComplete ------------------------")
@@ -565,7 +565,7 @@ struct Index {
 // xxx.ets
 @Entry
 @Component
-struct RichEditorExample {
+struct Index {
   controller: RichEditorController = new RichEditorController()
 
   // 自定义键盘组件
@@ -613,8 +613,8 @@ struct RichEditorExample {
 ```ts
 // xxx.ets
 import pasteboard from '@ohos.pasteboard'
-import { BusinessError } from '@ohos.base';
-class info{
+import { BusinessError } from '@ohos.base'
+class Info{
   imageSrc: Resource=$r('sys.media.ohos_ic_public_cut')
   id: string=''
   label: string=''
@@ -628,19 +628,19 @@ struct SelectionMenu {
   @State start: number = -1
   @State end: number = -1
   @State colorTransparent: Color = Color.Transparent
-  controller: RichEditorController = new RichEditorController();
+  controller: RichEditorController = new RichEditorController()
   options: RichEditorOptions = { controller: this.controller }
   private iconArr: Array<Resource> =
     [$r('app.media.icon'), $r("app.media.icon"), $r('app.media.icon'),
       $r("app.media.icon"), $r('app.media.icon')]
   private listArr: Array<Object> =
-    [{ imageSrc: $r('sys.media.ohos_ic_public_cut'), id: '剪切', label: "Ctrl+X" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_copy'), id: '复制', label: "Ctrl+C" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_paste'), id: '粘贴', label: "Ctrl+V" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_select_all'), id: '全选', label: "Ctrl+A" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_share'), id: '分享', label: "" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_translate_c2e'), id: '翻译', label: "" } as info,
-      { imageSrc: $r('sys.media.ohos_ic_public_search_filled'), id: '搜索', label: "" } as info]
+    [{ imageSrc: $r('sys.media.ohos_ic_public_cut'), id: '剪切', label: "Ctrl+X" } as Info,
+      { imageSrc: $r('sys.media.ohos_ic_public_copy'), id: '复制', label: "Ctrl+C" } as Info,
+      { imageSrc: $r('sys.media.ohos_ic_public_paste'), id: '粘贴', label: "Ctrl+V" } as Info,
+      { imageSrc: $r('sys.media.ohos_ic_public_select_all'), id: '全选', label: "Ctrl+A" } as Info,
+      { imageSrc: $r('sys.media.ohos_ic_public_share'), id: '分享', label: "" } as Info,
+      { imageSrc: $r('sys.media.ohos_ic_public_translate_c2e'), id: '翻译', label: "" } as Info,
+      { imageSrc: $r('sys.media.ohos_ic_public_search_filled'), id: '搜索', label: "" } as Info]
   @State iconBgColor: ResourceColor[] = new Array(this.iconArr.length).fill(this.colorTransparent)
   @State listBgColor: ResourceColor[] = new Array(this.listArr.length).fill(this.colorTransparent)
   @State iconIsFocus: boolean[] = new Array(this.iconArr.length).fill(false)
@@ -656,7 +656,7 @@ struct SelectionMenu {
             this.controller.addTextSpan(this.message, { style: { fontColor: Color.Orange, fontSize: 30 } })
           })
           .onSelect((value: RichEditorSelection) => {
-            if (value.selection[0] == -1 && value.selection[1] == -1) {
+            if (value.selection[0] === -1 && value.selection[1] === -1) {
               return
             }
             this.start = value.selection[0]
@@ -699,28 +699,28 @@ struct SelectionMenu {
           .focusable(true)
           .focusOnTouch(true)
           .onClick(() => {
-            if (index as number == 0) {
+            if (index as number === 0) {
               this.clickNum[0]++
               this.sliderShow = false
               this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
                 fontWeight: this.clickNum[0] % 2 !== 0 ? FontWeight.Bolder : FontWeight.Normal
               } })
-            } else if (index as number == 1) {
+            } else if (index as number === 1) {
               this.clickNum[1]++
               this.sliderShow = false
               this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
                 fontStyle: this.clickNum[1] % 2 !== 0 ? FontStyle.Italic : FontStyle.Normal
               } })
-            } else if (index as number == 2) {
+            } else if (index as number === 2) {
               this.clickNum[2]++
               this.sliderShow = false
               this.controller.updateSpanStyle({ start: this.start, end: this.end, textStyle: {
                 decoration: {
                   type: this.clickNum[2] % 2 !== 0 ? TextDecorationType.Underline : TextDecorationType.None
                 } } })
-            } else if (index as number == 3) {
+            } else if (index as number === 3) {
               this.sliderShow = !this.sliderShow
-            } else if (index as number == 4) {
+            } else if (index as number === 4) {
               this.sliderShow = false
             }
           })
@@ -764,9 +764,9 @@ struct SelectionMenu {
   @Builder listPanel() {
     Column() {
       List({ space: 0, initialIndex: 0 }) {
-        ForEach(this.listArr, (item:info, index:number | undefined) => {
+        ForEach(this.listArr, (item:Info, index:number | undefined) => {
           ListItem() {
-            listChild({
+            ListChild({
               item,
               index,
               listBgColor: $listBgColor,
@@ -780,10 +780,10 @@ struct SelectionMenu {
                     if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
                       let style = (item as RichEditorImageSpanResult).imageStyle
                       if((item as RichEditorImageSpanResult).valuePixelMap != undefined) {
-                        let data = pasteboard.createRecord(pasteboard.MIMETYPE_PIXELMAP, ((item as RichEditorImageSpanResult).valuePixelMap as PixelMap));
+                        let data = pasteboard.createRecord(pasteboard.MIMETYPE_PIXELMAP, ((item as RichEditorImageSpanResult).valuePixelMap as PixelMap))
                         let prop = pasteData.getProperty()
                         let temp:Record<string, Object> = { 'width': style.size[0], 'height': style.size[1], 'fit': style.objectFit }
-                        prop.additions[i] = temp;
+                        prop.additions[i] = temp
                         pasteData.addRecord(data)
                         pasteData.setProperty(prop)
                       }
@@ -793,21 +793,21 @@ struct SelectionMenu {
                       let prop = pasteData.getProperty()
                       let temp:Record<string, Object> = { 'color': style.fontColor, 'size': style.fontSize, 'style': style.fontStyle,
                         'weight': style.fontWeight }
-                      prop.additions[i] = temp;
+                      prop.additions[i] = temp
                       pasteData.addRecord(data)
                       pasteData.setProperty(prop)
                     }
                   })
-                if(index == undefined){ return }
+                if(index === undefined){ return }
                 switch (index) {
                   case 0:
                     this.controller.deleteSpans({ start: this.start, end: this.end })
                   case 1:
                     sysBoard.clearData()
                     sysBoard.setData(pasteData).then(() => {
-                      console.info('Succeeded in setting PasteData.');
+                      console.info('Succeeded in setting PasteData.')
                     }).catch((err: BusinessError) => {
-                      console.error('Failed to set PasteData. Cause: ' + err.message);
+                      console.error('Failed to set PasteData. Cause: ' + err.message)
                     })
                     break
                   case 2:
@@ -817,47 +817,47 @@ struct SelectionMenu {
                       }
                       let count = data.getRecordCount()
                       for (let m = 0; m < count; m++) {
-                        const element = data.getRecord(m);
+                        const element = data.getRecord(m)
                         let tex: RichEditorTextStyle = {
                           fontSize: 30,
                           fontColor: Color.Orange,
                           fontWeight: FontWeight.Normal
                         }
                         let im: RichEditorImageSpanStyle = { objectFit: ImageFit.Contain, size: [50, 50] }
-                        if(im.size == undefined){ break }
+                        if(im.size === undefined){ break }
                         if (data.getProperty().additions[m]) {
-                          const tmp = data.getProperty().additions[m] as Record<string, Object | undefined>;
+                          const tmp = data.getProperty().additions[m] as Record<string, Object | undefined>
                           if (tmp['width'] != undefined) {
-                            im.size[0] = tmp['width'] as Dimension;
+                            im.size[0] = tmp['width'] as Dimension
                           }
                           if (tmp['height'] != undefined){
-                            im.size[1] = tmp['height'] as Dimension;
+                            im.size[1] = tmp['height'] as Dimension
                           }
                           if (tmp['fit'] != undefined){
-                            im.objectFit = tmp['fit'] as ImageFit;
+                            im.objectFit = tmp['fit'] as ImageFit
                           }
                           if (tmp['color'] != undefined){
-                            tex.fontColor = tmp['color'] as ResourceColor;
+                            tex.fontColor = tmp['color'] as ResourceColor
                           }
                           if (tmp['size'] != undefined){
-                            tex.fontSize = tmp['size'] as number;
+                            tex.fontSize = tmp['size'] as number
                           }
                           if (tmp['style'] != undefined){
-                            tex.fontStyle = tmp['style'] as FontStyle;
+                            tex.fontStyle = tmp['style'] as FontStyle
                           }
                           if (tmp['weight'] != undefined){
-                            tex.fontWeight = tmp['weight'] as number;
+                            tex.fontWeight = tmp['weight'] as number
                           }
                         }
 
-                        if (element.mimeType == pasteboard.MIMETYPE_TEXT_PLAIN) {
+                        if (element.mimeType === pasteboard.MIMETYPE_TEXT_PLAIN) {
                           this.controller.addTextSpan(element.plainText,
                             {
                               style: tex,
                               offset: this.controller.getCaretOffset()
                             })
                         }
-                        if (element.mimeType == pasteboard.MIMETYPE_PIXELMAP) {
+                        if (element.mimeType === pasteboard.MIMETYPE_PIXELMAP) {
                           this.controller.addImageSpan(element.pixelMap,
                             {
                               imageStyle: im,
@@ -914,8 +914,8 @@ struct SelectionMenu {
 }
 
 @Component
-struct listChild {
-  item:info = new info()
+struct ListChild {
+  item:Info = new Info()
   index: number = 0
   @Link listBgColor: (Resource | Color)[]
   @Link colorTransparent: Resource
@@ -978,10 +978,10 @@ struct listChild {
 @Entry
 @Component
 struct Index {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller };
-  private start: number = -1;
-  private end: number = -1;
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+  private start: number = -1
+  private end: number = -1
   @State message: string = "[-1, -1]"
   @State content: string = ""
   @State paddingVal: number = 5
@@ -1152,15 +1152,15 @@ struct Index {
               })
           })
           .onSelect((value: RichEditorSelection) => {
-            this.start = value.selection[0];
-            this.end = value.selection[1];
+            this.start = value.selection[0]
+            this.end = value.selection[1]
             this.message = "[" + this.start + ", " + this.end + "]"
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
             console.log("---------------------- aboutToIMEInput ----------------------")
             console.log("insertOffset:" + value.insertOffset)
             console.log("insertValue:" + value.insertValue)
-            return true;
+            return true
           })
           .onIMEInputComplete((value: RichEditorTextSpanResult) => {
             console.log("---------------------- onIMEInputComplete ---------------------")
@@ -1185,7 +1185,7 @@ struct Index {
                 console.log("text:" + (item as RichEditorTextSpanResult).value)
               }
             })
-            return true;
+            return true
           })
           .onDeleteComplete(() => {
             console.log("---------------------- onDeleteComplete ------------------------")
@@ -1213,8 +1213,8 @@ struct Index {
 @Component
 struct Index {
   controller: RichEditorController = new RichEditorController()
-  options: RichEditorOptions = { controller: this.controller };
-  @State textFlag: string = "TextFlag";
+  options: RichEditorOptions = { controller: this.controller }
+  @State textFlag: string = "TextFlag"
 
   build() {
     Column() {
@@ -1300,8 +1300,8 @@ struct Index {
 @Entry
 @Component
 struct Index {
-  controller: RichEditorController = new RichEditorController();
-  private spanParagraphs: RichEditorParagraphResult[] = [];
+  controller: RichEditorController = new RichEditorController()
+  private spanParagraphs: RichEditorParagraphResult[] = []
 
   build() {
     Column() {
@@ -1387,55 +1387,55 @@ const canvasWidth = 1000
 const canvasHeight = 100
 const Indentation = 10
 class LeadingMarginCreator {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true);
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight);
-  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings);
-  public static instance: LeadingMarginCreator = new LeadingMarginCreator();
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(canvasWidth, canvasHeight)
+  private offContext: OffscreenCanvasRenderingContext2D = this.offscreenCanvas.getContext("2d", this.settings)
+  public static instance: LeadingMarginCreator = new LeadingMarginCreator()
 
   public genStrMark(fontSize: number, str: string): PixelMap {
-    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
-    this.clearCanvas();
-    this.offContext.font = fontSize + 'vp sans-serif';
-    this.offContext.fillText(str + '.', 0, fontSize * 0.9);
-    return this.offContext.getPixelMap(0, 0, fontSize * (str.length + 1) / 1.75, fontSize);
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings)
+    this.clearCanvas()
+    this.offContext.font = fontSize + 'vp sans-serif'
+    this.offContext.fillText(str + '.', 0, fontSize * 0.9)
+    return this.offContext.getPixelMap(0, 0, fontSize * (str.length + 1) / 1.75, fontSize)
   }
 
   public genSquareMark(fontSize: number): PixelMap {
-    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
-    this.clearCanvas();
-    const coordinate = fontSize * (1 - 1 / 1.5) / 2;
-    const sideLength = fontSize / 1.5;
-    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength);
-    return this.offContext.getPixelMap(0, 0, fontSize, fontSize);
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings)
+    this.clearCanvas()
+    const coordinate = fontSize * (1 - 1 / 1.5) / 2
+    const sideLength = fontSize / 1.5
+    this.offContext.fillRect(coordinate, coordinate, sideLength, sideLength)
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize)
   }
 
   public genCircleMark(fontSize: number): PixelMap {
-    this.offContext = this.offscreenCanvas.getContext("2d", this.settings);
-    this.clearCanvas();
-    const centerCoordinate = fontSize / 2;
-    const radius = fontSize / 3;
-    this.offContext.ellipse(centerCoordinate, centerCoordinate, radius, radius, 0, 0, 2 * Math.PI);
-    this.offContext.fillStyle = Color.Black;
-    this.offContext.fill();
-    return this.offContext.getPixelMap(0, 0, fontSize, fontSize);
+    this.offContext = this.offscreenCanvas.getContext("2d", this.settings)
+    this.clearCanvas()
+    const centerCoordinate = fontSize / 2
+    const radius = fontSize / 3
+    this.offContext.ellipse(centerCoordinate, centerCoordinate, radius, radius, 0, 0, 2 * Math.PI)
+    this.offContext.fillStyle = Color.Black
+    this.offContext.fill()
+    return this.offContext.getPixelMap(0, 0, fontSize, fontSize)
   }
 
   private clearCanvas() {
-    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight);
+    this.offContext.clearRect(0, 0, canvasWidth, canvasHeight)
   }
 }
 
 @Entry
 @Component
 struct Index {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller };
-  private leadingMarkCreatorInstance = LeadingMarginCreator.instance;
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+  private leadingMarkCreatorInstance = LeadingMarginCreator.instance
   private fontNameRawFile: string = 'MiSans-Bold'
   @State fs: number = 30
   @State cl: number = Color.Black
-  private leftMargin: Dimension = 0;
-  private richEditorTextStyle: RichEditorTextStyle = {};
+  private leftMargin: Dimension = 0
+  private richEditorTextStyle: RichEditorTextStyle = {}
 
   aboutToAppear() {
     font.registerFont({
@@ -1519,8 +1519,8 @@ struct Index {
           Button("向右列表缩进").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin < 200) {
-              margin += Indentation;
-              this.leftMargin = margin;
+              margin += Indentation
+              this.leftMargin = margin
             }
             this.controller.updateParagraphStyle({
               start: -10,
@@ -1536,8 +1536,8 @@ struct Index {
           Button("向左列表缩进").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin > 0) {
-              margin -= Indentation;
-              this.leftMargin = margin;
+              margin -= Indentation
+              this.leftMargin = margin
             }
             this.controller.updateParagraphStyle({
               start: -10,
@@ -1555,8 +1555,8 @@ struct Index {
           Button("向右空白缩进").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin < 200) {
-              margin += Indentation;
-              this.leftMargin = margin;
+              margin += Indentation
+              this.leftMargin = margin
             }
             this.controller.updateParagraphStyle({
               start: -10,
@@ -1570,8 +1570,8 @@ struct Index {
           Button("向左空白缩进").onClick(() => {
             let margin = Number(this.leftMargin)
             if (margin > 0) {
-              margin -= Indentation;
-              this.leftMargin = margin;
+              margin -= Indentation
+              this.leftMargin = margin
             }
             this.controller.updateParagraphStyle({
               start: -10,
