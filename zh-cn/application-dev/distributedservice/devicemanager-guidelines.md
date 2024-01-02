@@ -42,13 +42,13 @@
 
 ### 开发步骤
 
- 1. 导入featureAbility模块，相关窗口的API都是通过该模块提供。
+1. 导入featureAbility模块，相关窗口的API都是通过该模块提供。
   
   ```ts
    import featureAbility from '@ohos.ability.featureAbility';
   ``` 
   
- 2. 调用窗口API拉起用户授权弹框
+2. 调用窗口API拉起用户授权弹框
   
   ```ts
     let context = featureAbility.getContext();
