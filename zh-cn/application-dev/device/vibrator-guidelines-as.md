@@ -24,48 +24,48 @@
 
 2. 根据指定振动时长和振动属性触发马达振动。
 
-```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import vibrator from '@ohos.vibrator';
+    import { BusinessError } from '@ohos.base';
 
-try {
-  // 触发马达振动
-  vibrator.startVibration({
-    type: 'time',
-    duration: 1000,
-  }, {
-    id: 0,
-    usage: 'alarm'
-  }, (error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
+    try {
+      // 触发马达振动
+      vibrator.startVibration({
+        type: 'time',
+        duration: 1000,
+      }, {
+        id: 0,
+        usage: 'alarm'
+      }, (error: BusinessError) => {
+        if (error) {
+          console.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
+          return;
+        }
+        console.info('Succeed in starting vibration');
+      });
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
     }
-    console.info('Succeed in starting vibration');
-  });
-} catch (err) {
-  let e: BusinessError = err as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+    ```
 
 3. 停止马达的振动。
 
-```ts
-import vibrator from '@ohos.vibrator';
-import { BusinessError } from '@ohos.base';
+    ```ts
+    import vibrator from '@ohos.vibrator';
+    import { BusinessError } from '@ohos.base';
 
-try {
-  // 停止所有模式的马达振动
-  vibrator.stopVibration((error: BusinessError) => {
-    if (error) {
-      console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
-      return;
+    try {
+      // 停止所有模式的马达振动
+      vibrator.stopVibration((error: BusinessError) => {
+        if (error) {
+          console.error(`Failed to stop vibration. Code: ${error.code}, message: ${error.message}`);
+          return;
+        }
+        console.info('Succeed in stopping vibration');
+      })
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
     }
-    console.info('Succeed in stopping vibration');
-  })
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error(`An unexpected error occurred. Code: ${e.code}, message: ${e.message}`);
-}
-```
+    ```

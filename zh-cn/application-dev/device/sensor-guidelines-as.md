@@ -22,9 +22,9 @@
 
 1. 导入模块。
 
-   ```ts
-   import sensor from '@ohos.sensor';
-   ```
+    ```ts
+    import sensor from '@ohos.sensor';
+    ```
 
 2. 检查是否已经配置相应权限，具体配置方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。
 
