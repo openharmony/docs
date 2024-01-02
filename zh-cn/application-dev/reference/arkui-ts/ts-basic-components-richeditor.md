@@ -36,7 +36,7 @@ RichEditor(value: RichEditorOptions)
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 |
-| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
+| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType.TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
 | copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>设置copyOptions为CopyOptions.InApp或者CopyOptions.LocalDevice，长按组件内容，会弹出文本默认选择菜单，可选中内容并进行复制、全选操作。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
 
 ## 事件
@@ -237,6 +237,18 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 | ------ | -------- | ---- | -------------------------------------- |
 | value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
 
+### updateParagraphStyle<sup>11+</sup>
+
+updateParagraphStyle(value: RichEditorParagraphStyleOptions): void
+
+更新段落的样式。
+
+**参数：**
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| value | [RichEditorParagraphStyleOptions](#richeditorparagraphstyleoptions11) | 是 | 段落的样式选项信息。 |
+
 ### getSpans
 
 getSpans(value?: RichEditorRange): Array<RichEditorTextSpanResult| RichEditorImageSpanResult>
@@ -303,6 +315,34 @@ closeSelectionMenu(): void
 | start | number   | 否 | 需要更新样式的图片起始位置，省略或者设置负值时表示从0开始。 |
 | end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是 | 图片样式。 |
+
+## RichEditorParagraphStyleOptions<sup>11+</sup>
+
+段落样式选项
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| start | number   | 否 | 需要更新样式的段落起始位置，省略或者设置负值时表示从0开始。 |
+| end | number | 否 | 需要更新样式的段落结束位置，省略、负数或者超出文本范围时表示到结尾。 |
+| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是 | 段落样式。 |
+
+## RichEditorParagraphStyle<sup>11+</sup>
+
+段落样式。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 设置文本段落在水平方向的对齐方式。 |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否 | 设置文本段落缩进，不支持设置百分比，图片放在段首时不支持。 |
+
+## LeadingMarginPlaceholder<sup>11+</sup>
+
+前导边距跨度。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| pixelMap | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 是 | 图片内容。 |
+| size | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | 是 | 图片大小，不支持设置百分比。 |
 
 ## RichEditorTextSpanOptions
 

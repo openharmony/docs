@@ -11,6 +11,10 @@
 
 仅可包含子组件[TabContent](ts-container-tabcontent.md)。
 
+>  **说明：**
+>
+>  Tabs子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
+
 
 ## 接口
 
@@ -120,7 +124,7 @@ changeIndex(value: number): void
 
 | 参数名   | 参数类型   | 必填   | 参数描述                                     |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value | number | 是    | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，该事件失效。 |
+| value | number | 是    | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，取默认值0。 |
 
 
 ## 示例
@@ -137,7 +141,7 @@ struct TabsExample {
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
-  @Builder TabBuilder(index: number, name: string) {
+  @Builder tabBuilder(index: number, name: string) {
     Column() {
       Text(name)
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
@@ -157,19 +161,19 @@ struct TabsExample {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#00CB87')
-        }.tabBar(this.TabBuilder(0, 'green'))
+        }.tabBar(this.tabBuilder(0, 'green'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#007DFF')
-        }.tabBar(this.TabBuilder(1, 'blue'))
+        }.tabBar(this.tabBuilder(1, 'blue'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#FFBF00')
-        }.tabBar(this.TabBuilder(2, 'yellow'))
+        }.tabBar(this.tabBuilder(2, 'yellow'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#E67C92')
-        }.tabBar(this.TabBuilder(3, 'pink'))
+        }.tabBar(this.tabBuilder(3, 'pink'))
       }
       .vertical(false)
       .barMode(BarMode.Fixed)

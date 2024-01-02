@@ -169,14 +169,14 @@ kill(signal: number, pid: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 进程的id。 |
 | signal | number | 是 | 发送的信号。 |
+| pid | number | 是 | 进程的id。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 信号是否发送成功。 |
+| boolean | 信号是否发送成功。返回值true为发送成功，false为发送失败。|
 
 **示例：**
 
@@ -266,7 +266,7 @@ getThreadPriority(v: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回线程的优先级。 |
+| number | 返回线程的优先级。优先级顺序取决于当前操作系统。 |
 
 **示例：**
 
@@ -450,7 +450,7 @@ getThreadPriority(v: number): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回线程的优先级。 |
+| number | 返回线程的优先级。优先级顺序取决于前操作系统。 |
 
 **示例：**
 
@@ -554,14 +554,14 @@ kill(signal: number, pid: number): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pid | number | 是 | 进程的id。 |
 | signal | number | 是 | 发送的信号。 |
+| pid | number | 是 | 进程的id。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 信号是否发送成功。 |
+| boolean | 信号是否发送成功。返回值true为发送成功，false为发送失败。 |
 
 **示例：**
 

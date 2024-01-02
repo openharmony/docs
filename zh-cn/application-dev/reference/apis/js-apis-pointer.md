@@ -24,7 +24,7 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | -------- | ------------------------- | ---- | ---------------------------------------- |
-| visible  | boolean                   | 是    | 鼠标指针是否显示。 |
+| visible  | boolean                   | 是    | 鼠标指针是否显示。true表示显示，false表示不显示 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
@@ -55,7 +55,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 | 参数名      | 类型      | 必填   | 说明                                       |
 | ------- | ------- | ---- | ---------------------------------------- |
-| visible | boolean | 是    | 鼠标指针是否显示。 |
+| visible | boolean | 是    | 鼠标指针是否显示。true表示显示，false表示不显示。 |
 
 **返回值**：
 
@@ -168,7 +168,7 @@ isPointerVisibleSync(): boolean
 
 | 参数                     | 说明                  |
 | ---------------------- | ------------------- |
-| boolean | 返回鼠标指针显示或隐藏状态。 |
+| boolean | 返回鼠标指针显示或隐藏状态。true代表显示状态，false代表隐藏状态。 |
 
 **示例**：
 
@@ -376,7 +376,7 @@ setHoverScrollState(state: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state    | boolean                    | 是    | 鼠标悬停滚动开关状态。   |
+| state    | boolean                    | 是    | 鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
@@ -409,7 +409,7 @@ setHoverScrollState(state: boolean): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean | 是    | 鼠标悬停滚动开关状态。 |
+| state | boolean | 是    | 鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。 |
 
 **返回值**：
 
@@ -443,7 +443,7 @@ getHoverScrollState(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标悬停滚动开关状态。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。 |
 
 **示例**：
 
@@ -471,7 +471,7 @@ getHoverScrollState(): Promise&lt;boolean&gt;
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise实例，异步返回鼠标悬停滚动开关状态。 |
+| Promise&lt;boolean&gt; | Promise实例，异步返回鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。 |
 
 **示例**：
 
@@ -1118,7 +1118,7 @@ getTouchpadScrollSwitch(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴能力开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴能力开启状态。true代表开启，false代表关闭，默认为开启。 |
 
 **示例**：
 
@@ -1146,7 +1146,7 @@ getTouchpadScrollSwitch(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板滚轴能力开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板滚轴能力开启状态。true代表开启，false代表关闭，默认为开启。 |
 
 **示例**：
 
@@ -1174,7 +1174,7 @@ setTouchpadScrollDirection(state: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | 是    | state为触控板滚轴的方向。true与手指滑动的方向一致，false与手指滑动的方向相反，默认为true。   |
+| state | boolean | 是    | state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反，<br>默认为true。   |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
@@ -1207,7 +1207,7 @@ setTouchpadScrollDirection(state: boolean): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  state为触控板滚轴的方向。true与手指滑动的方向一致，false与手指滑动的方向相反，默认为true。     |
+| state | boolean| 是    |  state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true|
 
 **返回值**：
 
@@ -1241,7 +1241,7 @@ getTouchpadScrollDirection(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴方向。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true |
 
 **示例**：
 
@@ -1269,7 +1269,7 @@ getTouchpadScrollDirection(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板滚轴方向。 |
+| Promise\<boolean> | Promise实例，异步返回触控板滚轴方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true |
 
 **示例**：
 
@@ -1330,7 +1330,7 @@ setTouchpadTapSwitch(state: boolean): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  触控板轻触功能开关开启状态。 true代表轻触开启，false代表轻触关闭，默认开启。  |
+| state | boolean| 是    |  触控板轻触功能开关开启状态， true代表轻触开启，false代表轻触关闭，默认开启。  |
 
 **返回值**：
 
@@ -1364,7 +1364,7 @@ getTouchpadTapSwitch(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板轻触功能开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板轻触功能开启状态， true代表开启，false代表关闭，默认开启。 |
 
 **示例**：
 
@@ -1392,7 +1392,7 @@ getTouchpadTapSwitch(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板轻触功能开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板轻触功能开启状态，true代表开启，false代表关闭，默认开启。 |
 
 **示例**：
 
@@ -1610,7 +1610,7 @@ getTouchpadPinchSwitch(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板双指捏合功能开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板双指捏合功能开启状态。true代表功能开启，false代表功能关闭，默认开启。 |
 
 **示例**：
 
@@ -1638,7 +1638,7 @@ getTouchpadPinchSwitch(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板双指捏合功能开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板双指捏合功能开启状态。true代表功能开启，false代表功能关闭，默认开启。 |
 
 **示例**：
 
@@ -1733,7 +1733,7 @@ getTouchpadSwipeSwitch(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板多指滑动功能开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板多指滑动功能开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。 |
 
 **示例**：
 
@@ -1761,7 +1761,7 @@ getTouchpadSwipeSwitch(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板多指滑动功能开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板多指滑动功能开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。 |
 
 **示例**：
 
@@ -1896,7 +1896,7 @@ getTouchpadRightClickType(): Promise\<RightClickType>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<[RightClickType](#rightclicktype10)> | Promise实例，异步返回触控板右键菜单类型。 |
+| Promise\<[RightClickType](#rightclicktype10) > | Promise实例，异步返回触控板右键菜单类型。 |
 
 **示例**：
 

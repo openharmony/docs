@@ -248,9 +248,9 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**): void
+off(type: 'environment', callbackId: **number**): Promise\<void\>
 
-取消对系统环境变化的监听。
+取消对系统环境变化的监听。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -260,6 +260,12 @@ off(type: 'environment', callbackId: **number**): void
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | 是   | 取消监听事件的类型。 |
 | callbackId    | number   | 是   | 注册监听系统环境变化的ID。   |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void\> | 无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -466,7 +472,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.killAllProcesses
 
-killAllProcesses(callback: AsyncCallback\<void\>): void
+killAllProcesses(callback: AsyncCallback\<void\>)
 
 杀死应用所在的进程。以Callback形式返回。
 
@@ -514,7 +520,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统） |
+| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | 是   | 设置颜色模式，包括：深色模式、浅色模式、不设置（跟随系统）。 |
 
 **错误码**：
 
@@ -551,7 +557,7 @@ setLanguage(language: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取  |
+| language | string | 是   | 设置语言，当前支持的语言列表可以通过@ohos.i18n.d.ts中的static getSystemLanguage(): Array<string>;获取。  |
 
 **错误码**：
 
@@ -622,7 +628,7 @@ clearUpApplicationData(callback: AsyncCallback\<void\>): void
 **参数：**
 | 参数名        | 类型     | 必填 | 说明                       |
 | ------------- | -------- | ---- | -------------------------- |
-| callback | AsyncCallback\<void> | 是   | 回调方法。清理应用本身的数据成功时，err为undefined，否则返回错误对象。  |
+| callback | AsyncCallback\<void> | 是   | 回调方法。清理应用本身的数据成功时，error为undefined，否则返回错误对象。  |
 
 **错误码**：
 
@@ -668,20 +674,20 @@ on(type: 'abilityAutoStartup', callback: AutoStartupCallback): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    let autoStartupCallback = {
-      onAutoStartupOn(data) {
-        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
-      },
-      onAutoStartupOff(data) {
-        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
-      }
-    };
     try {
-      applicationContext.on('abilityAutoStartup', autoStartupCallback);
+      applicationContext.on('abilityAutoStartup', {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+        },
+        onAutoStartupOff(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+        }
+      });
     } catch (err) {
       console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
     }
@@ -708,20 +714,20 @@ off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    let autoStartupCallback = {
-      onAutoStartupOn(data) {
-        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
-      },
-      onAutoStartupOff(data) {
-        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
-      }
-    };
     try {
-      applicationContext.off('abilityAutoStartup', autoStartupCallback);
+      applicationContext.off('abilityAutoStartup', {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+        },
+        onAutoStartupOff(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+        }
+      });
     } catch (err) {
       console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
     }
@@ -748,6 +754,7 @@ setAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -756,7 +763,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -790,6 +797,7 @@ setAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -798,9 +806,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
         console.info('====> setAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.info('====> setAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {
@@ -829,6 +837,7 @@ cancelAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -837,7 +846,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -871,6 +880,7 @@ cancelAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -879,9 +889,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
           console.info('====> cancelAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
           console.info('====> cancelAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {
@@ -910,6 +920,7 @@ isAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<boolean\>): void
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -918,7 +929,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: boolean) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -952,6 +963,7 @@ isAutoStartup(info: AutoStartupInfo): Promise\<boolean\>
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -960,9 +972,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: boolean) => {
         console.info('====> isAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.info('====> isAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {

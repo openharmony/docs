@@ -93,16 +93,16 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为ActionExtAbility。
 
-2. 在ActionExtAbility目录，右键选择“New &gt; TypeScript File”，新建一个TypeScript文件并命名为ActionExtAbility.ts。
+2. 在ActionExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为ActionExtAbility.ets。
 
     ```text
     ├── ets
     │ ├── ActionExtAbility
-    │ │   ├── ActionExtAbility.ts
+    │ │   ├── ActionExtAbility.ets
     └
     ```
 
-3. ActionExtAbility.ts文件中，增加导入ActionExtensionAbility的依赖包，自定义类继承ActionExtensionAbility并实现生命周期回调。
+3. ActionExtAbility.ets文件中，增加导入ActionExtensionAbility的依赖包，自定义类继承ActionExtensionAbility并实现生命周期回调。
 
    ```ts
    import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
@@ -157,7 +157,7 @@ ActionExtensionAbility生命周期回调，在销毁时回调，执行资源清�
            "description": "action",
            "type": "action",
            "exported": true,
-           "srcEntry": "./ets/ActionExtAbility/ActionExtAbility.ts"
+           "srcEntry": "./ets/ActionExtAbility/ActionExtAbility.ets"
          }
        ]
      }

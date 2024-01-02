@@ -26,6 +26,8 @@
 - 证书
   - [证书概述](cert-overview.md)
   - [证书开发指导](cert-guidelines.md)
+- 证书管理
+  - [证书管理开发指导](certManager-guidelines.md)
 - Hap包签名工具
   - [Hap包签名工具概述](hapsigntool-overview.md)
   - [Hap包签名工具指导](hapsigntool-guidelines.md)

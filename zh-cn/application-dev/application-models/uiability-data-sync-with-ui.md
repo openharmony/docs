@@ -63,14 +63,16 @@
 
      // 页面展示
      build() {
-       Button('按钮')
-         .onClick(() => {
-           this.eventHubFunc();
+       Column() {
+         Button('按钮')
+           .onClick(() => {
+             this.eventHubFunc();
          })
-       Button('关闭')
-         .onClick(() => {
-           this.context.eventHub.off('event1');
+         Button('关闭')
+           .onClick(() => {
+             this.context.eventHub.off('event1');
          })
+       }
      }
    }
    ```

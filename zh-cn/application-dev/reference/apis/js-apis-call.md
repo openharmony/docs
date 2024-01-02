@@ -416,7 +416,7 @@ hasCall\(\): Promise\<boolean\>
 
 | 类型                   | 说明                                    |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否存在通话。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否存在通话。返回true表示当前存在通话，false表示当前不存在通话。 |
 
 **示例：**
 
@@ -442,7 +442,7 @@ hasCallSync\(\): boolean
 
 | 类型                   | 说明          |
 | ---------------------- |-------------|
-| boolean | 返回判断是否存在通话。 |
+| boolean | 返回判断是否存在通话。返回true表示当前存在通话，false表示当前不存在通话。 |
 
 **示例：**
 
@@ -652,7 +652,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 
 | 类型                   | 说明                                                |
 | ---------------------- | --------------------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。返回true表示是紧急电话号码，返回false表示不是紧急电话号码。 |
 
 **错误码：**
 
@@ -2549,7 +2549,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 import { BusinessError } from '@ohos.base';
 
 call.startDTMF(1, "0", (err: BusinessError) => {
-    id (err) {
+    if (err) {
         console.error(`startDTMF fail, err->${JSON.stringify(err)}`);
     } else {
         console.log(`startDTMF success.`);
@@ -4840,7 +4840,7 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明                                   |
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回判断Ims开关是否启用的结果。           |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回判断Ims开关是否启用的结果。true表示Ims开关启用，false表示未启用。 |
 
 **错误码：**
 
@@ -5294,7 +5294,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 
 | 类型                   | 说明                                          |
 | ---------------------- | --------------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回是否可以设置呼叫转移时间。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回是否可以设置呼叫转移时间。返回true表示可以设置，返回false表示不可以设置。 |
 
 **错误码：**
 

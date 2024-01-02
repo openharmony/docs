@@ -59,7 +59,7 @@ SubHeader({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, icon?: Reso
 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| options | Array&lt;[SelectOption](ts-basic-components-select.md)&gt; | 是 | 下拉选项内容。 | 
+| options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption对象说明)&gt; | 是 | 下拉选项内容。 | 
 | selected | number | 否 | 设置下拉菜单初始选项的索引。<br/>第一项的索引为0。<br/>当不设置selected属性时，<br/>默认选择值为-1，菜单项不选中。 | 
 | value | [ResourceStr](ts-types.md#resourcestr) | 否 | 设置下拉按钮本身的文本内容。 | 
 | onSelect | callback:&nbsp;(index:&nbsp;number,&nbsp;value?:&nbsp;string)&nbsp;=&gt;&nbsp;void | 否 | 下拉菜单选中某一项的回调。<br/>-&nbsp;index：选中项的索引。<br/>-&nbsp;value：选中项的值。 | 
@@ -89,6 +89,7 @@ struct SubHeaderExample {
     Column() {
       SubHeader({
         icon: $r('app.media.ic_public_community_messages'),
+        secondaryTitle: '子标题',
         primaryTitle: '子标题',
         operationType: OperationType.BUTTON,
         operationItem: [{ value: '操作',

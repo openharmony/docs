@@ -60,7 +60,7 @@ struct TouchTargetExample {
       "\n{ x: 0, y: 0, width: '50%', height: '100%' }]")
       Button("button2")
         .responseRegion([
-          { x: '100%', y: 0, width: '50%', height: '100%' }, // 第一个热区宽度为按钮的一半，且右移一个按钮宽度，点击button2右侧左边，点击事件生效
+          { x: '100%', y: 0, width: '50%', height: '100%' }, // 第一个热区宽度为按钮的一半，点击按钮右侧宽度一半区域，点击事件生效
           { x: 0, y: 0, width: '50%', height: '100%' } // 第二个热区宽度为按钮的一半，点击button2左半边，点击事件生效
         ])
         .onClick(() => {

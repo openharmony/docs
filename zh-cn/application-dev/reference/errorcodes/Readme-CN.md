@@ -43,6 +43,7 @@
   - [HUKS错误码](errorcode-huks.md)
   - [crypto framework错误码](errorcode-crypto-framework.md)
   - [cert错误码](errorcode-cert.md)
+  - [证书管理错误码](errorcode-certManager.md)
   - [用户认证错误码](errorcode-useriam.md)
   - [DLP服务错误码](errorcode-dlp.md)
 - 数据管理

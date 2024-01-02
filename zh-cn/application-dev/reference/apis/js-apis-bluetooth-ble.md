@@ -2992,12 +2992,6 @@ setCharacteristicChangeIndication(characteristic: BLECharacteristic, enable: boo
 | enable         | boolean                                 | 是    | 启用接收notify设置为true，否则设置为false。 |
 | callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数。当发送成功，err为undefined，否则为错误对象。 |
 
-**返回值：**
-
-| 类型                                       | 说明                         |
-| ---------------------------------------- | -------------------------- |
-| Promise&lt;void&gt; | 返回Promise对象。 |
-
 **错误码**：
 
 以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
@@ -3518,7 +3512,7 @@ try {
 | 名称                | 类型                                     | 可读  | 可写  | 说明                      |
 | ------------------- | --------------------------------------- | ----- | ----- | ------------------------ |
 | advertisingId<sup>11+</sup>       | number                                  | 是    | 是    | 表示广播ID标识。           |
-| state<sup>11+</sup>               | [AdvertisingState](#advertisingstate)   | 是    | 是    | 表示广播状态。             |
+| state<sup>11+</sup>               | [AdvertisingState](#advertisingstate11)   | 是    | 是    | 表示广播状态。             |
 
 ## ManufactureData
 

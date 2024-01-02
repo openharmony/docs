@@ -2686,14 +2686,14 @@ ArkTS does not support merging declarations for `enum`. Keep the declaration of 
 **TypeScript**
 
 ```typescript
-enum Color {
+enum ColorSet {
   RED,
   GREEN
 }
-enum Color {
+enum ColorSet {
   YELLOW = 2
 }
-enum Color {
+enum ColorSet {
   BLACK = 3,
   BLUE
 }
@@ -2702,7 +2702,7 @@ enum Color {
 **ArkTS**
 
 ```typescript
-enum Color {
+enum ColorSet {
   RED,
   GREEN,
   YELLOW,

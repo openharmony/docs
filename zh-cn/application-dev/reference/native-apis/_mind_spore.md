@@ -73,7 +73,7 @@
 | ------------------------------------------------------------ | ---------------------------------------- |
 | [OH_AI_DataType](#oh_ai_datatype-1) {<br/>OH_AI_DATATYPE_UNKNOWN = 0, <br/>OH_AI_DATATYPE_OBJECTTYPE_STRING = 12, <br/>OH_AI_DATATYPE_OBJECTTYPE_LIST = 13, <br/>OH_AI_DATATYPE_OBJECTTYPE_TUPLE = 14,<br/>OH_AI_DATATYPE_OBJECTTYPE_TENSOR = 17, <br/>OH_AI_DATATYPE_NUMBERTYPE_BEGIN = 29,<br/> OH_AI_DATATYPE_NUMBERTYPE_BOOL = 30,<br/> OH_AI_DATATYPE_NUMBERTYPE_INT8 = 32,<br/>OH_AI_DATATYPE_NUMBERTYPE_INT16 = 33, <br/>OH_AI_DATATYPE_NUMBERTYPE_INT32 = 34, <br/>OH_AI_DATATYPE_NUMBERTYPE_INT64 = 35, <br/>OH_AI_DATATYPE_NUMBERTYPE_UINT8 = 37,<br/>OH_AI_DATATYPE_NUMBERTYPE_UINT16 = 38, <br/>OH_AI_DATATYPE_NUMBERTYPE_UINT32 = 39,<br/> OH_AI_DATATYPE_NUMBERTYPE_UINT64 = 40, <br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 = 42,<br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 = 43, <br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 = 44, <br/>OH_AI_DATATYPE_NUMBERTYPE_END = 46,<br/> OH_AI_DataTypeInvalid = INT32_MAX<br/>} | MSTensor保存的数据支持的类型。           |
 | [OH_AI_Format](#oh_ai_format-1) {<br/>OH_AI_FORMAT_NCHW = 0,<br/> OH_AI_FORMAT_NHWC = 1, <br/>OH_AI_FORMAT_NHWC4 = 2, <br/>OH_AI_FORMAT_HWKC = 3,<br/>OH_AI_FORMAT_HWCK = 4, <br/>OH_AI_FORMAT_KCHW = 5, <br/>OH_AI_FORMAT_CKHW = 6,<br/> OH_AI_FORMAT_KHWC = 7,<br/>OH_AI_FORMAT_CHWK = 8,<br/> OH_AI_FORMAT_HW = 9, <br/>OH_AI_FORMAT_HW4 = 10,<br/> OH_AI_FORMAT_NC = 11,<br/>OH_AI_FORMAT_NC4 = 12, <br/>OH_AI_FORMAT_NC4HW4 = 13, <br/>OH_AI_FORMAT_NCDHW = 15,<br/> OH_AI_FORMAT_NWC = 16,<br/>OH_AI_FORMAT_NCW = 17<br/>} | MSTensor保存的数据支持的排列格式。       |
-| [OH_AI_CompCode](#oh_ai_compcode) { <br/>OH_AI_COMPCODE_CORE = 0x00000000u, <br/>OH_AI_COMPCODE_LITE = 0xF0000000u<br/> } | Minspore不同组件的代码。                 |
+| [OH_AI_CompCode](#oh_ai_compcode) { <br/>OH_AI_COMPCODE_CORE = 0x00000000u, <br/>OH_AI_COMPCODE_MD = 0x10000000u, <br/>OH_AI_COMPCODE_ME = 0x20000000u, <br/>OH_AI_COMPCODE_MC = 0x30000000u, <br/>OH_AI_COMPCODE_LITE = 0xF0000000u<br/>} | Minspore不同组件的代码。                 |
 | [OH_AI_Status](#oh_ai_status-1) {<br/>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br/>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br/>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br/>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br/>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br/>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br/>} | Minspore的状态码。                       |
 | [OH_AI_ModelType](#oh_ai_modeltype-1) { <br/>OH_AI_MODELTYPE_MINDIR = 0, <br/>OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF <br/>} | 模型文件的类型。                         |
 | [OH_AI_DeviceType](#oh_ai_devicetype-1) {<br/>OH_AI_DEVICETYPE_CPU = 0, <br/>OH_AI_DEVICETYPE_GPU, <br/>OH_AI_DEVICETYPE_KIRIN_NPU, <br/>OH_AI_DEVICETYPE_NNRT = 60,<br/>OH_AI_DEVICETYPE_INVALID = 100<br/>} | 设备类型信息，包含了目前支持的设备类型。 |
@@ -99,7 +99,7 @@
 | [OH_AI_ContextAddDeviceInfo](#oh_ai_contextadddeviceinfo) ([OH_AI_ContextHandle](#oh_ai_contexthandle) context, [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 将一个用户定义的运行设备信息附加到推理上下文中。                                           |
 | [OH_AI_DeviceInfoCreate](#oh_ai_deviceinfocreate) ([OH_AI_DeviceType](#oh_ai_devicetype) device_type) | 创建一个设备信息对象。                                       |
 | [OH_AI_DeviceInfoDestroy](#oh_ai_deviceinfodestroy) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) \*device_info) | 释放设备信息实例。注意：设备信息实例被添加到context后，无需调用者手动释放。                                           |
-| [OH_AI_DeviceInfoSetProvider](#oh_ai_deviceinfosetprovider) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*provider) | 设置供应商的名称。                                           |
+| [OH_AI_DeviceInfoSetProvider](#oh_ai_deviceinfosetprovider) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*provider) | 设置生产商的名称。                                           |
 | [OH_AI_DeviceInfoGetProvider](#oh_ai_deviceinfogetprovider) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取生产商的名称。                                           |
 | [OH_AI_DeviceInfoSetProviderDevice](#oh_ai_deviceinfosetproviderdevice) ([OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info, const char \*device) | 设置生产商设备的名称。                                       |
 | [OH_AI_DeviceInfoGetProviderDevice](#oh_ai_deviceinfogetproviderdevice) (const [OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle) device_info) | 获取生产商设备的名称。                                       |
@@ -396,6 +396,9 @@ Minspore不同组件的代码。
 | 枚举值              | 描述                  |
 | ------------------- | --------------------- |
 | OH_AI_COMPCODE_CORE | Minspore Core的代码。 |
+| OH_AI_COMPCODE_MD   | MindSpore MindData的代码。 |
+| OH_AI_COMPCODE_ME   | MindSpore MindExpression的代码。 |
+| OH_AI_COMPCODE_MC   | MindSpore的代码。 |
 | OH_AI_COMPCODE_LITE | Minspore Lite的代码。 |
 
 
@@ -1252,14 +1255,14 @@ OH_AI_API void OH_AI_DeviceInfoSetProvider (OH_AI_DeviceInfoHandle device_info, 
 
 **描述：**
 
-设置供应商的名称。
+设置生产商的名称。
 
 **参数:**
 
 | 名称        | 描述                                                         |
 | ----------- | ------------------------------------------------------------ |
 | device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
-| provider    | 供应商的名称。                                               |
+| provider    | 生产商的名称。                                               |
 
 
 ### OH_AI_DeviceInfoSetProviderDevice()

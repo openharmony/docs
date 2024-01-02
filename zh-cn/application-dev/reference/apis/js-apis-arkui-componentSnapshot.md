@@ -135,9 +135,9 @@ struct SnapshotExample {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
-            }).catch(err:Error){
-              console.log("error: " + err)
-            }
+            }).catch((err:Error) => {
+            console.log("error: " + err)
+          })
         })
     }
     .width('80%')
@@ -307,9 +307,9 @@ struct OffscreenSnapshotExample {
               // get component size and location
               let info = componentUtils.getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
-            }).catch(err:Error){
-              console.log("error: " + err)
-            }
+            }).catch((err:Error) => {
+            console.log("error: " + err)
+          })
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })

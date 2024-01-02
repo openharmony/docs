@@ -62,19 +62,19 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称                  | 描述        |
 | ------------------- | --------- |
-| Go     | 显示为前往样式。   |
+| Go     | 显示为开始样式。   |
 | Search | 显示为搜索样式。  |
 | Send   | 显示为发送样式。  |
 | Next   | 显示为下一个样式。 |
-| Done   | 显示为确认样式。     |
+| Done   | 显示为换行样式。     |
 
 ## InputType枚举说明
 
 | 名称                 | 描述            |
 | ------------------ | ------------- |
-| Normal   | 基本输入模式。<br/>支持输入数字、字母、下划线、空格、特殊字符。 |
+| Normal   | 基本输入模式，无特殊限制。 |
 | Password | 密码输入模式。支持输入数字、字母、下划线、空格、特殊字符。密码显示小眼睛图标并且默认会将文字变成圆点。密码输入模式不支持下划线样式。 |
-| Email    | 邮箱地址输入模式。支持数字，字母，下划线，以及@字符（只能存在一个@字符）。 |
+| Email    | 邮箱地址输入模式。支持数字，字母，下划线，小数点，以及@字符（只能存在一个@字符）。 |
 | Number   | 纯数字输入模式。      |
 | PhoneNumber<sup>9+</sup> | 电话号码输入模式。<br/>支持输入数字、+ 、-、*、#，长度不限。 |
 
@@ -87,10 +87,10 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 ## PasswordIcon<sup>10+</sup>对象说明
 
-| 名称       | 类型                                               | 必填 | 描述                                               |
-| ---------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
-| onIconSrc  | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
-| offIconSrc | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
+| 名称       | 类型                                                     | 必填 | 描述                                               |
+| ---------- | -------------------------------------------------------- | ---- | -------------------------------------------------- |
+| onIconSrc  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
+| offIconSrc | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
 ## 事件
 
@@ -150,7 +150,7 @@ stopEditing(): void
 
 ### getTextContentRect<sup>10+</sup>
 
-getTextContentRect(): [RectResult](#rectresult)
+getTextContentRect(): [RectResult](#rectresult10)
 
 获取已编辑文本内容区域相对组件的位置和大小，返回值单位为像素。
 
@@ -158,7 +158,7 @@ getTextContentRect(): [RectResult](#rectresult)
 
 | 类型       | 说明       |
 | -------------------  | -------- |
-| [RectResult](#rectresult) | 已编辑文本内容的相对组件的位置和大小。 |
+| [RectResult](#rectresult10) | 已编辑文本内容的相对组件的位置和大小。 |
 
 > **说明：**
 >
@@ -207,7 +207,7 @@ struct TextInputExample {
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
         .caretColor(Color.Blue)
-        .width(400)
+        .width('95%')
         .height(40)
         .margin(20)
         .fontSize(14)
@@ -227,7 +227,7 @@ struct TextInputExample {
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
-        .width(400)
+        .width('95%')
         .height(40)
         .margin(20)
         .type(InputType.Password)
@@ -235,7 +235,7 @@ struct TextInputExample {
         .showPasswordIcon(true)
       // 内联风格输入框
       TextInput({ text: 'inline style' })
-        .width(400)
+        .width('95%')
         .height(50)
         .margin(20)
         .borderRadius(0)

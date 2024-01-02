@@ -305,7 +305,7 @@ UIAbility是系统调度的最小单元。在设备内的功能模块之间跳�
    import { BusinessError } from '@ohos.base';
 
    let context: common.UIAbilityContext = this.context; // UIAbilityContext
-   let want:Want = {
+   let want: Want = {
      deviceId: '', // deviceId为空表示本设备
      // uncomment line below if wish to implicitly query only in the specific bundle.
      // bundleName: 'com.example.myapplication',
@@ -532,7 +532,7 @@ export default class FuncAbility extends UIAbility {
    import Want from '@ohos.app.ability.Want';
    import window from '@ohos.window';
 
-   import { Router, UIContext } from '@ohos.arkui.UIContext';
+   import { UIContext } from '@ohos.arkui.UIContext';
 
    export default class EntryAbility extends UIAbility {
      funcAbilityWant: Want | undefined = undefined;
@@ -725,7 +725,6 @@ Call功能主要接口如下表所示。具体的API详见[接口文档](../refe
    import { BusinessError } from '@ohos.base';
    import MyParcelable from './MyParcelable';
 
-   const TAG: string = '[CalleeAbility]';
    const MSG_SEND_METHOD: string = 'CallSendMsg';
 
    function sendMsgCallback(data: rpc.MessageSequence) {

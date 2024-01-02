@@ -81,7 +81,7 @@ let manager = new userIAM_faceAuth.FaceAuthManager();
 try {
   manager.setSurfaceId(surfaceId);
   console.info('set surface id success');
-} catch (e) {
-  console.error('set surface id failed, error = ' + e);
+} catch (error) {
+  console.error('set surface id failed, error = ' + error);
 }
 ```

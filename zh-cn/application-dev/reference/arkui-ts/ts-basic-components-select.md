@@ -35,17 +35,26 @@ Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
 | ----------------------- | ------------------------------------- | --------------------------------------------- |
 | selected                | number \| [Resource](ts-types.md#resource)<sup>11+</sup>    | 设置下拉菜单初始选项的索引，第一项的索引为0。<br>当不设置selected属性或设置异常值时，默认选择值为-1，菜单项不选中；当设置为undefined、null时，选中第一项。<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | value                   | string \| [Resource](ts-types.md#resource)<sup>11+</sup>  | 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| font                    | [Font](ts-types.md#font)          | 设置下拉按钮本身的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} |
+| font                    | [Font](ts-types.md#font)          | 设置下拉按钮本身的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>**说明：** <br/>当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。|
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉按钮本身的文本颜色。<br/>默认值：'\#E5182431' |
 | selectedOptionBgColor   | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单选中项的背景色。<br/>默认值：'\#33007DFF' |
-| selectedOptionFont      | [Font](ts-types.md#font)          | 设置下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| selectedOptionFont      | [Font](ts-types.md#font)          | 设置下拉菜单选中项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} <br/>**说明：** <br/>当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。|
 | selectedOptionFontColor | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单选中项的文本颜色。<br/>默认值：'\#ff007dff' |
 | optionBgColor           | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单项的背景色。<br/>默认值：'\#ffffffff' |
-| optionFont              | [Font](ts-types.md#font)          | 设置下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} |
+| optionFont              | [Font](ts-types.md#font)          | 设置下拉菜单项的文本样式。<br/>默认值：<br/>{<br/>size:&nbsp;'16fp',<br/>weight:&nbsp;FontWeight.Regular<br/>} <br/>**说明：** <br/>当size为0的时候，文本不显示，当size为负值的时候，文本的size按照默认值显示。 |
 | optionFontColor         | [ResourceColor](ts-types.md#resourcecolor) | 设置下拉菜单项的文本颜色。<br/>默认值：'\#ff182431' |
 | space<sup>10+</sup>         | [Length](ts-types.md#length)               | 设置下拉菜单项的文本与箭头之间的间距。<br/>**说明：** <br/>不支持设置百分比。 |
 | arrowPosition<sup>10+</sup> | [ArrowPosition](#arrowposition10枚举说明)                  | 设置下拉菜单项的文本与箭头之间的对齐方式。<br/>默认值：ArrowPosition.END |
 | menuAlign<sup>10+</sup> | alignType: [MenuAlignType](#menualigntype10枚举说明),<br/> offset?: [Offset](ts-types.md#offset)    | 设置下拉按钮与下拉菜单间的对齐方式。<br/> -alignType: 对齐方式类型，必填。<br/>默认值：MenuAlignType.START <br/> -offset: 按照对齐类型对齐后，下拉菜单相对下拉按钮的偏移量。<br/> 默认值：{dx: 0, dy: 0}|
+| optionWidth<sup>11+</sup> | [Dimension](ts-types.md#dimension10) \| [OptionWidthMode](#optionwidthmode11枚举说明) | 设置下拉菜单项的宽度。OptionWidthMode类型可设置下拉菜单的宽度，决定是否继承下拉按钮宽度。当设置为undefined、null、负数时，optionWidth属性不生效。<br/>**说明：**<br/>不支持设置百分比。 |
+| optionHeight<sup>11+</sup> | [Dimension](ts-types.md#dimension10) | 设置下拉菜单显示的最大高度。下拉菜单的最大高度是屏幕可用高度的80%，当设置为undefined、null、负数时，属性不生效。<br/>**说明：**<br/>不支持设置百分比。 |
+
+## OptionWidthMode<sup>11+</sup>枚举说明
+
+| 名称        | 描述                           |
+| ----------- | ------------------------------ |
+| FIT_CONTENT | 自适应内容宽度。               |
+| FIT_TRIGGER | 设置下拉菜单继承下拉按钮宽度。 |
 
 ## ArrowPosition<sup>10+</sup>枚举说明
 
@@ -82,10 +91,15 @@ struct SelectExample {
   @State arrowPosition: ArrowPosition = ArrowPosition.END
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: "/common/public_icon.svg" },
-        { value: 'bbb', icon: "/common/public_icon.svg" },
-        { value: 'ccc', icon: "/common/public_icon.svg" },
-        { value: 'ddd', icon: "/common/public_icon.svg" }])
+      Select([{ value: 'aaa', icon: $r("app.media.selecticon") },
+        { value: 'bbb', icon: $r("app.media.selecticon") },
+        { value: 'ccc', icon: $r("app.media.selecticon") },
+        { value: 'ddd', icon: $r("app.media.selecticon") },
+        { value: 'eee', icon: $r("app.media.selecticon") },
+        { value: 'fff', icon: $r("app.media.selecticon") },
+        { value: 'ggg', icon: $r("app.media.selecticon") },
+        { value: 'hhh', icon: $r("app.media.selecticon") },
+      ])
         .selected(this.index)
         .value(this.text)
         .font({ size: 16, weight: 500 })
@@ -95,6 +109,8 @@ struct SelectExample {
         .space(this.space)
         .arrowPosition(this.arrowPosition)
         .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .optionWidth(200)
+        .optionHeight(300)
         .onSelect((index:number, text?: string | undefined)=>{
           console.info('Select:' + index)
           this.index = index;
@@ -107,4 +123,4 @@ struct SelectExample {
 }
 ```
 
-![](figures/select.png)
+![](figures/selectExample.jpg)

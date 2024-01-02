@@ -760,6 +760,7 @@
       - [合理进行状态管理](performance/proper_state_management.md)
       - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
       - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+      - [合理使用多线程共享内存](performance/thread_memory_shared.md)
       - [Grid高性能开发指导](performance/grid_optimization.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
@@ -772,9 +773,11 @@
       - [列表场景性能提升实践](performance/list-perf-improvment.md)
       - [动效能力实践](performance/animation_practice.md)
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
+      - [合理运行后台任务](performance/reasonable-running-backgroundTask.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
+      - [常用trace使用指导](performance/common-trace-using-instructions.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具

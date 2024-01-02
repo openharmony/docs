@@ -36,6 +36,7 @@ import Want from '@ohos.app.ability.Want';
   ```ts
   import common from '@ohos.app.ability.common';
   import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   let want: Want = {
@@ -45,7 +46,7 @@ import Want from '@ohos.app.ability.Want';
     moduleName: 'entry' // moduleName非必选
   };
 
-  context.startAbility(want, (err) => {
+  context.startAbility(want, (err: BusinessError) => {
     // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
     console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
   });
@@ -57,6 +58,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -67,7 +69,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -75,6 +77,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -86,7 +89,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want: BusinessError, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -94,6 +97,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -104,7 +108,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -112,6 +116,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -127,7 +132,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -135,6 +140,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -148,7 +154,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -179,7 +185,7 @@ import Want from '@ohos.app.ability.Want';
           }
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
@@ -191,13 +197,14 @@ import Want from '@ohos.app.ability.Want';
         // (1) UIAbility1启动一个ServiceExtension
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
           bundleName: 'com.example.myapplication1',
           abilityName: 'ServiceExtensionAbility',
         };
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
@@ -206,6 +213,7 @@ import Want from '@ohos.app.ability.Want';
         // (2) 该ServiceExtension去启动另一个UIAbility2，并在启动的时候携带参数ability.params.backToOtherMissionStack为true
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.ServiceExtensionContext; // ServiceExtensionContext
         let want: Want = {
@@ -216,7 +224,7 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
@@ -229,6 +237,7 @@ import Want from '@ohos.app.ability.Want';
         // (1) UIAbilityA通过startability启动UIAbilityB
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -238,7 +247,7 @@ import Want from '@ohos.app.ability.Want';
             developerParameters: 'parameters',
           },
         };
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```

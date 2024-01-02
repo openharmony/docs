@@ -14,7 +14,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
+isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 查询当前是否处于稳定性测试场景。
 
@@ -51,7 +51,7 @@ appManager.isRunningInStabilityTest((err, flag) => {
 
 ## appManager.isRunningInStabilityTest
 
-static isRunningInStabilityTest(): Promise&lt;boolean&gt;
+isRunningInStabilityTest(): Promise&lt;boolean&gt;
 
 查询当前是否处于稳定性测试场景。
 

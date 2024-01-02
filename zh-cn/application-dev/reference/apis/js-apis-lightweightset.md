@@ -322,7 +322,7 @@ getIndexOf(key: T): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 在lightWeightSet中指定数据的下标。 |
+| number | 在lightWeightSet中指定数据的下标。若lightWeightSet中没有要查找的元素，则返回一个负值。表示目标哈希值应该插入的位置，插入位置是从1开始计数的，负号表示这是一个插入位置而不是索引。 |
 
 **错误码：**
 

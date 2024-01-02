@@ -9,12 +9,10 @@ The **fileUri** module allows the uniform resource identifier (URI) of a file to
 ## Modules to Import
 
 ```ts
-import fileuri from "@ohos.file.fileuri";
+import fileUri from "@ohos.file.fileuri";
 ```
 
 Before using this module, you need to obtain the path of the file in the application sandbox. The following is an example:
-
-**Stage Model**
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -27,19 +25,6 @@ Before using this module, you need to obtain the path of the file in the applica
     }
   }
   ```
-
-**FA Model**
-
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
- 
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
-For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
 ## FileUri<sup>10+</sup>
 
@@ -78,8 +63,8 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   let path = pathDir + '/test';
-  let uri = fileuri.getUriFromPath(filePath);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
-  let fileUriObject = new fileuri.FileUri(uri);
+  let uri = fileUri.getUriFromPath(filePath);  // file://<packageName>/data/storage/el2/base/haps/entry/files/test
+  let fileUriObject = new fileUri.FileUri(uri);
   console.info("The name of FileUri is " + fileUriObject.name);
   ```
 
@@ -101,11 +86,11 @@ Obtains the URI of the string type.
 
   ```ts
   let path = pathDir + '/test';
-  let fileUriObject = new fileuri.FileUri(path);
+  let fileUriObject = new fileUri.FileUri(path);
   console.info("The uri of FileUri is " + fileUriObject.toString());
   ```
 
-## fileuri.getUriFromPath
+## fileUri.getUriFromPath
 
 getUriFromPath(path: string): string
 
@@ -127,7 +112,7 @@ Obtains the URI of a file in synchronous mode.
 
 **Error codes** 
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 401 | The input parameter is invalid |
@@ -136,5 +121,5 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
   ```ts
   let filePath = pathDir + "/test";
-  let uri = fileuri.getUriFromPath(filePath);
+  let uri = fileUri.getUriFromPath(filePath);
   ```

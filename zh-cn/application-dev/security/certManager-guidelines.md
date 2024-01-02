@@ -1,0 +1,120 @@
+# 证书管理开发指导
+
+> **说明**
+>
+> 本开发指导需使用API version 11及以上版本SDK。
+
+## 场景说明
+
+1. 典型场景
+
+   - 安装应用私有凭据。
+
+   - 获取应用私有凭据。
+
+   - 使用应用私有凭据对数据进行签名、验签。
+
+   - 卸载指定的应用私有凭据。
+
+2. 支持安装的私有凭据算法类型&签名验签支持的参数组合
+
+   证书管理安装凭据及使用凭据中的密钥进行签名、验签，依赖[通用密钥库](huks-overview.md)（HUKS）能力，其声明的算法规格详见[通用密钥库密码算法规格](huks-appendix.md)。证书管理支持的算法为其子集，当前仅支持RSA及ECC算法类型的私有凭据安装及使用。签名、验签支持的参数组合，详见HUKS声明的[签名&验签流程算法与摘要算法、填充模式的组合规格](./huks-appendix.md#签名&验签流程算法与摘要算法、填充模式的组合规格)中RSA及ECC的描述。
+
+
+## 接口说明
+
+详细接口说明可参考[API参考](../reference/apis/js-apis-certManager.md)。
+
+以上场景涉及的常用接口如下表所示：
+
+| 实例名          | 接口名                                                       | 描述                                         |
+| --------------- | ------------------------------------------------------------ | -------------------------------------------- |
+| certManager        | installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string, callback: AsyncCallback\<CMResult>) : void  | 使用callback方式安装应用私有凭据                 |
+| certManager        | installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: string) : Promise\<CMResult> | 使用promise方式安装应用私有凭据                  |
+| certManager        | getPrivateCertificate(keyUri: string, callback: AsyncCallback\<CMResult>) : void    | 使用callback方式获取应用私有凭据          |
+| certManager        | getPrivateCertificate(keyUri: string) : Promise\<CMResult>                         | 使用promise方式获取应用私有凭据           |
+| certManager        | uninstallPrivateCertificate(keyUri: string, callback: AsyncCallback\<void>) : void  | 使用callback方式卸载应用私有凭据         |
+| certManager        | uninstallPrivateCertificate(keyUri: string) : Promise\<void> | 使用promise方式卸载应用私有凭据 |
+| certManager | init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>) : void | 使用callback方式进行签名验签的初始化操作 |
+| certManager | init(authUri: string, spec: CMSignatureSpec) : Promise\<CMHandle>  | 使用promise方式进行签名验签的初始化操作  |
+| certManager        | update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>) : void         | 使用callback方式对待签名、验签的数据进行更新操作         |
+| certManager        | update(handle: Uint8Array, data: Uint8Array) : Promise\<void> | 使用promise方式对待签名、验签的数据进行更新操作 |
+| certManager        | finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>) : void         | 使用callback方式完成数据的签名操作         |
+| certManager        | finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMResult>) : void     | 使用callback方式完成数据的签名操作         |
+| certManager        | finish(handle: Uint8Array, signature?: Uint8Array) : Promise\<CMResult> | 使用promise方式完成数据的签名、验签操作 |
+| certManager        | abort(handle: Uint8Array, callback: AsyncCallback\<void>) : void         | 使用callback方式中止签名、验证操作         |
+| certManager        | abort(handle: Uint8Array) : Promise\<void> | 使用promise方式中止签名、验证操作 |
+
+## 开发步骤
+
+1. 申请权限。调用证书管理相关接口，需要在module.json5文件的requestPermissions对象中配置ohos.permission.ACCESS_CERT_MANAGER权限。更多配置信息请参考[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)。
+
+2. 导入相关模块
+
+   ```ts
+   import certManager from '@ohos.security.certManager';
+   import { BusinessError } from '@ohos.base';
+   ```
+3. 安装应用私有凭据，获取应用私有凭据，并使用应用私有凭据进行签名、验签，最后删除应用私有凭据。
+
+   ```ts
+   /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
+   let keystore: Uint8Array = new Uint8Array([
+     0x30, 0x82, 0x04, 0x6a, 0x02, 0x01,
+   ]);
+   
+   /* 安装凭据对应的密码，业务赋值 */
+   let keystorePwd: string = '123456';
+   let appKeyUri: string = '';
+   try {
+     /* 安装私有凭据 */
+     const res = await certManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
+     appKeyUri = (res.uri != undefined) ? res.uri : '';
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error("installPrivateCertificates error, errcode:" + e.code);
+   }
+   
+   try {
+     /* srcData为待签名、验签的数据，业务自行赋值 */
+     let srcData: Uint8Array = new Uint8Array([
+       0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01,
+     ]);
+   
+     /* 构造签名的属性参数 */
+     const signSpec: certManager.CMSignatureSpec = {
+       purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+       padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+       digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+     };
+   
+     /* 签名 */
+     const signHandle: certManager.CMHandle = await certManager.init(appKeyUri, signSpec);
+     await certManager.update(signHandle.handle, srcData);
+     const signResult: certManager.CMResult = await certManager.finish(signHandle.handle);
+   
+     /* 构造验签的的属性参数 */
+     const verifySpec: certManager.CMSignatureSpec = {
+       purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
+       padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+       digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+     };
+   
+     /* 验签 */
+     const verifyHandle: certManager.CMHandle = await certManager.init(appKeyUri, verifySpec);
+     await certManager.update(verifyHandle.handle, srcData);
+     const verifyResult = await certManager.finish(verifyHandle.handle, signResult.outData);
+     console.log("sign and verify success");
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error("sign or verify failed, errcode:" + e.code);
+   }
+   
+   try {
+     /* 卸载私有凭据 */
+     await certManager.uninstallPrivateCertificate(appKeyUri);
+   } catch (err) {
+     let e: BusinessError = err as BusinessError;
+     console.error("uninstallPrivateCertificate failed, errcode:" + e.code);
+   }
+   ```

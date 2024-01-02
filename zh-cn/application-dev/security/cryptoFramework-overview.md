@@ -339,6 +339,10 @@ keySize：派生得到的密钥字节长度。
   > **说明：**
   >
   > 从API version 10开始， 支持使用密钥参数来生成ECC密钥。
+  >
+  > 从API version 11开始，增加支持BrainPool曲线。
+  >
+  > 从API version 11开始，支持以曲线名来生成密钥参数。
 
 - 支持以字符串参数来生成ECC密钥，其生成参数如下表所示：
 
@@ -348,10 +352,24 @@ keySize：派生得到的密钥字节长度。
   |ECC|256|NID_X9_62_prime256v1|ECC256|
   |ECC|384|NID_secp384r1|ECC384|
   |ECC|521|NID_secp521r1|ECC521|
+  |ECC|160|NID_brainpoolP160r1|ECC_BrainPoolP160r1|
+  |ECC|160|NID_brainpoolP160t1|ECC_BrainPoolP160t1|
+  |ECC|192|NID_brainpoolP192r1|ECC_BrainPoolP192r1|
+  |ECC|192|NID_brainpoolP192t1|ECC_BrainPoolP192t1|
+  |ECC|224|NID_brainpoolP224r1|ECC_BrainPoolP224r1|
+  |ECC|224|NID_brainpoolP224t1|ECC_BrainPoolP224t1|
+  |ECC|256|NID_brainpoolP256r1|ECC_BrainPoolP256r1|
+  |ECC|256|NID_brainpoolP256t1|ECC_BrainPoolP256t1|
+  |ECC|320|NID_brainpoolP320r1|ECC_BrainPoolP320r1|
+  |ECC|320|NID_brainpoolP320t1|ECC_BrainPoolP320t1|
+  |ECC|384|NID_brainpoolP384r1|ECC_BrainPoolP384r1|
+  |ECC|384|NID_brainpoolP384t1|ECC_BrainPoolP384t1|
+  |ECC|512|NID_brainpoolP512r1|ECC_BrainPoolP512r1|
+  |ECC|512|NID_brainpoolP512t1|ECC_BrainPoolP512t1|
 
   > **说明：**
   >
-  > “字符串参数”是“非对称密钥算法”和“密钥长度”拼接而成，用于在创建非对称密钥生成器时，指定密钥规格。</br>
+  > ECC算法的“字符串参数”用于在创建非对称密钥生成器时，指定密钥规格。</br>
   > 当前支持的ECC均为Fp域曲线。
 
 - 支持以密钥参数来生成ECC密钥，其密钥参数种类和各个密钥参数的密码学规格要求如下表所示：
@@ -377,6 +395,34 @@ keySize：派生得到的密钥字节长度。
   >
   > 1. 当前ECC只支持Fp域，因此fieldType固定为"Fp"。fieldType和p构成了属性field，当前field只支持[ECFieldFp](../reference/apis/js-apis-cryptoFramework.md#ecfieldfp10)。
   > 2. g和pk为ECC曲线上的点，属于[Point](../reference/apis/js-apis-cryptoFramework.md#point10)类型，需要指定具体X，Y坐标。
+
+- 支持以曲线名来生成密钥参数，其生成参数如下表所示：
+
+  | 非对称密钥算法 | 密钥长度（bit） | 曲线名               | 字符串参数           |
+  | -------------- | --------------- | -------------------- | -------------------- |
+  | ECC            | 224             | NID_secp224r1        | NID_secp224r1        |
+  | ECC            | 256             | NID_X9_62_prime256v1 | NID_X9_62_prime256v1 |
+  | ECC            | 384             | NID_secp384r1        | NID_secp384r1        |
+  | ECC            | 521             | NID_secp521r1        | NID_secp521r1        |
+  | ECC            | 160             | NID_brainpoolP160r1  | NID_brainpoolP160r1  |
+  | ECC            | 160             | NID_brainpoolP160t1  | NID_brainpoolP160t1  |
+  | ECC            | 192             | NID_brainpoolP192r1  | NID_brainpoolP192r1  |
+  | ECC            | 192             | NID_brainpoolP192t1  | NID_brainpoolP192t1  |
+  | ECC            | 224             | NID_brainpoolP224r1  | NID_brainpoolP224r1  |
+  | ECC            | 224             | NID_brainpoolP224t1  | NID_brainpoolP224t1  |
+  | ECC            | 256             | NID_brainpoolP256r1  | NID_brainpoolP256r1  |
+  | ECC            | 256             | NID_brainpoolP256t1  | NID_brainpoolP256t1  |
+  | ECC            | 320             | NID_brainpoolP320r1  | NID_brainpoolP320r1  |
+  | ECC            | 320             | NID_brainpoolP320t1  | NID_brainpoolP320t1  |
+  | ECC            | 384             | NID_brainpoolP384r1  | NID_brainpoolP384r1  |
+  | ECC            | 384             | NID_brainpoolP384t1  | NID_brainpoolP384t1  |
+  | ECC            | 512             | NID_brainpoolP512r1  | NID_brainpoolP512r1  |
+  | ECC            | 512             | NID_brainpoolP512t1  | NID_brainpoolP512t1  |
+
+  > **说明：**
+  >
+  > 生成的密钥参数可以作为公共参数生成公私钥。
+
 
 ### DSA密钥生成规格
 
@@ -423,6 +469,10 @@ keySize：派生得到的密钥字节长度。
 > **说明：**
 >
 > 从API version 10开始， 支持SM2密钥随机生成。
+>
+> 从API version 11开始，支持以密钥参数来生成SM2密钥。
+>
+> 从API version 11开始，支持以曲线名来生成密钥参数。
 
 - 支持以字符串参数来生成SM2密钥，其生成参数如下表所示：
 
@@ -433,6 +483,42 @@ keySize：派生得到的密钥字节长度。
   > **说明：**
   >
   > “字符串参数”是“非对称密钥算法”和“密钥长度”使用连接符号“_”拼接而成，用于在创建非对称密钥生成器时，指定密钥规格。
+
+- 支持以密钥参数来生成SM2密钥，其密钥参数种类和各个密钥参数的密码学规格要求如下表所示：
+
+  |           | 公共参数 | 公钥参数 | 私钥参数 | 公私钥对参数 |
+  | --------- | -------- | -------- | -------- | ------------ |
+  | fieldType | √        | √        | √        | √            |
+  | p         | √        | √        | √        | √            |
+  | a         | √        | √        | √        | √            |
+  | b         | √        | √        | √        | √            |
+  | g         | √        | √        | √        | √            |
+  | n         | √        | √        | √        | √            |
+  | h         | √        | √        | √        | √            |
+  | pk        |          | √        |          | √            |
+  | sk        |          |          | √        | √            |
+
+  > **说明：**
+  >
+  > 密钥参数用于在创建非对称密钥生成器时，指定密钥规格。</br>
+  > 上表说明了算法库对于指定公/私钥参数生成SM2密钥的支持情况。</br>
+  > 打√的表示需要指定这一列中的具体属性，来构成密钥参数。
+
+  > **注意：**
+  >
+  > 1. 当前SM2只支持Fp域，因此fieldType固定为"Fp"。fieldType和p构成了属性field，当前field只支持[ECFieldFp](../reference/apis/js-apis-cryptoFramework.md#ecfieldfp10)。
+  > 2. g和pk为SM2曲线上的点，属于[Point](../reference/apis/js-apis-cryptoFramework.md#point10)类型，需要指定具体X，Y坐标。
+
+- 支持以曲线名来生成密钥参数，其生成参数如下表所示：
+
+  | 非对称密钥算法 | 密钥长度（bit） | 曲线名  | 字符串参数 |
+  | -------------- | --------------- | ------- | ---------- |
+  | SM2            | 256             | NID_sm2 | NID_sm2    |
+
+  > **说明：**
+  >
+  > 生成的密钥参数可以作为公共参数生成公私钥。
+
 
 ### SM4密钥生成规格
 
@@ -736,8 +822,10 @@ RSA签名验签时，涉及两种填充模式：PKCS1和PSS。
 
 ### ECDSA签名验签
 
-  > **说明**：<br>
+  > **说明：**
   > 从API version 10开始， 支持ECDSA签名验签不带密钥长度的规格。
+  >
+  > 从API version 11开始，增加支持BrainPool签名验签。
 - 支持的ECDSA参数：
 
   |非对称密钥类型|摘要|字符串参数|
@@ -747,13 +835,27 @@ RSA签名验签时，涉及两种填充模式：PKCS1和PSS。
   |ECC384|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC384\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
   |ECC521|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC521\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
   |ECC|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|ECC\|[SHA1\|SHA224\|SHA256\|SHA384\|SHA512]|
+  |ECC_BrainPoolP160r1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP160r1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP160t1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP160t1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP192r1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP192r1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP192t1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP192t1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP224r1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP224r1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP224t1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP224t1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP256r1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP256r1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP256t1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP256t1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP320r1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP320r1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP320t1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP320t1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP384r1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP384r1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP384t1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP384t1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP512r1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP512r1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
+  |ECC_BrainPoolP512t1|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|ECC_BrainPoolP512t1\|MD5\|SHA1\|SHA224\|SHA256\|SHA384\|SHA512|
 
   > **说明：**
   >
   > 1. []内的参数只能任选一项，非[]内的为固定值。
   > 2. 使用时请从表格中选择非对称密钥类型、摘要二个数据，用|拼接成“字符串参数”，用于在创建非对称签名验签实例时，指定非对称签名验签算法规格。<br>
   >    例如："ECC224|SHA256"
-  > 3. 在上表最后一行，为了兼容由密钥参数生成的密钥，ECDSA签名验签参数输入密钥类型时支持不带长度，签名验签运算取决于实际输入的密钥长度。
+  > 3. 在上表ECC最后一行，为了兼容由密钥参数生成的密钥，ECDSA签名验签参数输入密钥类型时支持不带长度，签名验签运算取决于实际输入的密钥长度。
 
 ### DSA签名验签
 
@@ -794,8 +896,8 @@ RSA签名验签时，涉及两种填充模式：PKCS1和PSS。
   > **说明：**
   >
   > 1. []内的参数只能任选一项，非[]内的为固定值。
-  > 2. 使用时请从表格中选择非对称密钥类型、摘要二个数据，用|拼接成“字符串参数”，用于在创建非对称签名验签实例时，指定非对称签名验签算法规格。<br>
-  >    SM2签名时只支持SM3摘要。
+  > 2. 使用时请从表格中选择非对称密钥类型、摘要二个数据，用|拼接成“字符串参数”，用于在创建非对称签名验签实例时，指定非对称签名验签算法规格。
+  > 3. SM2签名验签只支持SM3摘要。
 
 ## 密钥协商规格
 
@@ -804,6 +906,8 @@ RSA签名验签时，涉及两种填充模式：PKCS1和PSS。
   > **说明：**
   >
   > 从API version 10开始， 支持ECDH不带密钥长度的规格。
+  >
+  > 从API version 11开始，支持BrainPool曲线。
 
 - 支持的ECDH参数：
 
@@ -813,13 +917,26 @@ RSA签名验签时，涉及两种填充模式：PKCS1和PSS。
   |ECC|ECC256|
   |ECC|ECC384|
   |ECC|ECC521|
-  |ECC|ECC|
+  |ECC|ECC_BrainPoolP160r1|
+  | ECC            | ECC_BrainPoolP160t1 |
+  | ECC            | ECC_BrainPoolP192r1 |
+  | ECC            | ECC_BrainPoolP192t1 |
+  | ECC            | ECC_BrainPoolP224r1 |
+  | ECC            | ECC_BrainPoolP224t1 |
+  | ECC            | ECC_BrainPoolP256r1 |
+  | ECC            | ECC_BrainPoolP256t1 |
+  | ECC            | ECC_BrainPoolP320r1 |
+  | ECC            | ECC_BrainPoolP320t1 |
+  | ECC            | ECC_BrainPoolP384r1 |
+  | ECC            | ECC_BrainPoolP384t1 |
+  | ECC            | ECC_BrainPoolP512r1 |
+  | ECC            | ECC_BrainPoolP512t1 |
+  | ECC            | ECC                 |
 
   > **说明：**
   >
   > 1. “字符串参数”，用于在创建密钥协商时，指定密钥协商算法规格。
   > 2. 在上表最后一行，为了兼容由密钥参数生成的密钥，ECDH密钥协商参数输入密钥类型时支持不带长度，密钥协商运算取决于实际输入的密钥长度。
-
 
 ## MD消息摘要算法规格
 

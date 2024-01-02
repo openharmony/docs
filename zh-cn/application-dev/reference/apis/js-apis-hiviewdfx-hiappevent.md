@@ -42,17 +42,18 @@ addProcessor(processor: Processor): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
     let processor: hiAppEvent.Processor = {
       name: 'analytics_demo'
     };
     let id: number = hiAppEvent.addProcessor(processor);
-    hiLog.info('hiAppEvent', `addProcessor event was successful, id=${id}`);
-} catch (error) {
-    hiLog.info('hiAppEvent', `failed to addProcessor event, code=${error.code}`);
-} 
+    hilog.info(0x0000, 'hiAppEvent', `addProcessor event was successful, id=${id}`);
+} catch (error: BusinessError) {
+    hilog.info(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
+}
 ```
 
 ## Processor<sup>11+</sup>
@@ -65,7 +66,8 @@ try {
 | ------------------- | ----------------------- | ---- | ---------------------------------------------------------------------------------------------------------- |
 | name                | string                  | 是   | 数据处理者的名称。                                                                                           |
 | debugMode           | boolean                 | 否   | 是否开启debug模式。配置值为true表示开启debug模式，false表示不开启debug模式。                                    |
-| routeInfo           | string                  | 否   | 服务器位置信息，不超过8kB。                                                                                   |
+| routeInfo           | string                  | 否   | 服务器位置信息，长度不超过8KB。                                                                                   |
+| appId               | string                  | 否   | 应用id，长度不超过8KB。 |
 | onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                   |
 | onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                 |
 | periodReport        | number                  | 否   | 根据时间周期定时上报事件。单位为秒，数值不小于0，如果为0则不上报。                                                |
@@ -109,7 +111,8 @@ removeProcessor(id: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
     let processor: hiAppEvent.Processor = {
@@ -117,9 +120,9 @@ try {
     };
     let id: number = hiAppEvent.addProcessor(processor);
     hiAppEvent.removeProcessor(id);
-} catch (error) {
-    hiLog.info('hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
-} 
+} catch (error: BusinessError) {
+    hilog.info(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.write
@@ -315,13 +318,14 @@ setUserId(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserId('key', 'value');
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to setUseId event, code=${error.code}`);
-} 
+} catch (error: BusinessError) {
+  hilog.error(0x0000, 'hiAppEvent', `failed to setUseId event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.getUserId<sup>11+</sup>
@@ -353,15 +357,16 @@ getUserId(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserId('key', 'value');
 try {
   let value: string = hiAppEvent.getUserId('key');
-  hiLog.info('hiAppEvent', `getUseId event was successful, userId=${value}`);/* "value" */
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to getUseId event, code=${error.code}`);
-} 
+  hilog.info(0x0000, 'hiAppEvent', `getUseId event was successful, userId=${value}`);
+} catch (error: BusinessError) {
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUseId event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.setUserProperty<sup>11+</sup>
@@ -388,13 +393,14 @@ setUserProperty(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserProperty('key', 'value');
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
-} 
+} catch (error: BusinessError) {
+  hilog.info(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.getUserProperty<sup>11+</sup>
@@ -426,15 +432,16 @@ getUserProperty(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserProperty('key', 'value');
 try {
   let value: string = hiAppEvent.getUserProperty('key');
-  hiLog.info('hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);/* "value" */
-} catch (error) {
-  hiLog.info('hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
-} 
+  hilog.info(0x0000, 'hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);
+} catch (error: BusinessError) {
+  hilog.error(0x0000, 'hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
+}
 ```
 
 ## hiAppEvent.addWatcher
