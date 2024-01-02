@@ -54,8 +54,8 @@ target_link_libraries(sample PUBLIC libnative_media_adec.so)
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    ```
-   
-2. 创建解码器实例对象。
+
+2. 创建解码器实例对象，OH_AVCodec *为解码器实例指针。
 
    ```cpp
    //c++标准库命名空间

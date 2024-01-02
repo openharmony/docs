@@ -17,6 +17,8 @@
         - Node-API典型使用场景
             - [使用Node-API接口进行异步任务开发](use-napi-asynchronous-task.md)
             - [使用Node-API接口进行线程安全开发](use-napi-thread-safety.md)
+            - [Native与ArkTS对象绑定](use-napi-object-wrap.md)
+            - [非ArkTS线程调用ArkTS函数](use-uv-queue-work.md)
         - [OpenHarmony Node-API常见问题](use-napi-faqs.md)
     - 图形图像
         - [XComponent开发指导](xcomponent-guidelines.md)

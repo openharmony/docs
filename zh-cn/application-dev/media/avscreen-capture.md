@@ -28,14 +28,31 @@
 
 开发者可以通过以下几个步骤来实现一个简单的屏幕录制功能。
 
-1. 创建AVScreenCapture实例capture。
+**在 CMake 脚本中链接动态库**
+
+```c++
+target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
+ ```
+1. 添加头文件
+
+    ```c++
+    #include "napi/native_api.h"
+    #include <multimedia/player_framework/native_avscreen_capture.h>
+    #include <multimedia/player_framework/native_avscreen_capture_base.h>
+    #include <multimedia/player_framework/native_avscreen_capture_errors.h>
+    #include <fcntl.h>
+    #include "string"
+    #include "unistd.h"
+    ```
+
+2. 创建AVScreenCapture实例capture。
 
     ```c++
     OH_AVScreenCapture* capture = OH_AVScreenCapture_Create();
     ```
 
-2. 配置屏幕录制参数。
-      创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
+3. 配置屏幕录制参数。
+    创建AVScreenCapture实例capture后，可以设置屏幕录制所需要的参数。
 
     ```c++
     OH_AudioCaptureInfo miccapinfo = {
@@ -68,14 +85,14 @@
     OH_AVScreenCapture_Init(capture, config);
     ```
 
-3. 设置麦克风开关。
+4. 设置麦克风开关。
      
     ```c++
     bool isMic = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(capture, isMic);
     ```
 
-4. 回调函数的设置，主要监听录屏过程中的错误事件的发生,音频流和视频流数据的产生事件。
+5. 回调函数的设置，主要监听录屏过程中的错误事件的发生,音频流和视频流数据的产生事件。
      
     ```c++
     OH_AVScreenCaptureCallback callback;
@@ -84,43 +101,43 @@
     OH_AVScreenCapture_SetCallback(capture, callback);
     ```
 
-5. 调用StartScreenCapture方法开始进行屏幕录制。
+6. 调用StartScreenCapture方法开始进行屏幕录制。
      
     ```c++
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
-6. 调用StopScreenCapture()方法停止录制。
+7. 调用StopScreenCapture()方法停止录制。
      
     ```c++
     OH_AVScreenCapture_StopScreenCapture(capture);
     ```
 
-7. 调用AcquireAudioBuffer()获取音频原始码流数据
+8. 调用AcquireAudioBuffer()获取音频原始码流数据
      
     ```c++
     OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
     ```
 
-8. 调用AcquireVideoBuffer()获取视频原始码流数据。
+9. 调用AcquireVideoBuffer()获取视频原始码流数据。
      
     ```c++
     OH_NativeBuffer* buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
     ```
 
-9. 调用ReleaseAudioBuffer方法释放音频buffer。
+10. 调用ReleaseAudioBuffer方法释放音频buffer。
      
     ```c++
     OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
     ```
 
-10. 调用ReleaseVideoBuffer()释放视频数据。
+11. 调用ReleaseVideoBuffer()释放视频数据。
      
     ```c++
     OH_AVScreenCapture_ReleaseVideoBuffer(capture);
     ```
 
-11. 调用release()方法销毁实例，释放资源。
+12. 调用release()方法销毁实例，释放资源。
      
     ```c++
     OH_AVScreenCapture_Release(capture);
@@ -133,21 +150,23 @@
   
 ```c++
 
-#include "multimedia/player_framework/native_avscreen_capture.h"
-#include "multimedia/player_framework/native_avscreen_capture_base.h"
-#include "multimedia/player_framework/native_avscreen_capture_errors.h"
+#include "napi/native_api.h"
+#include <multimedia/player_framework/native_avscreen_capture.h>
+#include <multimedia/player_framework/native_avscreen_capture_base.h>
+#include <multimedia/player_framework/native_avscreen_capture_errors.h>
+#include <fcntl.h>
+#include "string"
+#include "unistd.h"
 
-void OnError(struct OH_AVScreenCapture *capture, int32_t errorCode)
-{
-    (void) capture;
-    (void) errorCode;
+void OnError(struct OH_AVScreenCapture *capture, int32_t errorCode) {
+    (void)capture;
+    (void)errorCode;
 }
 
-void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH_AudioCaptureSourceType type)
-{
+void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH_AudioCaptureSourceType type) {
     if (isReady) {
-        OH_AudioBuffer *audiobuffer = (struct OH_AudioBuffer*) malloc (sizeof(OH_AudioBuffer));
-        //获取音频流
+        OH_AudioBuffer *audiobuffer = (struct OH_AudioBuffer *)malloc(sizeof(OH_AudioBuffer));
+        // 获取音频流
         int32_t ret = OH_AVScreenCapture_AcquireAudioBuffer(capture, &audiobuffer, type);
         /* get buffer */
         (void)audiobuffer->buf;
@@ -157,73 +176,60 @@ void OnAudioBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady, OH
         (void)audiobuffer->timestamp;
         free(audiobuffer);
         audiobuffer = nullptr;
-        //释放音频流
-        int32_t ret = OH_ScreenCapture_ReleaseAudioBuffer(capture, type);
+        // 释放音频流
+        OH_AVScreenCapture_ReleaseAudioBuffer(capture, type);
     }
 }
 
-void OnVideoBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady)
-{
+void OnVideoBufferAvailable(struct OH_AVScreenCapture *capture, bool isReady) {
     if (isReady) {
         int32_t fence = 0;
         int64_t timestamp = 0;
         struct OH_Rect damage;
-        //获取视频流
-        OH_NativeBuffer* buffer = OH_ScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
+        // 获取视频流
+        OH_NativeBuffer *buffer = OH_AVScreenCapture_AcquireVideoBuffer(capture, &fence, &timestamp, &damage);
         void *virAddr = nullptr;
-        OH_NativeBuffer_Map(buffer, &virAddr);  //获取buffer
+        OH_NativeBuffer_Map(buffer, &virAddr); // 获取buffer
         OH_NativeBuffer_Config config;
-        OH_NativeBuffer_GetNativeBufferConfig(buffer, config); //获取config信息 宽，高，format
+        OH_NativeBuffer_GetNativeBufferConfig(buffer, config); // 获取config信息 宽，高，format
         // fence, timestampe, damage 获取fence,时间戳，坐标信息
-        OH_NativeBuffer_UnMap(buffer); //释放buffer
-        //释放视频流
-        int32_t ret = OH_ScreenCapture_ReleaseVideoBuffer(capture);
+        OH_NativeBuffer_UnMap(buffer); // 释放buffer
+        // 释放视频流
+        OH_AVScreenCapture_ReleaseVideoBuffer(capture);
     }
 }
 
-int main()
-{
-    //实例化ScreenCapture
-    struct OH_AVScreenCapture* capture = OH_AVScreenCapture_Create(void);
-    //设置回调
+int main() {
+    // 实例化ScreenCapture
+    struct OH_AVScreenCapture *capture;
+    // 设置回调
     struct OH_AVScreenCaptureCallback callback;
     callback.onError = OnError;
-    callback.onAudioBufferAvailable = OnAudioBufferAvailable ; 
+    callback.onAudioBufferAvailable = OnAudioBufferAvailable;
     callback.onVideoBufferAvailable = OnVideoBufferAvailable;
-    int32_t ret = OH_AVScreenCapture_SetCallback(capture, callback);
-    //初始化录屏，传入配置信息OH_AVScreenRecorderConfig
-    OH_AudioCaptureInfo miccapinfo = {
-        .audioSampleRate = 16000,
-        .audioChannels = 2,
-        .audioSource = OH_MIC
-    };
+    OH_AVScreenCapture_SetCallback(capture, callback);
+    // 初始化录屏，传入配置信息OH_AVScreenRecorderConfig
+    OH_AudioCaptureInfo miccapinfo = {.audioSampleRate = 16000, .audioChannels = 2, .audioSource = OH_MIC};
     OH_VideoCaptureInfo videocapinfo = {
-        .videoFrameWidth = 720,
-        .videoFrameHeight = 1080,
-        .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA
-    };
+        .videoFrameWidth = 720, .videoFrameHeight = 1080, .videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA};
     OH_AudioInfo audioinfo = {
         .micCapInfo = miccapinfo,
     };
-    OH_VideoInfo videoinfo = {
-        .videoCapInfo = videocapinfo
-    };
-    OH_AVScreenCaptureConfig config = {
-        .captureMode = OH_CAPTURE_HOME_SCREEN,
-        .dataType = OH_ORIGINAL_STREAM,
-        .audioInfo = audioinfo,
-        .videoInfo = videoinfo
-    };
-    int32_t ret = OH_AVScreenCapture_Init(capture, config);
-    //开始录屏
-    int32_t ret = OH_AVScreenCapture_StartScreenCapture(capture);
-    //mic开关设置
-    int32_t ret = OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
-    sleep(10); //录制10s
-    //结束录屏
-    int32_t ret = OH_AVScreenCapture_StopScreenCapture(capture);
-    //释放ScreenCapture
-    int32_t ret = OH_AVScreenCapture_Release(capture);
+    OH_VideoInfo videoinfo = {.videoCapInfo = videocapinfo};
+    OH_AVScreenCaptureConfig config = {.captureMode = OH_CAPTURE_HOME_SCREEN,
+                                       .dataType = OH_ORIGINAL_STREAM,
+                                       .audioInfo = audioinfo,
+                                       .videoInfo = videoinfo};
+    OH_AVScreenCapture_Init(capture, config);
+    // 开始录屏
+    OH_AVScreenCapture_StartScreenCapture(capture);
+    // mic开关设置
+    OH_AVScreenCapture_SetMicrophoneEnabled(capture, true);
+    sleep(10); // 录制10s
+    // 结束录屏
+    OH_AVScreenCapture_StopScreenCapture(capture);
+    // 释放ScreenCapture
+    OH_AVScreenCapture_Release(capture);
     return 0;
 }
 ```
@@ -243,6 +249,7 @@ int main()
 ### 录屏存文件开发步骤及注意事项
 
 在 CMake 脚本中链接动态库
+
     ```c++
     target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
     ```

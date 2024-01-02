@@ -39,7 +39,7 @@ Panel(show: boolean)
 | fullHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Full状态下的高度。<br/>默认值：当前组件主轴大小减去8vp空白区<br/>**说明：** <br/>不支持设置百分比。 |
 | halfHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Half状态下的高度。<br/>默认值：当前组件主轴大小的一半。<br/>**说明：** <br/>不支持设置百分比。 |
 | miniHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
-| show | boolean | 当滑动面板弹出时调用。 <br/>默认值：true |
+| show | boolean | 当滑动面板弹出时调用，true显示面板，false不显示面板。 <br/>默认值：true<br/>**说明：** <br/>该属性的优先级高于参数show。 |
 | backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|指定Panel的背景蒙层。<br/>默认值：'#08182431' |
 | showCloseIcon<sup>10+</sup> | boolean | 设置是否显示关闭图标，true表示显示，false表示不显示。<br/>默认值：false |
 
@@ -54,11 +54,11 @@ Panel(show: boolean)
 
 ## PanelMode枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| Mini | 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。 |
-| Half | 类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。 |
-| Full | 类全屏状态。 |
+| 名称 | 值 | 描述 |
+| -------- | -------- | -------- |
+| Mini |0| 类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。|
+| Half | 1 | 类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。 |
+| Full |2  | 类全屏状态。 |
 
 ## PanelHeight<sup>10+</sup>枚举说明
 
