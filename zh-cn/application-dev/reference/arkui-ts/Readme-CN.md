@@ -110,6 +110,7 @@
   - [Span](ts-basic-components-span.md)
   - [Stepper](ts-basic-components-stepper.md)
   - [StepperItem](ts-basic-components-stepperitem.md)
+  - [SymbolGlyph](ts-basic-components-symbolGlyph.md)
   - [Text](ts-basic-components-text.md)
   - [TextArea](ts-basic-components-textarea.md)
   - [TextClock](ts-basic-components-textclock.md)
