@@ -397,8 +397,11 @@ windowStage.loadContent('pages/Index', this.storage);
 }
 ```
 
-在UI页面通过GetShared接口获取在通过loadContent共享的LocalStorage实例。
-
+> **说明：**
+>
+> 在UI页面通过GetShared接口获取在通过loadContent共享的LocalStorage实例。
+>
+> LocalStorage.GetShared只在模拟器或者实机上才有效，不能在Preview预览器中使用。
 
 ```ts
 // 通过GetShared接口获取stage共享的LocalStorage实例
