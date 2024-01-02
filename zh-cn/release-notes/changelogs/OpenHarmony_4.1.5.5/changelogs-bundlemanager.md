@@ -1,24 +1,24 @@
-# 包管理子系统ChangeLog
+# 包管理子系统变更说明
 
-## cl.bundlemanager.1 删除ApplicationReservedFlag枚举和ApplicationInfo中的applicationReservedFlag字段
+## cl.bundlemanager.1 ApplicationReservedFlag枚举和ApplicationInfo中的applicationReservedFlag字段删除
 
 **访问级别**
 
 公开接口
 
-**废弃原因**
+**删除原因**
 
 applicationReservedFlag命名过于复杂，不易理解，且当前存储信息没有使用方，可以删除。
 
-**废弃影响**
+**删除影响**
 
-ApplicationInfo中的applicationReservedFlag原本用于存储应用的保留字段，当前仅存储应用是否加密的信息。废弃后，无法再通过applicationReservedFlag获取应用的保留信息。
+该变更为非兼容性变更。ApplicationInfo中的applicationReservedFlag原本用于存储应用的保留字段，当前仅存储应用是否加密的信息。废弃后，无法再通过applicationReservedFlag获取应用的保留信息。
 
-**废弃发生版本**
+**删除发生版本**
 
 从OpenHarmony SDK 4.1.5.5开始
 
-**废弃的接口/组件**
+**删除的接口/组件**
 
 | 接口声明 | 废弃说明 |
 | --------------- | ------- |
