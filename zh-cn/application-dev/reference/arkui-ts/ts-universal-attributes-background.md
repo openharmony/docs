@@ -130,9 +130,9 @@ backgroundEffect(options: BackgroundEffectOptions)
 | scale         | number                                   | 否    | 背景材质模糊效果程度。此参数为系统接口。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0]<br/> |
 | blurOptions<sup>11+</sup> | [BlurOptions](ts-appendix-enums.md#bluroptions11)         | 否    | 灰阶模糊参数。           |
 
-## BackgroundBrightness<sup>11+</sup> 
+## backgroundBrightness<sup>11+</sup> 
 
-BackgroundBrightness(options: BackgroundBrightnessOptions)
+backgroundBrightness({rate:number,lightUpDegree:number})
 
 设置组件背景动态提亮。
 
@@ -141,12 +141,6 @@ BackgroundBrightness(options: BackgroundBrightnessOptions)
 **系统API：** 此接口为系统接口
 
 **参数：** 
-
-| 参数名  | 类型                                                         | 必填 | 说明                                       |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| options | [BackgroundBrightnessOptions](ts-universal-attributes-background.md#backgroundbrightnessoptions11) | 是   | 设置组件背景动态提亮包括：动态提亮率，动态提亮度。 |
-
-## BackgroundBrightnessOptions<sup>11+</sup>对象说明
 
 | 名称            | 参数类型                                     | 必填   | 描述                                       |
 | ------------- | ---------------------------------------- | ---- | ---------------------------------------- |
