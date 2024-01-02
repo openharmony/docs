@@ -4712,7 +4712,7 @@ try {
 | 名称      | 类型                                              | 必填 | 说明           |
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | 是   | 命令           |
-| parameter | [LoopMode](#loopmode10) &#124; string &#124; number &#124; [media.PlaybackSpeed](../js-apis-media.md#playbackspeed8) | 否   | 命令对应的参数 |
+| parameter | [LoopMode](#loopmode10) &#124; string &#124; number &#124; [media.PlaybackSpeed](./js-apis-media.md#playbackspeed8) | 否   | 命令对应的参数 |
 
 ## AVCastController<sup>10+</sup>
 
