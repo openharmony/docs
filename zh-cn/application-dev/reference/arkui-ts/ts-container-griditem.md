@@ -14,15 +14,15 @@
 
 ## 接口
 
-### GridItem<sup>11+</sup>
+### GridItem
 
-GridItem(value?: GridItemOptions)
+GridItem(value<sup>11+</sup>?: GridItemOptions<sup>11+</sup>)
 
 **参数：**
 
 | 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有[GridItemStyle](#griditemstyle11枚举说明)枚举类型的style参数。 |
+| value<sup>11+</sup>  | [GridItemOptions<sup>11+</sup>](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有[GridItemStyle](#griditemstyle11枚举说明)枚举类型的style参数。 |
 
 ## 属性
 
@@ -78,7 +78,7 @@ GridItem(value?: GridItemOptions)
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onSelect<sup>8+</sup>(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void) | GridItem元素被鼠标框选的状态改变时触发回调。<br/>isSelected：进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
+| onSelect(event:&nbsp;(isSelected:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)<sup>8+</sup> | GridItem元素被鼠标框选的状态改变时触发回调。<br/>isSelected：进入鼠标框选范围即被选中返回true，&nbsp;移出鼠标框选范围即未被选中返回false。 |
 
 ## 示例
 
