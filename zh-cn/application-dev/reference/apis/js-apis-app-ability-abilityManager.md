@@ -63,6 +63,7 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { BusinessError } from '@ohos.base';
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
