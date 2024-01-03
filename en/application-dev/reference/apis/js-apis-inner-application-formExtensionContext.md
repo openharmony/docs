@@ -232,7 +232,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | connection | number | Yes| Number returned after [connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10) is called.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is disconnected, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -248,7 +248,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
 import Base from '@ohos.base';
 
 // commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.
@@ -298,7 +297,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -314,7 +313,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
 import Base from '@ohos.base';
 
 // commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.

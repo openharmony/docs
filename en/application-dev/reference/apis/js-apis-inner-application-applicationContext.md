@@ -260,6 +260,7 @@ Deregisters the listener for system environment changes.
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.  |
+| callback      | AsyncCallback\<void> | Yes  | Callback unsed for unregistration. |
 
 **Example**
 
