@@ -20,6 +20,8 @@ import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.ark
 
 CounterComponent({options:CounterOptions} )
 
+定义计数器组件。
+
 **装饰器类型：**@Component
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -144,7 +146,8 @@ DateData定义Date通用属性和方法，如年、月、日。
 ### 示例1
 
 ```ts
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import {CounterType, CounterComponent} from '@ohos.arkui.advanced.Counter';
+
 @Entry
 @Component
 struct ListCounterExample {
@@ -169,7 +172,8 @@ struct ListCounterExample {
 ![listcounter](figures/listcounter.gif)
 ### 示例2
 ```ts
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import {CounterType, CounterComponent} from '@ohos.arkui.advanced.Counter';
+
 @Entry
 @Component
 struct CompactCounterExample {
@@ -194,7 +198,8 @@ struct CompactCounterExample {
 ![compactcounter](figures/compactcounter.gif)
 ### 示例3
 ```ts
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import {CounterType, CounterComponent} from '@ohos.arkui.advanced.Counter';
+
 @Entry
 @Component
 struct NumberStyleExample {
@@ -210,6 +215,7 @@ struct NumberStyleExample {
           max: 1000,
           textWidth: 100,
           onChange: (value: number) => {
+              console.log("onDateChange Date: " + value.toString());
           }
         } }
        })
@@ -220,7 +226,7 @@ struct NumberStyleExample {
 ![numberstyle](figures/numberstyle.gif)
 ### 示例4
 ```ts
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import {CounterType, CounterComponent, DateData} from '@ohos.arkui.advanced.Counter';
 @Entry
 @Component
 struct DataStyleExample {
