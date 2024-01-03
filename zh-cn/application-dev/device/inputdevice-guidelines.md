@@ -14,7 +14,7 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 输入设备管理常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputDevice文档](../reference/apis/js-apis-inputdevice.md)。
 
-| 实例名 | 接口名  | 说明 |
+| 接口名  | 说明 |
 | ----------- | ------------------------------------------------------------ | -------------------------- |
 | inputDevice | function getDeviceList(): Promise\<Array\<number>>; | 获取输入设备列表。 |
 | inputDevice | function getKeyboardType(deviceId: number): Promise\<KeyboardType>; | 获取输入设备的键盘类型。 |

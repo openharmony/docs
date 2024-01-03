@@ -13,7 +13,7 @@ import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 ## 接口说明
 输入监听常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputMonitor文档](../reference/apis/js-apis-inputmonitor.md)。
 
-| 接口名  | 说明 |
+| 接口名称  | 描述 |
 | ------------------------------------------------------------ | -------------------------- |
 | on(type: 'mouse', receiver: Callback<MouseEvent>): void |监听鼠标事件。 |
 | on(type: 'touch', receiver: TouchEventReceiver): void | 监听触屏事件。 |
