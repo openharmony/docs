@@ -4,7 +4,7 @@
 Web组件支持对前端页面进行深色模式配置。
 
 
-- 通过[darkMode()](../reference/arkui-ts/ts-basic-components-web.md#darkmode9)接口可以配置不同的深色模式，[WebDarkMode.Off](../reference/arkui-ts/ts-basic-components-web.md#webdarkmode9)模式表示关闭深色模式。[WebDarkMode.On](../reference/arkui-ts/ts-basic-components-web.md#webdarkmode9)表示开启深色模式，并且深色模式跟随前端页面。[WebDarkMode.Auto](../reference/arkui-ts/ts-basic-components-web.md#webdarkmode9)表示开启深色模式，并且深色模式跟随系统。
+- 通过[darkMode()](../reference/arkui-ts/ts-basic-components-web.md#darkmode9)接口可以配置不同的深色模式，[WebDarkMode.Off](../reference/arkui-ts/ts-basic-components-web.md#webdarkmode9枚举说明)模式表示关闭深色模式。[WebDarkMode.On](../reference/arkui-ts/ts-basic-components-web.md#webdarkmode9枚举说明)表示开启深色模式，并且深色模式跟随前端页面。[WebDarkMode.Auto](../reference/arkui-ts/ts-basic-components-web.md#webdarkmode9枚举说明)表示开启深色模式，并且深色模式跟随系统。
     在下面的示例中, 通过[darkMode()](../reference/arkui-ts/ts-basic-components-web.md#darkmode9)接口将页面深色模式配置为跟随系统。
 
     ```ts

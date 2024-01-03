@@ -17,20 +17,21 @@ PageAbility相关的能力通过featureAbility提供，启动本地Ability通过
 ```ts
 import featureAbility from '@ohos.ability.featureAbility'
 import Want from '@ohos.app.ability.Want';
-
-(async () => {
+```
+```ts
+(async (): Promise<void> => {
   try {
-    console.info('Begin to start ability')
+    Logger.info(TAG, 'Begin to start ability');
     let want: Want = {
-      bundleName: "com.example.myapplication",
-      moduleName: "entry",
-      abilityName: "com.example.myapplication.EntryAbility"
-    }
-    await featureAbility.startAbility({want})
-    console.info(`Start ability succeed`)
-  } 
+      bundleName: 'com.samples.famodelabilitydevelop',
+      moduleName: 'entry',
+      abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
+    };
+    await featureAbility.startAbility({ want: want });
+    Logger.info(TAG, `Start ability succeed`);
+  }
   catch (error) {
-    console.error('Start ability failed with ' + error)
+    Logger.error(TAG, 'Start ability failed with ' + error);
   }
 })()
 ```

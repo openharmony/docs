@@ -1414,7 +1414,7 @@ In the stage model:
   }
 ```
 
-Only the **Worker** module can be imported to the restricted worker thread file. Other system APIs cannot be imported. The following is sample code:
+Only the **Worker** module can be imported to the restricted worker thread file. Other APIs cannot be imported. The following is sample code:
 
 ```ts
 // Restricted worker thread file
@@ -1971,7 +1971,7 @@ Implements communication between the worker thread and the host thread. The **po
 
 ### postMessage<sup>(deprecated)</sup>
 
-postMessage(messageObject: Object, transfer: Transferable[]): void;
+postMessage(messageObject: Object, transfer: Transferable[]): void
 
 Used by the worker thread to send a message to the host thread by transferring object ownership.
 
@@ -1989,7 +1989,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 ### postMessage<sup>9+</sup>
 
-postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
+postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
 Used by the worker thread to send a message to the host thread by transferring object ownership.
 
@@ -2383,7 +2383,7 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 
 ```ts
 // Main thread (The following assumes that the workers directory and pages directory are at the same level.)
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
@@ -2445,7 +2445,7 @@ Configuration of the **build-profile.json5** file:
 ### Stage Model
 ```ts
 // Main thread (The following assumes that the workers directory and pages directory are at different levels.)
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");

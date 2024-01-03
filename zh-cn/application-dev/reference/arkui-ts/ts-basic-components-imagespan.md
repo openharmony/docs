@@ -31,6 +31,7 @@ ImageSpan(value: ResourceStr | PixelMap)
 | -------- | -------- | -------- |
 | verticalAlign | [ImageSpanAlignment](#imagespanalignment) | 图片基于文本的对齐方式。<br />默认值：ImageSpanAlignment.BOTTOM |
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 设置图片的缩放类型。<br/>默认值：ImageFit.Cover |
+| textBackgroundStyle<sup>11+</sup> | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明)                                                                                           | 设置背景样式。``默认值:``<br />``{``<br />``  color: Color.Transparent,``<br />``  radius: 0``<br />``}`` <br/>**说明：**<br/>作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。  |
 
 ## ImageSpanAlignment
 
@@ -47,6 +48,7 @@ ImageSpan(value: ResourceStr | PixelMap)
 
 ## 示例
 
+### 示例1
 ```ts
 // xxx.ets
 @Entry
@@ -94,3 +96,23 @@ struct SpanExample {
 
 ![imagespan](figures/imagespan.png)
 
+### 示例2
+```ts
+// xxx.ets
+@Component
+@Entry
+struct Index {
+  build() {
+    Column() {
+      Text() {
+        ImageSpan($r('app.media.app_icon'))
+          .width('60vp')
+          .height('60vp')
+          .verticalAlign(ImageSpanAlignment.CENTER)
+          .textBackgroundStyle({color: Color.Green, radius: "5vp"})
+      }
+    }.width('100%').alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![imagespan](figures/image_span_textbackgroundstyle.png)

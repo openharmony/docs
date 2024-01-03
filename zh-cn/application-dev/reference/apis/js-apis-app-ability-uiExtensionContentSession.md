@@ -15,7 +15,7 @@ import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSessi
 
 ## UIExtensionContentSession.sendData
 
-sendData(data: { [key: string]: Object }): void
+sendData(data: Record\<string, Object>): void
 
 发送数据给UIExtensionComponent控件。
 
@@ -27,7 +27,7 @@ sendData(data: { [key: string]: Object }): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| data | {[key:&nbsp;string]:&nbsp;Object} | 是 | 发送给UIExtensionComponent控件的数据参数。 |
+| data | Record\<string,&nbsp;Object> | 是 | 发送给UIExtensionComponent控件的数据参数。 |
 
 **错误码：**
 
@@ -39,7 +39,7 @@ sendData(data: { [key: string]: Object }): void
 
 ## UIExtensionContentSession.setReceiveDataCallback
 
-setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): void
+setReceiveDataCallback(callback: (data: Record\<string, Object>) => void): void
 
 设置从UIExtensionComponent控件接收数据的回调方法。
 
@@ -51,7 +51,7 @@ setReceiveDataCallback(callback: (data: { [key: string]: Object }) => void): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | (data: { [key: string]: Object }) => void | 是 | 接收数据的回调方法。 |
+| callback | (data: Record\<string, Object>) => void | 是 | 接收数据的回调方法。 |
 
 **错误码：**
 
@@ -684,7 +684,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | 是 | 启动Ability所携带的参数。 |
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | 否 | 启动Ability所携带的参数。 |
 
 **返回值：**
 

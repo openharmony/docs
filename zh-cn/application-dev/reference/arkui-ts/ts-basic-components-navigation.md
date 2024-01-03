@@ -71,7 +71,7 @@ Navigation路由栈。
 
 ### pushPath<sup>10+</sup>
 
-pushPath(info: NavPathInfo): void
+pushPath(info: NavPathInfo, animated?: boolean): void
 
 将info指定的NavDestination页面信息入栈。
 
@@ -80,10 +80,11 @@ pushPath(info: NavPathInfo): void
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | NavDestination页面的信息。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### pushPathByName<sup>10+</sup>
 
-pushPathByName(name: string, param: unknown): void
+pushPathByName(name: string, param: unknown, animated?: boolean): void
 
 将name指定的NavDestination页面信息入栈，传递的数据为param。
 
@@ -93,10 +94,11 @@ pushPathByName(name: string, param: unknown): void
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | unknown | 是    | NavDestination页面详细参数。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### replacePath<sup>11+</sup>
 
-replacePath(info: NavPathInfo): void
+replacePath(info: NavPathInfo, animated?: boolean): void
 
 将当前页面栈栈顶退出，将info指定的NavDestination页面信息入栈。
 
@@ -105,10 +107,11 @@ replacePath(info: NavPathInfo): void
 | 名称   | 类型                            | 必填   | 描述                   |
 | ---- | ----------------------------- | ---- | -------------------- |
 | info | [NavPathInfo](#navpathinfo10) | 是    | 新栈顶页面参数信息 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### replacePathByName<sup>11+</sup>
 
-replacePathByName(name: string, param: Object): void
+replacePathByName(name: string, param: Object, animated?: boolean): void
 
 将当前页面栈栈顶退出，将name指定的页面入栈。
 
@@ -118,12 +121,19 @@ replacePathByName(name: string, param: Object): void
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
 | param | Object | 是    | NavDestination页面详细参数。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### pop<sup>10+</sup>
 
-pop(): NavPathInfo | undefined
+pop(animated?: boolean): NavPathInfo | undefined
 
 弹出路由栈栈顶元素。
+
+**参数：**
+
+| 名称   | 类型                            | 必填   | 描述                   |
+| ---- | ----------------------------- | ---- | -------------------- |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
 
@@ -134,7 +144,7 @@ pop(): NavPathInfo | undefined
 
 ### popToName<sup>10+</sup>
 
-popToName(name: string): number
+popToName(name: string, animated?: boolean): number
 
 回退路由栈到第一个名为name的NavDestination页面。
 
@@ -143,6 +153,7 @@ popToName(name: string): number
 | 名称   | 类型     | 必填   | 描述                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
 
@@ -152,7 +163,7 @@ popToName(name: string): number
 
 ### popToIndex<sup>10+</sup>
 
-popToIndex(index: number): void
+popToIndex(index: number, animated?: boolean): void
 
 回退路由栈到index指定的NavDestination页面。
 
@@ -161,10 +172,11 @@ popToIndex(index: number): void
 | 名称    | 类型     | 必填   | 描述                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### moveToTop<sup>10+</sup>
 
-moveToTop(name: string): number
+moveToTop(name: string, animated?: boolean): number
 
 将第一个名为name的NavDestination页面移到栈顶。
 
@@ -173,6 +185,7 @@ moveToTop(name: string): number
 | 名称   | 类型     | 必填   | 描述                  |
 | ---- | ------ | ---- | ------------------- |
 | name | string | 是    | NavDestination页面名称。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 **返回值：**
 
@@ -182,7 +195,7 @@ moveToTop(name: string): number
 
 ### moveIndexToTop<sup>10+</sup>
 
-moveIndexToTop(index: number): void
+moveIndexToTop(index: number, animated?: boolean): void
 
 将index指定的NavDestination页面移到栈顶。
 
@@ -191,12 +204,19 @@ moveIndexToTop(index: number): void
 | 名称    | 类型     | 必填   | 描述                     |
 | ----- | ------ | ---- | ---------------------- |
 | index | number | 是    | NavDestination页面的位置索引。 |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### clear<sup>10+</sup>
 
-clear(): void
+clear(animated?: boolean): void
 
 清除栈中所有页面。
+
+**参数：**
+
+| 名称    | 类型     | 必填   | 描述                     |
+| ----- | ------ | ---- | ---------------------- |
+| animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
 ### getAllPathName<sup>10+</sup>
 
@@ -276,6 +296,18 @@ size(): number
 | 类型     | 说明     |
 | ------ | ------ |
 | number | 返回栈大小。 |
+
+### disableAnimation<sup>11+</sup>
+
+disableAnimation(value: boolean): void
+
+关闭（true）或打开（false）当前Navigation中所有转场动画。
+
+**参数：**
+
+| 名称    | 类型     | 必填   | 描述                     |
+| ----- | ------ | ---- | ---------------------- |
+| value | boolean | 否    | 是否关闭转场动画，默认值：false。 |
 
 ## NavPathInfo<sup>10+</sup>
 
@@ -360,7 +392,7 @@ constructor(name: string, param: unknown)
 | 名称  | 描述                                                         |
 | ----- | ------------------------------------------------------------ |
 | Stack | 导航栏与内容区独立显示，相当于两个页面。                     |
-| Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>1.当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)大于maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)小于minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>2.当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>3.缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>4.设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>5.若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。 |
+| Split | 导航栏与内容区分两栏显示。<br/>以下navBarWidthRange的值用[minNavBarWidth,maxNavBarWidth]表示<br/>1.当navBarWidth属性的值，在navBarWidthRange属性的值范围以外时，navBarWidth按如下规则显示：<br/>navBarWidth < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) > maxNavBarWidth时，navBarWidth修正为maxNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp) < minNavBarWidth时，navBarWidth修正为minNavBarWidth;<br/>navBarWidth > maxNavBarWidth，且组件宽度 - minContentWidth - 分割线宽度(1vp)在navBarWidthRange范围内，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth。<br/>2.当navBarWidth属性的值，在navBarWidthRange属性的值范围以内时，navBarWidth按如下规则显示：<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为minNavBarWidth；<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) >= 组件宽度时，navBarWidth修正为组件宽度 - 分割线宽度(1vp) - minContentWidth;<br/>minNavBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度，且navBarWidth + minContentWidth + 分割线宽度(1vp) < 组件宽度时，navBarWidth为设置的值。<br/>3.缩小组件尺寸时，先缩小内容区的尺寸至minContentWidth，然后再缩小导航栏的尺寸至minNavBarWidth。若继续缩小，先缩小内容区，内容区消失后再缩小导航栏。<br/>4.设置导航栏为固定尺寸时，若持续缩小组件尺寸，导航栏最后压缩显示。<br/>5.若只设置了navBarWidth属性，则导航栏宽度为navBarWidth，且分割线不可拖动。 |
 | Auto  | API version 9之前：窗口宽度>=520vp时，采用Split模式显示；窗口宽度<520vp时，采用Stack模式显示。<br/>API version 10及以上：窗口宽度>=600vp时，采用Split模式显示；窗口宽度<600vp时，采用Stack模式显示，600vp等于minNavBarWidth(240vp) + minContentWidth (360vp)。 |
 
 ## TitleHeight枚举说明
@@ -445,7 +477,7 @@ struct NavigationExample {
                 .fontSize(16)
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: number) => item.toString())
         }
         .height(324)
@@ -486,9 +518,9 @@ struct NavigationExample {
 ### 示例2
 ```ts
 // Index.ets
-import { pageOneTmp } from './pageOne'
-import { pageTwoTmp } from './pageTwo'
-import { pages }  from './pageTwo'
+import { PageOneTmp } from './PageOne'
+import { pageTwoTmp } from './PageTwo'
+import { Pages }  from './PageTwo'
 
 @Entry
 @Component
@@ -498,9 +530,9 @@ struct NavigationExample {
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
-      pageOneTmp()
+      PageOneTmp()
     } else if (name === 'pageTwo') {
-      pageTwoTmp({ names: name, values: this.pageInfos } as pages)
+      pageTwoTmp({ names: name, values: this.pageInfos } as Pages)
     }
   }
 
@@ -520,12 +552,12 @@ struct NavigationExample {
 }
 ```
 ```ts
-// pageOne.ets
-class tmpClass{
+// PageOne.ets
+class TmpClass{
   count:number=10
 }
 @Component
-export struct pageOneTmp {
+export struct PageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
 
   build() {
@@ -536,7 +568,7 @@ export struct pageOneTmp {
           .height(40)
           .margin(20)
           .onClick(() => {
-            let tmp = new tmpClass()
+            let tmp = new TmpClass()
             this.pageInfos.pushPathByName('pageTwo', tmp) //将name指定的NavDestination页面信息入栈，传递的数据为param
           })
         Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
@@ -601,15 +633,14 @@ export struct pageOneTmp {
 }
 ```
 ```ts
-// pageTwo.ets
-
-export class pages {
+// PageTwo.ets
+export class Pages {
   names: string = ""
   values: NavPathStack | null = null
 }
 
 @Builder
-export function pageTwoTmp(info: pages) {
+export function pageTwoTmp(info: Pages) {
   NavDestination() {
     Column() {
       Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })

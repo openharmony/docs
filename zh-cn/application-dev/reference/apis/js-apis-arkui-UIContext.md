@@ -692,7 +692,7 @@ getDragPreview(): DragPreview
 
 | 类型        | 说明                                            |
 | ------------| ------------------------------------------------|
-| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口。 |
+| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
 **错误码：**
 
@@ -704,6 +704,21 @@ getDragPreview(): DragPreview
 **示例：**
 
 请参考[animate](js-apis-arkui-dragController.md#animate11)
+
+### keyframeAnimateTo<sup>11+</sup>
+
+keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
+
+产生关键帧动画。该接口的使用说明请参考[keyframeAnimateTo](../arkui-ts/ts-keyframeAnimateTo.md)。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称         | 参数类型                                              | 是否必填 | 描述                         |
+| ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
+| param        | [KeyframeAnimateParam](../arkui-ts/ts-keyframeAnimateTo.md#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
+| keyframes    | Array&lt;[KeyframeState](../arkui-ts/ts-keyframeAnimateTo.md#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            | 
 
 ## Font
 

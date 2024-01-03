@@ -8,72 +8,78 @@
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
+import type common from '@ohos.app.ability.common';
+import type Want from '@ohos.app.ability.Want';
+import type { AsyncCallback, BusinessError } from '@ohos.base';
 import dataAbility from '@ohos.data.dataAbility';
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
-import { AsyncCallback, BusinessError } from '@ohos.base';
 import rdb from '@ohos.data.rdb';
+import hilog from '@ohos.hilog';
 
-const TABLE_NAME = 'book'
-const STORE_CONFIG: rdb.StoreConfig = { name: 'book.db'}
-const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS book(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, introduction TEXT NOT NULL)'
-let rdbStore: rdb.RdbStore | undefined = undefined
+let TABLE_NAME = 'book';
+let STORE_CONFIG: rdb.StoreConfig = { name: 'book.db' };
+let SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS book(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, introduction TEXT NOT NULL)';
+let rdbStore: rdb.RdbStore | undefined = undefined;
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
 
 class DataAbility {
-  onInitialized(want: Want) {
-    console.info('DataAbility onInitialized, abilityInfo:' + want.bundleName)
-    let context: common.BaseContext = {stageMode: featureAbility.getContext().stageMode}
+  onInitialized(want: Want): void {
+    hilog.info(domain, TAG, 'DataAbility onInitialized, abilityInfo:' + want.bundleName);
+    let context: common.BaseContext = { stageMode: featureAbility.getContext().stageMode };
     rdb.getRdbStore(context, STORE_CONFIG, 1, (err, store) => {
-      console.info('DataAbility getRdbStore callback')
-      store.executeSql(SQL_CREATE_TABLE, [])
-      rdbStore = store
+      hilog.info(domain, TAG, 'DataAbility getRdbStore callback');
+      store.executeSql(SQL_CREATE_TABLE, []);
+      rdbStore = store;
     });
   }
-  insert(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback<number>) {
-    console.info('DataAbility insert start')
+
+  insert(uri: string, valueBucket: rdb.ValuesBucket, callback: AsyncCallback<number>): void {
+    hilog.info(domain, TAG, 'DataAbility insert start');
     if (rdbStore) {
-      rdbStore.insert(TABLE_NAME, valueBucket, callback)
+      rdbStore.insert(TABLE_NAME, valueBucket, callback);
     }
   }
-  batchInsert(uri: string, valueBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback<number>) {
-    console.info('DataAbility batch insert start')
+
+  batchInsert(uri: string, valueBuckets: Array<rdb.ValuesBucket>, callback: AsyncCallback<number>): void {
+    hilog.info(domain, TAG, 'DataAbility batch insert start');
     if (rdbStore) {
-      for (let i = 0;i < valueBuckets.length; i++) {
-        console.info('DataAbility batch insert i=' + i)
+      for (let i = 0; i < valueBuckets.length; i++) {
+        hilog.info(domain, TAG, 'DataAbility batch insert i=' + i);
         if (i < valueBuckets.length - 1) {
           rdbStore.insert(TABLE_NAME, valueBuckets[i], (err: BusinessError, num: number) => {
-            console.info('DataAbility batch insert ret=' + num)
-          })
+            hilog.info(domain, TAG, 'DataAbility batch insert ret=' + num);
+          });
         } else {
-          rdbStore.insert(TABLE_NAME, valueBuckets[i], callback)
+          rdbStore.insert(TABLE_NAME, valueBuckets[i], callback);
         }
       }
     }
   }
-  query(uri: string, columns: Array<string>, predicates: dataAbility.DataAbilityPredicates,
-        callback: AsyncCallback<rdb.ResultSet>) {
-    console.info('DataAbility query start')
-    let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
+
+  query(uri: string, columns: Array<string>, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<rdb.ResultSet>): void {
+    hilog.info(domain, TAG, 'DataAbility query start');
+    let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates);
     if (rdbStore) {
-      rdbStore.query(rdbPredicates, columns, callback)
+      rdbStore.query(rdbPredicates, columns, callback);
     }
   }
-  update(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates,
-         callback: AsyncCallback<number>) {
-    console.info('DataAbilityupdate start')
-    let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
+
+  update(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>): void {
+    hilog.info(domain, TAG, 'DataAbility update start');
+    let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates);
     if (rdbStore) {
-      rdbStore.update(valueBucket, rdbPredicates, callback)
+      rdbStore.update(valueBucket, rdbPredicates, callback);
     }
   }
-  delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>) {
-    console.info('DataAbilitydelete start')
-    let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates)
+
+  delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback<number>): void {
+    hilog.info(domain, TAG, 'DataAbility delete start');
+    let rdbPredicates = dataAbility.createRdbPredicates(TABLE_NAME, predicates);
     if (rdbStore) {
-      rdbStore.delete(rdbPredicates, callback)
+      rdbStore.delete(rdbPredicates, callback);
     }
   }
 }
 
-export default new DataAbility()
+export default new DataAbility();
 ```

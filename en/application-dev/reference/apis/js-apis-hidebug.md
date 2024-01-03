@@ -90,6 +90,26 @@ Obtains the size of the physical memory actually used by the application process
   let pss: bigint = hidebug.getPss();
   ```
 
+## hidebug.getVss<sup>11+<sup>
+
+getVss(): bigint
+
+Obtains the virtual set size used by the application process.
+
+**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+
+**Return value**
+
+| Type  | Description                                    |
+| ------ | ---------------------------------------- |
+| bigint | Virtual set size used by the application process, in KB.|
+
+**Example**
+
+  ```ts
+let vss: bigint = hidebug.getVss();
+  ```
+
 ## hidebug.getSharedDirty
 
 getSharedDirty(): bigint
@@ -171,7 +191,7 @@ Obtains system service information.
 
 **Error codes**
 
-For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hiviewdfx-hidebug.md).
+For details about the error codes, see [HiDebug Error Codes](../errorcodes/errorcode-hiviewdfx-hidebug.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
@@ -182,10 +202,10 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import fs from '@ohos.file.fs'
-import hidebug from '@ohos.hidebug'
-import common from '@ohos.app.ability.common'
-import { BusinessError } from '@ohos.base'
+import fs from '@ohos.file.fs';
+import hidebug from '@ohos.hidebug';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 export default class HidebugTest extends UIAbility {
   public testfunc() {
@@ -232,7 +252,7 @@ Starts the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` 
 
 **Error codes**
 
-For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
@@ -298,7 +318,7 @@ Exports the heap data.
 
 **Error codes**
 
-For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |

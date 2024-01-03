@@ -397,6 +397,23 @@ Enumerates the audio device flags.
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | Distributed input device.<br>This is a system API.   |
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | Distributed input and output device.<br>This is a system API.|
 
+## DeviceUsage<sup>11+</sup>
+
+Enumerates the audio device flags.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**System API**: This is a system API.
+
+| Name                           |  Value    | Description                       |
+| ------------------------------- | ------ |---------------------------|
+| MEDIA_OUTPUT_DEVICES<sup>11+</sup> | 1      | Media output device.|
+| MEDIA_INPUT_DEVICES<sup>11+</sup>  | 2      | Media input device.|
+| ALL_MEDIA_DEVICES<sup>11+</sup>    | 3      | All media devices.|
+| CALL_OUTPUT_DEVICES<sup>11+</sup>  | 4      | Call output device.|
+| CALL_INPUT_DEVICES<sup>11+</sup>   | 8      | Call input device.|
+| ALL_CALL_DEVICES<sup>11+</sup>     | 12     | All call devices.|
+
 ## DeviceRole
 
 Enumerates the audio device roles.
@@ -488,8 +505,19 @@ Enumerates the audio channels.
 
 | Name     |  Value      | Description  |
 | --------- | -------- |------|
-| CHANNEL_1 | 0x1 << 0 | Mono.|
-| CHANNEL_2 | 0x1 << 1 | Stereo.|
+| CHANNEL_1 | 0x1 << 0 | One audio channel (mono).|
+| CHANNEL_2 | 0x1 << 1 | Two audio channels (stereo).|
+| CHANNEL_3<sup>11+</sup> | 3 | Three audio channels.|
+| CHANNEL_4<sup>11+</sup> | 4 | Four audio channels.|
+| CHANNEL_5<sup>11+</sup> | 5 | Five audio channels.|
+| CHANNEL_6<sup>11+</sup> | 6 | Six audio channels.|
+| CHANNEL_7<sup>11+</sup> | 7 | Seven audio channels.|
+| CHANNEL_8<sup>11+</sup> | 8 | Eight audio channels.|
+| CHANNEL_9<sup>11+</sup> | 9 | Nine audio channels.|
+| CHANNEL_10<sup>11+</sup> | 10 | Ten audio channels.|
+| CHANNEL_12<sup>11+</sup> | 12 | Twelve audio channels.|
+| CHANNEL_14<sup>11+</sup> | 14 | Fourteen audio channels.|
+| CHANNEL_16<sup>11+</sup> | 16 | Sixteen audio channels.|
 
 ## AudioSamplingRate<sup>8+</sup>
 
@@ -521,6 +549,64 @@ Enumerates the audio encoding types.
 | --------------------- | ------ | --------- |
 | ENCODING_TYPE_INVALID | -1     | Invalid.   |
 | ENCODING_TYPE_RAW     | 0      | PCM encoding.|
+
+## AudioChannelLayout<sup>11+</sup>
+
+Enumerates the audio channel layouts.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name                           |  Value             | Description                                         |
+| ------------------------------ | ---------------- | --------------------------------------------- |
+| CH_LAYOUT_UNKNOWN              | 0x0              | Unknown.                                |
+| CH_LAYOUT_MONO                 | 0x4              | Mono.                              |
+| CH_LAYOUT_STEREO               | 0x3              | Stereo.                            |
+| CH_LAYOUT_STEREO_DOWNMIX       | 0x60000000       | Stereo downmix.                    |
+| CH_LAYOUT_2POINT1              | 0xB              | 2.1.                               |
+| CH_LAYOUT_3POINT0              | 0x103            | 3.0.                               |
+| CH_LAYOUT_SURROUND             | 0x7              | Surround.                          |
+| CH_LAYOUT_3POINT1              | 0xF              | 3.1.                               |
+| CH_LAYOUT_4POINT0              | 0x107            | 4.0.                               |
+| CH_LAYOUT_QUAD                 | 0x33             | Quad.                              |
+| CH_LAYOUT_QUAD_SIDE            | 0x603            | Quad side.                         |
+| CH_LAYOUT_2POINT0POINT2        | 0x3000000003     | 2.0.2.                             |
+| CH_LAYOUT_AMB_ORDER1_ACN_N3D   | 0x100000000001   | First-order FOA file in ACN_N3D (ITU standards). |
+| CH_LAYOUT_AMB_ORDER1_ACN_SN3D  | 0x100000001001   | First-order FOA file in ACN_SN3D (ITU standards).|
+| CH_LAYOUT_AMB_ORDER1_FUMA      | 0x100000000101   | First-order FOA file in FUMA (ITU standards).    |
+| CH_LAYOUT_4POINT1              | 0x10F            | 4.1.                                 |
+| CH_LAYOUT_5POINT0              | 0x607            | 5.0.                               |
+| CH_LAYOUT_5POINT0_BACK         | 0x37             | 5.0 back.                          |
+| CH_LAYOUT_2POINT1POINT2        | 0x300000000B     | 2.1.2.                             |
+| CH_LAYOUT_3POINT0POINT2        | 0x3000000007     | 3.0.2.                             |
+| CH_LAYOUT_5POINT1              | 0x60F            | 5.1.                               |
+| CH_LAYOUT_5POINT1_BACK         | 0x3F             | 5.1 back.                          |
+| CH_LAYOUT_6POINT0              | 0x707            | 6.0.                               |
+| CH_LAYOUT_HEXAGONAL            | 0x137            | Hexagonal.                         |
+| CH_LAYOUT_3POINT1POINT2        | 0x500F           | 3.1.2.                             |
+| CH_LAYOUT_6POINT0_FRONT        | 0x6C3            | 6.0 front.                         |
+| CH_LAYOUT_6POINT1              | 0x70F            | 6.1.                               |
+| CH_LAYOUT_6POINT1_BACK         | 0x13F            | 6.1 back.                          |
+| CH_LAYOUT_6POINT1_FRONT        | 0x6CB            | 6.1 front.                         |
+| CH_LAYOUT_7POINT0              | 0x637            | 7.0.                               |
+| CH_LAYOUT_7POINT0_FRONT        | 0x6C7            | 7.0 front.                         |
+| CH_LAYOUT_7POINT1              | 0x63F            | 7.1.                               |
+| CH_LAYOUT_OCTAGONAL            | 0x737            | Octagonal.                         |
+| CH_LAYOUT_5POINT1POINT2        | 0x300000060F     | 5.1.2.                             |
+| CH_LAYOUT_7POINT1_WIDE         | 0x6CF            | 7.1 wide.                          |
+| CH_LAYOUT_7POINT1_WIDE_BACK    | 0xFF             | 7.1 wide back.                     |
+| CH_LAYOUT_AMB_ORDER2_ACN_N3D   | 0x100000000002   | Second-order HOA file in ACN_N3D (ITU standards). |
+| CH_LAYOUT_AMB_ORDER2_ACN_SN3D  | 0x100000001002   | Second-order HOA file in ACN_SN3D (ITU standards).|
+| CH_LAYOUT_AMB_ORDER2_FUMA      | 0x100000000102   | Second-order HOA file in FUMA (ITU standards).    |
+| CH_LAYOUT_5POINT1POINT4        | 0x2D60F          | 5.1.4.                             |
+| CH_LAYOUT_7POINT1POINT2        | 0x300000063F     | 7.1.2.                             |
+| CH_LAYOUT_7POINT1POINT4        | 0x2D63F          | 7.1.4.                             |
+| CH_LAYOUT_10POINT2             | 0x180005737      | 10.2.                              |
+| CH_LAYOUT_9POINT1POINT4        | 0x18002D63F      | 9.1.4.                             |
+| CH_LAYOUT_9POINT1POINT6        | 0x318002D63F     | 9.1.6.                             |
+| CH_LAYOUT_HEXADECAGONAL        | 0x18003F737      | Hexadecagonal.                     |
+| CH_LAYOUT_AMB_ORDER3_ACN_N3D   | 0x100000000003   | Third-order HOA file in ACN_N3D (ITU standards). |
+| CH_LAYOUT_AMB_ORDER3_ACN_SN3D  | 0x100000001003   | Third-order HOA file in ACN_SN3D (ITU standards).|
+| CH_LAYOUT_AMB_ORDER3_FUMA      | 0x100000000103   | Third-order HOA file in FUMA (ITU standards).    |
 
 ## ContentType<sup>(deprecated)</sup>
 
@@ -670,6 +756,7 @@ Describes audio stream information.
 | channels     | [AudioChannel](#audiochannel8)                    | Yes  | Number of audio channels.|
 | sampleFormat | [AudioSampleFormat](#audiosampleformat8)          | Yes  | Audio sample format.    |
 | encodingType | [AudioEncodingType](#audioencodingtype8)          | Yes  | Audio encoding type.    |
+| channelLayout<sup>11+</sup> | [AudioChannelLayout](#audiochannellayout11)  | No  | Audio channel layout.    |
 
 ## AudioRendererInfo<sup>8+</sup>
 
@@ -1253,6 +1340,37 @@ Obtains an **AudioRoutingManager** instance.
 import audio from '@ohos.multimedia.audio';
 
 let audioRoutingManager: audio.AudioRoutingManager = audioManager.getRoutingManager();
+```
+
+### getSpatializationManager<sup>11+</sup>
+
+getSpatializationManager(): AudioSpatializationManager
+
+Obtains an **AudioSpatializationManager** instance.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Return value**
+
+| Type                                      | Description                         |
+|------------------------------------------| ----------------------------- |
+| [AudioSpatializationManager](#audiospatializationmanager11) | **AudioSpatializationManager** instance.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
 ```
 
 ### setVolume<sup>(deprecated)</sup>
@@ -2262,7 +2380,7 @@ Subscribes to audio device connection change events. This API uses an asynchrono
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
 | type     | string                                               | Yes  | Event type. The event **'deviceChange'** is triggered when the device connection status is changed.|
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes  | Callback used to return the device update details.|
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes  | Callback used to return the device change details.|
 
 **Example**
 
@@ -2292,7 +2410,7 @@ Unsubscribes from audio device connection change events. This API uses an asynch
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                              | Yes  | Event type. The event **'deviceChange'** is triggered when the device connection status is changed.|
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No  | Callback used to return the device update details.|
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No  | Callback used to return the device change details.|
 
 **Example**
 
@@ -4203,9 +4321,9 @@ Unsubscribes from audio renderer change events.
 
 For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
 
-| ID      | Error Message           |
-| ------- | ----------------------- |
-| 6800101 | nvalid parameter error. |
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -4641,7 +4759,7 @@ Subscribes to audio device connection change events. This API uses an asynchrono
 | :--------- | :--------------------------------------------------- | :-------- | :----------------------------------------------------------- |
 | type       | string                                               | Yes       | Event type. The event **'deviceChange'** is triggered when the device connection status is changed. |
 | deviceFlag | [DeviceFlag](#deviceflag)                            | Yes       | Audio device flag.                                           |
-| callback   | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes       | Callback used to return the device update details.           |
+| callback   | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes       | Callback used to return the device change details.           |
 
 **Error codes**
 
@@ -4676,7 +4794,7 @@ Unsubscribes from audio device connection change events. This API uses an asynch
 | Name     | Type                                                | Mandatory | Description                                                  |
 | -------- | --------------------------------------------------- | --------- | ------------------------------------------------------------ |
 | type     | string                                              | Yes       | Event type. The event **'deviceChange'** is triggered when the device connection status is changed. |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to return the device update details.           |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to return the device change details.           |
 
 **Error codes**
 
@@ -4693,11 +4811,126 @@ audioRoutingManager.off('deviceChange');
 
 ```
 
+### getAvailableDevices<sup>11+</sup>
+
+getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
+
+Obtains the available audio devices. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name        | Type                        | Mandatory | Description   |
+| ----------- | --------------------------- | --------- | ------------- |
+| deviceUsage | [DeviceUsage](#deviceusage) | Yes       | Device usage. |
+
+**Return value**
+
+| Type                                              | Description  |
+| ------------------------------------------------- | ------------ |
+| [AudioDeviceDescriptors](#audiodevicedescriptors) | Device list. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message           |
+| ------- | ----------------------- |
+| 6800101 | invalid parameter error |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
+  console.info(`Indicate that the device list is obtained ${data}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the device list. ${error}`);
+}
+
+```
+
+### on('availableDeviceChange')<sup>11+</sup>
+
+on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
+
+Subscribes to available audio device change events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name        | Type                                                 | Mandatory | Description                                                  |
+| :---------- | :--------------------------------------------------- | :-------- | :----------------------------------------------------------- |
+| type        | string                                               | Yes       | Event type. The event **'availableDeviceChange'** is triggered when the available devices change. |
+| deviceUsage | [DeviceUsage](#deviceusage)                          | Yes       | Device usage.                                                |
+| callback    | Callback<[DeviceChangeAction](#devicechangeaction)\> | Yes       | Callback used to return the available device change details. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
+
+**Example**
+
+```ts
+audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+});
+
+```
+
+### off('availableDeviceChange')<sup>11+</sup>
+
+off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+Unsubscribes from available audio device change events. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name     | Type                                                | Mandatory | Description                                                  |
+| -------- | --------------------------------------------------- | --------- | ------------------------------------------------------------ |
+| type     | string                                              | Yes       | Event type. The event **'availableDeviceChange'** is triggered when the available devices change. |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)> | No        | Callback used to return the available device change details. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message            |
+| ------- | ------------------------ |
+| 6800101 | Invalid parameter error. |
+
+**Example**
+
+```ts
+audioRoutingManager.off('availableDeviceChange');
+
+```
+
 ### selectInputDevice<sup>9+</sup>
 
 selectInputDevice(inputAudioDevices: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
 
-Selects an audio input device. Only one input device can be selected. This API uses an asynchronous callback to return the result.
+Selects an audio input device. Currently, only one input device can be selected. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4749,7 +4982,7 @@ selectInputDevice(inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt
 
 **System API**: This is a system API.
 
-Selects an audio input device. Only one input device can be selected. This API uses a promise to return the result.
+Selects an audio input device. Currently, only one input device can be selected. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -5306,7 +5539,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message            |
 | ------- | ------------------------ |
-| 6800101 | invalid parameter error. |
+| 6800101 | Invalid parameter error. |
 
 **Example**
 
@@ -5742,19 +5975,19 @@ Describes an audio device.
 
 | Name                          | Type                                                  | Readable | Writable | Description                                                  |
 | ----------------------------- | ----------------------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
-| deviceRole                    | [DeviceRole](#devicerole)                             | Yes      | No       | Device role.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| deviceType                    | [DeviceType](#devicetype)                             | Yes      | No       | Device type.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| id<sup>9+</sup>               | number                                                | Yes      | No       | Device ID, which is unique.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| name<sup>9+</sup>             | string                                                | Yes      | No       | Device name.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| address<sup>9+</sup>          | string                                                | Yes      | No       | Device address.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| sampleRates<sup>9+</sup>      | Array&lt;number&gt;                                   | Yes      | No       | Supported sampling rates.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| channelCounts<sup>9+</sup>    | Array&lt;number&gt;                                   | Yes      | No       | Number of channels supported.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| channelMasks<sup>9+</sup>     | Array&lt;number&gt;                                   | Yes      | No       | Supported channel masks.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| displayName<sup>10+</sup>     | string                                                | Yes      | No       | Display name of the device.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| networkId<sup>9+</sup>        | string                                                | Yes      | No       | ID of the device network.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| interruptGroupId<sup>9+</sup> | number                                                | Yes      | No       | ID of the interruption group to which the device belongs.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| volumeGroupId<sup>9+</sup>    | number                                                | Yes      | No       | ID of the volume group to which the device belongs.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
-| encodingTypes<sup>11+</sup>   | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt; | Yes      | No       | Supported encoding types.<br> **System capability**: SystemCapability.Multimedia.Audio.Core |
+| deviceRole                    | [DeviceRole](#devicerole)                             | Yes      | No       | Device role.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| deviceType                    | [DeviceType](#devicetype)                             | Yes      | No       | Device type.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| id<sup>9+</sup>               | number                                                | Yes      | No       | Device ID, which is unique.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| name<sup>9+</sup>             | string                                                | Yes      | No       | Device name.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| address<sup>9+</sup>          | string                                                | Yes      | No       | Device address.<br>For a Bluetooth device, you must request the **ohos.permission.USE_BLUETOOTH** permission.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| sampleRates<sup>9+</sup>      | Array&lt;number&gt;                                   | Yes      | No       | Supported sampling rates.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| channelCounts<sup>9+</sup>    | Array&lt;number&gt;                                   | Yes      | No       | Number of channels supported.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| channelMasks<sup>9+</sup>     | Array&lt;number&gt;                                   | Yes      | No       | Supported channel masks.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| displayName<sup>10+</sup>     | string                                                | Yes      | No       | Display name of the device.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| networkId<sup>9+</sup>        | string                                                | Yes      | No       | ID of the device network.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| interruptGroupId<sup>9+</sup> | number                                                | Yes      | No       | ID of the interruption group to which the device belongs.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| volumeGroupId<sup>9+</sup>    | number                                                | Yes      | No       | ID of the volume group to which the device belongs.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| encodingTypes<sup>11+</sup>   | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt; | Yes      | No       | Supported encoding types.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
 
 **Example**
 
@@ -5788,9 +6021,9 @@ Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you m
 
 | Name         | Type                                     | Mandatory | Description                                                  |
 | ------------ | ---------------------------------------- | --------- | ------------------------------------------------------------ |
-| uid          | number                                   | No        | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core |
-| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | No        | Audio renderer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer |
-| rendererId   | number                                   | No        | Unique ID of an audio stream.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer |
+| uid          | number                                   | No        | Application ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Core |
+| rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | No        | Audio renderer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer |
+| rendererId   | number                                   | No        | Unique ID of an audio stream.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer |
 
 **Example**
 
@@ -5807,6 +6040,707 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
 };
 
 ```
+
+## AudioSpatializationManager<sup>11+</sup>
+
+Implements spatial audio management. Before calling an API in **AudioSpatializationManager**, you must use [getSpatializationManager](#getspatializationmanager11) to obtain an **AudioSpatializationManager** instance.
+
+### isSpatializationSupported<sup>11+</sup>
+
+isSpatializationSupported(): boolean
+
+Checks whether the system supports spatial audio rendering. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Return value**
+
+| Type    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| boolean | Returns **true** if the system supports spatial audio rendering, and returns **false** otherwise. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID   | Error Message   |
+| ---- | --------------- |
+| 202  | Not system App. |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let isSpatializationSupported: boolean = audioSpatializationManager.isSpatializationSupported();
+  console.info(`AudioSpatializationManager isSpatializationSupported: ${isSpatializationSupported}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+
+```
+
+### isSpatializationSupportedForDevice<sup>11+</sup>
+
+isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boolean
+
+Checks whether a device supports spatial audio rendering. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name             | Type                                            | Mandatory | Description               |
+| ---------------- | ----------------------------------------------- | --------- | ------------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor) | Yes       | Descriptor of the device. |
+
+**Return value**
+
+| Type    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| boolean | Returns **true** if the device supports spatial audio rendering, and returns **false** otherwise. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 202     | Not system App.                          |
+| 401     | Input parameter type or number mismatch. |
+| 6800101 | Invalid parameter error.                 |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let deviceDescriptor: audio.AudioDeviceDescriptor = {
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
+}
+try {
+  let isSpatializationSupportedForDevice: boolean = audioSpatializationManager.isSpatializationSupportedForDevice(deviceDescriptor);
+  console.info(`AudioSpatializationManager isSpatializationSupportedForDevice: ${isSpatializationSupportedForDevice}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+
+```
+
+### isHeadTrackingSupported<sup>11+</sup>
+
+isHeadTrackingSupported(): boolean
+
+Checks whether the system supports head tracking. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Return value**
+
+| Type    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| boolean | Returns **true** if the system supports head tracking, and returns **false** otherwise. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID   | Error Message   |
+| ---- | --------------- |
+| 202  | Not system App. |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
+  console.info(`AudioSpatializationManager isHeadTrackingSupported: ${isHeadTrackingSupported}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+
+```
+
+### isHeadTrackingSupportedForDevice<sup>11+</sup>
+
+isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boolean
+
+Checks whether a device supports head tracking. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name             | Type                                            | Mandatory | Description               |
+| ---------------- | ----------------------------------------------- | --------- | ------------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor) | Yes       | Descriptor of the device. |
+
+**Return value**
+
+| Type    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| boolean | Returns **true** if the device supports head tracking, and returns **false** otherwise. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 202     | Not system App.                          |
+| 401     | Input parameter type or number mismatch. |
+| 6800101 | Invalid parameter error.                 |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let deviceDescriptor: audio.AudioDeviceDescriptor = {
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
+}
+try {
+  let isHeadTrackingSupportedForDevice: boolean = audioSpatializationManager.isHeadTrackingSupportedForDevice(deviceDescriptor);
+  console.info(`AudioSpatializationManager isHeadTrackingSupportedForDevice: ${isHeadTrackingSupportedForDevice}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+
+```
+
+### setSpatializationEnabled<sup>11+</sup>
+
+setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Enables or disables spatial audio rendering. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| enable   | boolean                   | Yes       | Whether to enable or disable spatial audio rendering. The value **true** means to enable spatial audio rendering, and **false** means the opposite. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value.                              |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 202     | Not system App.                          |
+| 401     | Input parameter type or number mismatch. |
+| 6800101 | Invalid parameter error.                 |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let enable: boolean = true
+audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
+  if (err) {
+    console.error(`Result ERROR: ${err}`);
+  } else {
+    console.info(`setSpatializationEnabled success`);
+  }
+});
+
+```
+
+### setSpatializationEnabled<sup>11+</sup>
+
+setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
+
+Enables or disables spatial audio rendering. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name   | Type    | Mandatory | Description                                                  |
+| ------ | ------- | --------- | ------------------------------------------------------------ |
+| enable | boolean | Yes       | Whether to enable or disable spatial audio rendering. The value **true** means to enable spatial audio rendering, and **false** means the opposite. |
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID   | Error Message                            |
+| ---- | ---------------------------------------- |
+| 202  | Not system App.                          |
+| 401  | Input parameter type or number mismatch. |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let enable: boolean = true
+audioSpatializationManager.setSpatializationEnabled(enable).then(() => {
+  console.info(`setSpatializationEnabled success`);
+}).catch((err: BusinessError) => {
+  console.error(`Result ERROR: ${err}`);
+});
+
+```
+
+### isSpatializationEnabled<sup>11+</sup>
+
+isSpatializationEnabled(): boolean
+
+Checks whether spatial audio rendering is enabled. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Return value**
+
+| Type    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| boolean | Returns **true** if spatial audio rendering is enabled, and returns **false** otherwise. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID   | Error Message   |
+| ---- | --------------- |
+| 202  | Not system App. |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
+  console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+
+```
+
+### on('spatializationEnabledChange')<sup>11+</sup>
+
+on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
+
+Subscribes to spatial audio rendering status changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name     | Type               | Mandatory | Description                                                  |
+| :------- | :----------------- | :-------- | :----------------------------------------------------------- |
+| type     | string             | Yes       | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes. |
+| callback | Callback<boolean\> | Yes       | Callback used to return the status of spatial audio rendering. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 202     | Not system App.                          |
+| 401     | Input parameter type or number mismatch. |
+| 6800101 | Invalid parameter error.                 |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEnabled: boolean) => {
+  console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
+});
+
+```
+
+### off('spatializationEnabledChange')<sup>11+</sup>
+
+off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
+
+Unsubscribes from spatial audio rendering status changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name     | Type               | Mandatory | Description                                                  |
+| -------- | ------------------ | --------- | ------------------------------------------------------------ |
+| type     | string             | Yes       | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes. |
+| callback | Callback<boolean\> | No        | Callback used to return the status of spatial audio rendering. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 202     | Not system App.                          |
+| 401     | Input parameter type or number mismatch. |
+| 6800101 | Invalid parameter error.                 |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+audioSpatializationManager.off('spatializationEnabledChange');
+
+```
+
+### setHeadTrackingEnabled<sup>11+</sup>
+
+setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+Enables or disables head tracking. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name     | Type                      | Mandatory | Description                                                  |
+| -------- | ------------------------- | --------- | ------------------------------------------------------------ |
+| enable   | boolean                   | Yes       | Whether to enable or disable head tracking. The value **true** means to enable head tracking, and **false** means the opposite. |
+| callback | AsyncCallback&lt;void&gt; | Yes       | Callback that returns no value.                              |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 202     | Not system App.                          |
+| 401     | Input parameter type or number mismatch. |
+| 6800101 | Invalid parameter error.                 |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let enable: boolean = true
+audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
+  if (err) {
+    console.error(`Result ERROR: ${err}`);
+  } else {
+    console.info(`setHeadTrackingEnabled success`);
+  }
+});
+
+```
+
+### setHeadTrackingEnabled<sup>11+</sup>
+
+setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
+
+Enables or disables head tracking. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name   | Type    | Mandatory | Description                                                  |
+| ------ | ------- | --------- | ------------------------------------------------------------ |
+| enable | boolean | Yes       | Whether to enable or disable head tracking. The value **true** means to enable head tracking, and **false** means the opposite. |
+
+**Return value**
+
+| Type                | Description                    |
+| ------------------- | ------------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID   | Error Message                            |
+| ---- | ---------------------------------------- |
+| 202  | Not system App.                          |
+| 401  | Input parameter type or number mismatch. |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+
+let enable: boolean = true
+audioSpatializationManager.setHeadTrackingEnabled(enable).then(() => {
+  console.info(`setHeadTrackingEnabled success`);
+}).catch((err: BusinessError) => {
+  console.error(`Result ERROR: ${err}`);
+});
+
+```
+
+### isHeadTrackingEnabled<sup>11+</sup>
+
+isHeadTrackingEnabled(): boolean
+
+Checks whether head tracking is enabled. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Return value**
+
+| Type    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| boolean | Returns **true** if head tracking is enabled, and returns **false** otherwise. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID   | Error Message   |
+| ---- | --------------- |
+| 202  | Not system App. |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+try {
+  let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
+  console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+
+```
+
+### on('headTrackingEnabledChange')<sup>11+</sup>
+
+on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
+
+Subscribes to head tracking status changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name     | Type               | Mandatory | Description                                                  |
+| :------- | :----------------- | :-------- | :----------------------------------------------------------- |
+| type     | string             | Yes       | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes. |
+| callback | Callback<boolean\> | Yes       | Callback used to return the status of head tracking.         |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 202     | Not system App.                          |
+| 401     | Input parameter type or number mismatch. |
+| 6800101 | Invalid parameter error.                 |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnabled: boolean) => {
+  console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
+});
+
+```
+
+### off('headTrackingEnabledChange')<sup>11+</sup>
+
+off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
+
+Unsubscribes from head tracking status changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name     | Type               | Mandatory | Description                                                  |
+| -------- | ------------------ | --------- | ------------------------------------------------------------ |
+| type     | string             | Yes       | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes. |
+| callback | Callback<boolean\> | No        | Callback used to return the status of head tracking.         |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 202     | Not system App.                          |
+| 401     | Input parameter type or number mismatch. |
+| 6800101 | Invalid parameter error.                 |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+audioSpatializationManager.off('headTrackingEnabledChange');
+
+```
+
+### updateSpatialDeviceState<sup>11+</sup>
+
+updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
+
+Updates the state information of a spatial device. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name               | Type                                                  | Mandatory | Description                                  |
+| ------------------ | ----------------------------------------------------- | --------- | -------------------------------------------- |
+| spatialDeviceState | [AudioSpatialDeviceState](#audiospatialdevicestate11) | Yes       | New state information of the spatial device. |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                            |
+| ------- | ---------------------------------------- |
+| 202     | Not system App.                          |
+| 401     | Input parameter type or number mismatch. |
+| 6800101 | Invalid parameter error.                 |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@ohos.base';
+let spatialDeviceState: audio.AudioSpatialDeviceState = {
+  address: "123",
+  isSpatializationSupported: true,
+  isHeadTrackingSupported: true,
+  spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
+}
+try {
+  audioSpatializationManager.updateSpatialDeviceState(spatialDeviceState);
+  console.info(`AudioSpatializationManager updateSpatialDeviceState success`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+
+```
+
+## AudioSpatialDeviceState<sup>11+</sup>
+
+Defines the state information of a spatial device.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+| Name                                    | Type                                                | Readable | Writable | Description                                                  |
+| --------------------------------------- | --------------------------------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| address<sup>11+</sup>                   | string                                              | Yes      | Yes      | Address of the spatial device.                               |
+| isSpatializationSupported<sup>11+</sup> | boolean                                             | Yes      | Yes      | Whether the spatial device supports spatial audio rendering. |
+| isHeadTrackingSupported<sup>11+</sup>   | boolean                                             | Yes      | Yes      | Whether the spatial device supports head tracking.           |
+| spatialDeviceType<sup>11+</sup>         | [AudioSpatialDeviceType](#audiospatialdevicetype11) | Yes      | Yes      | Type of the spatial device.                                  |
+
+**Example**
+
+```ts
+import audio from '@ohos.multimedia.audio';
+
+let spatialDeviceState: audio.AudioSpatialDeviceState = {
+  address: "123",
+  isSpatializationSupported: true,
+  isHeadTrackingSupported: true,
+  spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
+}
+
+```
+
+## AudioSpatialDeviceType<sup>11+</sup>
+
+Enumerates the types of spatial devices.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+| Name                                      | Value | Description                       |
+| ----------------------------------------- | ----- | --------------------------------- |
+| SPATIAL_DEVICE_TYPE_NONE                  | 0     | No spatial device.                |
+| SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE      | 1     | In-ear headphones.                |
+| SPATIAL_DEVICE_TYPE_HALF_IN_EAR_HEADPHONE | 2     | Half-in-ear headphones.           |
+| SPATIAL_DEVICE_TYPE_OVER_EAR_HEADPHONE    | 3     | Over-ear headphones.              |
+| SPATIAL_DEVICE_TYPE_GLASSES               | 4     | Glasses.                          |
+| SPATIAL_DEVICE_TYPE_OTHERS                | 5     | Other type of the spatial device. |
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -6022,7 +6956,7 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses an async
 
 | Name     | Type                   | Mandatory | Description                                                  |
 | :------- | :--------------------- | :-------- | :----------------------------------------------------------- |
-| callback | AsyncCallback<number\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the stream information obtained; otherwise, **err** is an error object. |
+| callback | AsyncCallback<number\> | Yes       | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the stream ID obtained; otherwise, **err** is an error object. |
 
 **Example**
 
@@ -7499,7 +8433,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 let mode = audio.ChannelBlendMode.MODE_DEFAULT;
 
 audioRenderer.setChannelBlendMode(mode);
@@ -7533,7 +8467,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
+```ts
 let volume = 0.5;
 let duration = 1000;
 
@@ -8575,7 +9509,7 @@ Obtains the descriptors of the current input devices. This API returns the resul
 
 **Example**
 
-```js
+```ts
 let deviceDescriptors: audio.AudioDeviceDescriptors = audioCapturer.getCurrentInputDevices();
 console.info(`Device id: ${deviceDescriptors[0].id}`);
 console.info(`Device type: ${deviceDescriptors[0].deviceType}`);
@@ -8585,7 +9519,9 @@ console.info(`Device address: ${deviceDescriptors[0].address}`);
 console.info(`Device samplerates: ${deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Device channelcounts: ${deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Device channelmask: ${deviceDescriptors[0].channelMasks[0]}`);
-console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+if (deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+}
 
 ```
 
@@ -8605,7 +9541,7 @@ Obtains the configuration changes of the current audio capturer. This API return
 
 **Example**
 
-```js
+```ts
 let info: audio.AudioCapturerChangeInfo = audioCapturer.getCurrentAudioCapturerChangeInfo();
 console.info(`Info streamId: ${info.streamId}`);
 console.info(`Info source: ${info.capturerInfo.source}`);
@@ -8619,7 +9555,9 @@ console.info(`Info address: ${info.deviceDescriptors[0].address}`);
 console.info(`Info samplerates: ${info.deviceDescriptors[0].sampleRates[0]}`);
 console.info(`Info channelcounts: ${info.deviceDescriptors[0].channelCounts[0]}`);
 console.info(`Info channelmask: ${info.deviceDescriptors[0].channelMasks[0]}`);
-console.info(`Info encodingTypes: ${info.deviceDescriptors[0].encodingTypes[0]}`);
+if (deviceDescriptors[0].encodingTypes) {
+  console.info(`Device encodingTypes: ${deviceDescriptors[0].encodingTypes[0]}`);
+}
 
 ```
 
@@ -8637,7 +9575,7 @@ Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus ch
 
 | Name     | Type                                           | Mandatory | Description                                                  |
 | -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                         | Yes       | Event type. The event **'audioInterrupt'** is triggered when audio capturing is interrupted. |
+| type     | string                                         | Yes       | Event type. The event **'audioInterrupt'** is triggered when audio capture is interrupted. |
 | callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event received by the application when playback is interrupted. |
 
 **Error codes**
@@ -8659,7 +9597,7 @@ onAudioInterrupt();
 async function onAudioInterrupt(){
   audioCapturer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // The system forcibly interrupts audio capturing. The application must update the status and displayed content accordingly.
+      // The system forcibly interrupts audio capture. The application must update the status and displayed content accordingly.
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
           // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
@@ -8714,7 +9652,7 @@ Unsubscribes from audio interruption events.
 
 | Name | Type   | Mandatory | Description                                                  |
 | ---- | ------ | --------- | ------------------------------------------------------------ |
-| type | string | Yes       | Event type. The event **'audioInterrupt'** is triggered when audio capturing is interrupted. |
+| type | string | Yes       | Event type. The event **'audioInterrupt'** is triggered when audio capture is interrupted. |
 
 **Error codes**
 
@@ -8754,7 +9692,7 @@ Subscribes to audio input device change events. This API uses an asynchronous ca
 
 **Example**
 
-```js
+```ts
 audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
   console.info(`inputDevice id: ${deviceChangeInfo[0].id}`);
   console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
@@ -8786,7 +9724,7 @@ Unsubscribes from audio input device change events. This API uses an asynchronou
 
 **Example**
 
-```js
+```ts
 audioCapturer.off('inputDeviceChange');
 
 ```
@@ -8814,7 +9752,7 @@ Subscribes to audio capturer change events. This API uses an asynchronous callba
 
 **Example**
 
-```js
+```ts
 audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
   console.info(`audioCapturerChange id: ${capturerChangeInfo[0].id}`);
   console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
@@ -8846,7 +9784,7 @@ Unsubscribes from audio capturer change events. This API uses an asynchronous ca
 
 **Example**
 
-```js
+```ts
 audioCapturer.off('audioCapturerChange');
 
 ```

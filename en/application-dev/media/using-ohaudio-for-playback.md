@@ -6,7 +6,18 @@
 
 To use the playback or recording capability of **OHAudio**, you must first import the corresponding header files.
 
+### Linking the Dynamic Library in the CMake Script
+
+``` cmake
+target_link_libraries(sample PUBLIC libohaudio.so)
+```
+### Adding Header Files
 Specifically, to use APIs for audio playback, import <[native_audiostreambuilder.h](../reference/native-apis/native__audiostreambuilder_8h.md)> and <[native_audiorenderer.h](../reference/native-apis/native__audiorenderer_8h.md)>.
+
+```cpp
+#include <ohaudio/native_audiorenderer.h>
+#include <ohaudio/native_audiostreambuilder.h>
+```
 
 ## Audio Stream Builder
 
@@ -74,7 +85,7 @@ The following walks you through how to implement simple playback:
 5. Use the audio renderer.
 
     You can use the APIs listed below to control the audio streams.
-
+    
     | API                                                        | Description        |
     | ------------------------------------------------------------ | ------------ |
     | OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer) | Starts the audio renderer.    |
@@ -90,6 +101,119 @@ The following walks you through how to implement simple playback:
     ```c++
     OH_AudioStreamBuilder_Destroy(builder);
     ```
+## Example
+
+```cpp
+#include <iostream>
+#include <cstdint>
+#include <cstdio>
+#include <cstring>
+#include <thread>
+#include <chrono>
+#include <ctime>
+#include <ohaudio/native_audiorenderer.h>
+#include <ohaudio/native_audiostreambuilder.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+namespace AudioTestConstants {
+constexpr int32_t WAIT_INTERVAL = 1000;
+} // namespace AudioTestConstants
+
+// Ensure that the file in the directory can be played.
+std::string g_filePath = "/data/data/oh_test_audio.pcm";
+FILE *g_file = nullptr;
+bool g_readEnd = false;
+// Audio sampling rate.
+int32_t g_samplingRate = 48000;
+// Number of audio channels.
+int32_t g_channelCount = 2;
+// Audio scenario. The value 0 indicates the normal scenario, and 1 indicates the low-latency scenario.
+int32_t g_latencyMode = 0;
+// Audio sample format.
+int32_t g_sampleFormat = 1;
+
+// Callback, through which the played audio data will be written.
+static int32_t AudioRendererOnWriteData(OH_AudioRenderer *capturer, void *userData, void *buffer, int32_t bufferLen) {
+    size_t readCount = fread(buffer, bufferLen, 1, g_file);
+    if (!readCount) {
+        if (ferror(g_file)) {
+            printf("Error reading myfile");
+        } else if (feof(g_file)) {
+            printf("EOF found");
+            g_readEnd = true;
+        }
+    }
+    return 0;
+}
+
+void PlayerTest() {
+    OH_AudioStream_Result ret;
+
+    // 1. Create an audio stream builder.
+    OH_AudioStreamBuilder *builder;
+    OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
+    ret = OH_AudioStreamBuilder_Create(&builder, type);
+
+    // 2. Set the parameters required by the audio stream.
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    OH_AudioStreamBuilder_SetLatencyMode(builder, (OH_AudioStream_LatencyMode)g_latencyMode);
+    OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
+
+    // Set the callback, through which the played audio data will be written.
+    OH_AudioRenderer_Callbacks callbacks;
+    callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    ret = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+
+    // 3. Create an audio renderer instance.
+    OH_AudioRenderer *audioRenderer;
+    ret = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+
+    // 4. Start playback.
+    ret = OH_AudioRenderer_Start(audioRenderer);
+
+    int timer = 0;
+    while (!g_readEnd) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(AudioTestConstants::WAIT_INTERVAL));
+        int64_t frames;
+        OH_AudioRenderer_GetFramesWritten(audioRenderer, &frames);
+        printf("Wait for the audio to finish playing.(..%d s) frames:%ld\n", ++timer, frames);
+        int64_t framePosition;
+        int64_t timestamp;
+        OH_AudioRenderer_GetTimestamp(audioRenderer, CLOCK_MONOTONIC, &framePosition, &timestamp);
+        printf("framePosition %ld timestamp:%ld\n", framePosition, timestamp);
+    }
+    // 5. Stop the playback.
+    ret = OH_AudioRenderer_Stop(audioRenderer);
+    
+    // Release the audio renderer instance.
+    ret = OH_AudioRenderer_Release(audioRenderer);
+
+    // 6. Destroy the audio stream builder.
+    ret = OH_AudioStreamBuilder_Destroy(builder);
+}
+
+int main() {
+    // Open the file before playback.
+    g_file = fopen(g_filePath.c_str(), "rb");
+    if (g_file == nullptr) {
+        printf("OHAudioRendererTest: Unable to open file \n");
+        return 0;
+    }
+    // Start playback.
+    PlayerTest();
+    // Close the file after the playback is complete.
+    fclose(g_file);
+    g_file = nullptr;
+    return 0;
+}
+
+#ifdef __cplusplus
+}
+#endif
+```
 
 ## Setting the Low Latency Mode
 

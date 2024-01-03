@@ -9,11 +9,11 @@ This subscription mechanism is applicable when the local proxy object needs to d
 
 ## Native APIs
 
-| Name| Return Value Type| Description|
-| -------- | -------- | -------- |
-| AddDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | Adds a recipient for death notifications of a remote stub object.|
-| RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient); | bool | Removes the recipient for death notifications of a remote stub object.|
-| OnRemoteDied(const wptr\<IRemoteObject> &object); | void | Called when the remote stub object dies.|
+| Name                                                             |  Description                    |
+| ------------------------------------------------------------------- | ------------------------- |
+| bool AddDeathRecipient(const sptr\<DeathRecipient> &recipient);     | Adds a recipient for death notifications of a remote stub object.    |
+| bool RemoveDeathRecipient(const sptr\<DeathRecipient> &recipient);  | Removes the recipient for death notifications of a remote stub object.|
+| void OnRemoteDied(const wptr\<IRemoteObject> &object);              | Called when the remote stub object dies.|
 
 ### Sample Code
 
@@ -136,7 +136,7 @@ import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
 import hilog from '@ohos.hilog';
 
-let proxy: rpc.IRemoteObject | undefined = undefined;
+let proxy: rpc.IRemoteObject | undefined;
 let connect: common.ConnectOptions = {
   onConnect: (elementName, remoteProxy) => {
     hilog.info(0x0000, 'testTag', 'RpcClient: js onConnect called.');
@@ -162,8 +162,6 @@ this.context.connectServiceExtensionAbility(want, connect);
 The **proxy** object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. After that, [unregisterDeathRecipient](../reference/apis/js-apis-rpc.md#unregisterdeathrecipient9-1) of the **proxy** object can be called to unregister the callback for receiving the death notification of the remote object.
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import common from '@ohos.app.ability.common';
 import rpc from '@ohos.rpc';
 import hilog from '@ohos.hilog';
 
@@ -173,8 +171,10 @@ class MyDeathRecipient implements rpc.DeathRecipient{
   }
 }
 let deathRecipient = new MyDeathRecipient();
-proxy.registerDeathRecipient(deathRecipient, 0);
-proxy.unregisterDeathRecipient(deathRecipient, 0);
+if (proxy != undefined) {
+  proxy.registerDeathRecipient(deathRecipient, 0);
+  proxy.unregisterDeathRecipient(deathRecipient, 0);
+}
 ```
 
 ## Reverse Death Notification (Anonymous Stub)

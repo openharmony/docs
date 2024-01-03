@@ -227,7 +227,7 @@ Invalid web storage origin.
 
 1. 检查是否有使用JS数据库API。
 
-2. 如果已经使用，检查调用失败原因，如databaseAccess开发是否打开。
+2. 如果已经使用，检查调用失败原因，如databaseAccess开关是否打开。
 
 
 ## 17100013 预连接时，输入socket数目无效

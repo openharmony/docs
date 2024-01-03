@@ -416,7 +416,7 @@ hasCall\(\): Promise\<boolean\>
 
 | 类型                   | 说明                                    |
 | ---------------------- | --------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否存在通话。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否存在通话。返回true表示当前存在通话，false表示当前不存在通话。 |
 
 **示例：**
 
@@ -442,7 +442,7 @@ hasCallSync\(\): boolean
 
 | 类型                   | 说明          |
 | ---------------------- |-------------|
-| boolean | 返回判断是否存在通话。 |
+| boolean | 返回判断是否存在通话。返回true表示当前存在通话，false表示当前不存在通话。 |
 
 **示例：**
 
@@ -652,7 +652,7 @@ isEmergencyPhoneNumber\(phoneNumber: string, options?: EmergencyNumberOptions\):
 
 | 类型                   | 说明                                                |
 | ---------------------- | --------------------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回判断是否是紧急电话号码的结果。返回true表示是紧急电话号码，返回false表示不是紧急电话号码。 |
 
 **错误码：**
 
@@ -2549,7 +2549,7 @@ startDTMF\(callId: number, character: string, callback: AsyncCallback\<void\>\):
 import { BusinessError } from '@ohos.base';
 
 call.startDTMF(1, "0", (err: BusinessError) => {
-    id (err) {
+    if (err) {
         console.error(`startDTMF fail, err->${JSON.stringify(err)}`);
     } else {
         console.log(`startDTMF success.`);
@@ -4840,7 +4840,7 @@ isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 | 参数名   | 类型                         | 必填 | 说明                                   |
 | -------- | ---------------------------- | ---- | -------------------------------------- |
 | slotId   | number                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回判断Ims开关是否启用的结果。           |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 以回调函数的方式返回判断Ims开关是否启用的结果。true表示Ims开关启用，false表示未启用。 |
 
 **错误码：**
 
@@ -5294,7 +5294,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 
 | 类型                   | 说明                                          |
 | ---------------------- | --------------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回是否可以设置呼叫转移时间。 |
+| Promise&lt;boolean&gt; | 以Promise形式异步返回是否可以设置呼叫转移时间。返回true表示可以设置，返回false表示不可以设置。 |
 
 **错误码：**
 
@@ -5731,6 +5731,24 @@ IP多媒体系统调用模式。
 | callId          | number                                   | 是   | 呼叫Id         |
 | callState       | [DetailedCallState](#detailedcallstate7) | 是   | 详细呼叫状态   |
 | conferenceState | [ConferenceState](#conferencestate7)     | 是   | 会议状态       |
+| voipCallAttribute | [VoipCallAttribute](#voipcallattribute11)     | 否   | VoIP通话信息       |
+
+## VoipCallAttribute<sup>11+</sup>
+
+VoIP通话信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+|      名称       | 类型               | 必填 | 说明           |
+| --------------- | ------------------- | ---- | -------------- |
+| voipCallId   | string    | 是   | VoIP通话唯一Id       |
+| userName  | string    | 是   | 用户昵称 |
+| userProfile       | [image.PixelMap](js-apis-image.md#pixelmap7)    | 是   | 用户头像图片  |
+| extensionId      | string     | 是   |  三方应用进程Id  |
+| abilityName      | string     | 是   |  需加载的三方应用的界面ability  |
+| voipBundleName    | string     | 是   |  三方应用包名  |
 
 ## ConferenceState<sup>7+</sup>
 
@@ -5761,6 +5779,7 @@ IP多媒体系统调用模式。
 | TYPE_IMS      | 1    | IMS通话      |
 | TYPE_OTT      | 2    | OTT通话      |
 | TYPE_ERR_CALL | 3    | 其他类型通话 |
+| TYPE_VOIP<sup>11+</sup> | 4    | VoIP通话 |
 
 ## VideoStateType<sup>7+</sup>
 
@@ -6080,7 +6099,7 @@ MMI码结果。
 
 ## call.answerCall<sup>11+</sup>
 
-answerCall(videoState: VideoStateType, callId?: number\): Promise\<void\>
+answerCall(videoState: VideoStateType, callId: number\): Promise\<void\>
 
 接听来电。使用Promise异步回调。
 
@@ -6095,7 +6114,7 @@ answerCall(videoState: VideoStateType, callId?: number\): Promise\<void\>
 | 参数名                   | 类型                | 必填 | 说明                                                         |
 | ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
 | videoState| [VideoStateType](#videostatetype7)| 是   | 接听通话类型。                                                 |
-| callId    | number                            |  否  | 呼叫Id。可以通过订阅callDetailsChange事件获得。不填该参数则接通最近一通正在响铃的来电。|
+| callId    | number                            | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。                 |
 
 **返回值：**
 
@@ -6230,9 +6249,9 @@ call.controlCamera(1, "1").then(() => {
 });
 ```
 
-## call.setPreviewWindow<sup>11+</sup>
+## call.setPreviewSurface<sup>11+</sup>
 
-setPreviewWindow\(callId: number, surfaceId: string\): Promise\<void\>
+setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
 
 设置本端预览画面窗口。使用Promise异步回调。
 
@@ -6274,16 +6293,16 @@ setPreviewWindow\(callId: number, surfaceId: string\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.setPreviewWindow(1, "surfaceId1").then(() => {
-    console.log(`setPreviewWindow success.`);
+call.setPreviewSurface(1, "surfaceId1").then(() => {
+    console.log(`setPreviewSurface success.`);
 }).catch((err: BusinessError) => {
-    console.error(`setPreviewWindow fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setPreviewSurface fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
-## call.setDisplayWindow<sup>11+</sup>
+## call.setDisplaySurface<sup>11+</sup>
 
-setDisplayWindow\(callId: number, surfaceId: string\): Promise\<void\>
+setDisplaySurface\(callId: number, surfaceId: string\): Promise\<void\>
 
 设置远端画面窗口。使用Promise异步回调。
 
@@ -6325,10 +6344,10 @@ setDisplayWindow\(callId: number, surfaceId: string\): Promise\<void\>
 ```ts
 import { BusinessError } from '@ohos.base';
 
-call.setDisplayWindow(1, "surfaceId1").then(() => {
-    console.log(`setDisplayWindow success.`);
+call.setDisplaySurface(1, "surfaceId1").then(() => {
+    console.log(`setDisplaySurface success.`);
 }).catch((err: BusinessError) => {
-    console.error(`setDisplayWindow fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`setDisplaySurface fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -6380,56 +6399,6 @@ call.setDeviceDirection(1, 0).then(() => {
     console.log(`setDeviceDirection success.`);
 }).catch((err: BusinessError) => {
     console.error(`setDeviceDirection fail, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-## call.setPausePicture<sup>11+</sup>
-
-setPausePicture\(callId: number\): Promise\<void\>
-
-设置视频通话过程中画面暂停时的图片。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.SET_TELEPHONY_STATE
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名 | 类型                                             | 必填 | 说明           |
-| ------ | ----------------------------------------------- | ---- | -------------- |
-| callId | number                                          | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-
-**返回值：**
-
-| 类型                | 说明                        |
-| ------------------- | --------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回设置画面暂停图片结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
-
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-call.setPausePicture(1).then(() => {
-    console.log(`setPausePicture success.`);
-}).catch((err: BusinessError) => {
-    console.error(`setPausePicture fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -6665,7 +6634,7 @@ off\(type: 'peerDimensionsChange', callback?: Callback\<PeerDimensionsDetail\>\)
 | 参数名   | 类型                                                       | 必填 | 说明                       |
 | -------- | --------------------------------------------------------- | ---- | -------------------------- |
 | type     | string                                                    | 是   | 视频通话时监听对端画面分辨率的变化，参数固定为'peerDimensionsChange'。 |
-| callback | Callback<[PeerDimensionsDetail](#peerdimensionsdetail11)> | 是   |  回调函数。不填该参数将不会收到取消订阅的处理结果。                 |
+| callback | Callback<[PeerDimensionsDetail](#peerdimensionsdetail11)> | 否   |  回调函数。不填该参数将不会收到取消订阅的处理结果。                 |
 
 **错误码：**
 
@@ -6834,7 +6803,7 @@ call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
 | callId  | number                                             | 是   | 呼叫Id。         |
 | isRequestInfo| boolean                                       | 是   | 该信息是否为请求信息。|
 | imsCallMode  | [ImsCallMode](#imscallmode8)                  | 是   | 视频通话模式。    |
-| requestResult  | [VideoRequestResultType](#videorequestresulttype11)| 否   | 通话结束提示信息。|
+| result  | [VideoRequestResultType](#videorequestresulttype11)| 是   | 通话结束提示信息。|
 
 ## CallSessionEvent<sup>11+</sup>
 

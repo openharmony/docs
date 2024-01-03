@@ -131,7 +131,7 @@ struct Parent {
 @Entry
 @Component
 struct Parent {
-  label: string = 'Hello';
+  @State label: string = 'Hello';
   build() {
     Column() {
       ABuilder(this.label)

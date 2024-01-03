@@ -63,6 +63,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { Configuration } from '@ohos.app.ability.Configuration';
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { BusinessError } from '@ohos.base';
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // Simplified Chinese.
@@ -82,7 +83,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -144,7 +145,7 @@ try {
         console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -183,7 +184,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<AbilityRunningInfo>) => {
+    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<abilityManager.AbilityRunningInfo>) => {
         if (err) {
             console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
         } else {
@@ -191,7 +192,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -230,13 +231,13 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    abilityManager.getAbilityRunningInfos().then((data: Array<AbilityRunningInfo>) => {
+    abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
         console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError) => {
         console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -286,7 +287,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -339,7 +340,7 @@ try {
         console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -423,7 +424,7 @@ abilityManager.getTopAbility().then((data) => {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void
+acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Object>>): void
 
 Called by a system dialog box to obtain shared data, which is set by the target UIAbility through **onShare()**. This API uses an asynchronous callback to return the result.
 
@@ -436,7 +437,7 @@ Called by a system dialog box to obtain shared data, which is set by the target 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | missionId | number                                   | Yes| Mission ID on the target application. The maximum value is 2<sup>31</sup>-1.|
-| callback  | AsyncCallback<{[key: string]: Object}>  | Yes   | Callback used to return the API call result and the shared data. You can perform error handling or custom processing in it.     |
+| callback  | AsyncCallback\<Record\<string, Object>>  | Yes   | Callback used to return the API call result and the shared data. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
@@ -461,7 +462,7 @@ try {
         }
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -470,7 +471,7 @@ try {
 
 ## acquireShareData<sup>10+</sup>
 
-acquireShareData(missionId: number): Promise<{[key: string]: Object}>
+acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
 Called by a system dialog box to obtain shared data, which is set by the target UIAbility through **onShare()**. This API uses a promise to return the result.
 
@@ -488,7 +489,7 @@ Called by a system dialog box to obtain shared data, which is set by the target 
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise<{[key: string]: Object}>| Promise used to return the API call result and the shared data. You can perform error handling or custom processing in it.|
+| Promise\<Record\<string, Object>>| Promise used to return the API call result and the shared data. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -511,7 +512,7 @@ try {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -572,7 +573,7 @@ try {
     }
   });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -636,7 +637,7 @@ try {
     console.log(`notifySaveAsResult success`);
   });
 } catch (paramError) {
-    let code: string = (paramError as BusinessError).code;
+    let code: number = (paramError as BusinessError).code;
     let message: string = (paramError as BusinessError).message;
     console.error(`error.code: ${code}, error.message: ${message}`);
 }
@@ -691,7 +692,7 @@ try {
 
 ## abilityManager.off<sup>11+</sup>
 
-off(type: 'abilityForegroundState', observer?: AppForegroundStateObserver): void
+off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 
 Deregisters the observer used to listen for ability start or exit events.
 
@@ -721,10 +722,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
-let observer_;
+let observer_: abilityManager.AbilityForegroundStateObserver;
 // 1. Register an observer to listen for ability start or exit events.
 let observer: abilityManager.AbilityForegroundStateObserver = {
-    onAbilityStateChanged(abilityStateData) {
+    onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
         console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
     },
 };
@@ -745,4 +746,84 @@ try {
     let message = (paramError as BusinessError).message;
     console.error(`error: ${code}, ${message} `);
 }
+```
+
+## abilityManager.getForegroundUIAbilities<sup>11+</sup>
+
+getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): void
+
+Obtains the information about the UIAbilities of an application that is running in the foreground. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>>  | Yes|Callback used to return the API call result and the UIAbility information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
+abilityManager.getForegroundUIAbilities((err: BusinessError, data: Array<abilityManager.AbilityStateData>) => {
+    if (err) {
+        console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(err)}`);
+    } else {
+        console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+    }
+});
+```
+
+## abilityManager.getForegroundUIAbilities<sup>11+</sup>
+
+getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
+
+Obtains the information about the UIAbilities of an application that is running in the foreground. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>> | Promise used to return the API call result and the UIAbility information. You can perform error handling or custom processing in this callback.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+import { BusinessError } from '@ohos.base';
+
+appManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
+    console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+}).catch((error: BusinessError) => {
+    console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);
+});
 ```

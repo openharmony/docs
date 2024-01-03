@@ -17,19 +17,20 @@ import common from '@ohos.app.ability.common';
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name         | Type    | Read-only  | Mandatory  | Description     |
-| ----------- | ------ | ---- | ---- | ------- |
-| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md#resourcemanager) | No   | Yes   | Object for resource management.  |
-| applicationInfo | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | No   | Yes   | Application information.|
-| cacheDir | string | No   | Yes   | Cache directory.|
-| tempDir | string | No   | Yes   | Temporary directory.|
-| filesDir | string | No   | Yes   | File directory.|
-| databaseDir | string | No   | Yes   | Database directory.|
-| preferencesDir | string | No   | Yes   | Preferences directory.|
-| bundleCodeDir | string | No   | Yes   | Bundle code directory. Do not access resource files by concatenating paths. Use the [resourceManager API](js-apis-resource-manager.md) instead.|
-| distributedFilesDir | string | Yes   | Yes   | Distributed file directory.|
-| eventHub | [EventHub](js-apis-inner-application-eventHub.md) | No   | Yes   | Event hub that implements event subscription, unsubscription, and triggering.|
-| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | No   | Yes   | Encryption level of the directory.|
+| Name                 | Type    | Read-only  | Mandatory  | Description                                                              |
+|---------------------| ------ | ---- | ---- |------------------------------------------------------------------|
+| resourceManager     | resmgr.[ResourceManager](js-apis-resource-manager.md#resourcemanager) | No   | Yes   | Object for resource management.                                                         |
+| applicationInfo     | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md) | No   | Yes   | Application information.                                                      |
+| cacheDir            | string | No   | Yes   | Cache directory.                                                           |
+| tempDir             | string | No   | Yes   | Temporary directory.                                                           |
+| resourceDir         | string | No   | Yes   | Resource directory.                                                           |
+| filesDir            | string | No   | Yes   | File directory.                                                           |
+| databaseDir         | string | No   | Yes   | Database directory.                                                          |
+| preferencesDir      | string | No   | Yes   | Preferences directory.                                                  |
+| bundleCodeDir       | string | No   | Yes   | Bundle code directory. Do not access resource files by concatenating paths. Use the [resourceManager API](js-apis-resource-manager.md) instead.|
+| distributedFilesDir | string | Yes   | Yes   | Distributed file directory.                                                        |
+| eventHub            | [EventHub](js-apis-inner-application-eventHub.md) | No   | Yes   | Event hub that implements event subscription, unsubscription, and triggering.                                          |
+| area                | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | No   | Yes   | Encryption level of the directory.                                                         |
 
 ## Context.createBundleContext
 
@@ -217,6 +218,7 @@ Obtains the shared directory based on a group ID. This API uses a promise to ret
 | ID| Error Message|
 | ------- | -------- |
 | 16000011 | The context does not exist. |
+
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**

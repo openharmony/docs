@@ -79,7 +79,7 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
    import window from '@ohos.window';
    
    export default class EntryAbility extends UIAbility {
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
        hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
    
        hiAppEvent.addWatcher({
@@ -147,7 +147,7 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
    HiAppEvent eventPkg.packageId=0
    HiAppEvent eventPkg.row=1
    HiAppEvent eventPkg.size=124
-   HiAppEvent eventPkg.info={"domain\_":"button","name\_":"click","type\_":4,"time\_":1670268234523,"tz\_":"+0800","pid\_":3295,"tid\_":3309,"click_time":100}
+   HiAppEvent eventPkg.info={"domain_":"button","name_":"click","type_":4,"time_":1670268234523,"tz_":"+0800","pid_":3295,"tid_":3309,"click_time":100}
    ```
 
 ### 订阅系统事件（崩溃事件）

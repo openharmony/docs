@@ -2,7 +2,7 @@
 
 ## When to Use
 
-Vulkan is a set of graphics APIs for 2D and 3D rendering. Creating a **VkSurfaceKHR** instance is a key step, since **VkSurfaceKHR** work with the **OHNativeWindow** module to implement buffer recycling.
+Vulkan is a set of graphics APIs for 2D and 3D rendering. To start with, you need to create a **VkSurfaceKHR** instance, which works with the **OHNativeWindow** module to implement buffer recycling.
 
 A **VkSurfaceKHR** instance is obtained through an **OHNativeWindow**, which is obtained from the **\<XComponent>**. Therefore, the **OHNativeWindow** module must be used together with the **XComponent** and **NativeWindow** modules.
 
@@ -34,7 +34,7 @@ libnative_window.so
 libvulkan.so
 ```
 
-**Header File**
+**Including Header Files**
 
 ```c++
 #include <ace/xcomponent/native_interface_xcomponent.h>

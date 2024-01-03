@@ -287,11 +287,11 @@ class Tmp{
   foo(val:number){
     this.currentIndex = val;
   }
-  tabfoo(){
+  tabFoo(){
     this.tabsController.changeIndex(this.currentIndex);
   }
 }
-private tabsController : object = new TabsController()
+private tabsController : TabsController = new TabsController()
 @State currentIndex:number = 0;
 
 @Builder TabBuilder(title: string, targetIndex: number) {
@@ -301,9 +301,9 @@ private tabsController : object = new TabsController()
   }
   ...
   .onClick(() => {
-    let Cur:Tmp = new Tmp()
-    Cur.foo(targetIndex)
-    Cur.tabfoo()
+    let cur:Tmp = new Tmp()
+    cur.foo(targetIndex)
+    cur.tabFoo()
   })
 }
 ```
@@ -375,8 +375,8 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   }
   .tabBar (this.TabBuilder ('Me', 3))
 }.onChange((index:number) => {
-  let Cur:Tmp = new Tmp()
-  Cur.foo(index)
+  let cur:Tmp = new Tmp()
+  cur.foo(index)
 })
 ```
 

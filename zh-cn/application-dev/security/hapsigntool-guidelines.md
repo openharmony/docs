@@ -206,7 +206,7 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
           ├── -keystoreFile  # 密钥库文件，localSign模式时为必填项，JKS或P12格式
           ├── -keystorePwd   # 密钥库口令，可选项
           ├── -outFile       # 输出签名后的包文件，必填项
-          ├── -signcode      # 是否启用代码签名，1表示开启代码签名，0表示关闭代码签名，默认为1。可选项
+          ├── -signCode      # 是否启用代码签名，1表示开启代码签名，0表示关闭代码签名，默认为1。可选项
       ```
 
 12. hap应用包和调试工具文件验签。
@@ -406,3 +406,17 @@ OpenHarmony系统内置密钥库文件，文件名称为OpenHarmony.p12，内含
    - **解决办法**
 
      最终实体证书密钥对推荐使用ECC生成，hap签名算法修改为ECC对应的SHA256withECDSA,SHA384withECDSA。
+
+4. 签名hap包失败，提示证书CN字段为空。
+
+   - **现象描述**
+
+     执行命令后提示：`error: Common name of certificate is empty! `。
+
+   - **可能原因**
+
+     当前使用的hap包签名证书，不包含CN字段，导致签名失败。
+
+   - **解决办法**
+
+     根据业界证书规范，hap包签名证书的CN字段必须不为空，请重新生成格式正确的证书。

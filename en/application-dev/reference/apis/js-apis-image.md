@@ -727,7 +727,7 @@ pixelMap.createAlphaPixelmap((err : BusinessError, alphaPixelMap : image.PixelMa
 
 scale(x: number, y: number, callback: AsyncCallback\<void>): void
 
-Scales this image based on the input width and height. This API uses an asynchronous callback to return the result.
+Scales this image based on the input scaling multiple of the width and height. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -735,8 +735,8 @@ Scales this image based on the input width and height. This API uses an asynchro
 
 | Name  | Type                | Mandatory| Description                           |
 | -------- | -------------------- | ---- | ------------------------------- |
-| x        | number               | Yes  | Scaling ratio of the width.|
-| y        | number               | Yes  | Scaling ratio of the height.|
+| x        | number               | Yes  | Scaling multiple of the width.|
+| y        | number               | Yes  | Scaling multiple of the height.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation fails, an error message is returned. |
 
 **Example**
@@ -751,7 +751,7 @@ async function Demo() {
 
 scale(x: number, y: number): Promise\<void>
 
-Scales this image based on the input width and height. This API uses a promise to return the result.
+Scales this image based on the input scaling multiple of the width and height. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -759,8 +759,8 @@ Scales this image based on the input width and height. This API uses a promise t
 
 | Name| Type  | Mandatory| Description                           |
 | ------ | ------ | ---- | ------------------------------- |
-| x      | number | Yes  | Scaling ratio of the width.|
-| y      | number | Yes  | Scaling ratio of the height.|
+| x      | number | Yes  | Scaling multiple of the width.|
+| y      | number | Yes  | Scaling multiple of the height.|
 
 **Return value**
 
@@ -1741,9 +1741,9 @@ imageSourceApi.getImageInfo(0)
 	})
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>11+</sup>
 
-getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
+getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<string>
 
 Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
 
@@ -1753,8 +1753,61 @@ Obtains the value of a property with the specified index in this image. This API
 
 | Name | Type                                                | Mandatory| Description                                |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | [PropertyKey](#propertykey7)                                               | Yes  | Name of the property.                        |
+| options | [ImagePropertyOptions](#imagepropertyoptions11) | No  | Image properties, including the image index and default property value.|
+
+**Return value**
+
+| Type            | Description                                                             |
+| ---------------- | ----------------------------------------------------------------- |
+| Promise\<string> | Promise used to return the property value. If the operation fails, the default value is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401  | The parameter check failed.              |
+| 62980111| If the image source data incomplete.             |
+| 62980113| If the image format unknown.             |
+| 62980116| If the image decode failed.              |
+| 62980118| If the image plugin create failed.            |
+| 62980122| If the image decode head abnormal.             |
+| 62980123| If the image unsupport exif.             |
+| 62980135| If the exif value is invalid.             |
+
+**Example**
+
+```ts
+import {BusinessError} from '@ohos.base';
+let options : image.ImagePropertyOptions = { index: 0, defaultValue: '9999' }
+imageSourceApi.getImageProperty(image.PropertyKey.BITS_PER_SAMPLE, options)
+.then((data : string) => {
+    console.log('Succeeded in getting the value of the specified attribute key of the image.');
+}).catch((error : BusinessError) => {
+    console.error('Failed to get the value of the specified attribute key of the image.');
+})
+```
+
+### getImageProperty<sup>(deprecated)</sup>
+
+getImageProperty(key:string, options?: GetImagePropertyOptions): Promise\<string>
+
+Obtains the value of a property with the specified index in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
+
+> **NOTE**
+>
+> This API is deprecated since API version 11. You are advised to use [getImageProperty](#getimageproperty11).
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name | Type                                                | Mandatory| Description                                |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
 | key     | string                                               | Yes  | Name of the property.                        |
-| options | [GetImagePropertyOptions](#getimagepropertyoptions7) | No  | Image properties, including the image index and default property value.|
+| options | [GetImagePropertyOptions](#getimagepropertyoptionsdeprecated) | No  | Image properties, including the image index and default property value.|
 
 **Return value**
 
@@ -1774,11 +1827,15 @@ imageSourceApi.getImageProperty("BitsPerSample")
 	})
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>(deprecated)</sup>
 
 getImageProperty(key:string, callback: AsyncCallback\<string>): void
 
 Obtains the value of a property with the specified index in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
+
+> **NOTE**
+>
+> This API is deprecated since API version 11. You are advised to use [getImageProperty](#getimageproperty11).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1802,11 +1859,15 @@ imageSourceApi.getImageProperty("BitsPerSample",(error : BusinessError, data : s
 })
 ```
 
-### getImageProperty<sup>7+</sup>
+### getImageProperty<sup>(deprecated)</sup>
 
 getImageProperty(key:string, options: GetImagePropertyOptions, callback: AsyncCallback\<string>): void
 
 Obtains the value of a property in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
+
+> **NOTE**
+>
+> This API is deprecated since API version 11. You are advised to use [getImageProperty](#getimageproperty11).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1815,7 +1876,7 @@ Obtains the value of a property in this image. This API uses an asynchronous cal
 | Name  | Type                                                | Mandatory| Description                                                         |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------- |
 | key      | string                                               | Yes  | Name of the property.                                                 |
-| options  | [GetImagePropertyOptions](#getimagepropertyoptions7) | Yes  | Image properties, including the image index and default property value.                         |
+| options  | [GetImagePropertyOptions](#getimagepropertyoptionsdeprecated) | Yes  | Image properties, including the image index and default property value.                         |
 | callback | AsyncCallback\<string>                               | Yes  | Callback used to return the property value. If the operation fails, the default value is returned.|
 
 **Example**
@@ -1832,11 +1893,70 @@ imageSourceApi.getImageProperty("BitsPerSample",property,(error : BusinessError,
 })
 ```
 
-### modifyImageProperty<sup>9+</sup>
+### modifyImageProperty<sup>11+</sup>
+
+modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
+
+Modifies the value of a property in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description        |
+| ------- | ------ | ---- | ------------ |
+| key     | [PropertyKey](#propertykey7)   | Yes  | Name of the property.|
+| value   | string | Yes  | New value of the property.    |
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Image Error Codes](../errorcodes/errorcode-image.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 401  | The parameter check failed.              |
+| 62980110| If the image source data error.       |
+| 62980111| If the image source data incomplete.  |
+| 62980113| If the image format unknown.             |
+| 62980116| If the image decode failed.              |
+| 62980118| If the image plugin create failed.       |
+| 62980123| If the image unsupport exif.             |
+| 62980130| If the image source file is abnormal.    |
+| 62980132| If the image source buffer size is abnormal.            |
+| 62980135| If the exif value is invalid.             |
+| 62980146| If the exif failed to be written to the file.        |
+| 62980147| If the file fails to be read.            |
+
+**Example**
+
+```ts
+import {BusinessError} from '@ohos.base';
+imageSourceApi.modifyImageProperty(image.PropertyKey.IMAGE_WIDTH, "120").then(() => {
+    imageSourceApi.getImageProperty(image.PropertyKey.IMAGE_WIDTH).then((width : string) => {
+        console.info(`ImageWidth is :${width}`);
+    }).catch((error : BusinessError) => {
+        console.error('Failed to get the Image Width.');
+	})
+}).catch((error : BusinessError) => {
+	console.error('Failed to modify the Image Width');
+})
+```
+
+### modifyImageProperty<sup>(deprecated)</sup>
 
 modifyImageProperty(key: string, value: string): Promise\<void>
 
 Modifies the value of a property in this image. This API uses a promise to return the result. The image must be in JPEG format and contain EXIF information.
+
+> **NOTE**
+>
+> This API is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -1868,11 +1988,15 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120").then(() => {
 })
 ```
 
-### modifyImageProperty<sup>9+</sup>
+### modifyImageProperty<sup>(deprecated)</sup>
 
 modifyImageProperty(key: string, value: string, callback: AsyncCallback\<void>): void
 
 Modifies the value of a property in this image. This API uses an asynchronous callback to return the result. The image must be in JPEG format and contain EXIF information.
+
+> **NOTE**
+>
+> This API is deprecated since API version 11. You are advised to use [modifyImageProperty](#modifyimageproperty11).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 
@@ -2799,11 +2923,11 @@ image.createPixelMap(color, opts).then((pixelmap : image.PixelMap) => {
 })
 ```
 
-## image.createImageReceiver<sup>9+</sup>
+## image.createImageReceiver<sup>11+</sup>
 
-createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
+createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageReceiver
 
-Creates an **ImageReceiver** instance by specifying the image width, height, format, and capacity.
+Creates an **ImageReceiver** instance by specifying the image size, format, and capacity.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
@@ -2814,6 +2938,42 @@ Creates an **ImageReceiver** instance by specifying the image width, height, for
 | width    | number | Yes  | Default image width.      |
 | height   | number | Yes  | Default image height.      |
 | format   | number | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, only **ImageFormat:JPEG** is supported.) |
+| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
+
+**Return value**
+
+| Type                            | Description                                   |
+| -------------------------------- | --------------------------------------- |
+| [ImageReceiver](#imagereceiver9) | Returns an **ImageReceiver** instance if the operation is successful.|
+
+**Example**
+
+```ts
+let size:image.Size = {
+    height: 8192,
+    width: 8
+} 
+let receiver : image.ImageReceiver = image.createImageReceiver(size, image.ImageFormat.JPEG, 8);
+```
+
+## image.createImageReceiver<sup>(deprecated)</sup>
+
+createImageReceiver(width: number, height: number, format: number, capacity: number): ImageReceiver
+
+Creates an **ImageReceiver** instance by specifying the image width, height, format, and capacity.
+
+> **NOTE**
+>
+> This API is deprecated since API version 11. You are advised to use [createImageReceiver](#imagecreateimagereceiver11).
+
+**System capability**: SystemCapability.Multimedia.Image.ImageReceiver
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| size    | [Size](#size)  | Yes  | Default size of the image.      |
+| format   | [ImageFormat](#imageformat9) | Yes  | Image format, which is a constant of [ImageFormat](#imageformat9). (Currently, only **ImageFormat:JPEG** is supported.)            |
 | capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
 
 **Return value**
@@ -3075,11 +3235,47 @@ receiver.release().then(() => {
 })
 ```
 
-## image.createImageCreator<sup>9+</sup>
+## image.createImageCreator<sup>11+</sup>
+
+createImageCreator(size: Size, format: ImageFormat, capacity: number): ImageCreator
+
+Creates an **ImageCreator** instance by specifying the image size, format, and capacity.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageCreator
+
+**Parameters**
+
+| Name  | Type  | Mandatory| Description                  |
+| -------- | ------ | ---- | ---------------------- |
+| size    | [Size](#size)  | Yes  | Default size of the image.      |
+| format   | [ImageFormat](#imageformat9) | Yes  | Image format, for example, YCBCR_422_SP or JPEG.            |
+| capacity | number | Yes  | Maximum number of images that can be accessed at the same time.|
+
+**Return value**
+
+| Type                          | Description                                   |
+| ------------------------------ | --------------------------------------- |
+| [ImageCreator](#imagecreator9) | Returns an **ImageCreator** instance if the operation is successful.|
+
+**Example**
+
+```ts
+let size:image.Size = {
+    height: 8192,
+    width: 8
+} 
+let creator : image.ImageCreator = image.createImageCreator(size, image.ImageFormat.JPEG, 8);
+```
+
+## image.createImageCreator<sup>(deprecated)</sup>
 
 createImageCreator(width: number, height: number, format: number, capacity: number): ImageCreator
 
 Creates an **ImageCreator** instance by specifying the image width, height, format, and capacity.
+
+> **NOTE**
+>
+> This API is deprecated since API version 11. You are advised to use [createImageCreator](#imagecreateimagecreator11).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageCreator
 
@@ -3608,9 +3804,24 @@ Defines the option for image packing.
 | quality | number | Yes  | Yes  | Quality of the output image in JPEG encoding. The value ranges from 0 to 100.|
 | bufferSize<sup>9+</sup> | number | Yes  | Yes  | Size of the buffer for receiving the encoded data, in bytes. The default value is 10 MB. The value of **bufferSize** must be greater than the size of the encoded image.|
 
-## GetImagePropertyOptions<sup>7+</sup>
+## ImagePropertyOptions<sup>11+</sup>
 
 Describes image properties.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+| Name        | Type  | Readable| Writable| Description        |
+| ------------ | ------ | ---- | ---- | ------------ |
+| index        | number | Yes  | Yes  | Index of the image.  |
+| defaultValue | string | Yes  | Yes  | Default property value.|
+
+## GetImagePropertyOptions<sup>(deprecated)</sup>
+
+Describes image properties.
+
+> **NOTE**
+>
+> This API is deprecated since API version 11. You are advised to use [ImagePropertyOptions](#imagepropertyoptions11).
 
 **System capability**: SystemCapability.Multimedia.Image.ImageSource
 

@@ -5770,10 +5770,12 @@ Video state type.
 
 **System capability**: SystemCapability.Telephony.CallManager
 
-| Name      | Value  | Description    |
-| ---------- | ---- | -------- |
-| TYPE_VOICE | 0    | Voice state.|
-| TYPE_VIDEO | 1    | Video state.|
+| Name                                  | Value  | Description    |
+| ------------------------------------- | ---- | --------|
+| TYPE_VOICE                            | 0    | Voice state.|
+| TYPE_VIDEO_SEND_ONLY<sup>11+</sup>    | 1    | Data sending only during a video call.|
+| TYPE_VIDEO_RECEIVE_ONLY<sup>11+</sup> | 2    | Data receiving only during a video call.|
+| TYPE_VIDEO                            | 3    | Video state.|
 
 ## DetailedCallState<sup>7+</sup>
 
@@ -6075,3 +6077,802 @@ Defines the MMI code result.
 | ---------------- | ---- | ------------- |
 | MMI_CODE_SUCCESS | 0    | Success.|
 | MMI_CODE_FAILED  | 1    | Failure.|
+
+## call.answerCall<sup>11+</sup>
+
+answerCall(videoState: VideoStateType, callId?: number\): Promise\<void\>
+
+Answers a call. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.ANSWER_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name                  | Type               | Mandatory| Description                                                        |
+| ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
+| videoState| [VideoStateType](#videostatetype7)| Yes  | Video state.                                                |
+| callId    | number                            |  No | Call ID. You can obtain the value by subscribing to **callDetailsChange** events. If this field is not set, the latest ringing call will be connected.|
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.answerCall(0, 1).then(() => {
+    console.log(`answerCall success.`);
+}).catch((err: BusinessError) => {
+    console.error(`answerCall fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.cancelCallUpgrade<sup>11+</sup>
+
+cancelCallUpgrade\(callId: number\): Promise\<void\>
+
+Cancels the upgrade of a video call. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description          |
+| ------ | ---------------------------- | ---- | -------------- |
+| callId | number                       | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.cancelCallUpgrade(1).then(() => {
+    console.log(`cancelCallUpgrade success.`);
+}).catch((err: BusinessError) => {
+    console.error(`cancelCallUpgrade fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.controlCamera<sup>11+</sup>
+
+controlCamera\(callId: number, cameraId: string\): Promise\<void\>
+
+Uses the specified camera to make a video call. If **cameraId** is left empty, the camera is disabled. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description          |
+| ------ | ---------------------------- | ---- | -------------- |
+| callId | number                       | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.      |
+| cameraId | string                     | Yes  | Camera ID. For details about how to obtain **cameraId**, see [Camera Management](js-apis-camera.md#getsupportedcameras).|
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result of starting, closing, or switching a camera.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.controlCamera(1, "1").then(() => {
+    console.log(`controlCamera success.`);
+}).catch((err: BusinessError) => {
+    console.error(`controlCamera fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.setPreviewWindow<sup>11+</sup>
+
+setPreviewWindow\(callId: number, surfaceId: string\): Promise\<void\>
+
+Sets the local preview window. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description          |
+| ------ | ---------------------------- | ---- | -------------- |
+| callId | number                       | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.      |
+| surfaceId | string                    | Yes  | Preview window ID. For details about how to obtain **surfaceId**, see [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).  |
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setPreviewWindow(1, "surfaceId1").then(() => {
+    console.log(`setPreviewWindow success.`);
+}).catch((err: BusinessError) => {
+    console.error(`setPreviewWindow fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.setDisplayWindow<sup>11+</sup>
+
+setDisplayWindow\(callId: number, surfaceId: string\): Promise\<void\>
+
+Sets the remote display window. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description          |
+| ------ | ---------------------------- | ---- | -------------- |
+| callId | number                       | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.      |
+| surfaceId | string                    | Yes  | Display window ID. For details about how to obtain **surfaceId**, see [XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).  |
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setDisplayWindow(1, "surfaceId1").then(() => {
+    console.log(`setDisplayWindow success.`);
+}).catch((err: BusinessError) => {
+    console.error(`setDisplayWindow fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.setDeviceDirection<sup>11+</sup>
+
+setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\<void\>
+
+Sets the video image to follow the device direction. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type                                            | Mandatory| Description          |
+| ------ | ----------------------------------------------- | ---- | -------------- |
+| callId | number                                          | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.|
+| deviceDirection  | [DeviceDirection](#devicedirection11) | Yes  | Device direction. It determines the direction of the video image.    |
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setDeviceDirection(1, 0).then(() => {
+    console.log(`setDeviceDirection success.`);
+}).catch((err: BusinessError) => {
+    console.error(`setDeviceDirection fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.setPausePicture<sup>11+</sup>
+
+setPausePicture\(callId: number\): Promise\<void\>
+
+Sets the image displayed when a video call is paused. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type                                            | Mandatory| Description          |
+| ------ | ----------------------------------------------- | ---- | -------------- |
+| callId | number                                          | Yes  | Call ID. You can obtain the value by subscribing to **callDetailsChange** events.      |
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.setPausePicture(1).then(() => {
+    console.log(`setPausePicture success.`);
+}).catch((err: BusinessError) => {
+    console.error(`setPausePicture fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.on('imsCallModeChange')<sup>11+</sup>
+
+on\(type: 'imsCallModeChange', callback: Callback\<ImsCallModeInfo\>\): void
+
+Subscribes to **imsCallModeChange** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                       | Mandatory| Description                      |
+| -------- | ------------------------------------------ | ---- | -------------------------- |
+| type     | string                                     | Yes  | Call mode change. This field has a fixed value of **imsCallModeChange**.|
+| callback | Callback<[ImsCallModeInfo](#imscallmode8)> | Yes  | Callback used to return the result.        |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.on('imsCallModeChange', (data: call.ImsCallModeInfo) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## call.off('imsCallModeChange')<sup>11+</sup>
+
+off\(type: 'imsCallModeChange', callback?: Callback\<ImsCallModeInfo\>\): void
+
+Unsubscribes from **imsCallModeChange** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                       | Mandatory| Description                              |
+| -------- | ------------------------------------------ | ---- | ---------------------------------- |
+| type     | string                                     | Yes  | Call mode change. This field has a fixed value of **imsCallModeChange**.|
+| callback | Callback<[ImsCallModeInfo](#imscallmode8)> | No  | Callback used to return the result. If this field is not set, no subscription cancellation result will be received.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.off('imsCallModeChange', (data: call.ImsCallModeInfo) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## call.on('callSessionEvent')<sup>11+</sup>
+
+on\(type: 'callSessionEvent', callback: Callback\<CallSessionEvent\>\): void
+
+Subscribes to **callSessionEvent** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                      |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| type     | string                                            | Yes  | Call session event. This field has a fixed value of **callSessionEvent**.|
+| callback | Callback<[CallSessionEvent](#callsessionevent11)> | Yes  | Callback used to return the result. |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.on('callSessionEvent', (data: call.CallSessionEvent) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## call.off('callSessionEvent')<sup>11+</sup>
+
+off\(type: 'callSessionEvent', callback?: Callback\<CallSessionEvent\>\): void
+
+Unsubscribes from **callSessionEvent** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                       | Mandatory| Description                              |
+| -------- | ------------------------------------------ | ---- | ---------------------------------- |
+| type     | string                                     | Yes  | Call session event. This field has a fixed value of **callSessionEvent**.|
+| callback | Callback<[CallSessionEvent](#callsessionevent11)> | No  | Callback used to return the result. If this field is not set, no subscription cancellation result will be received.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.off('callSessionEvent', (data: call.CallSessionEvent) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## call.on('peerDimensionsChange')<sup>11+</sup>
+
+on\(type: 'peerDimensionsChange', callback: Callback\<PeerDimensionsDetail\>\): void
+
+Subscribes to **peerDimensionsChange** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description                      |
+| -------- | --------------------------------------------------------- | ---- | -------------------------- |
+| type     | string                                                    | Yes  | Screen resolution change. This field has a fixed value of **peerDimensionsChange**.|
+| callback | Callback<[PeerDimensionsDetail](#peerdimensionsdetail11)> | Yes  | Callback used to return the result.             |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.on('peerDimensionsChange', (data: call.PeerDimensionsDetail) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## call.off('peerDimensionsChange')<sup>11+</sup>
+
+off\(type: 'peerDimensionsChange', callback?: Callback\<PeerDimensionsDetail\>\): void
+
+Unsubscribes from **peerDimensionsChange** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory| Description                      |
+| -------- | --------------------------------------------------------- | ---- | -------------------------- |
+| type     | string                                                    | Yes  | Peer image resolution change. This field has a fixed value of **peerDimensionsChange**.|
+| callback | Callback<[PeerDimensionsDetail](#peerdimensionsdetail11)> | Yes  |  Callback used to return the result. If this field is not set, no subscription cancellation result will be received.                |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+call.off('peerDimensionsChange', (data: call.PeerDimensionsDetail) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## call.on('cameraCapabilitiesChange')<sup>11+</sup>
+
+on\(type: 'cameraCapabilitiesChange', callback: Callback\<CameraCapabilities\>\): void
+
+Subscribes to **cameraCapabilitiesChange** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                                  | Mandatory| Description                      |
+| -------- | ------------------------------------------------------| ---- | -------------------------- |
+| type     | string                                                | Yes  | Camera capability change. This field has a fixed value of **cameraCapabilitiesChange**.|
+| callback | Callback<[CameraCapabilities](#cameracapabilities11)> | Yes  | Callback used to return the result.                |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+call.on('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## call.off('cameraCapabilitiesChange')<sup>11+</sup>
+
+off\(type: 'cameraCapabilitiesChange', callback?: Callback\<CameraCapabilities\>\): void
+
+Unsubscribes from **cameraCapabilitiesChange** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                                  | Mandatory| Description                              |
+| -------- | ----------------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                                | Yes  | Camera capability change. This field has a fixed value of **cameraCapabilitiesChange**.|
+| callback | Callback<[CameraCapabilities](#cameracapabilities11)> | No  | Callback used to return the result. If this field is not set, no subscription cancellation result will be received.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```ts
+call.off('cameraCapabilitiesChange', (data: call.CameraCapabilities) => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+## VideoRequestResultType<sup>11+</sup>
+
+Enumerates video call upgrade or downgrade request types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name                                      | Value    | Description    |
+| ------------------------------------------ | ------ | --------|
+| TYPE_REQUEST_SUCCESS                       | 0      | Success.|
+| TYPE_REQUEST_FAILURE                       | 1      | Failed.|
+| TYPE_REQUEST_INVALID                       | 2      | Invalid request.|
+| TYPE_REQUEST_TIMED_OUT                     | 3      | Request timeout.|
+| TYPE_REQUEST_REJECTED_BY_REMOTE            | 4      | Request denied.|
+| TYPE_DOWNGRADE_RTP_OR_RTCP_TIMEOUT         | 100    | RTP or RTCP downgrade timeout.|
+| TYPE_DOWNGRADE_RTP_AND_RTCP_TIMEOUT        | 101    | RTP and RTCP downgrade timeout.|
+
+## DeviceDirection<sup>11+</sup>
+
+Enumerates device directions in a video call.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name                | Value    | Description    |
+| -------------------- | ------ | --------|
+| DEVICE_DIRECTION_0   | 0      | 0-degree direction.|
+| DEVICE_DIRECTION_90   | 90     | 90-degree direction.|
+| DEVICE_DIRECTION_180  | 180    | 180-degree direction.|
+| DEVICE_DIRECTION_270  | 270    | 270-degree direction.|
+
+## CallSessionEventId<sup>11+</sup>
+
+Enumerates video call event types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name                          | Value    | Description    |
+| ------------------------------ | ------ | --------|
+| EVENT_CONTROL_CAMERA_FAILURE   | 0      | Camera setting failed.|
+| EVENT_CONTROL_CAMERA_READY     | 1      | Camera setting succeeded.|
+| EVENT_DISPLAY_SURFACE_RELEASED  | 100    | Remote display window released.|
+| EVENT_PREVIEW_SURFACE_RELEASED  | 101    | Local preview window released.|
+
+## ImsCallModeInfo<sup>11+</sup>
+
+Defines the video call mode information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name   |                    Type                            | Mandatory| Description          |
+| ------- | -------------------------------------------------- | ---- | ------------- |
+| callId  | number                                             | Yes  | Call ID.        |
+| isRequestInfo| boolean                                       | Yes  | Whether the information is request information.|
+| imsCallMode  | [ImsCallMode](#imscallmode8)                  | Yes  | Video call mode.   |
+| requestResult  | [VideoRequestResultType](#videorequestresulttype11)| No  | Call ending message.|
+
+## CallSessionEvent<sup>11+</sup>
+
+Defines the video call event information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name   |                    Type                            | Mandatory| Description          |
+| ------- | -------------------------------------------------- | ---- | ------------- |
+| callId  | number                                             | Yes  | Call ID.        |
+| eventId  | [CallSessionEventId](#callsessioneventid11)       | Yes  | Video call event.   |
+
+## PeerDimensionsDetail<sup>11+</sup>
+
+Defines the peer image resolution in a video call.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name   |     Type     | Mandatory| Description          |
+| ------- | ------------ | ---- | ------------- |
+| callId  | number       | Yes  | Call ID.        |
+| width   | number       | Yes  | Width of the peer image, in pixels. |
+| height  | number       | Yes  | Height of the peer image, in pixels. |
+
+## CameraCapabilities<sup>11+</sup>
+
+Defines the local image resolution in a video call.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name   |     Type     | Mandatory| Description          |
+| ------- | ------------ | ---- | ------------- |
+| callId  | number       | Yes  | Call ID.        |
+| width   | number       | Yes  | Width of the local image, in pixels. |
+| height  | number       | Yes  | Height of the local image, in pixels. |

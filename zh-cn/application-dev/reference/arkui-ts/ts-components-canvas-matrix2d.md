@@ -25,7 +25,7 @@ Matrix2D()
 
 >  **说明：**
 >  
->  可使用[px2vp](ts-pixel-units.md)接口进行单位转换。
+>  可使用[px2vp](ts-pixel-units.md#像素单位转换)接口进行单位转换。
 
 ### scaleX
 

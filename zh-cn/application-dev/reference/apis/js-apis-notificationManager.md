@@ -1311,10 +1311,6 @@ isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
 **系统能力**：SystemCapability.Notification.Notification
 
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**系统接口**: 此接口为系统接口。
-
 **参数：**
 
 | 参数名     | 类型                  | 必填 | 说明                     |
@@ -1356,10 +1352,6 @@ isNotificationEnabled(): Promise\<boolean\>
 获取通知使能状态（Promise形式）。
 
 **系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**系统接口**: 此接口为系统接口。
 
 **返回值：**
 
@@ -4835,21 +4827,22 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 ```ts
 import Base from '@ohos.base';
+import notificationManager from '@ohos.notificationManager';
 
 // 包信息
-let bundle = {
+let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
 // 通知ID
 let notificationId = 1;
 // 按钮信息
-let buttonOptions = {
+let buttonOptions: notificationManager.ButtonOptions = {
     buttonName: "buttonName1",
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
-	console.info("triggerSystemLiveView success");
+  console.info("triggerSystemLiveView success");
 }).catch((error: Base.BusinessError) => {
-    console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
+  console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
 });
 ```
 

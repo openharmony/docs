@@ -107,13 +107,11 @@ GridRow中通过columns设置栅格布局的总列数。
   ...
   GridRow() {
     ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      if(index){
-        GridCol() {
-          Row() {
-              Text(`${index + 1}`)
-          }.width('100%').height('50')
-        }.backgroundColor(item)
-      }
+      GridCol() {
+        Row() {
+            Text(`${index + 1}`)
+        }.width('100%').height('50')
+      }.backgroundColor(item)
     })
   }           
   ```

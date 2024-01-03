@@ -1,8 +1,8 @@
 # FormExtensionContext
 
-The **FormExtensionContext** module, inherited from **ExtensionContext**, provides context for FormExtensionAbilities.
+The FormExtensionContext module, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides the context environment for the [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md).
 
-You can use the APIs of this module to start FormExtensionAbilities.
+You can use the APIs of this module to start a FormExtensionAbility.
 
 > **NOTE**
 >
@@ -33,6 +33,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
@@ -104,6 +105,7 @@ Starts an ability. This API uses a promise to return the result.
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
@@ -130,7 +132,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
     }).catch((error: Base.BusinessError) => {
-      console.error('StartAbility failed');
+      console.error('StartAbility failed, error.code: ${error.code}, error.message: ${error.message}');
     });
   }
 };
@@ -231,7 +233,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Connection ID returned after **connectServiceExtensionAbility** is called.|
+| connection | number | Yes| Number returned after [connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10) is called.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -262,8 +264,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         commRemote = null;
         if (error.code) {
           // Process service logic errors.
-          console.error(
-            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+          console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // Carry out normal service processing.
@@ -292,7 +293,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Connection ID returned after **connectServiceExtensionAbility** is called.|
+| connection | number | Yes| Number returned after [connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10) is called.|
 
 **Return value**
 
@@ -333,8 +334,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         .catch((error: Base.BusinessError) => {
           commRemote = null;
           // Process service logic errors.
-          console.error(
-            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+          console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       commRemote = null;

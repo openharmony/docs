@@ -42,7 +42,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 1. 获取设备使用信息之前，需要检查是否已经配置请求相应的权限。
     系统提供的设备使用信息统计的权限是ohos.permission.BUNDLE_ACTIVE_INFO
-    具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)
+    具体配置方式请参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
 
 2. 通过指定起始和结束时间查询所有应用的事件集合，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 

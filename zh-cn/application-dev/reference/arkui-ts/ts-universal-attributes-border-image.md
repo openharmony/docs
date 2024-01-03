@@ -6,11 +6,21 @@
 >
 >  从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 属性
+## borderImage
 
-| 名称          | 参数类型                                     | 描述                                     |
-| ----------- | ---------------------------------------- | -------------------------------------- |
-| borderImage | [BorderImageOption](#borderimageoption对象说明) | 图片边框或者渐变色边框设置接口。<br/>该接口支持在ArkTS卡片中使用。 |
+borderImage(value: BorderImageOption)
+
+设置组件的图片边框。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                                            | 必填 | 描述                             |
+| ----------- | ----------------------------------------------- | ---- | -------------------------------- |
+| borderImage | [BorderImageOption](#borderimageoption对象说明) | 是   | 图片边框或者渐变色边框设置接口。 |
 
 ## BorderImageOption对象说明
 

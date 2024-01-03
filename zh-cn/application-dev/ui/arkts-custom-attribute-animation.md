@@ -12,25 +12,29 @@ ArkUI提供[@AnimatableExtend](../quick-start/arkts-animatable-extend.md)装饰�
 
 ```ts
 // 第一步：使用@AnimatableExtend装饰器，自定义可动画属性接口
-@AnimatableExtend(Text) function animatableFontSize(size: number) {
+@AnimatableExtend(Text)
+function animatableFontSize(size: number) {
   .fontSize(size) // 调用系统属性接口
 }
 
 @Entry
 @Component
-struct AnimatablePropertyExample {
+struct AnimatablePropertyExample  {
   @State fontSize: number = 20;
 
   build() {
-    Column() {
+    Row() {
       Text("AnimatableProperty")
-        .animatableFontSize(this.fontSize) // 第二步：将自定义可动画属性接口设置到组件上
-        .animation({ duration: 1000, curve: "ease" }) // 第三步:为自定义可动画属性接口绑定动画
-      Button("Play")
+        .backgroundColor("#0C000000")
+        .animatableFontSize(this.fontSize)// 第二步：将自定义可动画属性接口设置到组件上
+        .animation({ duration: 1000, curve: "ease" })// 第三步:为自定义可动画属性接口绑定动画
+        .width(300)
+        .height(140)
+        .textAlign(TextAlign.Center)
         .onClick(() => {
-          this.fontSize = this.fontSize == 20 ? 36 : 20; // 第四步：改变自定义可动画属性的参数，产生动画
+          this.fontSize = this.fontSize == 20 ? 30 : 20; // 第四步：改变自定义可动画属性的参数，产生动画
         })
-    }.width("100%")
+    }.width("100%").height('100%').justifyContent(FlexAlign.Center)
     .padding(10)
   }
 }
@@ -41,7 +45,7 @@ struct AnimatablePropertyExample {
 ![zh-cn_image_0000001600119626](figures/zh-cn_image_0000001600119626.gif)
 
 
-## 使用自定义数据类型和\@AnimatableExtend装饰器改变折线
+## 使用自定义数据类型和\@AnimatableExtend装饰器改变图形形状
 
 
 ```ts
@@ -84,7 +88,7 @@ class PointVector extends Array<PointClass> implements AnimatableArithmetic<Arra
   constructor(initialValue: Array<Point>) {
     super();
     if (initialValue.length) {
-      initialValue.forEach((p:Point) => this.push(new PointClass(p)))
+      initialValue.forEach((p: Point) => this.push(new PointClass(p)))
     }
   }
 
@@ -128,36 +132,31 @@ class PointVector extends Array<PointClass> implements AnimatableArithmetic<Arra
   }
 }
 
-function randomInt(min:number, max:number) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
-
 // 自定义可动画属性接口
-@AnimatableExtend(Polyline) function animatablePoints(points: PointVector) {
+@AnimatableExtend(Polyline)
+function animatablePoints(points: PointVector) {
   .points(points)
-}
-
-// 自定义可动画属性接口
-@AnimatableExtend(Text) function animatableFontSize(size: number) {
-  .fontSize(size)
 }
 
 @Entry
 @Component
 struct AnimatedShape {
+  squareStartPointX: number = 75;
+  squareStartPointY: number = 25;
+  squareWidth: number = 150;
+  squareEndTranslateX: number = 50;
+  squareEndTranslateY: number = 50;
   @State pointVec1: PointVector = new PointVector([
-    [50, randomInt(0, 200)],
-    [100, randomInt(0, 200)],
-    [150, randomInt(0, 200)],
-    [250, randomInt(0, 200)],
-    [350, randomInt(0, 200)]
+    [this.squareStartPointX, this.squareStartPointY],
+    [this.squareStartPointX + this.squareWidth, this.squareStartPointY],
+    [this.squareStartPointX + this.squareWidth, this.squareStartPointY + this.squareWidth],
+    [this.squareStartPointX, this.squareStartPointY + this.squareWidth]
   ]);
   @State pointVec2: PointVector = new PointVector([
-    [70, randomInt(0, 200)],
-    [120, randomInt(0, 200)],
-    [180, randomInt(0, 200)],
-    [220, randomInt(0, 200)],
-    [320, randomInt(0, 200)]
+    [this.squareStartPointX + this.squareEndTranslateX, this.squareStartPointY + this.squareStartPointY],
+    [this.squareStartPointX + this.squareWidth + this.squareEndTranslateX, this.squareStartPointY + this.squareStartPointY],
+    [this.squareStartPointX + this.squareWidth, this.squareStartPointY + this.squareWidth],
+    [this.squareStartPointX, this.squareStartPointY + this.squareWidth]
   ]);
   @State color: Color = Color.Green;
   @State fontSize: number = 20.0;
@@ -165,85 +164,24 @@ struct AnimatedShape {
   @State polyline2Vec: PointVector = this.pointVec2;
 
   build() {
-    Column() {
-      Text("AnimatableExtend test")
-        .width(400)
-        .height(30)
-        .margin(1)
-        .fontSize(25)
-        .textAlign(TextAlign.Center)
-        .backgroundColor("#ffee44")
-        .border({ width: '1vp', color: "#88ff00", radius: 20, style: BorderStyle.Solid })
-
+    Row() {
       Polyline()
-        .width(400)
-        .height(240)
-        .backgroundColor("#eeaacc")
-        .fill(this.color)
-        .stroke(Color.Red)
+        .width(300)
+        .height(200)
+        .backgroundColor("#0C000000")
+        .fill('#317AF7')
         .animatablePoints(this.polyline1Vec)
         .animation({ duration: 2000, delay: 0, curve: Curve.Ease })
-
-      Polyline()
-        .width(400)
-        .height(240)
-        .backgroundColor("#bbffcc")
-        .fill(this.color)
-        .stroke(Color.Red)
-        .animatablePoints(this.polyline2Vec)
-        .animation({ duration: 2000, delay: 0, curve: Curve.Ease })
-
-      Text("Animatable Fontsize")
-
-        .animatableFontSize(this.fontSize)
-        .animation({ duration: 2000, delay: 0, curve: Curve.Ease })
-        .width(400)
-        .height(150)
-        .margin(5)
-        .textAlign(TextAlign.Center)
-        .backgroundColor("#ffddcc")
-        .border({ width: '2vp', color: "#88ff00", radius: 20, style: BorderStyle.Solid })
         .onClick(() => {
-          console.log("Text onClick()")
+
+          if (this.polyline1Vec.equals(this.pointVec1)) {
+            this.polyline1Vec = this.pointVec2;
+          } else {
+            this.polyline1Vec = this.pointVec1;
+          }
         })
-
-      Row() {
-        Button("Polyline1 default")
-          .width(100).height(60)
-          .margin({ left: 5, right: 5 })
-          .padding(10)
-          .onClick(() => {
-
-            if (this.polyline1Vec.equals(this.pointVec1)) {
-              this.polyline1Vec = this.pointVec2;
-            } else {
-              this.polyline1Vec = this.pointVec1;
-            }
-          })
-
-        Button("Polyline2 ANIM")
-          .width(100).height(60)
-          .onClick(() => {
-            if (this.polyline2Vec.equals(this.pointVec1)) {
-              this.polyline2Vec = this.pointVec2;
-            } else {
-              this.polyline2Vec = this.pointVec1;
-            }
-          })
-
-        Button("FontSize")
-          .width(100).height(60)
-          .margin({ left: 5, right: 5 })
-          .onClick(() => {
-            this.fontSize = (this.fontSize == 20.0) ? 40.0 : 20.0;
-          })
-      }
-      .alignItems(VerticalAlign.Center)
-      .margin(5)
-
     }
-    .width('100%')
-    .alignItems(HorizontalAlign.Center)
+    .width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
 }
 ```

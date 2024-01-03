@@ -316,6 +316,30 @@ constructor(jsonObject)
   });
   ```
 
+### constructor
+
+constructor(type: EventType,bundleName: String,triggerAction: Action)
+
+构造函数。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名  | 类型                | 必填 | 说明            |
+|------|-------------------|---|---------------|
+| type | [EventType](#eventtype)          | 是 | 无障碍事件类型。      |
+| bundleName | string | 是 | 目标应用名。        |
+| triggerAction | [Action](#action) | 是 | 触发事件的 Action。 |
+
+**示例：**
+
+  ```ts
+  import accessibility from '@ohos.accessibility';
+
+  let eventInfo = new accessibility.EventInfo('click', 'com.example.MyApplication', 'click');
+  ```
+
 ## EventType
 
 无障碍事件类型。

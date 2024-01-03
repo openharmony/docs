@@ -8,9 +8,9 @@ A relational database (RDB) store is used to store data in complex relational mo
 
 ## Basic Concepts
 
-- **Predicates**: A representation of the property or feature of a data entity, or the relationship between data entities. It is used to define operation conditions.
+- **Predicates**: a representation of the property or feature of a data entity, or the relationship between data entities. It is used to define operation conditions.
 
-- **ResultSet**: A set of query results, which allows access to the required data in flexible modes.
+- **ResultSet**: a set of query results, which allows access to the required data in flexible modes.
 
 
 ## Working Principles
@@ -52,7 +52,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
 
 ## How to Develop
-
+Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
 1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store.<br>Example:
 
    Stage model:
@@ -128,7 +128,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    let context = featureAbility.getContext()
 
    const STORE_CONFIG :relationalStore.StoreConfig = {
-     name: 'RdbTest.db',                             // Database file name.
+     name: 'RdbTest.db', // Database file name.
      securityLevel: relationalStore.SecurityLevel.S1 // Database security level.
    };
 
@@ -172,7 +172,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    > **NOTE**
    >
    > - The RDB store created by an application varies with the context. Multiple RDB stores are created for the same database name with different application contexts. For example, each UIAbility has its own context.
-   > 
+   >
    > - When an application calls **getRdbStore()** to obtain an RDB store instance for the first time, the corresponding database file is generated in the application sandbox. When the RDB store is used, temporary files ended with **-wal** and **-shm** may be generated in the same directory as the database file. If you want to move the database files to other places, you must also move these temporary files. After the application is uninstalled, the database files and temporary files generated on the device are also removed.
 
 2. Use **insert()** to insert data to the RDB store.<br>Example:
@@ -180,43 +180,40 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
    ```ts
    import { ValuesBucket } from '@ohos.data.ValuesBucket';
    
-   
-      let value1 = 'Lisa';
-      let value2 = 18;
-      let value3 = 100.5;
-      let value4 = new Uint8Array([1, 2, 3, 4, 5]);
-      // You can use either of the following:
-      const valueBucket1: ValuesBucket = {
-        'NAME':    value1,
-        'AGE':     value2,
-        'SALARY':  value3,
-        'CODES':   value4,
-      };
-      const valueBucket2: ValuesBucket = {
-        NAME:      value1,
-        AGE:       value2,
-        SALARY:    value3,
-        CODES:     value4,
-      };
-      const valueBucket3: ValuesBucket = {
-        "NAME":    value1,
-        "AGE":     value2,
-        "SALARY":  value3,
-        "CODES":   value4,
-      };
-   
-      if (store != undefined) {
-        (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket1, (err: BusinessError, rowId: number) => {
-          if (err) {
-            console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
-            return;
-          }
-          console.info(`Succeeded in inserting data. rowId:${rowId}`);
-        })
-      }
+   let value1 = 'Lisa';
+   let value2 = 18;
+   let value3 = 100.5;
+   let value4 = new Uint8Array([1, 2, 3, 4, 5]);
+   // You can use either of the following:
+   const valueBucket1: ValuesBucket = {
+     'NAME':    value1,
+     'AGE':     value2,
+     'SALARY':  value3,
+     'CODES':   value4,
+   };
+   const valueBucket2: ValuesBucket = {
+     NAME:      value1,
+     AGE:       value2,
+     SALARY:    value3,
+     CODES:     value4,
+   };
+   const valueBucket3: ValuesBucket = {
+     "NAME":    value1,
+     "AGE":     value2,
+     "SALARY":  value3,
+     "CODES":   value4,
+   };
+
+   if (store != undefined) {
+     (store as relationalStore.RdbStore).insert('EMPLOYEE', valueBucket1, (err: BusinessError, rowId: number) => {
+       if (err) {
+         console.error(`Failed to insert data. Code:${err.code}, message:${err.message}`);
+         return;
+       }
+       console.info(`Succeeded in inserting data. rowId:${rowId}`);
+     })
+   }
    ```
-
-
 
 
    > **NOTE**
@@ -226,7 +223,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 3. Modify or delete data based on the specified **Predicates** instance.
 
    Use **update()** to modify data and **delete()** to delete data.<br>Example:
-   
+
    ```ts
    // Modify data.
 
@@ -253,7 +250,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
      "SALARY":  value3,
      "CODES":   value4,
    };
-   
+
    // Modify data.
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE'); // Create predicates for the table named EMPLOYEE.
    predicates.equalTo('NAME', 'Lisa'); // Modify the data of Lisa in the EMPLOYEE table to the specified data.
@@ -284,7 +281,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 4. Query data based on the conditions specified by **Predicates**.
 
    Use **query()** to query data. The data obtained is returned in a **ResultSet** object.<br>Example:
-   
+
    ```ts
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Rose');
@@ -316,10 +313,10 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 5. Delete the RDB store.
 
    Use **deleteRdbStore()** to delete the RDB store and related database files.<br>Example:
-   
+
    Stage model:
 
-   
+
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
 
@@ -338,10 +335,10 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 
    FA model:
 
-   
+
    ```ts
    import featureAbility from '@ohos.ability.featureAbility';
-   
+
    let context = getContext(this);
 
    relationalStore.deleteRdbStore(context, 'RdbTest.db', (err: BusinessError) => {

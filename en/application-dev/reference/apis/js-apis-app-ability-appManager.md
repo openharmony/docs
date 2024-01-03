@@ -740,7 +740,7 @@ try {
 
 ## appManager.off<sup>11+</sup>
 
-off(type: 'appForegroundState', observer: AppForegroundStateObserver): void
+off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 
 Deregisters the observer used to listen for application start or exit events.
 
@@ -770,30 +770,30 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 import { BusinessError } from '@ohos.base';
-let observer_;
+let observer_: appManager.AppForegroundStateObserver;
 // 1. Register an observer to listen for application start or exit events.
 let observer: appManager.AppForegroundStateObserver = {
-    onAppStateChanged(appStateData) {
-        console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
-    },
+  onAppStateChanged(appStateData: appManager.AppStateData) {
+    console.log(`[appManager] onAppStateChanged: ${JSON.stringify(appStateData)}`);
+  },
 };
 try {
-    appManager.on('appForegroundState', observer);
-    // Save the observer object.
-    observer_ = observer;
+  appManager.on('appForegroundState', observer);
+  // Save the observer object.
+  observer_ = observer;
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message} `);
 }
 
 // 2. Deregister the observer.
 try {
-    appManager.off('appForegroundState',  observer_);
+  appManager.off('appForegroundState',  observer_);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`[appManager] error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`[appManager] error: ${code}, ${message} `);
 }
 ```
 

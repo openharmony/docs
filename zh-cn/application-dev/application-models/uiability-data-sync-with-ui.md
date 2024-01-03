@@ -16,27 +16,35 @@
 1. 在UIAbility中调用[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
 
    ```ts
+   import hilog from '@ohos.hilog';
+   import Logger from '../utils/Logger';
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import Want from '@ohos.app.ability.Want';
-
-   const TAG: string = '[Example].[Entry].[EntryAbility]';
-
+   import type window from '@ohos.window';
+   import type { Context } from '@ohos.abilityAccessCtrl';
+   import Want from '@ohos.app.ability.Want'
+   
+   const TAG: string = '[EventAbility]';
+   
    export default class EntryAbility extends UIAbility {
-     func1(data: string) {
-       // 触发事件，完成相应的业务操作
-       console.info(TAG, '1. ' + JSON.stringify(data));
-     }
-
-     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+   
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       // 获取UIAbility实例的上下文
+       let context = this.context;
        // 获取eventHub
        let eventhub = this.context.eventHub;
        // 执行订阅操作
-       eventhub.on('event1', this.func1);
+       eventhub.on('event1', this.eventFunc);
        eventhub.on('event1', (data: string) => {
          // 触发事件，完成相应的业务操作
-         console.info(TAG, '2. ' + JSON.stringify(data));
        });
+       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onCreate');
+     }
+       
+       // ...
+       
+     eventFunc(argOne: Context, argTwo: Context): void {
+       Logger.info(TAG, '1. ' + `${argOne}, ${argTwo}`);
+       return;
      }
    }
    ```
@@ -45,13 +53,16 @@
 
    ```ts
    import common from '@ohos.app.ability.common';
-
+   import promptAction from '@ohos.promptAction'
+   import Want from '@ohos.app.ability.Want';
+   
    @Entry
    @Component
-   struct Index {
+   struct Page_EventHub {
+   
      private context = getContext(this) as common.UIAbilityContext;
-
-     eventHubFunc() {
+   
+     eventHubFunc() : void {
        // 不带参数触发自定义“event1”事件
        this.context.eventHub.emit('event1');
        // 带1个参数触发自定义“event1”事件
@@ -60,19 +71,53 @@
        this.context.eventHub.emit('event1', 2, 'test');
        // 开发者可以根据实际的业务场景设计事件传递的参数
      }
-
-     // 页面展示
+   
      build() {
-       Column() {
-         Button('按钮')
-           .onClick(() => {
-             this.eventHubFunc();
-         })
-         Button('关闭')
-           .onClick(() => {
-             this.context.eventHub.off('event1');
-         })
+       Row() {
+         Column() {
+           Text($r('app.string.Page_UIAbilityFourth'))
+             .fontSize(40)
+             .fontWeight(FontWeight.Bold)
+   
+           Button(){
+             Text($r('app.string.EventHubFuncA'))
+               .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+               .fontSize($r('sys.float.ohos_id_text_size_button1'))
+               .fontWeight(FontWeight.Bold)
+           }
+           .width(300)
+           .height(40)
+           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+             .onClick(() => {
+               this.eventHubFunc();
+               promptAction.showToast({
+                 message: $r('app.string.EventHubFuncA')
+               });
+             })
+             .margin(3)
+   
+           Button(){
+             Text($r('app.string.EventHubFuncB'))
+               .fontColor($r('sys.color.ohos_id_color_foreground_contrary'))
+               .fontSize($r('sys.float.ohos_id_text_size_button1'))
+               .fontWeight(FontWeight.Bold)
+           }
+           .width(300)
+           .height(40)
+           .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+           .backgroundColor($r('sys.color.ohos_id_color_component_activated'))
+             .onClick(() => {
+               this.context.eventHub.off('event1');
+               promptAction.showToast({
+                 message: $r('app.string.EventHubFuncB')
+               });
+             })
+             .margin(3)
+         }
+         .width('100%')
        }
+       .height('100%')
      }
    }
    ```
@@ -81,13 +126,10 @@
 
    ```json
    [Example].[Entry].[EntryAbility] 1. []
-   [Example].[Entry].[EntryAbility] 2. []
    [Example].[Entry].[EntryAbility] 1. [1]
-   [Example].[Entry].[EntryAbility] 2. [1]
    [Example].[Entry].[EntryAbility] 1. [2,"test"]
-   [Example].[Entry].[EntryAbility] 2. [2,"test"]
    ```
-
+   
 4. 在自定义事件“event1”使用完成后，可以根据需要调用[eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff)方法取消该事件的订阅。
 
    ```ts
