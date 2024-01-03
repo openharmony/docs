@@ -31,9 +31,9 @@
      }
      avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
        if (err == null) {
-         console.log('prepare success');
+         console.info('prepare success');
        } else {
-         console.log('prepare failed and error is ' + err.message);
+         console.error('prepare failed and error is ' + err.message);
        }
      });
      let videoSurfaceId = await avRecorder.getInputSurface();
