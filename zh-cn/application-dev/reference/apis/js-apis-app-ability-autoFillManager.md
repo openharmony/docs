@@ -78,7 +78,7 @@ onFailure(): void
   }
   ```
   注：
-  此处从LocalStorage中取得的AutoSaveCallback为预先在AutoFillAbility（自定义的AutoFillExtensionAbility）中OnSaveRequest生命周期获得，并存储到LocalStorage中，具体可参考[SaveRequestCallback](./js-apis-inner-application-autoFillRequest.md#SaveRequestCallback.onSuccess)；<br>
+  此处从LocalStorage中取得的AutoSaveCallback为预先在AutoFillAbility（自定义的AutoFillExtensionAbility）中OnSaveRequest生命周期获得，并存储到LocalStorage中，具体可参考[SaveRequestCallback](js-apis-inner-application-autoFillRequest.md#SaveRequestCallbackonSuccess)；<br>
   这里手动触发回调仅做演示用，实际开发中可根据业务逻辑进行处理
 
 ## requestAutoSave
