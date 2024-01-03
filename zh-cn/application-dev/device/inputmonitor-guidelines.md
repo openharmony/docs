@@ -13,22 +13,22 @@ import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 ## 接口说明
 输入监听常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputMonitor文档](../reference/apis/js-apis-inputmonitor.md)。
 
-| 实例名 | 接口名  | 说明 |
-| ----------- | ------------------------------------------------------------ | -------------------------- |
-| inputMonitor | function on(type: 'mouse', receiver: Callback<MouseEvent>): void；|监听鼠标事件。 |
-| inputMonitor | function on(type: 'touch', receiver: TouchEventReceiver): void； | 监听触屏事件。 |
-| inputMonitor | function on(type: 'pinch', receiver: TouchEventReceiver): void； | 监听捏合事件。 |
-| inputMonitor | function on(type: 'threeFingersSwipe', receiver: Callback<ThreeFingersSwipe>): void； | 监听三指上划事件。 |
-| inputMonitor | function on(type: 'threeFingersTap', receiver: Callback<ThreeFingersSwipe>): void； | 监听三指清点事件。 |
-| inputMonitor | function on(type: 'fourFingersSwipe', receiver: Callback<FourFingersSwipe>): void； | 监听四指滑动事件。 |
-| inputMonitor | function on(type: 'rotate', fingers: number, receiver: Callback<Rotate>): void | 监听旋转事件。 |
-| inputMonitor | function off(type: 'mouse', receiver: Callback<MouseEvent>): void；|取消监听鼠标事件。 |
-| inputMonitor | function off(type: 'touch', receiver: TouchEventReceiver): void； | 取消监听触屏事件。 |
-| inputMonitor | function off(type: 'pinch', receiver: TouchEventReceiver): void； | 取消监听捏合事件。 |
-| inputMonitor | function off(type: 'threeFingersSwipe', receiver: Callback<ThreeFingersSwipe>): void； | 取消监听三指上划事件。 |
-| inputMonitor | function off(type: 'threeFingersTap', receiver: Callback<ThreeFingersSwipe>): void； | 取消监听三指清点事件。 |
-| inputMonitor | function off(type: 'fourFingersSwipe', receiver: Callback<FourFingersSwipe>): void； | 取消监听四指滑动事件。 |
-| inputMonitor | function off(type: 'rotate', fingers: number, receiver: Callback<Rotate>): void | 取消监听旋转事件。 |
+| 接口名  | 说明 |
+| ------------------------------------------------------------ | -------------------------- |
+| on(type: 'mouse', receiver: Callback<MouseEvent>): void |监听鼠标事件。 |
+| on(type: 'touch', receiver: TouchEventReceiver): void | 监听触屏事件。 |
+| on(type: 'pinch', receiver: TouchEventReceiver): void | 监听捏合事件。 |
+| on(type: 'threeFingersSwipe', receiver: Callback<ThreeFingersSwipe>): void | 监听三指上划事件。 |
+| on(type: 'threeFingersTap', receiver: Callback<ThreeFingersSwipe>): void | 监听三指清点事件。 |
+| on(type: 'fourFingersSwipe', receiver: Callback<FourFingersSwipe>): void | 监听四指滑动事件。 |
+| on(type: 'rotate', fingers: number, receiver: Callback<Rotate>): void | 监听旋转事件。 |
+| off(type: 'mouse', receiver: Callback<MouseEvent>): void |取消监听鼠标事件。 |
+| off(type: 'touch', receiver: TouchEventReceiver): void | 取消监听触屏事件。 |
+| off(type: 'pinch', receiver: TouchEventReceiver): void | 取消监听捏合事件。 |
+| off(type: 'threeFingersSwipe', receiver: Callback<ThreeFingersSwipe>): void | 取消监听三指上划事件。 |
+| off(type: 'threeFingersTap', receiver: Callback<ThreeFingersSwipe>): void | 取消监听三指清点事件。 |
+| off(type: 'fourFingersSwipe', receiver: Callback<FourFingersSwipe>): void | 取消监听四指滑动事件。 |
+| off(type: 'rotate', fingers: number, receiver: Callback<Rotate>): void | 取消监听旋转事件。 |
 
 ## 开发步骤
 
