@@ -5189,11 +5189,11 @@ on(type: SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, callback: Callback&lt;WearDet
 
 **参数：** 
 
-| 类型                                                         | 参数名   | 必填 | 说明                                                         |
-| ------------------------------------------------------------ | -------- | ---- | ------------------------------------------------------------ |
-| [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_WEAR_DETECTION | type     | 是   | 要订阅的佩戴检测传感器类型为SENSOR_TYPE_ID_WEAR_DETECTION。  |
-| Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | callback | 是   | 注册佩戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
-| [Options](#options)                                          | options  | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortypedeprecated).SENSOR_TYPE_ID_WEAR_DETECTION | 是   | 要订阅的佩戴检测传感器类型为SENSOR_TYPE_ID_WEAR_DETECTION。  |
+| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | 是   | 注册佩戴检测传感器的回调函数，上报的数据类型为WearDetectionResponse。 |
+| options  | [Options](#options)                                          | 否   | 可选参数列表，用于设置传感器上报频率，默认值为200000000ns。  |
 
  
 
