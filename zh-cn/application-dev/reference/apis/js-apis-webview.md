@@ -6026,7 +6026,7 @@ static deleteEntireCookie(): void
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](###clearAllCookiesSync11+)替代
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](#clearallcookiessync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6194,7 +6194,7 @@ static deleteSessionCookie(): void
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](#clearsessioncookiesync11)替代
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](#clearsessioncookiesync11+)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

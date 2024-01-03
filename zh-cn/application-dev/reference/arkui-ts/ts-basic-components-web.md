@@ -3206,10 +3206,40 @@ onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebCo
     result: WebContextMenuResult | null = null;
     build() {
       Column() {
+        Button('closeContextMenu')
+        .onClick(() => {
+          if (this.result) {
+            this.result.closeContextMenu()
+          }
+        })
         Button('copyImage')
         .onClick(() => {
           if (this.result) {
             this.result.copyImage()
+          }
+        })
+        Button('copy')
+        .onClick(() => {
+          if (this.result) {
+            this.result.copy()
+          }
+        })
+        Button('paste')
+        .onClick(() => {
+          if (this.result) {
+            this.result.paste()
+          }
+        })
+        Button('cut')
+        .onClick(() => {
+          if (this.result) {
+            this.result.cut()
+          }
+        })
+        Button('selectAll')
+        .onClick(() => {
+          if (this.result) {
+            this.result.selectAll()
           }
         })
         Web({ src: 'www.example.com', controller: this.controller })
