@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
-**AbilityDelegatorRegistry**, a module of the [Test Framework](../../application-test/arkxtest-guidelines.md), is used to obtain [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) and [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) objects. **AbilityDelegator** provides APIs for creating **AbilityMonitor** objects, which can be used to listen for ability lifecycle changes. **AbilityDelegatorArgs** provides APIs for obtaining test parameters.
+**AbilityDelegatorRegistry**, a module of the [Automatic Test Framework](../../application-test/arkxtest-guidelines.md), is used to obtain [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) and [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) objects. **AbilityDelegator** provides APIs for creating [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) objects, which can be used to listen for ability lifecycle changes. **AbilityDelegatorArgs** provides APIs for obtaining test parameters.
 
 > **NOTE**
 > 

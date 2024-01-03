@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-The **AbilityDelegator** module provides APIs for managing **AbilityMonitor** instances that are used to monitor the lifecycle state changes of a specified ability. You can use the APIs to add and remove **AbilityMonitor** instances, wait for an ability to reach the **OnCreate** lifecycle state, set the waiting time, obtain the lifecycle state of an ability, obtain the top ability of the current application, and start an ability.
+The **AbilityDelegator** module provides APIs for managing [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instances that are used to monitor the lifecycle state changes of a specified ability. You can use the APIs to add and remove **AbilityMonitor** instances, wait for an ability to reach the **onCreate** lifecycle state, set the waiting time, obtain the lifecycle state of an ability, obtain the top ability of the current application, and start an ability.
 
 > **NOTE**
 > 
@@ -16,7 +16,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 An **AbilityDelegator** object is obtained by calling [getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator) in **AbilityDelegatorRegistry**.
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 ```
 
 ## AbilityDelegator
@@ -213,7 +213,7 @@ abilityDelegator.removeAbilityMonitor(monitor).then(() => {
 
 waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>): void;
 
-Waits for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **OnCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
+Waits for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -256,7 +256,7 @@ abilityDelegator.waitAbilityMonitor(monitor, (err : any, data : any) => {
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCallback\<UIAbility>): void;
 
-Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **OnCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
+Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -303,7 +303,7 @@ abilityDelegator.waitAbilityMonitor(monitor, timeout, (err : any, data : any) =>
 
 waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbility>;
 
-Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **OnCreate** lifecycle state and returns the **Ability** instance. This API uses a promise to return the result.
+Waits a period of time for the **Ability** instance that matches the **AbilityMonitor** instance to reach the **onCreate** lifecycle state and returns the **Ability** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1163,7 +1163,7 @@ abilityDelegator.removeAbilityStageMonitor(monitor, (err : any) => {
 
 removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 
-Removes an **AbilityStageMonitor** object from the application memory. This API uses a promise to return the result.
+Removes an **AbilityStageMonitor** instance from the application memory. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
