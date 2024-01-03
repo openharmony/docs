@@ -1,4 +1,4 @@
-# Native APIs
+# Node-API
 
 - [Getting Started with the NDK](ndk-development-overview.md)
 - [Creating an NDK Project](create-with-ndk.md)
@@ -14,7 +14,7 @@
         - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
         - [Node-API Development Specifications](napi-guidelines.md)
         - [Node-API Development Process](use-napi-process.md)
-        - Samples
+        - Typical Scenarios
             - [Asynchronous Task Development Using Node-API](use-napi-asynchronous-task.md)
             - [Thread Safety Development Using Node-API](use-napi-thread-safety.md)
         - [OpenHarmony Node-API FAQs](use-napi-faqs.md)
@@ -40,7 +40,7 @@
         - [USB DDK Development](usb-ddk-guidelines.md)
         - [HID DDK Development](hid-ddk-guidelines.md)
     - Data Management
-        - [RelationalStore Development](native-relational-store-guidelines.md)
+        - [Relational Store Development](native-relational-store-guidelines.md)
     - Bundle Management
         - [Native Bundle Development](native-bundle-guidelines.md)
 - Debugging and Profiling
