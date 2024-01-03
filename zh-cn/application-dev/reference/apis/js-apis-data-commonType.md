@@ -49,9 +49,9 @@ import { commonType } from '@ohos.data.commonType';
 
 **系统能力：** SystemCapability.DistributedDataManager.CommonType
 
-| 类型              | 说明                  |
-| ----------------- | --------------------- |
-| [Asset](#asset)[] | 表示Asset类型的数组。 |
+| 类型                         | 说明                  |
+| ---------------------------- | --------------------- |
+| Array&lt;[Asset](#asset)&gt; | 表示Asset类型的数组。 |
 
 ## ValueType
 
