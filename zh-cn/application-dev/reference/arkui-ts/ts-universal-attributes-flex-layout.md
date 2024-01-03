@@ -3,7 +3,7 @@
 >  **说明：**
 >  - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - 仅当父组件是 Flex、Column、Row 、GridRow时生效。
+>  - 仅当父组件是 Flex、Column、Row 、GridRow（仅针对alignSelf）时生效。
 
 
 ## 属性
