@@ -11,11 +11,12 @@ import shortKey from '@ohos.multimodalInput.shortKey';
 ```
 
 ## 接口说明
+
 事件注入常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.shortKey文档](../reference/apis/js-apis-shortKey.md)。
 
-| 实例名 | 接口名  | 说明 |
-| ----------- | ------------------------------------------------------------ | -------------------------- |
-| shortKey | function setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&lt;void&gt;): void；|设置快捷键拉起Ability的延迟时间。 |
+| 接口名称  | 描述 |
+| ------------------------------------------------------------ | -------------------------- |
+| setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&lt;void&gt;): void |设置快捷键拉起Ability的延迟时间。 |
 
 ## 开发步骤
 

@@ -11,6 +11,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 ```
 
 ## 接口说明
+
 事件注入常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputEventClient文档](../reference/apis/js-apis-inputeventclient.md)。
 
 | 接口名称  | 描述 |
