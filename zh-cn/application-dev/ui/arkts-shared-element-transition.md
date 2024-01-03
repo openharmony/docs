@@ -1,12 +1,244 @@
 # 共享元素转场
 
+共享元素转场是一种界面切换时对相同或者相似的两个元素做的一种位置和大小匹配的过渡动画效果，也称一镜到底动效。
 
-共享元素转场是一种界面切换时对相同或者相似的元素做的一种位置和大小匹配的过渡动画效果。共享元素动画一般和模态转场一起配合使用以实现对应的效果，除此之外，通过转场动画和属性动画的配合，可以适用更多的共享元素转场场景。
+如下例所示，在点击图片后，该图片消失，同时在另一个位置出现新的图片，二者之间内容相同，可以对它们添加一镜到底动效。左图为不添加一镜到底动效的效果，右图为添加一镜到底动效的效果，一镜到底的效果能够让二者的出现消失产生联动，使得内容切换过程显得灵动自然而不生硬。
 
+![zh-cn_image_0000001599644876](figures/zh-cn_image_0000001599644876.gif)|![zh-cn_image_0000001599644877](figures/zh-cn_image_0000001599644877.gif)
+---|---
 
-## 使用transition和属性动画实现共享元素转场
+实现一镜到底动效的方式有多种，实际开发过程中，需要依据具体的场景，选择相应的合适的方式进行实现。以下为基本的实现方式介绍。
 
-对于同一个容器展开，容器内兄弟组件消失或者出现的场景，可通过对同一个容器展开前后进行宽高位置变化并配置属性动画，对兄弟组件配置出现消失转场动画实现共享元素转场。
+## 使用geometryTransition共享元素转场实现一镜到底动效
+
+[geometryTransition](../reference/arkui-ts/ts-transition-animation-geometrytransition.md)用于组件内隐式共享元素转场，在视图状态切换过程中提供丝滑的上下文继承过渡体验。
+
+geometryTransition的使用方式为对需要添加一镜到底动效的两个组件使用geometryTransition接口绑定同一id，这样在其中一个组件消失同时另一个组件创建出现的时候，系统会对二者添加一镜到底动效。
+
+### geometryTransition的简单使用
+
+对于同一个页面中的两个元素的一镜到底效果，geometryTransition接口的简单使用示例如下：
+
+```ts
+import curves from '@ohos.curves';
+
+@Entry
+@Component
+struct IfElseGeometryTransition {
+  @State isShow: boolean = false;
+
+  build() {
+    Stack({ alignContent: Alignment.Center }) {
+      if (this.isShow) {
+        Image($r('app.media.spring'))
+          .autoResize(false)
+          .clip(true)
+          .width(200)
+          .height(200)
+          .borderRadius(100)
+          .geometryTransition("picture")
+          .transition(TransitionEffect.OPACITY)
+          // 在打断场景下，即动画过程中点击页面触发下一次转场，如果不加id，则会出现重影
+          // 加了id之后，新建的spring图片会复用之前的spring图片节点，不会重新创建节点，也就不会有重影问题
+          // 加id的规则为加在if和else下的第一个节点上，有多个并列节点则也需要进行添加
+          .id('item1')
+      } else {
+        // geometryTransition此处绑定的是容器，那么容器内的子组件需设为相对布局跟随父容器变化，
+        // 套多层容器为了说明相对布局约束传递
+        Column() {
+          Column() {
+            Image($r('app.media.sky'))
+              .size({ width: '100%', height: '100%' })
+          }
+          .size({ width: '100%', height: '100%' })
+        }
+        .width(100)
+        .height(100)
+        // geometryTransition会同步圆角，但仅限于geometryTransition绑定处，此处绑定的是容器
+        // 则对容器本身有圆角同步而不会操作容器内部子组件的borderRadius
+        .borderRadius(50)
+        .clip(true)
+        .geometryTransition("picture")
+        // transition保证节点离场不被立即析构，设置通用转场效果
+        .transition(TransitionEffect.OPACITY)
+        .position({ x: 40, y: 40 })
+        .id('item2')
+      }
+    }
+    .onClick(() => {
+      animateTo({
+        curve: curves.springMotion()
+      }, () => {
+        this.isShow = !this.isShow;
+      })
+    })
+    .size({ width: '100%', height: '100%' })
+  }
+}
+```
+
+![zh-cn_image_0000001599644878](figures/zh-cn_image_0000001599644878.gif)
+
+### geometryTransition结合模态转场使用
+
+更多的场景中，需要对一个页面的元素与另一个页面的元素添加一镜到底动效。可以通过geometryTransition搭配模态转场接口实现。以点击头像弹出个人信息页的demo为例：
+
+```ts
+class PostData {
+  avatar: Resource = $r('app.media.flower');
+  name: string = '';
+  message: string = '';
+  images: Resource[] = [];
+}
+
+@Entry
+@Component
+struct Index {
+  @State isPersonalPageShow: boolean = false;
+  @State selectedIndex: number = 0;
+  @State alphaValue: number = 1;
+
+  private allPostData: PostData[] = [
+    { avatar: $r('app.media.flower'), name: 'Alice', message: '天气晴朗',
+      images: [$r('app.media.spring'), $r('app.media.tree')] },
+    { avatar: $r('app.media.sky'), name: 'Bob', message: '你好世界',
+      images: [$r('app.media.island')] },
+    { avatar: $r('app.media.tree'), name: 'Carl', message: '万物生长',
+      images: [$r('app.media.flower'), $r('app.media.sky'), $r('app.media.spring')] }];
+
+  private onAvatarClicked(index: number): void {
+    this.selectedIndex = index;
+    animateTo({
+      duration: 350,
+      curve: Curve.Friction
+    }, () => {
+      this.isPersonalPageShow = !this.isPersonalPageShow;
+      this.alphaValue = 0;
+    });
+  }
+
+  private onPersonalPageBack(index: number): void {
+    animateTo({
+      duration: 350,
+      curve: Curve.Friction
+    }, () => {
+      this.isPersonalPageShow = !this.isPersonalPageShow;
+      this.alphaValue = 1;
+    });
+  }
+
+  @Builder
+  PersonalPageBuilder(index: number) {
+    Column({ space: 20 }) {
+      Image(this.allPostData[index].avatar)
+        .size({ width: 200, height: 200 })
+        .borderRadius(100)
+        // 头像配置共享元素效果，与点击的头像的id匹配
+        .geometryTransition(index.toString())
+        .clip(true)
+        .transition(TransitionEffect.opacity(0.99))
+
+      Text(this.allPostData[index].name)
+        .font({ size: 30, weight: 600 })
+        // 对文本添加出现转场效果
+        .transition(TransitionEffect.asymmetric(
+          TransitionEffect.OPACITY
+            .combine(TransitionEffect.translate({ y: 100 })),
+          TransitionEffect.OPACITY.animation({ duration: 0 })
+        ))
+
+      Text('你好，我是' + this.allPostData[index].name)
+        // 对文本添加出现转场效果
+        .transition(TransitionEffect.asymmetric(
+          TransitionEffect.OPACITY
+            .combine(TransitionEffect.translate({ y: 100 })),
+          TransitionEffect.OPACITY.animation({ duration: 0 })
+        ))
+    }
+    .padding({ top: 20 })
+    .size({ width: 360, height: 780 })
+    .backgroundColor(Color.White)
+    .onClick(() => {
+      this.onPersonalPageBack(index);
+    })
+    .transition(TransitionEffect.asymmetric(
+      TransitionEffect.opacity(0.99),
+      TransitionEffect.OPACITY
+    ))
+  }
+
+  build() {
+    Column({ space: 20 }) {
+      ForEach(this.allPostData, (postData: PostData, index: number) => {
+        Column() {
+          Post({ data: postData, index: index, onAvatarClicked: (index: number) => { this.onAvatarClicked(index) } })
+        }
+        .width('100%')
+      }, (postData: PostData, index: number) => index.toString())
+    }
+    .size({ width: '100%', height: '100%' })
+    .backgroundColor('#40808080')
+    .bindContentCover(this.isPersonalPageShow,
+      this.PersonalPageBuilder(this.selectedIndex), { modalTransition: ModalTransition.NONE })
+    .opacity(this.alphaValue)
+  }
+}
+
+@Component
+export default struct  Post {
+  @Prop data: PostData;
+  @Prop index: number;
+
+  @State expandImageSize: number = 100;
+  @State avatarSize: number = 50;
+
+  private onAvatarClicked: (index: number) => void = (index: number) => { };
+
+  build() {
+    Column({ space: 20 }) {
+      Row({ space: 10 }) {
+        Image(this.data.avatar)
+          .size({ width: this.avatarSize, height: this.avatarSize })
+          .borderRadius(this.avatarSize / 2)
+          .clip(true)
+          .onClick(() => {
+            this.onAvatarClicked(this.index);
+          })
+          // 对头像绑定共享元素转场的id
+          // @ts-ignore
+          .geometryTransition(this.index.toString(), true)
+          .transition(TransitionEffect.OPACITY.animation({ duration: 350, curve: Curve.Friction }))
+
+        Text(this.data.name)
+      }
+      .justifyContent(FlexAlign.Start)
+
+      Text(this.data.message)
+
+      Row({ space: 15 }) {
+        ForEach(this.data.images, (imageResource: Resource, index: number) => {
+          Image(imageResource)
+            .size({ width: 100, height: 100 })
+        }, (imageResource: Resource, index: number) => index.toString())
+      }
+    }
+    .backgroundColor(Color.White)
+    .size({ width: '100%', height: 250 })
+    .alignItems(HorizontalAlign.Start)
+    .padding({ left: 10, top: 10 })
+  }
+}
+```
+
+效果为点击主页的头像后，弹出模态页面显示个人信息，并且两个页面之间的头像做一镜到底动效：
+
+![zh-cn_image_0000001597320327](figures/zh-cn_image_0000001597320327.gif)
+
+## 使用transition和属性动画实现一镜到底效果
+
+除了使用geometryTransition实现一镜到底动效外，也可以通过使用transition搭配属性动画实现一镜到底效果。
+
+对于同一个容器展开，容器内兄弟组件消失或者出现的场景，可通过对同一个容器展开前后进行宽高位置变化并配置属性动画，对兄弟组件配置出现消失转场动画实现一镜到底效果。基本步骤为：
 
 1. 构建需要展开的页面，并通过状态变量构建好普通状态和展开状态的界面。
 
@@ -80,136 +312,138 @@
       ...
       ```
 
-
-完整示例和效果如下。
-
-
+以点击卡片后显示卡片内容详情场景为例：
 
 ```ts
-// utils.ets
-import curves from '@ohos.curves';
-
-// 通过状态变量的判断，在同一个组件内构建普通状态和展开状态的界面
-@Component
-export struct share_transition_expand {
-  // 声明与父组件进行交互的是否展开状态变量
-  // 元素展开
-  @State isExpand: boolean = false;
-  // 当前展开元素
-  @State curIndex: number = 0;
-  @State listArray: Array<number> = [1, 2, 3, 4, 5, 6];
-  build() {
-    Column() {
-      List() {
-        ForEach(this.listArray, (item:number, index?:number|undefined) => {
-          // 根据需要定制展开后的组件
-          if (!this.isExpand || this.curIndex == index) {
-            ListItem() {
-              Column() {
-                Row() {
-                  Row()
-                    .backgroundColor(Color.Pink)
-                    .borderRadius(20)
-                    .width(80)
-                    .height(80)
-
-                  Column() {
-                    Text('点击展开 Item ' + item)
-                      .fontSize(20)
-                    Text('共享元素转场')
-                      .fontSize(12)
-                      .fontColor(0x909399)
-                  }
-                  .alignItems(HorizontalAlign.Start)
-                  .justifyContent(FlexAlign.SpaceAround)
-                  .margin({ left: 10 })
-                  .height(80)
-                }
-                .width('90%')
-                .height(100)
-
-                if (this.isExpand) {
-                  Row() {
-                    Text('展开态')
-                      .fontSize(28)
-                      .fontColor(0x909399)
-                      .textAlign(TextAlign.Center)
-                      .transition(TransitionEffect.OPACITY.animation({ curve: curves.springMotion(0.6, 0.9) }))
-                  }
-                  .width('90%')
-                  .justifyContent(FlexAlign.Center)
-                }
-              }
-              .onClick(() => {
-                // 定义展开收起的动画参数
-                animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  if(index != undefined){
-                    this.curIndex = index;
-                  }
-                  this.isExpand = !this.isExpand;
-                })
-              })
-              .width('90%')
-              .height(this.isExpand && this.curIndex == index ? '85%' : 100) // 根据需要定义展开后的组件的属性
-              .alignItems(HorizontalAlign.Center)
-              .borderRadius(10)
-              .margin({ top: 15 })
-              .backgroundColor(Color.White)
-              .shadow({ radius: 20, color: 0x909399, offsetX: 20, offsetY: 10 })
-              // 通过是否展开状态变量控制兄弟节点的出现或者消失，并配置出现消失转场动画
-              .transition(TransitionEffect.scale({ x: 0, y: 0 }).animation({ curve: curves.springMotion(0.3, 1.5) }))
-            }
-            .zIndex(this.curIndex == index ? 1 : 0)
-          }
-        })
-      }
-      .height('100%')
-      .alignListItem(ListItemAlign.Center)
-    }
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Start)
-  }
+class PostData {
+  avatar: Resource = $r('app.media.flower');
+  name: string = '';
+  message: string = '';
+  images: Resource[] = [];
 }
-```
 
-
-
-```ts
-// Index.ets
-import { share_transition_expand } from './utils';
 @Entry
 @Component
-struct ShareTransitionDemo {
+struct Index {
   @State isExpand: boolean = false;
-  @State Tmp:Record<string,boolean> = { 'isExpand': false }
-  private scroller: Scroller = new Scroller();
+  @State @Watch('onItemClicked') selectedIndex: number = -1;
+
+  private allPostData: PostData[] = [
+    { avatar: $r('app.media.flower'), name: 'Alice', message: '天气晴朗',
+      images: [$r('app.media.spring'), $r('app.media.tree')] },
+    { avatar: $r('app.media.sky'), name: 'Bob', message: '你好世界',
+      images: [$r('app.media.island')] },
+    { avatar: $r('app.media.tree'), name: 'Carl', message: '万物生长',
+      images: [$r('app.media.flower'), $r('app.media.sky'), $r('app.media.spring')] }];
+
+  private onItemClicked(): void {
+    if (this.selectedIndex < 0) {
+      return;
+    }
+    animateTo({
+      duration: 350,
+      curve: Curve.Friction
+    }, () => {
+      this.isExpand = !this.isExpand;
+    });
+  }
+
   build() {
-    Scroll(this.scroller) {
-    Column() {
-      Text('兄弟节点出现消失')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(30)
-        .fontColor(Color.Black)
-        .margin(10)
-
-      share_transition_expand(this.Tmp)
-
+    Column({ space: 20 }) {
+      ForEach(this.allPostData, (postData: PostData, index: number) => {
+        // 当点击了某个post后，会使其余的post消失下树
+        if (!this.isExpand || this.selectedIndex === index) {
+          Column() {
+            Post({ data: postData, selecteIndex: this.selectedIndex, index: index })
+          }
+          .width('100%')
+          // 对出现消失的post添加透明度转场和位移转场效果
+          .transition(TransitionEffect.OPACITY
+            .combine(TransitionEffect.translate({ y: index < this.selectedIndex ? -250 : 250 }))
+            .animation({ duration: 350, curve: Curve.Friction}))
+        }
+      }, (postData: PostData, index: number) => index.toString())
     }
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Start)
+    .size({ width: '100%', height: '100%' })
+    .backgroundColor('#40808080')
+  }
+}
+
+@Component
+export default struct  Post {
+  @Link selecteIndex: number;
+
+  @Prop data: PostData;
+  @Prop index: number;
+
+  @State itemHeight: number = 250;
+  @State isExpand: boolean = false;
+  @State expandImageSize: number = 100;
+  @State avatarSize: number = 50;
+
+  build() {
+    Column({ space: 20 }) {
+      Row({ space: 10 }) {
+        Image(this.data.avatar)
+          .size({ width: this.avatarSize, height: this.avatarSize })
+          .borderRadius(this.avatarSize / 2)
+          .clip(true)
+
+        Text(this.data.name)
+      }
+      .justifyContent(FlexAlign.Start)
+
+      Text(this.data.message)
+
+      Row({ space: 15 }) {
+        ForEach(this.data.images, (imageResource: Resource, index: number) => {
+          Image(imageResource)
+            .size({ width: this.expandImageSize, height: this.expandImageSize })
+        }, (imageResource: Resource, index: number) => index.toString())
+      }
+
+      if (this.isExpand) {
+        Column() {
+          Text('评论区')
+            // 对评论区文本添加出现消失转场效果
+            .transition( TransitionEffect.OPACITY
+              .animation({ duration: 350, curve: Curve.Friction }))
+            .padding({ top: 10 })
+        }
+        .transition(TransitionEffect.asymmetric(
+          TransitionEffect.opacity(0.99)
+            .animation({ duration: 350, curve: Curve.Friction }),
+          TransitionEffect.OPACITY.animation({ duration: 0 })
+        ))
+        .size({ width: '100%'})
+      }
     }
+    .backgroundColor(Color.White)
+    .size({ width: '100%', height: this.itemHeight })
+    .alignItems(HorizontalAlign.Start)
+    .padding({ left: 10, top: 10 })
+    .onClick(() => {
+      this.selecteIndex = -1;
+      this.selecteIndex = this.index;
+      animateTo({
+        duration: 350,
+        curve: Curve.Friction
+      }, () => {
+        // 对展开的post做宽高动画，并对头像尺寸和图片尺寸加动画
+        this.isExpand = !this.isExpand;
+        this.itemHeight = this.isExpand ? 780 : 250;
+        this.avatarSize = this.isExpand ? 75: 50;
+        this.expandImageSize = (this.isExpand && this.data.images.length > 0)
+          ? (360 - (this.data.images.length + 1) * 15) / this.data.images.length : 100;
+      })
+    })
   }
 }
 ```
-
-
 
 ![zh-cn_image_0000001600653160](figures/zh-cn_image_0000001600653160.gif)
 
-
-## 使用transition搭配zIndex实现共享元素转场
+## 使用transition搭配zIndex实现一镜到底效果
 
 对于同一个容器展开，兄弟组件不消失的场景，可以配合改变Z轴让展开组件显示在最上层，从而实现共享元素转场。
 
@@ -222,7 +456,6 @@ struct ShareTransitionDemo {
 - 通过占位容器不影响兄弟节点位置：外层容器占位，内部容器改变大小。
 
 完整示例和效果如下。
-
 
 ```ts
 // utils.ets
@@ -315,7 +548,6 @@ export struct share_zIndex_expand {
 }
 ```
 
-
 ```ts
 // Index.ets
 import { share_zIndex_expand } from './utils'
@@ -349,354 +581,210 @@ struct ShareZIndexDemo {
 
 ![zh-cn_image_0000001600332176](figures/zh-cn_image_0000001600332176.gif)
 
+## 使用属性动画实现一镜到底效果
 
-## 使用geometryTransition实现共享元素转场
+使用属性动画也可以实现一镜到底效果。对于组件A及组件B之间添加一镜到底动效的场景，实现步骤为：
 
-[geometryTransition](../reference/arkui-ts/ts-transition-animation-geometrytransition.md)用于组件内隐式共享元素转场，在视图状态切换过程中提供丝滑的上下文继承过渡体验。
+- 1.获取组件A的位置信息，在该位置放置一个内容与A一致的组件C。
 
-通过if/else范式使用geometryTransition实现共享元素转场的完整示例和效果如下。
+- 2.获取组件B的位置信息，通过A与B的位置信息，对组件C添加一个由A位置到B位置的属性动画。
 
+- 3.在动画结束或根据设计需要，在适当的时机隐藏组件C，显示组件B，完成一镜到底动画效果。
+
+该实现方式相较于其他实现方式而言自由度较高，可以根据需要自定义动画过程中各组件的行为，相关的示例及效果如下：
 
 ```ts
+import curves from '@ohos.curves';
+
+class RectJson {
+  $rect: Array<number> = []
+}
+
+class RectInfo {
+  left: number = 0;
+  top: number = 0;
+  right: number = 0;
+  bottom: number = 0;
+}
+
+const LARGE_IMAGE_SIZE = 240;
+const SMALL_IMAGE_SIZE = 40;
+const LARGE_IMAGE_RADIUS = 30;
+const SMALL_IMAGE_RADIUS = 15;
+
 @Entry
 @Component
-struct IfElseGeometryTransition {
-  @State isShow: boolean = false;
+struct Index {
+  @State showImage: Resource = $r('app.media.flower');
+  @State isTempImageShow: boolean = false;
+  @State clickedImage: Resource = $r('app.media.flower');
+  @State translateX: number = 0;
+  @State translateY: number = 0;
+  @State positionX: number = 0;
+  @State positionY: number = 0;
+  @State showImageAlphaValue: number = 1;
+  @State tempImageSize: number = SMALL_IMAGE_SIZE;
+  @State imageList: Resource[] = [$r('app.media.island'), $r('app.media.sky'),
+    $r('app.media.spring'), $r('app.media.tree')];
+  @State radius: number = SMALL_IMAGE_RADIUS;
+  // 控制下方的四个图片是否响应点击事件
+  @State isEnabled: boolean = true;
 
-  build() {
-    Stack({ alignContent: Alignment.Center }) {
-      if (this.isShow) {
-        Image($r('app.media.test'))
-          .autoResize(false)
-          .clip(true)
-          .width(300)
-          .height(400)
-          .offset({ y: 100 })
-          .geometryTransition("picture")
-          .transition(TransitionEffect.OPACITY)
-      } else {
-        // geometryTransition此处绑定的是容器，那么容器内的子组件需设为相对布局跟随父容器变化，
-        // 套多层容器为了说明相对布局约束传递
-        Column() {
-          Column() {
-            Image($r('app.media.icon'))
-              .width('100%').height('100%')
-          }.width('100%').height('100%')
+  private calculatedTranslateX: number = 0;
+  private calculatedTranslateY: number = 0;
+  private animationCount: number = 0;
+  private formerImageSource: Resource = $r('app.media.flower');
+
+  private calculateData(key: string): void {
+    // 分别获取需要进行页面切换的两个组件及二者公共父节点的位置，用以计算做动画组件的动画参数
+    let clickedImageInfo = this.getRectInfoById(key);
+    let showImageInfo = this.getRectInfoById('showImage');
+    let rootStackInfo = this.getRectInfoById('rootStack');
+    this.positionX = px2vp(clickedImageInfo.left - rootStackInfo.left);
+    this.positionY = px2vp(clickedImageInfo.top - rootStackInfo.top);
+    this.calculatedTranslateX = px2vp(showImageInfo.left - clickedImageInfo.left);
+    this.calculatedTranslateY = px2vp(showImageInfo.top - clickedImageInfo.top);
+  }
+
+  // 根据组件的key获取组件的位置信息
+  private getRectInfoById(key: string): RectInfo {
+    try {
+      let strJson: string = getInspectorByKey(key);
+      let rect: RectJson = JSON.parse(strJson);
+      let rectInfo: Array<object> = JSON.parse('[' + rect.$rect + ']');
+      let rect_left: number = Number(JSON.parse('[' + rectInfo[0] + ']')[0]);
+      let rect_top: number = Number(JSON.parse('[' + rectInfo[0] + ']')[1]);
+      let rect_right: number = Number(JSON.parse('[' + rectInfo[1] + ']')[0]);
+      let rect_bottom: number = Number(JSON.parse('[' + rectInfo[1] + ']')[1]);
+      return { left: rect_left, top: rect_top, right: rect_right, bottom: rect_bottom };
+    } catch (err) {
+      console.log(`getPositionById error ${err}`);
+    }
+    return { left: 0, top: 0, right: 0, bottom: 0 };
+  }
+
+  private onTouchDown(index: number): void {
+    this.radius = SMALL_IMAGE_RADIUS;
+    this.clickedImage = this.imageList[index];
+    this.calculateData(index.toString());
+    this.isTempImageShow = true;
+    this.formerImageSource = this.imageList[index];
+  }
+
+  private onTouchUp(index: number): void {
+    this.imageList[index] = this.showImage;
+    this.animationCount++;
+    this.doOneShotAnimation();
+    this.isEnabled = false;
+  }
+
+  private doOneShotAnimation(): void {
+    animateTo({
+      curve: curves.springMotion(),
+      onFinish: () => {
+        if (this.animationCount === 1) {
+          this.onAnimationFinish();
         }
-        .width(80)
-        .height(80)
-        // geometryTransition会同步圆角，但仅限于geometryTransition绑定处，此处绑定的是容器
-        // 则对容器本身有圆角同步而不会操作容器内部子组件的borderRadius
-        .borderRadius(20)
-        .clip(true)
-        .geometryTransition("picture")
-        // transition保证节点离场不被立即析构，设置通用转场效果
-        .transition(TransitionEffect.OPACITY)
       }
-    }
-    .onClick(() => {
-      animateTo({ duration: 1000 }, () => {
-        this.isShow = !this.isShow;
-      })
-    })
-  }
-}
-```
-
-![zh-cn_image_0000001599644878](figures/zh-cn_image_0000001599644878.gif)
-
-结合模态接口使用geometryTransition的示例和效果如下。
-
-
-```ts
-import curves from '@ohos.curves';
-
-@Entry
-@Component
-struct GeometryTransitionDemo {
-  // 用于控制模态转场的状态变量
-  @State isPresent: boolean = false;
-  @State alpha: boolean = false;
-  // 通过@Builder构建模态展示界面
-  @Builder
-  MyBuilder() {
-    Column() {
-      Row() {
-        Text('共享组件一')
-          .fontWeight(FontWeight.Bold)
-          .fontSize(20)
-          .fontColor(Color.White)
-      }
-      .justifyContent(FlexAlign.Center)
-      .borderRadius(10)
-      .backgroundColor(0xf56c6c)
-      .width('100%')
-      .aspectRatio(1)
-      .margin({ bottom: 20, top: 20})
-      // 新增的共享元素Row组件，ID是share1
-      .geometryTransition('share1')
-
-      Column() {
-        Text('展开页')
-          .textAlign(TextAlign.Center)
-          .fontSize(15)
-          .fontColor(this.isPresent ? Color.White : Color.Transparent)
-          .margin(20)
-
-        Text('点击任意位置返回')
-          .textAlign(TextAlign.Center)
-          .fontSize(15)
-          .fontColor(this.isPresent ? Color.White : Color.Transparent)
-      }
-      .width('100%')
-      .transition(TransitionEffect.OPACITY.animation({ curve: curves.springMotion(0.6, 1.2) }))
-
-    }
-    .onAppear(()=> {
-      animateTo({}, ()=>{
-        this.alpha = ! this.alpha;
-      })
-    })
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Start)
-    .transition(TransitionEffect.opacity(0.99))
-    .backgroundColor(this.alpha ? 0x909399 : Color.Transparent)
-    .clip(true)
-    .onClick(() => {
-      animateTo({ duration: 1000 }, () => {
-        this.alpha = ! this.alpha;
-        this.isPresent = !this.isPresent;
-      })
-    })
+    }, () => {
+      this.tempImageSize = LARGE_IMAGE_SIZE;
+      this.translateX = this.calculatedTranslateX;
+      this.translateY = this.calculatedTranslateY;
+      this.showImageAlphaValue = 0;
+      this.radius = LARGE_IMAGE_RADIUS;
+    });
   }
 
-  build() {
-    Column() {
-      Row() {
-        Text('共享组件一')
-          .fontWeight(FontWeight.Bold)
-          .fontSize(20)
-          .fontColor(Color.White)
-      }
-      .justifyContent(FlexAlign.Center)
-      .borderRadius(10)
-      .backgroundColor(0xf56c6c)
-      .width(150)
-      .height(150)
-      .margin(20)
-      // 模态转场组件
-      .bindContentCover(this.isPresent, this.MyBuilder, ModalTransition.NONE)
-      // 这里配置了Row组件有共享元素效果，ID是share1
-      .geometryTransition('share1')
-      .onClick(() => {
-        animateTo({ curve: curves.springMotion(0.6, 1.2) }, () => {
-          // 在动画闭包内改变状态变量，让模态界面显示
-          this.isPresent = !this.isPresent;
-        })
-      })
-
-      Text('组件二')
-        .fontWeight(FontWeight.Bold)
-        .fontSize(20)
-        .fontColor(Color.White)
-        .textAlign(TextAlign.Center)
-        .borderRadius(10)
-        .backgroundColor(0x67C23A)
-        .width(150)
-        .height(150)
-        .margin(20)
-    }
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Start)
-    .backgroundColor(Color.White)
+  private onAnimationFinish(): void {
+    this.showImage = this.formerImageSource;
+    this.showImageAlphaValue = 1.0;
+    this.isTempImageShow = false;
+    this.translateX = 0;
+    this.translateY = 0;
+    this.positionX = 0;
+    this.positionY = 0;
+    this.tempImageSize = SMALL_IMAGE_SIZE;
+    this.animationCount--;
+    this.isEnabled = true;
   }
-}
-```
-
-![zh-cn_image_0000001597320326](figures/zh-cn_image_0000001597320327.gif)
-
-
-
-## 使用属性动画实现共享元素转场效果
-
-
-```ts
-import curves from '@ohos.curves';
-class itTmp{
-  $rect:Array<number> = []
-}
-@Entry
-@Component
-struct AutoAchieveShareTransitionDemo {
-  private items: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-
-  // 卡片是否展开
-  @State expand: boolean = false;
-  @State scrollState: boolean = true; // 滚动条状态
-
-  // 共享元素相关属性
-  @State rect_top: number = 0; // 共享元素position
-  @State rect_bottom: number = 0;
-  @State rect_left: number = 0;
-  @State rect_right: number = 0;
-
-  // 新建元素相关属性
-  @State rootPosition: number = 0; // 父组件位置
-  @State item: string = ''; // 记录展开元素
-  @State cardHeight: number = 300; // 卡片高度
-  @State cardOpacity: number = 1; // 卡片透明度
-  @State layoutHeight: number = 300; // 展开页高度
-  @State layoutWidth: string = '90%'; // 展开页宽度
-  @State layoutOffset: number = 0; // 展开页偏移量
-  @State layoutOpacity: number = 0; // 展开页透明度
-
-  // 用于结束回调中进行判断
-  @State count: number = 0;
 
   build() {
     Stack() {
-      Scroll() {
+      Column() {
+        Column({ space: 40 }) {
+          Image(this.showImage)
+            .size({ width: 240, height: 240 })
+            .syncLoad(true)
+            .opacity(this.showImageAlphaValue)
+            .key('showImage')
+            .borderRadius(30)
+
+          Row() {
+            Image($r('app.media.back'))
+              .size({ width: 20, height: 20 })
+
+            Image($r('app.media.play'))
+              .size({ width: 20, height: 20 })
+
+            Image($r('app.media.forward'))
+              .size({ width: 20, height: 20 })
+          }
+          .justifyContent(FlexAlign.SpaceEvenly)
+          .width(240)
+        }
+        .margin({ top: 20 })
+        .padding({ top: 20 })
+        .clip(true)
+        .borderRadius(30)
+        .backgroundColor('#40808080')
+        .size({ width: 320, height: 360 })
+
         Column({ space: 20 }) {
-          ForEach(this.items, (item:string, index?:number|undefined) => {
-            Row() {
-              Column() {
-                Text('共享元素 ' + item)
-                  .fontSize(30)
-                  .fontColor(Color.Black)
-                  .fontWeight(FontWeight.Bolder)
-                Text('卡片展开')
-                  .fontSize(20)
-                  .fontColor(0x909399)
-              }
-              .width('100%')
-              .height('100%')
-              .justifyContent(FlexAlign.Center)
+          ForEach(this.imageList, (imageResource: Resource, index: number) => {
+            Row({ space: 20 }) {
+              Image(imageResource)
+                .size({ width: SMALL_IMAGE_SIZE, height: SMALL_IMAGE_SIZE })
+                // 需要进行切换的组件都加上.key接口设置键名用以之后获取位置信息
+                .key(index.toString())
+                .margin({ left: 10 })
+                .borderRadius(15)
+
+              Text('专辑' + (index + 1))
+                .size({ width: 200 })
             }
-            .width('90%')
-            .height(this.cardHeight)
-            .padding(20)
-            .backgroundColor(Color.Pink)
-            .borderRadius(10)
-            .shadow({ radius: 10, color: 0x909399, offsetX: 10, offsetY: 10 })
-            .opacity(this.expand && this.item == item ? 0 : 1)
-            // 设置唯一ID，获取该ID对应组件的属性信息
-            .id(item)
-            .onClick(() => {
-              let rootStrJson = getInspectorByKey('root');
-              let rootRect: itTmp = JSON.parse(rootStrJson);
-              let rootRectInfo: Array<object> = JSON.parse('[' + rootRect.$rect + ']');
-              let root_rect_top: string = JSON.parse('[' + rootRectInfo[0] + ']')[1];
-              this.rootPosition = Number(root_rect_top);
-              // 获取对应组件的位置、大小信息
-              let strJson = getInspectorByKey(item);
-              let rect:itTmp = JSON.parse(strJson);
-              let rectInfo:Array<object> = JSON.parse('[' + rect.$rect + ']');
-              let rect_left:string = JSON.parse('[' + rectInfo[0] + ']')[0];
-              let rect_top:string = JSON.parse('[' + rectInfo[0] + ']')[1];
-              let rect_right:string = JSON.parse('[' + rectInfo[1] + ']')[0];
-              let rect_bottom:string = JSON.parse('[' + rectInfo[1] + ']')[1];
-              let rect_value:Record<string,string> = {
-                "left": rect_left, "top": rect_top, "right": rect_right, "bottom": rect_bottom
-              };
-
-              // 设置共享元素的位置、内容、状态
-              this.rect_top = Number(rect_top);
-              this.item = item;
-              this.expand = true;
-              this.count += 1;
-              this.scrollState = false;
-
-              animateTo({
-                curve: curves.springMotion(),
-                onFinish: () => {
-                  this.scrollState = true;
-                }}, () => {
-                this.layoutHeight = px2vp(2772);
-                this.layoutWidth = '100%';
-                this.layoutOffset = -px2vp(this.rect_top - this.rootPosition);
-              })
+            .size({ width: '90%', height: 60 })
+            .borderRadius(20)
+            .backgroundColor('#40808080')
+            .enabled(this.isEnabled)
+            .onTouch((event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.onTouchDown(index);
+              } else if (event.type === TouchType.Up) {
+                this.onTouchUp(index);
+              }
             })
           })
         }
         .width('100%')
-        .margin({ top: 20 })
+        .justifyContent(FlexAlign.Center)
+        .margin({ top: 40 })
       }
-      .height('100%')
+      .size({ width: '100%', height: '100%' })
 
-      // 根据获取的组件信息新建与该组件相同的元素
-      if (this.expand) {
-        Column() {
-          // 共享元素
-          Row() {
-            Column() {
-              Text('共享元素 ' + this.item)
-                .fontSize(30)
-                .fontColor(Color.Black)
-                .fontWeight(FontWeight.Bolder)
-              Text('卡片展开')
-                .fontSize(20)
-                .fontColor(0x909399)
-            }
-            .width('100%')
-            .height('100%')
-            .justifyContent(FlexAlign.Center)
-          }
-          .width('100%')
-          .height(this.cardHeight)
-          .padding(20)
-          .backgroundColor(Color.Pink)
-
-          // 新增元素
-          Text('展开页面\n\n展开页面\n\n展开页面\n\n展开页面\n\n展开页面\n\n展开页面\n\n展开页面\n\n展开页面')
-            .fontSize(20)
-            .fontColor(0xcccccc)
-            .margin({ top: 20 })
-            .width(100)
-
-        }
-        .borderRadius(this.layoutWidth == '100%' ? 0 : 10)
-        .shadow({ radius: 10, color: 0x909399, offsetX: 10, offsetY: 10 })
-        .width(this.layoutWidth)
-        .height(this.layoutHeight)
-        .clip(true)
-        .backgroundColor(Color.White)
-        // 计算新建组件绝对位置
-        .position({
-          x: this.layoutWidth == '90%' ? '5%' : 0,
-          y: px2vp(this.rect_top - this.rootPosition)
-        })
-        .translate({
-          y: this.layoutOffset
-        })
-        .onClick(() => {
-          this.count -= 1;
-          this.scrollState = false;
-
-          animateTo({
-            curve: curves.springMotion(),
-            onFinish: (() => {
-              this.scrollState = true;
-              if (this.count == 0) {
-                this.expand = false;
-              }
-            })
-          }, () => {
-            this.layoutHeight = this.cardHeight;
-            this.layoutWidth = '90%';
-            this.layoutOffset = 0;
-          })
-        })
+      // 临时的用于做一镜到底动画的图片
+      if (this.isTempImageShow) {
+        Image(this.clickedImage)
+          .size({ width: this.tempImageSize, height: this.tempImageSize })
+          .translate({ x: this.translateX, y: this.translateY })
+          .position({ x: this.positionX, y: this.positionY })
+          .borderRadius(this.radius)
       }
     }
-    .id('root')
-    .enabled(this.scrollState)
+    .size({ width: '100%', height: '100%' })
+    .key('rootStack')
   }
 }
 ```
-
-
 
 ![zh-cn_image_0000001599374166](figures/zh-cn_image_0000001599374166.gif)
 
