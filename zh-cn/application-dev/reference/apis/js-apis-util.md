@@ -1,6 +1,6 @@
 # @ohos.util (util工具函数)
 
-该模块主要提供常用的工具函数，实现字符串编解码（[TextEncoder](#textencoder)，[TextDecoder](#textdecoder)）、有理数运算（[RationalNumber<sup>8+</sup>](#rationalnumber8)）、缓冲区管理（[LRUCache<sup>9+</sup>](#lrucache9)）、范围判断（[ScopeHelper<sup>9+</sup>](#scopehelper9)）、Base64编解码（[Base64Helper<sup>9+</sup>](#base64helper9)）、内置对象类型检查（[types<sup>8+</sup>](#types8)）等功能。
+该模块主要提供常用的工具函数，实现字符串编解码（[TextEncoder](#textencoder)，[TextDecoder](#textdecoder)）、有理数运算（[RationalNumber<sup>8+</sup>](#rationalnumber8)）、缓冲区管理（[LRUCache<sup>9+</sup>](#lrucache9)）、范围判断（[ScopeHelper<sup>9+</sup>](#scopehelper9)）、Base64编解码（[Base64Helper<sup>9+</sup>](#base64helper9)）、内置对象类型检查（[types<sup>8+</sup>](#types8)、对方法进行插桩和替换（[Aspect<sup>11+</sup>](#aspect11)）等功能。
 
 > **说明：**
 >
@@ -12,7 +12,6 @@
 ```ts
 import util from '@ohos.util';
 ```
-
 ## util.format<sup>9+</sup>
 
 format(format: string,  ...args: Object[]): string
@@ -23,7 +22,7 @@ format(format: string,  ...args: Object[]): string
 
 **参数：**
 
-| 参数名  | 类型     | 必填 | 说明           |
+| 名称  | 类型     | 必填 | 说明           |
 | ------- | -------- | ---- | -------------- |
 | format  | string   | 是   | 格式化字符串，可以包含零个或多个占位符，用于指定要插入的参数的位置和格式。 |
 | ...args | Object[] | 否   | 替换format参数中占位符的数据，此参数缺失时，默认返回第一个参数。|
@@ -67,23 +66,23 @@ interface utilPersontype {
 let name = 'John';
 let age = 20;
 let formattedString = util.format('My name is %s and I am %s years old', name, age);
-console.log(formattedString);
+console.info(formattedString);
 // 输出结果：My name is John and I am 20 years old
 let num = 10.5;
 formattedString = util.format('The number is %d', num);
-console.log(formattedString);
+console.info(formattedString);
 // 输出结果：The number is 10.5
 num = 100.5;
 formattedString = util.format('The number is %i', num);
-console.log(formattedString);
+console.info(formattedString);
 // 输出结果：The number is 100
 const pi = 3.141592653;
 formattedString = util.format('The value of pi is %f', pi);
-console.log(formattedString);
+console.info(formattedString);
 // 输出结果：The value of pi is 3.141592653
 const obj: Record<string,number | string> = { "name": 'John', "age": 20 };
 formattedString = util.format('The object is %j', obj);
-console.log(formattedString);
+console.info(formattedString);
 // 输出结果：The object is {"name":"John","age":20}
 const person: utilPersontype = {
   name: 'John',
@@ -93,8 +92,8 @@ const person: utilPersontype = {
     country: 'USA'
   }
 };
-console.log(util.format('Formatted object using %%O: %O', person));
-console.log(util.format('Formatted object using %%o: %o', person));
+console.info(util.format('Formatted object using %%O: %O', person));
+console.info(util.format('Formatted object using %%o: %o', person));
 /*
 输出结果：
 Formatted object using %O: { name: 'John',
@@ -111,7 +110,7 @@ Formatted object using %o: { name: 'John',
 const percentage = 80;
 let arg = 'homework';
 formattedString = util.format('John finished %d%% of the %s', percentage, arg);
-console.log(formattedString);
+console.info(formattedString);
 // 输出结果：John finished 80% of the homework
 ```
 
@@ -125,7 +124,7 @@ errnoToString(errno: number): string
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                       |
+| 名称 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | errno  | number | 是   | 系统发生错误产生的错误码。 |
 
@@ -140,7 +139,7 @@ errnoToString(errno: number): string
 ```ts
 let errnum = -1; // -1 : a system error number
 let result = util.errnoToString(errnum);
-console.log("result = " + result);
+console.info("result = " + result);
 ```
 
 **部分错误码及信息示例：**
@@ -167,7 +166,7 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | original | Function | 是 | 异步函数。 |
 
@@ -186,7 +185,7 @@ async function fn() {
 let cb = util.callbackWrapper(fn);
 cb(1, (err : Object, ret : string) => {
   if (err) throw new Error;
-  console.log(ret);
+  console.info(ret);
 });
 ```
 
@@ -200,7 +199,7 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | original | Function | 是 | 异步函数。 |
 
@@ -220,9 +219,9 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 (async () => {
   try {
     let res: string = await addCall();
-    console.log(res);
+    console.info(res);
   } catch (err) {
-    console.log(err);
+    console.info(err);
   }
 })();
 ```
@@ -237,7 +236,7 @@ generateRandomUUID(entropyCache?: boolean): string
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
 
@@ -251,7 +250,7 @@ generateRandomUUID(entropyCache?: boolean): string
 
 ```ts
 let uuid = util.generateRandomUUID(true);
-console.log("RFC 4122 Version 4 UUID:" + uuid);
+console.info("RFC 4122 Version 4 UUID:" + uuid);
 // 输出随机生成的UUID
 ```
 
@@ -265,7 +264,7 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
 
@@ -279,7 +278,7 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 ```ts
 let uuid = util.generateRandomBinaryUUID(true);
-console.log(JSON.stringify(uuid));
+console.info(JSON.stringify(uuid));
 // 输出：
 // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
 ```
@@ -294,7 +293,7 @@ parseUUID(uuid: string): Uint8Array
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | uuid | string | 是 | UUID字符串。 |
 
@@ -308,7 +307,7 @@ parseUUID(uuid: string): Uint8Array
 
 ```ts
 let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-console.log(JSON.stringify(uuid));
+console.info(JSON.stringify(uuid));
 // 输出：
 // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
 ```
@@ -327,7 +326,7 @@ printf(format: string,  ...args: Object[]): string
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | format | string | 是 | 式样化字符串。 |
 | ...args | Object[] | 否 | 替换式样化字符串通配符的数据，此参数缺失时，默认返回第一个参数。 |
@@ -342,7 +341,7 @@ printf(format: string,  ...args: Object[]): string
 
 ```ts
 let res = util.printf("%s", "hello world!");
-console.log(res);
+console.info(res);
 ```
 
 
@@ -360,7 +359,7 @@ getErrorString(errno: number): string
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | errno | number | 是 | 系统发生错误产生的错误码。 |
 
@@ -375,7 +374,7 @@ getErrorString(errno: number): string
 ```ts
 let errnum = -1; // -1 : a system error number
 let result = util.getErrorString(errnum);
-console.log("result = " + result);
+console.info("result = " + result);
 ```
 
 ## util.promiseWrapper<sup>(deprecated)</sup>
@@ -392,7 +391,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | original | Function | 是 | 异步函数。 |
 
@@ -425,6 +424,214 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 | -------- | -------- | -------- | -------- |
 | stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
 
+
+## Aspect<sup>11+</sup>
+
+Aspect类用于封装提供切面能力（Aspect Oriented Programming，简写AOP）的接口，这些接口可以用来对类方法进行前后插桩或者替换实现。
+
+### addBefore<sup>11+</sup>
+
+static addBefore(targetClass: Object, methodName: string, isStatic: boolean, before: Function): void
+
+在指定的类对象的原方法执行前插入一个函数。addBefore接口执行完成后，都会先执行插入的函数逻辑，再执行指定类对象的原方法。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 名称    | 类型    | 必填 | 说明                                   |
+| -------- | ------- | ---- | -------------------------------------|
+| targetClass  | Object   | 是   | 指定的类对象。                    |
+| methodName   | string   | 是   | 指定的方法名。                    |
+| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
+| before       | Function | 是   | 要插入的函数对象。函数有参数，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参数，无参时不做处理。 |
+
+**示例：**
+
+```ts
+class MyClass {
+  msg: string = 'msg000';
+  foo(arg: string): string {
+    console.info('foo arg is ' + arg);
+    // 输出结果：foo arg is 123
+    return this.msg;
+  }
+
+  static data: string = 'data000';
+  static bar(arg: string): string {
+    console.info('bar arg is ' + arg);
+    // 输出结果：bar arg is 456
+    return MyClass.data;
+  }
+}
+let asp = new MyClass();
+let result = asp.foo('123');
+console.info('result is ' + result);
+// 输出结果：result is msg000
+console.info('asp.msg is ' + asp.msg);
+// 输出结果：asp.msg is msg000
+
+util.Aspect.addBefore(MyClass, 'foo', false, (instance: MyClass, arg: string) => {
+  console.info('arg is ' + arg);
+  // 输出结果：arg is 123
+  instance.msg = 'msg111';
+  console.info('msg is changed to ' + instance.msg)
+  // 输出结果：msg is changed to msg111
+});
+result = asp.foo('123');
+console.info('result is ' + result);
+// 输出结果：result is msg111
+console.info('asp.msg is ' + asp.msg);
+// 输出结果：asp.msg is msg111
+
+
+let res = MyClass.bar('456');
+console.info('res is ' + res);
+// 输出结果：res is data000
+console.info('MyClass.data is ' + MyClass.data);
+// 输出结果：MyClass.data is data000
+
+util.Aspect.addBefore(MyClass, 'bar', true, (target: Object, arg1: string) => {
+  console.info('arg1 is ' + arg1);
+  // 输出结果：arg1 is 456
+  let newVal = 'data111';
+  Reflect.set(target, 'data', newVal);
+  console.info('data is changed to ' + newVal);
+  // 输出结果：data is changed to data111
+});
+
+res = MyClass.bar('456');
+console.info('res is ' + res);
+// 输出结果：res is data111
+console.info('MyClass.data is ' + MyClass.data);
+// 输出结果：MyClass.data is data111
+```
+
+### addAfter<sup>11+</sup>
+
+static addAfter(targetClass: Object, methodName: string, isStatic: boolean, after: Function): void
+
+在指定的类方法执行后插入一段逻辑。最终返回值是插入函数执行后的返回值。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 名称    | 类型    | 必填 | 说明                                   |
+| -------- | ------- | ---- | -------------------------------------|
+| targetClass  | Object   | 是   | 指定的类对象。                    |
+| methodName   | string   | 是   | 指定的原方法名。                   |
+| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
+| after        | Function | 是   | 要插入的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），第二个参数是原方法的返回值（如果原方法没有返回值，则为undefined），其余参数是原方法的参数。函数也可以无参，无参时不做处理。  |
+
+**示例：**
+
+```ts
+class MyClass {
+  msg: string = 'msg000';
+  foo(arg: string): string {
+    console.info('foo arg is ' + arg);
+    // 输出结果：foo arg is 123
+    return this.msg;
+  }
+}
+
+let asp = new MyClass();
+let result = asp.foo('123');
+console.info('result is ' + result);
+// 输出结果：result is msg000
+console.info('asp.msg is ' + asp.msg);
+// 输出结果：asp.msg is msg000
+
+util.Aspect.addAfter(MyClass, 'foo', false, (instance: MyClass, ret: string, arg: string): string => {
+  console.info('arg is ' + arg);
+  // 输出结果：arg is 123
+  console.info('ret is ' + ret);
+  // 输出结果：ret is msg000
+  instance.msg = 'msg111';
+  console.info('msg is changed to ' + instance.msg);
+  // 输出结果：msg is changed to msg111
+  return 'msg222';
+});
+
+result = asp.foo('123');
+console.info('result is ' + result);
+// 输出结果：result is msg222
+console.info('asp.msg is ' + asp.msg);
+// 输出结果：asp.msg is msg111
+
+// 前后插桩的例子
+class AroundTest {
+  foo(arg: string) {
+    console.info('execute foo with arg ' + arg);
+  }
+}
+util.Aspect.addBefore(AroundTest, 'foo', false, () => {
+  console.info('execute before');
+});
+util.Aspect.addAfter(AroundTest, 'foo', false, () => {
+  console.info('execute after');
+});
+
+(new AroundTest()).foo('hello');
+// 输出结果：execute before
+// 输出结果：execute foo with arg hello
+// 输出结果：execute after
+```
+
+### replace<sup>11+</sup>
+
+static replace(targetClass: Object, methodName: string, isStatic: boolean, instead: Function) : void
+
+将指定的类方法的原方法替换为另一个函数。replace接口执行完成后，调用指定的类方法时，只会执行替换后的逻辑。最终返回值为替换函数执行完毕的返回值。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 名称    | 类型    | 必填 | 说明                                   |
+| -------- | ------- | ---- | -------------------------------------|
+| targetClass  | Object   | 是   | 指定的类对象。                    |
+| methodName   | string   | 是   | 指定的原方法名。                  |
+| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。       |
+| instead      | Function | 是   | 要用来替换原方法的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参，无参时不做处理。   |
+
+**示例：**
+
+```ts
+class MyClass {
+  msg: string = 'msg000';
+  foo(arg: string): string {
+    console.info('foo arg is ' + arg);
+    return this.msg;
+  }
+}
+
+let asp = new MyClass();
+let result = asp.foo('123');
+// 输出结果：foo arg is 123
+console.info('result is ' + result);
+// 输出结果：result is msg000
+console.info('asp.msg is ' + asp.msg);
+// 输出结果：asp.msg is msg000
+
+util.Aspect.replace(MyClass, 'foo', false, (instance: MyClass, arg: string): string => {
+  console.info('execute instead')
+  console.info('arg is ' + arg);
+  instance.msg = 'msg111';
+  console.info('msg is changed to ' + instance.msg);
+  return 'msg222';
+});
+
+result = asp.foo('123');
+// 输出结果：execute instead
+// 输出结果：arg is 123
+// 输出结果：msg is changed to msg111
+console.info('result is ' + result);
+// 输出结果：result is msg222
+console.info('asp.msg is ' + asp.msg);
+// 输出结果：asp.msg is msg111
+```
 
 ## TextDecoder
 
@@ -464,10 +671,10 @@ create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                                             |
+| 名称   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
-| options  | TextDecoderOptions（[DecodeWithStreamOptions<sup>11+</sup>](#decodewithstreamoptions11)） | 否   | 编码相关选项参数，存在两个属性fatal和ignoreBOM。|
+| options  | TextDecoderOptions（[TextDecoderOptions<sup>11+</sup>](#textdecoderoptions11)） | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。|
 
 **示例：**
 
@@ -490,10 +697,10 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
-| options | DecodeWithStreamOptions（[TextDecoderOptions<sup>11+</sup>](#textdecoderoptions11)） | 否 | 解码相关选项参数。 |
+| options | DecodeWithStreamOptions（[DecodeWithStreamOptions<sup>11+</sup>](#decodewithstreamoptions11)） | 否 | 解码相关选项参数。 |
 
 **返回值：**
 
@@ -519,9 +726,9 @@ result[2] = 0xBF;
 result[3] = 0x61;
 result[4] = 0x62;
 result[5] = 0x63;
-console.log("input num:");
+console.info("input num:");
 let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
-console.log("retStr = " + retStr);
+console.info("retStr = " + retStr);
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -538,7 +745,7 @@ TextDecoder的构造函数。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | encoding | string | 否 | 编码格式，默认值是'utf-8'。 |
 | options | object | 否 | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
@@ -570,7 +777,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
 | options | object | 否 | 解码相关选项参数。 |
@@ -598,9 +805,9 @@ result[2] = 0xBF;
 result[3] = 0x61;
 result[4] = 0x62;
 result[5] = 0x63;
-console.log("input num:");
+console.info("input num:");
 let retStr = textDecoder.decode( result , {stream: false});
-console.log("retStr = " + retStr);
+console.info("retStr = " + retStr);
 ```
 
 ## EncodeIntoUint8ArrayInfo<sup>11+</sup>
@@ -652,7 +859,7 @@ TextEncoder的构造函数。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | ----- | ---- | ---- | ---- |
 | encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
 
@@ -672,7 +879,7 @@ encodeInto(input?: string): Uint8Array
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明               |
+| 名称 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
 | input  | string | 否   | 需要编码的字符串，默认值是空字符串。 |
 
@@ -701,7 +908,7 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 **参数：**
 
-| 参数名 | 类型       | 必填 | 说明                                                    |
+| 名称 | 类型       | 必填 | 说明                                                    |
 | ------ | ---------- | ---- | ------------------------------------------------------- |
 | input  | string     | 是   | 需要编码的字符串。                                      |
 | dest   | Uint8Array | 是   | Uint8Array对象实例，用于将生成的UTF-8编码文本放入其中。 |
@@ -736,7 +943,7 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | string | 是 | 需要编码的字符串。 |
 | dest | Uint8Array | 是 | Uint8Array对象实例，用于将生成的UTF-8编码文本放入其中。 |
@@ -771,7 +978,7 @@ encode(input?: string): Uint8Array
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | string | 否 | 需要编码的字符串，默认值是空字符串。 |
 
@@ -818,7 +1025,7 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 **参数：**
 
-| 参数名      | 类型   | 必填 | 说明             |
+| 名称      | 类型   | 必填 | 说明             |
 | ----------- | ------ | ---- | ---------------- |
 | numerator   | number | 是   | 分子，整数类型。 |
 | denominator | number | 是   | 分母，整数类型。 |
@@ -839,7 +1046,7 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | rationalString | string | 是 | 字符串格式。 |
 
@@ -865,7 +1072,7 @@ compare​(another: RationalNumber): number​
 
 **参数：**
 
-| 参数名  | 类型           | 必填 | 说明               |
+| 名称  | 类型           | 必填 | 说明               |
 | ------- | -------------- | ---- | ------------------ |
 | another | [RationalNumber](#rationalnumber8) | 是   | 其他的有理数对象。 |
 
@@ -881,7 +1088,7 @@ compare​(another: RationalNumber): number​
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.compare(rational);
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = -1
 ```
 
@@ -904,14 +1111,14 @@ valueOf(): number
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.valueOf();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = 0.5
 ```
 API 9及以上建议使用以下写法：
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.valueOf();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = 0.5
 ```
 
@@ -925,7 +1132,7 @@ equals​(obj: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | object | Object | 是 | 其他类型对象。 |
 
@@ -941,7 +1148,7 @@ equals​(obj: Object): boolean
 let rationalNumber = new util.RationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.equals(rational);
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = false
 ```
 API 9及以上建议使用以下写法：
@@ -949,7 +1156,7 @@ API 9及以上建议使用以下写法：
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.equals(rational);
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = false
 ```
 
@@ -963,7 +1170,7 @@ getCommonFactor(number1: number,number2: number): number
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明       |
+| 名称  | 类型   | 必填 | 说明       |
 | ------- | ------ | ---- | ---------- |
 | number1 | number | 是   | 整数类型。 |
 | number2 | number | 是   | 整数类型。 |
@@ -978,7 +1185,7 @@ getCommonFactor(number1: number,number2: number): number
 
 ```ts
 let result = util.RationalNumber.getCommonFactor(4,6);
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = 2
 ```
 
@@ -1001,14 +1208,14 @@ getNumerator​(): number
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.getNumerator();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = 1
 ```
 API 9及以上建议使用以下写法：
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.getNumerator();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = 1
 ```
 
@@ -1031,14 +1238,14 @@ getDenominator​(): number
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.getDenominator();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = 2
 ```
 API 9及以上建议使用以下写法：
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
 let result = rationalNumber.getDenominator();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = 2
 ```
 
@@ -1061,14 +1268,14 @@ isZero​():boolean
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.isZero();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = false
 ```
 API 9及以上建议使用以下写法：
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.isZero();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = false
 ```
 
@@ -1091,14 +1298,14 @@ isNaN​(): boolean
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.isNaN();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = false
 ```
 API 9及以上建议使用以下写法：
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.isNaN();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = false
 ```
 
@@ -1121,14 +1328,14 @@ isFinite​():boolean
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.isFinite();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = true
 ```
 API 9及以上建议使用以下写法：
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.isFinite();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = true
 ```
 
@@ -1151,14 +1358,14 @@ toString​(): string
 ```ts
 let rationalNumber = new util.RationalNumber(1,2);
 let result = rationalNumber.toString();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = 1/2
 ```
 API 9及以上建议使用以下写法：
 ```ts
 let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 let result = rationalNumber.toString();
-console.log("result = " + result);
+console.info("result = " + result);
 // 输出结果：result = 1/2
 ```
 
@@ -1176,7 +1383,7 @@ RationalNumber的构造函数。
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | numerator | number | 是 | 分子，整数类型。 |
 | denominator | number | 是 | 分母，整数类型。 |
@@ -1201,7 +1408,7 @@ compareTo​(another: RationalNumber): number​
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | another | RationalNumber | 是 | 其他的有理数对象。 |
 
@@ -1233,7 +1440,7 @@ static getCommonDivisor​(number1: number,number2: number): number
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | number1 | number | 是 | 整数类型。 |
 | number2 | number | 是 | 整数类型。 |
@@ -1282,7 +1489,7 @@ constructor(capacity?: number)
 
 **参数：**
 
-| 参数名   | 类型   | 必填 | 说明                         |
+| 名称   | 类型   | 必填 | 说明                         |
 | -------- | ------ | ---- | ---------------------------- |
 | capacity | number | 否   | 指示要为缓冲区自定义的容量，默认值为64。 |
 
@@ -1303,7 +1510,7 @@ updateCapacity(newCapacity: number): void
 
 **参数：**
 
-| 参数名      | 类型   | 必填 | 说明                         |
+| 名称      | 类型   | 必填 | 说明                         |
 | ----------- | ------ | ---- | ---------------------------- |
 | newCapacity | number | 是   | 指示要为缓冲区自定义的容量。 |
 
@@ -1335,7 +1542,7 @@ let pro: util.LRUCache<number, number> = new util.LRUCache();
 pro.put(2,10);
 pro.get(2);
 pro.get(3);
-console.log(pro.toString());
+console.info(pro.toString());
 // 输出结果：LRUCache[ maxSize = 64, hits = 1, misses = 1, hitRate = 50% ]
 // maxSize: 缓存区最大值 hits: 查询值匹配成功的次数 misses: 查询值匹配失败的次数 hitRate: 查询值匹配率
 ```
@@ -1536,7 +1743,7 @@ get(key: K): V | undefined
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明         |
+| 名称 | 类型 | 必填 | 说明         |
 | ------ | ---- | ---- | ------------ |
 | key    | K    | 是   | 要查询的键。 |
 
@@ -1564,7 +1771,7 @@ put(key: K,value: V): V
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明                       |
+| 名称 | 类型 | 必填 | 说明                       |
 | ------ | ---- | ---- | -------------------------- |
 | key    | K    | 是   | 要添加的密钥。             |
 | value  | V    | 是   | 指示与要添加的键关联的值。 |
@@ -1638,7 +1845,7 @@ remove(key: K): V | undefined
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明           |
+| 名称 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
 | key    | K    | 是   | 要删除的键值。 |
 
@@ -1666,7 +1873,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **参数：**
 
-| 参数名   | 类型    | 必填 | 说明                                                         |
+| 名称   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | isEvict  | boolean | 是   | 因容量不足而调用该方法时，参数值为true，其他情况为false。    |
 | key      | K       | 是   | 表示删除的键。                                               |
@@ -1703,7 +1910,7 @@ contains(key: K): boolean
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
+| 名称 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
 | key    | K | 是   | 表示要检查的键。 |
 
@@ -1735,7 +1942,7 @@ createDefault(key: K): V
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明           |
+| 名称 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
 | key    | K    | 是   | 表示丢失的键。 |
 
@@ -1775,7 +1982,7 @@ pro.put(3,15);
 let pair:Iterable<Object[]> = pro.entries();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
-  console.log(value[0]+ ', '+ value[1]);
+  console.info(value[0]+ ', '+ value[1]);
 }
 ```
 
@@ -1806,7 +2013,7 @@ pro.put(3,15);
 let pair:Iterable<Object[]> = pro[Symbol.iterator]();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
-  console.log(value[0]+ ', '+ value[1]);
+  console.info(value[0]+ ', '+ value[1]);
 }
 ```
 
@@ -1826,7 +2033,7 @@ compareTo(other: ScopeComparable): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明           |
+| 名称 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
 | other  | [ScopeComparable](#scopecomparable8) | 是  | 表示要比较的值。 |
 
@@ -1883,7 +2090,7 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                   |
+| 名称   | 类型                     | 必填 | 说明                   |
 | -------- | ------------------------ | ---- | ---------------------- |
 | lowerObj | [ScopeType](#scopetype8) | 是   | 指定作用域实例的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是   | 指定作用域实例的上限。 |
@@ -1960,7 +2167,7 @@ intersect(range: ScopeHelper): ScopeHelper
 
 **参数：**
 
-| 参数名 | 类型                         | 必填 | 说明               |
+| 名称 | 类型                         | 必填 | 说明               |
 | ------ | ---------------------------- | ---- | ------------------ |
 | range  | [ScopeHelper](#scopehelper9) | 是   | 传入一个给定范围。 |
 
@@ -2008,7 +2215,7 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明             |
+| 名称   | 类型                     | 必填 | 说明             |
 | -------- | ------------------------ | ---- | ---------------- |
 | lowerObj | [ScopeType](#scopetype8) | 是   | 给定范围的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是   | 给定范围的上限。 |
@@ -2134,7 +2341,7 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明             |
+| 名称   | 类型                     | 必填 | 说明             |
 | -------- | ------------------------ | ---- | ---------------- |
 | lowerObj | [ScopeType](#scopetype8) | 是   | 给定范围的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是   | 给定范围的上限。 |
@@ -2182,7 +2389,7 @@ expand(range: ScopeHelper): ScopeHelper
 
 **参数：**
 
-| 参数名 | 类型                         | 必填 | 说明               |
+| 名称 | 类型                         | 必填 | 说明               |
 | ------ | ---------------------------- | ---- | ------------------ |
 | range  | [ScopeHelper](#scopehelper9) | 是   | 传入一个给定范围。 |
 
@@ -2230,7 +2437,7 @@ expand(value: ScopeType): ScopeHelper
 
 **参数：**
 
-| 参数名 | 类型                     | 必填 | 说明             |
+| 名称 | 类型                     | 必填 | 说明             |
 | ------ | ------------------------ | ---- | ---------------- |
 | value  | [ScopeType](#scopetype8) | 是   | 传入一个给定值。 |
 
@@ -2276,7 +2483,7 @@ contains(value: ScopeType): boolean
 
 **参数：**
 
-| 参数名 | 类型                     | 必填 | 说明             |
+| 名称 | 类型                     | 必填 | 说明             |
 | ------ | ------------------------ | ---- | ---------------- |
 | value  | [ScopeType](#scopetype8) | 是   | 传入一个给定值。 |
 
@@ -2322,7 +2529,7 @@ contains(range: ScopeHelper): boolean
 
 **参数：**
 
-| 参数名 | 类型                         | 必填 | 说明               |
+| 名称 | 类型                         | 必填 | 说明               |
 | ------ | ---------------------------- | ---- | ------------------ |
 | range  | [ScopeHelper](#scopehelper9) | 是   | 传入一个给定范围。 |
 
@@ -2370,7 +2577,7 @@ clamp(value: ScopeType): ScopeType
 
 **参数：**
 
-| 参数名 | 类型                     | 必填 | 说明           |
+| 名称 | 类型                     | 必填 | 说明           |
 | ------ | ------------------------ | ---- | -------------- |
 | value  | [ScopeType](#scopetype8) | 是   | 传入的给定值。 |
 
@@ -2434,7 +2641,7 @@ encodeSync(src: Uint8Array): Uint8Array
 
 **参数：**
 
-| 参数名 | 类型       | 必填 | 说明                |
+| 名称 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
 
@@ -2463,7 +2670,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 **参数：**
 
-| 参数名 | 类型       | 必填 | 说明                |
+| 名称 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。|
@@ -2493,7 +2700,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 **参数：**
 
-| 参数名 | 类型                           | 必填 | 说明                          |
+| 名称 | 类型                           | 必填 | 说明                          |
 | ------ | ------------------------------ | ---- | ----------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 待解码Uint8Array对象或者字符串。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
@@ -2523,7 +2730,7 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 **参数：**
 
-| 参数名 | 类型       | 必填 | 说明                    |
+| 名称 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
 
@@ -2541,7 +2748,7 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
   let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{
     for (let i = 0; i < rarray.length; i++) {
-      console.log(val[i].toString());
+      console.info(val[i].toString());
     }
   })
   ```
@@ -2557,7 +2764,7 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 **参数：**
 
-| 参数名 | 类型       | 必填 | 说明                    |
+| 名称 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   |  从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，输出结果包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，编码输出每一行不超过76个字符，而且每行以'\r\n'符结束。 |
@@ -2589,7 +2796,7 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 **参数：**
 
-| 参数名 | 类型                           | 必填 | 说明                              |
+| 名称 | 类型                           | 必填 | 说明                              |
 | ------ | ------------------------------ | ---- | --------------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8Array对象或者字符串。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.MIME，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME时，表示入参包含：64个可打印字符，包括大写字母A-Z、小写字母a-z、数字0-9共62个字符，再加上另外2个'+'和'/'，每一行不超过76个字符，而且每行以'\r\n'符结束。 |
@@ -2652,7 +2859,7 @@ isAnyArrayBuffer(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2682,7 +2889,7 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2710,7 +2917,7 @@ isArgumentsObject(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2741,7 +2948,7 @@ isArrayBuffer(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2769,7 +2976,7 @@ isAsyncFunction(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2797,7 +3004,7 @@ isBooleanObject(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2825,7 +3032,7 @@ isBoxedPrimitive(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2853,7 +3060,7 @@ isDataView(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2882,7 +3089,7 @@ isDate(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2910,7 +3117,7 @@ isExternal(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2938,7 +3145,7 @@ isFloat32Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2966,7 +3173,7 @@ isFloat64Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -2998,7 +3205,7 @@ isGeneratorFunction(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3030,7 +3237,7 @@ isGeneratorObject(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3061,7 +3268,7 @@ isInt8Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3089,7 +3296,7 @@ isInt16Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3117,7 +3324,7 @@ isInt32Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3145,7 +3352,7 @@ isMap(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3174,7 +3381,7 @@ isMapIterator(value: Object): boolean
 **参数：**
 
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3203,7 +3410,7 @@ isNativeError(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3231,7 +3438,7 @@ isNumberObject(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3259,7 +3466,7 @@ isPromise(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3287,7 +3494,7 @@ isProxy(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3319,7 +3526,7 @@ isRegExp(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3347,7 +3554,7 @@ isSet(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3376,7 +3583,7 @@ isSetIterator(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3405,7 +3612,7 @@ isStringObject(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3437,7 +3644,7 @@ isSymbolObject(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3469,7 +3676,7 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3497,7 +3704,7 @@ isUint8Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3525,7 +3732,7 @@ isUint8ClampedArray(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3553,7 +3760,7 @@ isUint16Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3581,7 +3788,7 @@ isUint32Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3609,7 +3816,7 @@ isWeakMap(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3638,7 +3845,7 @@ isWeakSet(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3666,7 +3873,7 @@ isBigInt64Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3694,7 +3901,7 @@ isBigUint64Array(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3726,7 +3933,7 @@ isModuleNamespaceObject(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3756,7 +3963,7 @@ isSharedArrayBuffer(value: Object): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | Object | 是 | 待检测对象。 |
 
@@ -3810,7 +4017,7 @@ constructor(capacity?: number)
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | capacity | number | 否 | 指示要为缓冲区自定义的容量，默认值为64。 |
 
@@ -3834,7 +4041,7 @@ updateCapacity(newCapacity: number): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | newCapacity | number | 是 | 指示要为缓冲区自定义的容量。 |
 
@@ -4093,7 +4300,7 @@ get(key: K): V | undefined
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 要查询的键。 |
 
@@ -4125,7 +4332,7 @@ put(key: K,value: V): V
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 要添加的密钥。 |
 | value | V | 是 | 指示与要添加的键关联的值。 |
@@ -4211,7 +4418,7 @@ remove(key: K): V | undefined
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 要删除的密钥。 |
 
@@ -4243,7 +4450,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | isEvict | boolean | 是 | 因容量不足而调用该方法时，参数值为true，其他情况为false。 |
 | key | K | 是 | 表示删除的键。 |
@@ -4287,7 +4494,7 @@ contains(key: K): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 表示要检查的键。 |
 
@@ -4319,7 +4526,7 @@ createDefault(key: K): V
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | K | 是 | 表示丢失的键。 |
 
@@ -4409,7 +4616,7 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | lowerObj | [ScopeType](#scopetype8) | 是 | 指定作用域实例的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是 | 指定作用域实例的上限。 |
@@ -4493,7 +4700,7 @@ intersect(range: Scope): Scope
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | range | [Scope](#scopedeprecated) | 是 | 传入一个给定范围。 |
 
@@ -4545,7 +4752,7 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | lowerObj | [ScopeType](#scopetype8) | 是 | 给定范围的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是 | 给定范围的上限。 |
@@ -4683,7 +4890,7 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | lowerObj | [ScopeType](#scopetype8) | 是 | 给定范围的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是 | 给定范围的上限。 |
@@ -4735,7 +4942,7 @@ expand(range: Scope): Scope
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | range | [Scope](#scopedeprecated) | 是 | 传入一个给定范围。 |
 
@@ -4787,7 +4994,7 @@ expand(value: ScopeType): Scope
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ScopeType](#scopetype8) | 是 | 传入一个给定值。 |
 
@@ -4837,7 +5044,7 @@ contains(value: ScopeType): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ScopeType](#scopetype8) | 是 | 传入一个给定值。 |
 
@@ -4887,7 +5094,7 @@ contains(range: Scope): boolean
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | range | [Scope](#scopedeprecated) | 是 | 传入一个给定范围。 |
 
@@ -4940,7 +5147,7 @@ clamp(value: ScopeType): ScopeType
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ScopeType](#scopetype8) | 是 | 传入的给定值。 |
 
@@ -5015,7 +5222,7 @@ encodeSync(src: Uint8Array): Uint8Array
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | 是 | 编码输入Uint8数组。 |
 
@@ -5047,7 +5254,7 @@ encodeToStringSync(src: Uint8Array): string
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | 是 | 编码输入Uint8数组。 |
 
@@ -5079,7 +5286,7 @@ decodeSync(src: Uint8Array | string): Uint8Array
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array&nbsp;\|&nbsp;string | 是 | 解码输入Uint8数组或者字符串。 |
 
@@ -5111,7 +5318,7 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | 是 | 异步编码输入Uint8数组。 |
 
@@ -5129,7 +5336,7 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
   let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{    
       for (let i = 0; i < rarray.length; i++) {        
-          console.log(val[i].toString())
+          console.info(val[i].toString())
       }
   })
   ```
@@ -5148,7 +5355,7 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array | 是 | 异步编码输入Uint8数组。 |
 
@@ -5164,7 +5371,7 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
   let that = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   that.encodeToString(array).then(val=>{    
-      console.log(val)
+      console.info(val)
   })
   ```
 
@@ -5183,7 +5390,7 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | src | Uint8Array&nbsp;\|&nbsp;string | 是 | 异步解码输入Uint8数组或者字符串。 |
 
@@ -5201,7 +5408,7 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
   let rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (let i = 0; i < rarray.length; i++) {        
-          console.log(val[i].toString());
+          console.info(val[i].toString());
       }
   })
   ```
