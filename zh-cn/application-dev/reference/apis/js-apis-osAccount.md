@@ -5652,7 +5652,7 @@ authWithPopup(callback: IUserAuthCallback): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>；
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL；
 
 从API version 11开始无需申请权限，建议升级SDK版本。
 
@@ -5701,7 +5701,7 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL<sup>10+</sup>；
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL；
 
 从API version 11开始无需申请权限，建议升级SDK版本。
 
@@ -6047,7 +6047,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 
 ### getAccessToken<sup>11+</sup>
 
-getAccessToken(businessParams: { [key: string]: Object }, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 获取当前域帐号的业务访问令牌，使用callback异步回调。
 
@@ -6059,7 +6059,7 @@ getAccessToken(businessParams: { [key: string]: Object }, callback: AsyncCallbac
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| businessParams | { [key: string]: Object }  | 是   | 指示业务参数，具体格式取决于域插件的实现要求。|
+| businessParams | Record<string, Object>  | 是   | 指示业务参数，具体格式取决于域插件的实现要求。|
 | callback | AsyncCallback&lt;Uint8Array&gt;  | 是   | 指示结果回调。如果获取成功，err返回null，否则为错误对象。|
 
 **错误码：**
@@ -6096,7 +6096,7 @@ getAccessToken(businessParams: { [key: string]: Object }, callback: AsyncCallbac
 
 ### getAccessToken<sup>11+</sup>
 
-getAccessToken(businessParams: { [key: string]: Object }): Promise&lt;Uint8Array&gt;
+getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt;
 
 查询当前域帐号的业务访问令牌，使用promise异步回调。
 
@@ -6108,7 +6108,7 @@ getAccessToken(businessParams: { [key: string]: Object }): Promise&lt;Uint8Array
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| businessParams | { [key: string]: Object } | 是   | 指示业务参数，具体格式取决于域插件的实现要求。|
+| businessParams | Record<string, Object> | 是   | 指示业务参数，具体格式取决于域插件的实现要求。|
 
 **返回值：**
 
@@ -7273,7 +7273,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ----------- | ------ | ---- | ---------- |
 | domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号的信息   |
 | domainAccountToken | Uint8Array | 是   | 域帐号的令牌 |
-| businessParams | { [key: string]: object } | 是   | 业务参数，由业务方根据请求协议自定义 |
+| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义 |
 | callerUid | number | 是   | 调用方唯一标识符 |
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
