@@ -38,24 +38,22 @@ js-apis-inputmonitor.md#inputmonitoroffmouse9)取消监听鼠标事件，
 ```js
 import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 
+let callback = (mouseEvent: MouseEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+  return false;
+};
+
 try {
-  inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {//监听鼠标事件
-    console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
-    return false;
-  });
+  inputMonitor.on('mouse', callback);//开始监听鼠标事件
+  console.log(`Monitor on success`);
 } catch (error) {
   console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 
-let callback = (mouseEvent: MouseEvent) => {//取消监听鼠标事件
-  console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
-  return false;
-};
 try {
-  inputMonitor.on('mouse', callback);
-  inputMonitor.off('mouse');
+  inputMonitor.off('mouse', callback);//取消监听鼠标事件
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.log(`Monitor off failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
