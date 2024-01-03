@@ -21,8 +21,12 @@ You can subscribe to system environment variable changes in the following ways:
 
    ```ts
    import common from '@ohos.app.ability.common';
-   import { Configuration } from '@ohos.app.ability.Configuration';
    import EnvironmentCallback from '@ohos.app.ability.EnvironmentCallback';
+   import hilog from '@ohos.hilog';
+   import { Configuration } from '@ohos.app.ability.Configuration';
+   
+   const TAG: string = '[CollaborateAbility]';
+   const DOMAIN_NUMBER: number = 0xFF00;
    
    @Entry
    @Component
@@ -30,7 +34,7 @@ You can subscribe to system environment variable changes in the following ways:
      private context = getContext(this) as common.UIAbilityContext;
      private callbackId: number = 0; // ID of the subscription for system environment variable changes.
    
-     subscribeConfigurationUpdate() {
+     subscribeConfigurationUpdate(): void {
        let systemLanguage: string | undefined = this.context.config.language; // Obtain the system language in use.
    
        // 1. Obtain an ApplicationContext object.
@@ -39,18 +43,16 @@ You can subscribe to system environment variable changes in the following ways:
        // 2. Subscribe to system environment variable changes through ApplicationContext.
        let environmentCallback: EnvironmentCallback = {
          onConfigurationUpdated(newConfig: Configuration) {
-           console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
-   
+           hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
            if (this.systemLanguage !== newConfig.language) {
-             console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+             hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
              systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
            }
          },
          onMemoryLevel(level) {
-           console.info(`onMemoryLevel level: ${level}`);
+           hilog.info(DOMAIN_NUMBER, TAG, `onMemoryLevel level: ${level}`);
          }
        }
-   
        this.callbackId = applicationContext.on('environment', environmentCallback);
      }
    
@@ -97,21 +99,27 @@ The code snippet below uses the [AbilityStage.onConfigurationUpdate()](../refere
 
 ```ts
 import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import hilog from '@ohos.hilog';
+import type { Configuration } from '@ohos.app.ability.Configuration';
+
+const TAG: string = '[MyAbilityStage]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 let systemLanguage: string | undefined; // System language in use.
 
 export default class MyAbilityStage extends AbilityStage {
-  onCreate() {
+  onCreate(): void {
     systemLanguage = this.context.config.language; // Obtain the system language in use when the AbilityStage instance is loaded for the first time.
     console.info(`systemLanguage is ${systemLanguage} `);
+    ...
   }
 
-  onConfigurationUpdate(newConfig: Configuration) {
-    console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
+  onConfigurationUpdate(newConfig: Configuration): void {
+    hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdate, language: ${newConfig.language}`);
+    hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
 
     if (systemLanguage !== newConfig.language) {
-      console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
       systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
     }
   }
@@ -129,24 +137,28 @@ The UIAbility component provides the **UIAbility.onConfigurationUpdate()** callb
 The code snippet below uses the **onConfigurationUpdate()** callback to subscribe to the system language changes.
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import { Configuration } from '@ohos.app.ability.Configuration';
+
+const TAG: string = '[EntryAbility]';
+const DOMAIN_NUMBER: number = 0xFF00;
 
 let systemLanguage: string | undefined; // System language in use.
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     systemLanguage = this.context.config.language; // Obtain the system language in use when the UIAbility instance is loaded for the first time.
-    console.info(`systemLanguage is ${systemLanguage} `);
+    hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage is ${systemLanguage}`);
   }
 
-  onConfigurationUpdate(newConfig: Configuration) {
-    console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
+  onConfigurationUpdate(newConfig: Configuration): void {
+    hilog.info(DOMAIN_NUMBER, TAG, `onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
 
     if (systemLanguage !== newConfig.language) {
-      console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+      hilog.info(DOMAIN_NUMBER, TAG, `systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
       systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
     }
   }

@@ -17,17 +17,24 @@ This document describes the following operations:
 
 ## Setting a Mission Snapshot Icon (for System Applications Only)
 
-Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image-decoding.md).
+Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) to set the icon of a mission snapshot.
+
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability). For details about how to obtain the PixelMap information in the example, see [Image Decoding](../media/image-decoding.md).
 
 ```ts
 import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
-let context: common.UIAbilityContext = ...; // UIAbilityContext
-let pixelMap: PixelMap =...; // PixelMap information of the image.
+let context: common.UIAbilityContext = this.context; // UIAbilityContext
 
-context.setMissionIcon(pixelMap, (err) => {
+... // Obtain a pixelMap object.
+
+// Set an icon for the mission snapshot.
+context.setMissionIcon(pixelMap, (err: BusinessError) => {
   if (err.code) {
-    console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+    Logger.error(TAG, `Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+  } else {
+    Logger.info(TAG, `Success to set mission icon.`);
   }
 })
 ```
@@ -47,11 +54,11 @@ import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
-
+// Set a name for the mission snapshot.
 context.setMissionLabel('test').then(() => {
-  console.info('Succeeded in seting mission label.');
+  Logger.info(TAG, 'Succeeded in seting mission label.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
+  Logger.error(TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 

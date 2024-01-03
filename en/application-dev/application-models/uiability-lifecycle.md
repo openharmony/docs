@@ -21,12 +21,12 @@ The **Create** state is triggered when the UIAbility instance is created during 
 
 
 ```ts
+import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import Want from '@ohos.app.ability.Want';
+import type Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // Initialize the application.
   }
   // ...
@@ -42,43 +42,42 @@ export default class EntryAbility extends UIAbility {
 After the UIAbility instance is created but before it enters the **Foreground** state, the system creates a WindowStage instance and triggers the **onWindowStageCreate()** callback. You can set UI loading and WindowStage event subscription in the callback.
 
 **Figure 2** WindowStageCreate and WindowStageDestroy 
-
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
 In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis/js-apis-window.md#loadcontent9-2) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis/js-apis-window.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis/js-apis-window.md#windowstageeventtype9), for example, having or losing focus, or becoming visible or invisible.
 
 ```ts
+import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
   // ...
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // Subscribe to the WindowStage events (having or losing focus, or becoming visible or invisible).
     try {
       windowStage.on('windowStageEvent', (data) => {
         let stageEventType: window.WindowStageEventType = data;
         switch (stageEventType) {
           case window.WindowStageEventType.SHOWN: // Switch to the foreground.
-            console.info('windowStage foreground.');
+            Logger.info('windowStage foreground.');
             break;
           case window.WindowStageEventType.ACTIVE: // Gain focus.
-            console.info('windowStage active.');
+            Logger.info('windowStage active.');
             break;
           case window.WindowStageEventType.INACTIVE: // Lose focus.
-            console.info('windowStage inactive.');
+            Logger.info('windowStage inactive.');
             break;
           case window.WindowStageEventType.HIDDEN: // Switch to the background.
-            console.info('windowStage background.');
+            Logger.info('windowStage background.');
             break;
           default:
             break;
         }
       });
     } catch (exception) {
-      console.error('Failed to enable the listener for window stage event changes. Cause:' +
-      JSON.stringify(exception));
+      Logger.error('Failed to enable the listener for window stage event changes. Cause:' + 		               JSON.stringify(exception));
     }
 
     // Set the page to be loaded.
@@ -97,15 +96,16 @@ Before the UIAbility instance is destroyed, the **onWindowStageDestroy()** callb
 
 
 ```ts
+import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import type { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   windowStage: window.WindowStage | undefined = undefined;
   // ...
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     this.windowStage = windowStage;
     // ...
   }
@@ -120,7 +120,7 @@ export default class EntryAbility extends UIAbility {
     } catch (err) {
       let code = (err as BusinessError).code;
       let message = (err as BusinessError).message;
-      console.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
+      Logger.error(`Failed to disable the listener for windowStageEvent. Code is ${code}, message is ${message}`);
     };
   }
 }
@@ -146,11 +146,11 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 export default class EntryAbility extends UIAbility {
   // ...
 
-  onForeground() {
+  onForeground(): void {
     // Apply for the resources required by the system or re-apply for the resources released in onBackground().
   }
 
-  onBackground() {
+  onBackground(): void {
     // Release unused resources when the UI is invisible, or perform time-consuming operations in this callback,
     // for example, saving the status.
   }
