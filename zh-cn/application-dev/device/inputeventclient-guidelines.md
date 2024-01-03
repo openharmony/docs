@@ -22,7 +22,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 ## 开发步骤
 
-调用[injectEvent](../reference/apis/js-apis-inputeventclient.md#inputeventclientinjectevent)注入Home按键，查看Home按键功能是否生效。
+应用调用Home键返回桌面，测试是可以调用[injectEvent](../reference/apis/js-apis-inputeventclient.md#inputeventclientinjectevent)注入Home按键，查看应用中Home按键功能是否生效。
 
 ```js
 try {
@@ -31,28 +31,28 @@ try {
     keyCode: 2,
     keyDownDuration: 0,
     isIntercepted: false
-  }//注入Home按键按下事件
+  }//Home按键按下事件
 
   class EventDown {
     KeyEvent: inputEventClient.KeyEvent | null = null
   }
 
   let eventDown: EventDown = { KeyEvent: backKeyDown }
-  inputEventClient.injectEvent(eventDown);
+  inputEventClient.injectEvent(eventDown);//注入Home按键按下事件
 
   let backKeyUp: inputEventClient.KeyEvent = {
     isPressed: false,
     keyCode: 2,
     keyDownDuration: 0,
     isIntercepted: false
-  };//注入Home按键抬起事件
+  };//Home按键抬起事件
 
   class EventUp {
     KeyEvent: inputEventClient.KeyEvent | null = null
   }
 
   let eventUp: EventUp = { KeyEvent: backKeyUp }
-  inputEventClient.injectEvent(eventUp);
+  inputEventClient.injectEvent(eventUp);//注入Home按键抬起事件,查看Home键功能是否生效，应用是否返回桌面
 } catch (error) {
   console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }

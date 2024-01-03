@@ -23,7 +23,8 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 
 ## 开发步骤
 
-使用组合按键的应用开启时调用[on](../reference/apis/js-apis-inputconsumer.md#inputconsumeron)方法订阅组合键，应用关闭时再用[off](../reference/apis/js-apis-inputconsumer.md#inputconsumeroff)方法取消组合键订阅。
+使用特定组合按键的应用开启时调用[on](../reference/apis/js-apis-inputconsumer.md#inputconsumeron)方法订阅组合键，当应用
+应用关闭时再用[off](../reference/apis/js-apis-inputconsumer.md#inputconsumeroff)方法取消组合键订阅。
 
 ```js
 let leftAltKey = 2045;

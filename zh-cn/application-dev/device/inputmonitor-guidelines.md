@@ -33,26 +33,32 @@ import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 
 ## 开发步骤
 
-调用[on](../reference/apis/js-apis-inputmonitor.md#inputmonitoronmouse9)监听鼠标事件，调用[off](../reference/apis/
-js-apis-inputmonitor.md#inputmonitoroffmouse9)取消监听鼠标事件，
+当应用需要根据鼠标按键按下状态变化样式时。调用[on](../reference/apis/js-apis-inputmonitor.md#inputmonitoronmouse9)监听鼠标按键事件，调用[off](../reference/apis/
+js-apis-inputmonitor.md#inputmonitoroffmouse9)取消监听鼠标按键事件.
 
 ```js
 import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 
+let BUTTON_DOWN = 2;
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
-  return false;
+    if(mouseEvent.action = BUTTON_DOWN){
+      return true;//鼠标按下回调
+    }
+    return false;
 };
 
 try {
-  inputMonitor.on('mouse', callback);//开始监听鼠标事件
-  console.log(`Monitor on success`);
+  inputMonitor.on('mouse', (mouseEvent: MouseEvent) => {//开始监听鼠标事件
+    console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
+    return false;
+  });
 } catch (error) {
   console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-
+//监听鼠标按下，按下callbackreturn true
 try {
-  inputMonitor.off('mouse', callback);//取消监听鼠标事件
+  inputMonitor.off('mouse', callback);//关闭监听鼠标事件
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor off failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
