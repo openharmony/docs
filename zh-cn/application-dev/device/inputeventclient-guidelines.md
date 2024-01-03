@@ -21,7 +21,7 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 ## 开发步骤
 
-调用[injectEvent](../reference/apis/js-apis-js-apis-inputeventclient.md#inputeventclientinjectEvent)注入Home按键。
+调用[injectEvent](../reference/apis/js-apis-js-apis-inputeventclient.md#inputeventclientinjectevent)注入Home按键。
 
 ```js
 try {
