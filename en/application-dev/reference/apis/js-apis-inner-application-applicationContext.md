@@ -243,9 +243,9 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environment', callbackId: **number**): **void**;
 
-Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result.
+Deregisters the listener for system environment changes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
