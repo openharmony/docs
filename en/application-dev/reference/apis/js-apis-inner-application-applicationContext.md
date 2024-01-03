@@ -248,7 +248,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**): void
+off(type: 'environment', callbackId: **number**): Prominse\<void\>
 
 Deregisters the listener for system environment changes.
 
@@ -514,7 +514,7 @@ Sets the color mode for the application.
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md) | Yes  | Target color mode, including dark mode, light mode, and system theme mode (no setting).|
+| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | Yes  | Target color mode, including dark mode, light mode, and system theme mode (no setting).|
 
 **Error codes**
 
@@ -622,7 +622,7 @@ Clears up the data of the application itself. This API uses an asynchronous call
 **Parameters**
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the application data is cleared up, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the application data is cleared up, **error** is **undefined**; otherwise, **error** is an error object. |
 
 **Error codes**
 
@@ -668,20 +668,20 @@ Subscribes to auto-startup status change events of an application component, whi
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    let autoStartupCallback = {
-      onAutoStartupOn(data) {
-        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
-      },
-      onAutoStartupOff(data) {
-        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
-      }
-    };
     try {
-      applicationContext.on('abilityAutoStartup', autoStartupCallback);
+      applicationContext.on('abilityAutoStartup', {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+        },
+        onAutoStartupOff(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+        }
+      });
     } catch (err) {
       console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
     }
@@ -708,20 +708,20 @@ Unsubscribes from auto-startup status change events of an application component,
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    let autoStartupCallback = {
-      onAutoStartupOn(data) {
-        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
-      },
-      onAutoStartupOff(data) {
-        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
-      }
-    };
     try {
-      applicationContext.off('abilityAutoStartup', autoStartupCallback);
+      applicationContext.off('abilityAutoStartup', {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+        },
+        onAutoStartupOff(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+        }
+      });
     } catch (err) {
       console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
     }
@@ -748,6 +748,7 @@ Sets an application component, which must belong to the caller application, to a
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -756,7 +757,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -790,6 +791,7 @@ Sets an application component, which must belong to the caller application, to a
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -798,9 +800,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
         console.info('====> setAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.info('====> setAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {
@@ -829,6 +831,7 @@ Cancels the auto-startup setting for an application component, which must belong
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -837,7 +840,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -871,6 +874,7 @@ Cancels the auto-startup setting for an application component, which must belong
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -879,9 +883,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
           console.info('====> cancelAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
           console.info('====> cancelAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {
@@ -910,6 +914,7 @@ Checks whether auto-startup is set for an application component, which must belo
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -918,7 +923,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: boolean) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -952,6 +957,7 @@ Checks whether auto-startup is set for an application component, which must belo
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -960,9 +966,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: boolean) => {
         console.info('====> isAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.info('====> isAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {

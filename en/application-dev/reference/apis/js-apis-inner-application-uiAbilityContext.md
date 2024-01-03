@@ -564,7 +564,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -655,7 +655,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback invoked when the ability is terminated.|
 
@@ -750,7 +750,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Return value**
@@ -984,7 +984,7 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1063,7 +1063,7 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 
 **Error codes**
 
@@ -1277,7 +1277,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1353,7 +1353,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ServiceExtensionAbility.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 
 **Error codes**
 
@@ -1642,7 +1642,7 @@ export default class EntryAbility extends UIAbility {
     };
     let resultCode = 100;
     // AbilityResult information returned to the caller.
-    let abilityResult: : common.AbilityResult = {
+    let abilityResult: common.AbilityResult = {
       want,
       resultCode
     };
@@ -1770,7 +1770,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | Yes| Instance of the callback function after the connection to the ServiceExtensionAbility is set up.|
 
 **Return value**
@@ -2121,7 +2121,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -2210,7 +2210,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -2304,7 +2304,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Want information about the target ability.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getOsAccountCount9).|
+| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 | options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
 
 **Error codes**
@@ -2399,10 +2399,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
 
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test', (result: BusinessError) => {
       console.info(`setMissionLabel: ${JSON.stringify(result)}`);
     });
@@ -2444,10 +2446,12 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends UIAbility {
 
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test').then(() => {
       console.info('success');
     }).catch((err: BusinessError) => {
@@ -3167,7 +3171,7 @@ Observe the following when using this API:
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
-| accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+| accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountcount9).|
 
 **Return value**
 
@@ -3567,7 +3571,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     'time':'2023-10-23 20:45',
   };
   let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code, name, message) => {
+    onError: (code: number, name: string, message: string) => {
       console.log(`code:` + code + `name:` + name + `message:` + message);
     }
   }
@@ -3624,7 +3628,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     'time':'2023-10-23 20:45',
   };
   let abilityStartCallback: common.AbilityStartCallback = {
-    onError: (code, name, message) => {
+    onError: (code: number, name: string, message: string) => {
       console.log(`code:` + code + `name:` + name + `message:` + message);
     }
   }
@@ -3634,3 +3638,156 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
   })
   ```
+
+## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
+
+requestModalUIExtension(pickerWant: Want): Promise\<void>
+
+Requests a modal window (expressed by a UIExtensionAbility). The information about the requester and target is carried by **want**. The system determines the type of the modal window to start by comparing **bundleName** of the requester carried in **want** with that of the application currently running in the foreground. This API uses a promise to return the result.
+
+- If the values of **bundleName** are the same, users must interact with the modal window before they can return to the current application screen.
+- If the values of **bundleName** are different, users must interact with the modal window before they can return to the current system screen.
+
+Observe the following when using this API:
+- If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+- For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the modal window.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+
+  onForeground() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'requestModalUIExtension',
+      moduleName: 'requestModalUIExtension',
+      parameters: {
+        bundleName: 'com.example.myapplication'
+      }
+    };
+
+    try {
+      this.context.requestModalUIExtension(want)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('requestModalUIExtension succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestModalUIExtension failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
+## UIAbilityContext.requestModalUIExtension<sup>11+<sup>
+requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
+
+Requests a modal window (expressed by a UIExtensionAbility). The information about the requester and target is carried by **want**. The system determines the type of the modal window to start by comparing **bundleName** of the requester carried in **want** with that of the application currently running in the foreground. This API uses an asynchronous callback to return the result.
+
+- If the values of **bundleName** are the same, users must interact with the modal window before they can return to the current application screen.
+- If the values of **bundleName** are different, users must interact with the modal window before they can return to the current system screen.
+
+Observe the following when using this API:
+- If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+- For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+ 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the modal window.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the UIExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+     let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'requestModalUIExtension',
+      moduleName: 'requestModalUIExtension',
+      parameters: {
+        bundleName: 'com.example.myapplication'
+      }
+    };
+
+    try {
+      this.context.requestModalUIExtension(want, (err: BusinessError) => {
+        if (err.code) { 
+          // Process service logic errors.
+          console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        } 
+        // Carry out normal service processing.
+        console.info('requestModalUIExtension succeed');
+      });
+    } catch (err) { 
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestModalUIExtension failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
