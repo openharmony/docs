@@ -113,13 +113,7 @@ struct Index {
 
 
 ```ts
-class pgotmp{
-  fingers?:number = 0
-  direction?:PanDirection|null = null
-  distance?:number = 0
-}
-let pgo:pgotmp = new pgotmp()
-new PanGestureOptions(value?:pgo)
+PanGestureOptions(value?:{ fingers?:number; direction?:PanDirection; distance?:number})
 ```
 
 
