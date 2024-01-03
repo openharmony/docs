@@ -770,7 +770,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 import { BusinessError } from '@ohos.base';
-let observer_: appManager.AppForegroundStateObserver;
+let observer_: appManager.AppForegroundStateObserver | undefined;
 // 1. Register an observer to listen for application start or exit events.
 let observer: appManager.AppForegroundStateObserver = {
   onAppStateChanged(appStateData: appManager.AppStateData) {

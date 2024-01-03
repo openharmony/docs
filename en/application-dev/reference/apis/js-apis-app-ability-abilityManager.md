@@ -722,7 +722,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
-let observer_: abilityManager.AbilityForegroundStateObserver;
+let observer_: abilityManager.AbilityForegroundStateObserver | undefined;
 // 1. Register an observer to listen for ability start or exit events.
 let observer: abilityManager.AbilityForegroundStateObserver = {
     onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
@@ -821,7 +821,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-appManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
+abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
     console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
     console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);

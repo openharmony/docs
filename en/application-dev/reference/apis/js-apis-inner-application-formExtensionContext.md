@@ -234,7 +234,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | connection | number | Yes| Number returned after [connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10) is called.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is disconnected, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -299,7 +299,7 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
