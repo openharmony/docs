@@ -3742,7 +3742,7 @@ let address : socket.LocalAddress = {
 }
 client.bind(address).then(() => {
   console.log('bind success')
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('failed to bind: ' + JSON.stringify(err))
 })
 ```
@@ -3794,7 +3794,7 @@ let connectOpt: socket.LocalConnectOptions = {
 }
 client.connect(connectOpt).then(() => {
   console.log('connect success')
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('connect fail: ' + JSON.stringify(err));
 });
 ```
@@ -3843,7 +3843,7 @@ let connectOpt: socket.LocalConnectOptions = {
 }
 client.connect(connectOpt).then(() => {
   console.log('connect success')
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('connect failed: ' + JSON.stringify(err))
 })
 let sendOpt: socket.LocalSendOptions = {
@@ -3851,7 +3851,7 @@ let sendOpt: socket.LocalSendOptions = {
 }
 client.send(sendOpt).then(() => {
   console.log('send success')
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('send fail: ' + JSON.stringify(err))
 })
 ```
@@ -3884,7 +3884,7 @@ let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 
 client.close().then(() => {
   console.log('close success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('close fail: ' + JSON.stringify(err));
 });
 ```
@@ -3922,10 +3922,10 @@ client.connect(connectOpt).then(() => {
   console.log('connect success');
   client.getState().then(() => {
     console.log('getState success');
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.error('getState fail: ' + JSON.stringify(err))
   });
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('connect fail: ' + JSON.stringify(err));
 });
 ```
@@ -3961,12 +3961,12 @@ let connectOpt: socket.LocalConnectOptions = {
 }
 client.connect(connectOpt).then(() => {
   console.log('connect ok')
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('connect fail: ' + JSON.stringify(err))
 })
 client.getSocketFd().then((data: number) => {
   console.info("fd: " + data);
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error("getSocketFd faile: " + JSON.stringify(err));
 })
 ```
@@ -4021,10 +4021,10 @@ client.connect(connectOpt).then(() => {
   }
   client.setExtraOptions(options).then(() => {
     console.log('setExtraOptions success');
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.error('setExtraOptions fail: ' + JSON.stringify(err));
   });
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('connect fail: ' + JSON.stringify(err));
 });
 ```
@@ -4067,10 +4067,10 @@ client.connect(connectOpt).then(() => {
   console.log('connect success');
   client.getExtraOptions().then((options : socket.ExtraOptionsBase) => {
     console.log('options: ' + JSON.stringify(options));
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.error('setExtraOptions fail: ' + JSON.stringify(err));
   });
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('connect fail: ' + JSON.stringify(err));
 });
 ```
@@ -4095,7 +4095,7 @@ on(type: 'message', callback: Callback\<{LocalSocketMessageInfo}\>): void
 ```ts
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
-client.on('message', (value) => {
+client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
@@ -4130,7 +4130,7 @@ off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
 import socket from "@ohos.net.socket";
 let client: socket.LocalSocket = socket.constructLocalSocketInstance();
 let messageView = '';
-let callback = (value) => {
+let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
@@ -4440,7 +4440,7 @@ let addr: socket.LocalAddress = {
 }
 server.listen(addr).then(() => {
   console.log('listen success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('listen fail: ' + JSON.stringify(err));
 });
 ```
@@ -4472,12 +4472,12 @@ let listenAddr: socket.LocalAddress = {
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error("listen fail: " + JSON.stringify(err));
 })
 server.getState().then((data: socket.SocketStateBase) => {
   console.log('getState success: ' + JSON.stringify(data));
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('getState fail: ' + JSON.stringify(err));
 });
 ```
@@ -4522,7 +4522,7 @@ let listenAddr: socket.NetAddress = {
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error("listen fail: " + JSON.stringify(err));
 })
 
@@ -4533,7 +4533,7 @@ let options: socket.ExtraOptionsBase = {
 }
 server.setExtraOptions(options).then(() => {
   console.log('setExtraOptions success');
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('setExtraOptions fail: ' + JSON.stringify(err));
 });
 ```
@@ -4571,12 +4571,12 @@ let listenAddr: socket.NetAddress = {
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error("listen fail: " + JSON.stringify(err));
 })
 server.getExtraOptions().then((options) => {
   console.log('options: ' + JSON.stringify(options));
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error('getExtraOptions fail: ' + JSON.stringify(err));
 });
 ```
@@ -4787,7 +4787,7 @@ server.on('connect', (connection: socket.LocalSocketConnection) => {
   }
   connection.send(sendOptions).then(() => {
     console.log('send success');
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.error('send fail: ' + JSON.stringify(err));
   });
 });
@@ -4822,7 +4822,7 @@ let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance
 server.on('connect', (connection: socket.LocalSocketConnection) => {
   connection.close().then(() => {
     console.log('close success');
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.error('close fail: ' + JSON.stringify(err));
   });
 });
@@ -4859,7 +4859,7 @@ let listenAddr: socket.LocalAddress = {
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
-}).catch((err) => {
+}).catch((err: Object) => {
   console.error("listen fail: " + JSON.stringify(err));
 });
 server.on('connect', (connection: socket.LocalSocketConnection) => {
@@ -4904,7 +4904,7 @@ off(type: 'message', callback?: Callback\<{LocalSocketMessageInfo}\>): void
 ```ts
 import socket from "@ohos.net.socket";
 let server: socket.LocalSocketServer = socket.constructLocalSocketServerInstance();
-let callback = (value) => {
+let callback = (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
