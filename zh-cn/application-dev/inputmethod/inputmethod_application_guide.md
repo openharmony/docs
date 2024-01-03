@@ -1,14 +1,4 @@
-# InputMethodExtensionAbility
-
-## 使用场景
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)基于[ExtensionAbility](extensionability-overview.md)框架，用于开发输入法应用。
-
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)实例及其所在的ExtensionAbility进程的整个生命周期，都是由输入法框架进行调度管理。输入法框架提供了[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)基类，开发者需要派生此基类，以实现输入法应用生命周期开始和销毁时的相关初始化操作和资源清理工作等。
-
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md)提供相关能力。
-
-
-## 实现一个输入法应用
+# 实现一个输入法应用
 
 [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)提供了onCreate()和onDestroy()生命周期回调，根据需要重写对应的回调方法。InputMethodExtensionAbility的生命周期如下：
 
@@ -25,7 +15,7 @@
   当不再使用服务且准备将该实例销毁时，触发该回调。开发者可以在该回调中清理资源，如注销监听等。
 
 
-## 开发步骤
+## 开发步骤 
 
 开发者在实现一个输入法应用时，需要在DevEco Studio工程中新建一个InputMethodExtensionAbility，具体步骤如下：
 
@@ -33,7 +23,7 @@
 
 2. 在InputMethodExtensionAbility目录下，右键选择“New > File”，新建四个文件，分别为KeyboardController.ts、InputMethodService.ts、Index.ets以及KeyboardKeyData.ts。目录如下：
 
-```
+``` 
 /src/main/
 ├── ets/InputMethodExtensionAbility
 │   └──model/KeyboardController.ts			# 显示键盘
@@ -41,7 +31,7 @@
 │   └──pages
 │      └── Index.ets						# 绘制键盘，添加输入删除功能
 │      └── KeyboardKeyData.ts			    # 键盘属性定义
-├── resources/base/profile/main_pages.json   
+├── resources/base/profile/main_pages.json  
 ```
 
 ## 文件介绍
@@ -52,8 +42,8 @@
 
    ```ts
    import Want from '@ohos.app.ability.Want';
-   import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
-   import keyboardController from './model/KeyboardController'
+   import keyboardController from './model/KeyboardController';
+   import { InputMethodExtensionAbility } from '@kit.IMEKit';
    
    export default class InputDemoService extends InputMethodExtensionAbility {
    
@@ -73,8 +63,7 @@
    ```ts
    import common from '@ohos.app.ability.common';
    import display from '@ohos.display';
-   import inputMethodEngine from '@ohos.inputMethodEngine';
-   import InputMethodExtensionContext from '@ohos.InputMethodExtensionContext';
+   import { inputMethodEngine, InputMethodExtensionContext } from '@kit.IMEKit';
    
    // 调用输入法框架的getInputMethodAbility方法获取实例，并由此实例调用输入法框架功能接口
    const inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
@@ -367,39 +356,6 @@
 >   - 不得因用户未授予录音权限而禁止用户使用输入法应用的非语音输入法功能；
 >   - 仅允许InputMethodExtensionAbility处于前台时开展与录音相关的业务。如仅允许软键盘在前台且用户主动操作语音输入法时，才进行录音；应用切换到后台时，应主动停止录音；
 >   - 系统会逐步增加对违反以上约定的行为进行管控和识别，因此未遵守此约定可能会造成业务功能异常。
-
-**模块列表：** 
-
-- [@ohos.ability.featureAbility (FeatureAbility模块)](../reference/apis/js-apis-ability-featureAbility.md)
-- [@ohos.ability.particleAbility (ParticleAbility模块)](../reference/apis/js-apis-ability-particleAbility.md)
-- [@ohos.account.distributedAccount (分布式帐号管理)](../reference/apis/js-apis-distributed-account.md)
-- [@ohos.backgroundTaskManager (后台任务管理)](../reference/apis/js-apis-backgroundTaskManager.md)
-- [@ohos.bluetooth (蓝牙)](../reference/apis/js-apis-bluetooth.md)
-- [@ohos.bluetoothManager (蓝牙)](../reference/apis/js-apis-bluetoothManager.md)
-- [@ohos.connectedTag (有源标签)](../reference/apis/js-apis-connectedTag.md)
-- [@ohos.geolocation (位置服务)](../reference/apis/js-apis-geolocation.md)
-- [@ohos.geoLocationManager (位置服务)](../reference/apis/js-apis-geoLocationManager.md)
-- [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](../reference/apis/js-apis-cardEmulation.md)
-- [@ohos.nfc.controller (标准NFC)](../reference/apis/js-apis-nfcController.md)
-- [@ohos.nfc.tag (标准NFC-Tag)](../reference/apis/js-apis-nfcTag.md)
-- [@ohos.reminderAgent (后台代理提醒)](../reference/apis/js-apis-reminderAgent.md)
-- [@ohos.reminderAgentManager (后台代理提醒)](../reference/apis/js-apis-reminderAgentManager.md)
-- [@ohos.sensor (传感器)](../reference/apis/js-apis-sensor.md)
-- [@ohos.telephony.call (拨打电话)](../reference/apis/js-apis-call.md)
-- [@ohos.telephony.data (蜂窝数据)](../reference/apis/js-apis-telephony-data.md)
-- [@ohos.telephony.observer (observer)](../reference/apis/js-apis-observer.md)
-- [@ohos.telephony.radio (网络搜索)](../reference/apis/js-apis-radio.md)
-- [@ohos.telephony.sim (SIM卡管理)](../reference/apis/js-apis-sim.md)
-- [@ohos.telephony.sms (短信服务)](../reference/apis/js-apis-sms.md)
-- [@ohos.wallpaper (壁纸)](../reference/apis/js-apis-wallpaper.md)
-- [@ohos.wifiext (WLAN扩展接口)](../reference/apis/js-apis-wifiext.md)
-- [@ohos.wifiManager (WLAN)](../reference/apis/js-apis-wifiManager.md)
-- [@ohos.wifiManagerExt (WLAN扩展接口)](../reference/apis/js-apis-wifiManagerExt.md)
-- [@system.geolocation (地理位置)](../reference/apis/js-apis-system-location.md)
-- [nfctech (标准NFC-Tag Nfc 技术)](../reference/apis/js-apis-nfctech.md)
-- [tagSession (标准NFC-Tag TagSession)](../reference/apis/js-apis-tagSession.md)
-
-
 
 ## 相关实例
 
