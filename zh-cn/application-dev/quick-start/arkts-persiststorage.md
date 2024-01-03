@@ -35,6 +35,93 @@ PersistentStorage的持久化变量最好是小于2kb的数据，不要大量的
 
 PersistentStorage只能在UI页面内使用，否则将无法持久化数据。
 
+## 支持的接口
+
+### PersistProp
+
+static PersistProp&lt;T&gt;(key: string, defaultValue: T): void
+
+将AppStorage中key对应的属性持久化到文件中。该接口的调用通常在访问AppStorage之前。
+
+确定属性的类型和值的顺序如下：
+
+1. 如果PersistentStorage文件中存在key对应的属性，在AppStorage中创建对应的propName，并用在PersistentStorage中找到的key的属性初始化。
+
+2. 如果PersistentStorage文件中没有查询到key对应的属性，则在AppStorage中查找key对应的属性。如果找到key对应的属性，则将该属性持久化。
+
+3. 如果AppStorage也没查找到key对应的属性，则在AppStorage中创建key对应的属性。用defaultValue初始化其值，并将该属性持久化。
+
+根据上述的初始化流程，如果AppStorage中有该属性，则会使用其值，覆盖掉PersistentStorage文件中的值。由于AppStorage是内存内数据，该行为会导致数据丧失持久化能力。
+
+**参数：**
+
+| 参数名          | 类型     | 必填    | 参数描述                                     |
+| ------------ | ------ | ------- | ---------------------------------------- |
+| key          | string | 是    | 属性名。                                     |
+| defaultValue | T      | 是    | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化初始化它。不允许为undefined和null。 |
+
+
+**示例：**
+
+
+```ts
+PersistentStorage.PersistProp('highScore', '0');
+```
+
+
+### DeleteProp
+
+static DeleteProp(key: string): void
+
+将key对应的属性从PersistentStorage删除，后续AppStorage的操作，对PersistentStorage不会再有影响。
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 参数描述                    |
+| ---- | ------ | ---- | ----------------------- |
+| key  | string | 是    | PersistentStorage中的属性名。 |
+
+
+```ts
+PersistentStorage.DeleteProp('highScore');
+```
+
+
+### PersistProps
+
+static PersistProps(properties: {key: string, defaultValue: any;}[]): void
+
+行为和PersistProp类似，不同在于可以一次性持久化多个数据，适合在应用启动的时候初始化。
+
+**参数：**
+
+| 参数名     | 类型                                              | 必填   | 参数描述                                                     |
+| ---------- | ------------------------------------------------- | ------- | ------------------------------------------------------------ |
+| properties | {key:&nbsp;string,&nbsp;defaultValue:&nbsp;any}[] | 是   | 持久化数组，启动key为属性名，defaultValue为默认值。规则同PersistProp。 |
+
+
+```ts
+PersistentStorage.PersistProps([{ key: 'highScore', defaultValue: '0' }, { key: 'wightScore', defaultValue: '1' }]);
+```
+
+
+### Keys
+
+static Keys(): Array&lt;string&gt;
+
+返回所有持久化属性的key的数组。
+
+**返回值：**
+
+| 类型                  | 描述                |
+| ------------------- | ----------------- |
+| Array&lt;string&gt; | 返回所有持久化属性的key的数组。 |
+
+
+```ts
+let keys: Array<string> = PersistentStorage.Keys();
+```
+
 ## 使用场景
 
 
@@ -85,6 +172,10 @@ struct Index {
   }
 }
 ```
+
+> **说明：**
+>
+> 当前持久化存储在API9模拟器上暂不支持。
 
 - 新应用安装后首次启动运行：
   1. 调用PersistProp初始化PersistentStorage，首先查询在PersistentStorage本地文件中是否存在“aProp”，查询结果为不存在，因为应用是第一次安装；
