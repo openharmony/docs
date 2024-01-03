@@ -1,17 +1,17 @@
-# Synchronous Task Development
+# Synchronous Task Development (TaskPool and Worker)
 
 
-Synchronous tasks are executed in order among multiple threads. For example, as a synchronization primitive, locks prevent data contention.
+Synchronous tasks are executed in order among multiple threads. Synchronization primitives, such as locks, are used by these tasks for coordination between each other.
 
 
-To implement synchronous tasks, you must consider the collaboration and synchronization between multiple threads and ensure the correctness of data and the correct execution of programs.
+To implement synchronous tasks, you must consider the collaboration and synchronization between multiple threads and ensure the correctness of data and program execution.
 
-If synchronous tasks are independent of each other, you are advised to use **TaskPool**, since it focuses on single independent tasks. For example, a series of imported static methods or methods implemented in singletons are independent. If synchronous tasks are associated with each other, use **Worker**, for example, methods implemented in class objects (not singleton class objects).
+If synchronous tasks are independent of each other, you are advised to use **TaskPool**, which focuses on single independent tasks. For example, a series of imported static methods or methods implemented in singletons are independent. If synchronous tasks are associated with each other, use **Worker**, for example, methods implemented in class objects (not singleton class objects).
 
 
 ## Using TaskPool to Process Independent Synchronous Tasks
 
-**TaskPool** is recommended for scheduling independent synchronous tasks. Typical synchronous tasks are those using static methods. If a unique handle or class object constructed using a singleton points to multiple tasks and these tasks can be used between different worker threads, you can also use **TaskPool**.
+**TaskPool** is recommended for scheduling independent synchronous tasks. Typical independent synchronous tasks are those using static methods. If a unique handle or class object constructed using a singleton points to multiple tasks and these tasks can be used between different worker threads, you can also use **TaskPool**.
 
 1. Define a concurrency function that internally calls the synchronous methods.
 
