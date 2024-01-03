@@ -3550,8 +3550,8 @@ getPortraitEffect(): PortraitEffect
 **示例：**
 
 ```ts
-function getSupportedPortraitEffects(portraitSession: camera.PortraitSession): Array<camera.PortraitEffect> {
-  let portraitEffects: Array<camera.PortraitEffect> = portraitSession.getSupportedPortraitEffects();
+function getSupportedPortraitEffects(portraitSession: camera.PortraitSession): camera.PortraitEffect {
+  let portraitEffects: camera.PortraitEffect = portraitSession.getPortraitEffect();
   return portraitEffects;
 }
 ```
