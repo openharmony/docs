@@ -1653,7 +1653,11 @@ struct Index {
         .javaScriptOnDocumentEnd([
           {
             script: "console.log ('injected js is run:javaScriptOnDocumentEnd===============');",
-            scriptRules: ["*"]
+            scriptRules: ["*"]  //通配符，匹配所有来源网址
+          },
+          {
+            script: "console.log ('injected js is run:javaScriptOnDocumentEnd===============');",
+            scriptRules: ["https://www.baidu.com"， "https://m.baidu.com"]   //只匹配来源是baidu域名下的网址
           },
         ])
         .width('100%')
