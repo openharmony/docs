@@ -8,6 +8,10 @@ For a local AVSession, the data sources are on the local device. The figure belo
 
 This process involves two roles: provider and controller.
 
+> **NOTE**
+>
+> The controller must be a system application. A third-party application can be a provider.
+
 In the local AVSession, the provider exchanges information with the controller through AVSessionManager.
 
 1. The provider creates an **AVSession** object through AVSessionManager.
