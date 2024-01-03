@@ -88,7 +88,7 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 
     ```ts
     // Class type
-     @State title: Model = new Model('Hello', new ClassA('World'));
+    @State title: Model = new Model('Hello', new ClassA('World'));
     ```
 
     Assign a value to the \@State decorated variable.
@@ -102,17 +102,17 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 
     ```ts
     // Assign a value to a property of the class object.
-    this.title.value = 'Hi'
+    this.title.value = 'Hi';
     ```
 
     The value assignment of the nested property cannot be observed.
 
     ```ts
     // The value assignment of the nested property cannot be observed.
-    this.title.name.value = 'ArkUI'
+    this.title.name.value = 'ArkUI';
     ```
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed. Below is an example.
-  Declare the **ClassA** and **Model** classes.
+  Declare the **Model** class.
 
   ```ts
   class Model {
@@ -126,37 +126,37 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   Use \@State to decorate a variable of the Model class array type.
 
   ```ts
-  @State title: Model[] = [new Model(11), new Model(1)]
+  @State title: Model[] = [new Model(11), new Model(1)];
   ```
 
   The value assignment of the array itself can be observed.
 
   ```ts
-  this.title = [new Model(2)]
+  this.title = [new Model(2)];
   ```
 
   The value assignment of array items can be observed.
 
   ```ts
-  this.title[0] = new Model(2)
+  this.title[0] = new Model(2);
   ```
 
   The deletion of array items can be observed.
 
   ```ts
-  this.title.pop()
+  this.title.pop();
   ```
 
   The addition of array items can be observed.
 
   ```ts
-  this.title.push(new Model(12))
+  this.title.push(new Model(12));
   ```
 
   The property value assignment in the array items cannot be observed.
 
   ```ts
-  this.title[0].value = 6
+  this.title[0].value = 6;
   ```
 
 - When the decorated variable is of the Date type, the overall value assignment of the **Date** object can be observed, and the following APIs can be called to update **Date** properties: **setFullYear**, **setMonth**, **setDate**, **setHours**, **setMinutes**, **setSeconds**, **setMilliseconds**, **setTime**, **setUTCFullYear**, **setUTCMonth**, **setUTCDate**, **setUTCHours**, **setUTCMinutes**, **setUTCSeconds**, and **setUTCMilliseconds**.
