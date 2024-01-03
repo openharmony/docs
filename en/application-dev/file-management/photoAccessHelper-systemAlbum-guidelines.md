@@ -4,11 +4,10 @@ The **photoAccessHelper** module provides APIs for managing system albums, inclu
 
 > **NOTE**
 >
-> - Before you start, you need to obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).
+> - Before you start, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [photoAccessHelper Overview](photoAccessHelper-overview.md).
 > - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in [photoAccessHelper Overview](photoAccessHelper-overview.md) is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
 To ensure application running efficiency, most **photoAccessHelper** APIs are asynchronously implemented in callback or promise mode. The following code samples use promise-based APIs. For details about the APIs, see [Album Management](../reference/apis/js-apis-photoAccessHelper.md).
-
 Unless otherwise specified, all the media assets to be obtained in this document exist in the database. If no media asset is obtained when the sample code is executed, check whether the media assets exist in the database.
 
 ## Favorites
@@ -38,10 +37,10 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
-    console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
+    console.info('get favorite album successfully, albumUri: ' + album.albumUri);
     fetchResult.close();
   } catch (err) {
-    console.error('get favorite Album failed with err: ' + err);
+    console.error('get favorite album failed with err: ' + err);
   }
 }
 ```
@@ -123,11 +122,11 @@ async function example() {
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
-    console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
+    console.info('get favorite album successfully, albumUri: ' + album.albumUri);
 
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
-    console.info('favorite album getAssets successfully, albumName: ' + photoAsset.displayName);
+    console.info('favorite album getAssets successfully, photoAsset displayName: ' + photoAsset.displayName);
     photoFetchResult.close();
     albumFetchResult.close();
   } catch (err) {
@@ -170,11 +169,11 @@ async function example() {
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.FAVORITE);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
-    console.info('get favorite Album successfully, albumUri: ' + album.albumUri);
+    console.info('get favorite album successfully, albumUri: ' + album.albumUri);
 
     let photoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getFirstObject();
-    console.info('favorite album getAssets successfully, albumName: ' + photoAsset.displayName);
+    console.info('favorite album getAssets successfully, photoAsset displayName: ' + photoAsset.displayName);
     let favoriteState = false;
     await photoAsset.setFavorite(favoriteState);
     photoFetchResult.close();
@@ -212,10 +211,10 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
-    console.info('get video Album successfully, albumUri: ' + album.albumUri);
+    console.info('get video album successfully, albumUri: ' + album.albumUri);
     fetchResult.close();
   } catch (err) {
-    console.error('get video Album failed with err: ' + err);
+    console.error('get video album failed with err: ' + err);
   }
 }
 ```
@@ -254,11 +253,11 @@ async function example() {
   try {
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.VIDEO);
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
-    console.info('get video Album successfully, albumUri: ' + album.albumUri);
+    console.info('get video album successfully, albumUri: ' + album.albumUri);
 
     let videoFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await videoFetchResult.getFirstObject();
-    console.info('video album getAssets successfully, albumName: ' + photoAsset.displayName);
+    console.info('video album getAssets successfully, photoAsset displayName: ' + photoAsset.displayName);
     videoFetchResult.close();
     albumFetchResult.close();
   } catch (err) {
@@ -294,10 +293,10 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.SCREENSHOT);
     let album: photoAccessHelper.Album = await fetchResult.getFirstObject();
-    console.info('get screenshot Album successfully, albumUri: ' + album.albumUri);
+    console.info('get screenshot album successfully, albumUri: ' + album.albumUri);
     fetchResult.close();
   } catch (err) {
-    console.error('get screenshot Album failed with err: ' + err);
+    console.error('get screenshot album failed with err: ' + err);
   }
 }
 ```
@@ -340,7 +339,7 @@ async function example() {
 
     let screenshotFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOptions);
     let photoAsset: photoAccessHelper.PhotoAsset = await screenshotFetchResult.getFirstObject();
-    console.info('screenshot album getAssets successfully, albumName: ' + photoAsset.displayName);
+    console.info('screenshot album getAssets successfully, photoAsset displayName: ' + photoAsset.displayName);
     screenshotFetchResult.close();
     albumFetchResult.close();
   } catch (err) {
