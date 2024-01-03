@@ -14,7 +14,7 @@
 
 ## 接口
 
-### GridItem<sup>11+</sup>
+### GridItem
 
 GridItem(value?: GridItemOptions)
 
@@ -22,14 +22,7 @@ GridItem(value?: GridItemOptions)
 
 | 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有GridItemStyle枚举类型的style参数。 |
-
-### GridItem<sup>(deprecated)</sup>
-
-GridItem()
-
-从API version 11开始, 该接口不再维护，推荐使用GridItem<sup>11+</sup>。
-
+| value<sup>11+</sup>  | [GridItemOptions](#griditemoptions11对象说明) | 否   | 为GridItem提供可选参数, 该对象内含有[GridItemStyle](#griditemstyle11枚举说明)枚举类型的style参数。 |
 
 ## 属性
 
@@ -71,10 +64,10 @@ GridItem()
 
 ## GridItemStyle<sup>11+</sup>枚举说明
 
-| 名称  | 描述                     |
-| ----- | ------------------------ |
-| NONE  | 无样式。                 |
-| PLAIN | 显示Hover、Press态样式。 |
+| 名称  |枚举值| 描述                     |
+| ----- |----| ------------------------ |
+| NONE  |  0 | 无样式。                 |
+| PLAIN |  1 | 显示Hover、Press态样式。 |
 
 > **说明：**
 >
