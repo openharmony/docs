@@ -1,4 +1,4 @@
-# Internalization and Localization
+# Internationalization and Localization
 
 - [Overview of Internationalization and Localization](i18n-l10n.md)
 - Application Internalization
