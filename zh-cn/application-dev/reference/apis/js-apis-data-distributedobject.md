@@ -143,13 +143,13 @@ let sessionId: string = distributedObject.genSessionId();
 
 **参数：**
 
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | storeName | string | 是 | 待绑定资产在所属的数据库中的库名 |
-  | tableName | string | 是 | 待绑定资产在所属的数据库中的表名 |
-  | primaryKey | CommonType.ValuesBucket | 是 | 待绑定资产在所属的数据库中的主键 |
-  | field | string | 是 | 待绑定资产在所属的数据库中的列名 |
-  | assetName | string | 是 | 待绑定资产在所属的数据库中的资产名 |
+  | 参数名     | 类型                    | 必填 | 说明                                 |
+  | ---------- | ----------------------- | ---- | ------------------------------------ |
+  | storeName  | string                  | 是   | 待绑定资产在所属的数据库中的库名。   |
+  | tableName  | string                  | 是   | 待绑定资产在所属的数据库中的表名。   |
+  | primaryKey | CommonType.ValuesBucket | 是   | 待绑定资产在所属的数据库中的主键。   |
+  | field      | string                  | 是   | 待绑定资产在所属的数据库中的列名。   |
+  | assetName  | string                  | 是   | 待绑定资产在所属的数据库中的资产名。 |
 
 ## DataObject
 

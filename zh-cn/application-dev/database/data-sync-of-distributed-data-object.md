@@ -424,7 +424,7 @@
     let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
     localObject.setSessionId('123456');
 
-    const bindInfo: distributedObject.BindInfo = {
+    const bindInfo: distributedDataObject.BindInfo = {
       storeName: 'notepad',
       tableName: 'note_t',
       primaryKey: {
