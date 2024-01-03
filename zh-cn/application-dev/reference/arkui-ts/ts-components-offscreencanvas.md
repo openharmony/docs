@@ -277,8 +277,6 @@ struct OffscreenCanvasExamplePage {
 
 Worker线程在onmessage中接收到主线程postMessage发送的OffscreenCanvas，并进行绘制。
 
-**示例：**
-
 ```ts
 workerPort.onmessage = (e: MessageEvents) => {
   if (e.data.myOffCanvas) {
