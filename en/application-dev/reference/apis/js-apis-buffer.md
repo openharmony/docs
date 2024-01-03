@@ -48,7 +48,7 @@ Creates and initializes a **Buffer** instance of the specified length.
 | -------- | -------- | -------- | -------- |
 | size | number | Yes| Size of the **Buffer** instance to create, in bytes.|
 | fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | No| Value to be filled in the buffer. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **fill** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **fill** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -139,7 +139,7 @@ Obtains the number of bytes of a string based on the encoding format.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Target string.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **'utf8'**.|
 
 **Return value**
 
@@ -274,7 +274,7 @@ Creates a **Buffer** instance of the specified length that shares memory with **
 | -------- | -------- | -------- | -------- |
 | arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | Yes| Array of **Buffer** instances, whose memory is to be shared.|
 | byteOffset | number | No| Byte offset. The default value is **0**.|
-| length | number | No| Length of the **Buffer** instance to create, in bytes. The default value is the length of **arrayBuffer** minus **byteOffset**.|
+| length | number | No| Length of the **Buffer** instance to create, in bytes. The default value is **arrayBuffer.byteLength** minus **byteOffset**.|
 
 **Return value**
 
@@ -371,7 +371,7 @@ Creates a **Buffer** instance based on a string in the given encoding format.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | string | String | Yes| String.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format of the string. The default value is **'utf8'**.|
 
 **Return value**
 
@@ -686,7 +686,7 @@ Fills this **Buffer** instance at the specified position. By default, data is fi
 | value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | Yes| Value to fill.|
 | offset | number | No| Offset to the start position in this **Buffer** instance where data is filled. The default value is **0**.|
 | end | number | No| Offset to the end position in this **Buffer** instance (not inclusive). The default value is the length of this **Buffer** instance.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -726,7 +726,7 @@ Checks whether this **Buffer** instance contains the specified value.
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
 | byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -758,7 +758,7 @@ Obtains the index of the first occurrence of the specified value in this **Buffe
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
 | byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -815,7 +815,7 @@ Obtains the index of the last occurrence of the specified value in this **Buffer
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | Yes| Value to match.|
 | byteOffset | number | No| Number of bytes to skip before starting to check data. If the offset is a negative number, data is checked from the end of the **Buffer** instance. The default value is **0**.|
-| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | [BufferEncoding](#bufferencoding) | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 
 **Return value**
 
@@ -1192,7 +1192,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 import buffer from '@ohos.buffer';
 
 let buf = buffer.from([-1, 5]);
-console.log(buf.readInt8(0).toString());	// Print: -1
+console.log(buf.readInt8(0).toString());	// Print: 0
 console.log(buf.readInt8(1).toString());	// Print: 5
 
 let buf1 = buffer.allocUninitializedFromPool(2);
@@ -1899,7 +1899,7 @@ import buffer from '@ohos.buffer';
 
 let buf1 = buffer.from([0x1, 0x2, 0x3, 0x4, 0x5]);
 let obj = buf1.toJSON();
-console.log(JSON.stringify(obj))
+console.log(JSON.stringify(obj));
 // Print: {"type":"Buffer","data":[1,2,3,4,5]}
 ```
 
@@ -1915,7 +1915,7 @@ Converts the data at the specified position in this **Buffer** instance into a s
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | No| Encoding format (valid only when **value** is a string). The default value is **utf-8**.|
+| encoding | string | No| Encoding format (valid only when **value** is a string). The default value is **'utf8'**.|
 | start  | number | No|  Offset to the start position of the data to convert. The default value is **0**.|
 | end  | number | No|  Offset to the end position of the data to convert. The default value is the length of this **Buffer** instance.|
 
@@ -1978,7 +1978,7 @@ Writes a string of the specified length to this **Buffer** instance at the speci
 | str | string | Yes| String to write.|
 | offset | number | No| Number of bytes to skip before starting to write data. The default value is **0**.|
 | length | number | No| Maximum number of bytes to write. The default value is the length of the **Buffer** instance minus the offset.|
-| encoding | string | No| Encoding format of the string. The default value is **utf-8**.|
+| encoding | string | No| Encoding format of the string. The default value is **'utf8'**.|
 
 
 **Return value**
@@ -2978,13 +2978,13 @@ Returns text in UTF-8 format. This API uses a promise to return the result.
 **Return value**
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the text encoded in UTF-8.|
+| Promise&lt;string&gt; | Promise used to return the text decoded in UTF-8.|
 
 **Example**
 ```ts
 let blob = new buffer.Blob(['a', 'b', 'c']);
 let pro = blob.text();
 pro.then(val => {
-    console.log(val)
+    console.log(val);
 });
 ```
