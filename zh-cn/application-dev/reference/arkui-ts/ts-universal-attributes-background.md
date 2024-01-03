@@ -308,12 +308,12 @@ struct BackgroundBrightnessDemo {
 
 效果图如下：
 
-![zh-cn_image_background_brightness](figures/zh-cn_image_background_brightness1.png)
+![zh-cn_image_background_brightness1](figures/zh-cn_image_background_brightness1.png)
 
 修改rate和lightUpDegree参数值为0.5,-0.1：
 
-![zh-cn_image_background_brightness](figures/zh-cn_image_background_brightness2.png)
+![zh-cn_image_background_brightness2](figures/zh-cn_image_background_brightness2.png)
 
 去掉backgroundBrightness的设置，效果如下：
 
-![zh-cn_image_background_brightness](figures/zh-cn_image_background_brightness3.png)
+![zh-cn_image_background_brightness3](figures/zh-cn_image_background_brightness3.png)
