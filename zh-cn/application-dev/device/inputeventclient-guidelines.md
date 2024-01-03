@@ -13,15 +13,15 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 ## 接口说明
 事件注入常用接口如下表所示，接口详细介绍请参考[ohos.multimodalInput.inputEventClient文档](../reference/apis/js-apis-inputeventclient.md)。
 
-| 实例名 | 接口名  | 说明 |
-| ----------- | ------------------------------------------------------------ | -------------------------- |
-| inputEventClient | function injectEvent({KeyEvent: KeyEvent}): void；|按键(包括单个按键和组合键)注入。 |
-| iinputEventClient | function injectMouseEvent(mouseEvent: MouseEventData): void;|鼠标/触摸板事件注入。 |
-|inputEventClient|function injectTouchEvent(touchEvent: TouchEventData): void；|触摸屏事件注入。|
+| 接口名称  | 描述 |
+| -------------------------------------------- | -------------------------- |
+| injectEvent({KeyEvent: KeyEvent}): void |按键(包括单个按键和组合键)注入。 |
+| injectMouseEvent(mouseEvent: MouseEventData): void |鼠标/触摸板事件注入。 |
+| injectTouchEvent(touchEvent: TouchEventData): void |触摸屏事件注入。|
 
 ## 开发步骤
 
-调用[injectEvent](../reference/apis/js-apis-inputeventclient.md#inputeventclientinjectevent)注入Home按键。
+调用[injectEvent](../reference/apis/js-apis-inputeventclient.md#inputeventclientinjectevent)注入Home按键，查看Home按键功能是否生效。
 
 ```js
 try {
