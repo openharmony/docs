@@ -29,7 +29,7 @@ Read [AVMuxer](../reference/native-apis/_a_v_muxer.md) for the API reference.
 
 > **NOTE**
 >
-> To call the encapsulation APIs to write a local file, request the **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** permissions by following the instructions provided in [Applying for Permissions](../security/accesstoken-guidelines.md).
+> To call the encapsulation APIs to write a local file, request the **ohos.permission.READ_MEDIA** and **ohos.permission.WRITE_MEDIA** permissions by following the instructions provided in [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 ### Linking the Dynamic Library in the CMake Script
 
@@ -211,10 +211,12 @@ The following walks you through how to implement the entire process of audio and
 
 10. Call **OH_AVMuxer_Destroy()** to release the instance.
 
-       ``` c++
-       if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
-           // Exception handling.
-       }
-       muxer = NULL;
-       close(fd); // Close the FD.
-       ```
+    ``` c++
+    if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
+        // Exception handling.
+    }
+    muxer = NULL;
+    close(fd); // Close the FD.
+    ```
+
+ <!--no_check--> 

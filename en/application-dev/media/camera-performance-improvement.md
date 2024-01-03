@@ -2,7 +2,7 @@
 
 The camera startup performance is affected by time-consuming operations such as power-on of underlying components and initialization of the process pipeline. To improve the camera startup speed and thumbnail display speed, OpenHarmony introduces some features. The capabilities of these features are related to underlying components. You need to check whether your underlying components support these capabilities before using the capabilities.
 
-​These features are involved in the processes of starting the camera device, configuring streams, and taking photos. This topic describes the three scenarios.
+These features are involved in the processes of starting the camera device, configuring streams, and taking photos. This topic describes the three scenarios.
 
 ## Deferred Stream Configuration
 
@@ -31,7 +31,7 @@ The figure below shows the recommended API call process.
 
 ![](figures/deferred-surface-sequence-diagram.png)
 
-For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 ```ts
 import camera from '@ohos.multimedia.camera';
@@ -82,7 +82,7 @@ The figure below shows the recommended API call process.
 
 ![](figures/quick-thumbnail-sequence-diagram.png)
 
-For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
@@ -147,7 +147,7 @@ The figure below shows the recommended API call process.
 
 ![](figures/prelaunch-sequence-diagram.png)
 
-For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
 
 - **Home screen**
 
@@ -171,7 +171,7 @@ For details about how to obtain the BaseContext, see [BaseContext](../reference/
 
   To use the prelaunch feature, the camera application must configure the **ohos.permission.CAMERA** permission.
 
-  For details about how to request and verify the permissions, see [Permission Application Guide](../security/accesstoken-guidelines.md).
+  For details about how to request and verify the permissions, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
   ```ts
   import camera from '@ohos.multimedia.camera';
@@ -200,3 +200,5 @@ For details about how to obtain the BaseContext, see [BaseContext](../reference/
     }
   }
   ```
+
+ <!--no_check--> 

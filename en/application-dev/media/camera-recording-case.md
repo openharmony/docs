@@ -1,6 +1,8 @@
 # Sample Implementation of Camera Recording (ArkTS)
 
-This topic provides sample code that covers the complete recording process and the API calling sequence. For details about a single process (such as device input, session management, and recording), see the corresponding ArkTS development guide links provided in [Camera Development Preparations](camera-preparation.md).
+This topic provides sample code that covers the complete recording process to help you understand the complete API calling sequence.
+
+Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Camera Recording](camera-recording.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
 
 ## Development Process
 
@@ -10,7 +12,8 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 
 ## Sample Code
-For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
@@ -27,8 +30,8 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // Listen for camera status changes.
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.log(`status: ${cameraStatusInfo.status}`);
+    console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.info(`status: ${cameraStatusInfo.status}`);
   });
 
   // Obtain the camera list.
@@ -51,7 +54,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     console.error("cameraManager.getSupportedOutputCapability error")
     return;
   }
-  console.log("outputCapability: " + JSON.stringify(cameraOutputCap));
+  console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 
   let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
   if (!previewProfilesArray) {
@@ -137,7 +140,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // Listen for video output errors.
   videoOutput.on('error', (error: BusinessError) => {
-    console.log(`Preview output error code: ${error.code}`);
+    console.info(`Preview output error code: ${error.code}`);
   });
 
   // Create a session.
@@ -153,7 +156,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // Listen for session errors.
   captureSession.on('error', (error: BusinessError) => {
-    console.log(`Capture session error code: ${error.code}`);
+    console.info(`Capture session error code: ${error.code}`);
   });
 
   // Start configuration for the session.
@@ -178,7 +181,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   // Listen for camera input errors.
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.log(`Camera input error code: ${error.code}`);
+    console.info(`Camera input error code: ${error.code}`);
   });
 
   // Open the camera.
@@ -247,7 +250,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
       console.error(`Failed to start the video output. error: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output start success.');
+    console.info('Callback invoked to indicate the video output start success.');
   });
 
   // Start video recording.
@@ -264,7 +267,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
       console.error(`Failed to stop the video output. error: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output stop success.');
+    console.info('Callback invoked to indicate the video output stop success.');
   });
 
   // Stop video recording.
