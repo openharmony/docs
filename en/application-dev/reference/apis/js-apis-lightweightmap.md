@@ -132,7 +132,7 @@ let result = lightWeightMap.hasAll(map);
 
 ### hasKey
 
-hasKey(key: K): boolean;
+hasKey(key: K): boolean
 
 Checks whether this container contains the specified key.
 
@@ -203,7 +203,6 @@ lightWeightMap.set("squirrel", 123);
 let result = lightWeightMap.hasValue(123);
 ```
 
-
 ### increaseCapacityTo
 
 increaseCapacityTo(minimumCapacity: number): void
@@ -211,6 +210,12 @@ increaseCapacityTo(minimumCapacity: number): void
 Increases the capacity of this container.
 
 **System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| minimumCapacity | number | Yes| Minimum number of elements to accommodate in this container.|
 
 **Error codes**
 
@@ -220,19 +225,12 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | -------- | -------- |
 | 10200011 | The increaseCapacityTo method cannot be bound. |
 
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| minimumCapacity | number | Yes| Minimum number of elements to accommodate in this container.|
-
 **Example**
 
 ```ts
 let lightWeightMap: LightWeightMap<string, number> = new LightWeightMap();
 lightWeightMap.increaseCapacityTo(10);
 ```
-
 
 ### get
 
@@ -423,7 +421,7 @@ map.setAll(lightWeightMap); // Add all elements in lightWeightMap to the map.
 ### set
 set(key: K, value: V): Object
 
-Adds an element to this container.
+Adds or updates an element in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
