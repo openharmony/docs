@@ -337,6 +337,7 @@ The code snippet below shows the synchronous call that returns the InsightIntent
   ```ts
   import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
   import insightIntent from '@ohos.app.ability.insightIntent';
+  import hilog from '@ohos.hilog';
 
   export default class IntentExecutorImpl extends IntentExecutor {
     onExecuteInServiceExtensionAbility(name: string, param: Record<string, Object>): insightIntent.ExecuteResult {
@@ -368,6 +369,7 @@ The code snippet below shows the promise-based asynchronous call that returns th
   ```ts
   import IntentExecutor from '@ohos.app.ability.InsightIntentExecutor';
   import insightIntent from '@ohos.app.ability.insightIntent';
+  import hilog from '@ohos.hilog';
 
   async function executeInsightIntent(param: Record<string, Object>): Promise<insightIntent.ExecuteResult> {
     return new Promise((resolve, reject) => {

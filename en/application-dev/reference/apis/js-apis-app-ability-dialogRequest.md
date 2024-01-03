@@ -328,7 +328,7 @@ Enumerates the result codes of the request for the modal dialog box.
 ## RequestResult
 Defines the result of the request for the modal dialog box. It contains **ResultCode** and **ResultWant**.
 
-## Attributes
+### Attributes
 
 **Model restriction**: This API can be used only in the stage model.
 
