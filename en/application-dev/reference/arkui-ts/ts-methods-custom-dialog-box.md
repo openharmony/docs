@@ -13,18 +13,26 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 
 CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number})
 
+> **NOTE**
+>
+> No parameters of the custom dialog box can be dynamically updated.
 
 **Parameters**
 
 | Name                          | Type                                    | Mandatory  | Description                                    |
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | builder                       | CustomDialog                             | Yes   | Builder of the custom dialog box content.                             |
-| cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the overlay exits.                            |
-| autoCancel                    | boolean                                  | No   | Whether to allow users to click the overlay to exit.<br>Default value: **true**                |
+| cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the Back key, the ESC key, or the mask is clicked.|
+| autoCancel                    | boolean                                  | No   | Whether to allow users to click the mask to exit.<br>Default value: **true**                |
 | alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset                        | [Offset](ts-types.md#offset)             | No   | Offset of the dialog box relative to the alignment position.                  |
-| customStyle                   | boolean                                  | No   | Whether to use a custom style for the dialog box.<br>Default value: **false**, which means that the dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.|
+| customStyle                   | boolean                                  | No   | Whether to use a custom style for the dialog box.<br>**false** (default): The dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.<br>**true**: The dialog box automatically adapts its width to the child components; the rounded corner is 0; the background color is transparent.|
 | gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is subject to the window size, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
+
+> **NOTE**
+>
+> - Pressing the Back or ESC key closes the dialog box.
+> - Use the custom dialog box to contain simple information only. Do not use it as a page. If the dialog box's height is too large, it may be partly blocked by the soft keyboard (if any), which is automatically raised when displayed.
 
 ## CustomDialogController
 
@@ -35,7 +43,7 @@ dialogController : CustomDialogController = new CustomDialogController(value:{bu
 ```
 > **NOTE**
 >
-> **CustomDialogController** is valid only when it is a member variable of the **@CustomDialog** and **@Component** decorated struct and is defined in the **@Component** decorated struct. For details, see the following example.
+> **CustomDialogController** is effective only when it is a member variable of the **@CustomDialog** and **@Component** decorated struct and is defined in the **@Component** decorated struct. For details, see the following example.
 
 ### open()
 open(): void
@@ -71,9 +79,9 @@ struct CustomDialogExample {
         .onChange((value: string) => {
           this.textValue = value
         })
-      Text('Whether to change a text?').fontSize(16).margin({ bottom: 10 })
+      Text('Are you sure you want to change text?').fontSize(16).margin({ bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Button('cancel')
+        Button('No')
           .onClick(() => {
             this.controller.close()
             this.cancel()
@@ -123,7 +131,7 @@ struct CustomDialogUser {
     console.info('Callback when the second button is clicked')
   }
 
-  existApp() {
+  exitApp() {
     console.info('Click the callback in the blank area')
   }
 

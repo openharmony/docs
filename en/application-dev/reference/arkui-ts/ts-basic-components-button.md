@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name        | Type      | Mandatory       | Description                             |
 | ----------- | ---------- | ------| --------------------------------- |
-| type        | ButtonType | No   | Button type.<br>Default value: **ButtonType.Capsule**                          |
+| type        | [ButtonType](#buttontype) | No   | Button type.<br>Default value: **ButtonType.Capsule**                          |
 | stateEffect | boolean    | No   | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is aaplied based on the state style.|
 
 **API 2:** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
@@ -44,7 +44,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name         | Type          | Description                               |
 | ----------- | ----------- | --------------------------------- |
-| type        | ButtonType  | Button type.<br>Default value: **ButtonType.Capsule**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| type        | [ButtonType](#buttontype)  | Button type.<br>Default value: **ButtonType.Capsule**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | stateEffect | boolean     | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## ButtonType

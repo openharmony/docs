@@ -39,7 +39,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 | OutSet | The slider is on the slider track.|
 | InSet | The slider is in the slider track.|
 
-Except touch target attributes, the universal attributes are supported.
+## Attributes
+
+All the [universal attributes](ts-universal-attributes-size.md) except **responseRegion** are supported 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |

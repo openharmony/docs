@@ -45,6 +45,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 >  **NOTE**
 >
 >  The **\<Text>** component cannot contain both the text and the child component **\<Span>**. If both of them exist, only the content in **\<Span>** is displayed.
+>
+>  For the **\<Text>** component, the default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true**, which means that the content outside of the component's content area is clipped. To display the content in full, set **clip** to **false**.
 
 ## Events
 
