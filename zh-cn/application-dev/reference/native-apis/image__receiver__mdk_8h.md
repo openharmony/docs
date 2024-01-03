@@ -5,13 +5,9 @@
 
 声明从native层获取图片数据的方法。
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总
@@ -36,7 +32,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Image_Receiver_CreateImageReceiver](image.md#oh_image_receiver_createimagereceiver) (napi_env env, struct [OhosImageReceiverInfo](_ohos_image_receiver_info.md) info, napi_value \*res) | 创建应用层 **ImageReceiver** 对象。 | 
+| [OH_Image_Receiver_CreateImageReceiver](image.md#oh_image_receiver_createimagereceiver) (napi_env env, struct [OhosImageReceiverInfo](_ohos_image_receiver_info.md) info, napi_value \*res) | 创建应用层**ImageReceiver**对象。 | 
 | [OH_Image_Receiver_InitImageReceiverNative](image.md#oh_image_receiver_initimagereceivernative) (napi_env env, napi_value source) | 通过应用层**ImageReceiver**对象初始化native层[ImageReceiverNative](image.md#imagereceivernative)对象。 | 
 | [OH_Image_Receiver_GetReceivingSurfaceId](image.md#oh_image_receiver_getreceivingsurfaceid) (const [ImageReceiverNative](image.md#imagereceivernative) \*native, char \*id, size_t len) | 通过[ImageReceiverNative](image.md#imagereceivernative)获取receiver的id。 | 
 | [OH_Image_Receiver_ReadLatestImage](image.md#oh_image_receiver_readlatestimage) (const [ImageReceiverNative](image.md#imagereceivernative) \*native, napi_value \*image) | 通过[ImageReceiverNative](image.md#imagereceivernative)获取最新的一张图片。 | 

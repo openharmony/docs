@@ -67,10 +67,13 @@ export default class DemoProcess extends ChildProcess {
     console.log("DemoProcess OnStart() called");
   }
 }
+```
 
+```ts
 // 使用childProcessManager.startChildProcess方法启动子进程:
 import childProcessManager from '@ohos.app.ability.childProcessManager';
 import DemoProcess from '../process/DemoProcess';
+import { BusinessError } from '@ohos.base';
 
 try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
@@ -81,7 +84,7 @@ try {
       console.error(`startChildProcess error, errorCode: ${err.code}`);
     })
 } catch (err) {
-  console.error(`startChildProcess error, errorCode: ${err.code}`);
+  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
 }
 ```
 
@@ -122,10 +125,13 @@ export default class DemoProcess extends ChildProcess {
     console.log("DemoProcess OnStart() called");
   }
 }
+```
 
+```ts
 // 使用childProcessManager.startChildProcess方法启动子进程:
 import childProcessManager from '@ohos.app.ability.childProcessManager';
 import DemoProcess from '../process/DemoProcess';
+import { BusinessError } from '@ohos.base';
 
 try {
   DemoProcess.toString(); // 这里要调用下DemoProcess类的任意方法，防止没有引用到而被构建工具优化掉
@@ -137,6 +143,6 @@ try {
     }
   });
 } catch (err) {
-  console.error(`startChildProcess error, errorCode: ${err.code}`);
+  console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
 }
 ```

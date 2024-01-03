@@ -26,3 +26,20 @@ Run the **ps -ef** command to check whether the service is running.
 
 1. If the service is not running, restart the system.
 2. If the service is running, close the service process and wait for automatic recovery. If the issue persists, perform step 1.
+
+**Error Message**
+
+illegal use.
+
+**Description**
+
+This error code is reported when the API is not called by the application in focus.
+
+**Possible Causes**
+
+The **unlock()** API is called by an application not in focus.
+
+
+**Solution**
+
+Check whether the application that calls **unlock()** is in focus.

@@ -46,6 +46,7 @@ import window from '@ohos.window';
 | TYPE_SCREENSHOT<sup>9+</sup>        | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                          |
 | TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | 表示顶层提示窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
 | TYPE_DIVIDER<sup>11+</sup>          | 19      | 表示分屏条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                 |
+| TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | 表示全局搜索窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。                        |
 ## Configuration<sup>9+</sup>
 
 创建子窗口或系统窗口时的参数。
@@ -230,6 +231,7 @@ import window from '@ohos.window';
 | 名称                                  | 类型                  | 可读 | 可写 | 说明                                                                                                     |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
 | windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                                                                  |
+| drawableRect<sup>11+</sup>            | [Rect](#rect7)             | 是   | 是   | 窗口内可绘制区域尺寸，其中左边界上边界是相对窗口计算。                                                                                                  |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
 | isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。                                                                     |
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。                                                               |
@@ -338,6 +340,19 @@ import window from '@ohos.window';
 | MINIMIZE    | 3    | 表示APP窗口最小化模式。   |
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
+
+##  TitleButtonRect<sup>11+</sup>
+
+标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 可读 | 可写 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| right  | number | 是   | 是   | 矩形区域的右边界，单位为vp，该参数为整数。 |
+| top    | number | 是   | 是   | 矩形区域的上边界，单位为vp，该参数为整数。 |
+| width  | number | 是   | 是   | 矩形区域的宽度，单位为vp，该参数为整数。   |
+| height | number | 是   | 是   | 矩形区域的高度，单位为vp，该参数为整数。   |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -488,7 +503,7 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最后显示的窗口，使用callback异步回调。
+获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -511,25 +526,29 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-try {
-  class BaseContext {
-      stageMode: boolean = false;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      window.getLastWindow(this.context, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
     }
-    let context: BaseContext = { stageMode: false };
-  window.getLastWindow(context, (err: BusinessError, data) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-      return;
-    }
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+  }
 }
 ```
 
@@ -537,7 +556,7 @@ try {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-获取当前应用内最后显示的窗口，使用Promise异步回调。
+获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -565,23 +584,27 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-class BaseContext {
-  stageMode: boolean = false;
-}
-let context: BaseContext = { stageMode: false };
-try {
-  let promise = window.getLastWindow(context);
-  promise.then((data) => {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      let promise = window.getLastWindow(this.context);
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+  }
 }
 ```
 
@@ -1263,6 +1286,55 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 }).catch((err: BusinessError) => {
   console.error('Failed to create PixelMap. Cause: ' + JSON.stringify(err));
 });
+```
+
+## window.shiftAppWindowFocus<sup>11+</sup>
+shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
+
+在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗和子窗的焦点转移。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                    |
+| -------------- | ------ | ----- | ----------------------- |
+| sourceWindowId | number | 是    | 源窗口id，必须是获焦状态。|
+| targetWindowId | number | 是    | 目标窗口id。             |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| ------- | --------------------------------------------- |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let sourceWindowId: number = 40;
+  let targetWindowId: number = 41;
+  let promise = window.shiftAppWindowFocus(sourceWindowId, targetWindowId);
+  promise.then(() => {
+    console.info('Succeeded in shifting app window focus');
+  }).catch((err: BusinessError) => {
+    console.error('Failed to shift app window focus. Cause:' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to shift app window focus. Cause:' + JSON.stringify(exception));
+}
 ```
 
 ## window.create<sup>(deprecated)</sup>
@@ -3957,6 +4029,76 @@ try {
 }
 ```
 
+### on('windowTitleButtonRectChange')<sup>11+</sup>
+
+on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
+
+开启标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏上的最小化、最大化、关闭按钮矩形区域变化事件。 |
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
+      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowTitleButtonRectChange')<sup>11+</sup>
+
+off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
+
+关闭标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏上的最小化、最大化、关闭按钮矩形区域变化事件。 |
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowTitleButtonRectChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### bindDialogTarget<sup>9+</sup>
 
 bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -6262,6 +6404,43 @@ promise.then(() => {
 });
 ```
 
+### recover<sup>11+</sup>
+
+recover(): Promise&lt;void&gt;
+
+将主窗口从全屏、最大化、分屏模式下还原为浮动窗口，并恢复到进入该模式之前的大小和位置，已经是浮动窗口模式不可再还原。使用Promise异步回调。此接口仅在部分设备类型下生效。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+let windowClass: window.Window = window.findWindow("test");
+let promise = windowClass.recover();
+promise.then(() => {
+  console.info('Succeeded in recovering the window.');
+}).catch((err: BusinessError) => {
+  console.error('Failed to recover the window. Cause: ' + JSON.stringify(err));
+});
+```
+
 ### setResizeByDragEnabled<sup>10+</sup>
 
 setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
@@ -6706,6 +6885,169 @@ try {
   windowClass.keepKeyboardOnFocus(true);
 } catch (exception) {
   console.error('Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  setWindowDecorVisible<sup>11+</sup>
+
+setWindowDecorVisible(isVisible: boolean): void
+
+主窗口设置标题栏是否可见。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isVisible | boolean | 是   | 设置标题栏是否可见，true为可见，false为隐藏。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation.        |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 为主窗口加载对应的目标页面。
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // 获取应用主窗口。
+      let mainWindow: window.Window = window.findWindow("test");
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        mainWindow = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+        let isVisible = false;
+        // 调用setWindowDecorVisible接口
+        try {
+            mainWindow.setWindowDecorVisible(isVisible);
+        } catch (exception) {
+            console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
+        }
+      })
+    });
+  }
+};
+```
+
+###  setWindowDecorHeight<sup>11+</sup>
+
+setWindowDecorHeight(height: number): void
+
+设置窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let height: number = 50;
+let windowClass: window.Window = window.findWindow("test");
+try {
+  windowClass.setWindowDecorHeight(height);
+} catch (exception) {
+  console.error('Failed to set the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getWindowDecorHeight<sup>11+</sup>
+
+getWindowDecorHeight(): number
+
+获取窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let height = windowClass.getWindowDecorHeight();
+} catch (exception) {
+  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getTitleButtonRect<sup>11+</sup>
+
+getTitleButtonRect(): TitleButtonRect
+
+获取标题栏上的最小化、最大化、关闭按钮矩形区域。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| [TitleButtonRect](#titlebuttonrect11) | 标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let titleButtonArea = windowClass.getTitleButtonRect();
+  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
+} catch (exception) {
+  console.error('Failed to get the area of title buttons. Cause: ' + JSON.stringify(exception));
 }
 ```
 

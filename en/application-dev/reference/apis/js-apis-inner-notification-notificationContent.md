@@ -18,7 +18,7 @@ The **NotificationContent** module provides APIs for defining the notification c
 | longText       | [NotificationLongTextContent](#notificationlongtextcontent)                | No | No | Long text.|
 | multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | No | No | Multi-line text.  |
 | picture        | [NotificationPictureContent](#notificationpicturecontent)                  | No | No | Picture-attached.  |
-| systemLiveView | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent11)    | No | No | Live view (for system applications only).|
+| systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | No | No | Live view (for system applications only).|
 
 ## NotificationBasicContent
 
@@ -81,22 +81,22 @@ Describes the picture-attached notification.
 | picture        | [image.PixelMap](js-apis-image.md#pixelmap7) |  No | Yes | Picture attached to the notification. The maximum size is 2 MB.|
 
 
-## NotificationSystemLiveViewContent<sup>11+</sup>
+## NotificationSystemLiveViewContent
 
 Describes the live view notification. This API is available for system applications only.
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name          | Type                                            | Read-only| Mandatory| Description                              |
-| -------------- | ----------------------------------------------- | --- | --- | -----------------------------------|
-| title          | string                                          | No | Yes | Notification title. It cannot be an empty string.         |
-| text           | string                                          | No | Yes | Notification content. It cannot be an empty string.         |
-| additionalText | string                                          | No | No | Additional information of the notification.    |
-| typeCode       | number                                          | No | Yes | Type code, which identifies the type of the service that invokes the API.      |
-| capsule        | [NotificationCapsule](#notificationcapsule11)   | No | No | Capsule of the notification.                    |
-| button         | [NotificationButton](#notificationbutton11)     | No | No | Button in the notification.                    |
-| time           | [NotificationTime](#notificationtime11)         | No | No | Time of the notification.                    |
-| progress       | [NotificationProgress](#notificationprogress11) | No | No | Progress of the notification.                    |
+| Name                        | Type                                            | Read-only| Mandatory| Description                              |
+| ---------------------------- | ----------------------------------------------- | --- | --- | -----------------------------------|
+| title                        | string                                          | No | Yes | Notification title. It cannot be an empty string.         |
+| text                         | string                                          | No | Yes | Notification content. It cannot be an empty string.         |
+| additionalText               | string                                          | No | No | Additional information of the notification.    |
+| typeCode<sup>11+</sup>       | number                                          | No | Yes | Type code, which identifies the type of the service that invokes the API.      |
+| capsule<sup>11+</sup>        | [NotificationCapsule](#notificationcapsule11)   | No | No | Capsule of the notification.                    |
+| button<sup>11+</sup>         | [NotificationButton](#notificationbutton11)     | No | No | Button in the notification.                    |
+| time<sup>11+</sup>           | [NotificationTime](#notificationtime11)         | No | No | Time of the notification.                    |
+| progress<sup>11+</sup>       | [NotificationProgress](#notificationprogress11) | No | No | Progress of the notification.                    |
 
 
 ## NotificationCapsule<sup>11+</sup>

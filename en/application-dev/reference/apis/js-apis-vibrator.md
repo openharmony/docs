@@ -25,11 +25,11 @@ Starts vibration with the specified effect and attribute. This API uses an async
 
 **Parameters**
 
-| Name   | Type                                  | Mandatory| Description                                                      |
-| --------- | -------------------------------------- | ---- | :--------------------------------------------------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.                   |
-| attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.                                            |
-| callback  | AsyncCallback&lt;void&gt;              | Yes  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.|
+| Name   | Type                                               | Mandatory| Description                                                        |
+| --------- | --------------------------------------------------- | ---- | :----------------------------------------------------------- |
+| effect    | [VibrateEffect](#vibrateeffect9)<sup>9+</sup>       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
+| attribute | [VibrateAttribute](#vibrateattribute9)<sup>9+</sup> | Yes  | Vibration attribute.                                              |
+| callback  | AsyncCallback&lt;void&gt;                           | Yes  | Callback used to return the result. If the vibration starts, **err** is **undefined**; otherwise, **err** is an error object.  |
 
 **Error codes**
 
@@ -139,10 +139,10 @@ Starts vibration with the specified effect and attribute. This API uses a promis
 
 **Parameters**
 
-| Name   | Type                                  | Mandatory| Description          |
-| --------- | -------------------------------------- | ---- | -------------- |
-| effect    | [VibrateEffect](#vibrateeffect9)       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
-| attribute | [VibrateAttribute](#vibrateattribute9) | Yes  | Vibration attribute.|
+| Name   | Type                                               | Mandatory| Description                                                        |
+| --------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| effect    | [VibrateEffect](#vibrateeffect9)<sup>9+</sup>       | Yes  | Vibration effect. The options are as follows:<br>- [VibrateTime](#vibratetime9): vibration with the specified duration.<br>- [VibratePreset](#vibratepreset9): vibration with a preset effect.<br>- [VibrateFromFile](#vibratefromfile10): vibration according to a custom vibration configuration file.|
+| attribute | [VibrateAttribute](#vibrateattribute9)<sup>9+</sup> | Yes  | Vibration attribute.                                              |
 
 **Return value**
 
@@ -254,12 +254,12 @@ Stops vibration in the specified mode. This API uses an asynchronous callback to
 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration. The options are as follows:<br>- **VIBRATOR_STOP_MODE_TIME**: used to stop vibration with a fixed duration.<br>- **VIBRATOR_STOP_MODE_PRESET**: used to stop preset vibration.<br>To stop custom vibration, use [vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10).                               |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration. The options are as follows:<br>- **VIBRATOR_STOP_MODE_TIME**: used to stop fixed-duration vibration.<br>- **VIBRATOR_STOP_MODE_PRESET**: used to stop preset vibration.<br>To stop custom vibration, use [vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10).                                 |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback used to return the result. If the vibration stops, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
-Stop vibration with a fixed duration.
+Stop fixed-duration vibration.
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -356,7 +356,7 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 
 | Name  | Type                                 | Mandatory| Description                    |
 | -------- | ------------------------------------- | ---- | ------------------------ |
-| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration. The options are as follows:<br>- **VIBRATOR_STOP_MODE_TIME**: used to stop vibration with a fixed duration.<br>- **VIBRATOR_STOP_MODE_PRESET**: used to stop preset vibration.<br>To stop custom vibration, use [vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10-1). |
+| stopMode | [VibratorStopMode](#vibratorstopmode) | Yes  | Mode to stop the vibration. The options are as follows:<br>- **VIBRATOR_STOP_MODE_TIME**: used to stop fixed-duration vibration.<br>- **VIBRATOR_STOP_MODE_PRESET**: used to stop preset vibration.<br>To stop custom vibration, use [vibrator.stopVibration<sup>10+</sup>](#vibratorstopvibration10-1).|
 
 **Return value**
 
@@ -366,7 +366,7 @@ Stops vibration in the specified mode. This API uses a promise to return the res
 
 **Example**
 
-Stop vibration with a fixed duration.
+Stop fixed-duration vibration.
 
 ```ts
 import vibrator from '@ohos.vibrator';
@@ -517,7 +517,7 @@ try {
 
 isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the passed effect ID is supported. This API uses an asynchronous callback to return the result.
+Checks whether an effect ID is supported. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -526,7 +526,7 @@ Checks whether the passed effect ID is supported. This API uses an asynchronous 
 | Name  | Type                        | Mandatory| Description                                                  |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | effectId | string                       | Yes  | Vibration effect ID.                                          |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the effect ID is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -574,7 +574,7 @@ try {
 
 isSupportEffect(effectId: string): Promise&lt;boolean&gt;
 
-Checks whether the passed effect ID is supported. This API uses a promise to return the result.
+Checks whether an effect ID is supported. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -582,13 +582,13 @@ Checks whether the passed effect ID is supported. This API uses a promise to ret
 
 | Name  | Type  | Mandatory| Description        |
 | -------- | ------ | ---- | ------------ |
-| effectId | string | Yes  | Describes the preset vibration effect ID.|
+| effectId | string | Yes  | Vibration effect ID.|
 
 **Return value**
 
 | Type                  | Description                                                     |
 | ---------------------- | --------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the effect ID is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -629,13 +629,13 @@ try {
 
 ## EffectId
 
-Describes the preset vibration effect ID.
+Enumerates the preset vibration effect IDs.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
 | Name              | Value                  | Description                            |
 | ------------------ | -------------------- | -------------------------------- |
-| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect of the vibrator when a user adjusts the timer.|
+| EFFECT_CLOCK_TIMER | "haptic.clock.timer" | Vibration effect when a user adjusts the timer.|
 
 
 ## VibratorStopMode
@@ -657,13 +657,13 @@ Describes the vibration effect.
 
 | Type                            | Description                          |
 | -------------------------------- | ------------------------------ |
-| [VibrateTime](#vibratetime9)     | Vibration with the specified duration.|
-| [VibratePreset](#vibratepreset9) | Vibration with a preset effect.|
-| [VibrateFromFile<sup>10+</sup>](#vibratefromfile10) | Vibration according to a custom vibration configuration file.|
+| [VibrateTime](#vibratetime9)<sup>9+</sup> | Vibration with the specified duration.|
+| [VibratePreset](#vibratepreset9)<sup>9+</sup> | Vibration with a preset effect.|
+| [VibrateFromFile](#vibratefromfile10)<sup>10+</sup> | Vibration according to a custom vibration configuration file.|
 
 ## VibrateTime<sup>9+</sup>
 
-Describes the vibration with a fixed duration.
+Describes the fixed-duration vibration.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -674,7 +674,7 @@ Describes the vibration with a fixed duration.
 
 ## VibratePreset<sup>9+</sup>
 
-Describes the vibration with a preset effect.
+Describes the preset vibration.
 
 **System capability**: SystemCapability.Sensors.MiscDevice
 
@@ -693,7 +693,7 @@ Describes the custom vibration type, which is supported only by certain devices.
 | Name    | Type      | Mandatory| Description                          |
 | -------- | --------  | ---- | ------------------------------ |
 | type     | string    |  Yes | The value **file** means vibration according to a vibration configuration file.|
-| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10) | Yes| File descriptor (FD) of the vibration configuration file.|
+| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10)<sup>10+</sup> | Yes| File descriptor (FD) of the vibration configuration file.|
 
 ## HapticFileDescriptor<sup>10+</sup>
 
@@ -716,7 +716,7 @@ Describes the vibration attribute.
 | Name | Type| Mandatory| Description          |
 | ----- | ------ | ---- | -------------- |
 | id    | number      |  No| Vibrator ID. The default value is **0**.   |
-| usage | [Usage](#usage9)      | Yes| Vibration scenario.|
+| usage | [Usage](#usage9)<sup>9+</sup> | Yes| Vibration scenario.|
 
 ## Usage<sup>9+</sup>
 
@@ -742,7 +742,7 @@ vibrate(duration: number): Promise&lt;void&gt;
 
 Triggers vibration with the specified duration. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9-1) instead.
+This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9-1)<sup>9+</sup> instead.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -779,7 +779,7 @@ vibrate(duration: number, callback?: AsyncCallback&lt;void&gt;): void
 
 Triggers vibration with the specified duration. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9) instead.
+This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9)<sup>9+</sup> instead.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -814,7 +814,7 @@ vibrate(effectId: EffectId): Promise&lt;void&gt;
 
 Triggers vibration with the specified effect. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9-1) instead.
+This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9-1)<sup>9+</sup> instead.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -852,7 +852,7 @@ vibrate(effectId: EffectId, callback?: AsyncCallback&lt;void&gt;): void
 
 Triggers vibration with the specified effect. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9) instead.
+This API is deprecated since API version 9. You are advised to use [vibrator.startVibration](#vibratorstartvibration9)<sup>9+</sup> instead.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -886,7 +886,7 @@ stop(stopMode: VibratorStopMode): Promise&lt;void&gt;
 
 Stops vibration in the specified mode. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [vibrator.stopVibration](#vibratorstopvibration9-1) instead.
+This API is deprecated since API version 9. You are advised to use [vibrator.stopVibration](#vibratorstopvibration9-1)<sup>9+</sup> instead.
 
 **Required permissions**: ohos.permission.VIBRATE
 
@@ -933,7 +933,7 @@ stop(stopMode: VibratorStopMode, callback?: AsyncCallback&lt;void&gt;): void
 
 Stops vibration in the specified mode. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [vibrator.stopVibration](#vibratorstopvibration9) instead.
+This API is deprecated since API version 9. You are advised to use [vibrator.stopVibration](#vibratorstopvibration9)<sup>9+</sup> instead.
 
 **Required permissions**: ohos.permission.VIBRATE
 

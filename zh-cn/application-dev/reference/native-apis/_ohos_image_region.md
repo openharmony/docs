@@ -5,15 +5,11 @@
 
 定义图像源解码的范围选项。 [OhosImageDecodingOps](_ohos_image_decoding_ops.md), [OH_ImageSource_CreatePixelMap](image.md#oh_imagesource_createpixelmap) and [OH_ImageSource_CreatePixelMapList](image.md#oh_imagesource_createpixelmaplist).
 
-\@Syscap SystemCapability.Multimedia.Image
+**系统能力：** SystemCapability.Multimedia.Image
 
-**起始版本：**
+**起始版本：** 10
 
-10
-
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总

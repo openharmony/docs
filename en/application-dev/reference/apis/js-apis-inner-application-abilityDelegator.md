@@ -1,6 +1,6 @@
 # AbilityDelegator
 
-The **AbilityDelegator** module provides APIs for managing **AbilityMonitor** instances that are used to monitor the lifecycle state changes of a specified ability. You can use the APIs to add and remove **AbilityMonitor** instances, wait for an ability to reach the **onCreate** lifecycle state, set the waiting time, obtain the lifecycle state of an ability, obtain the top ability of the current application, and start an ability.
+The **AbilityDelegator** module provides APIs for managing [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) instances that are used to monitor the lifecycle state changes of a specified ability. You can use the APIs to add and remove **AbilityMonitor** instances, wait for an ability to reach the **onCreate** lifecycle state, set the waiting time, obtain the lifecycle state of an ability, obtain the top ability of the current application, and start an ability.
 
 > **NOTE**
 > 
@@ -1546,7 +1546,7 @@ abilityDelegator.waitAbilityStageMonitor({
 
 ### setMockList<sup>11+</sup>
 
-setMockList(mockList: { [key: string]: string }): void
+setMockList(mockList: Record\<string, string>): void
 
 Sets a list of mock data.
 
@@ -1556,7 +1556,7 @@ Sets a list of mock data.
 
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| mockList | { [key: string]: string } | Yes  | Key-value object of the mock, where **key** is the target path to be replaced and **value** is the path of the mock implementation to be used for the replacement.|
+| mockList | Record\<string, string> | Yes  | Key-value object of the mock, where **key** is the target path to be replaced and **value** is the path of the mock implementation to be used for the replacement.|
 
 **Error codes**
 

@@ -9,7 +9,7 @@ What the internal state is depends on the component. For example, for the [\<Tex
 
 ## Rules of Use
 
-- $$ supports variables of simple types and variables decorated by **\@State**, **\@Link**, or **\@Prop**.
+- $$ supports variables of simple types and variables decorated by \@State, \@Link, or \@Prop.
 
 - $$ supports the components listed below.
 

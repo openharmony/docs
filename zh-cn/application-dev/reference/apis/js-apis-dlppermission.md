@@ -1453,7 +1453,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -1523,7 +1523,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -1596,7 +1596,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -1666,7 +1666,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -1740,7 +1740,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -1811,7 +1811,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -1893,7 +1893,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -1966,7 +1966,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2049,7 +2049,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2120,7 +2120,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2207,7 +2207,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2285,7 +2285,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2363,7 +2363,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2434,7 +2434,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2670,7 +2670,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2748,7 +2748,7 @@ try{
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {

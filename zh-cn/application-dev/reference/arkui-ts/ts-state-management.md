@@ -294,7 +294,7 @@ static clear(): boolean
 
 清除AppStorage的所有的属性。在AppStorage中清除所有属性的前提是，已经没有任何订阅者。如果有，则什么都不做返回false；删除成功返回true。
 
-订阅者的含义和参考[Delete](#delete)。
+订阅者的含义和参考[delete](#delete10)。
 
 **返回值：**
 
@@ -1025,7 +1025,7 @@ let res2: boolean = storage.delete('PropB'); // true, PropB is deleted from stor
 
 keys(): IterableIterator&lt;string&gt;
 
-返回AppStorage中所有的属性名。
+返回LocalStorage中所有的属性名。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 

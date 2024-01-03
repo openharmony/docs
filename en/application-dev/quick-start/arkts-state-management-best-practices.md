@@ -7,7 +7,7 @@ This guide outlines best practices for state management in ArkUI applications. R
 
 When you need to pass values between parent and child components, choosing the right decorator can significantly improve application performance. If the value of a state variable is not changed in the child component, using @Prop to decorate the state variable will mean more time required in component creation.
 
-[Incorrect Example]
+[Nonexample]
 
 ```ts
 @Observed
@@ -49,7 +49,7 @@ struct Parent {
 
 In the preceding example, the **PropChild** component does not change the value of **\@Prop testNum: ClassA**. Therefore, \@ObjectLink is a better choice, because \@Prop makes a deep copy and increases performance overhead.
 
-[Correct Example]
+[Example]
 
 ```ts
 @Observed
@@ -92,7 +92,7 @@ struct Parent {
 
 ## Avoiding Forcibly Updating Unassociated Components Through State Variables
 
-[Incorrect Example]
+[Nonexample]
 
 
 ```ts
@@ -147,7 +147,7 @@ The preceding example has the following pitfalls:
 
 - However, in this application, an attempt is made to update these two regular variables through **this.needsUpdate**. This approach is nonviable and may result in poor re-render performance: The change of **this.needsUpdate** will cause **ForEach** to re-render, even if the original intent is to update only the background color.
 
-[Correct Example]
+[Example]
 
 To address this issue, decorate the **realState1** and **realState2** variables with \@State. Then, the variable **needsUpdate** is no longer required.
 
@@ -184,7 +184,7 @@ struct CompA {
 
 When components are associated with state variables, they are re-rendered when the state value changes. The more components associated, the more components re-rendered, and the heavier the UI thread load, which causes a drop in application performance. Things can get worse when the associated components are complex. Therefore, it is critical to precisely control the number of associated components. For example, instead of associating a state variable with multiple components at the same level, associating it with these components' parent can greatly reduce the number of components to be re-rendered, thereby improving UI responsiveness.
 
-[Incorrect Example]
+[Nonexample]
 
 ```ts
 @Observed
@@ -245,7 +245,7 @@ struct Page {
 
 In the preceding example, the state variable **this.translateObj.translateX** is used in multiple child components at the same level. When it changes, all these associated components are re-rendered. Since the changes of these components are the same, you can associate the state variable with their parent component to reduce the number of components re-rendered. Analysis reveals that all these child components are located in the **\<Column>** component under strcut **Page**. Therefore, you can associate the **translate** attribute to the **\<Column>** component instead.
 
-[Correct Example]
+[Example]
 
 ```ts
 @Observed

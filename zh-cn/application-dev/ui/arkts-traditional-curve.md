@@ -24,19 +24,12 @@ class MyCurve {
 }
 
 const myCurves: MyCurve[] = [
-  new MyCurve(' Linear', Curve.Linear, 0x409EFF),
-  new MyCurve(' Ease', Curve.Ease, 0x67C23A),
-  new MyCurve(' EaseIn', Curve.EaseIn, 0xE6A23C),
-  new MyCurve(' EaseOut', Curve.EaseOut, 0xF56C6C),
-  new MyCurve(' EaseInOut', Curve.EaseInOut, 0xFFB6C1),
-  new MyCurve(' FastOutSlowIn', Curve.FastOutSlowIn, 0xDC143C),
-  new MyCurve(' LinearOutSlowIn', Curve.LinearOutSlowIn, 0xFF00FF),
-  new MyCurve(' FastOutLinearIn', Curve.FastOutLinearIn, 0x00BFFF),
-  new MyCurve(' ExtremeDeceleration', Curve.ExtremeDeceleration, 0x5F9EA0),
-  new MyCurve(' Sharp', Curve.Sharp, 0x00FFFF),
-  new MyCurve(' Rhythm', Curve.Rhythm, 0x66CDAA),
-  new MyCurve(' Smooth', Curve.Smooth, 0x7CFC00),
-  new MyCurve(' Friction', Curve.Friction, 0xFFA500)
+  new MyCurve(' Linear', Curve.Linear, '#317AF7'),
+  new MyCurve(' Ease', Curve.Ease, '#D94838'),
+  new MyCurve(' EaseIn', Curve.EaseIn, '#DB6B42'),
+  new MyCurve(' EaseOut', Curve.EaseOut, '#5BA854'),
+  new MyCurve(' EaseInOut', Curve.EaseInOut, '#317AF7'),
+  new MyCurve(' FastOutSlowIn', Curve.FastOutSlowIn, '#D94838')
 ]
 
 @Entry
@@ -52,12 +45,12 @@ export struct CurveDemo {
           GridItem() {
             Column() {
               Row()
-                .width(20)
-                .height(20)
-                .borderRadius(10)
+                .width(30)
+                .height(30)
+                .borderRadius(15)
                 .backgroundColor(item.color)
               Text(item.title)
-                .fontSize(10)
+                .fontSize(15)
                 .fontColor(0x909399)
             }
             .width('100%')
@@ -68,7 +61,7 @@ export struct CurveDemo {
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
       .padding(10)
       .width('100%')
-      .height(300)
+      .height(300).margin({top:50})
 
       Stack() {
         // 摆动管道
@@ -76,7 +69,7 @@ export struct CurveDemo {
           .width(290)
           .height(290)
           .border({
-            width: 10,
+            width: 15,
             color: 0xE6E8EB,
             radius: 145
           })
@@ -85,9 +78,9 @@ export struct CurveDemo {
           // 小球
           Column() {
             Row()
-              .width(20)
-              .height(20)
-              .borderRadius(10)
+              .width(30)
+              .height(30)
+              .borderRadius(15)
               .backgroundColor(item.color)
           }
           .width(20)
@@ -97,7 +90,7 @@ export struct CurveDemo {
         })
       }
       .width('100%')
-      .height(437)
+      .height(200)
       .onClick(() => {
         this.dRotate ? null : this.dRotate = 360;
       })

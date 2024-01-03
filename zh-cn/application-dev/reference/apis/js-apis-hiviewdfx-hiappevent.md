@@ -42,7 +42,6 @@ addProcessor(processor: Processor): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
@@ -51,9 +50,9 @@ try {
     };
     let id: number = hiAppEvent.addProcessor(processor);
     hilog.info(0x0000, 'hiAppEvent', `addProcessor event was successful, id=${id}`);
-} catch (error: BusinessError) {
+} catch (error) {
     hilog.info(0x0000, 'hiAppEvent', `failed to addProcessor event, code=${error.code}`);
-} 
+}
 ```
 
 ## Processor<sup>11+</sup>
@@ -64,16 +63,16 @@ try {
 
 | 名称                | 类型                     | 必填 | 说明                                                                                                        |
 | ------------------- | ----------------------- | ---- | ---------------------------------------------------------------------------------------------------------- |
-| name                | string                  | 是   | 数据处理者的名称。                                                                                           |
-| debugMode           | boolean                 | 否   | 是否开启debug模式。配置值为true表示开启debug模式，false表示不开启debug模式。                                    |
-| routeInfo           | string                  | 否   | 服务器位置信息，不超过8kB。                                                                                   |
-| appId               | string                  | 否   | 应用id，长度不超过8KB。 |
-| onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                   |
-| onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件。配置值为true表示上报事件，false表示不上报事件。                                 |
-| periodReport        | number                  | 否   | 根据时间周期定时上报事件。单位为秒，数值不小于0，如果为0则不上报。                                                |
-| batchReport         | number                  | 否   | 当事件条数达到数量阈值时上报事件。阈值的数值范围为大于0且小于1000。不在数值范围内则不上报。                         |
-| userIds             | string[]                | 否   | 数据处理者可以上报的用户ID的name数组。name值只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。    |
-| userProperties      | string[]                | 否   | 数据处理者可以上报的用户属性的name数组。name值只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。   |
+| name                | string                  | 是   | 数据处理者的名称。名称只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。                                                                                           |
+| debugMode           | boolean                 | 否   | 是否开启debug模式，默认值为false。配置值为true表示开启debug模式，false表示不开启debug模式。                                    |
+| routeInfo           | string                  | 否   | 服务器位置信息，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。                                                                                   |
+| appId               | string                  | 否   | 应用id，默认为空字符串。传入字符串长度不能超过8KB，超过时会被置为默认值。 |
+| onStartReport       | boolean                 | 否   | 数据处理者在启动时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。                                   |
+| onBackgroundReport  | boolean                 | 否   | 当应用程序进入后台时是否上报事件，默认值为false。配置值为true表示上报事件，false表示不上报事件。                                 |
+| periodReport        | number                  | 否   | 事件定时上报时间周期，单位为秒。传入数值必须大于或等于0，小于0时会被置为默认值0，不进行定时上报。                                                |
+| batchReport         | number                  | 否   | 事件上报阈值，当事件条数达到阈值时上报事件。传入数值必须大于0且小于1000，不在数值范围内会被置为默认值0，不进行上报。                         |
+| userIds             | string[]                | 否   | 数据处理者可以上报的用户ID的name数组。name对应[setUserId](#hiappeventsetuserid11)接口的name参数。    |
+| userProperties      | string[]                | 否   | 数据处理者可以上报的用户属性的name数组。name对应[setUserProperty](#hiappeventsetuserproperty11)接口的name参数。   |
 | eventConfigs        | [AppEventReportConfig](#appeventreportconfig11)[]  | 否   | 数据处理者可以上报的事件数组。                                                                                 |
 
 ## AppEventReportConfig<sup>11+</sup>
@@ -111,7 +110,6 @@ removeProcessor(id: number): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
@@ -120,9 +118,9 @@ try {
     };
     let id: number = hiAppEvent.addProcessor(processor);
     hiAppEvent.removeProcessor(id);
-} catch (error: BusinessError) {
+} catch (error) {
     hilog.info(0x0000, 'hiAppEvent', `failed to removeProcessor event, code=${error.code}`);
-} 
+}
 ```
 
 ## hiAppEvent.write
@@ -308,7 +306,7 @@ setUserId(name: string, value: string): void
 
 | 参数名     | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------  |
-| name      | string                    | 是   | 用户ID的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。   |
+| name      | string                    | 是   | 用户ID的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。   |
 | value     | string                    | 是   | 用户ID的值。长度不超过256，当值为null或空字符串时，则清除用户ID。 |
 
 **错误码：**
@@ -320,14 +318,13 @@ setUserId(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserId('key', 'value');
-} catch (error: BusinessError) {
+} catch (error) {
   hilog.error(0x0000, 'hiAppEvent', `failed to setUseId event, code=${error.code}`);
-} 
+}
 ```
 
 ## hiAppEvent.getUserId<sup>11+</sup>
@@ -359,16 +356,15 @@ getUserId(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserId('key', 'value');
 try {
   let value: string = hiAppEvent.getUserId('key');
   hilog.info(0x0000, 'hiAppEvent', `getUseId event was successful, userId=${value}`);
-} catch (error: BusinessError) {
+} catch (error) {
   hilog.error(0x0000, 'hiAppEvent', `failed to getUseId event, code=${error.code}`);
-} 
+}
 ```
 
 ## hiAppEvent.setUserProperty<sup>11+</sup>
@@ -383,7 +379,7 @@ setUserProperty(name: string, value: string): void
 
 | 参数名     | 类型                      | 必填 | 说明           |
 | --------- | ------------------------- | ---- | -------------- |
-| name      | string                    | 是   | 用户属性的key。 只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度不超过256。  |
+| name      | string                    | 是   | 用户属性的key。只能包含大小写字母、数字、下划线和 $，不能以数字开头，长度非空且不超过256个字符。  |
 | value     | string                    | 是   | 用户属性的值。长度不超过1024，当值为null、undefine或空，则清除用户ID。  |
 
 **错误码：**
@@ -395,14 +391,13 @@ setUserProperty(name: string, value: string): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 try {
   hiAppEvent.setUserProperty('key', 'value');
-} catch (error: BusinessError) {
+} catch (error) {
   hilog.info(0x0000, 'hiAppEvent', `failed to setUserProperty event, code=${error.code}`);
-} 
+}
 ```
 
 ## hiAppEvent.getUserProperty<sup>11+</sup>
@@ -434,7 +429,6 @@ getUserProperty(name: string): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 
 hiAppEvent.setUserProperty('key', 'value');
@@ -443,7 +437,7 @@ try {
   hilog.info(0x0000, 'hiAppEvent', `getUserProperty event was successful, userProperty=${value}`);
 } catch (error) {
   hilog.error(0x0000, 'hiAppEvent', `failed to getUserProperty event, code=${error.code}`);
-} 
+}
 ```
 
 ## hiAppEvent.addWatcher

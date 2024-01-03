@@ -8,8 +8,6 @@
 
 3. 应用对用户文件的创建、访问、删除等行为，需要提前获取用户授权，或由用户操作完成。
 
-OpenHarmony提供[用户文件访问框架](#用户文件访问框架)，用于开发者访问和管理用户文件，将在下文详细介绍。
-
 ## 用户文件存储位置
 
 ### 内置存储
@@ -37,24 +35,3 @@ OpenHarmony提供[用户文件访问框架](#用户文件访问框架)，用于�
 外置存储设备具备可插拔属性，因此系统提供了设备插拔事件的监听及挂载功能，用于管理外置存储设备，具体可参考[管理外置存储设备（仅对系统应用开放）](manage-external-storage.md)。
 
 外置存储设备上的文件，全部以普通文件的形式呈现，和内置存储设备上的文档类文件一样，采用目录树的形式对外展示。
-
-## 用户文件访问框架
-
-用户文件访问框架（File Access Framework）是一套提供给开发者访问和管理用户文件的基础框架。该框架依托于OpenHarmony的ExtensionAbility组件机制，提供了一套统一访问用户文件的方法和接口。
-
-**图1** 用户文件访问框架示意图  
-![User file access framework](figures/user-file-access-framework.png)
-
-- 各类系统应用或三方应用（即图中的文件访问客户端）若需访问用户文件，如选择一张照片或保存多个文档等，可以通过拉起“文件选择器应用”来实现。
-
-- OpenHarmony系统预置了文件选择器应用FilePicker和文件管理器应用FileManager。
-  - FilePicker：系统预置应用，提供文件访问客户端选择和保存文件的能力，且不需要配置任何权限。FilePicker的使用指导请参见[选择用户文件](select-user-file.md)。
-  - FileManager：系统预置应用，终端用户可通过系统文件管理器实现查看文件、修改文件、删除文件（目录）、重命名文件（目录）、移动文件（目录）、创建文件（目录）等操作。
-
-  对于系统应用开发者，还可以按需开发自己的文件选择器或文件管理器应用。其中，选择器功能是管理器的子集，本文目前提供了管理器的开发指导，请参见[开发用户文件管理器（仅对系统应用开放）](dev-user-file-manager.md)。
-
-- File Access Framework（用户文件访问框架）的主要功能模块如下：
-  - File Access Helper：提供给文件管理器和文件选择器访问用户文件的API接口。
-  - File Access ExtensionAbility：提供文件访问框架能力，由内卡文件管理服务UserFileManager和外卡文件管理服务ExternalFileManager组成，实现对应的文件访问功能。
-    - UserFileManager：内卡文件管理服务，基于File Access ExtensionAbility框架实现，用于管理内置存储设备上的文件。
-    - ExternalFileManager：外卡文件管理服务，基于File Access ExtensionAbility框架实现，用于管理外置存储设备上的文件。

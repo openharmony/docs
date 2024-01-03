@@ -354,7 +354,7 @@ Disables a super administrator application for the administrator based on **bund
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                          |
+| ID| Error Message                                                          |   
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
 
@@ -610,7 +610,7 @@ adminManager.isSuperAdmin(bundleName).then((result) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>;): void
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCallback\<void>): void
 
 Sets enterprise information for a device administrator application. This API uses an asynchronous callback to return the result.
 
@@ -628,7 +628,7 @@ Sets enterprise information for a device administrator application. This API use
 | -------------- | ----------------------------------- | ---- | ---------------------- |
 | admin          | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.               |
 | enterpriseInfo | [EnterpriseInfo](#enterpriseinfo)   | Yes   | Enterprise information to set.          |
-| callback       | AsyncCallback\<void>;               | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback       | AsyncCallback\<void>              | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -662,7 +662,7 @@ adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
 
 ## adminManager.setEnterpriseInfo
 
-setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
+setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 
 Sets enterprise information for a device administrator application. This API uses a promise to return the result.
 
@@ -847,7 +847,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -903,7 +903,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
 }).catch((err: BusinessError) => {
@@ -950,7 +950,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -1006,7 +1006,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 }).catch((err: BusinessError) => {

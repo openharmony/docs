@@ -34,7 +34,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | -------- | -------- | -------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | Color of the QR code.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 11, the default value is changed to **'#ff182431'**.|
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | Background color of the QR code.<br>Default value: **Color.White**<br>Since API version 9, this API is supported in ArkTS widgets.<br>Since API version 11, the default value is changed to **'#ffffffff'**.|
-| contentOpacity<sup>11+<sup> | [number](ts-types.md#number) \| [Resource](ts-types.md#resource) | Opacity of the QR code content. The minimum value is 0, and the maximum value is 1.<br>Default value: **1**|
+| contentOpacity<sup>11+<sup> | number \| [Resource](ts-types.md#resource) | Opacity of the QR code content. The minimum value is 0, and the maximum value is 1.<br>Default value: **1**|
 
 
 ## Events

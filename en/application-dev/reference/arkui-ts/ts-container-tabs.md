@@ -11,6 +11,10 @@ The **\<Tabs>** component is a container component that allows users to switch b
 
 Only the [\<TabContent>](ts-container-tabcontent.md) child component is supported.
 
+>  **NOTE**
+>
+>  If the child component has the **visibility** attribute set to **None** or **Hidden**, it takes up space in the viewport, but is not displayed.
+
 
 ## APIs
 
@@ -21,7 +25,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 | Name        | Type                             | Mandatory  | Description                                    |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition | [BarPosition](#barposition)| No   | Position of the **\<Tabs>** component.<br>Default value: **BarPosition.Start**  |
-| index       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **\<TabContent>** subnodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeindex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
+| index       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **\<TabContent>** subnodes minus 1.<br>When the tab is switched by changing the index, the tab switching animation does not take effect. When **changeindex** of **TabController** is used for tab switching, the tab switching animation is enabled by default. You can disable the animation by setting **animationDuration** to **0**.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables. |
 | controller  | [TabsController](#tabscontroller) | No   | Tab controller.                              |
 
 ## BarPosition
@@ -41,9 +45,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | vertical                         | boolean                                  | Whether to use vertical tabs. The value **true** means to use vertical tabs, and **false** means to use horizontal tabs.<br>Default value: **false**|
 | scrollable                       | boolean                                  | Whether the tabs are scrollable. The value **true** means that the tabs are scrollable, and **false** means the opposite.<br>Default value: **true**|
 | barMode                          | [BarMode](#barmode),[ScrollableBarModeOptions](#scrollablebarmodeoptions10) | Tab bar layout mode. **BarMode** is mandatory, and **ScrollableBarModeOptions** is optional. For details, see **BarMode** and **ScrollableBarModeOptions**. Since API version 10, the optional **ScrollableBarModeOptions** parameter is supported. It is effective only when the tab bar is in scrollable mode.<br>Default value: **BarMode.Fixed**|
-| barWidth                         | number \| Length<sup>8+</sup>  | Width of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is **96vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>**NOTE**<br>A value less than 0 or greater than the width of the **\<Tabs>** component evaluates to the default value. |
+| barWidth                         | number \| Length<sup>8+</sup>  | Width of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9) or [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9) specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and does not have **SubTabBarStyle** or **BottomTabBarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is **96vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>**NOTE**<br>A value less than 0 or greater than the width of the **\<Tabs>** component evaluates to the default value. |
 | barHeight                        | number \| Length<sup>8+</sup>  | Height of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is **56vp**.<br>**NOTE**<br>A value less than 0 or greater than the height of the **\<Tabs>** component evaluates to the default value. |
-| animationDuration                | number                                   | Length of time required to complete the tab switching animation that is initiated by clicking a specific tab.<br>API version 10 and earlier versions: If this parameter is not set, no tab switching animation is displayed when a specific tab is clicked.<br>API version 11 and later versions: If this parameter is not set, the default value 300 ms will be used.<br>Default value: **300**<br>**NOTE**<br><br>A value less than 0 or in percentage evaluates to the default value 300 ms.|
+| animationDuration                | number                                   | Length of time required to complete the tab switching animation that is initiated by clicking a specific tab.<br>The default value varies.<br>API version 10 and earlier versions: If this parameter is not set, the default value 0 ms is used, which means that no tab switching animation is displayed when a specific tab is clicked. If this parameter is set to a value less than 0, the default value 300 ms is used.<br>API version 11 and later versions: If this parameter is set to a value less than 0 or is not set, and the tab bar is set to **BottomTabBarStyle**, the default value 0 ms is used. If the tab bar is set to other styles, the default value 300 ms is used.<br>**NOTE**<br>This parameter cannot be set in percentage. |
 | divider<sup>10+</sup>            | [DividerStyle](#dividerstyle10) \| null | Whether the divider is displayed for the **\<TabBar>** and **\<TabContent>** components and the divider style. By default, the divider is not displayed.<br> **DividerStyle**: divider style.<br> **null**: The divider is not displayed.|
 | fadingEdge<sup>10+</sup>         | boolean                                  | Whether the tab fades out when it exceeds the container width.<br>Default value: **true**        |
 | barOverlap<sup>10+</sup>         | boolean                                  | Whether the tab bar is superimposed on the **\<TabContent>** component after having its background blurred.<br>Default value: **false**|
@@ -98,7 +102,11 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | Name                                      | Description                                    |
 | ---------------------------------------- | ---------------------------------------- |
 | onChange(event: (index: number) =&gt; void) | Triggered when a tab is switched.<br>- **index**: index of the active tab. The index starts from 0.<br>This event is triggered when any of the following conditions is met:<br>1. The **\<TabContent>** component supports sliding, and the user slides on the tab bar.<br>2. The [Controller](#tabscontroller) API is called.<br>3. The attribute value is updated using a [state variable](../../quick-start/arkts-state.md).<br>4. A tab is clicked.|
-| onTabBarClick(event: (index: number) =&gt; void)<sup>10+</sup> | Triggered when a tab is clicked.<br>- **index**: index of the clicked tab. The index starts from 0.|
+| onTabBarClick(event: (index: number) =&gt; void)<sup>10+</sup> | Triggered when a tab is clicked.<br>- **index**: index of the clicked tab. The index starts from 0.<br>This event is triggered when any of the following conditions is met:<br>A tab is clicked.|
+| onAnimationStart<sup>11+</sup>(handler: (index: number, targetIndex: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | Triggered when the tab switching animation starts.<br>- **index**: index of the currently displayed element.<br>- **targetIndex**: index of the target element to switch to.<br>- **event**: animation-related information, including the offset of the currently displayed element and target element relative to the start position of the **\<Tabs>** along the main axis, and the hands-off velocity.<br>**NOTE**<br>The **index** parameter indicates the index before the animation starts (not the one after).|
+| onAnimationEnd<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | Triggered when the tab switching animation ends.<br>- **index**: index of the currently displayed element.<br>- **event**: animation-related information, including the offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis.<br>**NOTE**<br>This event is triggered when the tab switching animation ends, whether it is caused by gesture interruption or not. The **index** parameter indicates the index after the animation ends.|
+| onGestureSwipe<sup>11+</sup>(handler: (index: number, event: [TabsAnimationEvent](ts-types.md#tabsanimationevent11)) => void) | Triggered on a frame-by-frame basis when the tab is switched by a swipe.<br>- **index**: index of the currently displayed element.<br>- **event**: animation-related information, including the offset of the currently displayed element relative to the start position of the **\<Tabs>** along the main axis.|
+| customContentTransition<sup>11+</sup>(delegate: (from: number, to: number) => [TabContentAnimatedTransition](ts-types.md#tabcontentanimatedtransition11) \| undefined) | Custom tab switching animation. **from** and **to** indicate the return values.<br> - **from**: index of the currently displayed tab before the animation starts.<br>- **to**: index of the target tab before the animation starts.<br> Instructions:<br>  1. When the custom tab switching animation is used, the default switching animation of the **\<Tabs>** component is disabled, and tabs cannot be switched through swiping.<br> 2. The value **undefined** means not to use the custom tab switching animation, in which case the default switching animation is used.<br> 3. The custom tab switching animation cannot be interrupted.<br> 4. Currently, the custom tab switching animation can be triggered only by clicking a tab or by calling the **TabsController.changeIndex()** API.<br> 5. When the custom tab switching animation is used, the **\<Tabs>** component supports all events except **onGestureSwipe**.<br> 6. Notes about the **onChange** and **onAnimationEnd** events: If the second custom animation is triggered during the execution of the first custom animation, the **onChange** and **onAnimationEnd** events of the first custom animation will be triggered when the second custom animation starts.<br> 7. When the custom animation is used, the stack layout is used for pages involved in the animation. If the **zIndex** attribute is not set for related pages, the **zIndex** values of all pages are the same. In this case, the pages are rendered in the order in which they are added to the component tree (that is, the sequence of page indexes). In light of this, to control the rendering levels of pages, set the **zIndex** attribute of the pages.<br>|
 
 ## TabsController
 
@@ -120,7 +128,7 @@ Switches to the specified tab.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value | number | Yes   | Index of the tab. The value starts from 0.<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the maximum number, the event will be invalid.|
+| value | number | Yes   | Index of the tab. The value starts from 0.<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the maximum number, the default value **0** is used.|
 
 
 ## Example
@@ -695,3 +703,161 @@ struct TabsExample6 {
 ```
 
 ![tabs5](figures/tabs7.gif)
+
+### Example 7
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TabsCustomAnimationExample {
+  @State useCustomAnimation: boolean = true
+  @State tabContent0Scale: number = 1.0
+  @State tabContent1Scale: number = 1.0
+  @State tabContent0Opacity: number = 1.0
+  @State tabContent1Opacity: number = 1.0
+  @State tabContent2Opacity: number = 1.0
+  tabsController: TabsController = new TabsController()
+  private firstTimeout: number = 3000
+  private secondTimeout: number = 5000
+  private first2secondDuration: number = 3000
+  private second2thirdDuration: number = 5000
+  private first2thirdDuration: number = 2000
+  private baseCustomAnimation: (from: number, to: number) => TabContentAnimatedTransition = (from: number, to: number) => {
+    if ((from === 0 && to === 1) || (from === 1 && to === 0)) {
+      // Scale animation
+      let firstCustomTransition = {
+        timeout: this.firstTimeout,
+        transition: (proxy: TabContentTransitionProxy) => {
+          if (proxy.from === 0 && proxy.to === 1) {
+            this.tabContent0Scale = 1.0
+            this.tabContent1Scale = 0.5
+          } else {
+            this.tabContent0Scale = 0.5
+            this.tabContent1Scale = 1.0
+          }
+
+          animateTo({
+            duration: this.first2secondDuration,
+            onFinish: () => {
+              proxy.finishTransition()
+            }
+          }, () => {
+            if (proxy.from === 0 && proxy.to === 1) {
+              this.tabContent0Scale = 0.5
+              this.tabContent1Scale = 1.0
+            } else {
+              this.tabContent0Scale = 1.0
+              this.tabContent1Scale = 0.5
+            }
+          })
+        }
+      } as TabContentAnimatedTransition;
+      return firstCustomTransition;
+    } else {
+      // Opacity animation
+      let secondCustomTransition = {
+        timeout: this.secondTimeout,
+        transition: (proxy: TabContentTransitionProxy) => {
+          if ((proxy.from === 1 && proxy.to === 2) || (proxy.from === 2 && proxy.to === 1)) {
+            if (proxy.from === 1 && proxy.to === 2) {
+              this.tabContent1Opacity = 1.0
+              this.tabContent2Opacity = 0.5
+            } else {
+              this.tabContent1Opacity = 0.5
+              this.tabContent2Opacity = 1.0
+            }
+            animateTo({
+              duration: this.second2thirdDuration,
+              onFinish: () => {
+                proxy.finishTransition()
+              }
+            }, () => {
+              if (proxy.from === 1 && proxy.to === 2) {
+                this.tabContent1Opacity = 0.5
+                this.tabContent2Opacity = 1.0
+              } else {
+                this.tabContent1Opacity = 1.0
+                this.tabContent2Opacity = 0.5
+              }
+            })
+          } else if ((proxy.from === 0 && proxy.to === 2) || (proxy.from === 2 && proxy.to === 0)) {
+            if (proxy.from === 0 && proxy.to === 2) {
+              this.tabContent0Opacity = 1.0
+              this.tabContent2Opacity = 0.5
+            } else {
+              this.tabContent0Opacity = 0.5
+              this.tabContent2Opacity = 1.0
+            }
+            animateTo({
+              duration: this.first2thirdDuration,
+              onFinish: () => {
+                proxy.finishTransition()
+              }
+            }, () => {
+              if (proxy.from === 0 && proxy.to === 2) {
+                this.tabContent0Opacity = 0.5
+                this.tabContent2Opacity = 1.0
+              } else {
+                this.tabContent0Opacity = 1.0
+                this.tabContent2Opacity = 0.5
+              }
+            })
+          }
+        }
+      } as TabContentAnimatedTransition;
+      return secondCustomTransition;
+    }
+  }
+
+  build() {
+    Column() {
+      Tabs({ controller: this.tabsController }) {
+        TabContent() {
+          Text("Red")
+        }
+        .tabBar("Red")
+        .scale({ x: this.tabContent0Scale, y: this.tabContent0Scale })
+        .backgroundColor(Color.Red)
+        .opacity(this.tabContent0Opacity)
+        .width(100)
+        .height(100)
+
+        TabContent() {
+          Text("Yellow")
+        }
+        .tabBar("Yellow")
+        .scale({ x: this.tabContent1Scale, y: this.tabContent1Scale })
+        .backgroundColor(Color.Yellow)
+        .opacity(this.tabContent1Opacity)
+        .width(200)
+        .height(200)
+
+        TabContent() {
+          Text("Blue")
+        }
+        .tabBar("Blue")
+        .backgroundColor(Color.Blue)
+        .opacity(this.tabContent2Opacity)
+        .width(300)
+        .height(300)
+
+      }
+      .backgroundColor(0xf1f3f5)
+      .width('100%')
+      .height(500)
+      .margin({ top: 5 })
+      .customContentTransition(this.useCustomAnimation ? this.baseCustomAnimation : undefined)
+      .barMode(BarMode.Scrollable)
+      .onChange((index: number) => {
+        console.info("onChange index: " + index)
+      })
+      .onTabBarClick((index: number) => {
+        console.info("onTabBarClick index: " + index)
+      })
+    }
+  }
+}
+```
+
+![tabs5](figures/tabs8.gif)

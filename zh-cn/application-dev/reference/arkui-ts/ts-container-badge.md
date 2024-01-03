@@ -90,7 +90,7 @@ Badge(value: {value: string, position?: BadgePosition \| Position, style: BadgeS
 @Entry
 @Component
 struct BadgeExample {
-  @Builder TabBuilder(index: number) {
+  @Builder tabBuilder(index: number) {
     Column() {
       if (index === 2) {
         Badge({
@@ -139,13 +139,13 @@ struct BadgeExample {
       Text('dotsBadge').fontSize(18).fontColor('#182431').fontWeight(500).margin(24)
       Tabs() {
         TabContent()
-          .tabBar(this.TabBuilder(0))
+          .tabBar(this.tabBuilder(0))
         TabContent()
-          .tabBar(this.TabBuilder(1))
+          .tabBar(this.tabBuilder(1))
         TabContent()
-          .tabBar(this.TabBuilder(2))
+          .tabBar(this.tabBuilder(2))
         TabContent()
-          .tabBar(this.TabBuilder(3))
+          .tabBar(this.tabBuilder(3))
       }
       .width(360)
       .height(56)

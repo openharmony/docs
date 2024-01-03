@@ -132,6 +132,8 @@ onChangeFormVisibility(newStatus: { [key: string]: number }): void
 
 Called to notify the widget provider that the widget visibility status is being changed.
 
+This API is valid only for system applications when **formVisibleNotify** is set to **true**.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -182,7 +184,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onFormEvent(formId: string, message: string): void
 
-Called to instruct the widget provider to process the widget event.
+Called to instruct the widget provider to process the widget event. (This API can be used only in JS widget.)
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -237,6 +239,8 @@ onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the FormExtensionAbility is running is updated.
 
+This lifecycle callback is triggered only when the configuration is updated while the FormExtensionAbility is alive. If no operation is performed within 5 seconds after a **FormExtensionAbility** instance is created, the instance will be deleted.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -252,7 +256,9 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import { Configuration } from '@ohos.app.ability.Configuration';
 
 export default class MyFormExtensionAbility extends FormExtensionAbility {
-  onConfigurationUpdate(config: Configuration) {
+  onConfigurationUpdate(newConfig: Configuration) {
+    // This lifecycle callback is triggered only when the configuration is updated while the FormExtensionAbility is alive.
+    // If no operation is performed within 5 seconds after a FormExtensionAbility instance is created, the instance will be deleted.
     console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
   }
 };
@@ -262,7 +268,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 onAcquireFormState?(want: Want): formInfo.FormState
 
-Called to notify the widget provider that the widget host is requesting the widget state. By default, the initial state is returned.
+Called to notify the widget provider that the widget host is requesting the widget state. By default, the initial widget state is returned. (You can override this API as required.)
 
 **System capability**: SystemCapability.Ability.Form
 

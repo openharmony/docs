@@ -61,7 +61,7 @@ struct AnimateToStop{
 ```
 效果图如下： 
 
-![](figures/play_stop1.gif)
+![](figures/play-stop1.gif)
 
 方案二：通过递归函数使得循环动画无限播放，终止递归函数实现停止循环动画。
 doAnimate函数去一直调用animateTo函数,从而实现动画无限循环；
@@ -118,7 +118,7 @@ struct AnimateToStop {
 
 效果图如下：
 
-![](figures/play_stop2.gif)
+![](figures/play-stop2.gif)
 
 ## 参考
 [显示动画](../application-dev/reference/arkui-ts/ts-explicit-animation.md)

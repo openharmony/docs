@@ -2,7 +2,7 @@
 
 应用文件分享是应用之间通过分享URI（Uniform Resource Identifier）或文件描述符FD（File Descriptor）的方式，进行文件共享的过程。
 
-- 基于URI分享方式，应用可分享单个文件，通过[ohos.app.ability.wantConstant](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantflags)的wantConstant.Flags接口以只读或读写权限授权给其他应用。应用可通过[ohos.file.fs](../reference/apis/js-apis-file-fs.md#fsopen)的open()接口打开URI，并进行读写操作。当前OpenHarmony API 9仅支持临时授权，分享给其他应用的文件在被分享应用退出时权限被收回。
+- 基于URI分享方式，应用可分享单个文件，通过[ohos.app.ability.wantConstant](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantflags)的wantConstant.Flags接口以只读或读写权限授权给其他应用。应用可通过[ohos.file.fs](../reference/apis/js-apis-file-fs.md#fsopen)的open接口打开URI，并进行读写操作。当前仅支持临时授权，分享给其他应用的文件在被分享应用退出时权限被收回。
 
 - 基于FD分享方式，应用可分享单个文件，通过ohos.file.fs的open接口以指定权限授权给其他应用。应用从Want中解析拿到FD后可通过ohos.file.fs的读写接口对文件进行读写。
 
@@ -36,7 +36,7 @@
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import fileuri from '@ohos.file.fileuri';
+   import fileUri from '@ohos.file.fileuri';
    import window from '@ohos.window';
    
    export default class EntryAbility extends UIAbility {
@@ -44,21 +44,21 @@
        // 获取文件的沙箱路径
        let pathInSandbox = this.context.filesDir + "/test.txt";
        // 将沙箱路径转换为uri
-       let uri = fileuri.getUriFromPath(pathInSandbox);
+       let uri = fileUri.getUriFromPath(pathInSandbox);
        // 获取的uri为"file://com.example.demo/data/storage/el2/base/files/test.txt"
      }
    }
    ```
 
 2. 设置获取文件的权限以及选择要分享的应用。
-   分享文件给其他应用需要使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，将获取到的URI填充在want的参数uri中，标注URI的文件类型，type字段可参考[Want属性](../reference/apis/js-apis-app-ability-want.md#属性)，并通过设置want的flag来设置对应的读写权限，action字段配置为"ohos.want.action.sendData"表示进行应用文件分享，开发示例如下。
+   分享文件给其他应用需要使用[startAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，将获取到的URI填充在want的参数uri中，标注URI的文件类型，type字段可参考[Want属性](../reference/apis/js-apis-app-ability-want.md#属性)，并通过设置want的flag来设置对应的读写权限，action字段配置为"ohos.want.action.sendData"表示进行应用文件分享，开发示例如下。
 
    > **说明：**
    >
    > 写权限分享时，同时授予读权限。
 
    ```ts
-   import fileuri from '@ohos.file.fileuri';
+   import fileUri from '@ohos.file.fileuri';
    import window from '@ohos.window';
    import wantConstant from '@ohos.app.ability.wantConstant';
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -70,7 +70,7 @@
        // 获取文件沙箱路径
        let filePath = this.context.filesDir + '/test.txt';
        // 将沙箱路径转换为uri
-       let uri = fileuri.getUriFromPath(filePath);
+       let uri = fileUri.getUriFromPath(filePath);
        let want: Want  = {
          // 配置被分享文件的读写权限，例如对被分享应用进行读写授权
          flags: wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
@@ -124,9 +124,9 @@
 }
 ```
 
-被分享方的UIAbility被启动后，可以在其[onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)或者[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中获取传入的Want参数信息。
+被分享方的UIAbility被启动后，可以在其[onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)或者[onNewWant](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中获取传入的Want参数信息。
 
-通过接口want的参数获取分享文件的URI，获取文件URI后通过fs.open()接口打开文件，获取对应的file对象后，可对文件进行读写操作。
+通过接口want的参数获取分享文件的URI，获取文件URI后通过fs.open接口打开文件，获取对应的file对象后，可对文件进行读写操作。
 
 ```ts
 // xxx.ets

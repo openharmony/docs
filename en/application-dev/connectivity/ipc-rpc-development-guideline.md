@@ -9,11 +9,11 @@ IPC/RPC enables a proxy and a stub that run on different processes to communicat
 
 Table 1 Native IPC APIs
 
-| Class| API| Description|
-| -------- | -------- | -------- |
-| IRemoteBroker | sptr&lt;IRemoteObject&gt; AsObject() | Obtains the holder of a remote proxy object. If you call this API on the stub, the **RemoteObject** is returned; if you call this API on the proxy, the proxy object is returned.|
-| IRemoteStub | virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | Called to process a request from the proxy and return the result. Derived classes need to override this API.|
-| IRemoteProxy | Remote()->SendRequest(code, data, reply, option)             | Sends a request to the peer end. Service proxy classes are derived from the **IRemoteProxy** class.|
+| API                              | Description                                                            |
+| ------------------------------------ | ---------------------------------------------------------------- |
+| sptr&lt;IRemoteObject&gt; AsObject() | Obtains the holder of a remote proxy object. If you call this API on the stub, the **RemoteObject** is returned; if you call this API on the proxy, the proxy object is returned.|
+| virtual int OnRemoteRequest(uint32_t code, MessageParcel &amp;data, MessageParcel &amp;reply, MessageOption &amp;option) | Called to process a request from the proxy and return the result. Derived classes need to override this API.|
+| IRemoteProxy | Remote()->SendRequest(code, data, reply, option)  | Sends a request to the peer end. Service proxy classes are derived from the **IRemoteProxy** class.|
 
 
 ## How to Develop
@@ -175,7 +175,7 @@ Table 1 Native IPC APIs
    sptr<TestAbilityProxy> proxy(new TestAbilityProxy(remoteObject)); // Construct a proxy.
    ```
 
-### **Using JS APIs**
+### **Using ArkTS APIs**
 
 1. Add dependencies.
 
@@ -232,11 +232,11 @@ Table 1 Native IPC APIs
     import Want from '@ohos.app.ability.Want';
     import common from '@ohos.app.ability.common';
     import hilog from '@ohos.hilog';
-    import deviceManager from '@ohos.distributedHardware.deviceManager';
+    import deviceManager from '@ohos.distributedDeviceManager';
     import { BusinessError } from '@ohos.base';
 
     let dmInstance: deviceManager.DeviceManager | undefined;
-    let proxy: rpc.IRemoteObject | undefined = undefined;
+    let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
 
     // Bind the ability on a single device.
@@ -263,16 +263,8 @@ Table 1 Native IPC APIs
     connectId = this.context.connectServiceExtensionAbility(want,connect);
 
     // Cross-device binding
-    let deviceManagerCallback = (err: BusinessError, data: deviceManager.DeviceManager) => {
-      if (err) {
-        hilog.error(0x0000, 'testTag', 'createDeviceManager errCode:' + err.code + ', errMessage:' + err.message);
-        return;
-      }
-      hilog.info(0x0000, 'testTag', 'createDeviceManager success');
-      dmInstance = data;
-    }
     try{
-      deviceManager.createDeviceManager("ohos.rpc.test", deviceManagerCallback);
+      dmInstance = deviceManager.createDeviceManager("ohos.rpc.test");
     } catch(error) {
       let err: BusinessError = error as BusinessError;
       hilog.error(0x0000, 'testTag', 'createDeviceManager errCode:' + err.code + ', errMessage:' + err.message);
@@ -280,8 +272,8 @@ Table 1 Native IPC APIs
 
     // Use deviceManager to obtain the network ID of the target device.
     if (dmInstance != undefined) {
-      let deviceList: Array<deviceManager.DeviceInfo> = dmInstance.getTrustedDeviceListSync();
-      let networkId: string = deviceList[0].networkId;
+      let deviceList = dmInstance.getAvailableDeviceListSync();
+      let networkId = deviceList[0].networkId;
       let want: Want = {
         bundleName: "ohos.rpc.test.server",
         abilityName: "ohos.rpc.test.service.ServiceAbility",
@@ -299,7 +291,7 @@ Table 1 Native IPC APIs
 
 3. Process requests sent from the client.
 
-   Call the **onConnect** API to return a proxy object inherited from **rpc.RemoteObject** after the ability is successfully bound. Implement the **onRemoteMessageRequest** API for the proxy object to process requests sent from the client.
+   Call the **onConnect** API to return a proxy object inherited from [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#remoteobject) after the ability is successfully bound. Implement the [onRemoteMessageRequest](../reference/apis/js-apis-rpc.md#onremotemessagerequest9) API for the proxy object to process requests sent from the client.
 
    ```ts
     import rpc from '@ohos.rpc';
@@ -322,7 +314,7 @@ Table 1 Native IPC APIs
 
 4. Process responses sent from the server.
 
-   Obtain the proxy object from the **onConnect** callback, call **sendRequest** to send a request, and receive the response using a callback or a promise (an object representing the eventual completion or failure of an asynchronous operation and its result value).
+   Receive the proxy object in the **onConnect** callback, call [sendMessageRequest](../reference/apis/js-apis-rpc.md#sendmessagerequest9-2) to send a request, and receive the response using a callback or a promise (an object representing the eventual completion or failure of an asynchronous operation and its result value).
 
    ```ts
     import rpc from '@ohos.rpc';
@@ -333,25 +325,27 @@ Table 1 Native IPC APIs
     let data = rpc.MessageSequence.create();
     let reply = rpc.MessageSequence.create();
     // Write parameters to data.
-    let proxy: rpc.IRemoteObject | undefined = undefined;
-    proxy.sendMessageRequest(1, data, reply, option)
-      .then((result: rpc.RequestResult) => {
-        if (result.errCode != 0) {
-          hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
-          return;
-        }
-        // Read the result from result.reply.
-      })
-      .catch((e: Error) => {
-        hilog.error(0x0000, 'testTag', 'sendMessageRequest got exception: ' + e);
-      })
-      .finally(() => {
-        data.reclaim();
-        reply.reclaim();
-      })
- 
+    let proxy: rpc.IRemoteObject | undefined;
+    if (proxy != undefined) {
+      proxy.sendMessageRequest(1, data, reply, option)
+        .then((result: rpc.RequestResult) => {
+          if (result.errCode != 0) {
+            hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
+            return;
+          }
+          // Read the result from result.reply.
+        })
+        .catch((e: Error) => {
+          hilog.error(0x0000, 'testTag', 'sendMessageRequest got exception: ' + e);
+        })
+        .finally(() => {
+          data.reclaim();
+          reply.reclaim();
+        })
+    }
+
     // Use a callback.
-    function sendRequestCallback(err: Error, result: rpc.SendRequestResult) {
+    function sendRequestCallback(err: Error, result: rpc.RequestResult) {
       try {
         if (result.errCode != 0) {
           hilog.error(0x0000, 'testTag', 'sendMessageRequest failed, errCode: ' + result.errCode);
@@ -367,7 +361,9 @@ Table 1 Native IPC APIs
     let datas = rpc.MessageSequence.create();
     let replys = rpc.MessageSequence.create();
     // Write parameters to data.
-    proxy.sendMessageRequest(1, datas, replys, options, sendRequestCallback);
+    if (proxy != undefined) {
+      proxy.sendMessageRequest(1, datas, replys, options, sendRequestCallback);
+    }
    ```
 
 5. Tear down the connection.
@@ -388,7 +384,7 @@ Table 1 Native IPC APIs
     // Use this method to disconnect from the ability in the FA model.
     // featureAbility.disconnectAbility(connectId, disconnectCallback);
 
-    let proxy: rpc.IRemoteObject | undefined = undefined;
+    let proxy: rpc.IRemoteObject | undefined;
     let connectId: number;
 
     // Bind the ability on a single device.
@@ -414,4 +410,3 @@ Table 1 Native IPC APIs
 
     this.context.disconnectServiceExtensionAbility(connectId);
    ```
-

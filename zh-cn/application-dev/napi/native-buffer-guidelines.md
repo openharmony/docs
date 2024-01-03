@@ -52,7 +52,7 @@ libnative_buffer.so
     ```
    
 2. **将OH_NativeBuffer对应的ION内存映射到进程空间**。
-    应用如需要访问这块buffer的内存空间，需要通过OH_NativeBuffer_Map接口将buffer对应的ION内存映射到进程空间
+    应用如需要访问这块buffer的内存空间，需要通过OH_NativeBuffer_Map接口将buffer对应的ION内存映射到进程空间。
     ```c++
     // 将ION内存映射到进程空间
     void* virAddr = nullptr;

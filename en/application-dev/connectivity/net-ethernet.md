@@ -28,12 +28,12 @@ For the complete list of APIs and example code, see [Ethernet Connection](../ref
 
 | Type| API| Description|
 | ---- | ---- | ---- |
-| ohos.net.ethernet | function setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void | Configures the network attributes of the specified Ethernet network. This API uses an asynchronous callback to return the result.|
-| ohos.net.ethernet | function getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void | Obtains the network attributes of the specified Ethernet network. This API uses an asynchronous callback to return the result.|
-| ohos.net.ethernet | function isIfaceActive(iface: string, callback: AsyncCallback\<number>): void | Checks whether the specified network port is active. This API uses an asynchronous callback to return the result.|
-| ohos.net.ethernet | function getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void; | Obtains the list of all active network ports. This API uses an asynchronous callback to return the result.|
-| ohos.net.ethernet | function on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void; | Subscribes to interface state change events.|
-| ohos.net.ethernet | function off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void; | Unsubscribes from interface state change events.|
+| setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void | Configures the network attributes of the specified Ethernet network. This API uses an asynchronous callback to return the result.|
+| getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void | Obtains the network attributes of the specified Ethernet network. This API uses an asynchronous callback to return the result.|
+| isIfaceActive(iface: string, callback: AsyncCallback\<number>): void | Checks whether the specified network port is active. This API uses an asynchronous callback to return the result.|
+| getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void; | Obtains the list of all active network ports. This API uses an asynchronous callback to return the result.|
+| on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void; | Subscribes to interface state change events.|
+| off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void; | Unsubscribes from interface state change events.|
 
 ## Ethernet Connection – DHCP Mode
 
@@ -76,11 +76,10 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
   } else {
     console.log("getIfaceConfig callback mode = " + data.mode);
     console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
-    console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
-    console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
-    console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
-    console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
+    console.log("getIfaceConfig callback routeAddr = " + data.route);
+    console.log("getIfaceConfig callback gateAddr = " + data.gateway);
+    console.log("getIfaceConfig callback maskAddr = " + data.netMask);
+    console.log("getIfaceConfig callback dns0Addr = " + data.dnsServers);
   }
 });
 ```
@@ -125,11 +124,10 @@ ethernet.isIfaceActive("eth0", (error: BusinessError, data: number) => {
 let ethernetParam: ethernet.InterfaceConfiguration = {
   mode: ethernet.IPSetMode.STATIC,
   ipAddr: "192.168.xx.xx",
-  routeAddr: "192.168.xx.xx",
-  gateAddr: "192.168.xx.xx",
-  maskAddr: "255.255.xx.xx",
-  dnsAddr0: "1.1.xx.xx",
-  dnsAddr1: "2.2.xx.xx"
+  route: "192.168.xx.xx",
+  gateway: "192.168.xx.xx",
+  netMask: "255.255.xx.xx",
+  dnsServers: "1.1.xx.xx"
 }
 
 // Call setIfaceConfig to configure the network attributes of the specified Ethernet network.
@@ -148,11 +146,10 @@ ethernet.getIfaceConfig("eth0", (error: BusinessError, data: ethernet.InterfaceC
   } else {
     console.log("getIfaceConfig callback mode = " + data.mode);
     console.log("getIfaceConfig callback ipAddr = " + data.ipAddr);
-    console.log("getIfaceConfig callback routeAddr = " + data.routeAddr);
-    console.log("getIfaceConfig callback gateAddr = " + data.gateAddr);
-    console.log("getIfaceConfig callback maskAddr = " + data.maskAddr);
-    console.log("getIfaceConfig callback dns0Addr = " + data.dns0Addr);
-    console.log("getIfaceConfig callback dns1Addr = " + data.dns1Addr);
+    console.log("getIfaceConfig callback routeAddr = " + data.route);
+    console.log("getIfaceConfig callback gateAddr = " + data.gateway);
+    console.log("getIfaceConfig callback maskAddr = " + data.netMask);
+    console.log("getIfaceConfig callback dns0Addr = " + data.dnsServers);
   }
 });
 ```

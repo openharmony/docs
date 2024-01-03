@@ -59,7 +59,7 @@ Example of the **module** tag structure:
         "formsEnabled": false,
         "label": "$string:MainAbility_label",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "multiton"
       }
     ],
     "distro": {
@@ -202,7 +202,7 @@ Example of the metadata attribute:
 | icon | Index to the ability icon file. Example value: **$media:ability_icon**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the icon of the ability is also used as the icon of the application. If multiple abilities address this condition, the icon of the first candidate ability is used as the application icon.<br>Note: The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels.| String| Yes (initial value: left empty)|
 | label | Ability name displayed to users. The value can be a name string or a resource index to names in multiple languages, for example, **$string:ability_label**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the label of the ability is also used as the label of the application. If multiple abilities address this condition, the label of the first candidate ability is used as the application label.<br>**NOTE**<br/>The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels. The value can be a reference to a string defined in a resource file or a string enclosed in brackets ({}). The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | uri | Uniform Resource Identifier (URI) of the ability. The value can contain a maximum of 255 bytes.| String| Yes (No for abilities using the Data template)|
-| launchType | Launch type of the ability. The value can be **standard** or **singleton**.<br>**standard**: Multiple **Ability** instances can be created during startup. Most abilities can use this type.<br>**singleton**: Only a single **Ability** instance can be created across all task stacks during startup. For example, a globally unique incoming call screen uses the singleton launch type. This attribute applies only to the default, tablet, smart TV, head unit, and wearable device types.| String| Yes (initial value: **"singleton"**)|
+| launchType | Launch type of the ability. The value can be **multiton** or **singleton**.<br>**standard**: Multiple **Ability** instances can be created during startup. Most abilities can use this type.<br>**singleton**: Only a single **Ability** instance can be created across all task stacks during startup. For example, a globally unique incoming call screen uses the singleton launch type. This attribute applies only to the default, tablet, smart TV, head unit, and wearable device types.| String| Yes (initial value: **"singleton"**)|
 | visible | Whether the ability can be called by other applications.<br>**true**: The ability can be called by other applications.<br>**false**: The ability cannot be called by other applications, not even by aa commands.| Boolean| Yes (initial value: **false**)|
 | permissions | Permissions required for abilities of another application to call the current ability. The value is an array of permission names predefined by the system, generally in the reverse domain name notation. It contains a maximum of 255 bytes.| String array| Yes (initial value: left empty)|
 |skills | Types of the **want** that can be accepted by the ability.| Object array| Yes (initial value: left empty)|
@@ -210,7 +210,7 @@ Example of the metadata attribute:
 | metaData | Metadata.| Object| Yes (initial value: left empty)|
 | type | Ability type. The options are as follows:<br>**page**: FA developed using the Page template to provide the capability of interacting with users.<br>**service**: PA developed using the Service template to provide the capability of running tasks in the background.<br>**data**: PA developed using the Data template to provide unified data access for external systems.<br>**CA**: ability that can be started by other applications as a window.| String| No|
 | orientation | Display orientations of the ability. This attribute applies only to the ability using the Page template. The options are as follows:<br>**unspecified**: indicates that the system automatically determines the display orientation of the ability.<br>**landscape**: indicates the landscape orientation.<br>**portrait**: indicates the portrait orientation.<br>**followRecent**: indicates that the orientation follows the most recent application in the stack.| String| Yes (initial value: **"unspecified"**)|
-| backgroundModes | Background service type of the ability. You can assign multiple background service types to a specific ability. This field applies only to the ability using the Service template. The options are as follows:<br>**dataTransfer**: service for downloading, backing up, sharing, or transferring data from the network or peer devices.<br>**audioPlayback**: audio playback service.<br>**audioRecording**: audio recording service.<br>**pictureInPicture**: picture in picture (PiP) and small-window video playback services.<br>**voip**: voice/video call and VoIP services.<br>**location**: location and navigation services.<br>**bluetoothInteraction**: Bluetooth scanning, connection, and transmission services.<br>**wifiInteraction**: WLAN scanning, connection, and transmission services.<br>**screenFetch**: screen recording and screenshot services.<br>**multiDeviceConnection**: multi-device interconnection service.| String array| Yes (initial value: left empty)|
+| backgroundModes | Background service type of the ability. You can assign multiple background service types to a specific ability. This field applies only to the ability using the Service template. The options are as follows:<br>**dataTransfer**: data transfer through the network or peer device, such as download, backup, and share<br>**audioPlayback**: audio playback<br>**audioRecording**: audio recording<br>**pictureInPicture**: video playback in picture-in-picture (PiP) mode or in a small window<br>**voip**: voice and video calls over VoIP<br>**location**: location and navigation<br>**bluetoothInteraction**: Bluetooth scanning, connection, and transmission<br>**wifiInteraction**: Wi-Fi scanning, connection, and transmission<br>**screenFetch**: screen recording and screenshot<br>**multiDeviceConnection**: multi-device connection | String array| Yes (initial value: left empty)|
 | grantPermission | Whether permissions can be granted for any data in the ability.| Boolean| Yes (initial value: left empty)|
 | readPermission | Permission required for reading data in the ability. This attribute applies only to the ability using the Data template. The value is a string with a maximum of 255 bytes. This attribute applies only to the default, tablet, smart TV, head unit, and wearable device types.| String| Yes (initial value: left empty)|
 | writePermission | Permission required for writing data to the ability. This attribute applies only to the ability using the Data template. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
@@ -307,7 +307,7 @@ Example of the **abilities** attribute structure:
     "icon": "$media:ic_launcher",
     // $string:example is a string resource.
     "label": "$string:example",
-    "launchType": "standard",
+    "launchType": "multiton",
     "orientation": "unspecified",
     "permissions": [],
     "visible": true,
@@ -337,7 +337,7 @@ Example of the **abilities** attribute structure:
     "description": "example play ability",
     "icon": "$media:ic_launcher",
     "label": "$string:example",
-    "launchType": "standard",
+    "launchType": "multiton",
     "orientation": "unspecified",
     "visible": false,
     "skills": [

@@ -4,7 +4,7 @@
 To receive notifications, an application must subscribe to notifications first. The notification subsystem provides two types of subscription APIs, allowing applications to subscribe to notifications from all applications or notifications from a specific application.
 
 
-You can use the **NotificationSubscriber** object to provide callbacks for subscription events, such as subscription success, notification reception, notification cancellation, and subscription cancellation.
+You can use the [NotificationSubscriber](../reference/apis/js-apis-inner-notification-notificationSubscriber.md) object to provide callbacks for subscription events, such as subscription success, notification reception, notification cancellation, and subscription cancellation.
 
 
 ## Available APIs
@@ -28,8 +28,10 @@ The major APIs for notification subscription are described as follows. For detai
 | onConnect?:() =&gt; void;                          | Callback for subscription.          |
 | onDisconnect?:() =&gt; void;                       | Callback for unsubscription.          |
 | onDestroy?:() =&gt; void                           | Callback for disconnecting from the notification subsystem.  |
-| onDoNotDisturbDateChange?:(mode: notification.DoNotDisturbDate) =&gt; void | Callback for the Do Not Disturb (DNT) time changes.|
+| onDoNotDisturbDateChange<sup>deprecated</sup>?:(mode: notification.DoNotDisturbDate<sup>deprecated</sup>) =&gt; void | Callback for the Do Not Disturb (DNT) time changes. This API is deprecated since API version 11.|
+| onDoNotDisturbChanged?:(mode: notificationManager.DoNotDisturbDate) =&gt; void | Callback for the Do Not Disturb (DNT) time changes.|
 | onEnabledNotificationChanged?:(callbackData: EnabledNotificationCallbackData) =&gt; void | Callback for notification switch changes.      |
+| onBadgeChanged?:(data: BadgeNumberCallbackData) =&gt; void | Callback for notification badge number changes.|
 
 
 ## How to Develop

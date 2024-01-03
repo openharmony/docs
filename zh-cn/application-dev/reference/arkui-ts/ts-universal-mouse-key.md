@@ -1,7 +1,3 @@
-
-
-
-
 # 鼠标事件
 
 在鼠标的单个动作触发多个事件时，事件的顺序是固定的，鼠标事件默认透传。
@@ -11,13 +7,34 @@
 >  - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >  - 目前仅支持通过外接鼠标触发。
 
+## onHover
 
-## 事件
+onHover(event: (isHover: boolean, event: HoverEvent) => void)
 
-| 名称                                       | 支持冒泡 | 描述                                       |
-| ---------------------------------------- | ---- | ---------------------------------------- |
-| onHover(event:&nbsp;(isHover?:&nbsp;boolean,&nbsp;event<sup>10+</sup>?:&nbsp;HoverEvent)&nbsp;=&gt;&nbsp;void) | 是    | 鼠标进入或退出组件时触发该回调。<br/>isHover: 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。<br/>event: 设置阻塞事件冒泡属性。 |
-| onMouse(event:&nbsp;(event?:&nbsp;MouseEvent)&nbsp;=&gt;&nbsp;void) | 是    | 当前组件被鼠标按键点击时或者鼠标在组件上悬浮移动时，触发该回调，event返回值包含触发事件时的时间戳、鼠标按键、动作、鼠标位置在整个屏幕上的坐标和相对于当前组件的坐标。 |
+鼠标进入或退出组件时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名              | 类型                                | 必填 | 说明                                                         |
+| ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| isHover             | boolean                             | 否   | 表示鼠标是否悬浮在组件上，鼠标进入时为true,&nbsp;退出时为false。 |
+| event<sup>10+</sup> | [HoverEvent](#hoverevent10对象说明) | 否   | 设置阻塞事件冒泡属性。                                       |
+
+## onMouse
+
+onMouse(event: (event: MouseEvent) => void)
+
+当前组件被鼠标按键点击时或者鼠标在组件上悬浮移动时，触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                              | 必填 | 说明                                                         |
+| ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| onMouse | [MouseEvent](#mouseevent对象说明) | 否   | 返回触发事件时的时间戳、鼠标按键、动作、鼠标位置在整个屏幕上的坐标和相对于当前组件的坐标。 |
 
 
 ## MouseEvent对象说明
@@ -29,9 +46,9 @@
 | button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | 鼠标按键。                        |
 | action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | 鼠标动作。                        |
 | stopPropagation        | () => void                               | 阻塞事件冒泡。                      |
-| timestamp<sup>8+</sup> | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
-| target<sup>8+</sup>    | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。               |
-| source<sup>8+</sup>    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。                      |
+| timestamp | number                                   | 事件时间戳。触发事件时距离系统启动的时间间隔，单位纳秒。 |
+| target    | [EventTarget](ts-universal-events-click.md#eventtarget8对象说明) | 触发事件的元素对象显示区域。               |
+| source    | [SourceType](ts-gesture-settings.md#sourcetype枚举说明) | 事件输入设备。                      |
 | windowX<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的x轴坐标。 |
 | windowY<sup>10+</sup> | number                          | 鼠标位置相对于应用窗口左上角的y轴坐标。 |
 | displayX<sup>10+</sup> | number                         | 鼠标位置相对于应用屏幕左上角的x轴坐标。 |

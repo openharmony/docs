@@ -35,7 +35,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | scrollBarColor | string \| number \| [Color](ts-appendix-enums.md#color)   | Color of the scrollbar.|
 | scrollBarWidth | string \| number         | Width of the scrollbar. This attribute cannot be set in percentage.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>If the width of the scrollbar exceeds its height, it will change to the default value.|
 | scrollSnap<sup>10+</sup>     | [ScrollSnapOptions](#scrollsnapoptions10)                     | Scroll snapping mode.|
-| edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect), [EdgeEffectOptions<sup>11+</sup>](#edgeeffectoptions11)?:        | Scroll effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.None**<br>**edgeEffectOptions** sets whether to enable the scroll effect when the component content is smaller than the component itself.<br>Default value: **true**|
+| edgeEffect     | value:[EdgeEffect](ts-appendix-enums.md#edgeeffect),<br>options?:[EdgeEffectOptions<sup>11+</sup>](#edgeeffectoptions11)        | Effect used at the edges of the component when the boundary of the scrollable content is reached.<br>\- **value**: effect used at the edges of the **\<Scroll>** component when the boundary of the scrollable content is reached. The spring effect and shadow effect are supported.<br>Default value: **EdgeEffect.None**<br>\- **options**: whether to enable the scroll effect when the component content size is smaller than the component itself.<br>Default value: **true**|
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
@@ -48,7 +48,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | None       | Scrolling is disabled.              |
 | Free<sup>(deprecated) </sup> | Vertical or horizontal scrolling is supported.<br> This API is deprecated since API version 9.|
 
-## scrollSnapOptions<sup>10+</sup>
+## ScrollSnapOptions<sup>10+</sup>
 | Name      | Type      | Description      |
 | ---------- | ---------------------------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10)   | Alignment mode for the scroll snap position.<br>**NOTE**<br>1. Default value: **ScrollSnapAlign.NONE**<br>2. This API takes effect only when **snapPagination** is set to **Dimension**. **Array\<Dimension\>** is not supported.|
@@ -66,6 +66,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
 | onScrollStart<sup>9+</sup>(event: () => void)                | Triggered when scrolling starts and is initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) starts.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
 | onScrollStop<sup>9+</sup>(event: () => void)                 | Triggered when scrolling stops after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) stops.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
+| onReachStart<sup>11+</sup>(event: () => void)          | Triggered when the **\<Scroll>** component reaches the start position.<br>**NOTE**<br>This event is triggered once when the component is initialized and once when the component scrolls to the start position. When the component's edge effect is the spring effect, this event is triggered once when the component passes the start position and is triggered again when the component returns to the start position.|
+| onReachEnd<sup>11+</sup>(event: () => void)            | Triggered when the **\<Scroll>** component reaches the end position.<br>**NOTE**<br>When the component's edge effect is the spring effect, this event is triggered once when the component passes the end position and is triggered again when the component returns to the end position.|
 
 >  **NOTE**
 >
@@ -159,8 +161,8 @@ When **smooth** is set to **true**, all passed items are loaded and counted in l
 | Name               | Type| Mandatory| Description                                                    |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | value                 | number   | Yes  | Index of the item to be scrolled to in the container.<br>**NOTE**<br>If the value set is a negative value or greater than the maximum index of the items in the container, the value is deemed abnormal, and no scrolling will be performed.                    |
-| smooth<sup>10+ </sup> | boolean  | No  | Whether to enable the smooth animation for scrolling to the item with the specified index. The value **true** means to enable that the smooth animation, and **false** means the opposite.<br>Default value: **false**<br>**NOTE**<br>Currently, only the **\<List>** component supports this parameter.|
-| align<sup>10+ </sup> | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the container.<br>Default value when the container is **\<List>**: **ScrollAlign.START**<br> Default value when the container is **\<Grid>**: **ScrollAlign.AUTO**<br>**NOTE**<br>Currently, only the **\<List>** and **\<Grid>** components support this parameter.|
+| smooth<sup>10+ </sup> | boolean  | No  | Whether to enable the smooth animation for scrolling to the item with the specified index. The value **true** means to enable that the smooth animation, and **false** means the opposite.<br>Default value: **false**|
+| align<sup>10+ </sup> | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the container.<br>Default value when the container is **\<List>**: **ScrollAlign.START**<br> Default value when the container is **\<Grid>**: **ScrollAlign.AUTO**<br>**NOTE**<br>Only the **\<List>** and **\<Grid>** components support this parameter.|
 
 ### scrollBy<sup>9+</sup>
 
@@ -172,7 +174,7 @@ Scrolls by the specified amount.
 
 >  **NOTE**
 >
->  This API only works for the **\<Scroll>**, **\<ScrollBar>**, **\<Grid>**, and **\<List>** components.
+>  This API is available for the **\<Scroll>**, **\<List>**, **\<Grid>**, and **\<WaterFlow>** components.
 
 **Parameters**
 
@@ -224,7 +226,7 @@ Obtains the size and position of a child component.
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | Size and position of the child component relative to the component.|
 
-## ScrollAlign<sup>10+ </sup>
+## ScrollAlign<sup>10+</sup>
 
 | Name    | Description                            |
 | ------ | ------------------------------ |

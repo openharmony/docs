@@ -3,7 +3,7 @@
 当前卡片框架提供了如下几种按时间刷新卡片的方式：
 
 
-- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onupdateform)的生命周期回调函数自动刷新卡片内容。可以在form_config.json配置文件的[`updateDuration`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每小时一次。
+- 定时刷新：表示在一定时间间隔内调用[onUpdateForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onupdateform)的生命周期回调函数自动刷新卡片内容。可以在form_updatebytime_config.json配置文件的[`updateDuration`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每小时一次。
 
   > **说明：**
   >
@@ -23,9 +23,9 @@
   {
     "forms": [
       {
-        "name": "widget",
-        "description": "This is a service widget.",
-        "src": "./ets/widget/pages/WidgetCard.ets",
+        "name": "UpdateDuration",
+        "description": "$string:widget_updateduration_desc",
+        "src": "./ets/updateduration/pages/UpdateDurationCard.ets",
         "uiSyntax": "arkts",
         "window": {
           "designWidth": 720,
@@ -37,26 +37,27 @@
         "scheduledUpdateTime": "10:30",
         "updateDuration": 2,
         "defaultDimension": "2*2",
-        "supportDimensions": ["2*2"]
+        "supportDimensions": [
+          "2*2"
+        ]
       }
     ]
   }
   ```
 
-- 定点刷新：表示在每天的某个特定时间点自动刷新卡片内容。可以在form_config.json配置文件中的[`scheduledUpdateTime`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每天的上午10点30分。
+- 定点刷新：表示在每天的某个特定时间点自动刷新卡片内容。可以在form_updatebytime_config.json配置文件中的[`scheduledUpdateTime`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每天的上午10点30分。
 
   > **说明：**
   >
   > 当同时配置了定时刷新（`updateDuration`）和定点刷新（`scheduledUpdateTime`)时，定时刷新的优先级更高。如果想要配置定点刷新，则需要将`updateDuration`配置为0。
-
-
+  
   ```json
   {
     "forms": [
-      {
-        "name": "widget",
-        "description": "This is a service widget.",
-        "src": "./ets/widget/pages/WidgetCard.ets",
+    	{
+        "name": "ScheduledUpdateTime",
+        "description": "$string:widget_scheupdatetime_desc",
+        "src": "./ets/scheduledupdatetime/pages/ScheduledUpdateTimeCard.ets",
         "uiSyntax": "arkts",
         "window": {
           "designWidth": 720,
@@ -68,7 +69,9 @@
         "scheduledUpdateTime": "10:30",
         "updateDuration": 0,
         "defaultDimension": "2*2",
-        "supportDimensions": ["2*2"]
+        "supportDimensions": [
+          "2*2"
+        ]
       }
     ]
   }
@@ -77,22 +80,36 @@
 - 下次刷新：表示指定卡片的下一次刷新时间。可以通过调用[`setFormNextRefreshTime()`](../reference/apis/js-apis-app-form-formProvider.md#setformnextrefreshtime)接口来实现。最短刷新时间为5分钟。例如，可以在接口调用后的5分钟内刷新卡片内容。
 
   ```ts
+  import type Base from '@ohos.base';
+  import formBindingData from '@ohos.app.form.formBindingData';
+  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+  import formInfo from '@ohos.app.form.formInfo';
   import formProvider from '@ohos.app.form.formProvider';
-  import Base from '@ohos.base';
-
-  let formId: string = '123456789'; // 实际业务场景需要使用正确的formId
-  try {
-    // 设置过5分钟后更新卡片内容
-    formProvider.setFormNextRefreshTime(formId, 5, (err: Base.BusinessError) => {
-      if (err) {
-        console.error(`Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
-        return;
-      } else {
-        console.info('Succeeded in setFormNextRefreshTimeing.');
-      }
-    });
-  } catch (err) {
-    console.error(`Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
+  import hilog from '@ohos.hilog';
+  
+  const TAG: string = 'UpdateByTimeFormAbility';
+  const FIVE_MINUTE: number = 5;
+  const DOMAIN_NUMBER: number = 0xFF00;
+  
+  export default class UpdateByTimeFormAbility extends FormExtensionAbility {
+    onFormEvent(formId: string, message: string): void {
+      // Called when a specified message event defined by the form provider is triggered.
+      hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
+      try {
+        // 设置过5分钟后更新卡片内容
+        formProvider.setFormNextRefreshTime(formId, FIVE_MINUTE, (err: Base.BusinessError) => {
+          if (err) {
+            hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${err.code}, message: ${err.message}`);
+            return;
+          } else {
+            hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in setFormNextRefreshTiming.');
+          }
+        });
+      } catch (err) {
+        hilog.info(DOMAIN_NUMBER, TAG, `Failed to setFormNextRefreshTime. Code: ${(err as Base.BusinessError).code}, message: ${(err as Base.BusinessError).message}`);
+      };
+    }
+    ...    
   }
   ```
 

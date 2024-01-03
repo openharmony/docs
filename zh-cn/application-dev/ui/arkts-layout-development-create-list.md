@@ -27,7 +27,7 @@ ListItemGroup用于列表数据的分组展示，其子组件也是ListItem。Li
 
 ### 布局
 
-List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自适应[延伸能力](../key-features/multi-device-app-dev/adaptive-layout.md)之外，还提供了自适应交叉轴方向上排列个数的布局能力。
+List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自适应[延伸能力](../key-features/multi-device-app-dev/adaptive-layout.md#延伸能力)之外，还提供了自适应交叉轴方向上排列个数的布局能力。
 
 利用垂直布局能力可以构建单列或者多列垂直滚动列表，如下图所示。
 
@@ -501,7 +501,6 @@ Stack({ alignContent: Alignment.Bottom }) {
   List({ space: 20, scroller: this.listScroller }) {
     // ...
   }
-  // ...
 
   Button() {
     // ...
@@ -510,7 +509,6 @@ Stack({ alignContent: Alignment.Bottom }) {
     // 点击按钮时，指定跳转位置，返回列表顶部
     this.listScroller.scrollToIndex(0)
   })
-  // ...
 }
 ```
 
@@ -752,7 +750,7 @@ ListItem() {
                  TextPickerDialog.show({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
-                   let arr = Array.isArray(value.index)?value.index:[value.index];
+                   let arr = Array.isArray(value.index) ? value.index : [value.index];
                    for(let i = 0; i < arr.length; i++) {
                       this.toDoData.push(new ToDo(this.availableThings[arr[i]])); // 新增列表项数据toDoData(可选事项)
                    }
@@ -804,13 +802,13 @@ ListItem() {
         this.name = name;
       }
     }
-    class TodoTmp {
+    class ToDoTmp {
       isEditMode: boolean = false
       selectedItems: Array<object> = []
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todolist: TodoTmp = new TodoTmp()
+    let toDoList: ToDoTmp = new ToDoTmp()
     // ToDoListItem.ets
     ```
     ```ts
@@ -822,9 +820,9 @@ ListItem() {
     GestureGroup(GestureMode.Exclusive,
       LongPressGesture()
         .onAction(() => {
-          if (!todolist.isEditMode) {
-            todolist.isEditMode = true; //进入编辑模式
-            todolist.selectedItems.push(todolist.toDoItem); // 记录长按时选中的列表项
+          if (!toDoList.isEditMode) {
+            toDoList.isEditMode = true; //进入编辑模式
+            toDoList.selectedItems.push(toDoList.toDoItem); // 记录长按时选中的列表项
           }
         })
       )
@@ -846,26 +844,26 @@ ListItem() {
         this.name = name;
       }
     }
-    class TodoTmp {
+    class ToDoTmp {
       isEditMode: boolean = false
       selectedItems: Array<object> = []
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todolist: TodoTmp = new TodoTmp()
+    let toDoList: ToDoTmp = new ToDoTmp()
     // ToDoListItem.ets
     ```
     ```ts
     // 实现参考
-    if (todolist.isEditMode) {
+    if (toDoList.isEditMode) {
       Checkbox()
         .onChange((isSelected) => {
           if (isSelected) {
-            todolist.selectedItems.push(todolist.toDoItem) // 勾选时，记录选中的列表项
+            toDoList.selectedItems.push(toDoList.toDoItem) // 勾选时，记录选中的列表项
           } else {
-            let index = todolist.selectedItems.indexOf(todolist.toDoItem)
+            let index = toDoList.selectedItems.indexOf(toDoList.toDoItem)
             if (index !== -1) {
-              todolist.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
+              toDoList.selectedItems.splice(index, 1) // 取消勾选时，则将此项从selectedItems中删除
             }
           }
         })
@@ -886,25 +884,25 @@ ListItem() {
         this.name = name;
       }
     }
-    class TodoTmp {
+    class ToDoTmp {
       isEditMode: boolean = false
       selectedItems: Array<object> = []
       toDoItem: ToDo[] = [];
       toDoData: ToDo[] = [];
     }
-    let todolist: TodoTmp = new TodoTmp()
+    let toDoList: ToDoTmp = new ToDoTmp()
     ```
     ```ts
     // 实现参考
     Button('删除')
       .onClick(() => {
         // 删除选中的列表项对应的toDoData数据
-        let leftData = todolist.toDoData.filter((item) => {
-          return todolist.selectedItems.find((selectedItem) => selectedItem !== item);
+        let leftData = toDoList.toDoData.filter((item) => {
+          return toDoList.selectedItems.find((selectedItem) => selectedItem !== item);
         })
 
-        todolist.toDoData = leftData;
-        todolist.isEditMode = false;
+        toDoList.toDoData = leftData;
+        toDoList.isEditMode = false;
       })
     ```
 

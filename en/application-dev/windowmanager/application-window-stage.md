@@ -1,13 +1,13 @@
-# Application Window Development (Stage Mode)
+# Application Window Development (Stage Model)
 
 
 ## Basic Concepts
 
 - Immersive window: a window display mode where the system windows (generally the status bar and navigation bar) are hidden to allow users to fully engage with the content.
 
-  The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in any other mode or a subwindow (for example, a dialog box or a floating window).
+  The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in freeform window mode or a subwindow (for example, a dialog box or a floating window).
 
-- Floating window: a special application window that can still be displayed in the foreground when the main window and corresponding ability are running the background.
+- Floating window: a special application window that can still be displayed in the foreground when the main window and corresponding ability are running in the background.
   
   The floating window can be used to continue playing a video after the application is switched to the background, or offer a quick entry (for example, bubbles) to the application. Before creating a floating window, an application must apply for the required permission.
 

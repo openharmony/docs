@@ -1,6 +1,6 @@
-# @ohos.net.mdns (mDNS Management)
+# @ohos.net.mdns (MDNS Management)
 
-Multicast DNS (mDNS) provides functions such as adding, removing, discovering, and resolving local services on a LAN.
+Multicast DNS (MDNS) provides functions such as adding, removing, discovering, and resolving local services on a LAN.
 
 > **NOTE**
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -11,11 +11,11 @@ Multicast DNS (mDNS) provides functions such as adding, removing, discovering, a
 import mdns from '@ohos.net.mdns'
 ```
 
-## mdns.addLocalService<sup>10+</sup>
+## mdns.addLocalService
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
-Adds an mDNS service. This API uses an asynchronous callback to return the result.
+Adds an MDNS service. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -24,8 +24,8 @@ Adds an mDNS service. This API uses an asynchronous callback to return the resul
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
 | context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-app-ability-uiAbility.md).|
-| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   mDNS service information.     |
-| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | Yes       |   Callback used to return the result. If the operation is successful, **error** is **undefined** and **data** is the mDNS service information.     |
+| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
+| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | Yes       |   Callback used to return the result. If the operation is successful, **error** is **undefined** and **data** is the MDNS service information.     |
 
 **Error codes**
 
@@ -39,7 +39,7 @@ Adds an mDNS service. This API uses an asynchronous callback to return the resul
 | 2204010 | Send packet failed. |
 
 > **NOTE**
-> For details about the error codes, see [mDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
+> For details about the error codes, see [MDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
 
 **Example**
 
@@ -97,11 +97,11 @@ mdns.addLocalService(context as Context, localServiceInfo, (error:BusinessError,
 });
 ```
 
-## mdns.addLocalService<sup>10+</sup>
+## mdns.addLocalService
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
-Adds an mDNS service. This API uses a promise to return the result.
+Adds an MDNS service. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -110,7 +110,7 @@ Adds an mDNS service. This API uses a promise to return the result.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
 | context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-app-ability-uiAbility.md).|
-| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   mDNS service information.     |
+| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
 
 **Return value**
 
@@ -130,7 +130,7 @@ Adds an mDNS service. This API uses a promise to return the result.
 | 2204010 | Send packet failed. |
 
 > **NOTE**
-> For details about the error codes, see [mDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
+> For details about the error codes, see [MDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
 
 **Example**
 
@@ -187,11 +187,11 @@ mdns.addLocalService(context as Context, localServiceInfo).then((data: mdns.Loca
 });
 ```
 
-## mdns.removeLocalService<sup>10+</sup>
+## mdns.removeLocalService
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
-Removes an mDNS service. This API uses an asynchronous callback to return the result.
+Removes an MDNS service. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -200,8 +200,8 @@ Removes an mDNS service. This API uses an asynchronous callback to return the re
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
 | context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-app-ability-uiAbility.md).|
-| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   mDNS service information.     |
-| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | Yes       |   Callback used to return the result. If the operation is successful, **error** is **undefined** and **data** is the mDNS service information.     |
+| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
+| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | Yes       |   Callback used to return the result. If the operation is successful, **error** is **undefined** and **data** is the MDNS service information.     |
 
 **Error codes**
 
@@ -215,7 +215,7 @@ Removes an mDNS service. This API uses an asynchronous callback to return the re
 | 2204010 | Send packet failed. |
 
 > **NOTE**
-> For details about the error codes, see [mDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
+> For details about the error codes, see [MDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
 
 **Example**
 
@@ -273,11 +273,11 @@ mdns.removeLocalService(context as Context, localServiceInfo, (error: BusinessEr
 });
 ```
 
-## mdns.removeLocalService<sup>10+</sup>
+## mdns.removeLocalService
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
-Removes an mDNS service. This API uses a promise to return the result.
+Removes an MDNS service. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -286,7 +286,7 @@ Removes an mDNS service. This API uses a promise to return the result.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
 | context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-app-ability-uiAbility.md).|
-| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   mDNS service information.     |
+| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
 
 **Return value**
 
@@ -306,7 +306,7 @@ Removes an mDNS service. This API uses a promise to return the result.
 | 2204010 | Send packet failed. |
 
 > **NOTE**
-> For details about the error codes, see [mDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
+> For details about the error codes, see [MDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
 
 **Example**
 
@@ -363,11 +363,11 @@ mdns.removeLocalService(context as Context, localServiceInfo).then((data: mdns.L
 });
 ```
 
-## mdns.createDiscoveryService<sup>10+</sup>
+## mdns.createDiscoveryService
 
 createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
-Creates a **DiscoveryService** object, which is used to discover mDNS services of the specified type.
+Creates a **DiscoveryService** object, which is used to discover MDNS services of the specified type.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -376,13 +376,13 @@ Creates a **DiscoveryService** object, which is used to discover mDNS services o
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|---------|-----------| ------------------------------------------------------------ |
 | context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-app-ability-uiAbility.md).|
-| serviceType | string  | Yes      | Type of the mDNS services to be discovered.|
+| serviceType | string  | Yes      | Type of the MDNS services to be discovered.|
 
 **Return value**
 
 | Type                         | Description                     |
 | ----------------------------- |---------------------------------|
-| DiscoveryService | **DiscoveryService** object used to discover mDNS services based on the specified **serviceType** and **Context**.|
+| DiscoveryService | **DiscoveryService** object used to discover MDNS services based on the specified **serviceType** and **Context**.|
 
 **Error codes**
 
@@ -434,11 +434,11 @@ let serviceType = "_print._tcp";
 let discoveryService : Object = mdns.createDiscoveryService(context as Context, serviceType);
 ```
 
-## mdns.resolveLocalService<sup>10+</sup>
+## mdns.resolveLocalService
 
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
-Resolves an mDNS service. This API uses an asynchronous callback to return the result.
+Resolves an MDNS service. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -447,8 +447,8 @@ Resolves an mDNS service. This API uses an asynchronous callback to return the r
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|----------------------------------|-----------|-------------------------------------------------------------|
 | context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-app-ability-uiAbility.md).|
-| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   mDNS service information.     |
-| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | Yes       |   Callback used to return the result. If the operation is successful, **error** is **undefined** and **data** is the mDNS service information.     |
+| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
+| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | Yes       |   Callback used to return the result. If the operation is successful, **error** is **undefined** and **data** is the MDNS service information.     |
 
 **Error codes**
 
@@ -462,7 +462,7 @@ Resolves an mDNS service. This API uses an asynchronous callback to return the r
 | 2204010 | Send packet failed.                          |
 
 > **NOTE**
-> For details about the error codes, see [mDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
+> For details about the error codes, see [MDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
 
 **Example**
 
@@ -520,11 +520,11 @@ mdns.resolveLocalService(context as Context, localServiceInfo, (error: BusinessE
 });
 ```
 
-## mdns.resolveLocalService<sup>10+</sup>
+## mdns.resolveLocalService
 
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
-Resolves an mDNS service. This API uses a promise to return the result.
+Resolves an MDNS service. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -533,7 +533,7 @@ Resolves an mDNS service. This API uses a promise to return the result.
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | context     | Context                          | Yes      | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-app-ability-uiAbility.md).|
-| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   mDNS service information.     |
+| serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | Yes       |   MDNS service information.     |
 
 **Return value**
 
@@ -553,7 +553,7 @@ Resolves an mDNS service. This API uses a promise to return the result.
 | 2204010 | Send packet failed.                          |
 
 > **NOTE**
-> For details about the error codes, see [mDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
+> For details about the error codes, see [MDNS Error Codes](../errorcodes/errorcode-net-mdns.md).
 
 **Example**
 
@@ -609,15 +609,15 @@ mdns.resolveLocalService(context as Context, localServiceInfo).then((data: mdns.
   console.log(JSON.stringify(data));
 });
 ```
-## DiscoveryService<sup>10+</sup>
+## DiscoveryService
 
-Defines a **DiscoveryService** object for discovering mDNS services of the specified type.
+Defines a **DiscoveryService** object for discovering MDNS services of the specified type.
 
-### startSearchingMDNS<sup>10+</sup>
+### startSearchingMDNS
 
 startSearchingMDNS(): void
 
-Searches for mDNS services on the LAN.
+Searches for MDNS services on the LAN.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -665,11 +665,11 @@ let discoveryService = mdns.createDiscoveryService(context as Context, serviceTy
 discoveryService.startSearchingMDNS();
 ```
 
-### stopSearchingMDNS<sup>10+</sup>
+### stopSearchingMDNS
 
 stopSearchingMDNS(): void
 
-Stops searching for mDNS services on the LAN.
+Stops searching for MDNS services on the LAN.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
@@ -717,7 +717,7 @@ let discoveryService = mdns.createDiscoveryService(context as Context, serviceTy
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('discoveryStart')<sup>10+</sup>
+### on('discoveryStart')
 
 on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
@@ -729,8 +729,8 @@ Enables listening for **discoveryStart** events.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStart**.<br>**discoveryStart**: event of starting discovery of mDNS services on the LAN.|
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | Yes       |   Callback used to return the mDNS service and error information.     |
+| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStart**.<br>**discoveryStart**: event of starting discovery of MDNS services on the LAN.|
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | Yes       |   Callback used to return the MDNS service and error information.     |
 
 **Example**
 
@@ -785,7 +785,7 @@ discoveryService.on('discoveryStart', (data: DataServiceInfo) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### off('discoveryStart')<sup>10+</sup>
+### off('discoveryStart')
 
 off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void
 
@@ -797,8 +797,8 @@ Disables listening for **discoveryStart** events.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStart**.<br>**discoveryStart**: event of starting discovery of mDNS services on the LAN.|
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | No       |   Callback used to return the mDNS service and error information.     |
+| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStart**.<br>**discoveryStart**: event of starting discovery of MDNS services on the LAN.|
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | No       |   Callback used to return the MDNS service and error information.     |
 
 **Example**
 
@@ -856,7 +856,7 @@ discoveryService.off('discoveryStart', (data: Data) => {
 });
 ```
 
-### on('discoveryStop')<sup>10+</sup>
+### on('discoveryStop')
 
 on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
@@ -868,8 +868,8 @@ Enables listening for **discoveryStop** events.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStop**.<br>**discoveryStop**: event of stopping discovery of mDNS services on the LAN.|
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | Yes       |   Callback used to return the mDNS service and error information.     |
+| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStop**.<br>**discoveryStop**: event of stopping discovery of MDNS services on the LAN.|
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | Yes       |   Callback used to return the MDNS service and error information.     |
 
 **Example**
 
@@ -923,7 +923,7 @@ discoveryService.on('discoveryStop', (data: Data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### off('discoveryStop')<sup>10+</sup>
+### off('discoveryStop')
 
 off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void
 
@@ -935,8 +935,8 @@ Disables listening for **discoveryStop** events.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStop**.<br>**discoveryStop**: event of stopping discovery of mDNS services on the LAN.|
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | No       |   Callback used to return the mDNS service and error information.     |
+| type     | string                          | Yes      |Event type. This field has a fixed value of **discoveryStop**.<br>**discoveryStop**: event of stopping discovery of MDNS services on the LAN.|
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | No       |   Callback used to return the MDNS service and error information.     |
 
 **Example**
 
@@ -994,7 +994,7 @@ discoveryService.off('discoveryStop', (data: Data) => {
 });
 ```
 
-### on('serviceFound')<sup>10+</sup>
+### on('serviceFound')
 
 on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
@@ -1006,8 +1006,8 @@ Enables listening for **serviceFound** events.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceFound**.<br>**serviceFound**: event indicating an mDNS service is found.|
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | Yes       |   mDNS service information.     |
+| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceFound**.<br>**serviceFound**: event indicating an MDNS service is found.|
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | Yes       |   MDNS service information.     |
 
 **Example**
 
@@ -1057,7 +1057,7 @@ discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### off('serviceFound')<sup>10+</sup>
+### off('serviceFound')
 
 off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
@@ -1069,8 +1069,8 @@ Disables listening for **serviceFound** events.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceFound**.<br>**serviceFound**: event indicating an mDNS service is found.|
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | No       |   mDNS service information.     |
+| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceFound**.<br>**serviceFound**: event indicating an MDNS service is found.|
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | No       |   MDNS service information.     |
 
 **Example**
 
@@ -1124,7 +1124,7 @@ discoveryService.off('serviceFound', (data: mdns.LocalServiceInfo) => {
 });
 ```
 
-### on('serviceLost')<sup>10+</sup>
+### on('serviceLost')
 
 on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
@@ -1136,8 +1136,8 @@ Enables listening for **serviceLost** events.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceLost**.<br>serviceLost: event indicating that an mDNS service is removed.|
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | Yes       |   mDNS service information.     |
+| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceLost**.<br>serviceLost: event indicating that an MDNS service is removed.|
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | Yes       |   MDNS service information.     |
 
 **Example**
 
@@ -1187,7 +1187,7 @@ discoveryService.on('serviceLost', (data: mdns.LocalServiceInfo) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### off('serviceLost')<sup>10+</sup>
+### off('serviceLost')
 
 off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
@@ -1199,8 +1199,8 @@ Disables listening for **serviceLost** events.
 
 | Name       | Type                            | Mandatory| Description                                    |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceLost**.<br>serviceLost: event indicating that an mDNS service is removed.|
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | No       |   mDNS service information.     |
+| type     | string                          | Yes      |Event type. This field has a fixed value of **serviceLost**.<br>serviceLost: event indicating that an MDNS service is removed.|
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | No       |   MDNS service information.     |
 
 **Example**
 
@@ -1254,34 +1254,34 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 });
 ```
 
-## LocalServiceInfo<sup>10+</sup>
+## LocalServiceInfo
 
-Defines the mDNS service information.
-
-**System capability**: SystemCapability.Communication.NetManager.MDNS
-
-| Name                 | Type                               | Mandatory| Description                    |
-| --------------------- | ---------------------------------- | --- | ------------------------ |
-| serviceType   | string                             |  Yes|  Type of the mDNS service. The value is in the format of **\_\<name>.<_tcp/_udp>**, where **name** contains a maximum of 63 characters excluding periods (.). |
-| serviceName | string                             |  Yes|  Name of the mDNS service.  |
-| port            | number           |  No|  Port number of the mDNS server.          |
-| host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the mDNS service. The IP address is not effective when an mDNS service is added or removed.              |
-| serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  No|  mDNS service attribute information.              |
-
-## ServiceAttribute<sup>10+</sup>
-
-Defines the mDNS service attribute information.
+Defines the MDNS service information.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 
 | Name                 | Type                               | Mandatory| Description                    |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| key   | string                             |  Yes|  mDNS service attribute key. The value contains a maximum of 9 characters. |
-| value | Array\<number>                             |  Yes|  mDNS service attribute value.  |
+| serviceType   | string                             |  Yes|  Type of the MDNS service. The value is in the format of **\_\<name>.<_tcp/_udp>**, where **name** contains a maximum of 63 characters excluding periods (.). |
+| serviceName | string                             |  Yes|  Name of the MDNS service.  |
+| port            | number           |  No|  Port number of the MDNS server.          |
+| host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the MDNS service. The IP address is not effective when an MDNS service is added or removed.              |
+| serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  No|  MDNS service attribute information.              |
+
+## ServiceAttribute
+
+Defines the MDNS service attribute information.
+
+**System capability**: SystemCapability.Communication.NetManager.MDNS
+
+| Name                 | Type                               | Mandatory| Description                    |
+| --------------------- | ---------------------------------- | --- | ------------------------ |
+| key   | string                             |  Yes|  MDNS service attribute key. The value contains a maximum of 9 characters. |
+| value | Array\<number>                             |  Yes|  MDNS service attribute value.  |
 
 ## MdnsError
 
-Defines the mDNS error information.
+Defines the MDNS error information.
 
 **System capability**: SystemCapability.Communication.NetManager.MDNS
 

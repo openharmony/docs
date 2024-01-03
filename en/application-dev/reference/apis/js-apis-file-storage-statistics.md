@@ -26,15 +26,15 @@ Obtains the total space of a volume in an external storage device, in bytes. Thi
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description|
-| ---------- | ------ | ---- | ---- |
-| volumeUuid | string | Yes  | UUID of the volume.|
+  | Name    | Type  | Mandatory| Description|
+  | ---------- | ------ | ---- | ---- |
+  | volumeUuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
-| Type                 | Description            |
-| --------------------- | ---------------- |
-| Promise&lt;number&gt; | Promise used to return the total volume space obtained.|
+  | Type                 | Description            |
+  | --------------------- | ---------------- |
+  | Promise&lt;number&gt; | Promise used to return the total volume space obtained.|
 
 **Error codes**
 
@@ -59,10 +59,10 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     storageStatistics.getTotalSizeOfVolume(uuid).then((number: number) => {
       console.info("getTotalSizeOfVolume successfully:" + number);
     }).catch((err: BusinessError) => {
-      console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
+      console.error("getTotalSizeOfVolume failed with error:" + JSON.stringify(err));
     });
   }).catch((err: BusinessError) => {
-    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
+    console.error("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -80,10 +80,10 @@ Obtains the total space of a volume in an external storage device, in bytes. Thi
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                      |
-| ---------- | ------------------------------------ | ---- | -------------------------- |
-| volumeUuid | string                               | Yes  | UUID of the volume.                      |
-| callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total volume space obtained.|
+  | Name    | Type                                | Mandatory| Description                      |
+  | ---------- | ------------------------------------ | ---- | -------------------------- |
+  | volumeUuid | string                               | Yes  | UUID of the volume.                      |
+  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the total volume space obtained.|
 
 **Error codes**
 
@@ -107,14 +107,14 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     let uuid: string = volumes[0].uuid;
     storageStatistics.getTotalSizeOfVolume(uuid, (error: BusinessError, number: number) => {
       if (error) {
-        console.info("getTotalSizeOfVolume failed with error:" + JSON.stringify(error));
+        console.error("getTotalSizeOfVolume failed with error:" + JSON.stringify(error));
       } else {
         // Do something.
         console.info("getTotalSizeOfVolume successfully:" + number);
       }
     });
   }).catch((err: BusinessError) => {
-    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
+    console.error("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -132,15 +132,15 @@ Obtains the available space of a volume in an external storage device, in bytes.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description|
-| ---------- | ------ | ---- | ---- |
-| volumeUuid | string | Yes  | UUID of the volume.|
+  | Name    | Type  | Mandatory| Description|
+  | ---------- | ------ | ---- | ---- |
+  | volumeUuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
-| Type                 | Description              |
-| --------------------- | ------------------ |
-| Promise&lt;number&gt; | Promise used to return the available volume space obtained.|
+  | Type                 | Description              |
+  | --------------------- | ------------------ |
+  | Promise&lt;number&gt; | Promise used to return the available volume space obtained.|
 
 **Error codes**
 
@@ -165,10 +165,10 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     storageStatistics.getFreeSizeOfVolume(uuid).then((number: number) => {
       console.info("getFreeSizeOfVolume successfully:" + number);
     }).catch((err: BusinessError) => {
-      console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
+      console.error("getFreeSizeOfVolume failed with error:" + JSON.stringify(err));
     });
   }).catch((err: BusinessError) => {
-    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
+    console.error("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -186,10 +186,10 @@ Obtains the available space of a volume in an external storage device, in bytes.
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                        |
-| ---------- | ------------------------------------ | ---- | ---------------------------- |
-| volumeUuid | string                               | Yes  | UUID of the volume.                        |
-| callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available volume space obtained.|
+  | Name    | Type                                | Mandatory| Description                        |
+  | ---------- | ------------------------------------ | ---- | ---------------------------- |
+  | volumeUuid | string                               | Yes  | UUID of the volume.                        |
+  | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available volume space obtained.|
 
 **Error codes**
 
@@ -213,14 +213,14 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     let uuid: string = volumes[0].uuid;
     storageStatistics.getFreeSizeOfVolume(uuid, (error: BusinessError, number: number) => {
       if (error) {
-        console.info("getFreeSizeOfVolume failed with error:" + JSON.stringify(error));
+        console.error("getFreeSizeOfVolume failed with error:" + JSON.stringify(error));
       } else {
         // Do something.
         console.info("getFreeSizeOfVolume successfully: " + number);
       }
     });
   }).catch((err: BusinessError) => {
-    console.info("getAllVolumes failed with error:" + JSON.stringify(err));
+    console.error("getAllVolumes failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -238,15 +238,15 @@ Obtains the storage space of an application, in bytes. This API uses a promise t
 
 **Parameters**
 
-| Name     | Type  | Mandatory| Description    |
-| ----------- | ------ | ---- | -------- |
-| packageName | string | Yes  | Bundle name.|
+  | Name     | Type  | Mandatory| Description    |
+  | ----------- | ------ | ---- | -------- |
+  | packageName | string | Yes  | Bundle name.|
 
 **Return value**
 
-| Type                                      | Description                      |
-| ------------------------------------------ | -------------------------- |
-| Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.|
+  | Type                                      | Description                      |
+  | ------------------------------------------ | -------------------------- |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.|
 
 **Error codes**
 
@@ -269,7 +269,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   storageStatistics.getBundleStats(packageName).then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
-    console.info("getBundleStats failed with error:" + JSON.stringify(err));
+    console.error("getBundleStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -287,10 +287,10 @@ Obtains the storage space of an application, in bytes. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                                                     | Mandatory| Description                                |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-| packageName | string | Yes  | Bundle name.|
-| callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | Yes  | Callback invoked to return the application storage space obtained.|
+  | Name  | Type                                                     | Mandatory| Description                                |
+  | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+  | packageName | string | Yes  | Bundle name.|
+  | callback | AsyncCallback&lt;[Bundlestats](#bundlestats9)&gt; | Yes  | Callback invoked to return the application storage space obtained.|
 
 **Error codes**
 
@@ -312,7 +312,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   let packageName: string = "";
   storageStatistics.getBundleStats(packageName, (error: BusinessError, BundleStats: storageStatistics.BundleStats) => {
     if (error) {
-      console.info("getBundleStats failed with error:" + JSON.stringify(error));
+      console.error("getBundleStats failed with error:" + JSON.stringify(error));
     }  else {
       // Do something.
       console.info("getBundleStats successfully:" + JSON.stringify(BundleStats));
@@ -330,9 +330,9 @@ Obtains the storage space of this application, in bytes. This API uses a promise
 
 **Return value**
 
-| Type                                       | Description                      |
-| ------------------------------------------ | -------------------------- |
-| Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.     |
+  | Type                                       | Description                      |
+  | ------------------------------------------ | -------------------------- |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise used to return the application storage space obtained.     |
 
 **Error codes**
 
@@ -351,7 +351,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   storageStatistics.getCurrentBundleStats().then((BundleStats: storageStatistics.BundleStats) => {
     console.info("getCurrentBundleStats successfully:" + JSON.stringify(BundleStats));
   }).catch((err: BusinessError) => {
-    console.info("getCurrentBundleStats failed with error:"+ JSON.stringify(err));
+    console.error("getCurrentBundleStats failed with error:"+ JSON.stringify(err));
   });
   ```
 
@@ -365,9 +365,9 @@ Obtains the storage space of this application, in bytes. This API uses an asynch
 
 **Parameters**
 
-| Name   | Type                                                      | Mandatory | Description                                |
-| -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the application space obtained.       |
+  | Name   | Type                                                      | Mandatory | Description                                |
+  | -------- | --------------------------------------------------------- | ---- | ------------------------------------ |
+  | callback | AsyncCallback&lt;[BundleStats](#bundlestats9)&gt;          | Yes  | Callback invoked to return the application space obtained.       |
 
 **Error codes**
 
@@ -385,7 +385,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   import { BusinessError } from '@ohos.base';
   storageStatistics.getCurrentBundleStats((error: BusinessError, bundleStats: storageStatistics.BundleStats) => {
     if (error) {
-      console.info("getCurrentBundleStats failed with error:" + JSON.stringify(error));
+      console.error("getCurrentBundleStats failed with error:" + JSON.stringify(error));
     } else {
       // Do something.
       console.info("getCurrentBundleStats successfully:" + JSON.stringify(bundleStats));
@@ -417,9 +417,9 @@ Obtains the total space of the built-in storage, in bytes. This API uses a promi
 
 **Return value**
 
-| Type                  | Description              |
-| --------------------- | ------------------ |
-| Promise&lt;number&gt; | Promise used to return the total built-in storage space obtained.  |
+  | Type                  | Description              |
+  | --------------------- | ------------------ |
+  | Promise&lt;number&gt; | Promise used to return the total built-in storage space obtained.  |
 
 **Error codes**
 
@@ -440,7 +440,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   storageStatistics.getTotalSize().then((number: number) => {
     console.info("getTotalSize successfully:" + JSON.stringify(number));
   }).catch((err: BusinessError) => {
-    console.info("getTotalSize failed with error:"+ JSON.stringify(err));
+    console.error("getTotalSize failed with error:"+ JSON.stringify(err));
   });
   ```
 
@@ -458,9 +458,9 @@ Obtains the total space of the built-in storage, in bytes. This API uses an asyn
 
 **Parameters**
 
-| Name   | Type                                 | Mandatory | Description                    |
-| -------- | ------------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the built-in storage space obtained.|
+  | Name   | Type                                 | Mandatory | Description                    |
+  | -------- | ------------------------------------ | ---- | ------------------------ |
+  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the built-in storage space obtained.|
 
 **Error codes**
 
@@ -480,7 +480,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   import { BusinessError } from '@ohos.base';
   storageStatistics.getTotalSize((error: BusinessError, number: number) => {
     if (error) {
-      console.info("getTotalSize failed with error:" + JSON.stringify(error));
+      console.error("getTotalSize failed with error:" + JSON.stringify(error));
     } else {
       // Do something.
       console.info("getTotalSize successfully:" + number);
@@ -502,9 +502,9 @@ Obtains the total space of the built-in storage, in bytes. This API returns the 
 
 **Return value**
 
-| Type                  | Description              |
-| --------------------- | ------------------ |
-| number | Built-in storage space obtained.  |
+  | Type                  | Description              |
+  | --------------------- | ------------------ |
+  | number | Built-in storage space obtained.  |
 
 **Error codes**
 
@@ -527,7 +527,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
   } catch (err) {
     let error: BusinessError = err as BusinessError;
-    console.info("getTotalSizeSync failed with error:" + JSON.stringify(error));
+    console.error("getTotalSizeSync failed with error:" + JSON.stringify(error));
   }
   ```
 
@@ -545,9 +545,9 @@ Obtains the available space of the built-in storage, in bytes. This API uses a p
 
 **Return value**
 
-| Type                  | Description              |
-| --------------------- | ------------------ |
-| Promise&lt;number&gt; | Promise used to return the available space of the built-in storage obtained.|
+  | Type                  | Description              |
+  | --------------------- | ------------------ |
+  | Promise&lt;number&gt; | Promise used to return the available space of the built-in storage obtained.|
 
 **Error codes**
 
@@ -568,7 +568,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   storageStatistics.getFreeSize().then((number: number) => {
     console.info("getFreeSize successfully:" + JSON.stringify(number));
   }).catch((err: BusinessError) => {
-    console.info("getFreeSize failed with error:" + JSON.stringify(err));
+    console.error("getFreeSize failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -586,9 +586,9 @@ Obtains the available space of the built-in storage, in bytes. This API uses an 
 
 **Parameters**
 
-| Name   | Type                                 | Mandatory| Description                      |
-| -------- | ------------------------------------ | ---- | ------------------------- |
-| callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the built-in storage obtained.|
+  | Name   | Type                                 | Mandatory| Description                      |
+  | -------- | ------------------------------------ | ---- | ------------------------- |
+  | callback | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the available space of the built-in storage obtained.|
 
 **Error codes**
 
@@ -608,7 +608,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   import { BusinessError } from '@ohos.base';
   storageStatistics.getFreeSize((error: BusinessError, number: number) => {
     if (error) {
-      console.info("getFreeSize failed with error:" + JSON.stringify(error));
+      console.error("getFreeSize failed with error:" + JSON.stringify(error));
     } else {
       // Do something.
       console.info("getFreeSize successfully:" + number);
@@ -630,9 +630,9 @@ Obtains the available space of the built-in storage, in bytes. This API returns 
 
 **Return value**
 
-| Type                  | Description              |
-| --------------------- | ------------------ |
-| number | Available space of the built-in storage obtained.|
+  | Type                  | Description              |
+  | --------------------- | ------------------ |
+  | number | Available space of the built-in storage obtained.|
 
 **Error codes**
 
@@ -655,7 +655,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
   } catch (err) {
     let error: BusinessError = err as BusinessError;
-    console.info("getFreeSizeSync failed with error:" + JSON.stringify(error));
+    console.error("getFreeSizeSync failed with error:" + JSON.stringify(error));
   }
   ```
 
@@ -673,9 +673,9 @@ Obtains the system data size, in bytes. This API uses a promise to return the re
 
 **Return value**
 
-| Type                 | Description            |
-| --------------------- | ---------------- |
-| Promise&lt;number&gt; | Promise used to return the system data size obtained.|
+  | Type                 | Description            |
+  | --------------------- | ---------------- |
+  | Promise&lt;number&gt; | Promise used to return the system data size obtained.|
 
 **Error codes**
 
@@ -696,7 +696,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   storageStatistics.getSystemSize().then((number: number) => {
     console.info("getSystemSize successfully:" + number);
   }).catch((err: BusinessError) => {
-    console.info("getSystemSize failed with error:" + JSON.stringify(err));
+    console.error("getSystemSize failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -714,9 +714,9 @@ Obtains the system data size, in bytes. This API uses an asynchronous callback t
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                      |
-| ---------- | ------------------------------------ | ---- | -------------------------- |
-| callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback invoked to return the system data size obtained.|
+  | Name    | Type                                | Mandatory| Description                      |
+  | ---------- | ------------------------------------ | ---- | -------------------------- |
+  | callback   |  AsyncCallback&lt;number&gt;         | Yes  | Callback invoked to return the system data size obtained.|
 
 **Error codes**
 
@@ -736,7 +736,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   import { BusinessError } from '@ohos.base';
   storageStatistics.getSystemSize((error: BusinessError, number: number) => {
     if (error) {
-      console.info("getSystemSize failed with error:" + JSON.stringify(error));
+      console.error("getSystemSize failed with error:" + JSON.stringify(error));
     } else {
       // Do something.
       console.info("getSystemSize successfully:" + number);
@@ -758,8 +758,8 @@ Obtains the storage statistics of this user, in bytes. This API uses a promise t
 
 **Return value**
 
-| Type                 | Description            |
-| --------------------- | ---------------- |
+  | Type                 | Description            |
+  | --------------------- | ---------------- |
 | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage statistics obtained. |
 
 **Error codes**
@@ -781,7 +781,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   storageStatistics.getUserStorageStats().then((storageStats: storageStatistics.StorageStats) => {
     console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   }).catch((err: BusinessError) => {
-    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
+    console.error("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -799,8 +799,8 @@ Obtains the storage statistics of this user, in bytes. This API uses an asynchro
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                      |
-| ---------- | ------------------------------------ | ---- | -------------------------- |
+  | Name    | Type                                | Mandatory| Description                      |
+  | ---------- | ------------------------------------ | ---- | -------------------------- |
 | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the storage statistics obtained. |
 
 **Error codes**
@@ -821,7 +821,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   import { BusinessError } from '@ohos.base';
   storageStatistics.getUserStorageStats((error: BusinessError, storageStats: storageStatistics.StorageStats) => {
     if (error) {
-      console.info("getUserStorageStats failed with error:" + JSON.stringify(error));
+      console.error("getUserStorageStats failed with error:" + JSON.stringify(error));
     } else {
       // Do something.
       console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
@@ -843,15 +843,15 @@ Obtains the storage statistics of the specified user, in bytes. This API uses a 
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description|
-| ---------- | ------ | ---- | ---- |
-| userId | number | Yes  | User ID|
+  | Name    | Type  | Mandatory| Description|
+  | ---------- | ------ | ---- | ---- |
+  | userId | number | Yes  | User ID|
 
 **Return value**
 
-| Type                 | Description            |
-| --------------------- | ---------------- |
-| Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage statistics obtained.|
+  | Type                 | Description            |
+  | --------------------- | ---------------- |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise used to return the storage statistics obtained.|
 
 **Error codes**
 
@@ -874,7 +874,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   storageStatistics.getUserStorageStats(userId).then((storageStats: storageStatistics.StorageStats) => {
     console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));
   }).catch((err: BusinessError) => {
-    console.info("getUserStorageStats failed with error:" + JSON.stringify(err));
+    console.error("getUserStorageStats failed with error:" + JSON.stringify(err));
   });
   ```
 
@@ -892,10 +892,10 @@ Obtains the storage statistics of the specified user, in bytes. This API uses an
 
 **Parameters**
 
-| Name    | Type                                | Mandatory| Description                      |
-| ---------- | ------------------------------------ | ---- | -------------------------- |
-| userId | number                               | Yes  | User ID|
-| callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the storage statistics obtained.|
+  | Name    | Type                                | Mandatory| Description                      |
+  | ---------- | ------------------------------------ | ---- | -------------------------- |
+  | userId | number                               | Yes  | User ID|
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | Yes  | Callback invoked to return the storage statistics obtained.|
 
 **Error codes**
 
@@ -917,7 +917,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   let userId: number = 100;
   storageStatistics.getUserStorageStats(userId, (error: BusinessError, storageStats: storageStatistics.StorageStats) => {
     if (error) {
-      console.info("getUserStorageStats failed with error:" + JSON.stringify(error));
+      console.error("getUserStorageStats failed with error:" + JSON.stringify(error));
     } else {
       // Do something.
       console.info("getUserStorageStats successfully:" + JSON.stringify(storageStats));

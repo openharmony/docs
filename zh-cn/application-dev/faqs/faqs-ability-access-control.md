@@ -14,7 +14,7 @@
 
 **参考链接**
 
-[应用权限列表 - ohos.permission.LOCATION](../security/permission-list.md#ohospermissionlocation)
+[应用权限列表 - ohos.permission.LOCATION](../security/AccessToken/permissions-for-all.md#ohospermissionlocation)
 
 
 ## 向用户申请授予权限但被用户拒绝后，如何处理才能避免应用二次进入时崩溃(API 9)
@@ -35,7 +35,7 @@
 
 **参考链接**
 
-[访问控制（权限）开发概述](../security/accesstoken-overview.md)
+[应用权限管控概述](../security/AccessToken/access-token-overview.md)
 
 ## module.json5配置文件中extensionAbilities和requestPermissions的权限声明有何区别(API 9)
 

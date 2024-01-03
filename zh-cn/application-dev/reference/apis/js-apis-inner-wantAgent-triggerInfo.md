@@ -22,3 +22,4 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | want       | Want                 | 否   | 对象间信息传递的载体，可以用于应用组件间的信息传递。    |
 | permission | string               | 否   | 权限定义。    |
 | extraInfo  | {[key: string]: any} | 否   | 额外数据。    |
+| extraInfos  | Record\<string, Object> | 否   | 额外数据。推荐使用该属性替代extraInfo，设置该属性后，extraInfo不再生效。    |

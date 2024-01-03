@@ -100,7 +100,15 @@ Open **src/main/cpp/hello.cpp**, and add the reference file.
 
 **Calling APIs on the JS Side**
 
-1. Open **src\main\ets\pages\index.ets**, and import **libentry.so**.
+1. Open the **src\main\ets\pages\index.ets** file, import **libentry.so**, and modify the **libentry.so** file as follows:
+    ```js
+    import image from '@ohos.multimedia.image'
+    export const add:(a: number, b: number) => image.PixelMap;
+    export const transform: (a: image.PixelMap) => image.PixelMap;
+    export const testGetImageInfo: (a: image.PixelMap) => image.PixelMap;
+    export const testAccessPixels: (a: image.PixelMap) => image.PixelMap;
+    export const testUnAccessPixels: (a: image.PixelMap) => image.PixelMap;
+    ```
     
 2. Call the native APIs and pass in the JS resource object. The sample code is as follows:
 

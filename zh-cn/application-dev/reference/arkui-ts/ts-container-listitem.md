@@ -93,7 +93,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 
 | 名称                         | 参数类型                 | 必填 | 描述                                                         |
 | ---------------------------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void | 否   | 当列表项向右或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）位置发生变化触发，以vp为单位 |
+| onOffsetChange<sup>11+</sup> | (offset: number) => void | 否   | 当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）位置发生变化触发，以vp为单位 |
 
 ## ListItemStyle<sup>10+</sup>枚举说明
 
@@ -158,7 +158,6 @@ struct ListItemExample {
 @Entry
 @Component
 struct ListItemExample2 {
-  @State message: string = 'Hello World'
   @State arr: number[] = [0, 1, 2, 3, 4]
   @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
   @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"

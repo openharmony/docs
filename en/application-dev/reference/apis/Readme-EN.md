@@ -10,10 +10,13 @@
     - [@ohos.app.ability.AbilityStage (AbilityStage)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
+    - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility)](js-apis-app-ability-autoFillExtensionAbility.md)
+    - [@ohos.app.ability.AutoFillManager (AutoFillManager)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
     - [@ohos.app.ability.childProcessManager (childProcessManager)](js-apis-app-ability-childProcessManager.md)
     - [@ohos.app.ability.common (Context)](js-apis-app-ability-common.md)
     - [@ohos.app.ability.contextConstant (ContextConstant)](js-apis-app-ability-contextConstant.md)
+    - [@ohos.app.ability.dialogSession (dialogSession)](js-apis-app-ability-dialogSession.md)
     - [@ohos.app.ability.EnvironmentCallback (EnvironmentCallback)](js-apis-app-ability-environmentCallback.md)
     - [@ohos.app.ability.ExtensionAbility (ExtensionAbility Base Class)](js-apis-app-ability-extensionAbility.md)
     - [@ohos.app.ability.insightIntent (insightIntent)](js-apis-app-ability-insightIntent.md)
@@ -91,15 +94,20 @@
     - application
       - [abilityDelegator](js-apis-inner-application-abilityDelegator.md)
       - [abilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md)
+      - [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver.md)
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
       - [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)
       - [AbilityStateData](js-apis-inner-application-abilityStateData.md)
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
+      - [AppForegroundStateObserver](js-apis-inner-application-appForegroundStateObserver.md)
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)
       - [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)
       - [AppStateData](js-apis-inner-application-appStateData.md)
+      - [AutoFillExtensionContext](js-apis-inner-application-autoFillExtensionContext.md)
+      - [AutoFillRequest](js-apis-inner-application-autoFillRequest.md)
+      - [AutoFillType](js-apis-inner-application-autoFillType.md)
       - [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md)
       - [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)
       - [BaseContext](js-apis-inner-application-baseContext.md)
@@ -118,6 +126,7 @@
       - [MissionListener](js-apis-inner-application-missionListener.md)
       - [MissionParameter](js-apis-inner-application-missionParameter.md)
       - [MissionSnapshot](js-apis-inner-application-missionSnapshot.md)
+      - [PageNodeInfo](js-apis-inner-application-pageNodeInfo.md)
       - [ProcessData](js-apis-inner-application-processData.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
@@ -125,6 +134,7 @@
       - [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)
       - [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md)
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
+      - [ViewData](js-apis-inner-application-viewData.md)
       - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
@@ -211,6 +221,7 @@
     - [metadata](js-apis-bundleManager-metadata.md)
     - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
     - [permissionDef](js-apis-bundleManager-permissionDef.md)
+    - [recoverableApplicationInfo](js-apis-bundleManager-recoverableApplicationInfo.md)
     - [remoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)
     - [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo.md)
     - [SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)
@@ -241,6 +252,7 @@
   - [@ohos.display (Display)](js-apis-display.md)
   - [@ohos.effectKit (Image Effects)](js-apis-effectKit.md)
   - [@ohos.graphics.colorSpaceManager (Color Space Management)](js-apis-colorSpaceManager.md)
+  - [@ohos.PiPWindow (PiP Window)](js-apis-pipWindow.md)
   - [@ohos.screen (Screen)](js-apis-screen.md)
   - [@ohos.screenshot (Screenshot)](js-apis-screenshot.md)
   - [@ohos.window (Window)](js-apis-window.md)
@@ -286,9 +298,9 @@
   - [@ohos.userIAM.userAuth (User Authentication)](js-apis-useriam-userauth.md)
   - security
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
-
 - Data Management
   - [@ohos.data.cloudData (Device-Cloud Synergy)](js-apis-data-cloudData.md)
+  - [@ohos.data.cloudExtension (Device-Cloud Sharing Extension)](js-apis-data-cloudExtension.md)
   - [@ohos.data.dataAbility (DataAbility Predicates)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (DataShare)](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates (DataShare Predicates)](js-apis-data-dataSharePredicates.md)
@@ -348,7 +360,7 @@
   - [@ohos.net.vpn (VPN Management)](js-apis-net-vpn.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
   - [@ohos.request (Upload and Download)](js-apis-request.md)
-
+  
 - Connectivity
   - [@ohos.bluetooth.a2dp (Bluetooth A2DP Module) (Recommended)](js-apis-bluetooth-a2dp.md)
   - [@ohos.bluetooth.access (Bluetooth Access Module) (Recommended)](js-apis-bluetooth-access.md)
@@ -395,6 +407,8 @@
   - [@ohos.inputMethodEngine (Input Method Service)](js-apis-inputmethodengine.md)
   - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
   - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
+  - [@ohos.inputMethod.Panel (Input Method Panel)](js-apis-inputmethod-panel.md)
+  - [@ohos.inputMethodList (Input Method List)](js-apis-inputmethodlist.md)
   - [@ohos.InputMethodSubtype (Input Method Subtype)](js-apis-inputmethod-subtype.md)
   - [@ohos.logLibrary (Log Library)](js-apis-loglibrary.md)
   - [@ohos.pasteboard (Pasteboard)](js-apis-pasteboard.md)
@@ -405,6 +419,7 @@
   - [@ohos.wallpaper (Wallpaper)](js-apis-wallpaper.md)
   - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)](js-apis-WallpaperExtensionAbility.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
+  - [@ohos.telephony.vcard (VCard)](js-apis-vcard.md)
   - [Console](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
   - [syscap](js-apis-syscap.md)
@@ -455,7 +470,7 @@
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-
+  
 - Account Management
   - [@ohos.account.appAccount (App Account Management)](js-apis-appAccount.md)
   - [@ohos.account.distributedAccount (Distributed Account Management)](js-apis-distributed-account.md)

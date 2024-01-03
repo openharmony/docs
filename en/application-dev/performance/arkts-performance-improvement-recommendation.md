@@ -10,7 +10,7 @@ When developing a long list, use of loop rendering, as in the code snippet below
 @Entry
 @Component
 struct MyComponent {
-  @State arr: number[] = Array.from(Array(100), (v:number,k:number) =>k);  // Construct an array of 0 to 99.
+  @State arr: number[] = Array.from(Array<number>(100), (v:number,k:number) =>k);  // Construct an array of 0 to 99.
   build() {
     List() {
       ForEach(this.arr, (item: number) => {
@@ -27,88 +27,89 @@ The preceding code snippet loads all of the 100 list elements at a time during p
 
 ```ts
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
 
   public totalCount(): number {
-    return 0
+    return 0;
   }
 
-  public getData(index: number): number {
-    return index
+  public getData(index: number): string {
+    return this.originDataArray[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener')
-      this.listeners.push(listener)
+      console.info('add listener');
+      this.listeners.push(listener);
     }
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener')
-      this.listeners.splice(pos, 1)
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
     }
   }
 
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
 
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
+      listener.onDataAdd(index);
     })
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index)
+      listener.onDataChange(index);
     })
   }
 
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
+      listener.onDataDelete(index);
     })
   }
 
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
+      listener.onDataMove(from, to);
     })
   }
 }
 
 class MyDataSource extends BasicDataSource {
-  private dataArray: string[] = ['item value: 0', 'item value: 1', 'item value: 2']
+  private dataArray: string[] = ['item value: 0', 'item value: 1', 'item value: 2'];
 
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
 
-  public getData(index: number): number {
-    return Number(this.dataArray[index])
+  public getData(index: number): string {
+    return this.dataArray[index];
   }
 
   public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data)
-    this.notifyDataAdd(index)
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
-    this.dataArray.push(data)
-    this.notifyDataAdd(this.dataArray.length - 1)
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Entry
 @Component
 struct MyComponent {
-  private data: MyDataSource = new MyDataSource()
+  private data: MyDataSource = new MyDataSource();
 
   build() {
     List() {
@@ -119,7 +120,7 @@ struct MyComponent {
           }
         }
         .onClick(() => {
-          this.data.pushData('item value: ' + this.data.totalCount())
+          this.data.pushData('item value: ' + this.data.totalCount());
         })
       },(item:string):string => item)
     }
@@ -149,98 +150,97 @@ When a **\<List>** component is nested within a **\<Scroll>** component, all of 
 
 ```ts
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
 
   public totalCount(): number {
-    return 0
+    return 0;
   }
 
-  public getData(index: number): number {
-    return index
+  public getData(index: number): string {
+    return this.originDataArray[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener')
-      this.listeners.push(listener)
+      console.info('add listener');
+      this.listeners.push(listener);
     }
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener')
-      this.listeners.splice(pos, 1)
+      console.info('remove listener');
+      this.listeners.splice(pos, 1);
     }
   }
 
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
 
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
+      listener.onDataAdd(index);
     })
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index)
+      listener.onDataChange(index);
     })
   }
 
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
+      listener.onDataDelete(index);
     })
   }
 
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
+      listener.onDataMove(from, to);
     })
   }
 }
 
 class MyDataSource extends BasicDataSource {
-  private dataArray: Array<string> = new Array(100).fill('test')
+  private dataArray: Array<string> = new Array(100).fill('test');
 
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
 
-  public getData(index: number): number {
-    return Number(this.dataArray[index])
+  public getData(index: number): string {
+    return this.dataArray[index];
   }
 
   public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data)
-    this.notifyDataAdd(index)
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
-    this.dataArray.push(data)
-    this.notifyDataAdd(this.dataArray.length - 1)
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Entry
 @Component
 struct MyComponent {
-  private data: MyDataSource = new MyDataSource()
+  private data: MyDataSource = new MyDataSource();
 
   build() {
     Scroll() {
       List() {
-        LazyForEach(this.data, (item: string, index?: number|undefined) => {
+        LazyForEach(this.data, (item: string, index: number ) => {
           ListItem() {
             Row() {
-              if(index){
-                Text('item value: ' + item + (index + 1)).fontSize(20).margin(10)
-              }
+              Text('item value: ' + item + (index + 1)).fontSize(20).margin(10)
             }
           }
         })
@@ -254,20 +254,21 @@ In the above scenario, you are advised to set the width and height for the **\<L
 
 ```ts
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: string[] = [];
 
   public totalCount(): number {
-    return 0
+    return 0;
   }
 
-  public getData(index: number): number {
-    return index
+  public getData(index: number): string {
+    return this.originDataArray[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener')
-      this.listeners.push(listener)
+      console.info('add listener');
+      this.listeners.push(listener);
     }
   }
 
@@ -275,37 +276,37 @@ class BasicDataSource implements IDataSource {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
       console.info('remove listener')
-      this.listeners.splice(pos, 1)
+      this.listeners.splice(pos, 1);
     }
   }
 
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
-      listener.onDataReloaded()
+      listener.onDataReloaded();
     })
   }
 
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataAdd(index)
+      listener.onDataAdd(index);
     })
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataChange(index)
+      listener.onDataChange(index);
     })
   }
 
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataDelete(index)
+      listener.onDataDelete(index);
     })
   }
 
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
-      listener.onDataMove(from, to)
+      listener.onDataMove(from, to);
     })
   }
 }
@@ -314,37 +315,35 @@ class MyDataSource extends BasicDataSource {
   private dataArray: Array<string> = new Array(100).fill('test')
 
   public totalCount(): number {
-    return this.dataArray.length
+    return this.dataArray.length;
   }
 
-  public getData(index: number): number {
-    return Number(this.dataArray[index])
+  public getData(index: number): string {
+    return this.dataArray[index];
   }
 
   public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data)
-    this.notifyDataAdd(index)
+    this.dataArray.splice(index, 0, data);
+    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
-    this.dataArray.push(data)
-    this.notifyDataAdd(this.dataArray.length - 1)
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 
 @Entry
 @Component
 struct MyComponent {
-  private data: MyDataSource = new MyDataSource()
+  private data: MyDataSource = new MyDataSource();
 
   build() {
     Scroll() {
       List() {
-        LazyForEach(this.data, (item: string, index?: number|undefined) => {
+        LazyForEach(this.data, (item: string, index: number) => {
           ListItem() {
-            if(index){
-              Text('item value: ' + item + (index + 1)).fontSize(20).margin(10)
-            }
+            Text('item value: ' + item + (index + 1)).fontSize(20).margin(10)
           }.width('100%')
         })
       }.width('100%').height(500)

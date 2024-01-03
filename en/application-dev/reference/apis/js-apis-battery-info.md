@@ -13,6 +13,101 @@ The **batteryInfo** module provides APIs for querying the charger type, battery 
 import batteryInfo from '@ohos.batteryInfo';
 ```
 
+## batteryInfo.setBatteryConfig<sup>11+</sup>
+
+setBatteryConfig(sceneName: string, sceneValue: string): number
+
+Sets the battery configuration based on the specified scenario.
+
+**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description        |
+| ---------- | ------ | ---- | ------------ |
+| sceneName  | string | Yes  | Scenario name.|
+| sceneValue | string | Yes  | Scenario value.|
+
+**Return value**
+
+| Type  | Description                                                      |
+| ------ | ---------------------------------------------------------- |
+| number | Operation result. The value **0** indicates that the operation is successful, and a non-zero value indicates the opposite.|
+
+**Example**
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let sceneName = 'xxx';
+  let sceneValue = '0';
+  let result = batteryInfo.setBatteryConfig(sceneName, sceneValue);
+
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.getBatteryConfig<sup>11+</sup>
+
+getBatteryConfig(sceneName: string): string
+
+Obtains the battery configuration based on the specified scenario.
+
+**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description        |
+| --------- | ------ | ---- | ------------ |
+| sceneName | string | Yes  | Scenario name.|
+
+**Return value**
+
+| Type  | Description                          |
+| ------ | ------------------------------ |
+| string | Operation result. The battery configuration is returned if the operation is successful. Otherwise, **""** is returned.|
+
+**Example**
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let sceneName = 'xxx';
+  let result = batteryInfo.getBatteryConfig(sceneName);
+
+  console.info("The result is: " + result);
+  ```
+
+## batteryInfo.isBatteryConfigSupported<sup>11+</sup>
+
+isBatteryConfigSupported(sceneName: string): boolean
+
+Checks whether the battery configuration is enabled based on the specified scenario.
+
+**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+
+**Parameters**
+
+| Name   | Type  | Mandatory| Description        |
+| --------- | ------ | ---- | ------------ |
+| sceneName | string | Yes  | Scenario name.|
+
+**Return value**
+
+| Type   | Description                                             |
+| ------- | ------------------------------------------------- |
+| boolean | Operation result. The value **true** indicates that the charging scenario is supported, and the value **false** indicates the opposite.|
+
+**Example**
+
+  ```ts
+  import batteryInfo from '@ohos.batteryInfo';
+
+  let sceneName = 'xxx';
+  let result = batteryInfo.isBatteryConfigSupported(sceneName);
+
+  console.info("The result is: " + result);
+  ```
+
 ## Attributes
 
 Describes battery information.

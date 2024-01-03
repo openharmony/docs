@@ -394,15 +394,21 @@
     - 并发
       - [并发概述](arkts-utils/concurrency-overview.md)
       - 使用异步并发能力进行开发
-        - [异步并发概述](arkts-utils/async-concurrency-overview.md)
-        - [单次I/O任务开发指导](arkts-utils/single-io-development.md)
+        - [异步并发概述 (Promise和async/await)](arkts-utils/async-concurrency-overview.md)
+        - [单次I/O任务开发指导 (Promise和async/await)](arkts-utils/single-io-development.md)
       - 使用多线程并发能力进行开发
-        - [多线程并发概述](arkts-utils/multi-thread-concurrency-overview.md)
-        - [TaskPool和Worker的对比](arkts-utils/taskpool-vs-worker.md)
-        - [@Concurrent装饰器：校验并发函数](arkts-utils/arkts-concurrent.md)
-        - [CPU密集型任务开发指导](arkts-utils/cpu-intensive-task-development.md)
-        - [I/O密集型任务开发指导](arkts-utils/io-intensive-task-development.md)
-        - [同步任务开发指导](arkts-utils/sync-task-development.md)
+        - [多线程并发概述 (TaskPool和Worker)](arkts-utils/multi-thread-concurrency-overview.md)
+        - [TaskPool简介](arkts-utils/taskpool-introduction.md)
+        - [Worker简介](arkts-utils/worker-introduction.md)
+        - [TaskPool和Worker的对比 (TaskPool和Worker)](arkts-utils/taskpool-vs-worker.md)
+        - [CPU密集型任务开发指导 (TaskPool和Worker)](arkts-utils/cpu-intensive-task-development.md)
+        - [I/O密集型任务开发指导 (TaskPool)](arkts-utils/io-intensive-task-development.md)
+        - [同步任务开发指导 (TaskPool和Worker)](arkts-utils/sync-task-development.md)
+      - 附录
+        - [Actor并发模型对比内存共享并发模型](arkts-utils/actor-model-development-samples.md)
+        - [TaskPool和Worker支持的序列化类型](arkts-utils/serialization-support-types.md)
+        - [\@Concurrent装饰器：校验并发函数](arkts-utils/arkts-concurrent.md)
+        - [多线程安全注意事项](arkts-utils/multi-thread-safety.md)
     - 容器类库
       - [容器类库概述](arkts-utils/container-overview.md)
       - [线性容器](arkts-utils/linear-container.md)
@@ -817,6 +823,7 @@
       - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
       - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
       - [减少动画丢帧](performance/reduce-animation-frame-loss.md)
+      - [合理使用多线程共享内存](performance/thread_memory_shared.md)
       - [Grid高性能开发指导](performance/grid_optimization.md)
     - 提升应用启动和响应速度
       - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
@@ -831,11 +838,13 @@
       - [动效能力实践](performance/animation_practice.md)
       - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
       - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
+      - [合理运行后台任务](performance/reasonable-running-backgroundTask.md)
     - [减小应用包大小](performance/reduce-package-size.md)
     - 性能工具
       - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
       - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
       - [性能优化工具SmartPerf-Host](performance/performance-optimization-using-smartperf-host.md)
+      - [常用trace使用指导](performance/common-trace-using-instructions.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -2111,6 +2120,7 @@
     - [ArkUI路由/导航开发常见问题(ArkTS)](faqs/faqs-arkui-route-nav.md)
     - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
   - [ArkUI框架开发常见问题(JS)](faqs/faqs-arkui-js.md)
+  - [ArkTS语言基础类库开发常见问题](faqs/faqs-arkts-utils.md)
   - [Web开发常见问题](faqs/faqs-arkui-web.md)
   - [包管理开发常见问题](faqs/faqs-bundle-management.md)
   - [资源管理开发常见问题](faqs/faqs-globalization.md)

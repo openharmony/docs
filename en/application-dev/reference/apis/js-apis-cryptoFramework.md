@@ -54,7 +54,7 @@ For the symmetric encryption and decryption modes that require parameters such a
 
 ## IvParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.
+Defines the child class of [ParamsSpec](#paramsspec). It is used as a parameter of [init()](#init-2) during symmetric encryption and decryption.
 
 **IvParamsSpec** applies to the encryption and decryption modes such as CBC, CTR, OFB, and CFB, which use only the IV.
 
@@ -70,7 +70,7 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as the paramete
 
 ## GcmParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.
+Defines the child class of [ParamsSpec](#paramsspec). It is used as a parameter of [init()](#init-2) during symmetric encryption and decryption.
 
 **GcmParamsSpec** applies to the GCM mode.
 
@@ -90,7 +90,7 @@ Defines the child class of [ParamsSpec](#paramsspec). It is used as the paramete
 
 ## CcmParamsSpec
 
-Defines the child class of [ParamsSpec](#paramsspec). It is used as the parameters of [init()](#init-2) during symmetric encryption and decryption.
+Defines the child class of [ParamsSpec](#paramsspec). It is used as a parameter of [init()](#init-2) during symmetric encryption and decryption.
 
 **CcmParamsSpec** applies to the CCM mode.
 
@@ -146,6 +146,15 @@ Enumerates the key parameters.
 | RSA_N_BN | 301 | Modulus **n** in the RSA algorithm.|
 | RSA_SK_BN | 302 | Private key **sk** (private key exponent **d**) in the RSA algorithm.|
 | RSA_PK_BN | 303 | Public key **pk** (public key exponent **e**) in the RSA algorithm.|
+| DH_P_BN<sup>11+</sup> | 401 | Prime **p** in the DH algorithm.|
+| DH_G_BN<sup>11+</sup> | 402 | Parameter **g** in the DH algorithm.|
+| DH_L_NUM<sup>11+</sup> | 403 | Length of the private key in the DH algorithm, in bits.|
+| DH_SK_BN<sup>11+</sup> | 404 | Private key **sk** in the DH algorithm.|
+| DH_PK_BN<sup>11+</sup> | 405 | Public key **pk** in the DH algorithm.|
+| ED25519_SK_BN<sup>11+</sup> | 501 | Private key **sk** in the Ed25519 algorithm.|
+| ED25519_PK_BN<sup>11+</sup> | 502 | Public key **pk** in the Ed25519 algorithm.|
+| X25519_SK_BN<sup>11+</sup> | 601 | Private key **sk** in the X25519 algorithm.|
+| X25519_PK_BN<sup>11+</sup> | 602 | Public key **pk** in the X25519 algorithm.|
 
 ## AsyKeySpecType<sup>10+</sup>
 
@@ -164,7 +173,7 @@ Enumerates the key parameter types.
 
 Enumerates the cipher parameters. You can use [setCipherSpec](#setcipherspec10) to set cipher parameters, and use [getCipherSpec](#getcipherspec10) to obtain cipher parameters.
 
-Currently, only the RSA algorithm is supported. For details, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
+Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_MD_NAME_STR** parameter is supported. For details, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -174,12 +183,13 @@ Currently, only the RSA algorithm is supported. For details, see [Encryption and
 | OAEP_MGF_NAME_STR | 101 | Mask generation algorithm when the PKCS1_OAEP padding mode is used in the RSA. Currently, only MGF1 is supported.|
 | OAEP_MGF1_MD_STR | 102 | Message digest algorithm for the MGF1 mask generation when the PKCS1_OAEP padding mode is used in the RSA.|
 | OAEP_MGF1_PSRC_UINT8ARR | 103 | **pSource** byte stream when the PKCS1_OAEP padding mode is used in the RSA.|
+| SM2_MD_NAME_STR<sup>11+</sup> | 104 | Name of the digest algorithm used in SM2.|
 
 ## SignSpecItem<sup>10+</sup>
 
 Enumerates the parameters for signing and signature verification. You can use [setSignSpec](#setsignspec10) and [setVerifySpec](#setverifyspec10) to set these parameters, and use [getSignSpec](#getsignspec10) and [getVerifySpec](#getverifyspec10) to obtain the parameters.
 
-Currently, only the RSA algorithm is supported. For details, see [Encryption and Decryption Specifications](../../security/cryptoFramework-overview.md#encryption-and-decryption-specifications).
+Currently, only RSA and SM2 are supported. Since API version 11, the **SM2_USER_ID_UINT8ARR** parameter is supported. For details, see [Signing and Signature Verification Specifications](../../security/cryptoFramework-overview.md#signing-and-signature-verification-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -190,10 +200,11 @@ Currently, only the RSA algorithm is supported. For details, see [Encryption and
 | PSS_MGF1_MD_STR | 102 | Message digest parameters for the MGF1 mask generation when the PSS padding mode is used in the RSA.|
 | PSS_SALT_LEN_NUM | 103 | Length of the salt in bytes when the PSS padding mode is used in the RSA.|
 | PSS_TRAILER_FIELD_NUM | 104 | Integer used for encoding when the PSS padding mode is used in the RSA. The value is **1**.|
+| SM2_USER_ID_UINT8ARR<sup>11+</sup> | 105 | User ID field in SM2.|
 
 ## AsyKeySpec<sup>10+</sup>
 
-Defines the asymmetric key parameters for creating a key generator. You need to construct a child class object and pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator. All the parameters of the bigint type in the child class object must be integers in big-endian format.
+Defines the asymmetric key parameter for creating a key generator. You need to construct a child class object and pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator. All the parameters of the bigint type in the child class object must be integers in big-endian format.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -206,7 +217,7 @@ Defines the asymmetric key parameters for creating a key generator. You need to 
 
 Defines the common parameters contained in the public and private keys in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys.
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -220,20 +231,20 @@ When key parameters are used to generate a key, you can pass it to [createAsyKey
 
 Defines the parameters contained in the public key in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
 | Name   | Type  | Readable| Writable| Description                                                        |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | params | [DSACommonParamsSpec](#dsacommonparamsspec10) | Yes  | Yes  | Common parameters contained in both public and private keys in the DSA algorithm.|
-| pk | bigint | Yes  | Yes  | Public key of the DSA algorithm.|
+| pk | bigint | Yes  | Yes  | Public key in the DSA algorithm.|
 
 ## DSAKeyPairSpec<sup>10+</sup>
 
-Defines full parameters contained in the public and private keys in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines all parameters contained in the public and private keys in the DSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -278,7 +289,7 @@ Defines a point on the elliptic curve.
 
 Defines the common parameters contained in the public and private keys in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys.
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -295,7 +306,7 @@ When key parameters are used to generate a key, you can pass it to [createAsyKey
 
 Defines the parameters contained in the private key in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -308,7 +319,7 @@ When key parameters are used to generate a key, you can pass it to [createAsyKey
 
 Defines the parameters contained in the public key in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -319,9 +330,9 @@ When key parameters are used to generate a key, you can pass it to [createAsyKey
 
 ## ECCKeyPairSpec<sup>10+</sup>
 
-Defines full parameters contained in the public and private keys in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines all parameters contained in the public and private keys in the ECC algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -335,7 +346,7 @@ When key parameters are used to generate a key, you can pass it to [createAsyKey
 
 Defines the common parameters contained in the public and private keys in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10) and can be used to randomly generate public or private keys.
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -347,7 +358,7 @@ When key parameters are used to generate a key, you can pass it to [createAsyKey
 
 Defines the parameters contained in the public key in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -358,9 +369,9 @@ When key parameters are used to generate a key, you can pass it to [createAsyKey
 
 ## RSAKeyPairSpec<sup>10+</sup>
 
-Defines full parameters contained in the public and private keys in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+Defines all parameters contained in the public and private keys in the RSA algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
 
-When key parameters are used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -369,6 +380,134 @@ When key parameters are used to generate a key, you can pass it to [createAsyKey
 | params | [RSACommonParamsSpec](#rsacommonparamsspec10) | Yes  | Yes  | Common parameters contained in both public and private keys in the RSA algorithm.|
 | sk | bigint | Yes  | Yes  | Private key **sk** in the RSA algorithm.|
 | pk | bigint | Yes  | Yes  | Public key **pk** in the RSA algorithm.|
+
+## ED25519PriKeySpec<sup>11+</sup>
+
+Defines the parameter contained in the private key in the Ed25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name| Type  | Readable| Writable| Description                     |
+| ---- | ------ | ---- | ---- | ------------------------- |
+| sk   | bigint | Yes  | Yes  | Private key **sk** in the Ed25519 algorithm.|
+
+## ED25519PubKeySpec<sup>11+</sup>
+
+Defines the parameter contained in the public key in the Ed25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name| Type  | Readable| Writable| Description                     |
+| ---- | ------ | ---- | ---- | ------------------------- |
+| pk   | bigint | Yes  | Yes  | Public key **pk** in the Ed25519 algorithm.|
+
+## ED25519KeyPairSpec<sup>11+</sup>
+
+Defines all parameters contained in the public and private keys in the Ed25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name| Type  | Readable| Writable| Description                     |
+| ---- | ------ | ---- | ---- | ------------------------- |
+| sk   | bigint | Yes  | Yes  | Private key **sk** in the Ed25519 algorithm.|
+| pk   | bigint | Yes  | Yes  | Public key **pk** in the Ed25519 algorithm.|
+
+## X25519PriKeySpec<sup>11+</sup>
+
+Defines the parameter contained in the private key in the X25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name| Type  | Readable| Writable| Description                    |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| sk   | bigint | Yes  | Yes  | Private key **sk** in the X25519 algorithm.|
+
+## X25519PubKeySpec<sup>11+</sup>
+
+Defines the parameter contained in the public key in the X25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name| Type  | Readable| Writable| Description                    |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| pk   | bigint | Yes  | Yes  | Public key **pk** in the X25519 algorithm.|
+
+## X25519KeyPairSpec<sup>11+</sup>
+
+Defines all parameters contained in the public and private keys in the X25519 algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name| Type  | Readable| Writable| Description                    |
+| ---- | ------ | ---- | ---- | ------------------------ |
+| sk   | bigint | Yes  | Yes  | Private key **sk** in the X25519 algorithm.|
+| pk   | bigint | Yes  | Yes  | Public key **pk** in the X25519 algorithm.|
+
+## DHCommonParamsSpec<sup>11+</sup>
+
+Defines the parameters contained in the public and private keys in the DH algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name| Type  | Readable| Writable| Description                               |
+| ---- | ------ | ---- | ---- | ----------------------------------- |
+| p    | bigint | Yes  | Yes  | Large prime **p** in the DH algorithm.              |
+| g    | bigint | Yes  | Yes  | Parameter **g** in the DH algorithm.                |
+| l    | number | Yes  | Yes  | Length of the private key in the DH algorithm, in bits.|
+
+## DHPriKeySpec<sup>11+</sup>
+
+Defines the parameters contained in the private key in the DH algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name  | Type              | Readable| Writable| Description                                |
+| ------ | ------------------ | ---- | ---- | ------------------------------------ |
+| params | DHCommonParamsSpec | Yes  | Yes  | Common parameters contained in both public and private keys in the DH algorithm.|
+| sk     | bigint             | Yes  | Yes  | Private key **sk** in the DH algorithm.                |
+
+## DHPubKeySpec<sup>11+</sup>
+
+Defines the parameters contained in the public key in the DH algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name  | Type              | Readable| Writable| Description                                |
+| ------ | ------------------ | ---- | ---- | ------------------------------------ |
+| params | DHCommonParamsSpec | Yes  | Yes  | Common parameters contained in both public and private keys in the DH algorithm.|
+| pk     | bigint             | Yes  | Yes  | Public key **pk** in the DH algorithm.                |
+
+## DHKeyPairSpec<sup>11+</sup>
+
+Defines all parameters contained in the public and private keys in the DH algorithm. It is a child class of [AsyKeySpec](#asykeyspec10).
+
+When a key parameter is used to generate a key, you can pass it to [createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10) to create a key generator.
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+| Name  | Type              | Readable| Writable| Description                                |
+| ------ | ------------------ | ---- | ---- | ------------------------------------ |
+| params | DHCommonParamsSpec | Yes  | Yes  | Common parameters contained in both public and private keys in the DH algorithm.|
+| sk     | bigint             | Yes  | Yes  | Private key **sk** in the DH algorithm.                |
+| pk     | bigint             | Yes  | Yes  | Public key **pk** in the DH algorithm.                |
 
 ## KdfSpec<sup>11+</sup>
 
@@ -420,7 +559,7 @@ Obtains the byte stream of the key data. This API returns the result synchronous
 
 > **NOTE**
 >
-> When key parameters are used to generate an RSA private key, the private key object does not support **getEncoded()**.
+> When a key parameter is used to generate an RSA private key, the private key object does not support **getEncoded()**.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1063,7 +1202,7 @@ keyGenPromise.then( keyPair => {
 
 createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
-Creates an **AsyKeyGenerator** instance based on the key parameters.
+Creates an **AsyKeyGenerator** instance based on the specified key parameter.
 
 For details about the supported specifications, see [Key Generation Specifications](../../security/cryptoFramework-overview.md#key-generation-specifications).
 
@@ -1073,7 +1212,7 @@ For details about the supported specifications, see [Key Generation Specificatio
 
 | Name | Type  | Mandatory| Description                            |
 | ------- | ------ | ---- | -------------------------------- |
-| asyKeySpec | [AsyKeySpec](#asykeyspec10) | Yes  | Key parameters. The **AsyKeyGenerator** generates the public/private key based on the specified parameters.|
+| asyKeySpec | [AsyKeySpec](#asykeyspec10) | Yes  | Parameters of the key. The **AsyKeyGenerator** generates the public/private key based on the specified parameters.|
 
 **Return value**
 
@@ -1139,7 +1278,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 Generates an asymmetric key pair. This API uses an asynchronous callback to return the result.
 
-If key parameters of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type are used to create the key generator, a key pair will be randomly generated. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain a key pair that is consistent with the specified key parameters.
+If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used to create the key generator, a key pair will be randomly generated. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain a key pair that is consistent with the specified key parameter.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1180,7 +1319,7 @@ generateKeyPair(): Promise\<KeyPair>
 
 Generates an asymmetric key pair. This API uses a promise to return the result.
 
-If key parameters of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type are used to create the key generator, a key pair will be randomly generated. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain a key pair that is consistent with the specified key parameters.
+If a key parameter of the [COMMON_PARAMS_SPEC](#asykeyspectype10) type is used to create the key generator, a key pair will be randomly generated. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain a key pair that is consistent with the specified key parameter.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1220,7 +1359,7 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 Generates an asymmetric key pair. This API uses an asynchronous callback to return the result.
 
-If key parameters of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type are used to create the key generator, the specified private key can be obtained. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain the specified private key from the key pair generated.
+If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, the specified private key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the specified private key from the key pair generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1261,7 +1400,7 @@ generatePriKey(): Promise\<PriKey>
 
 Generates an asymmetric key pair. This API uses a promise to return the result.
 
-If key parameters of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type are used to create the key generator, the specified private key can be obtained. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain the specified private key from the key pair generated.
+If a key parameter of the [PRIVATE_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, the specified private key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the specified private key from the key pair generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1301,7 +1440,7 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 
 Generates an asymmetric key pair. This API uses an asynchronous callback to return the result.
 
-If key parameters of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type are used to create the key generator, the specified public key can be obtained. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain the specified public key from the key pair generated.
+If a key parameter of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, the specified public key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the specified public key from the key pair generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1342,7 +1481,7 @@ generatePubKey(): Promise\<PubKey>
 
 Generates an asymmetric key pair. This API uses a promise to return the result.
 
-If key parameters of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type are used to create the key generator, the specified public key can be obtained. If key parameters of the [KEY_PAIR_SPEC](#asykeyspectype10) type are used to create the key generator, you can obtain the specified public key from the key pair generated.
+If a key parameter of the [PUBLIC_KEY_SPEC](#asykeyspectype10) type is used to create the key generator, the specified public key can be obtained. If a key parameter of the [KEY_PAIR_SPEC](#asykeyspectype10) type is used to create the key generator, you can obtain the specified public key from the key pair generated.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1425,6 +1564,90 @@ try {
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`sync error, ${e.code}, ${e.message}`);
+}
+```
+
+## ECCKeyUtil<sup>11+</sup>
+
+Provides APIs for generating common key parameters for an asymmetric key pair based on the elliptic curve name.
+
+### genECCCommonParamsSpec<sup>11+</sup>
+
+static genECCCommonParamsSpec(curveName: string): ECCCommonParamsSpec
+
+Generates common key parameters for an asymmetric key pair based on the specified name identifier (NID) of an elliptic curve. For details about the key specifications, see [ECC Key Generation Specifications](../../security/cryptoFramework-overview.md#ecc-key-generation-specifications) and [SM2 Key Generation Specifications](../../security/cryptoFramework-overview.md#sm2-key-generation-specifications).
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                          |
+| ------- | ------ | ---- | ---------------------------------------------- |
+| algName | string | Yes  | NID of the elliptic curve.|
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 801      | this operation is not supported. |
+| 17620001 | memory error.                    |
+
+**Example**
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_brainpoolP160r1');
+    console.info(`genECCCommonParamsSpec success`);
+} catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error(`genECCCommonParamsSpec error, ${e.code}, ${e.message}`);
+}
+```
+
+## DHKeyUtil<sup>11+</sup>
+
+Provides APIs for generating common parameters for a DH key based on the lengths of the prime **p** and the private key.
+
+### genDHCommonParamsSpec<sup>11+</sup>
+
+static genDHCommonParamsSpec(pLen: number, skLen?: number): DHCommonParamsSpec
+
+Generates common parameters for a DH key based on the lengths of the prime **p** and the private key. For details about the supported key specifications, see [DH Key Generation Specifications](../../security/cryptoFramework-overview.md#dh-key-generation-specifications).
+
+**System capability**: SystemCapability.Security.CryptoFramework
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                            |
+| ------ | ------ | ---- | ------------------------------------------------ |
+| pLen   | number | Yes  | Length of the prime **p**, in bits.|
+| skLen  | number | No  | Length of the private key, in bits. |
+
+**Error codes**
+For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 401      | invalid parameters.              |
+| 801      | this operation is not supported. |
+| 17620001 | memory error.                    |
+| 17630001 | crypto operation error.          |
+
+**Example**
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+try {
+    let DHCommonParamsSpec = cryptoFramework.ECCKeyUtil.genDHCommonParamsSpec(2048);
+    console.info(`genDHCommonParamsSpec success`);
+} catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error(`genDHCommonParamsSpec error, ${e.code}, ${e.message}`);
 }
 ```
 
@@ -1683,7 +1906,7 @@ doFinal(data: DataBlob | null, callback: AsyncCallback\<DataBlob>): void
 
  (1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finish the symmetric encryption or decryption. This API uses an asynchronous callback to return the encrypted or decrypted data. <br>If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by [update()](#update-4), you can pass in **null** in **data** of **doFinal()**.<br>The output of **doFinal()** varies with the symmetric encryption/decryption mode in use.
 
-- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. <br>**authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
+- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **data** in **doFinal** is null, the result of **doFinal** is **authTag**.<br>Set **authTag** to [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) for decryption. The ciphertext is used as the input parameter **data** for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
  (2) Encrypts or decrypts the input data for RSA or SM2 asymmetric encryption/decryption. This API uses an asynchronous callback to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
@@ -1740,7 +1963,7 @@ doFinal(data: DataBlob | null): Promise\<DataBlob>
 
  (1) Encrypts or decrypts the remaining data (generated by the block cipher mode) and the data passed in by **doFinal()** to finish the symmetric encryption or decryption. This API uses a promise to return the encrypted or decrypted data. If a small amount of data needs to be encrypted or decrypted, you can use **doFinal()** to pass in data without using **update()**. If all the data has been passed in by **update()**, you can pass in **null** in **data** of **doFinal()**. 
 
-- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **null** is passed in by **data** of **doFinal()**, the result of **doFinal()** is **authTag**. <br>**authTag** must be [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) used for decryption. The ciphertext is the **data** passed in for decryption.
+- Symmetric encryption in GCM and CCM mode: The result consists of the ciphertext and **authTag** (the last 16 bytes for GCM and the last 12 bytes for CCM). If **data** in **doFinal** is null, the result of **doFinal** is **authTag**.<br>Set **authTag** to [GcmParamsSpec](#gcmparamsspec) or [CcmParamsSpec](#ccmparamsspec) for decryption. The ciphertext is used as the input parameter **data** for decryption.
 - Symmetric encryption and decryption in other modes and symmetric decryption in GCM and CCM modes: The result is the complete plaintext/ciphertext.
 
  (2) Encrypts or decrypts the input data for RSA or SM2 asymmetric encryption/decryption. This API uses a promise to return the result. If a large amount of data needs to be encrypted/decrypted, call **doFinal()** multiple times and concatenate the result of each **doFinal()** to obtain the complete plaintext/ciphertext.
@@ -1791,7 +2014,7 @@ cipher.doFinal(data)
       // Concatenate output.data to obtain the complete plaintext/ciphertext (and authTag).
     }
   }, (error: BusinessError) => {
-    console.error(`Failed to finish cipher, ${error.code}, ${error.message}`);
+    console.error(`Failed to finalize cipher, ${error.code}, ${error.message}`);
   })
 ```
 
@@ -1887,7 +2110,7 @@ cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSo
 
 getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
-Obtains cipher specifications. Currently, only the RSA is supported.
+Obtains cipher specifications. Currently, only RSA and SM2 (available since API version 11) are supported.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -1934,7 +2157,7 @@ For details about the supported specifications, see [Signing and Signature Verif
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Signing algorithm, which can be RSA, ECC, DSA, or SM2<sup>10+</sup>. If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.|
+| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest. |
 
 **Return value**
 
@@ -2128,7 +2351,7 @@ Signs the data. This API uses an asynchronous callback to return the result.
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | data     | [DataBlob](#datablob) \| null<sup>10+</sup>              | Yes  | Data to pass in. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
-| callback | AsyncCallback\<[DataBlob](#datablob) > | Yes  | Callback invoked to return the result. |
+| callback | AsyncCallback\<[DataBlob](#datablob)> | Yes  | Callback invoked to return a **DataBlob** object.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -2247,9 +2470,11 @@ function signMessagePromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
+setSignSpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>): void
+
 Sets signing specifications. You can use this API to set signing parameters that cannot be set by [createSign](#cryptoframeworkcreatesign).
 
-Currently, only the RSA is supported.
+Currently, only RSA and SM2 are supported. Since API version 11, signature parameters can be set for the SM2 algorithm.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -2258,7 +2483,7 @@ Currently, only the RSA is supported.
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signing parameter to set.|
-| itemValue | number | Yes  | Value of the signing parameter to set.|
+| itemValue | number\|Uint8Array | Yes  | Value of the signing parameter to set.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -2329,7 +2554,7 @@ For details about the supported specifications, see [Signing and Signature Verif
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | Yes  | Signing algorithm, which can be RSA, ECC, DSA, or SM2<sup>10+</sup>. If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest.|
+| algName | string | Yes  | Signing algorithm to use. Currently, RSA, ECC, DSA, SM2<sup>10+</sup> and Ed25519<sup>11+</sup> are supported. <br>If the RSA PKCS1 mode is used, you need to set the digest. If the RSA PSS mode is used, you need to set the digest and mask digest. |
 
 **Return value**
 
@@ -2514,7 +2739,7 @@ Verifies the signature. This API uses an asynchronous callback to return the res
 | ------------- | -------------------- | ---- | ---------- |
 | data          | [DataBlob](#datablob) \| null<sup>10+</sup>             | Yes  | Data to pass in. In versions earlier than API version 10, only **DataBlob** is supported. Since API version 10, **null** is also supported.|
 | signatureData | [DataBlob](#datablob)              | Yes  | Signature data. |
-| callback      | AsyncCallback\<boolean> | Yes  | Callback invoked to return the result. |
+| callback      | AsyncCallback\<boolean> | Yes  | Callback invoked to return the signature verification result.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -2596,7 +2821,11 @@ verifyInitPromise.then((): Promise<void> => {
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-Set signature verification specifications. You can use this API to set signature verification parameters that cannot be set by [createVerify](#cryptoframeworkcreateverify). Currently, only the RSA is supported.
+setVerifySpec(itemType: SignSpecItem, itemValue: number\|Uint8Array<sup>11+</sup>): void
+
+Sets signature verification specifications. You can use this API to set signature verification parameters that cannot be set by [createVerify](#cryptoframeworkcreateverify).
+
+Currently, only RSA and SM2 (available since API version 11) are supported.
 
 The parameters for signature verification must be the same as those for signing.
 
@@ -2607,7 +2836,7 @@ The parameters for signature verification must be the same as those for signing.
 | Name  | Type                | Mandatory| Description      |
 | -------- | -------------------- | ---- | ---------- |
 | itemType     | [SignSpecItem](#signspecitem10)              | Yes  | Signature verification parameter to set.|
-| itemValue | number | Yes  | Value of the signature verification parameter to set.|
+| itemValue | number\|Uint8Array | Yes  | Value of the signature verification parameter to set.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).
@@ -2678,9 +2907,9 @@ For details about the supported specifications, see [Key Agreement Specification
 
 **Parameters**
 
-| Name | Type  | Mandatory| Description                             |
-| ------- | ------ | ---- | --------------------------------- |
-| algName | string | Yes  | Key agreement algorithm to use. Currently, only the ECC is supported.|
+| Name | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| algName | string | Yes  | Key agreement algorithm to use. In addition to ECC, X25519 and DH are supported since API version 11.|
 
 **Return value**
 
@@ -3142,7 +3371,7 @@ Initializes the MAC computation with a symmetric key. This API uses an asynchron
 
   > **NOTE**
   >
-  > You are advised to use [HMAC key generation specifications](../../security/cryptoFramework-overview.md#key generation specifications) to create a symmetric key generator, and call [generateSymKey](#generatesymkey) to generate a symmetric key at random or call [convertKey](#convertkey) to generate a key that is of the same length as the key specifications. <br>If **HMAC** is specified to generate the symmetric key generator, only [convertKey](#convertkey) can be called to pass in a binary key of 1 to 4096 bytes.
+  > You are advised to use [HMAC key generation specifications](../../security/cryptoFramework-overview.md#key generation specifications) to create a symmetric key generator, and call [generateSymKey](#generatesymkey) to generate a symmetric key at random or call [convertKey](#convertkey) to generate a key that is of the same length as the key specifications.<br>If **HMAC** is specified to generate the symmetric key generator, only [convertKey](#convertkey) can be called to pass in a binary key of 1 to 4096 bytes.
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3714,7 +3943,7 @@ rand.generateRandom(12, (err, randData) => {
 
 createKdf(algName: string): Kdf
 
-Creates a key derivation function instance. For details about the supported specifications, see [Key Derivation Function Specifications](../../security/cryptoFramework-overview.md#key-derivation-function-specifications).
+Creates a key derivation function instance.<br>For details about the supported specifications, see [Key Derivation Function Specifications](../../security/cryptoFramework-overview.md#key-derivation-function-specifications).
 
 **System capability**: SystemCapability.Security.CryptoFramework
 
@@ -3722,13 +3951,13 @@ Creates a key derivation function instance. For details about the supported spec
 
 | Name | Type  | Mandatory| Description                             |
 | ------- | ------ | ---- | --------------------------------- |
-| algName | string | Yes  | Key derivation algorithm (including the hash function for the HMAC). Currently, only the PBKDF2 algorithm is supported. For example, **PBKDF2|SHA-1**.|
+| algName | string | Yes  | Key derivation algorithm (including the hash function for the HMAC). Currently, only the PBKDF2 algorithm is supported. For example, **PBKDF2\|SHA1**. |
 
 **Return value**
 
 | Type        | Description                                      |
 | ------------ | ------------------------------------------ |
-| [Kdf](#kdf11) | Key derivation function instance instance created.|
+| [Kdf](#kdf11) | Key derivation function instance created.|
 
 **Error codes**
 For details about the error codes, see [Crypto Framework Error Codes](../errorcodes/errorcode-crypto-framework.md).

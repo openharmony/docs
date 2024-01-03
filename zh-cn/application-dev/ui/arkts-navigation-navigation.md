@@ -147,14 +147,14 @@ Navigation组件通过mode属性设置页面的显示模式。
 
 ## 设置菜单栏
 
-菜单栏位于Navigation组件的右上角，开发者可以通过menus属性进行设置。menus支持Array&lt;[NavigationMenuItem](../reference/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem)&gt;和CustomBuilder两种参数类型。使用Array&lt;NavigationMenuItem&gt;类型时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
+菜单栏位于Navigation组件的右上角，开发者可以通过menus属性进行设置。menus支持Array&lt;[NavigationMenuItem](../reference/arkui-ts/ts-basic-components-navigation.md#navigationmenuitem类型说明)&gt;和CustomBuilder两种参数类型。使用Array&lt;NavigationMenuItem&gt;类型时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
 **图5** 设置了3个图标的菜单栏  
 
 ![菜单栏2](figures/菜单栏2.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
@@ -168,7 +168,7 @@ Navigation() {
 ![菜单栏](figures/菜单栏.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooTmp: NavigationMenuItem = {'value': "", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
 Navigation() {
   ...
 }
@@ -189,10 +189,10 @@ Navigation() {
 ![free3](figures/free3.jpg)
 
 ```ts
-let TooTmp:Record<string,string|Function> = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
-let TooBar: ToolbarItem = {'items':[TooTmp,TooTmp,TooTmp]}
+let TooTmp: ToolbarItem = {'value': "func", 'icon': "./image/ic_public_highlights.svg", 'action': ()=> {}}
+let TooBar: ToolbarItem[] = [TooTmp,TooTmp,TooTmp]
 Navigation() {
   ...
 }
-.toolbarConfiguration([TooBar])
+.toolbarConfiguration(TooBar)
 ```

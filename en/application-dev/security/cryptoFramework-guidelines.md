@@ -10,32 +10,31 @@
 
 Typical key generation operations involve the following:
 
-1. Randomly create a key object for subsequent encryption and decryption.
-2. Create a key object based on the specified key parameters for subsequent encryption and decryption.
-3. Convert external or internal binary data into a key object for subsequent encryption and decryption.
-4. Obtain the binary data of a key object for storage or transmission.
-5. Obtain the parameter properties of an asymmetric key object for storage or transmission.
+1. Randomly create a **Key** object for subsequent encryption and decryption.
+2. Create a **Key** object based on the specified key parameter.
+3. Convert external or internal binary data into a **Key** object for subsequent encryption and decryption.
+4. Obtain the binary data of a **Key** object for storage or transmission.
+5. Obtain properties of an asymmetric **Key** object for storage or transmission.
 
 > **NOTE**
 >
-> The key object can be a symmetric key object (**SymKey**) or an asymmetric key pair object (**KeyPair**). The **KeyPair** object consists a public key (**PubKey**) and a private key (**PriKey**). For details about the relationship between the keys, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+> The **Key** object can be a symmetric key object (**SymKey**) or an asymmetric key pair object (**KeyPair**). The **KeyPair** object consists a public key (**PubKey**) and a private key (**PriKey**). For details about the relationship between the keys, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 ### Available APIs
 
-The following table describes the APIs used in typical key generation operations. For more information about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
-
+The following table describes the APIs used in the typical operations. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 |Instance|API|Description|
 |---|---|---|
 |cryptoFramework|createAsyKeyGenerator(algName : string) : AsyKeyGenerator|Creates an **AsyKeyGenerator** instance based on the asymmetric key pair specifications specified by **algName**.|
 |cryptoFramework|createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec;|Creates an **AsyKeyGenerator** instance based on the asymmetric key specifications specified by the key parameter.|
-|cryptoFramework|createSymKeyGenerator(algName : string) : SymKeyGenerator|Creates a **SymKeyGenerator** instance.|
+|cryptoFramework|createSymKeyGenerator(algName : string) : SymKeyGenerator|Creates a **SymKeyGenerator** instance based on the symmetric key specifications specified by **algName**.|
 |AsyKeyGenerator|generateKeyPair(callback : AsyncCallback\<KeyPair>) : void|Generates an asymmetric key pair randomly. This API uses an asynchronous callback to return the result.|
 |AsyKeyGenerator|generateKeyPair() : Promise\<KeyPair>|Generates an asymmetric key pair randomly. This API uses a promise to return the result.|
 |SymKeyGenerator|generateSymKey(callback : AsyncCallback\<SymKey>) : void|Generates a symmetric key randomly. This API uses an asynchronous callback to return the result.|
 |SymKeyGenerator|generateSymKey() : Promise\<SymKey>|Generates a symmetric key randomly. This API uses a promise to return the result.|
-| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPair>) : void | Converts binary data into a key pair. This API uses an asynchronous callback to return the result.<br>(**pubKey** or **priKey** can be **null**. That is, you can pass in only **pubKey** or **priKey**. As a result, the returned **KeyPair** instance contains only the public or private key.)|
-| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair> | Converts binary data into a key pair. This API uses a promise to return the result.<br>(**pubKey** or **priKey** can be **null**. That is, you can pass in only **pubKey** or **priKey**. As a result, the returned **KeyPair** instance contains only the public or private key.)|
+| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob, callback : AsyncCallback\<KeyPair>) : void | Converts binary data into a key pair. This API uses an asynchronous callback to return the result.<br>**pubKey** or **priKey** can be **null**. That is, you can pass in only **pubKey** or **priKey**. As a result, the returned **KeyPair** instance contains only the public or private key. |
+| AsyKeyGenerator          | convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair> | Converts binary data into a key pair. This API uses a promise to return the result.<br>**pubKey** or **priKey** can be **null**. That is, you can pass in only **pubKey** or **priKey**. As a result, the returned **KeyPair** instance contains only the public or private key. |
 | SymKeyGenerator         | convertKey(key : DataBlob, callback : AsyncCallback\<SymKey>) : void| Converts binary data into a symmetric key. This API uses an asynchronous callback to return the result.|
 | SymKeyGenerator         |convertKey(pubKey : DataBlob, priKey : DataBlob) : Promise\<KeyPair>| Converts binary data into a symmetric key. This API uses a promise to return the result.|
 | Key | getEncoded() : DataBlob;  | Obtains the binary data of a key. (The child class instances of **Key** include **SymKey**, **PubKey**, and **PriKey**.)|
@@ -48,7 +47,7 @@ Randomly generate an asymmetric key pair and obtain its binary data.
 2. Randomly generate an asymmetric key pair using **AsyKeyGenerator**.
 3. Obtain the binary data of the key pair generated.
 
-Example: Randomly generate an RSA key (1024 bits and two primes) in promise mode.
+Example: Randomly generate a 1024-bit RSA key with two primes in promise mode.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -79,7 +78,7 @@ Randomly generate a symmetric key and obtain its binary data.
 2. Randomly generate a symmetric key using **SymKeyGenerator**.
 3. Obtain the binary data of the key generated.
 
-Example: Randomly generate an AES key (256 bits) in promise mode.
+Example: Randomly generate a 256-bit AES key in promise mode.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -102,7 +101,7 @@ function testGenerateAesKey() {
 
 Generate an RSA asymmetric key pair from the binary data.
 
-1. Obtain the binary data of the RSA public or private key. The public key must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format. The private key must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding format.
+1. Obtain the binary data of the RSA public or private key. The public key data must comply with the ASN.1 syntax, X.509 specifications, and DER encoding format. The private key data must comply with the ASN.1 syntax, PKCS #8 specifications, and DER encoding format.
 2. Create an **AsyKeyGenerator** instance, and use **convertKey()** to convert the key binary data (data of the private or public key, or both) into a **KeyPair** instance.
 
 ```ts
@@ -129,7 +128,7 @@ function convertAsyKey() {
 
 ### Converting Binary Data into an ECC Key Pair
 
-Generate an ECC asymmetric key pair from the binary data.
+Generate an ECC asymmetric key pair from the binary key data.
 
 1. Obtain the ECC binary key data and encapsulate it into a **DataBlob** instance.
 2. Use **convertKey()** to convert the binary data (data of the private or public key, or both) into a **KeyPair** instance.
@@ -206,7 +205,7 @@ function testConvertSymKey() {
 
 > **NOTE**
 >
-> SM2 asymmetric keys can be randomly generated since API version 10.
+> Since API version 10, SM2 asymmetric key pairs can be randomly generated.
 
 Randomly generate an asymmetric key pair and obtain its binary data.
 
@@ -214,7 +213,7 @@ Randomly generate an asymmetric key pair and obtain its binary data.
 2. Randomly generate an asymmetric key pair using **AsyKeyGenerator**.
 3. Obtain the binary data of the key pair generated.
 
-Example: Randomly generate an SM2 key (256 bits) in promise mode.
+Example: Randomly generate a 256-bit SM2 key pair in promise mode.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -241,7 +240,7 @@ function generateSM2Key() {
 
  > **NOTE**
  >
- > SM4 keys can be randomly generated since API version 10.
+ > Since API version 10, SM4 asymmetric keys can be randomly generated.
 
 Randomly generate a symmetric key and obtain its binary data.
 
@@ -249,7 +248,7 @@ Randomly generate a symmetric key and obtain its binary data.
 2. Randomly generate a symmetric key using **SymKeyGenerator**.
 3. Obtain the binary data of the key generated.
 
-Example: Randomly generate an SM4 key (128 bits) in promise mode.
+Example: Randomly generate a 128-bit SM4 key in promise mode.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -272,12 +271,12 @@ function testGenerateSM4Key() {
 
  > **NOTE**
  >
- > SM2 key conversion is supported since API version 10.
+ > Since API version 10, SM2 key conversion is supported.
 
-Generate an SM2 asymmetric key pair from the given binary key data.
+Generate an SM2 asymmetric key pair from the given binary data.
 
-1. Obtain the SM2 binary key data and encapsulate it into a **DataBlob** instance.
-2. Call **convertKey()** to convert the binary data (data of the private or public key, or both) into a **KeyPair** instance.
+1. Obtain the SM2 binary data and encapsulate it into a **DataBlob** instance.
+2. Use **convertKey()** to convert the binary data (data of the private or public key, or both) into a **KeyPair** instance.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -308,10 +307,10 @@ function convertSM2AsyKey() {
 Randomly generate a symmetric key **SymKey** for the HMAC algorithm and obtain the binary data.
 
 1. Create a **SymKeyGenerator** instance.
-2. Use the symmetric key generator to randomly generate a symmetric key for the HMAC algorithm.
+2. Generate an HMAC key using **SymKeyGenerator**.
 3. Obtain the binary data of the key generated.
 
-Example: Randomly generate an HMAC key (256 bits) in promise mode.
+Example: Randomly generate a 256-bit HMAC key in promise mode.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -335,32 +334,31 @@ function testGenerateHmacKey() {
  >
  > Since API version 11, HMAC key conversion is supported.
 
-Generate a symmetric key **SymKey** for the HMAC algorithm based on the specified HMAC symmetric key binary data.
+Generate a symmetric key **SymKey** for the HMAC algorithm from the given binary data.
 
 1. Create a **SymKeyGenerator** instance.
 2. Use the symmetric key generator to generate a **SymKey** object based on the specified HMAC binary key data.
 
 > **NOTE**
 >
-> - If **HMAC** is used to create a symmetric key generator, the binary key data of 1 to 4096 bytes can be passed in to generate a **symKey**.
-> - If **HMAC|SHA512** is used to create a symmetric key generator, binary key data of 64 bytes must be passed in to generate a **symKey**.
+> 1. When **HMAC** is used to create a symmetric key generator, binary key data of 1 to 4096 bytes can be passed in.
+> 2. When **HMAC|SHA512** is used to create a symmetric key generator, binary key data of 64 bytes must be passed in.
 
-Example: Generate an HMAC key in callback mode (using SHA512 as the hash function).
+Example: Generate an HMAC key (using SHA-512 as the hash function) in callback mode.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
-function stringToUint8Array(str) {
-  let arr = [];
+function stringToUint8Array(str: string) {
+  let arr = new Uint8Array(str.length);
   for (let i = 0, j = str.length; i < j; ++i) {
-    arr.push(str.charCodeAt(i));
+    arr[i] = str.charCodeAt(i);
   }
-  let tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+  return arr;
 }
 
 function testConvertHmacKey() {
-  let keyBlob = {
+  let keyBlob: cryptoFramework.DataBlob = {
     // The length is 512-bit (64 bytes).
     data : stringToUint8Array("12345678abcdefgh12345678abcdefgh12345678abcdefgh12345678abcdefgh")
   }
@@ -376,7 +374,196 @@ function testConvertHmacKey() {
 }
 ```
 
-## Generating an Asymmetric Key Object and Obtaining Key Parameters
+### Randomly Generating an Ed25519 Key Pair and Obtaining the Binary Data
+
+> **NOTE**
+>
+> Since API version 11, Ed25519 asymmetric key pairs can be randomly generated.
+
+Randomly generate an asymmetric key pair and obtain its binary data.
+
+1. Create an **AsyKeyGenerator** instance.
+2. Randomly generate an asymmetric key pair using **AsyKeyGenerator**.
+3. Obtain the binary data of the key pair generated.
+
+Example: Randomly generate a 256-bit Ed25519 key in promise mode.
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function generateEd25519() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('Ed25519');
+  let promiseAsyKey = asyKeyGenerator.generateKeyPair();
+  promiseAsyKey.then(keyPair => {
+    let priKeyEncoded = keyPair.priKey.getEncoded();
+    let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
+    console.info('priKeyEncoded.data:' + priKeyEncoded.data);
+    console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+### Converting Binary Data into an Ed25519 Key Pair
+
+ > **NOTE**
+ >
+ > Since API version 11, Ed25519 key conversion is supported.
+
+Generate an Ed25519 key pair from the given binary data.
+
+1. Obtain the ED25519 binary key data and encapsulate it into a **DataBlob** instance.
+2. Call **convertKey()** to convert the binary data (data of the private or public key, or both) into a **KeyPair** instance.
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function convertEd25519AsyKey() {
+  let pubKeyArray = new Uint8Array([48, 42, 48, 5, 6, 3, 43, 101, 112, 3, 33, 0, 23, 11, 72, 48, 63, 63, 33, 29, 251, 203, 108, 66, 160, 234, 78, 182, 40, 166, 7, 197, 94, 234, 168, 142, 106, 26, 148, 124, 94, 117, 229, 146]);
+  let priKeyArray = new Uint8Array([48, 46, 2, 1, 0, 48, 5, 6, 3, 43, 101, 112, 4, 34, 4, 32, 39, 132, 229, 184, 161, 105, 60, 75, 52, 163, 10, 65, 253, 131, 193, 123, 185, 25, 228, 235, 103, 220, 244, 102, 68, 252, 212, 233, 41, 219, 92, 20]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray };
+  let generator = cryptoFramework.createAsyKeyGenerator('Ed25519');
+  generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
+    console.info('ConvertKey Success');
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`convertKey failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+### Randomly Generating an X25519 Key Pair and Obtaining the Binary Data
+
+> **NOTE**
+>
+> Since API version 11, X25519 asymmetric key pairs can be randomly generated.
+
+Randomly generate an asymmetric key pair and obtain its binary data.
+
+1. Create an **AsyKeyGenerator** instance.
+2. Randomly generate an asymmetric key pair using **AsyKeyGenerator**.
+3. Obtain the binary data of the key pair generated.
+
+Example: Randomly generate an X25519 key pair in promise mode.
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function generateX25519() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('X25519');
+  let promiseAsyKey = asyKeyGenerator.generateKeyPair();
+  promiseAsyKey.then(keyPair => {
+    let priKeyEncoded = keyPair.priKey.getEncoded();
+    let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
+    console.info('priKeyEncoded.data:' + priKeyEncoded.data);
+    console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+### Converting Binary Data into an X25519 Key Pair
+
+ > **NOTE**
+ >
+ > Since API version 11, X25519 key conversion is supported.
+
+Generate an X25519 key pair from the given binary data.
+
+1. Obtain the X25519 binary key data and encapsulate it into a **DataBlob** instance.
+2. Call **convertKey()** to convert the binary data (data of the private or public key, or both) into a **KeyPair** instance.
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function convertX25519AsyKey() {
+  let pubKeyArray = new Uint8Array([48, 42, 48, 5, 6, 3, 43, 101, 110, 3, 33, 0, 36, 98, 216, 106, 74, 99, 179, 203, 81, 145, 147, 101, 139, 57, 74, 225, 119, 196, 207, 0, 50, 232, 93, 147, 188, 21, 225, 228, 54, 251, 230, 52]);
+  let priKeyArray = new Uint8Array([48, 46, 2, 1, 0, 48, 5, 6, 3, 43, 101, 110, 4, 34, 4, 32, 112, 65, 156, 73, 65, 89, 183, 39, 119, 229, 110, 12, 192, 237, 186, 153, 21, 122, 28, 176, 248, 108, 22, 242, 239, 179, 106, 175, 85, 65, 214, 90]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray };
+  let generator = cryptoFramework.createAsyKeyGenerator('X25519');
+  generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
+    console.info('ConvertKey Success');
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`convertKey failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+### Randomly Generating a DH Key Pair and Obtaining the Binary Data
+
+> **NOTE**
+>
+> Since API version 11, DH asymmetric key pairs can be randomly generated.
+
+Randomly generate an asymmetric key pair and obtain its binary data.
+
+1. Create an **AsyKeyGenerator** instance.
+2. Randomly generate an asymmetric key pair using **AsyKeyGenerator**.
+3. Obtain the binary data of the key pair generated.
+
+Example: Randomly generate a DH key (modp2048) in promise mode.
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function generateDH2048() {
+  let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('DH_modp2048');
+  let promiseAsyKey = asyKeyGenerator.generateKeyPair();
+  promiseAsyKey.then(keyPair => {
+    let priKeyEncoded = keyPair.priKey.getEncoded();
+    let pubKeyEncodedKey = keyPair.pubKey.getEncoded();
+    console.info('priKeyEncoded.data:' + priKeyEncoded.data);
+    console.info('pubKeyEncodedKey.data:' + pubKeyEncodedKey.data);
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`getEncoded failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+### Converting Binary Data into a DH Key Pair
+
+ > **NOTE**
+ >
+ > Since API version 11, DH key conversion is supported.
+
+Generate a DH key pair from the given binary data.
+
+1. Obtain the DH binary key data and encapsulate it into a **DataBlob** instance.
+2. Call **convertKey()** to convert the binary data (data of the private or public key, or both) into a **KeyPair** instance.
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function convertDHAsyKey() {
+  let pubKeyArray = new Uint8Array([48,129,158,48,87,6,9,42,134,72,134,247,13,1,3,1,48,74,2,65,0,132,110,250,169,110,200,228,17,253,161,228,250,125,252,114,252,44,158,21,55,85,33,24,92,95,47,252,140,1,51,14,139,31,128,123,178,237,132,172,113,126,164,139,40,18,7,98,247,216,11,251,108,151,157,189,177,44,28,231,201,85,91,59,63,2,1,2,2,2,0,128,3,67,0,2,64,126,193,154,51,43,74,231,54,91,145,238,242,161,86,104,49,214,115,218,124,132,131,107,118,194,199,219,138,203,169,42,93,139,176,154,119,213,207,135,53,66,76,55,45,190,22,39,68,140,199,64,11,45,19,81,16,143,113,106,70,170,43,219,205]);
+  let priKeyArray = new Uint8Array([48,113,2,1,0,48,87,6,9,42,134,72,134,247,13,1,3,1,48,74,2,65,0,132,110,250,169,110,200,228,17,253,161,228,250,125,252,114,252,44,158,21,55,85,33,24,92,95,47,252,140,1,51,14,139,31,128,123,178,237,132,172,113,126,164,139,40,18,7,98,247,216,11,251,108,151,157,189,177,44,28,231,201,85,91,59,63,2,1,2,2,2,0,128,4,19,2,17,0,209,36,86,44,20,237,156,208,10,34,123,133,239,159,211,23]);
+  let pubKeyBlob: cryptoFramework.DataBlob = { data: pubKeyArray };
+  let priKeyBlob: cryptoFramework.DataBlob = { data: priKeyArray };
+  let generator = cryptoFramework.createAsyKeyGenerator('DH_modp1536');
+  generator.convertKey(pubKeyBlob, priKeyBlob).then(keyPair => {
+    console.info('ConvertKey Success');
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`convertKey failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+## Generating an Asymmetric Key Object Based on a Key Parameter and Obtaining the Key Parameter
 
 ### When to Use
 
@@ -386,22 +573,25 @@ Typical key generation operations involve the following:
 
 > **NOTE**
 >
-> - Key parameters can be used to generate asymmetric keys since API version 10.
-> - Asymmetric systems use a public key (**PubKey**) to encrypt data and a related private key (**PriKey**) to decrypt it. The public key and private key form a key pair (**KeyPair**). For details about asymmetric key parameters, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+> 1. Since API version 10, asymmetric keys can be generated based on the specified key parameter.
+> 2. Asymmetric systems use a public key (**PubKey**) to encrypt data and a related private key (**PriKey**) to decrypt it. The public key and private key form a key pair (**KeyPair**). For details about asymmetric key parameters, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+> 3. Since API version 11, asymmetric key pairs using SM2 and brainpool can be generated based on a key parameter.
+> 4. Since API version 11, asymmetric common key parameters can be generated based on the ECC, SM2, and brainpool elliptic curve name.
+> 5. Since API version 11, Ed25519, X25519, and DH asymmetric key pairs can be generated based on the specified key parameter.
+> 6. Since API version 11, a DH common key parameter can be generated based on the length of the prime **p** and the length of the private key.
 
 ### Available APIs
 
-The following table describes the APIs used in typical key generation operations. For more information about the APIs, see [AsyKeyGeneratorBySpec](../reference/apis/js-apis-cryptoFramework.md#asykeygeneratorbyspec10).
-
+The following table describes the APIs used in the typical operations. For details about the APIs, see [AsyKeyGeneratorBySpec](../reference/apis/js-apis-cryptoFramework.md#asykeygeneratorbyspec10).
 
 |Instance|API|Description|
 |---|---|---|
-|AsyKeyGeneratorBySpec|generateKeyPair(callback: AsyncCallback\<KeyPair>): void;|Generates a **KeyPair** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
-|AsyKeyGeneratorBySpec|generateKeyPair(): Promise\<KeyPair>;|Generates a **KeyPair** instance based on the key parameters. This API uses a promise to return the result.|
-|AsyKeyGeneratorBySpec|generatePriKey(callback: AsyncCallback\<KeyPair>): void;|Generates a **PriKey** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
-|AsyKeyGeneratorBySpec|generatePriKey(): Promise\<KeyPair>;|Generates a **PriKey** instance based on the key parameters. This API uses a promise to return the result.|
-|AsyKeyGeneratorBySpec|generatePubKey(callback: AsyncCallback\<KeyPair>): void;|Generates a **PubKey** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
-|AsyKeyGeneratorBySpec|generatePubKey(): Promise\<KeyPair>;|Generates a **PubKey** instance based on the key parameters. This API uses a promise to return the result.|
+| AsyKeyGeneratorBySpec | generateKeyPair(callback: AsyncCallback\<KeyPair>): void; | Generates a **KeyPair** instance based on the key parameters. This API uses an asynchronous callback to return the result. |
+| AsyKeyGeneratorBySpec | generateKeyPair(): Promise\<KeyPair>; | Generates a **KeyPair** instance based on the key parameters. This API uses a promise to return the result.|
+| AsyKeyGeneratorBySpec | generatePriKey(callback: AsyncCallback\<KeyPair>): void; | Generates a **PriKey** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
+| AsyKeyGeneratorBySpec | generatePriKey(): Promise\<KeyPair>; | Generates a **PriKey** instance based on the key parameters. This API uses a promise to return the result.|
+| AsyKeyGeneratorBySpec | generatePubKey(callback: AsyncCallback\<KeyPair>): void; | Generates a **PubKey** instance based on the key parameters. This API uses an asynchronous callback to return the result.|
+| AsyKeyGeneratorBySpec | generatePubKey(): Promise\<KeyPair>; | Generates a **PubKey** instance based on the key parameters. This API uses a promise to return the result. |
 | PriKey | getAsyKeySpec(itemType: AsyKeySpecItem): bigint \| string \| number;  | Obtains the key specifications of a **PriKey** instance.|
 | PubKey | getAsyKeySpec(itemType: AsyKeySpecItem): bigint \| string \| number;  | Obtains the key specifications of a **PubKey** instance.|
 
@@ -409,9 +599,9 @@ The following table describes the APIs used in typical key generation operations
 
 Generate an ECC key pair based on parameters and obtain the key specifications.
 
-1. Create an **AsyKeyGenerator** based on key parameters.
-2. Use the **AsyKeyGenerator** to generate an asymmetric key pair based on the specified key parameters.
-3. Obtain the key specifications of a key object.
+1. Create an **AsyKeyGenerator** based on the specified key parameter.
+2. Use **AsyKeyGenerator** to generate an asymmetric key pair based on the specified key parameter.
+3. Obtain the key specifications of the key object.
 
 Example: Generate an ECC key based on key parameters in promise mode.
 
@@ -533,13 +723,68 @@ function testEccUseCommKeySpecGet() {
 }
 ```
 
+### Generating an ECCCommonParamsSpec Based on an ECC Elliptic Curve Name
+
+ > **NOTE**
+ >
+ > Since API version 11, an asymmetric common key parameter (**ECCCommonParamsSpec**) can be generated based on the specified ECC curve name.
+
+Generate an **ECCCommonParamsSpec** parameter based on the elliptic curve name.
+
+Pass in the name identifier (NID) of the elliptic curve to generate an **ECCCommonParamsSpec** parameter parameter.
+
+Example: Generate an **ECCCommonParamsSpec** parameter based on the curve name *NID_secp224r1** in promise mode.
+
+```ts
+import cryptoFramework from "@ohos.security.cryptoFramework";
+import { BusinessError } from '@ohos.base';
+
+function genECCSpec() {
+  let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_secp224r1')
+  let generator = cryptoFramework.createAsyKeyGeneratorBySpec(ECCCommonParamsSpec)
+  generator.generateKeyPair().then(keyPair => {
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
+    let fpP = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
+    let a = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
+    let b = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_B_BN);
+    let gx = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_X_BN);
+    let gy = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_Y_BN);
+    let n = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_N_BN);
+    let h = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_H_NUM);
+    let fieldType = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_TYPE_STR);
+    let fieldSize = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_SIZE_NUM);
+    let curveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
+    let pkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
+    let pkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
+    console.info('ECC_FP_P_BN= ' + fpP); // 26959946667150639794667015087019630673557916260026308143510066298881
+    console.info('ECC_A_BN= ' + a); // 26959946667150639794667015087019630673557916260026308143510066298878
+    console.info('ECC_B_BN= ' + b); // 18958286285566608000408668544493926415504680968679321075787234672564
+    console.info('ECC_G_X_BN= ' + gx); // 19277929113566293071110308034699488026831934219452440156649784352033
+    console.info('ECC_G_Y_BN= ' + gy); // 19926808758034470970197974370888749184205991990603949537637343198772
+    console.info('ECC_N_BN= ' + n); // 26959946667150639794667015087019625940457807714424391721682722368061
+    console.info('ECC_H_NUM= ' + h); // 1
+    console.info('ECC_FIELD_TYPE_STR= ' + fieldType); // Fp
+    console.info('ECC_FIELD_SIZE_NUM= ' + fieldSize); // 224
+    console.info('ECC_CURVE_NAME_STR= ' + curveName); // NID_secp224r1
+    console.info('ECC_SK_BN= ' + sk);
+    console.info('ECC_PK_X_BN= ' + pkX);
+    console.info('ECC_PK_Y_BN= ' + pkY);
+  }).catch(err => {
+    let e: BusinessError = err as BusinessError;
+    console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+
+
 ### Generating an RSA Public Key and Obtaining Key Specifications
 
-Generate an RSA public key based on parameters and obtain key specifications.
+Generate an RSA public key and obtain the key parameter.
 
-1. Create an **AsyKeyGenerator** based on key parameters.
-2. Use the **AsyKeyGenerator** to generate the public key of an asymmetric key pair.
-3. Obtain the key specifications of the public key object.
+1. Create an **AsyKeyGenerator** based on the specified key parameter.
+2. Use **AsyKeyGenerator** to generate the public key of an asymmetric key pair.
+3. Obtain the key specifications of the key object.
 
 Example: Generate an RSA public key based on key parameters in callback mode.
 ```ts
@@ -607,6 +852,486 @@ function rsaUsePubKeySpecGetCallback() {
 }
 ```
 
+### Generating an SM2 Key Pair and Obtaining Key Specifications
+
+ > **NOTE**
+ >
+ > Since API version 11, SM2 key pairs can be generated based on the specified key parameter.
+
+Generate an SM2 key pair based on the specified key parameter and obtain the key specifications.
+
+1. Create an **AsyKeyGenerator** based on the specified key parameter.
+2. Use **AsyKeyGenerator** to generate an asymmetric key pair based on the specified key parameter.
+3. Obtain the key specifications of the key object.
+
+Example: Generate an SM2 key based on the specified key parameter in promise mode.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function SM2CommonSpec() {
+  let fieldFp = {
+    fieldType: "Fp",
+    p: BigInt("0xfffffffeffffffffffffffffffffffffffffffff00000000ffffffffffffffff"),
+  };
+
+  let G = {
+    x: BigInt("0x32C4AE2C1F1981195F9904466A39C9948FE30BBFF2660BE1715A4589334C74C7"),
+    y: BigInt("0xBC3736A2F4F6779C59BDCEE36B692153D0A9877CC62A474002DF32E52139F0A0"),
+  };
+
+  let sm2CommonSpec: cryptoFramework.ECCCommonParamsSpec = {
+    algName: "SM2",
+    specType: cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
+    field: fieldFp,
+    a: BigInt("0xFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000FFFFFFFFFFFFFFFC"),
+    b: BigInt("0x28E9FA9E9D9F5E344D5A9E4BCF6509A7F39789F515AB8F92DDBCBD414D940E93"),
+    g: G,
+    n: BigInt("0xFFFFFFFEFFFFFFFFFFFFFFFFFFFFFFFF7203DF6B21C6052B53BBF40939D54123"),
+    h: 1,
+  };
+  return sm2CommonSpec;
+}
+
+function SM2Sk() {
+  return BigInt('0x6330B599ECD23ABDC74B9A5B7B5E00E553005F72743101C5FAB83AEB579B7074');
+}
+
+function SM2Pk() {
+  let pk: cryptoFramework.Point = {
+    x: BigInt('0x67F3B850BDC0BA5D3A29D8A0883C4B17612AB84F87F18E28F77D824A115C02C4'),
+    y: BigInt('0xD48966CE754BBBEDD6501A1385E1B205C186E926ADED44287145E8897D4B2071')
+  };
+  return pk;
+}
+
+function genSM2KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
+  let eccCommonSpec = SM2CommonSpec();
+  switch (keyType) {
+    case cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC:
+      return eccCommonSpec;
+    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
+      let eccPriKeySpec = {
+        algName: "SM2",
+        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
+        params: eccCommonSpec,
+        sk: SM2Sk(),
+      };
+      return eccPriKeySpec;
+    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
+      let eccPubKeySpec = {
+        algName: "SM2",
+        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
+        params: eccCommonSpec,
+        pk: SM2Pk(),
+      };
+      return eccPubKeySpec;
+    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
+      let eccKeyPairSpec = {
+        algName: "SM2",
+        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+        params: eccCommonSpec,
+        sk: SM2Sk(),
+        pk: SM2Pk(),
+      };
+      return eccKeyPairSpec;
+  }
+}
+
+function sm2KeySpecGet() {
+  let sm2KeySpec = genSM2KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(sm2KeySpec);
+  generatorBySpec.generateKeyPair().then(keyPair => {
+    let eccA = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
+    let eccB = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_B_BN);
+    let eccN = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_N_BN);
+    let eccH = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_H_NUM);
+    let eccSk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
+    let eccGx = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_X_BN);
+    let eccGy = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_Y_BN);
+    let eccFpP = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
+    let eccCurveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
+    let eccFieldType = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_TYPE_STR);
+    let eccFieldSizeNum = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_SIZE_NUM);
+    let eccPkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
+    let eccPkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
+
+    if (BigInt(eccA) === SM2CommonSpec().a) {
+      console.log('ECC_A_BN Compare success');
+    }
+    if (BigInt(eccB) === SM2CommonSpec().b) {
+      console.log('ECC_B_BN Compare success');
+    }
+    if (BigInt(eccN) === SM2CommonSpec().n) {
+      console.log('ECC_N_BN Compare success');
+    }
+    if (BigInt(eccSk) === SM2Sk()) {
+      console.log('ECC_SK_BN Compare success');
+    }
+    if (BigInt(eccGx) === SM2CommonSpec().g.x) {
+      console.log('ECC_G_X_BN Compare success');
+    }
+    if (BigInt(eccGy) === SM2CommonSpec().g.y) {
+      console.log('ECC_G_Y_BN Compare success');
+    }
+    if (BigInt(eccFpP) === (SM2CommonSpec().field as cryptoFramework.ECFieldFp).p) {
+      console.log('ECC_FP_P_BN Compare success');
+    }
+    if (eccH === SM2CommonSpec().h) {
+      console.log('ECC_H_NUM Compare success');
+    }
+    if (eccFieldType === SM2CommonSpec().field.fieldType) {
+      console.log('ECC_FIELD_TYPE_STR Compare success');
+    }
+    if (BigInt(eccPkX) === SM2Pk().x && BigInt(eccPkY) === SM2Pk().y) {
+      console.log('ECC_PK_X_BN and ECC_PK_Y_BN Compare success');
+    }
+    console.log('ECC_CURVE_NAME_STR: ' + eccCurveName); // NID_sm2
+    console.log('ECC_FIELD_SIZE_NUM: ' + eccFieldSizeNum); // 256
+  }).catch((error: BusinessError) => {
+    console.error(`catch error, ${error.code}, ${error.message}`);
+  })
+}
+```
+
+### Generating an Asymmetric Common Key Parameter Based on an SM2 Elliptic Curve Name
+
+ > **NOTE**
+ >
+ > Since API version 11, an asymmetric common key parameter can be generated based on the specified SM2 elliptic curve name.
+
+Generate an asymmetric common key parameter based on the elliptic curve name.
+
+Pass in the NID of the elliptic curve to generate an asymmetric common key parameter.
+
+Example: Generate the asymmetric common key parameter based on the curve name NID_sm2 in promise mode.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function genECCSpec() {
+  let ECCCommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2')
+  let generator = cryptoFramework.createAsyKeyGeneratorBySpec(ECCCommonParamsSpec)
+  generator.generateKeyPair().then(keyPair => {
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
+    let fpP = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
+    let a = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_A_BN);
+    let b = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_B_BN);
+    let gx = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_X_BN);
+    let gy = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_G_Y_BN);
+    let n = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_N_BN);
+    let h = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_H_NUM);
+    let fieldType = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_TYPE_STR);
+    let fieldSize = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FIELD_SIZE_NUM);
+    let curveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
+    let pkX = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
+    let pkY = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
+    console.info('ECC_FP_P_BN= ' + fpP); // 115792089210356248756420345214020892766250353991924191454421193933289684991999
+    console.info('ECC_A_BN= ' + a); // 115792089210356248756420345214020892766250353991924191454421193933289684991996
+    console.info('ECC_B_BN= ' + b); // 18505919022281880113072981827955639221458448578012075254857346196103069175443
+    console.info('ECC_G_X_BN= ' + gx); // 22963146547237050559479531362550074578802567295341616970375194840604139615431
+    console.info('ECC_G_Y_BN= ' + gy); // 85132369209828568825618990617112496413088388631904505083283536607588877201568
+    console.info('ECC_N_BN= ' + n); // 115792089210356248756420345214020892766061623724957744567843809356293439045923
+    console.info('ECC_H_NUM= ' + h); // 1
+    console.info('ECC_FIELD_TYPE_STR= ' + fieldType); // Fp
+    console.info('ECC_FIELD_SIZE_NUM= ' + fieldSize); // 256
+    console.info('ECC_CURVE_NAME_STR= ' + curveName); // NID_sm2
+    console.info('ECC_SK_BN= ' + sk);
+    console.info('ECC_PK_X_BN= ' + pkX);
+    console.info('ECC_PK_Y_BN= ' + pkY);
+  }).catch(err => {
+    let e: BusinessError = err as BusinessError;
+    console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
+### Generating an Ed25519 Key Pair and Obtaining Key Specifications
+
+ > **NOTE**
+ >
+ > Since API version 11, Ed25519 key pairs can be generated based on the specified key parameter.
+
+Generate an Ed25519 key key pair based on parameters and obtain the key specifications.
+
+1. Create an **AsyKeyGenerator** based on key parameter.
+2. Use **AsyKeyGenerator** to generate an asymmetric key pair based on the specified key parameter.
+3. Obtain the key specifications of the key object.
+
+Example: Generate an Ed25519 key based on the specified key parameter in promise mode.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function ed25519Sk() {
+  return BigInt('26338314196010394003047705826246263763817858777633584257903027929486581399289')
+}
+
+function ed25519Pk() {
+  return BigInt('88526073542684289740553502784855485761717378867878721325430646321401727693216')
+}
+
+// ED25519
+function genEd25519KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
+  switch (keyType) {
+    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
+      let ed25519PriKeySpec = {
+        algName: "Ed25519",
+        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
+        sk: ed25519Sk(),
+      };
+      return ed25519PriKeySpec;
+    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
+      let ed25519PubKeySpec = {
+        algName: "Ed25519",
+        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
+        pk: ed25519Pk(),
+      };
+      return ed25519PubKeySpec;
+    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
+      let ed25519KeyPairSpec = {
+        algName: "Ed25519",
+        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+        sk: ed25519Sk(),
+        pk: ed25519Pk(),
+      };
+      return ed25519KeyPairSpec;
+  }
+}
+
+function ed25519SpecGet() {
+  let ed25519KeySpec = genEd25519KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(ed25519KeySpec);
+  generatorBySpec.generateKeyPair().then(keyPair => {
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ED25519_SK_BN);
+    let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ED25519_PK_BN);
+    console.info('sk: ' + sk);
+    console.info('pk: ' + pk);
+    if (sk === ed25519Sk()) {
+      console.info('ED25519_SK_BN Compare success');
+    }
+    if (pk === ed25519Pk()) {
+      console.info('ED25519_PK_BN Compare success');
+    }
+  }).catch((error: BusinessError) => {
+    console.error(`catch error, ${error.code}, ${error.message}`);
+  })
+}
+
+```
+
+### Generating an X25519 Key Pair and Obtaining Key Specifications
+
+ > **NOTE**
+ >
+ > Since API version 11, X25519 key pairs can be generated based on the specified key parameter.
+
+Generate an X25519 key pair based on the specified key parameter and obtain the key specifications.
+
+1. Create an **AsyKeyGenerator** based on the specified key parameter.
+2. Use **AsyKeyGenerator** to generate an asymmetric key pair based on the specified key parameter.
+3. Obtain the key specifications of the key object.
+
+Example: Generate an X25519 key based on the specified key parameter in promise mode.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function x25519Sk() {
+  return BigInt('80492519743984536410287031417673280832731199941643693694014394451502905215291')
+}
+
+function x25519Pk() {
+  return BigInt('29236918585986399753398384668566812412856019336455282363269457131759906074454')
+}
+
+// X25519
+function genX25519KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
+  switch (keyType) {
+    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
+      let x25519PriKeySpec = {
+        algName: "X25519",
+        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
+        sk: x25519Sk(),
+      };
+      return x25519PriKeySpec;
+    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
+      let x25519PubKeySpec = {
+        algName: "X25519",
+        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
+        pk: x25519Pk(),
+      };
+      return x25519PubKeySpec;
+    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
+      let x25519KeyPairSpec = {
+        algName: "X25519",
+        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+        sk: x25519Sk(),
+        pk: x25519Pk(),
+      };
+      return x25519KeyPairSpec;
+  }
+}
+
+function x25519SpecGet() {
+  let x25519KeySpec = genX25519KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(x25519KeySpec);
+  generatorBySpec.generateKeyPair().then(keyPair => {
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.X25519_SK_BN);
+    let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.X25519_PK_BN);
+    console.info('sk: ' + sk);
+    console.info('pk: ' + pk);
+    if (sk === x25519Sk()) {
+      console.info('X25519_SK_BN Compare success');
+    }
+    if (pk === x25519Pk()) {
+      console.info('X25519_PK_BN Compare success');
+    }
+  }).catch((error: BusinessError) => {
+    console.error(`catch error, ${error.code}, ${error.message}`);
+  })
+}
+
+```
+
+### Generating a DH Key Pair and Obtaining Key Specifications
+
+ > **NOTE**
+ >
+ > Since API version 11, DH key pairs can be generated based on the specified key parameter.
+
+Generate a DH key pair based on the specified key parameterand obtain the key parameter.
+
+1. Create an **AsyKeyGenerator** based on the specified key parameter.
+2. Use **AsyKeyGenerator** to generate an asymmetric key pair based on the specified key parameter.
+3. Obtain the key specifications of the key object.
+
+Example: Generate a DH key based on the specified key parameter in promise mode.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function genDH1536KeySpec(keyType: cryptoFramework.AsyKeySpecType) {
+  switch (keyType) {
+    case cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC:
+      let dh1536PriKeySpec = {
+        algName: "DH",
+        specType: cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC,
+        params: {
+          p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
+          g: BigInt('2'),
+          l: 200
+        },
+        sk: BigInt('997343118225696905003934977332505780812546063723514013218065'),
+      };
+      return dh1536PriKeySpec;
+    case cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC:
+      let dh1536PubKeySpec = {
+        algName: "DH",
+        specType: cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC,
+        params: {
+          p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
+          g: BigInt('2'),
+          l: 200
+        },
+        pk: BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621'),
+      };
+      return dh1536PubKeySpec;
+    case cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC:
+      let dh1536KeyPairSpec = {
+        algName: "DH",
+        specType: cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
+        params: {
+          p: BigInt('2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919'),
+          g: BigInt('2'),
+          l: 200
+        },
+        sk: BigInt('997343118225696905003934977332505780812546063723514013218065'),
+        pk: BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621'),
+      };
+      return dh1536KeyPairSpec;
+  }
+}
+
+function DH1536SpecGet() {
+  let DH1536KeySpec = genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC);
+  let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(DH1536KeySpec);
+  generatorBySpec.generateKeyPair().then(keyPair => {
+    let p = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_P_BN);
+    let g = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_G_BN);
+    let l = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_L_NUM);
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_SK_BN);
+    let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_PK_BN);
+    console.info('p: ' + p);
+    console.info('g: ' + g);
+    console.info('l: ' + l);
+    console.info('sk: ' + sk);
+    console.info('pk: ' + pk);
+    if (p === genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC).params.p) {
+      console.info('DH_P_BN Compare success');
+    }
+    if (g === genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC).params.g) {
+      console.info('DH_G_BN Compare success');
+    }
+    if (l === genDH1536KeySpec(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC).params.l) {
+      console.info('DH_L_NUM Compare success');
+    }
+    if (sk === BigInt('997343118225696905003934977332505780812546063723514013218065')) {
+      console.info('DH_SK_BN Compare success');
+    }
+    if (pk === BigInt('944035688785999148818020636992647383048851980176093137097776463942191186132560894521255791377807025846725900511975400775781576181796449015975341288947034375158520145121989002696564293839005026980366684513784732698410122266781361877914416564466091642726851040648502838067375385162283780627089774844030585301271610481185325557457392190099793556485796676706539701687159851255070218877871201913028340581976376152263467895179733091139505911265318545778292126614135621')) {
+      console.info('DH_PK_BN Compare success');
+    }
+  }).catch((error: BusinessError) => {
+    console.error(`catch error, ${error.code}, ${error.message}`);
+  })
+}
+```
+
+### Generating a DH Common Key Parameter Based on the Prime and Private Key Lengths
+
+> **NOTE**
+>
+> 1. Since API version 11, a DH common key parameter can be generated based on the length of the prime **p** and the length of the private key.
+> 1. Named DH groups are recommended because generating a key parameter with an unnamed DH group is time-consuming.
+
+Generate a DH common key parameter based on the length of the prime **p** and that of the private key.
+
+Pass in **pLen** (length of **p**) and **skLen** (length of the private key) to generate the DH key parameter. If a named DH group is used, you can use the default value instead of passing in **skLen**.
+
+In the following example, a named DH group **ffdhe3072** is used and **pLen** is **3072**.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function genDHSpec() {
+  // The second parameter here is skLen, which can be used to specify the number of private key bits
+  let DHCommonParamsSpec = cryptoFramework.DHKeyUtil.genDHCommonParamsSpec(3072, 256)
+  let generator = cryptoFramework.createAsyKeyGeneratorBySpec(DHCommonParamsSpec)
+  generator.generateKeyPair().then(keyPair => {
+    let sk = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_SK_BN);
+    let p = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_P_BN);
+    let g = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_G_BN);
+    let l = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_L_NUM);
+    let pk = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.DH_PK_BN);
+    console.info('DH_SK_BN= ' + sk);
+    console.info('DH_P_BN= ' + p); // 5809605995369958062791915965639201402176612226902900533702900882779736177890990861472094774477339581147373410185646378328043729800750470098210924487866935059164371588168047540943981644516632755067501626434556398193186628990071248660819361205119793693985433297036118232914410171876807536457391277857011849897410207519105333355801121109356897459426271845471397952675959440793493071628394122780510124618488232602464649876850458861245784240929258426287699705312584509625419513463605155428017165714465363094021609290561084025893662561222573202082865797821865270991145082200656978177192827024538990239969175546190770645685893438011714430426409338676314743571154537142031573004276428701433036381801705308659830751190352946025482059931306571004727362479688415574702596946457770284148435989129632853918392117997472632693078113129886487399347796982772784615865232621289656944284216824611318709764535152507354116344703769998514148343807
+    console.info('DH_G_BN= ' + g); // 2
+    console.info('DH_L_NUM= ' + l); // 256
+    console.info('DH_PK_BN= ' + pk);
+  }).catch(err => {
+    let e: BusinessError = err as BusinessError;
+    console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
+  })
+}
+```
+
 ## Encryption and Decryption
 
 ### When to Use
@@ -618,17 +1343,15 @@ Important data needs to be encrypted in data storage or transmission for securit
 
 > **NOTE**
 >
-> - Since API version 10, [CipherSpecItem](../reference/apis/js-apis-cryptoFramework.md#cipherspecitem10) can be obtained and set when the PKCS1_OAEP padding mode is used in RSA.
-> - Since API version 10, the string parameter without the key length is supported in encryption and decryption.
+> 1. Since API version 10, [CipherSpecItem](../reference/apis/js-apis-cryptoFramework.md#cipherspecitem10) can be obtained and set when the PKCS1_OAEP padding mode is used in RSA.
+> 2. Since API version 10, the string parameter without the key length is supported in encryption and decryption.
+> 3. Since API version 11, the **CipherSpecItem** parameter can be obtained for SM2.
 
 ### Available APIs
 
-The following table describes the APIs used in the typical encryption and decryption operations. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
-> **NOTE**
->
-> Due to complexity of cryptographic algorithms, the implementation varies depending on the key specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
+Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you get started, understand the APIs to ensure correct use of them. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
-
+The following table describes the APIs used in typical encryption and decryption operations.
 
 |Instance|API|Description|
 |---|---|---|
@@ -639,7 +1362,7 @@ The following table describes the APIs used in the typical encryption and decryp
 |Cipher|update(data : DataBlob) : Promise\<DataBlob>|Updates the data for encryption and decryption. This API uses a promise to return the result.|
 |Cipher|doFinal(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Finishes the encryption or decryption. This API uses an asynchronous callback to return the result.|
 |Cipher|doFinal(data : DataBlob) : Promise\<DataBlob>|Finishes the encryption or decryption. This API uses a promise to return the result.|
-|Cipher|getCipherSpec(itemType: CipherSpecItem): string \| Uint8Array|Obtains cipher specifications. Currently, only the RSA is supported.|
+|Cipher|getCipherSpec(itemType: CipherSpecItem): string \| Uint8Array|Obtains the cipher specifications. Currently, only RSA and SM2 are supported.|
 |Cipher|setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void|Sets cipher specifications. Currently, only the RSA is supported.|
 
 ### Encrypting and Decrypting Data Using AES GCM (Promise)
@@ -647,7 +1370,7 @@ The following table describes the APIs used in the typical encryption and decryp
 Encrypt and decrypt data using an AES symmetric key.
 
 1. Create a **SymKeyGenerator** instance.
-2. Use the **SymKeyGenerator** to randomly generate a symmetric key.
+2. Use **SymKeyGenerator** to randomly generate a symmetric key.
 3. Create a **Cipher** instance.
 4. Encrypt or decrypt data.
 
@@ -1112,7 +1835,7 @@ function decryptMessagePromise() {
       return decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, keyPair.priKey, null);
     })
     .then(() => {
-      // Call doFinal() to decrypt the data.
+      // Call doFinal() to decrypt the message.
       return decoder.doFinal(cipherDataBlob);
     })
     .then(decodeData => {
@@ -1151,10 +1874,10 @@ function decryptMessageCallback() {
           decoder.doFinal(cipherData, (err, data) => {
             // Check whether the decrypted data is consistent with the original data.
             if (input.data.toString() === data.data.toString()) {
-              AlertDialog.show({ message: "decryption success" });
+              AlertDialog.show({ message: "decrype success" });
               return;
             }
-            AlertDialog.show({ message: "decryption fail" });
+            AlertDialog.show({ message: "decrype fail" });
           });
         });
       });
@@ -1265,17 +1988,17 @@ function encryptLongMessagePromise() {
 
 > **NOTE**
 >
-> - In RSA encryption and decryption, **init()** cannot be repeatedly called to initialize a **Cipher** instance. You must create a **Cipher** instance for each encryption and decryption.
-> - The RSA encryption has a limit on the length of the plaintext to be encrypted. For details, see [Encryption and Decryption](cryptoFramework-overview.md#encryption-and-decryption).
-> - In RSA decryption, the length of the ciphertext to be decrypted each time is the number of bits of the RSA key divided by 8.
+> 1. In RSA encryption and decryption, **init()** cannot be repeatedly called to initialize a **Cipher** instance. You must create a **Cipher** instance for each encryption and decryption.
+> 2. The RSA encryption has a limit on the length of the plaintext to be encrypted. For details, see [Encryption and Decryption](cryptoFramework-overview.md#encryption-and-decryption).
+> 3. In RSA decryption, the length of the ciphertext to be decrypted each time is the number of bits of the RSA key divided by 8.
 
 ### Using PKCS1_OAEP in RSA Encryption and Decryption 
 
 Use the PKCS1_OAEP padding mode in RSA encryption and decryption in promise mode.
 
 1. Generate an RSA key pair based on the key parameters.<br>Call **createAsyKeyGeneratorBySpec()** to create an **AsyKeyGeneratorBySpec** object and generate an RSA asymmetric key pair. (You can also use **createAsyKeyGenerator()** to randomly generate or convert an RSA key object.)
-2. Create a **Cipher** instance.<br>Call **createCipher()** to create a cipher instance, initialize the cipher instance, set the key and encryption/decryption mode, use **setCipherSpec()** to set PKCS1_OAEP **pSource**, and use **update()** to pass in data.
-3. Encrypt and decrypt data.<br>Call the **doFinal()** API provided by the **Cipher** class to perform encryption or decryption. The **pSource** of the **Cipher** instance to be encrypted must be the same as that decrypted.
+2. Create a **Cipher** instance.<br>Call **createCipher()** to create a cipher object, initialize the cipher object, set the key and encryption/decryption mode, use **setCipherSpec()** to set PKCS1_OAEP **pSource**, and use **update()** to pass in data.
+3. Encrypt and decrypt data.<br>Call the **doFinal()** API provided by the **Cipher** object to perform the encryption or decryption. The **pSource** of the **Cipher** object to be encrypted must be the same as that decrypted.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -1395,12 +2118,14 @@ function rsaUseSpecDecryptOAEPPromise() {
 
 > **NOTE**
 >
-> SM2 encryption and decryption are supported since API version 10.
+> Since API version 10, SM2 encryption and decryption are supported.
+>
+> Since API version 11, message digest in SM2 encryption and decryption can be obtained.
 
 Use an SM2 asymmetric key pair to encrypt and decrypt data.
 
 1. Generate an SM2 key pair. Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an SM2 asymmetric key pair.
-2. Create a **Cipher** instance.<br>Call **createCipher()** to create a **Cipher** instance, and set the key and encryption/decryption mode.
+2. Create a **Cipher** instance.<br>Call **createCipher()** to create a **Cipher** instance, initialize the **Cipher** instance, and set the key and encryption/decryption mode to obtain the encryption/decryption digest.
 3. Encrypt and decrypt data.<br>Call **doFinal()** provided by the **Cipher** instance to encrypt data or decrypt data.
 
 ```ts
@@ -1424,6 +2149,8 @@ function encryptMessagePromise() {
   let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
   // Create a Cipher instance.
   let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  let hash = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.SM2_MD_NAME_STR);
+  console.info("SM2_MD_NAME_STR " + hash);
   // Generate an asymmetric key pair using the AsyKeyGenerator instance.
   let keyGenPromise = sm2Generator.generateKeyPair();
   keyGenPromise.then((sm2KeyPair: cryptoFramework.KeyPair): Promise<void> => {
@@ -1446,6 +2173,9 @@ function encryptMessageCallback() {
   let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
   // Create a Cipher instance.
   let cipher = cryptoFramework.createCipher("SM2_256|SM3");
+  // Get Sm2 md name.
+  let hash = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.SM2_MD_NAME_STR);
+  console.info("SM2_MD_NAME_STR " + hash);
   // Generate an asymmetric key pair using the AsyKeyGenerator instance.
   sm2Generator.generateKeyPair((err, keyPair) => {
     let pubKey = keyPair.pubKey;
@@ -1549,7 +2279,7 @@ function decryptMessageCallback() {
 
 > **NOTE**
 >
-> SM4 encryption and decryption are supported since API version 10.
+> Since API version 10, SM4 encryption and decryption are supported.
 
 Use an SM4 symmetric key to encrypt and decrypt data.
 
@@ -1628,19 +2358,20 @@ A digital signature can be used to verify the authenticity of a message. Typical
 1. Use RSA to generate a signature and verify the signature.
 2. Use ECC to generate a signature and verify the signature.
 3. Use RSA to generate a signature and verify the signature. Obtain and set **SignSpecItem** when the PSS padding mode is used.
-4. Use SM2 to generate a signature and verify the signature.
+4. Use SM2 to generate a signature and verify the signature, and set the **SignSpecItem** parameter.
+6. Use Ed25519 to generate a signature and verify the signature.
 
 > **NOTE**
 >
 > 1. Since API version 10, [SignSpecItem](../reference/apis/js-apis-cryptoFramework.md#signspecitem10) can be set and obtained when the PSS padding mode is used.
 > 2. Since API version 10, the string parameter without the key length is supported in signature verification.
+> 3. Since API version 11, SM2 signing and signature verification are supported, and the **SignSpecItem** parameter can be set.
+> 4. Since API version 11, brainpool signing and signature verification are supported.
+> 5. Since API version 11, Ed25519 signing and signature verification are supported.
 
 ### Available APIs
 
-The following table describes the APIs used in typical signing and signature verification operations. For more information about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
-> **NOTE**
->
-> Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you start, understand the APIs to ensure correct use of these APIs.
+Due to complexity of cryptographic algorithms, the implementation varies depending on the specifications and parameters you use, and cannot be enumerated by sample code. Before you get started, understand the APIs to ensure correct use of them. For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 |Instance|API|Description|
 |---|---|---|
@@ -1652,7 +2383,7 @@ The following table describes the APIs used in typical signing and signature ver
 |Sign|sign(data : DataBlob, callback : AsyncCallback\<DataBlob>) : void|Signs the data. This API uses an asynchronous callback to return the result.|
 |Sign|sign(data : DataBlob) : Promise\<DataBlob>|Signs the data. This API uses a promise to return the result.|
 |Sign|getSignSpec(itemType: SignSpecItem): string \| number|Obtains signing specifications. Currently, only the RSA is supported.|
-|Sign|setSignSpec(itemType: SignSpecItem, itemValue: number): void|Sets signing specifications. Currently, only the RSA is supported.|
+|Sign|setSignSpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void|Sets signing specifications. Currently, only RSA and SM2 are supported.|
 |cryptoFramework|function createVerify(algName : string) : Verify|Creates a **Verify** instance.|
 |Verify|init(pubKey : PubKey, callback : AsyncCallback\<void>) : void|Sets a key and initializes the **Verify** instance. This API uses an asynchronous callback to return the result.|
 |Verify|init(pubKey : PubKey) : Promise\<void>|Sets a key and initializes the **Verify** instance. This API uses a promise to return the result.|
@@ -1661,7 +2392,7 @@ The following table describes the APIs used in typical signing and signature ver
 |Verify|verify(data : DataBlob, signatureData : DataBlob, callback : AsyncCallback\<boolean>) : void|Verifies a signature. This API uses an asynchronous callback to return the result.|
 |Verify|verify(data : DataBlob, signatureData : DataBlob) : Promise\<boolean>|Verifies a signature. This API uses a promise to return the result.|
 |Verify|getVerifySpec(itemType: SignSpecItem): string \| number|Obtains signature verification specifications. Currently, only the RSA is supported.|
-|Verify|setVerifySpec(itemType: SignSpecItem, itemValue: number): void|Sets signature verification specifications. Currently, only the RSA is supported.|
+|Verify|setVerifySpec(itemType: SignSpecItem, itemValue: number \| Uint8Array): void|Sets signature verification specifications. Currently, only RSA and SM2 are supported.|
 
 ### Signing and Signature Verification Using RSA
 
@@ -2047,14 +2778,14 @@ function verifyMessageCallbackPSS() {
 
 > **NOTE**
 >
-> SM2 signing and signature verification are supported since API version 10.
+> Since API version 10, SM2 signing and signature verification are supported.
 
 Use SM2 to sign data and verify the signature.
 
-1. Generate an SM2 key pair. Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an SM2 asymmetric key pair.
-2. Create a **Sign** instance.<br>Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
+1. Generate an SM2 key pair. <br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an SM2 asymmetric key pair.
+2. Create a **Sign** instance.<br>Call **createSign** to create a **Sign** instance, initialize the **Sign** instance, and set the private key. You can set the **USERID** parameter if required.
 3. Generate a signature.<br>Call **update()** provided by the **Sign** class to pass in the data for signing and call **doFinal()** to generate a signature.
-4. Create a **Verify** instance.<br>Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
+4. Create a **Verify** instance.<br>Call **createVerify** to create a **Verify** instance, initialize the instance, and set the public key for signature verification. You can set the **USERID** parameter if required.
 5. Verify the signature.<br>Call **update()** provided by the **Verify** class to pass in the signature data and call **doFinal()** to verify the signature.
 
 ```ts
@@ -2070,35 +2801,91 @@ function stringToUint8Array(str: string) {
   return arr;
 }
 
-let plan1 = "This is Sign test plan1";
-let plan2 = "This is Sign test plan2";
-let input1: cryptoFramework.DataBlob = { data: stringToUint8Array(plan1) };
-let input2: cryptoFramework.DataBlob = { data: stringToUint8Array(plan2) };
-
-function signAndVerify() {
-  let signMessageBlob: cryptoFramework.DataBlob;
-  let sm2Generator = cryptoFramework.createAsyKeyGenerator("SM2_256");
-  let signer = cryptoFramework.createSign("SM2_256|SM3");
-  sm2Generator.generateKeyPair((err, keyPair) => {
-    let priKey = keyPair.priKey;
-    signer.init(priKey, err => {
-      signer.update(input1, err => {
-        signer.sign(input2, (err, data) => {
-          signMessageBlob = data;
-          console.info("sign output is " + signMessageBlob.data);
-          let verifyer = cryptoFramework.createVerify("SM2_256|SM3");
-          verifyer.init(keyPair.pubKey, err => {
-            verifyer.update(input1, err => {
-              verifyer.verify(input2, signMessageBlob, (err, data) => {
-                console.info("verify result is " + data);
-                AlertDialog.show({ message: "verify success" })
-              });
-            });
-          })
-        });
+async function sm2SignAndVerify() {
+  try {
+    let sign = cryptoFramework.createSign('SM2_256|SM3');
+    let verify = cryptoFramework.createVerify('SM2_256|SM3');
+    let tmpKeyPair: cryptoFramework.KeyPair;
+    let input1: cryptoFramework.DataBlob = { data: stringToUint8Array("This is Sign test plan1") };
+    let input2: cryptoFramework.DataBlob = { data: stringToUint8Array("This is Sign test plan1") };
+    let SignMessageBlob: cryptoFramework.DataBlob;
+    let sm2Generator = cryptoFramework.createAsyKeyGenerator('SM2_256');
+    await sm2Generator.generateKeyPair().then(keyPair => {
+        tmpKeyPair = keyPair;
+        return sign.init(tmpKeyPair.priKey)
+      }).then(() => {
+        sign.setSignSpec(cryptoFramework.SignSpecItem.SM2_USER_ID_UINT8ARR, stringToUint8Array('12345678'));
+        return sign.update(input1)
+      }).then(() => {
+        return sign.sign(input2)
+      }).then(data => {
+        SignMessageBlob = data;
+        console.info('sign data= ' + SignMessageBlob);
+      }).then(() => {
+        return verify.init(tmpKeyPair.pubKey)
+      }).then(() => {
+        verify.setVerifySpec(cryptoFramework.SignSpecItem.SM2_USER_ID_UINT8ARR, stringToUint8Array('12345678'));
+        return verify.update(input1)
+      }).then(() => {
+        return verify.verify(input2, SignMessageBlob)
+      }).then((data) => {
+        console.info('verify res= ' + data)
       });
-    });
-  });
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error(`generateKeyPair failed, ${e.code}, ${e.message}`);
+  }
+}
+```
+
+### Signing and Signature Verification Using Ed25519
+
+> **NOTE**
+>
+> Since API version 11, Ed25519 signing and signature verification are supported.
+
+Use Ed25519 for signing and signature verification.
+
+1. Generate an Ed25519 key pair.<br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an Ed25519 asymmetric key pair.
+2. Create a **Sign** instance.<br>Call **createSign()** to create a **Sign** instance, initialize the **Sign** instance, and set a private key for signing.
+3. Generate a signature.<br>Call **doFinal** to generate a signature.
+4. Create a **Verify** instance.<br>Call **createVerify()** to create a **Verify** instance, initialize the instance, and set a public key for signature verification.
+5. Verify the signature.<br>Call **doFinal** to pass in the signature and verify it.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+import buffer from '@ohos.buffer';
+
+// Convert strings in plaintext into byte streams.
+function stringToUint8Array(str: string) {
+  let arr = new Uint8Array(buffer.from(str, 'utf-8').buffer);
+  return arr;
+}
+
+function ed25519SignAndVerify() {
+  let sign = cryptoFramework.createSign('Ed25519');
+  let verify = cryptoFramework.createVerify('Ed25519');
+  let input = { data: stringToUint8Array("This is Sign test plan1") };
+  let tempKeyPair: cryptoFramework.KeyPair;
+  let SignMessageBlob: cryptoFramework.DataBlob;
+  let generator = cryptoFramework.createAsyKeyGenerator('Ed25519');
+  generator.generateKeyPair().then(keyPair => {
+    tempKeyPair = keyPair;
+    return sign.init(tempKeyPair.priKey)
+  }).then(() => {
+    return sign.sign(input)
+  }).then(data => {
+    SignMessageBlob = data;
+    return verify.init(tempKeyPair.pubKey)
+  }).then(() => {
+    return verify.verify(input, SignMessageBlob)
+  }).then(ret => {
+    console.info('verify ret= ' + ret);
+  }).catch(error => {
+    let e: BusinessError = error as BusinessError;
+    console.error(`verify failed, ${e.code}, ${e.message}`);
+  })
 }
 ```
 
@@ -2106,12 +2893,15 @@ function signAndVerify() {
 
 ### When to Use
 
-
 Key agreement allows two parties to establish a shared secret over an insecure channel.
 
 > **NOTE**
 >
 > Since API version 10, the string parameter without the key length is supported in key agreement.
+>
+> Since API version 11, brainpool key agreement is supported.
+>
+> Since API version 11, X25519 and DH key agreement are supported.
 
 ### Available APIs
 
@@ -2123,7 +2913,7 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 |KeyAgreement|generateSecret(priKey : PriKey, pubKey : PubKey, callback : AsyncCallback\<DataBlob>) : void|Generates a shared secret. This API uses an asynchronous callback to return the result.|
 |KeyAgreement|generateSecret(priKey : PriKey, pubKey : PubKey) : Promise\<DataBlob>|Generates a shared secret. This API uses a promise to return the result.|
 
-### How to Develop
+### ECC Key Agreement
 
 1. Generate an ECC key.<br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an ECC asymmetric key pair.
 2. Generate a shared secret by using the private and public ECC keys.
@@ -2164,6 +2954,62 @@ function ecdhCallback() {
 }
 ```
 
+### X25519 Key Agreement
+
+ > **NOTE**
+ >
+ > Since API version 11, X25519 key agreement is supported.
+
+1. Generate an X25519 key pair.<br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate an X25519 asymmetric key pair.
+2. Generate a shared secret by using the private and public X25519 keys.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function x25519Promise() {
+  let x25519Generator = cryptoFramework.createAsyKeyGenerator("X25519");
+  let x25519KeyAgreement = cryptoFramework.createKeyAgreement("X25519");
+  let keyGenPromise = x25519Generator.generateKeyPair();
+  keyGenPromise.then(keyPair => {
+    return x25519KeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
+  }).then((secret) => {
+    console.info("generateSecret output is " + secret.data);
+  }).catch((err) => {
+    let e: BusinessError = err as BusinessError;
+    console.error(`generateSecret error, ${e.code}, ${e.message}`);
+  });
+}
+```
+
+### DH Key Agreement
+
+ > **NOTE**
+ >
+ > Since API version 11, DH key agreement is supported.
+
+1. Generate a DH key pair.<br>Call **createAsyKeyGenerator()** to create an **AsyKeyGenerator** instance and generate a DH asymmetric key pair.
+2. Generate a shared secret by using the private and public DH keys.
+
+```ts
+import cryptoFramework from '@ohos.security.cryptoFramework';
+import { BusinessError } from '@ohos.base';
+
+function dhPromise() {
+  let dhGenerator = cryptoFramework.createAsyKeyGenerator("DH_ffdhe3072");
+  let dhKeyAgreement = cryptoFramework.createKeyAgreement("DH_ffdhe3072");
+  let keyGenPromise = dhGenerator.generateKeyPair();
+  keyGenPromise.then(keyPair => {
+    return dhKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
+  }).then((secret) => {
+    console.info("generateSecret output is " + secret.data);
+  }).catch((err) => {
+    let e: BusinessError = err as BusinessError;
+    console.error(`generateSecret error, ${e.code}, ${e.message}`);
+  });
+}
+```
+
 ## Message Digest
 
 ### When to Use
@@ -2182,7 +3028,7 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 
 | Instance         | API                                                      | Description                                              |
 | --------------- | ------------------------------------------------------------ | -------------------------------------------------- |
-| cryptoFramework | function createMd(algName : string) : Md;                    | Creates an **Md** instance with the specified algorithm. |
+| cryptoFramework | function createMd(algName : string) : Md;                    | Creates an **Md** instance.                  |
 | Md              | update(input : DataBlob, callback : AsyncCallback\<void>) : void; | Updates the data for a digest. This API uses an asynchronous callback to return the result.|
 | Md              | update(input : DataBlob) : Promise\<void>;                  | Updates the data for a digest. This API uses a promise to return the result. |
 | Md              | digest(callback : AsyncCallback\<DataBlob>) : void;         | Generates the digest. This API uses an asynchronous callback to return the result.                      |
@@ -2193,7 +3039,7 @@ For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cry
 ### Generating a Digest
 
 1. Use **createMd()** to create an **Md** instance.
-2. Use **update()** to pass in data. **update()** can be called multiple times. The algorithm library does not limit the data length of a single **update()**.
+2. Call **update()** to pass in data. **update()** can be called multiple times. The algorithm library does not limit the data length of a single **update()**.
 3. Use **digest()** to compute a digest.
 4. Obtain the digest algorithm and length of the digest generated.
 
@@ -2215,7 +3061,6 @@ function doMdByPromise() {
   let mdAlgName = "SHA256"; // Digest algorithm name.
   let message = "mdTestMessgae"; // Data to be digested.
   let md = cryptoFramework.createMd(mdAlgName);
-  ;
   console.info("[Promise]: Md algName is: " + md.algName);
   // If the data volume is small, you can use update() once to pass in all data. There is no limit on the length of the input parameter.
   let promiseMdUpdate = md.update({ data: stringToUint8Array(message) });
@@ -2261,7 +3106,7 @@ function doMdByCallback() {
 ### Generating a Digest by Segment
 
 1. Use **createMd()** to create an **Md** instance.
-2. Use **update()** multiple times to pass in data by segment.
+2. Call **update()** multiple times to pass in by segment.
 3. Use **digest()** to compute a digest.
 4. Obtain the digest algorithm and length of the digest generated.
 
@@ -2327,8 +3172,8 @@ A hash-based message authentication code (HMAC) can be used to verify both the i
 Typical MAC operations involve the following:
 
 1. Create a **Mac** instance.
-2. Initialize the **Mac** instance, add one or more segments of data for generating a MAC, and generate a MAC.
-3. Obtain the algorithm and length of a MAC.
+2. Initialize the **Mac** instance, add one or more segments of data for generating a MAC, and generate an HMAC.
+3. Obtain the algorithm and length of an HMAC.
 
 ### Available APIs
 
@@ -2451,9 +3296,9 @@ Generate an HMAC by segment.
 
 1. Use **createMac()** to create a **Mac** instance.
 2. Use **init()** to initialize the **Mac** instance with the symmetric key passed in.
-3. Call **update()** multiple times to pass in data by segment.
+3. Call **update()** multiple times to process data by segment.
 4. Use **doFinal()** to generate an HMAC.
-5. Obtain the algorithm and length of the HMAC.
+5. Obtain the algorithm and length of the MAC.
 
 ```ts
 import cryptoFramework from '@ohos.security.cryptoFramework';
@@ -2534,7 +3379,7 @@ Typical random number operations involve the following:
 
 ### Available APIs
 
-For more information about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
+For details about the APIs, see [Crypto Framework](../reference/apis/js-apis-cryptoFramework.md).
 
 | Instance         | API                                                      | Description                                      |
 | --------------- | ------------------------------------------------------------ | ------------------------------------------ |
@@ -2674,3 +3519,4 @@ function kdfCallback() {
   });
 }
 ```
+

@@ -257,7 +257,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562940585](figures/zh-cn_image_0000001562940585.png)
 
-- justifyContent(FlexAlign.Spacebetween)：垂直方向均匀分配元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。
+- justifyContent(FlexAlign.SpaceBetween)：垂直方向均匀分配元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。
 
   ```ts
   Column({}) {
@@ -366,7 +366,7 @@ alignSelf属性用于控制单个子元素在容器交叉轴上的对齐方式�
 
   ![zh-cn_image_0000001562940601](figures/zh-cn_image_0000001562940601.png)
 
-- justifyContent(FlexAlign.Spacebetween)：水平方向均匀分配元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。
+- justifyContent(FlexAlign.SpaceBetween)：水平方向均匀分配元素，相邻元素之间距离相同。第一个元素与行首对齐，最后一个元素与行尾对齐。
 
   ```ts
   Row({}) {

@@ -33,7 +33,7 @@
     - [开发音频通话功能(ArkTS)](audio-call-development.md)
   - [视频播放(ArkTS)](video-playback.md)
   - [视频录制(ArkTS)](video-recording.md)
-  - [屏幕录制(C/C++)](avscreen-capture.md)
+  - [屏幕录制(仅对系统应用开放)(C/C++)](avscreen-capture.md)
   - [获取音视频元数据(ArkTS)](avmetadataextractor.md)
   - [获取视频缩略图(ArkTS)](avimagegenerator.md)
   - 音视频编解码
@@ -66,7 +66,7 @@
   - 相机最佳实践(ArkTS)
     - [拍照实现方案(ArkTS)](camera-shooting-case.md)
     - [录像实现方案(ArkTS)](camera-recording-case.md)
-    - [使用人像模式拍照(ArkTS)](camera-mode.md)
+    - [使用人像模式拍照(仅对系统应用开放)(ArkTS)](camera-mode.md)
     - [双路预览(ArkTS)](camera-dual-channel-preview.md)
     - [性能提升方案(仅对系统应用开放)(ArkTS)](camera-performance-improvement.md)
   - 相机开发指导(C/C++)

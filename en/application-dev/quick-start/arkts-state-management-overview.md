@@ -126,4 +126,4 @@ Decorators for [application state management](arkts-state.md):
 \@Watch: listens for the changes of state variables.
 
 
-$$ operator: provides TS variable references for built-in components so that the variables are synchronized with the internal state of built-in components.
+[$$operator](arkts-two-way-sync.md): provides a TS variable by-reference to a built-in component so that the variable value and the internal state of that component are kept in sync.

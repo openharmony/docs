@@ -386,12 +386,13 @@ The **extensionAbilities** tag represents the configuration of extensionAbilitie
 | description | Description of the ExtensionAbility. The value is a string with a maximum of 255 bytes. It can be a resource index to support multiple languages.| String| Yes (initial value: left empty)|
 | icon | Icon of the ExtensionAbility. The value is the index of the icon resource file. If **ExtensionAbility** is set to **MainElement** of the current module, this field is mandatory.| String| Yes (initial value: left empty)|
 | label | Name of the ExtensionAbility displayed to users. The value must be a resource index to support multiple languages. If **ExtensionAbility** is set to **MainElement** of the current module, this field is mandatory and its value must be unique in the application.| String| Yes (initial value: left empty)|
-| type | Type of the ExtensionAbility. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a Work Scheduler task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **fileShare**: ExtensionAbility for file sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The GUI you develop is combined with the windows of other applications through the **UIExtensionComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **push**: ExtensionAbility to be pushed.<br>- **driver**: ExtensionAbility for the driver framework.<br>- **remoteNotification**: ExtensionAbility for remote notifications.<br>- **remoteLocation**: ExtensionAbility for remote location.<br>- **voip**: ExtensionAbility for VoIP calls.<br>**NOTE**<br>The **service** and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
+| type | Type of the ExtensionAbility. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a Work Scheduler task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **fileAccess**: ExtensionAbility for public data access, allowing files and folders to be provided for file management applications to display.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The GUI you develop is combined with the windows of other applications through the **UIExtensionComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **push**: ExtensionAbility to be pushed.<br>- **driver**: ExtensionAbility for the driver framework.<br>- **remoteNotification**: ExtensionAbility for remote notifications.<br>- **remoteLocation**: ExtensionAbility for remote location.<br>- **voip**: ExtensionAbility for VoIP calls.<br>**NOTE**<br>The **service**, **fileAccess**, and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
 | permissions | Permissions required for another application to access the ExtensionAbility component.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of [predefined permission names](../security/permission-list.md).| String array| Yes (initial value: left empty)|
 | uri | Data URI provided by the ExtensionAbility. The value is a string with a maximum of 255 bytes, in the reverse domain name notation.<br>**NOTE**<br>This field is mandatory when the type of the ExtensionAbility is set to **dataShare**.| String| Yes (initial value: left empty)|
 |skills | A set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The label and icon of the first ExtensionAbility that has **skills** configured are used as the label and icon of the entire service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an application, but not for a service. | Array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata of the ExtensionAbility component.| Object| Yes (initial value: left empty)|
 | exported | Whether the ExtensionAbility can be called by other applications.<br>- **true**: The ExtensionAbility can be called by other applications.<br>- **false**: The ExtensionAbility cannot be called by other applications, not even by aa commands.| Boolean| Yes (initial value: **false**)|
+| extensionProcessMode | Multi-process instance model of the ExtensionAbility. Currently, this field is effective only for UIExtensionAbility and ExtensionAbility extended from UIExtensionAbility.<br>- **instance**: Each instance of the ExtensionAbility has a process.<br>- **type**: All instances of the ExtensionAbility run in the same process, separated from other ExtensionAbility instances.<br>- **bundle**:  All instances of the ExtensionAbility run in the same process as instances of other ExtensionAbilities using the **bundle** model.| String| Yes (initial value: left empty)|
 
 Example of the **extensionAbilities** structure:
 
@@ -421,7 +422,8 @@ Example of the **extensionAbilities** structure:
           "name": "ohos.extension.form",
           "resource": "$profile:form_config",
         }
-      ]
+      ],
+      "extensionProcessMode": "instance"
     }
   ]
 }
@@ -549,9 +551,11 @@ The **distributionFilter** tag defines the rules for distributing HAP files base
 
 > **NOTE**
 >
-> This tag is supported since API version 10. In API version 9 and earlier versions, the **distroFilter** tag is used.
+> This tag is supported since API version 10. In earlier versions, the **distroFilter** tag is used.
 
-- **Application scenario**:<br>If a project has multiple entry-type modules and the values of **deviceType** configured for these modules overlap, you need to use this tag to distinguish the modules. In the following example, both entry-type modules support the tablet type, and therefore the **distributionFilter** tag is required.
+- **Application scenario**:
+  
+  If a project has multiple entry-type modules and the values of **deviceType** configured for these modules overlap, you need to use this tag to distinguish the modules. In the following example, both entry-type modules support the tablet type, and therefore the **distributionFilter** tag is required.
   
   ```json
   // Device types supported by entry1
@@ -576,19 +580,23 @@ The **distributionFilter** tag defines the rules for distributing HAP files base
         "car",
         "tablet"
       ]
-    }
   }
-```
+  }
+  ```
   
-- **Configuration rules**:<br>This tag consists of four attributes: [screenShape](#screenshape), [screenWindow](#screenwindow), [screenDensity](#screendensity), and [countryCode](#countrycode).
+- **Configuration rules**:
 
-  During distribution, a unique HAP is determined based on the mapping between **deviceType** and the preceding attributes.
-  
+  This tag consists of four attributes: [screenShape](#screenshape), [screenWindow](#screenwindow), [screenDensity](#screendensity), and [countryCode](#countrycode).
+
+  During distribution, a unique HAP is determined based on the mapping between **deviceTypes** and the preceding attributes.
+
   * When configuring this tag, include at least one of the attributes.
   * If any one or more attributes are set for one entry-type module, the same attributes must be set for all other entry-type modules.
   * The **screenShape** and **screenWindow** attributes are available only for lite wearables.
 
-- **Configuration**:<br>This tag must be configured in the **/resource/profile** directory and be referenced in the **resource** field of **metadata**.
+- **Configuration**:
+
+  This tag must be configured in the **/resource/profile** directory and be referenced in the **resource** field of **metadata**.
 
 
 **Table 12** distributionFilter
@@ -597,8 +605,8 @@ The **distributionFilter** tag defines the rules for distributing HAP files base
 | -------- | -------- | -------- | -------- |
 | [screenShape](#screenshape) | Supported screen shapes.| Object array| Yes (initial value: left empty)|
 | [screenWindow](#screenwindow) | Supported window resolutions for when the application is running.| Object array| Yes (initial value: left empty)|
-| [screenDensity](#screendensity) | Pixel density of the screen, in dots per inch (DPI).| Object array| Yes (initial value: left empty)|
-| [countryCode](#countrycode) | Code of the country or region to which the application is to be distributed. The value is subject to the ISO-3166-1 standard. Enumerated definitions of multiple countries and regions are supported.| Object array| Yes (initial value: left empty)|
+| [screenDensity](#screendensity)| Pixel density of the screen, in dots per inch (DPI).| Object array| Yes (initial value: left empty)|
+| [countryCode](#countrycode)| Code of the country or region to which the application is to be distributed. The value is subject to the ISO-3166-1 standard. Enumerated definitions of multiple countries and regions are supported.| Object array| Yes (initial value: left empty)|
 
 ### screenShape
 
