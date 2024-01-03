@@ -316,9 +316,9 @@ constructor(jsonObject)
   });
   ```
 
-### constructor
+### constructor<sup>11+</sup>
 
-constructor(type: EventType,bundleName: String,triggerAction: Action)
+constructor(type: EventType, bundleName: String, triggerAction: Action)
 
 构造函数。
 
