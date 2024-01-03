@@ -1,4 +1,4 @@
-# @ohos.net.vpnExtension.d.ts (VPN 增强管理)
+# @ohos.net.vpnExtension (VPN 增强管理)
 
 三方VPN管理模块，支持三方VPN的启动和停止功能。
 
@@ -48,9 +48,9 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 Stage 模型示例：
 
 ```ts
-import common from '@ohos.app.ability.common'
+import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension'
+import vpnExt from '@ohos.net.vpnExtension';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -72,7 +72,7 @@ struct Index {
           .fontWeight(FontWeight.Bold).onClick(() => {
           console.info("btn click") })
         Button('Start Extension').onClick(() => {
-          vpnExt.startVpnExtensionAbility(want)
+          vpnExt.startVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
         }.width('100%')
     }.height('100%')
@@ -116,9 +116,9 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 Stage 模型示例：
 
 ```ts
-import common from '@ohos.app.ability.common'
+import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
-import vpnExt from '@ohos.net.vpnExtension'
+import vpnExt from '@ohos.net.vpnExtension';
 
 let context = getContext(this) as common.VpnExtensionContext;
 let want: Want = {
@@ -140,11 +140,11 @@ struct Index {
           .fontWeight(FontWeight.Bold).onClick(() => {
           console.info("btn click") })
         Button('Start Extension').onClick(() => {
-          vpnExt.startVpnExtensionAbility(want)
+          vpnExt.startVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
         Button('Stop Extension').onClick(() => {
           console.info("btn end")
-          vpnExt.stopVpnExtensionAbility(want)
+          vpnExt.stopVpnExtensionAbility(want);
         }).width('70%').fontSize(45).margin(16)
 
         }.width('100%')
@@ -190,7 +190,7 @@ setAlwaysOnVpnEnabled(enable: boolean, bundleName: string): Promise\<void>
 Stage 模型示例：
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension'
+import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';  
 
 build() {
@@ -202,7 +202,7 @@ build() {
         Text($r('app.string.notAllowButton'))
           .ControlBtn(this.notAllowFontColor)
           .onClick(() => {
-            this.destruction()
+            this.destruction();
           })
         Text('|')
           .fontSize(20)
@@ -217,7 +217,7 @@ build() {
               bundleName: bundleName,
               abilityName: abilityName,
             };
-            vpnExt.startVpnExtensionAbility(want)
+            vpnExt.startVpnExtensionAbility(want);
             this.destruction()
           })
 
@@ -262,7 +262,7 @@ isAlwaysOnVpnEnabled(bundleName: string): Promise\<boolean>
 Stage 模型示例：
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension'
+import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';  
 
 build() {
@@ -289,8 +289,8 @@ build() {
               bundleName: bundleName,
               abilityName: abilityName,
             };
-            vpnExt.startVpnExtensionAbility(want)
-            this.destruction()
+            vpnExt.startVpnExtensionAbility(want);
+            this.destruction();
           })
 
       }.margin({ bottom: 16, left: 24, right: 24})
@@ -334,7 +334,7 @@ updateVpnAuthorizedState(bundleName: string): boolean
 Stage 模型示例：
 
 ```ts
-import vpnExt from '@ohos.net.vpnExtension'
+import vpnExt from '@ohos.net.vpnExtension';
 import Want from '@ohos.app.ability.Want';  
 
 build() {
@@ -346,7 +346,7 @@ build() {
         Text($r('app.string.notAllowButton'))
           .ControlBtn(this.notAllowFontColor)
           .onClick(() => {
-            this.destruction()
+            this.destruction();
           })
         Text('|')
           .fontSize(20)
@@ -361,8 +361,8 @@ build() {
               bundleName: bundleName,
               abilityName: abilityName,
             };
-            vpnExt.startVpnExtensionAbility(want)
-            this.destruction()
+            vpnExt.startVpnExtensionAbility(want);
+            this.destruction();
           })
 
       }.margin({ bottom: 16, left: 24, right: 24})
@@ -380,9 +380,9 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 **参数：**
 
-| 参数名  | 类型                                                         | 必填 | 说明         |
-| ------- | ------------------------------------------------------------ | ---- | ------------ |
-| context | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | 是   | 指定 context |
+| 参数名  | 类型                                                         | 必填 | 说明           |
+| ------- | ------------------------------------------------------------ | ---- | -------------- |
+| context | [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md) | 是   | 指定 context。 |
 
 **返回值：**
 
@@ -405,7 +405,7 @@ import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt
+  private VpnConnection: vpnExt.VpnConnectionExt;
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
     console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
@@ -459,7 +459,7 @@ import vpn_client from 'libvpn_client.so';
 import hilog from '@ohos.hilog';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt
+  private VpnConnection: vpnExt.VpnConnectionExt;
   private tunIp: string = '10.0.0.5';
   private blockedAppName: string = 'com.example.myvpndemo';
   onCreate(want: Want) {
@@ -563,7 +563,7 @@ import hilog from '@ohos.hilog';
 
 let g_tunnelFd = -1;
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt
+  private VpnConnection: vpnExt.VpnConnectionExt;
   private vpnServerIp: string = '192.168.31.13';
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
@@ -616,14 +616,14 @@ import Want from '@ohos.app.ability.Want';
 import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
 
 export default class MyVpnExtAbility extends VpnExtensionAbility {
-  private VpnConnection: vpnExt.VpnConnectionExt
+  private VpnConnection: vpnExt.VpnConnectionExt;
   onCreate(want: Want) {
     this.VpnConnection = vpnExt.createVpnConnection(this.context);
     console.info("vpn createVpnConnection: " + JSON.stringify(this.VpnConnection));
     this.VpnConnection.destroy().then(() => {
       console.info("destroy success.");
     }).catch((error) => {
-      console.info("destroy fail" + JSON.stringify(error));
+      console.error("destroy fail" + JSON.stringify(error));
     });
   }
 }

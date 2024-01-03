@@ -1,4 +1,4 @@
-# @ohos.app.ability.VpnExtensionAbility (VpnExtensionAbility)
+# @ohos.app.ability.VpnExtensionAbility (三方VPN能力)
 
 VpnExtensionAbility模块提供三方VPN相关能力，提供三方VPN创建、销毁等生命周期回调。
 
