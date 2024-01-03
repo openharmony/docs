@@ -126,7 +126,7 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
 
 1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **ServiceExtAbility**.
 
-2. In the **ServiceExtAbility** directory, right-click and choose **New > TypeScript File** to create a file named **ServiceExtAbility.ets**.
+2. In the **ServiceExtAbility** directory, right-click and choose **New > ArkTS File** to create a file named **ServiceExtAbility.ets**.
 
     ```
     ├── ets
@@ -190,7 +190,7 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
            "description": "service",
            "type": "service",
            "exported": true,
-           "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+           "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ets"
          }
        ]
      }
