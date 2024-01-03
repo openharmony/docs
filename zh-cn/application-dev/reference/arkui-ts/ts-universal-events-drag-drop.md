@@ -92,7 +92,7 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 ## DragBehavior<sup>10+</sup>
 
-需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#ondrop)回调时才能够生效。
+需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#事件)回调时才能够生效。
 
 | 名称 | 描述 |
 | ----- | ----------------- |
