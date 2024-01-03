@@ -4,7 +4,7 @@ You can manage the audio effect of a specific playback instance, for example, ob
 
 ## Managing the Audio Effect of a Playback Instance
 
-You can obtain and set the audio effect mode, which can be disabled (**EFFECT_NONE**) or default (**EFFECT_DEFAULT**), of the current audio playback stream. In default audio effect mode, the audio effect of the corresponding scenario is automatically loaded based on **ContentType** and **StreamUsage** of the audio stream.
+You can obtain and set the audio effect mode, which can be disabled (**EFFECT_NONE**) or default (**EFFECT_DEFAULT**), of the current audio playback stream. In the default audio effect mode, the audio effect of the corresponding scenario is automatically loaded based on **ContentType** and **StreamUsage** of the audio stream.
 
 ### Creating a Playback Instance
 
@@ -140,6 +140,8 @@ A system application that plays audio can check whether the system or a device s
 
 A system application with spatial audio setting capabilities (for example, a setting screen where users can change the spatial audio status) can enable or disable spatial audio rendering or head tracking, and update the state information of a spatial device, in addition to the query operation.
 
+To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+
 ### Obtaining an AudioSpatializationManager Instance
 
 Before using **AudioSpatializationManager** APIs, you must use **getSpatializationManager()** to obtain an **AudioSpatializationManager** instance.
@@ -157,7 +159,7 @@ Call [isSpatializationSupported](../reference/apis/js-apis-audio.md#isspatializa
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let isSpatializationSupported: boolean = audioSpatializationManager.isSpatializationSupported();
     console.info(`AudioSpatializationManager isSpatializationSupported: ${isSpatializationSupported}`);
@@ -174,7 +176,7 @@ Call [isSpatializationSupportedForDevice](../reference/apis/js-apis-audio.md#iss
   ```ts
   import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
-  
+
   let deviceDescriptor: audio.AudioDeviceDescriptor = {
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -204,7 +206,7 @@ Call [isHeadTrackingSupported](../reference/apis/js-apis-audio.md#isheadtracking
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
     console.info(`AudioSpatializationManager isHeadTrackingSupported: ${isHeadTrackingSupported}`);
@@ -221,7 +223,7 @@ Call [isHeadTrackingSupportedForDevice](../reference/apis/js-apis-audio.md#ishea
   ```ts
   import audio from '@ohos.multimedia.audio';
   import { BusinessError } from '@ohos.base';
-  
+
   let deviceDescriptor: audio.AudioDeviceDescriptor = {
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
     deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -247,11 +249,15 @@ Call [isHeadTrackingSupportedForDevice](../reference/apis/js-apis-audio.md#ishea
 
 ### Enabling or Disabling Spatial Audio Rendering
 
-Call [setSpatializationEnabled](../reference/apis/js-apis-audio.md#setspatializationenabled11) to enable or disable spatial audio rendering. Pass in **true** to enable spatial audio rendering, and pass in **false** to disable it. This API can be called only by system applications with spatial audio setting capabilities (for example, a setting screen where users can change the spatial audio status). Before enabling spatial audio rendering, ensure that both the system and the current audio device support spatial audio rendering. In addition, if **AudioEffectMode** of the audio stream is set to **EFFECT_NONE**, spatial audio rendering does not take effect regardless of whether it is enabled.
+Call [setSpatializationEnabled](../reference/apis/js-apis-audio.md#setspatializationenabled11) to enable or disable spatial audio rendering. Pass in **true** to enable spatial audio rendering, and pass in **false** to disable it.
+
+To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+
+Before enabling spatial audio rendering, ensure that both the system and the current audio device support spatial audio rendering. In addition, if **AudioEffectMode** of the audio stream is set to **EFFECT_NONE**, spatial audio rendering does not take effect regardless of whether it is enabled.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   let enable: boolean = true
   audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
     if (err) {
@@ -268,7 +274,7 @@ Call [isSpatializationEnabled](../reference/apis/js-apis-audio.md#isspatializati
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   try {
     let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
     console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -284,7 +290,7 @@ Call [on('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#onsp
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEnabled: boolean) => {
     console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
   });
@@ -296,17 +302,21 @@ Call [off('spatializationEnabledChange')](../reference/apis/js-apis-audio.md#off
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   audioSpatializationManager.off('spatializationEnabledChange');
   ```
 
 ### Enabling or Disabling Head Tracking
 
-Call [setHeadTrackingEnabled](../reference/apis/js-apis-audio.md#setheadtrackingenabled11) to enable or disable head tracking. Pass in **true** to enable head tracking, and pass in **false** to disable it. This API can be called only by system applications with spatial audio setting capabilities (for example, a setting screen where users can change the spatial audio status). Before enabling head tracking, ensure that both the system and the current audio device support head tracking. In addition, if **AudioEffectMode** of the audio stream is set to **EFFECT_NONE**, head tracking does not take effect regardless of whether it is enabled.
+Call [setHeadTrackingEnabled](../reference/apis/js-apis-audio.md#setheadtrackingenabled11) to enable or disable head tracking. Pass in **true** to enable head tracking, and pass in **false** to disable it.
+
+To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+
+Before enabling head tracking, ensure that both the system and the current audio device support head tracking. In addition, if **AudioEffectMode** of the audio stream is set to **EFFECT_NONE**, head tracking does not take effect regardless of whether it is enabled.
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  
+
   let enable: boolean = true;
   audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
     if (err) {
@@ -355,7 +365,11 @@ Call [off('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#offhe
 
 ### Updating the State Information of a Spatial Device
 
-Call [updateSpatialDeviceState](../reference/apis/js-apis-audio.md#updatespatialdevicestate11) to update the state information of a spatial device. The state information includes the device address, support for spatial audio rendering and head tracking, and device form. This API can be called only by system applications with spatial audio setting capabilities (for example, a setting screen where users can change the spatial audio status). For details about the state information, see [AudioSpatialDeviceState](../reference/apis/js-apis-audio.md#audiospatialdevicestate).
+Call [updateSpatialDeviceState](../reference/apis/js-apis-audio.md#updatespatialdevicestate11) to update the state information of a spatial device. The state information includes the device address, support for spatial audio rendering and head tracking, and device form.
+
+To use this feature, the application must request the **ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md).
+
+For details about the state information, see [AudioSpatialDeviceState](../reference/apis/js-apis-audio.md#audiospatialdevicestate).
 
   ```ts
   import audio from '@ohos.multimedia.audio';

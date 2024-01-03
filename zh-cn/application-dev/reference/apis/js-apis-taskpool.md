@@ -20,7 +20,7 @@ import taskpool from '@ohos.taskpool';
 ```
 ## taskpool.execute
 
-execute(func: Function, ...args: unknown[]): Promise\<unknown>
+execute(func: Function, ...args: Object[]): Promise\<Object>
 
 将待执行的函数放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式不可取消任务。
 
@@ -31,13 +31,13 @@ execute(func: Function, ...args: unknown[]): Promise\<unknown>
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | func   | Function  | 是   | 执行的逻辑需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
-| args   | unknown[] | 否   | 执行逻辑的函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+| args   | Object[] | 否   | 执行逻辑的函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **返回值：**
 
 | 类型              | 说明                                 |
 | ----------------- | ------------------------------------ |
-| Promise\<unknown> | execute是异步方法，返回Promise对象。 |
+| Promise\<Object> | execute是异步方法，返回Promise对象。 |
 
 **错误码：**
 
@@ -65,7 +65,7 @@ taskpool.execute(printArgs, 100).then((value: number) => { // 100: test number
 
 ## taskpool.execute
 
-execute(task: Task, priority?: Priority): Promise\<unknown>
+execute(task: Task, priority?: Priority): Promise\<Object>
 
 将创建好的任务放入taskpool内部任务队列等待，等待分发到工作线程执行。当前执行模式可尝试调用cancel进行任务取消。
 
@@ -82,7 +82,7 @@ execute(task: Task, priority?: Priority): Promise\<unknown>
 
 | 类型              | 说明              |
 | ----------------  | ---------------- |
-| Promise\<unknown> | 返回Promise对象。 |
+| Promise\<Object> | 返回Promise对象。 |
 
 **错误码：**
 
@@ -111,7 +111,7 @@ taskpool.execute(task).then((value: number) => {
 
 ## taskpool.execute<sup>10+</sup>
 
-execute(group: TaskGroup, priority?: Priority): Promise<unknown[]>
+execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
 将创建好的任务组放入taskpool内部任务队列等待，等待分发到工作线程执行。
 
@@ -128,7 +128,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<unknown[]>
 
 | 类型                 | 说明                               |
 | ----------------    | ---------------------------------- |
-| Promise\<unknown[]> | execute是异步方法，返回Promise对象。 |
+| Promise\<Object[]> | execute是异步方法，返回Promise对象。 |
 
 **错误码：**
 
@@ -358,7 +358,7 @@ for (let i: number = 0; i < allCount; i++) {
 
 ### constructor
 
-constructor(func: Function, ...args: unknown[])
+constructor(func: Function, ...args: Object[])
 
 Task的构造函数。
 
@@ -369,7 +369,7 @@ Task的构造函数。
 | 参数名 | 类型      | 必填 | 说明                                                                  |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
 | func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。   |
-| args   | unknown[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+| args   | Object[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
 
@@ -747,7 +747,7 @@ taskpool.execute(task3).then(() => {
 | 名称      | 类型      | 可读 | 可写 | 说明                                                         |
 | --------- | --------- | ---- | ---- | ------------------------------------------------------------ |
 | function  | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
-| arguments | unknown[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+| arguments | Object[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
 | name<sup>11+</sup>      | String    | 是   | 是   | 创建任务时指定的任务名称。                                    |
 
 ## TaskGroup<sup>10+</sup>
@@ -792,7 +792,7 @@ let name: String = taskGroup.name;
 
 ### addTask<sup>10+</sup>
 
-addTask(func: Function, ...args: unknown[]): void
+addTask(func: Function, ...args: Object[]): void
 
 将待执行的函数添加到任务组中。使用该方法前需要先构造TaskGroup。
 
@@ -803,7 +803,7 @@ addTask(func: Function, ...args: unknown[]): void
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
 | func   | Function  | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。     |
-| args   | unknown[] | 否   | 任务执行函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
+| args   | Object[] | 否   | 任务执行函数所需要的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
 **错误码：**
 

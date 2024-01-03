@@ -74,7 +74,7 @@
      previewOutput.start().then(() => {
        console.info('Callback returned with previewOutput started.');
      }).catch((err: BusinessError) => {
-       console.info('Failed to previewOutput start '+ err.code);
+       console.error('Failed to previewOutput start '+ err.code);
      });
    }
    ```

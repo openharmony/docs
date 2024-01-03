@@ -30,8 +30,8 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // 监听相机状态变化
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.log(`status: ${cameraStatusInfo.status}`);
+    console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.info(`status: ${cameraStatusInfo.status}`);
   });
 
   // 获取相机列表
@@ -54,7 +54,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     console.error("cameraManager.getSupportedOutputCapability error")
     return;
   }
-  console.log("outputCapability: " + JSON.stringify(cameraOutputCap));
+  console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 
   let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
   if (!previewProfilesArray) {
@@ -140,7 +140,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // 监听视频输出错误信息
   videoOutput.on('error', (error: BusinessError) => {
-    console.log(`Preview output error code: ${error.code}`);
+    console.info(`Preview output error code: ${error.code}`);
   });
 
   //创建会话
@@ -156,7 +156,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // 监听session错误信息
   captureSession.on('error', (error: BusinessError) => {
-    console.log(`Capture session error code: ${error.code}`);
+    console.info(`Capture session error code: ${error.code}`);
   });
 
   // 开始配置会话
@@ -181,7 +181,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   // 监听cameraInput错误信息
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.log(`Camera input error code: ${error.code}`);
+    console.info(`Camera input error code: ${error.code}`);
   });
 
   // 打开相机
@@ -250,7 +250,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
       console.error(`Failed to start the video output. error: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output start success.');
+    console.info('Callback invoked to indicate the video output start success.');
   });
 
   // 开始录像
@@ -267,7 +267,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
       console.error(`Failed to stop the video output. error: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output stop success.');
+    console.info('Callback invoked to indicate the video output stop success.');
   });
 
   // 停止录像

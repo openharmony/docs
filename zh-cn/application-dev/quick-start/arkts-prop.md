@@ -736,7 +736,7 @@ struct Child1 {
 
 ### 装饰Map类型变量
 
-\@Prop支持Map类型，在下面的示例中，value类型为Map<number, string>，点击Button改变message的值，视图会随之刷新。
+\@Prop支持Map类型，在下面的示例中，value类型为Map\<number, string\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Component
@@ -789,7 +789,7 @@ struct MapSample2 {
 
 ### 装饰Set类型变量
 
-\@Prop支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+\@Prop支持Set类型，在下面的示例中，message类型为Set\<number\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Component

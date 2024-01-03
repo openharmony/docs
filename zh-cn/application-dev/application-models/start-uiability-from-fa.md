@@ -11,15 +11,17 @@
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[EntryAbility]';
 
 let want: Want = {
   bundleName: 'ohos.samples.etsclock',
   abilityName: 'MainAbility'
 };
 featureAbility.startAbility({ want }).then((code) => {
-  Logger.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
+  console.info(TAG, 'Ability verify code: ' + JSON.stringify(code));
 }).catch((error: BusinessError) => {
-  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
+  console.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -34,15 +36,17 @@ startAbilityForResult和startAbility的区别是当UIAbility销毁的时候会�
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[EntryAbility]';
 
 let want: Want = {
   bundleName: 'ohos.samples.etsclock',
   abilityName: 'MainAbility'
 };
 featureAbility.startAbilityForResult({ want }).then((result) => {
-  Logger.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
+  console.info(TAG, 'Ability verify result: ' + JSON.stringify(result));
 }).catch((error: BusinessError) => {
-  Logger.error(TAG, 'Ability failed: ' + JSON.stringify(error));
+  console.error(TAG, 'Ability failed: ' + JSON.stringify(error));
 });
 ```
 
@@ -55,15 +59,17 @@ featureAbility.startAbilityForResult({ want }).then((result) => {
 ```ts
 import particleAbility from '@ohos.ability.particleAbility';
 import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+const TAG: string = '[ServiceAbility]';
 
 let want: Want = {
   bundleName: 'ohos.samples.etsclock',
   abilityName: 'MainAbility'
 };
 particleAbility.startAbility({ want }).then(() => {
-  hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Start Ability successfully.');
+  console.info(TAG, 'StartUIAbility Start Ability successfully.');
 }).catch((error: BusinessError) => {
-  hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility Ability failed: ' + JSON.stringify(error));
+  console.error(TAG, 'StartUIAbility Ability failed: ' + JSON.stringify(error));
 });
-hilog.info(domain, TAG, 'ServiceAbilityStartUIAbility ServiceAbility onStart');
+console.info(TAG, 'StartUIAbility ServiceAbility onStart');
 ```

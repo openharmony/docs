@@ -770,7 +770,7 @@ off(type: 'appForegroundState', observer?: AppForegroundStateObserver): void
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 import { BusinessError } from '@ohos.base';
-let observer_: appManager.AppForegroundStateObserver;
+let observer_: appManager.AppForegroundStateObserver | undefined;
 // 1.注册应用启动和退出的监听器
 let observer: appManager.AppForegroundStateObserver = {
   onAppStateChanged(appStateData: appManager.AppStateData) {

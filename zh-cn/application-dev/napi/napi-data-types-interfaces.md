@@ -10,7 +10,7 @@
 
 每当调用一个Node-API函数，都会返回该值，表示操作成功与否的相关信息。
 
-```
+```c
 typedef enum {
     napi_ok,
     napi_invalid_arg,
@@ -44,7 +44,7 @@ typedef enum {
 
 一个结构体，在调用函数不成功时存储了较为详细的错误信息。
 
-```
+```c
 typedef struct {
     const char *error_message;
     void *engine_reserved;
@@ -78,7 +78,7 @@ napi_threadsafe_function用来创建一个线程安全的JavaScript函数，可�
 该枚举类型定义了两个常量，用于指定在何时释放线程安全函数的回调函数。
 
 
-```
+```c
 typedef enum {
   napi_tsfn_release,
   napi_tsfn_abort
@@ -107,7 +107,7 @@ napi_release_threadsafe_function(napi_threadsafe_function func,
 数据结构如下所示：
 
 
-```
+```c
 typedef enum {
   napi_tsfn_nonblocking,
   napi_tsfn_blocking
@@ -150,7 +150,7 @@ napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的�
 该结构体定义了一个包含两个无符号64位整数的类型标签，用于标识一个Node-API值的类型信息。
 
 
-```
+```c
 typedef struct {
   uint64_t lower;
   uint64_t upper;
@@ -190,7 +190,7 @@ Native侧获取JS侧参数信息，传递给napi_get_cb_info，用于获取JS侧
 基本用法如下：
 
 
-```
+```c
 typedef napi_value (*napi_callback)(napi_env, napi_callback_info);
 ```
 
@@ -237,6 +237,24 @@ napi_async_complete_callback用于异步操作完成后的回调。它通常用�
 
 函数指针，用于napi_add_async_cleanup_hook接口，当环境销毁时会被执行。
 
+### 调度优先级
+QoS决定了线程调度的优先级，等级定义如下：
+
+```c
+typedef enum {
+  napi_qos_background = 0,
+  napi_qos_utility = 1,
+  napi_qos_default = 2,
+  napi_qos_user_initiated = 3,
+} napi_qos_t;
+```
+
+| QoS等级 | 适用场景 |
+| -------- | -------- |
+| napi_qos_background | 低等级，用户不可见任务，例如数据同步、备份。 |
+| napi_qos_utility | 中低等级，不需要立即看到响应效果的任务，例如下载或导入数据。 |
+| napi_qos_default | 默认 | 几秒 |
+| napi_qos_user_initiated | 高等级，用户触发并且可见进展，例如打开文档。 |
 
 ## 支持的Node-API接口
 
@@ -267,7 +285,7 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_is_buffer | 判断给定JS value是否为Buffer对象。 | 
 
 
-### Utf16 string相关
+### string相关
 
 | 接口 | 功能说明 | 
 | -------- | -------- |
@@ -470,4 +488,23 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | 接口 | 功能说明 | 
 | -------- | -------- |
 | napi_queue_async_work_with_qos | 将异步工作对象加到队列，由底层根据传入的qos优先级去调度执行。 | 
-| napi_run_script_path | 运行abc文件。 | 
+| napi_run_script_path | 运行指定abc文件。 | 
+
+
+#### napi_queue_async_work_with_qos 
+
+```c
+napi_status napi_queue_async_work_with_qos(napi_env env,
+                                           napi_async_work work,
+                                           napi_qos_t qos);
+```
+
+用法同napi_queue_async_work，但可以指定QoS等级。
+
+##### napi_run_script_path
+
+```c
+napi_status napi_run_script_path(napi_env env,
+                                 const char* abcPath,
+                                 napi_value* result);
+```

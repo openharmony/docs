@@ -426,7 +426,7 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Object>>): void
 
-系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
+系统弹框通过该接口发起元服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
 **系统接口**：该接口为系统接口。
 
@@ -473,7 +473,7 @@ try {
 
 acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
-系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
+系统弹框通过该接口发起元服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
 
 **系统接口**：该接口为系统接口。
 
@@ -722,7 +722,7 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
-let observer_: abilityManager.AbilityForegroundStateObserver;
+let observer_: abilityManager.AbilityForegroundStateObserver | undefined;
 // 1.注册应用启动和退出的监听器
 let observer: abilityManager.AbilityForegroundStateObserver = {
     onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
@@ -821,7 +821,7 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 import abilityManager from '@ohos.app.ability.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-appManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
+abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
     console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
     console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);

@@ -6,7 +6,7 @@ CPU features are hardware extensions provided by CPUs. You can call instructions
 During native library development in your OpenHarmony project, you can follow this topic to use code related to the CPU features in your application.
 
 
-Currently, OpenHarmony does not provide APIs for obtaining CPU features. You can import library functions of the existing open source community as described below. Alternatively, you can directly read /proc/cpuinfo or call **libc getauxval(AT_HWCAP)** to obtain the CPU features of a device.
+Currently, OpenHarmony does not provide APIs for obtaining CPU features. You can import library functions of the existing open source community as described below. Alternatively, you can directly read **/proc/cpuinfo** or call **libc getauxval(AT_HWCAP)** to obtain the CPU features of a device.
 
 
 ## How to Use
@@ -23,7 +23,7 @@ Currently, OpenHarmony does not provide APIs for obtaining CPU features. You can
                        |--CMakeLists.txt
                        |--hello.cpp
       ```
-   - Add a subdirectory to the **CMakeLists.txt** file.
+   - Add the path to the cpu_features library to the **CMakeLists.txt** file.
       ```makefile
       add_subdirectory(cpu_features) # Add a subdirectory to the project.
       target_link_libraries(entry PUBLIC CpuFeature::cpu_features) # Add the library files that need to be linked.
@@ -38,7 +38,7 @@ Currently, OpenHarmony does not provide APIs for obtaining CPU features. You can
    #if defined (CPU_FEATURES_ARCH_ARM)
    #include "cpuinfo_arm.h" // Include the cpuinfo header file of the ARM architecture.
    #elif defined (CPU_FEATURES_ARCH_AARCH64)
-   #include "cpuinfo_aarch64.h" // Include the cpuinfo header file of the ARM64 architecture.
+   #include "cpuinfo_aarch64.h" // Include the cpuinfo header file of the AArch64 architecture.
    #endif
    // Add `using namespace cpu_features;` in the C++ code.
    // Obtain CPU feature information based on the architecture in use.

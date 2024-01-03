@@ -95,6 +95,8 @@ RichEditor(value: RichEditorOptions)
 | value | string | 是 | 文本Span内容。 |
 | textStyle | [RichEditorTextStyleResult](#richeditortextstyleresult) | 是 | 文本Span样式信息。 |
 | offsetInSpan | [number, number] | 是 | 文本Span内容里有效内容的起始和结束位置。 |
+| valueResource<sup>11+</sup> | [Resource](ts-types.md#resource) | 否 | 组件SymbolSpan内容。 |
+| SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否 | 组件SymbolSpan样式信息。 |
 
 
 ## RichEditorSpanPosition
@@ -258,6 +260,25 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 | ----------------------- | ---------------- |
 | number | 添加完成的builderSpan所在的位置。 |
 
+### addSymbolSpan<sup>11+</sup>
+
+addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
+
+在Richeditor中添加SymbolSpan。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| value  | [Resource](ts-types.md#resource)   | 是   | 组件内容。 |
+| options  | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11)   | 否   | 组件选项。 |
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| number | 添加完成的SymbolSpan所在的位置。 |
+
 ### getTypingStyle<sup>11+</sup>
 
 getTypingStyle(): RichEditorTextStyle
@@ -284,7 +305,7 @@ setTypingStyle(value: RichEditorTextStyle): void
 
 ### updateSpanStyle
 
-updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
+updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions | RichEditorUpdateSymbolSpanStyleOptions): void
 
 更新文本或者图片样式。<br/>若只更新了一个Span的部分内容，则会根据更新部分、未更新部分将该Span拆分为多个Span。
 
@@ -294,7 +315,7 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
+| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11)<sup>11+</sup> | 是 | 文本或者图片的样式选项信息。 |
 
 ### updateParagraphStyle<sup>11+</sup>
 
@@ -432,6 +453,16 @@ getSelection(): RichEditorSelection
 | end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是 | 图片样式。 |
 
+## RichEditorUpdateSymbolSpanStyleOptions<sup>11+</sup>
+
+SymbolSpan样式选项。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| start | number   | 否 | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。 |
+| end | number | 否 | 需要更新样式的文本结束位置，省略或者超出文本范围时表示到结尾。 |
+| symbolStyle | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 是 | 组件样式。 |
+
 ## RichEditorParagraphStyleOptions<sup>11+</sup>
 
 段落样式选项
@@ -515,6 +546,27 @@ getSelection(): RichEditorSelection
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
 | layoutStyle<sup>11+</sup>  |{<br/>margin&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[Margin](ts-types.md#margin),<br/> borderRadius&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)<br/>}| 否 | 图片布局风格。<br/>|
+
+## RichEditorSymbolSpanOptions<sup>11+</sup>
+
+添加文本的偏移位置和文本样式信息。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| offset  | number   | 否   | 添加组件的位置。省略时，添加到所有文本字符串的最后。 |
+| style  | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11)   | 否   | 组件样式信息。省略时，使用系统默认文本信息。|
+
+## RichEditorSymbolSpanStyle<sup>11+</sup>
+
+组件SymbolSpan样式信息。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | 组件颜色。<br/> 默认值：Color.Black。 |
+| fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 设置组件大小。<br/>默认值：系统默认值。 |
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。 |
+| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 动效策略。<br/>默认值：SymbolEffectStrategy.NONE。 |
 
 ## RichEditorBuilderSpanOptions<sup>11+</sup>
 
@@ -632,8 +684,13 @@ struct Index {
               this.content += (item as RichEditorImageSpanResult).valueResourceStr;
               this.content += "\n"
             } else {
-              this.content += (item as RichEditorTextSpanResult).value;
-              this.content += "\n"
+              if(typeof(item as RichEditorTextSpanResult)['symbolSpanStyle'] != 'undefined') {
+                this.content += (item as RichEditorTextSpanResult).symbolSpanStyle?.fontSize;
+                this.content += "\n"
+              }else {
+                this.content += (item as RichEditorTextSpanResult).value;
+                this.content += "\n"
+              }
             }
           })
         })
@@ -660,6 +717,13 @@ struct Index {
                 style:
                 {
                   fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+            this.controller.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
                   fontSize: 30
                 }
               })

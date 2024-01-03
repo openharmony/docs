@@ -1,14 +1,14 @@
 # 音效管理(ArkTS)
 
-音效管理主要包括播放实例音效管理、全局音效查询和空间音频管理三部分，播放实例音效管理主要包括查询和设置当前音频播放流的音效模式，全局音效查询支持查询ContentType和StreamUsage对应场景支持的音效模式，空间音频管理包含空间音频相关状态和能力的查询、设置与监听。
+音效管理主要包括播放实例音效管理、全局音效查询和空间音频管理三部分，播放实例音效管理主要包括查询和设置当前音频播放流的音效模式，全局音效查询支持查询[StreamUsage](../reference/apis/js-apis-audio.md#streamusage)对应场景支持的音效模式，空间音频管理包含空间音频相关状态和能力的查询、设置与监听。
 
 ## 播放实例音效管理
 
-主要包括查询和设置当前音频播放流的音效模式，音效模式包括EFFECT_NONE关闭音效模式和EFFECT_DEFAULT默认音效模式。默认音效模式会根据创建音频流的ContentType和StreamUsage自动加载对应场景的音效。
+主要包括查询和设置当前音频播放流的音效模式，[音效模式](../reference/apis/js-apis-audio.md#audioeffectmode10)包括EFFECT_NONE关闭音效模式和EFFECT_DEFAULT默认音效模式。默认音效模式会根据创建音频流的[StreamUsage](../reference/apis/js-apis-audio.md#streamusage)自动加载对应场景的音效。
 
 ### 获取播放实例
 
-管理播放实例音效的接口是getAudioEffectMode()查询当前音频播放流的音效模式和setAudioEffectMode(mode: AudioEffectMode)设置当前音频播放流的音效模式，在使用之前，需要使用createAudioRenderer(options: AudioRendererOptions)先创建音频播放流AudioRenderer实例。
+管理播放实例音效的接口是[getAudioEffectMode()](../reference/apis/js-apis-audio.md#getaudioeffectmode10)查询当前音频播放流的音效模式和[setAudioEffectMode(mode: AudioEffectMode)](../reference/apis/js-apis-audio.md#setaudioeffectmode10)设置当前音频播放流的音效模式，在使用之前，需要使用[createAudioRenderer(options: AudioRendererOptions)](../reference/apis/js-apis-audio.md#audiocreateaudiorenderer8)先创建音频播放流AudioRenderer实例。
 
 1. 导入音频接口。
 
@@ -37,14 +37,15 @@
       streamInfo: audioStreamInfo,
       rendererInfo: audioRendererInfo
     };
-
+    let audioRenderer: audio.AudioRenderer | undefined = undefined;
+   
     audio.createAudioRenderer(audioRendererOptions, (err: BusinessError, data: audio.AudioRenderer) => {
       if (err) {
         console.error(`Invoke createAudioRenderer failed, code is ${err.code}, message is ${err.message}`);
         return;
       } else {
         console.info('Invoke createAudioRenderer succeeded.');
-        let audioRenderer: audio.AudioRenderer = data;
+        audioRenderer = data;
       }
     });
     ```
@@ -101,7 +102,7 @@
 
 ## 全局查询音效模式
 
-主要包括全局音效查询相应StreamUsage对应场景的音效模式。
+主要包括全局音效查询相应[StreamUsage](../reference/apis/js-apis-audio.md#streamusage)对应场景的音效模式。
 对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。在使用查询接口前，开发者需要使用getStreamManager()创建一个AudioStreamManager音频流管理实例。
 
 ### 获取音频流管理接口
@@ -346,8 +347,6 @@
 系统应用开发者可以通过[on('headTrackingEnabledChange')](../reference/apis/js-apis-audio.md#onheadtrackingenabledchange11)接口订阅头动跟踪效果的开关状态变化事件，回调为true为头动跟踪被开启，false为头动跟踪被关闭。当开发者通过setHeadTrackingEnabled()接口成功地改变了头动跟踪的开关状态时，回调将被触发。
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-
   audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnabled: boolean) => {
     console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
   });

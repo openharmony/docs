@@ -9,6 +9,8 @@
 - 方法1：直接查看AudioRenderer的[state](../reference/apis/js-apis-audio.md#属性)：
     
   ```ts
+  import audio from '@ohos.multimedia.audio';
+  
   let audioRendererState: audio.AudioState = audioRenderer.state;
   console.info(`Current state is: ${audioRendererState }`)
   ```
@@ -16,6 +18,8 @@
 - 方法2：注册stateChange监听AudioRenderer的状态变化：
     
   ```ts
+  import audio from '@ohos.multimedia.audio';
+  
   audioRenderer.on('stateChange', (rendererState: audio.AudioState) => {
     console.info(`State change to: ${rendererState}`)
   });
@@ -46,7 +50,6 @@
 
    ```ts
    import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
    
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -94,6 +97,7 @@
    
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
    
    async function getCurrentAudioRendererInfoArray(): Promise<void> {
      await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {

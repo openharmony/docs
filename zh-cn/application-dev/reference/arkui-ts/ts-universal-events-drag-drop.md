@@ -18,17 +18,105 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 其他组件需要开发者将draggable属性设置为true，并在onDragStart等接口中实现数据传输相关内容，才能正确处理拖拽。
 
+## onDragStart
 
-## 事件
+onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo)
 
-| 名称                                                         | 支持冒泡 | 功能描述                                                     |
-| ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| onDragStart(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;&nbsp;[CustomBuilder](ts-types.md#custombuilder8) \| [DragItemInfo](#dragiteminfo说明)) | 否       | 第一次拖拽此事件绑定的组件时，触发回调。<br/>- event：拖拽事件信息，详见[DragEvent](#dragevent说明)。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/> 返回值：拖拽过程中显示的组件信息。<br/>触发条件：长按时间 >= 500ms。<br> 事件优先级：长按触发时间 < 500ms，长按事件 > 拖拽事件<br> 其他： 拖拽事件 > 长按事件。 |
-| onDragEnter(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽进入组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
-| onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
-| onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
-| onDrop(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>**说明：** <br/>如果没有显式使用event.setResult()，则默认result为DRAG_SUCCESSFUL。 |
-| onDragEnd(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 否       | 绑定此事件的组件触发的拖拽结束后，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。 |
+第一次拖拽此事件绑定的组件时，长按时间 >= 500ms，触发回调。
+
+**事件优先级：** 长按触发时间 < 500ms，长按事件 > 拖拽事件
+
+**其他：** 拖拽事件 > 长按事件。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                            | 必填 | 说明               |
+| ----------- | ------------------------------- | ---- | ------------------ |
+| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息。     |
+| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| [CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[DragItemInfo](#dragiteminfo说明) | 拽过程中显示的组件信息。 |
+
+## onDragEnter
+
+onDragEnter(event: (event: DragEvent, extraParams?: string) => void)
+
+拖拽进入组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                            | 必填 | 说明                           |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
+
+## onDragMove
+
+onDragMove(event: (event: DragEvent, extraParams?: string) => void)
+
+拖拽在组件范围内移动时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                            | 必填 | 说明                           |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
+
+## onDragLeave
+
+onDragLeave(event: (event: DragEvent, extraParams?: string) => void)
+
+拖拽离开组件范围内时，触发回调，当监听了[onDrop](#ondrop)事件时，此事件才有效。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                            | 必填 | 说明                           |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
+
+## onDrop
+
+onDrop(event: (event: DragEvent, extraParams?: string) => void)
+
+绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。如果没有显式使用event.setResult()，则默认result为DRAG_SUCCESSFUL。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                            | 必填 | 说明                           |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
+
+## onDragEnd
+
+onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
+
+绑定此事件的组件触发的拖拽结束后，触发回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名      | 类型                            | 必填 | 说明                           |
+| ----------- | ------------------------------- | ---- | ------------------------------ |
+| event       | [DragEvent](#dragevent说明)     | 否   | 拖拽事件信息，包括拖拽点坐标。 |
+| extraParams | [extraParams](#extraparams说明) | 否   | 拖拽事件额外信息。             |
 
 ## DragItemInfo说明
 
