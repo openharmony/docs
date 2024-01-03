@@ -4,31 +4,42 @@
 When you create a PageAbility on DevEco Studio, DevEco Studio automatically generates the **onCreate()** and **onDestroy()** callbacks in **app.js** and **app.ets**. You need to implement the other lifecycle callbacks in **app.js** and **app.ets**. The following code snippet shows how to create a PageAbility:
 
 ```ts
-class EntryAbility {
+class MainAbility {
   onCreate() {
-    console.info('Application onCreate')
+    // Obtain the context and call related APIs.
+    let context = featureAbility.getContext();
+    context.getBundleName((data, bundleName) => {
+      Logger.info(TAG, 'ability bundleName:' + bundleName);
+    });
+    Logger.info(TAG, 'Application onCreate');
   }
+
   onDestroy() {
-    console.info('Application onDestroy')
+    Logger.info(TAG, 'Application onDestroy');
   }
-  onShow() {
-    console.info('Application onShow')
+
+  onShow(): void {
+    Logger.info(TAG, 'Application onShow');
   }
-  onHide() {
-    console.info('Application onHide')
+
+  onHide(): void {
+    Logger.info(TAG, 'Application onHide');
   }
-  onActive() {
-    console.info('Application onActive')
+
+  onActive(): void {
+    Logger.info(TAG, 'Application onActive');
   }
-  onInactive() {
-    console.info('Application onInactive')
+
+  onInactive(): void {
+    Logger.info(TAG, 'Application onInactive');
   }
+
   onNewWant() {
-    console.info('Application onNewWant')
+    Logger.info(TAG, 'Application onNewWant');
   }
 }
 
-export default new EntryAbility()
+export default new MainAbility();
 ```
 
 
@@ -36,31 +47,37 @@ After the PageAbility is created, its abilities-related configuration items are 
 
 ```json
 {
-  "abilities": [
-    {
-      "skills": [
-        {
-          "entities": [
-            "entity.system.home"
-          ],
-          "actions": [
-            "action.system.home"
-          ]
-        }
-      ],
-      "orientation": "unspecified",
-      "visible": true,
-      "srcPath": "EntryAbility",
-      "name": ".EntryAbility",
-      "srcLanguage": "ets",
-      "icon": "$media:icon",
-      "description": "$string:EntryAbility_desc",
-      "formsEnabled": false,
-      "label": "$string:EntryAbility_label",
-      "type": "page",
-      "launchType": "singleton"
-    }
-  ]
+  ...
+  "module": {
+    ...
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      ...
+    ]
+    ...
+  }
 }
 ```
 
@@ -80,19 +97,23 @@ The following code snippet shows how to use **getContext()** to obtain the appli
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
-
-(async () => {
+```
+```ts
+(async (): Promise<void> => {
   let dir: string;
   try {
-    console.info('Begin to getOrCreateDistributedDir');
+    Logger.info(TAG, 'Begin to getOrCreateDistributedDir');
     dir = await featureAbility.getContext().getOrCreateDistributedDir();
-    console.info('distribute dir is ' + dir);
+    promptAction.showToast({
+      message: dir
+    });
+    Logger.info(TAG, 'distribute dir is ' + dir);
     let fd: number;
-    let path = dir + "/a.txt";
+    let path = dir + '/a.txt';
     fd = fs.openSync(path, fs.OpenMode.READ_WRITE).fd;
     fs.close(fd);
   } catch (error) {
-    console.error('getOrCreateDistributedDir failed with ' + error);
+    Logger.error(TAG, `getOrCreateDistributedDir failed with : ${error}`);
   }
 })()
 ```
