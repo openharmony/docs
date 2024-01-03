@@ -1,6 +1,6 @@
 # @ohos.data.commonType (数据通用类型)
 
-**数据通用类型(commonType)** 是分布式数据管理中通用的一些数据类型。
+**数据通用类型(commonType)** 是分布式数据中的通用类型。
 
 > **说明：**
 >
@@ -16,7 +16,7 @@ import { commonType } from '@ohos.data.commonType';
 
 描述资产附件的状态枚举。请使用枚举名称而非枚举值。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.CommonType
 
 | 名称              | 值  | 说明                         |
 | ----------------- | --- | ---------------------------- |
@@ -31,7 +31,7 @@ import { commonType } from '@ohos.data.commonType';
 
 记录资产附件（文件、图片、视频等类型文件）的相关信息。资产类型的相关接口暂不支持Datashare。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.CommonType
 
 | 名称       | 类型                        | 必填 | 说明                               |
 | ---------- | --------------------------- | ---- | ---------------------------------- |
@@ -47,7 +47,7 @@ import { commonType } from '@ohos.data.commonType';
 
 表示[Asset](#asset)类型的数组。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.CommonType
 
 | 类型              | 说明                  |
 | ----------------- | --------------------- |
@@ -57,7 +57,7 @@ import { commonType } from '@ohos.data.commonType';
 
 用于表示允许的数据字段类型，接口参数具体类型根据其功能而定。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.CommonType
 
 | 类型       | 说明                                    |
 | ---------- | --------------------------------------- |
@@ -73,9 +73,9 @@ import { commonType } from '@ohos.data.commonType';
 
 用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+**系统能力：** SystemCapability.DistributedDataManager.CommonType
 
 | 键类型 | 值类型                   |
 | ------ | ------------------------ |
-| number | 主键的类型可以是number   |
+| number | 主键的类型可以是number。 |
 | string | 主键的类型可以是string。 |

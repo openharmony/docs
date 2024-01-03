@@ -135,6 +135,22 @@ let sessionId: string = distributedObject.genSessionId();
 | -------- | -------- | -------- | -------- |
 | sessionId | string | 是 | 多设备协同的唯一标识。 |
 
+## BindInfo<sup>11+</sup>
+
+数据库的绑定信息。当前版本只支持关系型数据库。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | storeName | string | 是 | 待绑定资产在所属的数据库中的库名 |
+  | tableName | string | 是 | 待绑定资产在所属的数据库中的表名 |
+  | primaryKey | CommonType.ValuesBucket | 是 | 待绑定资产在所属的数据库中的主键 |
+  | field | string | 是 | 待绑定资产在所属的数据库中的列名 |
+  | assetName | string | 是 | 待绑定资产在所属的数据库中的资产名 |
+
 ## DataObject
 
 表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributedobjectcreate9)获取DataObject对象。
@@ -624,22 +640,6 @@ g_object.bindAssetStore("attachments", bindInfo).then(() => {
   console.info("save failed, error message: " + err.message);
 });
 ```
-
-## BindInfo<sup>11+</sup>
-
-数据库的绑定能力。当前版本只支持关系型数据库。
-
-**系统能力：** SystemCapability.DistributedDataManager.DataObject.DistributedObject
-
-**参数：**
-
-  | 参数名 | 类型 | 必填 | 说明 |
-  | -------- | -------- | -------- | -------- |
-  | storeName | string | 是 | 待绑定资产在所属的数据库中的库名 |
-  | tableName | string | 是 | 待绑定资产在所属的数据库中的表名 |
-  | primaryKey | CommonType.ValuesBucket | 是 | 待绑定资产在所属的数据库中的主键 |
-  | field | string | 是 | 待绑定资产在所属的数据库中的列名 |
-  | assetName | string | 是 | 待绑定资产在所属的数据库中的资产名 |
 
 ## distributedObject.createDistributedObject<sup>(deprecated)</sup>
 

@@ -117,7 +117,10 @@
 - 如对复杂类型的数据进行修改，仅支持修改根属性，暂不支持下级属性修改。([资产同步机制](#资产同步机制)中，资产类型的数据支持下一级属性修改)
 
 - 支持JS接口间的互通，与其他语言不互通。
+  
+- 分布式对象当前只支持Asset类型，不支持资产数组类型的同步。如需同步多个资产，可将每个资产作为分布式对象的一个根属性实现。
 
+- BindAssetStore一次只能绑定一个资产,如需对同一个分布式对象中的多个资产进行绑定，需对每一个assetKey调用该方法。
 
 ## 接口说明
 
@@ -362,37 +365,34 @@
     import UIAbility from '@ohos.app.ability.UIAbility';
     import window from '@ohos.window';
     import distributedDataObject from '@ohos.data.distributedDataObject';
-    import relationalStore from '@ohos.data.relationalStore';
+    import commonType from '@ohos.data.commonType';
 
-    class Memo {
-      title: string;
-      content: string;
-      mark: boolean;
-      attachment: relationalStore.Asset;
-    
-      constructor(title: string, content: string, mark: boolean, attachment: relationalStore.Asset) {
+    class Note {
+      title: string | undefined
+      text: string | undefined
+      attachment: commonType.Asset | undefined
+
+      constructor(title: string | undefined, text: string | undefined, attachment: commonType.Asset | undefined) {
         this.title = title;
-        this.content = content;
-        this.mark = mark;
+        this.text = text;
         this.attachment = attachment;
       }
     }
 
     class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage: window.WindowStage) {
-          let attachment: relationalStore.Asset = {
-          name: '1.txt',
-          uri: 'file://com.example.objecttest/data/storage/el2/distributedfiles/dir/1.txt',
-          path: '/dir/1.txt',
-          createTime: '2023-12-27 10:00:00',
-          modifyTime: '2023-12-27 10:00:00',
-          size: '1',
-          status: relationalStore.AssetStatus.ASSET_NORMAL
-        };
-        let memo: Memo = new Memo('my note', 'hello world', true, attachment);
-        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, memo);
-        localObject.setSessionId('123456', () => {consele.log('join session success.')});
-        ...
+        let attachment: commonType.Asset = {
+          name: 'test_img.jpg',
+          uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+          path: '/dir/test_img.jpg',
+          createTime: '2024-01-02 10:00:00',
+          modifyTime: '2024-01-02 10:00:00',
+          size: '5',
+          status: commonType.AssetStatus.ASSET_NORMAL
+        }
+        let note: Note = new Note('test', "test", attachment);
+        let sourceObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
+        sourceObject.setSessionId('123456');
       }
     }
     ```
@@ -400,80 +400,40 @@
     接收端
 
     ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import window from '@ohos.window';
-    import distributedDataObject from '@ohos.data.distributedDataObject';
-    import relationalStore from '@ohos.data.relationalStore';
-
-    class Memo {
-      title: string | undefined;
-      content: string | undefined;
-      mark: boolean | undefined;
-      attachment: relationalStore.Asset;
-    
-      constructor(title: string | undefined, content: string | undefined, mark: boolean | undefined, attachment: relationalStore.Asset) {
-        this.title = title;
-        this.content = content;
-        this.mark = mark;
-        this.attachment = attachment;
-      }
-    }
-
-    class EntryAbility extends UIAbility {
-      onWindowStageCreate(windowStage: window.WindowStage) {
-        let attachment: relationalStore.Asset = {
-          name: undefined,
-          uri: undefined,
-          path: undefined,
-          createTime: undefined,
-          modifyTime: undefined,
-          size: undefined,
-          status: undefined
-        };
-        let memo: Memo = new Memo(undefined, undefined, undefined, attachment); //接收端将属性值设为undefined来接收数据
-        let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, memo);
-        localObject.on('changed',(sessionId, fields)=>{
-            //fields包含"attachment"代表attachment记录的附件已经迁移完成
-          }
-        });
-        localObject.setSessionId('123456');
-        ...
-      }
-    }
+    let note: Note = new Note(undefined, undefined, undefined);
+    let receivedObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
+    receivedObject.on('change', (sessionId: string, fields: Array<string>) => {
+      console.log('Object data changed, sessionId: ' + sessionId + ', fields: ' + fields); // fields中含有发起端描述资产的字段"attachment"时，代表"attachment"描述的资产已经完成同步
+    });
+    receivedObject.setSessionId('123456');
     ```
 
 14. 融合资产绑定
 
     ```ts
-    import commonType from '@ohos.data.commonType';
-
-    let assetObject: commonType.Asset = {
-      name: '1.txt',
-      uri: 'file://com.example.objecttest/data/storage/el2/distributedfiles/dir/1.txt',
-      path: '/dir/1.txt',
-      createTime: '2023-12-27 10:00:00',
-      modifyTime: '2023-12-27 10:00:00',
-      size: '1',
-      status: relationalStore.AssetStatus.ASSET_NORMAL
+    let attachment: commonType.Asset = {
+      name: 'test_img.jpg',
+      uri: 'file://com.example.myapplication/data/storage/el2/distributedfiles/dir/test_img.jpg',
+      path: '/dir/test_img.jpg',
+      createTime: '2024-01-02 10:00:00',
+      modifyTime: '2024-01-02 10:00:00',
+      size: '5',
+      status: commonType.AssetStatus.ASSET_NORMAL
     }
+    let note: Note = new Note('test', 'test', attachment);
+    let localObject: distributedDataObject.DataObject = distributedDataObject.create(this.context, note);
+    localObject.setSessionId('123456');
 
-    g_object = distributedObject.create(this.context, {
-      title: "initial title",
-      attachments: assetObject
-    })
-
-    g_object.setSessionId("123456");
     const bindInfo: distributedObject.BindInfo = {
-      storeName: "storeName",
-      tableName: "tableName",
+      storeName: 'notepad',
+      tableName: 'note_t',
       primaryKey: {
-        "uuid": "uuid1"
+        'uuid': '2c1d10c4-0db0-477f-85ef-29749b2806cc'
       },
-      field: "attachments",
-      assetName: assetObject.name
+      field: 'attachment',
+      assetName: attachment.name
     }
-
-    g_object.bindAssetStore("attachments", bindInfo, (err) => {
+    localObject.bindAssetStore('attachment', bindInfo, (err) => {
       if (err) {
         globalThis.SetLog('bindAssetStore failed.');
       }
