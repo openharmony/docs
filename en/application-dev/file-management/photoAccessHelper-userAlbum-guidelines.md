@@ -346,7 +346,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 async function example() {
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumName: photoAccessHelper.AlbumKeys = photoAccessHelper.AlbumKeys.ALBUM_NAME;
-  predicates.equalTo(albumName, '%albumName%');
+  predicates.equalTo(albumName, 'albumName');
   let fetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
