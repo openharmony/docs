@@ -28,14 +28,19 @@ import inputConsumer from '@ohos.multimodalInput.inputConsumer';
 ```js
 let leftAltKey = 2045;
 let tabKey = 2049;
-// 取消订阅单个回调函数
 let callback = (keyOptions: inputConsumer.KeyOptions) => {
   console.log(`keyOptions: ${JSON.stringify(keyOptions)}`);
 }
+
 let keyOption: inputConsumer.KeyOptions = {preKeys: [leftAltKey], finalKey: tabKey, isFinalKeyDown: true, finalKeyDownDuration: 0};
 try {
-  inputConsumer.on("key", keyOption, callback);
-  inputConsumer.off("key", keyOption, callback);
+  inputConsumer.on("key", keyOption, callback);//订阅组合键
+} catch (error) {
+  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+
+try {
+  inputConsumer.off("key", keyOption, callback);//取消订阅组合键
   console.log(`Unsubscribe success`);
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
