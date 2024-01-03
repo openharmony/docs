@@ -243,7 +243,7 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 
 | Name   | Type                   | Mandatory| Description                                                        |
 | --------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| httpProxy | [HttpProxy](#httpproxy10) | Yes  | Global HTTP proxy configuration of the network.                                    |
+| httpProxy | [HttpProxy](#httpproxy10) | Yes  | Global HTTP proxy configuration of the network.                                 |
 | callback  | AsyncCallback\<void>    | Yes  | Callback used to return the result. If the global HTTP proxy configuration of the network is set successfully, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
@@ -1474,7 +1474,7 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
-Resolves the host name by using the default network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
+Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1512,7 +1512,7 @@ connection.getAddressesByName("xxxx", (error: BusinessError, data: connection.Ne
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
-Resolves the host name by using the default network to obtain all IP addresses. This API uses a promise to return the result.
+Resolves the host name by using the corresponding network to obtain all IP addresses. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1777,7 +1777,7 @@ Registers a listener for **netConnectionPropertiesChange** events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. This field has a fixed value of **netConnectionPropertiesChange**.<br>**netConnectionPropertiesChange**: event indicating that network connection properties have changed.|
-| callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | Yes  | Callback used to return the network handle (**netHandle**) and connection information (**connectionProperties**).|
+| callback | Callback<{ netHandle: [NetHandle](#nethandle), connectionProperties: [ConnectionProperties](#connectionproperties) }> | Yes  | Callback used to return **netHandle** and **connectionProperties**.|
 
 **Example**
 
@@ -1824,7 +1824,7 @@ Registers a listener for **netLost** events.
 | Name  | Type                              | Mandatory| Description                                                        |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                             | Yes  | Event type. This field has a fixed value of **netLost**.<br>netLost: event indicating that the network is interrupted or normally disconnected.|
-| callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return the network handle (**netHandle**).|
+| callback | Callback\<[NetHandle](#nethandle)> | Yes  | Callback used to return **netHandle**.|
 
 **Example**
 
@@ -1919,7 +1919,7 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 
 | Name     | Type                    | Mandatory| Description                           |
 | ----------- | ------------------------ | ---- | -------------------------------|
-| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket7) \| [UDPSocket](js-apis-socket.md#udpsocket7) | Yes| **TCPSocket** or **UDPSocket** object.|
+| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | Yes| **TCPSocket** or **UDPSocket** object.|
 | callback    | AsyncCallback\<void>      | Yes  | Callback used to return the result. If the **TCPSocket** or **UDPSocket** object is successfully bound to the current network, **error** is **undefined**. Otherwise, **error** is an error object.|
 
 **Error codes**
@@ -2001,7 +2001,7 @@ Binds a **TCPSocket** or **UDPSocket** object to the data network. This API uses
 
 | Name         | Type                 | Mandatory | Description                          |
 | --------------- | --------------------- | ---- | ------------------------------ |
-| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket7) \| [UDPSocket](js-apis-socket.md#udpsocket7) | Yes  | **TCPSocket** or **UDPSocket** object.|
+| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | Yes  | **TCPSocket** or **UDPSocket** object.|
 
 **Return value**
 

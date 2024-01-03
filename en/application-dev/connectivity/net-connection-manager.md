@@ -43,10 +43,10 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 | getAppNet(callback: AsyncCallback\<NetHandle>): void;| Obtains a **NetHandle** object that contains the **netId** of the network bound to the application. This API uses an asynchronous callback to return the result.|
 | setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Binds an application to the specified network. The application can access the external network only through this network. This API uses an asynchronous callback to return the result.|
 | getDefaultNetSync(): NetHandle; |Obtains the default active data network in synchronous mode. You can use **getNetCapabilities** to obtain information such as the network type and capabilities.|
-| hasDefaultNet(callback: AsyncCallback\<boolean>): void; |Checks whether the default network is available. This API uses an asynchronous callback to return the result.|
+| hasDefaultNet(callback: AsyncCallback\<boolean>): void; |Checks whether the default data network is activated. This API uses an asynchronous callback to return the result.|
 | getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| Obtains the list of **NetHandle** objects of the connected network. This API uses an asynchronous callback to return the result.|
-| getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |Obtains link information of the default network. This API uses an asynchronous callback to return the result.|
-| getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |Obtains the capability set of the default network. This API uses an asynchronous callback to return the result.|
+| getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |Obtains network connection information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.|
+| getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |Obtains capability information of the network corresponding to the **netHandle**. This API uses an asynchronous callback to return the result.|
 | isDefaultNetMetered(callback: AsyncCallback\<boolean>): void; |Checks whether the data traffic usage on the current network is metered. This API uses an asynchronous callback to return the result.|
 | reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
 | reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
@@ -55,16 +55,16 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 | disableAirplaneMode(callback: AsyncCallback\<void>): void;| Disables the airplane mode. This API uses an asynchronous callback to return the result.|
 | createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.|
 | bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | Binds a **TCPSocket** or **UDPSocket** to the current network. This API uses an asynchronous callback to return the result.|
-| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the default network by resolving the domain name. This API uses an asynchronous callback to return the result.|
+| getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
 | getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void; |Obtains an IP address of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
-| on(type: 'netAvailable', callback: Callback\<NetHandle>): void; |Subscribes to **netAvailable** events.|
-| on(type: 'netCapabilitiesChange', callback: Callback\<{ netHandle: NetHandle, netCap: NetCapabilities }>): void; |Subscribes to **netCapabilitiesChange** events.|
+| on(type: 'netAvailable', callback: Callback\<NetHandle>): void;                   |Subscribes to **netAvailable** events.|
+| on(type: 'netCapabilitiesChange', callback: Callback\<NetCapabilityInfo\>): void; |Subscribes to **netCapabilitiesChange** events.|
 | on(type: 'netConnectionPropertiesChange', callback: Callback\<{ netHandle: NetHandle, connectionProperties: ConnectionProperties }>): void; |Subscribes to **netConnectionPropertiesChange** events.|
 | on(type: 'netBlockStatusChange', callback: Callback<{ netHandle: NetHandle, blocked: boolean }>): void; |Subscribes to **netBlockStatusChange** events.|
 | on(type: 'netLost', callback: Callback\<NetHandle>): void; |Subscribes to **netLost** events.|
 | on(type: 'netUnavailable', callback: Callback\<void>): void; |Subscribes to **netUnavailable** events.|
-| register(callback: AsyncCallback\<void>): void; |Registers an observer for the default network or the network specified in **createNetConnection**.|
-| unregister(callback: AsyncCallback\<void>): void; |Unregisters the observer for the default network or the network specified in **createNetConnection**.|
+| register(callback: AsyncCallback\<void>): void; |Subscribes to network status changes.|
+| unregister(callback: AsyncCallback\<void>): void; |Unsubscribes from network status changes.|
 
 ## Subscribing to Status Changes of the Specified Network
 
