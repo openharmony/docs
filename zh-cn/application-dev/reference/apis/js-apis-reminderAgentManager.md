@@ -401,7 +401,7 @@ addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): voi
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其type属性。 |
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，添加NotificationSlot成功时，err为undefined，否则err为错误对象。 |
 
 **示例**：
@@ -436,7 +436,7 @@ addNotificationSlot(slot: NotificationSlot): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其type属性。 |
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md#notificationslot) | 是 | notificationManager\.slot实例，仅支持设置其notificationType属性。 |
 
 **返回值**：
 
