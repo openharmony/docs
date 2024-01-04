@@ -19,7 +19,7 @@
    
    RSAPubKeySpec是AsyKeySpec的子类。通过参数algName指定算法'RSA'；指定密钥参数类型AsyKeySpecType.PUBLIC_KEY_SPEC，表示是公钥中包含的参数。
 
-3. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)BySpec，将RSAPubKeySpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
+3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将RSAPubKeySpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
 
 4. 调用[AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis/js-apis-cryptoFramework.md#generatepubkey-1)，获得指定的公钥（PubKey）。
 
@@ -93,14 +93,14 @@ function rsaUsePubKeySpecGetCallback() {
 
 对应的算法规格请查看[非对称密钥生成和转换规格：ECC](crypto-asym-key-generation-conversion-spec.md#ecc)。
 
-1. 构造ECCCommonParamsSpec对象，用于指定ECC算法中公私钥包含的公共参数。
+1. 构造[ECCCommonParamsSpec](../../reference/apis/js-apis-cryptoFramework.md#ecccommonparamsspec10)对象，用于指定ECC算法中公私钥包含的公共参数。
    ECCCommonParamsSpec是AsyKeySpec的子类。需要通过参数algName指定算法'ECC'；指定密钥参数类型AsyKeySpecType.COMMON_PARAMS_SPEC，表示是公私钥中包含的公共参数。
 
    使用密钥参数生成密钥时，用到的bigint类型需要以大端模式输入，且必须为正数。
 
 2. 创建ECCPubKeySpec对象，用于指定ECC算法中公钥包含的参数。
 
-3. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)BySpec，将ECCPubKeySpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
+3. 调用[cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10)，将ECCPubKeySpec对象传入，创建非对称密钥生成器（AsyKeyGeneratorBySpec）。
 
 4. 调用[AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis/js-apis-cryptoFramework.md#generatepubkey-1)，获得指定的公钥（PubKey）。
 
