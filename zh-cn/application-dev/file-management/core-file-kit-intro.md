@@ -1,10 +1,8 @@
-# Core File Kit简介
+# 文件管理简介
 
-Core File Kit为开发者提供一套访问和管理应用文件和用户文件的能力。帮助用户更高效地管理、查找和备份各类文件，使用户能够轻松应对各种文件管理的需求。
+文件管理为开发者提供一套访问和管理应用文件和用户文件的能力。帮助用户更高效地管理、查找和备份各类文件，使用户能够轻松应对各种文件管理的需求。
 
-## Core File Kit概述
-
-在Core File Kit套件中，按文件所有者的不同，有如下文件分类模型，其示意图如下面文件分类模型示意图：
+按文件所有者的不同，有如下文件分类模型，其示意图如下面文件分类模型示意图：
 
 - [应用文件](app-file-overview.md)：文件所有者为应用，包括应用安装文件、应用资源文件、应用缓存文件等。
 
@@ -22,9 +20,7 @@ Core File Kit为开发者提供一套访问和管理应用文件和用户文件�
 
 ![File classification model](figures/file-classification-model.png)
 
-## Kit使用场景
-
-Core File Kit常见的使用场景：
+## 使用场景
 
 - 应用文件访问和文件分享。
 - 应用数据备份恢复。
@@ -80,12 +76,8 @@ Core File Kit常见的使用场景：
     - UserFileManager：内卡文件管理服务，基于File Access ExtensionAbility框架实现，用于管理内置存储设备上的文件。
     - ExternalFileManager：外卡文件管理服务，基于File Access ExtensionAbility框架实现，用于管理外置存储设备上的文件。
 
-## 与相关Kit的关系
-
-Ability Kit: Core File Kit中用户文件访问框架依赖Ability Kit提供的Extension基础能力，受Ability Kit服务调度管理。
-
 ## 相关实例
 
-针对Core File Kit开发，有以下相关实例可供参考：
+针对文件管理开发，有以下相关实例可供参考：
 
 - [文件管理（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/FileManager)
