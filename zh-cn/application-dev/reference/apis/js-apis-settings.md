@@ -21,7 +21,7 @@ import settings from '@ohos.settings';
 
 | 名称                | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| DEVICE_SHARED       | string | 是   | 是   | 提供设备属性共享域                                          |
+| DEVICE_SHARED       | string | 是   | 是   | 设备属性共享域                                          |
 | USER_PROPERTY       | string | 是   | 是   | 为用户属性域                                           |
 | USER_SECURITY       | string | 是   | 是   | 为用户安全属性域                                        |
 
