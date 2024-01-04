@@ -74,13 +74,13 @@
      } catch (err) {
        let e: BusinessError = err as BusinessError;
        console.error("installPrivateCertificates error, errcode:" + e.code);
-       }
+     }
    
      try {
        /* srcData为待签名、验签的数据，业务自行赋值 */
        let srcData: Uint8Array = new Uint8Array([
        0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01,
-       ]);
+     ]);
    
        /* 构造签名的属性参数 */
        const signSpec: certManager.CMSignatureSpec = {
@@ -109,7 +109,7 @@
      } catch (err) {
        let e: BusinessError = err as BusinessError;
        console.error("sign or verify failed, errcode:" + e.code);
-   }
+     }
    
      try {
        /* 卸载私有凭据 */
