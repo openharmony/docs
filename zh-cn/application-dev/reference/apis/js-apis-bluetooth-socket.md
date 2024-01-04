@@ -404,7 +404,7 @@ try {
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | 是    | 是    | spp单据的uuid。 |
 | secure | boolean             | 是    | 是    | 是否是安全通道。    |
-| type   | [SppType](#SppType)            | 是    | 是    | Spp链路类型。    |
+| type   | [SppType](#spptype)            | 是    | 是    | Spp链路类型。    |
 
 
 ## SppType
