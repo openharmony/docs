@@ -363,7 +363,7 @@ try {
 
 ## baseProfile.off('connectionStateChange')
 
-off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#StateChangeParam)&gt;): void
+off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#statechangeparam)&gt;): void
 
 取消订阅连接状态变化事件。
 
@@ -376,7 +376,7 @@ off(type: 'connectionStateChange', callback?: Callback&lt;[StateChangeParam](#St
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | 是    | 填写"connectionStateChange"字符串，表示连接状态变化事件。 |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | 否    | 表示回调函数的入参。                               |
+| callback | Callback&lt;[StateChangeParam](#statechangeparam)&gt; | 否    | 表示回调函数的入参。                               |
 
 **示例：**
 
