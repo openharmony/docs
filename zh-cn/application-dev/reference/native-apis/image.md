@@ -1875,7 +1875,7 @@ int32_t OH_ImageSource_CreatePixelMap (const ImageSourceNative * native, struct 
 
 如果注册插件失败，返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
-如果创建插件失败。返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+如果创建插件失败，返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
 如果图像编码失败，返回IMAGE_RESULT_ENCODE_FAILED；
 
@@ -1920,7 +1920,7 @@ int32_t OH_ImageSource_CreatePixelMapList (const ImageSourceNative * native, str
 
 参考[IRNdkErrCode](#irndkerrcode-1)。
 
-如果操作成功返回MAGE_RESULT_SUCCESS；
+如果操作成功返回IMAGE_RESULT_SUCCESS；
 
 如果参数错误，返回IMAGE_RESULT_BAD_PARAMETER；
 
@@ -1962,7 +1962,7 @@ int32_t OH_ImageSource_CreatePixelMapList (const ImageSourceNative * native, str
 
 如果注册插件失败，返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
-如果创建插件失败。返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+如果创建插件失败，返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
 如果图像编码失败，返回IMAGE_RESULT_ENCODE_FAILED；
 
@@ -2038,7 +2038,7 @@ int32_t OH_ImageSource_GetDelayTime (const ImageSourceNative * native, struct Oh
 
 如果注册插件失败，返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
-如果创建插件失败。返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+如果创建插件失败，返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
 如果索引无效，返回IMAGE_RESULT_INDEX_INVALID；
 
@@ -2102,7 +2102,7 @@ int32_t OH_ImageSource_GetFrameCount (const ImageSourceNative * native, uint32_t
 
 如果注册插件失败，返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
-如果创建插件失败。返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+如果创建插件失败，返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
 如果索引无效，返回IMAGE_RESULT_INDEX_INVALID；
 
@@ -2167,7 +2167,7 @@ int32_t OH_ImageSource_GetImageInfo (const ImageSourceNative * native, int32_t i
 
 如果注册插件失败，返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
-如果创建插件失败。返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+如果创建插件失败，返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
 如果索引无效，返回IMAGE_RESULT_INDEX_INVALID；
 
@@ -2233,7 +2233,7 @@ int32_t OH_ImageSource_GetImageProperty (const ImageSourceNative * native, struc
 
 如果注册插件失败，返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
-如果创建插件失败。返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+如果创建插件失败，返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
 如果索引无效，返回IMAGE_RESULT_INDEX_INVALID；
 
@@ -2365,7 +2365,7 @@ int32_t OH_ImageSource_ModifyImageProperty (const ImageSourceNative * native, st
 
 如果注册插件失败，返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
-如果创建插件失败。返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+如果创建插件失败，返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
 如果索引无效，返回IMAGE_RESULT_INDEX_INVALID；
 
@@ -2481,7 +2481,7 @@ int32_t OH_ImageSource_UpdateData (const ImageSourceNative * native, struct Ohos
 
 如果注册插件失败，返回IMAGE_RESULT_PLUGIN_REGISTER_FAILED；
 
-如果创建插件失败。返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
+如果创建插件失败，返回IMAGE_RESULT_PLUGIN_CREATE_FAILED；
 
 如果图像编码失败，返回IMAGE_RESULT_ENCODE_FAILED；
 
