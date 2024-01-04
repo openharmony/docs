@@ -7358,7 +7358,7 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.error('getStoredGeolocationAsync error: ' + JSON.stringify(error));
+                console.error(`getStoredGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               let origins_str: string = origins.join();
@@ -7417,7 +7417,7 @@ struct WebComponent {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error : business_error.BusinessError) => {
-              console.error('getStoredGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getStoredGeolocationPromise error, ErrorCode: ${e.code},  Message: ${e.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;

@@ -188,7 +188,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController, 
 
 ## 属性
 
-通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#属性)、[backdropBlur](ts-universal-attributes-image-effect.md#属性)、[backgroundColor](ts-universal-attributes-attribute-modifier.md#属性)、[bindContentCover](ts-universal-attributes-modal-transition.md#属性)、[bindContextMenu](ts-universal-attributes-menu.md#属性)、[bindMenu ](ts-universal-attributes-menu.md#属性)、[bindSheet](ts-universal-attributes-sheet-transition.md#属性)、[blur](ts-universal-attributes-image-effect.md#属性)、[border](ts-universal-attributes-border.md#属性)、[borderColor](ts-universal-attributes-border.md#属性)、[borderRadius](ts-universal-attributes-border.md#属性)、[borderStyle](ts-universal-attributes-border.md#属性)、[borderWidth](ts-universal-attributes-border.md#属性)、[clip](ts-universal-attributes-sharp-clipping.md#属性)、[constraintSize](ts-universal-attributes-size.md#属性)、[defaultFocus](ts-universal-attributes-focus.md#属性)、[focusable](ts-universal-attributes-focus.md#属性)、[tabIndex](ts-universal-attributes-focus.md#属性)、[groupDefaultFocus](ts-universal-attributes-focus.md#属性)、[focusOnTouch](ts-universal-attributes-focus.md#属性)、[displayPriority](ts-universal-attributes-layout-constraints.md#属性)、[draggable](ts-universal-attributes-drag-drop.md#属性)、[enabled](ts-universal-attributes-enable.md#属性)、[flexBasis](ts-universal-attributes-flex-layout.md#属性)、[flexGrow](ts-universal-attributes-flex-layout.md#属性)、[flexShrink](ts-universal-attributes-flex-layout.md#属性)、[layoutWeight](ts-universal-attributes-flex-layout.md#属性)、[id](ts-universal-attributes-component-id.md#属性)、[gridOffset](ts-universal-attributes-grid.md#属性)、[gridSpan](ts-universal-attributes-grid.md#属性)、[useSizeType](ts-universal-attributes-grid.md#属性)、[height](ts-universal-attributes-size.md#属性)、[touchable](ts-universal-attributes-click.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[markAnchor](ts-universal-attributes-location.md#属性)、[mask](ts-universal-attributes-sharp-clipping.md#属性)、[offset](ts-universal-attributes-location.md#属性)、[width](ts-universal-attributes-size.md#属性)、[zIndex](ts-universal-attributes-z-order.md#属性)、[visibility](ts-universal-attributes-visibility.md#属性)、[rotate](ts-universal-attributes-transformation.md#属性)、[scale](ts-universal-attributes-transformation.md#属性)、[transform](ts-universal-attributes-transformation.md#属性)、[responseRegion](ts-universal-attributes-touch-target.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[size](ts-universal-attributes-size.md#属性)、[stateStyles](ts-universal-attributes-polymorphic-style.md#属性)、[opacity](ts-universal-attributes-opacity.md#属性)、[shadow](ts-universal-attributes-image-effect.md#属性)、[gesture](ts-gesture-settings.md#绑定手势识别)、[sharedTransition](ts-transition-animation-shared-elements.md#属性)、[transition](ts-transition-animation-component.md#属性)。
+通用属性仅支持[aspectRatio](ts-universal-attributes-layout-constraints.md#属性)、[backdropBlur](ts-universal-attributes-image-effect.md#属性)、[backgroundColor](ts-universal-attributes-attribute-modifier.md#属性)、[bindContentCover](ts-universal-attributes-modal-transition.md#属性)、[bindContextMenu](ts-universal-attributes-menu.md#属性)、[bindMenu ](ts-universal-attributes-menu.md#属性)、[bindSheet](ts-universal-attributes-sheet-transition.md#属性)、[blur](ts-universal-attributes-image-effect.md#属性)、[border](ts-universal-attributes-border.md#属性)、[borderColor](ts-universal-attributes-border.md#属性)、[borderRadius](ts-universal-attributes-border.md#属性)、[borderStyle](ts-universal-attributes-border.md#属性)、[borderWidth](ts-universal-attributes-border.md#属性)、[clip](ts-universal-attributes-sharp-clipping.md#属性)、[constraintSize](ts-universal-attributes-size.md#属性)、[defaultFocus](ts-universal-attributes-focus.md#属性)、[focusable](ts-universal-attributes-focus.md#属性)、[tabIndex](ts-universal-attributes-focus.md#属性)、[groupDefaultFocus](ts-universal-attributes-focus.md#属性)、[focusOnTouch](ts-universal-attributes-focus.md#属性)、[displayPriority](ts-universal-attributes-layout-constraints.md#属性)、[draggable](ts-universal-attributes-drag-drop.md#属性)、[enabled](ts-universal-attributes-enable.md#属性)、[flexBasis](ts-universal-attributes-flex-layout.md#属性)、[flexGrow](ts-universal-attributes-flex-layout.md#属性)、[flexShrink](ts-universal-attributes-flex-layout.md#属性)、[layoutWeight](ts-universal-attributes-size.md#layoutweight)、[id](ts-universal-attributes-component-id.md#属性)、[gridOffset](ts-universal-attributes-grid.md#属性)、[gridSpan](ts-universal-attributes-grid.md#属性)、[useSizeType](ts-universal-attributes-grid.md#属性)、[height](ts-universal-attributes-size.md#属性)、[touchable](ts-universal-attributes-click.md#属性)、[margin](ts-universal-attributes-size.md#属性)、[markAnchor](ts-universal-attributes-location.md#属性)、[mask](ts-universal-attributes-sharp-clipping.md#属性)、[offset](ts-universal-attributes-location.md#属性)、[width](ts-universal-attributes-size.md#属性)、[zIndex](ts-universal-attributes-z-order.md#属性)、[visibility](ts-universal-attributes-visibility.md#属性)、[rotate](ts-universal-attributes-transformation.md#属性)、[scale](ts-universal-attributes-transformation.md#属性)、[transform](ts-universal-attributes-transformation.md#属性)、[responseRegion](ts-universal-attributes-touch-target.md#属性)、[padding](ts-universal-attributes-size.md#属性)、[size](ts-universal-attributes-size.md#属性)、[stateStyles](ts-universal-attributes-polymorphic-style.md#属性)、[opacity](ts-universal-attributes-opacity.md#属性)、[shadow](ts-universal-attributes-image-effect.md#属性)、[gesture](ts-gesture-settings.md#绑定手势识别)、[sharedTransition](ts-transition-animation-shared-elements.md#属性)、[transition](ts-transition-animation-component.md#属性)。
 
 ### domStorageAccess
 
@@ -783,7 +783,7 @@ cacheMode(cacheMode: CacheMode)
 
 | 参数名       | 参数类型                        | 必填   | 默认值               | 参数描述      |
 | --------- | --------------------------- | ---- | ----------------- | --------- |
-| cacheMode | [CacheMode](#cachemode枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
+| cacheMode | [CacheMode](#cachemode9枚举说明) | 是    | CacheMode.Default | 要设置的缓存模式。 |
 
 **示例：**
 
@@ -2479,7 +2479,7 @@ onRenderExited(callback: (event?: { renderExitReason: RenderExitReason }) => voi
 
 | 参数名              | 参数类型                                     | 参数描述             |
 | ---------------- | ---------------------------------------- | ---------------- |
-| renderExitReason | [RenderExitReason](#renderexitreason枚举说明) | 渲染进程进程异常退出的具体原因。 |
+| renderExitReason | [RenderExitReason](#renderexitreason9枚举说明) | 渲染进程进程异常退出的具体原因。 |
 
 **示例：**
 
@@ -3820,7 +3820,7 @@ onTouchIconUrlReceived(callback: (event: {url: string, precomposed: boolean}) =>
 
 ### onFaviconReceived<sup>9+</sup>
 
-onFaviconReceived(callback: (event: {favicon: image.PixelMap}) => void)
+onFaviconReceived(callback: (event: { favicon: PixelMap }) => void)
 
 设置应用为当前页面接收到新的favicon时的回调函数。
 
@@ -3927,7 +3927,7 @@ onFirstContentfulPaint(callback: (event?: { navigationStartTick: number, firstCo
 
 ### onLoadIntercept<sup>10+</sup>
 
-onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
+onLoadIntercept(callback: (event: { data: WebResourceRequest }) => boolean)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
 
@@ -3935,7 +3935,7 @@ onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
 
 | 参数名     | 参数类型                                     | 参数描述        |
 | ------- | ---------------------------------------- | ----------- |
-| request | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
+| data | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
 
 **返回值：**
 
@@ -4716,7 +4716,7 @@ getMode(): FileSelectorMode
 
 | 类型                                       | 说明          |
 | ---------------------------------------- | ----------- |
-| [FileSelectorMode](#fileselectormode枚举说明) | 返回文件选择器的模式。 |
+| [FileSelectorMode](#fileselectormode9枚举说明) | 返回文件选择器的模式。 |
 
 ### getAcceptType<sup>9+</sup>
 
@@ -4754,7 +4754,7 @@ cancel(): void
 
 ### confirm<sup>9+</sup>
 
-confirm(userName: string, pwd: string): boolean
+confirm(userName: string, password: string): boolean
 
 使用用户名和密码进行HTTP认证操作。
 
@@ -4763,7 +4763,7 @@ confirm(userName: string, pwd: string): boolean
 | 参数名      | 参数类型   | 必填   | 默认值  | 参数描述       |
 | -------- | ------ | ---- | ---- | ---------- |
 | userName | string | 是    | -    | HTTP认证用户名。 |
-| pwd      | string | 是    | -    | HTTP认证密码。  |
+| password      | string | 是    | -    | HTTP认证密码。  |
 
 **返回值：**
 
@@ -4925,11 +4925,11 @@ grant(config: ScreenCaptureConfig): void
 | config | [ScreenCaptureConfig](#screencaptureconfig10) | 是    | -    | 屏幕捕获配置。 |
 
 ## ContextMenuSourceType<sup>9+</sup>枚举说明
-| 名称        | 描述      |
-| --------- | ------- |
-| None      | 其他事件来源。 |
-| Mouse     | 鼠标事件。   |
-| LongPress | 长按事件。   |
+| 名称       | 值 | 描述         |
+| --------- | -- |------------ |
+| None      | 0 | 其他事件来源。 |
+| Mouse     | 1 | 鼠标事件。   |
+| LongPress | 2 | 长按事件。   |
 
 ## ContextMenuMediaType<sup>9+</sup>枚举说明
 
@@ -4951,13 +4951,13 @@ grant(config: ScreenCaptureConfig): void
 
 ## ContextMenuEditStateFlags<sup>9+</sup>枚举说明
 
-| 名称             | 描述    |
-| -------------- | ----- |
-| NONE           | 不可编辑。 |
-| CAN_CUT        | 支持剪切。 |
-| CAN_COPY       | 支持拷贝。 |
-| CAN_PASTE      | 支持粘贴。 |
-| CAN_SELECT_ALL | 支持全选。 |
+| 名称            | 值 | 描述     |
+| -------------- | -- | -------- |
+| NONE           | 0 | 不可编辑。 |
+| CAN_CUT        | 1 | 支持剪切。 |
+| CAN_COPY       | 2 | 支持拷贝。 |
+| CAN_PASTE      | 4 | 支持粘贴。 |
+| CAN_SELECT_ALL | 8 | 支持全选。 |
 
 ## WebContextMenuParam<sup>9+</sup>
 
@@ -5175,7 +5175,7 @@ invoke(origin: string, allow: boolean, retain: boolean): void
 | Log   | 日志级别。 |
 | Warn  | 警告级别。 |
 
-## RenderExitReason枚举说明
+## RenderExitReason<sup>9+</sup>枚举说明
 
 onRenderExited接口返回的渲染进程退出的具体原因。
 
@@ -5195,7 +5195,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Compatible | 混合内容兼容性模式，部分不安全的内容可能被加载。           |
 | None       | 不允许加载HTTP和HTTPS混合内容。               |
 
-## CacheMode枚举说明
+## CacheMode<sup>9+</sup>枚举说明
 | 名称      | 描述                                   |
 | ------- | ------------------------------------ |
 | Default | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
@@ -5203,7 +5203,7 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 | Online  | 加载资源不使用cache，全部从网络中获取。               |
 | Only    | 只从cache中加载资源。                        |
 
-## FileSelectorMode枚举说明
+## FileSelectorMode<sup>9+</sup>枚举说明
 | 名称                   | 描述         |
 | -------------------- | ---------- |
 | FileOpenMode         | 打开上传单个文件。  |
@@ -5380,7 +5380,7 @@ getCookieManager(): WebCookie
 
 获取web组件cookie管理对象。
 
-从API version 9开始不再维护，建议使用[getCookie](../apis/js-apis-webview.md#getcookie)代替。
+从API version 9开始不再维护，建议使用[getCookie](../apis/js-apis-webview.md#getcookiedeprecated)代替。
 
 **返回值：**
 
@@ -5746,7 +5746,7 @@ loadUrl(options: { url: string | Resource, headers?: Array\<Header\> })
 
 | 参数名     | 参数类型                       | 必填   | 默认值  | 参数描述           |
 | ------- | -------------------------- | ---- | ---- | -------------- |
-| url     | string                     | 是    | -    | 需要加载的 URL。     |
+| url     | string \| Resource                     | 是    | -    | 需要加载的 URL。     |
 | headers | Array\<[Header](#header)\> | 否    | []   | URL的附加HTTP请求头。 |
 
 **示例：**
