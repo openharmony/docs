@@ -164,9 +164,9 @@ promise.then((data : pipWindow.PiPController) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                         | 类型         | 说明                                                                                         |
-|----------------------------|------------|--------------------------------------------------------------------------------------------|
-| PiPMeetingActionEvent      | string     | 有以下取值：<br/>-'hangUp'：挂断视频会议。<br>-'voiceStateChanged'：静音。<br>-'videoStateChanged'：打开或关闭摄像头。 |
+| 名称                         | 类型         | 说明                                                                                              |
+|----------------------------|------------|-------------------------------------------------------------------------------------------------|
+| PiPMeetingActionEvent      | string     | 有以下取值：<br/>-'hangUp'：挂断视频会议。<br>-'voiceStateChanged'：静音或解除静音。<br>-'videoStateChanged'：打开或关闭摄像头。 |
 
 ## PiPLiveActionEvent
 
