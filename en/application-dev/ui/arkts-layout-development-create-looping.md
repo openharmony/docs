@@ -3,7 +3,7 @@
 
 The [\<Swiper>](../reference/arkui-ts/ts-container-swiper.md) component is a container that is able to display child components in looping mode. It is typically used in scenarios such as display of recommended content on the home page.
 
-The **\<Swiper>** component provides a pre-loading mechanism, which you can use to improve the swiping experience in complex scenarios. This mechanism allows for prebuilding and prerendering components in the idle time of the main thread. For details, see [Swiper High-Performance Development](../performance/swiper_optimization.md).
+The **\<Swiper>** component provides a preloading mechanism, which you can use to improve the swiping experience in complex scenarios. This mechanism allows for prebuilding and prerendering components when the main thread is idle. For details, see [Swiper High-Performance Development](../performance/swiper_optimization.md).
 
 
 ## Layout and Constraints
@@ -17,7 +17,7 @@ The **loop** attribute sets whether to enable loop playback. Its default value i
 
 When **loop** is set to **true**, the user can switch to the previous or next page when they are on the first or last page.  
 
-- Example of setting **loop** to **true**
+- Example of setting **loop** to **true**:
 
 ```ts
 ...
@@ -41,7 +41,7 @@ Swiper(this.swiperController) {
   Text("2")
     .width('90%')
     .height('100%')
-    .backgroundColor(Color.Blue)
+    .backgroundColor(Color.Pink)
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
@@ -50,7 +50,7 @@ Swiper(this.swiperController) {
 
 ![loop_true](figures/loop_true.gif)
 
-- Example of setting **loop** to **false**
+- Example of setting **loop** to **false**:
 
 ```ts
 Swiper(this.swiperController) {
@@ -124,7 +124,7 @@ The **\<Swiper>** component provides a navigation dots indicator, which is displ
 
 With the **indicatorStyle** attribute, you can set the position of the navigation dots indicator relative to the edges of the **\<Swiper>** component, in addition to the size, color, and mask of each navigation dot as well as the color of the selected navigation dot.
 
-- Example of using the navigation dots indicator in its default style
+- Example of using the navigation dots indicator in its default style:
 
 ```ts
 Swiper(this.swiperController) {
@@ -153,7 +153,9 @@ Swiper(this.swiperController) {
 
 ![indicator](figures/indicator.PNG)
 
-- Example of customizing the style of the navigation dots indicator, with the diameter of 30 vp, left margin of 0, and color of red 
+- Example of customizing the style of the navigation dots indicator, with the diameter of 30 vp, left margin of 0, and color of red:
+
+ 
 
 ```ts
 let swco:Record<string,number|Color> = {'size':30,'left':0,'color':Color.Red}
@@ -179,7 +181,16 @@ Swiper(this.swiperController) {
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
-.indicatorStyle(swco)
+.indicator(
+  Indicator.dot()
+    .left(0)
+    .itemWidth(15)
+    .itemHeight(15)
+    .selectedItemWidth(30)
+    .selectedItemHeight(15)
+    .color(Color.Red)
+    .selectedColor(Color.Blue)
+)
 ```
 
 ![ind](figures/ind.PNG)
@@ -245,7 +256,7 @@ You can set the playback direction for the \<Swiper> component through its **ver
 When **vertical** is set to **true**, vertical swiping is used. The default value of **vertical** is **false**.
 
 
-- Example of using horizontal swiping
+- Example of using horizontal swiping:
 
 ```ts
 Swiper(this.swiperController) {
@@ -259,7 +270,7 @@ Swiper(this.swiperController) {
 ![horizontal-swiping](figures/horizontal-swiping.PNG)
 
 
-- Example of using vertical swiping
+- Example of using vertical swiping:
 
 ```ts
 Swiper(this.swiperController) {

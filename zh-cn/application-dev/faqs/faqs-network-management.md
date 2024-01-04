@@ -143,7 +143,7 @@ this.options = {
 
 connection.hasDefaultNet 接口需要注明需要权限ohos.permission.GET_NETWORK_INFO
 
-权限申请链接：[访问控制授权申请](../security/accesstoken-guidelines.md)
+权限申请链接：[声明权限](../security/AccessToken/declare-permissions.md)
 
 
 ## 如何理解connection.getDefaultNet返回对象netHandle中的netId(API 9)
@@ -207,4 +207,4 @@ WiFi模块中使用wifi.getIpInfo().ipAddress，报错Error: assertion (wifiDevi
 
 **解决措施**
 
-权限不足。请先检查是否申请了相关的操作权限，权限相关信息可参考[权限管理](../security/accesstoken-overview.md)。
+权限不足。请先检查是否申请了相关的操作权限，权限相关信息可参考[权限管理](../security/AccessToken/determine-application-mode.md)。

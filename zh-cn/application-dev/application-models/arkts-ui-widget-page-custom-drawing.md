@@ -6,7 +6,7 @@ ArkTS卡片开放了自定义绘制的能力，在卡片上可以通过[Canvas](
 ```ts
 @Entry
 @Component
-struct CanvasCard {
+struct CustomCanvasDrawingCard {
   private canvasWidth: number = 0;
   private canvasHeight: number = 0;
   // 初始化CanvasRenderingContext2D和RenderingContextSettings
@@ -17,11 +17,9 @@ struct CanvasCard {
     Column() {
       Row() {
         Canvas(this.context)
-          .margin('5%')
-          .width('90%')
-          .height('90%')
+          .width('100%')
+          .height('100%')
           .onReady(() => {
-            console.info('[ArkTSCard] onReady for canvas draw content');
             // 在onReady回调中获取画布的实际宽和高
             this.canvasWidth = this.context.width;
             this.canvasHeight = this.context.height;

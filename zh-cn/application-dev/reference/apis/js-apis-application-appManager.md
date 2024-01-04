@@ -69,7 +69,7 @@ isRunningInStabilityTest(): Promise&lt;boolean&gt;
   ```
 
 
-## appManager.isRamConstrainedDevice
+## appManager.isRamConstrainedDevice<sup>7+<sup>
 
 isRamConstrainedDevice(): Promise\<boolean>
 
@@ -96,7 +96,7 @@ isRamConstrainedDevice(): Promise\<boolean>
   });
   ```
 
-## appManager.isRamConstrainedDevice
+## appManager.isRamConstrainedDevice<sup>7+<sup>
 
 isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
 
@@ -124,7 +124,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void
   });
   ```
 
-## appManager.getAppMemorySize
+## appManager.getAppMemorySize<sup>7+<sup>
 
 getAppMemorySize(): Promise\<number>
 
@@ -151,7 +151,7 @@ getAppMemorySize(): Promise\<number>
   });
   ```
 
-## appManager.getAppMemorySize
+## appManager.getAppMemorySize<sup>7+<sup>
 
 getAppMemorySize(callback: AsyncCallback\<number>): void
 

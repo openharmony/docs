@@ -5,13 +5,13 @@
 
 内存结构体。
 
-**起始版本：**
+**起始版本：** 9
 
-9
+**弃用：** 从API version 11开始，此接口废弃。
 
-**相关模块：**
+**替代：** 推荐使用[NN_Tensor](_neural_nework_runtime.md#nn_tensor)。
 
-[NeuralNeworkRuntime](_neural_nework_runtime.md)
+**相关模块：** [NeuralNeworkRuntime](_neural_nework_runtime.md)
 
 
 ## 汇总
@@ -19,10 +19,10 @@
 
 ### 成员变量
 
-| 成员变量名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [data](#data) | 指向共享内存的指针，该共享内存通常由底层硬件驱动申请。 | 
-| [length](#length) | 记录共享内存的字节长度。 | 
+| [data](#data) | 指向共享内存的指针，该共享内存通常由底层硬件驱动申请。 |
+| [length](#length) | 记录共享内存的字节长度。 |
 
 
 ## 结构体成员变量说明
@@ -30,23 +30,21 @@
 
 ### data
 
-  
 ```
 void* const OH_NN_Memory::data
 ```
 
-**描述：**
+**描述**
 
-指向共享内存的指针，该共享内存通常由底层硬件驱动申请。
+指向共享内存的指针，该共享内存通常由底层硬件驱动申请
 
 
 ### length
 
-  
 ```
 const size_t OH_NN_Memory::length
 ```
 
-**描述：**
+**描述**
 
-记录共享内存的字节长度。
+记录共享内存的字节长度

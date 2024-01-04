@@ -22,9 +22,9 @@ Obtains the real-time downlink data traffic of the specified NIC. This API uses 
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                   |
-| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | nic      | string                 | Yes  | NIC name.                                                                                                     |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the NIC in bytes. Otherwise, **error** is an error object.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the NIC in bytes. Otherwise, **error** is an error object.   |
 
 **Error codes**
 
@@ -104,9 +104,9 @@ Obtains the real-time uplink data traffic of the specified NIC. This API uses an
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                   |
-| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | nic      | string                 | Yes  | NIC name.                                                                                                     |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the NIC in bytes. Otherwise, **error** is an error object.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the NIC in bytes. Otherwise, **error** is an error object.   |
 
 **Error codes**
 
@@ -186,8 +186,8 @@ Obtains the real-time downlink data traffic of a cellular network. This API uses
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                   |
-| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.|
+| -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.   |
 
 **Error codes**
 
@@ -259,8 +259,8 @@ Obtains the real-time uplink data traffic of a cellular network. This API uses a
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                   |
-| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.|
+| -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the cellular network in bytes. Otherwise, **error** is an error object.   |
 
 **Error codes**
 
@@ -332,8 +332,8 @@ Obtains the real-time downlink data traffic of all NICs. This API uses an asynch
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                         |
-| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------------- |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of all NICs in bytes. Otherwise, **error** is an error object.|
+| -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of all NICs in bytes. Otherwise, **error** is an error object.   |
 
 **Error codes**
 
@@ -403,8 +403,8 @@ Obtains the real-time uplink data traffic of all NICs. This API uses an asynchro
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                         |
-| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------------- |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of all NICs in bytes. Otherwise, **error** is an error object.|
+| -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of all NICs in bytes. Otherwise, **error** is an error object.   |
 
 **Error codes**
 
@@ -474,9 +474,9 @@ Obtains the real-time downlink data traffic of the specified application. This A
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                   |
-| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | uid      | number                 | Yes  | Application UID.                                                                                                   |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the application in bytes. Otherwise, **error** is an error object.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time downlink data traffic of the application in bytes. Otherwise, **error** is an error object.   |
 
 **Error codes**
 
@@ -554,9 +554,9 @@ Obtains the real-time uplink data traffic of the specified application. This API
 **Parameters**
 
 | Name  | Type                  | Mandatory| Description                                                                                                                   |
-| -------- | ---------------------- | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| -------- | ---------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------- |
 | uid      | number                 | Yes  | Application UID.                                                                                                   |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the application in bytes. Otherwise, **error** is an error object.|
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the real-time uplink data traffic of the application in bytes. Otherwise, **error** is an error object.   |
 
 **Error codes**
 
@@ -638,7 +638,7 @@ Subscribes to traffic change events.
 **Parameters**
 
 | Name  | Type                                       | Mandatory| Description                                                              |
-| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------------ |
+| -------- | ------------------------------------------- | ---- | ----------------------------------------------------------------- |
 | type     | string                                      | Yes  | Event type. This field has a fixed value of **netStatsChange**.                                |
 | callback | Callback\<{ iface: string, uid?: number }\> | Yes  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
 
@@ -683,7 +683,7 @@ Unsubscribes from traffic change events.
 **Parameters**
 
 | Name  | Type                                       | Mandatory| Description                                                              |
-| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------------ |
+| -------- | ------------------------------------------- | ---- | ----------------------------------------------------------------- |
 | type     | string                                      | Yes  | Event type. This field has a fixed value of **netStatsChange**.                            |
 | callback | Callback\<{ iface: string, uid?: number }\> | No  | Callback invoked when the traffic changes.<br>**iface**: NIC name.<br>**uid**: application UID.|
 
@@ -732,7 +732,7 @@ Obtains the historical data traffic of the specified NIC. This API uses an async
 **Parameters**
 
 | Name   | Type                                           | Mandatory| Description                                                                                   |
-| --------- | ----------------------------------------------- | ---- | --------------------------------------------------------------------------------------- |
+| --------- | ----------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | ifaceInfo | [IfaceInfo](#ifaceinfo10)                       | Yes  | NIC information. For details, see [IfaceInfo](#ifaceinfo10).                                    |
 | callback  | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical data traffic of the NIC. Otherwise, **error** is an error object.|
 
@@ -855,7 +855,7 @@ Obtains the historical data traffic of the specified application. This API uses 
 **Parameters**
 
 | Name  | Type                                           | Mandatory| Description                                                                                   |
-| -------- | ----------------------------------------------- | ---- | --------------------------------------------------------------------------------------- |
+| -------- | ----------------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
 | uidInfo  | [UidInfo](#uidinfo10)                           | Yes  | Application information. For details, see [UidInfo](#uidinfo10).                                        |
 | callback | AsyncCallback\<[NetStatsInfo](#netstatsinfo10)> | Yes  | Callback used to return the result. If the operation is successful, **error** is **undefined** and **statsInfo** is the historical data traffic of the application. Otherwise, **error** is an error object.|
 
@@ -960,6 +960,174 @@ statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInf
 })
 ```
 
+## statistics.getSockfdRxBytes<sup>11+</sup>
+
+getSockfdRxBytes(sockfd: number, callback: AsyncCallback<number>): void;
+
+Obtains the downlink data traffic (in bytes) of the specified socket. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| sockfd   | number                 | Yes  | FD of the socket.                    |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the downlink data traffic of the socket. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
+let sockfd = 50; // FD of the socket you created.
+statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
+```
+
+## statistics.getSockfdRxBytes<sup>11+</sup>
+
+getSockfdRxBytes(sockfd: number): Promise<number>;
+
+Obtains the downlink data traffic (in bytes) of the specified socket. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| sockfd | number | Yes  | FD of the socket.|
+
+**Return value**
+
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<number> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
+let sockfd = 50; // FD of the socket you created.
+statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
+  console.log(JSON.stringify(stats));
+}).catch((err: BusinessError) => {
+  console.error(JSON.stringify(err));
+});
+```
+
+## statistics.getSockfdTxBytes<sup>11+</sup>
+
+getSockfdTxBytes(sockfd: number, callback: AsyncCallback<number>): void;
+
+Obtains the uplink data traffic (in bytes) of the specified socket. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| sockfd   | number                 | Yes  | FD of the socket.                    |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. Callback used to return the result. If the operation is successful, **error** is **undefined** and **stats** is the uplink data traffic of the socket. Otherwise, **error** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
+let sockfd = 50; // FD of the socket you created.
+statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(stats));
+});
+```
+
+## statistics.getSockfdTxBytes<sup>11+</sup>
+
+getSockfdTxBytes(sockfd: number): Promise<number>;
+
+Obtains the uplink data traffic (in bytes) of the specified socket. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Communication.NetManager.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                    |
+| ------ | ------ | ---- | ---------------------------------------- |
+| sockfd | number | Yes  | FD of the socket.|
+
+**Return value**
+
+| Type            | Description                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Promise\<number> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Traffic Management Error Codes](../errorcodes/errorcode-net-statistics.md).
+
+| ID| Error Message                                    |
+| --------- | -------------------------------------------- |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Operation failed. Cannot connect to service. |
+| 2100003   | System internal error.                       |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+import statistics from '@ohos.net.statistics';
+
+let sockfd = 50; // FD of the socket you created.
+statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
+  console.log(JSON.stringify(stats));
+}).catch((err: BusinessError) => {
+  console.error(JSON.stringify(err));
+});
+```
+
 ## IfaceInfo<sup>10+</sup>
 
 Defines the parameters for querying historical traffic of an NIC.
@@ -982,10 +1150,10 @@ Defines the parameters for querying historical traffic of an application.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name     | Type                                 | Mandatory| Description                      |
+| Name     | Type                                 | Mandatory| Description                       |
 | --------- | ------------------------------------- | ---- | -------------------------- |
-| ifaceInfo | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> | Yes  | NIC name and query time range.|
-| uid       | number                                | Yes  | Application UID.          |
+| ifaceInfo | IfaceInfo\<[IfaceInfo](#ifaceinfo10)> | Yes  | NIC information, including the NIC name and query time range.|
+| uid       | number                                | Yes  | Application UID.         |
 
 ## NetStatsInfo<sup>10+</sup>
 
@@ -995,9 +1163,9 @@ Defines the historical traffic information.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name     | Type  | Mandatory| Description                   |
-| --------- | ------ | ---- | ----------------------- |
-| rxBytes   | number | Yes  | Downlink traffic data, in bytes.|
-| txBytes   | number | Yes  | Uplink traffic data, in bytes.|
+| Name     | Type  | Mandatory| Description                     |
+| --------- | ------ | ---- | ------------------------ |
+| rxBytes   | number | Yes  | Downlink traffic, in bytes.|
+| txBytes   | number | Yes  | Uplink traffic, in bytes.|
 | rxPackets | number | Yes  | Number of downlink packets.         |
 | txPackets | number | Yes  | Number of uplink packets.         |

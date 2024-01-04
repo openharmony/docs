@@ -49,7 +49,7 @@ You can use [transition](../reference/arkui-ts/ts-transition-animation-component
 3. Add or delete the component to trigger transition.
   
    ```ts
-   @state isPresent: boolean = true;
+   @State isPresent: boolean = true;
    ...
    if (this.isPresent) {
      Text('test')

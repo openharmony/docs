@@ -1,10 +1,6 @@
 # User File URI
 
-The uniform resource identifier (URI) is a unique identifier of a user file. It is usually used when a user file is accessed or modified. 
-
-> **NOTE**
->
-> Do not use the URI segments for service code development.
+The uniform resource identifier (URI) is a unique identifier of a user file. It is usually used when a user file is accessed or modified. Avoid using the URI segments for service code development.
 
 ## URI Types
 
@@ -61,8 +57,10 @@ import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import fileAccess from '@ohos.file.fileAccess';
+// context is passed by EntryAbility.
+let context = getContext(this) as common.UIAbilityContext;
 
-async example() {
+async function example() {
     let fileAccessHelper: fileAccess.FileAccessHelper;
     // Obtain wantInfos by using getFileAccessAbilityInfo().
     let wantInfos: Array<Want> = [
@@ -72,8 +70,6 @@ async example() {
       },
     ]
     try {
-      // context is passed by EntryAbility.
-      let context = getContext(this) as common.UIAbilityContext;
       fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
       if (!fileAccessHelper) {
         console.error("createFileAccessHelper interface returns an undefined object");
@@ -148,7 +144,7 @@ The media file URI contains the following fields:
 
 ### Using a Media File URI
 
-Applications of the normal level can call APIs of the [photoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md) module to use the media file URI. For details about the sample code, see [Obtaining an Image or Video by URI](./photoAccessHelper-resource-guidelines.md#obtaining-an-image-or-video-by-uri). To call the API, the application must have the **permission'ohos.permission.READ_IMAGEVIDEO** permission.
+Applications of the normal level can call APIs of the [photoAccessHelper](../reference/apis/js-apis-photoAccessHelper.md) module to use the media file URI. For details about the sample code, see [Obtaining an Image or Video by URI](./photoAccessHelper-resource-guidelines.md#obtaining-an-image-or-video-by-uri). To call the API, the application must have the **ohos.permission.READ_IMAGEVIDEO** permission.
 
 Applications of the system_basic or system_core level can call APIs of the **photoAccessHelper** and [userFileManager](../reference/apis/js-apis-userFileManager.md) modules to use the media file URI. For more details, see the API reference of these modules.
 
@@ -185,7 +181,7 @@ const context = getContext(this);
 
 // Call PhotoViewPicker.select to select an image.
 async function photoPickerGetUri() {
-  try {
+  try {  
     let PhotoSelectOptions = new picker.PhotoSelectOptions();
     PhotoSelectOptions.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
     PhotoSelectOptions.maxSelectNumber = 1;
@@ -233,4 +229,69 @@ try {
     console.error('uriGetAssets failed with err: ' + JSON.stringify(error));
   }
 }
+```
+## Copying a File Using a URI
+
+Copy a file to the specified directory.
+
+1. Use [createFileAccessHelper](../reference/apis/js-apis-fileAccess.md#fileaccesscreatefileaccesshelper) to create a **FileAccessHelper** instance.
+
+2. Obtain **srcUri** of the file to copy.
+
+3. Obtain **destUri** of the file.
+
+4. Obtain the alternative file name **fileName**.
+
+5. Use helper.[copyFile](../reference/apis/js-apis-fileAccess.md#copyfile11)(srcUri, destUri, fileName) to copy the file.
+
+The sample code is as follows:
+
+```
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import fileAccess from '@ohos.file.fileAccess';
+
+async example() {
+    let fileAccessHelper: fileAccess.FileAccessHelper;
+    // Obtain wantInfos by using getFileAccessAbilityInfo().
+    let wantInfos: Array<Want> = [
+      {
+        bundleName: "com.ohos.UserFile.ExternalFileManager",
+        abilityName: "FileExtensionAbility",
+      },
+    ]
+    try {
+      // context is passed by EntryAbility.
+      let context = getContext(this) as common.UIAbilityContext;
+      fileAccessHelper = fileAccess.createFileAccessHelper(context, wantInfos);
+      if (!fileAccessHelper) {
+        console.error("createFileAccessHelper interface returns an undefined object");
+      }
+      // A built-in storage directory is used as an example.
+      // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
+      // You can use the URI obtained.
+      let sourceUri: string = "file://docs/storage/Users/currentUser/Download/one.txt";
+      // URI of the directory to which the file is copied.
+      let destUri: string = "file://docs/storage/Users/currentUser/Documents";
+      // File name to use if a file name conflict occurs.
+      let displayName: string = "file1.txt";
+      // URI of the file to return. 
+      let fileUri: string;
+      try {
+        // Copy a file and return the URI of the file generated.
+        fileUri = await fileAccessHelper.copyFile(sourceUri, destUri, displayName);
+        if (!fileUri) {
+          console.error("copyFile return undefined object");
+        }
+        console.log("copyFile success, fileUri: " + JSON.stringify(fileUri));
+      } catch (err) {
+        let error: BusinessError = err as BusinessError;
+        console.error("copyFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+      }
+    } catch (err) {
+      let error: BusinessError = err as BusinessError;
+      console.error("createFileAccessHelper failed, errCode:" + error.code + ", errMessage:" + error.message);
+    }
+  }
 ```

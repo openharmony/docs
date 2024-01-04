@@ -1,6 +1,6 @@
 # AbilityMonitor
 
-The **AbilityMonitor** module provides monitors for abilities that meet specified conditions. The latest matched abilities are stored in an **AbilityMonitor** object.
+The **AbilityMonitor** module provides monitors for abilities that meet specified conditions. The latest matched abilities are stored in an [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#abilitymonitor-1) object.
 
 > **NOTE**
 > 

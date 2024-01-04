@@ -52,7 +52,7 @@
 
   
 ```
-typedef struct OH_PurgeableMemoryOH_PurgeableMemory
+typedef struct PurgMem OH_PurgeableMemory
 ```
 
 **描述:**

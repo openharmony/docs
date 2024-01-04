@@ -180,11 +180,29 @@ The target application is not installed by the administrator.
 
 Check that the target application has been installed by the administrator.
 
+## 9200010 Policy Conflict
+
+**Error Message**
+
+A conflicting policy has been configured.
+
+**Description**
+
+This error code is reported when a conflict policy is being delivered.
+
+**Possible Causes**
+
+A conflict policy is defined and to be delivered.
+
+**Solution**
+
+Resolve the conflict, and then deliver the policy.
+
 ## 9201001 Failed to Manage the Certificate
 
 **Error Message**
 
-manage certificate failed
+Manage certificate failed
 
 **Description**
 

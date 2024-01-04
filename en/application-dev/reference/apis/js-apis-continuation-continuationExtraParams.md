@@ -19,4 +19,4 @@ Describes the extra parameters required by the device selection module in the co
 | description | string | Yes| Yes| Device filtering description.|
 | filter | any | Yes| Yes| Device filtering parameter.|
 | continuationMode | [ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | Yes| Yes| Continuation mode.|
-| authInfo | { [key: string]: any } | Yes| Yes| Authentication information.|
+| authInfo | Record<string, Object> | Yes| Yes| Authentication information.|

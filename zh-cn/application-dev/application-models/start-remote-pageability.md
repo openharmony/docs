@@ -48,35 +48,35 @@
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
-async function RequestPermission() {
-  console.info('RequestPermission begin');
-  let array: Array<string> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+async requestPermission(): Promise<void> {
+  Logger.info(TAG, 'RequestPermission begin');
+  let array: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
   let bundleFlag = 0;
   let tokenID: number | undefined = undefined;
   let userID = 100;
-  let appInfo = await bundle.getApplicationInfo('ohos.samples.etsDemo', bundleFlag, userID);
+  let appInfo = await bundle.getApplicationInfo('com.samples.famodelabilitydevelop', bundleFlag, userID);
   tokenID = appInfo.accessTokenId;
   let atManager = abilityAccessCtrl.createAtManager();
   let requestPermissions: Array<string> = [];
   for (let i = 0;i < array.length; i++) {
     let result = await atManager.verifyAccessToken(tokenID, array[i]);
-    console.info("checkAccessToken result:" + JSON.stringify(result));
+    Logger.info(TAG, 'checkAccessToken result:' + JSON.stringify(result));
     if (result != abilityAccessCtrl.GrantStatus.PERMISSION_GRANTED) {
       requestPermissions.push(array[i]);
     }
   }
-  console.info("requestPermissions:" + JSON.stringify(requestPermissions));
-  if (requestPermissions.length == 0 || requestPermissions == []) {
+  Logger.info(TAG, 'requestPermissions:' + JSON.stringify(requestPermissions));
+  if (requestPermissions.length == 0) {
     return;
   }
   let context = featureAbility.getContext();
-  context.requestPermissionsFromUser(requestPermissions, 1, (error, data)=>{
-    console.info("data:" + JSON.stringify(data));
-    console.info("data requestCode:" + data.requestCode);
-    console.info("data permissions:" + data.permissions);
-    console.info("data authResults:" + data.authResults);
+  context.requestPermissionsFromUser(requestPermissions, 1, (error, data) => {
+    Logger.info(TAG, 'error:' + error.message + ',data:' + JSON.stringify(data));
+    Logger.info(TAG, 'data requestCode:' + data.requestCode);
+    Logger.info(TAG, 'data permissions:' + data.permissions);
+    Logger.info(TAG, 'data authResults:' + data.authResults);
   });
-  console.info('RequestPermission end');
+  Logger.info(TAG, 'RequestPermission end');
 }
 ```
 
@@ -84,34 +84,33 @@ async function RequestPermission() {
 在获取数据同步权限后，需要获取可信设备列表，进行设备选择。
 
 
-  如下示例展示了通过getTrustedDeviceListSync获取可信设备列表，选择设备的方法。
+  如下示例展示了通过getAvailableDeviceListSync获取可信设备列表，选择设备的方法。
 
 ```ts
-import deviceManager from '@ohos.distributedHardware.deviceManager';
+import deviceManager from '@ohos.distributedDeviceManager';
 
-let dmClass: deviceManager.DeviceManager;
-
-function getDeviceManager() {
-  deviceManager.createDeviceManager('ohos.example.distributedService', (error, dm) => {
-    if (error) {
-      console.info('create device manager failed with ' + error)
+getRemoteDeviceId(): void {
+  let dmClass: deviceManager.DeviceManager;
+  dmClass = deviceManager.createDeviceManager('com.samples.famodelabilitydevelop');
+  try {
+    if (typeof dmClass === 'object' && dmClass !== null) {
+      let list = dmClass.getAvailableDeviceListSync();
+      if (typeof (list) == undefined || list.length == 0) {
+        Logger.info(TAG, 'EntryAbility onButtonClick getRemoteDeviceId err: list is null');
+        return;
+      }
+      Logger.info(TAG, `EntryAbility onButtonClick getRemoteDeviceId success[${list.length}]:` + JSON.stringify(list[0]));
+      if (list[0].networkId != undefined) {
+        this.deviceID = list[0].networkId;
+      }
+      promptAction.showToast({
+        message: this.deviceID
+      });
+    } else {
+      Logger.info(TAG, 'EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null');
     }
-    dmClass = dm;
-  })
-}
-
-function getRemoteDeviceId(): string | undefined {
-  if (typeof dmClass === 'object' && dmClass != null) {
-    let list: Array<deviceManager.DeviceInfo> = dmClass.getTrustedDeviceListSync();
-    if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
-      console.info("EntryAbility onButtonClick getRemoteDeviceId err: list is null");
-      return;
-    }
-    console.info("EntryAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
-    return list[0].deviceId;
-  } else {
-    console.info("EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null");
-    return;
+  } catch (error) {
+    Logger.info(TAG, `getRemoteDeviceId error, error=${error}, message=${error.message}`);
   }
 }
 ```
@@ -126,19 +125,27 @@ function getRemoteDeviceId(): string | undefined {
 import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
 
-function onStartRemoteAbility() {
-  console.info('onStartRemoteAbility begin');
+onStartRemoteAbility(): void {
+  Logger.info(TAG, 'onStartRemoteAbility begin');
   let wantValue: Want = {
-    bundleName: 'ohos.samples.etsDemo',
-    abilityName: 'ohos.samples.etsDemo.RemoteAbility',
-    deviceId: getRemoteDeviceId(), // getRemoteDeviceId的定义在前面的示例代码中
+    bundleName: 'ohos.samples.distributedmusicplayer',
+    abilityName: 'ohos.samples.distributedmusicplayer.MainAbility',
+    deviceId: this.deviceID, // this.deviceID的获取方式在前面的示例代码中
   };
-  console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));
+  Logger.info(TAG, 'onStartRemoteAbility want=' + JSON.stringify(wantValue));
   featureAbility.startAbility({
     want: wantValue
   }).then((data) => {
-    console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
+    promptAction.showToast({
+      message: $r('app.string.start_remote_success_toast')
+    });
+    Logger.info(TAG, 'onStartRemoteAbility finished, ' + JSON.stringify(data));
+  }).catch((error: BusinessError) => {
+    promptAction.showToast({
+      message: JSON.stringify(error)
+    });
+    Logger.error(TAG, 'onStartRemoteAbility failed: ' + JSON.stringify(error));
   });
-  console.info('onStartRemoteAbility end');
+  Logger.info(TAG, 'onStartRemoteAbility end');
 }
 ```

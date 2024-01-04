@@ -4,31 +4,42 @@
 开发者需要重写app.js/app.ets中的生命周期回调函数，开发者通过DevEco Studio开发平台创建PageAbility时，DevEco Studio会在app.js/app.ets中默认生成onCreate()和onDestroy()方法，其他方法需要开发者自行实现。接口说明参见前述章节，创建PageAbility示例如下：
 
 ```ts
-class EntryAbility {
+class MainAbility {
   onCreate() {
-    console.info('Application onCreate')
+    // 获取context并调用相关方法
+    let context = featureAbility.getContext();
+    context.getBundleName((data, bundleName) => {
+      Logger.info(TAG, 'ability bundleName:' + bundleName);
+    });
+    Logger.info(TAG, 'Application onCreate');
   }
+
   onDestroy() {
-    console.info('Application onDestroy')
+    Logger.info(TAG, 'Application onDestroy');
   }
-  onShow() {
-    console.info('Application onShow')
+
+  onShow(): void {
+    Logger.info(TAG, 'Application onShow');
   }
-  onHide() {
-    console.info('Application onHide')
+
+  onHide(): void {
+    Logger.info(TAG, 'Application onHide');
   }
-  onActive() {
-    console.info('Application onActive')
+
+  onActive(): void {
+    Logger.info(TAG, 'Application onActive');
   }
-  onInactive() {
-    console.info('Application onInactive')
+
+  onInactive(): void {
+    Logger.info(TAG, 'Application onInactive');
   }
+
   onNewWant() {
-    console.info('Application onNewWant')
+    Logger.info(TAG, 'Application onNewWant');
   }
 }
 
-export default new EntryAbility()
+export default new MainAbility();
 ```
 
 
@@ -36,31 +47,37 @@ PageAbility创建成功后，其abilities相关的配置项在config.json中体�
 
 ```json
 {
-  "abilities": [
-    {
-      "skills": [
-        {
-          "entities": [
-            "entity.system.home"
-          ],
-          "actions": [
-            "action.system.home"
-          ]
-        }
-      ],
-      "orientation": "unspecified",
-      "visible": true,
-      "srcPath": "EntryAbility",
-      "name": ".EntryAbility",
-      "srcLanguage": "ets",
-      "icon": "$media:icon",
-      "description": "$string:EntryAbility_desc",
-      "formsEnabled": false,
-      "label": "$string:EntryAbility_label",
-      "type": "page",
-      "launchType": "singleton"
-    }
-  ]
+  ...
+  "module": {
+    ...
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      ...
+    ]
+    ...
+  }
 }
 ```
 
@@ -80,19 +97,23 @@ FA模型中，可以通过featureAbility的getContext接口获取应用上下文
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import fs from '@ohos.file.fs';
-
-(async () => {
+```
+```ts
+(async (): Promise<void> => {
   let dir: string;
   try {
-    console.info('Begin to getOrCreateDistributedDir');
+    Logger.info(TAG, 'Begin to getOrCreateDistributedDir');
     dir = await featureAbility.getContext().getOrCreateDistributedDir();
-    console.info('distribute dir is ' + dir);
+    promptAction.showToast({
+      message: dir
+    });
+    Logger.info(TAG, 'distribute dir is ' + dir);
     let fd: number;
-    let path = dir + "/a.txt";
+    let path = dir + '/a.txt';
     fd = fs.openSync(path, fs.OpenMode.READ_WRITE).fd;
     fs.close(fd);
   } catch (error) {
-    console.error('getOrCreateDistributedDir failed with ' + error);
+    Logger.error(TAG, `getOrCreateDistributedDir failed with : ${error}`);
   }
 })()
 ```

@@ -1,0 +1,87 @@
+# 关键帧动画（keyframeAnimateTo）
+
+在[UIContext](../apis/js-apis-arkui-UIContext.md#uicontext)中提供keyframeAnimateTo接口来指定若干个关键帧状态，实现分段的动画。同属性动画，布局类改变宽高的动画，内容都是直接到终点状态，例如文字、Canvas的内容、linearGradient等，如果要内容跟随宽高变化，可以使用[renderFit](ts-universal-attributes-renderfit.md)属性配置。
+
+>  **说明：**
+>
+>  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  该接口为[UIContext](../apis/js-apis-arkui-UIContext.md#uicontext)类的成员函数，需要通过UIContext实例对象调用。
+
+keyframeAnimateTo(param: KeyframeAnimateParam, keyframes: Array&lt;KeyframeState&gt;): void
+
+**参数：**
+
+| 名称         | 参数类型                                              | 是否必填 | 描述                         |
+| ------------ | ---------------------------------------------------- | ------- | ---------------------------- |
+| param        | [KeyframeAnimateParam](#keyframeanimateparam对象说明) | 是      | 关键帧动画的整体动画参数。     |
+| keyframes    | Array&lt;[KeyframeState](#keyframestate对象说明)&gt;  | 是      | 所有的关键帧状态。            |  
+
+## KeyframeAnimateParam对象说明
+| 名称       | 参数类型    | 是否必填 | 描述                                    |
+| ---------- | ---------- | ------- | ------------------------------------- |
+| delay      | number     | 否      | 动画的整体延时时间，单位为ms(毫秒)，默认不延时播放。<br/>默认值：0<br/>取值范围：(-∞, +∞)<br/>**说明：** <br/>&nbsp;delay>=0为延迟播放，delay<0表示提前播放。对于delay<0的情况：当delay的绝对值小于实际动画时长，动画将在开始后第一帧直接运动到delay绝对值的时刻的状态；当delay的绝对值大于等于实际动画时长，动画将在开始后第一帧直接运动到终点状态。其中实际动画时长等于单次动画时长乘以动画播放次数。 |
+| iterations | number     | 否      | 动画播放次数。默认播放一次，设置为-1时表示无限次播放。设置为0时表示无动画效果。<br/>默认值：1 <br/>取值范围：[-1, +∞) |
+| onFinish   | () => void | 否      | 动画播放完成回调。当keyframe动画所有次数播放完成后调用。 |
+
+## KeyframeState对象说明
+
+| 名称       | 参数类型                              | 是否必填 | 描述                                       |
+| ---------- | ------------------------------------ | ------- | ---------------------------------------- |
+| duration   | number                               | 是      | 该段关键帧动画的持续时间，单位为毫秒。<br/>取值范围：[0, +∞)<br/>**说明：**<br/>-&nbsp;设置小于0的值时按0处理。<br/>-&nbsp;设置浮点型类型的值时，向下取整。例如，设置值为1.2，按照1处理。 |
+| curve      | [Curve](ts-appendix-enums.md#curve)\|&nbsp;string&nbsp;\|&nbsp;[ICurve](../apis/js-apis-curve.md#icurve) | 否  | 该关键帧使用的动画曲线。<br/>默认值：Curve.EaseInOut<br/>**说明：**<br/>由于[springMotion](../apis/js-apis-curve.md#curvesspringmotion9)、[responsiveSpringMotion](../apis/js-apis-curve.md#curvesresponsivespringmotion9)、[interpolatingSpring](../apis/js-apis-curve.md#curvesinterpolatingspring10)曲线时长不生效，故不支持这三种曲线。 |
+| event      | () => void                           | 是      | 指定在该关键帧时刻状态的闭包函数，即在该关键帧时刻要达到的状态。 |
+
+## 示例
+
+```ts
+// xxx.ets
+import { UIContext } from '@ohos.arkui.UIContext';
+@Entry
+@Component
+struct KeyframeDemo {
+  @State myScale: number = 1.0;
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext?.();
+  }
+
+  build() {
+    Column() {
+      Circle()
+        .width(100)
+        .height(100)
+        .fill("#46B1E3")
+        .margin(100)
+        .scale({ x: this.myScale, y: this.myScale })
+        .onClick(() => {
+          if (!this.uiContext) {
+            console.info("no uiContext, keyframe failed");
+            return;
+          }
+          this.myScale = 1;
+          // 设置关键帧动画整体播放3次
+          this.uiContext.keyframeAnimateTo({ iterations: 3 }, [
+            {
+              // 第一段关键帧动画时长为800ms，scale属性做从1到1.5的动画
+              duration: 800,
+              event: () => {
+                this.myScale = 1.5;
+              }
+            },
+            {
+              // 第二段关键帧动画时长为500ms，scale属性做从1.5到1的动画
+              duration: 500,
+              event: () => {
+                this.myScale = 1;
+              }
+            }
+          ]);
+        })
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![keyframeAnimateTo](figures/keyframeAnimateTo1.gif)

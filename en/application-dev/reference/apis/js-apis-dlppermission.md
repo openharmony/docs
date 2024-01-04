@@ -50,6 +50,7 @@ import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+
 try {
   let res = dlpPermission.isDLPFile(file.fd);  // Check whether the file is a DLP file.
   console.info('res', res);
@@ -93,6 +94,7 @@ import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+
 try {
   dlpPermission.isDLPFile(file.fd, (err, res) => {
     if (err != undefined) {
@@ -139,7 +141,7 @@ import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let inSandbox = dlpPermission.isInSandbox(); // Check whether the application is running in a sandbox.
+  let inSandbox: boolean = await dlpPermission.isInSandbox(); // Check whether the application is running in a sandbox.
   if (inSandbox) {
     let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // Obtain the permission information.
     console.info('res', JSON.stringify(res));
@@ -182,7 +184,7 @@ import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let inSandbox = dlpPermission.isInSandbox(); // Check whether the application is running in a sandbox.
+  let inSandbox: boolean = await dlpPermission.isInSandbox(); // Check whether the application is running in a sandbox.
   if (inSandbox) {
     dlpPermission.getDLPPermissionInfo((err, res) => {
       if (err != undefined) {
@@ -288,7 +290,7 @@ Subscribes to a DLP file open event. The application will be notified when the D
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'openDLPFile' | Yes| Event type. The value is **'openDLPFile'**, which indicates a file open event.|
+| type | 'openDLPFile' | Yes| Event type. It has a fixed value of **openDLPFile**, which indicates the DLP file open event.|
 | listener | Callback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | Yes| Callback invoked when a DLP file is opened. A notification will be sent to the application.|
 
 **Error codes**
@@ -311,7 +313,7 @@ import { BusinessError } from '@ohos.base';
 try {
   dlpPermission.on('openDLPFile', (info: dlpPermission.AccessedDLPFileInfo) => {
     console.info('openDlpFile event', info.uri, info.lastOpenTime)
-  // Subscribe to a DLP file open event.
+  // Subscribe to the DLP file open event.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -328,7 +330,7 @@ Unsubscribes from the DLP file open event. The application will not be notified 
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'openDLPFile' | Yes| Event type. The value is **'openDLPFile'**, which indicates a file open event.|
+| type | 'openDLPFile' | Yes| Event type. It has a fixed value of **openDLPFile**, which indicates the DLP file open event.|
 | listener | Callback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | No| Callback for the DLP file open event. The application will not be notified when a DLP file is opened. By default, this parameter is left blank, which unregisters all callbacks for the file open event.|
 
 **Error codes**
@@ -429,7 +431,7 @@ try {
     if (err) {
       console.error('isInSandbox error,', err.code, err.message);
     } else {
-      console.info('isInSandbox, data');
+      console.info('isInSandbox, data', JSON.stringify(data));
     }
   }); // Whether the application is running in the sandbox.
 } catch (err) {
@@ -557,7 +559,7 @@ import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let inSandbox = dlpPermission.isInSandbox(); // Check whether the application is running in a sandbox.
+  let inSandbox: boolean = await dlpPermission.isInSandbox(); // Check whether the application is running in a sandbox.
   if (inSandbox) {
     dlpPermission.setRetentionState([uri]); // Set the retention state for a sandbox application.
   }
@@ -606,6 +608,7 @@ try {
       console.error('setRetentionState error,', err.code, err.message);
     } else {
       console.info('setRetentionState success');
+      console.info('res', JSON.stringify(res));
     }
   }); // Set the sandbox retention state.
 } catch (err) {
@@ -720,7 +723,7 @@ Obtains the sandbox applications in the retention state of an application. This 
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | Promise used to return the sandbox retention information obtained.|
+| Promise&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Promise used to return the sandbox retention information obtained.|
 
 **Error codes**
 
@@ -760,7 +763,7 @@ Obtains the sandbox applications in the retention state of an application. This 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name of the application.|
-| callback | AsyncCallback&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -804,7 +807,7 @@ Obtains the sandbox applications in the retention state of this application. Thi
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -848,7 +851,7 @@ Obtains the list of DLP files that are accessed recently. This API uses a promis
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | Promise used to return the list of recently accessed files obtained.|
+| Promise&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | Promise used to return the list of recently accessed files obtained.|
 
 **Error codes**
 
@@ -886,7 +889,7 @@ Obtains the list of DLP files that are accessed recently. This API uses an async
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | Yes| Callback invoked to return the result.<br>If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -915,6 +918,68 @@ try {
   }); // Obtain the list of recently accessed DLP files.
 } catch (err) {
   console.error('getDLPFileAccessRecords error,', (err as BusinessError).code, (err as BusinessError).message);
+}
+```
+
+## dlpPermission.startDLPManagerForResult<sup>11+</sup>
+
+startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&lt;DLPManagerResult&gt;
+
+Starts the DLP manager application on the current UIAbility page in borderless mode. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| context | [common.UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | Yes| UIAbility context.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| Object that requests the start of the DLP manager application.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;[DLPManagerResult](#dlpmanagerresult11)&gt; | Promise used to return the **DLPManagerResult** object.|
+
+**Error codes**
+
+For details about the error codes, see [DLP Service Error Codes](../errorcodes/errorcode-dlp.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. |
+| 19100001 | Invalid parameter value. |
+| 19100011 | System service exception. |
+| 19100016 | Uri does not exist in want. |
+| 19100017 | DisplayName does not exist in want (under parameters). |
+
+**Example**
+
+```ts
+import dlpPermission from '@ohos.dlpPermission';
+import common from '@ohos.app.ability.common';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import UIAbility from '@ohos.app.ability.UIAbility'
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+try {
+  let context = getContext () as common.UIAbilityContext; // Obtain the UIAbility context.
+  let want: Want = {
+    "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+    "parameters": {
+      "displayName": "1.txt"
+    }
+  }; // Request parameters.
+  dlpPermission.startDLPManagerForResult(context, want).then((res) => {
+    console.info('res.resultCode', res.resultCode);
+    console.info('res.want', JSON.stringifg(res.want));
+  }); // Start the DLP manager application.
+} catch (err) {
+  console.error('error', err.code, err.message); // Error reported if the operation fails.
 }
 ```
 
@@ -1244,7 +1309,7 @@ Subscribes to a DLP sandbox uninstall event.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | Yes| Event type.|
+| type | 'uninstallDLPSandbox' | Yes| Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event.|
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | Yes| Callback invoked when a sandbox application is uninstalled.|
 
 **Error codes**
@@ -1268,7 +1333,7 @@ import { BusinessError } from '@ohos.base';
 try {
   dlpPermission.on('uninstallDLPSandbox', (info: dlpPermission.DLPSandboxState) => {
     console.info('uninstallDLPSandbox event', info.appIndex, info.bundleName)
-  // Subscribe to a DLP sandbox uninstall event.
+  // Subscribe to the DLP sandbox application uninstall event.
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // Error reported if the operation fails.
 }
@@ -1289,7 +1354,7 @@ Unsubscribes from the DLP sandbox uninstall event.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | Yes| Event type.|
+| type | 'uninstallDLPSandbox' | Yes| Event type. It has a fixed value of **uninstallDLPSandbox**, which indicates the DLP sandbox application uninstall event.|
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | No| Callback for the sandbox uninstall event. By default, this parameter is left blank, which unregisters all callbacks for the sandbox uninstall event.|
 
 **Error codes**
@@ -1375,10 +1440,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
@@ -1427,10 +1510,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
@@ -1482,10 +1583,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
@@ -1534,10 +1653,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
@@ -1590,10 +1727,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
@@ -1643,10 +1798,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
@@ -1707,10 +1880,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
@@ -1762,10 +1953,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
@@ -1827,10 +2036,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
@@ -1880,10 +2107,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.addDLPLinkFile('test.txt.dlp.link'); // Add a link file.
@@ -1949,10 +2194,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 let destFile = fs.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
@@ -2009,10 +2272,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 let destFile = fs.openSync("destUri");
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
@@ -2069,10 +2350,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.closeDLPFile(); // Close the DLPFile instance.
@@ -2122,10 +2421,28 @@ For details about the error codes, see [DLP Service Error Codes](../errorcodes/e
 ```ts
 import dlpPermission from '@ohos.dlpPermission';
 import fs from '@ohos.file.fs';
+import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
 
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
+let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
+
+try{
+  bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
+    if (err) {
+      console.error('error', err.code, err.message);
+    } else {
+      appId = data.signatureInfo.appId;
+    }
+  })
+} catch (err) {
+  console.error('error', err.code, err.message);
+}
+
 try {
   dlpPermission.openDLPFile(file.fd, appId).then((dlpFile)=>{
     dlpFile.closeDLPFile((err, res) => {// Close the DLP file.
@@ -2347,13 +2664,15 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
 
 try{
   bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2423,13 +2742,15 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
 let appId = "";
+let bundleName = 'com.ohos.note';
+let userId = 100;
 
 try{
   bundleManager.getBundleInfo(bundleName, bundleFlags, userId, (err, data) => {
     if (err) {
       console.error('error', err.code, err.message);
     } else {
-      appId = data.sinagtureInfo.appId;
+      appId = data.signatureInfo.appId;
     }
   })
 } catch (err) {
@@ -2497,7 +2818,7 @@ try {
 ## dlpPermission.cleanSandboxAppConfig<sup>11+<sup>
 cleanSandboxAppConfig(): Promise&lt;void&gt;
 
-Cleans the sandbox application configuration. This API uses a promise to return the result.
+Cleans sandbox application configuration. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
@@ -2535,7 +2856,7 @@ try {
 ## dlpPermission.getSandboxAppConfig<sup>11+<sup>
 getSandboxAppConfig(): Promise&lt;string&gt;
 
-Obtains the sandbox application configuration. This API uses a promise to return the result.
+Obtains sandbox application configuration. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.DataLossPrevention
 
@@ -2624,6 +2945,19 @@ Represents the information about a DLP file opened.
 | -------- | -------- | -------- | -------- | -------- |
 | uri | string | Yes| No| URI of the DLP file.|
 | lastOpenTime | number | Yes| No| Time when the file was last opened.|
+
+## DLPManagerResult<sup>11+</sup>
+
+Represents what is returned on DLP manager application startup.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.Security.DataLossPrevention
+
+| Name| Type| Readable| Writable| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| resultCode | number | Yes| No| Result code returned after the DLP manager application is started and exits.|
+| want | [Want](js-apis-app-ability-want.md) | Yes| No| Data returned after the DLP manager application is started and exits.|
 
 ## DLPSandboxInfo
 

@@ -2,8 +2,6 @@
 
 The **continuationManager** module provides the continuation management entry. You can use the APIs of this module to connect to and cancel the continuation management service, subscribe to and unsubscribe from device connection events, start the device selection module, and update the device connection state.
 
-Currently, this module provides incomplete functions, and its APIs are mainly used to start the device selection module. The continuation capability is not available for application development.
-
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -261,7 +259,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
   let token: number = -1;
   try {
-    continuationManager.register(
+    continuationManager.registerContinuation(
       {
         deviceType: ["00E"]
       }).then((data) => {
@@ -590,7 +588,7 @@ Starts the device selection module to show the list of available devices on the 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the module is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -598,12 +596,12 @@ Starts the device selection module to show the list of available devices on the 
   import continuationManager from '@ohos.continuation.continuationManager';
 
   let token: number = 1;
-  continuationManager.startDeviceManager(token, (err, data) => {
+  continuationManager.startDeviceManager(token, (err) => {
     if (err.code != 0) {
       console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
       return;
     }
-    console.info('startDeviceManager finished, ' + JSON.stringify(data));
+    console.info('startDeviceManager finished. ');
   });
   ```
 
@@ -625,7 +623,7 @@ Starts the device selection module to show the list of available devices on the 
   | -------- | -------- | -------- | -------- |
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | Yes| Extra parameters used to filter the list of available devices.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the module is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -638,12 +636,12 @@ Starts the device selection module to show the list of available devices on the 
     {
       deviceType: ["00E"]
     },
-    (err, data) => {
+    (err) => {
       if (err.code != 0) {
         console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
         return;
       }
-      console.info('startDeviceManager finished, ' + JSON.stringify(data));
+      console.info('startDeviceManager finished. ');
   });
   ```
 
@@ -683,8 +681,8 @@ Starts the device selection module to show the list of available devices on the 
     token,
     {
       deviceType: ["00E"]
-    }).then((data) => {
-      console.info('startDeviceManager finished, ' + JSON.stringify(data));
+    }).then(() => {
+      console.info('startDeviceManager finished. ');
     }).catch((err: BusinessError) => {
       console.error('startDeviceManager failed, cause: ' + JSON.stringify(err));
   });
@@ -705,7 +703,7 @@ Starts the device selection module to show the list of available devices on the 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the module is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -723,12 +721,12 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
   let token: number = -1;
   try {
-    continuationManager.startContinuationDeviceManager(token, (err, data) => {
+    continuationManager.startContinuationDeviceManager(token, (err) => {
       if (err.code != 0) {
         console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
         return;
       }
-      console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+      console.info('startContinuationDeviceManager finished. ');
     });
   } catch (err) {
     console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
@@ -751,7 +749,7 @@ Starts the device selection module to show the list of available devices on the 
   | -------- | -------- | -------- | -------- |
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
   | options | [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | Yes| Extra parameters used to filter the list of available devices.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the module is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -774,12 +772,12 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
       {
         deviceType: ["00E"]
       },
-      (err, data) => {
+      (err) => {
         if (err.code != 0) {
           console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
           return;
         }
-        console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+        console.info('startContinuationDeviceManager finished. ');
     });
   } catch (err) {
     console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
@@ -830,8 +828,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
       token,
       {
         deviceType: ["00E"]
-      }).then((data) => {
-        console.info('startContinuationDeviceManager finished, ' + JSON.stringify(data));
+      }).then(() => {
+        console.info('startContinuationDeviceManager finished. ');
       }).catch((err: BusinessError) => {
         console.error('startContinuationDeviceManager failed, cause: ' + JSON.stringify(err));
       });
@@ -859,7 +857,7 @@ Instructs the device selection module to update the device connection state. Thi
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
   | deviceId | string | Yes| Device ID.|
   | status | [DeviceConnectState](#deviceconnectstate) | Yes| Device connection state.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the state is updated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -868,12 +866,12 @@ Instructs the device selection module to update the device connection state. Thi
 
   let token: number = -1;
   let deviceId: string = "test deviceId";
-  continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
+  continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err) => {
     if (err.code != 0) {
       console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
       return;
     }
-    console.info('updateConnectStatus finished, ' + JSON.stringify(data));
+    console.info('updateConnectStatus finished. ');
   });
   ```
 
@@ -912,8 +910,8 @@ Instructs the device selection module to update the device connection state. Thi
   let token: number = 1;
   let deviceId: string = "test deviceId";
   continuationManager.updateConnectStatus(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
-    .then((data) => {
-      console.info('updateConnectStatus finished, ' + JSON.stringify(data));
+    .then(() => {
+      console.info('updateConnectStatus finished. ');
     })
     .catch((err: BusinessError) => {
       console.error('updateConnectStatus failed, cause: ' + JSON.stringify(err));
@@ -937,7 +935,7 @@ Instructs the device selection module to update the device connection state. Thi
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
   | deviceId | string | Yes| Device ID.|
   | status | [DeviceConnectState](#deviceconnectstate) | Yes| Device connection state.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the state is updated, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -956,12 +954,12 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   let token: number = 1;
   let deviceId: string = "test deviceId";
   try {
-    continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err, data) => {
+    continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED, (err) => {
       if (err.code != 0) {
         console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
         return;
       }
-      console.info('updateContinuationState finished, ' + JSON.stringify(data));
+      console.info('updateContinuationState finished. ');
     });
   } catch (err) {
     console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
@@ -1011,8 +1009,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   let deviceId: string = "test deviceId";
   try {
     continuationManager.updateContinuationState(token, deviceId, continuationManager.DeviceConnectState.CONNECTED)
-      .then((data) => {
-        console.info('updateContinuationState finished, ' + JSON.stringify(data));
+      .then(() => {
+        console.info('updateContinuationState finished. ');
       })
       .catch((err: BusinessError) => {
         console.error('updateContinuationState failed, cause: ' + JSON.stringify(err));
@@ -1027,7 +1025,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 unregister(token: number, callback: AsyncCallback\<void>): void
 
-Deregisters the continuation management service. This API uses an asynchronous callback to return the result.
+Unregisters the continuation management service. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > 
@@ -1040,7 +1038,7 @@ Deregisters the continuation management service. This API uses an asynchronous c
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the unregistration is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -1048,12 +1046,12 @@ Deregisters the continuation management service. This API uses an asynchronous c
   import continuationManager from '@ohos.continuation.continuationManager';
 
   let token: number = 1;
-  continuationManager.unregister(token, (err, data) => {
+  continuationManager.unregister(token, (err) => {
     if (err.code != 0) {
       console.error('unregister failed, cause: ' + JSON.stringify(err));
       return;
     }
-    console.info('unregister finished, ' + JSON.stringify(data));
+    console.info('unregister finished. ');
   });
   ```
 
@@ -1061,7 +1059,7 @@ Deregisters the continuation management service. This API uses an asynchronous c
 
 unregister(token: number): Promise\<void>
 
-Deregisters the continuation management service. This API uses a promise to return the result.
+Unregisters the continuation management service. This API uses a promise to return the result.
 
 > **NOTE**
 > 
@@ -1089,8 +1087,8 @@ Deregisters the continuation management service. This API uses a promise to retu
 
   let token: number = 1;
   continuationManager.unregister(token)
-    .then((data) => {
-      console.info('unregister finished, ' + JSON.stringify(data));
+    .then(() => {
+      console.info('unregister finished. ');
     }).catch((err: BusinessError) => {
       console.error('unregister failed, cause: ' + JSON.stringify(err));
   });
@@ -1100,7 +1098,7 @@ Deregisters the continuation management service. This API uses a promise to retu
 
 unregisterContinuation(token: number, callback: AsyncCallback\<void>): void
 
-Deregisters the continuation management service. This API uses an asynchronous callback to return the result.
+Unregisters the continuation management service. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1111,7 +1109,7 @@ Deregisters the continuation management service. This API uses an asynchronous c
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
   | token | number | Yes| Token obtained after the registration of the continuation management service.|
-  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the unregistration is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1130,12 +1128,12 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
   let token: number = 1;
   try {
-    continuationManager.unregisterContinuation(token, (err, data) => {
+    continuationManager.unregisterContinuation(token, (err) => {
       if (err.code != 0) {
         console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
         return;
       }
-      console.info('unregisterContinuation finished, ' + JSON.stringify(data));
+      console.info('unregisterContinuation finished. ');
     });
   } catch (err) {
     console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
@@ -1146,7 +1144,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 
 unregisterContinuation(token: number): Promise\<void>
 
-Deregisters the continuation management service. This API uses a promise to return the result.
+Unregisters the continuation management service. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -1181,8 +1179,8 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   
   let token: number = -1;
   try {
-    continuationManager.unregisterContinuation(token).then((data) => {
-        console.info('unregisterContinuation finished, ' + JSON.stringify(data));
+    continuationManager.unregisterContinuation(token).then(() => {
+        console.info('unregisterContinuation finished. ');
       }).catch((err: BusinessError) => {
         console.error('unregisterContinuation failed, cause: ' + JSON.stringify(err));
     });

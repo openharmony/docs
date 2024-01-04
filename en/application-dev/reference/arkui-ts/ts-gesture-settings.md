@@ -36,7 +36,7 @@ A region in which a gesture can be recognized may be specified by the [touch tar
 | Name| Description|
 | -------- | -------- |
 | Normal | The gestures of child components are not ignored and are recognized based on the default gesture recognition sequence.|
-| IgnoreInternal | The gestures of child components are ignored, including the built-in gestures. For example, if the child component is **\<List>**, its built-in swipe gesture is also ignored.|
+| IgnoreInternal | The gestures of child components are ignored, including the built-in gestures. For example, if the child component is **\<List>**, its built-in swipe gesture is also ignored. If the areas of the parent and child components are partly overlapped, only gestures in the overlapped areas are ignored.|
 
 ## Gesture Response Event
 
@@ -59,7 +59,7 @@ The component binds gesture objects of different **GestureType**s through gestur
 | pinchCenterX | number | X coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
 | pinchCenterY | number | Y coordinate of the center of the pinch gesture, in vp, relative to the original area of the current component. This attribute is used for the **PinchGesture** event.|
 | speed<sup>8+</sup> | number | Swipe gesture speed, that is, the average swipe speed of all fingers relative to the original area of the current component. The unit is vp/s. This attribute is used for the **SwipeGesture** event.|
-| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo)[] | Information about all fingers that trigger the event. This attribute is used for the **LongPressGesture** and **TapGesture** events.<br>**NOTE**<br>The first element (that is, **fingerList[0]**) of the **fingerList** array is the **FingerInfo** object.|
+| fingerList<sup>8+</sup> | [FingerInfo](#fingerinfo)[] | Information about all fingers that trigger the gesture event.<br>**NOTE**<br>The first element (that is, **fingerList[0]**) of the **fingerList** array is the **FingerInfo** object.|
 | timestamp<sup>8+</sup> | number | Timestamp of the event.|
 | target<sup>8+</sup> | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.|
 | source<sup>8+</sup> | [SourceType](#sourcetype) | Event input device.|

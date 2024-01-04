@@ -19,7 +19,7 @@
 | multiLine      | [NotificationMultiLineContent](#notificationmultilinecontent)              | 否  | 否  | 多行类型通知内容。   |
 | picture        | [NotificationPictureContent](#notificationpicturecontent)                  | 否  | 否  | 图片类型通知内容。   |
 | systemLiveView<sup>11+</sup> | [NotificationSystemLiveViewContent](#notificationsystemliveviewcontent)    | 否  | 否  | 系统实况窗类型通知内容（仅对系统应用开放）。|
-| liveView<sup>11+</sup>       | [NotificationLiveViewContent](#notificationliveviewcontent11)              | 否  | 否  | 普通实况窗类型通知内容。|
+| liveView<sup>11+</sup>       | [NotificationLiveViewContent](#notificationliveviewcontent11)              | 否  | 否  | 普通实况窗类型通知内容（仅对系统应用开放）。|
 
 ## NotificationBasicContent
 
@@ -157,6 +157,8 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
+**系统接口**：此接口为系统接口。
+
 | 名称           | 类型                                                                | 只读| 必填 | 说明                                                  |
 | -------------- | ------------------------------------------------------------------ | --- | --- | ------------------------------------------------------|
 | status         | [LiveViewStatus](#liveviewstatus11)                                | 否  | 是  | 通知状态。                  |
@@ -168,7 +170,9 @@
 
 描述普通实况通知的状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Security.AccessToken
+
+**系统接口**：此接口为系统接口。
 
 | 名称                         | 值 |   说明   |
 | ---------------------------- |----|----------|

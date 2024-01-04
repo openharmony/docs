@@ -219,16 +219,22 @@ Sets an ability that will be recovered. The ability must be a UIAbility in the c
 import appRecovery from '@ohos.app.ability.appRecovery';
 import Want from '@ohos.app.ability.Want';
 
-Button ("Start to Recover Ability")
-    .fontSize(40)
-    .fontWeight(FontWeight.Bold)
-    .onClick(()=> {
+@Entry
+@Component
+struct Index {
+  build() {
+    Button ("Start to Recover Ability")
+      .fontSize(40)
+      .fontWeight(FontWeight.Bold)
+      .onClick(()=> {
         // set restart want
         let want: Want = {
-            bundleName: "ohos.samples.recovery",
-            abilityName: "RecoveryAbility"
+          bundleName: "ohos.samples.recovery",
+          abilityName: "RecoveryAbility"
         };
 
         appRecovery.setRestartWant(want);
-    })
+      })
+  }
+}
 ```

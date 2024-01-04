@@ -8,7 +8,7 @@ Before getting started with the development of mission management, be familiar w
 
 - MissionRecord: minimum unit for mission management. One MissionRecord has only one AbilityRecord. In other words, a UIAbility component instance corresponds to a mission.
 
-- MissionList: a list of missions started from the home screen. It records the startup relationship between missions. In a MissionList, an above mission is started by the mission under it, and the mission at the bottom is started by the home screen.
+- MissionList: a list of missions started from the home screen. It records the startup relationship between missions. In a MissionList, a mission is started by the mission above it, and the mission at the bottom is started by the home screen.
 
 - MissionListManager: system mission management module that maintains all the MissionLists and is consistent with the list in **Recents**.
   
@@ -30,101 +30,165 @@ Missions are managed by system applications (such as home screen), rather than t
 
 A UIAbility instance corresponds to an independent mission. Therefore, when an application calls [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a UIAbility, a mission is created.
 
-1. To call [missionManager](../reference/apis/js-apis-application-missionManager.md) to manage missions, the home screen application must request the **ohos.permission.MANAGE_MISSIONS** permission. For details about the configuration, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+1. To call [missionManager](../reference/apis/js-apis-application-missionManager.md) to manage missions, the home screen application must request the **ohos.permission.MANAGE_MISSIONS** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system-basic-applications).
 
 2. You can use **missionManager** to manage missions, for example, listening for mission changes, obtaining mission information or snapshots, and clearing, locking, or unlocking missions.
 
    ```ts
-   import missionManager from '@ohos.app.ability.missionManager'
+   import missionManager from '@ohos.app.ability.missionManager';
    import { BusinessError } from '@ohos.base';
-   
-   let listener: missionManager.MissionListener = {
+   import image from '@ohos.multimedia.image';
+   import promptAction from '@ohos.promptAction';
+   ```
+   ```ts
+   private listener: missionManager.MissionListener = {
      // Listen for mission creation.
-     onMissionCreated: (mission) => {
-       console.info("--------onMissionCreated-------")
+     onMissionCreated: (mission: number) => {
+       Logger.info(TAG, '--------onMissionCreated-------');
      },
      // Listen for mission destruction.
-     onMissionDestroyed: (mission) => {
-       console.info("--------onMissionDestroyed-------")
+     onMissionDestroyed: (mission: number) => {
+       Logger.info(TAG, '--------onMissionDestroyed-------');
      },
      // Listen for mission snapshot changes.
-     onMissionSnapshotChanged: (mission) => {
-       console.info("--------onMissionSnapshotChanged-------")
+     onMissionSnapshotChanged: (mission: number) => {
+       Logger.info(TAG, '--------onMissionSnapshotChanged-------');
      },
      // Listen for switching the mission to the foreground.
-     onMissionMovedToFront: (mission) => {
-       console.info("--------onMissionMovedToFront-------")
+     onMissionMovedToFront: (mission: number) => {
+       Logger.info(TAG, '--------onMissionMovedToFront-------');
      },
      // Listen for mission icon changes.
-     onMissionIconUpdated: (mission, icon) => {
-       console.info("--------onMissionIconUpdated-------")
+     onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
+       Logger.info(TAG, '--------onMissionIconUpdated-------');
      },
      // Listen for mission name changes.
-     onMissionLabelUpdated: (mission) => {
-       console.info("--------onMissionLabelUpdated-------")
+     onMissionLabelUpdated: (mission: number) => {
+       Logger.info(TAG, '--------onMissionLabelUpdated-------');
      },
      // Listen for mission closure events.
-     onMissionClosed: (mission) => {
-       console.info("--------onMissionClosed-------")
+     onMissionClosed: (mission: number) => {
+       Logger.info(TAG, '--------onMissionClosed-------');
      }
    };
-   
+   ```
+   ```ts
    // 1. Register a mission change listener.
-   let listenerId = missionManager.on('mission', listener);
-   
+   this.listenerId = missionManager.on('mission', this.listener);
+   promptAction.showToast({
+     message: $r('app.string.register_success_toast')
+   });
+   Logger.info(TAG, `missionManager.on success, listenerId = ${this.listenerId}`);
+   ```
+   ```ts
    // 2. Obtain the latest 20 missions in the system.
-   missionManager.getMissionInfos("", 20, (error, missions) => {
-     console.info("getMissionInfos is called, error.code = " + error.code);
-     console.info("size = " + missions.length);
-     console.info("missions = " + JSON.stringify(missions));
+   missionManager.getMissionInfos('', 20, (error: BusinessError, missions: Array<missionManager.MissionInfo>) => {
+     Logger.info(TAG, 'getMissionInfos is called, error = ' + JSON.stringify(error));
+     Logger.info(TAG, 'size = ' + missions.length);
+     Logger.info(TAG, 'missions = ' + JSON.stringify(missions));
+     
+     //Check whether Recents in the system contains etsclock.
+     for (let i = 0;i < missions.length; i++) {
+       if (missions[i].want.bundleName === 'ohos.samples.etsclock') {
+         promptAction.showToast({
+           message: $r('app.string.obtain_success_toast')
+         });
+         Logger.info(TAG, `getMissionInfos.find etsclock, missionId  = ${missions[i].missionId}`);
+         this.missionId = missions[i].missionId;
+         return;
+       }
+     }
+     promptAction.showToast({
+       message: $r('app.string.obtain_failed_toast')
+     });
    });
-   
+   ```
+   ```ts
    // 3. Obtain the detailed information about a mission.
-   let missionId = 11; // The mission ID 11 is only an example.
-   let mission = missionManager.getMissionInfo("", missionId).catch((err: BusinessError) => {
-     console.info('${err.code}');
+   missionManager.getMissionInfo('', this.missionId).then((data: missionManager.MissionInfo) => {
+     promptAction.showToast({
+       message: JSON.stringify(data.want.bundleName)
+     });
+     Logger.info(TAG, `getMissionInfo successfully. Data: ${JSON.stringify(data)}`);
+   }).catch((error: BusinessError) => {
+     Logger.error(TAG, `getMissionInfo failed. Cause: ${error.message}`);
    });
-   
+   ```
+   ```ts
    // 4. Obtain the mission snapshot.
-   missionManager.getMissionSnapShot("", missionId, (error, snapshot) => {
-     console.info("getMissionSnapShot is called, error.code = " + error.code);
-     console.info("bundleName = " + snapshot.ability.bundleName);
+   missionManager.getMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
+     if (error === null) {
+       promptAction.showToast({
+         message: $r('app.string.obtain_snapshot_success_toast')
+       });
+     }
+     Logger.info(TAG, 'getMissionSnapShot is called, error = ' + JSON.stringify(error));
+     Logger.info(TAG, 'bundleName = ' + snapshot.ability.bundleName);
    })
-   
+   ```
+   ```ts
    // 5. Obtain the low-resolution mission snapshot.
-   missionManager.getLowResolutionMissionSnapShot("", missionId, (error, snapshot) => {
-     console.info("getLowResolutionMissionSnapShot is called, error.code = " + error.code);
-     console.info("bundleName = " + snapshot.ability.bundleName);
+   missionManager.getLowResolutionMissionSnapShot('', this.missionId, (error: BusinessError, snapshot: missionManager.MissionSnapshot) => {
+     if (error === null) {
+       promptAction.showToast({
+         message: $r('app.string.obtain_low_snapshot_success_toast')
+       });
+     }
+     Logger.info(TAG, 'getLowResolutionMissionSnapShot is called, error = ' + JSON.stringify(error));
+     Logger.info(TAG, 'bundleName = ' + snapshot.ability.bundleName);
    })
-   
-   // 6. Lock or unlock the mission.
-   missionManager.lockMission(missionId).then(() => {
-     console.info("lockMission is called ");
+   ```
+   ```ts
+   // 6-1. Lock the mission.
+   missionManager.lockMission(this.missionId).then(() => {
+     promptAction.showToast({
+       message: $r('app.string.lock_success_toast')
+     });
+     Logger.info(TAG, 'lockMission is called ');
    });
-   
-   missionManager.unlockMission(missionId).then(() => {
-     console.info("unlockMission is called ");
+   ```
+   ```ts
+   // 6-2. Unlock the mission.
+   missionManager.unlockMission(this.missionId).then(() => {
+     promptAction.showToast({
+       message: $r('app.string.unlock_success_toast')
+     });
+     Logger.info(TAG, 'unlockMission is called ');
    });
-   
+   ```
+   ```ts
    // 7. Switch the mission to the foreground.
-   missionManager.moveMissionToFront(missionId).then(() => {
-     console.info("moveMissionToFront is called ");
+   missionManager.moveMissionToFront(this.missionId).then(() => {
+     Logger.info(TAG, 'moveMissionToFront is called ');
    });
-   
+   ```
+   ```ts
    // 8. Clear a single mission.
-   missionManager.clearMission(missionId).then(() => {
-     console.info("clearMission is called ");
+   missionManager.clearMission(this.missionId).then(() => {
+     promptAction.showToast({
+       message: $r('app.string.delete_success_toast')
+     });
+     Logger.info(TAG, 'clearMission is called ');
    });
-   
+   ```
+   ```ts
    // 9. Clear all missions.
    missionManager.clearAllMissions().catch((err: BusinessError) => {
-     console.info('${err.code}');
+     Logger.info(TAG, `${err.code}`);
    });
-   
+   ```
+   ```ts
    // 10. Deregister the mission change listener.
-   missionManager.off('mission', listenerId, (error) => {
-     console.info("unregisterMissionListener");
+   missionManager.off('mission', this.listenerId, (error: BusinessError) => {
+     if (error === null) {
+       promptAction.showToast({
+         message: $r('app.string.unregister_success_toast')
+       });
+     }
+     Logger.info(TAG, 'unregisterMissionListener');
    })
    ```
 
    
+
+ <!--no_check--> 

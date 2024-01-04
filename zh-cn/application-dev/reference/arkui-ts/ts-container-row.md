@@ -22,7 +22,7 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| space | string&nbsp;\|&nbsp;number | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
+| space | number&nbsp;\|&nbsp;string | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
 
 
 ## 属性
@@ -36,7 +36,7 @@ Row(value?:{space?:  number&nbsp;|&nbsp;string })
 
 >  **说明：**    
 >
->  Row布局时若子组件不设置flexShrink则默认不会压缩子组件，即所有子组件主轴大小累加可超过容器主轴。
+>  Row布局时若子组件不设置[flexShrink](ts-universal-attributes-flex-layout.md#flexshrink)则默认不会压缩子组件，即所有子组件主轴大小累加可超过容器主轴。
 
 ## 事件
 

@@ -114,7 +114,7 @@ deviceInfo.getDeviceSerial(wantTemp).then((result) => {
 
 ## deviceInfo.getDisplayVersion
 
-getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
+getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the device version through the specified device administrator application. This API uses an asynchronous callback to return the result.
 

@@ -8,6 +8,10 @@
 
 此过程中涉及两大角色，媒体会话提供方和媒体会话控制方。
 
+> **说明：**
+>
+> 媒体会话控制方为系统应用，三方应用可以成为媒体会话提供方。
+
 本地媒体会话中，媒体会话提供方通过媒体会话管理器和媒体会话控制方进行信息交互：
 
 1. 媒体会话提供方通过AVSessionManager创建AVSession对象。
@@ -38,7 +42,7 @@ import AVSessionManager from '@ohos.multimedia.avsession';
  
 ```ts
 // 创建session
-let context: Context = this.context;
+let context: Context = getContext(this);
 async function createSession() {
   let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
   console.info(`session create done : sessionId : ${session.sessionId}`);

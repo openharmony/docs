@@ -248,7 +248,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**): void
+off(type: 'environment', callbackId: **number**): Prominse\<void\>
 
 Deregisters the listener for system environment changes.
 
@@ -514,7 +514,7 @@ Sets the color mode for the application.
 
 | Name| Type         | Mandatory| Description                |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md) | Yes  | Target color mode, including dark mode, light mode, and system theme mode (no setting).|
+| colorMode | [ConfigurationConstant.ColorMode](../apis/js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | Yes  | Target color mode, including dark mode, light mode, and system theme mode (no setting).|
 
 **Error codes**
 
@@ -622,7 +622,7 @@ Clears up the data of the application itself. This API uses an asynchronous call
 **Parameters**
 | Name       | Type    | Mandatory| Description                      |
 | ------------- | -------- | ---- | -------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the application data is cleared up, **err** is **undefined**; otherwise, **err** is an error object. |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the application data is cleared up, **error** is **undefined**; otherwise, **error** is an error object. |
 
 **Error codes**
 
@@ -664,24 +664,32 @@ Subscribes to auto-startup status change events of an application component, whi
 | type     | string              | Yes  | Event type. The value is fixed at **abilityAutoStartup**.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | Yes  | Callback used for the subscription.|
 
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    let autoStartupCallback = {
-      onAutoStartupOn(data) {
-        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
-      },
-      onAutoStartupOff(data) {
-        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
-      }
-    };
     try {
-      applicationContext.on('abilityAutoStartup', autoStartupCallback);
+      applicationContext.on('abilityAutoStartup', {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+        },
+        onAutoStartupOff(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+        }
+      });
     } catch (err) {
       console.info('===> autostartupmanager on throw err: ' + JSON.stringify(err));
     }
@@ -704,24 +712,32 @@ Unsubscribes from auto-startup status change events of an application component,
 | type     | string              | Yes  | Event type. The value is fixed at **abilityAutoStartup**.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | No  | Callback that has been registered to listen for auto-startup status changes.|
 
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
     let applicationContext = this.context.getApplicationContext();
-    let autoStartupCallback = {
-      onAutoStartupOn(data) {
-        console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
-      },
-      onAutoStartupOff(data) {
-        console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
-      }
-    };
     try {
-      applicationContext.off('abilityAutoStartup', autoStartupCallback);
+      applicationContext.off('abilityAutoStartup', {
+        onAutoStartupOn(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOn data: ' + JSON.stringify(data));
+        },
+        onAutoStartupOff(data: common.AutoStartupInfo) {
+          console.info('===> autostartupmanager onAutoStartupOff data: ' + JSON.stringify(data));
+        }
+      });
     } catch (err) {
       console.info('===> autostartupmanager off throw err: ' + JSON.stringify(err));
     }
@@ -744,10 +760,22 @@ Sets an application component, which must belong to the caller application, to a
 | info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | Yes  | Information about the target application component.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.  |
 
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000004 | Can not start invisible component.              |
+| 16000013 | The application is controlled by EDM.           |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -756,7 +784,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -786,10 +814,22 @@ Sets an application component, which must belong to the caller application, to a
 | --------------- | ------------------------------------------- |
 | Promise\<void\> | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000004 | Can not start invisible component.              |
+| 16000013 | The application is controlled by EDM.           |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -798,9 +838,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.setAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
         console.info('====> setAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.info('====> setAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {
@@ -825,10 +865,22 @@ Cancels the auto-startup setting for an application component, which must belong
 | info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | Yes  | Information about the target application component.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the cancellation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000004 | Can not start invisible component.              |
+| 16000013 | The application is controlled by EDM.           |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -837,7 +889,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: void) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -867,10 +919,22 @@ Cancels the auto-startup setting for an application component, which must belong
 | --------------- | ------------------------------------------- |
 | Promise\<void\> | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000004 | Can not start invisible component.              |
+| 16000013 | The application is controlled by EDM.           |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -879,9 +943,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.cancelAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: void) => {
           console.info('====> cancelAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
           console.info('====> cancelAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {
@@ -906,10 +970,20 @@ Checks whether auto-startup is set for an application component, which must belo
 | info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)        | Yes  | Information about the target application component.|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that auto-startup is set for the application component, and **false** means the opposite.|
 
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -918,7 +992,7 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }, (err, data) => {
+      }, (err: BusinessError, data: boolean) => {
         console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
       });
     } catch (err) {
@@ -948,10 +1022,20 @@ Checks whether auto-startup is set for an application component, which must belo
 | ---------------- | ------------------------------------------- |
 | Promise\<boolean\> | Promise used to return the result. The value **true** means that auto-startup is set for the application component, and **false** means the opposite.|
 
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
 
 export default class MyAbility extends UIAbility {
   onBackground() {
@@ -960,9 +1044,9 @@ export default class MyAbility extends UIAbility {
       applicationContext.isAutoStartup({
         bundleName: 'com.example.autostartupapp',
         abilityName: 'EntryAbility'
-      }).then((data) => {
+      }).then((data: boolean) => {
         console.info('====> isAutoStartup data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.info('====> isAutoStartup err: ' + JSON.stringify(err));
       });
     } catch (err) {

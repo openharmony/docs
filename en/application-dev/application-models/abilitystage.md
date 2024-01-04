@@ -12,21 +12,23 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 
 1. In the **ets** directory of the **Module** project, right-click and choose **New > Directory** to create a directory named **myabilitystage**.
 
-2. In the **myabilitystage** directory, right-click and choose **New > TypeScript File** to create a file named **MyAbilityStage.ts**.
+2. In the **myabilitystage** directory, right-click and choose **New > ArkTS File** to create a file named **MyAbilityStage.ets**.
 
-3. Open the **MyAbilityStage.ts** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
+3. Open the **MyAbilityStage.ets** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
-   import Want from '@ohos.app.ability.Want';
+   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   import hilog from '@ohos.hilog';
+   import type Want from '@ohos.app.ability.Want';
    
    export default class MyAbilityStage extends AbilityStage {
-     onCreate() {
+     onCreate(): void {
        // When the HAP of the application is loaded for the first time, initialize the module.
      }
-     onAcceptWant(want: Want) {
+     onAcceptWant(want: Want): string {
        // Triggered only for the UIAbility with the specified launch type.
-       return "MyAbilityStage";
+       return 'MyAbilityStage';
      }
    }
    ```
@@ -37,7 +39,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
      "module": {
        "name": "entry",
        "type": "entry",
-       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ets",
        ...
      }
    }
@@ -62,7 +64,7 @@ When an application is switched to the background, it is cached in the backgroun
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   
   export default class MyAbilityStage extends AbilityStage {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    onMemoryLevel(level: AbilityConstant.MemoryLevel): void {
       // Release unnecessary memory based on the change of available system memory.
     }
   }

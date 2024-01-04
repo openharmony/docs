@@ -188,9 +188,22 @@ LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参�
 | string | 返回裁切路径的命令字符串 |
 
 **示例：**
+
   ```ts
+// xxx.ets
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
-Image($r('app.media.icon'))
-    .width('200px').height('200px')
-    .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.icon'))
+          .width('200px').height('200px')
+          .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+      }.height('50%')
+    }.width('50%')
+  }
+}
   ```

@@ -39,6 +39,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
+| enablePaging<sup>11+</sup>                 | boolean  | Whether to enable the swipe-to-turn-pages feature.<br>Default value: **false**<br>**NOTE**<br>If both **enablePaging** and **scrollSnap** are set, **scrollSnap** takes effect, but **enablePaging** does not.|
 
 ## ScrollDirection
 | Name      | Description                    |
@@ -48,7 +49,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | None       | Scrolling is disabled.              |
 | Free<sup>(deprecated) </sup> | Vertical or horizontal scrolling is supported.<br> This API is deprecated since API version 9.|
 
-## scrollSnapOptions<sup>10+</sup>
+## ScrollSnapOptions<sup>10+</sup>
 | Name      | Type      | Description      |
 | ---------- | ---------------------------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10)   | Alignment mode for the scroll snap position.<br>**NOTE**<br>1. Default value: **ScrollSnapAlign.NONE**<br>2. This API takes effect only when **snapPagination** is set to **Dimension**. **Array\<Dimension\>** is not supported.|
@@ -161,8 +162,8 @@ When **smooth** is set to **true**, all passed items are loaded and counted in l
 | Name               | Type| Mandatory| Description                                                    |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | value                 | number   | Yes  | Index of the item to be scrolled to in the container.<br>**NOTE**<br>If the value set is a negative value or greater than the maximum index of the items in the container, the value is deemed abnormal, and no scrolling will be performed.                    |
-| smooth<sup>10+ </sup> | boolean  | No  | Whether to enable the smooth animation for scrolling to the item with the specified index. The value **true** means to enable that the smooth animation, and **false** means the opposite.<br>Default value: **false**<br>**NOTE**<br>Currently, only the **\<List>** component supports this parameter.|
-| align<sup>10+ </sup> | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the container.<br>Default value when the container is **\<List>**: **ScrollAlign.START**<br> Default value when the container is **\<Grid>**: **ScrollAlign.AUTO**<br>**NOTE**<br>Currently, only the **\<List>** and **\<Grid>** components support this parameter.|
+| smooth<sup>10+ </sup> | boolean  | No  | Whether to enable the smooth animation for scrolling to the item with the specified index. The value **true** means to enable that the smooth animation, and **false** means the opposite.<br>Default value: **false**|
+| align<sup>10+ </sup> | [ScrollAlign](#scrollalign10)  | No  | How the list item to scroll to is aligned with the container.<br>Default value when the container is **\<List>**: **ScrollAlign.START**<br> Default value when the container is **\<Grid>**: **ScrollAlign.AUTO**<br>**NOTE**<br>Only the **\<List>** and **\<Grid>** components support this parameter.|
 
 ### scrollBy<sup>9+</sup>
 
@@ -226,7 +227,7 @@ Obtains the size and position of a child component.
 | -------------------  | -------- |
 | [RectResult](ts-types.md#rectresult10) | Size and position of the child component relative to the component.|
 
-## ScrollAlign<sup>10+ </sup>
+## ScrollAlign<sup>10+</sup>
 
 | Name    | Description                            |
 | ------ | ------------------------------ |

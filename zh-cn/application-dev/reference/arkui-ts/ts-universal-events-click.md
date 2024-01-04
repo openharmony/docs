@@ -6,12 +6,21 @@
 >
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## onClick
 
-## 事件
+onClick(event: (event: ClickEvent) => void)
 
-| 名称                                       | 支持冒泡 | 功能描述                              |
-| ---------------------------------------- | ---- | --------------------------------- |
-| onClick(event:&nbsp;(event?:&nbsp;ClickEvent)&nbsp;=&gt;&nbsp;void) | 否    | 点击动作触发该回调，event返回值见ClickEvent对象说明。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+点击动作触发该回调。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                              | 必填 | 说明                 |
+| ------ | --------------------------------- | ---- | -------------------- |
+| event  | [ClickEvent](#clickevent对象说明) | 否   | 获得ClickEvent对象。 |
 
 ## ClickEvent对象说明
 

@@ -137,3 +137,35 @@ Text组件。
 **适配指导**
 
 默认行为变更，不涉及适配。
+
+## cl.ArkUI.6 Scroller调用scrollTo方法控制Grid组件跳转Bug修复
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+ Scroller调用scrollTo方法控制Grid组件跳转超过Grid当前页面主轴方向高度距离时，存在跳转位置会有rowsGap*行数的误差的Bug。现问题已修复。
+
+**变更影响**
+
+该变更为兼容性变更。此次变更，开发者使用Scroller调用scrollTo方法控制Grid组件跳转时，会跳转到更精确的位置。
+
+**API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony 4.1.3.3开始。
+
+**变更的接口/组件**
+
+变更前：Grid组件，调用Scroller的scrollTo接口，跳转超过一屏时，跳转位置会有rowsGap*行数的误差。
+
+变更后：Grid组件，调用Scroller的scrollTo接口，跳转超过一屏时，跳转位置会更精确。
+
+**适配指导**
+
+此次变更，Scroller调用scrollTo方法控制Grid组件跳转位置会更精确，不涉及适配。

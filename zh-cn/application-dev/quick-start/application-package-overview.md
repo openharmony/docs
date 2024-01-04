@@ -26,7 +26,7 @@ Module按照使用场景可以分为两种类型：
 
 - **Library类型的Module：** 用于实现代码和资源的共享。同一个Library类型的Module可以被其他的Module多次引用，合理地使用该类型的Module，能够降低开发和维护成本。Library类型的Module分为Static和Shared两种类型，编译后会生成共享包。
   - Static Library：静态共享库。编译后会生成一个以.har为后缀的文件，即静态共享包HAR（Harmony Archive）。
-  - Shared Library：动态共享库。编译后会生成一个以.hsp为后缀的文件，即动态共享包HAR（Harmony Archive），还会生成一个.har文件，该文件包含HSP对外导出的接口。应用中的其他模块需要通过.har文件来引用HSP的功能。
+  - Shared Library：动态共享库。编译后会生成一个以.hsp为后缀的文件，即动态共享包HSP（Harmony Shared Package），还会生成一个.har文件，该文件包含HSP对外导出的接口。应用中的其他模块需要通过.har文件来引用HSP的功能。
   
   上述两种共享包的主要区别体现在：
   - 编译和运行方式不同：HAR中的代码和资源跟随使用方编译，如果有多个使用方，它们的编译产物中会存在多份相同拷贝；而HSP中的代码和资源可以独立编译，运行时在一个进程中代码也只会存在一份。

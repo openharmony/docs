@@ -1,6 +1,8 @@
 # 拍照实现方案(ArkTS)
 
-当前示例提供完整的拍照流程及其接口调用顺序的介绍。对于单个流程（如设备输入、会话管理、拍照）的介绍请参考[相机开发指导(ArkTS)](camera-preparation.md)的具体章节。
+当前示例提供完整的拍照流程介绍，方便开发者了解完整的接口调用顺序。
+
+在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[拍照](camera-shooting.md)等单个流程。
 
 ## 开发流程
 
@@ -10,12 +12,57 @@
 
 ## 完整示例
 
-[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
+Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import fs from '@ohos.file.fs';
+import PhotoAccessHelper from '@ohos.file.photoAccessHelper';
+
+let context = getContext(this);
+
+function getImageReceiver(width: number, height: number, format: number, capacity: number): image.ImageReceiver {
+  //获取ImageReceiver
+  let imageReceiver: image.ImageReceiver = image.createImageReceiver(width, height, format, capacity);
+  return imageReceiver;
+}
+
+async function savePicture(buffer: ArrayBuffer, img: image.Image) {
+  let photoAccessHelper = PhotoAccessHelper.getPhotoAccessHelper(context);
+  let testFileName = 'testFile' + Date.now() + '.jpg';
+  let photoAsset = await photoAccessHelper.createAsset(testFileName);
+  //createAsset的调用需要ohos.permission.READ_IMAGEVIDEO和ohos.permission.WRITE_IMAGEVIDEO的权限
+  const fd = await photoAsset.open('rw');
+  fs.write(fd, buffer);
+  await photoAsset.close(fd);
+  img.release(); 
+}
+
+function setImageArrivalCb(receiver: image.ImageReceiver) {
+//设置回调之后，调用photoOutput的capture方法，就会将拍照的buffer回传到回调中
+  receiver.on('imageArrival', (): void => {
+    receiver.readNextImage((errCode: BusinessError, imageObj: image.Image): void => {
+      if (errCode || imageObj === undefined) {
+        return;
+      }
+      imageObj.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
+        if (errCode || component === undefined) {
+          return;
+        }
+        let buffer: ArrayBuffer;
+        if (component.byteBuffer) {
+          buffer = component.byteBuffer;
+        } else {
+          return;
+        }
+        savePicture(buffer, imageObj);
+      });
+    });
+  });
+}
 
 async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: string): Promise<void> {
   // 创建CameraManager对象
@@ -100,7 +147,9 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
   });
 
   // 创建ImageReceiver对象，并设置照片参数：分辨率大小是根据前面 photoProfilesArray 获取的当前设备所支持的拍照分辨率大小去设置
-  let imageReceiver: image.ImageReceiver = image.createImageReceiver(1920, 1080, 4, 8);
+  let imageReceiver: image.ImageReceiver = getImageReceiver(1920, 1080, 4, 8);
+  //调用上面的回调函数来保存图片
+  setImageArrivalCb(imageReceiver);
   // 获取照片显示SurfaceId
   let photoSurfaceId: string = await imageReceiver.getReceivingSurfaceId();
   // 创建拍照输出流

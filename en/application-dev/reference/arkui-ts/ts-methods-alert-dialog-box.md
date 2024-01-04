@@ -159,6 +159,8 @@ The **Rectangle** type is used to represent a mask area of a dialog box.
 
 ## Example
 
+### Example 1
+
 ```ts
 // xxx.ets
 @Entry
@@ -176,8 +178,6 @@ struct AlertDialogExample {
               alignment: DialogAlignment.Bottom,
               offset: { dx: 0, dy: -20 },
               gridCount: 3,
-              showInSubWindow: true,
-              isModal: true,
               confirm: {
                 value: 'button',
                 action: () => {
@@ -201,8 +201,6 @@ struct AlertDialogExample {
               autoCancel: true,
               alignment: DialogAlignment.Bottom,
               gridCount: 4,
-              showInSubWindow: true,
-              isModal: true,
               offset: { dx: 0, dy: -20 },
               primaryButton: {
                 value: 'cancel',
@@ -234,6 +232,63 @@ struct AlertDialogExample {
               message: 'text',
               autoCancel: true,
               alignment: DialogAlignment.Bottom,
+              gridCount: 4,
+              offset: { dx: 0, dy: -20 },
+              buttonDirection: DialogButtonDirection.HORIZONTAL,
+              buttons: [
+                {
+                  value: 'Button',
+                  action: () => {
+                    console.info('Callback when button1 is clicked')
+                  }
+                },
+                {
+                  value: 'Button',
+                  action: () => {
+                    console.info('Callback when button2 is clicked')
+                  }
+                },
+                {
+                  value: 'Button',
+                  enabled: true,
+                  defaultFocus: true,
+                  style: DialogButtonStyle.HIGHLIGHT,
+                  action: () => {
+                    console.info('Callback when button3 is clicked')
+                  }
+                },
+              ],
+              cancel: () => {
+                console.info('Closed callbacks')
+              }
+            }
+          )
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![en-us_image_alert](figures/en-us_image_alert.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct AlertDialogExample {
+  build() {
+    Column({ space: 5 }) {
+        Button('one button dialog')
+        .onClick(() => {
+          AlertDialog.show(
+            {
+              title: 'title',
+              subtitle: 'subtitle',
+              message: 'text',
+              autoCancel: true,
+              alignment: DialogAlignment.Center,
               gridCount: 4,
               showInSubWindow: true,
               isModal: true,

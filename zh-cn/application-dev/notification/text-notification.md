@@ -39,6 +39,7 @@
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. 构造NotificationRequest对象，并发布通知。
@@ -58,10 +59,10 @@
       };
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
 
@@ -72,14 +73,14 @@
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
+        id: 3,
         content: {
           notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
           multiLine: {
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'longTitle',
+            longTitle: 'test_longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
@@ -87,10 +88,10 @@
       // 发布通知
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
    

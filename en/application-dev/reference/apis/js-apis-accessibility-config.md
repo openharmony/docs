@@ -17,29 +17,35 @@ import config from '@ohos.accessibility.config';
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| highContrastText | [Config](#config)\<boolean>| Yes| Yes| Whether to enable high-contrast text.|
-| invertColor | [Config](#config)\<boolean>| Yes| Yes| Whether to enable color inversion.|
-| daltonizationState<sup>11+</sup> | [Config](#config)\<boolean>| Yes| Yes| Whether to enable daltonization. It must be used with **daltonizationColorFilter**.|
-| daltonizationColorFilter | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;| Yes| Yes| Configuration of the daltonization filter.|
-| contentTimeout | [Config](#config)\<number>| Yes| Yes| Recommended duration for content display. The value ranges from 0 to 5000, in milliseconds.|
-| animationOff | [Config](#config)\<boolean>| Yes| Yes| Whether to disable animation.|
-| brightnessDiscount | [Config](#config)\<number>| Yes| Yes| Brightness discount. The value ranges from 0 to 1.0.|
-| mouseKey | [Config](#config)\<boolean>| Yes| Yes| Whether to enable the mouse button feature.|
-| mouseAutoClick | [Config](#config)\<number>| Yes| Yes| Interval for automatic mouse clicks. The value ranges from 0 to 5000, in milliseconds.|
-| shortkey | [Config](#config)\<boolean>| Yes| Yes| Whether to enable the accessibility extension shortcut key.|
-| shortkeyTarget | [Config](#config)\<string>| Yes| Yes| Target application for the accessibility extension shortcut key. The value format is 'bundleName/abilityName'.|
-| captions | [Config](#config)\<boolean>| Yes| Yes| Whether to enable captions.|
-| captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| Yes| Yes| Captions style.|
-| audioMono<sup>10+</sup>| [Config](#config)\<boolean>| Yes| Yes| Whether to enable mono audio.|
-| audioBalance<sup>10+</sup>| [Config](#config)\<number>| Yes| Yes| Audio balance for the left and right audio channels. The value ranges from -1.0 to +1.0.|
+| Name                                | Type                                                                                        | Readable| Writable| Description                                                       |
+|------------------------------------|--------------------------------------------------------------------------------------------| -------- | -------- |-----------------------------------------------------------|
+| highContrastText                   | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable high-contrast text.                                          |
+| invertColor                        | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable color inversion.                                            |
+| daltonizationState<sup>11+</sup>   | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable daltonization. It must be used with **daltonizationColorFilter**.               |
+| daltonizationColorFilter           | [Config](#config)&lt;[DaltonizationColorFilter](#daltonizationcolorfilter)&gt;             | Yes| Yes| Configuration of the daltonization filter.                                              |
+| contentTimeout                     | [Config](#config)\<number>                                                                 | Yes| Yes| Recommended duration for content display. The value ranges from 0 to 5000, in milliseconds.                            |
+| animationOff                       | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to disable animation.                                            |
+| brightnessDiscount                 | [Config](#config)\<number>                                                                 | Yes| Yes| Brightness discount. The value ranges from 0 to 1.0.                                     |
+| mouseKey                           | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable the mouse button feature.                                             |
+| mouseAutoClick                     | [Config](#config)\<number>                                                                 | Yes| Yes| Interval for automatic mouse clicks. The value ranges from 0 to 5000, in milliseconds.                          |
+| shortkey                           | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable the accessibility extension shortcut key.                                         |
+| shortkeyTarget                     | [Config](#config)\<string>                                                                 | Yes| Yes| Target application for the accessibility extension shortcut key. The value format is 'bundleName/abilityName'.  |
+| captions                           | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable captions.                                            |
+| captionsStyle                      | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)> | Yes| Yes| Captions style.                                               |
+| audioMono<sup>10+</sup>            | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to enable mono audio.                                              |
+| audioBalance<sup>10+</sup>         | [Config](#config)\<number>                                                                 | Yes| Yes| Audio balance for the left and right audio channels. The value ranges from -1.0 to +1.0.                               |
+| shortkeyMultiTargets<sup>11+</sup> | [Config](#config)&lt;Array\<string>&gt;                                                    | Yes| Yes| List of target applications for the accessibility shortcut keys. The value format is ['bundleName/abilityName'].|
+| clickResponseTime<sup>11+</sup>    | [Config](#config)&lt;[ClickResponseTime](#clickresponsetime11)&gt;                         | Yes| Yes| Length of time required for a click.                                            |
+| ignoreRepeatClick<sup>11+</sup>    | [Config](#config)\<boolean>                                                                | Yes| Yes| Whether to ignore repeated clicks. This parameter must be used together with **repeatClickInterval**.                  |
+| repeatClickInterval<sup>11+</sup>  | [Config](#config)&lt;[RepeatClickInterval](#repeatclickinterval11)&gt;                     | Yes| Yes| Interval between repeated clicks.                                            |
 
-For a boolean return value, **True** means that the feature is enabled, and **False** means the opposite.
+For a Boolean return value, **True** means that the feature is enabled, and **False** means the opposite.
 
 ## enableAbility
 
 enableAbility(name: string, capability: Array&lt;accessibility.Capability&gt;): Promise&lt;void&gt;;
+
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 Enables an accessibility extension ability. This API uses a promise to return the result.
 
@@ -88,6 +94,8 @@ config.enableAbility(name, capability).then(() => {
 
 enableAbility(name: string, capability: Array&lt;[accessibility.Capability](js-apis-accessibility.md#capability)&gt;, callback: AsyncCallback&lt;void&gt;): void;
 
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
 Enables an accessibility extension ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
@@ -132,6 +140,8 @@ config.enableAbility(name, capability, (err: BusinessError) => {
 
 disableAbility(name: string): Promise&lt;void&gt;;
 
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
+
 Disables an accessibility extension ability. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
@@ -175,6 +185,8 @@ config.disableAbility(name).then(() => {
 ## disableAbility
 
 disableAbility(name: string, callback: AsyncCallback&lt;void&gt;): void;
+
+**Required permissions**: ohos.permission.WRITE_ACCESSIBILITY_CONFIG
 
 Disables an accessibility extension ability. This API uses an asynchronous callback to return the result.
 
@@ -463,3 +475,30 @@ When daltonization is enabled (with [daltonizationState](#attributes) set to **t
 | Protanomaly | Filter for protanomaly.|
 | Deuteranomaly | Filter for deuteranomaly.|
 | Tritanomaly  | Filter for tritanomaly.|
+
+## ClickResponseTime<sup>11+</sup>
+
+Defines the length of time for a click. 
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+| Name         | Description        |
+|-------------|------------|
+| Short       | Short (default). |
+| Medium      | Medium.      |
+| Long        | Long.      |
+
+## RepeatClickInterval<sup>11+</sup>
+
+Defines the interval between repeated clicks. 
+**RepeatClickInterval** takes effect only when repeated clicks are ignored ([ignoreRepeatClick](#attributes) set to **true**).
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+| Name      | Description   |
+|----------|-------|
+| Shortest | Shortest.|
+| Short    | Short. |
+| Medium   | Medium. |
+| Long     | Long. |
+| Longest  | Longest.|

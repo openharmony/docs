@@ -4,16 +4,21 @@
 - Concurrency
   - [Concurrency Overview](concurrency-overview.md)
   - Using Asynchronous Concurrency for Development
-    - [Asynchronous Concurrency Overview](async-concurrency-overview.md)
-    - [Single I/O Task Development](single-io-development.md)
+    - [Asynchronous Concurrency Overview (Promise and Async/Await)](async-concurrency-overview.md)
+    - [Single I/O Task Development (Promise and Async/Await)](single-io-development.md)
   - Using Multithread Concurrency for Development
-    - [Multithread Concurrency Overview](multi-thread-concurrency-overview.md)
-    - [Comparison Between the Actor and Memory Sharing Models](actor-model-development-samples.md)
+    - [Multithread Concurrency Overview (TaskPool and Worker)](multi-thread-concurrency-overview.md)
+    - [TaskPool Introduction](taskpool-introduction.md)
+    - [Worker Introduction](worker-introduction.md)
     - [Comparison Between TaskPool and Worker](taskpool-vs-worker.md)
+    - [CPU Intensive Task Development (TaskPool and Worker)](cpu-intensive-task-development.md)
+    - [I/O Intensive Task Development (TaskPool)](io-intensive-task-development.md)
+    - [Synchronous Task Development (TaskPool and Worker)](sync-task-development.md)
+  - Appendix
+    - [Comparison Between the Actor and Memory Sharing Models](actor-model-development-samples.md)
+    - [Serialization Types Supported by TaskPool and Worker](serialization-support-types.md)
     - [\@Concurrent Decorator: Verifying Concurrent Functions](arkts-concurrent.md)
-    - [CPU Intensive Task Development](cpu-intensive-task-development.md)
-    - [I/O Intensive Task Development](io-intensive-task-development.md)
-    - [Synchronous Task Development](sync-task-development.md)
+    - [Precautions for Multithread Safe](multi-thread-safety.md)
 - Container
   - [Container Overview](container-overview.md)
   - [Linear Containers](linear-container.md)

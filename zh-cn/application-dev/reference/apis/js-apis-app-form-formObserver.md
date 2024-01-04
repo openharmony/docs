@@ -921,3 +921,276 @@ try {
   console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
+
+## on('router')<sup>11+</sup>
+
+ on(type: 'router', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅卡片router事件。使用callback异步回调，返回触发router事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                      |
+| ---------------- | ---------------------------------------- | ---- | ----------------------------------------- |
+| type             | string                                   | 是   | 填写'router'，表示订阅卡片的router事件。          |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发router事件的卡片的RunningFormInfo。 |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let callback = (data: formInfo.RunningFormInfo) => {
+  console.log('Router event listening in registered form.' + JSON.stringify(data));
+};
+formObserver.on('router', callback);
+```
+
+## on('router')<sup>11+</sup>
+
+ on(type: 'router', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅指定卡片使用方的卡片router事件。使用callback异步回调，返回触发router事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'router'，表示订阅卡片的router事件。                             |
+| hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的router事件。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发router事件的卡片的RunningFormInfo。                    |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let hostBundleName: string = 'ohos.samples.FormApplication';
+let callback = (data: formInfo.RunningFormInfo) => {
+  console.log('Router event listening in registered form.' + JSON.stringify(data));
+};
+formObserver.on('router', hostBundleName, callback);
+```
+
+## off('router')<sup>11+</sup>
+
+ off(type: "router", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+取消订阅卡片router事件。使用callback异步回调，返回触发router事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'router'，表示取消订阅卡片的router事件。                             |
+| hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br>填写该参数时，与注册时填写bundleName的on接口对应。<br>缺省则订阅所有卡片使用方点击router类型卡片的事件，与注册时未填写bundleName的on接口相对应。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应bundleName下已注册事件回调。<br>需与对应on('router')的callback一致。 |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let hostBundleName: string = 'ohos.samples.FormApplication';
+let callback = (data: formInfo.RunningFormInfo) => {
+  console.log('Unregister form router event Listening.' + JSON.stringify(data));
+};
+formObserver.off('router', hostBundleName, callback);
+```
+
+## on('message')<sup>11+</sup>
+
+ on(type: 'message', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅卡片message事件。使用callback异步回调，返回触发message事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                      |
+| ---------------- | ---------------------------------------- | ---- | ----------------------------------------- |
+| type             | string                                   | 是   | 填写'message'，表示订阅卡片的message事件。         |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发message事件的卡片的RunningFormInfo。 |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let callback = (data: formInfo.RunningFormInfo) => {
+  console.log('Message event listening in registered form.' + JSON.stringify(data));
+};
+formObserver.on('message', callback);
+```
+
+## on('message')<sup>11+</sup>
+
+ on(type: 'message', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅指定卡片使用方的卡片message事件。使用callback异步回调，返回触发message事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'message'，表示订阅卡片的message事件。                            |
+| hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的message事件。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发message事件的卡片的RunningFormInfo。                    |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let hostBundleName: string = 'ohos.samples.FormApplication';
+let callback = (data: formInfo.RunningFormInfo) => {
+  console.log('Message event listening in registered form.' + JSON.stringify(data));
+};
+formObserver.on('message', hostBundleName, callback);
+```
+
+## off('message')<sup>11+</sup>
+
+ off(type: "message", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+取消订阅卡片message事件。使用message异步回调，返回触发message事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'message'，表示取消订阅卡片的message事件。                         |
+| hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br>填写该参数时，与注册时填写bundleName的on接口对应。<br>缺省则取消订阅所有卡片使用方的点击事件，与注册时未填写bundleName的on接口相对应。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br>需与对应on('message')的callback一致。 |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let hostBundleName: string = 'ohos.samples.FormApplication';
+let callback = (data: formInfo.RunningFormInfo) => {
+  console.log('Unregister form Message event Listening.' + JSON.stringify(data));
+};
+formObserver.off('message', hostBundleName, callback);
+```
+
+## on('call')<sup>11+</sup>
+
+ on(type: 'call', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅卡片call事件。使用callback异步回调，返回触发call事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                      |
+| ---------------- | ---------------------------------------- | ---- | ----------------------------------------- |
+| type             | string                                   | 是   | 填写'call'，表示订阅卡片的call事件。            |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发call事件的卡片的RunningFormInfo。 |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let callback = (data: formInfo.RunningFormInfo) => {
+  console.log('Call event listening in registered form.' + JSON.stringify(data));
+};
+formObserver.on('call', callback);
+```
+
+## on('call')<sup>11+</sup>
+
+ on(type: 'call', hostBundleName: string, observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+订阅指定卡片使用方的卡片call事件。使用callback异步回调，返回触发call事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'call'，表示订阅卡片的call事件。                               |
+| hostBundleName   | string                                   | 是   | 指定卡片使用方的bundleName。缺省则订阅所有卡片使用方的卡片的call事件。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)&gt; | 是   | 回调函数。返回触发call事件的卡片的RunningFormInfo。                    |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let hostBundleName: string = 'ohos.samples.FormApplication';
+let callback = (data: formInfo.RunningFormInfo) => {
+  console.log('Call event listening in registered form.' + JSON.stringify(data));
+};
+formObserver.on('call', hostBundleName, callback);
+```
+
+## off('call')<sup>11+</sup>
+
+ off(type: "call", hostBundleName?: string, observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;): void
+
+取消订阅卡片call事件。使用callback异步回调，返回触发call事件的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)。
+
+**需要权限**：ohos.permission.OBSERVE_FORM_RUNNING
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                                         |
+| ---------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type             | string                                   | 是   | 填写'call'，表示取消订阅卡片的call事件。                           |
+| hostBundleName   | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br>填写该参数时，与注册时填写bundleName的on接口对应。<br>缺省则取消订阅所有卡片使用方的点击事件，与注册时未填写bundleName的on接口相对应。 |
+| observerCallback | Callback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#runningforminfo10)&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br>需与对应on('call')的callback一致。 |
+
+**示例：**
+
+```ts
+import formObserver from '@ohos.app.form.formObserver';
+import formInfo from '@ohos.app.form.formInfo';
+
+let hostBundleName: string = 'ohos.samples.FormApplication';
+let callback = (data: formInfo.RunningFormInfo) => {
+  console.log('Unregister form Call event Listening.' + JSON.stringify(data));
+};
+formObserver.off('call', hostBundleName, callback);
+```

@@ -22,7 +22,7 @@ For details about the state, see [AVPlayerState](../reference/apis/js-apis-media
 
 Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API reference.
 
-1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
+1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the idle state.
 
 2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
    | Event Type| Description|

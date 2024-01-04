@@ -78,7 +78,7 @@ When the API is called, the **Worker** instance has been destroyed or is being d
 
 Ensure that the **Worker** instance is running properly.
 
-## 10200005 Worker Thread Does Not Support an API
+## 10200005 API Not Supported in the Worker Thread
 
 **Error Message**
 
@@ -206,7 +206,7 @@ The constructors of the **containers** class cannot be directly called. The keyw
 
 Use the keyword **new** to create an instance.
 
-## 10200013 Read-Only Properly
+## 10200013 Read-Only Property
 
 **Error Message**
 
@@ -313,3 +313,111 @@ The task group to cancel does not exist in the task pool.
 **Solution**
 
 Before canceling a task group, ensure that the task group is placed in the task pool by calling **taskpool.execute** and is not finishing. If you are not sure, capture exceptions.
+
+## 10200019 Failed to Call an API of an Unregistered Object
+
+**Error Message**
+
+The globalCallObject is not registered.
+
+**Description**
+
+This error code is reported when you attempt to call an API of an object that is not registered.
+
+**Possible Causes**
+
+The object with the specified name is not registered or has been destroyed on the **Worker** instance of the host thread.
+
+**Solution**
+
+Do not call the API on the object that is not registered or has been destroyed. If the registration or destruction status cannot be determined, use the try-catch mechanism to call the API.
+
+## 10200020 Failed to Call an API of a Registered Object
+
+**Error Message**
+
+The method to be called is not callable or is an async method or a generator.
+
+**Description**
+
+This error code is reported when you attempt to call an API of an incorrect type on a registered object.
+
+**Possible Causes**
+
+The attribute contained in the object is not callable, the method contained in the object is asynchronous, or the object is returned by the generator function.
+
+**Solution**
+
+Ensure that the attribute contained in the method is callable and that the method itself or its underlying layer is not asynchronous.
+
+## 10200021 Waiting for a Global Call Times Out
+
+**Error Message**
+
+The global call exceededs the timeout.
+
+**Description**
+
+This error code is reported when a global call does not return any value within the specified duration.
+
+**Possible Causes**
+
+The global call does not return any value within the specified duration, which is 5000 ms by default.
+
+**Solution**
+
+Do not call APIs that take a long time to process data, such as complex computing and file read/write. Otherwise, worker threads will be blocked for a long time, resulting in poor running performance.
+
+## 10200022 Functions Not Called in TaskPool
+
+**Error Message**
+
+The function is not called in the taskpool thread.
+
+**Description**
+
+This error code is reported when the function is not called in a **TaskPool** thread.
+
+**Possible Causes**
+
+The function is called in the main thread or in a thread that is not in **TaskPool**.
+
+**Solution**
+
+Ensure that concurrent functions are executed in a **TaskPool** thread. If you are not sure, capture exceptions.
+
+## 10200023 Functions Not Called in Concurrent Functions
+
+**Error Message**
+
+The function is not called in the concurrent function.
+
+**Description**
+
+This error code is reported when the function is not called in a concurrent function.
+
+**Possible Causes**
+
+The function is called in a callback function.
+
+**Solution**
+
+Ensure that the function is called in a concurrent function. If you are not sure, capture exceptions.
+
+## 10200024 Functions Not Registered in the Host Thread
+
+**Error Message**
+
+The callback is not registered on the host side.
+
+**Description**
+
+This error code is reported when this function is called without registering a callback in the host thread.
+
+**Possible Causes**
+
+This function is called without registering a callback in the host thread.
+
+**Solution**
+
+Ensure that the callback has been registered in the host thread before this function is called. If you are not sure, capture exceptions.

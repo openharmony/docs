@@ -98,7 +98,7 @@ emitter.once(innerEvent, () => {
 
 ## emitter.once<sup>11+</sup>
 
-once(event: string, callback: Callback\<[EventData](#eventdata)\>): void
+once(eventId: string, callback: Callback\<[EventData](#eventdata)\>): void
 
 单次订阅指定事件，并在接收到该事件并执行完相应的回调函数后，自动取消订阅。
 
@@ -247,7 +247,7 @@ emitter.emit(innerEvent, eventData);
 
 ## emitter.emit<sup>11+</sup>
 
-emit(event: string, data?: [EventData](#eventdata)): void
+emit(eventId: string, data?: [EventData](#eventdata)): void
 
 发送指定事件。
 
@@ -358,7 +358,7 @@ let count = emitter.getListenerCount("eventId");
 
 | 名称 | 类型           | 可读 | 可写 | 说明           |
 | ---- | ------------------ | ---- | ---- | -------------- |
-| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，数据类型支持字符串、整型和布尔型。<br> 其中字符串长度最大为10240字节。 |
+| data | [key: string]: any | 是   | 是   | 发送事件时传递的数据，支持数据类型包括Array、ArrayBuffer、Boolean、DataView、Date、Error、Map、Number、Object、Primitive（除了symbol）、RegExp、Set、String、TypedArray，数据大小最大为16M。 |
 
 ## Options<sup>11+</sup>
 

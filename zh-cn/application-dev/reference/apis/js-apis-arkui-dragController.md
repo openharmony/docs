@@ -211,7 +211,7 @@ struct DragControllerPage {
 | pointerId   | number                                                 | 是   | 设置启动拖拽时屏幕上触摸点的Id。         |
 | data        | [unifiedDataChannel.UnifiedData](js-apis-data-unifiedDataChannel.md#unifieddata) | 否   | 设置拖拽过程中携带的数据。               |
 | extraParams | string                                                 | 否   | 设置拖拽事件额外信息，具体功能暂未实现。 |
-| touchPoint<sup>11+</sup>    | [TouchPoint](../arkui-ts/ts-types.md#touchpoint)  | 否   | 配置跟手点坐标，不配置时，默认居中。      |
+| touchPoint<sup>11+</sup>    | [TouchPoint](../arkui-ts/ts-types.md#touchpoint11)  | 否   | 配置跟手点坐标，不配置时，默认居中。      |
 | previewOptions<sup>11+</sup>| [DragPreviewOptions](../arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | 否   | 拖拽背板自定义配置。 |
 
 ## DragStatus<sup>11+</sup>
@@ -285,7 +285,7 @@ dragAction.on('statusChange', (dragAndDropInfo)=>{
 
 ### off('statusChange')<sup>11+</sup>
 
- off(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
+ off(type: 'statusChange', callback?: Callback&lt;[DragAndDropInfo](#draganddropinfo)&gt;): void
 
 取消注册监听拖拽状态改变事件。
 
@@ -435,7 +435,7 @@ getDragPreview(): DragPreview
 
 | 类型        | 说明                                            |
 | ------------| ------------------------------------------------|
-| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口。 |
+| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
 
 **示例：**
 
@@ -443,7 +443,7 @@ getDragPreview(): DragPreview
 
 ## DragPreview<sup>11+</sup>
 
-拖拽背板的对象。
+拖拽背板的对象，在OnDrop和OnDragEnd回调中使用不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -451,7 +451,7 @@ getDragPreview(): DragPreview
 
 setForegroundColor(color: ResourceColor): void
 
-设置背板蒙版颜色。
+设置背板蒙版颜色，在OnDrop和OnDragEnd回调中使用不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -467,9 +467,9 @@ setForegroundColor(color: ResourceColor): void
 
   ### animate<sup>11+</sup>
 
-animate(options: AnimationOptions, handler: Callback&lt;void&gt;): void
+animate(options: AnimationOptions, handler: () => void): void
 
-设置背板蒙版颜色变化动效。
+设置背板蒙版颜色变化动效，在OnDrop和OnDragEnd回调中使用不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -478,7 +478,7 @@ animate(options: AnimationOptions, handler: Callback&lt;void&gt;): void
 | 参数名   | 类型                             | 必填 | 说明                               |
 | -------- | -------------------------------- | ---- | -----------------------------------|
 | options  | [AnimationOptions](#animationoptions11)                | 是   | 动效参数                           |
-| handler  | Callback&lt;void&gt;                         | 是   | 用于修改背板蒙版颜色等属性的回调方法。  |
+| handler  | () => void                         | 是   | 用于修改背板蒙版颜色等属性的回调方法。  |
 
 **示例：**
 

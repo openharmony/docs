@@ -51,9 +51,10 @@ import Want from '@ohos.app.ability.Want';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
     console.log(`FormExtensionAbility onAddForm, want: ${want.abilityName}`);
-    let dataObj1 = new Map<string, string>();
-    dataObj1.set('temperature', '11c');
-    dataObj1.set('time', '11:00');
+    let dataObj1 = new Record<string, string> = {
+      'temperature': '11c',
+      'time': '11:00'
+    };
 
     let obj1: formBindingData.FormBindingData = formBindingData.createFormBindingData(dataObj1);
     return obj1;
@@ -128,7 +129,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onChangeFormVisibility
 
-onChangeFormVisibility(newStatus: { [key: string]: number }): void
+onChangeFormVisibility(newStatus: Record\<string, number>): void
 
 Called to notify the widget provider that the widget visibility status is being changed.
 
@@ -140,7 +141,7 @@ This API is valid only for system applications when **formVisibleNotify** is set
 
 | Name   | Type                     | Mandatory| Description                        |
 | --------- | ------------------------- | ---- | ---------------------------- |
-| newStatus | { [key: string]: number } | Yes  | ID and visibility status of the widget to be changed.|
+| newStatus | Record\<string, number> | Yes  | ID and visibility status of the widget to be changed.|
 
 **Example**
 
@@ -259,7 +260,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   onConfigurationUpdate(newConfig: Configuration) {
     // This lifecycle callback is triggered only when the configuration is updated while the FormExtensionAbility is alive.
     // If no operation is performed within 5 seconds after a FormExtensionAbility instance is created, the instance will be deleted.
-    console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
+    console.log(`onConfigurationUpdate, config: ${JSON.stringify(newConfig)}`);
   }
 };
 ```
@@ -295,7 +296,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onShareForm
 
-onShareForm?(formId: string): { [key: string]: Object }
+onShareForm?(formId: string): Record\<string, Object>
 
 Called to notify the widget provider that the widget host is sharing the widget data.
 
@@ -313,7 +314,7 @@ Called to notify the widget provider that the widget host is sharing the widget 
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: Object} | Data to be shared by the widget, in the form of key-value pairs.|
+| Record\<string, Object> | Data to be shared by the widget, in the form of key-value pairs.|
 
 **Example**
 
@@ -334,7 +335,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## onAcquireFormData<sup>10+</sup>
 
-onAcquireFormData?(formId: string): { [key: string]: Object }
+onAcquireFormData?(formId: string): Record\<string, Object>
 
 Called to notify the widget provider that the widget host is requesting the custom data.
 
@@ -352,7 +353,7 @@ Called to notify the widget provider that the widget host is requesting the cust
 
 | Type                                                        | Description                                                       |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
-| {[key: string]: Object} | Custom data of the widget, in the form of key-value pairs.|
+| Record\<string, Object> | Custom data of the widget, in the form of key-value pairs.|
 
 **Example**
 

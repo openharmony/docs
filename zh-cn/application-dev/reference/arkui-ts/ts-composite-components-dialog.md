@@ -43,7 +43,7 @@ TipsDialog({controller: CustomDialogController, imageRes: Resource, imageSize: S
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| controller | [CustomDialogController](ts-methods-custom-dialog-box.md) | 是 | - | 提示弹出框控制器。 | 
+| controller | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | 是 | - | 提示弹出框控制器。 | 
 | imageRes | [Resource](ts-types.md#resource) | 是 | - | 展示的图片。 | 
 | imageSize | [SizeOptions](ts-types.md#sizeoptions) | 是 | - | 自定义图片尺寸。 | 
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 提示弹出框标题。 | 
@@ -73,7 +73,7 @@ SelectDialog({controller: CustomDialogController, title: ResourceStr, content?: 
 | content | [ResourceStr](ts-types.md#resourcestr) | 否 | 选择弹出框内容。 | 
 | selectedIndex | number | 否 | 选择弹出框的选中项。<br/>默认值：-1。 | 
 | confirm | [ButtonOptions](#buttonoptions) | 否 | 确认按钮。 | 
-| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
+| radioContent | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo接口说明)&gt; | 否 | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 | 
 
 
 ## ConfirmDialog

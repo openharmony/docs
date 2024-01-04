@@ -18,7 +18,7 @@ Compared with a flat layout, a deep layout with too much nesting means more time
 
 Redundant nesting results in unnecessary component nodes and deepens the hierarchy of the component tree. For example, if internal and external containers have the same layout direction, the external container can be used in place of the internal one to deliver the same layout effect. In this case, the redundant container can be removed to reduce nesting.
 
-Incorrect example:
+Nonexample:
 
 The following uses the **\<Grid>** component to implement a grid, outside of which three layers of stack containers with different attributes are deployed.
 
@@ -68,7 +68,7 @@ A review of the component tree structure reveals that, the desirable UI effect c
     ├──GridItem
 ```
 
-Correct example:
+Example:
 
 In the following code, by removing redundant nesting of stack containers, the number of child components in each grid item is three less than that in the previous example.
 
@@ -115,7 +115,7 @@ The figure below shows an adaptive UI.
 
 ![layout-ui-view](figures/layout-ui-view.png)
 
-Incorrect example:
+Nonexample:
 
 The following code uses a linear layout to implement the UI shown above:
 
@@ -128,8 +128,7 @@ struct MyComponent {
       Column() {  
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {  
           Text ('J') 
-          // For details about the attributes, see the correct example. 
-          ...  
+          // For details about the attribute parameters, see the example. 
         }  
         .width("40vp")  
         .height("40vp")  
@@ -141,11 +140,11 @@ struct MyComponent {
             justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {  
             //Phone number or first name  
             Text('John') 
-             ...   
+             // For details about the attribute parameters, see the example. 
 
             //Date Time  
             Text ('2 min ago') 
-             ...  
+             // For details about the attribute parameters, see the example.
              }  
           .width("100%").height(22)  
   
@@ -200,7 +199,7 @@ The figure below illustrates the layout of the elements.
 
 ![Input picture description](figures/layout-relative-view.png)
 
-Correct example:
+Example:
 
 The figure above shows a clear relative layout relationship. In light of this, a **\<RelativeContainer>** can be adopted to improve performance. Below is the specific code implementation.
 
@@ -302,7 +301,7 @@ For details about how to replace the flex container components with **\<Row>** a
 
 In the build function of ArkUI, **if/else** is also regarded as a component and a node in the component tree. In scenarios where the basic layout remains unchanged, reduce the use of if/else if modifying attribute settings can achieve the same purpose – present different GUI content under different conditions. The use of **if/else** not only adds a layer of nodes, but might also result in re-layout and re-render.
 
-Incorrect example:
+Nonexample:
 
 In the following code, the value of **isVisible** is used to control the visibility of the **\<Image>** component. As a result, the **\<Image>** component is continuously created and destroyed during the selection switchover.
 
@@ -350,7 +349,7 @@ Component tree when **isVisible** is **false**:
     └──Row
 ```
 
-Correct example:
+Example:
 
 In the following example, the **visibility** attribute is used to control the visibility of the **\<Image>** component, avoiding the re-layout and re-rendered caused by **if/else**.
 
@@ -380,7 +379,210 @@ struct TopicItem {
 }
 ```
 
-Note: The abovementioned recommendation is provided in regard of performance. If memory is more of a concern, use **if/else** instead.
+Note: The aforementioned recommendation is provided in regard of performance. If memory is more of a concern, use **if/else** instead.
+
+## Reducing Layout Time
+
+Compared with a flat layout, a deep layout with too much nesting means more time spent on node creation and layout. For optimized layout hierarchies, avoid redundant nesting or flatten the layout.
+
+Nonexample:
+
+The following uses a linear layout, which takes 166 ms 313 us.
+
+```ts
+
+import measure from '@ohos.measure';
+import prompt from '@ohos.prompt';
+
+@Entry
+@Component
+struct PerformanceRelative {
+  @State message: string = 'Hello World'
+  @State textWidth: string = "";
+
+  build() {
+    Column() {
+      Image($r("app.media.app_icon")).width("100%").height(300).margin({ bottom: 20 })
+      Row() {
+        Blank()
+        Column() {
+          Image($r("app.media.app_icon")).margin({ bottom: 4 }).width(40).aspectRatio(1)
+          Text("Name")
+        }.margin({ left: 8, right: 8 })
+      }.position({ y: 280 }).width("100%")
+      // Empty row
+      Row().height(this.textWidth)
+      Column() {
+        Row() {
+          Text("Singapore").fontSize(20).fontWeight(FontWeight.Bolder)
+            .margin(8)
+            .textAlign(TextAlign.Start)
+        }.width("100%").justifyContent(FlexAlign.Start)
+
+        Flex({ alignItems: ItemAlign.Center }) {
+          Text("Camera").flexShrink(0)
+            .margin({ right: 8 })
+          TextInput()
+        }.margin(8)
+
+        Flex({ alignItems: ItemAlign.Center }) {
+          Text("Settings").flexShrink(0)
+            .margin({ right: 8 })
+          TextInput()
+        }.margin(8)
+
+        Row() {
+          Column() {
+            Image($r("app.media.app_icon")).width(80).aspectRatio(1).margin({ bottom: 8 })
+            Text("Description")
+          }.margin(8)
+
+          Column() {
+            Text("Title").fontWeight(FontWeight.Bold).margin({ bottom: 8 })
+            Text("Long Text")
+          }.margin(8).layoutWeight(1).alignItems(HorizontalAlign.Start)
+        }.margin(8).width("100%").alignItems(VerticalAlign.Top)
+      }.layoutWeight(1)
+
+      Flex({ justifyContent: FlexAlign.End }) {
+        Button("Upload").margin(8)
+        Button("Discard").margin(8)
+      }
+    }
+    .width("100%").height("100%")
+  }
+}
+
+```
+
+Example:
+
+Use of a relative layout reduces both the nesting depth and quantity of components, shortening the time required for layout to 123 ms 278 us.
+
+```ts
+
+@Entry
+@Component
+struct RelativePerformance {
+  @State message: string = 'Hello World'
+
+  build() {
+    RelativeContainer(){
+      Image($r("app.media.app_icon"))
+        .height(300)
+        .width("100%")
+        .id("topImage")
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "__container__", align: VerticalAlign.Top }
+        })
+      Image($r("app.media.app_icon"))
+        .width(40)
+        .aspectRatio(1)
+        .margin(4)
+        .id("topCornerImage")
+        .alignRules({
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          center: {anchor: "topImage", align: VerticalAlign.Bottom }
+        })
+      Text("Name")
+        .id("name")
+        .margin(4)
+        .alignRules({
+          left: { anchor: "topCornerImage", align: HorizontalAlign.Start },
+          top: {anchor: "topCornerImage", align: VerticalAlign.Bottom }
+        })
+      Text("Singapore")
+        .margin(8)
+        .fontWeight(FontWeight.Bolder)
+        .fontSize(20)
+        .id("singapore")
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "name", align: VerticalAlign.Bottom }
+        })
+      Text("Camera")
+        .margin(8)
+        .id("camera")
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "singapore", align: VerticalAlign.Bottom }
+        })
+      TextInput()
+        .id("cameraInput")
+        .alignRules({
+          left: { anchor: "camera", align: HorizontalAlign.End },
+          right:{ anchor: "__container__", align: HorizontalAlign.End },
+          top: {anchor: "camera", align: VerticalAlign.Top },
+          bottom: { anchor: "camera", align: VerticalAlign.Bottom }
+        })
+      Text("Settings")
+        .margin(8)
+        .id("settings")
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "camera", align: VerticalAlign.Bottom }
+        })
+      TextInput()
+        .id("settingInput")
+        .alignRules({
+          left: { anchor: "settings", align: HorizontalAlign.End },
+          right:{ anchor: "__container__", align: HorizontalAlign.End },
+          top: {anchor: "settings", align: VerticalAlign.Top },
+          bottom: { anchor: "settings", align: VerticalAlign.Bottom }
+        })
+      Image($r("app.media.app_icon"))
+        .id("descriptionIcon")
+        .margin(8)
+        .width(80)
+        .aspectRatio(1)
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "settings", align: VerticalAlign.Bottom }
+        })
+      Text("Description")
+        .id("description")
+        .margin(8)
+        .alignRules({
+          left: { anchor: "__container__", align: HorizontalAlign.Start },
+          top: {anchor: "descriptionIcon", align: VerticalAlign.Bottom }
+        })
+      Text("Title")
+        .fontWeight(FontWeight.Bold)
+        .id("title")
+        .margin(8)
+        .alignRules({
+          left: { anchor: "description", align: HorizontalAlign.End },
+          top: {anchor: "descriptionIcon", align: VerticalAlign.Top }
+        })
+      Text("Long Text")
+        .id("longText")
+        .margin(8)
+        .alignRules({
+          left: { anchor: "description", align: HorizontalAlign.End },
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          top: {anchor: "title", align: VerticalAlign.Bottom }
+        })
+      Button("Discard")
+        .id("discard")
+        .margin(8)
+        .alignRules({
+          right: { anchor: "__container__", align: HorizontalAlign.End },
+          bottom: {anchor: "__container__", align: VerticalAlign.Bottom }
+        })
+      Button("Upload")
+        .id("upload")
+        .margin(8)
+        .alignRules({
+          right: { anchor: "discard", align: HorizontalAlign.Start },
+          bottom: {anchor: "__container__", align: VerticalAlign.Bottom }
+        })
+    }.width("100%").height("100%")
+  }
+}
+
+```
+
 
 ## Using Layout Optimization Tools
 

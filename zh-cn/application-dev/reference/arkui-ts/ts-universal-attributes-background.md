@@ -6,17 +6,120 @@
 >
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## 属性
+## background<sup>10+</sup>
 
-| 名称                               | 参数类型                                     | 描述                                       |
-| -------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| background<sup>10+</sup>         | builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: {align?:[Alignment](ts-appendix-enums.md#alignment)} | builder：自定义背景。<br/>align：设置自定义背景与组件的对齐方式。<br/>同时设置了background，backgroundColor，backgroundImage时，叠加显示，background在最上层。<br/>**说明：** <br/>自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。|
-| backgroundColor                  | [ResourceColor](ts-types.md#resourcecolor) | 设置组件的背景色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backgroundImage                  | src:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>repeat?:&nbsp;[ImageRepeat](ts-appendix-enums.md#imagerepeat) | src：图片地址，支持网络图片资源地址和本地图片资源地址和Base64，不支持svg类型的图片。<br/>repeat：设置背景图片的重复样式，默认不重复。当设置的背景图片为透明底色图片，且同时设置了backgroundColor时，二者叠加显示，背景颜色在最底部。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backgroundImageSize              | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>}&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按值为0显示。当设置了height未设置width时，width根据图片原始宽高比进行调整。 |
-| backgroundImagePosition          | [Position](ts-types.md#position8)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backgroundBlurStyle<sup>9+</sup> | value:[BlurStyle](ts-appendix-enums.md#blurstyle9),<br/>options<sup>10+</sup>?:[BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 为当前组件提供一种在背景和内容之间的模糊能力。<br/>value: 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。<br/>options: 可选参数，背景模糊选项。<br/>该接口支持在ArkTS卡片中使用。 |
-| backgroundEffect<sup>11+</sup>  | blurOptions:[BackgroundBrightnessOptions](ts-appendix-enums.md#backgroundbrightnessoptions11)  |  设置组件背景属性包括：饱和度，亮度，颜色。  |
+background(builder: CustomBuilder, options?: { align?: Alignment })
+
+设置组件背景。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                         |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| builder | [CustomBuilder](ts-types.md#custombuilder8)          | 是   | 自定义背景。                                                 |
+| options | {align?:[Alignment](ts-appendix-enums.md#alignment)} | 否   | 设置自定义背景与组件的对齐方式。<br/>同时设置了background，backgroundColor，backgroundImage时，叠加显示，background在最上层。 |
+
+>  **说明：**
+>
+>  自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
+
+## backgroundColor
+
+backgroundColor(value: ResourceColor)
+
+设置组件背景色。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明               |
+| ------ | ------------------------------------------ | ---- | ------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置组件的背景色。 |
+
+## backgroundImage
+
+backgroundImage(src: ResourceStr, repeat?: ImageRepeat)
+
+设置组件的背景图片。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                            | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| src    | [ResourceStr](ts-types.md#resourcestr)          | 是   | 图片地址，支持网络图片资源地址和本地图片资源地址和Base64，不支持svg类型的图片。 |
+| repeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否   | 设置背景图片的重复样式，默认不重复。当设置的背景图片为透明底色图片，且同时设置了backgroundColor时，二者叠加显示，背景颜色在最底部。 |
+
+## backgroundImageSize
+
+backgroundImageSize(value: SizeOptions | ImageSize)
+
+设置组件背景图片的宽高。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [SizeOptions](ts-universal-attributes-size.md#sizeoptions对象说明)&nbsp;\|&nbsp;[ImageSize](ts-appendix-enums.md#imagesize) | 是   | 设置背景图像的高度和宽度。当输入为{width:&nbsp;Length,&nbsp;height:&nbsp;Length}对象时，如果只设置一个属性，则第二个属性保持图片原始宽高比进行调整。默认保持原图的比例不变。<br/>width和height取值范围： [0, +∞)<br/>默认值：ImageSize.Auto<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按值为0显示。当设置了height未设置width时，width根据图片原始宽高比进行调整。 |
+
+## backgroundImagePosition
+
+backgroundImagePosition(value: Position | Alignment)
+
+设置背景图的位置。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Position](ts-types.md#position8)&nbsp;\|&nbsp;[Alignment](ts-appendix-enums.md#alignment) | 是   | 设置背景图在组件中显示位置，即相对于组件左上角的坐标。<br/>默认值：<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0<br/>} <br/> x和y值设置百分比时，偏移量是相对组件自身宽高计算的。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+
+## backgroundBlurStyle<sup>9+</sup>
+
+backgroundBlurStyle(value: BlurStyle, options?: BackgroundBlurStyleOptions)
+
+为当前组件提供一种在背景和内容之间的模糊能力。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名                | 类型                                                         | 必填 | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
+| options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10对象说明) | 否   | 背景模糊选项。                                               |
+
+## backgroundEffect<sup>11+</sup> 
+
+backgroundEffect(options: BackgroundEffectOptions)
+
+设置组件背景属性。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                         | 必填 | 说明                                       |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| options | [BackgroundBrightnessOptions](ts-appendix-enums.md#backgroundbrightnessoptions11) | 否   | 设置组件背景属性包括：饱和度，亮度，颜色。 |
 
 ## BackgroundBlurStyleOptions<sup>10+</sup>对象说明
 

@@ -88,14 +88,14 @@ import taskpool from '@ohos.taskpool';
 @Concurrent
 async function produce(): Promise<number>{
   // 添加生产相关逻辑
-  console.log("producing...")
-  return Math.random()
+  console.log("producing...");
+  return Math.random();
 }
 
 class Consumer {
   public consume(value : number) {
     // 添加消费相关逻辑
-    console.log("consuming value: " + value)
+    console.log("consuming value: " + value);
   }
 }
 
@@ -113,14 +113,14 @@ struct Index {
         Button() {
           Text("start")
         }.onClick(() => {
-          let produceTask: taskpool.Task = new taskpool.Task(produce)
-          let consumer: Consumer = new Consumer()
+          let produceTask: taskpool.Task = new taskpool.Task(produce);
+          let consumer: Consumer = new Consumer();
           for (let index: number = 0; index < 10; index++) {
             // 执行生产异步并发任务
             taskpool.execute(produceTask).then((res : number) => {
-              consumer.consume(res)
+              consumer.consume(res);
             }).catch((e : Error) => {
-              console.error(e.message)
+              console.error(e.message);
             })
           }
         })
