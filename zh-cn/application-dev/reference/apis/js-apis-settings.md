@@ -21,9 +21,9 @@ import settings from '@ohos.settings';
 
 | 名称                | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| DEVICE_SHARED       | string | 是   | 是   |提供设备共享密钥的域名                                          |
-| USER_PROPERTY       | string | 是   | 是   | 为用户属性提供域名                                            |
-| USER_SECURITY       | string | 是   | 是   | 为用户安全属性提供域名                                        |
+| DEVICE_SHARED       | string | 是   | 是   | 提供设备属性共享域                                          |
+| USER_PROPERTY       | string | 是   | 是   | 为用户属性域                                           |
+| USER_SECURITY       | string | 是   | 是   | 为用户安全属性域                                        |
 
 ## date
 
@@ -217,15 +217,15 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                 | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | name     | string                  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value    | string                  | 是   | 数据项值。取值范围随业务变动。     <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp; &nbsp;&nbsp;                    |
-|
+| value    | string                  | 是   | 数据项值。取值范围随业务变动。                               |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
 
 **示例**：
 
 ```js
 import settings from '@ohos.settings';
 
-//更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
+// 更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
   console.log('Callback return whether value is set.');
@@ -263,7 +263,7 @@ setValue(context: Context, name: string, value: string): Promise\<boolean>
 ```js
 import settings from '@ohos.settings';
 
-//更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
+// 更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
   console.log('Callback return whether value is set.');
@@ -287,7 +287,7 @@ setValue(context: Context, name: string, domainName: string): Promise\<boolean>
 | context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
-|domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;表示设备共享密钥的域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性提供的域名。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性提供的域名|
+|domainName| string                 | 是   | 指定要设置的域名                <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;表示设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
 
 **返回值**：
 
@@ -300,7 +300,7 @@ setValue(context: Context, name: string, domainName: string): Promise\<boolean>
 ```js
 import settings from '@ohos.settings';
 
-//更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
+// 更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', domainName.DEVICE_SHARED).then((status) => {
   console.log(`callback:return whether value is set.`)
@@ -389,7 +389,7 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 | context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
-|domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;表示设备共享密钥的域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性提供的域名。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性提供的域名|
+|domainName| string                 | 是   | 指定要设置的域名                <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
 
 **返回值**：
 
@@ -402,10 +402,10 @@ getValue(context: Context, name: string, domainName: string): Promise\<string>;
 ```js
 import settings from '@ohos.settings';
 
-//更新数据项亮度的值（该数据项在数据库中已存在，故getValue方法将更新该数据项的值）
+// 更新数据项亮度的值（该数据项在数据库中已存在，故getValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, domainName.DEVICE_SHARED).then((value) => {
-console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
 });
 ```
 
@@ -438,9 +438,9 @@ getValueSync(context: Context, name: string, defValue: string): string;
 ```js
 import settings from '@ohos.settings';
 
-//获取数据项亮度的值（该数据项在数据库中已存在）
+// 获取数据项亮度的值（该数据项在数据库中已存在）
 const context: Context =  getContext(this);
-let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
+let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '10');
 ```
 
 ## settings.getValueSync<sup>11+</sup>
@@ -460,7 +460,8 @@ getValueSync(context: Context, name: string, defvalue: string, domainName: strin
 | context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
-|domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;表示设备共享密钥的域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性提供的域名。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性提供的域名|
+|domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
+
 
 **返回值**：
 
@@ -473,7 +474,7 @@ getValueSync(context: Context, name: string, defvalue: string, domainName: strin
 ```js
 import settings from '@ohos.settings';
 
-//更新数据项亮度的值（该数据项在数据库中已存在）
+// 更新数据项亮度的值（该数据项在数据库中已存在）
 const context: Context =  getContext(this);
 let value = settings.getValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100',  domainName.DEVICE_SHARED);
 ```
@@ -511,7 +512,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 ```js
 import settings from '@ohos.settings';
 
-//更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
+// 更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
 const context: Context =  getContext(this);
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100');
 ```
@@ -537,7 +538,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 | context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
-|domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;表示设备共享密钥的域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性提供的域名。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性提供的域名|
+|domainName| string                 | 是   | 指定要设置的域名                <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
 
 **返回值**：
 
@@ -550,7 +551,7 @@ setValueSync(context: Context, name: string, value: string): boolean
 ```js
 import settings from '@ohos.settings';
 
-//更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
+// 更新数据项亮度的值（该数据项在数据库中已存在，故setValueSync方法将更新该数据项的值）
 const context: Context =  getContext(this);
 let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', domainName.DEVICE_SHARED);
 ```
@@ -572,7 +573,7 @@ registeKeyObserver(context: Context, name: string, domainName: string, observer:
 | context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
-|domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;表示设备共享密钥的域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性提供的域名。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性提供的域名|
+|domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
 |observer  |  AsyncCallback\<void>  | 是   | 使用collback方式获取数据项的值。                   |
 
 **返回值**：
@@ -611,7 +612,7 @@ unregisteKeyObserver(context: Context, name: string, domainName: string): boolea
 | context  | Context                | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | name     | string                 | 是   | 数据项的名称。数据项名称分为以下两种：<br> - 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
 | value    | string                 | 是   | 数据项值。取值范围随业务变动。                   |
-|domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;表示设备共享密钥的域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性提供的域名。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性提供的域名|
+|domainName| string                 | 是   | 指定要设置的域名               <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp;&nbsp;&nbsp;设备属性共享域。<br>- domainName为domainName.USER_PROPRERTY,<br>&nbsp;&nbsp;&nbsp;表示为用户属性域。 <br> - domainName为domainName.USER_SECURITY,<br>&nbsp;&nbsp;&nbsp;表示为用户安全属性域|
 
 **返回值**：
 
