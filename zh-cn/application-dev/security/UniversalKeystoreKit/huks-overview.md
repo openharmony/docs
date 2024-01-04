@@ -1,4 +1,4 @@
-# 通用密钥库概述
+# Universal Keystore Kit简介
 
 通用密钥管理库（Harmony Universal KeyStore，以下简称HUKS）向业务/应用提供各类密钥的统一安全操作能力，包括密钥管理（密钥生成/销毁、密钥导入、密钥证明、密钥协商、密钥派生）及密钥使用（加密/解密、签名/验签、访问控制）等功能。
 
@@ -56,3 +56,8 @@ HUKS为开发者提供了密钥全生命周期的管理能力，其核心功能�
 | 功能 | 说明 | 支持算法 | 
 | -------- | -------- | -------- |
 | **[密钥证明](huks-key-attestation-overview.md)** | 为存储在HUKS中的非对称密钥对中的公钥签发证书，从而证明密钥的合法性（如密钥在安全环境中生成）。 | RSA、ECC、X25519 | 
+
+
+## 与相关Kit的关系
+
+在进行**[访问控制](huks-identity-authentication-overview.md)**的过程中，涉及对用户身份的认证，这部分依赖于[Universal Keystore Kit（密钥管理服务）](../UserAuthenticationKit/user-authentication-overview.md)。
