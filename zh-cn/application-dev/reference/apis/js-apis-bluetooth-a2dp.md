@@ -611,7 +611,7 @@ setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| codecInfo | [CodecInfo](#codecinfo) | 是    | 编码器信息。 |
+| codecInfo | [CodecInfo](#codecinfo11) | 是    | 编码器信息。 |
 
 **错误码**：
 
