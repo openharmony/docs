@@ -25,6 +25,10 @@ onSuccess(): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
+**示例：**
+
+参见[AutoSaveCallback.onFailure](js-apis-app-ability-autoFillManager.md#AutoSaveCallbackonFailure)。
+
 ### AutoSaveCallback.onFailure
 
 onFailure(): void
@@ -58,7 +62,7 @@ onFailure(): void
               .fontSize(20)
               .margin({ top:30 ,right: 30})
               .onClick(()=>{
-                // 手动触发成功回调，保存信息
+                // 手动触发成功回调，保存信息。请根据实际的业务逻辑进行处理
                 this.callback.onSuccess();
               })
             Button("No")
@@ -66,7 +70,7 @@ onFailure(): void
               .fontSize(20)
               .margin({ top:30 ,left:30})
               .onClick(()=>{
-                // 手动触发失败回调，取消保存
+                // 手动触发失败回调，取消保存。请根据实际的业务逻辑进行处理
                 this.callback.onFailure();
               })
           }
@@ -77,9 +81,10 @@ onFailure(): void
     }
   }
   ```
-  注：
-  此处从LocalStorage中取得的AutoSaveCallback为预先在AutoFillAbility（自定义的AutoFillExtensionAbility）中OnSaveRequest生命周期获得，并存储到LocalStorage中，具体可参考[SaveRequestCallback](js-apis-inner-application-autoFillRequest.md#SaveRequestCallbackonSuccess)；<br>
-  这里手动触发回调仅做演示用，实际开发中可根据业务逻辑进行处理
+
+> **说明：**
+>
+> 示例中从LocalStorage中取得的AutoSaveCallback为预先在AutoFillAbility（自定义的AutoFillExtensionAbility）中OnSaveRequest生命周期获得，并存储到LocalStorage中，具体可参考[SaveRequestCallback](js-apis-inner-application-autoFillRequest.md#SaveRequestCallbackonSuccess)。
 
 ## requestAutoSave
 
