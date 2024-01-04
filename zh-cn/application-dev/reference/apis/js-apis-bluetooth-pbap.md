@@ -105,7 +105,7 @@ setShareType(deviceId: string, type: ShareType, callback: AsyncCallback&lt;void&
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| type | [ShareType](#ShareType) | 是    | 表示共享类型的枚举值。 |
+| type | [ShareType](#sharetype) | 是    | 表示共享类型的枚举值。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
@@ -151,7 +151,7 @@ setShareType(deviceId: string, type: ShareType): Promise&lt;void&gt;
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| type | [ShareType](#ShareType) | 是    | 表示共享类型的枚举值。 |
+| type | [ShareType](#sharetype) | 是    | 表示共享类型的枚举值。 |
 
 **返回值：**
 
@@ -201,7 +201,7 @@ getShareType(deviceId: string, callback: AsyncCallback&lt;ShareType&gt;): void
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
 | deviceId | string | 是    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| callback | AsyncCallback&lt;[ShareType](#ShareType)&gt; | 是    | 回调函数。当获取成功，err为undefined，否则为错误对象。   |
+| callback | AsyncCallback&lt;[ShareType](#sharetype)&gt; | 是    | 回调函数。当获取成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
 
@@ -250,7 +250,7 @@ getShareType(deviceId: string): Promise&lt;ShareType&gt;
 
 | 类型                                              | 说明                |
 | ------------------------------------------------- | ------------------- |
-| Promise&lt;[ShareType](#ShareType)&gt; | 以Promise的形式返回结果。如果成功，err为undefined的，否则为错误对象。 |
+| Promise&lt;[ShareType](#sharetype)&gt; | 以Promise的形式返回结果。如果成功，err为undefined的，否则为错误对象。 |
 
 **错误码**：
 
