@@ -150,7 +150,7 @@ getPlayingState(deviceId: string): PlayingState
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [PlayingState](#Playingstate) | 远端设备的播放状态。 |
+| [PlayingState](#playingstate) | 远端设备的播放状态。 |
 
 **错误码**：
 
