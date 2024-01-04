@@ -51,10 +51,10 @@
 
 2. 导入相关模块
 
-   ```ts
-   import certManager from '@ohos.security.certManager';
-   import { BusinessError } from '@ohos.base';
-   ```
+```ts
+import certManager from '@ohos.security.certManager';
+import { BusinessError } from '@ohos.base';
+```
 3. 安装应用私有凭据，获取应用私有凭据，并使用应用私有凭据进行签名、验签，最后删除应用私有凭据。
 
 ```ts
