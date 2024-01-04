@@ -58,65 +58,65 @@
 3. 安装应用私有凭据，获取应用私有凭据，并使用应用私有凭据进行签名、验签，最后删除应用私有凭据。
 
    ```ts
- async function certManagerSample() {
-   /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
-   let keystore: Uint8Array = new Uint8Array([
-     0x30, 0x82, 0x04, 0x6a, 0x02, 0x01,
-   ]);
-   
-   /* 安装凭据对应的密码，业务赋值 */
-   let keystorePwd: string = '123456';
-   let appKeyUri: string = '';
-   try {
-     /* 安装私有凭据 */
-     const res = await certManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
-     appKeyUri = (res.uri != undefined) ? res.uri : '';
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error("installPrivateCertificates error, errcode:" + e.code);
-   }
-   
-   try {
-     /* srcData为待签名、验签的数据，业务自行赋值 */
-     let srcData: Uint8Array = new Uint8Array([
-       0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01,
+   async function certManagerSample() {
+     /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
+     let keystore: Uint8Array = new Uint8Array([
+       0x30, 0x82, 0x04, 0x6a, 0x02, 0x01,
      ]);
    
-     /* 构造签名的属性参数 */
-     const signSpec: certManager.CMSignatureSpec = {
-       purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
-       padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-       digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
-     };
+     /* 安装凭据对应的密码，业务赋值 */
+     let keystorePwd: string = '123456';
+     let appKeyUri: string = '';
+     try {
+       /* 安装私有凭据 */
+       const res = await certManager.installPrivateCertificate(keystore, keystorePwd, "testPriCredential");
+       appKeyUri = (res.uri != undefined) ? res.uri : '';
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error("installPrivateCertificates error, errcode:" + e.code);
+     }
    
-     /* 签名 */
-     const signHandle: certManager.CMHandle = await certManager.init(appKeyUri, signSpec);
-     await certManager.update(signHandle.handle, srcData);
-     const signResult: certManager.CMResult = await certManager.finish(signHandle.handle);
+     try {
+       /* srcData为待签名、验签的数据，业务自行赋值 */
+       let srcData: Uint8Array = new Uint8Array([
+         0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01,
+     ]);
    
-     /* 构造验签的的属性参数 */
-     const verifySpec: certManager.CMSignatureSpec = {
-       purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
-       padding: certManager.CmKeyPadding.CM_PADDING_PSS,
-       digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
-     };
+       /* 构造签名的属性参数 */
+       const signSpec: certManager.CMSignatureSpec = {
+         purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
+         padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+         digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+       };
    
-     /* 验签 */
-     const verifyHandle: certManager.CMHandle = await certManager.init(appKeyUri, verifySpec);
-     await certManager.update(verifyHandle.handle, srcData);
-     const verifyResult = await certManager.finish(verifyHandle.handle, signResult.outData);
-     console.log("sign and verify success");
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error("sign or verify failed, errcode:" + e.code);
+       /* 签名 */
+       const signHandle: certManager.CMHandle = await certManager.init(appKeyUri, signSpec);
+       await certManager.update(signHandle.handle, srcData);
+       const signResult: certManager.CMResult = await certManager.finish(signHandle.handle);
+   
+       /* 构造验签的的属性参数 */
+       const verifySpec: certManager.CMSignatureSpec = {
+         purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
+         padding: certManager.CmKeyPadding.CM_PADDING_PSS,
+         digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
+       };
+   
+       /* 验签 */
+       const verifyHandle: certManager.CMHandle = await certManager.init(appKeyUri, verifySpec);
+       await certManager.update(verifyHandle.handle, srcData);
+       const verifyResult = await certManager.finish(verifyHandle.handle, signResult.outData);
+       console.log("sign and verify success");
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error("sign or verify failed, errcode:" + e.code);
+     }
+   
+     try {
+       /* 卸载私有凭据 */
+       await certManager.uninstallPrivateCertificate(appKeyUri);
+     } catch (err) {
+       let e: BusinessError = err as BusinessError;
+       console.error("uninstallPrivateCertificate failed, errcode:" + e.code);
+     }
    }
-   
-   try {
-     /* 卸载私有凭据 */
-     await certManager.uninstallPrivateCertificate(appKeyUri);
-   } catch (err) {
-     let e: BusinessError = err as BusinessError;
-     console.error("uninstallPrivateCertificate failed, errcode:" + e.code);
-   }
-}
    ```
