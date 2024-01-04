@@ -16,7 +16,7 @@ Device Certificate Kit面向应用开发者，提供了[证书算法库](#证书
 
 ### 框架原理
 
-Device Certificate Kit涉及证书算法库框架，开发者只需要调用API接口层即可实现证书的操作。通过证书算法库框架，可忽视不同三方算法库的差异。
+系统提供证书算法库框架，开发者只需要调用API接口层即可实现证书的操作。通过证书算法库框架，可忽视不同三方算法库的差异。
 
 ![](figures/certificate_framework_architecture.png)
 
