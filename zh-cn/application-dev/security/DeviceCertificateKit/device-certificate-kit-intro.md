@@ -38,7 +38,7 @@ Device Certificate Kit面向应用开发者，提供了[证书算法库](#证书
 
 ### 与相关Kit的关系
 
-证书管理的功能使用时，涉及密钥的管理和使用，这部分依赖[Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md)密钥管理服务的能力。
+证书管理的功能使用时，涉及凭据的安装和使用，这部分依赖[Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md)密钥管理服务的能力。
 
 ## 约束与限制
 
