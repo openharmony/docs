@@ -62,7 +62,7 @@ onFailure(): void
               .fontSize(20)
               .margin({ top:30 ,right: 30})
               .onClick(()=>{
-                // 手动触发成功回调，保存信息。请根据实际的业务逻辑进行处理
+                // 本例中采用手动方式触发失败回调，取消保存。请根据实际业务逻辑进行处理。
                 this.callback.onSuccess();
               })
             Button("No")
@@ -70,7 +70,7 @@ onFailure(): void
               .fontSize(20)
               .margin({ top:30 ,left:30})
               .onClick(()=>{
-                // 手动触发失败回调，取消保存。请根据实际的业务逻辑进行处理
+                // 本例中采用手动方式触发失败回调，取消保存。请根据实际业务逻辑进行处理。
                 this.callback.onFailure();
               })
           }
