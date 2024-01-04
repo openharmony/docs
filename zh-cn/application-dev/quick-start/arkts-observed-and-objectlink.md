@@ -382,7 +382,7 @@ struct ViewB {
 
 - this.arrA[Math.floor(this.arrA.length/2)] = new ClassA(..) ：该状态变量的改变触发2次更新：
   1. ForEach：数组项的赋值导致ForEach的[itemGenerator](arkts-rendering-control-foreach.md#接口描述)被修改，因此数组项被识别为有更改，ForEach的item builder将执行，创建新的ViewA组件实例。
-  2. ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })：上述更改改变了数组中第一个元素，所以绑定this.arrA[0]的ViewA将被更新；
+  2. ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })：上述更改改变了数组中第二个元素，所以绑定this.arrA[1]的ViewA将被更新；
 
 - this.arrA.push(new ClassA(0)) ： 将触发2次不同效果的更新：
   1. ForEach：新添加的ClassA对象对于ForEach是未知的[itemGenerator](arkts-rendering-control-foreach.md#接口描述)，ForEach的item builder将执行，创建新的ViewA组件实例。
