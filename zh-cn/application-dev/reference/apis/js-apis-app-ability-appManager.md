@@ -231,9 +231,13 @@ appManager.getAppMemorySize((err, data) => {
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
-获取运行进程的有关信息。如果申请了ohos.permission.GET_RUNNING_INFO权限可以获取所有运行进程信息，否则只能获取当前运行进程信息。
+获取当前运行进程的有关信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
+
+> **说明：**
+>
+> 从API version 11开始，该接口不再需要ohos.permission.GET_RUNNING_INFO权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -268,9 +272,13 @@ appManager.getRunningProcessInformation().then((data) => {
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
-获取运行进程的有关信息。如果申请了ohos.permission.GET_RUNNING_INFO权限可以获取所有运行进程信息，否则只能获取当前运行进程信息。
+获取当前运行进程的有关信息。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
+
+> **说明：**
+>
+> 从API version 11开始，该接口不再需要ohos.permission.GET_RUNNING_INFO权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
