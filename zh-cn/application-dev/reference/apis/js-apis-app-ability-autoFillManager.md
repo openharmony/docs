@@ -27,7 +27,7 @@ onSuccess(): void
 
 **示例：**
 
-参见[AutoSaveCallback.onFailure](js-apis-app-ability-autoFillManager.md#AutoSaveCallbackonFailure)。
+参见[AutoSaveCallback.onFailure](#autosavecallbackonfailure)。
 
 ### AutoSaveCallback.onFailure
 
@@ -84,7 +84,7 @@ onFailure(): void
 
 > **说明：**
 >
-> 示例中从LocalStorage中取得的AutoSaveCallback为预先在AutoFillAbility（自定义的AutoFillExtensionAbility）中OnSaveRequest生命周期获得，并存储到LocalStorage中，具体可参考[SaveRequestCallback](js-apis-inner-application-autoFillRequest.md#SaveRequestCallbackonSuccess)。
+> 示例中从LocalStorage中取得的AutoSaveCallback为预先在AutoFillAbility（自定义的AutoFillExtensionAbility）中OnSaveRequest生命周期获得，并存储到LocalStorage中，具体可参考[SaveRequestCallback](js-apis-inner-application-autoFillRequest.md#saverequestcallbackonsuccess)。
 
 ## requestAutoSave
 
