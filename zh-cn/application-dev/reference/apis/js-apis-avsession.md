@@ -1559,7 +1559,7 @@ avSession.getAVCastController(sessionId , (err: BusinessError, avcontroller: avS
 
 ## avSession.getAVCastController<sup>10+</sup>
 
-getAVCastController(sessionId: string): Promise\<AVCastController>;
+getAVCastController(sessionId: string): Promise\<AVCastController>
 
 设备建立连接后，获取投播控制器。结果通过Promise方式返回。
 
@@ -2229,7 +2229,7 @@ setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 | 参数名 | 类型                                | 必填 | 说明                                           |
 | ------ | ----------------------------------- | ---- | ---------------------------------------------- |
-| data   | [AVPlaybackState](#avplaybackstate10) | 是   | 会话播放状态，包括状态、倍数、循环模式等信息。 |
+| state   | [AVPlaybackState](#avplaybackstate10) | 是   | 会话播放状态，包括状态、倍数、循环模式等信息。 |
 
 **返回值：**
 
@@ -2279,7 +2279,7 @@ setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                | 必填 | 说明                                           |
 | -------- | ----------------------------------- | ---- | ---------------------------------------------- |
-| data     | [AVPlaybackState](#avplaybackstate10) | 是   | 会话播放状态，包括状态、倍数、循环模式等信息。 |
+| state     | [AVPlaybackState](#avplaybackstate10) | 是   | 会话播放状态，包括状态、倍数、循环模式等信息。 |
 | callback | AsyncCallback\<void>                | 是   | 回调函数。当播放状态设置成功，err为undefined，否则返回错误对象。          |
 
 **错误码：**
@@ -2468,7 +2468,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | 是   | 需要设置的会话事件的名称 |
-| args | {[key: string]: any} | 是   | 需要传递的会话事件键值对 |
+| args | {[key: string]: Object} | 是   | 需要传递的会话事件键值对 |
 
 > **说明：**
 > 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
@@ -2528,7 +2528,7 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | 是   | 需要设置的会话事件的名称 |
-| args | {[key: string]: any} | 是   | 需要传递的会话事件键值对 |
+| args | {[key: string]: Object} | 是   | 需要传递的会话事件键值对 |
 | callback | AsyncCallback\<void>                          | 是   | 回调函数。当会话事件设置成功，err为undefined，否则返回错误对象。 |
 
 > **说明：**
@@ -2868,7 +2868,7 @@ setExtras(extras: {[key: string]: Object}, callback: AsyncCallback\<void>): void
 
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
-| extras | {[key: string]: any} | 是   | 需要传递的自定义媒体数据包键值对 |
+| extras | {[key: string]: Object} | 是   | 需要传递的自定义媒体数据包键值对 |
 | callback | AsyncCallback\<void>                          | 是   | 回调函数。当自定义媒体数据包设置成功，err为undefined，否则返回错误对象。 |
 
 > **说明：**
@@ -3006,8 +3006,9 @@ getAVCastController(callback: AsyncCallback\<AVCastController>): void
 
 | 错误码ID | 错误信息                                  |
 | -------- |---------------------------------------|
+| 6600101  | Session service exception. |
 | 6600102  | The session does not exist.           |
-| 6600110  | The remote connection does not exist. |
+| 6600109  | The remote connection does not exist. |
 
 **示例：**
 
@@ -3043,8 +3044,9 @@ getAVCastController(): Promise\<AVCastController>
 
 | 错误码ID | 错误信息 |
 | -------- | --------------------------------------- |
-| 6600102  | The session does not exist. |
-| 6600110  | The remote connection does not exist. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist.           |
+| 6600109  | The remote connection does not exist. |
 
 **示例：**
 
@@ -6068,7 +6070,7 @@ aVCastController.off('error')
 | 名称         | 类型                                        | 必填 | 说明                        |
 | ------------ | ------------------------------------------ | ---- | --------------------------- |
 | itemId       | number                                     | 是   | 播放列表中单项的ID。          |
-| description  | [AVMediaDescription](#avmediadescription10)  | 是   | 播放列表中单项的媒体元数据。   |
+| description  | [AVMediaDescription](#avmediadescription10)  | 否   | 播放列表中单项的媒体元数据。   |
 
 ## AVPlaybackState<sup>10+</sup>
 
@@ -6078,9 +6080,9 @@ aVCastController.off('error')
 
 | 名称         | 类型                                  | 必填 | 说明     |
 | ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate)       | 否   | 播放状态 |
+| state        | [PlaybackState](#playbackstate10)       | 否   | 播放状态 |
 | speed        | number                                | 否   | 播放倍速 |
-| position     | [PlaybackPosition](#playbackposition) | 否   | 播放位置 |
+| position     | [PlaybackPosition](#playbackposition10) | 否   | 播放位置 |
 | bufferedTime | number                                | 否   | 缓冲时间 |
 | loopMode     | [LoopMode](#loopmode10)                 | 否   | 循环模式 |
 | isFavorite   | boolean                               | 否   | 是否收藏 |
@@ -6246,15 +6248,15 @@ aVCastController.off('error')
 
 **系统接口：** 该接口为系统接口。
 
-| 名称          | 类型              | 可读 | 可写 | 说明  |
-| --------------| ---------------- |-----|-----|------|
-| sessionId    | string    | 是  | 否 | 会话ID      |
-| type         | [AVSessionType](#avsessiontype10)   | 是   | 否  | 会话类型    |
-| sessionTag   | string             | 是   | 否  | 会话的自定义名称    |
-| elementName  | [ElementName](js-apis-bundle-ElementName.md)  | 是   | 否  | 会话所属应用的信息（包含bundleName、abilityName等） |
-| isActive     | boolean             | 是   | 否  | 会话是否被激活                                      |
-| isTopSession | boolean             | 是   | 否  | 会话是否为最新的会话                                |
-| outputDevice | [OutputDeviceInfo](#outputdeviceinfo10)    | 是   | 否  | 分布式设备相关信息   |
+| 名称          | 类型              | 说明  |
+| --------------| ---------------- |------|
+| sessionId    | string    | 会话ID      |
+| type         | [AVSessionType](#avsessiontype10)   | 会话类型    |
+| sessionTag   | string             | 会话的自定义名称    |
+| elementName  | [ElementName](js-apis-bundle-ElementName.md)  | 会话所属应用的信息（包含bundleName、abilityName等） |
+| isActive     | boolean             | 会话是否被激活                                      |
+| isTopSession | boolean             | 会话是否为最新的会话                                |
+| outputDevice | [OutputDeviceInfo](#outputdeviceinfo10)    | 分布式设备相关信息   |
 
 ## AVSessionController<sup>10+</sup>
 
@@ -6322,7 +6324,7 @@ avsessionController.getAVPlaybackState((err: BusinessError, state: avSession.AVP
 
 ### getAVPlaybackState<sup>10+</sup>
 
-getAVPlaybackState(): Promise\<AVPlaybackState>;
+getAVPlaybackState(): Promise\<AVPlaybackState>
 
 获取当前的远端播放状态。结果通过Promise异步回调方式返回。
 
@@ -7261,7 +7263,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 | 参数名    | 类型                                  | 必填 | 说明                           |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
 | command | string | 是   | 需要设置的自定义控制命令的名称 |
-| args | {[key: string]: any} | 是   | 需要传递的控制命令键值对 |
+| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对 |
 
 > **说明：**
 > 参数args支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](./js-apis-app-ability-want.md)。
@@ -7335,7 +7337,7 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 | 参数名    | 类型                                  | 必填 | 说明                           |
 | ------- | ------------------------------------- | ---- | ------------------------------ |
 | command | string | 是   | 需要设置的自定义控制命令的名称 |
-| args | {[key: string]: any} | 是   | 需要传递的控制命令键值对 |
+| args | {[key: string]: Object} | 是   | 需要传递的控制命令键值对 |
 | callback | AsyncCallback\<void>                  | 是   | 回调函数。当命令发送成功，err为undefined，否则返回错误对象。                     |
 
 > **说明：**
