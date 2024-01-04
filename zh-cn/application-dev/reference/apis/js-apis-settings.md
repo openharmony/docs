@@ -217,8 +217,8 @@ setValue(context: Context, name: string, value: string, callback: AsyncCallback\
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                 | 是   | 应用上下文。<br />Stage模型的应用Context定义见[Context](js-apis-inner-application-context.md)。 |
 | name     | string                  | 是   | 数据项的名称。数据项名称分为以下两种：<br>- 上述任意一个数据库中已存在的数据项。<br>- 开发者自行添加的数据项。 |
-| value    | string                  | 是   | 数据项值。取值范围随业务变动。     <br> - domainName为domainName.DEVICE_SHARED,<br>&nbsp; &nbsp;&nbsp;                    |
-|
+| value    | string                  | 是   | 数据项值。取值范围随业务变动。                               |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示操作成功，否则操作失败。               |
 
 **示例**：
 
