@@ -1,39 +1,32 @@
-# 具体定义的标准化数据类型
+# 标准化数据结构
 
 
 ## 场景介绍
 
-针对一些UTD标准化数据类型，为了方便业务使用，我们提供了具体的定义，例如OpenHarmony系统定义的桌面卡片类型（对应的UTD标识符为'openharmony.form'），
+针对一些UTD标准化数据类型，为了方便业务使用，我们提供了标准化数据结构，例如OpenHarmony系统定义的桌面卡片类型（对应的UTD标识符为'openharmony.form'），
 我们明确定义了该类型对应的描述对象以及对象的属性信息。
 
-某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据类型，例如跨应用拖拽场景，拖出方应用可以按照标准化数据定义将拖拽数据写入[拖拽事件](../reference/arkui-ts/ts-universal-events-drag-drop.md#dragevent说明)，
-拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据定义进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
+某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据结构，例如跨应用拖拽场景，拖出方应用可以按照标准化数据定义将拖拽数据写入[拖拽事件](../reference/arkui-ts/ts-universal-events-drag-drop.md#dragevent说明)，
+拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据结构进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
 
-## 具体定义的标准化数据类型
+## 当前支持的标准化数据结构
 
-UDMF提供的有具体定义的标准化数据类型主要包括以下几类：
+UDMF当前支持的标准化数据结构主要包括：
 
-**基础数据类型：** File、Text等，能够进行跨应用与跨平台流转，如图1和图2所示。
-
-**图1** UDMF File数据类型示意图
-
-![UDMF_FILE](figures/udmf_type_File.png)
-
-**图2** UDMF Text数据类型示意图
-
-![UDMF_TEXT](figures/udmf_type_Text.png)
-
-**系统相关数据类型（System Defined Type, SDT）：** 与具体的平台/操作系统绑定，如Form（UI卡片信息）、AppItem（App描述信息）、PixelMap（缩略图格式）等，该类数据可以实现系统/平台内的跨应用流转，如图3所示。
-
-**图3** UDMF SDT数据类型示意图
-
-![UDMF_SDT](figures/udmf_type_SDT.png)
-
-**应用自定义数据类型（App Defined Type, ADT）：** 单个应用自定义的数据，该类数据可以实现应用内的跨平台流转，如图4所示为例，应用可自定义MyFile类型文件格式在应用生态内部使用。
-
-**图4** UDMF ADT数据类型示意图
-
-![UDMF_ADT](figures/udmf_type_ADT.png)
+| 数据类型                   | 数据结构                     | 说明        |
+|----------------------------|------------------------------|-----------|
+| 'general.text'             | Text                         | 文本，[Text](../reference/apis/js-apis-data-unifiedDataChannel.md#Text)。     |
+| 'general.plain-text'       | PlainText                    | 纯文本，[PlainText](../reference/apis/js-apis-data-unifiedDataChannel.md#PlainText)。    |
+| 'general.hyperlink'        | Hyperlink                    | 超链接，[Hyperlink](../reference/apis/js-apis-data-unifiedDataChannel.md#Hyperlink)。    |
+| 'general.html'             | HTML                         | 富文本，[HTML](../reference/apis/js-apis-data-unifiedDataChannel.md#HTML)。    |
+| 'general.file'             | File                         | 文件，[File](../reference/apis/js-apis-data-unifiedDataChannel.md#File)。     |
+| 'general.image'            | Image                        | 图片，[Image](../reference/apis/js-apis-data-unifiedDataChannel.md#Image)。     |
+| 'general.video'            | Video                        | 视频，[Video](../reference/apis/js-apis-data-unifiedDataChannel.md#Video)。     |
+| 'general.audio'            | Audio                        | 音频，[Audio](../reference/apis/js-apis-data-unifiedDataChannel.md#Audio)。     |
+| 'general.folder'           | Folder                       | 文件夹，[Folder](../reference/apis/js-apis-data-unifiedDataChannel.md#Folder)。    |
+| 'openharmony.form'         | SystemDefinedForm            | 卡片，[SystemDefinedForm](../reference/apis/js-apis-data-unifiedDataChannel.md#SystemDefinedForm)。     |
+| 'openharmony.app-item'     | SystemDefinedAppItem         | 图标，[SystemDefinedAppItem](../reference/apis/js-apis-data-unifiedDataChannel.md#SystemDefinedAppItem)。     |
+| 'openharmony.pixel-map'    | SystemDefinedPixelMap        | 二进制图片，[SystemDefinedPixelMap](../reference/apis/js-apis-data-unifiedDataChannel.md#SystemDefinedPixelMap)。  |
 
 ## 约束限制
 

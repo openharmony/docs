@@ -3,8 +3,8 @@
 - [数据管理概述](data-mgmt-overview.md)
 - 标准化数据定义
   - [标准化数据定义概述](unified-data-definition-overview.md)
-  - [标准化数据定义与描述](uniform-type-descriptors.md)
-  - [具体定义的标准化数据类型](specific-defined-data-types.md)
+  - [标准化数据类型](uniform-type-descriptors.md)
+  - [标准化数据结构](specific-defined-data-types.md)
 - 应用数据持久化
   - [应用数据持久化概述](app-data-persistence-overview.md)
   - [通过用户首选项实现数据持久化](data-persistence-by-preferences.md)

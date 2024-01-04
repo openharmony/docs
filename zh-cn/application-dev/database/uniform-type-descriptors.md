@@ -1,27 +1,18 @@
-# 标准化数据定义与描述
+# 标准化数据类型
 
 
 ## 场景介绍
 
-标准化数据定义与描述（Uniform Type Descriptor，简称UTD）用于解决OpenHarmony系统中的类型模糊问题，即针对同一种数据类型，存在不同的
+标准化数据类型（Uniform Type Descriptor，简称UTD）用于解决OpenHarmony系统中的类型模糊问题，即针对同一种数据类型，存在不同的
 类型描述方式：MIME Type、文件扩展名等。例如描述JPG/JPEG类型图片时，可以使用image/jpeg，.jgp，.jpeg或image/picture等方式进行描述。
 当相关类型的数据进行跨应用、跨设备传输时，目的端应用/设备需要进行多方面的适配，才能够对数据内容进行推论，且存在无法识别的情况。
 
 UTD通过定义常用的数据类型描述符，构筑OpenHarmony生态内跨应用、跨设备数据交互的基础语言，生态内的应用间、设备间数据交互将会形成统一的
 逻辑，进而成为OpenHarmony生态内的数据类型标准，可以极大的减少数据互通的适配成本。
 
-## 标准化数据类型的层级关系
-
-基于MIME Type或文件后缀名进行类型区分，存在另一个不足，即扁平化的数据类型定义；扁平/松散的类型定义难以描述不同类型间的兼容与继承关系，
-且在实际使用过程中，会增加应用处理数据类型时的开发复杂度，例如搜索场景，用户从精确地搜索动物相关的任意类型图片，进一步扩展到动物相关的
-任意图片、视频或音频资源。为了满足上述场景，我们需要在定义数据类型时，支持类型层级结构。
-
-构建标准类型的层级结构，定义层级结构中的类型归属关系，能够帮助系统、应用实现数据类型的分层、分类管理。当用户进行数据分享或拖拽式，如果
-数据中同时包含图片、视频、音频等内容，系统/应用可以根据层级按需对分享内容进行整理，如分享了XX张照片、XX条视频或XX个媒体资源文件等。
-
 ## UTD定义
 
-标准化数据定义与描述（Uniform Type Descriptor，简称UTD）包含了标准化数据类型的标识ID、归属类型关系、简要描述等信息，其具体定义如下所示：
+标准化数据类型包含了标准化数据类型的标识ID、归属类型关系、简要描述等信息，每个类型定义具体包含以下内容：
 
 + **typeId：** 定义标准化数据类型的ID，该ID具有唯一性。
 
@@ -33,8 +24,15 @@ UTD通过定义常用的数据类型描述符，构筑OpenHarmony生态内跨应
 
 + **iconFile：** 标准化数据类型的默认图标文件路径，可能为空字符串（即没有默认图标），应用可以自行决定是否使用该默认图标。
 
-UTD中定义的标准化数据类型分为两类，物理&逻辑，如下图所示（图中涉及的标准化数据类型详见UniformDataType的接口定义）。物理分类的根节点为general.entity，
+UTD中定义的标准化数据类型在设计原则上分为两类，物理&逻辑，如下图所示（图中涉及的标准化数据类型详见UniformDataType的接口定义）。物理分类的根节点为general.entity，
 用于描述类型的物理属性，比如文件、目录等。逻辑分类的根节点为general.object，用于描述类型的功能性特征，如图片、网页等。
+
+基于MIME Type或文件后缀名进行类型区分，存在另一个不足，即扁平化的数据类型定义；扁平/松散的类型定义难以描述不同类型间的兼容与继承关系，
+且在实际使用过程中，会增加应用处理数据类型时的开发复杂度，例如搜索场景，用户从精确地搜索动物相关的任意类型图片，进一步扩展到动物相关的
+任意图片、视频或音频资源。为了满足上述场景，我们需要在定义数据类型时，支持类型层级结构。
+
+构建标准类型的层级结构，定义层级结构中的类型归属关系，能够帮助系统、应用实现数据类型的分层、分类管理。当用户进行数据分享或拖拽式，如果
+数据中同时包含图片、视频、音频等内容，系统/应用可以根据层级按需对分享内容进行整理，如分享了XX张照片、XX条视频或XX个媒体资源文件等。
 
 **图1** 逻辑标准化数据类型示意图
 
@@ -47,9 +45,103 @@ UTD中定义的标准化数据类型分为两类，物理&逻辑，如下图所�
 将标准化数据类型分为物理和逻辑两类，可以从两个维度对数据类型进行描述。如描述图片时，可以是一个图片对象，同时也可以是一个文件，并非所有的格式都具有
 两个维度，如general.calendar，更多的注重calendar对象的功能性描述。
 
+## 预置数据类型
+
+当前系统中已预定义常见数据类型，如用于描述音频文件的“general.audio”，描述视频文件的“general.video”，更多预置数据类型参考[标准化数据类型接口定义](../reference/apis/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。
+
+
+## 应用自定义数据类型
+在业务跨应用、跨设备交互过程中，预先定义的UTD标准数据类型未能满足业务使用的情况下，UTD支持业务声明自定义类型描述符，应用新定义的类型描述符可以继承
+已有的标准类型描述符，例如业务自定义的图片类型可以使用“com.company.x-image”作为UTD标识符。
+
+自定义类型标识符与标准数据类型描述符为互补关系，业务可以将自定义类型标识符注册到系统中，这样其他业务在需要使用时可以引用，进而实现
+鸿蒙生态内自定义数据类型的共享与统一。
+
+### 自定义数据类型工作原理
+
+同时，基于标准类型的层级结构，业务声明自己支持的数据类型标识符时，需要声明该类型标识符的层级逻辑，例如业务自定义图片类型UTD标识符
+com.company.x-image，并归属到general.image类中。UTD框架会检验自定义类型标识符，确保归属关系中不出现环状结构。
+
+应用安装时，UTD会读取应用中自定义的数据类型进行安装，校验自定义类型数据符合约束条件后，应用自定义数据类型将被安装到设备中。应用启动
+后能正常读取到应用自定义数据类型。如果引用其他应用定义的自定义数据类型，需要在应用开发时一并写入自定义数据类型配置文件中。
+
+### 约束限制
++ **typeId：** 定义标准化数据类型的ID，该ID具有唯一性，由应用bundleName + 具体类型名组成，不可缺省，允许包含数字、大小写字母、-和.。
+
++ **belongingToTypes：** 定义标准化数据类型的归属关系，即该标准化数据类型归属于哪个更高层级的类型，所属类型可以为多个，但是必须为已存在的数据
+  类型（标准化数据类型预置类型或其他新增自定义数据类型），不能为应用自定义类型本身，不能为空，且与现有标准化数据类型、其他新增自定义数据类型不能形成
+  环行依赖，不可缺省。
+
++ **FilenameExtensions：** 应用自定义标准化数据类型所关联的文件后缀，可以为多个，每个后缀为以.开头且长度不超过127的字符串，可以缺省。
+
++ **mimeTypes：** 应用自定义标准化数据类型所关联的web消息数据类型，可以为多个，每个类型为长度不超过127的字符串，可以缺省。
+
++ **description：** 应用自定义标准化数据类型的简要说明，长度不超过255的字符串，可以缺省。
+
++ **referenceURL：** 应用自定义标准化数据类型的参考链接URL，用于描述类型的详细信息，长度不超过255的字符串类型，可以缺省。
+
+
+### 应用自定义数据类型开发步骤
+
+下面以新增媒体类文件类型场景为例，说明如何自定义UTD标准化数据类型。
+
+1. 在entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd_adt.json。
+2. 第一个应用在配置文件内新增所需的自定义数据类型。
+   ```json
+    "UniformDataTypeDeclarations": [
+        {
+            "typeId": "com.example.myFirstHap.image",
+            "belongingToTypes": ["general.image"],
+            "FilenameExtensions": [".myImage", ".khImage"],
+            "mimeTypes": ["application/myImage", "application/khImage"],
+            "description": "My Image.",
+            "referenceURL": ""
+        },
+        {
+            "typeId": "com.example.myFirstHap.audio",
+            "belongingToTypes": ["general.audio"],
+            "FilenameExtensions": [".myAudio", ".khAudio"],
+            "mimeTypes": ["application/myAudio", "application/khAudio"],
+            "description": "My audio.",
+            "referenceURL": ""
+        },
+        {
+            "typeId": "com.example.myFirstHap.video",
+            "belongingToTypes": ["general.video"],
+            "FilenameExtensions": [".myVideo", ".khVideo"],
+            "mimeTypes": ["application/myVideo", "application/khVideo"],
+            "description": "My video.",
+            "referenceURL": ""
+        }
+    ]
+   ```
+3. 如果第二个应用要使用第一个应用内自定义数据类型，需要在配置文件utd_adt.json中进行声明。
+   ```json
+    "UniformDataTypeDeclarations": [
+        {
+            "typeId": "com.example.mySecondHap.image",
+            "belongingToTypes": ["com.example.myFirstHap.image"],
+            "FilenameExtensions": [".myImageEx", ".khImageEx"],
+            "mimeTypes": ["application/my-ImageEx", "application/khImageEx"],
+            "description": "My Image extension.",
+            "referenceURL": ""
+        }
+    ],
+    "ReferenceUniformDataTypeDeclarations": [
+        {
+            "typeId": "com.example.myFirstHap.image",
+            "belongingToTypes": ["general.image"],
+            "FilenameExtensions": [".myImage", ".khImage"],
+            "mimeTypes": ["application/myImage", "application/khImage"],
+            "description": "My Image.",
+            "referenceURL": ""
+        }
+    ]
+   ```
+
 ## 接口说明
 
-以下是UTD常用接口的说明，更多接口和具体说明，请见[标准化数据定义与描述](../reference/apis/js-apis-data-uniformTypeDescriptor.md)。
+以下是UTD常用接口的说明，对于预置数据类型和应用自定义数据类型同样适用，更多接口和详细说明，请见[标准化数据类型接口定义](../reference/apis/js-apis-data-uniformTypeDescriptor.md)。
 
 | 类名称             | 接口名称                                                                                         | 描述                                      | 
 |-----------------|----------------------------------------------------------------------------------------------|-----------------------------------------|
@@ -69,35 +161,35 @@ UTD中定义的标准化数据类型分为两类，物理&逻辑，如下图所�
    ```ts
    import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
    ```
-2. 根据 “.mp3” 文件后缀查询对应UTD数据类型,并查询对应UTD数据类型具体属性。
+2. 根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型具体属性。
 
    ```ts
    try {
      let fileExtention = '.mp3';
      let typeId1 = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
      let typeObj1 = uniformTypeDescriptor.getTypeDescriptor(typeId1);
-     console.log('typeId:' + typeObj1.typeId);
-     console.log('belongingToTypes:' + typeObj1.belongingToTypes);
-     console.log('description:' + typeObj1.description);
-     console.log('referenceURL:' + typeObj1.referenceURL);
+     console.info('typeId:' + typeObj1.typeId);
+     console.info('belongingToTypes:' + typeObj1.belongingToTypes);
+     console.info('description:' + typeObj1.description);
+     console.info('referenceURL:' + typeObj1.referenceURL);
    } catch (err) {
-     console.log('err message:' + err.message + ', err code:' + err.code);
+     console.error('err message:' + err.message + ', err code:' + err.code);
    }
    ```
 
-3. 根据 “audio/mp3” MIMEType查询对应UTD数据类型,并查询对应UTD数据类型具体属性。
+3. 根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型具体属性。
 
    ```ts
    try {
      let mineType = 'audio/mp3';
      let typeId2 = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
      let typeObj2 = uniformTypeDescriptor.getTypeDescriptor(typeId2);
-     console.log('typeId:' + typeObj2.typeId);
-     console.log('belongingToTypes:' + typeObj2.belongingToTypes);
-     console.log('description:' + typeObj2.description);
-     console.log('referenceURL:' + typeObj2.referenceURL);
+     console.info('typeId:' + typeObj2.typeId);
+     console.info('belongingToTypes:' + typeObj2.belongingToTypes);
+     console.info('description:' + typeObj2.description);
+     console.info('referenceURL:' + typeObj2.referenceURL);
    } catch (err) {
-     console.log('err message:' + err.message + ', err code:' + err.code);
+     console.error('err message:' + err.message + ', err code:' + err.code);
    }
    ```
 4. 将上述步骤查询出来的数据类型进行比较，确认类型是否相等。
@@ -114,14 +206,14 @@ UTD中定义的标准化数据类型分为两类，物理&逻辑，如下图所�
      
      if(typeObj1 != null && typeObj2 !=null) {
        let ret = typeObj1.equals(typeObj2);
-       console.log('typeObj1 equals typeObj2, ret:' + ret);
+       console.info('typeObj1 equals typeObj2, ret:' + ret);
      }
    } catch (err) {
-     console.log('err message:' + err.message + ', err code:' + err.code);
+     console.error('err message:' + err.message + ', err code:' + err.code);
    }
    ```
 
-5. 根据上述步骤中查询到的标准数据类型与已知标准数据类型做比较查询，确认是否存在归属关系。
+5. 根据上述步骤中查询到的标准数据类型“general.mp3”与表示音频数据的已知标准数据类型“general.audio”做比较查询，确认是否存在归属关系。
 
    ```ts
    try {
@@ -130,12 +222,12 @@ UTD中定义的标准化数据类型分为两类，物理&逻辑，如下图所�
      let typeObj1 = uniformTypeDescriptor.getTypeDescriptor(typeId1);
      if(typeObj1 != null) {
        let ret = typeObj1.belongsTo('general.audio');
-       console.log('belongsTo, ret:' + ret);
+       console.info('belongsTo, ret:' + ret);
        let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
        ret = mediaTypeObj.isHigherLevelType('general.audio');
-       console.log('isHigherLevelType, ret:' + ret);
+       console.info('isHigherLevelType, ret:' + ret);
      }
    } catch (err) {
-     console.log('err message:' + err.message + ', err code:' + err.code);
+     console.error('err message:' + err.message + ', err code:' + err.code);
    }
    ```
