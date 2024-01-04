@@ -9,7 +9,7 @@ The **\<Hyperlink>** component implements a link from a location in the componen
 
 ## Required Permissions
 
-If Internet access is required, you need to apply for the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/accesstoken-guidelines.md).
+If Internet access is required, you need to apply for the **ohos.permission.INTERNET** permission. For details about how to apply for a permission, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md).
 
 ## Child Components
 
@@ -64,3 +64,4 @@ struct HyperlinkExample {
 ```
 
 ![hyperlink](figures/hyperlink.PNG)
+<!--no_check-->

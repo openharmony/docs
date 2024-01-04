@@ -6,18 +6,115 @@ The location attributes set the alignment mode, layout direction, and position o
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+## align
 
-## Attributes
+align(value: Alignment)
 
+Alignment mode of the component content in the drawing area.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| align | [Alignment](ts-appendix-enums.md#alignment) | Alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **\<Stack>**, **\<Button>**, **\<StepperItem>**, **\<Marquee>**, **\<text>**, **\<TextArea>**, and **\<TextInput>**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>If the component does not support the **textAlign** attribute, horizontal text alignment cannot be set.<br>Default value: **Alignment.Center**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| direction | [Direction](ts-appendix-enums.md#direction) | Horizontal layout of the component.<br>Default value: **Direction.Auto**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| position | [Position](ts-types.md#position8) | Offset of the component's upper left corner relative to the parent component's upper left corner. This offset is expressed using absolute values. With this attribute set, the component does not participate in the layout of the parent component. That is, it is relocated during drawing based on the settings, but does not take up space in the parent component.<br>This attribute is applicable to scenarios where the component is fixed at a position in the parent container, for example, where it is pinned to top or floating above the UI.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| markAnchor | [Position](ts-types.md#position8) | Anchor point of the component for positioning. The upper left corner of the component is used as the reference point for offset. Generally, this attribute is used together with the **position** and **offset** attributes. When used independently, this attribute is similar to **offset**.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>API version 10: none<br>Since API version 9, this API is supported in ArkTS widgets.|
-| offset | [Position](ts-types.md#position8) | Offset of the component relative to itself. This offset is expressed using relative values. With this attribute set, the component participates in the layout of the parent component. During drawing, an extra offset is made based on the offset provided by the parent component.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>API version 10: none<br>Since API version 9, this API is supported in ArkTS widgets.|
-| alignRules<sup>9+</sup> | {<br>left?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>right?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>middle?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>top?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br>bottom?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br>center?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) }<br>};<br>bias?: { horizontal: number, vertical: number } | Alignment rules relative to the container. This attribute is valid only when the container is [\<RelativeContainer>](ts-container-relativecontainer.md).<br>- **left**: left-aligned.<br>- **right**: right-aligned.<br>- **middle**: horizontally center-aligned.<br>- **top**: top-aligned.<br>- **bottom**: bottom-aligned.<br>- **center**: vertically center-aligned.<br>- **bias**: offset of the component under the anchor constraint. The value is the ratio of the distance to the left or upper anchor to the distance between anchors.<br>This API is supported in ArkTS widgets.<br>**NOTE**<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.<br>- **horizontal**: bias value in the horizontal direction.<br>- **vertical**: bias value in the vertical direction.|
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                                        |
+| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Alignment mode of the component content in the drawing area.<br>This attribute is available only in the following components: **\<Stack>**, **\<Button>**, **\<StepperItem>**, **\<Marquee>**, **\<text>**, **\<TextArea>**, and **\<TextInput>**. For details about the alignment results of text-related components (the last four aforementioned components), see [textAlign](ts-basic-components-text.md#attributes).<br>If the component does not support the **textAlign** attribute, horizontal text alignment cannot be set.<br>Default value: **Alignment.Center**|
+
+## direction
+
+direction(value: Direction)
+
+Horizontal layout of the component.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                               |
+| ------ | ------------------------------------------- | ---- | --------------------------------------------------- |
+| value  | [Direction](ts-appendix-enums.md#direction) | Yes  | Horizontal layout of the component.<br>Default value: **Direction.Auto**|
+
+## position
+
+position(value: Position)
+
+Offset of the component's upper left corner relative to the parent component's upper left corner. This offset is expressed using absolute values.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                             | Mandatory| Description                                                        |
+| ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Position](ts-types.md#position8) | Yes  | Offset of the component's upper left corner relative to the parent component's upper left corner. This offset is expressed using absolute values. With this attribute set, the component does not participate in the layout of the parent component. That is, it is relocated during drawing based on the settings, but does not take up space in the parent component.<br>This attribute is applicable to scenarios where the component is fixed at a position in the parent container, for example, where it is pinned to top or floating above the UI.|
+
+## markAnchor
+
+markAnchor(value: Position)
+
+Sets the anchor for locating the component.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                             | Mandatory| Description                                                        |
+| ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Position](ts-types.md#position8) | Yes  | Anchor for locating the component, which is used to move the component further away from the position specified by **position** or **offset**.<br>**.position({x: value1, y: value2}).markAnchor({x: value3, y: value4})** has the same effect as **.position({x: value1 - value3, y: value2 - value4}).** The same applies to **offset**.<br>When **markAnchor** is used alone, **markAnchor ({x: value1, y: value2})** has the same effect as **.offset ({x: -value1, y: -value2})**.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>API version 10: none|
+
+## offset
+
+offset(value: Position)
+
+Offset of the component relative to itself. This offset is expressed using relative values.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                             | Mandatory| Description                                                        |
+| ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Position](ts-types.md#position8) | Yes  | Offset of the component relative to itself. This offset is expressed using relative values. With this attribute set, the component participates in the layout of the parent component. During drawing, an extra offset is made based on the offset provided by the parent component.<br>The default value varies by API version.<br>API version 9 and earlier:<br>{<br>x: 0,<br>y: 0<br>}<br>API version 10: none|
+
+## alignRules<sup>9+</sup>
+
+alignRules(value: AlignRuleOption)
+
+Alignment rules relative to the container. This attribute is valid only when the container is [\<RelativeContainer>](ts-container-relativecontainer.md).
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                    |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| value  | [AlignRuleOption](#alignruleoption) | Yes  | Alignment rule of the relative container.|
+
+## AlignRuleOption
+
+Since API version 9, this API is supported in ArkTS widgets.
+
+| Name  | Type                                                        | Description                                                        |
+| ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| left   | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } | Left alignment.<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.|
+| right  | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } | Right alignment.<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.|
+| middle | { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) } | Horizontal center alignment.<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.|
+| top    | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | Top alignment.<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.|
+| bottom | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | Bottom alignment.<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component.|
+| center | { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) } | Vertical center alignment.                                |
+| bias   | { horizontal: number, vertical: number }                     | Offset of the component under the anchor constraints. The value is the ratio of the distance to the left/upper anchor to the total distance between anchors.<br>- **horizontal**: bias value in the horizontal direction.<br>- **vertical**: bias value in the vertical direction.|
 
 
 ## Example

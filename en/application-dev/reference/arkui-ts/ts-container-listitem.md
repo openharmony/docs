@@ -96,7 +96,7 @@ For a list in horizontal layout, it refers to the delete option displayed below 
 
 | Name                        | Type                | Mandatory| Description                                                        |
 | ---------------------------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| onOffsetChange<sup>11+</sup> | (offset: number) => void | No  | Triggered when the location of the list item changes, in vp, at a swipe left or right (in vertical list layout) or up or down (in horizontal list layout).|
+| onOffsetChange<sup>11+</sup> | (offset: number) => void | No  | Triggered when the location of the list item changes, in vp, when it is swiped left or right (in vertical list layout) or up or down (in horizontal list layout).|
 
 ## ListItemStyle<sup>10+</sup>
 
@@ -161,7 +161,6 @@ struct ListItemExample {
 @Entry
 @Component
 struct ListItemExample2 {
-  @State message: string = 'Hello World'
   @State arr: number[] = [0, 1, 2, 3, 4]
   @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
   @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
