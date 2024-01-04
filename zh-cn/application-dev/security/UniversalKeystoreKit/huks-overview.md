@@ -60,4 +60,4 @@ HUKS为开发者提供了密钥全生命周期的管理能力，其核心功能�
 
 ## 与相关Kit的关系
 
-在进行**[访问控制](huks-identity-authentication-overview.md)**的过程中，涉及对用户身份的认证，这部分依赖于[Universal Keystore Kit（密钥管理服务）](../UserAuthenticationKit/user-authentication-overview.md)。
+在进行[访问控制](huks-identity-authentication-overview.md)的过程中，涉及对用户身份的认证，这部分依赖于[Universal Keystore Kit（密钥管理服务）](../UserAuthenticationKit/user-authentication-overview.md)。

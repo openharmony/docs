@@ -1,0 +1,63 @@
+# Universal Keystore Kit (通用密钥库服务)
+
+- [通用密钥库概述](../security/UniversalKeystoreKit/huks-overview.md)
+- [通用密钥库基础概念](../security/UniversalKeystoreKit/huks-concepts.md)
+- 密钥生成/导入
+  - 密钥生成
+    - [密钥生成介绍及算法规格](../security/UniversalKeystoreKit/huks-key-generation-overview.md)
+    - 开发指导
+      - [生成密钥(ArkTS)](../security/UniversalKeystoreKit/huks-key-generation-arkts.md)
+      - [生成密钥(C/C++)](../security/UniversalKeystoreKit/huks-key-generation-ndk.md)
+  - 密钥导入
+    - [密钥导入介绍及算法规格](../security/UniversalKeystoreKit/huks-key-import-overview.md)
+    - 开发指导
+      - [明文导入密钥(ArkTS)](../security/UniversalKeystoreKit/huks-import-key-in-plaintext-arkts.md)
+      - [明文导入密钥(C/C++)](../security/UniversalKeystoreKit/huks-import-key-in-plaintext-ndk.md)
+      - [加密导入密钥(ArkTS)](../security/UniversalKeystoreKit/huks-import-wrapped-key-arkts.md)
+      - [加密导入密钥(C/C++)](../security/UniversalKeystoreKit/huks-import-wrapped-key-ndk.md)
+- 密钥使用
+  - [密钥使用介绍及通用流程](../security/UniversalKeystoreKit/huks-key-use-overview.md)
+  - 加密/解密
+    - [加密/解密介绍及算法规格](../security/UniversalKeystoreKit/huks-encryption-decryption-overview.md)
+    - 开发指导
+      - [加解密(ArkTS)](../security/UniversalKeystoreKit/huks-encryption-decryption-arkts.md)
+      - [加解密(C/C++)](../security/UniversalKeystoreKit/huks-encryption-decryption-ndk.md)
+  - 签名/验签
+    - [签名/验签介绍及算法规格](../security/UniversalKeystoreKit/huks-signing-signature-verification-overview.md)
+    - 开发指导
+      - [签名/验签(ArkTS)](../security/UniversalKeystoreKit/huks-signing-signature-verification-arkts.md)
+      - [签名/验签(C/C++)](../security/UniversalKeystoreKit/huks-signing-signature-verification-ndk.md)
+  - 密钥协商
+    - [密钥协商介绍及算法规格](../security/UniversalKeystoreKit/huks-key-agreement-overview.md)
+    - 开发指导
+      - [密钥协商(ArkTS)](../security/UniversalKeystoreKit/huks-key-agreement-arkts.md)
+      - [密钥协商(C/C++)](../security/UniversalKeystoreKit/huks-key-agreement-ndk.md)
+  - 密钥派生
+    - [密钥派生介绍及算法规格](../security/UniversalKeystoreKit/huks-key-derivation-overview.md)
+    - 开发指导
+      - [密钥派生(ArkTS)](../security/UniversalKeystoreKit/huks-key-derivation-arkts.md)
+      - [密钥派生(C/C++)](../security/UniversalKeystoreKit/huks-key-derivation-ndk.md)
+  - 访问控制
+    - [用户身份认证访问控制简介](../security/UniversalKeystoreKit/huks-identity-authentication-overview.md)
+    - 开发指导
+      - [用户身份认证访问控制开发指导](../security/UniversalKeystoreKit/huks-user-identity-authentication.md)
+      - [细粒度用户身份认证访问控制开发指导](../security/UniversalKeystoreKit/huks-refined-user-identity-authentication.md)
+- 密钥删除
+  - [密钥删除(ArkTS)](../security/UniversalKeystoreKit/huks-delete-key-arkts.md)
+  - [密钥删除(C/C++)](../security/UniversalKeystoreKit/huks-delete-key-ndk.md)
+- 密钥证明
+  - [密钥证明介绍及算法规格](../security/UniversalKeystoreKit/huks-key-attestation-overview.md)
+  - 开发指导
+    - [密钥证明(ArkTS)](../security/UniversalKeystoreKit/huks-key-attestation-arkts.md)
+    - [密钥证明(C/C++)](../security/UniversalKeystoreKit/huks-key-attestation-ndk.md)
+- 其他操作
+  - 查询密钥是否存在
+    - [查询密钥是否存在(ArkTS)](../security/UniversalKeystoreKit/huks-check-key-arkts.md)
+    - [查询密钥是否存在(C/C++)](../security/UniversalKeystoreKit/huks-check-key-ndk.md)
+  - 获取密钥属性
+    - [获取密钥属性(ArkTS)](../security/UniversalKeystoreKit/huks-obtain-key-properties-arkts.md)
+    - [获取密钥属性(C/C++)](../security/UniversalKeystoreKit/huks-obtain-key-properties-ndk.md)
+  - 密钥导出
+    - [密钥导出(ArkTS)](../security/UniversalKeystoreKit/huks-export-key-arkts.md)
+    - [密钥导出(C/C++)](../security/UniversalKeystoreKit/huks-export-key-ndk.md)
+
