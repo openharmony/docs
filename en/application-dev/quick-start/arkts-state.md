@@ -38,7 +38,7 @@ An @State decorated variable, like all other decorated variables in the declarat
 | Transfer/Access    | Description                                      |
 | --------- | ---------------------------------------- |
 | Initialization from the parent component    | Optional. Initialization from the parent component or local initialization can be used. The initial value specified in the parent component will overwrite the one defined locally.<br>An \@State decorated variable can be initialized from a regular variable or an \@State, \@Link, \@Prop, \@Provide, \@Consume, \@ObjectLink, \@StorageLink, \@StorageProp, \@LocalStorageLink, or \@LocalStorageProp decorated variable in its parent component.|
-| Subnode initialization | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Child component initialization | Supported. An \@State decorated variable can be used to initialize a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access| Private, accessible only within the component.                           |
 
   **Figure 1** Initialization rule 
@@ -62,7 +62,7 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   this.count = 1;
   ```
 
-- When the decorated variable is of the class or Object type, its value change and value changes of all its attributes, that is, the attributes that **Object.keys(observedObject)** returns. Below is an example.
+- When the decorated variable is of the class or Object type, its value change and value changes of all its properties, that is, the properties that **Object.keys(observedObject)** returns, can be observed. Below is an example.
     Declare the **ClassA** and **Model** classes.
 
     ```ts
@@ -88,7 +88,7 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 
     ```ts
     // Class type
-     @State title: Model = new Model('Hello', new ClassA('World'));
+    @State title: Model = new Model('Hello', new ClassA('World'));
     ```
 
     Assign a value to the \@State decorated variable.
@@ -98,21 +98,21 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
     this.title = new Model('Hi', new ClassA('ArkUI'));
     ```
 
-    Assign a value to an attribute of the \@State decorated variable.
+    Assign a value to a property of the \@State decorated variable.
 
     ```ts
-    // Assign a value to an attribute of the class object.
-    this.title.value = 'Hi'
+    // Assign a value to a property of the class object.
+    this.title.value = 'Hi';
     ```
 
-    The value assignment of the nested attribute cannot be observed.
+    The value assignment of the nested property cannot be observed.
 
     ```ts
-    // The value assignment of the nested attribute cannot be observed.
-    this.title.name.value = 'ArkUI'
+    // The value assignment of the nested property cannot be observed.
+    this.title.name.value = 'ArkUI';
     ```
 - When the decorated variable is of the array type, the addition, deletion, and updates of array items can be observed. Below is an example.
-  Declare the **ClassA** and **Model** classes.
+  Declare the **Model** class.
 
   ```ts
   class Model {
@@ -126,33 +126,38 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
   Use \@State to decorate a variable of the Model class array type.
 
   ```ts
-  @State title: Model[] = [new Model(11), new Model(1)]
+  @State title: Model[] = [new Model(11), new Model(1)];
   ```
 
   The value assignment of the array itself can be observed.
 
   ```ts
-  this.title = [new Model(2)]
+  this.title = [new Model(2)];
   ```
 
   The value assignment of array items can be observed.
 
   ```ts
-  this.title[0] = new Model(2)
+  this.title[0] = new Model(2);
   ```
 
   The deletion of array items can be observed.
 
   ```ts
-  this.title.pop()
+  this.title.pop();
   ```
 
   The addition of array items can be observed.
 
   ```ts
-  this.title.push(new Model(12))
+  this.title.push(new Model(12));
   ```
 
+  The property value assignment in the array items cannot be observed.
+
+  ```ts
+  this.title[0].value = 6;
+  ```
 
 ### Framework Behavior
 
@@ -168,9 +173,9 @@ Not all changes to state variables cause UI updates. Only changes that can be ob
 
 ### Decorating Variables of Simple Types
 
-In this example, \@State is used to decorate the **count** variable of the simple type and turns it into a state variable. The change of **count** causes the update of the **\<Button>** component.
+In this example, \@State is used to decorate the **count** variable of the simple type, turning it into a state variable. The change of **count** causes the update of the **\<Button>** component.
 
-- When the state variable **count** changes, the framework searches for components that depend on this state variable, which include only the **\<Button>** component in this example.
+- When **count** changes, the framework searches for components bound to it, which include only the **\<Button>** component in this example.
 
 - The framework executes the update method of the **\<Button>** component to implement on-demand update.
 

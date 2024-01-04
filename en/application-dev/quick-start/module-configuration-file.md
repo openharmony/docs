@@ -77,7 +77,7 @@ As shown above, the **module.json5** file contains several tags.
 | description | Description of the module. The value is a string with a maximum of 255 bytes or a string resource index.| String| Yes (initial value: left empty)|
 | process | Process name of the current module. The value is a string with a maximum of 31 bytes. If **process** is configured under **HAP**, all UIAbility, DataShareExtensionAbility, and ServiceExtensionAbility components of the application run in the specified process.<br>**NOTE**<br>This tag applies only to system applications and does not take effect for third-party applications.| String| Yes (initial value: value of **bundleName** under **app** in the **app.json5** file)|
 | mainElement | Name of the entry UIAbility or ExtensionAbility of the module. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
-| [deviceTypes](#devicetypes) | Type of the device on which the module can run.| String array| No (can be left empty)|
+| [deviceTypes](#devicetypes) | Types of the devices on which the module can run.| String array| No (can be left empty)|
 | deliveryWithInstall | Whether the HAP file of the module will be installed when the user installs the application.<br>- **true**: The HAP file will be installed when the user installs the application.<br>- **false**: The HAP file will not be installed when the user installs the application.| Boolean| No|
 | installationFree | Whether the module supports the installation-free feature.<br>- **true**: The module supports the installation-free feature and meets installation-free constraints.<br>- **false**: The module does not support the installation-free feature.<br>**NOTE**<br>If this tag is set to **true** for an entry-type module, it must also be set to **true** for feature-type modules of the same application.<br>If this tag is set to **false** for an entry-type module, it can be set to **true** or **false** for feature-type modules of the same application based on service requirements.| Boolean| No|
 | virtualMachine | Type of the target virtual machine (VM) where the module runs. It is used for cloud distribution, such as distribution by the application market and distribution center.<br> If the target VM type is ArkTS engine, the value is **ark**+*version number*.| String| Yes (initial value: automatically inserted when DevEco Studio builds the HAP file)|
@@ -140,7 +140,7 @@ Define the **main_pages.json** file under **resources/base/profile** in the deve
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| src | Route information about all pages in the JavaScript module, including the page path and page name. The value is an array, each element of which represents a page and the first element represents the home page.| String array| No|
+| src | Route information about all pages in the JavaScript module, including the page path and page name. The value is a string array, each element of which represents a page.| String array| No|
 | window | Window-related configuration.	 | Object| Yes (initial value: left empty)|
 
   **Table 4** window tag in the pages configuration file
@@ -236,7 +236,7 @@ The **abilities** tag represents the UIAbility configuration of the module, whic
 | [metadata](#metadata)| Metadata information of the UIAbility component.| Object array| Yes (initial value: left empty)|
 | exported | Whether the UIAbility component can be called by other applications.<br>- **true**: The UIAbility component can be called by other applications.<br>- **false**: The UIAbility component cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
 | continuable | Whether the UIAbility component can be [migrated](../application-models/hop-cross-device-migration.md).<br>- **true**: The UIAbility component can be migrated.<br>- **false**: The UIAbility component cannot be migrated.| Boolean| Yes (initial value: **false**)|
-| [skills](#skills) | Feature set of [wants](../application-models/want-overview.md) that can be received by the current UIAbility or ExtensionAbility component.<br>Configuration rules:<br>- For HAPs of the entry type, you can configure multiple **skills** attributes with the entry capability for an OpenHarmony application. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.)<br>- For HAPs of the feature type, you can configure **skills** attributes with the entry capability for an OpenHarmony application, but not for an OpenHarmony service. | Object array| Yes (initial value: left empty)|
+| [skills](#skills) | A set of [wants](../application-models/want-overview.md) that can be received by the current UIAbility or ExtensionAbility component.<br>Configuration rules:<br>- For HAPs of the entry type, you can configure multiple **skills** attributes with the entry capability for an OpenHarmony application. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.)<br>- For HAPs of the feature type, you can configure **skills** attributes with the entry capability for an OpenHarmony application, but not for an OpenHarmony service. | Object array| Yes (initial value: left empty)|
 | backgroundModes | Continuous tasks of the UIAbility component.  <br>Continuous tasks are classified into the following types:<br>- **dataTransfer**: service for downloading, backing up, sharing, or transferring data from the network or peer devices.<br>- **audioPlayback**: audio playback service.<br>- **audioRecording**: audio recording service.<br>- **location**: location and navigation services.<br>- **bluetoothInteraction**: Bluetooth scanning, connection, and transmission services (wearables).<br>- **multiDeviceConnection**: multi-device interconnection service.<br>- **wifiInteraction**: Wi-Fi scanning, connection, and transmission services (as used in the Multi-screen Collaboration and clone features)<br>- **voip**: voice/video call and VoIP services.<br>- **taskKeeping**: computing service.| String array| Yes (initial value: left empty)|
 | startWindowIcon | Index to the icon file of the UIAbility component startup page. Example: **$media:icon**.<br>The value is a string with a maximum of 255 bytes.| String| No|
 | startWindowBackground | Index to the background color resource file of the UIAbility component startup page. Example: **$color:red**.<br>The value is a string with a maximum of 255 bytes.| String| No|
@@ -313,7 +313,8 @@ The **skills** tag represents the feature set of [wants](../application-models/w
 | entities | [Entities](../application-models/actions-entities.md) of wants that can be received.| String array| Yes (initial value: left empty)|
 |uris | URIs that match the wants.| Object array| Yes (initial value: left empty)|
 
-  **Table 8** Internal structure of the uris tag
+
+  **Table 8** uris
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -370,7 +371,7 @@ The **extensionAbilities** tag represents the configuration of extensionAbilitie
 | type | Type of the ExtensionAbility component. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a Work Scheduler task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **fileShare**: ExtensionAbility for file sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The window is then combined with other application windows through **abilityComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>**NOTE**<br>The **service** and **dataShare** types apply only to system applications and do not take effect for third-party applications. | String| No|
 | permissions | Permissions required for another application to access the ExtensionAbility component.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of [predefined permission names](../security/permission-list.md).| String array| Yes (initial value: left empty)|
 | uri | Data URI provided by the ExtensionAbility component. The value is a string with a maximum of 255 bytes, in the reverse domain name notation.<br>**NOTE**<br>This attribute is mandatory when the type of the ExtensionAbility component is set to **dataShare**.| String| Yes (initial value: left empty)|
-|skills | Feature set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility component.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The **label** and **icon** in the first ExtensionAbility that has **skills** configured are used as the **label** and **icon** of the entire OpenHarmony service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application, but not for an OpenHarmony service.| Array| Yes (initial value: left empty)|
+|skills | A set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility component.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The **label** and **icon** in the first ExtensionAbility that has **skills** configured are used as the **label** and **icon** of the entire OpenHarmony service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application, but not for an OpenHarmony service.| Array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata of the ExtensionAbility component.| Object| Yes (initial value: left empty)|
 | exported | Whether the ExtensionAbility component can be called by other applications. <br>- **true**: The ExtensionAbility component can be called by other applications.<br>- **false**: The ExtensionAbility component cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
 
@@ -464,9 +465,9 @@ The **shortcut** information is identified in **metadata**, where:
 | Name| Description| Data Type | Default Value|
 | -------- | -------- | -------- | -------- |
 | shortcutId | ID of the shortcut. The value is a string with a maximum of 63 bytes.| String| No|
-| label | Label of the shortcut, that is, the text description displayed for the shortcut. The value can be a string or a resource index to the label, with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
-| icon | Icon of the shortcut. The value is an icon resource index.| String| Yes (initial value: left empty)|
-| [wants](../application-models/want-overview.md) | Wants to which the shortcut points. Each want consists of the **bundleName** and **abilityName** sub-attributes.<br>- **bundleName**: target bundle name of the shortcut. The value is a string.<br>- **abilityName**: target component name of the shortcut. The value is a string.| Object| Yes (initial value: left empty)|
+| label | Label of the shortcut, that is, the text description displayed for the shortcut. The value is a string with a maximum of 255 bytes. It can be descriptive content or a resource index.| String| Yes (initial value: left empty)|
+| icon | Icon of the shortcut. The value is the index to the icon resource file.| String| Yes (initial value: left empty)|
+| [wants](../application-models/want-overview.md) | Wants to which the shortcut points. Each want can contain one or more of the **bundleName**, **moduleName**, and **abilityName** sub-attributes.<br>- **bundleName**: target bundle name of the shortcut. The value is a string.<br>- **moduleName**: the target module name of the shortcut. The value is a string.<br>- **abilityName**: target component name of the shortcut. The value is a string.| Object| Yes (initial value: left empty)|
 
 
 1. Configure the **shortcuts_config.json** file in **/resource/base/profile/**.
@@ -481,6 +482,7 @@ The **shortcut** information is identified in **metadata**, where:
          "wants": [
            {
              "bundleName": "com.ohos.hello",
+             "moduleName": "entry",
              "abilityName": "EntryAbility"
            }
          ]
@@ -525,112 +527,174 @@ The **shortcut** information is identified in **metadata**, where:
 
 ## distroFilter
 
-The **distroFilter** tag defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover the following factors: API version, screen shape, screen size, screen resolution, and country/region code. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these five factors. This tag must be configured in the **/resource/profile resource** directory. Its sub-tags are optional.
+The **distributionFilter** tag defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications.
 
-  **Table 12** distroFilter
+- **Application scenario**:
+  
+  If a project has multiple entry-type modules and the values of **deviceType** configured for these modules overlap, you need to use this tag to distinguish the modules. In the following example, both entry-type modules support the tablet type, and therefore the **distributionFilter** tag is required.
+  
+  ```json
+  // Device types supported by entry1
+  {
+    "module": {
+      "name": "entry1",
+      "type": "entry",
+      "deviceTypes" : [
+        "tv",
+        "tablet"
+      ]
+    }
+  }
+  ```
+  ```json
+  // Device types supported by entry2
+  {
+    "module": {
+      "name": "entry2",
+      "type": "entry",
+      "deviceTypes" : [
+        "car",
+        "tablet"
+      ]
+    }
+  }
+  ```
+  
+- **Configuration rules**:
+
+  This tag consists of five attributes: [apiVersion](#apiversion), [screenShape](#screenshape), [screenWindow](#screenwindow), [screenDensity](#screendensity), and [countryCode](#countrycode).
+
+  During distribution, a unique HAP is determined based on the mapping between **deviceTypes** and the preceding attributes.
+
+  * When configuring this tag, include at least one of the attributes.
+  * If any one or more attributes are set for one entry-type module, the same attributes must be set for all other entry-type modules.
+  * The **screenShape** and **screenWindow** attributes are available only for lite wearables.
+
+- **Configuration**:
+
+  This tag must be configured in the **/resource/profile** directory and be referenced in the **resource** field of **metadata**.
+
+
+**Table 12** distributionFilter
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| apiVersion | Supported API versions. | Object array | Yes (initial value: left empty) |
-| screenShape | Supported screen shapes.| Object array| Yes (initial value: left empty)|
-| screenWindow | Supported window resolutions for when the application is running. This attribute applies only to the lite wearables.| Object array| Yes (initial value: left empty)|
-| screenDensity | Pixel density of the screen, in dots per inch (DPI). This attribute is optional. | Object array| Yes (initial value: left empty)|
-| countryCode | Code of the country or region to which the application is to be distributed. The value is subject to the ISO-3166-1 standard. Enumerated definitions of multiple countries and regions are supported.| Object array| Yes (initial value: left empty)|
+| [apiVersion](#apiversion) | Supported API versions. | Object array | Yes (initial value: left empty) |
+| [screenShape](#screenshape) | Supported screen shapes.| Object array| Yes (initial value: left empty)|
+| [screenWindow](#screenwindow) | Supported window resolutions for when the application is running. This attribute applies only to the lite wearables.| Object array| Yes (initial value: left empty)|
+| [screenDensity](#screendensity) | Pixel density of the screen, in dots per inch (DPI). This attribute is optional. | Object array| Yes (initial value: left empty)|
+| [countryCode](#countrycode) | Code of the country or region to which the application is to be distributed. The value is subject to the ISO-3166-1 standard. Enumerated definitions of multiple countries and regions are supported.| Object array| Yes (initial value: left empty)|
 
+### apiVersion
 
-  **Table 13** Internal structure of the screenShape tag
+**Table 13** apiVersion
+
+| Name| Description| Data Type| Initial Value Allowed|
+| -------- | -------- | -------- | -------- |
+| policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
+| value | API versions, for example, 4, 5, or 6. Example: If an application comes with two versions developed using API version 5 and API version 6 for the same device model, two installation packages of the entry type can be released for the application.| Array| No|
+
+### screenShape
+
+**Table 14** screenShape
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
 | value | Screen shapes. The value can be **circle**, **rect**, or both. Example: Different HAP files can be provided for a smart watch with a circular face and that with a rectangular face.| String array| No|
 
-  **Table 14** Internal structure of the screenWindow tag
+### screenWindow
+
+**Table 15** screenWindow
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
 | value | Screen width and height, in pixels. The value an array of supported width and height pairs, each in the "width * height" format, for example, **"454 * 454"**.| String array| No|
 
-  **Table 15** Internal structure of the screenDensity tag
+### screenDensity
+
+**Table 16** screenDensity
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
 | value | Pixel density of the screen, in DPI. The value options are as follows:<br/>- **sdpi**: small-scale DPI. This value is applicable to devices with a DPI range of (0, 120].<br/>- **mdpi**: medium-scale DPI. This value is applicable to devices with a DPI range of (120, 160].<br/>- **ldpi**: large-scale DPI. This value is applicable to devices with a DPI range of (160, 240].<br/>- **xldpi**: extra-large-scale DPI. This value is applicable to devices with a DPI range of (240, 320].<br/>- **xxldpi**: extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (320, 480].<br/>- **xxxldpi**: extra-extra-extra-large-scale DPI. This value is applicable to devices with a DPI range of (480, 640]. | String array| No|
 
-  **Table 16** Internal structure of the countryCode tag
+### countryCode
+
+**Table 17** countryCode
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
 | value | Code of the country or region to which the application is to be distributed.| String array| No|
 
-Configure the **distro_filter_config.json** file (this file name is customizable) in **resources/base/profile** under the development view.
+
+Example:
+
+1. Configure the **distro_filter_config.json** file (this file name is customizable) in **resources/base/profile** under the development view.
 
 
-```json
-{
-  "distroFilter": {
-    "apiVersion": {
-      "policy": "include",
-      "value": [4,5]
-    },
-    "screenShape": {
-      "policy": "include",
-      "value": [
-        "circle",
-        "rect"
-      ]
-    },
-    "screenWindow": {
-      "policy": "include",
-      "value": [
-        "454*454",
-        "466*466"
-      ]
-    },
-    "screenDensity": {
-      "policy": "exclude",
-      "value": [
-        "ldpi",
-        "xldpi"
-      ]
-    },
-    "countryCode": {// Distribution to the Chinese mainland and Hong Kong, China is supported.
-      "policy": "include",
-      "value": [
-        "CN",
-        "HK"
-      ]
-    }
-  }
-}
-```
-
-Configure **metadata** in the **module** tag in the **module.json5** file.
-
-
-```json
-{
-  "module": {
-    // ...
-    "metadata": [
-      {
-        "name": "ohos.module.distro",
-        "resource": "$profile:distro_filter_config",
+    ```json
+    {
+      "distroFilter": {
+        "apiVersion": {
+          "policy": "include",
+          "value": [4,5]
+        },
+        "screenShape": {
+          "policy": "include",
+          "value": [
+            "circle",
+            "rect"
+          ]
+        },
+        "screenWindow": {
+          "policy": "include",
+          "value": [
+            "454*454",
+            "466*466"
+          ]
+        },
+        "screenDensity": {
+          "policy": "exclude",
+          "value": [
+            "ldpi",
+            "xldpi"
+          ]
+        },
+        "countryCode": { // Distribution in China is supported.
+          "policy": "include",
+          "value": [
+            "CN"
+          ]
+        }
       }
-    ]
-  }
-}
-```
+    }
+    ```
+
+
+    ```json
+    {
+      "module": {
+        // ...
+        "metadata": [
+          {
+            "name": "ohos.module.distro",
+            "resource": "$profile:distro_filter_config",
+          }
+        ]
+      }
+    }
+    ```
 
 
 ## testRunner
 
 The **testRunner** tag represents the supported test runner.
 
-**Table 17** Internal structure of the testRunner tag
+**Table 18** testRunner
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -656,7 +720,7 @@ Example of the **testRunner** structure:
 
 The **atomicService** tag represents the atomic service configuration. It is available only when **bundleType** is set to **atomicService** in the **app.json** file.
 
-**Table 18** Internal structure of the atomicService tag
+**Table 19** atomicService
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -683,7 +747,7 @@ Example of the **atomicService** structure:
 
 The **preloads** tag represents a list of modules to pre-load in an atomic service.
 
-**Table 19** Internal structure of the preloads tag
+**Table 20** Internal structure of the preloads tag
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -709,7 +773,7 @@ Example of the **preloads** structure:
 
 The **dependencies** tag identifies the list of shared libraries that the module depends on when it is running.
 
-**Table 20** Internal structure of the dependencies tag
+**Table 21** dependencies
 
 | Name   | Description                          | Data Type| Initial Value Allowed|
 | ----------- | ------------------------------ | -------- | ---------- |

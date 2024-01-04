@@ -1,7 +1,7 @@
 # \@Prop Decorator: One-Way Synchronization from Parent to Child Components
 
 
-An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. \@Prop decorated variables are mutable, but changes are not synchronized to the parent component.
+An \@Prop decorated variable can create one-way synchronization with a variable of its parent component. This means that, such a variable is mutable, and its changes will not be synchronized to the parent component.
 
 
 > **NOTE**
@@ -16,6 +16,12 @@ For an \@Prop decorated variable, the value synchronization is uni-directional f
 - An @Prop variable is allowed to be modified locally, but the change does not propagate back to its parent component.
 
 - Whenever that data source changes, the @Prop decorated variable gets updated, and any locally made changes are overwritten.
+
+
+
+## Restrictions
+
+- The \@Prop decorator cannot be used in custom components decorated by \@Entry.
 
 
 ## Rules of Use
@@ -146,9 +152,9 @@ In the preceding example:
 
 1. On initial render, when the **CountDownComponent** child component is created, its @Prop decorated **count** variable is initialized from the \@State decorated **countDownStartValue** variable in the **ParentComponent**.
 
-2. When the "+1" or "-1" button is touched, the @State decorated **countDownStartValue** of the **ParentComponent** changes. This will cause the **ParentComponent** to re-render. At the minimum, the **CountDownComponent** will be updated because of the changed **count** variable value.
+2. When the "+1" or "-1" button is touched, the @State decorated **countDownStartValue** of the **ParentComponent** changes. This will cause the **ParentComponent** to re-render. At the minimum, the **CountDownComponent** will be updated because of the change in the **count** variable value.
 
-3. Because of the changed **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's conditions (**this.counter> 0**) is-evaluated and the **\<Text>** child component inside the **if** would be updated.
+3. Because of the change in the **count** variable value, the **CountDownComponent** child component will re-render. At a minimum, the **if** statement's condition (**this.counter> 0**) is evaluated, and the **\<Text>** child component inside the **if** statement would be updated.
 
 4. When **Try again** in the **CountDownComponent** child component is touched, the value of the **count** variable is modified, but the change remains within the child component and does not affect the **countDownStartValue** in the parent component.
 
@@ -210,7 +216,7 @@ struct Index {
 Initial render creates six instances of the **Child** component. Each \@Prop decorated variable is initialized with a copy of an array item. The **onclick** event handler of the **Child** component changes the local variable value.
 
 
-Assume that we clicked so many times that all local values be '7'.
+Click **1**, **2**, and **3** so that all local values change to **'7'**.
 
 
 
@@ -316,18 +322,22 @@ struct MyComponent {
   build() {
     Column() {
       Row() {
-        Text(`From Main: ${this.customCounter}`).width(90).height(40).fontColor('#FF0010')
+        Text(`From Main: ${this.customCounter}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
 
       Row() {
-        Button('Click to change locally !').width(480).height(60).margin({ top: 10 })
+        Button('Click to change locally !')
+          .width(288)
+          .height(40)
+          .margin({ left: 30, top: 12 })
+          .fontColor('#FFFFFF, 90%')
           .onClick(() => {
             this.customCounter2++
           })
-      }.height(100).width(480)
+      }
 
       Row() {
-        Text(`Custom Local: ${this.customCounter2}`).width(90).height(40).fontColor('#FF0010')
+        Text(`Custom Local: ${this.customCounter2}`).fontColor('#ff6b6565').margin({ left: -110, top: 12 })
       }
     }
   }
@@ -342,22 +352,30 @@ struct MainProgram {
     Column() {
       Row() {
         Column() {
-          Button('Click to change number').width(480).height(60).margin({ top: 10, bottom: 10 })
+          // customCounter must be initialized from the parent component due to lack of local initialization. Here, customCounter2 does not need to be initialized.
+          MyComponent({ customCounter: this.mainCounter })
+          // customCounter2 of the child component can also be initialized from the parent component. The value from the parent component overwrites the locally assigned value of customCounter2 during initialization.
+          MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
+        }
+      }
+
+      Row() {
+        Column() {
+          Button('Click to change number')
+            .width(288)
+            .height(40)
+            .margin({ left: 30, top: 12 })
+            .fontColor('#FFFFFF, 90%')
             .onClick(() => {
               this.mainCounter++
             })
         }
       }
-
-      Row() {
-        Column()
-        // customCounter must be initialized from the parent component due to lack of local initialization. Here, customCounter2 does not need to be initialized.
-        MyComponent({ customCounter: this.mainCounter })
-        // customCounter2 of the child component can also be initialized from the parent component. The value from the parent component overwrites the locally assigned value of customCounter2 during initialization.
-        MyComponent({ customCounter: this.mainCounter, customCounter2: this.mainCounter })
-      }.width('40%')
     }
   }
 }
 ```
+
+![Video-prop-UsageScenario-two](figures/Video-prop-UsageScenario-two.gif)
+
 <!--no_check-->
