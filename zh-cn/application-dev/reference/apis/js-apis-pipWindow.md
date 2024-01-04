@@ -37,50 +37,6 @@ console.info('isPipEnabled:' + enable);
 
 ## pipWindow.create
 
-create(config: PiPConfiguration, callback: AsyncCallback&lt;PiPController&gt;): void
-
-创建画中画控制器，使用callback异步回调。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名        | 类型                                                    | 必填     | 说明               |
-|------------|-------------------------------------------------------|--------|------------------|
-| config     | [PiPConfiguration](#pipconfiguration)                 | 是      | 创建画中画控制器时的参数。    |
-| callback   | AsyncCallback&lt;[PiPController](#pipcontroller)&gt;  | 是      | 回调函数。返回画中画控制器。   |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-let pipController: pipWindow.PiPController | undefined = undefined;
-let mXComponentController: XComponentController = new XComponentController(); // 开发者应使用该mXComponentController初始化XComponent: XComponent( {id: 'video', type: 'surface', controller: mXComponentController} )，保证XComponent的内容可以被迁移到画中画窗口。
-let navId: string = "page_1"; // 假设当前页面的导航id为page_1，详见PiPConfiguration定义，具体导航名称由开发者自行定义。
-let contentWidth: number = 800; // 假设当前内容宽度800px。
-let contentHeight: number = 600; // 假设当前内容高度600px。
-
-let config: pipWindow.PiPConfiguration = {
-  context: getContext(this),
-  componentController: mXComponentController,
-  navigationId: navId,
-  templateType: pipWindow.PiPTemplateType.VIDEO_PLAY,
-  contentWidth: contentWidth,
-  contentHeight: contentHeight,
-};
-
-pipWindow.create(config, (err: BusinessError, data : pipWindow.PiPController) => {
-  if (err.code) {
-    console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
-    return;
-  }
-  pipController = data;
-  console.info(`Succeeded in creating pip controller. Data:${data}`);
-});
-```
-
-## pipWindow.create
-
 create(config: PiPConfiguration): Promise&lt;PiPController&gt;
 
 创建画中画控制器，使用Promise异步回调。
@@ -220,43 +176,6 @@ promise.then((data : pipWindow.PiPController) => {
 
 ### startPiP
 
-startPiP(callback: AsyncCallback&lt;void&gt;): void
-
-启动画中画，使用callback异步回调。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名         | 类型                          | 必填   | 说明                 |
-|-------------|-----------------------------|------|--------------------|
-| callback    | AsyncCallback&lt;void&gt;   | 是    | 回调函数。              |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
-
-| 错误码ID      | 错误信息                                                   |
-|------------|--------------------------------------------------------|
-| 1300012    | If PiP window state is abnormal.                       |
-| 1300013    | Create pip window failed.                              |
-| 1300014    | Error when load PiP window content or show PiP window. |
-| 1300015    | If window has created.                                 |
-
-**示例：**
-
-```ts
-pipController.startPiP((err: BusinessError) => {
-  if (err.code) {
-    console.error(`Failed to start pip. Cause:${err.code}, message:${err.message}`);
-    return;
-  }
-  console.info('Succeeded in starting pip.');
-});
-```
-
-### startPiP
-
 startPiP(): Promise&lt;void&gt;
 
 启动画中画，使用Promise异步回调。
@@ -288,42 +207,6 @@ promise.then(() => {
   console.info(`Succeeded in starting pip.`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to start pip. Cause:${err.code}, message:${err.message}`);
-});
-```
-
-### stopPiP
-
-stopPiP(callback: AsyncCallback&lt;void&gt;): void
-
-停止画中画，使用callback异步回调。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名         | 类型                          | 必填   | 说明        |
-|-------------|-----------------------------|------|-----------|
-| callback    | AsyncCallback&lt;void&gt;   | 是    | 回调函数。     |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
-
-| 错误码ID   | 错误信息                             |
-|---------|----------------------------------|
-| 1300011 | Stop PiP window failed.          |
-| 1300012 | If PiP window state is abnormal. |
-| 1300015 | If window is stopping.           |
-
-**示例：**
-
-```ts
-pipController.stopPiP((err: BusinessError) => {
-  if (err.code) {
-    console.error(`Failed to stop pip. Cause:${err.code}, message:${err.message}`);
-    return;
-  }
-  console.info('Succeeded in stopping pip.');
 });
 ```
 
