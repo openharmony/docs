@@ -1,6 +1,6 @@
 # 文件
 
-- [Core File Kit简介](core-file-kit-intro.md)
+- [文件管理简介](core-file-kit-intro.md)
 - 应用文件
   - [应用文件概述](app-file-overview.md)
   - [应用沙箱目录](app-sandbox-directory.md)
