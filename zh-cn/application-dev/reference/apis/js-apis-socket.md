@@ -23,7 +23,7 @@ constructUDPSocketInstance(): UDPSocket
 **返回值：**
 
 | 类型                               | 说明                    |
-| :--------------------------------- | :---------------------- |
+|  --------------------------------- |  ---------------------- |
 | [UDPSocket](#udpsocket) | 返回一个UDPSocket对象。 |
 
 **示例：**
@@ -107,7 +107,7 @@ bind(address: NetAddress): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                       |
-| :-------------- | :----------------------------------------- |
+|  -------------- |  ----------------------------------------- |
 | Promise\<void\> | 以Promise形式异步返回UDPSocket绑定的结果。 |
 
 **示例：**
@@ -206,7 +206,7 @@ send(options: UDPSendOptions): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                           |
-| :-------------- | :--------------------------------------------- |
+|  -------------- |  --------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回UDPSocket连接发送数据的结果。 |
 
 **示例：**
@@ -276,7 +276,7 @@ close(): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                       |
-| :-------------- | :----------------------------------------- |
+|  -------------- |  ----------------------------------------- |
 | Promise\<void\> | 以Promise形式返回关闭UDPSocket连接的结果。 |
 
 **示例：**
@@ -361,7 +361,7 @@ getState(): Promise\<SocketStateBase\>
 **返回值：**
 
 | 类型                                             | 说明                                       |
-| :----------------------------------------------- | :----------------------------------------- |
+|  ----------------------------------------------- |  ----------------------------------------- |
 | Promise\<[SocketStateBase](#socketstatebase)\> | 以Promise形式返回获取UDPSocket状态的结果。 |
 
 **示例：**
@@ -473,7 +473,7 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                 |
-| :-------------- | :--------------------------------------------------- |
+|  -------------- |  --------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回设置UDPSocket连接的其他属性的结果。 |
 
 **错误码：**
@@ -807,7 +807,7 @@ constructMulticastSocketInstance(): MulticastSocket
 **返回值：**
 
 | 类型                               | 说明                    |
-  | :--------------------------------- | :---------------------- |
+| ----------------------------------- | ----------------------------- |
 | [MulticastSocket](#multicastsocket) | 返回一个MulticastSocket对象。 |
 
 **示例：**
@@ -892,7 +892,7 @@ addMembership(multicastAddress: NetAddress): Promise\<void\>;
 **返回值：**
 
 | 类型            | 说明                                               |
-| :-------------- | :-----------------------------------------------  |
+|  -------------- |  -----------------------------------------------  |
 | Promise\<void\> | 以Promise形式返回MulticastSocket加入多播组的行为结果。 |
 
 **错误码：**
@@ -901,7 +901,6 @@ addMembership(multicastAddress: NetAddress): Promise\<void\>;
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
 | 201     | Permission denied.      |
-| 2301022 | Invalid argument.       |
 | 2301088 | Not a socket.           |
 | 2301098 | Address in use.         |
 
@@ -992,7 +991,7 @@ dropMembership(multicastAddress: NetAddress): Promise\<void\>;
 **返回值：**
 
 | 类型            | 说明                                              |
-| :-------------- | :----------------------------------------------- |
+|  -------------- |  ----------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回MulticastSocket加入多播组的执行结果。 |
 
 **错误码：**
@@ -1032,8 +1031,6 @@ setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
 > 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
 > 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -1048,7 +1045,6 @@ setMulticastTTL(ttl: number, callback: AsyncCallback\<void\>): void;
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
 | 2301022 | Invalid argument.       |
 | 2301088 | Not a socket.           |
 
@@ -1079,8 +1075,6 @@ setMulticastTTL(ttl: number): Promise\<void\>;
 > 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
 > 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -1092,7 +1086,7 @@ setMulticastTTL(ttl: number): Promise\<void\>;
 **返回值：**
 
 | 类型            | 说明                                             |
-| :-------------- | :---------------------------------------------- |
+|  -------------- |  ---------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回MulticastSocket设置TTL数值的结果。 |
 
 **错误码：**
@@ -1100,9 +1094,8 @@ setMulticastTTL(ttl: number): Promise\<void\>;
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
+| 2301022 | Invalid argument.       |
 | 2301088 | Not a socket.           |
-| 2301098 | Address in use.         |
 
 **示例：**
 
@@ -1128,8 +1121,6 @@ getMulticastTTL(callback: AsyncCallback\<number\>): void;
 > 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
 > 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -1143,7 +1134,6 @@ getMulticastTTL(callback: AsyncCallback\<number\>): void;
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
 | 2301088 | Not a socket.           |
 
 **示例：**
@@ -1172,28 +1162,20 @@ getMulticastTTL(): Promise\<number\>;
 > 如果一个多播数据包的 TTL 值为 1，那么它只能被直接连接到发送者的主机接收。如果 TTL 被设置为一个较大的值，那么数据包就能够被传送到更远的网络范围内。
 > 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-无                                                            
 
 **返回值：**
 
 | 类型               | 说明                        |
-| :--------------   | --------------------------- |
+| ----------------   | --------------------------- |
 | Promise\<number\> | 以Promise形式返回当前TTL数值。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
+| 错误码ID | 错误信息                |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
 | 2301088 | Not a socket.           |
-| 2301098 | Address in use.         |
 
 **示例：**
 
@@ -1218,8 +1200,6 @@ setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
 > 如果一个多播通信中环回模式设置值为 true，那么它允许主机在本地循环接收自己发送的多播数据包。如果为 false，则主机不会接收到自己发送的多播数据包。
 > 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -1234,7 +1214,6 @@ setLoopbackMode(flag: boolean, callback: AsyncCallback\<void\>): void;
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
 | 2301088 | Not a socket.           |
 
 **示例：**
@@ -1262,8 +1241,6 @@ setLoopbackMode(flag: boolean): Promise\<void\>;
 > 如果一个多播通信中环回模式设置值为 true，那么它允许主机在本地循环接收自己发送的多播数据包。如果为 false，则主机不会接收到自己发送的多播数据包。
 > 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -1275,17 +1252,15 @@ setLoopbackMode(flag: boolean): Promise\<void\>;
 **返回值：**
 
 | 类型            | 说明                                             |
-| :-------------- | :---------------------------------------------- |
+|  -------------- |  ---------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回MulticastSocket设置环回模式的结果。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
+| 错误码ID | 错误信息                |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
 | 2301088 | Not a socket.           |
-| 2301098 | Address in use.         |
 
 **示例：**
 
@@ -1310,8 +1285,6 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
 > 如果获取的属性值为 true，表示环回模式是开启的状态，允许主机在本地循环接收自己发送的多播数据包。如果为 false，则表示环回模式是关闭的状态，主机不会接收到自己发送的多播数据包。
 > 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -1322,10 +1295,9 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void;
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
+| 错误码ID | 错误信息                |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
 | 2301088 | Not a socket.           |
 
 **示例：**
@@ -1353,28 +1325,20 @@ getLoopbackMode(): Promise\<boolean\>;
 > 如果获取的属性值为 true，表示环回模式是开启的状态，允许主机在本地循环接收自己发送的多播数据包。如果为 false，则表示环回模式是关闭的状态，主机不会接收到自己发送的多播数据包。
 > 在调用 [addMembership](#addmembership11) 之后，调用此接口才有效。
 
-**需要权限**：ohos.permission.INTERNET
-
 **系统能力**：SystemCapability.Communication.NetStack
-
-**参数：**
-
-无                                                            
-
+                                                      
 **返回值：**
 
 | 类型                | 说明                        |
-| :----------------  | --------------------------- |
+| ----------------  | --------------------------- |
 | Promise\<boolean\> | 以Promise形式返回当前TTL数值。 |
 
 **错误码：**
 
-| 错误码ID | 错误信息                 |
+| 错误码ID | 错误信息                |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
-| 201     | Permission denied.      |
 | 2301088 | Not a socket.           |
-| 2301098 | Address in use.         |
 
 **示例：**
 
@@ -1388,7 +1352,8 @@ multicast.getLoopbackMode().then((value) => {
 });
 ```
 
-### send<sup>11+</sup>
+
+### send<sup>7+</sup>
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -1435,7 +1400,7 @@ multicast.send(sendOptions, (err) => {
 });
 ```
 
-### send<sup>11+</sup>
+### send<sup>7+</sup>
 
 send(options: UDPSendOptions): Promise\<void\>
 
@@ -1485,7 +1450,7 @@ multicast.send(sendOptions).then(() => {
 });
 ```
 
-### on('message')<sup>11+</sup>
+### on('message')<sup>7+</sup>
 
 on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1517,7 +1482,7 @@ multicast.on('message', (data) => {
 })
 ```
 
-### off('message')<sup>11+</sup>
+### off('message')<sup>7+</sup>
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1549,6 +1514,7 @@ multicast.on('message', (data) => {
 multicast.off('message')
 ```
 
+
 ## socket.constructTCPSocketInstance<sup>7+</sup>
 
 constructTCPSocketInstance(): TCPSocket
@@ -1560,7 +1526,7 @@ constructTCPSocketInstance(): TCPSocket
 **返回值：**
 
 | 类型                               | 说明                    |
-  | :--------------------------------- | :---------------------- |
+| --------------------------------- | ---------------------- |
 | [TCPSocket](#tcpsocket) | 返回一个TCPSocket对象。 |
 
 **示例：**
@@ -1646,7 +1612,7 @@ bind(address: NetAddress): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                     |
-| :-------------- | :------------------------------------------------------- |
+| --------------- | ------------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回TCPSocket绑定本机的IP地址和端口的结果。 |
 
 **错误码：**
@@ -1745,7 +1711,7 @@ connect(options: TCPConnectOptions): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                       |
-| :-------------- | :--------------------------------------------------------- |
+| -------------- | --------------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回TCPSocket连接到指定的IP地址和端口的结果。 |
 
 **错误码：**
@@ -1854,7 +1820,7 @@ send(options: TCPSendOptions): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                               |
-| :-------------- | :------------------------------------------------- |
+| -------------- | ------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回通过TCPSocket连接发送数据的结果。 |
 
 **错误码：**
@@ -1942,7 +1908,7 @@ close(): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                       |
-| :-------------- | :----------------------------------------- |
+| -------------- | ----------------------------------------- |
 | Promise\<void\> | 以Promise形式返回关闭TCPSocket连接的结果。 |
 
 **错误码：**
@@ -2031,7 +1997,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 **返回值：**
 
 | 类型                                        | 说明                                        |
-| :------------------------------------------ | :------------------------------------------ |
+| ------------------------------------------ | ------------------------------------------ |
 | Promise<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。 |
 
 **错误码：**
@@ -2133,7 +2099,7 @@ getState(): Promise\<SocketStateBase\>
 **返回值：**
 
 | 类型                                             | 说明                                       |
-| :----------------------------------------------- | :----------------------------------------- |
+| ----------------------------------------------- | ----------------------------------------- |
 | Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TCPSocket状态的结果。 |
 
 **错误码：**
@@ -2222,7 +2188,7 @@ getSocketFd(): Promise\<number\>
 **返回值：**
 
 | 类型                                             | 说明                                       |
-| :----------------------------------------------- | :----------------------------------------- |
+| ----------------------------------------------- | ----------------------------------------- |
 | Promise\<number\> | 以Promise形式返回socket的文件描述符。 |
 
 **示例：**
@@ -2332,7 +2298,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                 |
-| :-------------- | :--------------------------------------------------- |
+| -------------- | --------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回设置TCPSocket连接的其他属性的结果。 |
 
 **错误码：**
@@ -2636,7 +2602,7 @@ constructTCPSocketServerInstance(): TCPSocketServer
 **返回值：**
 
 | 类型                                | 说明                          |
-| :---------------------------------- | :---------------------------- |
+|  ---------------------------------- |  ---------------------------- |
 | [TCPSocketServer](#tcpsocketserver10) | 返回一个TCPSocketServer对象。 |
 
 **示例：**
@@ -2724,7 +2690,7 @@ listen(address: NetAddress): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                         |
-| :-------------- | :----------------------------------------------------------- |
+|  -------------- |  ----------------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回, 成功返回空，失败返回错误码错误信息。|
 
 **错误码：**
@@ -2828,7 +2794,7 @@ getState(): Promise\<SocketStateBase\>
 **返回值：**
 
 | 类型                                         | 说明                                       |
-| :------------------------------------------- | :----------------------------------------- |
+|  ------------------------------------------- |  ----------------------------------------- |
 | Promise<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TCPSocket状态的结果。 |
 
 **错误码：**
@@ -2953,7 +2919,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                       |
-| :-------------- | :--------------------------------------------------------- |
+|  -------------- |  --------------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -3228,7 +3194,7 @@ send(options: TCPSendOptions): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                         |
-| :-------------- | :----------------------------------------------------------- |
+|  -------------- |  ----------------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -3313,7 +3279,7 @@ close(): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                         |
-| :-------------- | :------------------------------------------- |
+|  -------------- |  ------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -3398,7 +3364,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 **返回值：**
 
 | 类型                               | 说明                                        |
-| :--------------------------------- | :------------------------------------------ |
+|  --------------------------------- |  ------------------------------------------ |
 | Promise<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。 |
 
 **错误码：**
@@ -5084,7 +5050,7 @@ constructTLSSocketInstance(): TLSSocket
 **返回值:**
 
 | 类型                               | 说明                    |
-| :--------------------------------- | :---------------------- |
+|  --------------------------------- |  ---------------------- |
 | [TLSSocket](#tlssocket9) | 返回一个TLSSocket对象。 |
 
 **示例：**
@@ -5162,7 +5128,7 @@ bind(address: NetAddress): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                     |
-| :-------------- | :------------------------------------------------------- |
+|  -------------- |  ------------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回TLSSocket绑定本机的IP地址和端口的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
@@ -5249,7 +5215,7 @@ getState(): Promise\<SocketStateBase\>
 **返回值：**
 
 | 类型                                             | 说明                                       |
-| :----------------------------------------------- | :----------------------------------------- |
+|  ----------------------------------------------- |  ----------------------------------------- |
 | Promise\<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TLSSocket状态的结果。失败返回错误码，错误信息。|
 
 **错误码：**
@@ -5360,7 +5326,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                 |
-| :-------------- | :--------------------------------------------------- |
+|  -------------- |  --------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回设置TCPSocket连接的其他属性的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
@@ -5865,7 +5831,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 **返回值：**
 
 | 类型                                        | 说明                                        |
-| :------------------------------------------ | :------------------------------------------ |
+|  ------------------------------------------ |  ------------------------------------------ |
 | Promise\<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
@@ -6468,7 +6434,7 @@ constructTLSSocketServerInstance(): TLSSocketServer
 **返回值:**
 
 | 类型                                  | 说明                          |
-| :------------------------------------ | :---------------------------- |
+|  ------------------------------------ |  ---------------------------- |
 | [TLSSocketServer](#tlssocketserver10) | 返回一个TLSSocketServer对象。 |
 
 **示例：**
@@ -6692,7 +6658,7 @@ getState(): Promise\<SocketStateBase\>
 **返回值：**
 
 | 类型                                           | 说明                                                         |
-| :--------------------------------------------- | :----------------------------------------------------------- |
+|  --------------------------------------------- |  ----------------------------------------------------------- |
 | Promise\<[SocketStateBase](#socketstatebase)> | 以Promise形式返回获取TLSSocketServer状态的结果。失败返回错误码，错误信息。 |
 
 **错误码：**
@@ -6831,7 +6797,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **返回值：**
 
 | 类型            | 说明                                                      |
-| :-------------- | :-------------------------------------------------------- |
+|  -------------- |  -------------------------------------------------------- |
 | Promise\<void\> | 以Promise形式返回，成功返回空，失败返回错误码，错误信息。 |
 
 **错误码：**
@@ -7728,7 +7694,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 **返回值：**
 
 | 类型                                 | 说明                                                         |
-| :----------------------------------- | :----------------------------------------------------------- |
+|  ----------------------------------- |  ----------------------------------------------------------- |
 | Promise\<[NetAddress](#netaddress)> | 以Promise形式返回获取对端socket地址的结果。失败返回错误码，错误信息。 |
 
 **错误码：**

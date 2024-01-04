@@ -457,7 +457,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('discoveryStart')
 
-on(type: 'discoveryStart', callback: Callback<DiscoveryEventInfo>): void
+on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 
 订阅开启监听mDNS服务的通知。
 
