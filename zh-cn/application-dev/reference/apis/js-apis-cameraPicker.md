@@ -12,7 +12,7 @@ import picker from '@ohos.multimedia.cameraPicker';
 
 ## pick
 
-pick(context: Context, mediaTypes: Array<PickerMediaType>, pickerProfile: PickerProfile): Promise\<PickerResult\>
+pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: PickerProfile): Promise\<PickerResult\>
 
 拉起相机选择器，根据媒体类型进入相应的模式。操作结束通过Promise形式获取结果。
 
@@ -23,7 +23,7 @@ pick(context: Context, mediaTypes: Array<PickerMediaType>, pickerProfile: Picker
 | 参数名          | 类型                                                   | 必填 | 说明                           |
 | -------------- | ------------------------------------------------------ | ---- | ---------------------------- |
 | context        | [BaseContext](js-apis-inner-application-baseContext.md)| 是   | 应用上下文。                   |
-| mediaTypes     | [PickerMediaType](#pickermediatype)                    | 是   | 媒体类型。                    |
+| mediaTypes     | Array<[PickerMediaType](#pickermediatype)>                    | 是   | 媒体类型。                    |
 | pickerProfile  | [PickerProfile](#pickerprofile)                        | 是   | pickerProfile对象。            |
 
 **返回值：**
@@ -36,19 +36,24 @@ pick(context: Context, mediaTypes: Array<PickerMediaType>, pickerProfile: Picker
 **示例：**
 
 ```ts
+import picker from '@ohos.multimedia.cameraPicker';
+import camera from '@ohos.multimedia.camera';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
-let context = getContext(this) as common.Context;
+let mContext = getContext(this) as common.Context;
 
-async function pick(context: Context, mediaTypes: Array<picker.PickerMediaType>, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
+async function demo() {
   try {
-    let pickerResult: picker.PickerResult = await picker.pick(context, mediaTypes, pickerProfile);
-    console.log(`the pick is called. resultCode: ${pickerResult.resultCode}, resultUri: ${pickerResult.resultUri}`);
+    let pickerProfile = {
+      cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
+    };
+    let pickerResult: picker.PickerResult = await picker.pick(mContext,
+      [picker.PickerMedaiType.PHOTO, picker.PickerMediaType.VIDEO], pickerProfile);
+    console.log("the pick pickerResult is:" + JSON.stringify(pickerResult));
   } catch (error) {
     let err = error as BusinessError;
     console.error(`the pick call failed. error code: ${err.code}`);
   }
-  return pickerResult;
 }
 ```
 
@@ -72,9 +77,9 @@ async function pick(context: Context, mediaTypes: Array<picker.PickerMediaType>,
 
 | 名称           | 类型                               | 必填   | 说明         |
 | -------------- | --------------------------------- | ----- | ------------ |
-| position       | [CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
-| saveUri        | string                            | 是    | 保存配置信息的uri地址。|
-| videoDuration  | number                            | 是    | 录制的最大时长。|
+| cameraPosition       | [CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
+| saveUri        | string                            | 否    | 保存配置信息的uri地址。|
+| videoDuration  | number                            | 否    | 录制的最大时长。|
 
 
 ## PickerResult
