@@ -1,10 +1,10 @@
 # Device Certificate Kit简介
 
-Device Certificate Kit面向应用开发者，提供了证书算法库和证书管理的能力。
+Device Certificate Kit面向应用开发者，提供了[证书算法库](#证书算法库)和[证书管理](#证书管理)的能力。
 
 ## 证书算法库
 
-证书算法库包含各种加密算法和数字签名算法，用于生成和验证数字证书。
+证书算法库提供接口用于解析和验证数字证书。
 
 证书算法库向应用提供证书、证书扩展域段、证书吊销列表的解析及校验能力，以及证书链的校验能力。
 
@@ -13,6 +13,16 @@ Device Certificate Kit面向应用开发者，提供了证书算法库和证书�
 **常见使用场景：**
 
 使用正确的原始数据和签名数据进行签名校验，模拟服务端通过客户端证书获取公钥，利用公钥对签名数据进行校验，验证客户端身份和原始数据完整性。
+
+### 框架原理
+
+Device Certificate Kit涉及证书算法库框架，开发者只需要调用API接口层即可实现证书的操作。通过证书算法库框架，可忽视不同三方算法库的差异。
+
+![](figures/certificate_framework_architecture.png)
+
+### 与相关Kit的关系
+
+公钥的生成和获取依赖[Crypto Architecture Kit](../CryptoArchitectureKit/crypto-architecture-kit-intro.md)加解密算法框架服务的能力。
 
 ## 证书管理
 
@@ -26,16 +36,8 @@ Device Certificate Kit面向应用开发者，提供了证书算法库和证书�
 
 安装应用私有凭据，获取应用私有凭据，并使用应用私有凭据进行签名、验签，最后删除应用私有凭据。
 
-## 框架原理
-
-Device Certificate Kit涉及证书算法库框架，开发者只需要调用API接口层即可实现证书的操作。通过证书算法库框架，可忽视不同三方算法库的差异。
-
-![](figures/certificate_framework_architecture.png)
-
 ## 约束与限制
 
 Device Certificate Kit不具备生成或签发证书及证书吊销列表的能力。生成或签发证书及证书吊销列表的能力一般由证书颁发机构（CA）来完成，不由单个应用签发。
 
-## 与相关Kit的关系
 
-为屏蔽底层硬件和算法库，依赖[Crypto Architecture Kit](../CryptoArchitectureKit/crypto-architecture-kit-intro.md)加解密算法框架服务的基础算法能力。
