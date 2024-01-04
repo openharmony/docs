@@ -1094,9 +1094,9 @@ getColorSpace(): colorSpaceManager.ColorSpaceManager
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980101| The image data is abnormal.            |
-| 62980103| The image data is not supported.             |
-| 62980115| Invalid image parameter.            |
+| 62980101| If the image data abnormal.             |
+| 62980103| If the image data unsupport.            |
+| 62980115| If the image parameter invalid.             |
 
 **示例：**
 
@@ -1126,8 +1126,8 @@ setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980111| The image source data is incomplete.        |
-| 62980115| Invalid image parameter.             |
+| 62980111| If the operation invalid.        |
+| 62980115| If the image parameter invalid.            |
 
 **示例：**
 
@@ -1162,9 +1162,9 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager, callback:
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
 | 401 | The parameter check failed. |
-| 62980104| Failed to initialize the internal object. |
-| 62980108| Failed to convert the color space.       |
-| 62980115| Invalid image parameter.            |
+| 62980104| If the internal object initialized failed. |
+| 62980108| If the color space converted failed.       |
+| 62980115| If the image parameter invalid.          |
 
 **示例：**
 
@@ -1213,9 +1213,9 @@ applyColorSpace(targetColorSpace: colorSpaceManager.ColorSpaceManager): Promise\
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------------------|
 | 401 | The parameter check failed. |
-| 62980104| Failed to initialize the internal object. |
-| 62980108| Failed to convert the color space.       |
-| 62980115| Invalid image parameter.            |
+| 62980104| If the internal object initialized failed. |
+| 62980108| If the color space converted failed.      |
+| 62980115| If the image parameter invalid.          |
 
 **示例：**
 
@@ -1254,8 +1254,8 @@ marshalling(sequence: rpc.MessageSequence): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | Invalid image parameter.              |
-| 62980097 | IPC error.             |
+| 62980115 | If the input parameter invalid.             |
+| 62980097 | If the ipc error.            |
 
 **示例：**
 
@@ -1341,9 +1341,9 @@ unmarshalling(sequence: rpc.MessageSequence): Promise\<PixelMap>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980115 | Invalid image parameter.              |
-| 62980097 | IPC error.              |
-| 62980096 | The operation failed.         |
+| 62980115 | If the input parameter invalid.             |
+| 62980097 | If the ipc error.              |
+| 62980096 | If fail to create async work.        |
 
 **示例：**
 
@@ -1857,18 +1857,13 @@ getImageProperty(key:PropertyKey, options?: ImagePropertyOptions): Promise\<stri
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | The parameter check failed.              |
-| 62980096| The operation failed.             |
-| 62980103| The image data is not supported.            |
-| 62980110| The image source data is incorrect.            |
-| 62980111| The image source data is incomplete.             |
-| 62980112| The image format does not match.             |
-| 62980113| Unknown image format.             |
-| 62980115| Invalid image parameter.             |
-| 62980116| Failed to decode the image.              |
-| 62980118| Failed to create the image plugin.           |
-| 62980122| The image decoding header is abnormal.           |
-| 62980123| Images in EXIF format are not supported.             |
-| 62980135| The EXIF value is invalid.            |
+| 62980111| If the image source data incomplete.             |
+| 62980113| If the image format unknown.             |
+| 62980116| If the image decode failed.          |
+| 62980118| If the image plugin create failed.           |
+| 62980122| If the image decode head abnormal.           |
+| 62980123| If the image unsupport exif.             |
+| 62980135| If the exif value is invalid.            |
 
 **示例：**
 
@@ -2014,10 +2009,17 @@ modifyImageProperty(key: PropertyKey, value: string): Promise\<void>
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 401  | The parameter check failed.              |
-| 62980123| Images in EXIF format are not supported.             |
-| 62980133| The EXIF data is out of range.    |
-| 62980135| The EXIF value is invalid.             |
-| 62980146| The EXIF data failed to be written to the file.        |
+| 62980110| If the image source data error.            |
+| 62980111| If the image source data incomplete.    |
+| 62980113| If the image format unknown.            |
+| 62980116| If the image decode failed.        |
+| 62980118| If the image plugin create failed.       |
+| 62980123| If the image unsupport exif.            |
+| 62980130| If the image source file is abnormal unsupport exif.    |
+| 62980132| If the image source buffer size is abnormal.    |
+| 62980135| If the exif value is invalid.             |
+| 62980146| If the exif failed to be written to the file.        |
+| 62980147| If the file fails to be read.        |
 
 **示例：**
 
@@ -2296,23 +2298,11 @@ createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
-| 62980099 | The shared memory data is abnormal. |
-| 62980101 | The image data is abnormal. |
-| 62980103| The image data is not supported.             |
-| 62980106 | The image is too large. |
-| 62980109 | Failed to crop the image. |
-| 62980110| The image source data is incorrect.             |
-| 62980111| The image source data is incomplete.           |
-| 62980112 | The image format does not match. |
-| 62980113 | Unknown image format. |
-| 62980115 | Invalid image parameter. |
-| 62980116 | Failed to decode the image. |
-| 62980118| Failed to create the image plugin.             |
-| 62980122 | The image decoding header is abnormal. |
-| 62980137 | Invalid media operation. |
-| 62980173 | The DMA memory does not exist. |
-| 62980174 | The DMA memory data is abnormal. |
+| 62980096| If the operation failed.              |
+| 62980103| If the image data unsupport.             |
+| 62980110| If the image source data error.            |
+| 62980111| If the image source data incomplete.           |
+| 62980118| If the image plugin create failed.             |
 
 **示例：**
 
@@ -2353,23 +2343,11 @@ createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | The operation failed.             |
-| 62980099 | The shared memory data is abnormal.  |
-| 62980101 | The image data is abnormal.          |
-| 62980103 | The image data is not supported.         |
-| 62980106 | The image is too large.              |
-| 62980109 | Failed to crop the image.            |
-| 62980110 | The image source data is incorrect.      |
-| 62980111 | The image source data is incomplete. |
-| 62980112 | The image format does not match.       |
-| 62980113 | Unknown image format.        |
-| 62980115 | Invalid image parameter.      |
-| 62980116 | Failed to decode the image.         |
-| 62980118 | Failed to create the image plugin.   |
-| 62980122 | The image decoding header is abnormal.   |
-| 62980137 | Invalid media operation.     |
-| 62980173 | The DMA memory does not exist.        |
-| 62980174 | The DMA memory data is abnormal.    |
+| 62980096| If the operation failed.             |
+| 62980103| If the image data unsupport.             |
+| 62980110| If the image source data error.           |
+| 62980111| If the image source data incomplete.           |
+| 62980118| If the image plugin create failed.            |
 
 **示例：**
 
@@ -2405,23 +2383,11 @@ createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<Pixe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | The operation failed.            |
-| 62980099 | The shared memory data is abnormal.  |
-| 62980101 | The image data is abnormal.         |
-| 62980103 | The image data is not supported.        |
-| 62980106 | The image is too large.              |
-| 62980109 | Failed to crop the image.           |
-| 62980110 | The image source data is incorrect.      |
-| 62980111 | The image source data is incomplete. |
-| 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
-| 62980115 | Invalid image parameter.      |
-| 62980116 | Failed to decode the image.         |
-| 62980118 | Failed to create the image plugin.  |
-| 62980122 | The image decoding header is abnormal.   |
-| 62980137 | Invalid media operation.      |
-| 62980173 | The DMA memory does not exist.         |
-| 62980174 | The DMA memory data is abnormal.     |
+| 62980096 | If the operation failed.            |
+| 62980103 | If the image data unsupport.       |
+| 62980110 | If the image source data error.      |
+| 62980111 | If the image source data incomplete. |
+| 62980118 | If the image plugin create failed.  |
 
 **示例：**
 
@@ -2464,17 +2430,13 @@ getDelayTimeList(callback: AsyncCallback<Array\<number>>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
-| 62980110| The image source data is incorrect.             |
-| 62980111| The image source data is incomplete.            |
-| 62980112 | The image format does not match. |
-| 62980113| Unknown image format. |
-| 62980115 | Invalid image parameter. |
-| 62980116| Failed to decode the image. |
-| 62980118| Failed to create the image plugin. |
-| 62980122| The image decoding header is abnormal. |
-| 62980137 | Invalid media operation. |
-| 62980149 | Invalid media parameter. |
+| 62980096| If the operation failed.              |
+| 62980110| If the image source data error.             |
+| 62980111| If the image source data incomplete.            |
+| 62980113| If the image format unknown. |
+| 62980116| If the image decode failed. |
+| 62980118| If the image plugin create failed. |
+| 62980122| If the image decode head abnormal. |
 
 **示例：**
 
@@ -2509,17 +2471,13 @@ getDelayTimeList(): Promise<Array\<number>>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | The operation failed.             |
-| 62980110 | The image source data is incorrect.      |
-| 62980111 | The image source data is incomplete. |
-| 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
-| 62980115 | Invalid image parameter.      |
-| 62980116 | Failed to decode the image.          |
-| 62980118 | Failed to create the image plugin.  |
-| 62980122 | The image decoding header is abnormal.   |
-| 62980137 | Invalid media operation.      |
-| 62980149 | Invalid media parameter.      |
+| 62980096| If the operation failed.                    |
+| 62980110| If the image source data error.             |
+| 62980111| If the image source data incomplete.        |
+| 62980113| If the image format unknown.                |
+| 62980116| If the image decode failed.                 |
+| 62980118| If the image plugin create failed.          |
+| 62980122| If the image decode head abnormal.          |
 
 **示例：**
 
@@ -2552,16 +2510,13 @@ getFrameCount(callback: AsyncCallback\<number>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096| The operation failed.              |
-| 62980110| The image source data is incorrect. |
-| 62980111| The image source data is incomplete. |
-| 62980112| The image format does not match. |
-| 62980113| Unknown image format. |
-| 62980115| Invalid image parameter. |
-| 62980116| Failed to decode the image. |
-| 62980118| Failed to create the image plugin. |
-| 62980122| The image decoding header is abnormal. |
-| 62980137| Invalid media operation. |
+| 62980096| If the operation failed.             |
+| 62980110| If the image source data error. |
+| 62980111| If the image source data incomplete. |
+| 62980113| If the image format unknown. |
+| 62980116| If the image decode failed. |
+| 62980118| If the image plugin create failed. |
+| 62980122| If the image decode head abnormal. |
 
 **示例：**
 
@@ -2596,16 +2551,13 @@ getFrameCount(): Promise\<number>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 62980096 | The operation failed.             |
-| 62980110 | The image source data is incorrect.      |
-| 62980111 | The image source data is incomplete. |
-| 62980112 | The image format does not match.        |
-| 62980113 | Unknown image format.         |
-| 62980115 | Invalid image parameter.      |
-| 62980116 | Failed to decode the image.          |
-| 62980118 | Failed to create the image plugin.   |
-| 62980122 | The image decoding header is abnormal.  |
-| 62980137 | Invalid media operation.      |
+| 62980096| If the operation failed.             |
+| 62980110| If the image source data error. |
+| 62980111| If the image source data incomplete. |
+| 62980113| If the image format unknown. |
+| 62980116| If the image decode failed. |
+| 62980118| If the image plugin create failed. |
+| 62980122| If the image decode head abnormal. |
 
 **示例：**
 
