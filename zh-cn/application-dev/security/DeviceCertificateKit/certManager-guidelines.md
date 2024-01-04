@@ -61,7 +61,7 @@
    async function certManagerSample() {
      /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
      let keystore: Uint8Array = new Uint8Array([
-     0x30, 0x82, 0x04, 0x6a, 0x02, 0x01,
+       0x30, 0x82, 0x04, 0x6a, 0x02, 0x01,
      ]);
    
      /* 安装凭据对应的密码，业务赋值 */
@@ -79,7 +79,7 @@
      try {
        /* srcData为待签名、验签的数据，业务自行赋值 */
        let srcData: Uint8Array = new Uint8Array([
-       0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01,
+         0x86, 0xf7, 0x0d, 0x01, 0x07, 0x01,
      ]);
    
        /* 构造签名的属性参数 */
