@@ -3566,8 +3566,6 @@ on(type:'rewind', callback: (time?: number) => void): void
 
 设置快退命令监听事件。
 
-取消回调时，需要更新支持的命令列表。
-
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
 **参数：**
