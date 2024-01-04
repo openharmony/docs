@@ -278,7 +278,7 @@ More cases and suggested workarounds can be found in [Recipes](#recipes).
 **Severity: error**
 
 ArkTS does not support objects with name properties that are numbers or
-strings. Use classes to access data by property names. Use arrays to access
+strings. Exceptions are string type enumeration constants and string literal. Use classes to access data by property names. Use arrays to access
 data by numeric indices.
 
 **TypeScript**
@@ -308,6 +308,17 @@ z.set('name', '1')
 z.set(2, '2')
 console.log(z.get('name'))
 console.log(z.get(2))
+
+enum Test {
+  A = 'aaa',
+  B = 'bbb'
+}
+
+let obj: Record<string, number> = {
+  [Test.A]: 1,   // string type enumeration constants
+  [Test.B]: 2,   // string type enumeration constants
+  ['value']: 3   // string literal
+}
 ```
 
 **See also**
@@ -1062,26 +1073,6 @@ function greet<T>(): T {
   return 'Hello' as T
 }
 let z = greet<string>()
-```
-
-### Recipe: RegExp Literals Are Not Supported
-
-**Rule:** `arkts-no-regexp-literals`
-
-**Severity: error**
-
-Currently, ArkTS does not support regular expression literals. Use library calls with string literals instead.
-
-**TypeScript**
-
-```typescript
-let regex: RegExp = /bc*d/
-```
-
-**ArkTS**
-
-```typescript
-let regex: RegExp = new RegExp('bc*d')
 ```
 
 ### Recipe: Object Literal Must Correspond to Some Explicitly Declared Class or Interface
@@ -2771,35 +2762,6 @@ namespace A {
 A.init()
 ```
 
-### Recipe: Importing a Module for Side-Effects Only Is Not Supported
-
-**Rule:** `arkts-no-side-effects-imports`
-
-**Severity: error**
-
-ArkTS does not support global variables like `window` to avoid
-side-effects during module importing. All variables marked as export can be
-accessed through the `*` syntax.
-
-**TypeScript**
-
-```typescript
-// === module at "path/to/module.ts"
-export const EXAMPLE_VALUE = 42
-
-// Set a global variable.
-window.MY_GLOBAL_VAR = 'Hello, world!'
-
-// ==== using this module:
-import 'path/to/module'
-```
-
-**ArkTS**
-
-```typescript
-import * as ns from 'path/to/module'
-```
-
 ### Recipe: `import default as ...` Is Not Supported
 
 **Rule:** `arkts-no-import-default-as`
@@ -3097,7 +3059,7 @@ Recipe: new.target Is Not Supported
 
 **Rule:** `arkts-no-globalthis`
 
-**Severity: error**
+**Severity: warning**
 
 ArkTS does not support both global scope and `globalThis` because untyped
 objects with dynamically changed layout are not supported.
@@ -3154,13 +3116,28 @@ this rule and their layout cannot be changed at runtime.
 
 Recipe: `globalThis` Is Not Supported
 
-### Recipe: `Function.apply`, `Function.bind`, and `Function.call` Are Not Supported
+### Recipe: `Function.apply` and `Function.call` Are Not Supported
 
-**Rule:** `arkts-no-func-apply-bind-call`
+**Rule:** `arkts-no-func-apply-call`
 
 **Severity: error**
 
-ArkTS does not support `Function.apply`, `Function.bind`, or `Function.call`. These APIs are needed in the standard
+ArkTS does not support `Function.apply` or `Function.call`. These APIs are needed in the standard
+library to explicitly set the parameter `this` for the called function.
+In ArkTS, the semantics of `this` is restricted to the conventional OOP
+style, and the usage of `this` in stand-alone functions is prohibited.
+
+**See also**
+
+* Recipe: Using `this` Inside Stand-Alone Functions Is Not Supported
+
+### Recipe:`Function.bind` Is Not Supported
+
+**Rule:** `arkts-no-func-bind`
+
+**Severity: warning**
+
+ArkTS does not support `Function.bind`. These APIs are needed in the standard
 library to explicitly set the parameter `this` for the called function.
 In ArkTS, the semantics of `this` is restricted to the conventional OOP
 style, and the usage of `this` in stand-alone functions is prohibited.
@@ -3430,20 +3407,11 @@ export class C {
 import { C } from 'lib1'
 ```
 
-### Recipe: Only ArkUI Decorators Are Allowed
-
-**Rule:** `arkts-no-decorators-except-arkui`
-
-**Severity: warning**
-
-Currently, only ArkUI decorators are allowed in ArkTS.
-Any other decorator will cause a compile-time error.
-
 ### Recipe: Classes Cannot Be Used as Objects
 
 **Rule:** `arkts-no-classes-as-obj`
 
-**Severity: error**
+**Severity: warning**
 
 ArkTS does not support using classes as objects (assigning them to variables,
 etc.). This is because in ArkTS, a `class` declaration introduces a new type,
