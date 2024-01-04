@@ -195,11 +195,11 @@ grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: num
 
 **参数：**
 
-| 参数名     | 类型                                  | 必填 | 说明                                                                                           |
-|---------|-------------------------------------| -------- |----------------------------------------------------------------------------------------------|
-| tokenId | number                              | 是 | 拉起filePicker应用的tokenId。                                                                      |
-| policies| Array&lt;[PolicyInfo](#policyinfo)> | 是 | 需要授权URI的策略信息。                                                                                |
-| policyFlag    | number                              | 是 | 授权的URI策略，参考[PolicyFlag](#policyflag11)，例如：<br/>  fileShare.PolicyFlag.ALLOW_PERSISTENCE ：允许持久化 |
+| 参数名     | 类型                                   | 必填 | 说明                                                                                           |
+|---------|--------------------------------------| -------- |----------------------------------------------------------------------------------------------|
+| tokenId | number                               | 是 | 拉起filePicker应用的tokenId。                                                                      |
+| policies| Array&lt;[PolicyInfo](#policyinfo11)> | 是 | 需要授权URI的策略信息。                                                                                |
+| policyFlag    | number                               | 是 | 授权的URI策略，参考[PolicyFlag](#policyflag11)，例如：<br/>  fileShare.PolicyFlag.ALLOW_PERSISTENCE ：允许持久化 |
 
 **返回值：**
 
