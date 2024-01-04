@@ -1,6 +1,6 @@
 # Span
 
-作为Text组件的子组件，用于显示行内文本的组件。
+作为[Text](ts-basic-components-text.md)、[ContainerSpan](ts-basic-components-containerspan.md)组件的子组件，用于显示行内文本的组件。
 
 >  **说明：**
 >
@@ -38,7 +38,7 @@ Span(value: string | Resource)
 | textCase | [TextCase](ts-appendix-enums.md#textcase) | 设置文本大小写。<br/>默认值：TextCase.Normal <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | font<sup>10+</sup> | [Font](ts-types.md#font) | 设置文本样式。包括字体大小、字体粗细、字体族和字体风格。|
 | textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)> | 设置文字阴影效果。该接口支持以数组形式入参，实现多重文字阴影。<br/>**说明：**<br/>不支持fill字段, 不支持智能取色模式。 |
-| textBackgroundStyle<sup>11+</sup> | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明)                                                                                           | 设置背景样式。``默认值:``<br />``{``<br />``  color: Color.Transparent,``<br />``  radius: 0``<br />``}`` <br/>**说明：**<br/>作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。 |
+| textBackgroundStyle<sup>11+</sup> | [TextBackgroundStyle](ts-basic-components-containerspan.md#textbackgroundstyle对象说明)                                                                                           | 设置背景样式。<br />默认值:<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} <br/>**说明：**<br/>作为[ContainerSpan](ts-basic-components-containerspan.md)的子组件时可以继承它的此属性值，优先使用其自身的此属性。 |
 
 
 ## 事件
