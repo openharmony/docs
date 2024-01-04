@@ -1632,40 +1632,45 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 
   ```ts
 // xxx.ets
-import Webview from '@ohos.web.webview'
+import web_webview from '@ohos.web.webview'
 
 @Entry
 @Component
 struct Index {
-  controller: Webview.WebviewController = new Webview.WebviewController()
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from javaScriptOnDocumentEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
 
   build() {
     Column({ space: 20 }) {
-      Web({
-        src: "www.baidu.com",
-        controller: this.controller
-      })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
-        .onConsole((event) => {
-          console.log("onConsole:" + event?.message.getMessage());
-          return false
-        })
-        .javaScriptOnDocumentEnd([
-          {
-            script: "console.log ('injected js is run:javaScriptOnDocumentEnd===============');",
-            scriptRules: ["*"]  //通配符，匹配所有来源网址
-          },
-          {
-            script: "console.log ('injected js is run:javaScriptOnDocumentEnd===============');",
-            scriptRules: ["https://www.baidu.com"， "https://m.baidu.com"]   //只匹配来源是baidu域名下的网址
-          },
-        ])
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .javaScriptOnDocumentEnd(this.scripts)
         .width('100%')
         .height('100%')
     }
   }
 }
   ```
+**HTML示例：**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
 
 ### layoutMode<sup>11+</sup>
 
