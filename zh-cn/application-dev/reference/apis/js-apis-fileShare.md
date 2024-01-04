@@ -223,34 +223,29 @@ grantPermission(tokenId: number, policies: Array&lt;PolicyInfo>, policyFlag: num
 
 **示例：**
 
-```ts
-import { BusinessError } from '@ohos.base';
-import picker from '@ohos.file.picker';
-import bundleManager from '@ohos.bundle.bundleManager';
-
-async function grantPermissionExample() {
-  try {
-    let uri = "file://docs/storage/Users/username/1.txt";
-    let bundleName = 'com.example.myapplication';
-    let appFlags = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_WITH_PERMISSION;
-    let applicationInfo = await bundleManager.getApplicationInfo(bundleName, appFlags);
-    let tokenId = applicationInfo.accessTokenId;
-    let policyInfo: fileShare.PolicyInfo = {
-      uri: uri, 
-      operationMode: fileShare.OperationMode.READ_MODE,
-    };
-    let policies: Array<fileShare.PolicyInfo> = [policyInfo];
-    fileShare.grantPermission(tokenId, policies, fileShare.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
-      console.info("grantPermission successfully");
-    }).catch((err: BusinessError) => {
-      console.info("grantPermission failed with error message: " + err.message + ", error code: " + err.code);
-    });
-  } catch (error) {
-    let err: BusinessError = error as BusinessError;
-    console.error('grantPermission failed with err: ' + JSON.stringify(err));
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  
+  async function grantPermissionExample() {
+    try {
+      let uri = "file://docs/storage/Users/username/1.txt";
+      let tokenId = 1000;
+      let policyInfo: fileShare.PolicyInfo = {
+        uri: uri, 
+        operationMode: fileShare.OperationMode.READ_MODE,
+      };
+      let policies: Array<fileShare.PolicyInfo> = [policyInfo];
+      fileShare.grantPermission(tokenId, policies, fileShare.PolicyFlag.ALLOW_PERSISTENCE).then(() => {
+        console.info("grantPermission successfully");
+      }).catch((err: BusinessError) => {
+        console.info("grantPermission failed with error message: " + err.message + ", error code: " + err.code);
+      });
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error('grantPermission failed with err: ' + JSON.stringify(err));
+    }
   }
-}
-```
+  ```
 
 ## fileShare.persistPermission<sup>11+</sup>
 
