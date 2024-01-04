@@ -330,6 +330,50 @@ connection.setGlobalHttpProxy({
 });
 ```
 
+## connection.setAppHttpProxy<sup>10+</sup>
+
+setAppHttpProxy(httpProxy: HttpProxy): void;
+
+设置网络应用级Http代理配置信息。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.CONNECTIVITY_INTERNAL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名    | 类型                                                         | 必填 | 说明             |
+| --------- | ------------------------------------------------------------ | ---- | ---------------- |
+| httpProxy | [HttpProxy](#httpproxy10)                                      | 是   | 网络应用级Http代理配置信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                        |
+| ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
+| 2100001 | Invalid parameter value.                |
+| 2100002 | Operation failed. Cannot connect to service.|
+| 2100003 | System internal error.         |
+
+**示例：**
+
+```ts
+import connection from '@ohos.net.connection';
+import { BusinessError } from '@ohos.base';
+
+let exclusionStr = "192.168,baidu.com";
+let exclusionArray = exclusionStr.split(',');
+connection.setAppHttpProxy({
+  host: "192.168.xx.xxx",
+  port: 8080,
+  exclusionList: exclusionArray
+} as connection.HttpProxy);
+```
+
 ## connection.getDefaultHttpProxy<sup>10+</sup>
 
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
