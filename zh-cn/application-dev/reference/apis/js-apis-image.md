@@ -3024,7 +3024,7 @@ createImageReceiver(size: Size, format: ImageFormat, capacity: number): ImageRec
 | 参数名   | 类型   | 必填 | 说明                   |
 | -------- | ------ | ---- | ---------------------- |
 | size    | [Size](#size)  | 是   | 图像的默认大小。       |
-| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
+| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。             |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
@@ -3069,7 +3069,7 @@ createImageReceiver(width: number, height: number, format: number, capacity: num
 | -------- | ------ | ---- | ---------------------- |
 | width    | number | 是   | 图像的默认宽度。       |
 | height   | number | 是   | 图像的默认高度。       |
-| format   | [ImageFormat](#imageformat9) | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。             |
+| format   | number | 是   | 图像格式，取值为[ImageFormat](#imageformat9)常量（目前仅支持 ImageFormat:JPEG）。  |
 | capacity | number | 是   | 同时访问的最大图像数。 |
 
 **返回值：**
