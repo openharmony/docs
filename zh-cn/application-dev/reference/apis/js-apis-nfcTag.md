@@ -494,7 +494,7 @@ registerForegroundDispatch(elementName: [ElementName](js-apis-bundleManager-elem
 
 | 参数名       | 类型     | 必填 | 说明                                                    |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
-| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName、moduleName三项）。          |
+| elementName   |  [ElementName](js-apis-bundleManager-elementName.md)   | 是   | 所属应用页面的信息（必须至少包含bundleName、abilityName）。          |
 | discTech         |  number[]   | 是   | 前台分发模式支持的技术类型，每个number值表示所支持技术类型的常量值型，根据number值设置NFC读卡轮询的Tag技术类型（支持[NFC_A](#技术类型定义), [NFC_B](#技术类型定义), [NFC_F](#技术类型定义), [NFC_V](#技术类型定义), 技术类型定义中的其他技术类型不属于NFC读卡轮询的Tag技术类型）并关闭卡模拟；当数组长度为0时，同时关闭读卡轮询和卡模拟。 |
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | 是   | 前台读卡监听回调函数。 |
 
@@ -616,7 +616,7 @@ on(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementN
 
 ## tag.off<sup>11+</sup>
 
-off(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
+off(type: 'readerMode', elementName: [ElementName](js-apis-bundleManager-elementName.md), callback?: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
 退出NFC读卡器模式。如果已通过[tag.on](#tagon11)设置NFC的读卡器模式，需要在页面退出前台或页面销毁时调用off进行取消。
 
