@@ -22,7 +22,7 @@ Device Certificate Kit面向应用开发者，提供了[证书算法库](#证书
 
 ### 与相关Kit的关系
 
-公钥的生成和获取依赖[Crypto Architecture Kit](../CryptoArchitectureKit/crypto-architecture-kit-intro.md)加解密算法框架服务的能力。
+证书算法库的功能使用时，涉及公钥的生成和获取，这部分依赖[Crypto Architecture Kit](../CryptoArchitectureKit/crypto-architecture-kit-intro.md)加解密算法框架服务的能力。
 
 ## 证书管理
 
@@ -35,6 +35,10 @@ Device Certificate Kit面向应用开发者，提供了[证书算法库](#证书
 **常见使用场景：**
 
 安装应用私有凭据，获取应用私有凭据，并使用应用私有凭据进行签名、验签，最后删除应用私有凭据。
+
+### 与相关Kit的关系
+
+证书管理的功能使用时，涉及密钥的管理和使用，这部分依赖[Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md)密钥管理服务的能力。
 
 ## 约束与限制
 
