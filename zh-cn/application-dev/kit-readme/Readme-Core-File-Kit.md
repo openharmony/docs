@@ -1,0 +1,30 @@
+# Core File Kit (文件基础服务)
+
+- [Core File Kit简介](../file-management/core-file-kit-intro.md)
+- 应用文件
+  - [应用文件概述](../file-management/app-file-overview.md)
+  - [应用沙箱目录](../file-management/app-sandbox-directory.md)
+  - 应用文件访问与管理
+    - [应用文件访问](../file-management/app-file-access.md)
+    - [应用文件上传下载](../file-management/app-file-upload-download.md)
+    - [应用及文件系统空间统计](../file-management/app-fs-space-statistics.md)
+  - [向应用沙箱推送文件](../file-management/send-file-to-app-sandbox.md)
+  - [应用文件分享](../file-management/share-app-file.md)
+  - 应用数据备份恢复
+    - [应用数据备份恢复概述](../file-management/app-file-backup-overview.md)
+    - [应用接入数据备份恢复](../file-management/app-file-backup-extension.md)
+    - [应用触发数据备份/恢复（仅对系统应用开放）](../file-management/app-file-backup.md)
+  - [文件授权访问](../file-management/app-file-authorization.md)
+- 用户文件
+  - [用户文件概述](../file-management/user-file-overview.md)
+  - [用户文件uri介绍](../file-management/user-file-uri-intro.md)
+  - 选择与保存用户文件（FilePicker）
+    - [选择用户文件](../file-management/select-user-file.md)
+    - [保存用户文件](../file-management/save-user-file.md)
+  - [开发用户文件管理器（仅对系统应用开放）](../file-management/dev-user-file-manager.md)
+  - [管理外置存储设备（仅对系统应用开放）](../file-management/manage-external-storage.md)
+- 分布式文件系统
+  - [分布式文件系统概述](../file-management/distributed-fs-overview.md)
+  - [设置分布式文件数据等级](../file-management/set-security-label.md)
+  - [跨设备文件访问](../file-management/file-access-across-devices.md)
+  - [跨设备文件拷贝](../file-management/file-copy-across-devices.md)
