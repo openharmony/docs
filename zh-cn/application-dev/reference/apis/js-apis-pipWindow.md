@@ -103,11 +103,12 @@ promise.then((data : pipWindow.PiPController) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                     | 值       | 说明                                      |
-|------------------------|---------|-----------------------------------------|
-| VIDEO_PLAY             | 0       | 表示将要切换为画中画播放的媒体类型是视频，系统依此加载视频播放模板。      |
-| VIDEO_CALL             | 1       | 表示将要切换为画中画播放的媒体类型是视频通话，系统依此加载视频通话模板。    |
-| VIDEO_MEETING          | 2       | 表示将要切换为画中画播放的媒体类型是视频会议，系统依此加载视频会议模板。    |
+| 名称            | 值   | 说明                                   |
+|---------------|-----|--------------------------------------|
+| VIDEO_PLAY    | 0   | 表示将要切换为画中画播放的媒体类型是视频，系统依此加载视频播放模板。   |
+| VIDEO_CALL    | 1   | 表示将要切换为画中画播放的媒体类型是视频通话，系统依此加载视频通话模板。 |
+| VIDEO_MEETING | 2   | 表示将要切换为画中画播放的媒体类型是视频会议，系统依此加载视频会议模板。 |
+| VIDEO_LIVE    | 3   | 表示将要切换为画中画播放的媒体类型是直播，系统依此加载直播模板。     |
 
 ## PiPState
 
@@ -130,11 +131,12 @@ promise.then((data : pipWindow.PiPController) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 类型                                               | 说明            |
-|--------------------------------------------------|---------------|
-| [PiPVideoActionEvent](#pipvideoactionevent)      | 视频播放控制事件类型。   |
-| [PiPCallActionEvent](#pipcallactionevent)        | 视频通话控制事件类型。   |
-| [PiPMeetingActionEvent](#pipmeetingactionevent)  | 视频会议控制事件类型。   |
+| 类型                                              | 说明          |
+|-------------------------------------------------|-------------|
+| [PiPVideoActionEvent](#pipvideoactionevent)     | 视频播放控制事件类型。 |
+| [PiPCallActionEvent](#pipcallactionevent)       | 视频通话控制事件类型。 |
+| [PiPMeetingActionEvent](#pipmeetingactionevent) | 视频会议控制事件类型。 |
+| [PiPLiveActionEvent](#pipliveactionevent)       | 直播控制事件类型。   |
 
 ## PiPVideoActionEvent
 
@@ -152,9 +154,9 @@ promise.then((data : pipWindow.PiPController) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                     | 类型     | 说明                  |
-|------------------------|--------|---------------------|
-| PiPCallActionEvent     | string | 值为'hangUp'：挂断视频通话。 |
+| 名称                     | 类型     | 说明                                                                                             |
+|------------------------|--------|------------------------------------------------------------------------------------------------|
+| PiPCallActionEvent     | string | 有以下取值：<br/>-'hangUp'：挂断视频通话。<br>-'micStateChanged'：打开或关闭麦克风。<br>-'videoStateChanged'：打开或关闭摄像头。 |
 
 ## PiPMeetingActionEvent
 
@@ -162,9 +164,19 @@ promise.then((data : pipWindow.PiPController) => {
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-| 名称                         | 类型         | 说明                  |
-|----------------------------|------------|---------------------|
-| PiPMeetingActionEvent      | string     | 值为'hangUp'：挂断视频会议。 |
+| 名称                         | 类型         | 说明                                                                                         |
+|----------------------------|------------|--------------------------------------------------------------------------------------------|
+| PiPMeetingActionEvent      | string     | 有以下取值：<br/>-'hangUp'：挂断视频会议。<br>-'voiceStateChanged'：静音。<br>-'videoStateChanged'：打开或关闭摄像头。 |
+
+## PiPLiveActionEvent
+
+直播控制事件类型。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称                       | 类型           | 说明                                |
+|--------------------------|--------------|-----------------------------------|
+| PiPLiveActionEvent       | string       | 值为'playbackStateChanged'：播放或暂停直播。 |
 
 ## PiPController
 
