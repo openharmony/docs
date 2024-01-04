@@ -34,6 +34,7 @@
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
+    - [@ohos.app.ability.VpnExtensionAbility(三方VPN能力)](js-apis-VpnExtensionAbility.md)
   - FA模型能力的接口
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
@@ -136,6 +137,7 @@
       - [shellCmdResult](js-apis-inner-application-shellCmdResult.md)
       - [ViewData](js-apis-inner-application-viewData.md)
       - [WindowExtensionContext](js-apis-inner-application-windowExtensionContext.md)
+      - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
     - wantAgent
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
@@ -144,7 +146,7 @@
     - continuation
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
       - [continuationResult](js-apis-continuation-continuationResult.md)
-
+  
 - 公共事件与通知
   - [系统公共事件定义](commonEventManager-definitions.md)
   - [@ohos.commonEventManager (公共事件模块)(推荐)](js-apis-commonEventManager.md)
@@ -247,6 +249,12 @@
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
+  - arkui
+    - [BuilderNode](./js-apis-arkui-builderNode.md)
+    - [FrameNode](./js-apis-arkui-frameNode.md)
+    - [Graphics](./js-apis-arkui-graphics.md)
+    - [NodeController](./js-apis-arkui-nodeController.md)
+    - [RenderNode](./js-apis-arkui-renderNode.md)
 
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
@@ -361,10 +369,11 @@
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
   - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
   - [@ohos.net.vpn (VPN管理)](js-apis-net-vpn.md)
+  - [@ohos.net.vpnExtension (VPN增强管理)](js-apis-net-vpnExtension.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
-
+  
 - 通信与连接
   - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](js-apis-bluetooth-a2dp.md)
   - [@ohos.bluetooth.access(蓝牙access模块)(推荐)](js-apis-bluetooth-access.md)

@@ -39,6 +39,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | enableScrollInteraction<sup>10+</sup>  |  boolean  |   Whether to support scroll gestures. When this attribute is set to **false**, scrolling by finger or mouse is not supported, but the scrolling controller API is not affected.<br>Default value: **true**     |
 | nestedScroll<sup>10+</sup>                 | [NestedScrollOptions](#nestedscrolloptions10)         | Nested scrolling options. You can set the nested scrolling mode in the forward and backward directions to implement scrolling linkage with the parent component.|
 | friction<sup>10+</sup> | number \| [Resource](ts-types.md#resource)    | Friction coefficient. It applies only to gestures in the scrolling area, and it affects only indirectly the scroll chaining during the inertial scrolling process.<br>Default value: **0.9** for wearable devices and **0.6** for non-wearable devices<br>**NOTE**<br>A value less than or equal to 0 evaluates to the default value.|
+| enablePaging<sup>11+</sup>                 | boolean  | Whether to enable the swipe-to-turn-pages feature.<br>Default value: **false**<br>**NOTE**<br>If both **enablePaging** and **scrollSnap** are set, **scrollSnap** takes effect, but **enablePaging** does not.|
 
 ## ScrollDirection
 | Name      | Description                    |

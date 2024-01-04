@@ -1,4 +1,4 @@
-# Building an NDK Project with the Command Line CMake
+# Building an NDK Project with CMake
 
 
 In many complex application projects, C++ projects are compiled and built in command line mode through build systems such as CMake. The following describes how to switch an existing CMake project to the OpenHarmony toolchain so that CMake can be used to build the project.
@@ -6,8 +6,9 @@ In many complex application projects, C++ projects are compiled and built in com
 
 ## Downloading the NDK
 
-1. (Recommended) Acquire source code from mirrors for an officially released version. For details, see [release notes](../../release-notes/OpenHarmony-v4.0-release.md).
+You can download the NDK in either of the following modes:
 
+1. (Recommended) Acquire source code from mirrors for an officially released version. For details, see [release notes](../../release-notes/OpenHarmony-v4.0-release.md).
 2. Download the NDK from the SDK Manager in DevEco Studio.
 
 
@@ -40,7 +41,7 @@ Configure the Linux environment as follows: (Skip them if the NDK is downloaded 
 
 ## Using the NDK to Compile a Native Program
 
-You can use the NDK to quickly develop a native program, including native dynamic libraries, static libraries, and executable files. The following exemplifies how to use the NDK to compile a C/C++ dynamic library in a C/C++ demo project.
+You can use the NDK to quickly develop a native program, including native dynamic libraries, static libraries, and executable files. The following exemplifies how to use the NDK to compile an executable program and a dynamic library in a C/C++ demo project.
 
 
 ### Demo Project

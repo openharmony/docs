@@ -277,3 +277,71 @@ API 11及以后，弹窗类组件背板显示为模糊材质。
 **适配指导**
 
 默认背板效果变更，不涉及适配。
+
+## cl.Arkui.9 Dialog组件内容区Text默认分词方式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+当前Dialog组件内容的默认分词方式不符合UX规范，因此依照UX规范对分词方式做出变更。
+
+**变更影响**
+
+该变更为兼容性变更，改变了Dialog内容区Text默认分词方式，提升了组件的默认显示效果。
+
+**API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5开始。
+
+**变更的接口/组件**
+
+API 11前，默认Dialog的内容区分词方式为BREAK_WORD。
+
+API 11及以后，默认Dialog的内容区分词方式为BREAK_ALL。
+
+关于BREAK_WORD和BREAK_ALL的区别，详见[WordBreak](../../../application-dev/reference/arkui-ts/ts-appendix-enums.md#wordbreak11)
+
+**适配指导**
+
+默认分词方式变更，不涉及适配。
+## cl.arkui.10 Image组件autoResize interpolation属性默认行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+应用侧需要设置autoResize为false、 interpolation设置为LOW来解决图片锯齿问题
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，Image组件的autoResize默认值为true， interpolation为None。
+
+变更后，Image组件的autoResize默认值为false， interpolation为LOW，该修改会提升图片显示效果，但是image组件在大图显示成小组件时，默认内存会上涨，需要应用根据实际情况进行内存优化。
+说明：该修改不影响大桌面效果。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的组件有：Image。
+
+**适配指导**
+
+默认行为变更，不涉及适配。

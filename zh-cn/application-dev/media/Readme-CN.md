@@ -44,8 +44,8 @@
     - [视频解码(C/C++)](video-decoding.md)
     - [音视频封装(C/C++)](audio-video-encapsulation.md)
     - [音视频解封装(C/C++)](audio-video-decapsulation.md)
-- 媒体会话
-  - [媒体会话概述](avsession-overview.md)
+- AVSession Kit（音视频播控服务）
+  - [AVSession Kit简介](avsession-overview.md)
   - 本地媒体会话
     - [本地媒体会话概述](local-avsession-overview.md)
     - [媒体会话提供方(ArkTS)](using-avsession-developer.md)

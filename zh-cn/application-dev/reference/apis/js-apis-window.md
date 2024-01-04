@@ -341,6 +341,19 @@ import window from '@ohos.window';
 | FLOATING    | 4    | 表示APP自由悬浮形式窗口模式。   |
 | SPLIT_SCREEN  | 5    | 表示APP分屏模式。   |
 
+##  TitleButtonRect<sup>11+</sup>
+
+标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 类型   | 可读 | 可写 | 说明                                       |
+| ------ | ------ | ---- | ---- | ------------------------------------------ |
+| right  | number | 是   | 是   | 矩形区域的右边界，单位为vp，该参数为整数。 |
+| top    | number | 是   | 是   | 矩形区域的上边界，单位为vp，该参数为整数。 |
+| width  | number | 是   | 是   | 矩形区域的宽度，单位为vp，该参数为整数。   |
+| height | number | 是   | 是   | 矩形区域的高度，单位为vp，该参数为整数。   |
+
 ## window.createWindow<sup>9+</sup>
 
 createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
@@ -4016,6 +4029,76 @@ try {
 }
 ```
 
+### on('windowTitleButtonRectChange')<sup>11+</sup>
+
+on(type: 'windowTitleButtonRectChange', callback: Callback&lt;TitleButtonRect&gt;): void
+
+开启标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏上的最小化、最大化、关闭按钮矩形区域变化事件。 |
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
+      console.info('Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+  });
+} catch (exception) {
+  console.error('Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
+### off('windowTitleButtonRectChange')<sup>11+</sup>
+
+off(type: 'windowTitleButtonRectChange', callback?: Callback&lt;TitleButtonRect&gt;): void
+
+关闭标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                                                  | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                | 是   | 监听事件，固定为'windowTitleButtonRectChange'，即标题栏上的最小化、最大化、关闭按钮矩形区域变化事件。 |
+| callback | Callback&lt;[TitleButtonRect](#titlebuttonrect11)&gt; | 否   | 回调函数。返回当前标题栏上的最小化、最大化、关闭按钮矩形区域。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有标题栏上的最小化、最大化、关闭按钮矩形区域变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("test");
+  windowClass.off('windowTitleButtonRectChange');
+} catch (exception) {
+  console.error('Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(exception));
+}
+```
+
 ### bindDialogTarget<sup>9+</sup>
 
 bindDialogTarget(token: rpc.RemoteObject, deathCallback: Callback&lt;void&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -6802,6 +6885,169 @@ try {
   windowClass.keepKeyboardOnFocus(true);
 } catch (exception) {
   console.error('Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  setWindowDecorVisible<sup>11+</sup>
+
+setWindowDecorVisible(isVisible: boolean): void
+
+主窗口设置标题栏是否可见。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| isVisible | boolean | 是   | 设置标题栏是否可见，true为可见，false为隐藏。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+| 1300004  | Unauthorized operation.        |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // 为主窗口加载对应的目标页面。
+    windowStage.loadContent("pages/page2", (err: BusinessError) => {
+      let errCode: number = err.code;
+      if (errCode) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content.');
+      // 获取应用主窗口。
+      let mainWindow: window.Window = window.findWindow("test");
+      windowStage.getMainWindow((err: BusinessError, data) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        mainWindow = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+        let isVisible = false;
+        // 调用setWindowDecorVisible接口
+        try {
+            mainWindow.setWindowDecorVisible(isVisible);
+        } catch (exception) {
+            console.error('Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
+        }
+      })
+    });
+  }
+};
+```
+
+###  setWindowDecorHeight<sup>11+</sup>
+
+setWindowDecorHeight(height: number): void
+
+设置窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| height | number | 是   | 设置的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let height: number = 50;
+let windowClass: window.Window = window.findWindow("test");
+try {
+  windowClass.setWindowDecorHeight(height);
+} catch (exception) {
+  console.error('Failed to set the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getWindowDecorHeight<sup>11+</sup>
+
+getWindowDecorHeight(): number
+
+获取窗口标题栏高度。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| number | 返回的窗口标题栏高度。该参数为整数，取值范围为[48,112]，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let height = windowClass.getWindowDecorHeight();
+} catch (exception) {
+  console.error('Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+}
+```
+
+###  getTitleButtonRect<sup>11+</sup>
+
+getTitleButtonRect(): TitleButtonRect
+
+获取标题栏上的最小化、最大化、关闭按钮矩形区域。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型                                  | 说明                                                         |
+| ------------------------------------- | ------------------------------------------------------------ |
+| [TitleButtonRect](#titlebuttonrect11) | 标题栏上的最小化、最大化、关闭按钮矩形区域，该区域位置坐标相对窗口右上角。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let windowClass: window.Window = window.findWindow("test");
+try {
+  let titleButtonArea = windowClass.getTitleButtonRect();
+  console.info('Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(titleButtonArea));
+} catch (exception) {
+  console.error('Failed to get the area of title buttons. Cause: ' + JSON.stringify(exception));
 }
 ```
 

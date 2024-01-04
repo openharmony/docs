@@ -52,7 +52,7 @@ target_link_libraries(sample PUBLIC libnative_media_aenc.so)
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
    ```
-2. 创建编码器实例对象
+2. 创建编码器实例对象，OH_AVCodec *为编码器实例指针。
 
    应用可以通过名称或媒体类型创建编码器。
 

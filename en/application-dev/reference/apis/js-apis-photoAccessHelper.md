@@ -46,7 +46,7 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 // The phAccessHelper instance obtained is a global object. It is used by default in subsequent operations. If the code snippet is not added, an error will be reported indicating that phAccessHelper is not defined.
-const context = getContext(this);
+let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
@@ -94,10 +94,10 @@ async function example() {
   };
 
   phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
-    if (fetchResult != undefined) {
+    if (fetchResult !== undefined) {
       console.info('fetchResult success');
       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset.displayName : ' + photoAsset.displayName);
       }
     } else {
@@ -154,10 +154,10 @@ async function example() {
   };
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    if (fetchResult != undefined) {
+    if (fetchResult !== undefined) {
       console.info('fetchResult success');
       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset.displayName :' + photoAsset.displayName);
       }
     }
@@ -172,6 +172,11 @@ async function example() {
 createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void
 
 Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
+
+The file name must comply with the following specifications:
+- The file name must contain a valid file name and an image or video file name extension.
+- The file name cannot exceed 255 characters.
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -206,7 +211,7 @@ async function example() {
   console.info('createAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   phAccessHelper.createAsset(testFileName, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
@@ -221,6 +226,11 @@ async function example() {
 createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name. This API uses a promise to return the result.
+
+The file name must comply with the following specifications:
+- The file name must contain a valid file name and an image or video file name extension.
+- The file name cannot exceed 255 characters.
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -275,6 +285,11 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 
 Creates an image or video asset with the specified file name and options. This API uses an asynchronous callback to return the result.
 
+The file name must comply with the following specifications:
+- The file name must contain a valid file name and an image or video file name extension.
+- The file name cannot exceed 255 characters.
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -312,7 +327,7 @@ async function example() {
     subtype: photoAccessHelper.PhotoSubtype.DEFAULT
   }
   phAccessHelper.createAsset(testFileName, createOption, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
@@ -327,6 +342,11 @@ async function example() {
 createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name and options. This API uses a promise to return the result.
+
+The file name must comply with the following specifications:
+- The file name must contain a valid file name and an image or video file name extension.
+- The file name cannot exceed 255 characters.
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -422,7 +442,7 @@ async function example() {
     title: 'testPhoto'
   }
   phAccessHelper.createAsset(photoType, extension, options, (err, uri) => {
-    if (uri != undefined) {
+    if (uri !== undefined) {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
@@ -471,7 +491,7 @@ async function example() {
   let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
   let extension: string = 'jpg';
   phAccessHelper.createAsset(photoType, extension, (err, uri) => {
-    if (uri != undefined) {
+    if (uri !== undefined) {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
@@ -826,7 +846,7 @@ async function example() {
       console.error('getAlbumsCallback failed with err: ' + err);
       return;
     }
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
@@ -879,7 +899,7 @@ async function example() {
       console.error('getAlbumsCallback failed with err: ' + err);
       return;
     }
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
@@ -943,7 +963,7 @@ async function example() {
     predicates: predicates
   };
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions).then( async (fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsPromise fetchResult is undefined');
       return;
     }
@@ -1003,7 +1023,7 @@ async function getHiddenAlbumsView() {
   };
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, fetchOptions,
     async (err, fetchResult) => {
-      if (fetchResult == undefined) {
+      if (fetchResult === undefined) {
         console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
         return;
       }
@@ -1053,7 +1073,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 async function getSysHiddenAlbum() {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE, async (err, fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getSysHiddenAlbumCallback fetchResult is undefined');
       return;
     }
@@ -1067,7 +1087,7 @@ async function getSysHiddenAlbum() {
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE, async (err, fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getHiddenAlbumsViewCallback fetchResult is undefined');
       return;
     }
@@ -1126,7 +1146,7 @@ async function getSysHiddenAlbum() {
   console.info('getSysHiddenAlbumDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ASSETS_MODE)
     .then( async (fetchResult) => {
-      if (fetchResult == undefined) {
+      if (fetchResult === undefined) {
         console.error('getSysHiddenAlbumPromise fetchResult is undefined');
         return;
       }
@@ -1142,7 +1162,7 @@ async function getSysHiddenAlbum() {
 async function getHiddenAlbumsView() {
   console.info('getHiddenAlbumsViewDemo');
   phAccessHelper.getHiddenAlbums(photoAccessHelper.HiddenPhotosDisplayMode.ALBUMS_MODE).then( async (fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getHiddenAlbumsViewPromise fetchResult is undefined');
       return;
     }
@@ -1216,19 +1236,19 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
     phAccessHelper.deleteAssets([asset.uri], (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('deleteAssets successfully');
       } else {
         console.error('deleteAssets failed with error: ' + err);
       }
     });
   } catch (err) {
-    console.info('fetch failed, message =', err);
+    console.error('fetch failed, message =', err);
   }
 }
 ```
@@ -1283,9 +1303,9 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
@@ -1337,7 +1357,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  if (photoAsset != undefined) {
+  if (photoAsset !== undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
   let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
@@ -1354,7 +1374,7 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
   photoAsset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
       console.error('setFavorite failed with error:' + err);
@@ -1402,7 +1422,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  if (photoAsset != undefined) {
+  if (photoAsset !== undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
   let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
@@ -1418,7 +1438,7 @@ async function example() {
   // Unregister the listening of onCallback1.
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
   photoAsset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
       console.error('setFavorite failed with error:' + err);
@@ -1468,14 +1488,14 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
     phAccessHelper.createDeleteRequest([asset.uri], (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('createDeleteRequest successfully');
       } else {
         console.error('createDeleteRequest failed with error: ' + err);
@@ -1533,9 +1553,9 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
@@ -1565,7 +1585,7 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
-| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
 | callback | AsyncCallback&lt;number&gt;| Yes  | Callback invoked to return the index obtained.|
 
 **Error codes**
@@ -1608,10 +1628,10 @@ async function example() {
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
 
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
-        console.info(`getPhotoIndex failed;`);
+        console.info(`getPhotoIndex failed; error: ${err}`);
       }
     });
   } catch (error) {
@@ -1638,7 +1658,7 @@ Obtains the index of an image or video in an album. This API uses a promise to r
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
-| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
 
 **Return value**
 
@@ -1696,6 +1716,243 @@ async function example() {
 }
 ```
 
+### saveFormInfo<sup>11+</sup>
+
+saveFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
+
+Saves a Gallery widget. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | Yes  | Information about the Gallery widget to save, including the ID of the widget and the URI of the image bound to the widget.             |
+| callback |  AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('saveFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+  let info: photoAccessHelper.FormInfo = {
+    // formId is a string consisting of only digits. uri indicates the URI of the image in Gallery. If there is no image in Gallery, uri must be an empty string.
+    formId : "20230116123",
+    uri: photoAsset.uri,
+  }
+
+  phAccessHelper.saveFormInfo(info, async (err: BusinessError) => {
+    if (err == undefined) {
+      console.info('saveFormInfo success');
+    } else {
+      console.error('saveFormInfo fail' + err);
+    }
+  });
+}
+```
+
+### saveFormInfo<sup>11+</sup>
+
+saveFormInfo(info:FormInfo):Promise&lt;void&gt;
+
+Saves a Gallery widget. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | Yes  | Information about the Gallery widget to save, including the ID of the widget and the URI of the image bound to the widget.             |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('saveFormInfoDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+
+  let info: photoAccessHelper.FormInfo = {
+    // formId is a string consisting of only digits. uri indicates the URI of the image in Gallery. If there is no image in Gallery, uri must be an empty string.
+    formId: "20230116123",
+    uri: photoAsset.uri,
+  }
+
+  phAccessHelper.saveFormInfo(info).then(() => {
+    console.info('saveFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.info('saveFormInfo failed' + err);
+  });
+}
+```
+
+### removeFormInfo<sup>11+</sup>
+
+removeFormInfo(info:FormInfo, callback: AsyncCallback&lt;void&gt;):void
+
+Removes a Gallery widget. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | Yes  |  Information about the Gallery widget to remove, including the ID of the widget and the URI of the image bound to the widget.             |
+| callback |  AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('removeFormInfoDemo');
+  let info: photoAccessHelper.FormInfo = {
+    // formId is a string consisting of only digits. When removing a widget, leave uri empty.
+    formId: "20230116123",
+    uri: "",
+  }
+
+  phAccessHelper.removeFormInfo(info, async (err: BusinessError) => {
+    if (err == undefined) {
+      console.info('removeFormInfo success');
+    } else {
+      console.error('removeFormInfo fail' + err);
+    }
+  });
+}
+```
+
+### removeFormInfo<sup>11+</sup>
+
+removeFormInfo(info:FormInfo):Promise&lt;void&gt;
+
+Removes a Gallery widget. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                     |
+| -------- | ------------------------ | ---- | ------------------------- |
+| info  | [FormInfo](#forminfo11)        | Yes  |  Information about the Gallery widget to remove, including the ID of the widget and the URI of the image bound to the widget.             |
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission verification failed, usually the result returned by VerifyAccessToken.         |
+| 202   | Permission verification failed, application which is not a system application uses system API.         |
+| 401   | if the argument is invalid.         |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+async function example() {
+  console.info('removeFormInfoDemo');
+  let info: photoAccessHelper.FormInfo = {
+    // formId is a string consisting of only digits. When removing a widget, leave uri empty.
+    formId: "20230116123",
+    uri: "",
+  }
+
+  phAccessHelper.removeFormInfo(info).then(() => {
+    console.info('removeFormInfo successfully');
+  }).catch((err: BusinessError) => {
+    console.info('removeFormInfo failed' + err);
+  });
+}
+```
+
 ### release
 
 release(callback: AsyncCallback&lt;void&gt;): void
@@ -1727,7 +1984,7 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 async function example() {
   console.info('releaseDemo');
   phAccessHelper.release((err) => {
-    if (err != undefined) {
+    if (err !== undefined) {
       console.error('release failed. message = ', err);
     } else {
       console.info('release ok.');
@@ -1938,7 +2195,7 @@ async function example() {
   console.info('photoAsset get photoAssetTitle = ', photoAssetTitle);
   photoAsset.set(title, 'newTitle2');
   photoAsset.commitModify((err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
       console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
     } else {
@@ -2010,7 +2267,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**<br>A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
 
 **System API**: This is a system API.
 
@@ -2022,7 +2279,7 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
+| mode     | string                      | Yes   | Mode for opening the file, which can be **'r'** (read-only), **'w'** (write-only), or **'rw'** (read/write).|
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
@@ -2041,15 +2298,15 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 async function example() {
-  console.info('openDemo');
-   let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+  console.info('Open demo');
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
   photoAsset.open('rw', (err, fd) => {
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('File err' + err);
+      console.error('Open file err' + err);
     }
   });
 }
@@ -2061,7 +2318,7 @@ open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**<br>A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
 
 **System API**: This is a system API.
 
@@ -2073,7 +2330,7 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description                                 |
 | ---- | ------ | ---- | ----------------------------------- |
-| mode | string | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
+| mode | string | Yes   | Mode for opening the file, which can be **'r'** (read-only), **'w'** (write-only), or **'rw'** (read/write).|
 
 **Return value**
 
@@ -2097,19 +2354,19 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 async function example() {
-  console.info('openDemo');
+  console.info('Open demo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
-    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
     let fd: number = await photoAsset.open('rw');
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error(' open File fail');
+      console.error('Open file fail');
     }
   } catch (err) {
-    console.error('open Demo err' + err);
+    console.error('Open demo err' + err);
   }
 }
 ```
@@ -2120,7 +2377,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file in read-only mode. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>After the read operation is complete, call **close** to close the file.
+> **NOTE**<br>The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -2148,14 +2405,20 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
-   let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+  // Ensure that there are images and video files in the device.
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOptions: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+  let photoAsset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
   photoAsset.getReadOnlyFd((err, fd) => {
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error('File err' + err);
+      console.error('getReadOnlyFd err' + err);
     }
   });
 }
@@ -2167,7 +2430,7 @@ getReadOnlyFd(): Promise&lt;number&gt;
 
 Opens this file in read-only mode. This API uses a promise to return the result.
 
-> **NOTE**<br>After the read operation is complete, call **close** to close the file.
+> **NOTE**<br>The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -2196,17 +2459,23 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 async function example() {
   console.info('getReadOnlyFdDemo');
   try {
-    let testFileName: string = 'testFile' + Date.now() + '.jpg';
-    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    // Ensure that there are images and video files in the device.
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let assetResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await assetResult.getFirstObject();
     let fd: number = await photoAsset.getReadOnlyFd();
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
-      console.error(' open File fail');
+      console.error('getReadOnlyFd fail');
     }
   } catch (err) {
-    console.error('open Demo err' + err);
+    console.error('getReadOnlyFd demo err' + err);
   }
 }
 ```
@@ -2250,11 +2519,11 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    const photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let fd: number = await photoAsset.open('rw');
     console.info('file fd', fd);
     photoAsset.close(fd, (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('asset close succeed.');
       } else {
         console.error('close failed, message = ' + err);
@@ -2310,7 +2579,7 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let fd = await asset.open('rw');
     console.info('file fd', fd);
     await asset.close(fd);
@@ -2361,10 +2630,10 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail((err, pixelMap) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
       console.error('getThumbnail fail', err);
@@ -2416,10 +2685,10 @@ async function example() {
   };
   let size: image.Size = { width: 720, height: 720 };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size, (err, pixelMap) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
       console.error('getThumbnail fail', err);
@@ -2477,7 +2746,7 @@ async function example() {
   };
   let size: image.Size = { width: 720, height: 720 };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);
@@ -2531,9 +2800,9 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('favorite successfully');
     } else {
       console.error('favorite failed with error:' + err);
@@ -2592,7 +2861,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setFavorite(true).then(() => {
     console.info('setFavorite successfully');
   }).catch((err: BusinessError) => {
@@ -2647,9 +2916,9 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setHidden(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setHidden successfully');
     } else {
       console.error('setHidden failed with error:' + err);
@@ -2711,9 +2980,9 @@ async function example() {
     predicates: predicates
   };
   let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.HIDDEN);
-  const album = await albumList.getFirstObject();
+  let album = await albumList.getFirstObject();
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setHidden(false).then(() => {
     console.info('setHidden successfully');
   }).catch((err: BusinessError) => {
@@ -2727,6 +2996,8 @@ async function example() {
 getExif(): Promise&lt;string&gt;
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
+
+The EXIF tag information is provided by the [image](js-apis-image.md) module. For details about the EXIF tag information, see [image.PropertyKey](js-apis-image.md#propertykey7).
 
 > **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
@@ -2754,48 +3025,6 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
-**Supported EXIF tags**
-
-For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
-
-| Key Value                                   | Description             |
-| --------------------------------------- | ----------------- |
-| BitsPerSample | Number of bits per pixel.|
-| Orientation | Image orientation.|
-| ImageLength | Image length.|
-| ImageWidth | Image width.|
-| GPSLatitude | GPS latitude of the image.|
-| GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Longitude reference, for example, W or E.|
-| GPSLongitudeRef | Latitude reference, for example, N or S.|
-| DateTimeOriginal | Shooting time.|
-| ExposureTime | Exposure time.|
-| SceneType | Shooting scene type.|
-| ISOSpeedRatings | ISO sensitivity or speed.|
-| FNumber | f-number.|
-| DateTime | Date and time when the image was last modified.|
-| GPSTimeStamp | GPS timestamp.|
-| GPSDateStamp | GPS date stamp.|
-| ImageDescription | Image description.|
-| Make | Camera vendor.|
-| MakeNote | Camera vendor.|
-| Model | Model.|
-| PhotoMode | Photo mode.|
-| SensitivityType | Sensitivity type.|
-| StandardOutputSensitivity | Standard output sensitivity.|
-| RecommendedExposureIndex | Recommended exposure index.|
-| ApertureValue | Aperture value.|
-| MeteringMode | Metering mode.|
-| LightSource | Light source.|
-| Flash | Flash status.|
-| FocalLength | Focal length.|
-| UserComment | User comment.|
-| PixelXDimension | Pixel X dimension.|
-| PixelYDimension | Pixel Y dimension.|
-| WhiteBalance | White balance.|
-| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
-| ExposureBiasValue | Exposure compensation.|
-
 **Example**
 
 ```ts
@@ -2814,6 +3043,7 @@ async function example() {
     let exifMessage = await photoAsset.getExif();
     let userCommentKey = 'UserComment';
     let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
+    console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
     fetchResult.close();
   } catch (err) {
     console.error('getExifDemoCallback failed with error: ' + err);
@@ -2826,6 +3056,8 @@ async function example() {
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
+
+The EXIF tag information is provided by the [image](js-apis-image.md) module. For details about the EXIF tag information, see [image.PropertyKey](js-apis-image.md#propertykey7).
 
 > **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
@@ -2853,48 +3085,6 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
 
-**Supported EXIF tags**
-
-For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
-
-| Key Value                                   | Description             |
-| --------------------------------------- | ----------------- |
-| BitsPerSample | Number of bits per pixel.|
-| Orientation | Image orientation.|
-| ImageLength | Image length.|
-| ImageWidth | Image width.|
-| GPSLatitude | GPS latitude of the image.|
-| GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Longitude reference, for example, W or E.|
-| GPSLongitudeRef | Latitude reference, for example, N or S.|
-| DateTimeOriginal | Shooting time.|
-| ExposureTime | Exposure time.|
-| SceneType | Shooting scene type.|
-| ISOSpeedRatings | ISO sensitivity or speed.|
-| FNumber | f-number.|
-| DateTime | Date and time when the image was last modified.|
-| GPSTimeStamp | GPS timestamp.|
-| GPSDateStamp | GPS date stamp.|
-| ImageDescription | Image description.|
-| Make | Camera vendor.|
-| MakeNote | Camera vendor.|
-| Model | Model.|
-| PhotoMode | Photo mode.|
-| SensitivityType | Sensitivity type.|
-| StandardOutputSensitivity | Standard output sensitivity.|
-| RecommendedExposureIndex | Recommended exposure index.|
-| ApertureValue | Aperture value.|
-| MeteringMode | Metering mode.|
-| LightSource | Light source.|
-| Flash | Flash status.|
-| FocalLength | Focal length.|
-| UserComment | User comment.|
-| PixelXDimension | Pixel X dimension.|
-| PixelYDimension | Pixel Y dimension.|
-| WhiteBalance | White balance.|
-| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
-| ExposureBiasValue | Exposure compensation.|
-
 **Example**
 
 ```ts
@@ -2914,7 +3104,7 @@ async function example() {
     console.info('getExifDemo photoAsset displayName: ' + JSON.stringify(photoAsset.displayName));
     let userCommentKey = 'UserComment';
     photoAsset.getExif((err, exifMessage) => {
-      if (exifMessage != undefined) {
+      if (exifMessage !== undefined) {
         let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
         console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
       } else {
@@ -2984,7 +3174,7 @@ async function example() {
     let userComment = 'test_set_user_comment';
     await photoAsset.setUserComment(userComment);
   } catch (err) {
-    console.error('setUserCommentDemoCallback failed with error: ' + err);
+    console.error('setUserCommentDemoPromise failed with error: ' + err);
   }
 }
 ```
@@ -3093,6 +3283,7 @@ async function example() {
     console.info('setPendingCallbackDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
+    let fd = await photoAsset.open('rw');
     photoAsset.setPending(true, async (err) => {
       if (err !== undefined) {
         console.error('setPending(true) failed with error: ' + err);
@@ -3141,7 +3332,6 @@ The pending state can be removed only through **setPending(false)**. You can use
 | --------------------------------------- | ----------------- |
 |Promise&lt;boolean&gt; | Promise that returns no value.|
 
-
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
@@ -3161,7 +3351,7 @@ async function example() {
     console.info('setPendingPromiseDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
-    let fd = await photoAsset.open('fd');
+    let fd = await photoAsset.open('rw');
     await photoAsset.setPending(true);
     // write photo buffer in fd
     photoAsset.setPending(false);
@@ -3420,7 +3610,7 @@ Opens the source file to obtain the FD. This API uses an asynchronous callback t
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback invoked to return the FD.|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the FD.|
 
 **Error codes**
 
@@ -3477,8 +3667,7 @@ Opens the source file to obtain the FD. This API uses a promise to return the re
 
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
-|Promise&lt;string&gt; | Promise used to return the FD.|
-
+|Promise&lt;number&gt; | Promise used to return the FD.|
 
 **Error codes**
 
@@ -3570,7 +3759,7 @@ async function example() {
       if (err === undefined) {
         console.info('commitEditedAsset is successful');
       } else {
-        console.error('requestSource failed with error: ' + err);
+        console.error('commitEditedAsset failed with error: ' + err);
       }
     });
   } catch (err) {
@@ -3581,7 +3770,7 @@ async function example() {
 
 ### commitEditedAsset<sup>11+</sup>
 
-commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt
+commitEditedAsset(editData: string, uri: string): Promise&lt;void&gt;
 
 Commits the edited image or video asset. This API uses a promise to return the result.
 
@@ -3607,7 +3796,6 @@ The edited file is saved to the media library based on the URI. The URI is **Fil
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise that returns no value.|
-
 
 **Error codes**
 
@@ -3637,7 +3825,7 @@ async function example() {
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let editData = '123456';
     let uri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
-    photoAsset.commitEditedAsset(editData, uri);
+    await photoAsset.commitEditedAsset(editData, uri);
     console.info('commitEditedAsset is successful');
   } catch (err) {
     console.error('commitEditedAssetPromiseDemo failed with error: ' + err);
@@ -3699,7 +3887,7 @@ async function example() {
       }
     });
   } catch (err) {
-    console.error('RevertToOriginalCallbackDemo failed with error: ' + err);
+    console.error('revertToOriginalCallbackDemo failed with error: ' + err);
   }
 }
 ```
@@ -3724,6 +3912,65 @@ Reverts to the state of the file before being edited. This API uses a promise to
 | --------------------------------------- | ----------------- |
 |Promise&lt;string&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('revertToOriginalPromiseDemo')
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    photoAsset.revertToOriginal();
+    console.info('revertToOriginal is successful');
+  } catch (err) {
+    console.error('revertToOriginalPromiseDemo failed with error: ' + err);
+  }
+}
+```
+
+### requestPhoto<sup>11+</sup>
+
+requestPhoto(callback: AsyncCallback&lt;image.PixelMap&gt;): string
+
+Obtains the quick thumbnail and quality thumbnail of this asset. This API uses an asynchronous callback to return the result.
+
+The size of a quick thumbnail is 128 x 128, and the size of a quality thumbnail is 256 x 256. After this API is called, the callback will be invoked twice to return a quick thumbnail and a quality thumbnail in sequence.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | Yes   | Callback invoked twice to return the quick and quality thumbnails obtained.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| string | ID of the task for obtaining thumbnails.|
 
 **Error codes**
 
@@ -3743,25 +3990,164 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 
 async function example() {
   try {
-    console.info('RevertToOriginalPromiseDemo')
-    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-    let fetchOptions: photoAccessHelper.FetchOptions = {
+    console.info('requestPhotoDemo')
+    let options: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
-      predicates: predicates
-    };
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    photoAsset.revertToOriginal();
-    console.info('revertToOriginal is successful');
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult = await phAccessHelper.getAssets(options);
+    let photoAsset = await fetchResult.getFirstObject();
+    let taskId: string = photoAsset.requestPhoto(async (err, pixel: image.PixelMap) => {
+      if (err === undefined) {
+        console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    })
+    console.info('requestSource taskId: ' + taskId)
   } catch (err) {
-    console.error('RevertToOriginalPromiseDemo failed with error: ' + err);
+    console.error('requestPhotoDemo failed with error: ' + err)
+  }
+}
+```
+
+### requestPhoto<sup>11+</sup>
+
+requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.PixelMap&gt;): string
+
+Obtains the thumbnails of an asset based on the specified options. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| options | [RequestPhotoOptions](#requestphotooptions11) | Yes   | Options for obtaining the asset thumbnail.|
+| callback | AsyncCallback&lt;[image.PixelMap]((js-apis-image.md#pixelmap7))&gt; | Yes   | Callback invoked to return the thumbnails obtained. The callback may be invoked more than once, depending on **options**.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| string | ID of the task for obtaining thumbnails.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('requestPhotoDemo')
+    let options: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult = await phAccessHelper.getAssets(options);
+    let photoAsset = await fetchResult.getFirstObject();
+    let taskId: string = photoAsset.requestPhoto({
+      "size": {
+        "width": 256,
+        "height": 256
+      },
+      "requestPhotoType": photoAccessHelper.RequestPhotoType.REQUEST_ALL_THUMBNAILS
+    }, async (err, pixel: image.PixelMap) => {
+      if (err === undefined) {
+        console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    })
+    console.info('requestSource taskId: ' + taskId)
+  } catch (err) {
+    console.error('requestPhotoDemo failed with error: ' + err)
+  }
+}
+```
+
+### cancelPhotoRequest<sup>11+</sup>
+
+cancelPhotoRequest(requestId: string): void
+
+Cancels a task for obtaining media thumbnails.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name       | Type     | Mandatory  | Description                                |
+| ---------- | ------- | ---- | ---------------------------------- |
+| requestId | string | Yes   | ID of the task to cancel.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**Example**
+
+```ts
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+
+async function example() {
+  try {
+    console.info('cancelPhotoRequestDemo')
+    let options: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: new dataSharePredicates.DataSharePredicates()
+    }
+    let fetchResult = await phAccessHelper.getAssets(options);
+    let photoAsset = await fetchResult.getFirstObject();
+    let taskId: string = photoAsset.requestPhoto({
+      "size": {
+        "width": 256,
+        "height": 256
+      },
+      "requestPhotoType": photoAccessHelper.RequestPhotoType.REQUEST_ALL_THUMBNAILS
+    }, async (err, pixel: image.PixelMap) => {
+      if (err === undefined) {
+        console.info("requestSource in, size: " + JSON.stringify((await pixel.getImageInfo()).size))
+      } else {
+        console.error('requestSource failed with error: ' + err);
+      }
+    })
+    console.info('requestSource taskId: ' + taskId)
+    photoAsset.cancelPhotoRequest(taskId);
+  } catch (err) {
+    console.error('cancelPhotoRequestDemo failed with error: ' + err)
   }
 }
 ```
 
 ## PhotoViewPicker
 
-Provides APIs for selecting images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
+Provides APIs for the user to select images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3961,7 +4347,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchCount = fetchResult.getCount();
   console.info('fetchCount = ', fetchCount);
 }
 ```
@@ -4002,13 +4388,13 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchCount = fetchResult.getCount();
   console.info('count:' + fetchCount);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
   if (fetchResult.isAfterLast()) {
     console.info('photoAsset isAfterLast displayName = ', photoAsset.displayName);
   } else {
-    console.info('photoAsset  not isAfterLast ');
+    console.info('photoAsset not isAfterLast.');
   }
 }
 ```
@@ -4091,7 +4477,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getFirstObject((err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err:' + err);
@@ -4183,7 +4569,7 @@ async function example() {
   await fetchResult.getFirstObject();
   if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, photoAsset) => {
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset displayName: ', photoAsset.displayName);
       } else {
         console.error('photoAsset failed with err: ' + err);
@@ -4277,7 +4663,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getLastObject((err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err: ' + err);
@@ -4367,7 +4753,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getObjectByPosition(0, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err: ' + err);
@@ -4462,7 +4848,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getAllObjects((err, photoAssetList) => {
-    if (photoAssetList != undefined) {
+    if (photoAssetList !== undefined) {
       console.info('photoAssetList length: ', photoAssetList.length);
     } else {
       console.error('photoAssetList failed with err:' + err);
@@ -4574,10 +4960,10 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption, (err, albumFetchResult) => {
-    if (albumFetchResult != undefined) {
+    if (albumFetchResult !== undefined) {
       console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
     } else {
       console.error('album getAssets failed with error: ' + err);
@@ -4627,7 +5013,6 @@ import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('albumGetAssetsDemoPromise');
-
   let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let albumFetchOptions: photoAccessHelper.FetchOptions = {
     fetchColumns: [],
@@ -4637,12 +5022,12 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption).then((albumFetchResult) => {
-    console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
+    console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
   }).catch((err: BusinessError) => {
-    console.error('album getPhotoAssets failed with error: ' + err);
+    console.error('album getAssets failed with error: ' + err);
   });
 }
 ```
@@ -4686,11 +5071,11 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify((err) => {
-    if (err != undefined) {
+    if (err !== undefined) {
       console.error('commitModify failed with error: ' + err);
     } else {
       console.info('commitModify successfully');
@@ -4739,8 +5124,8 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info('commitModify successfully');
@@ -5350,10 +5735,11 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
-    console.info('setCoverUriDemoCallback');
+    console.info('setCoverUriDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -5363,15 +5749,13 @@ async function example() {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    album.setCoverUri(asset.uri, (err) => {
-      if (err === undefined) {
-        console.info('album setCoverUri successfully');
-      } else {
-        console.error('album setCoverUri failed with error: ' + err);
-      }
+    album.setCoverUri(asset.uri).then(() => {
+      console.info('album setCoverUri successfully');
+    }).catch((err: BusinessError) => { 
+      console.error('album setCoverUri failed with error: ' + err);
     });
   } catch (err) {
-    console.error('setCoverUriDemoCallback failed with error: ' + err);
+    console.error('setCoverUriDemoPromise failed with error: ' + err);
   }
 }
 ```
@@ -5454,6 +5838,20 @@ Enumerate the album subtypes.
 | IMAGE<sup>11+</sup> |  1031 | Album for images.<br>**System API**: This is a system API.|
 | ANY |  2147483647 |  Any album.|
 
+## RequestPhotoType<sup>11+</sup>
+
+Enumerates the types of the operation for obtaining image or video thumbnails.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| REQUEST_ALL_THUMBNAILS  |  0 |  Obtain both the quick thumbnail and the quality thumbnail.|
+| REQUEST_FAST_THUMBNAIL |  1 |  Obtain only the quick thumbnail.|
+| REQUEST_QUALITY_THUMBNAIL |  2 |  Obtain only the quality thumbnail.|
+
 ## PhotoKeys
 
 Defines the key information about an image or video file.
@@ -5532,6 +5930,19 @@ Defines the options for creating an image or video asset.
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 | title           | string | No | Title of the image or video. |
 
+## RequestPhotoOptions<sup>11+</sup>
+
+Defines the options for obtaining the thumbnail of a image or video.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Mandatory| Description                                             |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+| size           | [image.Size](js-apis-image.md#size) | No | Size of the thumbnail to obtain. |
+| requestPhotoType    | [RequestPhotoType](#requestphototype11) | No | Operation to perform. |
+
 ## FetchOptions
 
 Defines the options for fetching media files.
@@ -5540,8 +5951,21 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example: fetchColumns: ['uri', 'title']|
-| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns. If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object. Example:<br>fetchColumns: ['uri', 'title']|
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
+
+## FormInfo<sup>11+</sup>
+
+Defines the Gallery widget information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Mandatory| Description                                             |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|formId       |string  |Yes| Widget ID, which is provided when a widget is created in Gallery.|
+|uri          |string  |Yes| URI of the image bound to the widget. When a widget is created, **uri** can be empty or the URI of an image. When a widget is removed, **uri** is not verified and can be empty. |
 
 ## ChangeData
 
@@ -5593,6 +6017,30 @@ Enumerates the media file types that can be selected.
 | VIDEO_TYPE |  'video/*' | Video.|
 | IMAGE_VIDEO_TYPE |  '\*/*' | Image and video.|
 
+## RecommendationType<sup>11+</sup>
+
+Enumerates the types of recommended images.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- | ---- |
+| QR_OR_BAR_CODE  |  1 | QR code or barcode.|
+| QR_CODE |  2 | QR code.|
+| BAR_CODE |  3 | Barcode.|
+| ID_CARD |  4 | ID card.|
+| PROFILE_PICTURE |  5 | Profile.|
+
+## RecommendationOptions<sup>11+</sup>
+
+Defines the image recommendation options. The image recommendation feature depends on the image data analysis capability, which varies with devices.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                   | Type               | Mandatory| Description                         |
+| ----------------------- | ------------------- | ---- | -------------------------------- |
+| recommendationType | [RecommendationType](#recommendationtype11)   | No  | Type of the recommended image. If this parameter is not specified, images are not recommended by default.|
+
 ## PhotoSelectOptions
 
 Defines the options for selecting images or videos.
@@ -5604,7 +6052,9 @@ Defines the options for selecting images or videos.
 | MIMEType              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
 | maxSelectNumber       | number | No  | Maximum number of media files that can be selected. The default value is **50**, and the maximum value is **500**.     |
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.|
-| isEditSupported<sup>11+</sup>       | boolean | No  | Whether the photo is editable.     |
+| isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image is editable.     |
+| isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.|
+| recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Recommended image type.     |
 
 ## PhotoSelectResult
 

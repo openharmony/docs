@@ -23,10 +23,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name|Type|Mandatory|Description|
 |-----|-----|----|----|
-|gutter|Length \| GutterOption|   No |Gutter of the grid layout.|
-|columns| number \| GridRowColumnOption |  No |Number of columns in the grid layout.|
-|breakpoints|BreakPoints|  No |Array of breakpoints for the breakpoint value and the corresponding reference based on the window or container size.|
-|direction|GridRowDirection|   No |Arrangement direction of the grid layout.|
+|gutter|[Length](ts-types.md#length) \| [GutterOption](#gutteroption)|   No |Gutter of the grid layout.|
+|columns| number \| [GridRowColumnOption](#gridrowcolumnoption) |  No |Number of columns in the grid layout.|
+|breakpoints|[BreakPoints](#breakpoints)|  No |Array of breakpoints for the breakpoint value and the corresponding reference based on the window or container size.|
+|direction|[GridRowDirection](#gridrowdirection)|   No |Arrangement direction of the grid layout.|
 
 ## GutterOption
 
@@ -36,8 +36,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| x  | Length \| GridRowSizeOption | No  | Horizontal spacing between grid child components.   |
-| y  | Length \| GridRowSizeOption | No  | Vertical spacing between grid child components.   |
+| x  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | No  | Horizontal spacing between grid child components.   |
+| y  | [Length](ts-types.md#length) \| [GridRowSizeOption](#gridrowsizeoption) | No  | Vertical spacing between grid child components.   |
 
 ## GridRowColumnOption
 
@@ -62,12 +62,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | Length | No   | Gutter size for minimum device width.   |
-| sm  | Length | No   | Gutter size for small device width.     |
-| md  | Length | No   | Gutter size for medium device width.   |
-| lg  | Length | No   | Gutter size for large device width.     |
-| xl  | Length | No   | Gutter size for extra large device width.   |
-| xxl | Length | No   | Gutter size for extra extra large device width.   |
+| xs  | [Length](ts-types.md#length) | No   | Gutter size for minimum device width.   |
+| sm  | [Length](ts-types.md#length) | No   | Gutter size for small device width.     |
+| md  | [Length](ts-types.md#length) | No   | Gutter size for medium device width.   |
+| lg  | [Length](ts-types.md#length) | No   | Gutter size for large device width.     |
+| xl  | [Length](ts-types.md#length) | No   | Gutter size for extra large device width.   |
+| xxl | [Length](ts-types.md#length) | No   | Gutter size for extra extra large device width.   |
 
 ## BreakPoints
 
@@ -78,7 +78,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
 | value  | Array&lt;string&gt; | No | Array of monotonically increasing breakpoints.<br>Default value: **["320vp", "600vp", "840vp"]**   |
-| reference  | BreakpointsReference | No   | Breakpoint switching reference.<br>Default value: **BreakpointsReference.WindowSize**|
+| reference  | [BreakpointsReference](#breakpointsreference) | No   | Breakpoint switching reference.<br>Default value: **BreakpointsReference.WindowSize**|
 ```ts
   // Enable the xs, sm, and md breakpoints.
   breakpoints: {value: ["100vp", "200vp"]}

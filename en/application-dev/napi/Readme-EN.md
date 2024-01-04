@@ -1,4 +1,4 @@
-# Native APIs
+# Node-API
 
 - [Getting Started with the NDK](ndk-development-overview.md)
 - [Creating an NDK Project](create-with-ndk.md)
@@ -14,17 +14,17 @@
         - [Node-API Data Types and APIs](napi-data-types-interfaces.md)
         - [Node-API Development Specifications](napi-guidelines.md)
         - [Node-API Development Process](use-napi-process.md)
-        - Samples
+        - Typical Scenarios
             - [Asynchronous Task Development Using Node-API](use-napi-asynchronous-task.md)
             - [Thread Safety Development Using Node-API](use-napi-thread-safety.md)
         - [OpenHarmony Node-API FAQs](use-napi-faqs.md)
     - Graphics
         - [XComponent Development](xcomponent-guidelines.md)
         - [Using Drawing to Draw and Display Graphics](drawing-guidelines.md)
-        - [NativeBuffer Development](native-buffer-guidelines.md)
-        - [NativeImage Development](native-image-guidelines.md)
-        - [NativeVsync Development](native-vsync-guidelines.md)
-        - [NativeWindow Development](native-window-guidelines.md)
+        - [Native Buffer Development](native-buffer-guidelines.md)
+        - [Native Image Development](native-image-guidelines.md)
+        - [Native Vsync Development](native-vsync-guidelines.md)
+        - [Native Window Development](native-window-guidelines.md)
         - [Vulkan Development](vulkan-guidelines.md)
     - Resource Management
         - [Raw File Development](rawfile-guidelines.md)
@@ -40,7 +40,7 @@
         - [USB DDK Development](usb-ddk-guidelines.md)
         - [HID DDK Development](hid-ddk-guidelines.md)
     - Data Management
-        - [RelationalStore Development](native-relational-store-guidelines.md)
+        - [Relational Store Development](native-relational-store-guidelines.md)
     - Bundle Management
         - [Native Bundle Development](native-bundle-guidelines.md)
 - Debugging and Profiling
@@ -53,5 +53,3 @@
     - [OpenHarmony ABIs](ohos-abi.md)
     - [CPU Features](cpu-features.md)
     - [Using Neon Instructions](neon-guide.md)
-
-<!--no_check-->

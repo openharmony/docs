@@ -21,6 +21,7 @@ import ability from '@ohos.ability.ability';
 | ------------------- | -------- | ---- | -------------------------------------- |
 | want                | [Want](js-apis-app-ability-want.md)|   Yes  | Want information about the target ability.                    |
 | abilityStartSetting | {[key: string]: any} | No   | Special attribute of the target ability. This attribute can be passed in the call.|
+| abilityStartSettings | Record\<string, Object> | No   | Special attribute of the target ability. This attribute can be passed in the call. You are advised to use this attribute to replace **abilityStartSetting**. When this attribute is set, **abilityStartSetting** does not take effect.|
 
 **Example**
 ```ts
@@ -35,7 +36,7 @@ let want: Want = {
 
 let startAbilityParameter: ability.StartAbilityParameter = {
     want : want,
-    abilityStartSetting : {
+    abilityStartSettings : {
         abilityBounds : [100,200,300,400],
         windowMode :
         featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED,

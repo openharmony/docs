@@ -18,10 +18,10 @@
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
-     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-     import Want from '@ohos.app.ability.Want';
+     import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+     import type Want from '@ohos.app.ability.Want';
      export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let uiAbilityContext = this.context;
          ...
        }
@@ -48,7 +48,7 @@
      ```ts
      import AbilityStage from '@ohos.app.ability.AbilityStage';
      export default class MyAbilityStage extends AbilityStage {
-       onCreate() {
+       onCreate(): void {
          let abilityStageContext = this.context;
          ...
        }
@@ -58,10 +58,10 @@
     
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
-     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-     import Want from '@ohos.app.ability.Want';
+     import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+     import type Want from '@ohos.app.ability.Want';
      export default class EntryAbility extends UIAbility {
-       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
          let applicationContext = this.context.getApplicationContext();
          ...
        }
@@ -73,7 +73,6 @@
 
 
 This topic describes how to use the context in the following scenarios:
-
 
 - [Obtaining Application File Paths](#obtaining-application-file-paths)
 - [Obtaining and Modifying Encryption Levels](#obtaining-and-modifying-encryption-levels)
@@ -101,28 +100,44 @@ The application file paths obtained by the preceding contexts are different.
 
   The sample code is as follows:
 
-    ```ts
-    import UIAbility from '@ohos.app.ability.UIAbility';
-    import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-    import Want from '@ohos.app.ability.Want';
-    
-    export default class EntryAbility extends UIAbility {
-      onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        let applicationContext = this.context.getApplicationContext();
-        let cacheDir = applicationContext.cacheDir;
-        let tempDir = applicationContext.tempDir;
-        let filesDir = applicationContext.filesDir;
-        let databaseDir = applicationContext.databaseDir;
-        let bundleCodeDir = applicationContext.bundleCodeDir;
-        let distributedFilesDir = applicationContext.distributedFilesDir;
-        let preferencesDir = applicationContext.preferencesDir;
-        ...
-        // Obtain the application file path.
-        let filePath = tempDir + 'test.txt';
-        console.info(`filePath: ${filePath}`);
+  ```ts
+  import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
+  import promptAction from '@ohos.promptAction'
+  
+  const TAG: string = '[Page_Context]';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  @Entry
+  @Component
+  struct Page_Context {
+  
+    private context = getContext(this) as common.UIAbilityContext;
+  
+    build() {
+      ...
+      Button(){
+        .onClick(() => {
+          let applicationContext = this.context.getApplicationContext();
+          let cacheDir = applicationContext.cacheDir;
+          let tempDir = applicationContext.tempDir;
+          let filesDir = applicationContext.filesDir;
+          let databaseDir = applicationContext.databaseDir;
+          let bundleCodeDir = applicationContext.bundleCodeDir;
+          let distributedFilesDir = applicationContext.distributedFilesDir;
+          let preferencesDir = applicationContext.preferencesDir;
+          // Obtain the application file path.
+          let filePath = tempDir + 'test.txt';
+          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+          if (filePath !== null) {
+            promptAction.showToast({
+            message: filePath
+            });
+          }
+        })
       }
     }
-    ```
+  }
+  ```
 
 - The application file path obtained through **AbilityStageContext**, **UIAbilityContext**, or **ExtensionContext** is at the HAP level. This path is recommended for storing HAP-related information, and the files in this path are deleted when the HAP is uninstalled. However, the deletion does not affect the files in the application-level path unless all HAPs of the application are uninstalled.
 
@@ -139,23 +154,39 @@ The application file paths obtained by the preceding contexts are different.
   The sample code is as follows:
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
+  import common from '@ohos.app.ability.common';
+  import hilog from '@ohos.hilog';
+  import promptAction from '@ohos.promptAction'
   
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let cacheDir = this.context.cacheDir;
-      let tempDir = this.context.tempDir;
-      let filesDir = this.context.filesDir;
-      let databaseDir = this.context.databaseDir;
-      let bundleCodeDir = this.context.bundleCodeDir;
-      let distributedFilesDir = this.context.distributedFilesDir;
-      let preferencesDir = this.context.preferencesDir;
+  const TAG: string = '[Page_Context]';
+  const DOMAIN_NUMBER: number = 0xFF00;
+  @Entry
+  @Component
+  struct Page_Context {
+  
+    private context = getContext(this) as common.UIAbilityContext;
+  
+    build() {
       ...
-      // Obtain the application file path.
-      let filePath = tempDir + 'test.txt';
-      console.info(`filePath: ${filePath}`);
+      Button(){
+        .onClick(() => {
+          let cacheDir = this.context.cacheDir;
+          let tempDir = this.context.tempDir;
+          let filesDir = this.context.filesDir;
+          let databaseDir = this.context.databaseDir;
+          let bundleCodeDir = this.context.bundleCodeDir;
+          let distributedFilesDir = this.context.distributedFilesDir;
+          let preferencesDir = this.context.preferencesDir;
+          // Obtain the application file path.
+          let filePath = tempDir + 'test.txt';
+          hilog.info(DOMAIN_NUMBER, TAG, `filePath: ${filePath}`);
+          if (filePath !== null) {
+            promptAction.showToast({
+              message: filePath
+            });
+          }
+        })
+      }
     }
   }
   ```
@@ -175,7 +206,6 @@ In practice, you need to select a proper encryption level based on scenario-spec
 </ul>
 
 You can obtain and set the encryption level by reading and writing the **area** attribute in [Context](../reference/apis/js-apis-inner-application-context.md).
-
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import contextConstant from '@ohos.app.ability.contextConstant';
@@ -202,6 +232,55 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+```ts
+import contextConstant from '@ohos.app.ability.contextConstant';
+import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
+import promptAction from '@ohos.promptAction'
+
+const TAG: string = '[Page_Context]';
+const DOMAIN_NUMBER: number = 0xFF00;
+
+@Entry
+@Component
+struct Page_Context {
+
+  private context = getContext(this) as common.UIAbilityContext;
+
+  build() {
+    ...
+    Button(){
+      .onClick(() => {
+        // Before storing common information, switch the encryption level to EL1.
+        if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
+          this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
+          promptAction.showToast({
+            message: $r('app.string.SwitchToEL1')
+          });
+        }
+        // Store common information.
+      })
+    }
+    
+    ...
+
+    Button(){
+      .onClick(() => {
+        // Before storing sensitive information, switch the encryption level to EL2.
+        if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
+          this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
+          promptAction.showToast({
+            message: $r('app.string.SwitchToEL2')
+          });
+        }
+        // Store sensitive information.
+      })
+    }
+    
+    ...
+  }
+}
+```
 
 
 ### Creating Context of Another Application or Module
@@ -213,24 +292,20 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
   >
   > To obtain the context of another application:
   >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Applying for Application Permissions](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system-basic-applications).
   >
   > - This is a system API and cannot be called by third-party applications.
   
   For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
   
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let bundleName2 = 'com.example.application';
-      let context2 = this.context.createBundleContext(bundleName2);
-      let label2 = context2.applicationInfo.label;
-      ...
-    }
+  let bundleName2 = 'com.samples.stagemodelabilityinteraction';
+  let bundleContext = this.context.createBundleContext(bundleName2);
+  let label2 = bundleContext.applicationInfo.label;
+  if (bundleContext && label2 !== null) {
+    promptAction.showToast({
+      message: ('Context obtained.')
+    });
   }
   ```
   
@@ -239,38 +314,30 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
   >
   > To obtain the context of a specified module of another application:
   >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system-basic-applications).
   >
   > - This is a system API and cannot be called by third-party applications.
   
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let bundleName2 = 'com.example.application';
-      let moduleName2 = 'module1';
-      let context2 = this.context.createModuleContext(bundleName2, moduleName2);
-      ...
-    }
+  let bundleName2 : string = 'com.samples.stagemodelabilityinteraction';
+  let moduleName2 : string  = 'entry';
+  let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
+  if (moduleContext !== null) {
+    promptAction.showToast({
+      message: ('Context obtained.')
+    });
   }
   ```
   
 - Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
   
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-  import Want from '@ohos.app.ability.Want';
-  
-  export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-      let moduleName2 = 'module1';
-      let context2 = this.context.createModuleContext(moduleName2);
-      ...
-    }
+  let moduleName2 = 'entry';
+  let moduleContext = this.context.createModuleContext(moduleName2);
+  if (moduleContext !== null) {
+    promptAction.showToast({
+      message: ('Context obtained.')
+    });
   }
   ```
 
@@ -283,76 +350,79 @@ In the DFX statistics scenario of an application, if you need to collect statist
 
 
 ```ts
+import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import type AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import Logger from '../utils/Logger';
 import UIAbility from '@ohos.app.ability.UIAbility';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import type Want from '@ohos.app.ability.Want';
+import type window from '@ohos.window';
 
-const TAG: string = '[Example].[Entry].[EntryAbility]';
+const TAG: string = '[LifecycleAbility]';
 
-export default class EntryAbility extends UIAbility {
+export default class LifecycleAbility extends UIAbility {
   // Define a lifecycle ID.
   lifecycleId: number = -1;
 
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     // Define a lifecycle callback object.
     let abilityLifecycleCallback: AbilityLifecycleCallback = {
       // Called when a UIAbility is created.
       onAbilityCreate(uiAbility) {
-        console.info(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when a window is created.
       onWindowStageCreate(uiAbility, windowStage: window.WindowStage) {
-        console.info(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.info(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
+        Logger.info(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the window becomes active.
       onWindowStageActive(uiAbility, windowStage: window.WindowStage) {
-        console.info(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.info(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
+        Logger.info(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the window becomes inactive.
       onWindowStageInactive(uiAbility, windowStage: window.WindowStage) {
-        console.info(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.info(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
+        Logger.info(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the window is destroyed.
       onWindowStageDestroy(uiAbility, windowStage: window.WindowStage) {
-        console.info(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.info(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
+        Logger.info(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the UIAbility is destroyed.
       onAbilityDestroy(uiAbility) {
-        console.info(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when the UIAbility is switched from the background to the foreground.
       onAbilityForeground(uiAbility) {
-        console.info(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when the UIAbility is switched from the foreground to the background.
       onAbilityBackground(uiAbility) {
-        console.info(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when UIAbility is continued on another device.
       onAbilityContinue(uiAbility) {
-        console.info(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        Logger.info(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       }
-    }
+    };
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
     // Register the application lifecycle callback.
     this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-    console.info(TAG, `register callback number: ${this.lifecycleId}`);
+    Logger.info(TAG, `register callback number: ${this.lifecycleId}`);
   }
 
   ...
 
-  onDestroy() {
+  onDestroy() : void {
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
     // Deregister the application lifecycle callback.
     applicationContext.off('abilityLifecycle', this.lifecycleId);
   }
-}
+};
 ```
+
+ <!--no_check--> 
