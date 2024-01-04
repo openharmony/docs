@@ -58,7 +58,7 @@
 3. 安装应用私有凭据，获取应用私有凭据，并使用应用私有凭据进行签名、验签，最后删除应用私有凭据。
 
    ```ts
-async function certManagerSample() {
+async function certManagerSample():void {
    /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
    let keystore: Uint8Array = new Uint8Array([
      0x30, 0x82, 0x04, 0x6a, 0x02, 0x01,
