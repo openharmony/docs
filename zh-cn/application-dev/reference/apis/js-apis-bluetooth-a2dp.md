@@ -150,7 +150,7 @@ getPlayingState(deviceId: string): PlayingState
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [PlayingState](#PlayingState) | 远端设备的播放状态。 |
+| [PlayingState](#Playingstate) | 远端设备的播放状态。 |
 
 **错误码**：
 
@@ -570,7 +570,7 @@ getCurrentCodecInfo(deviceId: string): CodecInfo
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| [CodecInfo](#CodecInfo)| 当前编码器信息。 |
+| [CodecInfo](#codecinfo11)| 当前编码器信息。 |
 
 **错误码**：
 
