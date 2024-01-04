@@ -74,7 +74,7 @@
      } catch (err) {
        let e: BusinessError = err as BusinessError;
        console.error("installPrivateCertificates error, errcode:" + e.code);
-     }
+       }
    
      try {
        /* srcData为待签名、验签的数据，业务自行赋值 */
@@ -99,7 +99,7 @@
          purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
          padding: certManager.CmKeyPadding.CM_PADDING_PSS,
          digest: certManager.CmKeyDigest.CM_DIGEST_SHA256
-     };
+       };
    
        /* 验签 */
        const verifyHandle: certManager.CMHandle = await certManager.init(appKeyUri, verifySpec);
@@ -117,6 +117,6 @@
      } catch (err) {
        let e: BusinessError = err as BusinessError;
        console.error("uninstallPrivateCertificate failed, errcode:" + e.code);
+     }
    }
-}
    ```
