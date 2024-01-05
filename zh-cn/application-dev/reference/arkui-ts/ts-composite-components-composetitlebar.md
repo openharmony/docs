@@ -47,8 +47,8 @@ ComposeTitleBar({item?: ComposeTitleBarMenuItem, title: ResourceStr, subtitle?: 
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
-| isEnabled | boolean | 是 | 是否启用，默认启用。 | 
-| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 | 
+| isEnabled | boolean | 否 | 是否启用，默认禁用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。 | 
+| action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包，item属性不支持触发action事件。 | 
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)
