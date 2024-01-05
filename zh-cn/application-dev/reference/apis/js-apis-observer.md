@@ -450,7 +450,7 @@ observer.on('callStateChange', (value: Value) => {
 
 ## observer.on('callStateChange')
 
-on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ state: CallState, number: string }>): void
+on(type: 'callStateChange', options: { slotId: number }, callback: Callback\<{ state: CallState, number: string }\>): void
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
 
@@ -497,7 +497,7 @@ observer.on('callStateChange', id, (value: Value) => {
 
 ## observer.off('callStateChange')
 
-off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: string }>): void
+off(type: 'callStateChange', callback?: Callback\<{ state: CallState, number: string }\>): void
 
 取消订阅通话状态变化事件，使用callback方式作为异步方法。
 
