@@ -16,6 +16,7 @@ import common from '@ohos.app.ability.common';
 import hilog from '@ohos.hilog';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 const TAG: string = '[EntryAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;
@@ -57,6 +58,7 @@ import common from '@ohos.app.ability.common';
 import hilog from '@ohos.hilog';
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 const TAG: string = '[EntryAbility]';
 const DOMAIN_NUMBER: number = 0xFF00;

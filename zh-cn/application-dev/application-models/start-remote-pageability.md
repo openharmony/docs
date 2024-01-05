@@ -48,6 +48,10 @@
 import abilityAccessCtrl from "@ohos.abilityAccessCtrl";
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond';
+
 async requestPermission(): Promise<void> {
   Logger.info(TAG, 'RequestPermission begin');
   let array: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
@@ -88,6 +92,10 @@ async requestPermission(): Promise<void> {
 
 ```ts
 import deviceManager from '@ohos.distributedDeviceManager';
+import promptAction from '@ohos.promptAction';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond';
 
 getRemoteDeviceId(): void {
   let dmClass: deviceManager.DeviceManager;
@@ -124,6 +132,11 @@ getRemoteDeviceId(): void {
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import Want from '@ohos.app.ability.Want';
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilitySecond';;
 
 onStartRemoteAbility(): void {
   Logger.info(TAG, 'onStartRemoteAbility begin');

@@ -15,7 +15,10 @@
 如下示例展示了停止Ability的方法。
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilityFirst';
 ```
 ```ts
 (async (): Promise<void> => {
