@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-development-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
+> - 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
 > - 文档中使用到photoAccessHelper的地方默认为使用相册管理模块开发概述中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
 
 为了保证应用的运行效率，大部分PhotoAccessHelper调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用Promise函数，更多方式可以查阅[API参考](../reference/apis/js-apis-photoAccessHelper.md)。
