@@ -1,5 +1,7 @@
 # @ohos.multimedia.cameraPicker (相机选择器)
 
+本模块提供相机拍照与录制的能力。应用可以自行选择媒体类型实现拍照和录制的功能。该类接口，需要应用在界面UIAbility中调用，否则无法拉起cameraPicker应用。
+
 > **说明：**
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -78,7 +80,7 @@ async function demo() {
 | 名称           | 类型                               | 必填   | 说明         |
 | -------------- | --------------------------------- | ----- | ------------ |
 | cameraPosition       | [CameraPosition](js-apis-camera.md#cameraposition) | 是    | 相机的位置。   |
-| saveUri        | string                            | 否    | 保存配置信息的uri地址。|
+| saveUri        | string                            | 否    | 保存配置信息的uri。|
 | videoDuration  | number                            | 否    | 录制的最大时长。|
 
 
@@ -91,5 +93,5 @@ async function demo() {
 | 名称           | 类型                                | 必填  | 说明                            |
 | -------------- | ---------------------------------- | ----- | -------------------------------- |
 | resultCode     | number                             | 是    | 处理的结果，成功返回0，失败返回-1。 |
-| resultUri      | string                             | 是    | 返回的uri地址。                   |
+| resultUri      | string                             | 是    | 返回的uri地址。若saveUri为空，resultUri为公共媒体路径。若saveUri不为空且具备写权限，resultUri与saveUri相同。若saveUri不为空且不具备写权限，则无法获取到resultUri。|
 | mediaType      | [PickerMediaType](#pickermediatype)| 是    | 返回的媒体类型。                  |
