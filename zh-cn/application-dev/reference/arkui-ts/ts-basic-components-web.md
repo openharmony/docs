@@ -1612,6 +1612,65 @@ struct Index {
 </html>
 ```
 
+### javaScriptOnDocumentEnd<sup>11+</sup>
+
+javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
+
+**参数：**
+
+| 参数名     | 参数类型                                | 必填   | 默认值  | 参数描述               |
+| ------- | ----------------------------------- | ---- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的的ScriptItem数组 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct Index {
+  controller: web_webview.WebviewController = new web_webview.WebviewController()
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from javaScriptOnDocumentEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .javaScriptOnDocumentEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
 ### layoutMode<sup>11+</sup>
 
 layoutMode(mode: WebLayoutMode)
