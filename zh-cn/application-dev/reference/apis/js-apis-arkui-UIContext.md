@@ -680,31 +680,6 @@ getDragController(): DragController
 uiContext.getDragController();
 ```
 
-### getDragPreview<sup>11+</sup>
-
-getDragPreview(): DragPreview
-
-返回一个代表拖拽背板的对象。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**返回值：**
-
-| 类型        | 说明                                            |
-| ------------| ------------------------------------------------|
-| DragPreview | 一个代表拖拽背板的对象，提供背板样式设置的接口，在OnDrop和OnDragEnd回调中使用不生效。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 401      | Invalid input parameter |
-| 100001   | Internal error |
-
-**示例：**
-
-请参考[animate](js-apis-arkui-dragController.md#animate11)
-
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
