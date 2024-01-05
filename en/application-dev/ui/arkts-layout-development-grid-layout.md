@@ -107,13 +107,11 @@ In the **\<GridRow>**, **columns** is used to set the total number of columns in
   ...
   GridRow() {
     ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      if(index){
-        GridCol() {
-          Row() {
-              Text(`${index + 1}`)
-          }.width('100%').height('50')
-        }.backgroundColor(item)
-      }
+      GridCol() {
+        Row() {
+            Text(`${index + 1}`)
+        }.width('100%').height('50')
+      }.backgroundColor(item)
     })
   }           
   ```
