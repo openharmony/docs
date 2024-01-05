@@ -1,4 +1,4 @@
-# Media Library Kit
+# Media Library Kit（媒体文件管理服务）
 
 - [Media Library Kit简介](../file-management/photoAccessHelper-overview.md)
 - [媒体资源使用指导](../file-management/photoAccessHelper-resource-guidelines.md)
