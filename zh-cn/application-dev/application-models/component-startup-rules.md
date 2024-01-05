@@ -32,7 +32,7 @@
   > 
   > 前后台应用的判断依据：若应用进程获焦或所属的UIAbility组件位于前台则判定为前台应用，否则为后台应用。
  
-- **使用startAbilityByCall接口，需校验CALL权限`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`。**
+- **跨设备使用startAbilityByCall接口，需校验分布式权限`ohos.permission.DISTRIBUTED_DATASYNC`。**
 
 上述组件启动规则自API 9版本开始生效。开发者需熟知组件启动规则，避免业务功能异常。启动组件的具体校验流程见下文。
 

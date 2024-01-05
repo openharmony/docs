@@ -1,4 +1,4 @@
-# NNRt接入适配指导
+# Neural Network Runtime设备接入指导
 
 ## 概述
 

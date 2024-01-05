@@ -311,3 +311,71 @@ API 11及以后，默认Dialog的内容区分词方式为BREAK_ALL。
 **适配指导**
 
 默认分词方式变更，不涉及适配。
+## cl.arkui.10 Image组件autoResize interpolation属性默认行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+应用侧需要设置autoResize为false、 interpolation设置为LOW来解决图片锯齿问题
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，Image组件的autoResize默认值为true， interpolation为None。
+
+变更后，Image组件的autoResize默认值为false， interpolation为LOW，该修改会提升图片显示效果，但是image组件在大图显示成小组件时，默认内存会上涨，需要应用根据实际情况进行内存优化。
+说明：该修改不影响大桌面效果。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的组件有：Image。
+
+**适配指导**
+
+默认行为变更，不涉及适配。
+
+## cl.arkui.11  opacity属性非法值设置变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+opacity属性设置小于0的非法值需要按照完全透明来处理。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，opacity属性设置小于0的非法值时效果完全不透明。
+
+变更后，opacity属性设置小于0的非法值时效果完全透明。
+
+**API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+受影响的属性：opacity。
+
+**适配指导**
+
+默认行为变更，不涉及适配。

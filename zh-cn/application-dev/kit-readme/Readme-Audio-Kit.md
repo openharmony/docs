@@ -1,0 +1,26 @@
+# Audio Kit（音频服务）
+
+- [Audio Kit简介](../media/audio-kit-intro.md)
+- 音频播放
+  - [音频播放开发概述](../media/audio-playback-overview.md)
+  - [使用AudioRenderer开发音频播放功能(ArkTS)](../media/using-audiorenderer-for-playback.md)
+  - [使用TonePlayer开发音频播放功能(仅对系统应用开放)(ArkTS)](../media/using-toneplayer-for-playback.md)
+  - [使用OHAudio开发音频播放功能(C/C++)](../media/using-ohaudio-for-playback.md)
+  - [使用OpenSL ES开发音频播放功能(C/C++)](../media/using-opensl-es-for-playback.md)
+  - [多音频播放的并发策略(ArkTS)](../media/audio-playback-concurrency.md)
+  - [播放音量管理(ArkTS)](../media/volume-management.md)
+  - [音效管理(ArkTS)](../media/audio-effect-management.md)
+  - [音频播放流管理(ArkTS)](../media/audio-playback-stream-management.md)
+  - [音频输出设备管理(ArkTS)](../media/audio-output-device-management.md)
+  - [分布式音频播放(仅对系统应用开放)(ArkTS)](../media/distributed-audio-playback.md)
+- 音频录制
+  - [音频录制开发概述](../media/audio-recording-overview.md)
+  - [使用AudioCapturer开发音频录制功能(ArkTS)](../media/using-audiocapturer-for-recording.md)
+  - [使用OHAudio开发音频录制功能(C/C++)](../media/using-ohaudio-for-recording.md)
+  - [使用OpenSL ES开发音频录制功能(C/C++)](../media/using-opensl-es-for-recording.md)
+  - [管理麦克风(ArkTS)](../media/mic-management.md)
+  - [音频录制流管理(ArkTS)](../media/audio-recording-stream-management.md)
+  - [音频输入设备管理(ArkTS)](../media/audio-input-device-management.md)
+- 音频通话
+  - [音频通话开发概述](../media/audio-call-overview.md)
+  - [开发音频通话功能(ArkTS)](../media/audio-call-development.md)

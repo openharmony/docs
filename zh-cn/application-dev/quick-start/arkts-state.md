@@ -127,36 +127,42 @@
   \@State装饰的对象为Model类型数组时。
 
   ```ts
+  // 数组类型
   @State title: Model[] = [new Model(11), new Model(1)];
   ```
 
   数组自身的赋值可以观察到。
 
   ```ts
+  // 数组赋值
   this.title = [new Model(2)];
   ```
 
   数组项的赋值可以观察到。
 
   ```ts
+  // 数组项赋值
   this.title[0] = new Model(2);
   ```
 
   删除数组项可以观察到。
 
   ```ts
+  // 数组项更改
   this.title.pop();
   ```
 
   新增数组项可以观察到。
 
   ```ts
+  // 数组项更改
   this.title.push(new Model(12));
   ```
 
   数组项中属性的赋值观察不到。
 
   ```ts
+  // 嵌套的属性赋值观察不到
   this.title[0].value = 6;
   ```
 
@@ -363,7 +369,7 @@ struct MapSample {
 
 ### 装饰Set类型变量
 
-\@State支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+\@State支持Set类型，在下面的示例中，message类型为Set\<number\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Entry
@@ -429,4 +435,92 @@ struct MyComponent {
   }
 }
 
+```
+
+
+## 常见问题
+
+### 使用箭头函数改变状态变量未生效
+
+箭头函数体内的this对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象。所以在该场景下， changeCoverUrl的this指向PlayDetailViewModel，而不是被装饰器@State代理的状态变量。
+
+反例：
+
+```ts
+
+export default class PlayDetailViewModel {
+  coverUrl: string = '#00ff00'
+
+  changeCoverUrl= ()=> {
+    this.coverUrl = '#00F5FF'
+  }
+
+}
+```
+
+```ts
+import PlayDetailViewModel from './PlayDetailViewModel'
+
+@Entry
+@Component
+struct PlayDetailPage {
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+
+  build() {
+    Stack() {
+      Text(this.vm.coverUrl).width(100).height(100).backgroundColor(this.vm.coverUrl)
+      Row() {
+        Button('点击改变颜色')
+          .onClick(() => {
+            this.vm.changeCoverUrl()
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .alignContent(Alignment.Top)
+  }
+}
+```
+
+所以要将当前this.vm传入，调用代理状态变量的属性赋值。
+
+正例：
+
+```ts
+
+export default class PlayDetailViewModel {
+  coverUrl: string = '#00ff00'
+
+  changeCoverUrl= (model:PlayDetailViewModel)=> {
+    model.coverUrl = '#00F5FF'
+  }
+
+}
+```
+
+```ts
+import PlayDetailViewModel from './PlayDetailViewModel'
+
+@Entry
+@Component
+struct PlayDetailPage {
+  @State vm: PlayDetailViewModel = new PlayDetailViewModel()
+
+  build() {
+    Stack() {
+      Text(this.vm.coverUrl).width(100).height(100).backgroundColor(this.vm.coverUrl)
+      Row() {
+        Button('点击改变颜色')
+          .onClick(() => {
+            let self = this.vm
+            this.vm.changeCoverUrl(self)
+          })
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .alignContent(Alignment.Top)
+  }
+}
 ```

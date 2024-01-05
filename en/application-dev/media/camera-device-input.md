@@ -7,7 +7,7 @@ Before developing a camera application, you must create an independent camera ob
 Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 1. Import the camera module, which provides camera-related attributes and methods.
-   
+     
    ```ts
    import camera from '@ohos.multimedia.camera';
    import { BusinessError } from '@ohos.base';
@@ -16,7 +16,8 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 
 2. Call **getCameraManager()** to obtain a **CameraManager** object.
 
-   For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+   For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
    ```ts
    function getCameraManager(context: common.BaseContext): camera.CameraManager {
      let cameraManager: camera.CameraManager = camera.getCameraManager(context);
@@ -29,7 +30,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    > If obtaining the object fails, the camera hardware may be occupied or unusable. If it is occupied, wait until it is released.
 
 3. Call **getSupportedCameras()** in the **CameraManager** class to obtain the list of cameras supported by the current device. The list stores the IDs of all cameras supported. If the list is not empty, each ID in the list can be used to create an independent camera object. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed.
-   
+     
    ```ts
    function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
      let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
@@ -49,7 +50,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```
 
 4. Call **getSupportedOutputCapability()** to obtain all output streams supported by the current device, such as preview streams and photo streams. The output streams supported are the value of each **profile** field under **CameraOutputCapability**.
-   
+     
    ```ts
    async function getSupportedOutputCapability(cameraDevice: camera.CameraDevice, cameraManager: camera.CameraManager): Promise<camera.CameraOutputCapability | undefined> {
      // Create a camera input stream.
@@ -86,7 +87,7 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
 During camera application development, you can listen for the camera status, including the appearance of a new camera, removal of a camera, and availability of a camera. The camera ID and camera status are included in the callback function. When a new camera appears, the new camera can be added to the supported camera list.
 
 Register the **'cameraStatus'** event and return the listening result through a callback, which carries the **CameraStatusInfo** parameter. For details about the parameter, see [CameraStatusInfo](../reference/apis/js-apis-camera.md#camerastatusinfo).
-
+  
 ```ts
 function onCameraStatus(cameraManager: camera.CameraManager): void {
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {

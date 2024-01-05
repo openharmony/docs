@@ -121,7 +121,7 @@ Web组件可以实现点击前端页面超链接跳转到其他应用。
   
     build() {
       Column() {
-        Web({ src: $rawfile('xxx.html'), controller: this.webviewController})
+        Web({ src: $rawfile('call.html'), controller: this.webviewController})
           .onLoadIntercept((event) => {
             if (event) {
               let url: string = event.data.toString();

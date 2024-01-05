@@ -718,7 +718,7 @@ try {
 | id    | number      |  否 | 振动器id， 默认值为0。    |
 | usage | [Usage](#usage) | 是 | 马达振动的使用场景。 |
 
-## Usage
+## Usage<sup>9+</sup>
 
 振动使用场景。
 

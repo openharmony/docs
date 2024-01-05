@@ -40,6 +40,7 @@
 | getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |获取一个含有默认网络的netId的NetHandle对象，使用callback回调 |
 | getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;| 获取网络的全局代理设置，使用callback回调 |
 | setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| 设置网络全局Http代理配置信息，使用callback回调 |
+| setAppHttpProxy(httpProxy: HttpProxy): void;| 设置网络应用级Http代理配置信息 |
 | getAppNet(callback: AsyncCallback\<NetHandle>): void;| 获取一个App绑定的包含了网络netId的NetHandle对象，使用callback回调 |
 | setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 绑定App到指定网络，绑定后的App只能通过指定网络访问外网。使用callback回调 |
 | getDefaultNetSync(): NetHandle; |使用同步方法获取默认激活的数据网络。可以使用getNetCapabilities去获取网络的类型、拥有的能力等信息。|

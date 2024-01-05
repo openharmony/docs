@@ -9,8 +9,7 @@
 
 ## 子组件
 
-可以包含[Span](ts-basic-components-span.md)和[ImageSpan](ts-basic-components-imagespan.md)子组件。
-
+可以包含[Span](ts-basic-components-span.md)、[ImageSpan](ts-basic-components-imagespan.md)、[SymbolSpan](ts-basic-components-symbolSpan.md)和[ContainerSpan](ts-basic-components-containerspan.md)子组件。
 
 ## 接口
 
@@ -51,7 +50,7 @@ Text(content?: string | Resource, value?: TextOptions)
 | selection<sup>11+</sup> |(selectionStart:&nbsp;number, selectionEnd:&nbsp;number)| 设置选中区域。选中区域高亮且显示手柄和文本选择菜单。 <br />默认值：（-1，-1） <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>当`copyOption`设置为CopyOptions.None时，设置`selection`属性不生效。<br/>当`overflow`设置为TextOverflow.Marquee时，设置`selection`属性不生效。<br/>当`selectionStart`大于等于`selectionEnd`时不选中。可选范围为[0, textSize],textSize为文本内容最大字符数，入参小于0处理为0，大于textSize处理为textSize。<br/>当`selectionStart`或`selectionEnd`在截断不可见区域时不选中。截断为false时超出父组件的文本选中区域生效。|
 | ellipsisMode<sup>11+</sup> |[EllipsisMode](ts-appendix-enums.md#ellipsismode11)| 设置省略位置。 <br />默认值：EllipsisMode.END <br/>**说明：** <br/>从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>当`ellipsisMode`设置为EllipsisMode.END，需要配合`overflow`设置为TextOverflow.Ellipsis以及maxLines使用，单独设置`ellipsisMode`属性不生效。<br/>EllipsisMode.START和EllipsisMode.CENTER仅在单行超长文本生效。|
 | enableDataDetector<sup>11+</sup> |boolean| 使能文本识别。<br/>默认值： false<br/>**说明：**<br/>所识别实体的`fontColor`和`decoration`会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}<br/>该接口依赖设备底层应具有文本识别能力，否则设置不会生效。<br/>当`enableDataDetector`设置为true，同时不设置`dataDetectorConfig`属性时，默认识别所有类型的实体。<br/>当`copyOption`设置为CopyOptions.None时，该功能不会生效。 |
-| dataDetectorConfig<sup>11+</sup> |{<br/>types:&nbsp;[TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11),<br/>onDetectResultUpdate:&nbsp;(callback:(result:&nbsp;string)&nbsp;=&gt;&nbsp;void)<br/>} | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/>`types`：文本识别的实体类型。设置`types`为`null`或者`[]`时，识别所有类型的实体，否则只识别指定类型的实体。<br/> `onDetectResultUpdate`：文本识别成功后，触发`onDetectResultUpdate`回调。<br/>`result`：文本识别的结果，Json格式。 |
+| dataDetectorConfig<sup>11+</sup> |{<br/>types:&nbsp;[TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11),<br/>onDetectResultUpdate:&nbsp;(callback:(result:&nbsp;string)&nbsp;=&gt;&nbsp;void)<br/>} | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/>当有两个实体A、B重叠时，按以下规则保留实体：<br/>1.&nbsp;若A&nbsp;⊂&nbsp;B，则保留B，反之则保留A。<br/>2.&nbsp;当A&nbsp;⊄&nbsp;B且B&nbsp;⊄&nbsp;A时，若A.start&nbsp;<&nbsp;B.start，则保留A，反之则保留B。<br/>`types`：文本识别的实体类型。设置`types`为`null`或者`[]`时，识别所有类型的实体，否则只识别指定类型的实体。<br/> `onDetectResultUpdate`：文本识别成功后，触发`onDetectResultUpdate`回调。<br/>`result`：文本识别的结果，Json格式。 |
 | bindSelectionMenu<sup>11+</sup> | {<br/>spantype:&nbsp;[TextSpanType](ts-appendix-enums.md#textSpanType),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[TextResponseType](ts-appendix-enums.md#textResponseType)&nbsp;\,<br/>options?:&nbsp;[SelectionMenuOptions](ts-appendix-enums.md#selectionmenuoptions)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;TextSpanType.TEXT<br/>content：空<br/>responseType:&nbsp;TextResponseType.LONG_PRESS <br/>}<br />**说明：**<br/>`bindSelectionMenu`长按响应时长为600ms，`bindContextMenu`长按响应时长为800ms，同时绑定且触发方式均为长按时，优先响应`bindSelectionMenu`|
 
 >  **说明：**
@@ -586,7 +585,7 @@ struct Demo {
             .onClick((event) => {
               this.controller.closeSelectionMenu();
             })
-          MenuItem({ startIcon: $r('app.media.app_icon'), content: "SLong Press Image Menu 2", labelInfo: "" })
+          MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 3", labelInfo: "" })
         }
       }

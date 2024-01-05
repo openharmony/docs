@@ -1778,7 +1778,7 @@ async function copyFunc01() {
 
 ### copyFile<sup>11+</sup>
 
-copyFile(sourceUri: string, destUri: string, fileName, callback: AsyncCallback&lt;string&gt;) : void
+copyFile(sourceUri: string, destUri: string, fileName: string, callback: AsyncCallback&lt;string&gt;) : void
 
 复制文件并传入备用文件名，使用callback异步回调。
 
@@ -2444,6 +2444,8 @@ moveFile(sourceUri: string, destUri: string,  fileName: string, callback: AsyncC
 | NOTIFY_MOVED_TO   | 2    | 表示移动至该文件（对目录下子文件或目录执行rename操作，或外部文件或目录执行move操作到本文件，详见registerObserver接口的示例1，及unregisterObserver(uri: string)接口的示例1）|
 | NOTIFY_MOVED_FROM | 3    | 表示自该文件移出（对目录下子文件或目录执行rename操作，或子文件（夹）执行move操作从该文件夹内移出，详见registerObserver接口的示例1，及unregisterObserver(uri: string)接口的示例1） |
 | NOTIFY_MOVE_SELF  | 4    | 表示本文件被移动（如对文件或文件夹执行rename或move操作时，监听该文件（夹）的callback收到该事件，详见registerObserver接口的示例1）     |
+| NOTIFY_DEVICE_ONLINE<sup>11+</sup>   | 5    | 表示设备上线     |
+| NOTIFY_DEVICE_OFFLINE<sup>11+</sup>   | 6    | 表示设备下线     |
 
 ## NotifyMessage<sup>10+</sup>
 

@@ -24,12 +24,12 @@ show(value: {&nbsp;title: string&nbsp;|&nbsp;Resource, subtitle:&nbsp;Resource,&
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹窗副标题。 |
 | message    | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是     | 弹窗内容。  |
 | autoCancel | boolean                           | 否     | 点击遮障层时，是否关闭弹窗。<br>默认值：true<br>值为true时，点击遮障层关闭弹窗，值为false时，点击遮障层不关闭弹窗。 |
-| confirm    | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否  | 确认按钮的使能状态、默认焦点、按钮风格、文本内容和点击回调。<br>enabled：点击button是否响应。<br />默认值：true。<br />defaultFocus：设置button是否是默认焦点。<br />默认值：false。<br />style：设置button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT。<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
+| confirm    | {<br/>enabled<sup>10+</sup>?: boolean,<br/>defaultFocus<sup>10+</sup>?: boolean,<br />style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10枚举说明),<br />value:&nbsp;[ResourceStr](ts-types.md#resourcestr),<br/>action:&nbsp;()&nbsp;=&gt;&nbsp;void<br/>} | 否  | 确认按钮的使能状态、默认焦点、按钮风格、文本内容和点击回调。<br>enabled：点击button是否响应，true表示button可以响应，false表示button不可以响应。<br />默认值：true。<br />defaultFocus：设置button是否是默认焦点，true表示button是默认焦点，false表示button不是默认焦点。<br />默认值：false。<br />style：设置button的风格样式。<br />默认值：DialogButtonStyle.DEFAULT。<br/>value：按钮文本内容。<br/>action:&nbsp;按钮选中时的回调。 |
 | cancel     | ()&nbsp;=&gt;&nbsp;void           | 否     | 点击遮障层关闭dialog时的回调。   |
 | alignment  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment枚举说明) | 否     |  弹窗在竖直方向上的对齐方式。<br>默认值：DialogAlignment.Bottom |
-| offset     | {<br/>dx:&nbsp;Length,<br/>dy:&nbsp;Length<br/>} | 否      | 弹窗相对alignment所在位置的偏移量。{<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} |
-| sheets     | Array&lt;SheetInfo&gt; | 是       | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。 |
-| maskRect<sup>10+</sup> | [Rectangle](ts-methods-alert-dialog-box.md#rectangle10类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
+| offset     | {<br/>dx:&nbsp;[Length](ts-types.md#length),<br/>dy:&nbsp;[Length](ts-types.md#length)<br/>} | 否      | 弹窗相对alignment所在位置的偏移量。{<br/>dx:&nbsp;0,<br/>dy:&nbsp;0<br/>} |
+| sheets     | Array&lt;[SheetInfo](#sheetinfo接口说明)&gt; | 是       | 设置选项内容，每个选择项支持设置图片、文本和选中的回调。 |
+| maskRect<sup>10+</sup> | [Rectangle](ts-methods-alert-dialog-box.md#rectangle8类型说明) | 否     | 弹窗遮蔽层区域，在遮蔽层区域内的事件不透传，在遮蔽层区域外的事件透传。<br/>默认值：{ x: 0, y: 0, width: '100%', height: '100%' } |
 | showInSubWindow<sup>11+</sup> | boolean | 否 | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，在子窗口不显示弹窗。<br/>**说明**：showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。 |
 | isModal<sup>11+</sup> | boolean | 否 | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。 |
 

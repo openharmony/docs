@@ -397,6 +397,12 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 打开自定义弹窗。
 
+不支持在[ServiceExtension](../../../application-dev/application-models/serviceextensionability.md)中使用。
+
+暂不支持isModal = true与showInSubWindow = true同时使用。
+
+弹窗宽度在设备竖屏时默认为4个栅格，横屏时为5个栅格。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -511,9 +517,9 @@ closeCustomDialog(dialogId: number): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 类型                                                    | 必填 | 说明                   |
-| ------- | ------------------------------------------------------- | ---- | ---------------------- |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 否   | 设置自定义弹窗的内容。 |
+| 名称    | 类型                                                    | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 否   | 设置自定义弹窗的内容。<br/>**说明：** <br/>builder需要使用bind(this)。<br/>builder根节点宽高百分比相对弹框容器大小。<br/>builder非根节点宽高百分比相对父节点大小。 |
 
 ## BaseDialogOptions<sup>11+</sup>
 
