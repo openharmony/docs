@@ -31,6 +31,7 @@
     - [跨设备文件拷贝](file-copy-across-devices.md)
 - Media Library Kit（媒体文件管理服务）
   - [Media Library Kit 简介](photoAccessHelper-overview.md)
+  - [开发准备](photoAccessHelper-development-preparation.md)
   - [媒体资源使用指导](photoAccessHelper-resource-guidelines.md)
   - [用户相册资源使用指导](photoAccessHelper-userAlbum-guidelines.md)
   - [系统相册资源使用指导](photoAccessHelper-systemAlbum-guidelines.md)
