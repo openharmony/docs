@@ -37,8 +37,6 @@
     }
 
     onCastToNormalForm(formId: string) {
-      // Called when the form provider is notified that a temporary form is successfully
-      // converted to a normal form.
       // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
       console.info(`[EntryFormAbility] onCastToNormalForm, formId: ${formId}`);
     }
