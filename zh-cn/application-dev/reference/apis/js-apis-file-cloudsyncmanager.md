@@ -289,7 +289,7 @@ notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&l
 
 ## cloudSyncManager.enableCloud
 
-enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Promise&lt;void&gt;
+enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;void&gt;
 
 异步方法使能端云协同能力，以Promise形式返回结果。
 
@@ -302,7 +302,7 @@ enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Pro
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | accountId | string | 是   | 帐号Id|
-| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为应用包名，开关状态是个boolean类型|
+| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为string类型应用包名，开关状态是个boolean类型|
 
 **返回值：**
 
@@ -338,7 +338,7 @@ enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Pro
 
 ## cloudSyncManager.enableCloud
 
-enableCloud(accountId: string, switches: { [bundleName: string]: boolean }, callback: AsyncCallback&lt;void&gt;): void
+enableCloud(accountId: string, switches: switches: Record<string, boolean>, callback: AsyncCallback&lt;void&gt;): void
 
 异步方法使能端云协同能力，以callback形式返回结果。
 
@@ -351,7 +351,7 @@ enableCloud(accountId: string, switches: { [bundleName: string]: boolean }, call
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | accountId | string | 是   | 帐号Id|
-| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为应用包名，开关状态是个boolean类型|
+| switches | object | 是   | 应用的端云协同特性使能开关，bundleName为string类型应用包名，开关状态是个boolean类型|
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步使能端云协同能力之后的回调 |
 
 **错误码：**
@@ -482,7 +482,7 @@ disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ## cloudSyncManager.clean
 
-clean(accountId: string, appActions: { [bundleName: string]: Action }): Promise&lt;void&gt;
+clean(accountId: string, appActions: Record<string, Action>): Promise&lt;void&gt;
 
 异步方法清理本地云相关数据，以Promise形式返回结果。
 
@@ -495,7 +495,7 @@ clean(accountId: string, appActions: { [bundleName: string]: Action }): Promise&
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | accountId | string | 是   | 帐号Id|
-| appActions | object | 是   | 清理动作类型，bundleName为待清理应用包名, [Action](#action)为清理动作类型|
+| appActions | object | 是   | 清理动作类型，bundleName为string类型待清理应用包名, [Action](#action)为清理动作类型|
 
 **返回值：**
 
@@ -531,7 +531,7 @@ clean(accountId: string, appActions: { [bundleName: string]: Action }): Promise&
 
 ## cloudSyncManager.clean
 
-clean(accountId: string, appActions: { [bundleName: string]: Action }, callback: AsyncCallback&lt;void&gt;): void
+clean(accountId: string, appActions: Record<string, Action>, callback: AsyncCallback&lt;void&gt;): void
 
 异步方法清理本地云相关数据，以callback形式返回结果。
 
@@ -544,7 +544,7 @@ clean(accountId: string, appActions: { [bundleName: string]: Action }, callback:
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
 | accountId | string | 是   | 帐号Id|
-| appActions | object | 是   | 清理动作类型，bundleName为待清理应用包名, [Action](#action)为清理动作类型|
+| appActions | object | 是   | 清理动作类型，bundleName为string类型待清理应用包名, [Action](#action)为清理动作类型|
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步方法清理本地云相关数据 |
 
 **错误码：**
