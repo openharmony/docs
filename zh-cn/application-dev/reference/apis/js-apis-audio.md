@@ -353,7 +353,7 @@ async function createTonePlayerBefore(){
 | ALARM<sup>10+</sup>          | 4      | 闹钟。     |
 | ACCESSIBILITY<sup>10+</sup>  | 5      | 无障碍。   |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
-| ULTRASONIC<sup>10+</sup>     | 10     | 超声波（目前仅提供给MSDP使用）。<br/>此接口为系统接口。|
+| ULTRASONIC<sup>10+</sup>     | 10     | 超声波。<br/>此接口为系统接口。|
 | ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口。|
 
 ## InterruptRequestResultType<sup>9+</sup>
