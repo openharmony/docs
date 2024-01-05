@@ -61,7 +61,7 @@ radio.getRadioTech(slotId, (err: BusinessError, data: radio.NetworkRadioTech) =>
 
 ## radio.getRadioTech
 
-getRadioTech\(slotId: number\): Promise<\[NetworkRadioTech](#networkradiotech11)\>
+getRadioTech\(slotId: number\): Promise\<[NetworkRadioTech](#networkradiotech11)\>
 
 获取当前接入的CS域和PS域无线接入技术。使用Promise异步回调。
 
