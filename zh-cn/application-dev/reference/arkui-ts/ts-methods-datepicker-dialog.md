@@ -16,7 +16,15 @@ show(options?: DatePickerDialogOptions)
 
 定义日期滑动选择器弹窗并弹出。
 
-**DatePickerDialogOptions参数：**
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                        | 必填 | 说明                       |
+| ------- | ----------------------------------------------------------- | ---- | -------------------------- |
+| options | [DatePickerDialogOptions](#datepickerdialogoptions对象说明) | 否   | 配置日期选择器弹窗的参数。 |
+
+## DatePickerDialogOptions对象说明
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |

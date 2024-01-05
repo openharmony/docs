@@ -11,7 +11,7 @@
 
 |方法|描述|
 |----|---|
-| close(): void | 可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)给组件绑定的菜单。 |
+| close() | 可以通过该方法在页面范围内关闭通过[bindContextMenu](./ts-universal-attributes-menu.md#属性)给组件绑定的菜单。 |
 
 
 ## 示例
