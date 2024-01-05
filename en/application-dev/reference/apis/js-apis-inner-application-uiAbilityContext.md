@@ -2398,11 +2398,14 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
+
 
 export default class EntryAbility extends UIAbility {
 
-  onCreate(want, launchParam) {
+  onCreate(want: Want, param: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test', (result: BusinessError) => {
       console.info(`setMissionLabel: ${JSON.stringify(result)}`);
     });
@@ -2443,11 +2446,13 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
   ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
 
-  onCreate(want, launchParam) {
+  onCreate(want: Want, param: AbilityConstant.LaunchParam) {
     this.context.setMissionLabel('test').then(() => {
       console.info('success');
     }).catch((err: BusinessError) => {

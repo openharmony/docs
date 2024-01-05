@@ -5,6 +5,7 @@ The **formHost** module provides APIs related to the widget host, which is an ap
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs provided by this module are system APIs.
 
 ## Modules to Import
@@ -1468,6 +1469,10 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 
 Subscribes to widget uninstall events. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+> 
+> Widget uninstall is different from widget removal. When an application is uninstalled, the corresponding widget is automatically uninstalled.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -1501,6 +1506,10 @@ formHost.on('formUninstall', (formId: string) => {
 off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 
 Unsubscribes from widget uninstall events. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> 
+> Widget uninstall is different from widget removal. When an application is uninstalled, the corresponding widget is automatically uninstalled.
 
 **System capability**: SystemCapability.Ability.Form
 

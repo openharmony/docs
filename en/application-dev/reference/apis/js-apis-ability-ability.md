@@ -20,7 +20,7 @@ import ability from '@ohos.ability.ability';
 | Name        | Type                | Description                                                        |
 | ----------- | -------------------- | ------------------------------------------------------------ |
 | DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)               | Level-2 module **DataAbilityHelper**.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
-| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | Level-2 module **PacMap**.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
+| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap11)               | Level-2 module **PacMap**.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
 | DataAbilityOperation   | [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)               | Level-2 module **DataAbilityOperation**.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
 | DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)               | Level-2 module **DataAbilityResult**.<br>**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel|
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | Level-2 module **AbilityResult**.<br>**System capability**: SystemCapability.Ability.AbilityBase|
