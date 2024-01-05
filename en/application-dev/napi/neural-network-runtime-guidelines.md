@@ -1,60 +1,60 @@
-# Development Guide for Connecting the Neural Network Runtime to an AI Inference Framework
+# Connecting NNRt to an AI Inference Framework
 
 ## When to Use
 
-As a bridge between the AI inference engine and acceleration chip, the Neural Network Runtime provides simplified Native APIs for the AI inference engine to perform end-to-end inference through the acceleration chip.
+As a bridge between the AI inference engine and acceleration chip, Neural Network Runtime (NNRt) provides simplified native APIs for the AI inference engine to perform end-to-end inference through the acceleration chip.
 
-This document uses the `Add` single-operator model shown in Figure 1 as an example to describe the development process of Neural Network Runtime. The `Add` operator involves two inputs, one parameter, and one output. Wherein, the `activation` parameter is used to specify the type of the activation function in the `Add` operator.
+This topic uses the `Add` single-operator model shown in Figure 1 as an example to describe the NNRt development process. The `Add` operator involves two inputs, one parameter, and one output. Wherein, the `activation` parameter is used to specify the type of the activation function in the `Add` operator.
 
-**Figure 1** Add single-operator model
+**Figure 1** Add single-operator model<br>
 !["Add single-operator model"](figures/neural_network_runtime.png)
 
 ## Preparing the Environment
 
 ### Environment Requirements
 
-The environment requirements for the Neural Network Runtime are as follows:
+The environment requirements for NNRt are as follows:
 
 - System version: OpenHarmony master branch.
 - Development environment: Ubuntu 18.04 or later.
-- Access device: a standard device running OpenHarmony. The built-in hardware accelerator driver has been connected to the Neural Network Runtime through an HDI API.
+- Access device: a standard device that runs OpenHarmony and whose built-in hardware accelerator driver has been connected to NNRt through an HDI API.
 
-The Neural Network Runtime is opened to external systems through OpenHarmony Native APIs. Therefore, you need to use the Native development suite of the OpenHarmony to compile Neural Network Runtime applications.
+NNRt is opened to external systems through native APIs. Therefore, you need to use the native development suite to build NNRt applications.
 
 ### Environment Setup
 
 1. Start the Ubuntu server.
-2. Copy the package of the Native development suite to the root directory of the current user.
-3. Decompress the package of the Native development suite.
+2. Copy the package of the native development suite to the root directory of the current user.
+3. Decompress the package of the native development suite.
 
 ```shell
 unzip native-linux-{version number}.zip
 ```
 
-The directory structure after decompression is as follows. The content in the directory may vary depending on version iteration. Use the Native APIs of the latest version.
+The directory structure after decompression is as follows. The content in the directory may vary depending on the version. Use the native APIs of the latest version.
 ```text
 native/
-─ ─ build // Cross-compilation toolchain
-─ ─ build-tools // Compilation and build tools
+├── build // Cross-compilation toolchain
+├── build-tools // Compilation and build tools
 ├── docs
 ├── llvm
 ├── nativeapi_syscap_config.json
 ├── ndk_system_capability.json
 ├── NOTICE.txt
 ├── oh-uni-package.json
-── sysroot // Native API header files and libraries
+└── sysroot // Native API header files and libraries
 ```
 ## Available APIs
 
-This section describes the common APIs used in the development process of the Neural Network Runtime. 
+This section describes the common APIs used in the NNRt development process.
 
-### Structure
+### Structs
 
 | Name| Description|
 | --------- | ---- |
-| typedef struct OH_NNModel OH_NNModel | Model handle of the Neural Network Runtime. It is used to construct a model.|
-| typedef struct OH_NNCompilation OH_NNCompilation | Compiler handle of the Neural Network Runtime. It is used to compile an AI model.|
-| typedef struct OH_NNExecutor OH_NNExecutor | Executor handle of the Neural Network Runtime. It is used to perform inference computing on a specified device.|
+| typedef struct OH_NNModel OH_NNModel | Model handle of NNRt. It is used to construct a model.|
+| typedef struct OH_NNCompilation OH_NNCompilation | Compiler handle of NNRt. It is used to compile an AI model.|
+| typedef struct OH_NNExecutor OH_NNExecutor | Executor handle of NNRt. It is used to perform inference computing on a specified device.|
 
 ### Model Construction APIs
 
@@ -83,34 +83,34 @@ This section describes the common APIs used in the development process of the Ne
 | Name| Description|
 | ------- | --- |
 | OH_NNExecutor *OH_NNExecutor_Construct(OH_NNCompilation *compilation) | Creates an executor instance of the OH_NNExecutor type.|
-| OH_NN_ReturnCode OH_NNExecutor_SetInput(OH_NNExecutor *executor, uint32_t inputIndex, const OH_NN_Tensor *tensor, const void *dataBuffer, size_t length) | Sets the single input data for a model.|
-| OH_NN_ReturnCode OH_NNExecutor_SetOutput(OH_NNExecutor *executor, uint32_t outputIndex, void *dataBuffer, size_t length) | Sets the buffer for a single output of a model.|
+| OH_NN_ReturnCode OH_NNExecutor_SetInput(OH_NNExecutor *executor, uint32_t inputIndex, const OH_NN_Tensor *tensor, const void *dataBuffer, size_t length) | Sets the data for a single model input.|
+| OH_NN_ReturnCode OH_NNExecutor_SetOutput(OH_NNExecutor *executor, uint32_t outputIndex, void *dataBuffer, size_t length) | Sets the buffer for a single model output.|
 | OH_NN_ReturnCode OH_NNExecutor_Run(OH_NNExecutor *executor) | Executes model inference.|
-| void OH_NNExecutor_Destroy(OH_NNExecutor **executor) | Destroys the OH_NNExecutor instance to release the memory occupied by the instance.|
+| void OH_NNExecutor_Destroy(OH_NNExecutor **executor) | Destroys an OH_NNExecutor instance to release the memory occupied by the instance.|
 
 ### Device Management APIs
 
 | Name| Description|
 | ------- | --- |
-| OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID(const size_t **allDevicesID, uint32_t *deviceCount) | Obtains the ID of the device connected to the Neural Network Runtime.|
+| OH_NN_ReturnCode OH_NNDevice_GetAllDevicesID(const size_t **allDevicesID, uint32_t *deviceCount) | Obtains the ID of the device connected to NNRt.|
 
 
 ## How to Develop
 
-The development process of the Neural Network Runtime consists of three phases: model construction, model compilation, and inference execution. The following uses the `Add` single-operator model as an example to describe how to call Neural Network Runtime APIs during application development.
+The development process of NNRt consists of three phases: model construction, model compilation, and inference execution. The following uses the `Add` single-operator model as an example to describe how to call NNRt APIs during application development.
 
 1. Create an application sample file.
 
-    Create the source file of the Neural Network Runtime application sample. Run the following commands in the project directory to create the `nnrt_example/` directory and create the `nnrt_example.cpp` source file in the directory:
+    Create the source file of the NNRt application sample. Run the following commands in the project directory to create the `nnrt_example/` directory and create the `nnrt_example.cpp` source file in the directory:
 
     ```shell
     mkdir ~/nnrt_example && cd ~/nnrt_example
     touch nnrt_example.cpp
     ```
 
-2. Import the Neural Network Runtime module.
+2. Import the NNRt module.
 
-    Add the following code at the beginning of the `nnrt_example.cpp` file to import the Neural Network Runtime module:
+    Add the following code at the beginning of the `nnrt_example.cpp` file to import the NNRt module:
 
     ```cpp
     #include <cstdint>
@@ -125,7 +125,7 @@ The development process of the Neural Network Runtime consists of three phases: 
 
 3. Construct a model.
 
-    Use Neural Network Runtime APIs to construct an `Add` single-operator sample model.
+    Use NNRt APIs to construct an `Add` single-operator sample model.
 
     ```cpp
     OH_NN_ReturnCode BuildModel(OH_NNModel** pModel)
@@ -213,15 +213,15 @@ The development process of the Neural Network Runtime consists of three phases: 
     }
     ```
 
-4. Query the acceleration chip connected to the Neural Network Runtime.
+4. Query the acceleration chip connected to NNRt.
 
-    The Neural Network Runtime can connect to multiple acceleration chips through HDI APIs. Before model compilation, you need to query the acceleration chips connected to the Neural Network Runtime on the current device. Each acceleration chip has a unique ID. In the compilation phase, you need to specify the chip for model compilation based on the device ID.
+    The NNRt can connect to multiple acceleration chips through HDI APIs. Before model compilation, you need to query the acceleration chips connected to NNRt on the current device. Each acceleration chip has a unique ID. In the compilation phase, you need to specify the chip for model compilation based on the ID.
     ```cpp
     void GetAvailableDevices(std::vector<size_t>& availableDevice)
     {
         availableDevice.clear();
 
-        // Obtain the available hardware ID.
+        // Obtain the available hardware IDs.
         const size_t* devices = nullptr;
         uint32_t deviceCount = 0;
         OH_NN_ReturnCode ret = OH_NNDevice_GetAllDevicesID(&devices, &deviceCount);
@@ -238,7 +238,7 @@ The development process of the Neural Network Runtime consists of three phases: 
 
 5. Compile a model on the specified device.
 
-    The Neural Network Runtime uses abstract model expressions to describe the topology structure of an AI model. Before inference execution on an acceleration chip, the compilation module provided by Neural Network Runtime needs to deliver the abstract model expression to the chip driver layer and convert the abstract model expression into a format that supports inference and computing.
+    The NNRt uses abstract model expressions to describe the topology structure of an AI model. Before inference execution on an acceleration chip, the compilation module provided by NNRt needs to deliver the abstract model expression to the chip driver layer and convert the abstract model expression into a format that supports inference and computing.
     ```cpp
     OH_NN_ReturnCode CreateCompilation(OH_NNModel* model, const std::vector<size_t>& availableDevice, OH_NNCompilation** pCompilation)
     {
@@ -279,7 +279,7 @@ The development process of the Neural Network Runtime consists of three phases: 
 
 6. Create an executor.
 
-    After the model compilation is complete, you need to call the execution module of the Neural Network Runtime to create an inference executor. In the execution phase, operations such as setting the model input, obtaining the model output, and triggering inference computing are performed through the executor.
+    After the model compilation is complete, you need to call the execution module of NNRt to create an inference executor. In the execution phase, operations such as setting the model input, obtaining the model output, and triggering inference computing are performed through the executor.
     ```cpp
     OH_NNExecutor* CreateExecutor(OH_NNCompilation* compilation)
     {
@@ -345,7 +345,7 @@ The development process of the Neural Network Runtime consists of three phases: 
 
 8. Build an end-to-end process from model construction to model compilation and execution.
 
-    Steps 3 to 7 implement the model construction, compilation, and execution processes and encapsulates them into four functions to facilitate modular development. The following sample code shows how to concatenate the four functions into a complete Neural Network Runtime the development process.
+    Steps 3 to 7 implement the model construction, compilation, and execution processes and encapsulates them into four functions to facilitate modular development. The following sample code shows how to concatenate the four functions into a complete NNRt the development process.
     ```cpp
     int main()
     {
@@ -430,7 +430,7 @@ The development process of the Neural Network Runtime consists of three phases: 
     Create the **build/** directory in the current directory, and compile `nnrt\_example.cpp` in the **build/** directory to obtain the binary file `nnrt\_example`:
     ```shell
     mkdir build && cd build
-    cmake -DCMAKE_TOOLCHAIN_FILE={Path of the cross-compilation tool chain }/build/cmake/ohos.toolchain.cmake -DOHOS_ARCH=arm64-v8a -DOHOS_PLATFORM=OHOS -DOHOS_STL=c++_static ..
+    cmake -DCMAKE_TOOLCHAIN_FILE={Path of the cross-compilation toolchain}/build/cmake/ohos.toolchain.cmake -DOHOS_ARCH=arm64-v8a -DOHOS_PLATFORM=OHOS -DOHOS_STL=c++_static ..
     make
     ```
 
@@ -464,11 +464,11 @@ The development process of the Neural Network Runtime consists of three phases: 
 
 4. (Optional) Check the model cache.
 
-    If the HDI service connected to the Neural Network Runtime supports the model cache function, you can find the generated cache file in the `/data/local/tmp` directory after the `nnrt_example` is executed successfully.
+    If the HDI service connected to NNRt supports the model cache function, you can find the generated cache file in the `/data/local/tmp` directory after the `nnrt_example` is executed successfully.
 
     > **NOTE**
     >
-    > The IR graphs of the model need to be passed to the hardware driver layer, so that the HDI service compiles the IR graphs into a computing graph dedicated to hardware. The compilation process is time-consuming. The Neural Network Runtime supports the computing graph cache feature. It can cache the computing graphs compiled by the HDI service to the device storage. If the same model is compiled on the same acceleration chip next time, you can specify the cache path so that the Neural Network Runtime can directly load the computing graphs in the cache file, reducing the compilation time.
+    > The IR graphs of the model need to be passed to the hardware driver layer, so that the HDI service compiles the IR graphs into a computing graph dedicated to hardware. The compilation process is time-consuming. The NNRt supports the computing graph cache feature. It can cache the computing graphs compiled by the HDI service to the device storage. If the same model is compiled on the same acceleration chip next time, you can specify the cache path so that NNRt can directly load the computing graphs in the cache file, reducing the compilation time.
 
     Check the cached files in the cache directory.
 
@@ -487,3 +487,9 @@ The development process of the Neural Network Runtime consists of three phases: 
     ```shell
     rm /data/local/tmp/*nncache
     ```
+
+## Samples
+
+The following sample is provided to help you understand how to connect a third-party AI inference framework to NNRt:
+
+- [Development Guide for Connecting TensorFlow Lite to NNRt Delegate](https://gitee.com/openharmony/ai_neural_network_runtime/tree/master/example/deep_learning_framework)
