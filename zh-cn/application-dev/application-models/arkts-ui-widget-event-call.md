@@ -7,6 +7,12 @@
 >
 > 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)。
 
+## 约束限制
+
+-提供方应用需要具备后台运行权限([ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running))。
+
+## 开发步骤
+
 通常使用按钮控件来触发call事件，示例代码如下：
 
 
