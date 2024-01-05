@@ -4996,6 +4996,96 @@ struct WebComponent {
 }
 ```
 
+### enableSafeBrowsing<sup>11+</sup>
+
+enableSafeBrowsing(enable: boolean): void
+
+启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  enable | boolean | 是   | 是否启用检查网站安全风险的功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('enableSafeBrowsing')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.enableSafeBrowsing(true);
+            console.log("enableSafeBrowsing: true");
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### isSafeBrowsingEnabled<sup>11+</sup>
+
+isSafeBrowsingEnabled(): boolean
+
+获取当前网页是否启用了检查网站安全风险。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false。|
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('isSafeBrowsingEnabled')
+        .onClick(() => {
+          let result = web_webview.WebviewController.isSafeBrowsingEnabled();
+          console.log("result: " + result);
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### postUrl<sup>11+</sup>
 
 postUrl(url: string, postData: ArrayBuffer): void

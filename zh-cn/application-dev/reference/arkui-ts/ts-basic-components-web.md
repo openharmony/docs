@@ -4247,6 +4247,51 @@ onNavigationEntryCommitted(callback: [OnNavigationEntryCommittedCallback](#onnav
     }
   }
   ```
+  
+### onSafeBrowsingCheckResult<sup>11+</sup>
+
+onSafeBrowsingCheckResult(callback: OnSafeBrowsingCheckResultCallback)
+
+收到网站安全风险检查结果时触发的回调。
+
+**参数：**
+
+| 参数名     | 类型                                                                       | 说明                    |
+| ----------| --------------------------------------------------------------------------| ---------------------- |
+| callback  | [OnSafeBrowsingCheckResultCallback](#onsafebrowsingcheckresultcallback11) | 收到网站安全风险检查结果时触发的回调。|
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  export enum ThreatType {
+    UNKNOWN = -1,
+    THREAT_ILLEGAL = 0,
+    THREAT_FRAUD = 1,
+    THREAT_RISK = 2,
+    THREAT_WARNING = 3,
+  }
+
+  export class OnSafeBrowsingCheckResultCallback {
+    threatType: ThreatType = ThreatType.UNKNOWN;
+  }
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+        .onSafeBrowsingCheckResult((details: OnSafeBrowsingCheckResultCallback) => {
+            console.log("onSafeBrowsingCheckResult: [threatType]= " + details.threatType);
+        })
+      }
+    }
+  }
+  ```
 
 ### onNativeEmbedLifecycleChange<sup>11+</sup>
 
@@ -6211,6 +6256,17 @@ saveCookie(): boolean
 | navigationType  | [WebNavigationType](#webnavigationtype11)  | 是    | 网页跳转的类型。       |
 | url             | string                               | 是    | 当前跳转网页的URL。          |
 
+## ThreatType<sup>11+</sup>
+
+定义网站风险类型。
+
+| 名称             | 描述                   |
+| ----------------| ----------------------|
+| THREAT_ILLEGAL  | 非法网站。              |
+| THREAT_FRAUD    | 欺诈网站。              |
+| THREAT_RISK     | 存在安全风险的网站。      |
+| THREAT_WARNING  | 涉嫌包含不健康内容的网站。 |
+
 ## OnNavigationEntryCommittedCallback<sup>11+</sup>
 
 type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedDetails](#loadcommitteddetails11)) => void
@@ -6220,6 +6276,16 @@ type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedD
 | 参数名                | 参数类型                                           | 参数描述                |
 | -------------------- | ------------------------------------------------ | ------------------- |
 | loadCommittedDetails | [LoadCommittedDetails](#loadcommitteddetails11)  | 提供已提交跳转的网页的详细信息。 |
+
+## OnSafeBrowsingCheckResultCallback<sup>11+</sup>
+
+type OnSafeBrowsingCheckResultCallback = (threatType: ThreatType) => void
+
+网站安全风险检查触发的回调。
+
+| 参数名      | 参数类型                      | 参数描述              |
+| ---------- | ---------------------------- | ------------------- |
+| threatType | [ThreatType](#threattype11)  | 定义网站threat类型。  |
 
 ## NativeEmbedStatus<sup>11+</sup>
 
