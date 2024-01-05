@@ -4621,7 +4621,7 @@ getResponseMimeType(): string
 
 ### setResponseData<sup>9+</sup>
 
-setResponseData(data: string | number \| Resource)
+setResponseData(data: string | number \| Resource | ArrayBuffer)
 
 设置资源响应数据。
 
@@ -4629,7 +4629,7 @@ setResponseData(data: string | number \| Resource)
 
 | 参数名  | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ---- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](ts-types.md)<sup>10+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 |
+| data | string \| number \| [Resource](ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | 是    | -    | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。 ArrayBuffer表示资源的原始二进制数据。 |
 
 ### setResponseEncoding<sup>9+</sup>
 
