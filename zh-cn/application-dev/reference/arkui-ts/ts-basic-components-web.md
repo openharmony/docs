@@ -6098,7 +6098,7 @@ saveCookie(): boolean
 | script      | string         | 是    | 需要注入、执行的JavaScript脚本。 |
 | scriptRules | Array\<string> | 是    | 一组允许来源的匹配规则。          |
 
-## NavigationType<sup>11+</sup>
+## WebNavigationType<sup>11+</sup>
 
 定义navigation类型。
 
@@ -6119,7 +6119,7 @@ saveCookie(): boolean
 | isMainFrame     | boolean                              | 是    | 是否是主文档。 |
 | isSameDocument  | boolean                              | 是    | 是否在不更改文档的情况下进行的网页跳转。在同文档跳转的示例：1.参考片段跳转；2.pushState或replaceState触发的跳转；3.同一页面历史跳转。  |
 | didReplaceEntry | boolean                              | 是    | 是否提交的新节点替换了已有的节点。另外在一些子文档跳转的场景，虽然没有实际替换已有节点，但是有一些属性发生了变更。  |
-| navigationType  | [NavigationType](#navigationtype11)  | 是    | 网页跳转的类型。       |
+| navigationType  | [WebNavigationType](#webnavigationtype11)  | 是    | 网页跳转的类型。       |
 | url             | string                               | 是    | 当前跳转网页的URL。          |
 
 ## OnNavigationEntryCommittedCallback<sup>11+</sup>
