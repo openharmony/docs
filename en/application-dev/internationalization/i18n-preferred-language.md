@@ -6,11 +6,11 @@ In most cases, multi-language users may set the system language to one language 
 
 ## How to Develop
 
-To set the preferred language of an application, use [setAppPreferredLanguage](../reference/apis/js-apis-i18n.md#setapppreferredlanguage11). To obtain the preferred language that has been set, use [getAppPreferredLanguage](../reference/apis/js-apis-i18n.md#getapppreferredlanguage9).
+To obtain the preferred language that has been set, use [getAppPreferredLanguage](../reference/apis/js-apis-i18n.md#getapppreferredlanguage9).
 
 The following uses date and time formatting as an example to illustrate how the preferred language works.
 
-1. Import the **intl** module.
+1. Import the **i18n** and **intl** modules.
    ```ts
    import Intl from '@ohos.intl';
    import I18n from '@ohos.i18n';

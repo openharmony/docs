@@ -35,7 +35,7 @@ Number formatting is implemented through the [format](../reference/apis/js-apis-
 
 **Number Formatting Options**
 
-You can use [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions6) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, and compact display. Supported number display formats include decimal, percent, currency, and unit.
+You can use [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, and compact display. Supported number display formats include decimal, percent, currency, and unit.
 
 The following uses **123000.123** as an example to show the parameter values and corresponding display effects.
 
@@ -124,7 +124,7 @@ let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
 
 ### Currency and Unit Formatting
 
-Currency and unit formatting is based on number formatting. When creating a **NumberFormat** object for currency and unit formatting, set the number formatting style to currency and unit, respectively. Similarly, this can be done through [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions6). The following tables show the parameter values and corresponding display effects.
+Currency and unit formatting is based on number formatting. When creating a **NumberFormat** object for currency and unit formatting, set the number formatting style to currency and unit, respectively. Similarly, this can be done through [NumberOptions](../reference/apis/js-apis-intl.md#numberoptions). The following tables show the parameter values and corresponding display effects.
 
 **Currency Formatting Options**
 
