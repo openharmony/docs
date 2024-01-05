@@ -39,7 +39,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | fullHeight | string \| number | Height of the panel in **PanelMode.Full** mode.<br>Default value: main axis height of the panel minus 8 vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
 | halfHeight | string \| number | Height of the panel in **PanelMode.Half** mode.<br>Default value: half of the main axis height of the panel<br>**NOTE**<br>This attribute cannot be set in percentage.|
 | miniHeight | string \| number | Panel height in the **PanelMode.Mini** mode.<br>Default value: **48**<br>Unit: vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
-| show | boolean | Whether to show the panel.<br>Default value: **true**|
+| show | boolean | Whether to show the panel. The value **true** means to show the panel, and **false** means the opposite.<br>Default value: **true**<br>**NOTE**<br>The priority of this attribute is higher than that of the **show** parameter.|
 | backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|Background mask of the panel.<br>Default value: **'#08182431'**|
 | showCloseIcon<sup>10+</sup> | boolean | Whether to display the close icon. The value **true** means to display the close icon, and **false** means the opposite.<br>Default value: **false**|
 
@@ -47,18 +47,18 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Description|
 | -------- | -------- |
-| Minibar | A minibar panel displays content in the minibar area or a large (fullscreen-like) area.|
-| Foldable | A foldable panel displays permanent content in a large (fullscreen-like), medium-sized (halfscreen-like), or small area.|
-| Temporary | A temporary panel displays content in a large (fullscreen-like) or medium-sized (halfscreen-like) area.|
-| CUSTOM<sup>10+</sup> | A custom panel automatically adapts its height to the content, without support for manual size switching.|
+| Minibar | A minibar panel that displays content in the minibar area or a large (fullscreen-like) area.|
+| Foldable | A foldable panel that displays permanent content in a large (fullscreen-like), medium-sized (halfscreen-like), or small area.|
+| Temporary | A temporary panel that displays content in a large (fullscreen-like) or medium-sized (halfscreen-like) area.|
+| CUSTOM<sup>10+</sup> | A custom panel that automatically adapts its height to the content, but does not support manual resizing.|
 
 ## PanelMode
 
-| Name| Description|
-| -------- | -------- |
-| Mini | Displays a **minibar** or **foldable** panel in its minimum size. This attribute does not take effect for **temporary** panels.|
-| Half | Displays a **foldable** or **temporary** panel in a medium-sized (halfscreen-like) area. This attribute does not take effect for **minibar** panels.|
-| Full | Displays a panel in a large (fullscreen-like) area.|
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| Mini |0| Displays a **minibar** or **foldable** panel in its minimum size. This attribute does not take effect for **temporary** panels.|
+| Half | 1 | Displays a **foldable** or **temporary** panel in a medium-sized (halfscreen-like) area. This attribute does not take effect for **minibar** panels.|
+| Full |2  | Displays a panel in a large (fullscreen-like) area.|
 
 ## PanelHeight<sup>10+</sup>
 
