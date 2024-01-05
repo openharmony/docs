@@ -465,10 +465,10 @@ on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 
 **参数：**
 
-| 参数名        | 类型                             | 必填 | 说明                                     |
-|-------------|--------------|-----------|-----------------------------------------------------|
-| type     | string                          | 是       |订阅事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | 是        |   mDNS服务的信息和事件错误信息。      |
+| 参数名      | 类型                             | 必填 | 说明                                                   |
+|-------------|---------------------------------|------|--------------------------------------------------------|
+| type        | string                          | 是   | 订阅事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的mDNS服务事件。|
+| callback    | Callback\<DiscoveryEventInfo\>  | 是   | mDNS服务的信息和事件错误信息。                           |
 
 **示例：**
 
@@ -502,7 +502,7 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | 否        |   mDNS服务的信息和事件错误信息。      |
+| callback | Callback\<DiscoveryEventInfo\>  | 否       |mDNS服务的信息和事件错误信息。          |
 
 **示例：**
 
@@ -540,7 +540,7 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |订阅事件，固定为'discoveryStop'。<br>discoveryStop：停止搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | 是        |   mDNS服务的信息和事件错误信息。      |
+| callback | Callback\<DiscoveryEventInfo\>  | 是       |mDNS服务的信息和事件错误信息。      |
 
 **示例：**
 
@@ -574,7 +574,7 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件'discoveryStop'。<br>discoveryStop：停止搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | 否        |   mDNS服务的信息和事件错误信息。      |
+| callback | Callback\<DiscoveryEventInfo\>  | 否       |mDNS服务的信息和事件错误信息。      |
 
 **示例：**
 
@@ -767,6 +767,17 @@ mDNS服务属性信息
 | --------------------- | ---------------------------------- | --- | ------------------------ |
 | key   | string                             |  是 |  mDNS服务属性键值，键值长度应该小于9个字符。  |
 | value | Array\<number>                             |  是 |  mDNS服务属性值。   |
+
+## DiscoveryEventInfo<sup>11+</sup>
+
+监听到的mDNS服务事件信息
+
+**系统能力**：SystemCapability.Communication.NetManager.MDNS
+
+|    名称     |            类型                     | 必填 | 说明                  |
+| ----------- | ----------------------------------- | --- | --------------------- |
+| serviceInfo | LocalServiceInfo                    |  是 |  mDNS服务信息。        |
+| errorCode   | MdnsError                           |  否 |  mDNS错误信息。        |
 
 ## MdnsError
 
