@@ -6147,7 +6147,7 @@ type OnNavigationEntryCommittedCallback = (loadCommittedDetails: [LoadCommittedD
 
 | 名称             | 类型                                  | 必填   | 描述                    |
 | -----------     | ------------------------------------ | ---- | --------------------- |
-| id     | number             | 是    | Embed标签的id信息。 |
+| id     | string             | 是    | Embed标签的id信息。 |
 | type  | string                              | 是    | Embed标签的type信息。  |
 | src | string                              | 是    | Embed标签的src信息。  |
 | width  | number  | 是    | Embed标签的宽。       |
