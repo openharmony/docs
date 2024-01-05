@@ -266,7 +266,7 @@ import settings from '@ohos.settings';
 // 更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100').then((status) => {
-  console.log('Callback return whether value is set.');
+  console.log('Callback return when value is set.');
 });
 ```
 
@@ -303,7 +303,7 @@ import settings from '@ohos.settings';
 // 更新数据项亮度的值（该数据项在数据库中已存在，故setValue方法将更新该数据项的值）
 const context: Context =  getContext(this);
 settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', domainName.DEVICE_SHARED).then((status) => {
-  console.log(`callback:return whether value is set.`)
+  console.log(`callback:return when value is set.`)
 });
 ```
 
@@ -715,7 +715,7 @@ settings.canShowFloating((err:Error, status: boolean) => {
     console.error(`Failed to Checks whether a specified application can show as float window ${err.message} `);
     return;
   }
-  console.log('Checks whether a specified application can show as float window.');
+  console.log('Checks when a specified application can show as float window.');
 });
 ```
 
@@ -737,7 +737,7 @@ canShowFloating(): Promise\<boolean>
 
 ```js
 settings.canShowFloating().then((status:boolean) => {
-    console.log('Checks whether a specified application can show as float window.');
+    console.log('Checks when a specified application can show as float window.');
 });
 ```
 
