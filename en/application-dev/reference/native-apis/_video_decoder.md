@@ -42,7 +42,7 @@ The VideoDecoder module provides the functions for video decoding.
 | [OH_VideoDecoder_PushInputData](#oh_videodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, OH_AVCodecBufferAttr attr) | Pushes the input buffer filled with data to a video decoder.| 
 | [OH_VideoDecoder_RenderOutputData](#oh_videodecoder_renderoutputdata) (OH_AVCodec \*codec, uint32_t index) | Frees an output buffer of a video decoder and instructs the decoder to render the decoded data in the buffer on the output surface.| 
 | [OH_VideoDecoder_FreeOutputData](#oh_videodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | Frees an output buffer of a video decoder.| 
-| [OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | Checks whether a video codec instance is valid.| 
+| [OH_VideoDecoder_IsValid](#oh_videodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | Checks whether a video decoder instance is valid.| 
 
 
 ## Function Description
