@@ -8,8 +8,8 @@
 | SOCIAL_COMMUNICATION | 1      | 社交通信 | Y | Y | Y | Y | Y | Y |
 | SERVICE_INFORMATION  | 2      | 服务提醒 | Y | N | Y | Y | Y | Y |
 | CONTENT_INFORMATION  | 3      | 内容资讯 | Y | N | N | N | Y | N |
-| CUSTOMER_SERVICE     | 5      | 客服消息 | Y | N | N | N | N | N |
-| OTHER_TYPES          | 0xFFFF | 其他     | Y | N | N | Y | Y | N |
+| CUSTOMER_SERVICE     | 5      | 客服消息 | Y | N | N | Y | Y | N |
+| OTHER_TYPES          | 0xFFFF | 其他     | Y | N | N | N | N | N |
 
 
 ## 接口说明
