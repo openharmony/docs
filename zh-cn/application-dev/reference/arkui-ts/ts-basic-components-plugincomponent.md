@@ -32,15 +32,15 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 | source     | string | 组件模板名。                |
 | bundleName | string | 提供者Ability的bundleName。 |
 ## 属性
-支持[通用属性size](ts-universal-attributes-size.md)，且必须设置size。
+必须显式设置组件宽高为非0有效值。
 
 **说明：**
 
   模板支持两种提供方式：
 * 1.使用绝对路径进行资源提供：source字段填写模板绝对路径，bundleName不需要填写。仅适用于不需要加载资源的单独模板页面，不建议使用。
-* 2.通过应用包进行资源提供：bundleName字段需要填写应用包名；source字段填写相对hap包的模板相对路径，对于多hap场景，通过相对路径&hap名称的方式进行hap包的确认。
+* 2.通过应用包进行资源提供：bundleName字段需要填写应用包名；source字段填写相对hap包的模板相对路径，对于多hap场景，通过相对路径&模块名称的方式进行hap包的确认。
 
-  例如：{source：'ets/pages/plugin.js&plugin', bundleName:'com.example.provider'}
+  例如：{source：'pages/PluginProviderExample.ets&entry', bundleName:'com.example.provider'}
 
   仅对FA模型支持source字段填写AbilityName进行模板提供。
 
@@ -49,7 +49,7 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 
 ## 事件
 
-仅支持[手势事件](ts-gesture-settings.md)分发给提供方页面，并在提供方页面内部处理。
+仅支持[绑定手势方法](ts-gesture-settings.md)，并分发给提供方页面，在提供方页面内部处理。
 
 除支持[通用事件](ts-universal-events-click.md)，还支持以下事件：
 
@@ -66,10 +66,6 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 ```ts
 //PluginUserExample.ets
 import plugin from "./plugin_component"
-class source2BundleName {
-  source: string = ""
-  bundleName: string = ""
-}
 interface Info{
   errcode:number,
   msg:string
@@ -77,10 +73,6 @@ interface Info{
 @Entry
 @Component
 struct PluginUserExample {
-  @StorageLink("plugincount") plugincount: Object[] = [
-    { source: 'plugincomponent1', bundleName: 'com.example.plugin' } as source2BundleName,
-    { source: 'plugintemplate', bundleName: 'com.example.myapplication' } as source2BundleName,
-    { source: 'plugintemplate', bundleName: 'com.example.myapplication' } as source2BundleName]
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -105,18 +97,16 @@ struct PluginUserExample {
           plugin.Request()
           console.log("Button('Request')")
         })
-      ForEach(this.plugincount, (item: source2BundleName) => {
-        PluginComponent({
-          template: { source: 'PluginProviderExample', bundleName: 'com.example.plugin' },
-          data: { 'countDownStartValue': 'new countDownStartValue' }
-        }).size({ width: 500, height: 100 })
-          .onComplete(() => {
-            console.log("onComplete")
-          })
-          .onError((info:Info) => {
-            console.log("onComplete" + info.errcode + ":" + info.msg)
-          })
-      })
+      PluginComponent({
+        template: { source: 'pages/PluginProviderExample.ets&entry', bundleName: 'com.example.plugin' },
+        data: { 'countDownStartValue': 'new countDownStartValue' }
+      }).size({ width: 500, height: 350 })
+        .onComplete(() => {
+          console.log("onComplete")
+        })
+        .onError((info:Info) => {
+          console.log("onComplete" + info.errcode + ":" + info.msg)
+        })
     }
     .width('100%')
     .height('100%')
@@ -176,14 +166,6 @@ import pluginComponentManager from '@ohos.pluginComponent'
 
 function onPushListener(source, template, data, extraData) {
   console.log("onPushListener template.source=" + template.source)
-  var jsonObject = JSON.parse(data.componentTemplate.source)
-  console.log("request_callback1:source json object" + jsonObject)
-  var jsonArry = jsonObject.ExternalComponent
-  for (var i in jsonArry) {
-    console.log(jsonArry[i])
-  }
-  console.log("onPushListener:source json object" + jsonObject)
-  console.log("onPushListener:source json string" + JSON.stringify(jsonObject))
   console.log("onPushListener template.ability=" + template.ability)
   console.log("onPushListener data=" + JSON.stringify(data))
   console.log("onPushListener extraData=" + JSON.stringify(extraData))
@@ -242,13 +224,6 @@ export default {
       (err, data) => {
         console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
         console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-        var jsonObject = JSON.parse(data.componentTemplate.source)
-        console.log("request_callback:source json object" + jsonObject)
-        var jsonArry = jsonObject.ExternalComponent
-        for (var i in jsonArry) {
-          console.log(jsonArry[i])
-        }
-        console.log("request_callback:source json string" + JSON.stringify(jsonObject))
         console.log("request_callback: data=" + JSON.stringify(data.data))
         console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
       }
@@ -265,14 +240,6 @@ import pluginComponentManager from '@ohos.pluginComponent'
 
 function onPushListener(source, template, data, extraData) {
   console.log("onPushListener template.source=" + template.source)
-  var jsonObject = JSON.parse(data.componentTemplate.source)
-  console.log("request_callback1:source json object" + jsonObject)
-  var jsonArry = jsonObject.ExternalComponent
-  for (var i in jsonArry) {
-    console.log(jsonArry[i])
-  }
-  console.log("onPushListener:source json object" + jsonObject)
-  console.log("onPushListener:source json string" + JSON.stringify(jsonObject))
   console.log("onPushListener template.ability=" + template.ability)
   console.log("onPushListener data=" + JSON.stringify(data))
   console.log("onPushListener extraData=" + JSON.stringify(extraData))
@@ -339,13 +306,6 @@ export default {
       (err, data) => {
         console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
         console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-        var jsonObject = JSON.parse(data.componentTemplate.source)
-        console.log("request_callback:source json object" + jsonObject)
-        var jsonArry = jsonObject.ExternalComponent
-        for (var i in jsonArry) {
-          console.log(jsonArry[i])
-        }
-        console.log("request_callback:source json string" + JSON.stringify(jsonObject))
         console.log("request_callback: data=" + JSON.stringify(data.data))
         console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
       }
