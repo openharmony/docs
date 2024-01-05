@@ -21,7 +21,6 @@ import ability from '@ohos.ability.ability';
 | ------------------- | -------- | ---- | -------------------------------------- |
 | want                | [Want](js-apis-app-ability-want.md)|   是   | 启动Ability的want信息。                     |
 | abilityStartSetting | {[key: string]: any} | 否    | 启动Ability的特殊属性，当开发者启动Ability时，该属性可以作为调用中的输入参数传递。 |
-| abilityStartSettings | Record\<string, Object> | 否    | 启动Ability的特殊属性，当开发者启动Ability时，该属性可以作为调用中的输入参数传递。推荐使用该属性替代abilityStartSetting，设置该属性后，abilityStartSetting不再生效。 |
 
 **示例：**
 ```ts

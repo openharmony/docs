@@ -24,7 +24,6 @@ import formInfo from '@ohos.app.form.formInfo';
 | moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | name        | string               | 是    | 否     | 应用/元服务名称。                                 |
-| displayName<sup>11+</sup> | string               | 是    | 否     | 卡片名称。                                 |
 | description | string               | 是    | 否     | 卡片描述。   |
 | descriptionId<sup>10+</sup>      | number               | 是    | 否     | 卡片描述id。               |
 | type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片、ArkTS卡片。 |
@@ -123,7 +122,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | Dimension_2_4      | 3   | 2 x 4 form。   |
 | Dimension_4_4      | 4   | 4 x 4 form。   |
 | Dimension_2_1      | 5   | 2 x 1 form。   |
-| DIMENSION_1_1      | 6   | 1 x 1 form。   |
+| DIMENSION_1_1<sup>11+</sup>   | 6   | 1 x 1 form。   |
 
 
 ## FormInfoFilter
