@@ -1628,7 +1628,7 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 | ------- | ----------------------------------- | ---- | ---- | ------------------ |
 | scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | -    | 需要注入的的ScriptItem数组 |
 
-**ets示例：**
+**示例：**
 
   ```ts
 // xxx.ets
@@ -1657,7 +1657,6 @@ struct Index {
   }
 }
   ```
-**HTML示例：**
 
 ```html
 <!DOCTYPE html>
