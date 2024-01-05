@@ -71,6 +71,14 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 | options  | [ScreenshotOptions](#screenshotoptions) | 是   | 该类型的参数包含screenRect、imageSize、rotation、displayId四个参数，可以分别设置这四个参数。 |
 | callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------- |
+| 1400001 | Invalid display or screen. |
+
 **示例：**
 
 ```ts
