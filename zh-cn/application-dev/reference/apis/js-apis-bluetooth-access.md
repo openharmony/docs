@@ -14,7 +14,7 @@ import access from '@ohos.bluetooth.access';
 ```
 
 
-## access.enableBluetooth<a name="enableBluetooth"></a>
+## access.enableBluetooth
 
 enableBluetooth(): void
 
@@ -45,7 +45,7 @@ try {
 ```
 
 
-## access.disableBluetooth<a name="disableBluetooth"></a>
+## access.disableBluetooth
 
 disableBluetooth(): void
 
@@ -76,7 +76,7 @@ try {
 ```
 
 
-## access.getState<a name="getState"></a>
+## access.getState
 
 getState(): BluetoothState
 
@@ -113,7 +113,7 @@ try {
 ```
 
 
-## access.factoryReset<sup>11+</sup><a name="factoryReset"></a>
+## access.factoryReset<sup>11+</sup>
 
 factoryReset(callback: AsyncCallback&lt;void&gt;): void
 
@@ -156,7 +156,7 @@ try {
 ```
 
 
-## access.factoryReset<sup>11+</sup><a name="factoryReset"></a>
+## access.factoryReset<sup>11+</sup>
 
 factoryReset(): Promise&lt;void&gt;
 
@@ -275,7 +275,7 @@ try {
 ```
 
 
-## access.off('stateChange')<a name="stateChange"></a>
+## access.off('stateChange')
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
@@ -316,7 +316,7 @@ try {
 ```
 
 
-## BluetoothState<a name="BluetoothState"></a>
+## BluetoothState
 
 枚举，蓝牙开关状态。
 
