@@ -101,7 +101,7 @@
   ```ts
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction'
+  import promptAction from '@ohos.promptAction';
   
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -113,7 +113,7 @@
   
     build() {
       ...
-      Button(){
+      Button()
         .onClick(() => {
           let applicationContext = this.context.getApplicationContext();
           let cacheDir = applicationContext.cacheDir;
@@ -132,7 +132,6 @@
             });
           }
         })
-      }
     }
   }
   ```
@@ -154,7 +153,7 @@
   ```ts
   import common from '@ohos.app.ability.common';
   import hilog from '@ohos.hilog';
-  import promptAction from '@ohos.promptAction'
+  import promptAction from '@ohos.promptAction';
   
   const TAG: string = '[Page_Context]';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -166,7 +165,7 @@
   
     build() {
       ...
-      Button(){
+      Button()
         .onClick(() => {
           let cacheDir = this.context.cacheDir;
           let tempDir = this.context.tempDir;
@@ -184,7 +183,6 @@
             });
           }
         })
-      }
     }
   }
   ```
@@ -233,11 +231,7 @@ export default class EntryAbility extends UIAbility {
 ```ts
 import contextConstant from '@ohos.app.ability.contextConstant';
 import common from '@ohos.app.ability.common';
-import hilog from '@ohos.hilog';
-import promptAction from '@ohos.promptAction'
-
-const TAG: string = '[Page_Context]';
-const DOMAIN_NUMBER: number = 0xFF00;
+import promptAction from '@ohos.promptAction';
 
 @Entry
 @Component
@@ -247,7 +241,7 @@ struct Page_Context {
 
   build() {
     ...
-    Button(){
+    Button()
       .onClick(() => {
         // 存储普通信息前，切换到EL1设备级加密
         if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
@@ -258,11 +252,10 @@ struct Page_Context {
         }
         // 存储普通信息
       })
-    }
     
     ...
 
-    Button(){
+    Button()
       .onClick(() => {
         // 存储敏感信息前，切换到EL2用户级加密
         if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
@@ -273,7 +266,6 @@ struct Page_Context {
         }
         // 存储敏感信息
       })
-    }
     
     ...
   }
@@ -297,13 +289,28 @@ struct Page_Context {
   例如在桌面上显示的应用信息，包括应用名称和应用图标等，桌面应用可以通过调用上述的方法获取相应应用的Context信息从而获取到相应的应用名称、图标等资源信息。
   
   ```ts
-  let bundleName2 = 'com.samples.stagemodelabilityinteraction';
-  let bundleContext = this.context.createBundleContext(bundleName2);
-  let label2 = bundleContext.applicationInfo.label;
-  if (bundleContext && label2 !== null) {
-    promptAction.showToast({
-      message: ('成功获取Context')
-    });
+  import promptAction from '@ohos.promptAction';
+  import common from '@ohos.app.ability.common';
+  
+  let storageEventCall = new LocalStorage();
+  
+  @Entry(storageEventCall)
+  @Component
+  struct Page_ContextAbility {
+    private context = getContext(this) as common.UIAbilityContext;
+    build() {
+      Button()
+        .onClick(() => {
+          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
+          let bundleContext: Context = this.context.createBundleContext(bundleName2);
+          let label2: string = bundleContext.applicationInfo.label;
+          if (bundleContext && label2 !== null) {
+            promptAction.showToast({
+              message: ('成功获取Context')
+            });
+          }
+        })
+    }
   }
   ```
   
@@ -317,25 +324,55 @@ struct Page_Context {
   > - 接口为系统接口，三方应用不支持调用。
   
   ```ts
-  let bundleName2 : string = 'com.samples.stagemodelabilityinteraction';
-  let moduleName2 : string  = 'entry';
-  let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
-  if (moduleContext !== null) {
-    promptAction.showToast({
-      message: ('成功获取Context')
-    });
+  import promptAction from '@ohos.promptAction';
+  import common from '@ohos.app.ability.common';
+  
+  let storageEventCall = new LocalStorage();
+  
+  @Entry(storageEventCall)
+  @Component
+  struct Page_ContextAbility {
+    private context = getContext(this) as common.UIAbilityContext;
+    build() {
+      Button()
+        .onClick(() => {
+          let bundleName2: string = 'com.samples.stagemodelabilityinteraction';
+          let moduleName2: string  = 'entry';
+          let moduleContext = this.context.createModuleContext(bundleName2, moduleName2);
+          if (moduleContext !== null) {
+            promptAction.showToast({
+              message: ('成功获取Context')
+            });
+          }
+        })
+    }
   }
   ```
   
 - 调用`createModuleContext(moduleName:string)`方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
   
   ```ts
-  let moduleName2 = 'entry';
-  let moduleContext = this.context.createModuleContext(moduleName2);
-  if (moduleContext !== null) {
-    promptAction.showToast({
-      message: ('成功获取Context')
-    });
+  import promptAction from '@ohos.promptAction';
+  import common from '@ohos.app.ability.common';
+  
+  let storageEventCall = new LocalStorage();
+  
+  @Entry(storageEventCall)
+  @Component
+  struct Page_ContextAbility {
+    private context = getContext(this) as common.UIAbilityContext;
+    build() {
+      Button()
+        .onClick(() => {
+          let moduleName2: string = 'entry';
+          let moduleContext: Context = this.context.createModuleContext(moduleName2);
+          if (moduleContext !== null) {
+            promptAction.showToast({
+              message: ('成功获取Context')
+            });
+          }
+        })
+    }
   }
   ```
 

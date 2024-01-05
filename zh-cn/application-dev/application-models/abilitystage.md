@@ -18,8 +18,6 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
    
    ```ts
    import AbilityStage from '@ohos.app.ability.AbilityStage';
-   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
-   import hilog from '@ohos.hilog';
    import type Want from '@ohos.app.ability.Want';
    
    export default class MyAbilityStage extends AbilityStage {
