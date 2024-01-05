@@ -2,7 +2,6 @@
 
 - [媒体应用开发概述](media-application-overview.md)
 - Audio Kit（音频服务）
-  - [音视频概述](av-overview.md)
   - [Audio Kit简介](audio-kit-intro.md)
   - 音频播放
     - [音频播放开发概述](audio-playback-overview.md)
