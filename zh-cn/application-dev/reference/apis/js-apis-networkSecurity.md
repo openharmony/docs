@@ -68,7 +68,7 @@ networkSecurity.certVerification(cert, caCert)
 
 ## networkSecurity.certVerification
 
-function certVerification(cert: CertBlob, caCert?: CertBlob): Promise<number>
+function certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
 从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书链进行校验。
 
@@ -85,12 +85,13 @@ function certVerification(cert: CertBlob, caCert?: CertBlob): Promise<number>
 
 | 类型            | 说明                                                         |
 | --------------- | ------------------------------------------------------------ |
-| Promise<number> | 以promise形式返回一个数字，表示证书验证的结果。如果证书验证成功，则返回0； 否则验证失败。 |
+| Promise\<number\> | 以promise形式返回一个数字，表示证书验证的结果。如果证书验证成功，则返回0； 否则验证失败。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.                                     |
 | 2305001  | Unspecified error.                                   |
 | 2305002  | Unable to get issuer certificate.                    |
 | 2305003  | Unable to get the certificate revocation list (CRL). |
@@ -163,6 +164,7 @@ function certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.                                     |
 | 2305001  | Unspecified error.                                   |
 | 2305002  | Unable to get issuer certificate.                    |
 | 2305003  | Unable to get the certificate revocation list (CRL). |

@@ -64,11 +64,12 @@ The **FormAbility** has the following APIs.
 | onCreate(want: Want): formBindingData.FormBindingData | Called to notify the widget provider that a widget has been created.|
 | onCastToNormal(formId: string): void | Called to notify the widget provider that a temporary widget has been converted to a normal one.|
 | onUpdate(formId: string): void | Called to notify the widget provider that a widget has been updated.|
-| onVisibilityChange(newStatus: { [key: string]: number }): void | Called to notify the widget provider of the change in widget visibility.|
+| onVisibilityChange(newStatus: Record&lt;string, number&gt;): void | Called to notify the widget provider of the change in widget visibility.|
 | onEvent(formId: string, message: string): void | Called to instruct the widget provider to receive and process a widget event.|
 | onDestroy(formId: string): void | Called to notify the widget provider that a widget has been destroyed.|
 | onAcquireFormState?(want: Want): formInfo.FormState | Called to instruct the widget provider to receive the status query result of a widget.|
 | onShare?(formId: string): {[key: string]: any} | Called by the widget provider to receive shared widget data.|
+| onShareForm?(formId:&nbsp;string):&nbsp;Record&lt;string,&nbsp;Object&gt; | Called by the widget provider to receive shared widget data. You are advised to use this API, instead of **onShare()**. If this API is implemented, **onShare()** will not be triggered.|
 
 The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis/js-apis-app-form-formProvider.md).
 
@@ -112,86 +113,114 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
 
 1. Import related modules to **form.ts**.
    
-     ```ts
-     import formBindingData from '@ohos.app.form.formBindingData';
-     import formInfo from '@ohos.app.form.formInfo';
-     import formProvider from '@ohos.app.form.formProvider';
-     import dataPreferences from '@ohos.data.preferences';
-     import Want from '@ohos.app.ability.Want';
-     import featureAbility from '@ohos.ability.featureAbility';
-     ```
-   
-2. Implement the widget lifecycle callbacks in **form.ts**.
+  ```ts
+  import type featureAbility from '@ohos.ability.featureAbility';
+  import type Want from '@ohos.app.ability.Want';
+  import formBindingData from '@ohos.app.form.formBindingData';
+  import formInfo from '@ohos.app.form.formInfo';
+  import formProvider from '@ohos.app.form.formProvider';
+  import dataPreferences from '@ohos.data.preferences';
+  import hilog from '@ohos.hilog';
+  ```
 
-     ```ts
-     class lifeCycle {
-       onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' })
-       onCastToNormal: (formId: string) => void = (formId) => {}
-       onUpdate: (formId: string) => void = (formId) => {}
-       onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
-         let obj: Record<string, number> = {
-           'test': 1
-         };
-         return obj;
-       }
-       onEvent: (formId: string, message: string) => void = (formId, message) => {}
-       onDestroy: (formId: string) => void = (formId) => {}
-       onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0)
-       onShare?: (formId: string) => Record<string, number | string | boolean | object | undefined | null> = (formId) => {
-         let obj: Record<string, number> = {
-           'test': 1
-         };
-         return obj;
-       }
-     }
+2. Implement the widget lifecycle callbacks in **form.ts**.
    
-     let obj: lifeCycle = {
-       onCreate(want: Want) {
-         console.info('FormAbility onCreate');
-         // Called when the widget is created. The widget provider should return the widget data binding class.
-         let obj: Record<string, string> = {
-           "title": "titleOnCreate",
-           "detail": "detailOnCreate"
-         };
-         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-         return formData;
-       },
-       onCastToNormal(formId: string) {
-         // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
-         console.info('FormAbility onCastToNormal');
-       },
-       onUpdate(formId: string) {
-         // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
-         console.info('FormAbility onUpdate');
-         let obj: Record<string, string> = {
-           "title": "titleOnUpdate",
-           "detail": "detailOnUpdate"
-         };
-         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-         formProvider.updateForm(formId, formData).catch((error: Error) => {
-           console.info('FormAbility updateForm, error:' + JSON.stringify(error));
-         });
-       },
-       onVisibilityChange(newStatus: Record<string, number>) {
-         // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
-         console.info('FormAbility onVisibilityChange');
-       },
-       onEvent(formId: string, message: string) {
-         // If the widget supports event triggering, override this method and implement the trigger.
-         console.info('FormAbility onEvent');
-       },
-       onDestroy(formId: string) {
-         // Delete widget data.
-         console.info('FormAbility onDestroy');
-       },
-       onAcquireFormState(want: Want) {
-         console.info('FormAbility onAcquireFormState');
-         return formInfo.FormState.READY;
-       },
-     }
-   
-     export default obj;
-     ```
+  ```ts
+  class LifeCycle {
+    onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' });
+    onCastToNormal: (formId: string) => void = (formId) => {
+    };
+    onUpdate: (formId: string) => void = (formId) => {
+    };
+    onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
+      let obj: Record<string, number> = {
+        'test': 1
+      };
+      return obj;
+    };
+    onEvent: (formId: string, message: string) => void = (formId, message) => {
+    };
+    onDestroy: (formId: string) => void = (formId) => {
+    };
+    onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0);
+    onShareForm?: (formId: string) => Record<string, Object> = (formId) => {
+      let obj: Record<string, number> = {
+        test: 1
+      };
+      return obj;
+    };
+  }
+
+  let obj: LifeCycle = {
+    onCreate(want: Want) {
+      hilog.info(domain, TAG, 'FormAbility onCreate');
+      if (want.parameters) {
+        let formId = String(want.parameters['ohos.extra.param.key.form_identity']);
+        let formName = String(want.parameters['ohos.extra.param.key.form_name']);
+        let tempFlag = Boolean(want.parameters['ohos.extra.param.key.form_temporary']);
+        // Persistently store widget data for subsequent use, such as instance acquisition and update.
+        // Implement this API based on project requirements.
+        hilog.info(domain, TAG, 'FormAbility onCreate' + formId);
+        storeFormInfo(formId, formName, tempFlag, this.context);
+      }
+
+      // Called when the widget is created. The widget provider should return the widget data binding class.
+      let obj: Record<string, string> = {
+        title: 'titleOnCreate',
+        detail: 'detailOnCreate'
+      };
+      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+      return formData;
+    },
+    onCastToNormal(formId: string) {
+      // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
+      hilog.info(domain, TAG, 'FormAbility onCastToNormal');
+    },
+    onUpdate(formId: string) {
+      // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
+      hilog.info(domain, TAG, 'FormAbility onUpdate');
+      let obj: Record<string, string> = {
+        title: 'titleOnUpdate',
+        detail: 'detailOnUpdate'
+      };
+      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+      // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
+      formProvider.updateForm(formId, formData).catch((error: Error) => {
+        hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
+      });
+    },
+    onVisibilityChange(newStatus: Record<string, number>) {
+      // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
+      hilog.info(domain, TAG, 'FormAbility onVisibilityChange');
+    },
+    onEvent(formId: string, message: string) {
+      // If the widget supports event triggering, override this method and implement the trigger.
+      let obj: Record<string, string> = {
+        title: 'titleOnEvent',
+        detail: 'detailOnEvent'
+      };
+      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+      // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
+      formProvider.updateForm(formId, formData).catch((error: Error) => {
+        hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
+      });
+      hilog.info(domain, TAG, 'FormAbility onEvent');
+    },
+    onDestroy(formId: string) {
+      // Delete widget data.
+      hilog.info(domain, TAG, 'FormAbility onDestroy');
+      // Delete the persistent widget instance data.
+      // Implement this API based on project requirements.
+      deleteFormInfo(formId, this.context);
+    },
+    onAcquireFormState(want: Want) {
+      hilog.info(domain, TAG, 'FormAbility onAcquireFormState');
+      return formInfo.FormState.READY;
+    }
+  };
+
+  export default obj;
+  ```
 
 > **NOTE**
 >
@@ -214,17 +243,22 @@ The widget configuration file is named **config.json**. Find the **config.json**
 
   
   ```json
-  "js": [{
-     "name": "widget",
-     "pages": ["pages/index/index"],
-     "window": {
-         "designWidth": 720,
-         "autoDesignWidth": true
-     },
-     "type": "form"
-  }]
+  "js": [
+    ...
+    {
+      "name": "widget",
+      "pages": [
+        "pages/index/index"
+      ],
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+    	},
+        "type": "form"
+      }
+    ]
   ```
-
+  
 - The **abilities** module in the **config.json** file corresponds to **FormAbility** of the widget. The internal structure is described as follows:
     | Name| Description| Data Type| Initial Value Allowed|
   | -------- | -------- | -------- | -------- |
@@ -248,88 +282,66 @@ The widget configuration file is named **config.json**. Find the **config.json**
 
   
   ```json
-     "abilities": [{
-         "name": "FormAbility",
-         "description": "This is a FormAbility",
-         "formsEnabled": true,
-         "icon": "$media:icon",
-         "label": "$string:form_FormAbility_label",
-         "srcPath": "FormAbility",
-         "type": "service",
-         "srcLanguage": "ets",
-         "formsEnabled": true,
-         "forms": [{
-             "colorMode": "auto",
-             "defaultDimension": "2*2",
-             "description": "This is a service widget.",
-             "formVisibleNotify": true,
-             "isDefault": true,
-             "jsComponentName": "widget",
-             "name": "widget",
-             "scheduledUpdateTime": "10:30",
-             "supportDimensions": ["2*2"],
-             "type": "JS",
-             "updateEnabled": true,
-             "formConfigAbility": "ability://com.example.entry.EntryAbility"
-         }]
-     }]
+  "abilities": [
+    ...
+    {
+      "name": ".FormAbility",
+      "srcPath": "FormAbility",
+      "description": "$string:FormAbility_desc",
+      "icon": "$media:icon",
+      "label": "$string:FormAbility_label",
+      "type": "service",
+      "formsEnabled": true,
+      "srcLanguage": "ets",
+      "forms": [
+        {
+          "jsComponentName": "widget",
+          "isDefault": true,
+          "scheduledUpdateTime": "10:30",
+          "defaultDimension": "2*2",
+          "name": "widget",
+          "description": "This is a service widget.",
+          "colorMode": "auto",
+          "type": "JS",
+          "formVisibleNotify": true,
+          "supportDimensions": [
+            "2*2"
+          ],
+          "updateEnabled": true,
+          "updateDuration": 1
+        }
+      ]
+    },
+    ...
+  ]
   ```
 
 
 ### Persistently Storing Widget Data
 
-A widget provider is usually started when it is needed to provide information about a widget. The Widget Manager supports multi-instance management and uses the widget ID to identify an instance. If the widget provider supports widget data modification, it must persistently store the data based on the widget ID, so that it can access the data of the target widget when obtaining, updating, or starting a widget.
+A widget provider is usually started when it is needed to provide information about a widget. The Widget Manager supports multi-instance management and uses the widget ID to identify an instance. If the widget provider supports widget data modification, it must persistently store the data based on the widget ID, so that it can access the data of the target widget when obtaining, updating, or starting a widget. You should override **onDestroy** to implement widget data deletion.
 
 
 ```ts
-const DATA_STORAGE_PATH: string = "form_store";
-let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context) => {
+const DATA_STORAGE_PATH: string = 'form_store';
+let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
   // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
   let formInfo: Record<string, string | number | boolean> = {
-    "formName": formName,
-    "tempFlag": tempFlag,
-    "updateCount": 0
+    formName: 'formName',
+    tempFlag: 'tempFlag',
+    updateCount: 0
   };
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // Put the widget information.
     await storage.put(formId, JSON.stringify(formInfo));
-    console.info(`storeFormInfo, put form info successfully, formId: ${formId}`);
+    hilog.info(domain, TAG, `storeFormInfo, put form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    console.error(`failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
+    hilog.error(domain, TAG, `failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
   }
-}
+};
 
-...
-    onCreate(want: Want) {
-      console.info('FormAbility onCreate');
-      let context = featureAbility.getContext();
-
-      if (want.parameters) {
-        let formId = String(want.parameters["ohos.extra.param.key.form_identity"]);
-        let formName = String(want.parameters["ohos.extra.param.key.form_name"]);
-        let tempFlag = Boolean(want.parameters["ohos.extra.param.key.form_temporary"]);
-        // Persistently store widget data for subsequent use, such as instance acquisition and update.
-        // Implement this API based on project requirements.
-        storeFormInfo(formId, formName, tempFlag, context);
-      }
-
-      let obj: Record<string, string> = {
-        "title": "titleOnCreate",
-        "detail": "detailOnCreate"
-      };
-      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-      return formData;
-    }
-...
-```
-
-You should override **onDestroy** to implement widget data deletion.
-
-
-```ts
-const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
 let deleteFormInfo = async (formId: string, context) => {
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -343,13 +355,49 @@ let deleteFormInfo = async (formId: string, context) => {
 }
 
 ...
-    onDestroy(formId: string) {
-      console.info('FormAbility onDestroy');
-      let context = featureAbility.getContext();
-      // Delete the persistent widget instance data.
+  onCreate(want: Want) {
+    hilog.info(domain, TAG, 'FormAbility onCreate');
+    if (want.parameters) {
+      let formId = String(want.parameters['ohos.extra.param.key.form_identity']);
+      let formName = String(want.parameters['ohos.extra.param.key.form_name']);
+      let tempFlag = Boolean(want.parameters['ohos.extra.param.key.form_temporary']);
+      // Persistently store widget data for subsequent use, such as instance acquisition and update.
       // Implement this API based on project requirements.
-      deleteFormInfo(formId, context);
+      hilog.info(domain, TAG, 'FormAbility onCreate' + formId);
+      storeFormInfo(formId, formName, tempFlag, this.context);
     }
+
+    // Called when the widget is created. The widget provider should return the widget data binding class.
+    let obj: Record<string, string> = {
+      title: 'titleOnCreate',
+      detail: 'detailOnCreate'
+    };
+    let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+    return formData;
+  },
+...
+
+let deleteFormInfo = async (formId: string, context: featureAbility.Context): Promise<void> => {
+  try {
+    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // Delete the widget information.
+    await storage.delete(formId);
+    hilog.info(domain, TAG, `deleteFormInfo, del form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    hilog.error(domain, TAG, `failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+  }
+};
+
+...
+    // Override onDestroy to implement widget data deletion.
+  onDestroy(formId: string) {
+    // Delete widget data.
+    hilog.info(domain, TAG, 'FormAbility onDestroy');
+    // Delete the persistent widget instance data.
+    // Implement this API based on project requirements.
+    deleteFormInfo(formId, this.context);
+  }
 ...
 ```
 
@@ -374,15 +422,15 @@ When an application initiates a scheduled or periodic update, the application ob
 ```ts
 onUpdate(formId: string) {
   // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
-  console.info('FormAbility onUpdate');
+  hilog.info(domain, TAG, 'FormAbility onUpdate');
   let obj: Record<string, string> = {
-    "title": "titleOnUpdate",
-    "detail": "detailOnUpdate"
+    title: 'titleOnUpdate',
+    detail: 'detailOnUpdate'
   };
   let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
   // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
   formProvider.updateForm(formId, formData).catch((error: Error) => {
-    console.info('FormAbility updateForm, error:' + JSON.stringify(error));
+    hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
   });
 }
 ```
@@ -402,59 +450,71 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
   
   ```html
   <div class="container">
-    <stack>
-      <div class="container-img">
-        <image src="/common/widget.png" class="bg-img"></image>
-      </div>
-      <div class="container-inner">
-        <text class="title">{{title}}</text>
-        <text class="detail_text" onclick="routerEvent">{{detail}}</text>
-      </div>
-    </stack>
+      <stack>
+          <div class="container-img">
+              <image src="/common/widget.png" class="bg-img"></image>
+              <image src="/common/rect.png" class="bottom-img"></image>
+          </div>
+          <div class="container-inner">
+              <text class="title" onclick="routerEvent">{{title}}</text>
+              <text class="detail_text" onclick="messageEvent">{{detail}}</text>
+          </div>
+      </stack>
   </div>
   ```
-
+  
 - CSS: defines style information about the web-like paradigm components in HML.
   
   ```css
   .container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
   }
   
   .bg-img {
-    flex-shrink: 0;
-    height: 100%;
+      flex-shrink: 0;
+      height: 100%;
+      z-index: 1;
+  }
+  
+  .bottom-img {
+      position: absolute;
+      width: 150px;
+      height: 56px;
+      top: 63%;
+      background-color: rgba(216, 216, 216, 0.15);
+      filter: blur(20px);
+      z-index: 2;
   }
   
   .container-inner {
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    height: 100%;
-    width: 100%;
-    padding: 12px;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      height: 100%;
+      width: 100%;
+      padding: 12px;
   }
   
   .title {
-    font-size: 19px;
-    font-weight: bold;
-    color: white;
-    text-overflow: ellipsis;
-    max-lines: 1;
+      font-family: HarmonyHeiTi-Medium;
+      font-size: 14px;
+      color: rgba(255,255,255,0.90);
+      letter-spacing: 0.6px;
   }
-  
+
   .detail_text {
-    font-size: 16px;
-    color: white;
-    opacity: 0.66;
-    text-overflow: ellipsis;
-    max-lines: 1;
-    margin-top: 6px;
+      font-family: HarmonyHeiTi;
+      font-size: 12px;
+      color: rgba(255,255,255,0.60);
+      letter-spacing: 0.51px;
+      text-overflow: ellipsis;
+      max-lines: 1;
+      margin-top: 6px;
   }
   ```
-
+  
 - JSON: defines data and event interaction on the widget UI page.
   
   ```json
@@ -466,7 +526,13 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
     "actions": {
       "routerEvent": {
         "action": "router",
-        "abilityName": "com.example.entry.EntryAbility",
+        "abilityName": "com.samples.famodelabilitydevelop.MainAbility",
+        "params": {
+          "message": "add detail"
+        }
+      },
+      "messageEvent": {
+        "action": "message",
         "params": {
           "message": "add detail"
         }
@@ -500,6 +566,7 @@ The following is an example:
       <stack>
           <div class="container-img">
               <image src="/common/widget.png" class="bg-img"></image>
+              <image src="/common/rect.png" class="bottom-img"></image>
           </div>
           <div class="container-inner">
               <text class="title" onclick="routerEvent">{{title}}</text>
@@ -508,48 +575,59 @@ The following is an example:
       </stack>
   </div>
   ```
-
+  
 - CSS file:
   
   ```css
   .container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
   }
   
   .bg-img {
-    flex-shrink: 0;
-    height: 100%;
+      flex-shrink: 0;
+      height: 100%;
+      z-index: 1;
+  }
+  
+  .bottom-img {
+      position: absolute;
+      width: 150px;
+      height: 56px;
+      top: 63%;
+      background-color: rgba(216, 216, 216, 0.15);
+      filter: blur(20px);
+      z-index: 2;
   }
   
   .container-inner {
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    height: 100%;
-    width: 100%;
-    padding: 12px;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      height: 100%;
+      width: 100%;
+      padding: 12px;
   }
   
   .title {
-    font-size: 19px;
-    font-weight: bold;
-    color: white;
-    text-overflow: ellipsis;
-    max-lines: 1;
+      font-family: HarmonyHeiTi-Medium;
+      font-size: 14px;
+      color: rgba(255,255,255,0.90);
+      letter-spacing: 0.6px;
   }
-  
+
   .detail_text {
-    font-size: 16px;
-    color: white;
-    opacity: 0.66;
-    text-overflow: ellipsis;
-    max-lines: 1;
-    margin-top: 6px;
+      font-family: HarmonyHeiTi;
+      font-size: 12px;
+      color: rgba(255,255,255,0.60);
+      letter-spacing: 0.51px;
+      text-overflow: ellipsis;
+      max-lines: 1;
+      margin-top: 6px;
   }
   ```
-
+  
 - JSON file:
   
   ```json
@@ -561,7 +639,7 @@ The following is an example:
     "actions": {
       "routerEvent": {
         "action": "router",
-        "abilityName": "com.example.entry.EntryAbility",
+        "abilityName": "com.samples.famodelabilitydevelop.MainAbility",
         "params": {
           "message": "add detail"
         }

@@ -5924,6 +5924,11 @@ async function example() {
 
 图片或视频的创建选项。
 
+title参数规格为：
+- 不应包含扩展名。
+- 文件名字符串长度为1~255。
+- 文件名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 名称                   | 类型                | 必填 | 说明                                              |

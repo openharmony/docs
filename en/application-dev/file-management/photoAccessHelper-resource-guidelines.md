@@ -116,7 +116,7 @@ async function example() {
 
 ## Obtaining an Image or Video Thumbnail
 
-The thumbnails offer a quick preview on images and videos. You can use [PhotoAsset.getThumbnail](../reference/apis/js-apis-photoAccessHelper.md#getthumbnail-2) with the thumbnail size specified to obtain the image or video thumbnail. 
+The thumbnails offer a quick preview on images and videos. You can use [PhotoAsset.getThumbnail](../reference/apis/js-apis-photoAccessHelper.md#getthumbnail-2) with the thumbnail size specified to obtain the image or video thumbnail.
 
 **Prerequisites**
 
@@ -127,6 +127,8 @@ The thumbnails offer a quick preview on images and videos. You can use [PhotoAss
 ### Obtaining the Thumbnail of an Image
 
 Your application may need to obtain the thumbnail of an image or video for preview purposes.
+
+For example, obtain the file descriptor (FD) of an image, and decode the image into a pixel map for display or processing. For details, see [Image Decoding](../media/image-decoding.md).
 
 Example: Obtain the thumbnail at the size of 720 x 720 of an image.
 
@@ -369,8 +371,6 @@ When a user needs to share files such as images and videos, use a specific API t
 2. Create a **PhotoSelectOptions** instance.
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   
    const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
    ```
 
@@ -378,8 +378,6 @@ When a user needs to share files such as images and videos, use a specific API t
    For example, select a maximum of five images. For details about the media file types, see [PhotoViewMIMETypes](../reference/apis/js-apis-photoAccessHelper.md#photoviewmimetypes).
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   
    photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // Select images.
    photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images to select.
    ```
@@ -391,9 +389,6 @@ When a user needs to share files such as images and videos, use a specific API t
    If metadata needs to be obtained, you can use [file management](../reference/apis/js-apis-file-fs.md) and [file URI](../reference/apis/js-apis-file-fileuri.md) APIs to obtain file attribute information, such as the file size, access time, modification time, file name, and file path, based on the URI.
 
    ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
-   
    let uris: Array<string> = [];
    const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
    photoViewPicker.select(photoSelectOptions).then((photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
@@ -407,8 +402,6 @@ When a user needs to share files such as images and videos, use a specific API t
 5. After the UI is returned from the **Gallery** page, use a button to trigger API calling. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
 
    ```ts
-   import fs from '@ohos.file.fs';
-   
    let uri: string = '';
    let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
    console.info('file fd: ' + file.fd);
@@ -417,8 +410,6 @@ When a user needs to share files such as images and videos, use a specific API t
 6. Use [fs.readSync()](../reference/apis/js-apis-file-fs.md#readsync) to read the file based on the FD. After the data is read, close the FD.
 
    ```ts
-   import fs from '@ohos.file.fs';
-   
    let buffer = new ArrayBuffer(4096);
    let readLen = fs.readSync(file.fd, buffer);
    console.info('readSync data to file succeed and buffer size is:' + readLen);

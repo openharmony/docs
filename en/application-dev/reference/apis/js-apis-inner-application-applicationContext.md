@@ -664,6 +664,14 @@ Subscribes to auto-startup status change events of an application component, whi
 | type     | string              | Yes  | Event type. The value is fixed at **abilityAutoStartup**.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | Yes  | Callback used for the subscription.|
 
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -704,6 +712,14 @@ Unsubscribes from auto-startup status change events of an application component,
 | type     | string              | Yes  | Event type. The value is fixed at **abilityAutoStartup**.|
 | callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | No  | Callback that has been registered to listen for auto-startup status changes.|
 
+**Error codes**
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 16000050 | Internal error.                              |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -743,6 +759,17 @@ Sets an application component, which must belong to the caller application, to a
 | -------- | ------------------- | ---- | -------------------------- |
 | info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | Yes  | Information about the target application component.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.  |
+
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000004 | Can not start invisible component.              |
+| 16000013 | The application is controlled by EDM.           |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -787,6 +814,17 @@ Sets an application component, which must belong to the caller application, to a
 | --------------- | ------------------------------------------- |
 | Promise\<void\> | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000004 | Can not start invisible component.              |
+| 16000013 | The application is controlled by EDM.           |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -826,6 +864,17 @@ Cancels the auto-startup setting for an application component, which must belong
 | -------- | ------------------- | ---- | -------------------------- |
 | info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | Yes  | Information about the target application component.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the cancellation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000004 | Can not start invisible component.              |
+| 16000013 | The application is controlled by EDM.           |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -870,6 +919,17 @@ Cancels the auto-startup setting for an application component, which must belong
 | --------------- | ------------------------------------------- |
 | Promise\<void\> | Promise that returns no value.|
 
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000004 | Can not start invisible component.              |
+| 16000013 | The application is controlled by EDM.           |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -909,6 +969,15 @@ Checks whether auto-startup is set for an application component, which must belo
 | -------- | ---------------------- | ---- | -------------------------- |
 | info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)        | Yes  | Information about the target application component.|
 | callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that auto-startup is set for the application component, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -952,6 +1021,15 @@ Checks whether auto-startup is set for an application component, which must belo
 | Type            | Description                                       |
 | ---------------- | ------------------------------------------- |
 | Promise\<boolean\> | Promise used to return the result. The value **true** means that auto-startup is set for the application component, and **false** means the opposite.|
+
+**Error codes**
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 16000050 | Internal error.                                 |
+| 16300003 | The target application is not self application. |
+
+See [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 

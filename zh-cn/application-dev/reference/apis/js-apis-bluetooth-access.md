@@ -14,7 +14,7 @@ import access from '@ohos.bluetooth.access';
 ```
 
 
-## access.enableBluetooth<a name="enableBluetooth"></a>
+## access.enableBluetooth
 
 enableBluetooth(): void
 
@@ -45,7 +45,7 @@ try {
 ```
 
 
-## access.disableBluetooth<a name="disableBluetooth"></a>
+## access.disableBluetooth
 
 disableBluetooth(): void
 
@@ -76,7 +76,7 @@ try {
 ```
 
 
-## access.getState<a name="getState"></a>
+## access.getState
 
 getState(): BluetoothState
 
@@ -113,7 +113,7 @@ try {
 ```
 
 
-## access.factoryReset<sup>11+</sup><a name="factoryReset"></a>
+## access.factoryReset<sup>11+</sup>
 
 factoryReset(callback: AsyncCallback&lt;void&gt;): void
 
@@ -156,7 +156,7 @@ try {
 ```
 
 
-## access.factoryReset<sup>11+</sup><a name="factoryReset"></a>
+## access.factoryReset<sup>11+</sup>
 
 factoryReset(): Promise&lt;void&gt;
 
@@ -191,6 +191,44 @@ try {
     access.factoryReset().then(() => {
         console.info("factoryReset");
     });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## access.getLocalAddress<sup>11+</sup><a name="getLocalAddress"></a>
+
+getLocalAddress(): string;
+
+获取本端设备的蓝牙地址。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.GET_BLUETOOTH_LOCAL_MAC
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**返回值：**
+
+| 类型      | 说明                |
+| --------- | ------------------ |
+| string    | 本端设备的蓝牙地址。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+|错误码ID   | 错误信息           |
+| -------- | ------------------ |
+|2900001   | Service stopped.   |
+|2900099   | Operation failed.  |
+
+**示例：**
+
+```js
+try {
+    let localAddr = access.getLocalAddress();
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -237,7 +275,7 @@ try {
 ```
 
 
-## access.off('stateChange')<a name="stateChange"></a>
+## access.off('stateChange')
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
@@ -278,7 +316,7 @@ try {
 ```
 
 
-## BluetoothState<a name="BluetoothState"></a>
+## BluetoothState
 
 枚举，蓝牙开关状态。
 

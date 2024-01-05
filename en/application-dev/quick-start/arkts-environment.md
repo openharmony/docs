@@ -77,7 +77,7 @@ Environment can be called only when the [UIContext](../reference/apis/js-apis-ar
 
 
 ```ts
-// EntryAbility.ts
+// EntryAbility.ets
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 

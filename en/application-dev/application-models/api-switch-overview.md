@@ -10,19 +10,22 @@ Due to the differences in the thread model and process model, certain APIs can b
 - Sample code of **startAbility()** in the FA model:
 
   ```ts
-  import fa from '@ohos.ability.featureAbility';
+  import featureAbility from '@ohos.ability.featureAbility';
   import { BusinessError } from '@ohos.base';
-
-  fa.startAbility({
-    "want": {
-      bundleName: "com.example.myapplication",
-      abilityName: "com.example.myapplication.EntryAbility"
-    }
-  }).then((data) => {
-    console.info('startAbility success');
-  }).catch((error: BusinessError) => {
-    console.error('startAbility failed.');
-  })
+  
+  try {
+    Logger.info(TAG, 'Begin to start ability');
+    let want: Want = {
+      bundleName: 'com.samples.famodelabilitydevelop',
+      moduleName: 'entry',
+      abilityName: 'com.samples.famodelabilitydevelop.PageAbilitySingleton'
+    };
+    await featureAbility.startAbility({ want: want });
+    Logger.info(TAG, `Start ability succeed`);
+  }
+  catch (error) {
+    Logger.error(TAG, 'Start ability failed with ' + error);
+  }
   ```
 
 - Sample code of **startAbility()** in the stage model:

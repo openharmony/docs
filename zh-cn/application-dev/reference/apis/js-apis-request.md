@@ -84,7 +84,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [UploadConfig<sup>6+<sup>](#uploadconfig6) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
 
 
 **返回值：**
@@ -143,7 +143,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [UploadConfig<sup>6+<sup>](#uploadconfig6) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **错误码：**
@@ -202,7 +202,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig<sup>6+<sup>](#uploadconfig6) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
 
 **返回值：**
 
@@ -249,7 +249,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig<sup>6+<sup>](#uploadconfig6) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **示例：**

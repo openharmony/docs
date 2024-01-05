@@ -574,7 +574,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 ```js
 import { BusinessError } from '@ohos.base';
 try {
-    let res: BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
+    let res: connection.BondState = connection.getPairState("XX:XX:XX:XX:XX:XX");
     console.log('getPairState: ' + res);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -1169,7 +1169,7 @@ try {
 ```
 
 
-## connection.connectAllowedProfiles
+## connection.connectAllowedProfiles<sup>11+</sup>
 
 connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1220,7 +1220,7 @@ try {
 ```
 
 
-## connection.connectAllowedProfiles
+## connection.connectAllowedProfiles<sup>11+</sup>
 
 connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
@@ -1274,7 +1274,7 @@ try {
 ```
 
 
-## connection.disconnectAllowedProfiles
+## connection.disconnectAllowedProfiles<sup>11+</sup>
 
 disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1325,7 +1325,7 @@ try {
 ```
 
 
-## connection.disconnectAllowedProfiles
+## connection.disconnectAllowedProfiles<sup>11+</sup>
 
 disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
@@ -1378,6 +1378,51 @@ try {
 }
 ```
 
+
+## connection.getRemoteProductId<sup>11+</sup><a name="getRemoteProductId"></a>
+
+getRemoteProductId(deviceId: string): string
+
+Obtains the product ID of a remote Bluetooth device.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                               |
+| -------- | ------ | ---- | --------------------------------- |
+| deviceId | string | Yes   | Address of the remote device, for example, XX:XX:XX:XX:XX:XX.|
+
+**Return value**
+
+| Type    | Description           |
+| ------ | ------------- |
+| string | Product ID obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import connection from '@ohos.bluetooth.connection';
+try {
+  let remoteDeviceProductId = connection.getRemoteProductId('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+  console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
+}
+```
 
 ## connection.on('bluetoothDeviceFind')
 

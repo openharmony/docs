@@ -202,7 +202,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, res
 | -------------- | ---------------------------------------- | ---- | ----------------------------------- |
 | permissions    | Array\<string>                           | 是    | 指示要请求的权限列表。此参数不能为null。              |
 | requestCode    | number                                   | 是    | 指示要传递给PermissionRequestResult的请求代码。 |
-| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult)> | 是    | 返回授权结果信息。                           |
+| resultCallback | AsyncCallback<[PermissionRequestResult](#permissionrequestresult7)> | 是    | 返回授权结果信息。                           |
 
 **示例：**
 

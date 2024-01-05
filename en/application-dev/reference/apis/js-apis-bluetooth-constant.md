@@ -179,3 +179,17 @@ Enumerates the major and minor classes of Bluetooth devices.
 | HEALTH_ANKLE_PROSTHESIS                  | 0x0934 | Prosthetic ankle.    |
 | HEALTH_GENERIC_HEALTH_MANAGER            | 0x0938 | Generic health management device.    |
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | Personal mobility device.    |
+
+## AccessAuthorization<sup>11+</sup><a name="AccessAuthorization"></a>
+
+Enumerates the access permissions.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name                | Value | Description    |
+| ------------------ | ---- | ------ |
+| UNKNOWN<sup>11+</sup> | 0    | Unknown.<br>This is a system API. |
+| ALLOWED<sup>11+</sup> | 1    | Access allowed.<br>This is a system API. |
+| REJECTED<sup>11+</sup> | 2    | Access rejected.<br>This is a system API.|

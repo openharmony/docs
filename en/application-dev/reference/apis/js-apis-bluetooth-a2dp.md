@@ -181,6 +181,8 @@ isAbsoluteVolumeSupported(deviceId: string, callback: AsyncCallback&lt;boolean&g
 
 Checks whether a device supports the absolute volume capability. This API uses an asynchronous callback to return the result.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
@@ -219,9 +221,11 @@ try {
 
 ### isAbsoluteVolumeSupported<sup>11+</sup>
 
-isAbsoluteVolumeSupported(deviceId: string): Promise<boolean>
+isAbsoluteVolumeSupported(deviceId: string): Promise&lt;boolean&gt;
 
 Checks whether a device supports the absolute volume capability. This API uses a promise to return the result.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -269,6 +273,8 @@ isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;
 
 Checks whether the absolute volume capability is enabled for a device. This API uses an asynchronous callback to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11) to check whether the device supports the absolute volume capability.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
@@ -279,6 +285,7 @@ Checks whether the absolute volume capability is enabled for a device. This API 
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the device to check. |
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If absolute volume is enabled, **enabled** is returned.|
+
 
 **Error codes**
 
@@ -308,7 +315,9 @@ try {
 
 isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 
-Checks whether the absolute volume capability is enabled for a device. This API uses a promise to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11-1) to check whether the device supports the absolute volume capability.
+Checks whether the absolute volume capability is enabled for a device. This API uses a promise to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11) to check whether the device supports the absolute volume capability.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -356,6 +365,8 @@ enableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): voi
 
 Enables the absolute volume capability for a device. This API uses an asynchronous callback to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11) to check whether the device supports the absolute volume capability.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
@@ -365,7 +376,7 @@ Enables the absolute volume capability for a device. This API uses an asynchrono
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the target device. |
-| callback | AsyncCallback&lt;void&gt; | No| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
 **Error codes**
@@ -398,7 +409,9 @@ try {
 
 enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
-Enables the absolute volume capability for a device. This API uses a promise to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11-1) to check whether the device supports the absolute volume capability.
+Enables the absolute volume capability for a device. This API uses a promise to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11) to check whether the device supports the absolute volume capability.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
 
@@ -447,6 +460,8 @@ disableAbsoluteVolume(deviceId: string, callback: AsyncCallback&lt;void&gt;): vo
 
 Disables the absolute volume capability for a device. This API uses an asynchronous callback to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11) to check whether the device supports the absolute volume capability.
 
+**System API**: This is a system API.
+
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
@@ -456,7 +471,7 @@ Disables the absolute volume capability for a device. This API uses an asynchron
 | Name   | Type    | Mandatory  | Description     |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | Yes   | Address of the target device. |
-| callback | AsyncCallback&lt;void&gt; | No| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 
 **Error codes**
@@ -489,7 +504,9 @@ try {
 
 disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
-Disables the absolute volume capability for a device. This API uses a promise to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11-1) to check whether the device supports the absolute volume capability.
+Disables the absolute volume capability for a device. This API uses a promise to return the result. Before using this API, use [isAbsoluteVolumeSupported](#isabsolutevolumesupported11) to check whether the device supports the absolute volume capability.
+
+**System API**: This is a system API.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
 
@@ -531,6 +548,99 @@ try {
 }
 ```
 
+### getCurrentCodecInfo<sup>11+</sup>
+
+getCurrentCodecInfo(deviceId: string): CodecInfo
+
+Obtains the current codec information.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the remote device.|
+
+**Return value**
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| [CodecInfo](#CodecInfo)| Codec information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    let codecInfo : a2dp.CodecInfo = a2dpSrc.getCurrentCodecInfo('XX:XX:XX:XX:XX:XX');
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+### setCurrentCodecInfo<sup>11+</sup>
+
+setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
+
+Sets the current codec information.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH and ohos.permission.MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description     |
+| ------ | ------ | ---- | ------- |
+| deviceId | string | Yes   | Address of the remote device.|
+| codecInfo | [CodecInfo](#codecinfo) | Yes   | Codec information to set.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { BusinessError } from '@ohos.base';
+try {
+    let a2dpSrc = a2dp.createA2dpSrcProfile();
+    let codecInfo : a2dp.CodecInfo = {
+        codecType: 0,
+        codecBitsPerSample: 1,
+        codecChannelMode: 2,
+        codecSampleRate: 1,
+    }
+    a2dpSrc.setCurrentCodecInfo('XX:XX:XX:XX:XX:XX', codecInfo);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
 ## PlayingState<a name="PlayingState"></a>
 
 Enumerates the A2DP playing states.
@@ -541,3 +651,75 @@ Enumerates the A2DP playing states.
 | ----------------- | ------ | ------- |
 | STATE_NOT_PLAYING | 0x0000 | Not playing. |
 | STATE_PLAYING     | 0x0001 | Playing.|
+
+
+## CodecInfo<sup>11+</sup><a name="CodecInfo"></a>
+
+Defines the codec information.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name       | Type                   | Readable  | Writable  | Description                                    |
+| ------------------- | ----------------------- | ---- | ---- | -------------------------------------- |
+| codecType<sup>11+</sup>           | [CodecType](#codectype)      | Yes   | Yes   | Codec type. The default value is **CODEC_TYPE_SBC**.|
+| codecBitsPerSample<sup>11+</sup>  | [CodecBitsPerSample](#codecbitspersample)  | Yes   | Yes   | Number of bits of each sample. The default value is **SCAN_MODE_LOW_POWER**.|
+| codecChannelMode<sup>11+</sup>    | [CodecChannelMode](#codecchannelmode) | Yes   | Yes   | Channel mode of the codec. The default value is **CODEC_CHANNEL_MODE_NONE**.|
+| codecSampleRate<sup>11+</sup>     | [CodecSampleRate](#codecsamplerate) | Yes   | Yes   | Sampling rate of the codec. The default value is **CODEC_BITS_PER_SAMPLE_NONE**.|
+
+
+## CodecType<sup>11+</sup><a name="CodecType"></a>
+
+Enumerates the Bluetooth codec types.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name               | Value   | Description     |
+| ----------------- | ------ | ------- |
+| CODEC_TYPE_INVALID<sup>11+</sup> | -1 | Invalid type. |
+| CODEC_TYPE_SBC<sup>11+</sup>     | 0 | SBC.|
+| CODEC_TYPE_AAC<sup>11+</sup>     | 1 | AAC.|
+| CODEC_TYPE_L2HC<sup>11+</sup>    | 2 | L2HC.|
+
+
+## CodecChannelMode<sup>11+</sup><a name="CodecChannelMode"></a>
+
+Enumerates the channel modes of the Bluetooth codec.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name               | Value   | Description     |
+| ----------------- | ------ | ------- |
+| CODEC_CHANNEL_MODE_NONE<sup>11+</sup>   | 0 | Unknown.|
+| CODEC_CHANNEL_MODE_MONO<sup>11+</sup>   | 1 | Mono. |
+| CODEC_CHANNEL_MODE_STEREO<sup>11+</sup> | 2 | Stereo. |
+
+
+## CodecBitsPerSample<sup>11+</sup><a name="CodecBitsPerSample"></a>
+
+Enumerates the number of bits per sample for the Bluetooth codec.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name               | Value   | Description     |
+| ----------------- | ------ | ------- |
+| CODEC_BITS_PER_SAMPLE_NONE<sup>11+</sup> | 0 | Unknown.|
+| CODEC_BITS_PER_SAMPLE_16<sup>11+</sup>   | 1 | 16 bits per sample.|
+| CODEC_BITS_PER_SAMPLE_24<sup>11+</sup>   | 2 | 24 bits per sample.|
+| CODEC_BITS_PER_SAMPLE_32<sup>11+</sup>   | 3 | 32 bits per sample.|
+
+
+## CodecSampleRate<sup>11+</sup><a name="CodecSampleRate"></a>
+
+Enumerates the sampling rates of the Bluetooth codec.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name               | Value   | Description     |
+| ----------------- | ------ | ------- |
+| CODEC_SAMPLE_RATE_NONE<sup>11+</sup>    | 0 | Unknown.|
+| CODEC_SAMPLE_RATE_44100<sup>11+</sup>   | 1 | 44.1 kHz.|
+| CODEC_SAMPLE_RATE_48000<sup>11+</sup>   | 2 | 48 kHz.|
+| CODEC_SAMPLE_RATE_88200<sup>11+</sup>   | 3 | 88.2 kHz.|
+| CODEC_SAMPLE_RATE_96000<sup>11+</sup>   | 4 | 96 kHz.|
+| CODEC_SAMPLE_RATE_176400<sup>11+</sup>  | 5 | 176.4 kHz.|
+| CODEC_SAMPLE_RATE_192000<sup>11+</sup>  | 6 | 192 kHz.|
