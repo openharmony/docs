@@ -866,14 +866,14 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 
 定义启动Ability时返回的错误码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |
-| NO_ERROR         | 0    | 没有异常。   |
-| INVALID_PARAMETER | -1   | 无效的参数。 |
-| ABILITY_NOT_FOUND | -2   | 找不到ABILITY。 |
-| PERMISSION_DENY   | -3   | 权限拒绝。   |
+| NO_ERROR<sup>7+</sup>         | 0    | 没有异常。   |
+| INVALID_PARAMETER<sup>7+</sup> | -1   | 无效的参数。 |
+| ABILITY_NOT_FOUND<sup>7+</sup> | -2   | 找不到ABILITY。 |
+| PERMISSION_DENY<sup>7+</sup>   | -3   | 权限拒绝。   |
 
 ## DataAbilityOperationType
 
