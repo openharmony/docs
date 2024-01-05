@@ -444,7 +444,7 @@ create(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean }): T
 | 参数名   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
-| options  | object | 否   | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
+| options  | object | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
 **表1.1**options
 
@@ -520,7 +520,7 @@ TextDecoder的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | encoding | string | 否 | 编码格式，默认值是'utf-8'。 |
-| options | object | 否 | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
+| options | object | 否 | 解码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
   **表1** options
 
