@@ -308,7 +308,7 @@ ViewB中的事件句柄：
 
 - this.child.c = new ClassA(0) 和this.b = new ClassB(new ClassA(0))： 对\@State装饰的变量b和其属性的修改。
 
-- this.child.c.c = ... ：该变化属于第二层的变化，[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
+- this.child.c.c = ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性c的变化可以被\@ObjectLink观察到。
 
 
 ViewC中的事件句柄：
@@ -333,7 +333,7 @@ struct ViewA {
 
   build() {
     Row() {
-      Button(`ViewA [${this.label}] this.a.c = ${this.a.c} +1`)
+      Button(`ViewA [${this.label}] this.a.c = ${this.a ? this.a.c : "undefined"}`)
         .onClick(() => {
           this.a.c += 1;
         })
@@ -369,7 +369,11 @@ struct ViewB {
         })
       Button(`ViewB: shift`)
         .onClick(() => {
-          this.arrA.shift()
+          if (this.arrA.length > 0){
+            this.arrA.shift()
+          } else {
+            console.log("length <= 0")
+          }
         })
       Button(`ViewB: chg item property in middle`)
         .onClick(() => {
@@ -392,7 +396,7 @@ struct ViewB {
   1. ForEach：新添加的ClassA对象对于ForEach是未知的[itemGenerator](arkts-rendering-control-foreach.md#接口描述)，ForEach的item builder将执行，创建新的ViewA组件实例。
   2. ViewA({ label: `ViewA this.arrA[last]`, a: this.arrA[this.arrA.length-1] })：数组的最后一项有更改，因此引起第二个ViewA的实例的更改。对于ViewA({ label: `ViewA this.arrA[first]`, a: this.arrA[0] })，数组的更改并没有触发一个数组项更改的改变，所以第一个ViewA不会刷新。
 
-- this.arrA[Math.floor(this.arrA.length/2)].c：[@State](arkts-state.md#观察变化)无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性的变化将被\@ObjectLink观察到。
+- this.arrA[Math.floor(this.arrA.length/2)].c：@State无法观察到第二层的变化，但是ClassA被\@Observed装饰，ClassA的属性的变化将被\@ObjectLink观察到。
 
 
 ### 二维数组
