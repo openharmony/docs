@@ -1549,8 +1549,10 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
   import { BusinessError } from '@ohos.base';
 
   let uris: Array<string> = ["file://uri"];
-  cloudSync.getFileSyncState(uris).then(cloudSync.function(syncStates: Array<cloudSync.FileSyncState>){
-    console.info("get file sync state successfully");
+  cloudSync.getFileSyncState(uris).then(function(syncStates: Array<cloudSync.FileSyncState>) {
+    for(var i = 0, len = syncStates.length; i < len; i++){
+        console.info("get file sync state successfully" + syncStates[i]);
+    }
   }).catch((err: BusinessError) => {
 	  console.info("get file sync state failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -1595,11 +1597,13 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
   import { BusinessError } from '@ohos.base';
 
   let uris: Array<string> = ["file://uri"];
-  cloudSync.getFileSyncState(uris, cloudSync.function(err: BusinessError) => {
+  cloudSync.getFileSyncState(uris, (err: BusinessError, syncStates: Array<cloudSync.FileSyncState>) => {
     if (err) {
       console.info("get file sync state with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("get file sync state successfully:"+ date);
+      for(var i = 0, len = syncStates.length; i < len; i++){
+        console.info("get file sync state successfully" + syncStates[i]);
+    }
     }
   });
   ```

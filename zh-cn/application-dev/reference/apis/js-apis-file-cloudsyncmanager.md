@@ -235,7 +235,7 @@ notifyDataChange(userId: number, extraData: ExtraData): Promise&lt;void&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
-  let extraData = {eventId: "eventId", extraData: "data"};
+  let extraData: cloudSyncManager.ExtraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData).then(() => {
     console.info("notifyDataChange successfully");
   }).catch((err: BusinessError) => {
@@ -277,7 +277,7 @@ notifyDataChange(userId: number, extraData: ExtraData, callback: AsyncCallback&l
   ```ts
   import { BusinessError } from '@ohos.base';
   let userId: number = 100;
-  let extraData = {eventId: "eventId", extraData: "data"};
+  let extraData: cloudSyncManager.ExtraData = {eventId: "eventId", extraData: "data"};
   cloudSyncManager.notifyDataChange(userId, extraData, (err: BusinessError) => {
     if (err) {
       console.info("notifyDataChange failed with error message: " + err.message + ", error code: " + err.code);
