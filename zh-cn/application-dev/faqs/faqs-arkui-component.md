@@ -750,3 +750,58 @@ struct SideBarContainerExample {
   }
 }
 ```
+
+## 如何实现主动控制组件刷新(API 10)
+
+**解决措施**
+
+Canvas组件最终的显示内容分两种，一种是组件通用属性的绘制内容，比如背景色，boarder等这类组件属性方法设置的渲染属性，这类属性是可以通过状态变量驱动更新的。
+另一种是通过CanvasRenderContext2d绘制接口由应用自行绘制的内容。该类命令时绘制接口不响应状态变量，该类接口内置表脏功能，只要调用就会在下一帧刷新绘制内容，不需要开发者显示刷新。
+
+## 怎么解决列表组件List在不设置高度的情况下，会出现滑动不到底的问题(API 10)
+
+**原因分析**
+
+List没有设置高度时，如果子组件总高度大于List父组件的高度时，List会取List父组件高度。如果List有其他兄弟节点，可能会吧List部分顶出父组件显示区域外，看起来像是划不到底部。
+
+**解决措施**
+
+List组件设置layoutWeight(1)属性，将剩余空间全部分配给List组件。
+
+**参考链接**
+
+[尺寸设置](../reference/arkui-ts/ts-universal-attributes-size.md)
+
+## 如何实现瀑布流滑动时，数据的无限加载和显示(API 10)
+
+**解决措施**
+
+1.使用LazyForEach做瀑布流子节点。
+
+2.参考WaterFlow高性能开发指导在FlowItem的onAppear中判断是否即将触底，提前在LazyForEach数据源尾部新增数据；或在onScrollIndex11+事件中根据当前index进行判断。
+
+**参考链接**
+
+[WaterFlow高性能开发指导](../performance/waterflow_optimization.md)
+
+## customDialog中调用router.push启动新页面，会把customDialog关闭，怎么实现在不关闭弹窗的前提下启动新页面(API 10)
+
+**解决措施**
+
+开发者在路由跳转时，需要获取到主窗口的uiContext，再调用路由跳转。
+
+**参考链接**
+
+[自定义弹窗](../reference/arkui-ts/ts-methods-custom-dialog-box.md)
+
+## 当前ArkUI-X的支持进展如何，有无明确路线图(API 10)
+
+**解决措施**
+
+1.进展：ArkUI-X当前已经开源，首版本已于2023-12-15正式发布，当前支持Android、iOS跨平台；另外，也在探索和试验桌面平台与Web平台的支持。
+
+2.[路线图](https://gitee.com/arkui-x/docs/blob/master/zh-cn/roadmap/ArkUI-X-roadmap-2023.md)。
+
+**参考链接**
+
+[ArkUI-X](https://gitee.com/arkui-x)
