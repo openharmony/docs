@@ -22,17 +22,17 @@ OpenHarmony SDK 4.1.3.3
 
 Before change:
 
-on(type: 'audioRendererChange', callback: Callback\<AudioRendererChangeInfoArray>): void;
+on(type: 'audioRendererChange', callback: Callback<AudioRendererChangeInfoArray>): void;
 
-on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfoArray>): void;
+on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void;
 
 In non-playback or non-recording state, **AudioRendererChangeInfo.deviceDescriptors** and **AudioCapturerChangeInfo.deviceDescriptors** the device that played or recorded the audio stream last time.
 
 After change:
 
-on(type: 'audioRendererChange', callback: Callback\<AudioRendererChangeInfoArray>): void;
+on(type: 'audioRendererChange', callback: Callback<AudioRendererChangeInfoArray>): void;
 
-on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfoArray>): void;
+on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void;
 
 In non-playback or non-recording state, **AudioRendererChangeInfo.deviceDescriptors** and **AudioCapturerChangeInfo.deviceDescriptors** are empty.
 
@@ -64,7 +64,7 @@ Before change:
 
 on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void;
 
-open(callback: AsyncCallback\<void>): void;
+open(callback: AsyncCallback<void>): void;
 
 When application A is using the camera, application B fails to open the camera using **open()**, and the error code **CONFLICT_CAMERA** is returned.
 
@@ -72,7 +72,7 @@ After change:
 
 on(type: 'error', camera: CameraDevice, callback: ErrorCallback): void;
 
-open(callback: AsyncCallback\<void>): void;
+open(callback: AsyncCallback<void>): void;
 
 When application A is using the camera, application B can successfully open the camera using **open()** if application B has a higher priority than application A, for example, if application B is in the foreground while application A in the background.
 
