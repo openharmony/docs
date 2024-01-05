@@ -1108,7 +1108,7 @@ try {
 ```
 
 
-### on('availableArea')<sup>11+</sup>
+### on('availableAreaChange')<sup>11+</sup>
 on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
 开启当前屏幕的可用区域监听。当前屏幕有可用区域变化时，触发回调函数，返回可用区域。
