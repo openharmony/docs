@@ -46,11 +46,10 @@ networkSecurity.certVerification(cert, caCert)
 
 **系统能力**: SystemCapability.Communication.NetStack
 
-| Name          | Value | Description   |
+| 名称          | 值    |      说明     |
 | ------------- | ----- | ------------- |
 | CERT_TYPE_PEM | 0     | PEM格式证书。 |
 | CERT_TYPE_DER | 1     | DER格式证书。 |
-
 
 
 ## CertBlob
@@ -59,16 +58,15 @@ networkSecurity.certVerification(cert, caCert)
 
 **系统能力**: SystemCapability.Communication.NetStack
 
-| 参数名 | 类型                  | 必填 | 说明           |
-| ----- | ------------------- | --------- | ----------------------------------------- |
-| type | CertType            | Yes       | 证书编码类型。     |
-| data  | string \| ArrayBuffer | Yes       | 证书内容。 |
-
+| 名称  | 类型                   | 必填      | 说明           |
+| ----- | --------------------- | --------- | -------------- |
+| type  | CertType              | Yes       | 证书编码类型。  |
+| data  | string \| ArrayBuffer | Yes       | 证书内容。      |
 
 
 ## networkSecurity.certVerification
 
-function certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
+certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 
 从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书链进行校验。
 
@@ -94,10 +92,10 @@ function certVerification(cert: CertBlob, caCert?: CertBlob): Promise\<number\>
 | 401      | Parameter error.                                     |
 | 2305001  | Unspecified error.                                   |
 | 2305002  | Unable to get issuer certificate.                    |
-| 2305003  | Unable to get the certificate revocation list (CRL). |
-| 2305004  | Unable to decrypt the certificate signature.         |
-| 2305005  | Unable to decrypt the CRL signature.                 |
-| 2305006  | Unable to decode the issuer's public key.            |
+| 2305003  | Unable to get certificate revocation list (CRL).     |
+| 2305004  | Unable to decrypt certificate signature.             |
+| 2305005  | Unable to decrypt CRL signature.                     |
+| 2305006  | Unable to decode issuer public key.                  |
 | 2305007  | Certificate signature failure.                       |
 | 2305008  | CRL signature failure.                               |
 | 2305009  | Certificate is not yet valid.                        |
@@ -141,7 +139,7 @@ networkSecurity.certVerification(cert, caCert)
 
 ## networkSecurity.certVerificationSync
 
-function certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
+certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 从证书管理获取系统预置的CA证书和用户安装的CA证书，对应用传入的证书链进行校验。
 
@@ -151,7 +149,7 @@ function certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 
 | 参数名 | 类型     | 必填 | 说明                   |
 | ------ | -------- | ---- | ---------------------- |
-| cert   | CertBlob | Yes  | 被校验的证书链。       |
+| cert   | CertBlob | 是  | 被校验的证书链。       |
 | caCert | CertBlob | 否   | 传入自定义的CA证书链。 |
 
 **返回值：**
@@ -167,10 +165,10 @@ function certVerificationSync(cert: CertBlob, caCert?: CertBlob): number
 | 401      | Parameter error.                                     |
 | 2305001  | Unspecified error.                                   |
 | 2305002  | Unable to get issuer certificate.                    |
-| 2305003  | Unable to get the certificate revocation list (CRL). |
-| 2305004  | Unable to decrypt the certificate signature.         |
-| 2305005  | Unable to decrypt the CRL signature.                 |
-| 2305006  | Unable to decode the issuer's public key.            |
+| 2305003  | Unable to get certificate revocation list (CRL).     |
+| 2305004  | Unable to decrypt certificate signature.             |
+| 2305005  | Unable to decrypt CRL signature.                     |
+| 2305006  | Unable to decode issuer public key.                  |
 | 2305007  | Certificate signature failure.                       |
 | 2305008  | CRL signature failure.                               |
 | 2305009  | Certificate is not yet valid.                        |

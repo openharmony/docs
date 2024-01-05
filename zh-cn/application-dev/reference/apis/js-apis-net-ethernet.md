@@ -524,5 +524,5 @@ ethernet.off('interfaceStateChange');
 | --------------------- | ---- | -------------------------- |
 | STATIC                | 0    | 以太网连接静态配置网络信息。 |
 | DHCP                  | 1    | 以太网连接动态配置网络信息。 |
-| LAN_STATIC            | 2    | LAN连接静态配置网络信息。    |
-| LAN_DHCP              | 3    | LAN连接动态配置网络信息。    |
+| LAN_STATIC<sup>11+</sup>| 2    | LAN连接静态配置网络信息。    |
+| LAN_DHCP<sup>11+</sup>  | 3    | LAN连接动态配置网络信息。    |
