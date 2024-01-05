@@ -96,7 +96,6 @@ isSimActiveSync\(slotId: number\): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let isSimActive: boolean = sim.isSimActiveSync(0);
@@ -143,7 +142,6 @@ isOperatorSimCard\(slotId: number, operator: OperatorSimCard\): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let slotId : number = 0;
@@ -401,7 +399,6 @@ getISOCountryCodeForSimSync\(slotId: number\): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let countryCode: string = sim.getISOCountryCodeForSimSync(0);
@@ -519,7 +516,6 @@ getSimOperatorNumericSync\(slotId: number\): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let numeric: string = sim.getSimOperatorNumericSync(0);
@@ -637,7 +633,6 @@ getSimSpnSync\(slotId: number\): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let spn: string = sim.getSimSpnSync(0);
@@ -753,7 +748,6 @@ getSimStateSync\(slotId: number\): SimState
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let simState: sim.SimState = sim.getSimStateSync(0);
@@ -870,7 +864,6 @@ getCardTypeSync\(slotId: number\): CardType
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let cardType: sim.CardType = sim.getCardTypeSync(0);
@@ -985,7 +978,6 @@ hasSimCardSync\(slotId: number\): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
 let hasSimCard: boolean = sim.hasSimCardSync(0);
@@ -4415,12 +4407,11 @@ getOpKey\(slotId: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-try {
-    let data: Promise<string> = sim.getOpKey(0);
+sim.getOpKey(0).then((data: string) => {
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.error(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
-}
+}).catch((err: BusinessError) => {
+    console.error(`getOpKey failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 ## sim.getOpKeySync<sup>10+</sup>
@@ -4540,12 +4531,11 @@ getOpName\(slotId: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-try {
-    let data: Promise<string> = sim.getOpName(0);
+sim.getOpName(0).then((data: string) => {
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.error(`getOpName failed, promise: err->${JSON.stringify(error)}`);
-}
+}).catch((err: BusinessError) => {
+    console.error(`getOpName failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 ## sim.getOpNameSync<sup>10+</sup>
