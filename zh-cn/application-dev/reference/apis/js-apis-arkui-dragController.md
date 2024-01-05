@@ -482,16 +482,66 @@ animate(options: AnimationOptions, handler: () => void): void
 
 **示例：**
 
+1.在EntryAbility.ets中获取UI上下文并保存至LocalStorage中。
+  ```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import hilog from '@ohos.hilog';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import { UIContext } from '@ohos.arkui.UIContext';
+
+let uiContext: UIContext;
+let localStorage: LocalStorage = new LocalStorage('uiContext');
+
+export default class EntryAbility extends UIAbility {
+  storage: LocalStorage = localStorage;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  }
+
+  onDestroy(): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+
+    windowStage.loadContent('pages/Index', (err, data) => {
+      if (err.code) {
+        hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        return;
+      }
+      hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      windowStage.getMainWindow((err, data) =>
+      {
+        if (err.code) {
+          hilog.error(0x0000, 'Failed to abtain the main window. Cause:' + err.message, '');
+          return;
+        }
+        let windowClass: window.Window = data;
+        uiContext = windowClass.getUIContext();
+        this.storage.setOrCreate<UIContext>('uiContext', uiContext);
+      })
+    });
+  }
+  ```
+2.在Index.ets中通过LocalStorage.getShared()获取UI上下文，进而获取DragController对象实施后续操作。
   ```ts
 
 import UDC from '@ohos.data.unifiedDataChannel';
+import hilog from '@ohos.hilog';
 import dragController from "@ohos.arkui.dragController"
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';
+import { UIContext } from '@ohos.arkui.UIContext';
 
-@Entry
+
+let storages = LocalStorage.getShared();
+
+@Entry(storages)
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap|null = null
@@ -518,7 +568,8 @@ struct DragControllerPage {
     Column() {
       Button('拖拽至此处').onDragEnter(() => {
           try {
-            let previewObj: dragController.DragPreview = dragController.getDragPreview();
+            let uiContext: UIContext = storages.get<UIContext>('uiContext') as UIContext;
+            let previewObj: dragController.DragPreview = uiContext.getDragController().getDragPreview();
             let foregroundColor: ResourceColor = Color.Green;
 
             let previewAnimation: dragController.AnimationOptions = {
@@ -528,9 +579,9 @@ struct DragControllerPage {
               previewObj.setForegroundColor(foregroundColor);
             });
           } catch (error) {
-              let msg = (error as BusinessError).message;
+            let msg = (error as BusinessError).message;
             let code = (error as BusinessError).code;
-            console.error(`show error code is ${code}, message is ${msg}`);
+            hilog.error(0x0000, `show error code is ${code}, message is ${msg}`, '');
           }
       })
       .onDrop(() => {
@@ -541,7 +592,6 @@ struct DragControllerPage {
           if (event.type == TouchType.Down) {
             let text = new UDC.Text()
             let unifiedData = new UDC.UnifiedData(text)
-            console.log("one drag Down");
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
@@ -555,18 +605,15 @@ struct DragControllerPage {
               dragController.executeDrag(() => {
                 this.DraggingBuilder()
               }, dragInfo, (err , eve) => {
-            console.log(`ljx ${JSON.stringify(err)}`)
+                hilog.info(0x0000, `ljx ${JSON.stringify(err)}`, '')
                 if (eve && eve.event) {
                   if (eve.event.getResult() == DragResult.DRAG_SUCCESSFUL) {
-                    console.log('success');
+                    hilog.info(0x0000, 'success', '');
                   } else if (eve.event.getResult() == DragResult.DRAG_FAILED) {
-                    console.log('failed');
+                    hilog.info(0x0000, 'failed', '');
                   }
                 }
             })
-
-
-
           }
         }
       }).margin({top:100})
