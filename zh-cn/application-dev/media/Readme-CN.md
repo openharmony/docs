@@ -86,7 +86,7 @@
     - [录像实现方案(C/C++)](native-camera-recording-case.md)
     - [录像流二次处理的实现方案(C/C++)](native-camera-recording-case-imageReceiver.md)
 - Image Kit（图片处理服务）
-  - [图片开发概述](image-overview.md)
+  - [Image Kit简介](image-overview.md)
   - [图片解码(ArkTS)](image-decoding.md)
   - 图片处理
     - [图像变换(ArkTS)](image-transformation.md)
