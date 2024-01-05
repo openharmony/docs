@@ -55,19 +55,16 @@
     }
 
     onChangeFormVisibility(newStatus: Record<string, number>) {
-      // Called when the form provider receives form events from the system.
       // 需要配置formVisibleNotify为true，且为系统应用才会回调
       console.info('[EntryFormAbility] onChangeFormVisibility');
     }
 
     onFormEvent(formId: string, message: string) {
-      // Called when a specified message event defined by the form provider is triggered.
       // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
       console.info('[EntryFormAbility] onFormEvent');
     }
 
     onRemoveForm(formId: string) {
-      // Called to notify the form provider that a specified form has been destroyed.
       // 当对应的卡片删除时触发的回调，入参是被删除的卡片ID
       console.info('[EntryFormAbility] onRemoveForm');
     }
@@ -79,7 +76,6 @@
     }
 
     onAcquireFormState(want: Want) {
-      // Called to return a {@link FormState} object.
       // 卡片提供方接收查询卡片状态通知接口，默认返回卡片初始状态。
       return formInfo.FormState.READY;
     }
