@@ -408,7 +408,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 解码相关选项参数，存在两个属性fatal和ignoreBOM。
 
-| 名称      | 参数类型 | 必填 | 说明               |
+| 名称      | 类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
 | fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
 | ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
@@ -420,7 +420,7 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 解码是否跟随附加数据块相关选项参数。
 
-| 名称 | 参数类型 | 必填 | 说明 |
+| 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
 
@@ -679,7 +679,7 @@ create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 | 参数名   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
-| options  | TextDecoderOptions（[TextDecoderOptions<sup>11+</sup>](#textdecoderoptions11)） | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。|
+| options  | [TextDecoderOptions](#textdecoderoptions11) | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。|
 
 **示例：**
 
@@ -705,7 +705,7 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | input | Uint8Array | 是 | 符合格式需要解码的数组。 |
-| options | DecodeWithStreamOptions（[DecodeWithStreamOptions<sup>11+</sup>](#decodewithstreamoptions11)） | 否 | 解码相关选项参数。 |
+| options | [DecodeWithStreamOptions](#decodewithstreamoptions11) | 否 | 解码相关选项参数。 |
 
 **返回值：**
 
@@ -821,10 +821,10 @@ console.info("retStr = " + retStr);
 
 编码后的文本。
 
-| 名称      | 参数类型 | 说明               |
-| --------- | -------- | ------------------ |
-| read     | number  | 表示已读取的字符数。 |
-| written | number   | 表示已写入的字节数。  |
+| 名称      | 类型 | 可读  |可写  | 说明               |
+| --------- | -------- | -------- |-------- |------------------ |
+| read     | number  | 是 | 否 |表示已读取的字符数。 |
+| written | number   | 是 |否 |表示已写入的字节数。  |
 
 
 ## TextEncoder
@@ -922,7 +922,7 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 | 类型       | 说明               |
 | ---------- | ------------------ |
-| EncodeIntoUint8ArrayInfo（[EncodeIntoUint8ArrayInfo<sup>11+</sup>](#encodeintouint8arrayinfo11)） | 返回一个对象，read表示已编码的字符数，write表示编码字符所占用的字节数。 |
+| [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | 返回一个对象，read表示已编码的字符数，write表示编码字符所占用的字节数。 |
 
 **示例：**
 
