@@ -1967,14 +1967,17 @@ export default class EntryAbility extends UIAbility {
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;
 
-启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
+跨设备场景下，启动指定Ability至前台或后台，同时获取其Caller通信接口，调用方可使用Caller与被启动的Ability进行通信。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限。
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
- - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
-**需要权限：** ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+> **说明：**
+>
+> API version 11之前的版本，该接口权限为ohos.permission.ABILITY_BACKGROUND_COMMUNICATION权限；从API version 11开始，该接口权限修改为ohos.permission.DISTRIBUTED_DATASYNC权限。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
