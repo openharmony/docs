@@ -226,6 +226,10 @@ struct OffscreenSnapshotExample {
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
   }
@@ -311,6 +315,10 @@ struct OffscreenSnapshotExample {
             console.log("error: " + err)
           })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
   }
