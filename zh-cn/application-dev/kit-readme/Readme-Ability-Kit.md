@@ -74,3 +74,23 @@
     - [线程模型概述](../application-models/thread-model-fa.md)
     - [使用Emitter进行线程间通信](../application-models/itc-with-emitter.md)
   - [FA模型应用配置文件](../application-models/config-file-fa.md)
+- 程序访问控制
+  - [访问控制概述](../security/AccessToken/access-token-overview.md)
+  - 应用权限管控
+    - [应用权限管控概述](../security/AccessToken/app-permission-mgmt-overview.md)
+    - 申请应用权限
+      - [选择申请权限的方式](../security/AccessToken/determine-application-mode.md)
+      - [声明权限](../security/AccessToken/declare-permissions.md)
+      - [声明ACL权限](../security/AccessToken/declare-permissions-in-acl.md)
+      - [向用户申请授权](../security/AccessToken/request-user-authorization.md)
+    - 应用权限列表
+      - [对所有应用开放](../security/AccessToken/permissions-for-all.md)
+      - [仅对系统应用开放](../security/AccessToken/permissions-for-system-apps.md)
+      - [仅对MDM应用开放](../security/AccessToken/permissions-for-mdm-apps.md)
+    - [应用权限组列表](../security/AccessToken/app-permission-group-list.md)
+  - [使用系统Picker](../security/AccessToken/use-picker.md)
+  - 使用安全控件
+    - [安全控件概述](../security/AccessToken/security-component-overview.md)
+    - [使用粘贴控件](../security/AccessToken/pastebutton.md)
+    - [使用保存控件](../security/AccessToken/savebutton.md)
+    - [使用位置控件](../security/AccessToken/locationbutton.md)
