@@ -244,9 +244,17 @@ import router from '@ohos.router';
 
 ```ts
 import router from '@ohos.router';
-onPageShow() {
-  const params:Record<string,Object> = {'':router.getParams()}; // 获取传递过来的参数对象
-  const info:Object = params['']; // 获取info属性的值
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  // 只有被@Entry装饰的组件才可以调用页面的生命周期
+  onPageShow() {
+    const params: object = router.getParams(); // 获取传递过来的参数对象
+    console.log("params" + JSON.stringify(params));
+  }
+  ...
 }
 ```
 
