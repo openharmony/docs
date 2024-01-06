@@ -84,7 +84,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
 
 
 **返回值：**
@@ -143,7 +143,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **错误码：**
@@ -202,7 +202,7 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
 
 **返回值：**
 
@@ -249,7 +249,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | config | [UploadConfig](#uploadconfig) | 是 | 上传的配置信息。 |
+  | config | [UploadConfig](#uploadconfig6) | 是 | 上传的配置信息。 |
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **示例：**
@@ -673,7 +673,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | message | string | 是 | 上传任务结果描述信息 |
 
 ## File
-[UploadConfig](#uploadconfig)中的文件列表。
+[UploadConfig<sup>6+<sup>](#uploadconfig6)中的文件列表。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -683,12 +683,12 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | filename | string | 是 | multipart提交时，请求头中的文件名。 |
 | name | string | 是 | multipart提交时，表单项目的名称，缺省为file。 |
-| uri | string | 是 | 文件的本地存储路径。<br/>仅支持"internal"协议类型，"internal://cache/"为必填字段，示例：<br/>internal://cache/path/to/file.txt |
+| uri | string | 是 | 文件的本地存储路径。<br/>仅支持"internal"协议类型，"internal://cache/"为应用的私有目录，是必填字段，示例：<br/>internal://cache/path/to/file.txt |
 | type | string | 是 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
 ## RequestData
-[UploadConfig](#uploadconfig)中的表单数据。
+[UploadConfig<sup>6+<sup>](#uploadconfig6)中的表单数据。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -919,6 +919,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let progressCallback = (receivedSize: number, totalSize: number) => {
     console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
@@ -946,6 +947,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let progressCallback1 = (receivedSize: number, totalSize: number) => {
     console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
   };
@@ -981,6 +983,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let completeCallback = () => {
     console.info('Download task completed.');
   };
@@ -1018,6 +1021,7 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let completeCallback1 = () => {
     console.info('Download delete complete notification.');
   };
@@ -1085,6 +1089,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let failCallback = (err: number) => {
     console.error(`Failed to download the task. Code: ${err}`);
   };
@@ -1112,6 +1117,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   let failCallback1 = (err: number) => {
     console.error(`Failed to download the task. Code: ${err}`);
   };
@@ -1145,6 +1151,7 @@ delete(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.delete().then((result: boolean) => {
     console.info('Succeeded in removing the download task.');
   }).catch((err: BusinessError) => {
@@ -1172,6 +1179,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.delete((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1201,6 +1209,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
     console.info('Succeeded in querying the download task')
   }).catch((err: BusinessError) => {
@@ -1228,6 +1237,7 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
     if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
@@ -1257,6 +1267,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskMimeType().then((data: string) => {
     console.info('Succeeded in querying the download MimeType');
   }).catch((err: BusinessError) => {
@@ -1284,6 +1295,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
     if (err) {
       console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
@@ -1313,6 +1325,7 @@ suspend(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.suspend().then((result: boolean) => {
     console.info('Succeeded in pausing the download task.');
   }).catch((err: BusinessError) => {
@@ -1340,6 +1353,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.suspend((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1369,6 +1383,7 @@ restore(): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.restore().then((result: boolean) => {
     console.info('Succeeded in resuming the download task.')
   }).catch((err: BusinessError) => {
@@ -1396,6 +1411,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
+  let downloadTask: request.DownloadTask;
   downloadTask.restore((err: BusinessError, result: boolean) => {
     if (err) {
       console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
@@ -1740,7 +1756,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。Wi-Fi为非计费网络，数据流量为计费网络。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径，比如：\`${featureAbility.getContext().getFilesDir()}/test.txt\`，并将文件存储在此路径下。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径，比如：\`${globalThis.abilityContext.tempDir}/test.txt\`，并将文件存储在此路径下。|
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径。|
 | networkType | number | 否 | 设置允许下载的网络类型(默认使用NETWORK_MOBILE&NETWORK_WIFI)。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载任务名称。 |
 | background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态(默认使用false)。 |
@@ -1849,7 +1865,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
 | url | string | 是 | 资源地址，其最大长度为2048个字符。 |
-| title | string | 否 | 任务标题，其最大长度为256个字符，默认值为空。 |
+| title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。 |
 | description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。 |
 | mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。<br/>-对于前端任务，有回调通知。<br/>-对于后台任务，有系统通知、检测网络连接、恢复、自动重试功能。 |
 | overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。 |
@@ -1931,7 +1947,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | after | number | 否 | 开始的Unix时间戳（毫秒），默认值为调用时刻减24小时。 |
 | state | [State](#state10) | 否 | 指定任务的状态。 |
 | action | [Action](#action10) | 否 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
-| mode | [Mode](#mode10) | 否 | 任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
+| mode | [Mode](#mode10) | 否 | 任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。<br/>-如果未填写，则查询所有任务。 |
 
 ## TaskInfo<sup>10+</sup> 
 查询结果的任务信息数据结构，提供普通查询和系统查询，两种字段的可见范围不同。
@@ -3549,7 +3565,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | id | string | 是 | 任务id。 |
-  | token | string | 是 | 任务查询token。 |
+  | token | string | 否 | 任务查询token。 |
 
 **返回值：** 
 

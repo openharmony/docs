@@ -143,7 +143,7 @@ export struct share_transition_expand {
               .onClick(() => {
                 // 定义展开收起的动画参数
                 animateTo({ curve: curves.springMotion(0.6, 0.9) }, () => {
-                  if(index){
+                  if(index != undefined){
                     this.curIndex = index;
                   }
                   this.isExpand = !this.isExpand;
@@ -608,7 +608,11 @@ struct AutoAchieveShareTransitionDemo {
               this.count += 1;
               this.scrollState = false;
 
-              animateTo({ curve: curves.springMotion() }, () => {
+              animateTo({
+                curve: curves.springMotion(),
+                onFinish: () => {
+                  this.scrollState = true;
+                }}, () => {
                 this.layoutHeight = px2vp(2772);
                 this.layoutWidth = '100%';
                 this.layoutOffset = -px2vp(this.rect_top - this.rootPosition);
@@ -619,7 +623,6 @@ struct AutoAchieveShareTransitionDemo {
         .width('100%')
         .margin({ top: 20 })
       }
-      .enabled(this.scrollState)
       .height('100%')
 
       // 根据获取的组件信息新建与该组件相同的元素
@@ -688,6 +691,7 @@ struct AutoAchieveShareTransitionDemo {
       }
     }
     .id('root')
+    .enabled(this.scrollState)
   }
 }
 ```

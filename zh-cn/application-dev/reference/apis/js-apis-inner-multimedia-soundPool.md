@@ -66,6 +66,7 @@ load(uri: string, callback: AsyncCallback\<number>): void
 ```ts
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -74,7 +75,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -88,7 +89,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
       uri = 'fd://' + (file.fd).toString()
       soundPool.load(uri, (error: BusinessError, soundId_: number) => {
         if (error) {
-          console.info(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+          console.error(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
         } else {
           console.info(`load soundPool Success` + JSON.stringify(soundId_))
         }
@@ -133,6 +134,7 @@ load(uri: string): Promise\<number>
 ```ts
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -141,7 +143,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -198,6 +200,7 @@ load(fd: number, offset: number, length: number, callback: AsyncCallback\<number
 ```ts
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -206,7 +209,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -222,7 +225,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
       uri = 'fd://' + (file.fd).toString()
       soundPool.load(file.fd, 0, fileSize, (error: BusinessError, soundId_: number) => {
         if (error) {
-          console.info(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+          console.error(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
         } else {
           soundID = soundId_;
           console.info('load success soundid:' + soundId_);
@@ -271,6 +274,7 @@ load(fd: number, offset: number, length: number): Promise\<number>
 ```ts
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -279,7 +283,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -334,6 +338,7 @@ play(soundID: number, params: PlayParameters, callback: AsyncCallback\<number>):
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -342,7 +347,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -350,7 +355,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let soundID: number = 0;
     let streamID: number = 0;
     let playParameters: media.PlayParameters = {
-      loop: 3, // 循环4次
+      loop: 3, // 循环3次
       rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
       leftVolume: 0.5, // range = 0.0-1.0
       rightVolume: 0.5, // range = 0.0-1.0
@@ -358,7 +363,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     }
     soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
       if (error) {
-        console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         streamID = streamId;
         console.info('play success soundid:' + streamId);
@@ -397,6 +402,7 @@ play(soundID: number, callback: AsyncCallback\<number>): void
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -405,7 +411,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -414,7 +420,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let streamID: number = 0;
     soundPool.play(soundID,  (error: BusinessError, streamId: number) => {
       if (error) {
-        console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         streamID = streamId;
         console.info('play success soundid:' + streamId);
@@ -459,6 +465,7 @@ play(soundID: number, params?: PlayParameters): Promise\<number>
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -467,7 +474,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -521,6 +528,7 @@ stop(streamID: number, callback: AsyncCallback\<void>): void
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -529,7 +537,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -538,7 +546,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     //先调用play方法给拿到对应的streamID
     soundPool.stop(streamID, (error: BusinessError) => {
       if (error) {
-        console.info(`stop sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`stop sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         console.info('stop success');
       }
@@ -581,6 +589,7 @@ stop(streamID: number): Promise\<void>
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -589,7 +598,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -634,6 +643,7 @@ setLoop(streamID: number, loop: number, callback: AsyncCallback\<void>): void;
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -642,7 +652,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -652,7 +662,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     //设置循环2次
     soundPool.setLoop(streamID, 2, (error: BusinessError) => {
       if (error) {
-        console.info(`setLoop soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`setLoop soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         console.info('setLoop success streamID:' + streamID);
       }
@@ -696,6 +706,7 @@ setLoop(streamID: number, loop: number): Promise\<void>
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -704,7 +715,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -751,6 +762,7 @@ setPriority(streamID: number, priority: number, callback: AsyncCallback\<void>):
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -759,7 +771,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -769,7 +781,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     // 给对应的streamID资源设置优先级为1
     soundPool.setPriority(streamID, 1, (error: BusinessError) => {
       if (error) {
-        console.info(`setPriority soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`setPriority soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         console.info('setPriority success streamID:' + streamID);
       }
@@ -813,6 +825,7 @@ setPriority(streamID: number, priority: number): Promise\<void>
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -821,7 +834,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -872,6 +885,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -880,7 +894,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -890,7 +904,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     // 先调用play方法获取到对应资源的streamID
     soundPool.setRate(streamID, selectedAudioRendererRate, (error: BusinessError) => {
       if (error) {
-        console.info(`setRate soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`setRate soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         console.info('setRate success streamID:' + streamID);
       }
@@ -937,6 +951,7 @@ setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -945,7 +960,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -993,6 +1008,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number, callback: A
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1001,7 +1017,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -1011,7 +1027,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     //设置音量为0.5
     soundPool.setVolume(streamID, 0.5, 0.5, (error: BusinessError) => {
       if (error) {
-        console.info(`setVolume soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`setVolume soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         console.info('setVolume success streamID:' + streamID);
       }
@@ -1056,6 +1072,7 @@ setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<v
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1064,7 +1081,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -1111,6 +1128,7 @@ unload(soundID: number, callback: AsyncCallback\<void>): void
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1119,7 +1137,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -1128,7 +1146,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     // 先调用load方法获取到对应资源的soundID
     soundPool.unload(soundID, (error: BusinessError) => {
       if (error) {
-        console.info(`unload soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`unload soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         console.info('unload success:');
       }
@@ -1172,6 +1190,7 @@ unload(soundID: number): Promise\<void>
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1180,7 +1199,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -1224,6 +1243,7 @@ release(callback: AsyncCallback\<void>): void
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1232,14 +1252,14 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
     console.info(`createSoundPool success`)
     soundPool.release((error: BusinessError) => {
       if (error) {
-        console.info(`release soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        console.error(`release soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
         console.info('release success');
       }
@@ -1276,6 +1296,7 @@ release(): Promise\<void>
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1284,7 +1305,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -1318,6 +1339,7 @@ on(type: 'loadComplete', callback: Callback\<number>): void
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1326,7 +1348,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -1357,6 +1379,7 @@ off(type: 'loadComplete'): void
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1365,7 +1388,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -1395,6 +1418,7 @@ on(type: 'playFinished', callback: Callback\<void>): void
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1403,7 +1427,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -1434,6 +1458,7 @@ off(type: 'playFinished'): void
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1442,7 +1467,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
@@ -1483,6 +1508,7 @@ SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1491,14 +1517,14 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;
     console.info(`createSoundPool success`)
     soundPool.on('error', (error: BusinessError) => {
-      console.error('error happened,and error message is :' + error.message)
-      console.error('error happened,and error code is :' + error.code)
+      console.info('error happened,and error message is :' + error.message)
+      console.info('error happened,and error code is :' + error.code)
     })
   }
 });
@@ -1523,6 +1549,7 @@ off(type: 'error'): void
 
 ```js
 import { BusinessError } from '@ohos.base';
+
 //创建soundPool实例
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -1531,7 +1558,7 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 }
 media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`createSoundPool failed`)
+    console.error(`createSoundPool failed`)
     return;
   } else {
     soundPool = soundPool_;

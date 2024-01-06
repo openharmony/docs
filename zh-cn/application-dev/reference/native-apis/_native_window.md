@@ -58,7 +58,7 @@
 | [OH_NativeWindow_DestroyNativeWindowBuffer](#oh_nativewindow_destroynativewindowbuffer) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 将OHNativeWindowBuffer对象的引用计数减1，当引用计数为0的时候，该OHNativeWindowBuffer对象会被析构掉 |
 | [OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd) | 通过OHNativeWindow对象申请一块OHNativeWindowBuffer，用以内容生产 |
 | [OH_NativeWindow_NativeWindowFlushBuffer](#oh_nativewindow_nativewindowflushbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer, int fenceFd, [Region](_region.md) region) | 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费 |
-| [OH_NativeWindow_GetLastFlushedBuffer](#oh_nativewindow_getlastflushedbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \**buffer) | 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer |
+| [OH_NativeWindow_GetLastFlushedBuffer](#oh_nativewindow_getlastflushedbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \**buffer, int \*fenceFd, float matrix[16]) | 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer |
 | [OH_NativeWindow_NativeWindowAbortBuffer](#oh_nativewindow_nativewindowabortbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 通过OHNativeWindow将之前申请出来的OHNativeWindowBuffer返还到Buffer队列中，供下次再申请 |
 | [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt) ([OHNativeWindow](#ohnativewindow) \*window, int code,...) | 设置/获取OHNativeWindow的属性，包括设置/获取宽高、内容格式等 |
 | [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 通过OHNativeWindowBuffer获取该buffer的BufferHandle指针 |
@@ -351,7 +351,7 @@ BufferHandle 返回一个指针，指向BufferHandle的结构体实例
 ### OH_NativeWindow_GetLastFlushedBuffer()
 
 ```
-int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow * window, OHNativeWindowBuffer **buffer )
+int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow * window, OHNativeWindowBuffer **buffer, int *fenceFd, float matrix[16])
 ```
 
 **描述**
@@ -368,6 +368,8 @@ int32_t OH_NativeWindow_GetLastFlushedBuffer (OHNativeWindow * window, OHNativeW
 | -------- | -------- |
 | window | 一个OHNativeWindow的结构体实例的指针 |
 | buffer | 一个OHNativeWindowBuffer结构体指针的指针 |
+| fenceFd | 一个文件描述符的指针 |
+| matrix | 表示检索到的4*4变换矩阵 |
 
 **返回：**
 

@@ -615,6 +615,7 @@ int main(int narg, char** argv)
 #### ffrt_submit_h_base
 
 <hr/>
+
 * Submits a task to the scheduler. Different from **ffrt_submit_base**, **ffrt_submit_h_base** returns a task handle. The handle can be used to establish the dependency between tasks or implement synchronization in the **wait** statements.
 
 ##### Declaration
@@ -655,7 +656,7 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 ##### Use Guide
 
 * **ffrt_task_handle_t** in the C code must be explicitly destroyed by calling **ffrt_task_handle_destroy**.
-* You need to set the **task_handle_t** object in the C code to null or destroy the object. For the same **ffrt_task_handle_t** object, **ffrt_task_handle_destroy** can be called only once. Otherwise, undefined behavior may occur.
+* You need to set the **ffrt_task_handle_t** object in the C code to null or destroy the object. For the same **ffrt_task_handle_t** object, **ffrt_task_handle_destroy** can be called only once. Otherwise, undefined behavior may occur.
 * If **ffrt_task_handle_t** is accessed after **ffrt_task_handle_destroy** is called, undefined behavior may occur.
 
 ##### Example
@@ -777,6 +778,7 @@ x = 3
 #### ffrt_this_task_get_id
 
 <hr/>
+
 * Obtains the ID of this task. This API is used for maintenance and testing. (The task ID is unique, but the task name may be duplicate.)
 
 ##### Declaration
@@ -808,6 +810,7 @@ uint64_t ffrt_this_task_get_id();
 #### ffrt_this_task_update_qos
 
 <hr/>
+
 * Updates the QoS of the task being executed.
 
 ##### Declaration
@@ -1105,6 +1108,7 @@ sum=10
 
 #### ffrt_cond_t
 <hr/>
+
 * Provides performance implementation similar to pthread semaphore.
 
 ##### Declaration

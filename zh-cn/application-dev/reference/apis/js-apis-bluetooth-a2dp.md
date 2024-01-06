@@ -144,7 +144,7 @@ getPlayingState(deviceId: string): PlayingState
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| device | string | 是    | 远端设备地址。 |
+| deviceId | string | 是    | 远端设备地址。 |
 
 **返回值：**
 
@@ -427,7 +427,7 @@ enableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefine的，否则为错误对象。 |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -522,7 +522,7 @@ disableAbsoluteVolume(deviceId: string): Promise&lt;void&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefine的，否则为错误对象。 |
+| Promise&lt;void&gt; | 以Promise的形式返回结果。如果成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
 
@@ -598,7 +598,7 @@ try {
 
 setCurrentCodecInfo(deviceId: string, codecInfo: CodecInfo): void
 
-获取当前编码器信息。
+设置当前编码器信息。
 
 **系统接口**：此接口为系统接口。
 

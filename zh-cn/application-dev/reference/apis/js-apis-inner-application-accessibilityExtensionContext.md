@@ -25,6 +25,8 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## ElementAttributeValues
 
+**系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
+
 | key            | value            | 说明                  |
 | ------------- | ------------- | ------------------- |
 | accessibilityFocused | boolean          |   accessibility焦点状态   |
@@ -133,13 +135,13 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 设置关注的目标包名，使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
 | 参数名         | 类型                  | 必填   | 说明       |
 | ----------- | ------------------- | ---- | -------- |
-| targetNames | Array&lt;string&gt; | 是    | 关注的目标包名。 |
+| targetNames | Array&lt;string&gt; | 是    | 设置关注应用的包名，服务接收关注应用的无障碍事件，默认接收所有应用的无障碍事件，取消关注应用则传空数组。 |
 
 **返回值：**
 
@@ -166,13 +168,13 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 
 设置关注的目标包名，使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
 | 参数名         | 类型                        | 必填   | 说明                                       |
 | ----------- | ------------------------- | ---- | ---------------------------------------- |
-| targetNames | Array&lt;string&gt;       | 是    | 关注的目标包名。                                 |
+| targetNames | Array&lt;string&gt;       | 是    | 设置关注应用的包名，服务接收关注应用的无障碍事件，默认接收所有应用的无障碍事件，取消关注应用则传空数组。                                 |
 | callback    | AsyncCallback&lt;void&gt; | 是    | 回调函数，如果设置关注的目标包名失败，则AsyncCallback中err有数据返回。 |
 
 **示例：**
@@ -181,13 +183,17 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 import { BusinessError } from '@ohos.base';
 
 let targetNames = ['com.ohos.xyz'];
-axContext.setTargetBundleName(targetNames, (err: BusinessError) => {
-  if (err) {
-    console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
-});
+try {
+  axContext.setTargetBundleName(targetNames, (err: BusinessError) => {
+    if (err && err.code) {
+      console.error(`failed to set target bundle names, Code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in set target bundle names, targetNames is ${targetNames}`);
+  });
+} catch (error) {
+  console.error(`failed to set target bundle names, Because ${JSON.stringify(error)}`);
+}
 ```
 
 ## AccessibilityExtensionContext.getFocusElement
@@ -196,7 +202,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 获取焦点元素, 使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -236,7 +242,7 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取焦点元素, 使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -273,7 +279,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 获取焦点元素, 使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -313,7 +319,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 获取指定窗口的根节点元素, 使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -354,7 +360,7 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取指定窗口的根节点元素, 使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -391,7 +397,7 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 
 获取指定窗口的根节点元素, 使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -431,7 +437,7 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 获取指定屏幕中的所有窗口, 使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -472,7 +478,7 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 获取指定屏幕中的所有窗口, 使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -509,7 +515,7 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 
 获取指定屏幕中的所有窗口, 使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -554,7 +560,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 注入手势，使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -607,7 +613,7 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 注入手势，使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -650,7 +656,7 @@ injectGestureSync(gesturePath: GesturePath): void
 
 注入手势。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -692,7 +698,7 @@ attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 
 获取节点元素的所有属性名称，使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
 
@@ -721,7 +727,7 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 
 获取节点元素的所有属性名称，使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -752,7 +758,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 
 根据属性名称获取属性值，使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 
 **参数：**
@@ -799,7 +805,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 
 根据属性名称获取属性值，使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -840,7 +846,7 @@ actionNames(): Promise\<Array\<string>>;
 
 获取节点元素支持的所有操作名称，使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **返回值：**
 
@@ -868,7 +874,7 @@ actionNames(callback: AsyncCallback\<Array\<string>>): void;
 
 获取节点元素支持的所有操作名称，使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -896,14 +902,14 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 根据操作名称执行某个操作，使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
-| 参数名         | 类型                                     | 必填   | 说明             |
-| ----------- | ---------------------------------------- | ---- | -------------- |
+| 参数名         | 类型                                     | 必填   | 说明                                                       |
+| ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
 | actionName | string | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 
-| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空；当前版本暂不支持。     |
+| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                             |
 
 **返回值：**
 
@@ -940,7 +946,7 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 根据操作名称执行某个操作，使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -980,15 +986,15 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 根据操作名称执行某个操作，使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
-| 参数名        | 类型                        | 必填   | 说明                                       |
-| ---------- | ------------------------- | ---- | ---------------------------------------- |
+| 参数名        | 类型                        | 必填   | 说明                                                       |
+| ---------- | ------------------------- | ---- |----------------------------------------------------------|
 | actionName | string                    | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 |
-| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空；当前版本暂不支持。                  |
-| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。                        |
+| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                             |
+| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。                                        |
 
 **错误码：**
 
@@ -1022,7 +1028,7 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 
 根据节点内容查询所有节点元素，使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -1058,7 +1064,7 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 
 根据节点内容查询所有节点元素。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -1091,7 +1097,7 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 
 根据焦点元素类型查询节点元素，使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -1128,7 +1134,7 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 
 根据焦点元素类型查询节点元素，使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -1162,7 +1168,7 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 
 根据下一焦点元素方向查询节点元素，使用Promise异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 
@@ -1199,7 +1205,7 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 
 根据下一焦点元素方向查询节点元素，使用callback异步回调。
 
-**系统能力：**  SystemCapability.BarrierFree.Accessibility.Core
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
 **参数：**
 

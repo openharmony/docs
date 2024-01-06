@@ -35,7 +35,7 @@ let want: Want = {
 
 let startAbilityParameter: ability.StartAbilityParameter = {
     want : want,
-    abilityStartSetting : {
+    abilityStartSettings : {
         abilityBounds : [100,200,300,400],
         windowMode :
         featureAbility.AbilityWindowConfiguration.WINDOW_MODE_UNDEFINED,

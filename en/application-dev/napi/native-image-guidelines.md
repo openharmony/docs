@@ -1,4 +1,4 @@
-# NativeImage Development
+# Native Image Development
 
 ## When to Use
 

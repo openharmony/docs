@@ -1,184 +1,197 @@
-# Using Native APIs in Application Projects
+# Node-API Development Specifications
 
-In OpenHarmony, you can use the N-APIs in C APIs to implement interaction between ArkTS/TS/JS and C/C++. The  N-API names are the same as those in the third-party **Node.js**. Currently, OpenHarmony supports some N-APIs. For details about the APIs supported, see [arkui_napi](https://gitee.com/openharmony/arkui_napi/blob/master/libnapi.ndk.json).
 
-## How to Develop
+## Lifecycle Management
 
-The DevEco Studio provides a default project that uses N-APIs. You can choose **File** > **New** > **Create Project** to create a Native C++ project. After the project is created, the **cpp** directory is generated in the **entry/src/main** directory. You can use the N-APIs to develop C/C++ code (native code).
+**[Rule]** Properly use **napi_open_handle_scope** and **napi_close_handle_scope** to manage **napi_value** so as to minimize the lifecycle and avoid memory leakage.
 
-You can import the native .so file for ArkTS/TS/JS programming. For example, you can **import hello from 'libhello.so'** to use the **libhello.so** capability and pass the ArkTS/TS/JS object named **hello** to the ArkTS/TS/JS APIs of the application. You can use this object to invoke the N-APIs in **cpp**.
 
-## Basic Features
-The N-APIs implement interaction between ArkTS/TS/JS and C/C++. The following provides two **HelloWorld** project examples:
-1. Define an N-API method **Add()**, which is called by ArkTS with two numbers passed in. The N-API **Add**() method adds the two numbers and returns the result to ArkTS.
-2. Define an N-API method named **NativeCallArkTS**, which is called by ArkTS with an ArkTS function passed in. The **NativeCallArkTS** method invokes this ArkTS function and returns the result to ArkTS.
+Each **napi_value** belongs to a specific **HandleScope**, which is opened and closed by **napi_open_handle_scope** and **napi_close_handle_scope**, respectively. After a **HandleScope** is closed, **napi_value** is automatically released.
 
-The following describes:
-1. How an ArkTS method invokes a C++ method.
-2. How a C++ method invokes an ArkTS method.
+**Example (correct)**:
 
-The project has the following files:
-- **entry\src\main\cpp\hello.cpp**: contains the N-API logic.
-- **entry\src\main\ets\pages\index.ets**: contains the ArkTS logic.
-- **entry\src\main\cpp\types\libentry\index.d.ts**: contains the declaration of the N-APIs exposed to ArkTS.
 
-The following provides the comments for the files. Other parts in the project are the same as those in the native default project.
-
-```C++
-// entry\src\main\cpp\hello.cpp
-// Include the N-API header file.
-#include "napi/native_api.h"
-
-// N-API method, which has only two input parameters. You do not need to modify them.
-// napi_env is the current running context.
-// napi_callback_info contains related information, including parameters passed from ArkTS.
-static napi_value Add(napi_env env, napi_callback_info info)
-{
-    // Number of parameters to be obtained from ArkTS. napi_value can be regarded as the representation of the ArkTS value in the N-API method.
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-    
-    // From info(), obtain the parameters passed from ArkTS. In this example, two ArkTS parameters, arg[0] and arg[1], are obtained.
-    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-
-    // Convert the obtained ArkTS parameters to the type that can be processed by N-API. In this example, the two numbers passed from ArkTS are converted to the double type.
-    double value0;
-    napi_get_value_double(env, args[0], &value0);
-
-    double value1;
-    napi_get_value_double(env, args[1], &value1);
-    
-    // N-API service logic, which is adding two numbers in this example.
-    double nativeSum = value0 + value1;
-    
-    // Convert the N-API service logic processing result to an ArkTS value and return the value to ArkTS.
-    napi_value sum;
-    napi_create_double(env, nativeSum , &sum);
-    return sum;
-}
-
-static napi_value NativeCallArkTS(napi_env env, napi_callback_info info)
-{
-    // Number of parameters to be obtained from ArkTS. napi_value can be regarded as the representation of the ArkTS value in the N-API method.
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    
-    // From info(), obtain the parameters passed from ArkTS. In this example, one ArkTS parameter, arg[0], is obtained.
-    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-    
-    // Create an ArkTS number as the input parameter of the ArkTS function.
-    napi_value argv = nullptr;
-    napi_create_int32(env, 10, &argv);
-    
-    napi_value result = nullptr;
-    // Invoke the ArkTS function in the N-API method, save the return value in result, and return result to ArkTS.
-    napi_call_function(env, nullptr, args[0], 1, &argv, &result);
-    
-    return result;
-}
-
-EXTERN_C_START
-// Init() hooks native methods, such as Add and NativeCallArkTS, in exports. exports is the ArkTS object obtained after you import the native capabilities.
-static napi_value Init(napi_env env, napi_value exports)
-{
-    // Function description struct. The third parameter "Add" is the N-API method.
-    // The first parameter "add" is the name of the ArkTS method.
-    napi_property_descriptor desc[] = {
-        { "add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr },
-        { "nativeCallArkTS", nullptr, NativeCallArkTS, nullptr, nullptr, nullptr, napi_default, nullptr },
-    };
-    // Hook the N-API method to the ArkTS object exports.
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-EXTERN_C_END
-
-// Information about the module that loads the data. Record information such as the Init() function and module name.
-static napi_module demoModule = {
-    .nm_version =1,
-    .nm_flags = 0,
-    .nm_filename = nullptr,
-    .nm_register_func = Init,
-    .nm_modname = "entry",
-    .nm_priv = ((void*)0),
-    .reserved = { 0 },
-};
-
-// When the .so file is opened, the function is automatically called to register the demoModule module.
-extern "C" __attribute__((constructor)) void RegisterHelloModule(void)
-{
-    napi_module_register(&demoModule);
+```
+// When the NAPI interface is frequently called to create JS objects in the for loop, add handle_scope to release resources that are no longer used in a timely manner.
+// In the following example, the lifecycle of the local variable res ends at the end of each loop. Therefore, scope needs to be added to release the JS object in time and prevent memory leakage.
+for (int i = 0; i < 100000; i++) { 
+    napi_handle_scope scope = nullptr;   
+    napi_open_handle_scope(env, &scope); 
+    if (scope == nullptr) { 
+        return; 
+    } 
+    napi_value res; 
+    napi_create_object(env, &res); 
+    napi_close_handle_scope(env, scope); 
 }
 ```
 
-```js
-// entry\src\main\ets\pages\index.ets
 
-import hilog from '@ohos.hilog';
-// Import the native capabilities.
-import entry from 'libentry.so'
+## Context Sensitive
 
-@Entry
-@Component
-struct Index {
+**[Rule]** Do not access JS objects across engine instances using Node-API.
 
-  build() {
-    Row() {
-      Column() {
-        // The first button calls the add() method, which uses the N-API Add method to add the two numbers.
-        Button('ArkTS call C++')
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-            hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', entry.add(2, 3));
-          })
-        // The second button calls the nativeCallArkTS() method, which uses the N-API NativeCallArkTS method to execute the ArkTS function.
-        Button('C++ call ArkTS')
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
-            let ret: number = entry.nativeCallArkTS((value: number)=>{return value * 2;});
-            hilog.info(0x0000, 'testTag', 'Test NAPI nativeCallArkTS ret = %{public}d', ret);
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
+
+An engine instance is an independent running environment. Operations such as creating and access a JS object must be performed in the same engine instance. If an object is operated in different engine instances, the application may crash. An engine instance is represented as **napi_env** in APIs.
+
+**Example (incorrect)**:
+
 
 ```
+// Create a string object with value of bar in env1.
+napi_create_string_utf8(env1, "bar", NAPI_AUTO_LENGTH, &string);
+// Create an object in env2 and set the previous string object to this object.
+napi_status status = napi_create_object(env2, &object); 
+if (status != napi_ok) { 
+    napi_throw_error(env, ...); 
+    return; 
+} 
 
-```js
-// entry\src\main\cpp\types\libentry\index.d.ts
-// Declare the N-APIs exposed to ArkTS.
-export const add: (a: number, b: number) => number;
-export const nativeCallArkTS: (a: object) => number;
-``` 
+status = napi_set_named_property(env2, object, "foo", string); 
+if (status != napi_ok) { 
+    napi_throw_error(env, ...); 
+    return; 
+}
+```
 
-## Development Guidelines
 
-### Registration
+JS objects belong to a specific napi_env. Therefore, you cannot set an object of env1 to an object of env2. If the object of env1 is accessed in env2, the application may crash.
 
-* To prevent conflicts with symbols in the .so file, add "static" to the function (such as the Init function) corresponding to **nm_register_func**. 
-* The entry of module registration, that is, the function name modified by **\_\_attribute\_\_((constructor))** (for example, the **RegisterHelloModule** function), must be unique.
 
-### .so Naming Rules
+## Exception Handling
 
-The .so file names must comply with the following rules:
+**[Suggestion]** Any exception occurred in a Node-API should be handled in a timely manner. Otherwise, unexpected behavior may occur in your application.
 
-* Each module has a .so file.
-* The **nm_modname** field in **napi_module** must be the same as the module name. For example, if the module name is **hello**, name the .so file **libhello.so**. The sample code for importing the .so file is **import hello from 'libhello.so'**.
 
-### Constraints on JS Object Threads
+**Example (correct)**:
 
-The ArkCompiler protects JS object threads. Improper use may cause an application crash. Observe the following rules:
 
-* The N-APIs can be used only by JS threads.
-* **env** is bound to a thread and cannot be used across threads. The JS object created by an N-API can be used only in the thread, in which the object is created, that is, the JS object is bound to the **env** of the thread.
+```
+// 1. Create an object.
+napi_status status = napi_create_object(env, &object); 
+if (status != napi_ok) { 
+    napi_throw_error(env, ...); 
+    return;
+} 
+// 2. Create an attribute.
+status = napi_create_string_utf8(env, "bar", NAPI_AUTO_LENGTH, &string); 
+if (status != napi_ok) { 
+    napi_throw_error(env, ...); 
+    return; 
+} 
+// 3. Set the result of step 2 to the value of the object attribute foo.
+status = napi_set_named_property(env, object, "foo", string); 
+if (status != napi_ok) { 
+    napi_throw_error(env, ...); 
+    return; 
+}
+```
 
-### Header File Import
 
-Import **napi/native_api.h**. Otherwise, an error indicating that the N-API cannot be found will be reported.
+In this example, if an exception occurs in step 1 or step 2, step 3 will not be performed. Step 3 will be performed only when napi_ok is returned in steps 1 and 2.
+
+
+## Asynchronous Tasks
+
+**[Rule]** When the **uv_queue_work** method is called to throw a task to a JS thread for execution, add **napi_handle_scope** to manage the lifecycle of **napi_value** created by the JS callback.
+
+
+The Node-API framework will not be used when the **uv_queue_work** method is called. In this case, you need to use **napi_handle_scope** to manage the lifecycle of **napi_value**.
+
+
+**Example (correct)**:
+
+
+```
+void callbackTest(CallbackContext* context) 
+{ 
+    uv_loop_s* loop = nullptr; 
+    napi_get_uv_event_loop(context->env, &loop); 
+    uv_work_t* work = new uv_work_t; 
+    context->retData = 1; 
+    work->data = (void*)context; 
+    uv_queue_work( 
+        loop, work, [](uv_work_t* work) {}, 
+        // using callback function back to JS thread 
+        [](uv_work_t* work, int status) { 
+            CallbackContext* context = (CallbackContext*)work->data; 
+            napi_handle_scope scope = nullptr; napi_open_handle_scope(context->env, &scope); 
+            if (scope == nullptr) { 
+                return; 
+            } 
+            napi_value callback = nullptr; 
+            napi_get_reference_value(context->env, context->callbackRef, &callback); 
+            napi_value retArg; 
+            napi_create_int32(context->env, context->retData, &retArg); 
+            napi_value ret; 
+            napi_call_function(context->env, nullptr, callback, 1, &retArg, &ret); 
+            napi_delete_reference(context->env, context->callbackRef); 
+            napi_close_handle_scope(context->env, scope); 
+            if (work != nullptr) { 
+                delete work; 
+            } 
+            delete context; 
+        } 
+    ); 
+}
+```
+
+
+## Object Binding
+
+**[Rule]** If the value of the last parameter **result** is not **nullptr** in **napi_wrap()** , you need to use **napi_remove_wrap()** at a proper time to delete the created **napi_ref**.
+
+The **napi_wrap** interface is defined as follows:
+
+```
+napi_wrap(napi_env env, napi_value js_object, void* native_object, napi_finalize finalize_cb, void* finalize_hint, napi_ref* result)
+```
+
+When the last parameter **result** is not empty, the framework creates an **napi_ref** object pointing to **js_object**. You need to manage the lifecycle of **js_object**. Specifically, you need to use **napi_remove_wrap** to delete **napi_ref** at a proper time so that GC can release **js_object** and trigger the destructor **finalize_cb** bound to the C++ object **native_object**.
+
+Generally, the last parameter **result** can directly pass in **nullptr** based on service requirements.
+
+**Example (correct)**:
+
+```
+// Usage 1: Pass in nullptr via the last parameter in napi_wrap. In this case, the created napi_ref is a weak reference, which is managed by the system and does not need manual release.
+napi_wrap(env, jsobject, nativeObject, cb, nullptr, nullptr);
+
+// Usage 2: The last parameter in napi_wrap is not nullptr. In this case, the returned napi_ref is a strong reference and needs to be manually released. Otherwise, memory leakage may occur.
+napi_ref result; 
+napi_wrap(env, jsobject, nativeObject, cb, nullptr, &result);
+// When js_object and result are no longer used, call napi_remove_wrap to release result.
+napi_value result1; 
+napi_remove_wrap(env, jsobject, result1);
+```
+
+
+## Others
+
+**[Rule]** The third parameter **data** in the **napi_get_arraybuffer_info** interface is not allowed to release. The lifecycle of **data** is managed by the engine.
+
+The **napi_get_arraybuffer_info** interface is defined as follows:
+
+```
+napi_get_arraybuffer_info(napi_env env, napi_value arraybuffer, void** data, size_t* byte_length)
+```
+
+The parameter **data** specifies the buffer header pointer of ArrayBuffer. This buffer can be read and written in the given range but cannot be released. The buffer memory is managed by the ArrayBuffer Allocator in the engine and is released with the lifecycle of the JS object **ArrayBuffer**.
+
+**Example (incorrect)**:
+
+```
+void* arrayBufferPtr = nullptr;
+napi_value arrayBuffer = nullptr;
+size_t createBufferSize = ARRAY_BUFFER_SIZE;
+napi_status verification = napi_create_arraybuffer(env, createBufferSize, &arrayBufferPtr, &arrayBuffer);
+size_t arrayBufferSize;
+napi_status result = napi_get_arraybuffer_info(env, arrayBuffer, &arrayBufferPtr, &arrayBufferSize);
+delete arrayBufferPtr; // This operation is not allowed. The lifecycle of the created arrayBufferPtr is managed by the engine and cannot be manually deleted. Deleting arrayBufferPtr may cause a double free of the buffer.
+```
+
+**[Suggestion]** Properly use **napi_object_freeze** and **napi_object_seal**.
+
+**napi_object_freeze** is equivalent to **Object.freeze**. After an object is frozen, all its attributes are immutable. **napi_object_seal** is equivalent to **Object.seal**. After an object is sealed, no attributes can be added or deleted, but the attribute values are mutable.
+
+Ensure that you know the difference between the preceding semantics. If the semantics are violated in strict mode (default), an error will be thrown.

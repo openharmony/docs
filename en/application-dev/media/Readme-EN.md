@@ -91,5 +91,5 @@
     - [PixelMap Data Processing (C/C++)](image-pixelmap-operation-native.md)
     - [PixelMap Operation (ArkTS)](image-pixelmap-operation.md)
   - [Image Encoding (ArkTS)](image-encoding.md)
+  - [Image Encoding (C/C++)](image-encoding-native.md)
   - [Image Tool (ArkTS)](image-tool.md)
-

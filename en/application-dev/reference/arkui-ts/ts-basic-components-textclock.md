@@ -31,7 +31,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name  | Type| Description                                                        |
 | ------ | -------- | ------------------------------------------------------------ |
 | format | string   | Time format.<br>**y**: year (yyyy indicates the complete year, and yy indicates the last two digits of the year.)<br>**M**: month (To display 01 for January, use **MM** instead.)<br>**d**: day (To display 01 for the first day, use **dd** instead.)<br>**E**: day of week (To display the full name, use **EEEE**; to display the abbreviation, use **E**, **EE**, or **EEE**.)<br>**H**: hour (24-hour format)    **h**: hour (12-hour format)<br>**m**: minute<br>**s**: second<br>**SS**: centisecond (If the number of the uppercase letter S is less than 3, the part is processed as centiseconds.)<br>**SSS**: millisecond (If the number of the uppercase letter S is greater than or equal to 3, the part is processed as milliseconds.)<br>**a**: morning/afternoon (This parameter does not take effect when the hour part is set to **H**.)<br>Separators: slashes (/), hyphens (-), dots (.), or any custom characters (which cannot be letters) used to separate the parts of the date<br>The parts of the date can be used alone or combined with each other as needed. The time can be updated as frequent as once per second. As such, whenever possible, avoid setting the centisecond and millisecond parts separately.<br>When an invalid letter is set, the letter is ignored. If the value contains only invalid letters, the time will be displayed in the format of yyyy/MM/dd aa hh:mm:ss.SSS.<br>If **format** is left empty or set to **undefined**, the default value will be used.<br><br>- Default value for non-widgets: aa hh:mm:ss<br>- Default value for widgets: hh:mm<br>- When used in a widget, the minimum time unit is minute. In this case, if the format contains seconds or centiseconds, the default value will be used.<br>Since API version 11, this API is supported in ArkTS widgets.|
-| textShadow<sup>11+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) | Text shadow.<br>**NOTE**<br>This API does not work with the **fill** attribute. It supports input parameters in an array to implement multiple text shadows.<br>Since API version 11, this API is supported in ArkTS widgets.|
+| textShadow<sup>11+</sup>  |  [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| Array&lt;[ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions)> | Text shadow. It supports input parameters in an array to implement multiple text shadows.<br>**NOTE**<br>This API does not work with the **fill** attribute or coloring strategy.<br>Since API version 11, this API is supported in ArkTS widgets.|
 | fontFeature<sup>11+</sup> | string   | Font feature, for example, monospaced digits.<br>Format: normal \| \<feature-tag-value\><br>- The format of \<feature-tag-value\> is \<string\> \[ \<integer\>\| on \| off ]<br>- There can be multiple \<feature-tag-value\> values, which are separated by commas (,).<br>For example, the input format of the monospaced clock numbers is "ss01" on.<br>Since API version 11, this API is supported in ArkTS widgets.|
 
 The following table shows how different settings of **format** work out.
@@ -105,7 +105,7 @@ Stops the **<TextClock\>** component.
 Since API version 11, this API is supported in ArkTS widgets.
 
 ## Example
-
+### Example 1
 ```ts
 @Entry
 @Component
@@ -143,3 +143,20 @@ struct Second {
 }
 ```
 ![text_clock](figures/text_clock.gif)
+
+### Example 2
+``` ts
+@Entry
+@Component
+struct TextClockExample {
+  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
+      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
+      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  build() {
+    Column({ space: 8 }) {
+      TextClock().fontSize(50).textShadow(this.textShadows)
+    }
+  }
+}
+```
+![TextshadowExample](figures/text_clock_textshadow.png)

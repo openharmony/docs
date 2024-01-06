@@ -1,6 +1,6 @@
 # NavDestination
 
-**\<NavDestination>** is a child component of the **\<NavRouter>** component and represents a destination in the navigation area.
+**\<NavDestination>** is the root container of a destination page and represents the content area of the [\<Navigation>](ts-basic-components-navigation.md) component.
 
 > **NOTE**
 >
@@ -33,8 +33,12 @@ In addition to the [backgroundColor](ts-universal-attributes-background.md) attr
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 
-| Name                                      | Description                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| onShown(callback: () =&gt; void)<sup>10+</sup> | Called when the navigation destination page is displayed.|
-| onHidden(callback: () =&gt; void)<sup>10+</sup> | Called when the navigation destination page is hidden.|
+| Name                                                    | Description                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| onShown(callback: () =&gt; void)<sup>10+</sup>          | Called when the navigation destination page is displayed.    |
+| onHidden(callback: () =&gt; void)<sup>10+</sup>         | Called when the navigation destination page is hidden.       |
 | onBackPressed(callback: () =&gt; boolean)<sup>10+</sup> | Called when the back button is pressed.<br>The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed. |
+
+## Example
+
+For details, see [Example in Navrouter](ts-basic-components-navrouter.md#example).

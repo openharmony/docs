@@ -6,13 +6,19 @@
 >
 >  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## onKeyEvent
 
+onKeyEvent(event: (event: KeyEvent) => void)
 
-## 事件
+绑定该方法的组件获焦后，按键动作触发该回调。
 
-| 名称                                       | 支持冒泡 | 功能描述                                     |
-| ---------------------------------------- | ---- | ---------------------------------------- |
-| onKeyEvent(event:&nbsp;(event?:&nbsp;KeyEvent)&nbsp;=&gt;&nbsp;void) | 是    | 绑定该方法的组件获焦后，按键动作触发该回调，event返回值见[KeyEvent](#keyevent对象说明)介绍。 |
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| event  | [KeyEvent](#keyevent对象说明) | 否   | 获得KeyEvent对象。 |
 
 
 ## KeyEvent对象说明
@@ -20,7 +26,7 @@
 | 名称                                    | 类型                                       | 描述                         |
 | ------------------------------------- | ---------------------------------------- | -------------------------- |
 | type                                  | [KeyType](ts-appendix-enums.md#keytype)  | 按键的类型。                     |
-| [keyCode](../apis/js-apis-keycode.md) | number                                   | 按键的键码。                     |
+| [keyCode](../apis/js-apis-keycode.md#keycode) | number                                   | 按键的键码。                     |
 | keyText                               | string                                   | 按键的键值。                     |
 | keySource                             | [KeySource](ts-appendix-enums.md#keysource) | 触发当前按键的输入设备类型。             |
 | deviceId                              | number                                   | 触发当前按键的输入设备ID。             |

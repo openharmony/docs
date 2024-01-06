@@ -3,9 +3,9 @@
 
 ## Overview
 
-A list is a container that displays a collection of items. If the list items go beyond the screen, the list can scroll to reveal the content off the screen. A list is applicable for presenting similar data types or data type sets, such as images and text. For example, it can be used to present a collection of contacts, songs, and items to shop.
+A list is a container that displays a collection of items. If the list items go beyond the screen, the list can scroll to reveal the content off the screen. The list is applicable for presenting similar data types or data type sets, such as images and text. Some common lists seen in applications are the contacts list, playlist, and shopping list.
 
-Use lists to easily and efficiently display structured, scrollable information. You can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-ifelse.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
+You can use lists to easily and efficiently display structured, scrollable information. Specifically, you can provide a single view of rows or columns by arranging the [\<ListItemGroup>](../reference/arkui-ts/ts-container-listitemgroup.md) or [\<ListItem>](../reference/arkui-ts/ts-container-listitem.md) child components linearly in a vertical or horizontal direction in the [\<List>](../reference/arkui-ts/ts-container-list.md) component, or use [ForEach](../quick-start/arkts-rendering-control-foreach.md) to iterate over a group of rows or columns, or mix any number of single views and **ForEach** structures to build a list. The **\<List>** component supports the generation of child components in various [rendering](../quick-start/arkts-rendering-control-ifelse.md) modes, including conditional rendering, rendering of repeated content, and lazy data loading.
 
 
 ## Layout and Constraints
@@ -85,7 +85,7 @@ To create a horizontal scrolling list, set the **listDirection** attribute to **
 
 ```ts
 List() {
-  ...
+  // ...
 }
 .listDirection(Axis.Horizontal)
 ```
@@ -100,7 +100,7 @@ The lanes attribute of the **\<List>** component is useful in building a list th
 
 ```ts
 List() {
-  ...
+  // ...
 }
 .lanes(2)
 ```
@@ -109,11 +109,17 @@ If set to a value of the LengthConstrain type, the **lanes** attribute determine
 
 
 ```ts
-let mn:LengthConstrain = { 'minLength': 200,'maxLength': 300}
-List() {
-  ...
+@Entry
+@Component
+struct EgLanes {
+  @State egLanes: LengthConstrain = { minLength: 200, maxLength: 300 }
+  build() {
+    List() {
+      // ...
+    }
+    .lanes(this.egLanes)
+  }
 }
-.lanes(mn)
 ```
 
 For example, if the **lanes** attribute is set to **{ minLength: 200, maxLength: 300 }** for a vertical list, then:
@@ -127,7 +133,7 @@ With regard to a vertical list, when the **alignListItem** attribute is set to *
 
 ```ts
 List() {
-  ...
+  // ...
 }
 .alignListItem(ListItemAlign.Center)
 ```
@@ -165,7 +171,7 @@ struct CityList {
 }
 ```
 
-Each **\<ListItem>** component can contain only one root child component. Therefore, it does not allow use of child components in tile mode. If tile mode is required, you need to encapsulate the child components into a container or create a custom component.
+Each **\<ListItem>** component can contain only one root child component. Therefore, it does not allow for child components in tile mode. If tile mode is required, encapsulate the child components into a container or create a custom component.
 
   **Figure 8** Example of a contacts list 
 
@@ -211,8 +217,6 @@ Compared with a static list, a dynamic list is more common in applications. You 
 
 
 ```ts
-
-
 import util from '@ohos.util';
 
 class Contact {
@@ -229,7 +233,7 @@ class Contact {
 @Entry
 @Component
 struct SimpleContacts {
-  private contacts:Array<object> = [
+  private contacts: Array<object> = [
     new Contact ('Tom', $r ("app.media.iconA")),
     new Contact ('Tracy', $r ("app.media.iconB")),
   ]
@@ -248,7 +252,7 @@ struct SimpleContacts {
           .width('100%')
           .justifyContent(FlexAlign.Start)
         }
-      }, (item:Contact) => item.key.toString())
+      }, (item: Contact) => item.key.toString())
     }
     .width('100%')
   }
@@ -268,7 +272,7 @@ When initializing a list, you can use the **space** parameter to add spacing bet
 
 ```ts
 List({ space: 10 }) {
-  ...
+  // ...
 }
 ```
 
@@ -281,30 +285,36 @@ A divider separates UI items to make them easier to identify. In the following f
 
 ![en-us_image_0000001511580960](figures/en-us_image_0000001511580960.png)
 
-To add dividers between items in a **\<List>** component, you can use its **divider** attribute, sprucing up the dividers with the following style attributes:<br> **strokeWidth** and **color**: indicate the stroke width and color of the diver, respectively.
+To add dividers between list items, you can use the **divider** attribute together with the following style attributes:<br> **strokeWidth** and **color**: stroke width and color of the diver, respectively.
 
-**startMargin** and **endMargin**: indicate the distance between the divider and the start edge and end edge of the list, respectively.
+**startMargin** and **endMargin**: distance between the divider and the start edge and end edge of the list, respectively.
 
 
 ```ts
-class dividerTmp{
+class DividerTmp {
   strokeWidth: Length = 1
   startMargin: Length = 60
   endMargin: Length = 10
-  color: ResourceColor ='#ffe9f0f0'
+  color: ResourceColor = '#ffe9f0f0'
 
-  constructor(strokeWidth: Length,startMargin: Length,endMargin: Length,color: ResourceColor) {
+  constructor(strokeWidth: Length, startMargin: Length, endMargin: Length, color: ResourceColor) {
     this.strokeWidth = strokeWidth
     this.startMargin = startMargin
     this.endMargin = endMargin
     this.color = color
   }
 }
-let opt:dividerTmp = new dividerTmp(1,60,10,'#ffe9f0f0')
-List() {
-  ...
+@Entry
+@Component
+struct EgDivider {
+  @State egDivider: DividerTmp = new DividerTmp(1, 60, 10, '#ffe9f0f0')
+  build() {
+    List() {
+      // ...
+    }
+    .divider(this.egDivider)
+  }
 }
-.divider(opt)
 ```
 
 This example draws a divider with a stroke thickness of 1 vp from a position 60 vp away from the start edge of the list to a position 10 vp away from the end edge of the list. The effect is shown in Figure 9.
@@ -328,10 +338,10 @@ When the total height (width) of list items exceeds the screen height (width), t
 
 When using the **\<List>** component, you can use the **scrollBar** attribute to control the display of the list scrollbar. The value type of **scrollBar** is [BarState](../reference/arkui-ts/ts-appendix-enums.md#barstate). When the value is **BarState.Auto**, the scrollbar is displayed as required: It is displayed when the scrollbar area is touched and becomes thicker when being dragged; it automatically disappears after 2 seconds of inactivity.
 
-
+The default value of the **scrollBar attribute** is **BarState.Off** in API version 9 and earlier versions and **BarState.Auto** since API version 10.
 ```ts
 List() {
-  ...
+  // ...
 }
 .scrollBar(BarState.Auto)
 ```
@@ -378,65 +388,7 @@ struct ContactsList {
 }
 ```
 
-If the structures of multiple **\<ListItemGroup>** components are similar, you can combine the data of these components into an array and use **ForEach** to render them cyclically. For example, in the contacts list, the **contacts** data of each group (for details, see [Iterating List Content](#iterating-list-content)) and the **title** data of the corresponding group are combined and defined as the **contactsGroups** array.
-
-
-```ts
-class cgtmp{
-  title:string = ''
-  contacts:Array<object>|null = null
-}
-export let contactsGroups: object[] = [
-  {
-    title: 'A',
-    contacts: [
-      new Contact('Alice', $r('app.media.iconA')),
-      new Contact ('Ann', $r ('app.media.iconB')),
-      new Contact('Angela', $r('app.media.iconC')),
-    ],
-  } as cgtmp,
-  {
-    title: 'B',
-    contacts: [
-      new Contact ('Ben', $r ('app.media.iconD')),
-      new Contact ('Bryan', $r ('app.media.iconE')),
-    ],
-  } as cgtmp,
-]
-```
-
-Then, with rendering of **contactsGroups** in **ForEach**, a contact list with multiple groups is implemented.
-
-
-```ts
-class cgtmpf{
-  title:string = ''
-  contacts:Array<object>|null = null
-  key:string = ''
-}
-class heF{
-  itemHead:Function = (text: string) => {}
-  foo(val:string){
-    this.itemHead(val)
-  }
-}
-let fff:heF = this.heF()
-List() {
-  // Render the <ListItemGroup> components cyclically. contactsGroups is the data set of contacts and titles of multiple groups.
-  ForEach(contactsGroups, (item: cgtmpf) => {
-    ListItemGroup({ header: fff(item.title) }) {
-      // Render <ListItem> components cyclically.
-      if (item.contacts) {
-        ForEach(item.contacts, () => {
-          ListItem() {
-          }
-        }, (item: cgtmpf) => item.key.toString())
-      }
-    }
-  })
-}
-```
-
+If the structures of multiple **\<ListItemGroup>** components are similar, you can combine the data of these components into an array and use **ForEach** to render them cyclically. For example, in the contacts list, the **contacts** data of each group (for details, see [Iterating List Content](#iterating-list-content)) and the **title** data of the corresponding group are combined and defined as the **contactsGroups** array. Then, with rendering of **contactsGroups** in **ForEach**, a contact list with multiple groups is implemented. For details, see the example in [Adding a Sticky Header](#adding-a sticky-header).
 
 ## Adding a Sticky Header
 
@@ -455,11 +407,6 @@ Setting the **sticky** attribute to **StickyStyle.Header** implements a sticky h
 
 ```ts
 import util from '@ohos.util';
-class cgtmpf{
-  title:string = ''
-  contacts:Array<object>|null = null
-  key:string = ''
-}
 class Contact {
   key: string = util.generateRandomUUID(true);
   name: string;
@@ -470,6 +417,11 @@ class Contact {
     this.icon = icon;
   }
 }
+class ContactsGroup {
+  title: string = ''
+  contacts: Array<object> | null = null
+  key: string = ""
+}
 export let contactsGroups: object[] = [
   {
     title: 'A',
@@ -478,20 +430,22 @@ export let contactsGroups: object[] = [
       new Contact ('Ann', $r ('app.media.iconB')),
       new Contact('Angela', $r('app.media.iconC')),
     ],
-  } as cgtmpf,
+    key: util.generateRandomUUID(true)
+  } as ContactsGroup,
   {
     title: 'B',
     contacts: [
       new Contact ('Ben', $r ('app.media.iconD')),
       new Contact ('Bryan', $r ('app.media.iconE')),
     ],
-  } as cgtmpf,
+    key: util.generateRandomUUID(true)
+  } as ContactsGroup,
+  // ...
 ]
 @Entry
 @Component
 struct ContactsList {
   // Define the contactsGroups array.
-
   @Builder itemHead(text: string) {
     // Header of the list group, corresponding to the group A and B locations.
     Text(text)
@@ -500,23 +454,22 @@ struct ContactsList {
       .width('100%')
       .padding(5)
   }
-
   build() {
     List() {
       // Render the <ListItemGroup> components cyclically. contactsGroups is the data set of contacts and titles of multiple groups.
-      ForEach(contactsGroups, (item:cgtmpf) => {
-        ListItemGroup({ header: this.itemHead(item.title) }) {
+      ForEach(contactsGroups, (itemGroup: ContactsGroup) => {
+        ListItemGroup({ header: this.itemHead(itemGroup.title) }) {
           // Render <ListItem> components cyclically.
-          if(item.contacts){
-            ForEach(item.contacts, () => {
+          if (itemGroup.contacts) {
+            ForEach(itemGroup.contacts, (item: Contact) => {
               ListItem() {
+                // ...
               }
-            }, (item:cgtmpf) => item.key.toString())
+            }, (item: Contact) => item.key.toString())
           }
         }
-      })
-    }
-    .sticky(StickyStyle.Header) // Set a sticky header.
+      }, (itemGroup: ContactsGroup) => itemGroup.key.toString())
+    }.sticky(StickyStyle.Header)  // Set a sticky header.
   }
 }
 ```
@@ -536,29 +489,28 @@ First, you need to create a **Scroller** object **listScroller**.
 
 
 ```ts
-export let listScroller: Scroller = new Scroller();
+private listScroller: Scroller = new Scroller();
 ```
 
 Then, use **listScroller** to initialize the **scroller** parameter to bind it with the **\<List>** component. Set **scrollToIndex** to **0**, meaning to return to the top of the list.
 
 
 ```ts
-let sttmo:Record<string,Alignment> = { 'alignContent': Alignment.BottomEnd }
-Stack(sttmo) {
+Stack({ alignContent: Alignment.Bottom }) {
   // use listScroller to initialize the scroller parameter to bind it with the <List> component.
   List({ space: 20, scroller: this.listScroller }) {
-    ...
+    // ...
   }
-  ...
+  // ...
 
   Button() {
-    ...
+    // ...
   }
   .onClick(() => {
     // Specify where e to jump when the specific button is clicked, which is the top of the list in this example.
-    listScroller.scrollToIndex(0)
+    this.listScroller.scrollToIndex(0)
   })
-  ...
+  // ...
 }
 ```
 
@@ -609,160 +561,74 @@ struct ContactsList {
 
 ## Responding to Swipe on List Items
 
-Swipe menus are common in many applications. For example, a messaging application generally provides a swipe-to-delete feature for its message list. This feature allows users to delete a message by swiping left on it in the list and touching the delete button, as shown in the following figure.
+Swipe menus are common in many applications. For example, a messaging application generally provides a swipe-to-delete feature for its message list. This feature allows users to delete a message by swiping left on it and touching the delete button, as shown in the following figure. For details about how to add a badge to the profile picture of a list item, see [Adding a Badge to a List Item](#adding-a-badge-to-a-list-item).
 
 **Figure 15** Swipe-to-delete feature 
 
 ![en-us_image_0000001563060773](figures/en-us_image_0000001563060773.gif)
 
-To implement the swipe feature, you can use the **swipeAction** attribute of **\<ListItem>**. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item slides right, and the **end** parameter indicates the component that appears from the end edge when the list item slides left.
+The swipeAction attribute (../reference/arkui-ts/ts-container-listitem.md# attribute) of a list item can be used to implement the function of sliding a list item leftwards or rightwards. In initialization of the **swipeAction** attribute, the **SwipeActionOptions** parameter is mandatory, wherein the **start** parameter indicates the component that appears from the start edge when the list item is swiped right, and the **end** parameter indicates the component that appears from the end edge when the list item is swiped left.
 
 In the example of the message list, the **end** parameter is set to a custom delete button. In initialization of the **end** attribute, the index of the sliding list item is passed to the delete button. When the user touches the delete button, the data corresponding to the list item is deleted based on the index.
 
-1. Define the list item style.
+1. Build the component that appears from the end edge when the list item is swiped left.
 
-   ```ts
-   @Component
-   export struct ChatItemStyle{
-    WeChatImage: string;
-    WeChatName: string;
-    ChatInfo: string;
-    time: string;
-    
-    build() {
-      Column() {
-        Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.Start }) {...}
-        .height(80)
-        .width('100%')
+    ```ts
+    @Builder itemEnd(index: number) {
+      // Build the component that appears from the end edge when the list item is swiped left.
+      Button({ type: ButtonType.Circle }) {
+        Image($r('app.media.ic_public_delete_filled'))
+          .width(20)
+          .height(20)
       }
+      .onClick(() => {
+        // this.messages is the list data source, which can be constructed as required. A specified data item can be deleted from the data source upon click.
+        this.messages.splice(index, 1);
+      })
     }
-   }
-   ```
-2. Define the list item data structure.
+    ```
 
-   ```ts
-   let personId = 0;
+2. Binds the **swipeAction** attribute to a list item that can be swiped left.
 
-   export class Person = {
-    id: string;
-    WeChatImage: string;
-    WeChatName: string;
-    ChatInfo: string;
-    time: string;
-
-    construct(WeChatImage: string, WeChatName: string, ChatInfo: string, time: string){
-      this.id = `${personId++}`
-      this.WeChatImage = WeChatImage;
-      this.WeChatName = WeChatName;
-      this.ChatInfo = ChatInfo;
-      this.time = time;
+    ```ts
+    // When constructing a list, use ForEach to render list items based on the data source this.messages.
+    ListItem() {
+      // ...
     }
-   }
-    
-   ```
-3. Initialize the message list data.
+    .swipeAction({
+      end: {
+        // index is the index of the list item.
+        builder: () => { this.itemEnd(index) },
+      }
+    }) // Set the swipe action.
+    ```
 
-   ```ts
-   export const ContactInfo: any[] = [
-    {
-      "WeChatImage":"iconB.png",
-      "WeChatName":"Ann",
-      "ChatInfo":"Ready for lunch?",
-      "time":"10:30"
-    },
-    {
-      "WeChatImage":"iconC.png",
-      "WeChatName":"Angela",
-      "ChatInfo":"Hahaha",
-      "time":"10:28"
-    },
-    {
-      "WeChatImage":"iconD.png",
-      "WeChatName":"Bryan",
-      "ChatInfo":"Thank you."
-      "time":"10:27"
-    }
-   ]
+## Adding a Badge to a List Item
 
-   export function getContactInfo(): Array<Person> {
-    let contactList: Array<Person> = []
+A badge is an intuitive, unobtrusive visual indicator to draw attention and convey a specific message. For example, a badge can be displayed in the upper right corner of the contact's profile picture to indicate that there is a new message from that contact, as shown in the following figure.
 
-    ContactInfo.forEach((item:Person) => {
-      contactList.push(new Person(item.WeChatImage,item.WeChatName,item.ChatInfo,item.time))
-    })
-   }
-
-   export const WeChatColor:string = "#cccccc"
-   ```
-
-4. Build the list layout and list items.
-
-   ```ts
-   @Entry
-   @Component
-   struct MessageList {
-     @State messages: Person[] = getContactInfo()
-     @State markedIndex: number = 0
-
-     @Builder itemEnd(index: number) {
-       // Set the component that appears from the end edge when the list item slides left.
-       Button({ type: ButtonType.Circle }) {
-         Image($r('app.media.ic_public_delete_filled'))
-           .width(20)
-           .height(20)
-       }
-       .onClick(() => {
-         this.messages.splice(index, 1);
-       })
-     }
-
-     build() {
-         List() {
-           ForEach(this.messages, (item:Person, index:number|undefined) => {
-             if(index){
-               ListItem() {
-                 ChatItemStyle({
-                   this.WeChatImage = WeChatImage,
-                   this.WeChatName = WeChatName,
-                   this.ChatInfo = ChatInfo,
-                   this.time = time,
-                   markedIndex: (index === 1 ? 1 : 0)
-                 })
-               }
-               .swipeAction({end: this.itemRnd.bind(this, index)}) // Set the swipe action.
-             }
-           }, (item:Person) => item.id.toString())
-         }
-     }
-   }
-   ```
-
-
-## Adding a Mark to a List Item
-
-A mark is an intuitive, unobtrusive visual indicator to draw attention and convey a specific message. For example, when a new message is received in the message list, a mark is displayed in the upper right corner of the contact's profile picture, indicating that there is a new message from that contact, as shown in the following figure.
-
-  **Figure 16** Adding a mark to a list item 
+  **Figure 16** Adding a badge to a list item 
 
 ![en-us_image_0000001511580952](figures/en-us_image_0000001511580952.png)
 
-To add a mark, you can use the [\<Badge>](../reference/arkui-ts/ts-container-badge.md) component in **\<ListItem>**. The **\<Badge>** component is a container that can be attached to another component for tagging.
+To add a badge, use the [\<Badge>](../reference/arkui-ts/ts-container-badge.md) component in **\<ListItem>**. The **\<Badge>** component is a container that can be attached to another component for tagging.
 
 In this example, when implementing the **\<Image>** component for presenting the profile picture of a list item, add it to **\<Badge>** as a child component.
 
-In the **\<Badge>** component, the **count** and **position** parameters are used to set the number of notifications and the position to display the badge, respectively. You can also use the **style** parameter to spruce up the mark.
+In the **\<Badge>** component, the **count** and **position** parameters are used to set the number of notifications and the position to display the badge, respectively. You can also use the **style** parameter to spruce up the badge.
 
 
 ```ts
-Badge({
-  count: 1,
-  position: BadgePosition.RightTop,
-  style: { badgeSize: 16, badgeColor: '#FA2A2D' }
-}) {
-  // The <Image> component implements the contact profile picture.
-  ...
+ListItem() {
+  Badge({
+    count: 1,
+    position: BadgePosition.RightTop,
+    style: { badgeSize: 16, badgeColor: '#FA2A2D' }
+  }) {
+    // The <Image> component implements the contact profile picture.
+    // ...
+  }
 }
-...
 ```
 
 
@@ -777,6 +643,8 @@ The following describes the implementation of the pull-and-refresh feature:
 2. Listen for the finger movement event, and record and calculate the difference between the value of the current position and the initial value. If the difference is greater than 0, the finger moves downward. Set the maximum value for the movement.
 
 3. Listen for the finger lift event. If the movement reaches the maximum value, trigger data loading and display the refresh view. After the loading is complete, hide the view.
+
+  
 
 
 ## Editing a List
@@ -803,7 +671,7 @@ The process of implementing the addition feature is as follows:
    import util from '@ohos.util';
 
    export class ToDo {
-     key: string = util.generateRandomUUID(true)
+     key: string = util.generateRandomUUID(true);
      name: string;
 
      constructor(name: string) {
@@ -816,37 +684,40 @@ The process of implementing the addition feature is as follows:
 
    ```ts
    //ToDoListItem.ets
+   import { ToDo } from './ToDo';
    @Component
-   export class ToDoListItem {
+   export struct ToDoListItem {
      @Link isEditMode: boolean
      @Link selectedItems: ToDo[]
-     private toDoItem: ToDo;
-
-     hasBeenSelected(): boolean{
-      return this.selectedItems.IndexOf(this.toDoItem) != -1
-     }
+     private toDoItem: ToDo = new ToDo("");
 
      build() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }){...}
+      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+        // ...
+      }
       .width('100%')
       .height(80)
-      padding({...})
+      // .padding(): Set this parameter based on the use case.
       .borderRadius(24)
-      .linearGradient({...})
+      // .linearGradient(): Set this parameter based on the use case.
       .gesture(
         GestureGroup(GestureMode.Exclusive,
         LongPressGesture()
-          .onAction(() => {...})
+          .onAction(() => {
+            // ...
+          })
         )
       )
      }
    }
    ```
 
-3. Initialize the to-do list data and options. Then, build the list layout and list items.
+3. Initialize the to-do list data and available items, and build the list layout and list items.
 
    ```ts
    //ToDoList.ets
+   import { ToDo } from './ToDo';
+   import { ToDoListItem } from './ToDoListItem';
    @Entry
    @Component
    struct ToDoList {
@@ -881,26 +752,30 @@ The process of implementing the addition feature is as follows:
                  TextPickerDialog.show({
                    range: this.availableThings,
                    onAccept: (value: TextPickerResult) => {
-                   this.toDoData.push(new ToDo(this.availableThings[value.index])); // Add list item data (toDoData).
+                   let arr = Array.isArray(value.index)?value.index:[value.index];
+                   for(let i = 0; i < arr.length; i++) {
+                      this.toDoData.push(new ToDo(this.availableThings[arr[i]])); // Add to-do list items (available items).
+                   }
                  },
                })
              })
            }
-         }
-       }
-     }
-     List({ space: 10 }) {
-       ForEach(this.toDoData, (toDoItem:ToDo) => {
-         ListItem() {
-           // Place each item of toDoData into the list item in the form of model.
-           isEditMode: $isEditMode,
-           toDoItem: toDoItem,
-           selectedItems: $selectedItems
-         }
-       }, (toDoItem:ToDo) => toDoItem.key.toString())
-     }
-   }
-   ```
+            List({ space: 10 }) {
+              ForEach(this.toDoData, (toDoItem: ToDo) => {
+                ListItem() {
+                  // Place each item of toDoData into the list item in the form of model.
+                  ToDoListItem({
+                    isEditMode: this.isEditMode,
+                    toDoItem: toDoItem,
+                    selectedItems: this.selectedItems })
+                }
+              }, (toDoItem: ToDo) => toDoItem.key.toString())
+            }
+          }
+        }
+      }
+    }
+    ```
 
 
 
@@ -918,103 +793,120 @@ The process of implementing the deletion feature is as follows:
 1. Generally, the deletion feature is available only after the list enters the editing mode. Therefore, the entry to the editing mode needs to be provided.
    In this example, by listening for the long press event of a list item, the list enters the editing mode when the user long presses a list item.
 
-  ```ts
-  class todoTmp{
-    isEditMode:boolean = false
-    selectedItems:Array<object> = []
-    toDoItem:ToDo[] = [];
-    toDoData:ToDo[] = [];
-  }
-  let todolist:todoTmp = new todoTmp()
-   // ToDoListItem.ets
+    ```ts
+    // Structure reference
+    export class ToDo {
+      key: string = util.generateRandomUUID(true);
+      name: string;
+      toDoData: ToDo[] = [];
 
-  Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-    ...
-  }
-  .gesture(
-  GestureGroup(GestureMode.Exclusive,
-    LongPressGesture()
-      .onAction(() => {
-        if (!todolist.isEditMode) {
-          todolist.isEditMode = true; // Enter the editing mode.
-          todolist.selectedItems.push(todolist.toDoItem); // Record the list item selected when the user long presses the button.
-        }
-      })
-    )
-  )
-  ```
-
-2. Respond to the selection by the user and record the list items to be deleted.
-   In this example of the to-do list, respond to the selection by correctly displaying the check mark and record all the selected list items.
-
-  ```ts
-  import util from '@ohos.util';
-  export class ToDo {
-    key: string = util.generateRandomUUID(true);
-    name: string;
-    toDoData:ToDo[] = [];
-
-    constructor(name: string) {
-      this.name = name;
+      constructor(name: string) {
+        this.name = name;
+      }
     }
-  }
-  class todoTmp{
-    isEditMode:boolean = false
-    selectedItems:Array<object> = []
-    toDoItem:ToDo[] = [];
-    toDoData:ToDo[] = [];
-  }
-  let todolist:todoTmp = new todoTmp()
-   // ToDoListItem.ets
-
-  if (todolist.isEditMode) {
-    Checkbox()
-      .onChange((isSelected) => {
-        if (isSelected) {
-          todolist.selectedItems.push(todolist.toDoItem) // When an item is selected, record the selected item.
-        } else {
-          let index = todolist.selectedItems.indexOf(todolist.toDoItem)
-          if (index !== -1) {
-            todolist.selectedItems.splice(index, 1) // When an item is deselected, delete the item from the selectedItems array.
+    class TodoTmp {
+      isEditMode: boolean = false
+      selectedItems: Array<object> = []
+      toDoItem: ToDo[] = [];
+      toDoData: ToDo[] = [];
+    }
+    let todolist: TodoTmp = new TodoTmp()
+    // ToDoListItem.ets
+    ```
+    ```ts
+    // Implementation reference
+    Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+      // ...
+    }
+    .gesture(
+    GestureGroup(GestureMode.Exclusive,
+      LongPressGesture()
+        .onAction(() => {
+          if (!todolist.isEditMode) {
+            todolist.isEditMode = true; // Enter the editing mode.
+            todolist.selectedItems.push(todolist.toDoItem); // Record the list item selected when the user long presses the button.
           }
-        }
-      })
-  }
-  ```
+        })
+      )
+    )
+    ```
+
+2. Respond to the user's selection and record the list items to be deleted.
+   In this example of the to-do list, the list items are selected or unselected according to the user's selection.
+
+    ```ts
+    // Structure reference
+    import util from '@ohos.util';
+    export class ToDo {
+      key: string = util.generateRandomUUID(true);
+      name: string;
+      toDoData: ToDo[] = [];
+
+      constructor(name: string) {
+        this.name = name;
+      }
+    }
+    class TodoTmp {
+      isEditMode: boolean = false
+      selectedItems: Array<object> = []
+      toDoItem: ToDo[] = [];
+      toDoData: ToDo[] = [];
+    }
+    let todolist: TodoTmp = new TodoTmp()
+    // ToDoListItem.ets
+    ```
+    ```ts
+    // Implementation reference
+    if (todolist.isEditMode) {
+      Checkbox()
+        .onChange((isSelected) => {
+          if (isSelected) {
+            todolist.selectedItems.push(todolist.toDoItem) // When an item is selected, record the selected item.
+          } else {
+            let index = todolist.selectedItems.indexOf(todolist.toDoItem)
+            if (index !== -1) {
+              todolist.selectedItems.splice(index, 1) // When an item is deselected, delete the item from the selectedItems array.
+            }
+          }
+        })
+    }
+    ```
 
 3. Respond to the user's clicking the delete button and delete the corresponding items from the list.
 
-  ```ts
-  import util from '@ohos.util';
-  export class ToDo {
-    key: string = util.generateRandomUUID(true);
-    name: string;
-    toDoData:ToDo[] = [];
+    ```ts
+    // Structure reference
+    import util from '@ohos.util';
+    export class ToDo {
+      key: string = util.generateRandomUUID(true);
+      name: string;
+      toDoData: ToDo[] = [];
 
-    constructor(name: string) {
-      this.name = name;
+      constructor(name: string) {
+        this.name = name;
+      }
     }
-  }
-  class todoTmp{
-    isEditMode:boolean = false
-    selectedItems:Array<object> = []
-    toDoItem:ToDo[] = [];
-    toDoData:ToDo[] = [];
-  }
-  let todolist:todoTmp = new todoTmp()
-   // ToDoList.ets
+    class TodoTmp {
+      isEditMode: boolean = false
+      selectedItems: Array<object> = []
+      toDoItem: ToDo[] = [];
+      toDoData: ToDo[] = [];
+    }
+    let todolist: TodoTmp = new TodoTmp()
+    ```
+    ```ts
+    // Implementation reference
+    Button ('Delete')
+      .onClick(() => {
+        // Delete the toDoData data corresponding to the selected list items.
+        let leftData = todolist.toDoData.filter((item) => {
+          return todolist.selectedItems.find((selectedItem) => selectedItem !== item);
+        })
 
-  Button ('Delete')
-    .onClick(() => {
-      // Delete the toDoData data corresponding to the selected list items.
-      let leftData = todolist.toDoData.filter((item) => {
-        return todolist.selectedItems.find((selectedItem) => selectedItem !== item);
+        todolist.toDoData = leftData;
+        todolist.isEditMode = false;
       })
-
-      todolist.toDoData = leftData;
-      todolist.isEditMode = false;
-    })
-  ```
+    ```
 
 
 ## Handling a Long List
@@ -1027,17 +919,8 @@ When the list is rendered in lazy loading mode, to improve the list scrolling ex
 
 
 ```ts
-class dataTmp{
-  dataSource:IDataSource|undefined = undefined
-}
-let ds:dataTmp = new dataTmp()
 List() {
-  if(ds.dataSource){
-    LazyForEach(ds.dataSource, () => {
-      ListItem() {
-      }
-    })
-  }
+  // ...
 }.cachedCount(3)
 ```
 

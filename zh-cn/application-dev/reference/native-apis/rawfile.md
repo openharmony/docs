@@ -48,6 +48,7 @@
 | [OH_ResourceManager_ReadRawFile](#oh_resourcemanager_readrawfile) (const [RawFile](#rawfile) \*rawFile, void \*buf, size_t length) | 读取rawfile。                               |
 | [OH_ResourceManager_SeekRawFile](#oh_resourcemanager_seekrawfile) (const [RawFile](#rawfile) \*rawFile, long offset, int whence) | 基于指定的offset，在rawfile文件内搜索读写数据的位置。        |
 | [OH_ResourceManager_GetRawFileSize](#oh_resourcemanager_getrawfilesize) ([RawFile](#rawfile) \*rawFile) | 获取rawfile文件大小。                  |
+| [OH_ResourceManager_GetRawFileRemainingLength](#oh_resourcemanager_getrawfileremaininglength) ([RawFile](#rawfile) \*rawFile) | 获取rawfile剩余文件大小。                  |
 | [OH_ResourceManager_CloseRawFile](#oh_resourcemanager_closerawfile) ([RawFile](#rawfile) \*rawFile) | 关闭已打开的[RawFile](#rawfile) 以及释放所有相关联资源。   |
 | [OH_ResourceManager_GetRawFileOffset](#oh_resourcemanager_getrawfileoffset) (const [RawFile](#rawfile) \*rawFile) | 获取rawfile当前的offset。           |
 | [OH_ResourceManager_GetRawFileDescriptor](#oh_resourcemanager_getrawfiledescriptor) (const [RawFile](#rawfile) \*rawFile, [RawFileDescriptor](_raw_file_descriptor.md) &amp;descriptor) | 基于offset和文件长度打开rawfile，并获取rawfile文件描述符。 |
@@ -310,6 +311,32 @@ Returns rawfile整体文件大小。
 
 **起始版本：**
 
+11
+
+
+#### OH_ResourceManager_GetRawFileRemainingLength()
+
+
+```
+int64_t OH_ResourceManager_GetRawFileRemainingLength (RawFile * rawFile)
+```
+
+**描述：**
+
+获取rawfile文件的剩余大小。
+
+**参数：**
+
+| Name    | 描述                          |
+| ------- | --------------------------- |
+| rawFile | 表示指向[RawFile](#rawfile)的指针。 |
+
+**返回：**
+
+Returns rawfile文件剩余大小。
+
+**起始版本：**
+
 8
 
 
@@ -429,11 +456,11 @@ int OH_ResourceManager_ReadRawFile (const RawFile * rawFile, void * buf, size_t 
 | ------- | --------------------------- |
 | rawFile | 表示指向[RawFile](#rawfile)的指针。 |
 | buf     | 用于接收读取数据的缓冲区指针。             |
-| length  | rawfile文件的长度。                 |
+| length  | 需要获取rawfile文件的长度。                 |
 
 **返回：**
 
-返回rawfile文件的长度，如果length小于文件长度，则返回**0**。
+如果成功返回rawfile文件的长度，如果失败则返回**0**。
 
 **起始版本：**
 
@@ -511,7 +538,7 @@ int OH_ResourceManager_SeekRawFile (const RawFile * rawFile, long offset, int wh
 
 **返回：**
 
-如果搜索成功返回**0**,rawFile指针更新到新的读写位置。如果发生错误返回 **(long) -1**。
+如果搜索成功返回**0**,rawFile指针更新到新的读写位置。如果发生错误返回 **(int) -1**。
 
 **起始版本：**
 

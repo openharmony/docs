@@ -26,7 +26,7 @@
 
 - 系统默认日志方式是WAL（Write Ahead Log）模式，系统默认落盘方式是FULL模式。
 
-- 数据库中连接池的最大数量是4个，用以管理用户的读操作。
+- 数据库中有4个读连接和1个写连接，线程获取到空闲读连接时，即可进行读取操作。当没有空闲读连接且有空闲写连接时，会将写连接当做读连接来使用。
 
 - 为保证数据的准确性，数据库同一时间只能支持一个写操作。
 
@@ -52,7 +52,7 @@
 
 
 ## 开发步骤
-
+因Stage模型、FA模型的差异，个别示例代码提供了在两种模型下的对应示例；示例代码未区分模型或没有对应注释说明时默认在两种模型下均适用。
 1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore，其中包括建库、建表、升降级等操作。示例代码如下所示：
 
    Stage模型示例：
@@ -179,7 +179,8 @@
      
    ```ts
    import { ValuesBucket } from '@ohos.data.ValuesBucket';
-
+   
+   let store: relationalStore.RdbStore | undefined = undefined;
 
    let value1 = 'Lisa';
    let value2 = 18;

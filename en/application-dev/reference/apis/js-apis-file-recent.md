@@ -40,7 +40,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 **Example**
 
   ```js
-  let uri = 'file://docs/storage/Users/currentUser/\<publicPath>';
+  let uri = 'file://docs/storage/Users/currentUser/<publicPath>';
   recent.add(uri);
   ```
 
@@ -71,7 +71,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 **Example**
 
   ```js
-  let uri = 'file://docs/storage/Users/currentUser/\<publicPath>';
+  let uri = 'file://docs/storage/Users/currentUser/<publicPath>';
   recent.remove(uri);
   ```
 
@@ -93,7 +93,7 @@ Lists the files that are accessed recently.
 
   | Type| Description|
   | --- | -- |
-  |  Array [\<FileInfo>](#fileinfo) | List of the files obtained.|
+  |  Array<[FileInfo](#fileinfo)> | List of the files obtained.|
 
 **Error codes**
 

@@ -5,7 +5,7 @@
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在FA模型下使用，Stage模型下需使用[dataAbility模块](js-apis-data-ability.md)和[dataShare模块](js-apis-data-dataShare.md)。
+> 除了[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。Stage模型下需使用[dataAbility模块](js-apis-data-ability.md)和[dataShare模块](js-apis-data-dataShare.md)。
 
 ## 导入模块
 
@@ -29,7 +29,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[FileAccessHelper.openFile](js-apis-fileAccess.md#openfile-1)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[FileAccessHelper.openFile](js-apis-fileAccess.md#openfile-1)。
 
 **参数：**
 
@@ -66,7 +66,7 @@ openFile(uri: string, mode: string): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[FileAccessHelper.openFile](js-apis-fileAccess.md#openfile)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[FileAccessHelper.openFile](js-apis-fileAccess.md#openfile)。
 
 **参数：**
 
@@ -104,7 +104,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.on('dataChange')](js-apis-data-dataShare.md#ondatachange)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.on('dataChange')](js-apis-data-dataShare.md#ondatachange)。
 
 **参数：**
 
@@ -141,7 +141,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.off('dataChange')](js-apis-data-dataShare.md#offdatachange)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.off('dataChange')](js-apis-data-dataShare.md#offdatachange)。
 
 **参数：**
 
@@ -318,7 +318,7 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.normalizeUri](js-apis-data-dataShare.md#normalizeuri)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.normalizeUri](js-apis-data-dataShare.md#normalizeuri)。
 
 **参数：**
 
@@ -353,7 +353,7 @@ normalizeUri(uri: string): Promise\<string>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.normalizeUri](js-apis-data-dataShare.md#normalizeuri-1)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.normalizeUri](js-apis-data-dataShare.md#normalizeuri-1)。
 
 **参数：**
 
@@ -389,7 +389,7 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.denormalizeUri](js-apis-data-dataShare.md#denormalizeuri)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.denormalizeUri](js-apis-data-dataShare.md#denormalizeuri)。
 
 **参数：**
 
@@ -424,7 +424,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.denormalizeUri](js-apis-data-dataShare.md#denormalizeuri-1)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.denormalizeUri](js-apis-data-dataShare.md#denormalizeuri-1)。
 
 **参数：**
 
@@ -460,7 +460,7 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.notifyChange](js-apis-data-dataShare.md#notifychange)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.notifyChange](js-apis-data-dataShare.md#notifychange)。
 
 **参数：**
 
@@ -495,7 +495,7 @@ notifyChange(uri: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.notifyChange](js-apis-data-dataShare.md#notifychange-1)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.notifyChange](js-apis-data-dataShare.md#notifychange-1)。
 
 **参数：**
 
@@ -531,7 +531,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.insert](js-apis-data-dataShare.md#insert)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.insert](js-apis-data-dataShare.md#insert)。
 
 **参数：**
 
@@ -574,7 +574,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.insert](js-apis-data-dataShare.md#insert-1)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.insert](js-apis-data-dataShare.md#insert-1)。
 
 **参数：**
 
@@ -618,7 +618,7 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.batchInsert](js-apis-data-dataShare.md#batchinsert)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.batchInsert](js-apis-data-dataShare.md#batchinsert)。
 
 **参数：**
 
@@ -658,7 +658,7 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.batchInsert](js-apis-data-dataShare.md#batchinsert-1)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.batchInsert](js-apis-data-dataShare.md#batchinsert-1)。
 
 **参数：**
 
@@ -699,7 +699,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.delete](js-apis-data-dataShare.md#delete)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.delete](js-apis-data-dataShare.md#delete)。
 
 **参数：**
 
@@ -737,7 +737,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.delete](js-apis-data-dataShare.md#delete-1)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.delete](js-apis-data-dataShare.md#delete-1)。
 
 **参数：**
 
@@ -776,7 +776,7 @@ predicates筛选条件为空，自定义数据库删除数据记录的处理逻�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.delete](js-apis-data-dataShare.md#delete)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.delete](js-apis-data-dataShare.md#delete)。
 
 **参数：**
 
@@ -811,7 +811,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.update](js-apis-data-dataShare.md#update)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.update](js-apis-data-dataShare.md#update)。
 
 **参数：**
 
@@ -857,7 +857,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.update](js-apis-data-dataShare.md#update-1)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.update](js-apis-data-dataShare.md#update-1)。
 
 **参数：**
 
@@ -904,7 +904,7 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑（callbac
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.update](js-apis-data-dataShare.md#update)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.update](js-apis-data-dataShare.md#update)。
 
 **参数：**
 
@@ -947,7 +947,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
 
 **参数：**
 
@@ -987,7 +987,7 @@ query(uri: string, callback: AsyncCallback\<ResultSet>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
 
 **参数：**
 
@@ -1022,7 +1022,7 @@ query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
 
 **参数：**
 
@@ -1059,7 +1059,7 @@ query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asyn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
 
 **参数：**
 
@@ -1097,7 +1097,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query-1)。
+**说明**：本接口仅可在FA模型下使用。Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query-1)。
 
 **参数：**
 
@@ -1285,7 +1285,7 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ```
 
-## PacMap<sup>11+</sup>
+## PacMap
 
 [key: string]: number | string | boolean | Array\<string | number | boolean> | null
 

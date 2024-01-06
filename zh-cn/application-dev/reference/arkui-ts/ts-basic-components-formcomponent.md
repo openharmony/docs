@@ -67,7 +67,7 @@ FormComponent(value: {
 ## 属性
 | 名称        | 参数类型                                                                                              | 必填 | 描述                                                                    |
 | ----------- | ----------------------------------------------------------------------------------------------------- | ---- | ----------------------------------------------------------------------- |
-| size        | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>} | 是   | 设置高宽尺寸。                                                          |
+| size        | {<br/>width?:&nbsp;number,<br/>height?:&nbsp;number<br/>}                                             | 是   | 设置高宽尺寸。                                                          |
 | moduleName  | string                                                                                                | 是   | 卡片模块名称。                                                          |
 | dimension   | [FormDimension](#formdimension)                                                                       | 否   | 卡片尺寸，支持2 * 2，4 * 4，4 * 2类型卡片。<br/>默认值：Dimension_2_2。 |
 | allowUpdate | boolean                                                                                               | 否   | 是否允许卡片更新。<br/>默认值：true。                                   |

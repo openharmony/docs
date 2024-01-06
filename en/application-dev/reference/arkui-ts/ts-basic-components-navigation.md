@@ -1,6 +1,6 @@
 # Navigation
 
-The **\<Navigation>** component typically functions as the root container of a page and displays the title bar, toolbar, and navigation bar based on the attribute settings.
+The **\<Navigation>** component is the root view container for navigation. It typically functions as the root container of a page and includes a title bar, content area, and toolbar. The content area switches between the home page content (child components of **\<Navigation>**) and non-home page content (child components of [\<NavDestination>](ts-basic-components-navdestination.md)) through routing.
 
 > **NOTE**
 >
@@ -12,6 +12,8 @@ The **\<Navigation>** component typically functions as the root container of a p
 Supported
 
 Since API version 9, it is recommended that this component be used together with the **[\<NavRouter>](ts-basic-components-navrouter.md)** component.
+
+Since API version 10, it is recommended that this component be used together with the **[\<NavPathStack>](#navpathstack10)** component and **navDestination** attribute.
 
 ## APIs
 
@@ -61,7 +63,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | ---------------------------------------- | ---------------------------------------- |
 | onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void) | Called when **titleMode** is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.|
 | onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) | Called when the navigation bar visibility status changes. The value **true** means that the navigation bar is displayed, and **false** means the opposite.|
-| onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| Called when the **\<Navigation>** component is displayed for the first time or its display mode switches beween single-column and dual-column.<br>**NavigationMode.Split**: The component is displayed in two columns.<br>**NavigationMode.Stack**: The component is displayed in a single column.|
+| onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) <sup>11+</sup>| Called when the **\<Navigation>** component is displayed for the first time or its display mode switches between single-column and dual-column.<br>**NavigationMode.Split**: The component is displayed in two columns.<br>**NavigationMode.Stack**: The component is displayed in a single column.|
 
 ## NavPathStack<sup>10+</sup>
 
@@ -83,7 +85,7 @@ Pushes the navigation destination page specified by **info** to the navigation s
 
 pushPathByName(name: string, param: unknown): void
 
-Pushes the navigation destination page specified by **name** to the navigation stack.
+Pushes the navigation destination page specified by **name**, with the data specified by **param**, to the navigation stack.
 
 **Parameters**
 

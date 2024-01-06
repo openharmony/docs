@@ -228,21 +228,21 @@ Represents the Wi-Fi profile information.
 
 **System API**: This is a system API.
 
-| Name        | Type    | Readable| Writable  | Description                           |
-| ----------- | --------| ---- | ----- | ------------------------------- |
-| ssid | string | Yes| No| Service set identifier (SSID) of the hotspot, in UTF-8 format.|
-| bssid | string | Yes| No| Basic service set identifier (BSSID) of the hotspot.|
-| preSharedKey | string | Yes| No| Pre-shared key (PSK) of the hotspot.|
-| isHiddenSsid | boolean | Yes| No| Whether the network is hidden.|
-| securityType | [WifiSecurityType](#wifisecuritytype) | Yes| No| Security type.|
-| creatorUid | number | Yes| No| ID of the creator.|
-| disableReason | number | Yes| No| Reason for disabling Wi-Fi.|
-| netId | number | Yes| No| Network ID allocated.|
-| randomMacType | number | Yes| No| Type of the random MAC.|
-| randomMacAddr | string | Yes| No| Random MAC address.|
-| ipType | [IpType](#iptype) | Yes| No| IP address type.|
-| staticIp | [IpProfile](#ipprofile) | Yes| No| Static IP address information.|
-| eapProfile | [WifiEapProfile](#wifieapprofile) | Yes| No| Extensible Authentication Protocol (EAP) configuration.|
+| Name        | Type    | Mandatory|    Description                           |
+| ----------- | --------| ---- |  ------------------------------- |
+| ssid | string | Yes| Service set identifier (SSID) of the hotspot, in UTF-8 format.|
+| bssid | string | No| Basic service set identifier (BSSID) of the hotspot.|
+| preSharedKey | string | Yes| Pre-shared key (PSK) of the hotspot.|
+| isHiddenSsid | boolean | No| Whether the network is hidden.|
+| securityType | [WifiSecurityType](#wifisecuritytype) | Yes| Security type.|
+| creatorUid | number | No|ID of the creator.|
+| disableReason | number | No| Reason for disabling Wi-Fi.|
+| netId | number | No|Network ID allocated.|
+| randomMacType | number | No| Type of the random MAC.|
+| randomMacAddr | string | No|Random MAC address.|
+| ipType | [IpType](#iptype) | No|  IP address type.|
+| staticIp | [IpProfile](#ipprofile) | No|  Static IP address information.|
+| eapProfile | [WifiEapProfile](#wifieapprofile) | No|Extensible Authentication Protocol (EAP) configuration.|
 
 ## WifiSecurityType
 
@@ -287,13 +287,13 @@ Represents IP configuration information.
 
 **System API**: This is a system API.
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| ipAddress | number | Yes| No| IP address.|
-| gateway | number | Yes| No| Gateway.|
-| prefixLength | number | Yes| No| Subnet mask.|
-| dnsServers | number[] | Yes| No| Domain name server (DNS) information.|
-| domains | Array&lt;string&gt; | Yes| No| Domain information.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- |-------- |
+| ipAddress | number | Yes| IP address.|
+| gateway | number | Yes|Gateway.|
+| prefixLength | number | Yes| Subnet mask.|
+| dnsServers | number[] | Yes| Domain name server (DNS) information.|
+| domains | Array&lt;string&gt; | Yes|Domain information.|
 
 ## WifiEapProfile
 
@@ -303,23 +303,23 @@ Represents EAP profile (configuration) information.
 
 **System API**: This is a system API.
 
-| **Name**| **Type**| **Readable**| **Writable**| **Description**|
-| -------- | -------- | -------- | -------- | -------- |
-| eapMethod | [EapMethod](#eapmethod) | Yes| No| EAP authentication method.|
-| phase2Method | [Phase2Method](#phase2method) | Yes| No| Phase 2 authentication method.|
-| identity | string | Yes| No| Identity Information.|
-| anonymousIdentity | string | Yes| No| Anonymous identity.|
-| password | string | Yes| No| Password.|
-| caCertAliases | string | Yes| No| CA certificate alias.|
-| caPath | string | Yes| No| CA certificate path.|
-| clientCertAliases | string | Yes| No| Client certificate alias.|
-| certEntry | Uint8Array | Yes| Yes| CA certificate content.|
-| certPassword | string | Yes| Yes| CA certificate password.|
-| altSubjectMatch | string | Yes| No| A string to match the alternate subject.|
-| domainSuffixMatch | string | Yes| No| A string to match the domain suffix.|
-| realm | string | Yes| No| Realm for the passpoint credential.|
-| plmn | string | Yes| No| Public land mobile network (PLMN) of the passpoint credential provider.|
-| eapSubId | number | Yes| No| Sub-ID of the SIM card.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| eapMethod | [EapMethod](#eapmethod) | Yes|EAP authentication method.|
+| phase2Method | [Phase2Method](#phase2method) | Yes| Phase 2 authentication method.|
+| identity | string | Yes| Identity Information.|
+| anonymousIdentity | string | Yes|  Anonymous identity.|
+| password | string | Yes|  Password (string type).|
+| caCertAliases | string | Yes| CA certificate alias.|
+| caPath | string | Yes| CA certificate path.|
+| clientCertAliases | string | Yes| Client certificate alias.|
+| certEntry | Uint8Array | Yes| CA certificate content.|
+| certPassword | string | Yes|CA certificate password.|
+| altSubjectMatch | string | Yes| A string to match the alternate subject.|
+| domainSuffixMatch | string | Yes|A string to match the domain suffix.|
+| realm | string | Yes| Realm for the passpoint credential.|
+| plmn | string | Yes| Public land mobile network (PLMN) of the passpoint credential provider.|
+| eapSubId | number | Yes| Sub-ID of the SIM card.|
 
 ## EapMethod
 

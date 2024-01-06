@@ -5,13 +5,11 @@
 
 定义图像大小。
 
-**起始版本：**
+**系统能力：** SystemCapability.Multimedia.Image
 
-10
+**起始版本：** 10
 
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总
@@ -34,7 +32,7 @@
 int32_t OhosImageSize::height
 ```
 
-**描述：**
+**描述**
 
 像素中的图像高度，用pixels表示
 
@@ -45,6 +43,6 @@ int32_t OhosImageSize::height
 int32_t OhosImageSize::width
 ```
 
-**描述：**
+**描述**
 
 像素中的图像宽度，用pixels表示

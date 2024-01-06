@@ -860,3 +860,39 @@ The application is a debugging application, but the device is not in developer m
 **Solution**
 
 Run the **hdc shell param get const.security.developermode.state** command. If **false** is returned, a debugging application cannot be installed on the device.
+
+## 17700053 Not Invoked by AppGallery
+
+**Error Message**
+
+Not app gallery call.
+
+**Description**
+
+This API is called by AppGallery.
+
+**Possible Causes**
+
+The caller is not AppGallery.
+
+**Solution**
+
+Use AppGallery to call the API.
+
+## 17700201 .abc File Verification Failure
+
+**Error Message**
+
+Failed to verify abc.
+
+**Description**
+
+Failed to verify the .abc file.
+
+**Possible Causes**
+
+The .abc file is untrusted.
+
+**Solution**
+
+Pass in the path of a trusted .abc file.

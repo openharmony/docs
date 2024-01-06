@@ -47,7 +47,7 @@ import Want from '@ohos.application.Want';
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
         this.context.startAbility(want, (error: BusinessError) => {
         // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-        console.error('error.code = ${error.code}');
+        console.error(`error.code = ${error.code}`);
         });
     }
     }
@@ -152,7 +152,7 @@ import Want from '@ohos.application.Want';
         onCreate(want: Want, launchParam: AbilityConstant.LaunchParam){
             this.context.startAbility(want, (error: BusinessError) => {
             // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
-            console.error('error.code = ${error.code}');
+            console.error(`error.code = ${error.code}`);
             });
         }
         }

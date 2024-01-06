@@ -1031,7 +1031,7 @@ Dump配置文件为dump.config，存放在开发设备 /data/local/tmp 目录中
 | enableExifNodeConvertedBufferDump | true/false | 开启开关，可以Dump exif_node.cpp文件中DeliverBuffer函数中的数据 |
 | enableFaceNodeConvertedBufferDump | true/false | 开启开关，可以Dump face_node.cpp文件中DeliverBuffer函数中的数据 |
 | enableForkNodeConvertedBufferDump | true/false | 开启开关，可以Dump fork_node.cpp文件中DeliverBuffer函数中的数据 |
-| enableRKFaceNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_face_node.cpp文件中DeliverBuffer函数中的数据关 |
+| enableRKFaceNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_face_node.cpp文件中DeliverBuffer函数中的数据 |
 | enableRKExifNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_exif_node.cpp文件中DeliverBuffer函数中的数据 |
 | enableCodecNodeConvertedBufferDump | true/false | 开启开关，可以Dump codec_node.cpp文件中DeliverBuffer函数中的数据 |
 | enableRKCodecNodeConvertedBufferDump | true/false | 开启开关，可以Dump rk_codec_node.cpp文件中DeliverBuffer函数中的数据 |
@@ -1066,7 +1066,7 @@ Dump配置文件为dump.config，存放在开发设备 /data/local/tmp 目录中
 >enableRKCodecNodeConvertedBufferDump=false<br/>
 >enableSreamTunnelBufferDump=false<br/>
 >**enableMetadataDump=true**<br/>
->**previewInterval=1**<br/>
+>**previewInterval=3**<br/>
 >videoInterval=1<br/>
 
 

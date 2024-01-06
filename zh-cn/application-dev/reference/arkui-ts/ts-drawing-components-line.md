@@ -32,18 +32,18 @@ Line(value?: {width?: string | number, height?: string | number})
 
 | 名称 | 类型 | 默认值 | 描述 |
 | -------- | -------- | -------- | -------- |
-| startPoint | Array&lt;Length&gt; | [0,&nbsp;0] | 直线起点坐标点(相对坐标)，单位vp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
-| endPoint   | Array&lt;Length&gt; | [0,&nbsp;0] | 直线终点坐标点(相对坐标)，单位vp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
+| startPoint | Array&lt;[Length](ts-types.md#length)&gt; | [0,&nbsp;0] | 直线起点坐标点(相对坐标)，单位vp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
+| endPoint   | Array&lt;[Length](ts-types.md#length)&gt; | [0,&nbsp;0] | 直线终点坐标点(相对坐标)，单位vp。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
 | fill | [ResourceColor](ts-types.md#resourcecolor) | Color.Black | 设置填充区域颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>Line组件无法形成闭合区域，该属性设置无效。 |
-| fillOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置填充区域透明度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>Line组件无法形成闭合区域，该属性设置无效。 |
+| fillOpacity | [Length](ts-types.md#length) | 1 | 设置填充区域透明度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>Line组件无法形成闭合区域，该属性设置无效。 |
 | stroke | [ResourceColor](ts-types.md) | - | 设置边框颜色，不设置时，默认没有边框线条。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值不会绘制边框线条。 |
-| strokeDashArray | Array&lt;Length&gt; | [] | 设置线条间隙。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
+| strokeDashArray | Array&lt;[Length](ts-types.md#length)&gt; | [] | 设置线条间隙。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
 | strokeDashOffset | number&nbsp;\|&nbsp;string | 0 | 线条绘制起点的偏移量。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>异常值按照默认值处理。 |
 | strokeLineCap | [LineCapStyle](ts-appendix-enums.md#linecapstyle) | LineCapStyle.Butt | 设置线条端点绘制样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | 设置线条拐角绘制样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>Line组件无法形成拐角，该属性设置无效。 |
 | strokeMiterLimit | number&nbsp;\|&nbsp;string | 4 | 设置锐角绘制成斜角的极限值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>Line组件无法设置锐角图形，该属性设置无效。 |
-| strokeOpacity | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型) | 1 | 设置线条透明度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理 。 |
-| strokeWidth | Length | 1 | 设置线条宽度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。<br/>异常值按照默认值处理。 |
+| strokeOpacity | [Length](ts-types.md#length) | 1 | 设置线条透明度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理 。 |
+| strokeWidth | [Length](ts-types.md#length) | 1 | 设置线条宽度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 <br/>**说明：**<br/>该属性若为string类型, 暂不支持百分比。<br/>异常值按照默认值处理。 |
 | antiAlias | boolean | true | 是否开启抗锯齿效果。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 

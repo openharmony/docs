@@ -376,9 +376,7 @@ Use the **alignItems** parameter of the **\<Flex>** component to set alignment o
 
 ### Setting Alignment on the Cross Axis for Child Elements
 
-Use the [alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md) attribute of child elements to set their alignment in the container on the cross axis. The settings overwrite the default **alignItems** settings in the flex container. The sample code is as follows:
-
-
+Use the [alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#attributes) attribute of child elements to set their alignment in the container on the cross axis. The settings overwrite the default **alignItems** settings in the flex container. The sample code is as follows:
 
 ```ts
 Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // The child elements are aligned with the center of the container.
@@ -410,7 +408,7 @@ In the preceding example, the **alignItems** parameter of the **\<Flex>** contai
 
 ### Content Alignment
 
-Use the [alignContent](../reference/arkui-ts/ts-container-flex.md) parameter to set how space is distributed between and around child elements along the cross axis. This parameter is effective only for a multi-line flex layout. Its available options are as follows:
+Use the [alignContent](../reference/arkui-ts/ts-container-flex.md#apis) parameter to set how space is distributed between and around child elements along the cross axis. This parameter is effective only for a multi-line flex layout. Its available options are as follows:
 
 - **FlexAlign.Start**: The child elements are aligned toward the start edge of the cross axis in the container.
 
@@ -574,12 +572,12 @@ When the size of the flex container is not large enough, the following attribute
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
-  }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
+  }.width(420).height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
   
   ![en-us_image_0000001562700449](figures/en-us_image_0000001562700449.png)
   
-  In the preceding figure, the width of the flex container is 400 vp, the original width of the three child elements is 100 vp each, which adds up to the total width of 300 vp. The flex container's remaining 100 vp space is allocated to the child elements based on their **flexGrow** settings. The third child element does not have **flexGrow** set and therefore does not participate in the allocation of remaining space.
+  In the preceding figure, the width of the flex container is 420 vp, the original width of the three child elements is 100 vp each, and the left and right margins are 20 vp in total. The flex container's remaining 100 vp space is allocated to the child elements based on their **flexGrow** settings. The third child element does not have **flexGrow** set and therefore does not participate in the allocation of remaining space.
   
   After receiving their share of remaining space at the 2:3 ratio, the first and second child elements are at a width of 140 vp (100 vp + 100 vp x 2/5) and 160 vp (100 vp + 100 vp x 3/5), respectively.
   

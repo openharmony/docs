@@ -18,8 +18,9 @@
 1. 导入模块。
    
    ```ts
-   import commonEventManager from '@ohos.commonEventManager';
    import Base from '@ohos.base';
+   import commonEventManager from '@ohos.commonEventManager';
+   import promptAction from '@ohos.promptAction';
    ```
 
 2. 根据[动态订阅公共事件](common-event-subscription.md)章节的步骤来订阅某个事件。
@@ -28,14 +29,21 @@
    
    ```ts
    // subscriber为订阅事件时创建的订阅者对象
-   if (subscriber !== null) {
-       commonEventManager.unsubscribe(subscriber, (err: Base.BusinessError) => {
-           if (err) {
-               console.error(`[CommonEvent] UnsubscribeCallBack err=${JSON.stringify(err)}`);
-           } else {
-               console.info(`[CommonEvent] Unsubscribe`);
-               subscriber = null;
-           }
-       })
+   if (this.subscriber !== null) {
+     commonEventManager.unsubscribe(this.subscriber, (err: Base.BusinessError) => {
+       if (err) {
+         Logger.error(TAG, `UnsubscribeCallBack err = ${JSON.stringify(err)}`);
+       } else {
+         promptAction.showToast({
+           message: $r('app.string.unsubscribe_success_toast')
+         });
+         Logger.info(TAG, `Unsubscribe success`);
+         this.subscriber = null;
+       }
+     })
+   } else {
+     promptAction.showToast({
+       message: $r('app.string.unsubscribe_failed_toast')
+     });
    }
    ```

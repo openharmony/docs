@@ -25,6 +25,8 @@ The screenlock management service is abnormal.
 1. ps -ef 查看服务是否正在运行，如未处于运行状态，建议重启系统恢复。
 2. ps -ef 查看服务是否正在运行，如处于运行状态，建议kill服务进程等待自动恢复，如未自动恢复执行处理建议1。
 
+## 13200003 非法调用
+
 **错误信息** 
 
 illegal use.

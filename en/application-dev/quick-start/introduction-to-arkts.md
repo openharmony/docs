@@ -166,15 +166,15 @@ An `enum` type is a value type with a defined set of named values called enum co
 In order to be used, an `enum` constant must be prefixed with an enum `type` name.
 
 ```typescript
-enum Color { Red, Green, Blue }
-let c: Color = Color.Red
+enum ColorSet { Red, Green, Blue }
+let c: ColorSet = ColorSet.Red
 ```
 
 A constant expression can be used to explicitly set the value of an `enum` constant.
 
 ```typescript
-enum Color { White = 0xFF, Grey = 0x7F, Black = 0x00 }
-let c: Color = Color.Black
+enum ColorSet { White = 0xFF, Grey = 0x7F, Black = 0x00 }
+let c: ColorSet = ColorSet.Black
 ```
 
 #### `Union` Type
@@ -548,7 +548,7 @@ function divide (a: number, b: number): number{
 function process (a: number, b: number) {
   try {
     let res = divide(a, b)
-    console.log(res)
+    console.log('result: ' + res)
   } catch (x) {
     console.log('some error')
   }
@@ -562,7 +562,7 @@ function processData(s: string) {
   let error: Error | null = null
 
   try {
-    console.log('Data processed: ', s)
+    console.log('Data processed: ' + s)
     // ...
     // Throwing operations
     // ...
@@ -714,7 +714,7 @@ An arrow function return type can be omitted; in such case, it is inferred from 
 An expression can be specified as an arrow function to make the notation shorter, i.e., the following two notations are equivalent:
 
 ```typescript
-let sum1 = (x: number, y: number) => { return x + y }
+let sum1 = (x: number, y: number) => { return x + y; }
 let sum2 = (x: number, y: number) => x + y
 ```
 
@@ -727,13 +727,13 @@ The closure allows accessing such an inner function outside its own environment.
 
 ```typescript
 function f(): () => number {
-  let count = 0
-  return (): number => { count++; return count }
+  let count = 0;
+  return (): number => { count++; return count; }
 }
 
-let z = f()
-console.log(z()) // output: 1
-console.log(z()) // output: 2
+let z = f();
+z(); // output: 1
+z(); // output: 2
 ```
 
 In the sample above, the arrow function closure captures the `count` variable.
@@ -746,11 +746,11 @@ A function can be specified to be called in different ways by writing overload s
 function foo(): void;      /* 1st signature */
 function foo(x: string): void;   /* 2nd signature */
 function foo(x?: string): void { /* Implementation signature */
-  console.log(x)
+  console.log(x);
 }
 
-foo()   // ok, 1st signature is used
-foo('aa') // ok, 2nd signature is used
+foo();   // ok, 1st signature is used
+foo('aa'); // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have identical parameter lists.
@@ -766,11 +766,11 @@ class Person {
   name: string = ''
   surname: string = ''
   constructor (n: string, sn: string) {
-    this.name = n
-    this.surname = sn
+    this.name = n;
+    this.surname = sn;
   }
   fullName(): string {
-    return this.name + ' ' + this.surname
+    return this.name + ' ' + this.surname;
   }
 }
 ```
@@ -778,8 +778,8 @@ class Person {
 After the class is defined, its instances can be created by using the keyword `new`:
 
 ```typescript
-let p = new Person('John', 'Smith')
-console.log(p.fullName())
+let p = new Person('John', 'Smith');
+console.log(p.fullName());
 ```
 
 or an instance can be created by using object literals:
@@ -789,7 +789,7 @@ class Point {
   x: number = 0
   y: number = 0
 }
-let p: Point = {x: 42, y: 42}
+let p: Point = { x: 42, y: 42 };
 ```
 
 ### Fields
@@ -813,15 +813,15 @@ class Person {
     this.age = a
   }
 
-  GetName(): string {
+  getName(): string {
     return this.name
   }
 }
 
-let p1 = new Person('Alice', 25)
-console.log(p1.name)
-let p2 = new Person('Bob', 28)
-console.log(p2.GetName())
+let p1 = new Person('Alice', 25);
+console.log(p1.name);
+let p2 = new Person('Bob', 28);
+console.log(p2.getName());
 ```
 
 #### Static Fields
@@ -835,12 +835,12 @@ class Person {
   static numberOfPersons = 0
   constructor() {
      // ...
-     Person.numberOfPersons++
+     Person.numberOfPersons++;
      // ...
   }
 }
 
-console.log(Person.numberOfPersons)
+Person.numberOfPersons;
 ```
 
 #### Field Initializers
@@ -854,14 +854,14 @@ class Person {
   name: string // The compiler automatically sets to undefined
   
   setName(n:string): void {
-  this.name = n
+    this.name = n
   }
   
   getName(): string {
-  // Return type "string" hides from the developers the fact
-  // that name can be undefined. The most correct would be
-  // to write the return type as "string | undefined". By doing so
-  // we tell the users of our API about all possible return values.
+    // Return type "string" hides from the developers the fact
+    // that name can be undefined. The most correct would be
+    // to write the return type as "string | undefined". By doing so
+    // we tell the users of our API about all possible return values.
     return this.name
   }
 }
@@ -869,7 +869,7 @@ class Person {
 let jack = new Person()
 // Let's assume that the developer forgets to call setName:
 // jack.setName('Jack')
-console.log(jack.getName().length); // runtime exception: name is undefined
+jack.getName().length; // runtime exception: name is undefined
 ```
 
 Here is how it should look in ArkTS:
@@ -891,14 +891,14 @@ class Person {
 let jack = new Person()
 // Let's assume that the developer forgets to call setName:
 // jack.setName('Jack')
-console.log(jack.getName().length); // 0, no runtime error
+jack.getName().length; // 0, no runtime error
 ```
 
 And here how our code behaves if the field `name` can be `undefined`
 
 ```typescript
 class Person {
-  name ?: string // The field may be undefined, great
+  name?: string // The field may be undefined, great
   // More explicit syntax may also be used:
   // name: string | undefined = undefined
 
@@ -924,9 +924,9 @@ let jack = new Person()
 
 // Compile-time(!) error: Compiler suspects that we
 // may possibly access something undefined and won't build the code:
-console.log(jack.getName().length); // The code won't build and run
+jack.getName().length; // The code won't build and run
 
-console.log(jack.getName()?.length); // Builds ok, no runtime error
+jack.getName()?.length; // Builds ok, no runtime error
 ```
 
 #### Getters and Setters
@@ -939,18 +939,18 @@ In the following example, a setter is used to forbid setting invalid values of t
 class Person {
   name: string = ''
   private _age: number = 0
-  get age(): number { return this._age }
+  get age(): number { return this._age; }
   set age(x: number) {
     if (x < 0) {
-      throw Error('Invalid age argument')
+      throw Error('Invalid age argument');
     }
-    this._age = x
+    this._age = x;
   }
 }
 
-let p = new Person()
-console.log (p.age) // 0 will be printed out
-p.age = -42 // Error will be thrown as an attempt to set incorrect age
+let p = new Person();
+p.age; // 0
+p.age = -42; // Error will be thrown as an attempt to set incorrect age
 ```
 
 A class can define a getter, a setter or both.
@@ -968,7 +968,7 @@ The example below illustrates how instanced methods work.
 The `calculateArea` method calculates the area of a rectangle by multiplying the height by the width:
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   private height: number = 0
   private width: number = 0
   constructor(height: number, width: number) {
@@ -983,8 +983,8 @@ class Rectangle {
 To use an instance method, it must be called on an instance of the class:
 
 ```typescript
-let square = new Rectangle(10, 10)
-console.log(square.calculateArea()) // output: 100
+let square = new RectangleSize(10, 10);
+square.calculateArea(); // output: 100
 ```
 
 #### Static Methods
@@ -998,10 +998,10 @@ The class name is used to call a static method:
 ```typescript
 class Cl {
   static staticMethod(): string {
-    return 'this is a static method.'
+    return 'this is a static method.';
   }
 }
-console.log(Cl.staticMethod())
+console.log(Cl.staticMethod());
 ```
 
 #### Inheritance
@@ -1061,7 +1061,7 @@ The keyword `super` can be used to access instance fields, instance methods and 
 It is often used to extend basic functionality of subclass with the required behavior taken from the super class:
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   protected height: number = 0
   protected width: number = 0
 
@@ -1074,7 +1074,7 @@ class Rectangle {
     /* draw bounds */
   }
 }
-class FilledRectangle extends Rectangle {
+class FilledRectangle extends RectangleSize {
   color = ''
   constructor (h: number, w: number, c: string) {
     super(h, w) // call of super constructor
@@ -1096,14 +1096,14 @@ An overridden method can be marked with the keyword `override` to improve readab
 An overridden method must have the same types of parameters, and same or derived return type as the original method.
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   // ...
   area(): number {
     // implementation
     return 0
   }
 }
-class Square extends Rectangle {
+class Square extends RectangleSize {
   private side: number = 0
   override area(): number {
     return this.side * this.side
@@ -1120,12 +1120,12 @@ class C {
   foo(): void;            /* 1st signature */
   foo(x: string): void;   /* 2nd signature */
   foo(x?: string): void { /* implementation signature */
-    console.log(x)
+    console.log(x);
   }
 }
-let c = new C()
-c.foo()     // ok, 1st signature is used
-c.foo('aa') // ok, 2nd signature is used
+let c = new C();
+c.foo();     // ok, 1st signature is used
+c.foo('aa'); // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1159,12 +1159,12 @@ In this case the default constructor fills the instance fields with default valu
 The first statement of a constructor body can use the keyword `super` to explicitly call a constructor of the direct superclass.
 
 ```typescript
-class Rectangle {
+class RectangleSize {
   constructor(width: number, height: number) {
     // ...
   }
 }
-class Square extends Rectangle {
+class Square extends RectangleSize {
   constructor(side: number) {
     super(side, side)
   }
@@ -1182,11 +1182,11 @@ class C {
   constructor()             /* 1st signature */
   constructor(x: string)    /* 2nd signature */
   constructor(x?: string) { /* Implementation signature */
-    console.log(x)
+    console.log(x);
   }
 }
-let c1 = new C()      // ok, 1st signature is used
-let c2 = new C('abc') // ok, 2nd signature is used
+let c1 = new C();      // ok, 1st signature is used
+let c2 = new C('abc'); // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1300,7 +1300,7 @@ let map: Record<string, number> = {
   'Mary': 21,
 }
 
-console.log(map['John']) // prints 25
+map['John']; // 25
 ```
 
 The K type can be either string or number, while V can be any type.
@@ -1330,8 +1330,8 @@ Examples:
 interface Style {
   color: string // property
 }
-interface Area {
-  calculateArea(): number // method header
+interface AreaSize {
+  calculateAreaSize(): number // method header
   someMethod(): void;    // method header
 }
 ```
@@ -1340,21 +1340,21 @@ Examples of a class implementing an interface:
 
 ```typescript
 // Interface:
-interface Area {
-  calculateArea(): number // method header
+interface AreaSize {
+  calculateAreaSize(): number // method header
   someMethod(): void;    // method header
 }
 
 // Implementation:
-class Rectangle implements Area {
+class RectangleSize implements AreaSize {
   private width: number = 0
   private height: number = 0
   someMethod(): void {
-    console.log('someMethod called')
+    console.log('someMethod called');
   }
-  calculateArea(): number {
+  calculateAreaSize(): number {
     this.someMethod() // calls another method and returns result
-    return this.width * this.height
+    return this.width * this.height;
   }
 }
 ```
@@ -1427,20 +1427,17 @@ Generic types and functions allow creating the code capable to work over a varie
 A class and an interface can be defined as generics, adding parameters to the type definition, like the type parameter `Element` in the following example:
 
 ```typescript
-class Stack<Element> {
-  public pop(): Element {
-    // ...
-  }
+class CustomStack<Element> {
   public push(e: Element): void {
     // ...
   }
 }
 ```
 
-To use type Stack, the type argument must be specified for each type parameter:
+To use type CustomStack, the type argument must be specified for each type parameter:
 
 ```typescript
-let s = new Stack<string>
+let s = new CustomStack<string>()
 s.push('hello')
 ```
 
@@ -1448,7 +1445,7 @@ Compiler ensures type safety while working with generic types and functions.
 See below:
 
 ```typescript
-let s = new Stack<string>
+let s = new CustomStack<string>()
 s.push(55) /* That will be a compile-time error as 55 is not compatible
   with type string */
 ```
@@ -1479,7 +1476,7 @@ Use a generic function to create a more universal code. Consider a function that
 function last(x: number[]): number {
   return x[x.length - 1]
 }
-console.log(last([1, 2, 3])) // output: 3
+last([1, 2, 3]); // output: 3
 ```
 
 If the same function needs to be defined for any array, then define it as a generic with a type parameter:
@@ -1496,12 +1493,12 @@ In a function call, type argument can be set explicitly or implicitly:
 
 ```typescript
 // Explicit type argument
-console.log(last<string>(['aa', 'bb']))
-console.log(last<number>([1, 2, 3]))
+last<string>(['aa', 'bb']);
+last<number>([1, 2, 3]);
 
 // Implicit type argument:
 // Compiler understands the type argument based on the type of the call arguments
-console.log(last([1, 2, 3]))
+last([1, 2, 3]);
 ```
 
 ### Generic Defaults
