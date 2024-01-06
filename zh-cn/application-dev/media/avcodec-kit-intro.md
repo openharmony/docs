@@ -31,6 +31,7 @@ AVCodec kit（Audio & Video Codec Kit，音视频编解码，封装解封装原�
 在编码和解码过程中，通过回调函数通知应用数据处理的情况；如编码过程通过回调通知应用，完成一帧编码，输出编码结果avbuffer；在解码过程通过回调通知应用输入一帧码流到解码器解码，当解码完成也会通过回调通知应用解码完成，应用可以对数据做后续处理。
 
 **图1** 视频编解码逻辑图
+
 ![avcodec vcodec logic](figures/avcodec-vcodec-logic.png)
 
 - 文件解析封装
@@ -39,4 +40,5 @@ AVCodec kit（Audio & Video Codec Kit，音视频编解码，封装解封装原�
 在文件解析环节，应用从avcodec对应的接口获得携带有码流数据的avbuffer，该avbuffer可以送入上述解码器解码。
 
 **图2** 文件封装解封装逻辑图
+
 ![avcodec muxer-demuxer logic](figures/avcodec-muxer-demuxer-logic.png)
