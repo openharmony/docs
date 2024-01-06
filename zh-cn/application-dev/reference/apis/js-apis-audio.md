@@ -4980,6 +4980,8 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 
 设置通信设备激活状态，使用callback方式异步返回结果。
 
+该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
@@ -5009,6 +5011,8 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Promise&lt;void&gt;
 
 设置通信设备激活状态，使用Promise方式异步返回结果。
+
+该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
