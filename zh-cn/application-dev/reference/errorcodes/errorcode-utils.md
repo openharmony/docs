@@ -475,3 +475,21 @@ The dependency does not exist.
 **处理步骤**
 
 调用时，确保在删除依赖之前，已经使用[addDependency()](../apis/js-apis-taskpool.md#adddependency11)成功添加依赖。无法保证时，需要捕获异常。
+
+## 10200028 延时时间小于零
+
+**错误信息**
+
+The delayTime is less than zero.
+
+**错误描述**
+
+延时时间小于零。
+
+**可能原因**
+
+给定参数[delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11)的值小于零。
+
+**处理步骤**
+
+调用时，确保给定参数[delayTime](../apis/js-apis-taskpool.md#taskpoolexecutedelayed11)的值大于零。无法保证时，需要捕获异常。
