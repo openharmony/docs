@@ -7,26 +7,56 @@ Public
 
 **Reason for Change**
 
-This change is a non-compatible change. According to privacy protection requirements, the [ohos.permission.APPROXIMATELY_LOCATION](../../../application-dev/security/permission-list.md#ohospermissionapproximately_location) permission must be requested together with the [ohos.permission.LOCATION_IN_BACKGROUND](../../../application-dev/security/permission-list.md#ohospermissionlocation_in_background) or [ohos.permission.LOCATION](../../../application-dev/security/permission-list.md#ohospermissionlocation) permission.
+According to privacy protection requirements, the location permission is added with the **Allow only while in use** option. When the location permission is required, the **ohos.permission.LOCATION_IN_BACKGROUND** permission cannot be granted in a dialog box.
 
 **Change Impact**
 
-Before the change, when [requestPermissionsFromUser](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) is called to request the location permission, an authorization dialog box will be displayed in either of the following cases:
+This change is a non-compatible change. The location permission is added with the **Allow only while in use** option. When the location permission is required, the **ohos.permission.LOCATION_IN_BACKGROUND** permission cannot be granted in a dialog box. 
 
-- The **ohos.permission.LOCATION_IN_BACKGROUND** permission is requested without the **ohos.permission.APPROXIMATELY_LOCATION** permission.
+The following scenarios are involved:
 
-- The **ohos.permission.LOCATION_IN_BACKGROUND** and **ohos.permission.LOCATION** permissions are requested without the **ohos.permission.APPROXIMATELY_LOCATION** permission.
+- The application applies for only the **ohos.permission.LOCATION_IN_BACKGROUND** permission (the **ohos.permission.LOCATION** permission has not been granted).
 
+  Before the change: 
 
-After the change, the authorization dialog box will not be displayed in the preceding two cases. The **ohos.permission.APPROXIMATELY_LOCATION** permission must be requested together with the **ohos.permission.LOCATION_IN_BACKGROUND** or **ohos.permission.LOCATION** permission.
+  A dialog box will be displayed for granting the **ohos.permission.LOCATION_IN_BACKGROUND** permission.
+
+  After the change: 
+
+  No dialog box will be displayed for granting the **ohos.permission.LOCATION_IN_BACKGROUND** permission. 
+
+- The application applies for only the **ohos.permission.LOCATION_IN_BACKGROUND** permission (the **ohos.permission.LOCATION** permission has been granted).
+
+  Before the change: 
+
+  No dialog box will be displayed, but the **ohos.permission.LOCATION_IN_BACKGROUND** permission is granted when the **ohos.permission.LOCATION** permission is granted for the first time.
+
+  After the change: 
+
+  No dialog box will be displayed for granting the **ohos.permission.LOCATION_IN_BACKGROUND** permission. 
+
+- The application applies for both the **ohos.permission.LOCATION** and **ohos.permission.LOCATION_IN_BACKGROUND** permissions.
+
+  Before the change: 
+
+  A dialog box containing **Allow** and **Deny** will be displayed for granting the two permissions.
+
+  After the change:
+
+  - API version 10 and earlier: A dialog box containing **Allow only while in use** and **Deny** will be displayed. If **Allow only while in use** is selected, only the **ohos.permission.LOCATION** permission is granted.
+  - API version 11 and later: No dialog box will be displayed.
+
+**API Level**
+
+9
 
 **Change Since**
 
-OpenHarmony SDK 4.1.1.5
+OpenHarmony SDK 4.1.5.3
 
 **Key API/Component Changes**
 
-The **ohos.permission.APPROXIMATELY_LOCATION** permission must also be requested when the **ohos.permission.LOCATION_IN_BACKGROUND** or **ohos.permission.LOCATION** permission is requested by using **requestPermissionsFromUser** in @ohos.abilityAccessCtrl.d.ts.
+**requestPermissionsFromUser** in @ohos.abilityAccessCtrl.d.ts
 
 **Affected APIs**
 
@@ -111,13 +141,4 @@ The **ohos.permission.APPROXIMATELY_LOCATION** permission must also be requested
 
 **Adaptation Guide**
 
-Refer to [requestPermissionsFromUser](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) when modifying **EntryAbility.ets** and importing **GlobalThis**.
-
-```ts
-    let context: common.UIAbilityContext = GlobalThis.getInstance().getContext('context');
-    atManager.requestPermissionsFromUser(context, ['ohos.permission.APPROXIMATELY_LOCATION', 'ohos.permission.LOCATION', 'ohos.permission.LOCATION_IN_BACKGROUND']).then((data) => {
-        console.info('data:' + JSON.stringify(data));
-    }).catch((err: BusinessError) => {
-        console.info('data:' + JSON.stringify(err));
-    })
-```
+For details about the sample code, see [**requestPermissionsFromUser**](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9).
