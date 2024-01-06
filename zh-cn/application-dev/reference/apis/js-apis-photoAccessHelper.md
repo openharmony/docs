@@ -4028,7 +4028,7 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | options | [RequestPhotoOptions](#requestphotooptions11) | 是    | 获取资源缩略图的选项。 |
-| callback | AsyncCallback&lt;[image.PixelMap]((js-apis-image.md#pixelmap7))&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
 
 **返回值：**
 
