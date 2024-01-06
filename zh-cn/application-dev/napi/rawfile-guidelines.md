@@ -348,7 +348,7 @@
 
 1. 打开src\main\ets\pages\index.ets, 导入"libentry.so";
 
-2. 获取当前js的resourceManager对象;
+2. 资源获取包括获取本应用包资源、应用内跨包资源、跨应用包资源。<br>获取本应用包resourceManager对象，通过.context().resourceManager方法。<br>获取应用内跨包resourceManager对象，通过.context().createModuleContext().resourceManager 方法。<br>获取跨应用包resourceManager对象，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法，该方法仅支持系统应用使用。
     
 3. 调用Native接口getFileList即为src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象，以及rawfile文件夹的相对路径。示例如下:
 
