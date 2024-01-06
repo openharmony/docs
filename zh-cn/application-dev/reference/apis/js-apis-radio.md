@@ -455,8 +455,6 @@ getISOCountryCodeForNetworkSync\(slotId: number\): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let countryISO: string = radio.getISOCountryCodeForNetworkSync(slotId);
 console.log(`the country ISO is:` + countryISO);
@@ -654,8 +652,6 @@ getSignalInformationSync\(slotId: number\): Array\<SignalInformation\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let signalInfo: Array<radio.SignalInformation> = radio.getSignalInformationSync(slotId);
 console.log(`signal information size is:` + signalInfo.length);
@@ -1021,8 +1017,6 @@ getOperatorNameSync\(slotId: number\): string
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let operatorName: string = radio.getOperatorNameSync(slotId);
 console.log(`operator name is:` + operatorName);
@@ -2868,8 +2862,6 @@ on\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.on('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
@@ -2915,8 +2907,6 @@ off\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callbac
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
 let slotId: number = 0;
 let mode: radio.ImsServiceType = radio.ImsServiceType.TYPE_VIDEO;
 radio.off('imsRegStateChange', slotId, mode, (data: radio.ImsRegInfo) => {
