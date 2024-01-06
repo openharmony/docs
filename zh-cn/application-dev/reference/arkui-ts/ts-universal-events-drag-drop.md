@@ -22,11 +22,9 @@ ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖
 
 onDragStart(event: (event: DragEvent, extraParams?: string) => CustomBuilder | DragItemInfo)
 
-第一次拖拽此事件绑定的组件时，长按时间 >= 500ms，触发回调。
+第一次拖拽此事件绑定的组件时，长按时间 >= 500ms，然后手指移动距离 >= 10vp，触发回调。
 
-**事件优先级：** 长按触发时间 < 500ms，长按事件 > 拖拽事件
-
-**其他：** 拖拽事件 > 长按事件。
+**事件优先级：** 长按触发时间 < 500ms，长按事件优先拖拽事件响应，长按触发时间 >= 500ms，拖拽事件优先长按事件响应。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -123,7 +121,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 | 名称      | 类型                                     | 必填   | 描述                                |
 | --------- | ---------------------------------------- | ---- | --------------------------------- |
 | pixelMap  | [PixelMap](../apis/js-apis-image.md#pixelmap7) | 否    | 设置拖拽过程中显示的图片。                     |
-| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。 |
+| builder   | [CustomBuilder](ts-types.md#custombuilder8) | 否    | 拖拽过程中显示自定义组件，如果设置了pixelMap，则忽略此值。<br />**说明：**<br/> 不支持全局Builder定义。|
 | extraInfo | string                                   | 否    | 拖拽项的描述。                           |
 
 
@@ -158,6 +156,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 | getDisplayY()<sup>10+</sup> | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API verdion 10开始不再维护，建议使用getWindowY()代替。 |
+|dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10) | 切换复制和剪贴模式的角标显示状态。 |
 
 **错误码：**
 
@@ -177,6 +176,16 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 | DRAG_CANCELED | 拖拽取消，在onDrop中使用。 |
 | DROP_ENABLED | 组件允许落入，在onDragMove中使用。 |
 | DROP_DISABLED | 组件不允许落入，在onDragMove中使用。 |
+
+## DragBehavior<sup>10+</sup>
+
+需要设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED，并实现[onDrop](#ondrop)回调时才能够生效。
+
+| 名称 | 描述 |
+| ----- | ----------------- |
+| COPY | 复制模式角标。 |
+| MOVE| 剪贴模式角标。 |
+
 
 ## 示例
 

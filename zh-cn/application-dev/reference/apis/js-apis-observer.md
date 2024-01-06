@@ -433,8 +433,6 @@ on(type: 'callStateChange', callback: Callback\<CallStateInfo\>): void
 **示例：**
 
 ```ts
-import call from '@ohos.telephony.call';
-
 observer.on('callStateChange', (data: observer.CallStateInfo) => {
     console.log("on callStateChange, data:" + JSON.stringify(data));
 });
@@ -443,7 +441,7 @@ observer.on('callStateChange', (data: observer.CallStateInfo) => {
 
 ## observer.on('callStateChange')
 
-on(type: 'callStateChange', options: ObserverOptions, callback: Callback<CallStateInfo>): void
+on(type: 'callStateChange', options: ObserverOptions, callback: Callback\<CallStateInfo\>): void
 
 订阅通话状态变化事件，使用callback方式作为异步方法。
 
@@ -472,8 +470,6 @@ on(type: 'callStateChange', options: ObserverOptions, callback: Callback<CallSta
 **示例：**
 
 ```ts
-import call from '@ohos.telephony.call';
-
 let options: observer.ObserverOptions = {
     slotId: 0
 }
@@ -485,7 +481,7 @@ observer.on('callStateChange', options, (data: observer.CallStateInfo) => {
 
 ## observer.off('callStateChange')
 
-off(type: 'callStateChange', callback?: Callback<CallStateInfo>): void
+off(type: 'callStateChange', callback?: Callback\<CallStateInfo\>): void
 
 取消订阅通话状态变化事件，使用callback方式作为异步方法。
 
@@ -500,7 +496,7 @@ off(type: 'callStateChange', callback?: Callback<CallStateInfo>): void
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 通话状态变化事件，参数固定为'callStateChange'。               |
-| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 是   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码。 |
+| callback | Callback\<[CallStateInfo](#callstateinfo11)\>                | 否   | 以callback形式异步返回结果，参考call的[CallState](js-apis-call.md#callstate)<br />number：电话号码。 |
 
 **错误码：**
 
@@ -517,8 +513,6 @@ off(type: 'callStateChange', callback?: Callback<CallStateInfo>): void
 **示例：**
 
 ```ts
-import call from '@ohos.telephony.call';
-
 let callback: (data: observer.CallStateInfo) => void = (data: observer.CallStateInfo) => {
     console.log("on callStateChange, data:" + JSON.stringify(data));
 }
@@ -559,9 +553,6 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<DataConnectio
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import radio from '@ohos.telephony.radio';
-
 observer.on('cellularDataConnectionStateChange', (data: observer.DataConnectionStateInfo) => {
     console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 });
@@ -599,9 +590,6 @@ on\(type: 'cellularDataConnectionStateChange', options: ObserverOptions, callbac
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import radio from '@ohos.telephony.radio';
-
 let options: observer.ObserverOptions = {
     slotId: 0
 }
@@ -645,9 +633,6 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<DataConnec
 **示例：**
 
 ```ts
-import data from '@ohos.telephony.data';
-import radio from '@ohos.telephony.radio';
-
 let callback: (data: observer.DataConnectionStateInfo) => void = (data: observer.DataConnectionStateInfo) => {
     console.log("on cellularDataConnectionStateChange, data:" + JSON.stringify(data));
 }

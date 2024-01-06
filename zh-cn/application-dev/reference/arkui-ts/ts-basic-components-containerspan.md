@@ -20,14 +20,14 @@ ContainerSpan()
 
 | 名称                                       | 参数类型                                 | 描述                                                                                                                                                |
 | ------------------------------------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| textBackgroundStyle<sup>11+</sup> | [TextBackgroundStyle](#textbackgroundstyle) | 文本背景样式。<br />``默认值：``<br />``  color: Color.Transparent,``<br />``  radius: 0``<br />``}`` <br/>**说明：**<br/>子组件在不设置该属性时，将继承此属性值。 |
+| textBackgroundStyle | [TextBackgroundStyle](#textbackgroundstyle) | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} <br/>**说明：**<br/>子组件在不设置该属性时，将继承此属性值。 |
 
 ## TextBackgroundStyle对象说明
 
 | 名称   | 参数类型                                                                 | 必填 | 描述         |
 | ------ | ------------------------------------------------------------------------ | ---- | ------------ |
 | color  | [ResourceColor](ts-types.md#resourcecolor)                                  | 否   | 文本背景色。 |
-| radius | [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明) | 否   | 文本背景圆角。 |
+| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明) | 否   | 文本背景圆角。 |
 
 ## 事件
 

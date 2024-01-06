@@ -35,7 +35,7 @@
 
 ```
 /src/main/
-├── ets/inputmethodextability
+├── ets/InputMethodExtensionAbility
 │   └──model/KeyboardController.ts			# 显示键盘
 │   └──InputMethodService.ts				# 自定义类继承InputMethodExtensionAbility并加上需要的生命周期回调
 │   └──pages
@@ -224,7 +224,7 @@
 
    ```ets
    import { numberSourceListData, sourceListType } from './keyboardKeyData';
-   import keyboardController from '../model/KeyboardController';
+   import keyboardController from '../InputMethodExtensionAbility/model/KeyboardController';
    
    @Component
    struct keyItem {
@@ -339,7 +339,7 @@
            "description": "inputMethod",
            "icon": "$media:icon",
            "name": "InputMethodExtAbility",
-           "srcEntry": "./ets/inputmethodextability/InputMethodService.ts",
+           "srcEntry": "./ets/InputMethodExtensionAbility/InputMethodService.ts",
            "type": "inputMethod",
            "exported": true,
          }
@@ -350,7 +350,7 @@
 
 ## 验证方法
 
-1. 使用hdc命令，拉起选择输入法弹窗应用：`hdc shell aa start ability -a InputMethod -b cn.openharmonyinputmethodchoosedialog`
+1. 使用hdc命令，拉起选择输入法弹窗应用：`hdc shell aa start ability -a InputMethod -b com.ohos.inputmethodchoosedialog`
 
 2. 在弹窗上显示的输入法应用列表中，选择并点击demo应用，将demo应用切换为当前输入法。
 

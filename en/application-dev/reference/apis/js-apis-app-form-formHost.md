@@ -5,6 +5,7 @@ The **formHost** module provides APIs related to the widget host, which is an ap
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs provided by this module are system APIs.
 
 ## Modules to Import
@@ -1440,6 +1441,10 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 
 Subscribes to widget uninstall events. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+> 
+> Widget uninstall is different from widget removal. When an application is uninstalled, the corresponding widget is automatically uninstalled.
+
 **System capability**: SystemCapability.Ability.Form
 
 **Parameters**
@@ -1471,6 +1476,10 @@ formHost.on('formUninstall', (formId: string) => {
 off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 
 Unsubscribes from widget uninstall events. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> 
+> Widget uninstall is different from widget removal. When an application is uninstalled, the corresponding widget is automatically uninstalled.
 
 **System capability**: SystemCapability.Ability.Form
 
@@ -1909,7 +1918,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void
+acquireFormData(formId: string, callback: AsyncCallback\<Record\<string, Object>>): void
 
 Requests data from the widget provider. This API uses an asynchronous callback to return the result.
 
@@ -1924,7 +1933,7 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
-| callback | AsyncCallback<{[key: string]: Object} | Yes  | Callback used to return the API call result and the shared data.|
+| callback | AsyncCallback\<Record\<string, Object> | Yes  | Callback used to return the API call result and the shared data.|
 
 **Error codes**
 
@@ -1960,7 +1969,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string): Promise<{[key: string]: Object}>
+acquireFormData(formId: string): Promise\<Record\<string, Object>>
 
 Requests data from the widget provider. This API uses a promise to return the result.
 
@@ -1980,7 +1989,7 @@ Requests data from the widget provider. This API uses a promise to return the re
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise<{[key: string]: Object}>| Promise used to return the API call result and the shared data.|
+| Promise\<Record\<string, Object>>| Promise used to return the API call result and the shared data.|
 
 **Error codes**
 
@@ -2245,11 +2254,11 @@ try {
   let formIds: string[] = [ '12400633174999288' ];
   formHost.clearRouterProxy(formIds, (err: Base.BusinessError) => {
     if (err) {
-        conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+        console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch (e: Base.BusinessError) {
-  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 
@@ -2301,10 +2310,10 @@ try {
   formHost.clearRouterProxy(formIds).then(() => {
     console.log('formHost clear rourter proxy success');
   }).catch((err: Base.BusinessError) => {
-    conso.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+    console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
   });
-} catch (e: Base.BusinessError) {
-  console.info(`catch error, code: ${e.code}, message: ${e.message}`);
+} catch(error) {
+  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
 }
 ```
 

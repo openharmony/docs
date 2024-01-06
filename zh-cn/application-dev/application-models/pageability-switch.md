@@ -42,7 +42,8 @@ FA模型中PageAbility对应Stage模型中的UIAbility，PageAbility切换为UIA
 
 
    ```ts
-    import Window from '@ohos.window'
+    import Window from '@ohos.window'；
+    import UIAbility from '@ohos.app.ability.UIAbility';
 
     export default class EntryAbility extends UIAbility {
       onWindowStageCreate(windowStage: Window.WindowStage) {

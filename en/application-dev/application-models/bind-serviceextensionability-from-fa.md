@@ -14,23 +14,23 @@ import featureAbility from '@ohos.ability.featureAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 
-let want: Want = {
-    bundleName: "com.ohos.stage",
-    abilityName: "com.ohos.stage.ServiceExtensionAbility"
+let serviceWant: Want = {
+  bundleName: 'com.samples.stagemodelabilityinteraction',
+  abilityName: 'ServiceExtAbility'
 };
 
 let faConnect: common.ConnectOptions = {
-    onConnect: (elementName, proxy) => {
-        console.info("Faconnection onConnect called.");
-    },
-    onDisconnect: (elementName) => {
-        console.info("Faconnection onDisconnect called.");
-    },
-    onFailed: (code) => {
-        console.info("Faconnection onFailed code is: " + code);
-    }
+  onConnect: (elementName, proxy) => {
+    Logger.info(TAG, "FaConnection onConnect called.");
+  },
+  onDisconnect: (elementName) => {
+    Logger.info(TAG, "FaConnection onDisconnect called.");
+  },
+  onFailed: (code) => {
+    Logger.info(TAG, "FaConnection onFailed code is: " + code);
+  }
 };
-let connectionId = featureAbility.connectAbility(want, faConnect);
+let connectionId = featureAbility.connectAbility(serviceWant, faConnect);
 ```
 
 
@@ -44,21 +44,20 @@ import particleAbility from '@ohos.ability.particleAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 
-let want: Want = {
-    bundleName: "com.ohos.stage",
-    abilityName: "com.ohos.stage.ServiceExtensionAbility"
+let serviceWant: Want = {
+  bundleName: 'com.samples.stagemodelabilityinteraction',
+  abilityName: 'ServiceExtAbility'
 };
-
 let faConnect: common.ConnectOptions = {
-    onConnect: (elementName, proxy) => {
-        console.info("Faconnection onConnect called.");
-    },
-    onDisconnect: (elementName) => {
-        console.info("Faconnection onDisconnect called.");
-    },
-    onFailed: (code) => {
-        console.info("Faconnection onFailed code is: " + code);
-    }
+  onConnect: (elementName, proxy) => {
+    hilog.info(domain, TAG, 'FaConnection onConnect called.');
+  },
+  onDisconnect: (elementName) => {
+    hilog.info(domain, TAG, 'FaConnection onDisconnect called.');
+  },
+  onFailed: (code) => {
+    hilog.info(domain, TAG, 'FaConnection onFailed code is: ' + code);
+  }
 };
-let connectionId = particleAbility.connectAbility(want, faConnect);
+let connectionId = particleAbility.connectAbility(serviceWant, faConnect);
 ```

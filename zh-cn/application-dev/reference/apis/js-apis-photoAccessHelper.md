@@ -4028,7 +4028,7 @@ requestPhoto(options: RequestPhotoOptions, callback: AsyncCallback&lt;image.Pixe
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | options | [RequestPhotoOptions](#requestphotooptions11) | 是    | 获取资源缩略图的选项。 |
-| callback | AsyncCallback&lt;[image.PixelMap]((js-apis-image.md#pixelmap7))&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
+| callback | AsyncCallback&lt;[image.PixelMap](js-apis-image.md#pixelmap7)&gt; | 是    | Callback对象，返回获取的缩略图，根据选项的设置可能调用超过1次。 |
 
 **返回值：**
 
@@ -5923,6 +5923,11 @@ async function example() {
 ## CreateOptions
 
 图片或视频的创建选项。
+
+title参数规格为：
+- 不应包含扩展名。
+- 文件名字符串长度为1~255。
+- 文件名中不允许出现的非法英文字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 

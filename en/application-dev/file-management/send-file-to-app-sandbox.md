@@ -39,8 +39,7 @@ After the file is pushed, set **user_id** and **group_id** of the file to **user
 hdc shell ps -ef | grep com.ohos.example
 ```
 
-Run the following command to set **user_id** and **group_id**:
-```
+Run the following command to set **user_id** and **group_id** of the file based on **user_id** of the application process:
 hdc shell chown ${user_id}:${user_id} ${ file_path}
 ```
 

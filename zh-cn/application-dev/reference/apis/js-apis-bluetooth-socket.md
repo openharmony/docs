@@ -14,7 +14,7 @@ socket模块提供了操作和管理蓝牙socket的方法。
 import socket from '@ohos.bluetooth.socket';
 ```
 
-## socket.sppListen<a name="sppListen"></a>
+## socket.sppListen
 
 sppListen(name: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
@@ -65,7 +65,7 @@ try {
 ```
 
 
-## socket.sppAccept<a name="sppAccept"></a>
+## socket.sppAccept
 
 sppAccept(serverSocket: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -120,7 +120,7 @@ try {
 ```
 
 
-## socket.sppConnect<a name="sppConnect"></a>
+## socket.sppConnect
 
 sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;number&gt;): void
 
@@ -172,7 +172,7 @@ try {
 ```
 
 
-## socket.sppCloseServerSocket<a name="sppCloseServerSocket"></a>
+## socket.sppCloseServerSocket
 
 sppCloseServerSocket(socket: number): void
 
@@ -215,7 +215,7 @@ try {
 ```
 
 
-## socket.sppCloseClientSocket<a name="sppCloseClientSocket"></a>
+## socket.sppCloseClientSocket
 
 sppCloseClientSocket(socket: number): void
 
@@ -259,7 +259,7 @@ try {
 ```
 
 
-## socket.sppWrite<a name="sppWrite"></a>
+## socket.sppWrite
 
 sppWrite(clientSocket: number, data: ArrayBuffer): void
 
@@ -394,7 +394,7 @@ try {
 ```
 
 
-## SppOptions<a name="SppOptions"></a>
+## SppOptions
 
 描述spp的配置参数。
 
@@ -404,10 +404,10 @@ try {
 | ------ | ------------------- | ---- | ---- | ----------- |
 | uuid   | string              | 是    | 是    | spp单据的uuid。 |
 | secure | boolean             | 是    | 是    | 是否是安全通道。    |
-| type   | [SppType](#SppType)            | 是    | 是    | Spp链路类型。    |
+| type   | [SppType](#spptype)            | 是    | 是    | Spp链路类型。    |
 
 
-## SppType<a name="SppType"></a>
+## SppType
 
 枚举，Spp链路类型。
 

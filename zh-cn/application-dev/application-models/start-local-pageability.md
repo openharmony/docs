@@ -17,6 +17,9 @@ PageAbility相关的能力通过featureAbility提供，启动本地Ability通过
 ```ts
 import featureAbility from '@ohos.ability.featureAbility'
 import Want from '@ohos.app.ability.Want';
+import Logger from '../../utils/Logger';
+
+const TAG: string = 'PagePageAbilityFirst';
 ```
 ```ts
 (async (): Promise<void> => {

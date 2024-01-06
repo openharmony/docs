@@ -125,9 +125,9 @@ try {
 
 ## hiAppEvent.write
 
-write(info: [AppEventInfo](#appeventinfo), callback: AsyncCallback&lt;void&gt;): void
+write(info: AppEventInfo, callback: AsyncCallback&lt;void&gt;): void
 
-应用事件打点方法，将事件写入到当天的事件文件中，可接收[AppEventInfo](#appeventinfo)类型的事件对象，使用callback方式作为异步回调。
+应用事件打点方法，将事件写入到当天的事件文件中，可接收AppEventInfo类型的事件对象，使用callback方式作为异步回调。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -178,9 +178,9 @@ hiAppEvent.write({
 
 ## hiAppEvent.write
 
-write(info: [AppEventInfo](#appeventinfo)): Promise&lt;void&gt;
+write(info: AppEventInfo)): Promise&lt;void&gt;
 
-应用事件打点方法，将事件写入到当天的事件文件中，可接收[AppEventInfo](#appeventinfo)类型的事件对象，使用Promise方式作为异步回调。
+应用事件打点方法，将事件写入到当天的事件文件中，可接收AppEventInfo类型的事件对象，使用Promise方式作为异步回调。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -247,7 +247,7 @@ hiAppEvent.write({
 
 ## hiAppEvent.configure
 
-configure(config: [ConfigOption](configoption)): void
+configure(config: ConfigOption): void
 
 应用事件打点配置方法，可用于配置打点开关、目录存储配额大小等功能。
 
@@ -442,7 +442,7 @@ try {
 
 ## hiAppEvent.addWatcher
 
-addWatcher(watcher: [Watcher](#watcher)): [AppEventPackageHolder](#appeventpackageholder)
+addWatcher(watcher: Watcher): AppEventPackageHolder
 
 添加应用事件观察者方法，可用于订阅应用事件。
 
@@ -546,7 +546,7 @@ hiAppEvent.addWatcher({
 
 ## hiAppEvent.removeWatcher
 
-removeWatcher(watcher: [Watcher](#watcher)): void
+removeWatcher(watcher: Watcher): void
 
 移除应用事件观察者方法，可用于取消订阅应用事件。
 
@@ -674,7 +674,7 @@ holder2.setSize(1000);
 
 ### takeNext
 
-takeNext(): [AppEventPackage](#appeventpackage)
+takeNext(): AppEventPackage
 
 根据设置的数据大小阈值来取出订阅事件数据，当订阅事件数据全部被取出时返回null作为标识。
 

@@ -22,3 +22,4 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | want       | Want                 | No  | Carrier for information transfer between objects (application components).   |
 | permission | string               | No  | Permission.   |
 | extraInfo  | {[key: string]: any} | No  | Extra information.   |
+| extraInfos  | Record\<string, Object> | No  | Extra information. You are advised to use this attribute to replace **extraInfo**. When this attribute is set, **extraInfo** does not take effect.   |

@@ -302,7 +302,7 @@ sendMms\(context: Context, mmsParams: MmsParams, callback: AsyncCallback&lt;void
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
-| mmsParams | [MmsParams](#mmsparams) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
+| mmsParams | [MmsParams](#mmsparams11) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams11)。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 发送彩信的回调函数。 |
 
 **错误码：**
@@ -326,18 +326,18 @@ FA模型示例：
 ```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
-import type Context from './application/BaseContext';
+import common from '@ohos.app.ability.common';
 
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
-let context: Context = featureAbility.getContext();
+let context: common.BaseContext = featureAbility.getContext();
 
 // 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string  = sandBoxPath + 'SendReq.mms';
 
 // 发送彩信参数(mmsc以联通卡为例)
-let mmsPars: sms.MmsParam = {
+let mmsPars: sms.MmsParams = {
   slotId : 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -413,7 +413,7 @@ sendMms\(context: Context, mmsParams: MmsParams\): Promise&lt;void&gt;
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
 | context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
-| mmsParams | [MmsParams](#mmsparams) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams)。 |
+| mmsParams | [MmsParams](#mmsparams11) | 是   | 发送彩信的参数和回调，参考[MmsParams](#mmsparams11)。 |
 
 **返回值：**
 
@@ -442,17 +442,17 @@ FA模型示例：
 ```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
-import type Context from './application/BaseContext';
+import common from '@ohos.app.ability.common';
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
-let context: Context = featureAbility.getContext();
+let context: common.BaseContext = featureAbility.getContext();
 
 // 彩信pdu存储路径，pdu来源于编码接口
 const sandBoxPath: string = '/data/storage/el2/base/files/';
 let filePath: string = sandBoxPath + 'SendReq.mms';
 
 // 发送彩信参数(mmsc以联通卡为例)
-let mmsPars: sms.MmsParam = {
+let mmsPars: sms.MmsParams = {
   slotId: 0,
   mmsc: 'http://mmsc.myuni.com.cn',
   data: filePath,
@@ -550,10 +550,10 @@ FA模型示例：
 ```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
-import type Context from './application/BaseContext';
+import common from '@ohos.app.ability.common';
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
-let context: Context = featureAbility.getContext();
+let context: common.BaseContext = featureAbility.getContext();
 
 // 彩信pdu存储路径
 const sandBoxPath: string = '/data/storage/el2/base/files/';
@@ -563,7 +563,7 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl: string = 'URL';
 
 // 下载彩信参数
-let mmsPars: sms.MmsParam = {
+let mmsPars: sms.MmsParams = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -574,13 +574,13 @@ let mmsPars: sms.MmsParam = {
 };
 
 // 调用下载接口
-mms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
+sms.downloadMms(context, mmsPars, async(err: BusinessError) =>{
   if (err) {
-      console.error(`downloadMms fail, err : ${toString(err)}`);
+      console.error(`downloadMms fail, err : ${JSON.stringify(err)}`);
       return;
   }
   console.log(`downloadMms Success`);
-}
+})
 ```
 
 Stage模型示例：
@@ -671,10 +671,10 @@ FA模型示例：
 ```ts
 import sms from '@ohos.telephony.sms';
 import { BusinessError } from '@ohos.base';
-import type Context from './application/BaseContext';
+import common from '@ohos.app.ability.common';
 // 获取context
 import featureAbility from '@ohos.ability.featureAbility';
-let context: Context = featureAbility.getContext();
+let context: common.BaseContext = featureAbility.getContext();
 
 // 彩信pdu存储路径
 const sandBoxPath: string = '/data/storage/el2/base/files/';
@@ -684,7 +684,7 @@ let filePath: string = sandBoxPath + 'RetrieveConf.mms';
 let wapPushUrl: string = 'URL';
 
 // 下载彩信参数
-let mmsPars: sms.MmsParam = {
+let mmsPars: sms.MmsParams = {
   slotId: 0,
   mmsc: wapPushUrl,
   data: filePath,
@@ -2034,7 +2034,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<M
 | 参数名          | 类型                                                    | 必填 | 说明           |
 | --------------- | ------------------------------------------------------- | ---- | -------------- |
 | mmsFilePathName | string \|Array<number\>                                 | 是   | 彩信文件路径名。 |
-| callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | 是   | 指示用于获取｛@code MmsInformation｝的回调函数。     |
+| callback        | AsyncCallback&lt;[MmsInformation](#mmsinformation8)&gt; | 是   | 获取｛@code MmsInformation｝的回调函数。     |
 
 **错误码：**
 
@@ -2058,6 +2058,11 @@ import { BusinessError } from '@ohos.base';
 let mmsFilePathName: string = "filename";
 sms.decodeMms(mmsFilePathName, (err: BusinessError, data: sms.MmsInformation) => {
       console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+
+const mmsPdu: Array<number> = [0x8c, 0x80, 0x98, 0x31, 0x00, 0x8d, 0x92, 0x89, 0x09, 0x80, 0x07, 0xea, 0x31, 0x30, 0x30, 0x38, 0x36, 0x00, 0x97, 0x07, 0xea, 0x31, 0x30, 0x30,0x31, 0x30, 0x00, 0x84, 0x74, 0x79, 0x70, 0x65, 0x00, 0x00];
+sms.decodeMms(mmsPdu, (err: BusinessError, data: sms.MmsInformation) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
 });
 ```
 
@@ -2106,6 +2111,14 @@ import { BusinessError } from '@ohos.base';
 let mmsFilePathName: string = "filename";
 let promise = sms.decodeMms(mmsFilePathName);
 promise.then((data: sms.MmsInformation) => {
+    console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+    console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
+});
+
+const mmsPdu: Array<number> = [0x8c, 0x80, 0x98, 0x31, 0x00, 0x8d, 0x92, 0x89, 0x09, 0x80, 0x07, 0xea, 0x31, 0x30, 0x30, 0x38, 0x36, 0x00, 0x97, 0x07, 0xea, 0x31, 0x30, 0x30,0x31, 0x30, 0x00, 0x84, 0x74, 0x79, 0x70, 0x65, 0x00, 0x00];
+let promiseArr = sms.decodeMms(mmsPdu);
+promiseArr.then((data: sms.MmsInformation) => {
     console.log(`decodeMms success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
     console.error(`decodeMms failed, promise: err->${JSON.stringify(err)}`);
@@ -2310,7 +2323,7 @@ promise.then((data: number) => {
 |         名称             |                  类型                   | 必填 | 说明                                                         |
 | ------------------------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | hasReplyPath             | boolean                                 |  是  | 收到的短信是否包含“TP-Reply-Path”，默认为false。<br/>“TP-Reply-Path”：设备根据发送SMS消息的短消息中心进行回复。  |
-| isReplaceMessage         | boolean                                 |  是  | 收到的短信是否为“替换短信”，默认为false。<br/>“替换短信”有关详细信息，参见 “3GPP TS 23.040 9.2.3.9”。 |
+| isReplaceMessage         | boolean                                 |  是  | 收到的短信是否为“替换短信”，默认为false。<br/>“替换短信”有关详细信息，参见 [“3GPP TS 23.040 9.2.3.9”](https://www.3gpp.org/ftp/specs/archive/23_series/23.040)。 |
 | isSmsStatusReportMessage | boolean                                 |  是  | 当前消息是否为“短信状态报告”，默认为false。<br/>“短信状态报告”是一种特定格式的短信，被用来从Service Center到Mobile Station传送状态报告。|
 | messageClass             | [ShortMessageClass](#shortmessageclass) |  是  | 短信类型。                                                   |
 | pdu                      | Array&lt;number&gt;                     |  是  | SMS消息中的协议数据单元 （PDU）。                            |
@@ -2366,7 +2379,7 @@ promise.then((data: number) => {
 | slotId<sup>11+</sup>           | number                                                       | 是   | 用于发送短信的SIM卡槽ID：<br/>- 0：卡槽1<br/>- 1：卡槽2      |
 | mmsc<sup>11+</sup>  | string                                                       | 是   | 彩信中心地址。                                             |
 | data<sup>11+</sup>          | string                               | 是   | 彩信PDU地址。 |
-| mmsConfig<sup>11+</sup>    | MmsConfig                                                       | 否   | 彩信配置文件，参考[MmsConfig](#mmsconfig)。                |
+| mmsConfig<sup>11+</sup>    | MmsConfig                                                       | 否   | 彩信配置文件，参考[MmsConfig](#mmsconfig11)。                |
 
 ## MmsConfig<sup>11+</sup>
 
@@ -2728,11 +2741,11 @@ SIM卡消息状态。
 
 |           名称            | 值   | 说明                        |
 | ------------------------- | ---- | --------------------------- |
-| SIM_MESSAGE_STATUS_FREE   | 0    | SIM卡上的状态可用空间       |
+| SIM_MESSAGE_STATUS_FREE   | 0    | SIM卡上的可用空间状态       |
 | SIM_MESSAGE_STATUS_READ   | 1    | 消息已读状态                |
 | SIM_MESSAGE_STATUS_UNREAD | 3    | 消息未读状态                |
 | SIM_MESSAGE_STATUS_SENT   | 5    | 存储发送消息（仅适用于SMS） |
-| SIM_MESSAGE_STATUS_UNSENT | 7    | 储未发送消息（仅适用于SMS） |
+| SIM_MESSAGE_STATUS_UNSENT | 7    | 存储未发送消息（仅适用于SMS） |
 
 ## RanType<sup>7+</sup>
 

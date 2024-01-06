@@ -3887,7 +3887,7 @@ struct WebComponent {
 
 ### pageUp
 
-pageUp(top:boolean): void
+pageUp(top: boolean): void
 
 将Webview的内容向上滚动半个视框大小或者跳转到页面最顶部，通过top入参控制。
 
@@ -3938,7 +3938,7 @@ struct WebComponent {
 
 ### pageDown
 
-pageDown(bottom:boolean): void
+pageDown(bottom: boolean): void
 
 将Webview的内容向下滚动半个视框大小或者跳转到页面最底部，通过bottom入参控制。
 
@@ -4996,6 +4996,96 @@ struct WebComponent {
 }
 ```
 
+### enableSafeBrowsing<sup>11+</sup>
+
+enableSafeBrowsing(enable: boolean): void
+
+启用检查网站安全风险的功能，非法和欺诈网站是强制启用的，不能通过此功能禁用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名   | 类型    |  必填  | 说明                       |
+| --------| ------- | ---- | ---------------------------|
+|  enable | boolean | 是   | 是否启用检查网站安全风险的功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ----------------------- |
+|  401 | Invalid input parameter.    |
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+import business_error from '@ohos.base'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('enableSafeBrowsing')
+        .onClick(() => {
+          try {
+            web_webview.WebviewController.enableSafeBrowsing(true);
+            console.log("enableSafeBrowsing: true");
+          } catch (error) {
+            let e:business_error.BusinessError = error as business_error.BusinessError;
+            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### isSafeBrowsingEnabled<sup>11+</sup>
+
+isSafeBrowsingEnabled(): boolean
+
+获取当前网页是否启用了检查网站安全风险。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型    | 说明                                     |
+| ------- | --------------------------------------- |
+| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false。|
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('isSafeBrowsingEnabled')
+        .onClick(() => {
+          let result = web_webview.WebviewController.isSafeBrowsingEnabled();
+          console.log("result: " + result);
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### postUrl<sup>11+</sup>
 
 postUrl(url: string, postData: ArrayBuffer): void
@@ -5824,7 +5914,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true。 |
 
 **示例：**
 
@@ -5905,7 +5995,7 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限，默认为false。 |
 
 **示例：**
 
@@ -5992,7 +6082,7 @@ static existCookie(incognito?: boolean): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限。 |
+| boolean | true表示存在cookie，false表示不存在cookie。 |
 
 **示例：**
 
@@ -6026,7 +6116,7 @@ static deleteEntireCookie(): void
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](###clearAllCookiesSync11+)替代
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](#clearallcookiessync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6194,7 +6284,7 @@ static deleteSessionCookie(): void
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](###clearSessionCookieSync11+)替代
+> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](#clearsessioncookiesync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6358,7 +6448,7 @@ struct WebComponent {
 
 ### deleteOrigin
 
-static deleteOrigin(origin : string): void
+static deleteOrigin(origin: string): void
 
 清除指定源所使用的存储。
 
@@ -6456,7 +6546,7 @@ struct WebComponent {
 
 ### getOrigins
 
-static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -6521,7 +6611,7 @@ struct WebComponent {
 
 ### getOrigins
 
-static getOrigins() : Promise\<Array\<WebStorageOrigin>>
+static getOrigins(): Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -6586,7 +6676,7 @@ struct WebComponent {
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
@@ -6649,7 +6739,7 @@ struct WebComponent {
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string) : Promise\<number>
+static getOriginQuota(origin: string): Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
@@ -6717,7 +6807,7 @@ struct WebComponent {
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void
 
 以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
@@ -6780,7 +6870,7 @@ struct WebComponent {
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string) : Promise\<number>
+static getOriginUsage(origin: string): Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
@@ -7358,7 +7448,7 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
+                console.error(`getStoredGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               let origins_str: string = origins.join();
@@ -7417,7 +7507,7 @@ struct WebComponent {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error : business_error.BusinessError) => {
-              console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getStoredGeolocationPromise error, ErrorCode: ${e.code},  Message: ${e.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;

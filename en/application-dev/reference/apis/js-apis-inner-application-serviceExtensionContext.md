@@ -2166,3 +2166,155 @@ class EntryAbility extends ServiceExtensionAbility {
   }
 }
 ```
+
+## ServiceExtensionContext.requestModalUIExtension<sup>11+<sup>
+
+requestModalUIExtension(want: Want): Promise\<void>
+
+Requests a modal window (expressed by a UIExtensionAbility). The information about the requester and target is carried by **want**. The system determines the type of the modal window to start by comparing **bundleName** of the requester carried in **want** with that of the application currently running in the foreground. This API uses a promise to return the result.
+
+- If the values of **bundleName** are the same, users must interact with the modal window before they can return to the current application screen.
+- If the values of **bundleName** are different, users must interact with the modal window before they can return to the current system screen.
+
+Observe the following when using this API:
+- If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+- For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the modal window.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+class EntryAbility extends ServiceExtensionAbility {
+
+  onCreate() {
+    let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'requestModalUIExtension',
+      moduleName: 'requestModalUIExtension',
+      parameters: {
+        bundleName: 'com.example.myapplication'
+      }
+    };
+
+    try {
+      this.context.requestModalUIExtension(want)
+        .then(() => {
+          // Carry out normal service processing.
+          console.info('requestModalUIExtension succeed');
+        })
+        .catch((err: BusinessError) => {
+          // Process service logic errors.
+          console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestModalUIExtension failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```
+
+## ServiceExtensionContext.requestModalUIExtension<sup>11+<sup>
+
+requestModalUIExtension(want: Want, callback: AsyncCallback\<void>): void
+
+Requests a modal window (expressed by a UIExtensionAbility). The information about the requester and target is carried by **want**. The system determines the type of the modal window to start by comparing **bundleName** of the requester carried in **want** with that of the application currently running in the foreground. This API uses an asynchronous callback to return the result.
+
+- If the values of **bundleName** are the same, users must interact with the modal window before they can return to the current application screen.
+- If the values of **bundleName** are different, users must interact with the modal window before they can return to the current system screen.
+
+Observe the following when using this API:
+- If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+- For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+ 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-app-ability-want.md)  | Yes| Want information used to start the modal window.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the UIExtensionAbility is started, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Error codes**
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
+
+class EntryAbility extends ServiceExtensionAbility {
+  onCreate() {
+     let want: Want = {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'requestModalUIExtension',
+      moduleName: 'requestModalUIExtension',
+      parameters: {
+        bundleName: 'com.example.myapplication'
+      }
+    };
+
+    try {
+      this.context.requestModalUIExtension(want, (err: BusinessError) => {
+        if (err.code) { 
+          // Process service logic errors.
+          console.error(`requestModalUIExtension failed, code is ${err.code}, message is ${err.message}`);
+          return;
+        } 
+        // Carry out normal service processing.
+        console.info('requestModalUIExtension succeed');
+      });
+    } catch (err) { 
+      // Process input parameter errors.
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`requestModalUIExtension failed, code is ${code}, message is ${message}`);
+    }
+  }
+}
+```

@@ -562,7 +562,7 @@ function processData(s: string) {
   let error: Error | null = null
 
   try {
-    console.log('Data processed: ', s)
+    console.log('Data processed: ' + s)
     // ...
     // Throwing operations
     // ...
@@ -714,7 +714,7 @@ An arrow function return type can be omitted; in such case, it is inferred from 
 An expression can be specified as an arrow function to make the notation shorter, i.e., the following two notations are equivalent:
 
 ```typescript
-let sum1 = (x: number, y: number) => { return x + y }
+let sum1 = (x: number, y: number) => { return x + y; }
 let sum2 = (x: number, y: number) => x + y
 ```
 
@@ -727,13 +727,13 @@ The closure allows accessing such an inner function outside its own environment.
 
 ```typescript
 function f(): () => number {
-  let count = 0
-  return (): number => { count++; return count }
+  let count = 0;
+  return (): number => { count++; return count; }
 }
 
-let z = f()
-console.log(z()) // output: 1
-console.log(z()) // output: 2
+let z = f();
+z(); // output: 1
+z(); // output: 2
 ```
 
 In the sample above, the arrow function closure captures the `count` variable.
@@ -746,11 +746,11 @@ A function can be specified to be called in different ways by writing overload s
 function foo(): void;      /* 1st signature */
 function foo(x: string): void;   /* 2nd signature */
 function foo(x?: string): void { /* Implementation signature */
-  console.log(x)
+  console.log(x);
 }
 
-foo()   // ok, 1st signature is used
-foo('aa') // ok, 2nd signature is used
+foo();   // ok, 1st signature is used
+foo('aa'); // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have identical parameter lists.
@@ -766,11 +766,11 @@ class Person {
   name: string = ''
   surname: string = ''
   constructor (n: string, sn: string) {
-    this.name = n
-    this.surname = sn
+    this.name = n;
+    this.surname = sn;
   }
   fullName(): string {
-    return this.name + ' ' + this.surname
+    return this.name + ' ' + this.surname;
   }
 }
 ```
@@ -778,8 +778,8 @@ class Person {
 After the class is defined, its instances can be created by using the keyword `new`:
 
 ```typescript
-let p = new Person('John', 'Smith')
-console.log(p.fullName())
+let p = new Person('John', 'Smith');
+console.log(p.fullName());
 ```
 
 or an instance can be created by using object literals:
@@ -789,7 +789,7 @@ class Point {
   x: number = 0
   y: number = 0
 }
-let p: Point = {x: 42, y: 42}
+let p: Point = { x: 42, y: 42 };
 ```
 
 ### Fields
@@ -818,10 +818,10 @@ class Person {
   }
 }
 
-let p1 = new Person('Alice', 25)
-console.log(p1.name)
-let p2 = new Person('Bob', 28)
-console.log(p2.getName())
+let p1 = new Person('Alice', 25);
+console.log(p1.name);
+let p2 = new Person('Bob', 28);
+console.log(p2.getName());
 ```
 
 #### Static Fields
@@ -835,12 +835,12 @@ class Person {
   static numberOfPersons = 0
   constructor() {
      // ...
-     Person.numberOfPersons++
+     Person.numberOfPersons++;
      // ...
   }
 }
 
-console.log(Person.numberOfPersons)
+Person.numberOfPersons;
 ```
 
 #### Field Initializers
@@ -869,7 +869,7 @@ class Person {
 let jack = new Person()
 // Let's assume that the developer forgets to call setName:
 // jack.setName('Jack')
-console.log(jack.getName().length); // runtime exception: name is undefined
+jack.getName().length; // runtime exception: name is undefined
 ```
 
 Here is how it should look in ArkTS:
@@ -891,14 +891,14 @@ class Person {
 let jack = new Person()
 // Let's assume that the developer forgets to call setName:
 // jack.setName('Jack')
-console.log(jack.getName().length); // 0, no runtime error
+jack.getName().length; // 0, no runtime error
 ```
 
 And here how our code behaves if the field `name` can be `undefined`
 
 ```typescript
 class Person {
-  name ?: string // The field may be undefined, great
+  name?: string // The field may be undefined, great
   // More explicit syntax may also be used:
   // name: string | undefined = undefined
 
@@ -924,9 +924,9 @@ let jack = new Person()
 
 // Compile-time(!) error: Compiler suspects that we
 // may possibly access something undefined and won't build the code:
-console.log(jack.getName().length); // The code won't build and run
+jack.getName().length; // The code won't build and run
 
-console.log(jack.getName()?.length); // Builds ok, no runtime error
+jack.getName()?.length; // Builds ok, no runtime error
 ```
 
 #### Getters and Setters
@@ -939,18 +939,18 @@ In the following example, a setter is used to forbid setting invalid values of t
 class Person {
   name: string = ''
   private _age: number = 0
-  get age(): number { return this._age }
+  get age(): number { return this._age; }
   set age(x: number) {
     if (x < 0) {
-      throw Error('Invalid age argument')
+      throw Error('Invalid age argument');
     }
-    this._age = x
+    this._age = x;
   }
 }
 
-let p = new Person()
-console.log (p.age) // 0 will be printed out
-p.age = -42 // Error will be thrown as an attempt to set incorrect age
+let p = new Person();
+p.age; // 0
+p.age = -42; // Error will be thrown as an attempt to set incorrect age
 ```
 
 A class can define a getter, a setter or both.
@@ -983,8 +983,8 @@ class RectangleSize {
 To use an instance method, it must be called on an instance of the class:
 
 ```typescript
-let square = new RectangleSize(10, 10)
-console.log(square.calculateArea()) // output: 100
+let square = new RectangleSize(10, 10);
+square.calculateArea(); // output: 100
 ```
 
 #### Static Methods
@@ -998,10 +998,10 @@ The class name is used to call a static method:
 ```typescript
 class Cl {
   static staticMethod(): string {
-    return 'this is a static method.'
+    return 'this is a static method.';
   }
 }
-console.log(Cl.staticMethod())
+console.log(Cl.staticMethod());
 ```
 
 #### Inheritance
@@ -1120,12 +1120,12 @@ class C {
   foo(): void;            /* 1st signature */
   foo(x: string): void;   /* 2nd signature */
   foo(x?: string): void { /* implementation signature */
-    console.log(x)
+    console.log(x);
   }
 }
-let c = new C()
-c.foo()     // ok, 1st signature is used
-c.foo('aa') // ok, 2nd signature is used
+let c = new C();
+c.foo();     // ok, 1st signature is used
+c.foo('aa'); // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1182,11 +1182,11 @@ class C {
   constructor()             /* 1st signature */
   constructor(x: string)    /* 2nd signature */
   constructor(x?: string) { /* Implementation signature */
-    console.log(x)
+    console.log(x);
   }
 }
-let c1 = new C()      // ok, 1st signature is used
-let c2 = new C('abc') // ok, 2nd signature is used
+let c1 = new C();      // ok, 1st signature is used
+let c2 = new C('abc'); // ok, 2nd signature is used
 ```
 
 An error occurs if two overload signatures have the same name and identical parameter lists.
@@ -1300,7 +1300,7 @@ let map: Record<string, number> = {
   'Mary': 21,
 }
 
-console.log(map['John']) // prints 25
+map['John']; // 25
 ```
 
 The K type can be either string or number, while V can be any type.
@@ -1350,11 +1350,11 @@ class RectangleSize implements AreaSize {
   private width: number = 0
   private height: number = 0
   someMethod(): void {
-    console.log('someMethod called')
+    console.log('someMethod called');
   }
   calculateAreaSize(): number {
     this.someMethod() // calls another method and returns result
-    return this.width * this.height
+    return this.width * this.height;
   }
 }
 ```
@@ -1476,7 +1476,7 @@ Use a generic function to create a more universal code. Consider a function that
 function last(x: number[]): number {
   return x[x.length - 1]
 }
-console.log(last([1, 2, 3])) // output: 3
+last([1, 2, 3]); // output: 3
 ```
 
 If the same function needs to be defined for any array, then define it as a generic with a type parameter:
@@ -1493,12 +1493,12 @@ In a function call, type argument can be set explicitly or implicitly:
 
 ```typescript
 // Explicit type argument
-console.log(last<string>(['aa', 'bb']))
-console.log(last<number>([1, 2, 3]))
+last<string>(['aa', 'bb']);
+last<number>([1, 2, 3]);
 
 // Implicit type argument:
 // Compiler understands the type argument based on the type of the call arguments
-console.log(last([1, 2, 3]))
+last([1, 2, 3]);
 ```
 
 ### Generic Defaults
