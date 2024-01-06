@@ -645,9 +645,13 @@ enum OH_Drawing_BlendMode
 
 混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在4个颜色通道（红、绿、蓝、透明度）上是相同的。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。
 
-为简洁起见，我们使用以下缩写： s : source 源的缩写。 d : destination 目标的缩写。 sa : source alpha 源透明度的缩写。 da : destination alpha 目标透明度的缩写。
+为简洁起见，我们使用以下缩写：
 
-计算结果用如下缩写表示： r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作透明度通道，用ra表示。 rc : 如果操作3个颜色通道，用rc表示。
+s : source 源的缩写。 d : destination 目标的缩写。 sa : source alpha 源透明度的缩写。 da : destination alpha 目标透明度的缩写。
+
+计算结果用如下缩写表示：
+
+r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作透明度通道，用ra表示。 rc : 如果操作3个颜色通道，用rc表示。
 
 **起始版本：** 11
 
@@ -1084,7 +1088,7 @@ void OH_Drawing_BitmapBuild (OH_Drawing_Bitmap * , const uint32_t width, const u
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Bitmap | 参数是一个指向位图对象的指针。 |
+| OH_Drawing_Bitmap | 指向位图对象的指针。 |
 | width | 参数是位图要初始化设置的宽度。 |
 | height | 参数是位图要初始化设置的高度。 |
 | [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | 参数是位图要初始化设置的像素格式，包括像素的颜色类型和透明度类型。 |
@@ -1127,7 +1131,7 @@ void OH_Drawing_BitmapDestroy (OH_Drawing_Bitmap * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Bitmap | 参数是一个指向位图对象的指针。 |
+| OH_Drawing_Bitmap | 指向位图对象的指针。 |
 
 
 ### OH_Drawing_BitmapGetHeight()
@@ -1148,7 +1152,7 @@ uint32_t OH_Drawing_BitmapGetHeight (OH_Drawing_Bitmap * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Bitmap | 参数是一个指向位图对象的指针。 |
+| OH_Drawing_Bitmap | 指向位图对象的指针。 |
 
 **返回：**
 
@@ -1173,7 +1177,7 @@ void* OH_Drawing_BitmapGetPixels (OH_Drawing_Bitmap * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Bitmap | 参数是一个指向位图对象的指针。 |
+| OH_Drawing_Bitmap | 指向位图对象的指针。 |
 
 **返回：**
 
@@ -1198,7 +1202,7 @@ uint32_t OH_Drawing_BitmapGetWidth (OH_Drawing_Bitmap * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Bitmap | 参数是一个指向位图对象的指针。 |
+| OH_Drawing_Bitmap | 指向位图对象的指针。 |
 
 **返回：**
 
@@ -1242,7 +1246,7 @@ void OH_Drawing_BrushDestroy (OH_Drawing_Brush * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Brush | 参数是一个指向画刷对象的指针。 |
+| OH_Drawing_Brush | 指向画刷对象的指针。 |
 
 
 ### OH_Drawing_BrushGetAlpha()
@@ -1288,7 +1292,7 @@ uint32_t OH_Drawing_BrushGetColor (const OH_Drawing_Brush * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Brush | 参数是一个指向画刷对象的指针。 |
+| OH_Drawing_Brush | 指向画刷对象的指针。 |
 
 **返回：**
 
@@ -1313,7 +1317,7 @@ bool OH_Drawing_BrushIsAntiAlias (const OH_Drawing_Brush * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Brush | 参数是一个指向画刷对象的指针。 |
+| OH_Drawing_Brush | 指向画刷对象的指针。 |
 
 **返回：**
 
@@ -1338,7 +1342,7 @@ void OH_Drawing_BrushSetAlpha (OH_Drawing_Brush * , uint8_t alpha )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Brush | 参数是一个指向画刷对象的指针。 |
+| OH_Drawing_Brush | 指向画刷对象的指针。 |
 | alpha | 表示要设置的透明度值，是一个8位变量。 |
 
 
@@ -1360,7 +1364,7 @@ void OH_Drawing_BrushSetAntiAlias (OH_Drawing_Brush * , bool  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Brush | 参数是一个指向画刷对象的指针。 |
+| OH_Drawing_Brush | 指向画刷对象的指针。 |
 | bool | 参数真为抗锯齿，参数假则不做抗锯齿处理。 |
 
 
@@ -1382,8 +1386,8 @@ void OH_Drawing_BrushSetColor (OH_Drawing_Brush * , uint32_t color )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Brush | 参数是一个指向画刷对象的指针。 |
-| color | 参数是一个描述颜色的32位（ARGB）变量。 |
+| OH_Drawing_Brush | 指向画刷对象的指针。 |
+| color | 描述颜色的32位（ARGB）变量。 |
 
 
 ### OH_Drawing_BrushSetFilter()
@@ -1404,7 +1408,7 @@ void OH_Drawing_BrushSetFilter (OH_Drawing_Brush * , OH_Drawing_Filter *  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Brush | 参数是一个指向画刷对象的指针。 |
+| OH_Drawing_Brush | 指向画刷对象的指针。 |
 | OH_Drawing_Filter | 表示指向滤波器对象的指针。 |
 
 
@@ -1426,7 +1430,7 @@ void OH_Drawing_BrushSetShaderEffect (OH_Drawing_Brush * , OH_Drawing_ShaderEffe
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Brush | 参数是一个指向画刷对象的指针。 |
+| OH_Drawing_Brush | 指向画刷对象的指针。 |
 | OH_Drawing_ShaderEffect | 表示指向着色器对象的指针。 |
 
 
@@ -1603,7 +1607,7 @@ void OH_Drawing_CanvasDestroy (OH_Drawing_Canvas * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Canvas | 参数是一个指向画布对象的指针。 |
+| OH_Drawing_Canvas | 指向画布对象的指针。 |
 
 
 ### OH_Drawing_CanvasDetachBrush()
@@ -3261,7 +3265,7 @@ void OH_Drawing_PenDestroy (OH_Drawing_Pen * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
 
 
 ### OH_Drawing_PenGetAlpha()
@@ -3307,7 +3311,7 @@ OH_Drawing_PenLineCapStyle OH_Drawing_PenGetCap (const OH_Drawing_Pen * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
 
 **返回：**
 
@@ -3332,7 +3336,7 @@ uint32_t OH_Drawing_PenGetColor (const OH_Drawing_Pen * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
 
 **返回：**
 
@@ -3357,7 +3361,7 @@ OH_Drawing_PenLineJoinStyle OH_Drawing_PenGetJoin (const OH_Drawing_Pen * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
 
 **返回：**
 
@@ -3382,7 +3386,7 @@ float OH_Drawing_PenGetMiterLimit (const OH_Drawing_Pen * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
 
 **返回：**
 
@@ -3407,7 +3411,7 @@ float OH_Drawing_PenGetWidth (const OH_Drawing_Pen * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
 
 **返回：**
 
@@ -3432,7 +3436,7 @@ bool OH_Drawing_PenIsAntiAlias (const OH_Drawing_Pen * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
 
 **返回：**
 
@@ -3479,7 +3483,7 @@ void OH_Drawing_PenSetAntiAlias (OH_Drawing_Pen * , bool  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
 | bool | 参数真为抗锯齿，参数假则不做抗锯齿处理。 |
 
 
@@ -3501,8 +3505,8 @@ void OH_Drawing_PenSetCap (OH_Drawing_Pen * , OH_Drawing_PenLineCapStyle  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
-| OH_Drawing_PenLineCapStyle | 参数是一个描述画笔笔帽样式的变量。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
+| OH_Drawing_PenLineCapStyle | 描述画笔笔帽样式的变量。 |
 
 
 ### OH_Drawing_PenSetColor()
@@ -3523,8 +3527,8 @@ void OH_Drawing_PenSetColor (OH_Drawing_Pen * , uint32_t color )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
-| color | 参数是一个描述颜色的32位（ARGB）变量。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
+| color | 描述颜色的32位（ARGB）变量。 |
 
 
 ### OH_Drawing_PenSetJoin()
@@ -3545,8 +3549,8 @@ void OH_Drawing_PenSetJoin (OH_Drawing_Pen * , OH_Drawing_PenLineJoinStyle  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
-| OH_Drawing_PenLineJoinStyle | 参数值一个描述折线转角样式的变量。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
+| OH_Drawing_PenLineJoinStyle | 描述折线转角样式的变量。 |
 
 
 ### OH_Drawing_PenSetMiterLimit()
@@ -3567,8 +3571,8 @@ void OH_Drawing_PenSetMiterLimit (OH_Drawing_Pen * , float miter )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
-| miter | 参数是一个描述尖角限制值的变量。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
+| miter | 描述尖角限制值的变量。 |
 
 
 ### OH_Drawing_PenSetWidth()
@@ -3589,8 +3593,8 @@ void OH_Drawing_PenSetWidth (OH_Drawing_Pen * , float width )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Pen | 参数是一个指向画笔对象的指针。 |
-| width | 参数是一个描述画笔厚度的变量。 |
+| OH_Drawing_Pen | 指向画笔对象的指针。 |
+| width | 描述画笔厚度的变量。 |
 
 
 ### OH_Drawing_PointCreate()
