@@ -27,7 +27,7 @@
     - [音频通话开发概述](audio-call-overview.md)
     - [开发音频通话功能(ArkTS)](audio-call-development.md)
 - Media Kit（媒体服务）
-  - [AVPlayer和AVRecorder](avplayer-avrecorder-overview.md)
+  - [Media Kit简介](media-kit-intro.md)
   - 音频播放和录制
     - [使用AVPlayer开发音频播放功能(ArkTS)](using-avplayer-for-playback.md)
     - [使用AVPlayer开发音频播放功能(C/C++)](using-ndk-avplayer-for-playerback.md)
