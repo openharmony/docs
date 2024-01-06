@@ -50,16 +50,16 @@
 WLAN组件子系统为用户提供WLAN基础功能、P2P（peer-to-peer）功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
 
 - **STA模式**<br/>
-  STA模式即工作站模式，可以理解为某个网格中的一个工作站即客户端。当某设备提供这个功能时，它可以连到另外的一个路由网络中，如家用路由器，通常用于提供网络的数据上行服务。
-  详情请参考[@ohos.bluetooth.hid API参考](../reference/apis/js-apis-wifiManager.md)。
+  STA模式即工作站模式，可以理解为某网格中的一个工作站即客户端。当某设备具备该功能时，它可以连到另外的一个路由网络中，如家用路由器，通常用于提供网络的数据上行服务。
+  详情请参考[@ohos.wifiManager API参考](../reference/apis/js-apis-wifiManager.md)。
 
 - **AP模式**<br/>
-  AP模式通过应用在无线局域网成员设备（即客户端）的加入，即网络下行。它提供以无线方式组建无线局域网WLAN，相当际WLAN的中心设备。
-  详情请参考[@ohos.bluetooth.hfp API参考](../reference/apis/js-apis-wifiManager.md)。
+  AP模式为加入无线局域网的成员设备（即客户端）提供下行数据业务，它提供以无线方式组建无线局域网WLAN，相当际WLAN的中心设备。
+  详情请参考[@ohos.wifiManager API参考](../reference/apis/js-apis-wifiManager.md)。
 
 - **P2P模式**<br/>
   P2P模式也为Wi-Fi Direct；Wi-Fi Direct 是一种点对点连接技术，它可以在两台 STA 之间直接建立 TCP/IP 链接，并不需要AP的参与；其中一台STA会起到传统意义上的AP的作用，称为Group Owner(GO),另外一台station则称为Group Client(GC)，像连接AP一样连接到GO。
-  [@ohos.bluetooth.pan API参考](../reference/apis/js-apis-wifiManager.md)。
+  [@ohos.wifiManager API参考](../reference/apis/js-apis-wifiManager.md)。
 
 ### NFC简介
 
