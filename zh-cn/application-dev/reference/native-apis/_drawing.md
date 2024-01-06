@@ -2444,6 +2444,10 @@ double OH_Drawing_TypographyGetIdeographicBaseline (OH_Drawing_Typography * )
 
 ### OH_Drawing_TypographyGetLongestLine()
 
+```
+double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
+```
+
 **描述:**
 
 获取最长行
