@@ -16,7 +16,7 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper';
 
 getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
-获取相册管理模块模块的实例，用于访问和修改相册中的媒体文件。
+获取相册管理模块的实例，用于访问和修改相册中的媒体文件。
 
 **模型约束**： 此接口仅可在Stage模型下使用。
 
@@ -26,13 +26,13 @@ getPhotoAccessHelper(context: Context): PhotoAccessHelper
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| context | [Context](js-apis-inner-app-context.md) | 是   | 传入Ability实例的Context。 |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 
 **返回值：**
 
 | 类型                            | 说明    |
 | ----------------------------- | :---- |
-| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块模块的实例。 |
+| [PhotoAccessHelper](#photoaccesshelper) | 相册管理模块的实例。 |
 
 **错误码：**
 
@@ -1953,6 +1953,44 @@ async function example() {
 }
 ```
 
+### applyChanges<sup>11+</sup>
+
+applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
+
+提交媒体变更请求，使用Promise方式返回结果。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                      |
+| -------- | ------------------------ | ---- | ------------------------- |
+| mediaChangeRequest  | [MediaChangeRequest](#mediachangerequest11)  | 是  |  媒体变更请求，支持资产变更请求和相册变更请求。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.         |
+| 401   | if parameter is invalid.   |
+| 14000011  | System inner fail.     |
+
+**示例：**
+
+```ts
+
+```
+
 ### release
 
 release(callback: AsyncCallback&lt;void&gt;): void
@@ -3136,7 +3174,7 @@ setUserComment(userComment: string): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为420字符。 |
 
 **返回值：**
 
@@ -3197,7 +3235,7 @@ setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为140字符。 |
+| userComment | string | 是   | 待修改的图片或视频的备注信息，备注信息最长为420字符。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | callback返回void。 |
 
 **错误码：**
@@ -3592,6 +3630,43 @@ async function example() {
     console.error('requestEditDataPromiseDemo failed with error: ' + err);
   }
 }
+```
+
+### getEditData<sup>11+</sup>
+
+getEditData(): Promise&lt;MediaAssetEditData&gt;
+
+获得资产编辑数据，该方法使用promise形式来返回结果。
+
+如果资源未编辑过，则返回的编辑数据的内容为空字符串。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.READ_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;[MediaAssetEditData](#mediaasseteditdata11)&gt; | Promise对象，返回资产编辑数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 202   | Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+
 ```
 
 ### requestSource<sup>11+</sup>
@@ -5760,6 +5835,1178 @@ async function example() {
 }
 ```
 
+## MediaAssetEditData<sup>11+</sup>
+
+资产编辑数据。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### 属性
+
+| 名称           | 类型    | 可读   | 可写  | 说明   |
+| ------------ | ------ | ---- | ---- | ------- |
+| compatibleFormat | string | 是    | 是    | 编辑数据的格式。    |
+| formatVersion | string | 是    | 是   | 编辑数据格式的版本。    |
+| data | string | 是    | 是   | 编辑数据。    |
+
+### constructor<sup>11+</sup>
+
+constructor(compatibleFormat: string, formatVersion: string)
+
+构造函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| compatibleFormat | string | 是   | 编辑数据的格式。 |
+| formatVersion | string | 是   | 编辑数据格式的版本。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**示例：**
+
+```ts
+
+```
+
+## MediaAssetChangeRequest<sup>11+</sup>
+
+资产变更请求。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>11+</sup>
+
+constructor(asset: PhotoAsset)
+
+构造函数。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| asset | [PhotoAsset](#photoasset) | 是   | 需要变更的资产。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**示例：**
+
+```ts
+
+```
+
+### createImageAssetRequest<sup>11+</sup>
+
+static createImageAssetRequest(context: Context, fileUri: string): MediaAssetChangeRequest
+
+创建图片资产变更请求。
+
+通过fileUri指定待创建资产的数据来源，可参考[FileUri](./js-apis-file-fileuri.md)。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| fileUri | string | 是   | 图片资产的数据来源，在应用沙箱下的uri。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+| 13900002   | No such file.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+
+```
+
+### createVideoAssetRequest<sup>11+</sup>
+
+static createVideoAssetRequest(context: Context, fileUri: string): MediaAssetChangeRequest
+
+创建视频资产变更请求。
+
+通过fileUri指定待创建资产的数据来源，可参考[FileUri](./js-apis-file-fileuri.md)。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| fileUri | string | 是   | 视频资产的数据来源，在应用沙箱下的uri。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401   | if parameter is invalid.         |
+| 13900002   | No such file.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+
+```
+
+### createAssetRequest<sup>11+</sup>
+
+static createAssetRequest(context: Context, displayName: string, options?: PhotoCreateOptions): MediaAssetChangeRequest
+
+指定待创建的图片或者视频的文件名，创建资产变更请求。
+
+待创建的文件名参数规格为：
+- 应包含有效文件主名和图片或视频扩展名。
+- 文件名字符串长度为1~255。
+- 文件主名中不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| displayName  | string        | 是   | 待创建的图片或者视频文件名。              |
+| options  | [PhotoCreateOptions](#photocreateoptions)        | 否   | 图片或视频的创建选项。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### createAssetRequest<sup>11+</sup>
+
+static createAssetRequest(context: Context, photoType: PhotoType, extension: string, options?: CreateOptions): MediaAssetChangeRequest
+
+指定待创建的文件类型和扩展名，创建资产变更请求。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| photoType  | [PhotoType](#phototype)        | 是   | 待创建的文件类型，IMAGE或者VIDEO类型。              |
+| extension  | string        | 是   | 文件扩展名，例如：'jpg'。              |
+| options  | [CreateOptions](#createoptions)        | 是   | 创建选项，例如{title: 'testPhoto'}。              |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAssetChangeRequest](#mediaassetchangerequest11) | 返回创建资产的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### deleteAssets<sup>11+</sup>
+
+static deleteAssets(context: Context, assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
+
+删除媒体文件，删除的文件进入到回收站，使用Promise方式返回结果。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待删除的媒体文件数组。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### deleteAssets<sup>11+</sup>
+
+static deleteAssets(context: Context, uriList: Array&lt;string&gt;): Promise&lt;void&gt;
+
+删除媒体文件，删除的文件进入到回收站，使用Promise方式返回结果。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| uriList | Array&lt;string&gt; | 是   | 待删除的媒体文件uri数组。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 401      |  if parameter is invalid.   |
+| 14000002 |  Invalid asset uri.         |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### getAsset<sup>11+</sup>
+
+getAsset(): PhotoAsset
+
+获取当前资产变更请求中的资产。
+
+**注意**：对于创建资产的变更请求，在调用[applyChanges](#applychanges11)提交生效之前，该接口返回null。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [PhotoAsset](#photoasset) | 返回当前资产变更请求中的资产。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### setFavorite<sup>11+</sup>
+
+setFavorite(favoriteState: boolean): void
+
+将文件设置为收藏文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| favoriteState | boolean | 是    | 是否设置为收藏文件， true：设置为收藏文件；false：取消收藏。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### setHidden<sup>11+</sup>
+
+setHidden(hiddenState: boolean): void
+
+将文件设置为隐藏文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| hiddenState | boolean  | 是    | 是否设置为隐藏文件，true：将文件资产放入隐藏相册；false：从隐藏相册中恢复。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### setUserComment<sup>11+</sup>
+
+setUserComment(userComment: string): void
+
+修改媒体资产的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| userComment | string | 是   | 待修改的资产备注信息，备注信息最长为420字符。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### setTitle<sup>11+</sup>
+
+setTitle(title: string): void
+
+修改媒体资产的标题。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| title | string | 是   | 待修改的资产标题。 |
+
+title参数规格为：
+- 不应包含扩展名。
+- 文件名字符串长度为1~255。
+- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### setEditData<sup>11+</sup>
+
+setEditData(editData: MediaAssetEditData): void
+
+保存资产的编辑数据。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| editData | (MediaAssetEditData)[#mediaasseteditdata11] | 是   | 待保存的资产编辑数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### getWriteCacheHandler<sup>11+</sup>
+
+getWriteCacheHandler(): Promise&lt;number&gt;
+
+获取临时文件写句柄。
+
+**注意**：对于同一个资产变更请求，不支持在成功获取临时文件写句柄后，重复调用该接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;number&gt; | Promise对象，返回临时文件写句柄。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.        |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, fileUri: string): void
+
+通过fileUri从应用沙箱添加资源。
+
+**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。 |
+| fileUri | string | 是   | 待添加资源的数据来源，在应用沙箱下的uri。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 13900002      |  No such file.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+
+```
+
+### addResource<sup>11+</sup>
+
+addResource(type: ResourceType, data: ArrayBuffer): void
+
+通过ArrayBuffer数据添加资源。
+
+**注意**：对于同一个资产变更请求，不支持在成功添加资源后，重复调用该接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| type | [ResourceType](#resourcetype11) | 是   | 待添加资源的类型。 |
+| data | ArrayBuffer | 是   | 待添加资源的数据。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+
+```
+
+## MediaAssetsChangeRequest<sup>11+</sup>
+
+批量资产变更请求。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>11+</sup>
+
+constructor(assets: Array&lt;PhotoAsset&gt;)
+
+构造函数。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 需要变更的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.   |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**示例：**
+
+```ts
+
+```
+
+### setFavorite<sup>11+</sup>
+
+setFavorite(favoriteState: boolean): void
+
+将文件设置为收藏文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| favoriteState | boolean | 是    | 是否设置为收藏文件， true：设置为收藏文件；false：取消收藏。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### setHidden<sup>11+</sup>
+
+setHidden(hiddenState: boolean): void
+
+将文件设置为隐藏文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| hiddenState | boolean  | 是    | 是否设置为隐藏文件，true：将文件资产放入隐藏相册；false：从隐藏相册中恢复。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### setUserComment<sup>11+</sup>
+
+setUserComment(userComment: string): void
+
+修改媒体资产的备注信息。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| userComment | string | 是   | 待修改的资产备注信息，备注信息最长为420字符。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+## MediaAlbumChangeRequest<sup>11+</sup>
+
+相册变更请求。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### constructor<sup>11+</sup>
+
+constructor(album: Album)
+
+构造函数。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| album | [Album](#album) | 是   | 需要变更的相册。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 14000011       | System inner fail.          |
+
+**示例：**
+
+```ts
+
+```
+
+### createAlbumRequest<sup>11+</sup>
+
+static createAlbumRequest(context: Context, name: string): MediaAlbumChangeRequest
+
+创建相册变更请求。
+
+相册名的参数规格为：
+- 相册名字符串长度为1~255。
+- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 英文字符大小写不敏感。
+- 相册名不允许重名。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| name | string | 是   | 待创建相册的名称。|
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [MediaAlbumChangeRequest](#mediaalbumchangerequest11) | 返回创建相册的变更请求。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202   |  Called by non-system application.         |
+| 401   | if parameter is invalid.         |
+| 14000011   | System inner fail.        |
+
+**示例：**
+
+```ts
+
+```
+
+### deleteAlbums<sup>11+</sup>
+
+static deleteAlbums(context: Context, albums: Array<Album>): Promise&lt;void&gt;
+
+删除相册，使用Promise方式返回结果。
+
+删除相册前需先确保相册存在，只能删除用户相册。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| context | [Context](js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| albums  |  Array&lt;[Album](#album)&gt;          | 是   | 待删除的相册数组。         |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      |  Permission denied.         |
+| 202   |  Called by non-system application.  |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### getAlbum<sup>11+</sup>
+
+getAlbum(): Album
+
+获取当前相册变更请求中的相册。
+
+**注意**：对于创建相册的变更请求，在调用[applyChanges](#applychanges11)提交生效之前，该接口返回null。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [Album](#album) | 返回当前相册变更请求中的相册。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.   |
+| 14000011 |  System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### setCoverUri<sup>11+</sup>
+
+setCoverUri(coverUri: string): void
+
+设置相册封面。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| coverUri | string | 是   | 待设置为相册封面文件的uri。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### setAlbumName<sup>11+</sup>
+
+setAlbumName(name: string): void
+
+设置相册名称。
+
+相册名的参数规格为：
+- 相册名字符串长度为1~255。
+- 不允许出现非法字符，包括：<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- 英文字符大小写不敏感。
+- 相册名不允许重名。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| name | string | 是   | 待设置的相册名称。|
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
+### addAssets<sup>11+</sup>
+
+addAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+向相册中添加资产。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待添加到相册中的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+
+```
+
+### removeAssets<sup>11+</sup>
+
+removeAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+从相册中移除资产。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从相册中移除的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+
+```
+
+### moveAssets<sup>11+</sup>
+
+moveAssets(assets: Array&lt;PhotoAsset&gt;, targetAlbum: Album): void
+
+从相册中移动资产到另一个目标相册。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从相册中移出的资产数组。 |
+| targetAlbum | Album | 是   | 待移入资产的目标相册。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+
+```
+
+### recoverAssets<sup>11+</sup>
+
+recoverAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+从回收站中恢复资产。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从回收站中恢复的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+
+```
+
+### deleteAssets<sup>11+</sup>
+
+deleteAssets(assets: Array&lt;PhotoAsset&gt;): void
+
+从回收站中彻底删除资产。
+
+**注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 待从回收站中彻底删除的资产数组。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+| 14000016 |  Operation Not Support.     |
+
+**示例：**
+
+```ts
+
+```
+
+### placeBefore<sup>11+</sup>
+
+placeBefore(album: Album): void;
+
+将当前相册排序到目标相册之前。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| album | [Album](#album) | 是   |  目标相册。如果要将当前相册排序到末位，则目标相册传入null。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcodes/errorcode-universal.md)和[文件管理错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 14000011       | System inner fail.         |
+
+**示例：**
+
+```ts
+
+```
+
 ## MemberType
 
 成员类型。
@@ -5959,6 +7206,12 @@ title参数规格为：
 | fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、photoType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
+## MediaChangeRequest<sup>11+</sup>
+
+媒体变更请求，资产变更请求和相册变更请求的父类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ## FormInfo<sup>11+</sup>
 
 图库卡片相关信息。
@@ -5971,6 +7224,18 @@ title参数规格为：
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
 |formId       |string  |是 | 卡片的ID，由图库创建卡片时提供。 |
 |uri          |string  |是 | 卡片绑定的图片的uri。创建卡片时uri可为空或图片的uri，移除卡片时uri不做校验，传空即可。  |
+
+## ResourceType<sup>11+</sup>
+
+枚举，写入资源的类型。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| IMAGE_RESOURCE |  1 |  表示图片资源。 |
+| VIDEO_RESOURCE |  2 |  表示视频资源。 |
+| PHOTO_PROXY |  3 |  表示照片代理资源。**系统接口**：此接口为系统接口。 |
 
 ## ChangeData
 
