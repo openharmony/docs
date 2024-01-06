@@ -17,34 +17,21 @@
       - [InputMethodExtensionAbility](../application-models/inputmethodextentionability.md)
       - [AccessibilityExtensionAbility](../application-models/accessibilityextensionability.md)
       - [ServiceExtensionAbility](../application-models/serviceextensionability.md)
-      - [WindowExtensionAbility（仅对系统应用开放）](../application-models/windowextensionability.md)
-      - [EnterpriseAdminExtensionAbility](../application-models/enterprise-extensionAbility.md)
       - [DriverExtensionAbility](../application-models/driverextensionability.md)
     - [AbilityStage组件容器](../application-models/abilitystage.md)
     - [应用上下文Context](../application-models/application-context-stage.md)
     - 信息传递载体Want
       - [Want概述](../application-models/want-overview.md)
       - [显式Want与隐式Want匹配规则](../application-models/explicit-implicit-want-mappings.md)
-      - [常见action与entities](../application-models/actions-entities.md)
       - [使用显式Want启动应用组件](../application-models/ability-startup-with-explicit-want.md)
       - [使用隐式Want打开网址](../application-models/ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](../application-models/data-share-via-want.md)
     - [组件启动规则（Stage模型）](../application-models/component-startup-rules.md)
-    - 应用组件跨设备交互（流转）
-      - [流转概述](../application-models/inter-device-interaction-hop-overview.md)
-      - [跨端迁移](../application-models/hop-cross-device-migration.md)
-      - [多端协同](../application-models/hop-multi-device-collaboration.md)
-    - [订阅系统环境变量的变化](../application-models/subscribe-system-environment-variable-changes.md)
   - 了解进程模型
     - [进程模型概述](../application-models/process-model-stage.md)
   - 了解线程模型
     - [线程模型概述](../application-models/thread-model-stage.md)
     - [使用EventHub进行线程内通信](../application-models/itc-with-eventHub.md)
-  - 任务（Mission）管理
-    - [任务（Mission）管理场景介绍](../application-models/mission-management-overview.md)
-    - [任务（Mission）与启动模式](../application-models/mission-management-launch-type.md)
-    - [页面栈及任务链](../application-models/page-mission-stack.md)
-    - [设置任务快照的图标和名称](../application-models/mission-set-icon-name-for-task-snapshot.md)
   - [Stage模型应用配置文件](../application-models/config-file-stage.md)
 - FA模型开发指导
   - [FA模型开发概述](../application-models/fa-model-development-overview.md)
@@ -86,37 +73,24 @@
   - 了解线程模型
     - [线程模型概述](../application-models/thread-model-fa.md)
     - [使用Emitter进行线程间通信](../application-models/itc-with-emitter.md)
-  - [任务管理](../application-models/mission-management-fa.md)
   - [FA模型应用配置文件](../application-models/config-file-fa.md)
-- FA模型与Stage模型应用组件互通指导
-  - [FA模型与Stage模型应用组件互通综述](../application-models/fa-stage-interaction-overview.md)
-  - [FA模型启动Stage模型UIAbility](../application-models/start-uiability-from-fa.md)
-  - [FA模型绑定Stage模型ServiceExtensionAbility](../application-models/bind-serviceextensionability-from-fa.md)
-  - [FA模型访问Stage模型DataShareExtensionAbility](../application-models/access-datashareextensionability-from-fa.md)
-  - [Stage模型启动FA模型PageAbility](../application-models/start-pageability-from-stage.md)
-  - [Stage模型绑定FA模型ServiceAbility](../application-models/bind-serviceability-from-stage.md)
-- FA模型切换Stage模型指导
-  - [模型切换概述](../application-models/model-switch-overview.md)
-  - 配置文件切换
-    - [配置文件的差异](../application-models/configuration-file-diff.md)
-    - [app和deviceConfig的切换](../application-models/app-deviceconfig-switch.md)
-    - [module的切换](../application-models/module-switch.md)
-  - 组件切换
-    - [PageAbility切换](../application-models/pageability-switch.md)
-    - [ServiceAbility切换](../application-models/serviceability-switch.md)
-    - [DataAbility切换](../application-models/dataability-switch.md)
-  - API切换
-    - [API切换概述](../application-models/api-switch-overview.md)
-    - [Context接口切换](../application-models/context-switch.md)
-    - [featureAbility接口切换](../application-models/featureability-switch.md)
-    - [particleAbility接口切换](../application-models/particleability-switch.md)
-    - [LifecycleForm接口切换](../application-models/lifecycleform-switch.md)
-    - [LifecycleApp接口切换](../application-models/lifecycleapp-switch.md)
-    - [LifecycleService接口切换](../application-models/lifecycleservice-switch.md)
-    - [LifecycleData接口切换](../application-models/lifecycledata-switch.md)
-    - [DataAbilityHelper接口切换](../application-models/dataabilityhelper-switch.md)
-    - [mediaLibrary接口切换](../application-models/medialibrary-switch.md)
-    - [request接口切换](../application-models/request-switch.md)
-    - [resourceManager接口切换](../application-models/resourcemanager-switch.md)
-    - [window接口切换](../application-models/window-switch.md)
-    - [Storage接口切换](../application-models/storage-switch.md)
+- 程序访问控制
+  - [访问控制概述](../security/AccessToken/access-token-overview.md)
+  - 应用权限管控
+    - [应用权限管控概述](../security/AccessToken/app-permission-mgmt-overview.md)
+    - 申请应用权限
+      - [选择申请权限的方式](../security/AccessToken/determine-application-mode.md)
+      - [声明权限](../security/AccessToken/declare-permissions.md)
+      - [声明ACL权限](../security/AccessToken/declare-permissions-in-acl.md)
+      - [向用户申请授权](../security/AccessToken/request-user-authorization.md)
+    - 应用权限列表
+      - [对所有应用开放](../security/AccessToken/permissions-for-all.md)
+      - [仅对系统应用开放](../security/AccessToken/permissions-for-system-apps.md)
+      - [仅对MDM应用开放](../security/AccessToken/permissions-for-mdm-apps.md)
+    - [应用权限组列表](../security/AccessToken/app-permission-group-list.md)
+  - [使用系统Picker](../security/AccessToken/use-picker.md)
+  - 使用安全控件
+    - [安全控件概述](../security/AccessToken/security-component-overview.md)
+    - [使用粘贴控件](../security/AccessToken/pastebutton.md)
+    - [使用保存控件](../security/AccessToken/savebutton.md)
+    - [使用位置控件](../security/AccessToken/locationbutton.md)

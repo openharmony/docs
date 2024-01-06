@@ -37,7 +37,7 @@ execute(func: Function, ...args: Object[]): Promise\<Object>
 
 | 类型              | 说明                                 |
 | ----------------- | ------------------------------------ |
-| Promise\<Object> | execute是异步方法，返回Promise对象。 |
+| Promise\<Object>  | Promise对象，返回任务函数的执行结果。 |
 
 **错误码：**
 
@@ -82,7 +82,7 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 | 类型              | 说明              |
 | ----------------  | ---------------- |
-| Promise\<Object> | 返回Promise对象。 |
+| Promise\<Object> | Promise对象，返回任务函数的执行结果。 |
 
 **错误码：**
 
@@ -128,7 +128,7 @@ execute(group: TaskGroup, priority?: Priority): Promise<Object[]>
 
 | 类型                 | 说明                               |
 | ----------------    | ---------------------------------- |
-| Promise\<Object[]> | execute是异步方法，返回Promise对象。 |
+| Promise\<Object[]>  | Promise对象数组，返回任务函数的执行结果。 |
 
 **错误码：**
 
@@ -166,6 +166,55 @@ taskpool.execute(taskGroup2).then((res: Array<number>) => {
   console.info("taskpool execute res is:" + res);
 });
 ```
+
+## taskpool.executeDelayed<sup>11+</sup>
+
+executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Object>
+
+延时执行任务。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名       | 类型          | 必填 | 说明                 |
+| ----------- | ------------- | ---- | -------------------- |
+| delayTime   | number        | 是   | 延时时间。单位为ms。  |
+| task        | [Task](#task) | 是   | 需要延时执行的任务。 |
+| priority    | [Priority](#priority)       | 否   | 延时执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
+
+**返回值：**
+
+| 类型                 | 说明                               |
+| ----------------    | ---------------------------------- |
+| Promise\<Object>  | Promise对象数组，返回任务函数的执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](../errorcodes/errorcode-utils.md)。
+
+| 错误码ID   | 错误信息                         |
+| --------- | -------------------------------- |
+| 10200028 | The delayTime is less than zero. |
+
+**示例：**
+
+```ts
+@Concurrent
+function printArgs(args: number): void {
+    console.info("printArgs: " + args);
+}
+
+let t: number = Date.now();
+console.info("taskpool start time is: " + t);
+let task: taskpool.Task = new taskpool.Task(printArgs, 100); // 100: test number
+taskpool.executeDelayed(1000, task).then(() => { // 1000:delayTime is 1000ms
+  console.info("taskpool execute success");
+}).catch((e: BusinessError) => {
+  console.error(`taskpool execute: Code: ${e.code}, message: ${e.message}`);
+})
+```
+
 
 ## taskpool.cancel
 
@@ -393,7 +442,7 @@ let task: taskpool.Task = new taskpool.Task(printArgs, "this is my first Task");
 
 ### constructor<sup>11+</sup>
 
-constructor(name: String, func: Function, ...args: Object[])
+constructor(name: string, func: Function, ...args: Object[])
 
 Task的构造函数，可以指定任务名称。
 
@@ -403,7 +452,7 @@ Task的构造函数，可以指定任务名称。
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| name   | String   | 是   | 任务名称。                                                   |
+| name   | string   | 是   | 任务名称。                                                   |
 | func   | Function | 是   | 任务执行需要传入函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
 | args   | Object[] | 否   | 任务执行传入函数的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。默认值为undefined。 |
 
@@ -419,14 +468,14 @@ Task的构造函数，可以指定任务名称。
 
 ```ts
 @Concurrent
-function printArgs(args: number): number {
+function printArgs(args: string): string {
   console.info("printArgs: " + args);
   return args;
 }
 
-let taskName = "taskName";
+let taskName: string = "taskName";
 let task: taskpool.Task = new taskpool.Task(taskName, printArgs, "this is my first Task");
-let name: String = task.name;
+let name: string = task.name;
 ```
 
 ### isCanceled<sup>10+</sup>
@@ -537,6 +586,7 @@ taskpool.execute(task).then((res: number)=>{
 console.info("testTransfer view byteLength: " + view.byteLength);
 console.info("testTransfer view1 byteLength: " + view1.byteLength);
 ```
+
 
 ### sendData<sup>11+</sup>
 
@@ -744,11 +794,14 @@ taskpool.execute(task3).then(() => {
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称      | 类型      | 可读 | 可写 | 说明                                                         |
-| --------- | --------- | ---- | ---- | ------------------------------------------------------------ |
-| function  | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
-| arguments | Object[] | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
-| name<sup>11+</sup>      | String    | 是   | 是   | 创建任务时指定的任务名称。                                    |
+| 名称                 | 类型       | 可读 | 可写 | 说明                                                         |
+| -------------------- | --------- | ---- | ---- | ------------------------------------------------------------ |
+| function             | Function  | 是   | 是   | 创建任务时需要传入的函数，支持的函数返回值类型请查[序列化支持类型](#序列化支持类型)。 |
+| arguments            | Object[]  | 是   | 是   | 创建任务传入函数所需的参数，支持的参数类型请查[序列化支持类型](#序列化支持类型)。 |
+| name<sup>11+</sup>   | string    | 是   | 是   | 创建任务时指定的任务名称。                                    |
+| totalDuration<sup>11+</sup>  | number    | 是   | 否   | 执行任务总耗时。                                    |
+| ioDuration<sup>11+</sup>     | number    | 是   | 否   | 执行任务异步IO耗时。                                    |
+| cpuDuration<sup>11+</sup>    | number    | 是   | 否   | 执行任务CPU耗时。                                    |
 
 ## TaskGroup<sup>10+</sup>
 
@@ -770,7 +823,7 @@ let taskGroup = new taskpool.TaskGroup();
 
 ### constructor<sup>11+</sup>
 
-constructor(name: String)
+constructor(name: string)
 
 TaskGroup的构造函数，可以指定任务组名称。
 
@@ -780,14 +833,14 @@ TaskGroup的构造函数，可以指定任务组名称。
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | ------------ |
-| name   | String | 是   | 任务组名称。 |
+| name   | string | 是   | 任务组名称。 |
 
 **示例：**
 
 ```ts
 let taskGroupName = "groupName";
 let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup(taskGroupName);
-let name: String = taskGroup.name;
+let name: string = taskGroup.name;
 ```
 
 ### addTask<sup>10+</sup>
@@ -868,7 +921,7 @@ taskGroup.addTask(task);
 
 | 名称 | 类型   | 可读 | 可写 | 说明                         |
 | ---- | ------ | ---- | ---- | ---------------------------- |
-| name<sup>11+</sup> | String | 是   | 是   | 创建任务组时指定的任务组名称。 |
+| name<sup>11+</sup> | string | 是   | 是   | 创建任务组时指定的任务组名称。 |
 
 ## SequenceRunner <sup>11+</sup>
 
@@ -940,7 +993,7 @@ function additionDelay(delay:number): void {
   }
 }
 @Concurrent
-function waitForRunner(finalString:string): string {
+function waitForRunner(finalString: string): string {
   return finalString;
 }
 async function seqRunner()

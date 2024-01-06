@@ -124,7 +124,7 @@ audioHapticManagerInstance.unregisterSource(id).then(() => {
 
 ### setAudioLatencyMode
 
-setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void;
+setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void
 
 设置音频时延模式。
 
@@ -137,6 +137,14 @@ setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void;
 | id          | number                                | 是   | 已注册资源的source id。    |
 | latencyMode | [AudioLatencyMode](#audiolatencymode) | 是   | 音频时延模式。             |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 5400102 | Operation not allowed.            |
+
 **示例：**
 
 ```ts
@@ -147,7 +155,7 @@ audioHapticManagerInstance.setAudioLatencyMode(id, latencyMode);
 
 ### setStreamUsage
 
-setStreamUsage(id: number, usage: audio.StreamUsage): void;
+setStreamUsage(id: number, usage: audio.StreamUsage): void
 
 设置音频流使用类型。
 
@@ -159,6 +167,14 @@ setStreamUsage(id: number, usage: audio.StreamUsage): void;
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | 是   | 已注册资源的source id。    |
 | usage    | [audio.StreamUsage](js-apis-audio.md#streamusage) | 是   | 音频流使用类型。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 5400102 | Operation not allowed.            |
 
 **示例：**
 
@@ -194,6 +210,16 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
 | Promise&lt;[AudioHapticPlayer](#audiohapticplayer)&gt; | Promise回调返回创建的音振播放器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID | 错误信息                              |
+| ------- |-----------------------------------|
+| 5400102 | Operation not allowed. |
+| 5400103 | I/O error. |
+| 5400106 | Unsupport format. |
 
 **示例：**
 
@@ -264,6 +290,17 @@ start(): Promise&lt;void&gt;
 | ------------------- | -------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回开始播放成功或失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID   | 错误信息                              |
+|---------|-----------------------------------|
+| 5400102 | Operation not allowed. |
+| 5400103 | I/O error. |
+| 5400105 | Service died. |
+
+
 **示例：**
 
 ```ts
@@ -289,6 +326,15 @@ stop(): Promise&lt;void&gt;
 | 类型                | 说明                              |
 | ------------------- | -------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回停止播放成功或失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID   | 错误信息                              |
+|---------|-----------------------------------|
+| 5400102 | Operation not allowed. |
+| 5400105 | Service died. |
 
 **示例：**
 
@@ -316,6 +362,14 @@ release(): Promise&lt;void&gt;
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt; | Promise回调返回释放成功或失败。   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体服务错误码](../errorcodes/errorcode-media.md)。
+
+| 错误码ID   | 错误信息                              |
+|---------|-----------------------------------|
+| 5400105 | Service died. |
+
 **示例：**
 
 ```ts
@@ -330,7 +384,7 @@ audioHapticPlayerInstance.release().then(() => {
 
 ### on('endOfStream')
 
-on(type: 'endOfStream', callback: Callback&lt;void&gt;): void;
+on(type: 'endOfStream', callback: Callback&lt;void&gt;): void
 
 监听流结束事件。使用callback获取事件。
 
@@ -353,7 +407,7 @@ audioHapticPlayerInstance.on('endOfStream', async() => {
 
 ### off('endOfStream')
 
-off(type: 'endOfStream', callback?: Callback&lt;void&gt;): void;
+off(type: 'endOfStream', callback?: Callback&lt;void&gt;): void
 
 取消监听流结束事件。
 
