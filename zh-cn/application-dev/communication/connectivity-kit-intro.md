@@ -50,7 +50,7 @@
 WLAN组件子系统为用户提供WLAN基础功能、P2P（peer-to-peer）功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
 
 - **STA模式**<br/>
-  STA模式即工作站模式，可以理解为某网格中的一个工作站即客户端。当某设备具备该功能时，它可以连到另外的一个路由网络中，如家用路由器，通常用于提供网络的数据上行服务。
+  STA模式即工作站模式，可以理解为某网络中的一个工作站即客户端。当某设备具备该功能时，它可以连到另外的一个路由网络中，如家用路由器，通常用于提供网络的数据上行服务。
   详情请参考[@ohos.wifiManager API参考](../reference/apis/js-apis-wifiManager.md)。
 
 - **AP模式**<br/>
@@ -59,7 +59,7 @@ WLAN组件子系统为用户提供WLAN基础功能、P2P（peer-to-peer）功能
 
 - **P2P模式**<br/>
   P2P模式也为Wi-Fi Direct；Wi-Fi Direct 是一种点对点连接技术，它可以在两台 STA 之间直接建立 TCP/IP 链接，并不需要AP的参与；其中一台STA会起到传统意义上的AP的作用，称为Group Owner(GO),另外一台station则称为Group Client(GC)，像连接AP一样连接到GO。
-  [@ohos.wifiManager API参考](../reference/apis/js-apis-wifiManager.md)。
+  详情请参考[@ohos.wifiManager API参考](../reference/apis/js-apis-wifiManager.md)。
 
 ### NFC简介
 
