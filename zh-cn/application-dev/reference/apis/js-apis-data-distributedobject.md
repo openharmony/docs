@@ -614,7 +614,7 @@ class EntryAbility extends UIAbility {
       storeName: 'notepad',
       tableName: 'note_t',
       primaryKey: {
-        'uuid': '2c1d10c4-0db0-477f-85ef-29749b2806cc'
+        'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
       assetName: attachment.name
@@ -651,7 +651,7 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo): Promise&lt;void&gt;
 
   | 类型                | 说明          |
   | ------------------- | ------------- |
-  | Promise&lt;void&gt; | Promise对象。 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例:**
 
@@ -693,7 +693,7 @@ class EntryAbility extends UIAbility {
       storeName: 'notepad',
       tableName: 'note_t',
       primaryKey: {
-        'uuid': '2c1d10c4-0db0-477f-85ef-29749b2806cc'
+        'uuid': '00000000-0000-0000-0000-000000000000'
       },
       field: 'attachment',
       assetName: attachment.name
