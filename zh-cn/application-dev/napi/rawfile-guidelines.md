@@ -364,9 +364,11 @@
 
 1. 打开src\main\ets\pages\index.ets, 导入"libentry.so";
 
-2. 获取当前js的resourceManager对象;
+2. 资源获取包括获取当前js资源、应用跨包资源、跨应用资源。<br>获取当前js的resourceManager对象，通过getContext().resourceManager方法。<br>获取应用跨包js的resourceManager，通过getContext().createModuleContext('module name').resourceManager 方法。<br>获取跨应用包js的resourceManager，getContext().createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法。
     
-3. 调用Native接口getFileList即为src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象，以及rawfile文件夹的相对路径。示例如下:
+3. 调用Native接口getFileList即为src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象，以及rawfile文件夹的相对路径。
+
+   获取当前jsresourceManager对象的示例如下:
 
     ```js
     import hilog from '@ohos.hilog';
@@ -375,7 +377,7 @@
     @Component
     struct Index {
         @State message: string = 'Hello World'
-        private resmgr = getContext().resourceManager;  // 获取js的资源对象
+        private resmgr = getContext().resourceManager;  // 获取当前js的资源对象
         build() {
             Row() {
             Column() {
