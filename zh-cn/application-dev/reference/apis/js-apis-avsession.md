@@ -5383,7 +5383,7 @@ aVCastController.on('playbackStateChange', 'all', (playbackState: avSession.AVPl
   console.info(`on playbackStateChange state : ${playbackState.state}`);
 });
 
-let playbackFilter = ['state', 'speed', 'loopMode'];
+let playbackFilter: Array<keyof avSession.AVPlaybackState> = ['state', 'speed', 'loopMode'];
 aVCastController.on('playbackStateChange', playbackFilter, (playbackState: avSession.AVPlaybackState) => {
   console.info(`on playbackStateChange state : ${playbackState.state}`);
 });
