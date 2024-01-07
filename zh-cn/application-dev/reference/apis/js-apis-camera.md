@@ -2808,7 +2808,7 @@ function getZoomRatioRange(captureSession: camera.CaptureSession): Array<number>
 
 setZoomRatio(zoomRatio: number): void
 
-设置变焦比，变焦精度最高为小数点后两位，如果设置超过支持的精度范围，则自动匹配到就近精度值。
+设置变焦比，变焦精度最高为小数点后两位，如果设置超过支持的精度范围，则只保留精度范围内数值。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -2816,7 +2816,7 @@ setZoomRatio(zoomRatio: number): void
 
 | 参数名       | 类型                  | 必填 | 说明                 |
 | --------- | -------------------- | ---- | ------------------- |
-| zoomRatio | number               | 是   | 可变焦距比，通过getZoomRatioRange获取支持的变焦范围，如果设置超过支持范围的值，自动匹配到就近临界点。 |
+| zoomRatio | number               | 是   | 可变焦距比，通过getZoomRatioRange获取支持的变焦范围，如果设置超过支持范围的值，则只保留精度范围内数值。 |
 
 **错误码：**
 
