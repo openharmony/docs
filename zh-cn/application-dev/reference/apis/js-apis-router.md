@@ -497,15 +497,15 @@ showAlertBeforeBackPage(options: EnableAlertOptions): void
 **示例：**
 
   ```js    
-router.showAlertBeforeBackPage({
-  message: 'Message Info'
-})
-  .then(() => {
-    // success
-  })
-  .catch(err => {
-    console.error(`showAlertBeforeBackPage failed, code is ${error.code}, message is ${error.message}`);
-  })
+import { BusinessError } from '@ohos.base';
+
+try {
+  router.showAlertBeforeBackPage({
+    message: 'Message Info'
+  });
+} catch(err) {
+  console.error(`showAlertBeforeBackPage failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
+
   ```
 ## EnableAlertOptions
 
