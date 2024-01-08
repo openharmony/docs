@@ -29,7 +29,7 @@ OpenHarmony 4.1 Beta1版本开始提供首批API Level 11接口。
 
 ### ArkUI
 
-新增NodeContanier开放命令式的渲染节点，提升自定义绘制能力。
+新增NodeContainer开放命令式的渲染节点，提升自定义绘制能力。
 
 文本和容器类组件能力增强：
 
