@@ -19,10 +19,10 @@ HiAppEvent模块提供应用事件打点功能。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [hiappevent.h](hiappevent_8h.md) | HiAppEvent模块的应用事件打点函数定义。<br/>**引用文件**：<br/>**库**： | 
-| [hiappevent_cfg.h](hiappevent__cfg_8h.md) | 定义事件打点配置函数的所有配置项名称。<br/>**引用文件**：<br/>**库**： | 
-| [hiappevent_event.h](hiappevent__event_8h.md) | 定义所有预定义事件的事件名称。<br/>**引用文件**：<br/>**库**： | 
-| [hiappevent_param.h](hiappevent__param_8h.md) | 定义所有预定义事件的参数名称。<br/>**引用文件**：<br/>**库**： | 
+| [hiappevent.h](hiappevent_8h.md) | HiAppEvent模块的应用事件打点函数定义。<br/>**引用文件**：<hiappevent/hiappevent.h><br/>**库**：libhiappevent_ndk.z.so | 
+| [hiappevent_cfg.h](hiappevent__cfg_8h.md) | 定义事件打点配置函数的所有配置项名称。<br/>**引用文件**：<hiappevent/hiappevent_event.h><br/>**库**：libhiappevent_ndk.z.so | 
+| [hiappevent_event.h](hiappevent__event_8h.md) | 定义所有预定义事件的事件名称。<br/>**引用文件**：<hiappevent/hiappevent_param.h><br/>**库**：libhiappevent_ndk.z.so | 
+| [hiappevent_param.h](hiappevent__param_8h.md) | 定义所有预定义事件的参数名称。<br/>**引用文件**：<hiappevent/hiappevent_cfg.h><br/>**库**：libhiappevent_ndk.z.so | 
 
 
 ### 宏定义
