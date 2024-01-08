@@ -785,7 +785,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 | PAGE_ISO_A3 | 0 | 表示A3 |
 | PAGE_ISO_A4 | 1 | 表示A4 |
 | PAGE_ISO_A5 | 2 | 表示A5 |
-| PAGE_JIS_B5 | 3 | 表示B5 |
+| PAGE_ISO_B5 | 3 | 表示B5 |
 | PAGE_ISO_C5 | 4 | 表示C5 |
 | PAGE_ISO_DL | 5 | 表示DL |
 | PAGE_LETTER | 6 | 表示Letter |
