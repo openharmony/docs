@@ -28,6 +28,6 @@ OH_HiAppEvent_DestroyParamList(list);
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [EVENT_USER_LOGIN](_hi_app_event.md#event_user_login)&nbsp;&nbsp;&nbsp;"hiappevent.user_login" | 用户登录事件。 | 
-| [EVENT_USER_LOGOUT](_hi_app_event.md#event_user_logout)&nbsp;&nbsp;&nbsp;"hiappevent.user_logout" | 用户登出事件。 | 
-| [EVENT_DISTRIBUTED_SERVICE_START](_hi_app_event.md#event_distributed_service_start)&nbsp;&nbsp;&nbsp;"hiappevent.distributed_service_start" | 分布式服务事件。 | 
+| [EVENT_USER_LOGIN](_hi_app_event.md#event_user_login)   "hiappevent.user_login" | 用户登录事件。 | 
+| [EVENT_USER_LOGOUT](_hi_app_event.md#event_user_logout)   "hiappevent.user_logout" | 用户登出事件。 | 
+| [EVENT_DISTRIBUTED_SERVICE_START](_hi_app_event.md#event_distributed_service_start)   "hiappevent.distributed_service_start" | 分布式服务事件。 | 

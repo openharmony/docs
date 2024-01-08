@@ -28,6 +28,6 @@ OH_HiAppEvent_DestroyParamList(list);
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [PARAM_USER_ID](_hi_app_event.md#param_user_id)&nbsp;&nbsp;&nbsp;"user_id" | 用户ID。 | 
-| [PARAM_DISTRIBUTED_SERVICE_NAME](_hi_app_event.md#param_distributed_service_name)&nbsp;&nbsp;&nbsp;"ds_name" | 分布式服务名称。 | 
-| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](_hi_app_event.md#param_distributed_service_instance_id)&nbsp;&nbsp;&nbsp;"ds_instance_id" | 分布式服务实例ID。 | 
+| [PARAM_USER_ID](_hi_app_event.md#param_user_id)   "user_id" | 用户ID。 | 
+| [PARAM_DISTRIBUTED_SERVICE_NAME](_hi_app_event.md#param_distributed_service_name)   "ds_name" | 分布式服务名称。 | 
+| [PARAM_DISTRIBUTED_SERVICE_INSTANCE_ID](_hi_app_event.md#param_distributed_service_instance_id)   "ds_instance_id" | 分布式服务实例ID。 | 
