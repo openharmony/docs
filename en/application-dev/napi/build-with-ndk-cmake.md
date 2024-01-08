@@ -135,7 +135,11 @@ int sum(int a, int b)
 
 ### Compiling and Building the Demo Project
 
-In the project directory, create the **build** directory to store the intermediate files generated during CMake building. **NOTE**<br>In the following commands, **ohos-sdk** is the root directory of the downloaded SDK. Replace it with the actual directory.
+In the project directory, create the **build** directory to store the intermediate files generated during CMake building.
+
+> **NOTE**
+>
+> In the following commands, **ohos-sdk** is the root directory of the downloaded SDK. Replace it with the actual directory.
 
 1. Use **OHOS_STL=c++_shared** to dynamically link the C++ library to build a project. If **OHOS_STL** is not specified, **c++_shared** is used by default.
 
