@@ -24,32 +24,32 @@ ListItem(value?: string)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None<br/>从API version9开始废弃，推荐使用[List组件sticky属性](ts-container-list.md#属性)。 |
-| editable<sup>(deprecated)</sup> | boolean&nbsp;\|&nbsp;[EditMode](#editmode枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>从API version9开始废弃。<br/>默认值：false |
+| sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None<br/>从API version9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#属性)。 |
+| editable<sup>(deprecated)</sup> | boolean&nbsp;\|&nbsp;[EditMode](#editmode枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>从API version9开始废弃不再使用，无替代接口。<br/>默认值：false |
 | selectable<sup>8+</sup> | boolean | 当前ListItem元素是否可以被鼠标框选。<br/>**说明：**<br/>外层List容器的鼠标框选开启时，ListItem的框选才生效。<br/>默认值：true |
-| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder,<br/>end?:CustomBuilder,<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/>**说明：** <br/>start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。 |
+| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>end?:[CustomBuilder](ts-types.md#custombuilder8),<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/>**说明：** <br/>start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。 |
 
 ## Sticky<sup>(deprecated)</sup>枚举说明
-从API version9开始废弃，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
-| 名称 | 描述 |
-| -------- | -------- |
-| None | 无吸顶效果。 |
-| Normal | 当前item吸顶。 |
-| Opacity | 当前item吸顶显示透明度变化效果。 |
+从API version9开始废弃不再使用，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| None |  0  | 无吸顶效果。 |
+| Normal |  1  | 当前item吸顶。 |
+| Opacity |  2  | 当前item吸顶显示透明度变化效果。 |
 
 ## EditMode枚举说明
 
-| 名称     | 描述        |
-| ------ | --------- |
-| None   | 编辑操作不限制。    |
-| Deletable | 可删除。 |
-| Movable | 可移动。 |
+| 名称     | 枚举值 | 描述        |
+| ------ | ------ | --------- |
+| None   |  0  | 编辑操作不限制。    |
+| Deletable |  1  | 可删除。 |
+| Movable |  2  | 可移动。 |
 
 ## SwipeEdgeEffect<sup>9+</sup>枚举说明
-| 名称 | 描述 |
-| -------- | -------- |
-| Spring | ListItem划动距离超过划出组件大小后可以继续划动，松手后按照弹簧阻尼曲线回弹。 |
-| None | ListItem划动距离不能超过划出组件大小。 |
+| 名称     | 枚举值 | 描述        |
+| ------ | ------ | --------- |
+|   Spring   |    0    | ListItem划动距离超过划出组件大小后可以继续划动。<br>如果设置了删除区域，ListItem划动距离超过删除阈值后可以继续划动，<br/>松手后按照弹簧阻尼曲线回弹。 |
+|   None   |    1    | ListItem划动距离不能超过划出组件大小。<br>如果设置了删除区域，ListItem划动距离不能超过删除阈值，<br/>并且在设置删除回调的情况下，达到删除阈值后松手触发删除回调。 |
 
 ## 事件
 
