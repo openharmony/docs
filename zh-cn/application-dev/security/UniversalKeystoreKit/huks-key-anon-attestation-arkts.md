@@ -1,4 +1,4 @@
-# 非匿名密钥证明(仅向系统应用开放)(ArkTS)
+# 匿名密钥证明(ArkTS)
 
 
 ## 开发步骤
@@ -11,22 +11,22 @@
 
 3. 生成非对称密钥，具体请参考[密钥生成](huks-key-generation-overview.md)。
 
-4. 将密钥别名与参数集作为参数传入[huks.attestKeyItem](../../reference/apis/js-apis-huks.md#huksattestkeyitem9)方法中，即可证明密钥。
+4. 将密钥别名与参数集作为参数传入[huks.anonAttestKeyItem](../../reference/apis/js-apis-huks.md#huksanonattestkeyitem11)方法中，即可证明密钥。
 
 ```ts
 /*
- * 以下以attestKey的Promise接口操作验证为例
+ * 以下以anonAttestKey的Promise接口操作验证为例
  */
 import huks from '@ohos.security.huks';
 import { BusinessError } from '@ohos.base';
 /* 1.确定密钥别名 */
-let keyAliasString = "key attest";
+let keyAliasString = "key anon attest";
 let aliasString = keyAliasString;
 let aliasUint8 = StringToUint8Array(keyAliasString);
 let securityLevel = StringToUint8Array('sec_level');
 let challenge = StringToUint8Array('challenge_data');
 let versionInfo = StringToUint8Array('version_info');
-let attestCertChain: Array<string>;
+let anonAttestCertChain: Array<string>;
 class throwObject {
   isThrow: boolean = false;
 }
@@ -69,12 +69,12 @@ let genKeyProperties: genKeyPropertyType[] = [
 let genOptions: huks.HuksOptions = {
   properties: genKeyProperties
 };
-class attestKeypropertyType {
+class anonAttestKeypropertyType {
   tag: huks.HuksTag = huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO;
   value: Uint8Array = securityLevel;
 }
 /* 2.封装证明密钥的参数集 */
-let attestKeyproperties: attestKeypropertyType[] = [
+let anonAttestKeyproperties: anonAttestKeypropertyType[] = [
   {
     tag: huks.HuksTag.HUKS_TAG_ATTESTATION_ID_SEC_LEVEL_INFO,
     value: securityLevel
@@ -93,7 +93,7 @@ let attestKeyproperties: attestKeypropertyType[] = [
   }
 ]
 let huksOptions: huks.HuksOptions = {
-  properties: attestKeyproperties
+  properties: anonAttestKeyproperties
 };
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -139,10 +139,10 @@ async function publicGenKeyFunc(keyAlias: string, huksOptions: huks.HuksOptions)
   }
 }
 /* 4.证明密钥 */
-function attestKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
+function anonAttestKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObject: throwObject) {
   return new Promise<huks.HuksReturnResult>((resolve, reject) => {
     try {
-      huks.attestKeyItem(keyAlias, huksOptions, (error, data) => {
+      huks.anonAttestKeyItem(keyAlias, huksOptions, (error, data) => {
         if (error) {
           reject(error);
         } else {
@@ -155,31 +155,31 @@ function attestKeyItem(keyAlias: string, huksOptions: huks.HuksOptions, throwObj
     }
   });
 }
-async function publicAttestKey(keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise attestKeyItem`);
+async function publicAnonAttestKey(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info(`enter promise anonAttestKeyItem`);
   let throwObject: throwObject = {isThrow: false};
   try {
-    await attestKeyItem(keyAlias, huksOptions, throwObject)
+    await anonAttestKeyItem(keyAlias, huksOptions, throwObject)
       .then ((data) => {
-        console.info(`promise: attestKeyItem success, data = ${JSON.stringify(data)}`);
+        console.info(`promise: anonAttestKeyItem success, data = ${JSON.stringify(data)}`);
         if (data !== null && data.certChains !== null) {
-          attestCertChain = data.certChains as string[];
+          anonAttestCertChain = data.certChains as string[];
         }
       })
       .catch((error: BusinessError) => {
         if (throwObject.isThrow) {
           throw(error as Error);
         } else {
-          console.error(`promise: attestKeyItem failed` + error);
+          console.error(`promise: anonAttestKeyItem failed` + error);
         }
       });
   } catch (error) {
-    console.error(`promise: attestKeyItem input arg invalid` + error);
+    console.error(`promise: anonAttestKeyItem input arg invalid` + error);
   }
 }
-async function AttestKeyTest() {
+async function AnonAttestKeyTest() {
   await publicGenKeyFunc(aliasString, genOptions);
-  await publicAttestKey(aliasString, huksOptions);
-  console.info('attest certChain data: ' + attestCertChain)
+  await publicAnonAttestKey(aliasString, huksOptions);
+  console.info('anon attest certChain data: ' + anonAttestCertChain)
 }
 ```
