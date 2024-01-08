@@ -178,7 +178,7 @@ hiAppEvent.write({
 
 ## hiAppEvent.write
 
-write(info: AppEventInfo)): Promise&lt;void&gt;
+write(info: AppEventInfo): Promise&lt;void&gt;
 
 应用事件打点方法，将事件写入到当天的事件文件中，可接收AppEventInfo类型的事件对象，使用Promise方式作为异步回调。
 
