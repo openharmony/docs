@@ -7,13 +7,20 @@ so that if the component first responds to an event in a window, it will be the 
 >
 >  This feature is supported since API Version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
+## monopolizeEvents
 
-## Attributes
+monopolizeEvents(monopolize: boolean)
+
+Specifies whether the component monopolizes events.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
 
 
-| Name     | Type| Description                   |
-| ----------- | -------- | ------------------------ |
-| monopolizeEvents  | boolean  | Whether the component monopolizes events.<br>Default value: **false**<br>**NOTE**<br>1. If a component is monopolizing events after a finger is pressed on it, and another finger is pressed before the first finger is lifted, the component continues to monopolize events while interacting with the second finger. The same case applies to a third and more fingers.<br>2. If a component is bound through [parallelGesture](ts-gesture-settings.md) to a gesture, for example, [pan gesture](ts-basic-gestures-pangesture.md), that can also be triggered by its child component, and the child component is configured to monopolize events, then the parent will not respond to the gesture after the child component has responded to it.|
+| Name  | Type| Mandatory| Description                 |
+| ----------- | -------- | ------------------------ | ------------------------ |
+| monopolize | boolean  | Yes| Whether the component monopolizes events.<br>Default value: **false**<br>**NOTE**<br>1. If a component is monopolizing events after a finger is pressed on it, and another finger is pressed before the first finger is lifted, the component continues to monopolize events while interacting with the second finger. The same case applies to a third and more fingers.<br>2. If a component is bound through [parallelGesture](ts-gesture-settings.md) to a gesture, for example, [pan gesture](ts-basic-gestures-pangesture.md), that can also be triggered by its child component, and the child component is configured to monopolize events, then the parent will not respond to the gesture after the child component has responded to it.|
 
 ## Example
 
