@@ -96,6 +96,7 @@ schema校验文件app.json、module.json、configSchema_lite.json和configSchema
 ## c3.bundlemanager.3 非调试模式下不允许安装调试应用
 
 **访问级别**
+
 其他
 
 **变更原因**
@@ -106,7 +107,12 @@ schema校验文件app.json、module.json、configSchema_lite.json和configSchema
 
 如果应用的签名证书类型为debug，设备为非调试模式，会导致无法安装。
 
+**API Level**
+
+11
+
 **变更发生版本**
+
 从OpenHarmony SDK 4.1.2.5开始
 
 **变更的接口/组件**
