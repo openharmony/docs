@@ -116,8 +116,6 @@ start(toneOptions?: SystemToneOptions): Promise&lt;number&gt;
 
 **系统能力：** SystemCapability.Multimedia.SystemSound.Core
 
-**需要权限：** ohos.permission.VIBRATE
-
 **参数：**
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
