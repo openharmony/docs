@@ -446,7 +446,6 @@ API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置
 
 **变更的接口/组件**
 
-点击手势：TapGesture
 受影响的组件和接口：Text组件fontSize属性。
 
 **适配指导**
