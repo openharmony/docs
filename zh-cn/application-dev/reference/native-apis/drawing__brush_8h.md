@@ -27,7 +27,3 @@
 | void [OH_Drawing_BrushSetAntiAlias](_drawing.md#oh_drawing_brushsetantialias) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, bool) | 用于设置画刷的抗锯齿属性，设置为真则画刷在绘制图形时会对图形的边缘像素进行半透明的模糊处理。 |
 | uint32_t [OH_Drawing_BrushGetColor](_drawing.md#oh_drawing_brushgetcolor) (const [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 用于获取画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
 | void [OH_Drawing_BrushSetColor](_drawing.md#oh_drawing_brushsetcolor) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, uint32_t color) | 用于设置画刷的颜色属性，颜色属性描述了画刷填充图形时使用的颜色，用一个32位（ARGB）的变量表示。 |
-| uint8_t [OH_Drawing_BrushGetAlpha](_drawing.md#oh_drawing_brushgetalpha) (const [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 获取画刷的透明度值。画刷在填充形状时透明通道会使用该值。 |
-| void [OH_Drawing_BrushSetAlpha](_drawing.md#oh_drawing_brushsetalpha) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, uint8_t alpha) | 为画刷设置透明度值。画刷在填充形状时透明通道会使用该值。 |
-| void [OH_Drawing_BrushSetShaderEffect](_drawing.md#oh_drawing_brushsetshadereffect) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) \*) | 为画刷设置着色器效果。 |
-| void [OH_Drawing_BrushSetFilter](_drawing.md#oh_drawing_brushsetfilter) ([OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*, [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) \*) | 为画刷设置滤波器[OH_Drawing_Filter](_drawing.md#oh_drawing_filter)。滤波器是一个容器，可以承载蒙版滤波器和颜色滤波器。 |
