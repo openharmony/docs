@@ -1,4 +1,4 @@
-## c1.multimedia.1 ohos.multimedia.audio AudioManager接口setAudioParameter/getAudioParameter废弃
+## c1.multimedia.2 ohos.multimedia.audio AudioRenderer接口setRenderRate/getRenderRate废弃
 
 **访问级别**
 
@@ -6,7 +6,7 @@
 
 **废弃原因**
 
-不再开放三方应用与音频芯片通过定制参数直接修改配置的通道，收归系统内部管控，通用功能由专有接口替代
+被功能更全面的新接口SetSpeed/GetSpeed替代
 
 **废弃影响**
 
@@ -18,26 +18,22 @@
 
 **废弃的接口**
 
-接口属于AudioManager
+接口属于AudioRenderer
 
-setAudioParameter(key: string, value: string, callback: AsyncCallback<void>): void;
+setRenderRate(rate: AudioRendererRate, callback: AsyncCallback<void>): void;
 
-setAudioParameter(key: string, value: string): Promise<void>;
+setRenderRate(rate: AudioRendererRate): Promise<void>;
 
-getAudioParameter(key: string, callback: AsyncCallback<string>): void;
+getRenderRate(callback: AsyncCallback<AudioRendererRate>): void;
 
-getAudioParameter(key: string): Promise<string>;
+getRenderRate(): Promise<AudioRendererRate>;
 
 **适配指导**
 
-对于系统应用，根据废弃接口提示，使用替代接口：
+根据废弃接口提示，使用AudioRenderer内的新接口即可，新接口支持通过浮点数调节播放速度，而非固定倍数。
 
-setExtraParameters(mainKey: string, kvpairs: Record<string, string>): Promise<void>;
+setSpeed(speed: number): void;
 
-getExtraParameters(mainKey: string, subKeys?: Array<string>): Promise<Record<string, string>>;
+getSpeed(): number;
 
-mainKey与原接口参数key保持一致，kvpairs是原有value字符串内多个key-value配对的拆分写法。
-
-对于三方应用，本接口提供的功能本身不对三方开放，请按需使用系统在AudioManager模块中提供的公开音频管理接口。
-
-废弃接口会在至少5个SDK版本内保持兼容，请应用按需规划适配计划。
+废弃接口会在至少5个SDK版本内保持兼容，请应用按需规划适配计划
