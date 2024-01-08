@@ -1,4 +1,4 @@
-## c1.multimedia.2 ohos.multimedia.audio AudioRenderer接口setRenderRate/getRenderRate废弃
+## c1.multimedia.1 ohos.multimedia.audio AudioRenderer接口setRenderRate/getRenderRate废弃
 
 **访问级别**
 
@@ -14,7 +14,7 @@
 
 **废弃发生版本**
 
-从OpenHarmony SDK 4.1.5.3开始。
+从OpenHarmony SDK 4.1.5.5开始。
 
 **废弃的接口**
 
