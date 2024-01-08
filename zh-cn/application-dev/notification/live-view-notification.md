@@ -1,10 +1,10 @@
 # 发布实况窗类型通知（仅对系统应用开放）
 
-实况窗类型通知继承了普通文本类型的字段，包含了系统实况窗类型和普通实况窗类型。
+实况窗类型通知包含了系统实况窗和普通实况窗两种类型。
 
  - 系统实况窗通知需要使用`subscribeSystemLiveView()`订阅按钮，用户点击按钮时，可自行决定业务实现。
 
- - 普通实况窗通知有生命周期的限制，该实况窗在4小时无更新或者距离创建时间8小时都会自动删除。并且支持重启恢复。
+ - 普通实况窗通知有生命周期的限制，该实况窗在4小时无更新或者距离创建时间8小时都会自动删除，并且支持重启恢复。
 
 **表1** 基础类型通知中的内容分类
 
@@ -14,7 +14,7 @@
 | NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>           | 6  | 普通实况窗类型通知。|
 ## 接口说明
 
-通知发布接口如下表所示，不同发布类型通知由[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)的字段携带不同的信息。比如发布渠道可以通过notificationSlotType选择相应的通知渠道进行提醒。
+通知发布接口说明如下表所示，通知发布的详情可通过入参[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)来进行指定。可以包括通知内容，通知ID，通知的通道类型和通知发送时间等信息。
 
 | **接口名** | **描述** |
 | -------- | -------- |
@@ -24,7 +24,7 @@
 
 # 开发步骤
 
-1. [使能通知开关](notification-enable.md)，获得用户授权后，才能使用通知功能。
+1. [请求通知授权](notification-enable.md)。获得用户授权后，才能使用通知功能。
 
 2. 导入模块。
    
@@ -35,7 +35,7 @@
 
 3. 发布通知 。
 
-   - 系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，类型描述参考[NotificationSystemLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
+   - 系统实况窗类型通知继承了普通文本类型的字段，新增了类型标识符、胶囊、按钮、时间和进度，该类型的具体字段描述参考[NotificationSystemLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent)。
      
       ```ts
       import image from '@ohos.multimedia.image';
@@ -133,7 +133,7 @@
       }
       ```
 
-   - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，类型描述参考[NotificationLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationliveviewcontent11)。
+   - 普通实况窗类型通知继承了普通文本类型的字段，新增了实况通知状态、实况通知版本号、通知附加内容和通知附加内容中的图片信息，该类型的具体字段描述参考[NotificationLiveViewContent](../reference/apis/js-apis-inner-notification-notificationContent.md#notificationliveviewcontent11)。
 
       ```ts
       import Want from '@ohos.app.ability.Want';
