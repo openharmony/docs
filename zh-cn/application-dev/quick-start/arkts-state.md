@@ -407,3 +407,108 @@ struct PlayDetailPage {
   }
 }
 ```
+
+### 状态变量的修改放在构造函数内未生效
+
+在状态管理中，类会被一层“代理”进行包装。当在组件中改变该类的成员变量时，会被该代理进行拦截，在更改数据源中值的同时，也会将变化通知给绑定的组件，从而实现观测变化与触发刷新。当开发者把状态变量的修改放在构造函数里时，此修改不会经过代理（因为是直接对数据源中的值进行修改），即使修改成功执行，也无法观测UI的刷新。
+
+【反例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model
+
+  constructor() {
+    this.model = new Model(()=>{
+      this.isSuccess = true
+      console.log(`this.isSuccess: ${this.isSuccess}`)
+    })
+  }
+  query() {
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: ()=>void
+
+  constructor(cb: ()=>void) {
+    this.callback = cb
+  }
+  query(){
+      this.callback()
+  }
+}
+```
+
+上文示例代码将状态变量的修改放在构造函数内，界面开始时显示“failed”，点击后日志打印“this.isSuccess: true”说明修改成功，但界面依旧显示“failed”，未实现刷新。
+
+【正例】
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State viewModel: TestModel = new TestModel();
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.viewModel.isSuccess ? 'success' : 'failed')
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            this.viewModel.query()
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+
+export class TestModel {
+  isSuccess: boolean = false
+  model: Model = new Model(() => {
+  })
+
+  query() {
+    this.model = new Model(() => {
+      this.isSuccess = true
+    })
+    this.model.query()
+  }
+}
+
+export class Model {
+  callback: () => void
+
+  constructor(cb: () => void) {
+    this.callback = cb
+  }
+
+  query() {
+    this.callback()
+  }
+}
+```
+
+上文示例代码将状态变量的修改放在类的普通方法中，界面开始时显示“failed”，点击后显示“success”。
