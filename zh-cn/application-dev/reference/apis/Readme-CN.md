@@ -250,6 +250,7 @@
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
   - [getContext](js-apis-context-stage-getContext.md)
+  - [postCardAction](js-apis-postCardAction.md)
   - arkui
     - [BuilderNode](./js-apis-arkui-builderNode.md)
     - [FrameNode](./js-apis-arkui-frameNode.md)

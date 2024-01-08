@@ -118,8 +118,8 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onAddForm');
         // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
         let obj: Record<string, string> = {
-         title: 'titleOnCreate',
-         detail: 'detailOnCreate'
+         'title': 'titleOnCreate',
+         'detail': 'detailOnCreate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         return formData;
@@ -132,8 +132,8 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
         // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
         hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
         let obj: Record<string, string> = {
-          title: 'titleOnUpdate',
-          detail: 'detailOnUpdate'
+          'title': 'titleOnUpdate',
+          'detail': 'detailOnUpdate'
         };
         let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
         formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
@@ -252,7 +252,6 @@ import type common from '@ohos.app.ability.common';
 import dataPreferences from '@ohos.data.preferences';
 import formBindingData from '@ohos.app.form.formBindingData';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formProvider from '@ohos.app.form.formProvider';
 import hilog from '@ohos.hilog';
 import type Want from '@ohos.app.ability.Want';
 
@@ -263,9 +262,9 @@ const DOMAIN_NUMBER: number = 0xFF00;
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
   // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
   let formInfo: Record<string, string | boolean | number> = {
-    formName: formName,
-    tempFlag: tempFlag,
-    updateCount: 0
+    'formName': formName,
+    'tempFlag': tempFlag,
+    'updateCount': 0
   };
   try {
     const storage: dataPreferences.Preferences = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -292,8 +291,8 @@ export default class JsCardFormAbility extends FormExtensionAbility {
     }
 
     let obj: Record<string, string> = {
-      title: 'titleOnCreate',
-      detail: 'detailOnCreate'
+      'title': 'titleOnCreate',
+      'detail': 'detailOnCreate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
@@ -308,11 +307,8 @@ export default class JsCardFormAbility extends FormExtensionAbility {
 import type Base from '@ohos.base';
 import type common from '@ohos.app.ability.common';
 import dataPreferences from '@ohos.data.preferences';
-import formBindingData from '@ohos.app.form.formBindingData';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-import formProvider from '@ohos.app.form.formProvider';
 import hilog from '@ohos.hilog';
-import type Want from '@ohos.app.ability.Want';
 
 const TAG: string = 'JsCardFormAbility';
 const DATA_STORAGE_PATH: string = '/data/storage/el2/base/haps/form_store';
@@ -372,8 +368,8 @@ export default class EntryFormAbility extends FormExtensionAbility {
     // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
     hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onUpdateForm');
     let obj: Record<string, string> = {
-      title: 'titleOnUpdate',
-      detail: 'detailOnUpdate'
+      'title': 'titleOnUpdate',
+      'detail': 'detailOnUpdate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     formProvider.updateForm(formId, formData).catch((error: Base.BusinessError) => {
@@ -628,23 +624,25 @@ export default class EntryFormAbility extends FormExtensionAbility {
   import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
   import Want from '@ohos.app.ability.Want';
+  import hilog from '@ohos.hilog';
 
   const TAG: string = 'JsCardEntryAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    if (want.parameters) {
-      let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
-      // 获取router事件中传递的info参数
-      if (params.info === 'router info') {
-        // do something
-        hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
-      }
-      // 获取router事件中传递的message参数
-      if (params.message === 'router message') {
-        // do something
-        hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
+      if (want.parameters) {
+        let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
+        // 获取router事件中传递的info参数
+        if (params.info === 'router info') {
+          // do something
+          hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
+        }
+        // 获取router事件中传递的message参数
+        if (params.message === 'router message') {
+          // do something
+          hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
+        }
       }
     }
   };
@@ -655,6 +653,10 @@ export default class EntryFormAbility extends FormExtensionAbility {
   
   ```ts
   import FormExtension from '@ohos.app.form.FormExtensionAbility';
+  import hilog from '@ohos.hilog';
+
+  const TAG: string = 'FormAbility';
+  const DOMAIN_NUMBER: number = 0xFF00;
 
   export default class FormAbility extends FormExtension {
     onFormEvent(formId: string, message: string): void {
