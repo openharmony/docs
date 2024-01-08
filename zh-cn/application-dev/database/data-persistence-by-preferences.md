@@ -191,13 +191,15 @@
        return;
      }
      console.info("Succeeded in putting the value of 'startup'.");
-     preferences.flush((err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
-         return;
-       }
-       console.info('Succeeded in flushing.');
-     })
+     if (preferences !== null) {
+       preferences.flush((err: BusinessError) => {
+         if (err) {
+           console.error(`Failed to flush. Code:${err.code}, message:${err.message}`);
+           return;
+         }
+         console.info('Succeeded in flushing.');
+       })
+     }
    })
    ```
 
