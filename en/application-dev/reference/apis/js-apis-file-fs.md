@@ -1,6 +1,6 @@
 # @ohos.file.fs (File Management)
 
-The **fs** module provides APIs for file operations, including basic file management, directory management, file information statistics, and data read and write using a stream.
+The **fs** module provides APIs for file operations, including accessing and manaing files and directories, obtaining file information statistics, and reading and writing data using a stream.
 
 > **NOTE**
 >
@@ -16,7 +16,6 @@ import fs from '@ohos.file.fs';
 
 Before using the APIs provided by this module to perform operations on a file or directory, obtain the application sandbox path of the file or directory as follows:
 
-**Stage Model**
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -30,18 +29,8 @@ Before using the APIs provided by this module to perform operations on a file or
   }
   ```
 
-FA Model
+For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
-For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
 ## fs.stat
 
@@ -123,7 +112,7 @@ Obtains detailed file information. This API returns the result synchronously.
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| file   | string\|number | Yes  | Application sandbox path or file descriptor (FD) of the file.|
+| file   | string \| number | Yes  | Application sandbox path or file descriptor (FD) of the file.|
 
 **Return value**
 
@@ -511,7 +500,7 @@ Copies a folder. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the folder to copy.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
 
 **Return value**
 
@@ -557,7 +546,7 @@ Copies a folder with the specified mode. This API uses an asynchronous callback 
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the folder to copy.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | Yes   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | Yes   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked to return the result.             |
 
 **Error codes**
@@ -642,7 +631,7 @@ Copies a folder. This API returns the result synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the folder to copy.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
+  | mode | number | No   | Copy mode. The default value is **0**.<br>- **0**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **1**: Forcibly overwrite the files with the same name in the destination folder. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.|
 
 **Error codes**
 
@@ -2119,9 +2108,9 @@ Lists all files, including the files in subfolders, in a directory. This API use
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.<br>If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.<br> If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.|
   | listNum | number | No   | Number of file names to list. The default value is **0**, which means to list all files.|
-  | filter | [Filter](#filter) | No   | Options for filtering files. Currently, files can be filtered by file name extension, fuzzy file name, file size, and latest modification time only.|
+  | filter | [Filter](#filter10) | No   | Options for filtering files. Currently, files can be filtered by file name extension, fuzzy file name, file size, and latest modification time only.|
 
 **Return value**
 
@@ -2181,9 +2170,9 @@ Lists all files, including the files in subfolders, in a directory. This API use
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.<br>If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.<br> If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.|
   | listNum | number | No   | Number of file names to list. The default value is **0**, which means to list all files.|
-  | filter | [Filter](#filter) | No   | Options for filtering files. Currently, files can be filtered by file name extension, fuzzy file name, file size, and latest modification time only.|
+  | filter | [Filter](#filter10) | No   | Options for filtering files. Currently, files can be filtered by file name extension, fuzzy file name, file size, and latest modification time only.|
 
 **Error codes**
 
@@ -2239,9 +2228,9 @@ Lists all files, including the files in subfolders, in a directory. This API ret
 
   | Name   | Type    | Mandatory  | Description                         |
   | ------ | ------ | ---- | --------------------------- |
-  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.<br>If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.|
+  | recursion | boolean | No   | Whether to list all files in subfolders recursively. The default value is **false**.<br> If **recursion** is **false**, the names of the files and folders that meet the specified conditions in the current directory are returned. If **recursion** is **true**, relative paths (starting with /) of all files that meet the specified conditions in the current directory are returned.|
   | listNum | number | No   | Number of file names to list. The default value is **0**, which means to list all files.|
-  | filter | [Filter](#filter) | No   | Options for filtering files. Currently, files can be filtered by file name extension, fuzzy file name, file size, and latest modification time only.|
+  | filter | [Filter](#filter10) | No   | Options for filtering files. Currently, files can be filtered by file name extension, fuzzy file name, file size, and latest modification time only.|
 
 **Return value**
 
@@ -2288,7 +2277,7 @@ Moves a folder. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
 | src | string | Yes   | Application sandbox path of the folder to move.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a non-empty folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br>Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
+  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a non-empty folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
 
 **Return value**
 
@@ -2334,7 +2323,7 @@ Moves a folder with the specified mode. This API uses an asynchronous callback t
   | ------ | ------ | ---- | --------------------------- |
 | src | string | Yes   | Application sandbox path of the folder to move.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | Yes   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br>Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
+  | mode | number | Yes   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles10)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
   | callback | AsyncCallback&lt;void, Array&lt;[ConflictFiles](#conflictfiles10)&gt;&gt; | Yes   | Callback invoked to return the result.             |
 
 **Error codes**
@@ -2419,7 +2408,7 @@ Moves a folder. This API returns the result synchronously.
   | ------ | ------ | ---- | --------------------------- |
 | src | string | Yes   | Application sandbox path of the folder to move.|
   | dest | string | Yes   | Application sandbox path of the destination folder.|
-  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br>Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br>Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
+  | mode | number | No   | Mode for moving the folder. The default value is **0**.<br>- **0**: Throw an exception if a directory conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination directory.<br>- **1**: Throw an exception if a file conflict occurs.<br> Throw an exception if there is a folder with the same name in the destination folder and there are files with the same name in the conflicting folder. All the non-conflicting files in the source folder will be moved to the destination folder, and the non-conflicting files in the destination folder will be retained. The **data** attribute in the error returned provides information about the conflicting files in the Array\<[ConflictFiles](#conflictfiles)> format.<br>- **2**: Forcibly overwrite the conflicting files in the destination directory. If there is a folder with the same name in the destination directory and there are files with the same name in the conflicting folder, all the files with the same name in the destination folder will be overwritten and the non-conflicting files will be retained.<br>- **3**: Forcibly overwrite the conflicting folder.<br> Move the source folder to the destination directory and overwrite the conflicting folder completely. That is, if there is a folder with the same name in the destination directory, all the original files in that folder will not be retained.|
 
 **Error codes**
 
@@ -2462,7 +2451,7 @@ Moves a file. This API uses a promise to return the result.
   | ------ | ------ | ---- | --------------------------- |
 | src | string | Yes   | Application sandbox path of the file to move. |
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
 
 **Return value**
 
@@ -2501,7 +2490,7 @@ Moves a file with the specified mode. This API uses an asynchronous callback to 
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | Yes   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
+  | mode | number | Yes   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
   | callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result.             |
 
 **Error codes**
@@ -2572,7 +2561,7 @@ Moves a file. This API returns the result synchronously.
   | ------ | ------ | ---- | --------------------------- |
   | src | string | Yes   | Application sandbox path of the source file.|
   | dest | string | Yes   | Application sandbox path of the destination file.|
-  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br>The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br>The default value is **0**.|
+  | mode | number | No   | Whether to overwrite the file with the same name in the destination directory.<br> The value **0** means to overwrite the file with the same name in the destination directory; the value **1** means to throw an exception.<br> The default value is **0**.|
 
 **Error codes**
 
@@ -2862,12 +2851,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   ```ts
   import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
-  fs.createStream(filePath, "r+").then((stream: fs.Stream) => {
+  fs.createStream(filePath, "a+").then((stream: fs.Stream) => {
     console.info("Stream created");
+    stream.closeSync();
   }).catch((err: BusinessError) => {
     console.error("createStream failed with error message: " + err.message + ", error code: " + err.code);
-  }).finally(() => {
-    stream.closeSync();
   });
   ```
 
@@ -4128,7 +4116,7 @@ Reads data from a file. This API uses a promise to return the result.
 
   | Type                                | Description    |
   | ---------------------------------- | ------ |
-| Promise&lt;number&gt; | Promise used to return the result. |
+  | Promise&lt;number&gt; | Promise used to return the data read.|
 
 **Error codes**
 

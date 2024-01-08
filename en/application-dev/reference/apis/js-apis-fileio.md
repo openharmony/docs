@@ -17,7 +17,6 @@ import fileio from '@ohos.fileio';
 
 Before using the APIs provided by this module to perform operations on a file or directory, obtain the application sandbox path of the file or directory as follows:
 
-**Stage Model**
 
  ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -31,20 +30,8 @@ Before using the APIs provided by this module to perform operations on a file or
   }
   ```
 
- For details about how to obtain the stage model context, see [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md).
+For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
-**FA Model**
-
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
- For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
 ## fileio.stat
 
@@ -795,12 +782,13 @@ Reads data from a file. This API uses a promise to return the result.
   import buffer from '@ohos.buffer';
   import { ReadOut } from '@ohos.fileio';
   let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o2);
+  let fd = fileio.openSync(filePath, 0o102, 0o640);
   let arrayBuffer = new ArrayBuffer(4096);
   fileio.read(fd, arrayBuffer).then((readResult: fileio.ReadOut) => {
     console.info("Read file data successfully");
     let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
     console.log(`The content of file: ${buf.toString()}`);
+    fileio.closeSync(fd);
   }).catch((err: BusinessError) => {
     console.info("read file data failed with error:" + err);
   });
@@ -835,14 +823,15 @@ Reads data from a file. This API uses an asynchronous callback to return the res
   import buffer from '@ohos.buffer';
   import { ReadOut } from '@ohos.fileio';
   let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o2);
+  let fd = fileio.openSync(filePath, 0o102, 0o640);
   let arrayBuffer = new ArrayBuffer(4096);
   fileio.read(fd, arrayBuffer, (err: BusinessError, readResult: fileio.ReadOut) => {
-    if (readLen) {
+    if (readResult) {
       console.info("Read file data successfully");
       let buf = buffer.from(arrayBuffer, 0, readResult.bytesRead);
       console.info(`The content of file: ${buf.toString()}`);
     }
+    fileio.closeSync(fd);
   });
   ```
 
@@ -877,7 +866,7 @@ Reads data from a file. This API returns the result synchronously.
 
   ```ts
   let filePath = pathDir + "/test.txt";
-  let fd = fileio.openSync(filePath, 0o2);
+  let fd = fileio.openSync(filePath, 0o102, 0o640);
   let buf = new ArrayBuffer(4096);
   let num = fileio.readSync(fd, buf);
   ```
@@ -2991,10 +2980,10 @@ Listens for file or directory changes. This API uses an asynchronous callback to
 
 **Example**
 
-  ```ts
+  ```js
   let filePath = pathDir + "/test.txt";
-  fileio.createWatcher(filePath, 1, async(event: number) => {
-    console.info("event: " + event);
+  fileio.createWatcher(filePath, 1, (err, event) => {
+    console.info("event: " + event + "errmsg: " + JSON.stringify(err));
   });
   
   ```
@@ -3242,10 +3231,10 @@ Stops the **watcher** instance. This API uses a promise to return the result.
 
 **Example**
 
-  ```ts
+  ```js
   let filePath = pathDir + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, (event: number) => {
-    console.info("event: " + event);
+  let watcher = fileio.createWatcher(filePath, 1, (err, event) => {
+    console.info("event: " + event + "errmsg: " + JSON.stringify(err));
   });
   watcher.stop().then(() => {
     console.info("Watcher stopped");
@@ -3269,10 +3258,10 @@ Stops the **watcher** instance. This API uses an asynchronous callback to return
 
 **Example**
 
-  ```ts
+  ```js
   let filePath = pathDir + "/test.txt";
-  let watcher = fileio.createWatcher(filePath, 1, async(event: number) => {
-    console.info("event: " + event);
+  let watcher = fileio.createWatcher(filePath, 1, (err, event) => {
+    console.info("event: " + event + "errmsg: " + JSON.stringify(err));
   });
   watcher.stop(() => {
     console.info("Watcher stopped");
