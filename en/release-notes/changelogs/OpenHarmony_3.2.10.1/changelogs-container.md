@@ -1,17 +1,18 @@
-# ChangeLog of JS API Changes in the commonlibrary Subsystem
+# Common Library Subsystem Changelog
 
-Compared with OpenHarmony 3.2 Beta4, OpenHarmony 3.2.10.1(Mr) has the following API changes in the commonlibrary subsystem.
+Compared with OpenHarmony 3.2 Beta4, OpenHarmony 3.2.10.1 (MR) has the following API changes in the common library subsystem.
 
-## cl.commonlibrary.1 Error Code and Information Change
-Changed error codes and information returned by APIs of the **ArrayList**, **List**, **LinkedList**, **Stack**, **Queue**, **Deque**, **PlainArray**, **LightWeightMap**, **LightWeightSet**, **HashMap**, **HashSet**, **TreeMap**, and **TreeSet** classes in the commonlibrary subsystem.
+## cl.utils.1 Error Code and Information Change
 
-For details about the changed error codes, see [error codes of language basic class libraries](../../../application-dev/reference/errorcodes/errorcode-utils.md).
+The error codes and information returned by APIs of the **ArrayList**, **List**, **LinkedList**, **Stack**, **Queue**, **Deque**, **PlainArray**, **LightWeightMap**, **LightWeightSet**, **HashMap**, **HashSet**, **TreeMap**, and **TreeSet** classes are changed.
+
+For details about the changed error codes, see [Utils Error Codes](../../../application-dev/reference/errorcodes/errorcode-utils.md).
 
 No adaptation is required for applications developed using these APIs.
 
 **Key API/Component Changes**
 
-Error code information is redefined for APIs in these classes and marked using **'@throws'** in the `*.d.ts` file of the corresponding module.
+Error code information is redefined for APIs in these classes and marked using **'@throws'** in the *.d.ts file of the corresponding module.
 
 The sample code is as follows:
 
@@ -24,6 +25,6 @@ constructor();
 @throws { BusinessError } 10200012 - The ArrayList's constructor cannot be directly invoked.
 constructor();
 
-**Change Impacts**
+**Change Impact**
 
 None
