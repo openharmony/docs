@@ -1930,6 +1930,7 @@
       - [Memory](reference/native-apis/memory.md)
       - [UsbDdk](reference/native-apis/_usb_ddk.md)
       - [Hitrace](reference/native-apis/_hitrace.md)
+      - [HiAppEvent](reference/native-apis/_hi_app_event.md)
       - [Vulkan](reference/native-apis/_vulkan.md)
       - [Bundle](reference/native-apis/_bundle.md)
     - 头文件
@@ -2003,6 +2004,10 @@
       - [usb_ddk_api.h](reference/native-apis/usb__ddk__api_8h.md)
       - [usb_ddk_types.h](reference/native-apis/usb__ddk__types_8h.md)
       - [trace.h](reference/native-apis/trace_8h.md)
+      - [hiappevent.h](reference/native-apis/hiappevent_8h.md)
+      - [hiappevent_cfg.h](reference/native-apis/hiappevent__cfg_8h.md)
+      - [hiappevent_event.h](reference/native-apis/hiappevent__event_8h.md)
+      - [hiappevent_param.h](reference/native-apis/hiappevent__param_8h.md)
       - [vulkan_ohos.h](reference/native-apis/vulkan__ohos_8h.md)
     - 结构体
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
