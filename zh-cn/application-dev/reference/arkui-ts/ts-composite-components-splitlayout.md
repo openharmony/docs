@@ -34,13 +34,13 @@ SplitLayout({mainImage: Resource, primaryText: string, secondaryText?: string, t
 
 **参数：**
 
-| 名称 | 参数类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| mainImage | [ResourceStr](ts-types.md#resourcestr) | 是 | 传入图片。 |
-| primaryText | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题内容。 |
-| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 副标题内容。 |
-| tertiaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | 辅助文本。 |
-| container | ()&nbsp;=&gt;&nbsp;void | 是 | 容器内组件。 |
+| 名称 | 参数类型 | 必填 | 装饰器类型        | 说明     |
+| -------- | -------- | -------- |---------------|--------|
+| mainImage | [ResourceStr](ts-types.md#resourcestr) | 是 | -             | 传入图片。  |
+| primaryText | [ResourceStr](ts-types.md#resourcestr) | 是 | @Prop         | 标题内容。  |
+| secondaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop         | 副标题内容。 |
+| tertiaryText | [ResourceStr](ts-types.md#resourcestr) | 否 | @Prop         | 辅助文本。  |
+| container | ()&nbsp;=&gt;&nbsp;void | 是 | @BuilderParam | 容器内组件。 |
 
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)
@@ -53,8 +53,6 @@ import { SplitLayout } from '@ohos.arkui.advanced.SplitLayout'
 @Component
 struct Index {
   @State demoImage: Resource = $r("app.media.music")
-  @State primaryText: string = "主标题"
-  @State secondaryText: string = "副标题"
 
   build() {
       Column() {
