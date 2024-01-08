@@ -18,7 +18,7 @@
 
 ## 接口
 
-Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
+Tabs(value?: {barPosition?: [BarPosition](#barposition枚举说明), index?: number, controller?: [TabsController](#tabscontroller)})
 
 **参数：**
 

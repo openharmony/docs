@@ -353,7 +353,7 @@ async function createTonePlayerBefore(){
 | ALARM<sup>10+</sup>          | 4      | 闹钟。     |
 | ACCESSIBILITY<sup>10+</sup>  | 5      | 无障碍。   |
 | VOICE_ASSISTANT<sup>8+</sup> | 9      | 语音助手。 |
-| ULTRASONIC<sup>10+</sup>     | 10     | 超声波（目前仅提供给MSDP使用）。<br/>此接口为系统接口。|
+| ULTRASONIC<sup>10+</sup>     | 10     | 超声波。<br/>此接口为系统接口。|
 | ALL<sup>9+</sup>             | 100    | 所有公共音频流。<br/>此接口为系统接口。|
 
 ## InterruptRequestResultType<sup>9+</sup>
@@ -4736,6 +4736,8 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 
 设置通信设备激活状态，使用callback方式异步返回结果。
 
+该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
 **参数：**
@@ -4765,6 +4767,8 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Promise&lt;void&gt;
 
 设置通信设备激活状态，使用Promise方式异步返回结果。
+
+该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 

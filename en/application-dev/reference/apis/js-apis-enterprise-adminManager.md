@@ -354,7 +354,7 @@ Disables a super administrator application for the administrator based on **bund
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                          |
+| ID| Error Message                                                          |   
 | ------- | ----------------------------------------------------------------- |
 | 9200005 | failed to disable the administrator application of the device.    |
 
@@ -847,7 +847,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -903,7 +903,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
 }).catch((err: BusinessError) => {
@@ -950,7 +950,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
   if (err) {
@@ -1006,7 +1006,7 @@ let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
 };
-let events: Array<adminManager.ManagedEvent> = [0, 1];
+let events: Array<adminManager.ManagedEvent> = [adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_ADDED, adminManager.ManagedEvent.MANAGED_EVENT_BUNDLE_REMOVED];
 
 adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 }).catch((err: BusinessError) => {

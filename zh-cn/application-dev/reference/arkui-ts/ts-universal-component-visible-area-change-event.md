@@ -76,8 +76,8 @@ struct ScrollExample {
             }
 
             if (!isVisible && currentRatio <= 0.0) {
-              console.info('Test Row is is completely invisible.')
-              this.testRowStr = 'Test Row is is completely invisible'
+              console.info('Test Row is completely invisible.')
+              this.testRowStr = 'Test Row is completely invisible'
             }
           })
 

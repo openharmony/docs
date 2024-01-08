@@ -278,7 +278,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
 
 ### Persistently Storing Widget Data
 
-A widget provider is usually started when it is needed to provide information about a widget. The Widget Manager supports multi-instance management and uses the widget ID to identify an instance. If the widget provider supports widget data modification, it must persistently store the data based on the widget ID, so that it can access the data of the target widget when obtaining, updating, or starting a widget.
+A widget provider is usually started when it is needed to provide information about a widget. The Widget Manager supports multi-instance management and uses the widget ID to identify an instance. If the widget provider supports widget data modification, it must persistently store the data based on the widget ID, so that it can access the data of the target widget when obtaining, updating, or starting a widget. You should override **onDestroy** to implement widget data deletion.
 
 
 ```ts
@@ -298,6 +298,18 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
     await storage.flush();
   } catch (err) {
     console.error(`failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
+  }
+}
+
+let deleteFormInfo = async (formId: string, context) => {
+  try {
+    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+    // Delete the widget information.
+    await storage.delete(formId);
+    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    await storage.flush();
+  } catch (err) {
+    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
   }
 }
 
@@ -321,28 +333,8 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
       };
       let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
       return formData;
-    }
-...
-```
-
-You should override **onDestroy** to implement widget data deletion.
-
-
-```ts
-const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
-let deleteFormInfo = async (formId: string, context) => {
-  try {
-    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
-    // Delete the widget information.
-    await storage.delete(formId);
-    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
-    await storage.flush();
-  } catch (err) {
-    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
-  }
-}
-
-...
+    },
+    // Override onDestroy to implement widget data deletion.
     onDestroy(formId: string) {
       console.info('FormAbility onDestroy');
       let context = featureAbility.getContext();

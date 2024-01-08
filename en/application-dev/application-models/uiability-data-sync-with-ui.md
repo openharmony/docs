@@ -63,14 +63,16 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
      // UI page display.
      build() {
-       Button ('Button')
-         .onClick(() => {
-           this.eventHubFunc();
+       Column() {
+         Button ('Button')
+           .onClick(() => {
+             this.eventHubFunc();
          })
-       Button ('Close')
-         .onClick(() => {
-           this.context.eventHub.off('event1');
+         Button ('Close')
+           .onClick(() => {
+             this.context.eventHub.off('event1');
          })
+       }
      }
    }
    ```

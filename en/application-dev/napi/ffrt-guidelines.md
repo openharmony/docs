@@ -2,18 +2,18 @@
 
 ## When to Use
 
-Function Flow is a task- and data-driven concurrent programming model that allows you to develop an application by creating tasks and describing their dependencies. Function Flow Runtime (FFRT) is a software runtime library that supports the Function Flow programming model. It is used to schedule and execute tasks of your application developed on the Function Flow programming model. FFRT automatically and concurrently schedules and executes tasks based on the task dependency status and available resources, so that you can focus on feature development.
+Function Flow is a task-based and data-driven concurrent programming model that allows you to develop an application by creating tasks and describing their dependencies. Function Flow Runtime (FFRT) is a software runtime library that works with the Function Flow programming model. It is used to schedule and execute tasks of an application developed on the Function Flow programming model. Specifically, FFRT automatically and concurrently schedules and executes tasks of the application based on the task dependency status and available resources, so that you can focus on feature development.
 
-This document walks you through how to implement parallel programming based on the Function Flow programming model and FFRT.
+This topic walks you through how to implement parallel programming based on the Function Flow programming model and FFRT.
 
 ### Programming Models
 
 
-|                | Thread Programming Model                                                | FFRT Programming Model                                            |
+| Item | Thread Programming Model                                                | FFRT Programming Model                                            |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Mode for mining the Degree of Parallelism (DOP)| Programmers create multiple threads and assign tasks to them for execution to achieve the optimal runtime parallelism.| Programmers, with the help of a compiler or programming language features, decompose the application into tasks and their data dependencies during static programming. The scheduler allocates tasks to worker threads for execution at runtime.|
-| Owner for creating threads| Programmers are responsible for creating threads. The maximum number of threads that can be created is not under control.| The scheduler is responsible for creating and managing the worker thread pool. Programmers cannot create threads.|
-| Load balancing      | Programmers map tasks to threads during static programming. Improper mapping or uncertain task execution time will cause load imbalance among threads.| A ready task is automatically scheduled to an idle thread for execution, maximizing load balance among threads.|
+| Degree of Parallelism (DOP) mining mode| Programmers create multiple threads and assign tasks to them for parallel execution to achieve the optimal runtime performance.| Programmers, with the help of compilers or programming language features, decompose the application into tasks and describe their data dependencies during static programming. The scheduler allocates tasks to worker threads for execution.|
+| Owner for creating threads| Programmers are responsible for creating threads. The maximum number of threads that can be created is not under control.| The scheduler is responsible for creating and managing worker threads. Programmers cannot directly create threads.|
+| Load balancing      | Programmers map tasks to threads during static programming. Improper mapping or uncertain task execution time will cause a load imbalance among threads.| A ready task is automatically scheduled to an idle thread for execution, reducing the load imbalance among threads.|
 | Scheduling overhead      | Thread scheduling is implemented by a kernel-mode scheduler, resulting in high scheduling overhead.                      | Thread scheduling is implemented by a user-mode coroutine scheduler, requiring less scheduling overhead. In addition, FFRT can further reduce the scheduling overhead through hardware-based scheduling offload.|
 | Dependency expression      | A thread is in the executable state once it is created, and it is executed parallelly with other threads, causing frequent thread switching.| FFRT determines whether a task can be executed based on the input and output dependencies explicitly expressed during task creation. If the input dependencies do not meet the requirements, the task is not scheduled.|
 
@@ -21,52 +21,52 @@ This document walks you through how to implement parallel programming based on t
 
 ### Function Flow
 
-The Function Flow programming model allows you to develop an application by creating tasks and describing their dependencies. It is task-based and data-driven.
+The Function Flow programming model allows you to develop an application by creating tasks and describing their dependencies. Its most outstanding features are task-based and data-driven.
 
-#### Task-Based
+#### Task-based
 
 Task-based means that you can use tasks to express an application and schedule the tasks at runtime.
 
-A task is defined as a developer-oriented programming clue and a runtime-oriented execution object. It usually contains a set of instructions in a certain sequence and a data context environment to run the instructions.
+A task is defined as a developer-oriented programming clue and a runtime-oriented execution object. It usually contains a set of sequential instructions and a data context environment to run the instructions.
 
 Tasks in the Function Flow programming model have the following features:
 
 - The dependency between tasks can be specified in data-driven form.
 - Tasks can be nested. That is, when a task is being executed, a new task can be generated and delivered to that task to form a parent-child relationship.
-- Multiple tasks can be manipulated simultaneously, such as wait, lock, and condition variables.
+- Simultaneous operations, such as wait, lock, and condition variables, are supported.
 
-> NOTE
+> **NOTE**
 >
-> The task granularity affects the application execution performance. A too small granularity (too many tasks) increases the scheduling overhead, whereas a too large granularity decreases the DOP. The minimum task granularity allowed in the Function Flow programming model is 100 μs.
+> The task granularity determines the number of concurrent tasks and therefore affects the application execution performance. A small granularity increases the scheduling overhead, whereas a large granularity decreases the DOP. The minimum task granularity allowed in the Function Flow programming model is 100 μs.
 
-#### Data-Driven
+#### Data-driven
 
 Data-driven means that the dependency between tasks is expressed through data dependencies.
 
-Data objects associated with a task are read and written during task execution. In the Function Flow programming model, a data object is abstracted as a data signature. They form a one-to-one relationship.
+Data objects associated with a task are read and written during task execution. In the Function Flow programming model, a data object is abstracted as a data signature. They are in one-to-one mapping.
 
-Data dependencies, consisting of **in_deps** and **out_deps**, are abstracted as a list of data signatures corresponding to the data objects manipulated by the task. When the signature of a data object appears in **in_deps** of a task, the task is a consumer task of the data object. The execution of a consumer task does not change the content of the input data object. When the signature of a data object appears in **out_deps** of a task, the task is a producer task of the data object. The execution of a producer task changes the content of the output data object and generates a new version of the data object.
+Data dependencies, consisting of **in_deps** and **out_deps**, are abstracted as a list of data signatures mapping to the data objects manipulated by the task. When the signature of a data object appears in **in_deps** of a task, the task is a consumer task of the data object. The execution of a consumer task does not change the content of the input data object. When the signature of a data object appears in **out_deps** of a task, the task is a producer task of the data object. The execution of a producer task changes the content of the output data object and generates a new version of the data object.
 
 A data object may have multiple versions. Each version corresponds to one producer task and zero, one, or more consumer tasks. A sequence of the data object versions and the version-specific producer task and consumer tasks are defined according to the delivery sequence of the producer task and consumer tasks.
 
 When all producer tasks and consumer tasks of the data object of all the available versions are executed, the data dependency is removed. In this case, the task enters the ready state and can be scheduled for execution.
 
-With the data-driven dependency expression, FFRT can dynamically build the different types of data dependencies between tasks and schedule the tasks based on the data dependency status at runtime. The following data dependency types are available:
+With the data-driven dependency expression, FFRT can dynamically build different types of data dependencies between tasks and schedule the tasks based on the data dependency status at runtime. The following data dependency types are available:
 
 - Producer-Consumer dependency
 
-  A dependency formed between a producer task of a data object of a specific version and a consumer task of the data object of the same version. It is also referred to as a read-after-write dependency.
+  A dependency formed between the producer task of a data object of a specific version and a consumer task of the data object of the same version. It is also referred to as a read-after-write dependency.
 
 - Consumer-Producer dependency
 
-  A dependency formed between a consumer task of a data object of a specific version and a producer task of the data object of the next version. It is also referred to as a write-after-read dependency.
+  A dependency formed between a consumer task of a data object of a specific version and the producer task of the data object of the next version. It is also referred to as a write-after-read dependency.
 
 - Producer-Producer dependency
 
-  A dependency formed between a producer task of a data object of a specific version and a producer task of the data object of the next version. It is also referred to as a write-after-write dependency.
+  A dependency formed between the producer task of a data object of a specific version and a producer task of the data object of the next version. It is also referred to as a write-after-write dependency.
 
 
-For example, the relationship between some tasks and data A is as follows:
+Assume that the relationship between some tasks and data A is as follows:
 ```{.c}
 task1(OUT A);
 task2(IN A);
@@ -77,12 +77,14 @@ task5(OUT A);
 
 <img src="figures/ffrtfigure3.png" style="zoom:40%" />
 
+> **NOTE**
+>
 > For ease of description, circles are used to represent tasks and squares are used to represent data.
 
 The following conclusions can be drawn:
-- task1 and task2/task3 form a producer-consumer dependency. This means that task2/task3 can read A only after task1 writes A.
-- task2/task3 and task4 form a consumer-producer dependency. This means that task4 can write A only after task2/task3 reads A.
-- task 4 and task 5 form the producer-producer dependency. This means that task 5 can write A only after task 4 writes A.
+- task1 and task2/task3 form a producer-consumer dependency. This means that task2/task3 can read data A only after task1 writes data A.
+- task2/task3 and task4 form a consumer-producer dependency. This means that task4 can write data A only after task2/task3 reads data A.
+- task 4 and task 5 form a producer-producer dependency. This means that task 5 can write data A only after task 4 writes data A.
 
 ## Available APIs
 
@@ -95,8 +97,8 @@ The following conclusions can be drawn:
 | ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr)   | Initializes a condition variable.     |
 | ffrt_cond_signal(ffrt_cond_t* cond)         | Unblocks at least one of the threads that are blocked on a condition variable.|
 | ffrt_cond_broadcast(ffrt_cond_t* cond) | Unblocks all threads currently blocked on a condition variable.|
-| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | Blocks the calling thread.|
-| ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct timespec* time_point)            | Blocks the calling thread for a given duration.|
+| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | Blocks the calling thread on a condition variable.|
+| ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct timespec* time_point)            | Blocks the calling thread on a condition variable for a given duration.|
 | ffrt_cond_destroy(ffrt_cond_t* cond)            | Destroys a condition variable.|
 | ffrt_mutex_init(ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr) | Initializes a mutex.|
 | ffrt_mutex_lock(ffrt_mutex_t* mutex)   | Locks a mutex.|
@@ -141,7 +143,7 @@ The following conclusions can be drawn:
 
 #### ffrt_submit_base
 
-* Functions as the export interface of the FFRT dynamic library. You can encapsulate this API into the C API **ffrt_submit** for binary compatibility.
+Exports an FFRT dynamic library. You can encapsulate this API into the C API **ffrt_submit** for binary compatibility.
 
 ##### Declaration
 
@@ -168,11 +170,11 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
 
 `kind`
 
-* Subtype of **function**. It is used to optimize the internal data structure. The default value is **ffrt_function_kind_general**.
+Subtype of **function**. It is used to optimize the internal data structure. The default value is **ffrt_function_kind_general**.
 
 `func`
 
-* Pointer to the CPU function. The struct executed by the pointer describes, according to the **ffrt_function_header_t** definition, two function pointers **exec** and **destroy**. FFRT executes and destroys the task by using the two function pointers.
+Pointer to the CPU function. The struct executed by the pointer describes two function pointers, namely, **exec** and **destroy**, according to the **ffrt_function_header_t** definition. FFRT executes and destroys the task by using the two function pointers.
 
 `in_deps`
 
@@ -182,8 +184,12 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
 `out_deps`
 
 * Optional.
+
 * Output dependencies of the task.
-* Note: The dependency is essentially a value. FFRT cannot determine whether the value is reasonable. It always treats the input value reasonable. However, you are not advised to use inappropriate values such as **NULL**, **1**, or **2** to establish dependencies. Instead, use the actual memory address because inappropriate values will establish unnecessary dependencies and affect concurrency.
+
+  **NOTE**
+
+  The dependency is essentially a value. FFRT cannot determine whether the value is reasonable. It always treats the input value reasonable. However, you are not advised to use inappropriate values such as **NULL**, **1**, or **2** to establish dependencies because doing this will establish unnecessary dependencies and affect concurrency. Instead, use the actual memory address.
 
 `attr`
 
@@ -192,16 +198,16 @@ void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, 
 
 ##### Return value
 
-* N/A
+N/A
 
-##### Use Guide
+##### Use guide
 * You are advised to encapsulate **ffrt_submit_base** first. For details, see **Example** below.
-* As an underlying capability, **ffrt_submit_base** must meet the following restrictions:
+* As an underlying capability, **ffrt_submit_base** must meet the following requirements:
   * The **func** pointer can be allocated by calling **ffrt_alloc_auto_managed_function_storage_base**, and the two function pointers in the struct must be in the specified sequence (**exec** prior to **destroy**).
   * The memory allocated by calling **ffrt_alloc_auto_managed_function_storage_base** is of the size specified by **ffrt_auto_managed_function_storage_size**. Its lifecycle is managed by FFRT. When the task is complete, FFRT automatically releases the memory.
 * The following two function pointers are defined in **ffrt_function_header_t**:
   * **exec**: describes how the task is executed. It is called by FFRT to execute the task.
-  * **destroy**: describes how a task is destroyed. It is called by the FFRT when the FFRT needs to destroy the task.
+  * **destroy**: describes how a task is destroyed. It is called by FFRT to destroy the task.
 
 ##### Example
 
@@ -251,9 +257,8 @@ static inline void submit(std::function<void()>&& func)
 
 #### ffrt_wait
 
-<hr/>
-* Used together with **ffrt_submit_base**.
-* Waits by suspending the current execution context, until the specified data is produced or all subtasks of the current task are complete.
+- Used together with **ffrt_submit_base**.
+- Waits by suspending the current execution context, until the specified data is produced or all subtasks of the current task are complete.
 
 ##### Declaration
 
@@ -266,17 +271,17 @@ void ffrt_wait();
 
 `deps`
 
-* Virtual addresses of the data to be produced. These addresses may be used as **out_deps** in **submit()** of some tasks. For details about how to generate the dependency, see **ffrt_deps_t**. Note that a null pointer indicates no dependency.
+Virtual addresses of the data to be produced. These addresses may be used as **out_deps** in **submit()** of some tasks. For details about how to generate the dependency, see **ffrt_deps_t**. Note that a null pointer indicates no dependency.
 
 ##### Return value
 
-* N/A
+N/A
 
-##### Use Guide
+##### Use guide
 * **ffrt_wait_deps(deps)** is used to suspend code execution before the data specified by **deps** is produced.
 * **ffrt_wait()** is used to suspend code execution before all subtasks (excluding grandchild tasks and lower-level subtasks) submitted by the current context are complete.
 * This API can be called inside or outside an FFRT task.
-* **ffrt_wait_deps(deps)** or **ffrt_wait()** called outside an FFRT task can be sensed by the OS, and therefore it is more expensive than that called inside an FFRT task. As such, use **ffrt_wait()** inside an FFRT task in most scenarios.
+* **ffrt_wait_deps(deps)** or **ffrt_wait()** called outside an FFRT task can be sensed by the OS, and therefore it is more expensive than that called inside an FFRT task. As such, you are advised to use **ffrt_wait()** inside an FFRT task whenever possible.
 
 ##### Example
 
@@ -399,21 +404,21 @@ int main(int narg, char** argv)
 }
 ```
 
-Comment: 
+**NOTE**
 
 (1) fibonacci (x-1) and fibonacci (x-2) are submitted to FFRT as two tasks. After the two tasks are complete, the results are accumulated.
 
-(2) Although a single task can be split into only two subtasks, the subtasks can be further split. Therefore, the entire computing graph delivers a high DOP, and a call tree is formed between tasks in FFRT.
+(2) A single task can be split into only two subtasks, but the subtasks can be further split. Therefore, the entire computing graph delivers a high DOP, and a call tree is formed between tasks in FFRT.
 
 <img src="figures/ffrtfigure2.png" style="zoom:100%" />
 
+> **NOTE**
+>
 > The preceding implementation requires you to explicitly manage the data lifecycle and encapsulate input parameters, making the code complex.
-
-
 
 #### ffrt_deps_t
 
-* Abstraction of dependency arrays in C code, logically equivalent to **std::vector<void*>** in C++ code.
+Abstraction of dependency arrays in C code, logically equivalent to **std::vector<void*>** in C++ code.
 
 ##### Declaration
 
@@ -438,31 +443,31 @@ typedef struct {
 
 `len`
 
-* Number of dependent signatures. The value must be greater than or equal to 0.
+Number of dependent signatures. The value must be greater than or equal to 0.
 
 `item`
 
-* Pointer to the start address of each signature.
+Pointer to the start address of each signature.
 
 `type`
 
-* Dependency type, which can be data dependency or task dependency.
+Dependency type, which can be data dependency or task dependency.
 
 `ptr`
 
-* Actual address of the dependent signature content.
+Actual address of the dependent signature content.
 
 ##### Return value
 
-* N/A
+N/A
 
-##### Use Guide
+##### Use guide
 
-* **item** is the start address pointer of each signature. The pointer can point to the heap space or stack space, but the allocated space must be greater than or equal to len * sizeof(ffrt_dependence_t).
+**item** is the start address pointer of each signature. The pointer can point to the heap space or stack space, but the allocated space must be greater than or equal to len * sizeof(ffrt_dependence_t).
 
 ##### Example
 
-* Create a data dependency or task dependency.
+Create a data dependency or task dependency.
 
 ```{.c}
 // Create ffrt_deps_t on which the data depends.
@@ -480,8 +485,7 @@ ffrt_deps_t wait{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
 
 #### ffrt_task_attr_t
 
-<hr/>
-* Auxiliary class for defining task attributes. It is used together with **ffrt_submit_base**.
+Auxiliary class for defining task attributes. It is used together with **ffrt_submit_base**.
 
 ##### Declaration
 
@@ -515,7 +519,7 @@ uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 
 `attr`
 
-* Handle to the target task attribute.
+Handle of the target task attribute.
 
 `qos`
 
@@ -524,15 +528,15 @@ uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 
 `delay_us`
 
-* Delay for executing the task, in μs.
+Delay for executing the task, in μs.
 
 ##### Return value
 
-* N/A
+N/A
 
-##### Use Guide
-* The content transferred by **attr** is fetched and stored when **ffrt_submit** is being executed. You can destroy the content after **ffrt_submit** returns a value.
-* Conventions
+##### Use guide
+* The content passed by **attr** is fetched and stored when **ffrt_submit** is being executed. You can destroy the content on receiving the return value of **ffrt_submit**.
+* Conventions:
   * If **task_attr** is not used for QoS setting during task submission, the QoS of the task is **ffrt_qos_default**.
   * If **task_attr** is set to **ffrt_qos_inherent** during task submission, the QoS of the task to be submitted is the same as that of the current task. If a task with the **ffrt_qos_inherent** attribute is submitted outside an FFRT task, its QoS is **ffrt_qos_default**.
   * In other cases, the QoS value passed in is used.
@@ -541,7 +545,7 @@ uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
 
 ##### Example
 
-* Submit a task with the QoS set to **ffrt_qos_background**:
+Submit a task with the QoS set to **ffrt_qos_background**:
 
 ```{.c}
 #include <stdio.h>
@@ -614,8 +618,7 @@ int main(int narg, char** argv)
 
 #### ffrt_submit_h_base
 
-<hr/>
-* Submits a task to the scheduler. Different from **ffrt_submit_base**, **ffrt_submit_h_base** returns a task handle. The handle can be used to establish the dependency between tasks or implement synchronization in the **wait** statements.
+Submits a task to the scheduler. Different from **ffrt_submit_base**, **ffrt_submit_h_base** returns a task handle. The handle can be used to establish the dependency between tasks or implement synchronization in the **wait** statements.
 
 ##### Declaration
 
@@ -630,7 +633,7 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 
 `func`
 
-* Pointer to the CPU function. The struct executed by the pointer describes, according to the **ffrt_function_header_t** definition, two function pointers **exec** and **destroy**. FFRT executes and destroys the task by using the two function pointers.
+Pointer to the CPU function. The struct executed by the pointer describes, two function pointers, namely, **exec** and **destroy**, according to the **ffrt_function_header_t** definition. FFRT executes and destroys the task by using the two function pointers.
 
 `in_deps`
 
@@ -640,8 +643,12 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 `out_deps`
 
 * Optional.
+
 * Output dependencies of the task.
-* Note: The dependency is essentially a value. FFRT cannot determine whether the value is reasonable. It always treats the input value reasonable. However, you are not advised to use inappropriate values such as **NULL**, **1**, or **2** to establish dependencies. Instead, use the actual memory address because inappropriate values will establish unnecessary dependencies and affect concurrency.
+
+  **NOTE**
+
+  The dependency is essentially a value. FFRT cannot determine whether the value is reasonable. It always treats the input value reasonable. However, you are not advised to use inappropriate values such as **NULL**, **1**, or **2** to establish dependencies. Instead, use the actual memory address because inappropriate values will establish unnecessary dependencies and affect concurrency.
 
 `attr`
 
@@ -650,12 +657,12 @@ void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
 
 ##### Return value
 
-* Take handle. The handle can be used to establish the dependency between tasks or implement synchronization in the wait statements.
+Take handle. The handle can be used to establish the dependency between tasks or implement synchronization in the wait statements.
 
-##### Use Guide
+##### Use guide
 
 * **ffrt_task_handle_t** in the C code must be explicitly destroyed by calling **ffrt_task_handle_destroy**.
-* You need to set the **task_handle_t** object in the C code to null or destroy the object. For the same **ffrt_task_handle_t** object, **ffrt_task_handle_destroy** can be called only once. Otherwise, undefined behavior may occur.
+* You need to set the **ffrt_task_handle_t** object in the C code to null or destroy the object. For the same **ffrt_task_handle_t** object, **ffrt_task_handle_destroy** can be called only once. Otherwise, undefined behavior may occur.
 * If **ffrt_task_handle_t** is accessed after **ffrt_task_handle_destroy** is called, undefined behavior may occur.
 
 ##### Example
@@ -764,7 +771,7 @@ int main(int narg, char** argv)
 }
 ```
 
-* Expected output:
+Expected output:
 
 ```
 hello world, x = 2
@@ -776,8 +783,7 @@ x = 3
 
 #### ffrt_this_task_get_id
 
-<hr/>
-* Obtains the ID of this task. This API is used for maintenance and testing. (The task ID is unique, but the task name may be duplicate.)
+Obtains the ID of this task. This API is used for maintenance and testing. (The task ID is unique, but the task name may be duplicate.)
 
 ##### Declaration
 
@@ -787,28 +793,25 @@ uint64_t ffrt_this_task_get_id();
 
 ##### Parameters
 
-* N/A
+N/A
 
 ##### Return value
 
-* ID of the task being executed.
+ID of the task being executed.
 
-##### Use Guide
+##### Use guide
 
 * If this API is called inside a task, the ID of this task is returned. If this API is called outside a task, **0** is returned.
 * You can determine whether the function runs on an FFRT or a non-FFRT worker thread based on the return value.
-* The task ID starts from 1 and is incremented by 1 each time a task is submitted. The task ID contains 64 bits. Even if millions of tasks are submitted per second, it takes 292471.2 years to reverse the task ID.
+* The task ID starts from 1 and is incremented by 1 each time a task is submitted. The task ID contains 64 bits. Even if one million tasks are submitted per second, it takes 292471.2 years to finish one loop.
 
 ##### Example
 
-* N/A
-
-
+N/A
 
 #### ffrt_this_task_update_qos
 
-<hr/>
-* Updates the QoS of the task being executed.
+Updates the QoS of the task being executed.
 
 ##### Declaration
 
@@ -818,13 +821,15 @@ int ffrt_this_task_update_qos(ffrt_qos_t qos);
 
 ##### Parameters
 
-* **qos**: new QoS.
+`qos` 
+
+New QoS.
 
 ##### Return value
 
-* Returns **0** if the operation is successful; returns a non-zero value otherwise.
+Returns **0** if the operation is successful; returns a non-zero value otherwise.
 
-##### Use Guide
+##### Use guide
 
 * The QoS update takes effect immediately.
 * If the new QoS is different from the current QoS, the task is blocked and then resumed based on the new QoS.
@@ -833,11 +838,11 @@ int ffrt_this_task_update_qos(ffrt_qos_t qos);
 
 ##### Example
 
-* N/A
+N/A
 
 ### Serial Queue
-<hr />
-* FFRT provides **queue** to implement capabilities similar to **WorkQueue** in Andorid, but with better performance if used properly.
+
+FFRT provides **queue** to implement capabilities similar to **WorkQueue** in Android. It can deliver excellent performance if being used properly.
 
 #### ffrt_queue_attr_t
 
@@ -854,12 +859,13 @@ void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
 ##### Parameters
 
 `attr`
-* Pointer to the uninitialized **ffrt_queue_attr_t** object.
+
+Pointer to the uninitialized **ffrt_queue_attr_t** object.
 
 ##### Return value
-* Returns **0** if the API is called successfully; returns **-1** otherwise.
+Returns **0** if the API is called successfully; returns **-1** otherwise.
 
-##### Use Guide
+##### Use guide
 * An **ffrt_queue_attr_t** object must be created prior to an **ffrt_queue_t** object.
 * You need to set the **ffrt_queue_attr_t** object to null or destroy the object. For the same **ffrt_queue_attr_t** object, **ffrt_queue_attr_destroy** can be called only once. Otherwise, undefined behavior may occur.
 * If **ffrt_queue_attr_t** is accessed after **ffrt_queue_attr_destroy** is called, undefined behavior may occur.
@@ -881,18 +887,21 @@ void ffrt_queue_destroy(ffrt_queue_t queue)
 ##### Parameters
 
 `type`
-* Queue type.
+
+Queue type.
 
 `name`
-* Pointer to the queue name
+
+Pointer to the queue name.
 
 `attr`
-* Pointer to the queue attribute. For details, see **ffrt_queue_attr_t**.
+
+Pointer to the queue attribute. For details, see **ffrt_queue_attr_t**.
 
 ##### Return value
-* Returns the queue created if the API is called successfully; returns a null pointer otherwise.
+Returns the queue created if the API is called successfully; returns a null pointer otherwise.
 
-##### Use Guide
+##### Use guide
 * Tasks submitted to the queue are executed in sequence. If a task is blocked, the execution sequence of the task cannot be ensured.
 * You need to set the **ffrt_queue_t** object to null or destroy the object. For the same **ffrt_queue_t** object, **ffrt_queue_destroy** can be called only once. Otherwise, undefined behavior may occur.
 * If **ffrt_queue_t** is accessed after **ffrt_queue_destroy** is called, undefined behavior may occur.
@@ -952,8 +961,8 @@ int main(int narg, char** argv)
 ### Synchronization Primitive
 
 #### ffrt_mutex_t
-<hr/>
-* Provides performance implementation similar to pthread mutex.
+
+Provides performance implementation similar to pthread mutex.
 
 ##### Declaration
 
@@ -980,17 +989,17 @@ int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
 
 `attr`
 
-* Set to a null pointer. This is because FFRT supports only mutex of the basic type currently.
+Attribute of the mutex. Set it to a null pointer. This is because FFRT supports only mutex of the basic type currently.
 
 `mutex`
 
-* Pointer to the target mutex.
+Pointer to the target mutex.
 
 ##### Return value
 
-* Returns **ffrt_success** if the API is called successfully; returns an error code otherwise.
+Returns **ffrt_success** if the API is called successfully; returns an error code otherwise.
 
-##### Use Guide
+##### Use guide
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The traditional function **pthread_mutex_t** may cause unexpected kernel mode trap when it fails to lock a mutex. **ffrt_mutex_t** solves this problem and therefore provides better performance if used properly.
 * Currently, recursion and timing are not supported.
@@ -1100,12 +1109,12 @@ Expected output:
 sum=10
 ```
 
-* This example is not encouraged in practice.
+This example is for reference only and is not encouraged in practice.
 
 
 #### ffrt_cond_t
-<hr/>
-* Provides performance implementation similar to pthread semaphore.
+
+Provides performance implementation similar to pthread semaphore.
 
 ##### Declaration
 
@@ -1133,28 +1142,28 @@ int ffrt_cond_destroy(ffrt_cond_t* cond);
 
 `cond`
 
-* Pointer to the target semaphore.
+Pointer to the target semaphore.
 
 `attr`
 
-* Pointer to the attribute. A null pointer indicates that the default attribute is used.
+Pointer to the attribute. A null pointer indicates that the default attribute is used.
 
 `mutex`
 
-* Pointer to the target mutex.
+Pointer to the target mutex.
 
 `time_point`
 
-* Pointer to the maximum duration that the thread is blocked.
+Pointer to the maximum duration during which the thread is blocked.
 
 
 ##### Return value
 
-* Returns **ffrt_success** if the API is successfully called; returns **ffrt_error_timedout** if the maximum duration is reached before the mutex is locked.
+Returns **ffrt_success** if the API is successfully called; returns **ffrt_error_timedout** if the maximum duration is reached before the mutex is locked.
 
-##### Use Guide
+##### Use guide
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
-* The traditional function **pthread_cond_t** may cause unexpected kernel mode trap when the conditions are not met. **ffrt_cond_t** solves this problem and therefore provides better performance if used properly.
+* The traditional function **pthread_cond_t** may cause unexpected kernel mode trap when the conditions are not met. **ffrt_cond_t** solves this problem and therefore provides better performance if being used properly.
 * **ffrt_cond_t** in the C code must be explicitly created and destroyed by calling **ffrt_cond_init** and **ffrt_cond_destroy**, respectively.
 * You need to set the **ffrt_cond_t** object in the C code to null or destroy the object. For the same **ffrt_cond_t** object, **ffrt_cond_destroy** can be called only once. Otherwise, undefined behavior may occur.
 * If **ffrt_cond_t** is accessed after **ffrt_cond_destroy** is called, undefined behavior may occur.
@@ -1288,14 +1297,13 @@ Expected output:
 a=1
 ```
 
-* This example is not encouraged in practice.
+This example is for reference only and is not encouraged in practice.
 
 ### Miscellaneous
 
 #### ffrt_usleep
 
-<hr/>
-* Provides performance implementation similar to C11 sleep and Linux usleep.
+Provides performance implementation similar to C11 sleep and Linux usleep.
 
 ##### Declaration
 
@@ -1307,13 +1315,13 @@ int ffrt_usleep(uint64_t usec);
 
 `usec`
 
-* Duration that the calling thread is suspended, in μs.
+Duration that the calling thread is suspended, in μs.
 
 ##### Return value
 
-* N/A
+N/A
 
-##### Use Guide
+##### Use guide
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The traditional function **sleep** may cause unexpected kernel mode trap. **ffrt_usleep** solves this problem and therefore provides better performance if used properly.
 
@@ -1384,8 +1392,8 @@ int main(int narg, char** argv)
 ```
 
 #### ffrt_yield
-<hr/>
-* Passes control to other tasks so that they can be executed. If there is no other task that can be executed, the calling is invalid. 
+
+Passes control to other tasks so that they can be executed. If there is no other task that can be executed, this API is invalid. 
 
 ##### Declaration
 
@@ -1395,19 +1403,19 @@ void ffrt_yield();
 
 ##### Parameters
 
-* N/A
+N/A
 
 ##### Return value
 
-* N/A
+N/A
 
-##### Use Guide
+##### Use guide
 * This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
 * The exact behavior of this API depends on the implementation, especially the mechanism and system state of the FFRT scheduler in use.
 
 ##### Example
 
-* N/A
+N/A
 
 
 ## How to Develop
@@ -1433,7 +1441,7 @@ libffrt.z.so
 
 1. **Encapsulate the function to be executed.**
     ```c++
-    // Method 1: use the template. C++ is supported.
+    // Method 1: Use the template. C++ is supported.
     template<class T>
     struct Function {
         template<class CT>
@@ -1525,7 +1533,7 @@ libffrt.z.so
 
     // Create the attributes of the serial queue.
     ffrt_queue_attr_t queue_attr;
-    // Create the handle to the serial queue.
+    // Create the handle of the serial queue.
     ffrt_queue_t queue_handle;
 
     // Initialize the queue attribute.
@@ -1596,9 +1604,9 @@ Basic idea: Use functional programming for the calculation process.
 * Use **in_deps** and **out_deps** of **ffrt_submit_base()** to specify the data objects to be accessed by the function and the access mode.
 * Use **inDeps** and **outDeps** to specify the dependency between tasks to ensure the correctness of program execution.
 
+> **NOTE**
+>
 > Using pure functions helps you maximize the parallelism and avoid data races and lock abuse.
-
-
 
 In practice, you may not use pure functions in certain scenarios, with the following prerequisites:
 
@@ -1606,39 +1614,33 @@ In practice, you may not use pure functions in certain scenarios, with the follo
 * The lock mechanism provided by FFRT is used to protect access to global variables.
 
 
-### Suggestion 2: Use FFRT APIs.
+### Suggestion 2: Use FFRT APIs
 
 * Do not use the APIs of the system thread library to create threads in FFRT tasks. Instead, use **ffrt_submit_base** or **ffrt_submit_h_base** to submit tasks.
 * Use the lock, condition variable, sleep, and I/O APIs provided by FFRT to replace the APIs of the system thread library.
-  * Using the APIs of the system thread library may block worker threads and result in extra performance overhead.
-
-
+* Using the APIs of the system thread library may block worker threads and result in extra performance overhead.
 
 ### Suggestion 3: Deadline mechanism
 
-* Use the FFRT APIs in processing flows that feature periodic/repeated execution.
-* Use the FFRT APIs in processing flows with clear time constraints and is performance critical.
-* Use the FFRT APIs in relatively large-granularity processing flows, such as the frame processing flow with the 16.6 ms time constraint.
-
-
+* Use FFRT APIs in processing flows that feature periodic/repeated execution.
+* Use FFRT APIs in processing flows with clear time constraints and is performance critical.
+* Use FFRT APIs in relatively large-granularity processing flows, such as the frame processing flow with the 16.6 ms time constraint.
 
 ### Suggestion 4: Migration from the thread model
 
 * Create a thread instead of creating an FFRT task.
-  * A thread is logically similar to a task without **in_deps**.
+* A thread is logically similar to a task without **in_deps**.
 * Identify the dependency between threads and express the dependencies in **in_deps** or **out_deps** of the task.
-* Decompose the intra-thread computing process into asynchronous task invoking.
+* Decompose an intra-thread computing process into asynchronous tasks for invoking.
 * Use the task dependency and lock mechanism to avoid data races of concurrent tasks.
-
-
 
 ## Restrictions
 
+After an FFRT object is initialized in the C code, you are responsible for setting the object to null or destroying the object.
 
-### After an FFRT object is initialized in the C code, you are responsible for setting the object to null or destroying the object.
+To ensure high performance, the C APIs of FFRT do not use a flag to indicate the object destruction status. You need to release resources properly. Repeatedly destroying an object will cause undefined behavior.
 
-* To ensure high performance, the C APIs of FFRT do not use a flag to indicate the object destruction status. You need to release resources properly. Repeatedly destroying an object will cause undefined behavior.
-* Noncompliant example 1: Repeated calling **destroy()** may cause unpredictable data damage.
+Noncompliant example 1: Repeated calling of **destroy()** may cause unpredictable data damage.
 
 ```{.c}
 #include "ffrt.h"
@@ -1651,7 +1653,7 @@ void abnormal_case_1()
 }
 ```
 
-* Noncompliant example 2: A memory leak occurs when **destroy()** is not called.
+Noncompliant example 2: A memory leak occurs if **destroy()** is not called.
 
 ```{.c}
 #include "ffrt.h"
@@ -1663,7 +1665,7 @@ void abnormal_case_2()
 }
 ```
 
-* Recommended example: Call **destroy()** only once; set the object to null if necessary.
+Recommended example: Call **destroy()** only once; set the object to null if necessary.
 
 ```{.c}
 #include "ffrt.h"
@@ -1672,6 +1674,6 @@ void normal_case()
     ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
     ...
     ffrt_task_handle_destroy(h);
-    h = nullptr; // Use this if necessary.
+    h = nullptr; // if necessary
 }
 ```
