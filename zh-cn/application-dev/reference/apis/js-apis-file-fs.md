@@ -379,7 +379,7 @@ copy(srcUri: string, destUri: string, options?: CopyOptions): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import fs, { BusinessError } from '@ohos.base';
 import fileUri from '@ohos.file.fileuri';
 
 let srcDirPathLocal: string = pathDir + "/src";
@@ -391,11 +391,11 @@ let dstDirUriLocal: string = fileUri.getUriFromPath(dstDirPathLocal);
 let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
   console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
 };
-let options: fs.CopyOptions = {
+let copyoption: fs.CopyOptions = {
   "progressListener" : progressListener
 }
 try {
-  fs.copy(srcDirUriLocal, dstDirUriLocal, options).then(()=>{
+  fs.copy(srcDirUriLocal, dstDirUriLocal, copyoption).then(()=>{
     console.info("Succeeded in copying. ");
   }).catch((err: BusinessError)=>{
     console.error(`Failed to copy: ${JSON.stringify(err)}`);
@@ -480,6 +480,7 @@ copy(srcUri: string, destUri: string, options: CopyOptions, callback: AsyncCallb
 **示例：**
 
 ```ts
+import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
 import fileUri from '@ohos.file.fileuri';
 
@@ -493,10 +494,10 @@ try {
   let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
     console.info(`progressSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
   };
-  let options: fs.CopyOptions = {
+  let copyoption: fs.CopyOptions = {
     "progressListener" : progressListener
   }
-  fs.copy(srcDirUriLocal, dstDirUriLocal, options, (err: BusinessError) => {
+  fs.copy(srcDirUriLocal, dstDirUriLocal, copyoption, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to copy: ${JSON.stringify(err)}`);
       return;
@@ -1735,7 +1736,7 @@ readLines(filePath: string, options?: Options): Promise&lt;ReaderIterator&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Options } from '@ohos.file.fs';
+  import fs, { Options } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
@@ -1773,7 +1774,7 @@ readLines(filePath: string, options?: Options, callback: AsyncCallback&lt;Reader
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Options } from '@ohos.file.fs';
+  import fs, { Options } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
@@ -1817,7 +1818,7 @@ readLinesSync(filePath: string, options?: Options): ReaderIterator
 **示例：**
 
   ```ts
-  import { Options } from '@ohos.file.fs';
+  import fs, { Options } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
@@ -1854,7 +1855,7 @@ next(): ReaderIteratorResult
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import { Options } from '@ohos.file.fs';
+  import fs, { Options } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let options: Options = {
     encoding: 'utf-8'
@@ -1940,17 +1941,16 @@ readText(filePath: string, options?: ReadTextOptions, callback: AsyncCallback&lt
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ReadOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-    encoding: string = 'utf-8';
-  }
+  let readTextOption: ReadTextOptions = {
+      offset: 1,
+      length: 0,
+      encoding: 'utf-8'
+  };
   let stat = fs.statSync(filePath);
-  let option = new Option();
-  option.offset = 1;
-  option.length = stat.size;
-  fs.readText(filePath, option, (err: BusinessError, str: string) => {
+  readTextOption.length = stat.size;
+  fs.readText(filePath, readTextOption, (err: BusinessError, str: string) => {
     if (err) {
       console.error("readText failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -1987,17 +1987,16 @@ readTextSync(filePath: string, options?: ReadTextOptions): string
 **示例：**
 
   ```ts
+  import fs, { ReadOptions } from '@ohos.file.fs'; 
   let filePath = pathDir + "/test.txt";
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-    encoding: string = 'utf-8';
-  }
+  let readTextOptions: ReadTextOptions = {
+    offset: 1,
+    length: 0,
+    encoding: 'utf-8'
+  };
   let stat = fs.statSync(filePath);
-  let option = new Option();
-  option.offset = 1;
-  option.length = stat.size;
-  let str = fs.readTextSync(filePath, option);
+  readTextOptions.length = stat.size;
+  let str = fs.readTextSync(filePath, readTextOptions);
   console.info("readText succeed:" + str);
   ```
 
@@ -2541,18 +2540,17 @@ listFile(path: string, options?: ListFileOptions): Promise<string[]>
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fs, { Filter } from '@ohos.file.fs';
-  class ListFileOption {
-    public recursion: boolean = false;
-    public listNum: number = 0;
-    public filter: Filter = {};
+  import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
+  let listFileOption: ListFileOptions = {
+    recursion: false,
+    listNum: 0,
+    filter: {}
   }
-  let option = new ListFileOption();
-  option.filter.suffix = [".png", ".jpg", ".jpeg"];
-  option.filter.displayName = ["*abc", "efg*"];
-  option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date().getTime();
-  fs.listFile(pathDir, option).then((filenames: Array<string>) => {
+  listFileOption.filter.suffix = [".png", ".jpg", ".jpeg"];
+  listFileOption.filter.displayName = ["*abc", "efg*"];
+  listFileOption.filter.fileSizeOver = 1024;
+  listFileOption.filter.lastModifiedAfter = new Date().getTime();
+  fs.listFile(pathDir, listFileOption).then((filenames: Array<string>) => {
     console.info("listFile succeed");
     for (let i = 0; i < filenames.length; i++) {
       console.info("fileName: %s", filenames[i]);
@@ -2593,18 +2591,17 @@ listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string
 
   ```ts
   import { BusinessError } from '@ohos.base';
-  import fs, { Filter } from '@ohos.file.fs';
-  class ListFileOption {
-    public recursion: boolean = false;
-    public listNum: number = 0;
-    public filter: Filter = {};
-  }
-  let option = new ListFileOption();
-  option.filter.suffix = [".png", ".jpg", ".jpeg"];
-  option.filter.displayName = ["*abc", "efg*"];
-  option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date().getTime();
-  fs.listFile(pathDir, option, (err: BusinessError, filenames: Array<string>) => {
+  import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
+  let listFileOption: ListFileOptions = {
+    recursion: false,
+    listNum: 0,
+    filter: {}
+  };
+  listFileOption.filter.suffix = [".png", ".jpg", ".jpeg"];
+  listFileOption.filter.displayName = ["*abc", "efg*"];
+  listFileOption.filter.fileSizeOver = 1024;
+  listFileOption.filter.lastModifiedAfter = new Date().getTime();
+  fs.listFile(pathDir, listFileOption, (err: BusinessError, filenames: Array<string>) => {
     if (err) {
       console.error("list file failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -2652,18 +2649,17 @@ listFileSync(path: string, options?: ListFileOptions): string[]
 **示例：**
 
   ```ts
-  import fs, { Filter } from '@ohos.file.fs';
-  class ListFileOption {
-    public recursion: boolean = false;
-    public listNum: number = 0;
-    public filter: Filter = {};
-  }
-  let option = new ListFileOption();
-  option.filter.suffix = [".png", ".jpg", ".jpeg"];
-  option.filter.displayName = ["*abc", "efg*"];
-  option.filter.fileSizeOver = 1024;
-  option.filter.lastModifiedAfter = new Date().getTime();
-  let filenames = fs.listFileSync(pathDir, option);
+  import fs, { Filter, ListFileOptions} from '@ohos.file.fs';
+  let listFileOption: ListFileOptions = {
+    recursion: false,
+    listNum: 0,
+    filter: {}
+  };
+  listFileOption.filter.suffix = [".png", ".jpg", ".jpeg"];
+  listFileOption.filter.displayName = ["*abc", "efg*"];
+  listFileOption.filter.fileSizeOver = 1024;
+  listFileOption.filter.lastModifiedAfter = new Date().getTime();
+  let filenames = fs.listFileSync(pathDir, listFileOption);
   console.info("listFile succeed");
   for (let i = 0; i < filenames.length; i++) {
     console.info("filename: %s", filenames[i]);
@@ -4004,17 +4000,15 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&g
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { WriteOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-    encoding: string = 'utf-8';
-  }
-  let option = new Option();
-  option.offset = 5;
-  option.length = 5;
-  stream.write("hello, world", option).then((number: number) => {
+  let writeOption: WriteOptions = {
+    offset: 5,
+    length: 5,
+    encoding: 'utf-8'
+  };
+  stream.write("hello, world", writeOption).then((number: number) => {
     console.info("write succeed and size is:" + number);
     stream.close();
   }).catch((err: BusinessError) => {
@@ -4046,17 +4040,15 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallb
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { WriteOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-    encoding: string = 'utf-8';
-  }
-  let option = new Option();
-  option.offset = 5;
-  option.length = 5;
-  stream.write("hello, world", option, (err: BusinessError, bytesWritten: number) => {
+  let writeOption: WriteOptions = {
+    offset: 5,
+    length: 5,
+    encoding: 'utf-8'
+  };
+  stream.write("hello, world", writeOption, (err: BusinessError, bytesWritten: number) => {
     if (err) {
       console.error("write stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -4096,17 +4088,15 @@ writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 **示例：**
 
   ```ts
+  import fs, { WriteOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath,"r+");
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-    encoding: string = 'utf-8';
-  }
-  let option = new Option();
-  option.offset = 5;
-  option.length = 5;
-  let num = stream.writeSync("hello, world", option);
+  let writeOption: WriteOptions = {
+    offset: 5,
+    length: 5,
+    encoding: 'utf-8'
+  };
+  let num = stream.writeSync("hello, world", writeOption);
   stream.close();
   ```
 
@@ -4140,17 +4130,15 @@ read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
   ```ts
   import { BusinessError } from '@ohos.base';
   import buffer from '@ohos.buffer';
+  import fs, { ReadOptions } from '@ohos.file.fs'; 
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   let arrayBuffer = new ArrayBuffer(4096);
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-  }
-  let option = new Option();
-  option.offset = 5;
-  option.length = 5;
-  stream.read(arrayBuffer, option).then((readLen: number) => {
+  let readOption: ReadOptions = {
+    offset: 5,
+    length: 5
+  };
+  stream.read(arrayBuffer, readOption).then((readLen: number) => {
     console.info("read data succeed");
     let buf = buffer.from(arrayBuffer, 0, readLen);
     console.log(`The content of file: ${buf.toString()}`);
@@ -4185,17 +4173,15 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
   ```ts
   import { BusinessError } from '@ohos.base';
   import buffer from '@ohos.buffer';
+  import fs, { ReadOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
   let arrayBuffer = new ArrayBuffer(4096);
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-  }
-  let option = new Option();
-  option.offset = 5;
-  option.length = 5;
-  stream.read(arrayBuffer, option, (err: BusinessError, readLen: number) => {
+  let readOption: ReadOptions = {
+    offset: 5,
+    length: 5
+  };
+  stream.read(arrayBuffer, readOption, (err: BusinessError, readLen: number) => {
     if (err) {
       console.error("read stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -4235,17 +4221,15 @@ readSync(buffer: ArrayBuffer, options?: ReadOptions): number
 **示例：**
 
   ```ts
+  import fs, { ReadOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let stream = fs.createStreamSync(filePath, "r+");
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-  }
-  let option = new Option();
-  option.offset = 5;
-  option.length = 5;
+  let readOption: ReadOptions = {
+    offset: 5,
+    length: 5
+  };
   let buf = new ArrayBuffer(4096);
-  let num = stream.readSync(buf, option);
+  let num = stream.readSync(buf, readOption);
   stream.close();
   ```
 
@@ -4501,20 +4485,18 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions): Promise&lt;number&g
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { WriteOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-    encoding: string = 'utf-8';
-  }
-  let option = new Option();
-  option.offset = 1;
-  option.length = 5;
+  let writeOption: WriteOptions = {
+    offset: 1,
+    length: 5,
+    encoding: 'utf-8'
+  };
   let arrayBuffer = new ArrayBuffer(bufferLength);
-  randomAccessFile.write(arrayBuffer, option).then((bytesWritten: number) => {
+  randomAccessFile.write(arrayBuffer, writeOption).then((bytesWritten: number) => {
     console.info("randomAccessFile bytesWritten: " + bytesWritten);
   }).catch((err: BusinessError) => {
     console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
@@ -4549,19 +4531,18 @@ write(buffer: ArrayBuffer | string, options?: WriteOptions, callback: AsyncCallb
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { WriteOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
-  class Option {
-    offset: number = 0;
-    length: number = bufferLength;
-    encoding: string = 'utf-8';
-  }
-  let option = new Option();
-  option.offset = 1;
+  let writeOption: WriteOptions = {
+    offset: 1,
+    length: bufferLength,
+    encoding: 'utf-8'
+  };
   let arrayBuffer = new ArrayBuffer(bufferLength);
-  randomAccessFile.write(arrayBuffer, option, (err: BusinessError, bytesWritten: number) => {
+  randomAccessFile.write(arrayBuffer, writeOption, (err: BusinessError, bytesWritten: number) => {
     if (err) {
       console.error("write failed with error message: " + err.message + ", error code: " + err.code);
     } else {
@@ -4602,17 +4583,15 @@ writeSync(buffer: ArrayBuffer | string, options?: WriteOptions): number
 **示例：**
 
   ```ts
+  import fs, { WriteOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let randomAccessFile = fs.createRandomAccessFileSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-  class Option {
-    offset: number = 0;
-    length: number = 0;
-    encoding: string = 'utf-8';
-  }
-  let option = new Option();
-  option.offset = 5;
-  option.length = 5;
-  let bytesWritten = randomAccessFile.writeSync("hello, world", option);
+  let writeOption: WriteOptions = {
+    offset: 5,
+    length: 5,
+    encoding: 'utf-8'
+  };
+  let bytesWritten = randomAccessFile.writeSync("hello, world", writeOption);
   randomAccessFile.close();
   ```
 
@@ -4645,19 +4624,17 @@ read(buffer: ArrayBuffer, options?: ReadOptions): Promise&lt;number&gt;
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ReadOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let bufferLength: number = 4096;
-  class Option {
-    offset: number = 0;
-    length: number = bufferLength;
-  }
-  let option = new Option();
-  option.offset = 1;
-  option.length = 5;
+  let readOption: ReadOptions = {
+    offset: 1,
+    length: 5
+  };
   let arrayBuffer = new ArrayBuffer(bufferLength);
-  randomAccessFile.read(arrayBuffer, option).then((readLength: number) => {
+  randomAccessFile.read(arrayBuffer, readOption).then((readLength: number) => {
     console.info("randomAccessFile readLength: " + readLength);
   }).catch((err: BusinessError) => {
     console.error("create randomAccessFile failed with error message: " + err.message + ", error code: " + err.code);
@@ -4691,19 +4668,17 @@ read(buffer: ArrayBuffer, options?: ReadOptions, callback: AsyncCallback&lt;numb
 
   ```ts
   import { BusinessError } from '@ohos.base';
+  import fs, { ReadOptions } from '@ohos.file.fs';
   let filePath = pathDir + "/test.txt";
   let file = fs.openSync(filePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
   let randomAccessFile = fs.createRandomAccessFileSync(file);
   let length: number = 20;
-  class Option {
-    offset: number = 0;
-    length: number = length;
-  }
-  let option = new Option();
-  option.offset = 1;
-  option.length = 5;
+  let readOption: ReadOptions = {
+    offset: 1,
+    length: 5
+  };
   let arrayBuffer = new ArrayBuffer(length);
-  randomAccessFile.read(arrayBuffer, option, (err: BusinessError, readLength: number) => {
+  randomAccessFile.read(arrayBuffer, readOption, (err: BusinessError, readLength: number) => {
     if (err) {
       console.error("read failed with error message: " + err.message + ", error code: " + err.code);
     } else {

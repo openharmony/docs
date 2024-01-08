@@ -44,7 +44,7 @@
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
+import fs, { ReadOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 import buffer from '@ohos.buffer';
 
@@ -60,13 +60,11 @@ function createFile(): void {
   console.info("The length of str is: " + writeLen);
   // 从文件读取一段内容
   let arrayBuffer = new ArrayBuffer(1024);
-  class Option {
-    public offset: number = 0;
-    public length: number = 0;
-  }
-  let option = new Option();
-  option.length = arrayBuffer.byteLength;
-  let readLen = fs.readSync(file.fd, arrayBuffer, option);
+  let readOptions: ReadOptions = {
+    offset: 0,
+    length: arrayBuffer.byteLength
+  };
+  let readLen = fs.readSync(file.fd, arrayBuffer, readOptions);
   let buf = buffer.from(arrayBuffer, 0, readLen);
   console.info("the content of file: " + buf.toString());
   // 关闭文件
@@ -80,7 +78,7 @@ function createFile(): void {
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
+import fs, { ReadOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // 获取应用文件路径
@@ -95,18 +93,16 @@ function readWriteFile(): void {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  class Option {
-    public offset: number = 0;
-    public length: number = bufSize;
-  }
-  let option = new Option();
-  option.offset = readSize;
-  let readLen = fs.readSync(srcFile.fd, buf, option);
+  let readOptions: ReadOptions = {
+    offset: readSize,
+    length: bufSize
+  };
+  let readLen = fs.readSync(srcFile.fd, buf, readOptions);
   while (readLen > 0) {
     readSize += readLen;
     fs.writeSync(destFile.fd, buf);
-    option.offset = readSize;
-    readLen = fs.readSync(srcFile.fd, buf, option);
+    readOptions.offset = readSize;
+    readLen = fs.readSync(srcFile.fd, buf, readOptions);
   }
   // 关闭文件
   fs.closeSync(srcFile);
@@ -124,7 +120,7 @@ function readWriteFile(): void {
 
 ```ts
 // pages/xxx.ets
-import fs from '@ohos.file.fs';
+import fs, { ReadOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // 获取应用文件路径
@@ -139,18 +135,16 @@ async function readWriteFileWithStream(): Promise<void> {
   let bufSize = 4096;
   let readSize = 0;
   let buf = new ArrayBuffer(bufSize);
-  class Option {
-    public offset: number = 0;
-    public length: number = bufSize;
-  }
-  let option = new Option();
-  option.offset = readSize;
-  let readLen = await inputStream.read(buf, option);
+  let readOptions: ReadOptions = {
+    offset: readSize,
+    length: bufSize
+  };
+  let readLen = await inputStream.read(buf, readOptions);
   readSize += readLen;
   while (readLen > 0) {
     await outputStream.write(buf);
-    option.offset = readSize;
-    readLen = await inputStream.read(buf, option);
+    readOptions.offset = readSize;
+    readLen = await inputStream.read(buf, readOptions);
     readSize += readLen;
   }
   // 关闭文件流
@@ -168,7 +162,7 @@ async function readWriteFileWithStream(): Promise<void> {
 以下示例代码演示了如何查看文件列表：
 
 ```ts
-import fs, { Filter } from '@ohos.file.fs';
+import fs, { Filter, ListFileOptions } from '@ohos.file.fs';
 import common from '@ohos.app.ability.common';
 
 // 获取应用文件路径
@@ -177,17 +171,16 @@ let filesDir = context.filesDir;
 
 // 查看文件列表
 function getListFile(): void {
-  class ListFileOption {
-    public recursion: boolean = false;
-    public listNum: number = 0;
-    public filter: Filter = {};
-  }
-  let option = new ListFileOption();
-  option.filter.suffix = ['.png', '.jpg', '.txt'];          // 匹配文件后缀名为'.png','.jpg','.txt'
-  option.filter.displayName = ['test*'];                    // 匹配文件全名以'test'开头
-  option.filter.fileSizeOver = 0;                           // 匹配文件大小大于等于0
-  option.filter.lastModifiedAfter = new Date(0).getTime();  // 匹配文件最近修改时间在1970年1月1日之后
-  let files = fs.listFileSync(filesDir, option);
+  let listFileOption: ListFileOptions = {
+    recursion: false,
+    listNum: 0,
+    filter: {}
+  };
+  listFileOption.filter.suffix = ['.png', '.jpg', '.txt'];          // 匹配文件后缀名为'.png','.jpg','.txt'
+  listFileOption.filter.displayName = ['test*'];                    // 匹配文件全名以'test'开头
+  listFileOption.filter.fileSizeOver = 0;                           // 匹配文件大小大于等于0
+  listFileOption.filter.lastModifiedAfter = new Date(0).getTime();  // 匹配文件最近修改时间在1970年1月1日之后
+  let files = fs.listFileSync(filesDir, listFileOption);
   for (let i = 0; i < files.length; i++) {
     console.info(`The name of file: ${files[i]}`);
   }
