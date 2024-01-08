@@ -883,7 +883,7 @@ mkdir(path: string): Promise&lt;void&gt;
 
 ## fs.mkdir<sup>11+</sup>
 
-mkdir(path: string, recursion: boolean): Promise<void>
+mkdir(path: string, recursion: boolean): Promise\<void>
 
 创建目录，使用Promise异步返回。当recursion指定为true，可多层级创建目录。
 
