@@ -17,7 +17,7 @@
 | layoutDirection | [SecurityComponentLayoutDirection](#securitycomponentlayoutdirection枚举说明) | 否 | 设置安全控件上图标和文字分布的方向。<br/>默认值：SecurityComponentLayoutDirection.HORIZONTAL |
 | position | [Position](ts-types.md#position8) | 否 | 设置绝对定位，设置安全控件的左上角相对于父容器左上角的偏移位置。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>} |
 | markAnchor | [Position](ts-types.md#position8) | 否 | 设置安全控件在位置定位时的锚点，以控件左上角作为基准点进行偏移。通常配合position和offset属性使用，单独使用时，效果类似offset<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>} |
-| offset | [Position](ts-types.md#position8) | 否 | 设置相对定位，安全控件相对于自身的偏移量。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>} |
+| offset | [Position](ts-types.md#position8) | 否 | 设置安全控件相对于自身布局位置的坐标偏移。设置此属性不会影响父容器的布局，仅在绘制过程中调整位置。<br/>默认值：<br/>{<br/>x: 0,<br/>y: 0<br/>} |
 | fontSize | [Dimension](ts-types.md#dimension10) | 否 | 设置安全控件上文字的尺寸。<br/>默认值：16fp |
 | fontStyle | [FontStyle](ts-appendix-enums.md#fontstyle) | 否 | 设置安全控件上文字的样式。<br/>默认值：FontStyle.Normal |
 | fontWeight | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | 否 | 设置安全控件上文字粗细。<br/>默认值：FontWeight.Medium |
@@ -35,10 +35,10 @@
 
 ## SecurityComponentLayoutDirection枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| HORIZONTAL | 安全控件上图标和文字分布的方向为水平排列。 |
-| VERTICAL | 安全控件上图标和文字分布的方向为垂直排列。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| HORIZONTAL | 0 | 安全控件上图标和文字分布的方向为水平排列。 |
+| VERTICAL | 1 | 安全控件上图标和文字分布的方向为垂直排列。 |
 
 
 ## 示例
