@@ -16,7 +16,10 @@
 ```
 add_library(library SHARED hello.cpp)
 
-add_library(avcodec_ffmpeg SHARED IMPORTED)set_target_properties(avcodec_ffmpeg    PROPERTIES    IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/third_party/FFmpeg/libs/${OHOS_ARCH}/libavcodec_ffmpeg.so)
+add_library(avcodec_ffmpeg SHARED IMPORTED)
+set_target_properties(avcodec_ffmpeg
+    PROPERTIES
+    IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/third_party/FFmpeg/libs/${OHOS_ARCH}/libavcodec_ffmpeg.so)
 
 target_link_libraries(library PUBLIC libace_napi.z.so avcodec_ffmpeg)
 ```
