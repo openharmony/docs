@@ -6,12 +6,24 @@
 >
 >  从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## onVisibleAreaChange
 
-## 事件
+onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, currentRatio: number) => void)
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onVisibleAreaChange(ratios: Array\<number>, event: (isVisible: boolean, currentRatio: number) => void) | 组件可见区域变化时触发该回调。<br/>-ratios：阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积）与组件自身面积的比值。当组件可见面积与自身面积的比值大于或小于阈值时，均会触发该回调。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。<br/>-isVisible：表示组件的可见面积与自身面积的比值是否大于阈值，true表示大于，false表示小于。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。<br/>**说明：**<br/>该接口只适用于组件布局区域超出或离开了当前屏幕显示区域的情况，不支持组件堆叠（Stack）导致的面积不可见、使用offset或translate等图形变换接口导致的面积超出情况。 |
+组件可见区域变化时触发该回调。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| ratios | Array&lt;number&gt;                                 | 是   | 阈值数组。其中，每个阈值代表组件可见面积（即组件在屏幕显示区的面积）与组件自身面积的比值。当组件可见面积与自身面积的比值大于或小于阈值时，均会触发该回调。每个阈值的取值范围为[0.0, 1.0]，如果开发者设置的阈值超出该范围，则会实际取值0.0或1.0。 |
+| event  | (isVisible: boolean, currentRatio: number) => void) | 是   | -isVisible：表示组件的可见面积与自身面积的比值是否大于阈值，true表示大于，false表示小于。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。<br/>**说明：**<br/>该接口只适用于组件布局区域超出或离开了当前屏幕显示区域的情况，不支持组件堆叠（Stack）导致的面积不可见、使用offset或translate等图形变换接口导致的面积超出情况。 |
+
+> **说明：**
+>
+> 该接口只适用于组件布局区域超出或离开了当前屏幕显示区域的情况，不支持组件堆叠（Stack）导致的面积不可见、使用offset或translate等图形变换接口导致的面积超出情况。
 
 
 ## 示例
@@ -76,8 +88,8 @@ struct ScrollExample {
             }
 
             if (!isVisible && currentRatio <= 0.0) {
-              console.info('Test Row is is completely invisible.')
-              this.testRowStr = 'Test Row is is completely invisible'
+              console.info('Test Row is completely invisible.')
+              this.testRowStr = 'Test Row is completely invisible'
             }
           })
 

@@ -50,12 +50,12 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
   ```js
   resourceManager.getResourceManager((error, mgr) => {
     if (error != null) {
-      console.log("error is " + error);
+      console.error("error is " + error);
       return;
     }
     mgr.getStringValue(0x1000000, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
@@ -113,13 +113,13 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
     mgr.getStringValue(0x1000000, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
     });
   }).catch((error: BusinessError) => {
-    console.log("error is " + error);
+    console.error("error is " + error);
   });
   ```
 > **NOTE**<br>In the sample code, **0x1000000** indicates the resource ID, which can be found in the compiled **ResourceTable.txt** file.
@@ -189,7 +189,7 @@ import { BusinessError } from '@ohos.base';
     systemResourceManager.getStringValue($r('sys.string.ohos_lab_vibrate').id).then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
-      console.log("systemResourceManager getStringValue promise error is " + error);
+      console.error("systemResourceManager getStringValue promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -404,7 +404,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getStringSync(resource: Resource): string
 
-Obtains the string corresponding to the specified resource object. This API returns the result synchronously.
+Obtains the string corresponding to the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -455,7 +455,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getStringSync(resource: Resource, ...args: Array<string | number>): string
 
-Obtains the string corresponding to the specified resource object and formats the string based on **args**. This API returns the result synchronously.
+Obtains the string corresponding to the specified resource object and formats the string based on **args**. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -624,7 +624,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
@@ -674,7 +674,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
-      console.log("getStringValue promise error is " + error);
+      console.error("getStringValue promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -687,7 +687,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the string corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the string corresponding to the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -723,7 +723,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringValue(resource, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
@@ -739,7 +739,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
-Obtains the string corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the string corresponding to the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -781,7 +781,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getStringValue(resource).then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
-      console.log("getStringValue promise error is " + error);
+      console.error("getStringValue promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -822,7 +822,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringByName("test", (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
@@ -872,7 +872,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getStringByName("test").then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
-      console.log("getStringByName promise error is " + error);
+      console.error("getStringByName promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -928,7 +928,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
-Obtains the string array corresponding to the specified resource object. This API returns the result synchronously.
+Obtains the string array corresponding to the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1048,7 +1048,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let strArray = value;
       }
@@ -1098,7 +1098,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then((value: Array<string>) => {
       let strArray = value;
     }).catch((error: BusinessError) => {
-      console.log("getStringArrayValue promise error is " + error);
+      console.error("getStringArrayValue promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1111,8 +1111,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains the string array corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
-
+Obtains the string array corresponding to the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1147,7 +1146,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringArrayValue(resource, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let strArray = value;
       }
@@ -1163,7 +1162,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains the string array corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the string array corresponding to the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1205,7 +1204,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getStringArrayValue(resource).then((value: Array<string>) => {
       let strArray = value;
     }).catch((error: BusinessError) => {
-      console.log("getStringArray promise error is " + error);
+      console.error("getStringArray promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1246,7 +1245,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getStringArrayByName("test", (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let strArray = value;
       }
@@ -1296,7 +1295,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getStringArrayByName("test").then((value: Array<string>) => {
       let strArray = value;
     }).catch((error: BusinessError) => {
-      console.log("getStringArrayByName promise error is " + error);
+      console.error("getStringArrayByName promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1310,6 +1309,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 getPluralStringValueSync(resId: number, num: number): string
 
 Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API returns the result synchronously.
+
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1353,7 +1356,11 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getPluralStringValueSync(resource: Resource, num: number): string
 
-Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API returns the result synchronously.
+Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
+
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1407,6 +1414,10 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 Obtains the singular-plural string corresponding to the specified resource name based on the specified number. This API returns the result synchronously.
 
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1451,6 +1462,10 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses an asynchronous callback to return the result.
 
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1478,7 +1493,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
@@ -1495,6 +1510,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses a promise to return the result.
+
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1529,7 +1548,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
-      console.log("getPluralStringValue promise error is " + error);
+      console.error("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1542,7 +1561,11 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses an asynchronous callback to return the result.
+Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
+
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1579,7 +1602,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getPluralStringValue(resource, 1, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
@@ -1595,7 +1618,11 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
-Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses a promise to return the result.
+Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
+
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1638,7 +1665,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
-      console.log("getPluralStringValue promise error is " + error);
+      console.error("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1652,6 +1679,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the plural string corresponding to the specified resource name based on the specified number. This API uses an asynchronous callback to return the result.
+
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1680,7 +1711,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getPluralStringByName("test", 1, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
@@ -1697,6 +1728,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 Obtains the plural string corresponding to the specified resource name based on the specified number. This API uses a promise to return the result.
+
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1731,7 +1766,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
       let str = value;
     }).catch((error: BusinessError) => {
-      console.log("getPluralStringByName promise error is " + error);
+      console.error("getPluralStringByName promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -1795,7 +1830,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
-Obtains the media file content (with the default or specified screen density) corresponding to the specified resource object. This API returns the result synchronously.
+Obtains the media file content (with the default or specified screen density) corresponding to the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1932,7 +1967,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let media = value;
       }
@@ -2025,7 +2060,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaContent($r('app.media.test').id).then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
-      console.log("getMediaContent promise error is " + error);
+      console.error("getMediaContent promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2085,7 +2120,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the media file content corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the media file content corresponding to the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2120,7 +2155,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getMediaContent(resource, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let media = value;
       }
@@ -2136,7 +2171,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the media file content (with the specified screen density) corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the media file content (with the specified screen density) corresponding to the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2188,7 +2223,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
-Obtains the media file content corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the media file content corresponding to the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2229,7 +2264,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaContent(resource).then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
-      console.log("getMediaContent promise error is " + error);
+      console.error("getMediaContent promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2242,7 +2277,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
-Obtains the media file content (with the specified screen density) corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the media file content (with the specified screen density) corresponding to the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2324,7 +2359,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getMediaByName("test", (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let media = value;
       }
@@ -2417,7 +2452,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaByName("test").then((value: Uint8Array) => {
       let media = value;
     }).catch((error: BusinessError) => {
-      console.log("getMediaByName promise error is " + error);
+      console.error("getMediaByName promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2528,7 +2563,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
-Obtains the Base64 code of the image (with the default or specified screen density) corresponding to the specified resource object.
+Obtains the Base64 code of the image (with the default or specified screen density) corresponding to the specified resource object. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2665,7 +2700,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let media = value;
       }
@@ -2758,7 +2793,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id).then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
-      console.log("getMediaContentBase64 promise error is " + error);
+      console.error("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2818,7 +2853,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of the image corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the Base64 code of the image corresponding to the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2853,7 +2888,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getMediaContentBase64(resource, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let media = value;
       }
@@ -2869,7 +2904,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the Base64 code of an image with the screen density corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the Base64 code of an image with the screen density corresponding to the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2921,7 +2956,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
-Obtains the Base64 code of the image corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the Base64 code of the image corresponding to the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2962,7 +2997,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaContentBase64(resource).then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
-      console.log("getMediaContentBase64 promise error is " + error);
+      console.error("getMediaContentBase64 promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -2975,7 +3010,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
-Obtains the Base64 code of an image with the screen density corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the Base64 code of an image with the screen density corresponding to the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3057,7 +3092,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let media = value;
       }
@@ -3150,7 +3185,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaBase64ByName("test").then((value: string) => {
       let media = value;
     }).catch((error: BusinessError) => {
-      console.log("getMediaBase64ByName promise error is " + error);
+      console.error("getMediaBase64ByName promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -3208,7 +3243,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
+getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
 
 Obtains the **DrawableDescriptor** object corresponding to the specified resource ID. This API returns the result synchronously.
 
@@ -3220,6 +3255,7 @@ Obtains the **DrawableDescriptor** object corresponding to the specified resourc
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
 | [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application.|
 
 **Return value**
 
@@ -3254,13 +3290,20 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
+  try {
+    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, null, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
+getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
 
-Obtains the **DrawableDescriptor** object corresponding to the specified resource object. This API returns the result synchronously.
+Obtains the **DrawableDescriptor** object corresponding to the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3272,6 +3315,7 @@ Obtains the **DrawableDescriptor** object corresponding to the specified resourc
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
 | [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application.|
 
 **Return value**
 
@@ -3312,11 +3356,18 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
+  try {
+    this.context.resourceManager.getDrawableDescriptor(resource, null, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
+  }
   ```
 
 ### getDrawableDescriptorByName<sup>10+</sup>
 
-getDrawableDescriptorByName(resName: string, density?: number): DrawableDescriptor;
+getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
 
 Obtains the **DrawableDescriptor** object corresponding to the specified resource name. This API returns the result synchronously.
 
@@ -3328,6 +3379,7 @@ Obtains the **DrawableDescriptor** object corresponding to the specified resourc
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
 | [density](#screendensity) | number | No   | Screen density. The default value or value **0** indicates the default screen density.|
+| type<sup>11+</sup> | number | No   | Resource type. The value **1** indicates the layered icon resource of the application in the theme resource package, and the value **0** or the default value indicates the icon resource of the application.|
 
 **Return value**
 
@@ -3357,6 +3409,13 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   try {
     this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
+  }
+  try {
+    this.context.resourceManager.getDrawableDescriptorByName('icon', null, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3410,7 +3469,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getBoolean(resource: Resource): boolean
 
-Obtains the Boolean result corresponding to the specified resource object. This API returns the result synchronously.
+Obtains the Boolean result corresponding to the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3555,7 +3614,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getNumber(resource: Resource): number
 
-Obtains the integer or float value corresponding to the specified resource object. This API returns the result synchronously.
+Obtains the integer or float value corresponding to the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3700,7 +3759,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColorSync(resource: Resource): number
 
-Obtains the color value (decimal) corresponding to the specified resource object. This API returns the result synchronously.
+Obtains the color value (decimal) corresponding to the specified resource object. This API returns the result synchronously. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3822,7 +3881,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getColor($r('app.color.test').id, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
@@ -3872,7 +3931,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getColor($r('app.color.test').id).then((value: number) => {
       let str = value;
     }).catch((error: BusinessError) => {
-      console.log("getColor promise error is " + error);
+      console.error("getColor promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -3885,7 +3944,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
-Obtains the color value (decimal) corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains the color value (decimal) corresponding to the specified resource object. This API uses an asynchronous callback to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3921,7 +3980,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getColor(resource, (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let str = value;
       }
@@ -3937,7 +3996,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getColor(resource: Resource): Promise&lt;number&gt;;
 
-Obtains the color value (decimal) corresponding to the specified resource object. This API uses a promise to return the result.
+Obtains the color value (decimal) corresponding to the specified resource object. This API uses a promise to return the result. This API is used for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3979,7 +4038,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getColor(resource).then((value: number) => {
       let str = value;
     }).catch((error: BusinessError) => {
-      console.log("getColor promise error is " + error);
+      console.error("getColor promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -4020,7 +4079,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getColorByName("test", (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let string = value;
       }
@@ -4050,7 +4109,7 @@ Obtains the color value (decimal) corresponding to the specified resource name. 
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;number&gt; | Promise used to return the color value corresponding to the resource name.|
+| Promise&lt;number&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -4070,7 +4129,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getColorByName("test").then((value: number) => {
       let string = value;
     }).catch((error: BusinessError) => {
-      console.log("getColorByName promise error is " + error);
+      console.error("getColorByName promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -4150,7 +4209,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getRawFileContent("test.txt", (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       } else {
         let rawFile = value;
       }
@@ -4198,7 +4257,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getRawFileContent("test.txt").then((value: Uint8Array) => {
       let rawFile = value;
     }).catch((error: BusinessError) => {
-      console.log("getRawFileContent promise error is " + error);
+      console.error("getRawFileContent promise error is " + error);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -4406,7 +4465,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.getRawFd("test.txt", (error, value) => {
       if (error != null) {
-        console.log(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
+        console.error(`callback getRawFd failed error code: ${error.code}, message: ${error.message}.`);
       } else {
         let fd = value.fd;
         let offset = value.offset;
@@ -4458,7 +4517,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       let offset = value.offset;
       let length = value.length;
     }).catch((error: BusinessError) => {
-      console.log(`promise getRawFd error error code: ${error.code}, message: ${error.message}.`);
+      console.error(`promise getRawFd error error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
     let code = (error as BusinessError).code;
@@ -4532,7 +4591,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   try {
     this.context.resourceManager.closeRawFd("test.txt", (error, value) => {
       if (error != null) {
-        console.log("error is " + error);
+        console.error("error is " + error);
       }
     });
   } catch (error) {
@@ -4583,7 +4642,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
-### getConfigurationSync
+### getConfigurationSync<sup>10+</sup>
 
 getConfigurationSync(): Configuration
 
@@ -4668,7 +4727,7 @@ Obtains the device configuration. This API uses a promise to return the result.
   }
   ```
 
-### getDeviceCapabilitySync
+### getDeviceCapabilitySync<sup>10+</sup>
 
 getDeviceCapabilitySync(): DeviceCapability
 
@@ -4892,6 +4951,141 @@ Obtains the language list of an application.
   }
   ```
 
+### getSymbol<sup>11+</sup>
+getSymbol(resId: number):number
+
+Obtains the symbol value (decimal) corresponding to the specified resource ID. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ----------- |
+| number | Symbol value corresponding to the resource ID.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getSymbol($r('app.symbol.test').id);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getSymbol failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getSymbol<sup>11+</sup>
+getSymbol(resource: Resource): number
+
+Obtains the symbol value (decimal) corresponding to the specified resource object. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ----------- |
+| number | Symbol value corresponding to the resource object.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@ohos.base';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.symbol.test').id
+  };
+  try {
+    this.context.resourceManager.getSymbol(resource);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getSymbol failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getSymbolByName<sup>11+</sup>
+
+getSymbolByName(resName: string) : number;
+
+Obtains the symbol value (decimal) corresponding to the specified resource name. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes   | Resource name.|
+
+**Return value**
+
+| Type    | Description        |
+| ------ | ---------- |
+| number | Symbol value corresponding to the resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@ohos.base';
+
+  try {
+    this.context.resourceManager.getSymbolByName("test");
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getSymbolByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
 ### getString<sup>(deprecated)</sup>
 
 getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
@@ -4914,7 +5108,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id, (error, value) => {
           if (error != null) {
-              console.log("error is " + error);
+              console.error("error is " + error);
           } else {
               let str = value;
           }
@@ -4953,7 +5147,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
       mgr.getString($r('app.string.test').id).then((value: string) => {
           let str = value;
       }).catch((error: BusinessError) => {
-          console.log("getstring promise error is " + error);
+          console.error("getstring promise error is " + error);
       });
   });
   ```
@@ -4981,7 +5175,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getStringArray($r('app.strarray.test').id, (error, value) => {
           if (error != null) {
-              console.log("error is " + error);
+              console.error("error is " + error);
           } else {
               let strArray = value;
           }
@@ -5020,7 +5214,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
        mgr.getStringArray($r('app.strarray.test').id).then((value: Array<string>) => {
           let strArray = value;
       }).catch((error: BusinessError) => {
-          console.log("getStringArray promise error is " + error);
+          console.error("getStringArray promise error is " + error);
       });
   });
   ```
@@ -5048,7 +5242,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id, (error, value) => {
           if (error != null) {
-              console.log("error is " + error);
+              console.error("error is " + error);
           } else {
               let media = value;
           }
@@ -5087,7 +5281,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
       mgr.getMedia($r('app.media.test').id).then((value: Uint8Array) => {
           let media = value;
       }).catch((error: BusinessError) => {
-          console.log("getMedia promise error is " + error);
+          console.error("getMedia promise error is " + error);
       });
   });
   ```
@@ -5115,7 +5309,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id, (error, value) => {
           if (error != null) {
-              console.log("error is " + error);
+              console.error("error is " + error);
           } else {
               let media = value;
           }
@@ -5154,7 +5348,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
       mgr.getMediaBase64($r('app.media.test').id).then((value: string) => {
           let media = value;
       }).catch((error: BusinessError) => {
-          console.log("getMediaBase64 promise error is " + error);
+          console.error("getMediaBase64 promise error is " + error);
       });
   });
   ```
@@ -5165,6 +5359,10 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses a promise to return the result.
+
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
 
 This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9) instead.
 
@@ -5191,7 +5389,7 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
       mgr.getPluralString($r("app.plural.test").id, 1).then((value: string) => {
           let str = value;
       }).catch((error: BusinessError) => {
-          console.log("getPluralString promise error is " + error);
+          console.error("getPluralString promise error is " + error);
       });
   });
   ```
@@ -5202,6 +5400,10 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses an asynchronous callback to return the result.
+
+**NOTE**
+> 
+> Singular and plural forms are available for English, but not Chinese.
 
 This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9-1) instead.
 
@@ -5220,7 +5422,7 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error, value) => {
           if (error != null) {
-              console.log("error is " + error);
+              console.error("error is " + error);
           } else {
               let str = value;
           }
@@ -5251,7 +5453,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.txt", (error, value) => {
           if (error != null) {
-              console.log("error is " + error);
+              console.error("error is " + error);
           } else {
               let rawFile = value;
           }
@@ -5290,7 +5492,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
       mgr.getRawFile("test.txt").then((value: Uint8Array) => {
           let rawFile = value;
       }).catch((error: BusinessError) => {
-          console.log("getRawFile promise error is " + error);
+          console.error("getRawFile promise error is " + error);
       });
   });
   ```
@@ -5318,7 +5520,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt", (error, value) => {
           if (error != null) {
-              console.log("error is " + error);
+              console.error("error is " + error);
           } else {
               let fd = value.fd;
               let offset = value.offset;
@@ -5360,7 +5562,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
           let offset = value.offset;
           let length = value.length;
       }).catch((error: BusinessError) => {
-          console.log("getRawFileDescriptor promise error is " + error);
+          console.error("getRawFileDescriptor promise error is " + error);
       });
   });
   ```
@@ -5387,7 +5589,7 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
   resourceManager.getResourceManager((error, mgr) => {
       mgr.closeRawFileDescriptor("test.txt", (error, value) => {
           if (error != null) {
-              console.log("error is " + error);
+              console.error("error is " + error);
           }
       });
   });

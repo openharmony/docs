@@ -51,6 +51,8 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 2. Call **start()** to switch the AudioCapturer to the **running** state and start recording.
      
    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     audioCapturer.start((err: BusinessError) => {
       if (err) {
         console.error(`Capturer start failed, code is ${err.code}, message is ${err.message}`);
@@ -79,6 +81,8 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 4. Call **stop()** to stop recording.
      
    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     audioCapturer.stop((err: BusinessError) => {
       if (err) {
         console.error(`Capturer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -91,6 +95,8 @@ You can call **on('stateChange')** to listen for state changes. For details abou
 5. Call **release()** to release the instance.
      
    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     audioCapturer.release((err: BusinessError) => {
       if (err) {
         console.error(`capturer release failed, code is ${err.code}, message is ${err.message}`);
@@ -161,7 +167,7 @@ async function start() {
       return;
     }
     await (audioCapturer as audio.AudioCapturer).start(); // Start recording.
-    const path = context.filesDir + '/test.wav'; // Path for storing the recorded audio file.
+    const filePath = context.filesDir + '/test.wav'; // Path for storing the recorded audio file.
     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE); // Create the file if it does not exist.
     let fd = file.fd;
     let numBuffersToCapture = 150; // Write data for 150 times.

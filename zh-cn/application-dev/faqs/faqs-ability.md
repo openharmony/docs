@@ -447,7 +447,7 @@ struct AbilityContextTest {
 
 [ServiceAbility组件配置-后台模式类型](../application-models/serviceability-configuration.md)
 
-[长时任务权限](../security/permission-list.md#ohospermissionkeep_background_running)
+[长时任务权限](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running)
 
 
 ## FA卡片如何进行数据交互(API 9)

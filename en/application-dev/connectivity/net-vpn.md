@@ -13,11 +13,11 @@ The following describes the development procedure specific to each application s
 
 For the complete list of APIs and example code, see [VPN Management](../reference/apis/js-apis-net-vpn.md).
 
-| Type        | API                                                             | Description                                           |
-| ------------ | ----------------------------------------------------------------- | --------------------------------------------------- |
-| ohos.net.vpn | setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void | Establishes a VPN. This API uses an asynchronous callback to return the result.|
-| ohos.net.vpn | protect(socketFd: number, callback: AsyncCallback\<void\>): void  | Enables VPN tunnel protection. This API uses an asynchronous callback to return the result.  |
-| ohos.net.vpn | destroy(callback: AsyncCallback\<void\>): void                    | Destroys a VPN. This API uses an asynchronous callback to return the result.|
+| API                                                           | Description                                         |
+| ----------------------------------------------------------------- | --------------------------------------------------- |
+| setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void | Establishes a VPN. This API uses an asynchronous callback to return the result.|
+| protect(socketFd: number, callback: AsyncCallback\<void\>): void  | Enables VPN tunnel protection. This API uses an asynchronous callback to return the result.  |
+| destroy(callback: AsyncCallback\<void\>): void                    | Destroys a VPN. This API uses an asynchronous callback to return the result.|
 
 ## Starting a VPN
 

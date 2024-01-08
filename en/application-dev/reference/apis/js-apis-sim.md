@@ -151,7 +151,7 @@ let operator : sim.OperatorSimCard = sim.OperatorSimCard.CHINA_TELECOM_CARD;
 try {
     let isOperatorSimCard: boolean = sim.isOperatorSimCard(slotId, operator);
     console.log(`is operator sim card: ` + isOperatorSimCard);
-} catch (error) {
+} catch (err) {
     console.error("isOperatorSimCard err: " + JSON.stringify(err));
 }
 ```

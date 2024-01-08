@@ -44,6 +44,7 @@
     - [点击回弹效果](ts-universal-attributes-click-effect.md)
     - [无障碍属性](ts-universal-attributes-accessibility.md)
     - [动态属性设置](ts-universal-attributes-attribute-modifier.md)
+    - [外描边设置](ts-universal-attributes-outline.md)
     - 触摸交互控制
       - [触摸热区设置](ts-universal-attributes-touch-target.md)
       - [触摸测试控制](ts-universal-attributes-hit-test-behavior.md)
@@ -74,8 +75,10 @@
   - [Blank](ts-basic-components-blank.md)
   - [Button](ts-basic-components-button.md)
   - [CalendarPicker](ts-basic-components-calendarpicker.md)
+  - [Component3D](ts-basic-components-component3d.md)
   - [Checkbox](ts-basic-components-checkbox.md)
   - [CheckboxGroup](ts-basic-components-checkboxgroup.md)
+  - [ContainerSpan](ts-basic-components-containerspan.md)
   - [DataPanel](ts-basic-components-datapanel.md)
   - [DatePicker](ts-basic-components-datepicker.md)
   - [Divider](ts-basic-components-divider.md)
@@ -92,6 +95,7 @@
   - [Navigation](ts-basic-components-navigation.md)
   - [NavRouter](ts-basic-components-navrouter.md)
   - [NavDestination](ts-basic-components-navdestination.md)
+  - [NodeContianer](ts-basic-components-nodecontainer.md)
   - [PatternLock](ts-basic-components-patternlock.md)
   - [PluginComponent](ts-basic-components-plugincomponent.md)
   - [Progress](ts-basic-components-progress.md)
@@ -108,6 +112,8 @@
   - [Span](ts-basic-components-span.md)
   - [Stepper](ts-basic-components-stepper.md)
   - [StepperItem](ts-basic-components-stepperitem.md)
+  - [SymbolSpan](ts-basic-components-symbolSpan.md)
+  - [SymbolGlyph](ts-basic-components-symbolGlyph.md)
   - [Text](ts-basic-components-text.md)
   - [TextArea](ts-basic-components-textarea.md)
   - [TextClock](ts-basic-components-textclock.md)
@@ -173,6 +179,8 @@
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
 - 高级组件
+  - [@ohos.advertising.AdComponent (非全屏广告展示组件)](../apis/js-apis-adcomponent.md)
+  - [@ohos.advertising.AutoAdComponent (轮播广告展示组件)](../apis/js-apis-autoadcomponent.md)
   - [@ohos.arkui.advanced.Chip (操作块)](ts-composite-components-chip.md)
   - [@ohos.arkui.advanced.ComposeListItem (列表)](ts-composite-components-composelistitem.md)
   - [@ohos.arkui.advanced.ComposeTitleBar (头像和单双行文本标题栏)](ts-composite-components-composetitlebar.md)
@@ -181,6 +189,7 @@
   - [@ohos.arkui.advanced.EditableTitleBar (编辑页面标题栏)](ts-composite-components-editabletitlebar.md)
   - [@ohos.arkui.advanced.Filter (多条件筛选)](ts-composite-components-filter.md)
   - [@ohos.arkui.advanced.ProgressButton (下载按钮)](ts-composite-components-progressbutton.md)
+  - [@ohos.arkui.advanced.Popup (气泡组件)](ohos-arkui-advanced-popup.md)
   - [@ohos.arkui.advanced.SegmentButton (分段按钮)](ohos-arkui-advanced-segmentbutton.md)
   - [@ohos.arkui.advanced.SelectionMenu(文本选择菜单)](ts-composite-components-selectionmenu.md)
   - [@ohos.arkui.advanced.SelectTitleBar (下拉菜单标题栏)](ts-composite-components-selecttitlebar.md)
@@ -199,6 +208,7 @@
 - 动画
   - [属性动画（animation）](ts-animatorproperty.md)
   - [显式动画（animateTo）](ts-explicit-animation.md)
+  - [关键帧动画（keyframeAnimateTo）](ts-keyframeAnimateTo.md)
   - 转场动画
     - [页面间转场（pageTransition）](ts-page-transition-animation.md)
     - [组件内转场（transition）](ts-transition-animation-component.md)
@@ -206,6 +216,7 @@
     - [组件内隐式共享元素转场（geometryTransition）](ts-transition-animation-geometrytransition.md)
   - [路径动画（motionPath）](ts-motion-path-animation.md)
   - [粒子动画（Particle）](ts-particle-animation.md)
+  - [显式动画立即下发（animateToImmediately）](ts-explicit-animatetoimmediately.md)
 - 全局UI方法
   - 弹窗
     - [警告弹窗（AlertDialog）](ts-methods-alert-dialog-box.md)
@@ -217,6 +228,7 @@
     - [文本滑动选择器弹窗（TextPickerDialog）](ts-methods-textpicker-dialog.md)
   - [菜单](ts-methods-menu.md)
 - [自定义组件的生命周期](ts-custom-component-lifecycle.md)
+- [自定义组件内置方法](ts-custom-component-api.md)
 - [应用级变量的状态管理](ts-state-management.md)
 - [像素单位](ts-pixel-units.md)
 - [枚举说明](ts-appendix-enums.md)

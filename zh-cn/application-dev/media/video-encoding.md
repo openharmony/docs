@@ -54,7 +54,11 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 2. 创建编码器实例对象。
 
-   应用可以通过名称或媒体类型创建编码器。
+   应用可以通过名称或媒体类型创建编码器。示例中的变量说明如下：
+
+   - videoEnc：视频编码器实例的指针；
+   - capability：编解码器能力查询实例的指针；
+   - OH_AVCODEC_MIMETYPE_VIDEO_AVC：AVC格式视频码流的名称。
 
    ```c++
    // 通过 MIME TYPE 创建编码器，系统会根据MIME创建最合适的编码器。
@@ -258,7 +262,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 9. 通知编码器码流结束。
 
-   以下示例中：index：回调函数OnNeedInputData传入的参数，数据队列的索引。与“步骤7.写入编码码流一样”，使用同一个接口OH_VideoEncoder_PushInputData，通知编码器输入结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
+   以下示例中：index：回调函数OnNeedInputData传入的参数，数据队列的索引。与“8. 写入编码码流”一样，使用同一个接口OH_VideoEncoder_PushInputData，通知编码器输入结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS
 
    ```c++
    int32_t ret;
@@ -554,7 +558,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 9. 写入编码码流。
 
-   在之前的第5步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputData回调函数进行处理，也无需使用OH_VideoEncoder_PushInputData接口输入数据。
+   在之前的第6步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputData回调函数进行处理，也无需使用OH_VideoEncoder_PushInputData接口输入数据。
+
 10. 调用OH_VideoEncoder_NotifyEndOfStream()通知编码器码流结束。
 
     ```c++
@@ -585,4 +590,4 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     }
     ```
 
-后续流程（包括刷新编码器、重置编码器、停止编码器、销毁编码器）与Buffer模式一致，请参考[Buffer模式](#buffer模式)的步骤9-12。
+后续流程（包括刷新编码器、重置编码器、停止编码器、销毁编码器）与Buffer模式一致，请参考[Buffer模式](#buffer模式)的步骤11-14。

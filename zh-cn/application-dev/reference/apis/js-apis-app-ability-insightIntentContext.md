@@ -14,7 +14,7 @@ import InsightIntentContext from '@ohos.app.ability.InsightIntentContext';
 
 ## InsightIntentContext.startAbility
 
-startAbility(want: Want, callback: AsyncCallback<void>): void
+startAbility(want: Want, callback: AsyncCallback\<void\>): void
 
 启动Ability，仅当Ability与意图调用执行基类具有相同包名才能被拉起。使用callback异步回调。
 
@@ -93,7 +93,7 @@ startAbility(want: Want, callback: AsyncCallback<void>): void
 
 ## InsightIntentContext.startAbility
 
-startAbility(want: Want): Promise<void>
+startAbility(want: Want): Promise\<void\>
 
 启动Ability，仅当Ability与意图调用执行基类具有相同包名才能被拉起。使用Promise异步回调。
 

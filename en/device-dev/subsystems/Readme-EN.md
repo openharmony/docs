@@ -138,3 +138,4 @@
         - [Default Hibernation Behavior Customization](subsys-power-default-sleep-behavior-customization.md)
         - [Wakeup Source Customization](subsys-power-wakeup-source-customization.md)
         - [Power Vibrator Customization](subsys-power-vibrator-customization.md)
+        - [Power Wakeup Action Source Customization](subsys-power-wakeup-action-source-customization.md)

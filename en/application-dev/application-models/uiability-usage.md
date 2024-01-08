@@ -14,7 +14,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created. Set a main page for this ability.
     windowStage.loadContent('pages/Index', (err, data) => {
       // ...
@@ -34,6 +34,8 @@ export default class EntryAbility extends UIAbility {
 
 The UIAbility class has its own context, which is an instance of the [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) class. The UIAbilityContext class has attributes such as **abilityInfo** and **currentHapModuleInfo**. UIAbilityContext can be used to obtain the UIAbility configuration information, such as the bundle code path, bundle name, ability name, and environment status required by the application. It can also be used to obtain methods to operate the UIAbility instance, such as **startAbility()**, **connectServiceExtensionAbility()**, and **terminateSelf()**.
 
+To obtain the context of the current ability on the page, call [getContext](../reference/apis/js-apis-context-stage-getContext.md#getcontext) to obtain the UIAbilityContext or ExtensionContext associated with the current page.
+
 - You can use **this.context** to obtain the context of a UIAbility instance.
   
   ```ts
@@ -42,7 +44,7 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   import Want from '@ohos.app.ability.Want';
   
   export default class EntryAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
       // Obtain the context of the UIAbility instance.
       let context = this.context;
       ...
@@ -100,3 +102,5 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
     }
   }
   ```
+
+ <!--no_check--> 

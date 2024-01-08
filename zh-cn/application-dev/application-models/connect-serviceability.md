@@ -16,49 +16,54 @@
 PageAbility创建连接本地ServiceAbility回调实例的代码以及连接本地ServiceAbility的示例代码如下：
 
 ```ts
-import rpc from "@ohos.rpc"
-import promptAction from '@ohos.promptAction'
-import featureAbility from '@ohos.ability.featureAbility'
+import featureAbility from '@ohos.ability.featureAbility';
 import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
-
+import promptAction from '@ohos.promptAction';
+import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
+```
+```ts
+const LOG_TAG: string = '[Sample_FAModelAbilityDevelop]';
+const LOG_DOMAIN: number = 0xFF00;
 let option: common.ConnectOptions = {
   onConnect: (element, proxy) => {
-    console.info(`onConnectLocalService onConnectDone`)
+    hilog.info(LOG_DOMAIN, LOG_TAG, 'onConnectLocalService onConnectDone element:' + JSON.stringify(element));
     if (proxy === null) {
       promptAction.showToast({
-        message: "Connect service failed"
-      })
-      return
+        message: 'connect service failed'
+      });
+      return;
     }
-    let data = rpc.MessageParcel.create()
-    let reply = rpc.MessageParcel.create()
-    let option = new rpc.MessageOption()
-    data.writeInterfaceToken("connect.test.token")
-    proxy.sendRequest(0, data, reply, option)
+    let data = rpc.MessageParcel.create();
+    let reply = rpc.MessageParcel.create();
+    let option = new rpc.MessageOption();
+    data.writeInterfaceToken('connect.test.token');
+    proxy.sendRequest(0, data, reply, option);
     promptAction.showToast({
-      message: "Connect service success"
-    })
+      message: 'connect service success'
+    });
   },
   onDisconnect: (element) => {
-    console.info(`onConnectLocalService onDisconnectDone element:${element}`)
+    hilog.info(LOG_DOMAIN, LOG_TAG, `onConnectLocalService onDisconnectDone element:${element}`);
     promptAction.showToast({
-      message: "Disconnect service success"
-    })
+      message: 'disconnect service success'
+    });
   },
   onFailed: (code) => {
-    console.info(`onConnectLocalService onFailed errCode:${code}`)
+    hilog.info(LOG_DOMAIN, LOG_TAG, `onConnectLocalService onFailed errCode:${code}`);
     promptAction.showToast({
-      message: "Connect local service onFailed"
-    })
+      message: 'connect service failed'
+    });
   }
 };
 
 let request: Want = {
-  bundleName: "com.example.myapplication",
-  abilityName: "com.example.myapplication.ServiceAbility",
-}
-let connId = featureAbility.connectAbility(request, option)
+  bundleName: 'com.samples.famodelabilitydevelop',
+  abilityName: 'com.samples.famodelabilitydevelop.ServiceAbility',
+};
+let connId = featureAbility.connectAbility(request, option);
+hilog.info(LOG_DOMAIN, LOG_TAG, `connectAbility id:${connId}`);
 ```
 
 
@@ -68,29 +73,35 @@ let connId = featureAbility.connectAbility(request, option)
 Service侧把自身的实例返回给调用侧的示例代码如下：
 
 ```ts
-import rpc from "@ohos.rpc"
+import type Want from '@ohos.app.ability.Want';
+import rpc from '@ohos.rpc';
+import hilog from '@ohos.hilog';
+
+const TAG: string = '[Sample_FAModelAbilityDevelop]';
+const domain: number = 0xFF00;
 
 class FirstServiceAbilityStub extends rpc.RemoteObject {
   constructor(des: Object) {
     if (typeof des === 'string') {
-      super(des)
+      super(des);
     } else {
-      return
+      return;
     }
   }
 
-  onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption) {
-    console.info(`onRemoteRequest called`)
+  onRemoteRequest(code: number, data: rpc.MessageParcel, reply: rpc.MessageParcel, option: rpc.MessageOption): boolean {
+    hilog.info(domain, TAG, 'ServiceAbility onRemoteRequest called');
     if (code === 1) {
-      let string = data.readString()
-      console.info(`string=${string}`)
-      let result = Array.from(string).sort().join('')
-      console.info(`result=${result}`)
-      reply.writeString(result)
+      let string = data.readString();
+      hilog.info(domain, TAG, `ServiceAbility string=${string}`);
+      let result = Array.from(string).sort().join('');
+      hilog.info(domain, TAG, `ServiceAbility result=${result}`);
+      reply.writeString(result);
     } else {
-      console.info(`unknown request code`)
+      hilog.info(domain, TAG, 'ServiceAbility unknown request code');
     }
-    return true
+    return true;
   }
 }
+...
 ```

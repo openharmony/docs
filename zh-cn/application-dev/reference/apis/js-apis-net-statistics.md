@@ -756,27 +756,28 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo, callback: AsyncCallback\<NetStatsIn
 import { BusinessError } from '@ohos.base';
 import statistics from '@ohos.net.statistics';
 
-let iFaceInfo: statistics.IfaceInfo
-
-statistics.getTrafficStatsByIface(iFaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
-  console.log(JSON.stringify(error));
-  console.log(
-    "getTrafficStatsByIface bytes of received = " +
-    JSON.stringify(statsInfo.rxBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface bytes of sent = " +
-    JSON.stringify(statsInfo.txBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of received = " +
-    JSON.stringify(statsInfo.rxPackets)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of sent = " +
-    JSON.stringify(statsInfo.txPackets)
-  );
-});
+let iFaceInfo: statistics.IfaceInfo | null = null;
+if (iFaceInfo) {
+  statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo, (error: BusinessError, statsInfo: statistics.NetStatsInfo) => {
+    console.log(JSON.stringify(error));
+    console.log(
+      "getTrafficStatsByIface bytes of received = " +
+      JSON.stringify(statsInfo.rxBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface bytes of sent = " +
+      JSON.stringify(statsInfo.txBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of received = " +
+      JSON.stringify(statsInfo.rxPackets)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of sent = " +
+      JSON.stringify(statsInfo.txPackets)
+    );
+  });
+}
 ```
 
 ## statistics.getTrafficStatsByIface<sup>10+</sup>
@@ -819,25 +820,27 @@ getTrafficStatsByIface(ifaceInfo: IfaceInfo): Promise\<NetStatsInfo>;
 ```js
 import statistics from '@ohos.net.statistics';
 
-let iFaceInfo: statistics.IfaceInfo
-statistics.getTrafficStatsByIface(iFaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
-  console.log(
-    "getTrafficStatsByIface bytes of received = " +
-    JSON.stringify(statsInfo.rxBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface bytes of sent = " +
-    JSON.stringify(statsInfo.txBytes)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of received = " +
-    JSON.stringify(statsInfo.rxPackets)
-  );
-  console.log(
-    "getTrafficStatsByIface packets of sent = " +
-    JSON.stringify(statsInfo.txPackets)
-  );
-});
+let iFaceInfo: statistics.IfaceInfo | null = null;
+if (iFaceInfo) {
+  statistics.getTrafficStatsByIface(iFaceInfo as statistics.IfaceInfo).then((statsInfo: statistics.NetStatsInfo) => {
+    console.log(
+      "getTrafficStatsByIface bytes of received = " +
+      JSON.stringify(statsInfo.rxBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface bytes of sent = " +
+      JSON.stringify(statsInfo.txBytes)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of received = " +
+      JSON.stringify(statsInfo.rxPackets)
+    );
+    console.log(
+      "getTrafficStatsByIface packets of sent = " +
+      JSON.stringify(statsInfo.txPackets)
+    );
+  });
+}
 ```
 
 ## statistics.getTrafficStatsByUid<sup>10+</sup>
@@ -962,7 +965,7 @@ statistics.getTrafficStatsByUid(uidInfo).then((statsInfo: statistics.NetStatsInf
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number, callback: AsyncCallback<number>): void;
+getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 获取指定socket的下行流量信息，使用 callback 方式作为异步方法。
 
@@ -1001,7 +1004,7 @@ statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
 
 ## statistics.getSockfdRxBytes<sup>11+</sup>
 
-getSockfdRxBytes(sockfd: number): Promise<number>;
+getSockfdRxBytes(sockfd: number): Promise\<number\>;
 
 获取指定socket的下行流量信息，使用 Promise 方式作为异步方法。
 
@@ -1046,7 +1049,7 @@ statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number, callback: AsyncCallback<number>): void;
+getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 获取指定socket的上行流量信息，使用 callback 方式作为异步方法。
 
@@ -1085,7 +1088,7 @@ statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
 
 ## statistics.getSockfdTxBytes<sup>11+</sup>
 
-getSockfdTxBytes(sockfd: number): Promise<number>;
+getSockfdTxBytes(sockfd: number): Promise\<number\>;
 
 获取指定socket的上行流量信息，使用 Promise 方式作为异步方法。
 

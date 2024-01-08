@@ -469,7 +469,7 @@ Defines the information about the deferred task.
 | isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.<br>The value **true** means to enable persistent storage for the task, and **false** means the opposite.|
 | isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
-| parameters      | [key: string]: number \| string \| boolean  | No   | Carried parameters.|
+| parameters      | Record<string, number \| string \| boolean>  | No   | Carried parameters.|
 
 ## NetworkType
 

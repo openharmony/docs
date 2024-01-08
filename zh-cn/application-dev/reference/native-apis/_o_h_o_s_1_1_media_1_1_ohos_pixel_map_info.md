@@ -3,19 +3,15 @@
 
 ## 概述
 
-用于定义 pixel map 的相关信息。
+用于定义PixelMap的相关信息。
 
-**起始版本：**
+**系统能力：** SystemCapability.Multimedia.Image
 
-8
+**废弃起始版本：** 10
 
-**废弃起始版本：**
+**起始版本：** 8
 
-10
-
-**相关模块：**
-
-[Image](image.md)
+**相关模块：** [Image](image.md)
 
 
 ## 汇总
@@ -25,10 +21,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [width](#width) | 图片的宽，用pixels表示 | 
-| [height](#height) | 图片的高，用pixels表示 | 
-| [rowSize](#rowsize) | 每行的bytes数(DMA内存为图片的宽 * 每个像素字节数 + padding；其他内存为图片的宽 * 每个像素字节数) | 
-| [pixelFormat](#pixelformat) | Pixel 的格式 | 
+| [width](#width) | 图片的宽, 用pixels表示。 | 
+| [height](#height) | 图片的高, 用pixels表示。 | 
+| [rowSize](#rowsize) | 每行的bytes数。DMA内存为图片的宽 * 每个像素字节数 + padding；其他内存为图片的宽 * 每个像素字节数。 | 
+| [pixelFormat](#pixelformat) | Pixel的格式。 | 
 
 
 ## 结构体成员变量说明
@@ -40,9 +36,9 @@
 uint32_t OHOS::Media::OhosPixelMapInfo::height
 ```
 
-**描述：**
+**描述**
 
-图片的高, 用pixels表示
+图片的高, 用pixels表示。
 
 
 ### pixelFormat
@@ -51,9 +47,9 @@ uint32_t OHOS::Media::OhosPixelMapInfo::height
 int32_t OHOS::Media::OhosPixelMapInfo::pixelFormat
 ```
 
-**描述：**
+**描述**
 
-Pixel 的格式
+Pixel 的格式。
 
 
 ### rowSize
@@ -62,9 +58,9 @@ Pixel 的格式
 uint32_t OHOS::Media::OhosPixelMapInfo::rowSize
 ```
 
-**描述：**
+**描述**
 
-每行的bytes数
+每行的bytes数。DMA内存为图片的宽 * 每个像素字节数 + padding；其他内存为图片的宽 * 每个像素字节数。
 
 
 ### width
@@ -73,6 +69,6 @@ uint32_t OHOS::Media::OhosPixelMapInfo::rowSize
 uint32_t OHOS::Media::OhosPixelMapInfo::width
 ```
 
-**描述：**
+**描述**
 
-图片的宽, 用pixels表示
+图片的宽, 用pixels表示。

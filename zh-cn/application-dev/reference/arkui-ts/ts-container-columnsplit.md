@@ -9,7 +9,9 @@
 
 可以包含子组件。
 
-该组件会限制子组件的高度。初始化时，该组件的布局是按照子组件的高度来计算的。初始化后，后续动态修改子组件的高度则不生效，使用的高度为该组件分割线的间距，该高度可以通过手势移动分割线进行变更。
+ColumnSplit通过分割线限制子组件的高度。初始化时，分割线位置根据子组件的高度来计算。初始化后，后续动态修改子组件的高度则不生效，分割线位置保持不变，子组件高度可以通过拖动相邻分割线进行改变。
+
+初始化后，动态修改margin、border、padding通用属性导致子组件尺寸大于相邻分割线间距的异常情况下，不支持拖动分割线改变子组件的高度。
 ## 接口
 
 ColumnSplit()
@@ -33,7 +35,7 @@ ColumnSplit()
 >
 > 与RowSplit相同，ColumnSplit的分割线可以改变上下两边子组件的高度，子组件可改变高度的范围取决于子组件的最大最小高度。
 >
-> 支持clip、margin等通用属性，clip不设置的时候默认值为true。
+> 支持[clip](ts-universal-attributes-sharp-clipping.md#clip)、[margin](ts-universal-attributes-size.md#margin)等通用属性，clip不设置的时候默认值为true。
 
 
 ## 示例

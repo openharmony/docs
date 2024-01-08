@@ -14,7 +14,7 @@
 
 ### 初始化\@BuilderParam装饰的方法
 
-\@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
+\@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。
 
 - 使用所属自定义组件的自定义构建函数或者全局的自定义构建函数，在本地初始化\@BuilderParam。
 
@@ -173,7 +173,9 @@ struct Parent {
 
 > **说明：**
 >
-> 此场景下自定义组件内有且仅有一个使用\@BuilderParam装饰的属性。
+>  - 此场景下自定义组件内有且仅有一个使用\@BuilderParam装饰的属性。
+> 
+>  - 此场景下自定义组件不支持使用通用属性。
 
 开发者可以将尾随闭包内的内容看做\@Builder装饰的函数传给\@BuilderParam。示例如下：
 

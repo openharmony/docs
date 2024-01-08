@@ -1,6 +1,6 @@
 # SharedBundleInfo
 
-The **SharedBundleInfo** module provides information about the shared bundle. The information can be obtained by calling [bundleManager.getSharedBundleInfo](js-apis-bundleManager.md).
+The **SharedBundleInfo** module provides information about the shared bundle. The information can be obtained by calling [bundleManager.getSharedBundleInfo](js-apis-bundleManager.md#bundlemanagergetsharedbundleinfo10).
 
 > **NOTE**
 >

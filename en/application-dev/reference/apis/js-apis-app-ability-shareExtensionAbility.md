@@ -93,16 +93,16 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
 
 1. In the **ets** directory of a module in the project, right-click and choose **New > Directory** to create a directory named **ShareExtAbility**.
 
-2. In the **ShareExtAbility** directory, right-click and choose **New > TypeScript File** to create a file named **ShareExtAbility.ts**.
+2. In the **ShareExtAbility** directory, right-click and choose **New > ArkTS File** to create a file named **ShareExtAbility.ets**.
 
     ```text
     ├── ets
     │ ├── ShareExtAbility
-    │ │   ├── ShareExtAbility.ts
+    │ │   ├── ShareExtAbility.ets
     └
     ```
 
-3. In the **ShareExtAbility.ts** file, import the ShareExtensionAbility module. Customize a class that inherits from **ShareExtensionAbility** and implement the lifecycle callbacks.
+3. In the **ShareExtAbility.ets** file, import the ShareExtensionAbility module. Customize a class that inherits from **ShareExtensionAbility** and implement the lifecycle callbacks.
 
   ```ts
   import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
@@ -160,7 +160,7 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
            "description": "share",
            "type": "share",
            "exported": true,
-           "srcEntry": "./ets/ShareExtAbility/ShareExtAbility.ts"
+           "srcEntry": "./ets/ShareExtAbility/ShareExtAbility.ets"
          }
        ]
      }

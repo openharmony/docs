@@ -8,6 +8,10 @@ For a local AVSession, the data sources are on the local device. The figure belo
 
 This process involves two roles: provider and controller.
 
+> **NOTE**
+>
+> The controller must be a system application. A third-party application can be a provider.
+
 In the local AVSession, the provider exchanges information with the controller through AVSessionManager.
 
 1. The provider creates an **AVSession** object through AVSessionManager.
@@ -38,7 +42,7 @@ The code snippet below shows how the provider creates an **AVSession** object by
  
 ```ts
 // Create an AVSession object.
-let context: Context = this.context;
+let context: Context = getContext(this);
 async function createSession() {
   let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
   console.info(`session create done : sessionId : ${session.sessionId}`);

@@ -35,9 +35,12 @@ RichEditor(value: RichEditorOptions)
 
 | 名称                      | 参数类型                                                     | 描述                                                         |
 | ------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。 |
-| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType:TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
+| customKeyboard | [CustomBuilder](ts-types.md#custombuilder8) | 设置自定义键盘。<br/>**说明：**<br/>当设置自定义键盘时，输入框激活后不会打开系统输入法，而是加载指定的自定义组件。<br/>自定义键盘的高度可以通过自定义组件根节点的height属性设置，宽度不可设置，使用系统默认值。<br/>自定义键盘采用覆盖原始界面的方式呈现，不会对应用原始界面产生压缩或者上提。<br/>自定义键盘无法获取焦点，但是会拦截手势事件。<br/>默认在输入控件失去焦点时，关闭自定义键盘。<br/>如果设备支持拍摄输入，设置自定义键盘后，该输入框会不支持拍摄输入。 |
+| bindSelectionMenu | {<br/>spantype:&nbsp;[RichEditorSpanType](#richeditorspantype),<br/>content:&nbsp;[CustomBuilder](ts-types.md#custombuilder8),<br/>responseType:&nbsp;[ResponseType](ts-appendix-enums.md#responsetype8)&nbsp;\| [RichEditorResponseType<sup>11+</sup>](ts-appendix-enums.md#richeditorresponsetype11),<br/>options?:&nbsp;[SelectionMenuOptions](#selectionmenuoptions11)<br/>} | 设置自定义选择菜单。<br/> 默认值：{<br/>  spanType:&nbsp;RichEditorSpanType.TEXT<br/>responseType:&nbsp;ResponseType.LongPress<br/>其他：空<br/>}|
 | copyOptions | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 组件支持设置文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br/>**说明：** <br/>copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。<br/>设置copyOptions为CopyOptions.None，复制、剪切功能不生效。  |
+| enableDataDetector<sup>11+</sup> |boolean| 使能文本识别。<br/>默认值： false<br/>**说明：**<br/>所识别实体的`fontColor`和`decoration`会被更改为如下样式：<br/>fontColor：Color.Blue<br/>decoration:&nbsp;{<br/>type:&nbsp;TextDecorationType.Underline,<br/>color:&nbsp;Color.Blue<br/>}<br/>该接口依赖设备底层应具有文本识别能力，否则设置不会生效。<br/>当`enableDataDetector`设置为true，同时不设置`dataDetectorConfig`属性时，默认识别所有类型的实体。<br/>当`copyOptions`设置为CopyOptions.None时，该功能不会生效。<br/>对`addBuilderSpan`的节点文本，该功能不会生效。 |
+| dataDetectorConfig<sup>11+</sup> |{<br/>types:&nbsp;[TextDataDetectorType](ts-appendix-enums.md#textdatadetectortype11),<br/>onDetectResultUpdate:&nbsp;(callback:(result:&nbsp;string)&nbsp;=&gt;&nbsp;void)<br/>} | 文本识别配置。 <br/>默认值：{<br/>types:&nbsp;[ ],<br/>onDetectResultUpdate:&nbsp;null<br/>} <br />**说明：**<br/>需配合`enableDataDetector`一起使用，设置`enableDataDetector`为true时，`dataDetectorConfig`的配置才能生效。<br/>`types`：文本识别的实体类型。设置`types`为`null`或者`[]`时，识别所有类型的实体，否则只识别指定类型的实体。<br/> `onDetectResultUpdate`：文本识别成功后，触发`onDetectResultUpdate`回调。<br/>`result`：文本识别的结果，Json格式。 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -92,6 +95,8 @@ RichEditor(value: RichEditorOptions)
 | value | string | 是 | 文本Span内容。 |
 | textStyle | [RichEditorTextStyleResult](#richeditortextstyleresult) | 是 | 文本Span样式信息。 |
 | offsetInSpan | [number, number] | 是 | 文本Span内容里有效内容的起始和结束位置。 |
+| valueResource<sup>11+</sup> | [Resource](ts-types.md#resource) | 否 | 组件SymbolSpan内容。 |
+| SymbolSpanStyle<sup>11+</sup> | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 否 | 组件SymbolSpan样式信息。 |
 
 
 ## RichEditorSpanPosition
@@ -255,6 +260,25 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 | ----------------------- | ---------------- |
 | number | 添加完成的builderSpan所在的位置。 |
 
+### addSymbolSpan<sup>11+</sup>
+
+addSymbolSpan(value: Resource, options?: RichEditorSymbolSpanOptions ): number
+
+在Richeditor中添加SymbolSpan。
+
+**参数：**
+
+| 参数名 | 参数类型 | 必填 | 参数描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| value  | [Resource](ts-types.md#resource)   | 是   | 组件内容。 |
+| options  | [RichEditorSymbolSpanOptions](#richeditorsymbolspanoptions11)   | 否   | 组件选项。 |
+
+**返回值：**
+
+| 类型                      | 说明               |
+| ----------------------- | ---------------- |
+| number | 添加完成的SymbolSpan所在的位置。 |
+
 ### getTypingStyle<sup>11+</sup>
 
 getTypingStyle(): RichEditorTextStyle
@@ -281,7 +305,7 @@ setTypingStyle(value: RichEditorTextStyle): void
 
 ### updateSpanStyle
 
-updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions): void
+updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateImageSpanStyleOptions | RichEditorUpdateSymbolSpanStyleOptions): void
 
 更新文本或者图片样式。<br/>若只更新了一个Span的部分内容，则会根据更新部分、未更新部分将该Span拆分为多个Span。
 
@@ -291,7 +315,7 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
+| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateSymbolSpanStyleOptions](#richeditorupdatesymbolspanstyleoptions11)<sup>11+</sup> | 是 | 文本或者图片的样式选项信息。 |
 
 ### updateParagraphStyle<sup>11+</sup>
 
@@ -429,6 +453,16 @@ getSelection(): RichEditorSelection
 | end | number | 否 | 需要更新样式的图片结束位置，省略或者超出文本范围时表示到结尾。 |
 | imageStyle | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 是 | 图片样式。 |
 
+## RichEditorUpdateSymbolSpanStyleOptions<sup>11+</sup>
+
+SymbolSpan样式选项。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| start | number   | 否 | 需要更新样式的文本起始位置，省略或者设置负值时表示从0开始。 |
+| end | number | 否 | 需要更新样式的文本结束位置，省略或者超出文本范围时表示到结尾。 |
+| symbolStyle | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11) | 是 | 组件样式。 |
+
 ## RichEditorParagraphStyleOptions<sup>11+</sup>
 
 段落样式选项
@@ -446,7 +480,7 @@ getSelection(): RichEditorSelection
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
 | textAlign | [TextAlign](ts-appendix-enums.md#textalign) | 否 | 设置文本段落在水平方向的对齐方式。 |
-| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否 | 设置文本段落缩进。 |
+| leadingMargin | [Dimension](ts-types.md#dimension10) \| [LeadingMarginPlaceholder](#leadingmarginplaceholder11) | 否 | 设置文本段落缩进，不支持设置百分比。 |
 
 ## LeadingMarginPlaceholder<sup>11+</sup>
 
@@ -512,6 +546,27 @@ getSelection(): RichEditorSelection
 | verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 图片垂直对齐方式。<br/>默认值:ImageSpanAlignment.BASELINE |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) | 否 | 图片缩放类型。<br/> 默认值:ImageFit.Cover。 |
 | layoutStyle<sup>11+</sup>  |{<br/>margin&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[Margin](ts-types.md#margin),<br/> borderRadius&nbsp;?:&nbsp;[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)<br/>}| 否 | 图片布局风格。<br/>|
+
+## RichEditorSymbolSpanOptions<sup>11+</sup>
+
+添加文本的偏移位置和文本样式信息。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| offset  | number   | 否   | 添加组件的位置。省略时，添加到所有文本字符串的最后。 |
+| style  | [RichEditorSymbolSpanStyle](#richeditorsymbolspanstyle11)   | 否   | 组件样式信息。省略时，使用系统默认文本信息。|
+
+## RichEditorSymbolSpanStyle<sup>11+</sup>
+
+组件SymbolSpan样式信息。
+
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | 组件颜色。<br/> 默认值：Color.Black。 |
+| fontSize | number \| string \| [Resource](ts-types.md#resource) | 否 | 设置组件大小。<br/>默认值：系统默认值。 |
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。 |
+| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 动效策略。<br/>默认值：SymbolEffectStrategy.NONE。 |
 
 ## RichEditorBuilderSpanOptions<sup>11+</sup>
 
@@ -629,8 +684,13 @@ struct Index {
               this.content += (item as RichEditorImageSpanResult).valueResourceStr;
               this.content += "\n"
             } else {
-              this.content += (item as RichEditorTextSpanResult).value;
-              this.content += "\n"
+              if(typeof(item as RichEditorTextSpanResult)['symbolSpanStyle'] != 'undefined') {
+                this.content += (item as RichEditorTextSpanResult).symbolSpanStyle?.fontSize;
+                this.content += "\n"
+              }else {
+                this.content += (item as RichEditorTextSpanResult).value;
+                this.content += "\n"
+              }
             }
           })
         })
@@ -657,6 +717,13 @@ struct Index {
                 style:
                 {
                   fontColor: Color.Orange,
+                  fontSize: 30
+                }
+              })
+            this.controller.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
                   fontSize: 30
                 }
               })
@@ -2285,3 +2352,66 @@ struct Index {
 }
 ```
 ![AddBuilderSpanExample](figures/rich_editor_addBuilderSpan.png)
+
+### 示例10
+enableDataDetector和dataDetectorConfig使用示例
+
+```ts
+@Entry
+@Component
+struct TextExample7 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller };
+  @State phoneNumber: string = '(86) (755) ********';
+  @State url: string = 'www.********.com';
+  @State email: string = '***@example.com';
+  @State address: string = 'XX省XX市XX区XXXX';
+  @State enableDataDetector: boolean = true;
+  @State types: TextDataDetectorType[] = [];
+
+  build() {
+    Row() {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addTextSpan('电话号码：' + this.phoneNumber + '\n',
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+            this.controller.addTextSpan('链接：' + this.url + '\n',
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+            this.controller.addTextSpan('邮箱：' + this.email + '\n',
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+            this.controller.addTextSpan('地址：' + this.address,
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+          })
+          .copyOptions(CopyOptions.InApp)
+          .enableDataDetector(this.enableDataDetector)
+          .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}})
+          .borderWidth(1)
+          .padding(10)
+          .width('100%')
+      }
+      .width('100%')
+    }
+  }
+}
+```

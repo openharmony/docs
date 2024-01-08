@@ -169,17 +169,17 @@ function onJumpClick(): void {
 ```ts
 import router from '@ohos.router';
 
-class infoTmp {
+class InfoTmp {
   age: number = 0
 }
 
-class rouTmp {
+class RouTmp {
   id: object = () => {
   }
-  info: infoTmp = new infoTmp()
+  info: InfoTmp = new InfoTmp()
 }
 
-const params: rouTmp = router.getParams() as rouTmp; // 获取传递过来的参数对象
+const params: RouTmp = router.getParams() as RouTmp; // 获取传递过来的参数对象
 const id: object = params.id // 获取id属性的值
 const age: number = params.info.age // 获取age属性的值
 ```

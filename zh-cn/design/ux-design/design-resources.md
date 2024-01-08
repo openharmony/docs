@@ -3,13 +3,13 @@
 为方便UX设计师以及开发者参考使用，本文特提供：
 
 
-- [分层参数](visual-basis.md)的场景、id、参数详细对照表，[OpenHarmony系统资源分层设计表V1.0.xlsm](figures/OpenHarmony_系统资源分层设计表_V1.0.xlsm)
+- [分层参数](visual-basis.md)的场景、id、参数详细对照表，[OpenHarmony系统资源分层设计表V1.0.xlsm](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/figures/OpenHarmony_%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E5%88%86%E5%B1%82%E8%AE%BE%E8%AE%A1%E8%A1%A8_V1.0.xlsm)
 
-- 符合规范的[设计交付件](design-deliverable-overview.md)样例，[OpenHarmony天气应用UX设计交付件V1.0.zip](figures/OpenHarmony_天气应用UX设计交付件_V1.0.zip)
+- 符合规范的[设计交付件](design-deliverable-overview.md)样例，[OpenHarmony天气应用UX设计交付件V1.0.zip](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/figures/OpenHarmony_%E5%A4%A9%E6%B0%94%E5%BA%94%E7%94%A8UX%E8%AE%BE%E8%AE%A1%E4%BA%A4%E4%BB%98%E4%BB%B6_V1.0.zip)
 
-- OpenHarmony[图标](visual-icons.md)资源，[OpenHarmony_Icons.zip](figures/OpenHarmony_Icons.zip)
+- OpenHarmony[图标](visual-icons.md)资源，[OpenHarmony_Icons.zip](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/figures/OpenHarmony_Icons.zip)
 
-- OpenHarmony[应用图标](visual-app-icons.md)设计模板，[OpenHarmony应用图标模版.zip](figures/OpenHarmony应用图标模版.zip)
+- OpenHarmony[应用图标](visual-app-icons.md)设计模板，[OpenHarmony应用图标模版.zip](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/ux-design/figures/OpenHarmony%E5%BA%94%E7%94%A8%E5%9B%BE%E6%A0%87%E6%A8%A1%E7%89%88.zip)
 
 
 系统资源分层设计表列出了当前OpenHarmony中可用系统资源id及其在不同类型设备上的取值，它由六张子表组成，各个子表的含义如下所示。

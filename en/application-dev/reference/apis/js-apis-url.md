@@ -145,7 +145,7 @@ for (let pair of arrayValue) { // Show keyName/valueName pairs
 
 ### forEach<sup>9+</sup>
 
-forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
+forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => void, thisArg?: Object): void
 
 Traverses the key-value pairs in the **URLSearchParams** instance by using a callback.
 
@@ -164,7 +164,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 | -------- | -------- | -------- | -------- |
 | value | string | Yes| Value that is currently traversed.|
 | key | string | Yes| Key that is currently traversed.|
-| searchParams | Object | Yes| Instance that invokes the **forEach** method.|
+| searchParams | [URLParams](#urlparams9) | Yes| Instance that invokes the **forEach** method.|
 
 **Example**
 
@@ -668,7 +668,7 @@ for (let pair of pairs) { // Show keyName/valueName pairs
 
 ### forEach<sup>(deprecated)</sup>
 
-forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
+forEach(callbackFn: (value: string, key: string, searchParams: URLSearchParams) => void, thisArg?: Object): void
 
 Traverses the key-value pairs in the **URLSearchParams** instance by using a callback.
 
@@ -691,7 +691,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 | -------- | -------- | -------- | -------- |
 | value | string | Yes| Value that is currently traversed.|
 | key | string | Yes| Key that is currently traversed.|
-| searchParams | Object | Yes| Instance that invokes the **forEach** method.|
+| searchParams | [URLSearchParams](#urlsearchparamsdeprecated) | Yes| Instance that invokes the **forEach** method.|
 
 **Example**
 

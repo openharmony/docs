@@ -88,7 +88,7 @@ export struct settingsItem {
         selectedIcon: $r('app.media.hand_icon_selected2'),
       }],
     action:(index: number)=>{
-      console.info(`${TAG} pattern is changed, current is ${index}`);
+      console.info(`pattern is changed, current is ${index}`);
       this.defaultPattern = index;
     }
   };

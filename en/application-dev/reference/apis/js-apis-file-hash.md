@@ -81,7 +81,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   Hash.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
   }).catch((err: BusinessError) => {
-    console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -117,7 +117,7 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
   let filePath = pathDir + "/test.txt";
   Hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
     if (err) {
-      console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("calculate file hash succeed:" + str);
     }

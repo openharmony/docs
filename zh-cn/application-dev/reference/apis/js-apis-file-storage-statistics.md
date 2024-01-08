@@ -332,7 +332,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   | 类型                                        | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存空间大小（单位为Byte）      |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储空间大小（单位为Byte）      |
 
 **错误码：**
 
@@ -895,7 +895,7 @@ getUserStorageStats(userId: number, callback: AsyncCallback&lt;StorageStats&gt;)
   | 参数名     | 类型                                 | 必填 | 说明                       |
   | ---------- | ------------------------------------ | ---- | -------------------------- |
   | userId | number                               | 是   | 用户id |
-  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | 是   | 返回各类别数据大小之后的回调 |
+  | callback   | AsyncCallback&lt;[StorageStats](#storagestats9)&gt; | 是   | 返回指定用户各类别存储空间大小之后的回调 |
 
 **错误码：**
 

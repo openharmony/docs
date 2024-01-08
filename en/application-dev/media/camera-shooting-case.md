@@ -1,6 +1,8 @@
 # Sample Implementation of Camera Photographing (ArkTS)
 
-This topic provides sample code that covers the complete photographing process and the API calling sequence. For details about a single process (such as device input, session management, and photographing), see the corresponding ArkTS development guide links provided in [Camera Development Preparations](camera-preparation.md).
+This topic provides sample code that covers the complete photographing process to help you understand the complete API calling sequence.
+
+Before referring to the sample code, you are advised to read [Device Input Management](camera-device-input.md), [Camera Session Management](camera-session-management.md), [Camera Photographing](camera-shooting.md), and other related topics in [Camera Development (ArkTS)](camera-preparation.md).
 
 ## Development Process
 
@@ -10,7 +12,8 @@ After obtaining the output stream capabilities supported by the camera, create a
 
 ## Sample Code
 
-For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
 ```ts
 import camera from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';

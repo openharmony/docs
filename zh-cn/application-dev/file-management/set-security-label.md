@@ -34,9 +34,12 @@ let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityCon
 let pathDir = context.filesDir;
 let filePath = pathDir + '/test.txt';
 
+//打开文件
+let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 // 设置文件的数据等级为s0
 securityLabel.setSecurityLabel(filePath, 's0').then(() => {
   console.info('Succeeded in setSecurityLabeling.');
+  fs.closeSync(file);
 }).catch((err: BusinessError) => {
   console.error(`Failed to setSecurityLabel. Code: ${err.code}, message: ${err.message}`);
 });

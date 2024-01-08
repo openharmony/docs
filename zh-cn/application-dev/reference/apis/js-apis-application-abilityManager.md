@@ -125,8 +125,9 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 ```ts
 import abilityManager from '@ohos.application.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilityManager.getAbilityRunningInfos((err,data) => { 
+abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<abilityManager.AbilityRunningInfo>) => { 
     console.log(`getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}`);
 });
 ```
@@ -155,7 +156,7 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 import abilityManager from '@ohos.application.abilityManager';
 import { BusinessError } from '@ohos.base';
 
-abilityManager.getAbilityRunningInfos().then((data) => {
+abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
     console.log(`getAbilityRunningInfos  data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
   console.error(`getAbilityRunningInfos err: ${JSON.stringify(err)}`);

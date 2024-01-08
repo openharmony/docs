@@ -35,18 +35,37 @@ In the **skills** attribute of the PageAbility, if the **actions** value contain
 
 ```json
 {
-  "abilities": [
-    {
-      "icon": "$media:icon",
-      "label": "$string:MainAbility_label",
-      "skills": [
-        {
-          "entities": ["entity.system.home"],
-          "actions": ["action.system.home"]
-        }
-      ]
-    }
-  ]
+  ...
+  "module": {
+    ...
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      ...
+    ]
+    ...
+  }
 }
 ```
 #### Control Rules
@@ -77,12 +96,12 @@ To hide an entry icon on the home screen, you must configure the **AllowAppDeskt
 
 ## Configuring Application Version Declaration
 
-To declare the application version, set the **version** field under **app** in the **config.json** file to specify the version number, version name, and earliest compatible version number. For details about the configuration, see [version](../quick-start/module-structure.md).
+To declare the application version, set the **version** field under **app** in the **config.json** file to specify the version number, version name, and earliest compatible version number. For details, see [Internal Structure of the version Attribute](../quick-start/app-structure.md#internal-structure-of-the-version-attribute).
 
 ## Configuring Device Types Supported by the Module
 
-To configure the device types supported by the module, set the **deviceType** field in the **config.json** file. If a certain device type is added to **deviceTypes**, the module can run on that device. For details about the configuration, see [deviceType](../quick-start/module-structure.md).
+To configure the device types supported by the module, set the **deviceType** field in the **config.json** file. If a certain device type is added to **deviceTypes**, the module can run on that device. For details, see [deviceType Attribute](../quick-start/module-structure.md#devicetype-attribute).
 
 ## Configuring the Component Permission
 
-To request component permissions, set the **reqPermissions** field under **module** in the **config.json** file. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used. For details about the configuration, see [reqPermissions](../quick-start/module-structure.md).
+To request component permissions, set the **reqPermissions** field under **module** in the **config.json** file. This field declares the name of the permission to request, the reason for requesting the permission, and the scenario where the permission is used. For details, see [Internal Structure of the reqPermissions Attribute](../quick-start/module-structure.md#internal-structure-of-the-reqpermissions-attribute).

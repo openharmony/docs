@@ -19,10 +19,10 @@ NavDestination组件状态。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 值   | 说明                     |
-| --------- | ---- | ------------------------ |
-| ON_SHOWN  | 0    | NavDestination组件显示。 |
-| ON_HIDDEN | 1    | NavDestination组件隐藏。 |
+| 名称      | 值  | 说明                     |
+| --------- | --- | ------------------------ |
+| ON_SHOWN  | 0   | NavDestination组件显示。 |
+| ON_HIDDEN | 1   | NavDestination组件隐藏。 |
 
 ## NavDestinationInfo
 
@@ -30,7 +30,7 @@ NavDestination组件信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名       | 类型                                               | 必填 | 说明                                         |
+| 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
 | navigationId | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 是   | 包含NavDestination组件的Navigation组件的id。 |
 | name         | [ResourceStr](../arkui-ts/ts-types.md#resourcestr) | 是   | NavDestination组件的名称。                   |
@@ -46,10 +46,10 @@ on(type: 'navDestinationUpdate', callback: Callback\<NavDestinationInfo\>): void
 
 **参数：** 
 
-| 参数名   | 类型                                                  | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 名称     | 类型                                                  | 必填 | 说明                                                                     |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\> | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\> | 是   | 回调函数。返回当前的NavDestination组件状态。                             |
 
 **示例：**
 
@@ -69,10 +69,10 @@ off(type: 'navDestinationUpdate', callback?: Callback\<NavDestinationInfo\>): vo
 
 **参数：** 
 
-| 参数名   | 类型                                                  | 必填 | 说明                                                         |
-| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| 名称     | 类型                                                  | 必填 | 说明                                                                     |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
 | type     | string                                                | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\> | 否   | 回调函数。返回当前的NavDestination组件状态。                             |
 
 **示例：**
 
@@ -82,7 +82,7 @@ observer.off('navDestinationUpdate');
 
 ## observer.on('navDestinationUpdate')
 
-on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback<NavDestinationInfo>): void
+on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback: Callback\<NavDestinationInfo\>): void
 
 监听NavDestination组件的状态变化。
 
@@ -90,11 +90,11 @@ on(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callbac
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\>        | 是   | 回调函数。返回当前的NavDestination组件状态。                 |
+| 名称     | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                               |
+| callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\>                | 是   | 回调函数。返回当前的NavDestination组件状态。                             |
 
 **示例：**
 
@@ -106,7 +106,7 @@ observer.on('navDestinationUpdate', { navigationId: "testId" }, (info) => {
 
 ## observer.off('navDestinationUpdate')
 
-off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback<NavDestinationInfo>): void
+off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callback?: Callback\<NavDestinationInfo\>): void
 
 取消监听NavDestination组件的状态变化。
 
@@ -114,11 +114,11 @@ off(type: 'navDestinationUpdate', options: { navigationId: ResourceStr }, callba
 
 **参数：** 
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
-| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                   |
-| callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\>        | 否   | 回调函数。返回当前的NavDestination组件状态。                 |
+| 名称     | 类型                                                                 | 必填 | 说明                                                                     |
+| -------- | -------------------------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
+| type     | string                                                               | 是   | 监听事件，固定为'navDestinationUpdate'，即NavDestination组件的状态变化。 |
+| options  | { navigationId: [ResourceStr](../arkui-ts/ts-types.md#resourcestr) } | 是   | 指定监听的Navigation的id。                                               |
+| callback | Callback\<[NavDestinationInfo](#navdestinationinfo)\>                | 否   | 回调函数。返回当前的NavDestination组件状态。                             |
 
 **示例：**
 

@@ -53,7 +53,7 @@ let context = getContext(this) as common.UIAbilityContext;
 let filesDir = context.filesDir;
 
 function createFile(): void {
-    // 新建并打开文件
+  // 新建并打开文件
   let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 写入一段内容至文件
   let writeLen = fs.writeSync(file.fd, "Try to write str.");
@@ -89,7 +89,7 @@ let filesDir = context.filesDir;
 
 function readWriteFile(): void {
   // 打开文件
-  let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE);
+  let srcFile = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   let destFile = fs.openSync(filesDir + '/destFile.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   // 读取源文件内容并写入至目的文件
   let bufSize = 4096;

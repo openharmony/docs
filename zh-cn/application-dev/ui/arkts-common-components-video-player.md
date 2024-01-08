@@ -72,13 +72,13 @@ Video组件支持加载本地视频和网络视频。
 
 ### 加载沙箱路径视频
 
-支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源，需要保证应用沙箱目录路径下的文件存在并且有可读权限。
+支持file://data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源，需要保证应用沙箱目录路径下的文件存在并且有可读权限。
 
 ```ts
 @Component
 export struct VideoPlayer {
   private controller: VideoController | undefined;
-  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+  private videosrc: string = 'file://data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
     Column() {
@@ -94,7 +94,7 @@ export struct VideoPlayer {
 
 ### 加载网络视频
 
-加载网络视频时，需要申请权限ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。此时，Video的src属性为网络视频的链接。
+加载网络视频时，需要申请权限ohos.permission.INTERNET，具体申请方式请参考[声明权限](../security/AccessToken/declare-permissions.md)。此时，Video的src属性为网络视频的链接。
 
 
 ```ts
