@@ -22,7 +22,7 @@
 | [cancel](../reference/apis/js-apis-notificationManager.md#notificationmanagercancel)(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消指定的通知。      |
 
 
-# 开发步骤
+## 开发步骤
 
 1. [请求通知授权](notification-enable.md)。获得用户授权后，才能使用通知功能。
 
