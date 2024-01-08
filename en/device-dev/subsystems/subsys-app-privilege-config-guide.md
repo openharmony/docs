@@ -1,4 +1,4 @@
-# Application Privilege Configuration Guide
+# Application Privilege Configuration
 
 Application privileges are high-level capabilities of an application, for example, restricting an application from being uninstalled or restricting application data from being deleted.
 
@@ -6,28 +6,28 @@ OpenHarmony provides both general and device-specific application privileges. Th
 
 > **NOTE**
 > - To avoid user dissatisfaction or even infringement, do not abuse application privileges.
-> - The method of changing the application's APL in its profile applies only to the applications or services in debug mode. For a commercial application, apply for a release certificate and profile in the corresponding application market.
+> - Modifying the application privileges in its profile applies only to the applications or services in debug mode. For a commercial application, apply for a release certificate and profile in the corresponding application market.
 
 ## General Application Privileges
 
 ### Introduction
 
-General application privileges are privileges available to applications on all types of devices. The general application privileges include the following:
+General application privileges are privileges available to applications on all types of devices. The following table lists the general application privileges.
 
 | Privilege| Description                                                      |
 | ---------------- | ------------------------------------------------------------ |
-| AllowAppDataNotCleared | Allows application data not to be deleted.|
+| AllowAppDataNotCleared | Prevents deletion of application data.|
 | AllowAppMultiProcess | Allows an application to run on multiple processes.|
 | AllowAppDesktopIconHide | Allows the application icon to be hidden from the home screen.|
-| AllowAbilityPriorityQueried | Allows an ability to configure and query the priority.    |
+| AllowAbilityPriorityQueried | Allows the ability priority to be queried.    |
 | AllowAbilityExcludeFromMissions | Allows an ability to be hidden in the mission stack.|
-| AllowAppUsePrivilegeExtension | Allows an application to use ServiceExtensionAbilities and DataExtensionAbilities.|
+| AllowAppUsePrivilegeExtension | Allows an application to use ServiceExtension and DataExtension.|
 | AllowFormVisibleNotify | Allows a widget to be visible on the home screen.|
 
 ### How to Configure
 
-1. Add the **app-privilege-capabilities** field to the [**HarmonyAppProvision** file](../../application-dev/security/app-provision-structure.md) to configure general privilege capabilities as required.
-2. Use the hapsigner tool to sign the **HarmonyAppProvision** file and generate a .p7b file.
+1. In the [**HarmonyAppProvision** file](../../application-dev/security/app-provision-structure.md), set the general application privileges in the **app-privilege-capabilities** field.
+2. Use the hapsigner tool to sign the **HarmonyAppProvision** file to generate a .p7b file.
 3. Use the .p7b file to sign the HAP.
 
 Reference: [hapsigner](https://gitee.com/openharmony/developtools_hapsigner#README.md)
@@ -53,16 +53,16 @@ Reference: [hapsigner](https://gitee.com/openharmony/developtools_hapsigner#READ
 
 ### Introduction
 
-In addition to general application privileges, device vendors can define device-specific privileges for an application. The table below describes the device-specific privileges.
+In addition to general application privileges, device vendors can define device-specific privileges for an application, as described in the table below.
 
 | Privilege                 | Type    | Default Value| Description                                             |
 | --------------------- | -------- | ------ | ------------------------------------------------- |
-| removable             | bool     | true   | Allows an application to be uninstalled. This privilege takes effect only for preset applications.               |
+| removable             | bool     | true   | Allows an application to be uninstalled. This privilege takes effect only for preset applications.              |
 | keepAlive             | bool     | false  | Allows an application to keep running in the background.                                 |
 | singleton             | bool     | false  | Allows an application to be installed for a single user (User 0).                   |
 | allowCommonEvent      | string[] | -      | Allows an application to be started by a static broadcast.                             |
 | associatedWakeUp      | bool     | false  | Allows an application in the FA model to be woken up by an associated application.                     |
-| runningResourcesApply | bool     | false  | Allows an application to request running resources, such as the CPU, event notifications, and Bluetooth.|
+| runningResourcesApply | bool     | false  | Allows an application to apply for running resources, such as the CPU, event notifications, and Bluetooth. |
 
 ### How to Configure
 
@@ -77,11 +77,11 @@ Configure the required privileges in the [configuration file](https://gitee.com/
     "install_list": [
         {
             "bundleName": "com.example.kikakeyboard",
-            "singleton": true, // The application is installed for a single user.
-            "keepAlive": true, // The application is running in the background.
+            "singleton": true,             // The application is installed for a single user.
+            "keepAlive": true,             // The application can keep running in the background.
             "runningResourcesApply": true, // The application can apply for running resources such as the CPU, event notifications, and Bluetooth.
-            "associatedWakeUp": true, // The application in the FA model can be woken up by an associated application.
-            "app_signature": ["8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC"], // The setting takes effect only when the configured certificate fingerprint is the same as the HAP certificate fingerprint.
+            "associatedWakeUp": true,      // The application in the FA model can be woken up by an associated application.
+            "app_signature": ["8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC"], // The settings take effect only when the configured certificate fingerprint is the same as the HAP certificate fingerprint.
             "allowCommonEvent": ["usual.event.SCREEN_ON", "usual.event.THERMAL_LEVEL_CHANGED"]
         },
 }
@@ -91,7 +91,7 @@ Configure the required privileges in the [configuration file](https://gitee.com/
 
 1. Create the **profile.cer** file, and copy the certificate content under the **distribution-certificate** field of the **HarmonyAppProvision** file to the **profile.cer** file.
 
-   Example:
+   Example
 
 ```
 {
@@ -106,7 +106,7 @@ Configure the required privileges in the [configuration file](https://gitee.com/
 
 2. Apply line breaks in the **profile.cer** content and remove the newline characters.
 
-   Example:
+   Example
 
 ```
 -----BEGIN CERTIFICATE-----
@@ -127,7 +127,7 @@ zAlF08DnbJrOOtOnQq5wHOPlDYB4OtUzOYJk9scotrEnJxJzGsh/
 
 3. Use keytool to obtain the certificate fingerprint.
 
-   Example:
+   Example
 
 ```
 keytool -printcert -file profile.cer
@@ -135,14 +135,29 @@ result:
 Issued To: CN=OpenHarmony Application Release, OU=OpenHarmony Team, O=OpenHarmony, C=CN
 Issued By: CN=OpenHarmony Application CA, OU=OpenHarmony Team, O=OpenHarmony, C=CN
 SN: 68e0bfcc
-Valid From: Tue Feb 02 20:19:31 CST 2021, **Valid To**: Fri Dec 31 20:19:31 CST 2049
+Valid From: Tue Feb 02 20:19:31 CST 2021, Valid To: Fri Dec 31 20:19:31 CST 2049
 Fingerprints:
          SHA1 fingerprint: E3:E8:7C:65:B8:1D:02:52:24:6A:06:A4:3C:4A:02:39:19:92:D1:F5
-         SHA256 fingerprint: 8E:93:86:3F:C3:2E:E2:38:06:0B:F6:9A:9B:37:E2:60:8F:FF:B2:1F:93:C8:62:DD:51:1C:BA:C9:F3:00:24:B5 // After the colons are removed, the fingerprint is 8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC9F30024B5.
+         SHA256: 8E:93:86:3F:C3:2E:E2:38:06:0B:F6:9A:9B:37:E2:60:8F:FF:B2:1F:93:C8:62:DD:51:1C:BA:C9:F3:00:24:B5
+         // The certificate fingerprint with the colons (:) removed is  8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC9F30024B5.
 ...
 ```
 
+4. Remove the colons (:) from the SHA256 certificate fingerprint and fill the fingerprint in the **app_signature** field in the **install_list_capability.json** file.
 
+   Example
+
+```json
+{
+    "install_list": [
+        {
+            ...
+            "app_signature": ["8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC9F30024B5"],
+            ...
+        }
+    ]
+}
+```
 
 #### Configuration in install_list.json
 
