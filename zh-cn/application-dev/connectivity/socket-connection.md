@@ -365,7 +365,7 @@ import socket from '@ohos.net.socket';
 
 // 创建一个LocalSocket连接，返回一个LocalSocket对象。
 let client = socket.constructLocalSocketInstance();
-client.on('message', (value) => {
+client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
@@ -395,10 +395,10 @@ client.connect(connectOpt).then(() => {
   console.log('connect success')
   client.send(sendOpt).then(() => {
   console.log('send success')
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.log('send failed: ' + JSON.stringify(err))
   })
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('connect fail: ' + JSON.stringify(err));
 });
 
@@ -408,7 +408,7 @@ client.off('connect');
 client.off('close');
 client.close().then(() => {
   console.log('close client success')
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('close client err: ' + JSON.stringify(err))
 })
 ```
@@ -447,7 +447,7 @@ let listenAddr: socket.LocalAddress = {
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log("listen fail: " + JSON.stringify(err));
 });
 
@@ -457,7 +457,7 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
   connection.on("error", (err) => {
     console.log("on error success");
   });
-  connection.on('message', (value: socket.MessageReceive) => {
+  connection.on('message', (value: socket.LocalSocketMessageInfo) => {
     const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
@@ -477,14 +477,14 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
   };
   connection.send(sendOpt).then(() => {
     console.log('send success');
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.log('send failed: ' + JSON.stringify(err));
   })
 
   // 关闭与客户端的连接
   connection.close().then(() => {
     console.log('close success');
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.log('close failed: ' + JSON.stringify(err));
   });
 
