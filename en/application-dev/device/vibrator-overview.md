@@ -1,7 +1,7 @@
 # Vibrator Overview
 
 
-The vibrator service is built on the native vibrator service, bolstered by the latest capabilities of the vibrator hardware. By innovatively integrating vibration and interaction, the service takes user interaction efficiency and usability to the next level.
+The vibrator service is built on the native vibrator service, bolstered by the capabilities of the vibrator hardware. By innovatively integrating vibration and interaction, the service takes user interaction efficiency and usability to the next level.
 
 
 ## Working Principles
@@ -24,6 +24,3 @@ The vibrator is a Misc device that consists of four modules: Vibrator API, Vibra
 ## Constraints
 
 When using a vibrator, you must declare the **ohos.permission.VIBRATE** permission before you can control the vibration effect.
-
-
-
