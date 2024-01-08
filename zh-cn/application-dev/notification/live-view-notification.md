@@ -2,7 +2,7 @@
 
 实况窗类型通知包含了系统实况窗和普通实况窗两种类型。
 
- - 系统实况窗通知需要使用`subscribeSystemLiveView()`订阅按钮，用户点击按钮时，可自行决定业务实现。
+ - 系统实况窗通知需要使用`subscribeSystemLiveView()`订阅按钮，用户点击按钮时，可自行决定业务实现。系统实况窗不涉及生命周期，不支持重启恢复。
 
  - 普通实况窗通知有生命周期的限制，该实况窗在4小时无更新或者距离创建时间8小时都会自动删除，并且支持重启恢复。
 
@@ -14,12 +14,12 @@
 | NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>           | 6  | 普通实况窗类型通知。|
 ## 接口说明
 
-通知发布接口说明如下表所示，通知发布的详情可通过入参[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)来进行指定。可以包括通知内容，通知ID，通知的通道类型和通知发送时间等信息。
+通知发布接口说明详见下表，通知发布的详情可通过入参[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)来进行指定。可以包括通知内容，通知ID，通知的通道类型和通知发送时间等信息。
 
 | **接口名** | **描述** |
 | -------- | -------- |
-| publish(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 发布通知。                 |
-| cancel(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消指定的通知。      |
+| [publish](../reference/apis/js-apis-notificationManager.md#notificationmanagerpublish)(request:&nbsp;NotificationRequest,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 发布通知。                 |
+| [cancel](../reference/apis/js-apis-notificationManager.md#notificationmanagercancel)(id:&nbsp;number,&nbsp;label:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void | 取消指定的通知。      |
 
 
 # 开发步骤

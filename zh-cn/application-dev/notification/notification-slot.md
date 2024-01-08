@@ -1,8 +1,10 @@
 # 管理通知渠道
-针对应用需要根据自身需求选择不同的提醒方式，系统提供了通知渠道的创建、获取和移除。对应用自身的通知方式进行管理。
+系统支持多种通知渠道，不同通知渠道对应的通知提醒方式不同，应用可以选择适合自己的通知渠道，并对通知渠道进行管理(支持创建，查询，删除等操作)。
 
+## 通知渠道类型说明
 
-## 渠道类型描述
+不同类型的通知渠道对应的通知提醒方式不同，详见下表。其中，Y代表支持，N代表不支持。
+
 | SlotType             | 取值   | 分类     | 通知中心 | 横幅 | 锁屏 | 铃声/振动 | 状态栏图标 | 自动亮屏 |
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
 | SOCIAL_COMMUNICATION | 1      | 社交通信 | Y | Y | Y | Y | Y | Y |
@@ -13,35 +15,17 @@
 
 
 ## 接口说明
-1. 通知服务提供了两种创建通知渠道类型的方法：
-
-    - 发布通知时，在[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)的notificationSlotType字段里携带，如果notificationSlotType对应渠道不存在，通知服务会自动创建。
-
-    - 调用接口[`addSlot()`](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-2)显式创建，后续发布通知时填入已创建的SlotType。
-
-2. 通知服务支持查询指定类型的通知渠道：
-
-    - 调用接口[`getSlot()`](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot)查询，可以获取到指定类型的通知渠道是否使能。
-
-3. 通知服务支持移除当前通知渠道类型：
-
-    - 调用接口[`removeSlot()`](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveslot)移除，可以移除指定类型的通知渠道。
-
-
 
 | **接口名** | **描述** |
 | ---------- | -------- |
-| addSlot(type: SlotType, callback: AsyncCallback\<void\>): void                 | 创建指定类型的通知渠道。使用callback异步回调。         |
-| addSlot(type: SlotType): Promise\<void\>                                       | 创建指定类型的通知渠道。使用Promise异步回调。          |
-| getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void | 获取一个指定类型的通知渠道。使用callback异步回调。      |
-| getSlot(slotType: SlotType): Promise\<NotificationSlot\>                       | 获取一个指定类型的通知渠道。使用Promise异步回调。       |
-| getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void             | 获取此应用程序的所有通知渠道。使用callback异步回调。    |
-| getSlots(): Promise\<Array\<NotificationSlot>>                                 | 获取此应用程序的所有通知渠道。使用Promise异步回调。     |
-| removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void          | 删除此应用程序指定类型的通知渠道。使用callback异步回调。 |
-| removeSlot(slotType: SlotType): Promise\<void\>                                | 删除此应用程序指定类型的通知渠道。使用Promise异步回调。  |
-| removeAllSlots(callback: AsyncCallback\<void\>): void                          | 删除此应用程序所有通知渠道。使用callback异步回调。      |
-| removeAllSlots(): Promise\<void\>                                              | 删除此应用程序所有通知渠道。使用Promise异步回调。       |
+| [addSlot](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-2)(type: SlotType, callback: AsyncCallback\<void\>): void <br> [addSlot](../reference/apis/js-apis-notificationManager.md#notificationmanageraddslot-3)(type: SlotType): Promise\<void\> | 创建指定类型的通知渠道。          |
+| [getSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot)(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void <br>[getSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslot-1)(slotType: SlotType): Promise\<NotificationSlot\> | 获取一个指定类型的通知渠道。  |
+| [getSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslots)(callback: AsyncCallback\<Array\<NotificationSlot>>): void <br> [getSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagergetslots-1)(): Promise\<Array\<NotificationSlot>>  | 获取此应用程序的所有通知渠道。     |
+| [removeSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveslot)(slotType: SlotType, callback: AsyncCallback\<void\>): void  <br> [removeSlot](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveslot-1)(slotType: SlotType): Promise\<void\>  | 删除此应用程序指定类型的通知渠道。  |
+| [removeAllSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveallslots)(callback: AsyncCallback\<void\>): void <br> [removeAllSlots](../reference/apis/js-apis-notificationManager.md#notificationmanagerremoveallslots-1)(): Promise\<void\>   | 删除此应用程序所有通知渠道。       |
 
+除了可以使用`addslot()`创建通知渠道，还可以在发布通知的[NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest)中携带notificationSlotType字段，如果对应渠道不存在，会自动创建
+。
 
 ## 开发步骤
 
