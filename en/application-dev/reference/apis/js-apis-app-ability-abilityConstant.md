@@ -39,7 +39,7 @@ Enumerates the initial ability launch reasons. You can use it together with [onC
 | CALL | 2    | The ability is started by calling [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall).|
 | CONTINUATION           | 3    | The ability is started by means of cross-device migration.|
 | APP_RECOVERY           | 4    | The ability is automatically started when the application is restored from a fault.|
-| SHARE<sup>10+</sup>           | 5    | The ability is started by means of ability sharing.|
+| SHARE<sup>10+</sup>           | 5    | The ability is started by means of atomic service sharing.|
 | AUTO_STARTUP<sup>11+</sup>           | 8    | The ability is automatically started upon system boot.|
 | INSIGHT_INTENT<sup>11+</sup>           | 9    | The ability is started by the InsightIntent framework.|
 
