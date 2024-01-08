@@ -5,7 +5,13 @@ The progress notification is a commonly used notification type, mainly used to d
 
 In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notificationTemplate.md), which can only be of the progress type, **data** indicates custom template data.
 
+**Figure 1** Example of a progress notification
+
+![en-us_image_0000001416903138](figures/en-us_image_0000001416903138.png)
+
 ## Available APIs
+
+ 
 
 | Name| Description|
 | -------- | -------- |
@@ -21,18 +27,18 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. Check whether a specific template is supported. In this example, the template of the **downloadTemplate** type is checked.
    
    ```ts
    notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
-     console.info(`[ANS] isSupportTemplate success`);
-     console.info('Succeeded in supporting download template notification.');
+     logger.info(`[ANS] isSupportTemplate success`);
+     logger.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // The value true means that the template of the downloadTemplate type is supported, and false means the opposite.
-     // ...
    }).catch((err:Base.BusinessError) => {
-     console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
+     logger.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
    
@@ -44,9 +50,9 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    
    ```ts
    let notificationRequest: notificationManager.NotificationRequest = {
-     id: 1,
+     id: 5,
      content: {
-       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
        normal: {
          title: 'test_title',
          text: 'test_text',
@@ -63,9 +69,9 @@ In the [NotificationTemplate](../reference/apis/js-apis-inner-notification-notif
    // Publish the notification.
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in publishing notification.');
+     logger.info('Succeeded in publishing notification.');
    });
    ```
