@@ -16,6 +16,8 @@ TaskPool支持开发者在主线程封装任务抛给任务队列，系统选择
 
 - 实现任务的函数需要使用装饰器[\@Concurrent](arkts-concurrent.md)标注，且仅支持在.ets文件中使用。
 
+- 从API version 11开始，实现任务的函数需要使用类方法时，该类必须使用装饰器[\@Sendable](arkts-sendable.md)标注，且仅支持在.ets文件中使用。
+
 - 任务函数在TaskPool工作线程的执行耗时不能超过3分钟（不包含Promise和async/await异步调用的耗时，例如网络下载、文件读写等I/O任务的耗时），否则会被强制退出。
 
 - 实现任务的函数入参需满足序列化支持的类型，详情请参见[TaskPool和Worker支持的序列化类型](serialization-support-types.md#TaskPool和Worker支持的序列化类型)。
