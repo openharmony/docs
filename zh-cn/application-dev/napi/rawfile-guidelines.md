@@ -368,7 +368,7 @@
     
 3. 调用Native接口getFileList即为src/main/cpp/types/libentry/index.d.ts中声明的接口，传入js的资源对象，以及rawfile文件夹的相对路径。
 
-   获取当前jsresourceManager对象的示例如下:
+   获取本应用包资源resourceManager对象的示例如下:
 
     ```js
     import hilog from '@ohos.hilog';
@@ -377,7 +377,7 @@
     @Component
     struct Index {
         @State message: string = 'Hello World'
-        private resmgr = getContext().resourceManager;  // 获取当前js的资源对象
+        private resmgr = getContext().resourceManager;  // 获取本应用包的资源对象
         build() {
             Row() {
             Column() {
