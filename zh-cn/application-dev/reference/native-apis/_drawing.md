@@ -2666,7 +2666,7 @@ int OH_Drawing_GetAffinityFromPositionAndAffinity (OH_Drawing_PositionAndAffinit
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_PositionAndAffinity | 指向OH_Drawing_PositionAndAffinity对象的指针， 由{\@Link OH_Drawing_TypographyGetGlyphPositionAtCoordinate}或 {\@Link OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster}获取 |
+| OH_Drawing_PositionAndAffinity | 指向OH_Drawing_PositionAndAffinity对象的指针，由[OH_Drawing_TypographyGetGlyphPositionAtCoordinate](#oh_drawing_typographygetglyphpositionatcoordinate)或[OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster](#oh_drawing_typographygetglyphpositionatcoordinatewithcluster)获取。 |
 
 **返回：**
 
@@ -2691,7 +2691,7 @@ float OH_Drawing_GetBottomFromTextBox (OH_Drawing_TextBox * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由{\@Link OH_Drawing_TypographyGetRectsForRange}或 {\@Link OH_Drawing_TypographyGetRectsForPlaceholders}获取 |
+| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由[OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange)或[OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders)获取。 |
 | int | 文本框的索引 |
 
 **返回：**
@@ -2717,7 +2717,7 @@ size_t OH_Drawing_GetEndFromRange (OH_Drawing_Range * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Range | 指向OH_Drawing_Range对象的指针，由{\@Link OH_Drawing_TypographyGetWordBoundary}获取 |
+| OH_Drawing_Range | 指向OH_Drawing_Range对象的指针，由[OH_Drawing_TypographyGetWordBoundary](#oh_drawing_typographygetwordboundary)获取。 |
 
 **返回：**
 
@@ -2742,7 +2742,7 @@ float OH_Drawing_GetLeftFromTextBox (OH_Drawing_TextBox * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由{\@Link OH_Drawing_TypographyGetRectsForRange}或 {\@Link OH_Drawing_TypographyGetRectsForPlaceholders}获取 |
+| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由[OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange)或[OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders)获取。 |
 | int | 文本框的索引 |
 
 **返回：**
@@ -2768,7 +2768,7 @@ size_t OH_Drawing_GetPositionFromPositionAndAffinity (OH_Drawing_PositionAndAffi
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_PositionAndAffinity | 指向OH_Drawing_PositionAndAffinity对象的指针， 由{\@Link OH_Drawing_TypographyGetGlyphPositionAtCoordinate}或 {\@Link OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster}获取 |
+| OH_Drawing_PositionAndAffinity | 指向OH_Drawing_PositionAndAffinity对象的指针，由[OH_Drawing_TypographyGetGlyphPositionAtCoordinate](#oh_drawing_typographygetglyphpositionatcoordinate)或[OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster](#oh_drawing_typographygetglyphpositionatcoordinatewithcluster)获取。|
 
 **返回：**
 
@@ -2793,7 +2793,7 @@ float OH_Drawing_GetRightFromTextBox (OH_Drawing_TextBox * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由{\@Link OH_Drawing_TypographyGetRectsForRange}或 {\@Link OH_Drawing_TypographyGetRectsForPlaceholders}获取 |
+| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由[OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange)或[OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders)获取。 |
 | int | 文本框的索引 |
 
 **返回：**
@@ -2819,7 +2819,7 @@ size_t OH_Drawing_GetSizeOfTextBox (OH_Drawing_TextBox * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由{\@Link OH_Drawing_TypographyGetRectsForRange}或 {\@Link OH_Drawing_TypographyGetRectsForPlaceholders}获取 |
+| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由[OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange)或[OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders)获取。|
 
 **返回：**
 
@@ -2844,7 +2844,7 @@ size_t OH_Drawing_GetStartFromRange (OH_Drawing_Range * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Range | 指向OH_Drawing_Range对象的指针，由{\@Link OH_Drawing_TypographyGetWordBoundary}获取 |
+| OH_Drawing_Range | 指向OH_Drawing_Range对象的指针，由[OH_Drawing_TypographyGetWordBoundary](#oh_drawing_typographygetwordboundary)获取。 |
 
 **返回：**
 
@@ -2869,7 +2869,7 @@ int OH_Drawing_GetTextDirectionFromTextBox (OH_Drawing_TextBox * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由{\@Link OH_Drawing_TypographyGetRectsForRange}或 {\@Link OH_Drawing_TypographyGetRectsForPlaceholders}获取 |
+| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由[OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange)或[OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders)获取。 |
 | int | 文本框的索引 |
 
 **返回：**
@@ -2895,7 +2895,7 @@ float OH_Drawing_GetTopFromTextBox (OH_Drawing_TextBox * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由{\@Link OH_Drawing_TypographyGetRectsForRange}或 {\@Link OH_Drawing_TypographyGetRectsForPlaceholders}获取 |
+| OH_Drawing_TextBox | 指向OH_Drawing_TextBox对象的指针，由[OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange)或[OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders)获取。|
 | int | 文本框的索引 |
 
 **返回：**
@@ -3848,7 +3848,7 @@ void OH_Drawing_SetTextStyleDecorationStyle (OH_Drawing_TextStyle * , int  )
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
-| int | 设置的文本装饰样式，支持可选的装饰样式具体可见{\@Link OH_Drawing_TextDecorationStyle}枚举 |
+| int | 设置的文本装饰样式，支持可选的装饰样式具体可见[OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle)枚举。 |
 
 
 ### OH_Drawing_SetTextStyleDecorationThicknessScale()
@@ -3914,7 +3914,7 @@ void OH_Drawing_SetTextStyleEllipsisModal (OH_Drawing_TextStyle * , int  )
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
-| int | 设置省略号样式，支持可选的省略号样式具体可见{\@Link OH_Drawing_EllipsisModal}枚举 |
+| int | 设置省略号样式，支持可选的省略号样式具体可见[OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal)枚举。 |
 
 
 ### OH_Drawing_SetTextStyleFontFamilies()
@@ -4157,7 +4157,7 @@ void OH_Drawing_SetTypographyTextBreakStrategy (OH_Drawing_TypographyStyle * , i
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
-| int | 设置中断策略，支持可选的中断策略具体可见{\@Link OH_Drawing_BreakStrategy}枚举 |
+| int | 设置中断策略，支持可选的中断策略具体可见[OH_Drawing_BreakStrategy](#oh_drawing_breakstrategy)枚举。 |
 
 
 ### OH_Drawing_SetTypographyTextDirection()
@@ -4201,7 +4201,7 @@ void OH_Drawing_SetTypographyTextEllipsisModal (OH_Drawing_TypographyStyle * , i
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
-| int | 设置省略号样式，支持可选的省略号样式样式具体可见{\@Link OH_Drawing_EllipsisModal}枚举 |
+| int | 设置省略号样式，支持可选的省略号样式样式具体可见[OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal)枚举。 |
 
 
 ### OH_Drawing_SetTypographyTextMaxLines()
@@ -4245,7 +4245,7 @@ void OH_Drawing_SetTypographyTextWordBreakType (OH_Drawing_TypographyStyle * , i
 | 名称 | 描述 |
 | -------- | -------- |
 | OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
-| int | 设置断词方式，支持可选的断词方式样式具体可见{\@Link OH_Drawing_WordBreakType}枚举 |
+| int | 设置断词方式，支持可选的断词方式样式具体可见[OH_Drawing_WordBreakType](#oh_drawing_wordbreaktype)枚举。 |
 
 
 ### OH_Drawing_ShaderEffectCreateLinearGradient()
@@ -4271,7 +4271,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateLinearGradient (const OH_D
 | colors | 表示在两个点之间分布的颜色。 |
 | pos | 表示每种对应颜色在颜色数组中的相对位置。 |
 | size | 表示颜色和位置的数量。 |
-| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见{\@Link OH_Drawing_TileMoe}枚举。 |
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode)枚举。 |
 
 **返回：**
 
@@ -4301,7 +4301,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateRadialGradient (const OH_D
 | colors | 表示在两个点之间分布的颜色。 |
 | pos | 表示每种对应颜色在颜色数组中的相对位置。 |
 | size | 表示颜色和位置的数量。 |
-| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见{\@Link OH_Drawing_TileMoe}枚举。 |
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode)枚举。 |
 
 **返回：**
 
@@ -4330,7 +4330,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateSweepGradient (const OH_Dr
 | colors | 表示在两个点之间分布的颜色。 |
 | pos | 表示每种对应颜色在颜色数组中的相对位置。 |
 | size | 表示颜色和位置的数量。 |
-| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见{\@Link OH_Drawing_TileMoe}枚举。 |
+| OH_Drawing_TileMode | 着色器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode)枚举。 |
 
 **返回：**
 
@@ -4582,7 +4582,7 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
 
 **返回：**
 
-返回坐标处字体的索引位置和亲和性，返回类型为{\@Link OH_Drawing_PositionAndAffinity}结构体
+返回坐标处字体的索引位置和亲和性，返回类型为[OH_Drawing_PositionAndAffinity](#oh_drawing_positionandaffinity)结构体。
 
 
 ### OH_Drawing_TypographyGetGlyphPositionAtCoordinateWithCluster()
@@ -4609,7 +4609,7 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
 
 **返回：**
 
-返回坐标处指定类型字体的索引位置和亲和性，返回类型为{\@Link OH_Drawing_PositionAndAffinity}结构体
+返回坐标处指定类型字体的索引位置和亲和性，返回类型为[OH_Drawing_PositionAndAffinity](#oh_drawing_positionandaffinity)结构体。
 
 
 ### OH_Drawing_TypographyGetHeight()
@@ -4861,7 +4861,7 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForPlaceholders (OH_Drawing_Typ
 
 **返回：**
 
-返回占位符的文本框，返回类型为{\@Link OH_Drawing_TextBox}结构体
+返回占位符的文本框，返回类型为[OH_Drawing_TextBox](#oh_drawing_textbox)结构体。
 
 
 ### OH_Drawing_TypographyGetRectsForRange()
@@ -4885,12 +4885,12 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForRange (OH_Drawing_Typography
 | OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
 | size_t | 设置开始位置 |
 | size_t | 设置结束位置 |
-| OH_Drawing_RectHeightStyle | 设置高度样式，支持可选的高度样式具体可见{\@Link OH_Drawing_RectHeightStyle}枚举 |
-| OH_Drawing_RectWidthStyle | 设置宽度样式，支持可选的宽度样式具体可见{\@Link OH_Drawing_RectWidthStyle}枚举 |
+| OH_Drawing_RectHeightStyle | 设置高度样式，支持可选的高度样式具体可见[OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle)枚举。 |
+| OH_Drawing_RectWidthStyle | 设置宽度样式，支持可选的宽度样式具体可见[OH_Drawing_RectWidthStyle](#oh_drawing_rectwidthstyle)枚举。 |
 
 **返回：**
 
-返回指定范围内的文本框，具体可见{\@Link OH_Drawing_TextBox}结构体
+返回指定范围内的文本框，具体可见[OH_Drawing_TextBox](#oh_drawing_textbox)结构体。
 
 
 ### OH_Drawing_TypographyGetWordBoundary()
@@ -4916,7 +4916,7 @@ OH_Drawing_Range* OH_Drawing_TypographyGetWordBoundary (OH_Drawing_Typography * 
 
 **返回：**
 
-返回单词边界，返回类型为{\@Link OH_Drawing_Range}结构体
+返回单词边界，返回类型为[OH_Drawing_Range](#oh_drawing_range)结构体。
 
 
 ### OH_Drawing_TypographyHandlerAddPlaceholder()
