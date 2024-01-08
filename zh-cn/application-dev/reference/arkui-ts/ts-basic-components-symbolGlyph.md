@@ -30,13 +30,13 @@ SymbolGlyph(value: Resource)
 
 支持[通用属性](ts-universal-attributes-size.md)，不支持文本通用属性，仅支持以下特有属性：
 
-| 名称                       | 参数类型                            | 描述                                               |
-| ----------------------- | ----------------------------------- | ------------------------------------------- |
-| fontSize               | [number](ts-types.md#number)&nbsp;\|&nbsp;string \|&nbsp;[Resource](../arkui-ts/ts-types.md#resource) | 设置symbol图标的显示大小。
-| fontColor               | Array\<[ResourceColor](ts-types.md#resourcecolor)\>| 设置symbol图标颜色。| 
-| fontWeight | [number](ts-types.md#number)&nbsp;\|&nbsp;[FontWeight](ts-appendix-enums.md#fontweight)&nbsp;\|&nbsp;string | 设置symbol图标的粗细。<br>number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。<br>string类型仅支持number类型取值的字符串形式，例如"400"，以及"bold"、"bolder"、"lighter"、"regular"、"medium"，分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。<br/>|
-| effectStrategy               | [SymbolEffectStrategy](#symboleffectstrategy)| 设置symbol图标的动效类型。| 
-| renderingStrategy               | [SymbolRenderingStrategy](#symbolrenderingstrategy)| 设置symbol图标的渲染模式。|
+| 名称 | 类型 | 必填 | 描述                               |
+| ------ | -------- | ---- | -------------------------------------- |
+| fontColor | Array\<[ResourceColor](ts-types.md#resourcecolor)\> | 否 | 组件颜色。<br/> 默认值：Color.Black。 |
+| fontSize | number \| string \| [Resource](../arkui-ts/ts-types.md#resource) | 否 | 设置组件大小。<br/>默认值：系统默认值。 |
+| fontWeight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否 | 字体粗细。<br/>number类型取值[100,900]，取值间隔为100，默认为400，取值越大，字体越粗。<br/>string类型仅支持number类型取值的字符串形式，例如“400”，以及“bold”、“bolder”、“lighter”、“regular” 、“medium”分别对应FontWeight中相应的枚举值。<br/>默认值：FontWeight.Normal。 |
+| renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。 |
+| effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 动效策略。<br/>默认值：SymbolEffectStrategy.NONE。 |
 
 ## SymbolEffectStrategy
 动效类型的枚举值。
