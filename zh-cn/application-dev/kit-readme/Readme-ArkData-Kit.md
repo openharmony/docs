@@ -1,6 +1,6 @@
-## ArkData Kit
+## ArkData
 
-- [ArkData Kit简介](../database/data-mgmt-overview.md)
+- [ArkData简介](../database/data-mgmt-overview.md)
 - 应用数据持久化
   - [应用数据持久化概述](../database/app-data-persistence-overview.md)
   - [通过用户首选项实现数据持久化](../database/data-persistence-by-preferences.md)
