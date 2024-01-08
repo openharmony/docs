@@ -312,7 +312,7 @@ import { BusinessError } from '@ohos.base';
 >
 > - 对于跨应用包，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法获取，该方法仅支持系统应用使用。
 >
-> - Context的更多使用信息请参考[应用上下文Context](../application-models/application-context-stage.md#应用上下文context)。
+> - Context的更多使用信息请参考[应用上下文Context](../application-models/application-context-stage.md)。
 
 ### getStringSync<sup>9+</sup>
 
