@@ -305,12 +305,14 @@ import { BusinessError } from '@ohos.base';
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
 >
-> - 对于本应用包资源，通过this.context.resourceManager 或 getContext('module name').resourceManager 的方法获取特定资源ID或资源名称的资源。
+> - 对于本应用包资源，通过.context().resourceManager 的方法获取特定资源ID或资源名称的资源。
 >
 > - 对于应用内跨包资源有两种访问
-方式，第一种是通过resource对象；第二种是创建对应module的context，通过 this.context.createModuleContext('module name').resourceManager 方式获取。
+方式，第一种是通过resource对象；第二种是创建对应module的context，通过 .context().createModuleContext().resourceManager 方式获取。
 >
-> - 对于跨应用包，通过 this.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name',).resourceManager 方式获取。
+> - 对于跨应用包，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法获取，该方法仅支持系统应用使用。
+>
+> - Context的更多使用信息请参考[应用上下文Context](../application-models/application-context-stage.md#应用上下文context)。
 
 ### getStringSync<sup>9+</sup>
 
