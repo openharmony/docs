@@ -6,11 +6,22 @@ You can set overlay text for a component.
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
-## Attributes
+## overlay
 
-| Name     | Type                                    | Default Value                                     | Description                                      |
-| ------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| overlay | value: string &#124; [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8)<sup>10+</sup>,<br>options?: {<br>align?: [Alignment](ts-appendix-enums.md#alignment), <br>offset?: {x?: number, y?: number}<br>} | {<br>align: Alignment.TopStart,<br>offset: { x: 0,  y: 0}<br>} | Overlay of mask text or a custom component added to the component.<br> **value**: mask text content or custom component constructor.<br>**options**: position of the overlay. **align** indicates the position of the overlay relative to the component. [offset](ts-universal-attributes-location.md) indicates the offset of the overlay relative to the upper left corner of itself. By default, the overlay is in the upper left corner of the component.<br>If both **align** and **offset** are set, the overlay is first positioned relative to the component, and then offset relative to the upper left corner of itself.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When the overlay is a custom component, it cannot obtain focus through sequential keyboard navigation.|
+overlay(value: string | CustomBuilder, options?: { align?: Alignment; offset?: { x?: number; y?: number } })
+
+Applies an overlay of mask text or a custom component to the component.
+
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value   | string \| [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8)<sup>10+</sup> | Yes  | Mask text content or custom component constructor.<br>**NOTE**<br>When the overlay is a custom component, it cannot obtain focus through sequential keyboard navigation.|
+| options |  {<br>align?: [Alignment](ts-appendix-enums.md#alignment), <br>offset?: {x?: number, y?: number}<br>} | No  | Position of the overlay.<br>- **align**: position of the overlay relative to the component.<br>- **offset**: offset of the overlay relative to the upper left corner of itself. By default, the overlay is in the upper left corner of the component.<br>**NOTE**<br>If both **align** and **offset** are set, the overlay is first positioned relative to the component, and then offset relative to the upper left corner of itself.|
 
 ## Example
 
