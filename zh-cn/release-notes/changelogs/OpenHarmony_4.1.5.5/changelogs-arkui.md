@@ -380,7 +380,80 @@ opacity属性设置小于0的非法值需要按照完全透明来处理。
 
 默认行为变更，不涉及适配。
 
-## cl.arkui.12  点击事件规格变更
+## cl.Arkui.12 ListItem、GridItem的selectable属性异常值处理逻辑变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户对于ListItem和GridItem组件selectable属性设置异常值时，使用默认值。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，当开发者对ListItem和GridItem组件selectable属性设置异常值时，采用false值处理。
+
+变更后，当开发者对ListItem和GridItem组件selectable属性设置异常值时，采用默认值true处理。
+
+**API Level**
+
+8
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5开始。
+
+**变更的接口/组件**
+
+涉及到ListItem和GridItem组件的selectable属性。
+
+API 11前，当开发者对ListItem和GridItem组件selectable属性设置异常值时，采用false值处理。
+
+API 11及以后，当开发者对ListItem和GridItem组件selectable属性设置异常值时，采用默认值true处理。
+
+**适配指导**
+
+默认行为变更，不涉及适配。
+
+## cl.arkui.13  Text组件fontSize属性非法值设置变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+"5abc"这类数字拼接字符串被定义为非法值，不可以解析使用数字部分处理为5fp字号。
+
+**变更影响**
+
+该变更为非兼容性变更。
+
+变更前，fontSize属性设置"5abc"非法值时显示字号为5fp。
+
+变更后，fontSize属性设置"5abc"非法值时显示默认字号16fp。
+
+**API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 4.1.5.5 开始。
+
+**变更的接口/组件**
+
+点击手势：TapGesture
+受影响的组件和接口：Text组件fontSize属性。
+
+**适配指导**
+
+默认行为变更，不涉及适配。
+
+## cl.arkui.14  点击事件规格变更
 
 **访问级别**
 
