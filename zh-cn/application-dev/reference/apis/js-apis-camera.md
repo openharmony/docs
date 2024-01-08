@@ -124,35 +124,35 @@ function getModeManager(context: common.BaseContext): camera.ModeManager | undef
 
 ## Profile
 
-相机配置信息项，只读属性
+相机配置信息项。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| format   | [CameraFormat](#cameraformat) | 是  | 输出格式，只读属性      |
-| size     | [Size](#size)                 | 是  | 分辨率，只读属性       |
+| 名称      | 类型                           | 必填 | 只读 | 说明         |
+| -------- | ----------------------------- |---- | ---- | ------------- |
+| format   | [CameraFormat](#cameraformat) | 是  |  是  | 输出格式。      |
+| size     | [Size](#size)                 | 是  |  是  | 分辨率。       |
 
 ## FrameRateRange
 
-帧率范围，只读属性
+帧率范围。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                           | 必填 | 说明         |
-| -------- | ----------------------------- |---- | ------------- |
-| min      | number                        | 是  | 最小帧率，只读属性      |
-| max      | number                        | 是  | 最大帧率，只读属性      |
+| 名称      | 类型                           | 必填 | 只读 | 说明         |
+| -------- | ----------------------------- |---- | ---- | ------------- |
+| min      | number                        | 是  |  是  | 最小帧率。      |
+| max      | number                        | 是  |  是  | 最大帧率。      |
 
 ## VideoProfile
 
-视频配置信息项，只读属性
+视频配置信息项。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                       | 类型                                      | 必填 | 说明        |
-| ------------------------- | ----------------------------------------- | --- |----------- |
-| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  | 帧率范围，fps(frames per second)，只读属性。 |
+| 名称                       | 类型                                      | 必填 | 只读 | 说明        |
+| ------------------------- | ----------------------------------------- | --- | ---- |----------- |
+| frameRateRange            | [FrameRateRange](#frameraterange)         | 是  |  是  | 帧率范围，fps(frames per second)。 |
 
 ## CameraOutputCapability
 
@@ -160,12 +160,12 @@ function getModeManager(context: common.BaseContext): camera.ModeManager | undef
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                           | 类型                                               | 必填 | 说明                |
-| ----------------------------- | -------------------------------------------------- | --- |------------------- |
-| previewProfiles               | Array\<[Profile](#profile)\>                        | 是  | 支持的预览配置信息，只读属性    |
-| photoProfiles                 | Array\<[Profile](#profile)\>                        | 是  | 支持的拍照配置信息，只读属性    |
-| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              | 是  | 支持的录像配置信息，只读属性    |
-| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  | 支持的metadata流类型信息，只读属性|
+| 名称                           | 类型                                               | 必填 | 只读 | 说明                |
+| ----------------------------- | -------------------------------------------------- | --- | ---- | ------------------- |
+| previewProfiles               | Array\<[Profile](#profile)\>                        | 是  |  是  | 支持的预览配置信息。    |
+| photoProfiles                 | Array\<[Profile](#profile)\>                        | 是  |  是  | 支持的拍照配置信息。    |
+| videoProfiles                 | Array\<[VideoProfile](#videoprofile)\>              | 是  |  是  | 支持的录像配置信息。    |
+| supportedMetadataObjectTypes  | Array\<[MetadataObjectType](#metadataobjecttype)\>  | 是  |  是  | 支持的metadata流类型信息。|
 
 ## CameraErrorCode
 
@@ -594,7 +594,7 @@ createVideoOutput(profile: VideoProfile, surfaceId: string): VideoOutput
 | 参数名     | 类型                                        | 必填 | 说明                              |
 | -------- | ------------------------------------------- | ---- | ------------------------------ |
 | profile  | [VideoProfile](#videoprofile)               | 是   | 支持的录像配置信息，通过getSupportedOutputCapability接口获取。 |
-| surfaceId| string          | 是   | 从[VideoRecorder](js-apis-media.md#avrecorder9)获取的surfaceId。|
+| surfaceId| string          | 是   | 从[AVRecorder](js-apis-media.md#avrecorder9)获取的surfaceId。|
 
 **返回值：**
 
@@ -1205,14 +1205,14 @@ function createCaptureSession(cameraManager: camera.CameraManager, modeManager: 
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core。
 
-| 名称           | 类型                                | 必填 | 说明        |
-| -------------- | --------------------------------- | ---- | ---------- |
-| cameraId       | string                            | 是   | CameraDevice对象，只读属性|
-| cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置，只读属性    |
-| cameraType     | [CameraType](#cameratype)         | 是   | 相机类型，只读属性    |
-| connectionType | [ConnectionType](#connectiontype) | 是   | 相机连接类型，只读属性 |
-| hostDeviceName | string                            | 是   | 远端设备名称，只读属性，**系统接口：** 此接口为系统接口。 |
-| hostDeviceType | [hostDeviceType](#hostdevicetype) | 是   | 远端相机设备类型，只读属性，**系统接口：** 此接口为系统接口。 |
+| 名称           | 类型                                | 必填 | 只读 | 说明        |
+| -------------- | --------------------------------- | ---- | ---- |---------- |
+| cameraId       | string                            | 是   | 是   | CameraDevice对象。|
+| cameraPosition | [CameraPosition](#cameraposition) | 是   | 是   | 相机位置。    |
+| cameraType     | [CameraType](#cameratype)         | 是   | 是   | 相机类型。    |
+| connectionType | [ConnectionType](#connectiontype) | 是   | 是   | 相机连接类型。 |
+| hostDeviceName | string                            | 是   | 是   | 远端设备名称，**系统接口：** 此接口为系统接口。 |
+| hostDeviceType | [hostDeviceType](#hostdevicetype) | 是   | 是   | 远端相机设备类型，**系统接口：** 此接口为系统接口。 |
 
 ## Size
 
@@ -1250,7 +1250,7 @@ function createCaptureSession(cameraManager: camera.CameraManager, modeManager: 
 
 ## CameraInput
 
-相机设备输入对象
+相机设备输入对象。
 
 会话中[CaptureSession](#capturesession)使用的相机信息。
 
@@ -5251,7 +5251,7 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 ## MetadataObjectType
 
-枚举，metadata流，只读属性
+枚举，metadata流。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -5278,8 +5278,8 @@ function unregisterMetadataOutputError(metadataOutput: camera.MetadataOutput): v
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                            | 必填  | 说明              |
-| -------- | ------------------------------- | ---- | -----------------|
-| type  | [MetadataObjectType](#metadataobjecttype)   | 否   | metadata 类型，目前只有人脸识别，只读属性 |
-| timestamp | number | 否   | 当前时间戳（毫秒），只读属性 |
-| boundingBox | [Rect](#rect)           | 否   | metadata 区域框，只读属性 |
+| 名称      | 类型                            | 必填  | 只读 |说明              |
+| -------- | ------------------------------- | ---- | ---- |-----------------|
+| type  | [MetadataObjectType](#metadataobjecttype)   | 否   |  是  |metadata 类型，目前只有人脸识别。 |
+| timestamp | number | 否   |  是  | 当前时间戳（毫秒）。 |
+| boundingBox | [Rect](#rect)           | 否   |  是  | metadata 区域框。 |
