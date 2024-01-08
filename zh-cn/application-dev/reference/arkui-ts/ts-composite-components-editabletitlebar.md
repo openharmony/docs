@@ -40,15 +40,15 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | 标题。 | 
 | menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | 右侧菜单项目列表。 | 
 | onSave | ()&nbsp;=&gt;&nbsp;void | 否 | 保存时的动作闭包。 | 
-| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | 当左侧按钮类型为&nbsp;Left，触发取消时的动作闭包。 | 
+| onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | 当左侧按钮类型为&nbsp;CANCEL，触发取消时的动作闭包。 | 
 
 
 ## EditableLeftIconType
 
-| 名称 | 说明 | 
-| -------- | -------- |
-| Back | 返回按钮。 | 
-| Cancel | 取消按钮。 | 
+| 名称 | 值 | 说明 | 
+| -------- | -------- | -------- |
+| BACK | 0 | 返回按钮。 | 
+| CANCEL | 1 | 取消按钮。 | 
 
 
 ## EditableTitleBarMenuItem
@@ -56,7 +56,7 @@ EditableTitleBar({leftIconType: EditableLeftIconType, title: ResourceStr, menuIt
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
-| isEnabled | boolean | 是 | 是否启用，默认启用。 | 
+| isEnabled | boolean | 否 | 是否启用，默认禁用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。 | 
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 | 
 
 ## 事件
@@ -99,9 +99,6 @@ struct Index {
               }
             }
           ],
-          onCancel: () => {
-            promptAction.showToast({ message: "on cancel" })
-          },
           onSave: () => {
             promptAction.showToast({ message: "on save" })
           }
