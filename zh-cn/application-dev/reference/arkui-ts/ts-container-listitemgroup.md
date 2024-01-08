@@ -39,10 +39,10 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 
 ## ListItemGroupStyle<sup>10+</sup>枚举说明
 
-| 名称 | 描述               |
-| ---- | ------------------ |
-| NONE | 无样式。           |
-| CARD | 显示默认卡片样式。 |
+| 名称 | 枚举值  | 描述               |
+| ---- | ---- | ------------------ |
+| NONE | 0 | 无样式。           |
+| CARD | 1 | 显示默认卡片样式。 |
 
 > **说明：** 
 >
@@ -176,7 +176,7 @@ struct ListItemGroupExample2 {
       }
       .width('100%')
       .multiSelectable(true)
-      .backgroundColor(0xDCDCDC) // 浅蓝色的List
+      .backgroundColor(0xDCDCDC)
     }
     .width('100%')
     .padding({ top: 5 })
