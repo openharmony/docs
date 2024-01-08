@@ -5,15 +5,11 @@
 
 The **OhosImageSourceUpdateData** struct defines the update data option of the image source. It is obtained by calling [OH_ImageSource_UpdateData](image.md#oh_imagesource_updatedata).
 
-\@Syscap SystemCapability.Multimedia.Image
+**System capability**: SystemCapability.Multimedia.Image
 
-**Since**
+**Since**: 10
 
-10
-
-**Related Modules**
-
-[Image](image.md)
+**Related module**: [Image](image.md)
 
 
 ## Summary
