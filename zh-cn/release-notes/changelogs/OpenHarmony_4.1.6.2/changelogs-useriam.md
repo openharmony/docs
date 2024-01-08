@@ -27,7 +27,7 @@
 | 接口声明 | 废弃说明 | 替换接口 |
 |---------|----------|--------|
 | interface AuthEvent | 不再支持，请使用新接口IAuthCallback | interface IAuthCallback |
-| callback(result: EventInfo): void | 不再支持，请使用新接口IAuthCallback中的onResult | method callback |
+| callback(result: EventInfo): void | 不再支持，请使用新接口IAuthCallback中的onResult | method onResult |
 | field AuthEventKey | 不再支持 | 无 |
 | type EventInfo | 不再支持，请使用新接口IAuthCallback中的UserAuthResult | interface UserAuthResult |
 | interface AuthResultInfo | 不再支持 | 无 |
