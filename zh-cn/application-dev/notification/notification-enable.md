@@ -8,9 +8,7 @@
 
 - 如果用户点击“允许”，则表示允许应用发送通知。
 
-- 如果用户点击“取消”，则表示拒绝应用发送通知。
-
-应用后续再次调用[requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationmanagerrequestenablenotification)方法时，则不再弹窗。此时如需要手动获取通知授权，操作步骤如下所示。
+- 如果用户点击“取消”，则表示拒绝应用发送通知。应用后续再次调用[requestEnableNotification()](../reference/apis/js-apis-notificationManager.md#notificationmanagerrequestenablenotification)方法时，则不再弹窗。此时如需要手动获取通知授权，操作步骤如下所示。
   
   | 1. 从设备左上方下拉，点击右上角“设置”图标。                              | 2. 进入通知界面，找到需要请求通知授权的应用。 | 3. 打开“允许通知”开关。                                          |
   | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
