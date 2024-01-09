@@ -29,7 +29,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md#perm
 
 ## BundleInstaller.getBundleInstaller
 
-getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void;
+getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 
 Obtains a **BundleInstaller** object. This API uses an asynchronous callback to return the result.
 
@@ -41,7 +41,7 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundleInstaller** object obtained; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<BundleInstaller> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the **BundleInstaller** object obtained; otherwise, **err** is an error object.|
 
 **Example**
 
@@ -65,7 +65,7 @@ try {
 
 ## BundleInstaller.getBundleInstaller
 
-getBundleInstaller(): Promise\<BundleInstaller>;
+getBundleInstaller(): Promise\<BundleInstaller>
 
 Obtains a **BundleInstaller** object. This API uses an asynchronous callback to return the result.
 
@@ -76,7 +76,7 @@ Obtains a **BundleInstaller** object. This API uses an asynchronous callback to 
 **Return value**
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| Promise\<[BundleInstaller](js-apis-installer.md#BundleInstaller)> | Promise used to return the **BundleInstaller** object obtained.|
+| Promise\<BundleInstaller> | Promise used to return the **BundleInstaller** object obtained.|
 
 **Example**
 
@@ -98,7 +98,7 @@ try {
 
 ## BundleInstaller.getBundleInstallerSync<sup>10+</sup>
 
-getBundleInstallerSync(): BundleInstaller;
+getBundleInstallerSync(): BundleInstaller
 
 Obtains a **BundleInstaller** object. This API is a synchronous API.
 
@@ -109,7 +109,7 @@ Obtains a **BundleInstaller** object. This API is a synchronous API.
 **Return value**
 | Type                                                        | Description                                |
 | ------------------------------------------------------------ | ------------------------------------ |
-| [BundleInstaller](js-apis-installer.md#BundleInstaller) | **BundleInstaller** object.|
+| BundleInstaller | **BundleInstaller** object.|
 
 **Example**
 
@@ -127,7 +127,7 @@ try {
 ```
 
 ## BundleInstaller.install
-install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 Installs a bundle. This API uses an asynchronous callback to return the result.
 
@@ -136,7 +136,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> Since API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
+> From API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
 >
 > To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
 >
@@ -212,7 +212,7 @@ try {
 }
 ```
 ## BundleInstaller.install
-install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Installs a bundle. This API uses an asynchronous callback to return the result.
 
@@ -221,7 +221,7 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> Since API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
+> From API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
 >
 > To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
 >
@@ -292,7 +292,7 @@ try {
 
 ## BundleInstaller.install
 
-install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>;
+install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<void\>
 
 Installs a bundle. This API uses a promise to return the result.
 
@@ -301,7 +301,7 @@ Installs a bundle. This API uses a promise to return the result.
 **Required permissions**: ohos.permission.INSTALL_BUNDLE, ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>, ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE<sup>10+</sup>, or ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE<sup>10+</sup>
 > **NOTE**
 >
-> Since API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
+> From API version 10, this API can be called with the permission **ohos.permission.INSTALL_ENTERPRISE_BUNDLE**, **ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE**, or **ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE**.
 >
 > To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
 >
@@ -383,7 +383,7 @@ try {
 
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 Uninstalls a bundle. This API uses an asynchronous callback to return the result.
 
@@ -446,7 +446,7 @@ try {
 
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 Uninstalls a bundle. This API uses an asynchronous callback to return the result.
 
@@ -501,7 +501,7 @@ try {
 ```
 ## BundleInstaller.uninstall
 
-uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 Uninstalls a bundle. This API uses a promise to return the result.
 
@@ -567,7 +567,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void;
+recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&lt;void&gt;): void
 
 Rolls back a bundle to the initial installation state. This API uses an asynchronous callback to return the result.
 
@@ -628,7 +628,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
+recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
 Rolls back a bundle to the initial installation state. This API uses an asynchronous callback to return the result.
 
@@ -681,7 +681,7 @@ try {
 
 ## BundleInstaller.recover
 
-recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
+recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>
 
 Rolls back a bundle to the initial installation state. This API uses a promise to return the result.
 
@@ -744,7 +744,7 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void ;
+uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void>) : void
 
 Uninstalls a shared bundle. This API uses an asynchronous callback to return the result.
 
@@ -801,7 +801,7 @@ try {
 
 ## BundleInstaller.uninstall<sup>10+</sup>
 
-uninstall(uninstallParam: UninstallParam) : Promise\<void>;
+uninstall(uninstallParam: UninstallParam) : Promise\<void>
 
 Uninstalls a shared bundle. This API uses a promise to return the result.
 
@@ -863,7 +863,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void;
+updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, callback: AsyncCallback\<void\>): void
 
 Updates the current bundle. This API uses an asynchronous callback to return the result. It can be called only by enterprise MDM applications on enterprise devices, and the HAPs in **hapFilePaths** must belong to the current application.
 
@@ -939,7 +939,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>): void;
+updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void\>): void
 
 Updates the current bundle. This API uses an asynchronous callback to return the result. It can be called only by enterprise MDM applications on enterprise devices, and the HAPs in **hapFilePaths** must belong to the current application.
 
@@ -1008,7 +1008,7 @@ try {
 
 ## BundleInstaller.updateBundleForSelf<sup>10+</sup>
 
-updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>;
+updateBundleForSelf(hapFilePaths: Array\<string\>, installParam?: InstallParam): Promise\<void\>
 
 Updates the current bundle. This API uses a promise to return the result. It can be called only by enterprise MDM applications on enterprise devices, and the HAPs in **hapFilePaths** must belong to the current application.
 
@@ -1024,6 +1024,12 @@ Updates the current bundle. This API uses a promise to return the result. It can
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
 | installParam | [InstallParam](#installparam) | No  | Parameters required for the installation. For details about their default values, see [InstallParam](#installparam).                                    |
+
+**Return value**
+
+| Type         | Description                                  |
+| ------------- | -------------------------------------- |
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
