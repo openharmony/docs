@@ -158,7 +158,7 @@ struct TabsExample {
 
   build() {
     Column() {
-      Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
+      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#00CB87')
         }.tabBar(this.tabBuilder(0, 'green'))
