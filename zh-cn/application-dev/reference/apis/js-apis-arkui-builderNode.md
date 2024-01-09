@@ -29,7 +29,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
 
 | 参数名        | 类型                              | 必填 | 说明                                                                                                            |
 | ------------- | --------------------------------- | ---- | --------------------------------------------------------------------------------------------------------------- |
-| selfIdealSize | [Size](./js-apis-arkui-graphics.md#size)                     | 否   | 节点的理想大小。                                                                                                |
+| selfIdealSize | [Size](js-apis-arkui-graphics.md#size)                     | 否   | 节点的理想大小。                                                                                                |
 | type          | [NodeRenderType](#noderendertype) | 否   | 节点的渲染类型。                                                                                                |
 | surfaceId     | string                            | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../native-apis/_o_h___native_image.md#oh_nativeimage)。 |
 
@@ -37,7 +37,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@ohos.arkui.node";
 
 class BuilderNode<Args extends Object[]>
 
-BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](./js-apis-arkui-frameNode.md#framenode)的[getRenderNode](./js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](./js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
+BuilderNode支持通过无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)生成组件树，并持有组件树的根节点。不支持定义为状态变量。BuilderNode中持有的FrameNode仅用于将该BuilderNode作为子节点挂载到其他FrameNode上。对BuilderNode持有的FrameNode进行属性设置与子节点操作可能会产生未定义行为，因此不建议通过BuilderNode的[getFrameNode](#getframenode)方法和[FrameNode](js-apis-arkui-frameNode.md#framenode)的[getRenderNode](js-apis-arkui-frameNode.md#getrendernode)方法获取RenderNode，并通过[RenderNode](js-apis-arkui-renderNode.md#rendernode)的接口对其进行属性设置与子节点操作。
 
 ### constructor
 
@@ -47,12 +47,12 @@ constructor(uiContext: UIContext, options?: RenderOptions)
 
 | 参数名    | 类型                                      | 必填 | 说明                                                              |
 | --------- | ----------------------------------------- | ---- | ----------------------------------------------------------------- |
-| uiContext | [UIContext](./js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](#uicontext获取方法)。 |
+| uiContext | [UIContext](js-apis-arkui-UIContext.md) | 是   | UI上下文，获取方式可参考[UIContext获取方法](#uicontext获取方法)。 |
 | options   | [RenderOptions](#renderoptions)           | 否   | BuilderNode的构造可选参数。                                       |
 
 ### build
 
-build(builder: WrappedBuilder<Args>, arg?: Object): void
+build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 依照传入的对象创建组件树，并持有组件树的根节点。无状态的UI方法[@Builder](../../quick-start/arkts-builder.md)最多拥有一个根节点。
 支持自定义组件。不支持使用自定义组件使用[@Reusable](../../quick-start/arkts-create-custom-components.md#自定义组件的基本结构)、[@Link](../../quick-start/arkts-link.md)、[@Prop](../../quick-start/arkts-prop.md)、[@Provide](../../quick-start/arkts-provide-and-consume.md)、[@Consume](../../quick-start/arkts-provide-and-consume.md)等装饰器用于当前页面与自定义组件的状态同步。
@@ -63,7 +63,7 @@ build(builder: WrappedBuilder<Args>, arg?: Object): void
 
 | 参数名  | 类型                 | 必填 | 说明                                                                                   |
 | ------- | -------------------- | ---- | -------------------------------------------------------------------------------------- |
-| builder | WrappedBuilder<Args> | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。 |
+| builder | WrappedBuilder\<Args> | 是   | 创建对应节点树的时候所需的无状态UI方法[@Builder](../../quick-start/arkts-builder.md)。 |
 | arg     | Object               | 否   | 对象，作为builder入参的对象。                                                          |
 
 
@@ -79,7 +79,7 @@ getFrameNode(): FrameNode | null
 
 | 类型                            | 说明                                                                  |
 | ------------------------------- | --------------------------------------------------------------------- |
-| [FrameNode](./js-apis-arkui-frameNode.md#framenode) \| null | 一个FrameNode对象。若该BuilderNode不包含FrameNode，则返回空对象null。 |
+| [FrameNode](js-apis-arkui-frameNode.md#framenode) \| null | 一个FrameNode对象。若该BuilderNode不包含FrameNode，则返回空对象null。 |
 
 **示例1：**
 
