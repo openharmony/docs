@@ -6,13 +6,21 @@ The **enabled** attribute sets whether a component responds to user interactions
 >
 >  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
+## enabled
 
-## Attributes
+enabled(value: boolean)
 
+Sets whether the component responds to user interactions.
 
-| Name   | Type| Description                                                        |
-| ------- | -------- | ------------------------------------------------------------ |
-| enabled | boolean  | Whether the component responds to user interactions, including clicks and touches. The value **true** means that the component responds to user interactions, and **false** means the opposite.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets. |
+**Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | Yes  | Whether the component responds to user interactions, including clicks and touches. The value **true** means that the component responds to user interactions,<br>and **false** means the opposite.<br>Default value: **true**|
 
 
 ## Example

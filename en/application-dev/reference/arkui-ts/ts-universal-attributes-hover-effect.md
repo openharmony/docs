@@ -6,12 +6,19 @@ The hover effect is applied to a component in hover state.
 >
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
+## hoverEffect
 
-## Attributes
+hoverEffect(value: HoverEffect)
 
-| Name         | Type                                              | Description                                               |
-| ----------- | --------------------------------------------------| ------------------------------------------------ |
-| hoverEffect | [HoverEffect](ts-appendix-enums.md#hovereffect8)  | Hover effect of the component in hover state.<br>Default value: **HoverEffect.Auto**|
+Sets the hover effect of the component in hover state.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                            | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [HoverEffect](ts-appendix-enums.md#hovereffect8) | Yes  | Hover effect of the component in hover state.<br>Default value: **HoverEffect.Auto**|
 
 
 ## Example

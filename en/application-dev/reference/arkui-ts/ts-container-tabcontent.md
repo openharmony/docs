@@ -27,7 +27,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| tabBar | string \| [Resource](ts-types.md#resource) \| {<br>icon?: string \| [Resource](ts-types.md#resource),<br>text?: string \| [Resource](ts-types.md#resource)<br>}<br>\| [CustomBuilder](ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>**NOTE**<br>When using an SVG image for the icon, delete the width and height attributes of the image. Otherwise, the icon size will be determined by the width and height attributes of the SVG image.<br>If the content set exceeds the space provided by the tab bar, it will be clipped.|
+| tabBar | string \| [Resource](ts-types.md#resource) \|<br>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\| {<br>icon?: string \| [Resource](ts-types.md#resource),<br>text?: string \| [Resource](ts-types.md#resource)<br>} | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>**NOTE**<br>When using an SVG image for the icon, delete the width and height attributes of the image. Otherwise, the icon size will be determined by the width and height attributes of the SVG image.<br>If the content set exceeds the space provided by the tab bar, it will be clipped.|
 | tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | Content displayed on the tab bar.<br>**SubTabBarStyle**: subtab style. It takes text as its input parameter.<br>**BottomTabBarStyle**: bottom and side tab style. It takes text and images as its input parameters.<br>**NOTE**<br>The bottom tab style does not include an indicator.<br>When an icon display error occurs, a gray blank block is displayed.|
 
 >  **NOTE**
@@ -116,7 +116,7 @@ Implements the bottom and side tab style.
 
 ### constructor
 
-constructor(icon: string | Resource, content: string | Resource)
+constructor(icon: string | Resource, text: string | Resource)
 
 A constructor used to create a **BottomTabBarStyle** instance.
 
@@ -174,7 +174,7 @@ struct TabContentExample {
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
-  @Builder TabBuilder(index: number) {
+  @Builder tabBuilder(index: number) {
     Column() {
       Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
         .width(24)
@@ -205,7 +205,7 @@ struct TabContentExample {
               .color('#182431')
               .opacity(0.05)
           }.width('100%')
-        }.tabBar(this.TabBuilder(0))
+        }.tabBar(this.tabBuilder(0))
 
         TabContent() {
           Column() {
@@ -220,7 +220,7 @@ struct TabContentExample {
               .color('#182431')
               .opacity(0.05)
           }.width('100%')
-        }.tabBar(this.TabBuilder(1))
+        }.tabBar(this.tabBuilder(1))
 
         TabContent() {
           Column() {
@@ -235,7 +235,7 @@ struct TabContentExample {
               .color('#182431')
               .opacity(0.05)
           }.width('100%')
-        }.tabBar(this.TabBuilder(2))
+        }.tabBar(this.tabBuilder(2))
 
         TabContent() {
           Column() {
@@ -250,7 +250,7 @@ struct TabContentExample {
               .color('#182431')
               .opacity(0.05)
           }.width('100%')
-        }.tabBar(this.TabBuilder(3))
+        }.tabBar(this.tabBuilder(3))
       }
       .vertical(false)
       .barHeight(56)
@@ -280,7 +280,7 @@ struct TabContentExample {
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
-  @Builder TabBuilder(index: number) {
+  @Builder tabBuilder(index: number) {
     Column() {
       Image(this.currentIndex === index ? '/common/public_icon_on.svg' : '/common/public_icon_off.svg')
         .width(24)
@@ -299,13 +299,13 @@ struct TabContentExample {
     Column() {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent()
-          .tabBar(this.TabBuilder(0))
+          .tabBar(this.tabBuilder(0))
         TabContent()
-          .tabBar(this.TabBuilder(1))
+          .tabBar(this.tabBuilder(1))
         TabContent()
-          .tabBar(this.TabBuilder(2))
+          .tabBar(this.tabBuilder(2))
         TabContent()
-          .tabBar(this.TabBuilder(3))
+          .tabBar(this.tabBuilder(3))
       }
       .vertical(true)
       .barWidth(96)
