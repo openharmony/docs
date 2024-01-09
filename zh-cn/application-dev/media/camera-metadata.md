@@ -24,32 +24,32 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
        metadataOutput = cameraManager.createMetadataOutput(metadataObjectTypes);
      } catch (error) {
        let err = error as BusinessError;
-       console.error('Failed to createMetadataOutput, error code: '+ err.code);
+       console.error(`Failed to createMetadataOutput, error code: ${err.code}`);
      }
      return metadataOutput;
    }
    ```
 
-3. 调用start()方法输出metadata数据，接口调用失败时，会返回相应错误码，错误码类型参见CameraErrorCode。
+3. 调用start()方法输出metadata数据，接口调用失败时，会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
      metadataOutput.start().then(() => {
        console.info('Callback returned with metadataOutput started.');
      }).catch((err: BusinessError) => {
-       console.error('Failed to metadataOutput start, error code: '+ err.code);
+       console.error(`Failed to metadataOutput start, error code: ${err.code}`);
      });
    }
    ```
 
-4. 调用stop方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见CameraErrorCode。
+4. 调用stop方法停止输出metadata数据，接口调用失败会返回相应错误码，错误码类型参见[Camera错误码](../reference/apis/js-apis-camera.md#cameraerrorcode)。
      
    ```ts
    function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
      metadataOutput.stop().then(() => {
        console.info('Callback returned with metadataOutput stopped.');
      }).catch((err: BusinessError) => {
-       console.error('Failed to metadataOutput stop '+ err.code);
+       console.error(`Failed to metadataOutput stop, error code: ${err.code}`);
      });
    }
    ```
@@ -63,7 +63,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
   ```ts
   function onMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
     metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
-      console.info(`metadata output metadataObjectsAvailable`);
+      console.info('metadata output metadataObjectsAvailable');
     });
   }
   ```
@@ -77,7 +77,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
   ```ts
   function onMetadataError(metadataOutput: camera.MetadataOutput): void {
     metadataOutput.on('error', (metadataOutputError: BusinessError) => {
-      console.info(`Metadata output error code: ${metadataOutputError.code}`);
+      console.error(`Metadata output error code: ${metadataOutputError.code}`);
     });
   }
   ```
