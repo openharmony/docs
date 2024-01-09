@@ -6,16 +6,13 @@
 >
 >  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## 子组件
 
 不支持子组件。
 
-
 ## 接口
 
 SymbolSpan(value: Resource)
-
 
 **参数：**
 
@@ -24,7 +21,7 @@ SymbolSpan(value: Resource)
 | value | [Resource](../arkui-ts/ts-types.md#resource)| 是 | SymbolSpan组件的资源名，如 $r('sys.symbol.ohos_wifi')。 |
 
 >  **说明：**<br>
->  $r('sys.symbol.ohos_wifi')中引用的资源为系统预置，SymbolSpan仅支持系统预置的symbol资源名，引用非symbol资源将不显示内容。
+>  $r('sys.symbol.ohos_wifi')中引用的资源为系统预置，SymbolSpan仅支持系统预置的symbol资源名，引用非symbol资源将显示异常。
 
 ## 属性
 

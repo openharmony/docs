@@ -6,16 +6,13 @@
 >
 >  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## 子组件
 
 不支持子组件。
 
-
 ## 接口
 
 SymbolGlyph(value: Resource)
-
 
 **参数：**
 
@@ -24,7 +21,7 @@ SymbolGlyph(value: Resource)
 | value | [Resource](../arkui-ts/ts-types.md#resource)| 是 | SymbolGlyph组件的资源名,如 $r('sys.symbol.ohos_wifi')。 |
 
 >  **说明：**<br>
->  $r('sys.symbol.ohos_wifi')中引用的资源为系统预置，SymbolGlyph仅支持系统预置的symbol资源名，引用非symbol资源将不显示内容。
+>  $r('sys.symbol.ohos_wifi')中引用的资源为系统预置，SymbolGlyph仅支持系统预置的symbol资源名，引用非symbol资源将显示异常。
 
 ## 属性
 
@@ -41,27 +38,9 @@ SymbolGlyph(value: Resource)
 >  **说明：**<br>
 >  $r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式，仅ohos_wifi支持层级动效模式。
 
-## SymbolEffectStrategy
-动效类型的枚举值。
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| NONE | 无动效（默认值）。 |
-| SCALE | 整体缩放动效。              |
-|  HIERARCHICAL  | 层级动效。  
-
-## SymbolRenderingStrategy
-渲染模式的枚举值
-| 名称     | 描述                            |
-| ------ | ----------------------------- |
-| SINGLE  | 统一作为一层，设置一种颜色（默认值）。 |
-| MULTIPLE_COLOR  |    每层都可设置颜色。             |
-|  MULTIPLE_OPACITY   | 设置一种颜色，然后每层有不同的透明度。  
-
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)
-
-
+支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 
