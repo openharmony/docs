@@ -331,9 +331,9 @@
 
   ```ts
   Flex({ alignItems: ItemAlign.Stretch }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').backgroundColor(0xF5DEB3)  
+    Text('2').width('33%').backgroundColor(0xD2B48C)  
+    Text('3').width('33%').backgroundColor(0xF5DEB3)
   }
   .size({ width: '90%', height: 80 })
   .padding(10)
@@ -510,13 +510,13 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 在弹性布局父组件尺寸不够大的时候，通过子组件的下面几个属性设置其在父容器的占比，达到自适应布局能力。
 
-- flexBasis：设置子组件在父容器主轴方向上的基准尺寸。如果设置了该值，则子项占用的空间为设置的值；如果没设置该属性，那子项的空间为width/height的值。
+- flexBasis：设置子组件在父容器主轴方向上的基准尺寸。如果设置了该属性，则子项占用的空间为该属性所设置的值；如果没设置该属性，那子项的空间为width/height的值。
 
 
 ```ts
 Flex() {
   Text('flexBasis("auto")')
-    .flexBasis('auto') // 未设置width以及flexBasis值为auto，内容自身宽松
+    .flexBasis('auto') // 未设置width以及flexBasis值为auto，内容自身宽度
     .height(100)
     .backgroundColor(0xF5DEB3)
   Text('flexBasis("auto")' + ' width("40%")')

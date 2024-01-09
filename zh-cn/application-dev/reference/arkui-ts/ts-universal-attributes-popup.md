@@ -30,16 +30,17 @@
 
 ## CustomPopupOptions<sup>8+</sup>类型说明
 
-| 名称                           | 类型                                       | 必填   | 描述                                       |
-| ---------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                      | [CustomBuilder](ts-types.md#custombuilder8) | 是    | 提示气泡内容的构造器。<br />**说明：**<br />popup为通用属性，自定义popup中不支持再次弹出popup。对builder下的第一层容器组件不支持使用position属性，如果使用将导致气泡不显示。builder中若使用自定义组件，自定义组件的aboutToAppear和aboutToDisappear生命周期与popup弹窗的显隐无关，不能使用其生命周期判断popup弹窗的显隐。                              |
-| placement                    | [Placement](ts-appendix-enums.md#placement8) | 否    | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>默认值：Placement.Bottom |
-| popupColor                   | [ResourceColor](ts-types.md#resourcecolor) | 否    | 提示气泡的颜色。                                 |
-| enableArrow                  | boolean                                  | 否    | 是否显示箭头。<br/>从API Version 9开始，如果箭头所在方位侧的气泡长度不足以显示下箭头，则会默认不显示箭头。比如：placement设置为Left，此时如果气泡高度小于箭头的宽度（32vp）与气泡圆角两倍（48vp）之和（80vp），则实际不会显示箭头。<br/>默认值：true |
-| autoCancel                   | boolean                                  | 否    | 页面有操作时，是否自动关闭气泡。<br/>默认值：true            |
-| onStateChange                | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否    | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。                 |
-| arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length)             | 否    | popup箭头在弹窗处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。如果显示在屏幕边缘，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。 |
-| showInSubWindow<sup>9+</sup> | boolean                                  | 否    | 是否在子窗口显示气泡，默认值为false。                    |
+| 名称                         | 类型                                                         | 必填 | 描述                                                         |
+| ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| builder                      | [CustomBuilder](ts-types.md#custombuilder8)                  | 是   | 提示气泡内容的构造器。<br />**说明：**<br />popup为通用属性，自定义popup中不支持再次弹出popup。对builder下的第一层容器组件不支持使用position属性，如果使用将导致气泡不显示。builder中若使用自定义组件，自定义组件的aboutToAppear和aboutToDisappear生命周期与popup弹窗的显隐无关，不能使用其生命周期判断popup弹窗的显隐。 |
+| placement                    | [Placement](ts-appendix-enums.md#placement8)                 | 否   | 气泡组件优先显示的位置，当前位置显示不下时，会自动调整位置。<br/>默认值：Placement.Bottom |
+| popupColor                   | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 提示气泡的颜色。                                             |
+| enableArrow                  | boolean                                                      | 否   | 是否显示箭头。<br/>从API Version 9开始，如果箭头所在方位侧的气泡长度不足以显示下箭头，则会默认不显示箭头。比如：placement设置为Left，此时如果气泡高度小于箭头的宽度（32vp）与气泡圆角两倍（48vp）之和（80vp），则实际不会显示箭头。<br/>默认值：true |
+| autoCancel                   | boolean                                                      | 否   | 页面有操作时，是否自动关闭气泡。<br/>默认值：true            |
+| onStateChange                | (event:&nbsp;{&nbsp;isVisible:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void | 否   | 弹窗状态变化事件回调，参数为弹窗当前的显示状态。             |
+| maskColor                    | [Color](ts-appendix-enums.md#color)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](#resource) | 否   | 设置气泡遮罩层颜色。                                         |
+| arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length)                                 | 否   | popup箭头在弹窗处的偏移。箭头在气泡上下方时，数值为0表示箭头居最左侧，偏移量为箭头至最左侧的距离，默认居中。箭头在气泡左右侧时，偏移量为箭头至最上侧的距离，默认居中。如果显示在屏幕边缘，气泡会自动左右偏移，数值为0时箭头始终指向绑定组件。 |
+| showInSubWindow<sup>9+</sup> | boolean                                                      | 否   | 是否在子窗口显示气泡，默认值为false。                        |
 
 
 ## 示例
@@ -54,7 +55,7 @@ struct PopupExample {
   // popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
-      Image($r("app.media.image")).width(24).height(24).margin({ left: -5 })
+      Image($r("app.media.icon")).width(24).height(24).margin({ left: -5 })
       Text('Custom Popup').fontSize(10)
     }.width(100).height(50).padding(5)
   }
@@ -103,7 +104,7 @@ struct PopupExample {
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
           placement: Placement.Top,
-          mask: {color:'0x33000000'},
+          maskColor: '0x33000000',
           popupColor: Color.Yellow,
           enableArrow: true,
           showInSubWindow: false,

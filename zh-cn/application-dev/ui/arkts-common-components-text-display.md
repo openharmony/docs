@@ -40,7 +40,7 @@ Text可通过以下两种方式来创建：
 [Span](../reference/arkui-ts/ts-basic-components-span.md)只能作为Text组件的子组件显示文本内容。可以在一个Text内添加多个Span来显示一段信息，例如产品说明书、承诺书等。
 
 - 创建Span。
-  Span组件需要写到Text组件内，单独写Span组件不会显示信息，Text与Span同时配置文本内容内容时，Span内容覆盖Text内容。
+  Span组件需要写到Text组件内，单独写Span组件不会显示信息，Text与Span同时配置文本内容时，Span内容覆盖Text内容。
 
 
   ```ts
