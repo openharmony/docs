@@ -2228,7 +2228,7 @@ OH_Drawing_TextStyle* OH_Drawing_CreateTextStyle (void )
 
 **描述**
 
-创建OH_Drawing_TextStyle。
+创建指向OH_Drawing_TextStyle对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2247,7 +2247,7 @@ OH_Drawing_Typography* OH_Drawing_CreateTypography (OH_Drawing_TypographyCreate 
 
 **描述**
 
-创建OH_Drawing_Typography。
+创建指向OH_Drawing_Typography对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2257,7 +2257,7 @@ OH_Drawing_Typography* OH_Drawing_CreateTypography (OH_Drawing_TypographyCreate 
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针。 |
+| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 |
 
 **返回：**
 
@@ -2282,8 +2282,8 @@ OH_Drawing_TypographyCreate* OH_Drawing_CreateTypographyHandler (OH_Drawing_Typo
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle的指针。 |
-| OH_Drawing_FontCollection | 指向OH_Drawing_FontCollection的指针。 |
+| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 |
+| OH_Drawing_FontCollection | 指向OH_Drawing_FontCollection的指针，由[OH_Drawing_CreateFontCollection](#oh_drawing_createfontcollection)获取。 |
 
 **返回：**
 
@@ -2298,7 +2298,7 @@ OH_Drawing_TypographyStyle* OH_Drawing_CreateTypographyStyle (void )
 
 **描述**
 
-创建OH_Drawing_TypographyStyle
+创建指向OH_Drawing_TypographyStyle对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2348,7 +2348,7 @@ void OH_Drawing_DestroyTextStyle (OH_Drawing_TextStyle * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 
 
 ### OH_Drawing_DestroyTypography()
@@ -2369,7 +2369,7 @@ void OH_Drawing_DestroyTypography (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 
 ### OH_Drawing_DestroyTypographyHandler()
@@ -2390,7 +2390,7 @@ void OH_Drawing_DestroyTypographyHandler (OH_Drawing_TypographyCreate * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针。 |
+| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 |
 
 
 ### OH_Drawing_DestroyTypographyStyle()
@@ -2411,7 +2411,7 @@ void OH_Drawing_DestroyTypographyStyle (OH_Drawing_TypographyStyle * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针。 |
+| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 |
 
 
 ### OH_Drawing_FilterCreate()
@@ -2707,7 +2707,7 @@ size_t OH_Drawing_GetEndFromRange (OH_Drawing_Range * )
 
 **描述**
 
-获取OH_Drawing_Range对象结束位置
+获取OH_Drawing_Range对象结束位置。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2834,7 +2834,7 @@ size_t OH_Drawing_GetStartFromRange (OH_Drawing_Range * )
 
 **描述**
 
-获取OH_Drawing_Range对象开始位置
+获取OH_Drawing_Range对象开始位置。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3759,8 +3759,8 @@ void OH_Drawing_SetTextStyleBaseLine (OH_Drawing_TextStyle * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
-| int | OH_Drawing_TextBaseline枚举类型。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
+| int | 设置字体基线位置，设置1基线位于底部，设置0或其它基线在中间偏下的位置，具体可见[OH_Drawing_TextBaseline](#oh_drawing_textbaseline)枚举。 |
 
 
 ### OH_Drawing_SetTextStyleColor()
@@ -3781,7 +3781,7 @@ void OH_Drawing_SetTextStyleColor (OH_Drawing_TextStyle * , uint32_t  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 | uint32_t | 颜色。 |
 
 
@@ -3803,8 +3803,8 @@ void OH_Drawing_SetTextStyleDecoration (OH_Drawing_TextStyle * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
-| int | OH_Drawing_TextDecoration枚举类型。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
+| int | 设置装饰，设置1为下划线，设置2为上划线，设置3为删除线，设置0或其它为无装饰，具体可见[OH_Drawing_TextDecoration](#oh_drawing_textdecoration)枚举。 |
 
 
 ### OH_Drawing_SetTextStyleDecorationColor()
@@ -3825,7 +3825,7 @@ void OH_Drawing_SetTextStyleDecorationColor (OH_Drawing_TextStyle * , uint32_t  
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 | uint32_t | 颜色。 |
 
 
@@ -3837,7 +3837,7 @@ void OH_Drawing_SetTextStyleDecorationStyle (OH_Drawing_TextStyle * , int  )
 
 **描述**
 
-设置文本装饰样式
+设置文本装饰样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3847,7 +3847,7 @@ void OH_Drawing_SetTextStyleDecorationStyle (OH_Drawing_TextStyle * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 | int | 设置的文本装饰样式，支持可选的装饰样式具体可见[OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle)枚举。 |
 
 
@@ -3859,7 +3859,7 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale (OH_Drawing_TextStyle * , d
 
 **描述**
 
-设置文本装饰线的厚度缩放比例
+设置文本装饰线的厚度缩放比例。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3869,8 +3869,8 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale (OH_Drawing_TextStyle * , d
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
-| double | 缩放比例 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
+| double | 缩放比例。 |
 
 
 ### OH_Drawing_SetTextStyleEllipsis()
@@ -3881,7 +3881,7 @@ void OH_Drawing_SetTextStyleEllipsis (OH_Drawing_TextStyle * , const char *  )
 
 **描述**
 
-设置文本的省略号内容
+设置文本的省略号内容。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3891,8 +3891,8 @@ void OH_Drawing_SetTextStyleEllipsis (OH_Drawing_TextStyle * , const char *  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
-| char\* | 设置省略号内容，数据类型为指向char的指针 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
+| char\* | 设置省略号内容，数据类型为指向char的指针。 |
 
 
 ### OH_Drawing_SetTextStyleEllipsisModal()
@@ -3903,7 +3903,7 @@ void OH_Drawing_SetTextStyleEllipsisModal (OH_Drawing_TextStyle * , int  )
 
 **描述**
 
-设置文本的省略号样式
+设置文本的省略号样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3913,7 +3913,7 @@ void OH_Drawing_SetTextStyleEllipsisModal (OH_Drawing_TextStyle * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 | int | 设置省略号样式，支持可选的省略号样式具体可见[OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal)枚举。 |
 
 
@@ -3935,7 +3935,7 @@ void OH_Drawing_SetTextStyleFontFamilies (OH_Drawing_TextStyle * , int , const c
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 | int | 字体名称数量。 |
 | char | 指向字体类型的指针。 |
 
@@ -3958,7 +3958,7 @@ void OH_Drawing_SetTextStyleFontHeight (OH_Drawing_TextStyle * , double  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 | double | 字体高度。 |
 
 
@@ -3980,7 +3980,7 @@ void OH_Drawing_SetTextStyleFontSize (OH_Drawing_TextStyle * , double  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 | double | 字号。 |
 
 
@@ -4002,8 +4002,8 @@ void OH_Drawing_SetTextStyleFontStyle (OH_Drawing_TextStyle * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
-| int | OH_Drawing_FontStyle枚举类型。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
+| int | 设置字体风格，设置1为斜体，设置0或其它为非斜体，具体可见[OH_Drawing_FontStyle](#oh_drawing_fontstyle)枚举。 |
 
 
 ### OH_Drawing_SetTextStyleFontWeight()
@@ -4024,8 +4024,8 @@ void OH_Drawing_SetTextStyleFontWeight (OH_Drawing_TextStyle * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
-| int | OH_Drawing_FontWeight枚举类型。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
+| int | 设置字重，设置0字重为thin，设置1字重为extra-light，设置2字重为light，设置4字重为medium，设置5字重为semi-bold，设置6字重为bold，设置7字重为extra-bold，设置8字重为black，设置3或其它字重为normal/regular，具体可见[OH_Drawing_FontWeight](#oh_drawing_fontweight)枚举。 |
 
 
 ### OH_Drawing_SetTextStyleHalfLeading()
@@ -4036,7 +4036,7 @@ void OH_Drawing_SetTextStyleHalfLeading (OH_Drawing_TextStyle * , bool  )
 
 **描述**
 
-设置文本为一半行间距
+设置文本为一半行间距。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4046,8 +4046,8 @@ void OH_Drawing_SetTextStyleHalfLeading (OH_Drawing_TextStyle * , bool  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
-| bool | 设置一半行间距是否生效，true表示生效，false表示不生效 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
+| bool | 设置一半行间距是否生效，true表示生效，false表示不生效。 |
 
 
 ### OH_Drawing_SetTextStyleLetterSpacing()
@@ -4058,7 +4058,7 @@ void OH_Drawing_SetTextStyleLetterSpacing (OH_Drawing_TextStyle * , double  )
 
 **描述**
 
-设置文本的字符间距
+设置文本的字符间距。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4068,8 +4068,8 @@ void OH_Drawing_SetTextStyleLetterSpacing (OH_Drawing_TextStyle * , double  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
-| double | 间距大小 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
+| double | 间距大小。 |
 
 
 ### OH_Drawing_SetTextStyleLocale()
@@ -4090,7 +4090,7 @@ void OH_Drawing_SetTextStyleLocale (OH_Drawing_TextStyle * , const char *  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 | char | 语言区域，数据类型为指向char的指针。 |
 
 
@@ -4102,7 +4102,7 @@ void OH_Drawing_SetTextStyleWordSpacing (OH_Drawing_TextStyle * , double  )
 
 **描述**
 
-设置文本的单词间距
+设置文本的单词间距。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4112,8 +4112,8 @@ void OH_Drawing_SetTextStyleWordSpacing (OH_Drawing_TextStyle * , double  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针 |
-| double | 间距大小 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
+| double | 间距大小。 |
 
 
 ### OH_Drawing_SetTypographyTextAlign()
@@ -4134,8 +4134,8 @@ void OH_Drawing_SetTypographyTextAlign (OH_Drawing_TypographyStyle * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针。 |
-| int | OH_Drawing_TextAlign枚举类型。 |
+| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 |
+| int | 设置文本对齐方式，设置1为右对齐，设置2为居中对齐，设置3为两端对齐，设置4为与文字方向相同，设置5为文字方向相反，设置0或其它为左对齐，具体可见[OH_Drawing_TextAlign](#oh_drawing_textalign)枚举。 |
 
 
 ### OH_Drawing_SetTypographyTextBreakStrategy()
@@ -4156,7 +4156,7 @@ void OH_Drawing_SetTypographyTextBreakStrategy (OH_Drawing_TypographyStyle * , i
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
+| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 |
 | int | 设置中断策略，支持可选的中断策略具体可见[OH_Drawing_BreakStrategy](#oh_drawing_breakstrategy)枚举。 |
 
 
@@ -4178,8 +4178,8 @@ void OH_Drawing_SetTypographyTextDirection (OH_Drawing_TypographyStyle * , int  
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针。 |
-| int | OH_Drawing_TextDirection枚举类型。 |
+| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 |
+| int | 设置文本方向，设置1为从左到右，设置0或其它为从右到左，具体可见[OH_Drawing_TextDirection](#oh_drawing_textdirection)枚举。 |
 
 
 ### OH_Drawing_SetTypographyTextEllipsisModal()
@@ -4190,7 +4190,7 @@ void OH_Drawing_SetTypographyTextEllipsisModal (OH_Drawing_TypographyStyle * , i
 
 **描述**
 
-设置文本的省略号样式
+设置文本的省略号样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4200,7 +4200,7 @@ void OH_Drawing_SetTypographyTextEllipsisModal (OH_Drawing_TypographyStyle * , i
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
+| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 |
 | int | 设置省略号样式，支持可选的省略号样式样式具体可见[OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal)枚举。 |
 
 
@@ -4222,7 +4222,7 @@ void OH_Drawing_SetTypographyTextMaxLines (OH_Drawing_TypographyStyle * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针。 |
+| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 |
 | int | 最大行数。 |
 
 
@@ -4234,7 +4234,7 @@ void OH_Drawing_SetTypographyTextWordBreakType (OH_Drawing_TypographyStyle * , i
 
 **描述**
 
-设置单词的断词方式
+设置单词的断词方式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4244,7 +4244,7 @@ void OH_Drawing_SetTypographyTextWordBreakType (OH_Drawing_TypographyStyle * , i
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针 |
+| OH_Drawing_TypographyStyle | 指向OH_Drawing_TypographyStyle对象的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 |
 | int | 设置断词方式，支持可选的断词方式样式具体可见[OH_Drawing_WordBreakType](#oh_drawing_wordbreaktype)枚举。 |
 
 
@@ -4516,7 +4516,7 @@ bool OH_Drawing_TypographyDidExceedMaxLines (OH_Drawing_Typography * )
 
 **描述**
 
-获取文本是否超过最大行
+获取文本是否超过最大行。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4526,7 +4526,7 @@ bool OH_Drawing_TypographyDidExceedMaxLines (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
@@ -4551,7 +4551,7 @@ double OH_Drawing_TypographyGetAlphabeticBaseline (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
@@ -4566,7 +4566,7 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
 
 **描述**
 
-获取坐标处文本的索引位置和亲和性
+获取坐标处文本的索引位置和亲和性。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4576,9 +4576,9 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
-| double | 光标的x坐标 |
-| double | 光标的y坐标 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
+| double | 光标的x坐标。 |
+| double | 光标的y坐标。 |
 
 **返回：**
 
@@ -4593,7 +4593,7 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
 
 **描述**
 
-获取坐标处文本所属字符簇的索引位置和亲和性，字符簇指一个或多个字符组成的整体
+获取坐标处文本所属字符簇的索引位置和亲和性，字符簇指一个或多个字符组成的整体。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4603,9 +4603,9 @@ OH_Drawing_PositionAndAffinity* OH_Drawing_TypographyGetGlyphPositionAtCoordinat
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
-| double | 光标的x坐标 |
-| double | 光标的y坐标 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
+| double | 光标的x坐标。 |
+| double | 光标的y坐标。 |
 
 **返回：**
 
@@ -4630,7 +4630,7 @@ double OH_Drawing_TypographyGetHeight (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
@@ -4655,7 +4655,7 @@ double OH_Drawing_TypographyGetIdeographicBaseline (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
@@ -4670,7 +4670,7 @@ size_t OH_Drawing_TypographyGetLineCount (OH_Drawing_Typography * )
 
 **描述**
 
-获取文本行数
+获取文本行数。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4680,11 +4680,11 @@ size_t OH_Drawing_TypographyGetLineCount (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
-返回行数
+返回行数。
 
 
 ### OH_Drawing_TypographyGetLineHeight()
@@ -4695,7 +4695,7 @@ double OH_Drawing_TypographyGetLineHeight (OH_Drawing_Typography * , int  )
 
 **描述**
 
-获取指定行的行高
+获取指定行的行高。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4705,12 +4705,12 @@ double OH_Drawing_TypographyGetLineHeight (OH_Drawing_Typography * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
-| int | 要指定的行数 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
+| int | 要指定的行数。 |
 
 **返回：**
 
-返回指定行的行高
+返回指定行的行高。
 
 
 ### OH_Drawing_TypographyGetLineWidth()
@@ -4721,7 +4721,7 @@ double OH_Drawing_TypographyGetLineWidth (OH_Drawing_Typography * , int  )
 
 **描述**
 
-获取指定行的行宽
+获取指定行的行宽。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4731,12 +4731,12 @@ double OH_Drawing_TypographyGetLineWidth (OH_Drawing_Typography * , int  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
-| int | 要指定的行数 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
+| int | 要指定的行数。 |
 
 **返回：**
 
-返回指定行的行宽
+返回指定行的行宽。
 
 
 ### OH_Drawing_TypographyGetLongestLine()
@@ -4757,7 +4757,7 @@ double OH_Drawing_TypographyGetLongestLine (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
@@ -4782,7 +4782,7 @@ double OH_Drawing_TypographyGetMaxIntrinsicWidth (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
@@ -4807,7 +4807,7 @@ double OH_Drawing_TypographyGetMaxWidth (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
@@ -4832,7 +4832,7 @@ double OH_Drawing_TypographyGetMinIntrinsicWidth (OH_Drawing_Typography * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
@@ -4847,7 +4847,7 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForPlaceholders (OH_Drawing_Typ
 
 **描述**
 
-获取占位符的文本框
+获取占位符的文本框。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4857,7 +4857,7 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForPlaceholders (OH_Drawing_Typ
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 
 **返回：**
 
@@ -4872,7 +4872,7 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForRange (OH_Drawing_Typography
 
 **描述**
 
-获取指定范围内的文本框
+获取指定范围内的文本框。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4882,9 +4882,9 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForRange (OH_Drawing_Typography
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
-| size_t | 设置开始位置 |
-| size_t | 设置结束位置 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
+| size_t | 设置开始位置。 |
+| size_t | 设置结束位置。 |
 | OH_Drawing_RectHeightStyle | 设置高度样式，支持可选的高度样式具体可见[OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle)枚举。 |
 | OH_Drawing_RectWidthStyle | 设置宽度样式，支持可选的宽度样式具体可见[OH_Drawing_RectWidthStyle](#oh_drawing_rectwidthstyle)枚举。 |
 
@@ -4901,7 +4901,7 @@ OH_Drawing_Range* OH_Drawing_TypographyGetWordBoundary (OH_Drawing_Typography * 
 
 **描述**
 
-获取单词的边界
+获取单词的边界。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4911,8 +4911,8 @@ OH_Drawing_Range* OH_Drawing_TypographyGetWordBoundary (OH_Drawing_Typography * 
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针 |
-| size_t | 单词索引 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
+| size_t | 单词索引。 |
 
 **返回：**
 
@@ -4927,7 +4927,7 @@ void OH_Drawing_TypographyHandlerAddPlaceholder (OH_Drawing_TypographyCreate * ,
 
 **描述**
 
-设置占位符
+设置占位符。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4937,8 +4937,8 @@ void OH_Drawing_TypographyHandlerAddPlaceholder (OH_Drawing_TypographyCreate * ,
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针 |
-| [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) | 指向OH_Drawing_PlaceholderSpan对象的指针 |
+| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 |
+| [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) | 指向OH_Drawing_PlaceholderSpan对象的指针。 |
 
 
 ### OH_Drawing_TypographyHandlerAddText()
@@ -4959,7 +4959,7 @@ void OH_Drawing_TypographyHandlerAddText (OH_Drawing_TypographyCreate * , const 
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针。 |
+| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 |
 | char | 指向文本内容的指针。 |
 
 
@@ -4981,7 +4981,7 @@ void OH_Drawing_TypographyHandlerPopTextStyle (OH_Drawing_TypographyCreate * )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针。 |
+| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 |
 
 
 ### OH_Drawing_TypographyHandlerPushTextStyle()
@@ -5002,8 +5002,8 @@ void OH_Drawing_TypographyHandlerPushTextStyle (OH_Drawing_TypographyCreate * , 
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针。 |
-| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针。 |
+| OH_Drawing_TypographyCreate | 指向OH_Drawing_TypographyCreate对象的指针，由[OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler)获取。 |
+| OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 
 
 ### OH_Drawing_TypographyLayout()
@@ -5024,7 +5024,7 @@ void OH_Drawing_TypographyLayout (OH_Drawing_Typography * , double  )
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
 | double | 文本最大宽度 |
 
 
@@ -5046,7 +5046,7 @@ void OH_Drawing_TypographyPaint (OH_Drawing_Typography * , OH_Drawing_Canvas * ,
 
 | 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针。 |
-| OH_Drawing_Canvas | 指向OH_Drawing_Canvas对象的指针。 |
+| OH_Drawing_Typography | 指向OH_Drawing_Typography对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 |
+| OH_Drawing_Canvas | 指向OH_Drawing_Canvas对象的指针，由[OH_Drawing_CanvasCreate](#oh_drawing_canvascreate)获取。 |
 | double | x坐标。 |
 | double | y坐标。 |
