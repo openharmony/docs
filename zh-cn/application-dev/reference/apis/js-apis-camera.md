@@ -1286,7 +1286,7 @@ import { BusinessError } from '@ohos.base';
 function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to open the camera. ${err.code}`);
+      console.error(`Failed to open the camera, error code: ${err.code}.`);
       return;
     }
     console.info('Callback returned with camera opened.');
@@ -1327,7 +1327,7 @@ function openCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.open().then(() => {
     console.info('Promise returned with camera opened.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to open the camera. ${err.code}`);
+    console.error(`Failed to open the camera, error code: ${err.code}.`);
   });
 }
 ```
@@ -1362,7 +1362,7 @@ import { BusinessError } from '@ohos.base';
 function closeCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.close((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to close the cameras. ${err.code}`);
+      console.error(`Failed to close the cameras, error code: ${err.code}.`);
       return;
     }
     console.info('Callback returned with camera closed.');
@@ -1401,7 +1401,7 @@ function closeCameraInput(cameraInput: camera.CameraInput): void {
   cameraInput.close().then(() => {
     console.info('Promise returned with camera closed.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to close the cameras. ${err.code}`);
+    console.error(`Failed to close the cameras, error code: ${err.code}.`);
   });
 }
 ```
@@ -1823,7 +1823,7 @@ import { BusinessError } from '@ohos.base';
 function startCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start the session ${err.code}`);
+      console.error(`Failed to start the session, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate the session start success.');
@@ -1863,7 +1863,7 @@ function startCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.start().then(() => {
     console.info('Promise returned to indicate the session start success.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to start the session ${err.code}`);
+    console.error(`Failed to start the session, error code: ${err.code}.`);
   });
 }
 ```
@@ -1898,7 +1898,7 @@ import { BusinessError } from '@ohos.base';
 function stopCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.stop((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to stop the session ${err.code}`);
+      console.error(`Failed to stop the session, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate the session stop success.');
@@ -1937,7 +1937,7 @@ function stopCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.stop().then(() => {
     console.info('Promise returned to indicate the session stop success.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to stop the session ${err.code}`);
+    console.error(`Failed to stop the session, error code: ${err.code}.`);
   });
 }
 ```
@@ -1972,7 +1972,7 @@ import { BusinessError } from '@ohos.base';
 function releaseCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.release((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to release the CaptureSession instance ${err.code}`);
+      console.error(`Failed to release the CaptureSession instance, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate that the CaptureSession instance is released successfully.');
@@ -2011,7 +2011,7 @@ function releaseCaptureSession(captureSession: camera.CaptureSession): void {
   captureSession.release().then(() => {
     console.info('Promise returned to indicate that the CaptureSession instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to release the CaptureSession instance ${err.code}`);
+    console.error(`Failed to release the CaptureSession instance, error code: ${err.code}.`);
   });
 }
 ```
@@ -3493,7 +3493,55 @@ function getSupportedPortraitEffects(portraitSession: camera.PortraitSession): c
 ## CameraOutput
 
 会话中[CaptureSession](#capturesession)使用的输出信息，output的基类。
+### release
 
+release(callback: AsyncCallback\<void\>): void
+
+释放输出资源，通过注册回调函数获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                  | 必填 | 说明                 |
+| -------- | -------------------- | ---- | ------------------- |
+| callback | AsyncCallback\<void\> | 是   | 回调函数，用于获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
+**示例：**
+CameraOutput是父类，无示例代码，可参考子类[PreviewOutput](#previewoutput)。
+
+### release
+
+release(): Promise\<void\>
+
+释放输出资源，通过Promise获取结果。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                     |
+| -------------- | ----------------------- |
+| Promise\<void\> | 使用Promise的方式获取结果。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
+
+| 错误码ID         | 错误信息        |
+| --------------- | --------------- |
+| 7400201                |  Camera service fatal error.                           |
+
+**示例：**
+CameraOutput是父类，无示例代码，可参考子类[PreviewOutput](#previewoutput)。
 ## PreviewOutput
 
 预览输出类。继承[CameraOutput](#cameraoutput)
@@ -3528,7 +3576,7 @@ import { BusinessError } from '@ohos.base';
 function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start the previewOutput. ${err.code}`);
+      console.error(`Failed to start the previewOutput, error code: ${err.code}.`);
       return;
     }
     console.info('Callback returned with previewOutput started.');
@@ -3567,7 +3615,7 @@ function startPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.start().then(() => {
     console.info('Promise returned with previewOutput started.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to previewOutput start '+ err.code);
+    console.error(`Failed to previewOutput start, error code: ${err.code}.`);
   });
 }
 ```
@@ -3625,7 +3673,7 @@ function stopPreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.stop().then(() => {
     console.info('Returned with previewOutput stopped.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to previewOutput stop '+ err.code);
+    console.error(`Failed to previewOutput stop, error code: ${err.code}.`);
   });
 }
 ```
@@ -3660,7 +3708,7 @@ import { BusinessError } from '@ohos.base';
 function releasePreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.release((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to release the PreviewOutput instance ${err.code}`);
+      console.error(`Failed to release the PreviewOutput instance, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
@@ -3699,7 +3747,7 @@ function releasePreviewOutput(previewOutput: camera.PreviewOutput): void {
   previewOutput.release().then(() => {
     console.info('Promise returned to indicate that the PreviewOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to previewOutput release '+ err.code);
+    console.error(`Failed to previewOutput release, error code: ${err.code}.`);
   });
 }
 ```
@@ -3981,7 +4029,7 @@ import { BusinessError } from '@ohos.base';
 function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to capture the photo ${err.code}`);
+      console.error(`Failed to capture the photo, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate the photo capture request success.');
@@ -4021,7 +4069,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture().then(() => {
     console.info('Promise returned to indicate that photo capture request success.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to photoOutput capture '+ err.code);
+    console.error(`Failed to photoOutput capture, error code: ${err.code}.`);
   });
 }
 ```
@@ -4070,7 +4118,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
   }
   photoOutput.capture(settings, (err: BusinessError) => {
     if (err) {
-      console.error(`Failed to capture the photo ${err.code}`);
+      console.error(`Failed to capture the photo, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate the photo capture request success.');
@@ -4128,7 +4176,7 @@ function capture(photoOutput: camera.PhotoOutput): void {
   photoOutput.capture(settings).then(() => {
     console.info('Promise returned to indicate that photo capture request success.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to photoOutput capture '+ err.code);
+    console.error(`Failed to photoOutput capture, error code: ${err.code}.`);
   });
 }
 ```
@@ -4186,7 +4234,7 @@ import { BusinessError } from '@ohos.base';
 function releasePhotoOutput(photoOutput: camera.PhotoOutput): void {
   photoOutput.release((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to release the PreviewOutput instance ${err.code}`);
+      console.error(`Failed to release the PreviewOutput instance, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate that the PreviewOutput instance is released successfully.');
@@ -4225,7 +4273,7 @@ function releasePhotoOutput(photoOutput: camera.PhotoOutput): void {
   photoOutput.release().then(() => {
     console.info('Promise returned to indicate that the PreviewOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to photoOutput release '+ err.code);
+    console.error(`Failed to photoOutput release, error code: ${err.code}.`);
   });
 }
 ```
@@ -4687,7 +4735,7 @@ import { BusinessError } from '@ohos.base';
 function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start the video output ${err.code}`);
+      console.error(`Failed to start the video output, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate the video output start success.');
@@ -4727,7 +4775,7 @@ function startVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.start().then(() => {
     console.info('Promise returned to indicate that start method execution success.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to videoOutput start '+ err.code);
+    console.error(`Failed to videoOutput start, error code: ${err.code}.`);
   });
 }
 ```
@@ -4754,7 +4802,7 @@ import { BusinessError } from '@ohos.base';
 function stopVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.stop((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to stop the video output ${err.code}`);
+      console.error(`Failed to stop the video output, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate the video output stop success.');
@@ -4785,7 +4833,7 @@ function stopVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.stop().then(() => {
     console.info('Promise returned to indicate that stop method execution success.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to videoOutput stop '+ err.code);
+    console.error(`Failed to videoOutput stop, error code: ${err.code}.`);
   });
 }
 ```
@@ -4820,7 +4868,7 @@ import { BusinessError } from '@ohos.base';
 function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.release((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to release the PreviewOutput instance ${err.code}`);
+      console.error(`Failed to release the PreviewOutput instance, error code: ${err.code}.`);
       return;
     }
     console.info('Callback invoked to indicate that the videoOutput instance is released successfully.');
@@ -4859,7 +4907,7 @@ function releaseVideoOutput(videoOutput: camera.VideoOutput): void {
   videoOutput.release().then(() => {
     console.info('Promise returned to indicate that the videoOutput instance is released successfully.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to videoOutput release '+ err.code);
+    console.error(`Failed to videoOutput release, error code: ${err.code}.`);
   });
 }
 ```
@@ -5046,7 +5094,7 @@ import { BusinessError } from '@ohos.base';
 function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start metadataOutput. ${err.code}`);
+      console.error(`Failed to start metadataOutput, error code: ${err.code}.`);
       return;
     }
     console.info('Callback returned with metadataOutput started.');
@@ -5086,7 +5134,7 @@ function startMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.start().then(() => {
     console.info('Callback returned with metadataOutput started.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to metadataOutput start '+ err.code);
+    console.error(`Failed to metadataOutput start, error code: ${err.code}.`);
   });
 }
 ```
@@ -5113,7 +5161,7 @@ import { BusinessError } from '@ohos.base';
 function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.stop((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to stop the metadataOutput. ${err.code}`);
+      console.error(`Failed to stop the metadataOutput, error code: ${err.code}.`);
       return;
     }
     console.info('Callback returned with metadataOutput stopped.');
@@ -5144,7 +5192,7 @@ function stopMetadataOutput(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.stop().then(() => {
     console.info('Callback returned with metadataOutput stopped.');
   }).catch((err: BusinessError) => {
-    console.error('Failed to metadataOutput stop '+ err.code);
+    console.error(`Failed to metadataOutput stop, error code: ${err.code}`);
   });
 }
 ```
@@ -5171,7 +5219,7 @@ import { BusinessError } from '@ohos.base';
 
 function registerMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
   metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
-    console.info(`metadata output metadataObjectsAvailable`);
+    console.info('metadata output metadataObjectsAvailable');
   });
 }
 ```
