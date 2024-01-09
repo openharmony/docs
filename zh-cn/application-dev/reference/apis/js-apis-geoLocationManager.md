@@ -87,17 +87,17 @@ import geoLocationManager from '@ohos.geoLocationManager';
 | placeName | string | 是 | 否  | 表示地区信息。 |
 | countryCode | string | 是 | 否  | 表示国家码信息。 |
 | countryName | string| 是 | 否 | 表示国家信息。 |
-| administrativeArea | string | 是 | 否 | 表示省份区域信息。 |
-| subAdministrativeArea | string | 是 | 否 | 表示子区域信息。 |
-| locality | string | 是 | 否 | 表示城市信息。 |
-| subLocality | string | 是 | 否 | 表示子城市信息。 |
-| roadName | string | 是 | 否 |表示路名信息。 |
+| administrativeArea | string | 是 | 否 | 表示国家以下的一级行政区，一般是省/州。 |
+| subAdministrativeArea | string | 是 | 否 | 表示国家以下的二级行政区，一般是市。 |
+| locality | string | 是 | 否 | 表示城市信息，一般是市。 |
+| subLocality | string | 是 | 否 | 表示子城市信息，一般是区/县。 |
+| roadName | string | 是 | 否 | 表示路名信息。 |
 | subRoadName | string | 是 | 否 | 表示子路名信息。 |
-| premises | string| 是 | 否|表示门牌号信息。 |
+| premises | string| 是 | 否| 表示门牌号信息。 |
 | postalCode | string | 是 | 否 | 表示邮政编码信息。 |
 | phoneNumber | string | 是 | 否 | 表示联系方式信息。 |
 | addressUrl | string | 是 | 否 | 表示位置信息附件的网址信息。 |
-| descriptions | Array&lt;string&gt; | 是 | 否 | 表示附加的描述信息。 |
+| descriptions | Array&lt;string&gt; | 是 | 否 | 表示附加的描述信息。目前包含城市编码cityCode（Array下标为0）和区划编码adminCode（Array下标为1），例如["025","320114001"]。 |
 | descriptionsSize | number | 是 | 否 | 表示附加的描述信息数量。取值范围为大于等于0，推荐该值小于10。 |
 | isFromMock | Boolean | 是 | 否 | 表示地名信息是否来自于逆地理编码模拟功能。<br>**系统API**：此接口为系统接口。 |
 

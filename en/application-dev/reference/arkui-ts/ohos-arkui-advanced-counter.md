@@ -20,6 +20,8 @@ Not supported
 
 CounterComponent({options:CounterOptions} )
 
+Defines a counter.
+
 **Decorator**: @Component
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -38,7 +40,7 @@ Defines the type and style parameters of the counter.
 
 | Name       | Type      | Mandatory       | Description                           |
 | ----------- | ---------- | ------| --------------------------------- |
-| type | [CounterTyle](#countertyle) | Yes  | Type of the current counter.|
+| type | [CounterType](#countertype) | Yes  | Type of the current counter.|
 | numberOptions | [NumberStyleOptions](#numberstyleoptions) | No   | Parameters of the number style counter.|
 | inlineOptions | [InlineStyleOptions](#inlinestyleoptions) | No| Parameters of the inline number style counter.  |
 | dateOptions | [DateStyleOptions](#datestyleoptions) | No| Parameters of the inline date style counter.|
@@ -52,7 +54,7 @@ A counter type must go with parameters of the matching counter style. Below is a
 | CounterTyle.INLINE      | InlineStyleOptions |
 | CounterTyle.INLINE_DATE | DateStyleOptions   |
 
-## CounterTyle
+## CounterType
 
 Enumerates the counter types.
 
@@ -64,6 +66,7 @@ Enumerates the counter types.
 | COMPACT     | Compact counter.            |
 | INLINE      | Inline number counter.|
 | INLINE_DATE | Inline date counter.      |
+
 ## CommonOptions
 
 Defines common attributes and events of counters.
@@ -143,7 +146,8 @@ Defines common date attributes and methods.
 ### Example 1
 
 ```ts
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import {CounterType, CounterComponent} from '@ohos.arkui.advanced.Counter';
+
 @Entry
 @Component
 struct ListCounterExample {
@@ -168,7 +172,8 @@ struct ListCounterExample {
 ![listcounter](figures/listcounter.gif)
 ### Example 2
 ```ts
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import {CounterType, CounterComponent} from '@ohos.arkui.advanced.Counter';
+
 @Entry
 @Component
 struct CompactCounterExample {
@@ -193,7 +198,8 @@ struct CompactCounterExample {
 ![compactcounter](figures/compactcounter.gif)
 ### Example 3
 ```ts
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import {CounterType, CounterComponent} from '@ohos.arkui.advanced.Counter';
+
 @Entry
 @Component
 struct NumberStyleExample {
@@ -209,6 +215,7 @@ struct NumberStyleExample {
           max: 1000,
           textWidth: 100,
           onChange: (value: number) => {
+              console.log("onDateChange Date: " + value.toString());
           }
         } }
        })
@@ -219,7 +226,7 @@ struct NumberStyleExample {
 ![numberstyle](figures/numberstyle.gif)
 ### Example 4
 ```ts
-import {CounterType, CounterComponent, CounterOptions, DateData} from '@ohos.arkui.advanced.Counter';
+import {CounterType, CounterComponent, DateData} from '@ohos.arkui.advanced.Counter';
 @Entry
 @Component
 struct DataStyleExample {

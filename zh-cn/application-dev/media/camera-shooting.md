@@ -49,16 +49,19 @@
      receiver.on('imageArrival', (): void => {
        receiver.readNextImage((errCode: BusinessError, imageObj: image.Image): void => {
          if (errCode || imageObj === undefined) {
+           console.error('readNextImage failed');
            return;
          }
          imageObj.getComponent(image.ComponentType.JPEG, (errCode: BusinessError, component: image.Component): void => {
            if (errCode || component === undefined) {
+             console.error('getComponent failed');
              return;
            }
            let buffer: ArrayBuffer;
            if (component.byteBuffer) {
              buffer = component.byteBuffer;
            } else {
+             console.error('byteBuffer is null');
              return;
            }
            savePicture(buffer, imageObj);
@@ -77,12 +80,12 @@
      let photoSurfaceId: string | undefined = undefined;
      console.info('before ImageReceiver check');
      if (receiver !== undefined) {
-       console.info('ImageReceiver is ok');
+       console.info('receiver is not undefined');
        setImageArrivalCb(receiver);
        photoSurfaceId = await receiver.getReceivingSurfaceId();
        console.info(`ImageReceived id: ${JSON.stringify(photoSurfaceId)}`);
      } else {
-       console.error('ImageReceiver is not ok');
+       console.error('ImageReceiver is undefined');
      }
      return photoSurfaceId;
    }
@@ -235,7 +238,7 @@
   ```ts
   function onPhotoOutputError(photoOutput: camera.PhotoOutput): void {
     photoOutput.on('error', (error: BusinessError) => {
-      console.info(`Photo output error code: ${error.code}`);
+      console.error(`Photo output error code: ${error.code}`);
     });
   }
   ```

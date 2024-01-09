@@ -3,7 +3,6 @@
 
 To make your ArkTS widget more engaging, you can apply animations to it, including [explicit animation](../reference/arkui-ts/ts-explicit-animation.md), [property animation](../reference/arkui-ts/ts-animatorproperty.md), and [component transition](../reference/arkui-ts/ts-transition-animation-component.md). Just note the following restrictions when using the animations in ArkTS widgets.
 
-
 **Table 1** Restrictions on animation parameters
 
 | Name| Description| Description|
@@ -26,24 +25,32 @@ The following sample code implements the animation effect of button rotation.
 ```ts
 @Entry
 @Component
-struct AnimationCard {
+struct AttrAnimationCard {
   @State rotateAngle: number = 0;
 
   build() {
-    Row() {
-      Button('change rotate angle')
-        .height('20%')
-        .width('90%')
-        .margin('5%')
-        .onClick(() => {
-          this.rotateAngle = (this.rotateAngle === 0 ? 90 : 0);
-        })
-        .rotate({ angle: this.rotateAngle })
-        .animation({
-          curve: Curve.EaseOut,
-          playMode: PlayMode.Normal,
-        })
-    }.height('100%').alignItems(VerticalAlign.Center)
+    Column() {
+      Button() {
+        Text($r('app.string.change_rotate_angle'))
+          .fontColor('#45A6F4')
+          .fontSize(12)
+      }
+      .width(120)
+      .height(32)
+      .backgroundColor('#FFFFFF')
+      .borderRadius(16)
+      .onClick(() => {
+        this.rotateAngle = (this.rotateAngle === 0 ? 90 : 0);
+      })
+      .rotate({ angle: this.rotateAngle })
+      .animation({
+        curve: Curve.EaseOut,
+        playMode: PlayMode.Normal,
+      })
+    }.height('100%').width('100%')
+    .justifyContent(FlexAlign.Center)
+    .backgroundImage($r('app.media.CardExampleBkg'))
+    .backgroundImageSize(ImageSize.Cover)
   }
 }
 ```

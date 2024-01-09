@@ -10,11 +10,22 @@ You can bind a full-screen modal to a component through the **bindContentCover**
 >
 >  Route hopping is not supported.
 
-## Attributes
+## bindContentCover
 
-| Name              | Parameter                                      | Description                                    |
-| ---------------- | ---------------------------------------- | ---------------------------------------- |
-| bindContentCover | isShow: boolean,<br>builder: [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [ContentCoverOptions](#contentcoveroptions) | Binds a modal to the component, which can be displayed when the component is touched. The content of the modal is customizable. The transition type can be set to none, slide-up and slide-down animation, and opacity gradient animation.<br> **isShow**: whether to display the modal.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).<br>**builder**: content of the modal.<br> **options**: optional attributes of the modal.|
+bindContentCover(isShow: boolean, builder: CustomBuilder, options?: ContentCoverOptions)
+
+Binds a modal to the component, which can be displayed when the component is touched. The content of the modal is customizable. The transition type can be set to none, slide-up and slide-down animation, and opacity gradient animation.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                       | Mandatory| Description                                                        |
+| ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| isShow  | boolean                                     | Yes  | Whether to display the modal.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the modal.                                      |
+| options | [ContentCoverOptions](#contentcoveroptions) | No  | Optional attributes of the modal.                                |
+
 ## ContentCoverOptions
 | Name             | Type                                      | Mandatory  | Description           |
 | --------------- | ---------------------------------------- | ---- | ------------- |

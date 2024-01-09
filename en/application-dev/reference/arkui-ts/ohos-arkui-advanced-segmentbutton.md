@@ -55,9 +55,9 @@ Provides initial data and custom attributes for the segment button.
 | backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | Background color.<br>Default value: **\#0c182431** for tabs and **\#0c182431** for single-select and mult-select options|
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the option when selected.<br>Default value: **\#ffffffff** for tabs and **\#ff007dff** for single-select and mult-select options|
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | Image size. <br>Default value: { width: 24, height: 24 }<br>**NOTE**<br>This attribute is effective only for buttons that contain icons.|
-| buttonMargin            | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
-| textMargin              | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | Text margin.<br>Default value: **0**                                     |
-| backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**                     |
+| buttonPadding           | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
+| textPadding             | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) | Text margin.<br>Default value: **0**                                     |
+| backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**                        |
 
 ### constructor
 
@@ -143,8 +143,8 @@ Defines the attributes that can be customized for the segment button.
 | backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | Background color.<br>Default value: **\#0c182431** for tabs and **\#0c182431** for single-select and mult-select options|
 | selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | Background color of the option when selected.<br>Default value: **\#ffffffff** for tabs and **\#ff007dff** for single-select and mult-select options|
 | imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | Image size. <br>Default value: { width: 24, height: 24 }<br>**NOTE**<br>This attribute is effective only for buttons that contain icons.|
-| buttonMargin            | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
-| textMargin              | [Margin](ts-types.md#margin)\|[Dimension](ts-types.md#dimension10) | Text margin.<br>Default value: **0**                                     |
+| buttonPadding           | [Padding](ts-types.md#padding)\|[Dimension](ts-types.md#dimension10) | Button margin.<br>Default value: **{ top: 4, right: 8, bottom: 4, left: 8 }** for icon buttons and text buttons, and **{ top: 6, right: 8, bottom: 6, left: 8 }** for icon+text buttons.|
+| textPadding             | [Padding](ts-types.md#padding)\|[Dimension](ts-types.md#dimension10) | Text margin.<br>Default value: **0**                                     |
 | backgroundBlurStyle     | [BlurStyle](ts-appendix-enums.md#blurstyle9)                 | Background blur style applied between the content and the background.<br>Default value: **BlurStyle.NONE**                     |
 
 ## TabSegmentButtonConstructionOptions
@@ -262,7 +262,7 @@ Removes the last element from this array and returns that element.
 
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
-| [SegmentButtonItemOptions](#segmentbuttonitemoptions)\| undefined | Element removed from the array.|
+| [SegmentButtonItemOptions](#segmentbuttonitemoptions) \| undefined | Element removed from the array.|
 
 >**NOTE**
 >
@@ -278,7 +278,7 @@ Removes the first element from this array and returns that element.
 
 | Type                                                        | Description          |
 | ------------------------------------------------------------ | -------------- |
-| [SegmentButtonItemOptions](#segmentbuttonitemoptions)\| undefined | Element removed from the array.|
+| [SegmentButtonItemOptions](#segmentbuttonitemoptions) \| undefined | Element removed from the array.|
 
 >**NOTE**
 >
@@ -357,9 +357,9 @@ Provides the options of the segment button consisting of tabs. It inherits [TabS
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type | Mandatory| Description                  |
-| ---- | ----- | ---- | ---------------------- |
-| type | "tab" | No  | Segment button consisting of tabs.|
+| Name| Type | Description                  |
+| ---- | ----- | ---------------------- |
+| type | "tab" | Segment button consisting of tabs.|
 
 ## CapsuleSegmentButtonOptions
 
@@ -367,9 +367,9 @@ Provides the options of the segment button consisting of single-select or multi-
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name| Type     | Mandatory| Description                         |
-| ---- | --------- | ---- | ----------------------------- |
-| type | "capsule" | No  | Segment button consisting of single-select or multi-select options.|
+| Name| Type     | Description                         |
+| ---- | --------- | ----------------------------- |
+| type | "capsule" | Segment button consisting of single-select or multi-select options.|
 
 ## SegmentButtonTextItem
 
@@ -552,7 +552,7 @@ struct Index {
     }] as ItemRestriction<SegmentButtonTextItem>,
     backgroundColor: Color.Green,
     selectedBackgroundColor: Color.Orange,
-    textMargin: { top: 10, right: 10, bottom: 10, left: 10 },
+    textPadding: { top: 10, right: 10, bottom: 10, left: 10 },
   })
   @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [{ text: 'Single-select 1' }, { text: 'Single-select 2' }, { text: 'Single-select 3' }] as SegmentButtonItemTuple,
@@ -578,7 +578,7 @@ struct Index {
     ] as SegmentButtonItemTuple,
     multiply: false,
     imageSize: { width: 40, height: 40 },
-    buttonMargin: { top: 6, right: 10, bottom: 6, left: 10 },
+    buttonPadding: { top: 6, right: 10, bottom: 6, left: 10 },
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
