@@ -44,6 +44,21 @@ Stack组件通过[alignContent参数](../reference/arkui-ts/ts-appendix-enums.md
 
 ![zh-cn_image_0000001562940621](figures/zh-cn_image_0000001562940621.png)
 
+```ts
+// xxx.ets
+@Entry
+@Component
+struct StackExample {
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Text('Stack').width('90%').height('100%').backgroundColor('#e1dede').align(Alignment.BottomEnd)
+      Text('Item 1').width('70%').height('80%').backgroundColor(0xd2cab3).align(Alignment.BottomEnd)
+      Text('Item 2').width('50%').height('60%').backgroundColor(0xc1cbac).align(Alignment.BottomEnd)
+    }.width('100%').height(150).margin({ top: 5 })
+  }
+}
+```
+
 
 ## Z序控制
 
