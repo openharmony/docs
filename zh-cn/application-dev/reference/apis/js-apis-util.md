@@ -1277,8 +1277,8 @@ getCreateCount(): number
 **示例：**
 
 ```js
-// 创建新类ChildLruBuffer继承LRUCache，重写createDefault方法，返回一个非undefined的值。
-class ChildLruBuffer extends util.LRUCache<number, number> {
+// 创建新类ChildLRUCache继承LRUCache，重写createDefault方法，返回一个非undefined的值。
+class ChildLRUCache extends util.LRUCache<number, number> {
   constructor() {
     super();
   }
@@ -1287,7 +1287,7 @@ class ChildLruBuffer extends util.LRUCache<number, number> {
     return key;
   }
 }
-let lru = new ChildLruBuffer();
+let lru = new ChildLRUCache();
 lru.put(2,10);
 lru.get(3);
 lru.get(5);
@@ -1567,21 +1567,23 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 **示例：**
 
 ```js
-let arr : Object[] = [];
-class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
-  constructor() {
-    super();
+class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
+  constructor(capacity?: number) {
+    super(capacity);
   }
 
-  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
-  {
-    if (isEvict === false) {
-      arr = [key, value, newValue];
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
+    if (isEvict === true) {
+      console.info('key: ' + key);
+      console.info('value: ' + value);
+      console.info('newValue: ' + newValue);
     }
   }
 }
-let lru : ChildLruBuffer<number, number>= new ChildLruBuffer();
-lru.afterRemoval(false, 10, 30, 50);
+let lru: ChildLRUCache<number, number>= new ChildLRUCache(2);
+lru.put(1, 1);
+lru.put(2, 2);
+lru.put(3, 3);
 ```
 
 ### contains<sup>9+</sup>
@@ -3920,25 +3922,25 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 **示例：**
 
-  ```js
-  let arr = [];
-  class ChildLruBuffer<K, V> extends util.LruBuffer<K, V>
-  {
-  	constructor()
-  	{
-  		super();
-  	}
-  	afterRemoval(isEvict, key, value, newValue)
-  	{
-  		if (isEvict === false)
-  		{
-  			arr = [key, value, newValue];
-  		}
-  	}
+```js
+class ChildLruBuffer<K, V> extends util.LruBuffer<K, V> {
+  constructor(capacity?: number) {
+    super(capacity);
   }
-  let lru = new ChildLruBuffer();
-  lru.afterRemoval(false,10,30,null);
-  ```
+
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
+    if (isEvict === true) {
+      console.info('key: ' + key);
+      console.info('value: ' + value);
+      console.info('newValue: ' + newValue);
+    }
+  }
+}
+let lru: ChildLruBuffer<number, number> = new ChildLruBuffer(2);
+lru.put(11, 1);
+lru.put(22, 2);
+lru.put(33, 3);
+```
 
 ### contains<sup>(deprecated)</sup>
 
