@@ -90,7 +90,7 @@
              fileInfo[fileName] = file.fd;
            } catch (e) {
              console.error(`openSync failed: ${JSON.stringify(e as Base.BusinessError)}`);
-           };
+           }
    
            class FormDataClass {
              text: string = 'Image: Bear' + fileName;
