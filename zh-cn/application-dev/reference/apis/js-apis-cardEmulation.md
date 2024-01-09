@@ -45,9 +45,9 @@
 }
 ```
 > **注意：**
-1. 声明"actions"字段的内容填写，必须是"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"，不能更改。
-2. 声明aid时，name必须为payment-aid，或者other-aid。填写错误会造成解析失败。
-3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_CARD_EMULATION"，不能更改。
+>1. 声明"actions"字段的内容填写，必须是"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"，不能更改。
+>2. 声明aid时，name必须为payment-aid，或者other-aid。填写错误会造成解析失败。
+>3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_CARD_EMULATION"，不能更改。
 
 ## 导入模块
 
