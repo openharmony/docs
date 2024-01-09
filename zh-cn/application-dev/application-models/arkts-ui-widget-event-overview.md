@@ -6,10 +6,10 @@
 ## 动态卡片事件能力说明
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
 
-动态卡片事件包括三种类型：
-- [使用router事件跳转到指定UIAbility](arkts-ui-widget-event-router.md)
-- [使用call事件拉起指定UIAbility到后台](arkts-ui-widget-event-call.md)
-- [通过message事件刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
+动态卡片事件的主要使用场景如下：
+- router事件：可以使用router事件跳转到指定UIAbility，并通过router事件刷新卡片内容。
+- call事件：可以使用call事件拉起指定UIAbility到后台，并通过call事件刷新卡片内容。
+- message事件：可以使用message拉起FormExtensionAbility，并通过FormExtensionAbility刷新卡片内容。
 
 ## 静态卡片事件能力说明
 请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)
