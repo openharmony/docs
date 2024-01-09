@@ -192,6 +192,8 @@ struct ViewB {
 
   build() {
     Column() {
+      // in low version,DevEco may throw a warning,but it does not matter.
+      // you can still compile and run.
       ViewA({ label: 'ViewA #1', a: this.b.a })
       ViewA({ label: 'ViewA #2', a: this.b.a })
 
