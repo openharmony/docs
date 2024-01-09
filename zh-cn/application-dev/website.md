@@ -1013,7 +1013,7 @@
       - [@ohos.promptAction (弹窗)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (页面路由)](reference/apis/js-apis-router.md)
       - [@ohos.uiAppearance (用户界面外观)](reference/apis/js-apis-uiappearance.md)
-      - [getContext](reference/apis/js-apis-context-stage-getContext.md)
+      - [getContext](reference/apis/js-apis-getContext.md)
     - 图形图像
       - [@ohos.animation.windowAnimationManager (窗口动画管理)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](reference/apis/js-apis-application-windowExtensionAbility.md)
