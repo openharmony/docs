@@ -9,7 +9,7 @@ MIME Type、文件扩展名等。例如描述jpg/jpeg类型图片时，可以使
 
 当相关类型的数据进行跨应用、跨设备传输时，目标端应用/设备需要进行多方面的适配，才能够对数据内容进行相关处理，且存在无法识别的情况。
 
-标准化数据类型分为[预置数据类型](#预置数据类型)和[应用自定义数据类型](应用自定义数据类型)。
+标准化数据类型分为[预置数据类型](#预置数据类型)和[应用自定义数据类型](#应用自定义数据类型)。
 
 针对标准化数据类型，典型的应用场景有：文件管理中的图片预览、系统分享等。
 
@@ -100,32 +100,34 @@ UTD可分为预置的数据类型和应用自定义数据类型。并且支持�
 
 2. 在当前应用的utd_adt.json配置文件内新增所需的自定义数据类型。
    ```json
-    "UniformDataTypeDeclarations": [
-        {
-            "typeId": "com.example.myFirstHap.image",
-            "belongingToTypes": ["general.image"],
-            "FilenameExtensions": [".myImage", ".khImage"],
-            "mimeTypes": ["application/myImage", "application/khImage"],
-            "description": "My Image.",
-            "referenceURL": ""
-        },
-        {
-            "typeId": "com.example.myFirstHap.audio",
-            "belongingToTypes": ["general.audio"],
-            "FilenameExtensions": [".myAudio", ".khAudio"],
-            "mimeTypes": ["application/myAudio", "application/khAudio"],
-            "description": "My audio.",
-            "referenceURL": ""
-        },
-        {
-            "typeId": "com.example.myFirstHap.video",
-            "belongingToTypes": ["general.video"],
-            "FilenameExtensions": [".myVideo", ".khVideo"],
-            "mimeTypes": ["application/myVideo", "application/khVideo"],
-            "description": "My video.",
-            "referenceURL": ""
-        }
-    ]
+   {
+        "UniformDataTypeDeclarations": [
+            {
+                "typeId": "com.example.myFirstHap.image",
+                "belongingToTypes": ["general.image"],
+                "FilenameExtensions": [".myImage", ".khImage"],
+                "mimeTypes": ["application/myImage", "application/khImage"],
+                "description": "My Image.",
+                "referenceURL": ""
+            },
+            {
+                "typeId": "com.example.myFirstHap.audio",
+                "belongingToTypes": ["general.audio"],
+                "FilenameExtensions": [".myAudio", ".khAudio"],
+                "mimeTypes": ["application/myAudio", "application/khAudio"],
+                "description": "My audio.",
+                "referenceURL": ""
+            },
+            {
+                "typeId": "com.example.myFirstHap.video",
+                "belongingToTypes": ["general.video"],
+                "FilenameExtensions": [".myVideo", ".khVideo"],
+                "mimeTypes": ["application/myVideo", "application/khVideo"],
+                "description": "My video.",
+                "referenceURL": ""
+            }
+        ]
+   }
    ```
 
 3. 如果其他应用要直接使用当前应用内的自定义数据类型，需要在其应用的entry\src\main\resources\rawfile\arkdata\utd\目录下新增utd_adt.json文件。
@@ -133,31 +135,35 @@ UTD可分为预置的数据类型和应用自定义数据类型。并且支持�
    然后在utd_adt.json配置文件中进行以下声明：
 
    ```json
-   "ReferenceUniformDataTypeDeclarations": [
-        {
-            "typeId": "com.example.myFirstHap.image",
-            "belongingToTypes": ["general.image"],
-            "FilenameExtensions": [".myImage", ".khImage"],
-            "mimeTypes": ["application/myImage", "application/khImage"],
-            "description": "My Image.",
-            "referenceURL": ""
-        }
-   ]
+   {
+       "ReferenceUniformDataTypeDeclarations": [
+            {
+                "typeId": "com.example.myFirstHap.image",
+                "belongingToTypes": ["general.image"],
+                "FilenameExtensions": [".myImage", ".khImage"],
+                "mimeTypes": ["application/myImage", "application/khImage"],
+                "description": "My Image.",
+                "referenceURL": ""
+            }
+       ]
+   }
    ```
 
 4. 其他应用也可以在引用当前应用内的自定义数据类型之后，基于已引用的自定义数据类型进行自定义。utd_adt.json配置文件示例如下：
 
    ```json
-   "UniformDataTypeDeclarations": [
-       {
-           "typeId": "com.example.mySecondHap.image",
-           "belongingToTypes": ["com.example.myFirstHap.image"],
-           "FilenameExtensions": [".myImageEx", ".khImageEx"],
-           "mimeTypes": ["application/my-ImageEx", "application/khImageEx"],
-           "description": "My Image extension.",
-           "referenceURL": ""
-       }
-   ],
+   {
+       "UniformDataTypeDeclarations": [
+           {
+               "typeId": "com.example.mySecondHap.image",
+               "belongingToTypes": ["com.example.myFirstHap.image"],
+               "FilenameExtensions": [".myImageEx", ".khImageEx"],
+               "mimeTypes": ["application/my-ImageEx", "application/khImageEx"],
+               "description": "My Image extension.",
+               "referenceURL": ""
+           }
+       ]
+   }
    ```
 
 ## 接口说明
