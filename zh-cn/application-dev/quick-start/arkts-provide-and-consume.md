@@ -292,7 +292,7 @@ struct MapSample {
 
 ### 装饰Set类型变量
 
-\@Provide，\@Consume支持Set类型，在下面的示例中，message类型为Set<number>，点击Button改变message的值，视图会随之刷新。
+\@Provide，\@Consume支持Set类型，在下面的示例中，message类型为Set\<number\>，点击Button改变message的值，视图会随之刷新。
 
 ```ts
 @Component
