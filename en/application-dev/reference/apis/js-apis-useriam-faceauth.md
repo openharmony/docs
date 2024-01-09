@@ -5,7 +5,8 @@ The **userIAM.faceAuth** module provides APIs for face enrollment.
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->- The APIs provided by this module are system APIs.
+>
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -80,7 +81,7 @@ let manager = new userIAM_faceAuth.FaceAuthManager();
 try {
   manager.setSurfaceId(surfaceId);
   console.info('set surface id success');
-} catch (e) {
-  console.error('set surface id failed, error = ' + e);
+} catch (error) {
+  console.error('set surface id failed, error = ' + error);
 }
 ```
