@@ -245,10 +245,8 @@ import router from '@ohos.router';
 ```ts
 import router from '@ohos.router';
 onPageShow() {
-  const params:Object = router.getParams(); // 获取传递过来的参数对象
-  if (params) {
-    const info:string = params['info'];// 获取info属性的值
-  }
+  const params:Record<string,Object> = {'':router.getParams()}; // 获取传递过来的参数对象
+  const info:Object = params['']; // 获取info属性的值
 }
 ```
 
@@ -369,6 +367,10 @@ function onBackClick() {
 ## 命名路由
 
 在开发中为了跳转到[共享包中的页面](../quick-start/shared-guide.md)（即共享包中路由跳转），可以使用[router.pushNamedRoute()](../reference/apis/js-apis-router.md#routerpushnamedroute)来实现。
+
+  **图4** 命名路由跳转  
+
+![(figures/router-add-query-box-before-back.gif)](figures/namedroute-jump-to-mypage.gif)
 
 在使用页面路由Router相关功能之前，需要在代码中先导入Router模块。
 
