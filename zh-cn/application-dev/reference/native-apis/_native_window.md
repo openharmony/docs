@@ -229,6 +229,9 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void * pSurface)
 
 返回一个指针，指向OHNativeWindow的结构体实例
 
+> **说明:**
+>
+> 此接口不支持使用，可通过[OH_NativeImage_AcquireNativeWindow](_o_h___native_image.md#oh_nativeimage_acquirenativewindow)获取，或通过XComponent创建。
 
 ### OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer()
 
@@ -236,6 +239,10 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void * pSurface)
 ```
 OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer (void * pSurfaceBuffer)
 ```
+
+> **说明:**
+>
+> 此接口不支持使用。
 
 **描述:**
 
