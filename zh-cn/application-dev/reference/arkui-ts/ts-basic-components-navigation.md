@@ -625,8 +625,8 @@ export struct PageOneTmp {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      const popnavstack = this.pageInfos.pop() // 弹出路由栈栈顶元素
-      console.log('pop' + '返回值' + JSON.stringify(popnavstack))
+      const popdestinationInfo = this.pageInfos.pop() // 弹出路由栈栈顶元素
+      console.log('pop' + '返回值' + JSON.stringify(popdestinationInfo))
       return true
     })
   }
