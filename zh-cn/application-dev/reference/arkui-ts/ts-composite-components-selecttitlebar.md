@@ -35,13 +35,13 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| selected | number | 是 | \@Prop | 当前选中项目的索引。 |
+| selected | number | 是 | \@Prop | 当前选中项目的索引。<br>第一项的索引为0。如果不设置该属性，则默认值为-1。 |
 | options | Array&lt;[SelectOption](ts-basic-components-select.md#selectoption)&gt; | 是 | - | 下拉菜单中的项目。 |
 | menuItems | Array&lt;[SelectTitleBarMenuItem](#selecttitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表，定义标题栏右侧的菜单项目。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 子标题。 |
 | badgeValue | number | 否 | - | 新事件标记。 |
-| hidesBackButton | boolean | 否 | - | 是否隐藏。|
-| onSelected | (index:&nbsp;number)&nbsp;=&gt;&nbsp;void | 否 | - | 下拉菜单项目选中触发的闭包，传入选中项的索引。 |
+| hidesBackButton | boolean | 否 | - | 是否隐藏左侧的返回箭头。<br>默认值：false。true：隐藏，false：显示。|
+| onSelected | (index:&nbsp;number)&nbsp;=&gt;&nbsp;void | 否 | - | 下拉菜单项目选中触发的回调函数，传入选中项的索引。 |
 
 
 ## SelectTitleBarMenuItem
@@ -49,7 +49,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 | 名称 | 类型 | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。 | 
-| isEnabled | boolean | 是 | 是否启用。 | 
+| isEnabled | boolean | 否 | 是否启用。 | 
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。 | 
 
 ## 事件
@@ -61,27 +61,37 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 import { SelectTitleBar } from "@ohos.arkui.advanced.SelectTitleBar"
 import promptAction from '@ohos.promptAction'
 
-class menuItems {
+interface menuItems {
   value: Resource;
-  isEnabled: boolean;
-  action: () => void
-
-  constructor(value: Resource,isEnabled: boolean,action: () => void) {
-    this.value = value
-    this.isEnabled = isEnabled
-    this.action = action
-  }
-}
+  isEnabled?: boolean;
+  action?: () => void
+}  
 
 @Entry
 @Component
 struct Index {
-private  menuItems:Array<menuItems> =
+  private  menuItems:Array<menuItems> =
   [
-    new menuItems($r('app.media.ic_public_save'),true,() => promptAction.showToast({ message: "show toast index 1" })),
-    new menuItems($r('app.media.ic_public_reduce'),true,() => promptAction.showToast({ message: "show toast index 2" })),
-    new menuItems($r('app.media.ic_public_edit'),true,() => promptAction.showToast({ message: "show toast index 3" })),
-    new menuItems($r('app.media.ic_public_reduce'),true,() => promptAction.showToast({ message: "show toast index 4" }))
+    {
+      value:$r('app.media.ic_public_save'),
+      isEnabled:true,
+      action:() => promptAction.showToast({ message: "show toast index 1" })
+    },
+    {
+      value:$r('app.media.ic_public_reduce'),
+      isEnabled:true,
+      action:() => promptAction.showToast({ message: "show toast index 2" })
+    },
+    {
+      value:$r('app.media.ic_public_edit'),
+      isEnabled:true,
+      action:() => promptAction.showToast({ message: "show toast index 3" })
+    },
+    {
+      value:$r('app.media.ic_public_reduce'),
+      isEnabled:true,
+      action:() => promptAction.showToast({ message: "show toast index 4" })
+    }
   ]
 
   build() {
