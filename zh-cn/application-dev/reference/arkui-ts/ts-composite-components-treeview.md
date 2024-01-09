@@ -66,7 +66,7 @@ addNode(nodeParam?: NodeParam): void
 
 ### 示例
 
-请参考[示例](#示例-9)
+请参考[示例](#示例-10)
 
 ### removeNode
 
@@ -76,7 +76,7 @@ removeNode(): void
 
 ### 示例
 
-请参考[示例](#示例-9)
+请参考[示例](#示例-10)
 
 ### modifyNode
 
@@ -88,7 +88,7 @@ modifyNode(): void
 
 ### 示例
 
-请参考[示例](#示例-9)
+请参考[示例](#示例-10)
 
 ### buildDone
 
@@ -98,7 +98,7 @@ buildDone(): void
 
 ### 示例
 
-请参考[示例](#示例-9)
+请参考[示例](#示例-10)
 
 ### refreshNode
 
@@ -114,7 +114,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 ### 示例
 
-请参考[示例](#示例-9)
+请参考[示例](#示例-10)
 
 ## NodeParam
 
@@ -144,7 +144,7 @@ getInstance(): TreeListenerManager
 
 ### 示例
 
-请参考[示例](#示例-9)：
+请参考[示例](#示例-10)：
 
 ### getTreeListener
 
@@ -154,7 +154,7 @@ getTreeListener(): TreeListener
 
 ### 示例
 
-请参考[示例](#示例-9)
+请参考[示例](#示例-10)
 
 ## TreeListener
 
@@ -176,13 +176,17 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 
 ### 示例
 
-请参考[示例](#示例-9)
+请参考[示例](#示例-10)
 
 ### once
 
 once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): void;
 
 注册一次监听
+
+### 示例
+
+请参考[示例](#示例-10)
 
 **参数：**
 
@@ -210,7 +214,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 ## 示例
 
-请参考[示例](#示例-9)
+请参考[示例](#示例-10)
 
 ## TreeListenType
 
