@@ -66,7 +66,7 @@ addNode(nodeParam?: NodeParam): void
 
 ### 示例
 
-请参考[示例](#例子)
+请参考[示例](#示例-9)
 
 ### removeNode
 
@@ -76,7 +76,7 @@ removeNode(): void
 
 ### 示例
 
-请参考[示例](#例子)
+请参考[示例](#示例-9)
 
 ### modifyNode
 
@@ -88,7 +88,7 @@ modifyNode(): void
 
 ### 示例
 
-请参考[示例](#例子)
+请参考[示例](#示例-9)
 
 ### buildDone
 
@@ -98,7 +98,7 @@ buildDone(): void
 
 ### 示例
 
-请参考[示例](#例子)
+请参考[示例](#示例-9)
 
 ### refreshNode
 
@@ -114,7 +114,7 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 
 ### 示例
 
-请参考[示例](#例子)
+请参考[示例](#示例-9)
 
 ## NodeParam
 
@@ -144,7 +144,7 @@ getInstance(): TreeListenerManager
 
 ### 示例
 
-请参考[示例](#例子)：
+请参考[示例](#示例-9)：
 
 ### getTreeListener
 
@@ -154,7 +154,7 @@ getTreeListener(): TreeListener
 
 ### 示例
 
-请参考[示例](#例子)
+请参考[示例](#示例-9)
 
 ## TreeListener
 
@@ -176,7 +176,7 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 
 ### 示例
 
-请参考[示例](#例子)
+请参考[示例](#示例-9)
 
 ### once
 
@@ -210,7 +210,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 
 ## 示例
 
-请参考[示例](#例子)
+请参考[示例](#示例-9)
 
 ## TreeListenType
 
@@ -234,7 +234,7 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 ## 事件
 不支持[通用事件](ts-universal-events-click.md)
 
-## <span id='例子'>示例</span>
+## 示例
 
 ```ts
 import { TreeController, TreeListener, TreeListenerManager, TreeListenType, NodeParam, TreeView, CallbackParam } from '@ohos.arkui.advanced.TreeView'
