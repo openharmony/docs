@@ -1,7 +1,7 @@
 # 通过router或call事件刷新卡片内容
 
 
-在卡片页面中可以通过[postCardAction()](../reference/apis/js-apis-postCardAction.md#postCardAction)接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
+在卡片页面中可以通过[postCardAction()](../reference/apis/js-apis-postCardAction.md#postcardaction)接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 > **说明：**
 >
@@ -9,7 +9,7 @@
 
 ## 通过router事件刷新卡片内容
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用[postCardAction()](../reference/apis/js-apis-postCardAction.md#postCardAction)接口触发router事件拉起UIAbility。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用[postCardAction()](../reference/apis/js-apis-postCardAction.md#postcardaction)接口触发router事件拉起UIAbility。
   
   ```ts
   let storageUpdateRouter = new LocalStorage();
