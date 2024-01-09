@@ -99,7 +99,7 @@ onWindowReady(window: window.Window): void
 ```ts
 import WindowExtensionAbility from '@ohos.application.WindowExtensionAbility';
 import window from '@ohos.window';
-import {BusinessError} from '@ohos.base'；
+import {BusinessError} from '@ohos.base';
 
 export default class MyWindowExtensionAbility extends WindowExtensionAbility {
   onWindowReady(window: window.Window) {
