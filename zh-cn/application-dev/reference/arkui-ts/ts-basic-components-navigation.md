@@ -124,6 +124,42 @@ replacePathByName(name: string, param: Object, animated?: boolean): void
 | param | Object | 是    | NavDestination页面详细参数。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，默认值：true。 |
 
+### removeByIndexes<sup>11+</sup>
+
+removeByIndexes(indexes: Array<number\>): number
+
+将页面栈内索引值在indexes中的NavDestination页面删除。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| indexes  | Array<number\>  | 是    | 待删除NavDestination页面的索引值数组。   |
+
+**返回值：**
+
+| 类型          | 说明                       |
+| ----------- | ------------------------ |
+| number | 返回删除的NavDestination页面数量。 |
+
+### removeByName<sup>11+</sup>
+
+removeByName(name: string): number
+
+将页面栈内指定name的NavDestination页面删除。
+
+**参数：**
+
+| 名称    | 类型      | 必填   | 描述                    |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | 是    | 删除的NavDestination页面的名字。   |
+
+**返回值：**
+
+| 类型          | 说明                       |
+| ----------- | ------------------------ |
+| number | 返回删除的NavDestination页面数量。 |
+
 ### pop<sup>10+</sup>
 
 pop(animated?: boolean): NavPathInfo | undefined
