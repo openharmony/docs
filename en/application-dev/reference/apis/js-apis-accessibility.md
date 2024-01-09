@@ -65,23 +65,23 @@ Describes the target action supported by an accessibility application.
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name                     | Description                |
-| ----------------------- | ------------------ |
+| ----------------------- |--------------------|
 | click                   | Clicking.           |
 | longClick               | Long pressing.           |
-| scrollForward           | Scrolling forward. Not supported currently.|
-| scrollBackward          | Scrolling backward. Not supported currently.|
-| focus                   | Obtaining focus. Not supported currently.|
-| clearFocus              | Clearing focus. Not supported currently.|
-| clearSelection          | Clearing selection. Not supported currently.|
+| scrollForward           | Scrolling forward. Not supported yet.|
+| scrollBackward          | Scrolling backward. Not supported yet.|
+| focus                   | Obtaining the focus. Not supported yet.|
+| clearFocus              | Clearing focus. Not supported yet.|
+| clearSelection          | Clearing selection. Not supported yet.|
 | accessibilityFocus      | Obtaining the accessibility focus.      |
 | clearAccessibilityFocus | Clearing the accessibility focus.      |
-| cut                     | Cut. Not supported currently.  |
-| copy                    | Copy. Not supported currently.  |
-| paste                   | Paste. Not supported currently.  |
-| select                  | Select. Not supported currently.  |
-| setText                 | Setting the text. Not supported currently.|
-| delete                  | Delete. Not supported currently.  |
-| setSelection            | Setting the selection. Not supported currently.  |
+| cut                     | Cut. Not supported yet.  |
+| copy                    | Copy. Not supported yet.  |
+| paste                   | Paste. Not supported yet.  |
+| select                  | Select. Not supported yet.  |
+| setText                 | Setting the text. Not supported yet.|
+| delete                  | Delete. Not supported yet.  |
+| setSelection            | Setting the selection. Not supported yet.  |
 
 ## Capability
 
@@ -90,11 +90,11 @@ Enumerates the capabilities of an accessibility application.
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name              | Description                   |
-| ---------------- | --------------------- |
+| ---------------- |-----------------------|
 | retrieve         | Capability to retrieve the window content.         |
 | touchGuide       | Capability of touch guide mode.         |
 | keyEventObserver | Capability to filter key events.         |
-| zoom             | Capability to control the display zoom level. Not supported currently.|
+| zoom             | Capability to control the display zoom level. Not supported yet.|
 | gesture          | Capability to perform gesture actions.         |
 
 ## CaptionsFontEdgeType<sup>8+</sup>
@@ -273,22 +273,22 @@ Describes a GUI change event.
 
 ### Attributes
 
-| Name              | Type                                   | Readable  | Writable  | Optional  | Description                   |
-| ---------------- | ------------------------------------- | ---- | ---- | ---- | --------------------- |
-| type             | [EventType](#eventtype)               | Yes   | Yes   | No   | Accessibility event type.             |
-| windowUpdateType | [WindowUpdateType](#windowupdatetype) | Yes   | Yes   | Yes   | Window update type.              |
-| bundleName       | string                                | Yes   | Yes   | No   | Name of the target application.               |
-| componentType    | string                                | Yes   | Yes   | Yes   | Type of the event source component, for example, button or chart.      |
-| pageId           | number                                | Yes   | Yes   | Yes   | Page ID of the event source.           |
-| description      | string                                | Yes   | Yes   | Yes   | Event description. Not supported currently.       |
-| triggerAction    | [Action](#action)                     | Yes   | Yes   | No   | Action that triggers the event.        |
-| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | Yes   | Yes   | Yes   | Text movement unit. Not supported currently.     |
-| contents         | Array&lt;string&gt;                   | Yes   | Yes   | Yes   | Array of contents.                |
-| lastContent      | string                                | Yes   | Yes   | Yes   | Latest content.                |
-| beginIndex       | number                                | Yes   | Yes   | Yes   | Sequence number of the first item displayed on the page. Not supported currently.|
-| currentIndex     | number                                | Yes   | Yes   | Yes   | Sequence number of the current item. Not supported currently.     |
-| endIndex         | number                                | Yes   | Yes   | Yes   | Sequence number of the last item displayed on the page. Not supported currently.|
-| itemCount        | number                                | Yes   | Yes   | Yes   | Total number of items. Not supported currently.       |
+| Name              | Type                                   | Mandatory | Description                   |
+| ---------------- | ------------------------------------- |-----|-----------------------|
+| type             | [EventType](#eventtype)               | Yes  | Accessibility event type.        |
+| windowUpdateType | [WindowUpdateType](#windowupdatetype) | No  | Window update type.              |
+| bundleName       | string                                | Yes  | Name of the target application.          |
+| componentType    | string                                | No  | Type of the event source component, for example, button or chart.      |
+| pageId           | number                                | No  | Page ID of the event source.           |
+| description      | string                                | No  | Event description. Not supported yet.       |
+| triggerAction    | [Action](#action)                     | Yes  | Action that triggers the event.   |
+| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | No  | Text move granularity. Not supported yet.     |
+| contents         | Array&lt;string&gt;                   | No  | Array of contents.                |
+| lastContent      | string                                | No  | Latest content.                |
+| beginIndex       | number                                | No  | Sequence number of the first item displayed on the page. Not supported yet.|
+| currentIndex     | number                                | No  | Sequence number of the current item. Not supported yet.     |
+| endIndex         | number                                | No  | Sequence number of the last item displayed on the page. Not supported yet.|
+| itemCount        | number                                | No  | Total number of records. Not supported yet.       |
 
 ### constructor
 
@@ -316,6 +316,30 @@ Implements a constructor.
   });
   ```
 
+### constructor<sup>11+</sup>
+
+constructor(type: EventType, bundleName: String, triggerAction: Action)
+
+Implements a constructor.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name | Type               | Mandatory| Description           |
+|------|-------------------|---|---------------|
+| type | [EventType](#eventtype)          | Yes| Enumerates accessibility event types.     |
+| bundleName | string | Yes| Target application name.       |
+| triggerAction | [Action](#action) | Yes| Action that triggers the event.|
+
+**Example**
+
+  ```ts
+  import accessibility from '@ohos.accessibility';
+
+  let eventInfo = new accessibility.EventInfo('click', 'com.example.MyApplication', 'click');
+  ```
+
 ## EventType
 
 Enumerates accessibility event types.
@@ -323,18 +347,18 @@ Enumerates accessibility event types.
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
 | Name                     | Description                    |
-| ----------------------- | ---------------------- |
+| ----------------------- |------------------------|
 | accessibilityFocus      | Event indicating that the accessibility focus has been obtained.         |
 | accessibilityFocusClear | Event indicating that the accessibility focus has been cleared.         |
 | click                   | Event of clicking a component.            |
 | longClick               | Event of long-pressing a component.            |
-| select                  | Event of selecting a component. Not supported currently.   |
-| hoverEnter              | Event indicating that the hover enters a component. Not supported currently. |
-| hoverExit               | Event indicating that the hover exits a component. Not supported currently. |
-| focus                   | Event indicating that the component obtains the focus. Not supported currently. |
-| textUpdate              | Event indicating that the component text has been updated. Not supported currently.|
-| textSelectionUpdate     | Event indicating that the selected text has been updated. Not supported currently.|
-| scroll                  | Event of the scroll view. Not supported currently.   |
+| select                  | Event of selecting a component. Not supported yet.   |
+| hoverEnter              | Event indicating that the hover enters a component. Not supported yet. |
+| hoverExit               | Event indicating that the hover exits a component. Not supported yet. |
+| focus                   | Event indicating that the component obtains the focus. Not supported yet. |
+| textUpdate              | Event indicating that the component text has been updated. Not supported yet.|
+| textSelectionUpdate     | Event indicating that the selected text has been updated. Not supported yet.|
+| scroll                  | Event of the scroll view. Not supported yet.   |
 
 
 ## TextMoveUnit
@@ -374,7 +398,7 @@ Obtains the accessibility application list. This API uses a promise to return th
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9.
-> You are advised to use[getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9).
+> You are advised to use [accessibility.getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9) instead.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -416,7 +440,7 @@ Obtains the accessibility application list. This API uses an asynchronous callba
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9.
-> You are advised to use [getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9-1).
+> You are advised to use [accessibility.getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9-1) instead.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -649,7 +673,7 @@ Checks whether accessibility is enabled. This API uses a promise to return the r
 >
 > This API is deprecated since API version 10.
 >
-> You are advised to use [isOpenAccessibilitySync](#accessibilityisopenaccessibilitysync10) instead.
+> You are advised to use [accessibility.isOpenAccessibilitySync](#accessibilityisopenaccessibilitysync10) instead.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -682,7 +706,7 @@ Checks whether accessibility is enabled. This API uses an asynchronous callback 
 >
 > This API is deprecated since API version 10.
 >
-> You are advised to use [isOpenAccessibilitySync](#accessibilityisopenaccessibilitysync10) instead.
+> You are advised to use [accessibility.isOpenAccessibilitySync](#accessibilityisopenaccessibilitysync10) instead.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -740,7 +764,7 @@ Checks whether touch guide mode is enabled. This API uses a promise to return th
 >
 > This API is deprecated since API version 10.
 >
-> You are advised to use [isOpenTouchGuideSync](#accessibilityisopentouchguidesync10) instead.
+> You are advised to use [accessibility.isOpenTouchGuideSync](#accessibilityisopentouchguidesync10) instead.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -773,7 +797,7 @@ Checks whether touch guide mode is enabled. This API uses an asynchronous callba
 >
 > This API is deprecated since API version 10.
 >
-> You are advised to use [isOpenTouchGuideSync](#accessibilityisopentouchguidesync10) instead.
+> You are advised to use [accessibility.isOpenTouchGuideSync](#accessibilityisopentouchguidesync10) instead.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Vision
 
@@ -829,7 +853,7 @@ Sends an accessibility event. This API uses a promise to return the result.
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9.
-> You are advised to use **[sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9)**.
+> You are advised to use [accessibility.sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9) instead.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -873,7 +897,7 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9.
-> You are advised to use **[sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9-1)**.
+> You are advised to use [accessibility.sendAccessibilityEvent()](#accessibilitysendaccessibilityevent9-1) instead.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
