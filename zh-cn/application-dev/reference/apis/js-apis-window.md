@@ -1669,14 +1669,25 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window | undefined = undefined;
-let promise = window.getTopWindow();
-promise.then((data) => {
-  windowClass = data;
-  console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-}).catch((err: BusinessError) => {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-});
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage:window.WindowStage){
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      windoe.getTopWindow(this.context, (err: BussinessError, data) => {
+        const errCode: number = err.code;
+        if(errCode){
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return ;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch(error){
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
+    }
+  }
+}
 ```
 
 ## window.getTopWindow<sup>(deprecated)</sup>
@@ -5546,40 +5557,37 @@ try {
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let windowClass: window.Window = window.findWindow("test");
-(context: window.TransitionContext) => {
-  let toWindow = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: () => {
-      context.completeTransition(true)
-    }
-  }, () => {
-    let obj: window.TranslateOptions = {
-      x: 100.0,
-      y: 0.0,
-      z: 0.0
-    };
-    toWindow.translate(obj); // 设置动画过程中的属性转换
-    console.info('toWindow translate end');
-  }
-  );
-  console.info('complete transition end');
+let controller = windowClass.getTransitionController(); // 获取属性转换控制器
+controller.animationForHidden = (context : window.TransitionContext) => {
+	let toWindow = context.toWindow;
+ 	animateTo({
+    	duration: 1000, // 动画时长
+        tempo: 0.5, // 播放速率
+        curve: Curve.EaseInOut, // 动画曲线
+        delay: 0, // 动画延迟
+        iterations: 1, // 播放次数
+        playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }    
+      }, () => {
+        let obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        };
+        toWindow.translate(obj); // 设置动画过程中的属性转换
+        console.info('toWindow translate end');
+      }
+    );
+    console.info('complete transition end');
 };
-windowClass.hideWithAnimation((err: BusinessError, data) => {
-  const errCode: number = err.code;
-  if (errCode) {
-    console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
+windowClass.hideWithAnimation((err, data) => {
+    if (err.code) {
+        console.error('Failed to show the window with animation. Cause: ' + JSON.stringify(err));
+        return;
+    }
+    console.info('Succeeded in showing the window with animation. Data: ' + JSON.stringify(data));
 });
 ```
 
@@ -10046,30 +10054,30 @@ animationForShown(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
-(context : window.TransitionContext) => {
-  let toWindow: window.Window = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: ()=> {
-      context.completeTransition(true)
-    }
-  }, () => {
-    let obj : window.TranslateOptions = {
-      x : 100.0,
-      y : 0.0,
-      z : 0.0
-    };
-    toWindow.translate(obj);
-    console.info('toWindow translate end');
-  }
-  );
-  console.info('complete transition end');
+let controller = windowClass.getTransitionController();
+controller.animationForShown = (context : window.TransitionContext) => {
+	let toWindow = context.toWindow;
+ 	animateTo({
+    	duration: 1000, // 动画时长
+        tempo: 0.5, // 播放速率
+        curve: Curve.EaseInOut, // 动画曲线
+        delay: 0, // 动画延迟
+        iterations: 1, // 播放次数
+        playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
+      }, () => {
+        let obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        };
+        toWindow.translate(obj);
+        console.info('toWindow translate end');
+      }
+    );
+    console.info('complete transition end');
 };
 ```
 
@@ -10092,29 +10100,29 @@ animationForHidden(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window | undefined = undefined;
-(context: window.TransitionContext) => {
-  let toWindow: window.Window = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: () => {
-      context.completeTransition(true)
-    }
-  }, () => {
-    let obj: window.TranslateOptions = {
-      x: 100.0,
-      y: 0.0,
-      z: 0.0
-    };
-    toWindow.translate(obj);
-    console.info('toWindow translate end');
-  }
-  )
-  console.info('complete transition end');
+let controller = windowClass.getTransitionController();
+controller.animationForHidden = (context : window.TransitionContext) => {
+	let toWindow = context.toWindow;
+ 	animateTo({
+    	duration: 1000, // 动画时长
+        tempo: 0.5, // 播放速率
+        curve: Curve.EaseInOut, // 动画曲线
+        delay: 0, // 动画延迟
+        iterations: 1, // 播放次数
+        playMode: PlayMode.Normal, // 动画模式
+        onFinish: ()=> {
+            context.completeTransition(true)
+        }  
+      }, () => {
+        let obj : window.TranslateOptions = {
+          x : 100.0,
+          y : 0.0,
+          z : 0.0
+        };
+        toWindow.translate(obj);
+        console.info('toWindow translate end');
+      }
+    )
+    console.info('complete transition end');
 };
 ```
