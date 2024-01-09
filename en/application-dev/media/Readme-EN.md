@@ -42,8 +42,8 @@
     - [Audio Decoding (C/C++)](audio-decoding.md)
     - [Video Encoding (C/C++)](video-encoding.md)
     - [Video Decoding (C/C++)](video-decoding.md)
-    - [Audio and Video Encapsulation (C/C++)](audio-video-encapsulation.md)
-    - [Audio and Video Decapsulation (C/C++)](audio-video-decapsulation.md)
+    - [Audio and Video Muxer (C/C++)](audio-video-muxer.md)
+    - [Audio and Video Demuxer (C/C++)](audio-video-demuxer.md)
 - AVSession
   - [AVSession Overview](avsession-overview.md)
   - Local AVSession

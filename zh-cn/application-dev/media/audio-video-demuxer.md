@@ -6,10 +6,18 @@
 
 支持的解封装格式如下：
 
-| 媒体格式  | 封装格式                      |
-| -------- | :----------------------------|
-| 视频     | mp4、mpeg-ts                  |
-| 音频      | m4a、aac、mp3、ogg、flac、wav |
+| 媒体格式  | 封装格式                      | 码流格式                      |
+| -------- | :----------------------------| :----------------------------|
+| 音视频     | mp4                        |视频码流：H.264，音频码流：aac/mp3|
+| 音视频     | mkv                        |视频码流：H.264，音频码流：aac/mp3/opus|
+| 音视频     | mpeg-ts                    |视频码流：H.264，音频码流：aac/mp3|
+| 音频       | m4a                        |音频码流：aac|
+| 音频       | aac                        |音频码流：aac|
+| 音频       | mp3                        |音频码流：mp3|
+| 音频       | ogg                        |音频码流：ogg|
+| 音频       | flac                        |音频码流：flac|
+| 音频       | wav                        |音频码流：pcm|
+| 音频       | amr                        |音频码流：amr-nb/amr-wb|
 
 **适用场景**：
 
@@ -40,6 +48,7 @@
 ``` cmake
 target_link_libraries(sample PUBLIC libnative_media_avdemuxer.so)
 target_link_libraries(sample PUBLIC libnative_media_avsource.so)
+target_link_libraries(sample PUBLIC libnative_media_core.so)
 ```
 
 ### 开发步骤
@@ -49,9 +58,9 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
    ```c++
    #include <multimedia/player_framework/native_avdemuxer.h>
    #include <multimedia/player_framework/native_avsource.h>
-   #include <multimedia/player_framework/native_avcapability.h>
    #include <multimedia/player_framework/native_avcodec_base.h>
    #include <multimedia/player_framework/native_avformat.h>
+   #include <multimedia/player_framework/native_avbuffer.h>
    ```
 
 2. 创建解封装器实例对象。
@@ -147,7 +156,7 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
    ``` c++
    // 调整轨道到指定时间点，后续从该时间点进行解封装
    // 注意：
-   // 1. mpegts格式文件使用OH_AVDemuxer_SeekToTime功能时，跳转到的位置可能为非关键帧。可在跳转后调用OH_AVDemuxer_ReadSample，通过获取到的OH_AVCodecBufferAttr判断当前帧是否为关键帧。若非关键帧影响应用侧显示等功能，可在跳转后循环读取，获取到后续第一帧关键帧后，再进行解码等处理。
+   // 1. mpegts格式文件使用OH_AVDemuxer_SeekToTime功能时，跳转到的位置可能为非关键帧。可在跳转后调用OH_AVDemuxer_ReadSampleBuffer，通过获取到的OH_AVCodecBufferAttr判断当前帧是否为关键帧。若非关键帧影响应用侧显示等功能，可在跳转后循环读取，获取到后续第一帧关键帧后，再进行解码等处理。
    // 2. ogg格式文件使用OH_AVDemuxer_SeekToTime功能时，会跳转到传入时间millisecond所在时间间隔(秒)的起始处，可能会导致一定数量的帧误差。
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
@@ -156,7 +165,7 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
 
    ``` c++
    // 创建 buffer，用与保存用户解封装得到的数据
-   OH_AVMemory *buffer = OH_AVMemory_Create(w * h * 3 >> 1);
+   OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
    if (buffer == nullptr) {
       printf("build buffer failed");
       return;
@@ -166,12 +175,13 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
    bool audioIsEnd = false;
    int32_t ret;
    while (!audioIsEnd || !videoIsEnd) {
-      // 在调用 OH_AVDemuxer_ReadSample 接口获取数据前，需要先调用 OH_AVDemuxer_SelectTrackByID 选中需要获取数据的轨道
+      // 在调用 OH_AVDemuxer_ReadSampleBuffer 接口获取数据前，需要先调用 OH_AVDemuxer_SelectTrackByID 选中需要获取数据的轨道
       // 获取音频帧数据
       if(!audioIsEnd) {
-         ret = OH_AVDemuxer_ReadSample(demuxer, audioTrackIndex, buffer, &info);
+         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
          if (ret == AV_ERR_OK) {
             // 可通过 buffer 获取并处理音频帧数据
+            OH_AVBuffer_GetBufferAttr(buffer, &info);
             printf("audio info.size: %d\n", info.size);
             if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
                audioIsEnd = true;
@@ -179,9 +189,10 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
          }
       }
       if(!videoIsEnd) {
-         ret = OH_AVDemuxer_ReadSample(demuxer, videoTrackIndex, buffer, &info);
+         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, videoTrackIndex, buffer);
          if (ret == AV_ERR_OK) {
             // 可通过 buffer 获取并处理视频帧数据
+            OH_AVBuffer_GetBufferAttr(buffer, &info);
             printf("video info.size: %d\n", info.size);
             if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
                videoIsEnd = true;
@@ -189,7 +200,7 @@ target_link_libraries(sample PUBLIC libnative_media_avsource.so)
          }
       }
    }
-   OH_AVMemory_Destroy(buffer);
+   OH_AVBuffer_Destroy(buffer);
    ```
 
 8. 销毁解封装实例。
