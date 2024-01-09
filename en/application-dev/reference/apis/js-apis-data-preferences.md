@@ -1,6 +1,6 @@
 # @ohos.data.preferences (User Preferences)
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
@@ -13,7 +13,7 @@ The key is of the string type, and the value can be a number, a string, a Boolea
 ## Modules to Import
 
 ```js
-import data_preferences from '@ohos.data.preferences';
+import dataPreferences from '@ohos.data.preferences';
 ```
 
 ## Constants
@@ -26,7 +26,7 @@ import data_preferences from '@ohos.data.preferences';
 | MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes.|
 
 
-## data_preferences.getPreferences
+## dataPreferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -53,7 +53,7 @@ let context = featureAbility.getContext();
 let preferences = null;
 
 try {
-    data_preferences.getPreferences(context, 'mystore', function (err, val) {
+    dataPreferences.getPreferences(context, 'mystore', function (err, val) {
         if (err) {
 	        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
 	        return;
@@ -76,7 +76,7 @@ let preferences = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.getPreferences(this.context, 'mystore', function (err, val) {
+            dataPreferences.getPreferences(this.context, 'mystore', function (err, val) {
                 if (err) {
                     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -91,7 +91,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferences
+## dataPreferences.getPreferences
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
@@ -123,7 +123,7 @@ let context = featureAbility.getContext();
 
 let preferences = null;
 try {
-    let promise = data_preferences.getPreferences(context, 'mystore');
+    let promise = dataPreferences.getPreferences(context, 'mystore');
     promise.then((object) => {
         preferences = object;
         console.info("Succeeded in getting preferences.");
@@ -145,7 +145,7 @@ let preferences = null;
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            let promise = data_preferences.getPreferences(this.context, 'mystore');
+            let promise = dataPreferences.getPreferences(this.context, 'mystore');
             promise.then((object) => {
                 preferences = object;
                 console.info("Succeeded in getting preferences.");
@@ -159,11 +159,11 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences
+## dataPreferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a **Preferences** instance from the cache. This API uses an asynchronous callback to return the result.
+Deletes a **Preferences** instance from the memory. This API uses an asynchronous callback to return the result.
 
 If the **Preferences** instance has a persistent file, this API also deletes the persistent file.
 
@@ -197,7 +197,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    data_preferences.deletePreferences(context, 'mystore', function (err) {
+    dataPreferences.deletePreferences(context, 'mystore', function (err) {
         if (err) {
             console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -216,7 +216,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.deletePreferences(this.context, 'mystore', function (err) {
+            dataPreferences.deletePreferences(this.context, 'mystore', function (err) {
                 if (err) {
                     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -230,11 +230,11 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences
+## dataPreferences.deletePreferences
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-Deletes a **Preferences** instance from the cache. This API uses a promise to return the result.
+Deletes a **Preferences** instance from the memory. This API uses a promise to return the result.
 
 If the **Preferences** instance has a persistent file, this API also deletes the persistent file.
 
@@ -273,7 +273,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    let promise = data_preferences.deletePreferences(context, 'mystore');
+    let promise = dataPreferences.deletePreferences(context, 'mystore');
     promise.then(() => {
         console.info("Succeeded in deleting preferences.");
     }).catch((err) => {
@@ -291,7 +291,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try{
-            let promise = data_preferences.deletePreferences(this.context, 'mystore');
+            let promise = dataPreferences.deletePreferences(this.context, 'mystore');
             promise.then(() => {
                 console.info("Succeeded in deleting preferences.");
             }).catch((err) => {
@@ -304,11 +304,11 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.removePreferencesFromCache
+## dataPreferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes a **Preferences** instance from the cache. This API uses an asynchronous callback to return the result.
+Removes a **Preferences** instance from the memory. This API uses an asynchronous callback to return the result.
 
 The removed **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will be caused.
 
@@ -332,7 +332,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
+    dataPreferences.removePreferencesFromCache(context, 'mystore', function (err) {
         if (err) {
             console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -351,7 +351,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
+            dataPreferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
                 if (err) {
                     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -366,11 +366,11 @@ class EntryAbility extends UIAbility {
 
 ```
 
-## data_preferences.removePreferencesFromCache
+## dataPreferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-Removes a **Preferences** instance from the cache. This API uses a promise to return the result.
+Removes a **Preferences** instance from the memory. This API uses a promise to return the result.
 
 The removed **Preferences** instance cannot be used for data operations. Otherwise, data inconsistency will be caused.
 
@@ -399,7 +399,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    let promise = data_preferences.removePreferencesFromCache(context, 'mystore');
+    let promise = dataPreferences.removePreferencesFromCache(context, 'mystore');
 	promise.then(() => {
     	console.info("Succeeded in removing preferences.");
     }).catch((err) => {
@@ -418,7 +418,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            let promise = data_preferences.removePreferencesFromCache(this.context, 'mystore');
+            let promise = dataPreferences.removePreferencesFromCache(this.context, 'mystore');
             promise.then(() => {
                 console.info("Succeeded in removing preferences.");
             }).catch((err) => {
@@ -435,7 +435,7 @@ class EntryAbility extends UIAbility {
 
 Provides APIs for obtaining and modifying data.
 
-Before calling any method of **Preferences**, you must obtain a **Preferences** instance by using [data_preferences.getPreferences](#data_preferencesgetpreferences).
+Before calling any API of **Preferences**, you must obtain a **Preferences** instance by using [dataPreferences.getPreferences](#datapreferencesgetpreferences).
 
 
 ### get
@@ -451,7 +451,7 @@ Obtains the value of a key. This API uses an asynchronous callback to return the
 | Name  | Type                                        | Mandatory| Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 | callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object.|
 
 **Example**
@@ -480,11 +480,11 @@ Obtains the value of a key. This API uses a promise to return the result. If the
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
  **Parameters**
- 
+
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 
 **Return value**
 
@@ -511,7 +511,7 @@ try {
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
-Obtains all KV pairs from the cached **Preferences** instance. This API uses an asynchronous callback to return the result.
+Obtains an **Object** instance that contains all KV pairs. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -519,7 +519,7 @@ Obtains all KV pairs from the cached **Preferences** instance. This API uses an 
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** provides all KV pairs obtained. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;Object&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **value** is the **Object** instance obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -544,7 +544,7 @@ try {
 
 getAll(): Promise&lt;Object&gt;
 
-Obtains all KV pairs from the cached **Preferences** instance. This API uses a promise to return the result.
+Obtains an **Object** instance that contains all KV pairs. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -552,7 +552,7 @@ Obtains all KV pairs from the cached **Preferences** instance. This API uses a p
 
 | Type                 | Description                                       |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;Object&gt; | Promise used to return the KV pairs obtained, in an **Object** instance.|
+| Promise&lt;Object&gt; | Promise used to return the **Object** instance obtained.|
 
 **Example**
 
@@ -575,7 +575,7 @@ try {
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-Writes data to this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Writes data to this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to make the **Preferences** instance persistent.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -584,7 +584,7 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.                               |
-| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is written successfully, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Example**
@@ -608,7 +608,7 @@ try {
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to make the **Preferences** instance persistent.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -617,7 +617,7 @@ Writes data to this **Preferences** instance. This API uses a promise to return 
 | Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 
 **Return value**
 
@@ -721,7 +721,7 @@ try {
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes a KV pair from this **Preferences** instance based on the specified key. This API uses an asynchronous callback to return the result.
+Deletes a KV pair from this **Preferences** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -753,7 +753,7 @@ try {
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes a KV pair from this **Preferences** instance based on the specified key. This API uses a promise to return the result.
+Deletes a KV pair from this **Preferences** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -789,7 +789,7 @@ try {
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Flushes the data in this **Preferences** instance to its persistent file. This API uses an asynchronous callback to return the result.
+Flushes data of this **Preferences** instance to its persistent file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -820,7 +820,7 @@ try {
 
 flush(): Promise&lt;void&gt;
 
-Flushes the data in this **Preferences** instance to its persistent file. This API uses a promise to return the result.
+Flushes data of this data of this **Preferences** instance to its persistent file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -919,14 +919,14 @@ Subscribes to data changes. A callback will be triggered to return the new value
 
 | Name  | Type                            | Mandatory| Description                                    |
 | -------- | -------------------------------- | ---- | ---------------------------------------- |
-| type     | string                           | Yes  | Event type to subscribe to. The value **change** indicates data change events.|
-| callback | Callback&lt;{ key : string }&gt; | Yes  | Callback invoked to return data changes.                          |
+| type     | string                           | Yes  | Event type. The value **change** indicates data changes.|
+| callback | Callback&lt;{ key : string }&gt; | Yes  | Callback invoked to return the data change.                          |
 
 **Example**
 
 ```js
 try {
-	data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+	dataPreferences.getPreferences(this.context, 'mystore', function (err, preferences) {
 		if (err) {
 			console.error("Failed to get preferences.");
 			return;
@@ -969,14 +969,14 @@ Unsubscribes from data changes.
 
 | Name  | Type                            | Mandatory| Description                                      |
 | -------- | -------------------------------- | ---- | ------------------------------------------ |
-| type     | string                           | Yes  | Event type to unsubscribe from. The value **change** indicates data change events. |
+| type     | string                           | Yes  | Event type. The value **change** indicates data changes.  |
 | callback | Callback&lt;{ key : string }&gt; | No  | Callback to unregister. If this parameter is left blank, the callbacks for all data changes will be unregistered.|
 
 **Example**
 
 ```js
 try {
-    data_preferences.getPreferences(this.context, 'mystore', function (err, preferences) {
+    dataPreferences.getPreferences(this.context, 'mystore', function (err, preferences) {
         if (err) {
             console.error("Failed to get preferences.");
             return;
@@ -1017,7 +1017,7 @@ Enumerates the value types.
 | --------------- | ------------------------------ |
 | number          | The value is a number.            |
 | string          | The value is a string.          |
-| boolean         | The value is of Boolean type.          |
+| boolean         | The value is true or false.          |
 | Array\<number>  | The value is an array of numbers.  |
 | Array\<boolean> | The value is a Boolean array.  |
 | Array\<string>  | The value is an array of strings.|
