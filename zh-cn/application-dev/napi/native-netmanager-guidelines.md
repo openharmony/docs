@@ -1,4 +1,4 @@
-# 网络连接管理模块查询常用网络信息Native API
+# 网络连接管理模块常用网络信息Native API
 
 ## 场景介绍
 
@@ -6,19 +6,19 @@ NetConnection模块提供了常用网络信息查询的能力。
 
 ## 接口说明
 
-NetConnection常用接口如下表所示，详细的接口说明请参考[NetConnection](_net_connection.md)
+NetConnection常用接口如下表所示，详细的接口说明请参考[NetConnection](../reference/native_apis/_net_connection.md)
 
 
 | 接口名 | 描述 |
 | -------- | -------- |
 | OH_NetConn_HasDefaultNet(int32_t *hasDefaultNet) | 检查默认数据网络是否被激活，判断设备是否有网络连接，以便在应用程序中采取相应的措施。 |
 | OH_NetConn_GetDefaultNet(NetConn_NetHandle *netHandle) | 获得默认激活的数据网络。 |
-| OH_NetConn_IsDefaultNetMetered(int32_t *isMetered) | 检查是否为默认数据网络启用了计数。 |
+| OH_NetConn_IsDefaultNetMetered(int32_t *isMetered) | 检查当前网络上的数据流量使用是否被计量 |
 | OH_NetConn_GetConnectionProperties(NetConn_NetHandle *netHandle, NetConn_ConnectionProperties *prop) | 获取netHandle对应的网络的连接信息。 |
 | OH_NetConn_GetNetCapabilities (NetConn_NetHandle *netHandle, NetConn_NetCapabilities *netCapacities) | 获取netHandle对应的网络的能力信息。 |
 | OH_NetConn_GetDefaultHttpProxy (NetConn_HttpProxy *httpProxy) | 获取网络默认的代理配置信息。 如果设置了全局代理，则会返回全局代理配置信息。如果进程已经绑定到指定netHandle对应的网络，则返回网络句柄对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。 |
 | OH_NetConn_GetAddrInfo (char *host, char *serv, struct addrinfo *hint, struct addrinfo **res, int32_t netId) | 通过netId获取DNS结果。 |
-| OH_NetConn_FreeDnsResult(struct addrinfo *res) | 释放DNS结果。 |
+| OH_NetConn_FreeDnsResult(struct addrinfo *res) | 释放DNS结果内存。 |
 | OH_NetConn_GetAllNets(NetConn_NetHandleList *netHandleList) | 获取所有处于连接状态的网络列表。 |
 | OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | 注册自定义dns解析器。 |
 | OHOS_NetConn_UnregisterDnsResolver(void) | 去注册自定义dns解析器。 |
@@ -35,12 +35,11 @@ NetConnection常用接口如下表所示，详细的接口说明请参考[NetCon
 
 **添加动态链接库**
 
-CMakeLists.txt中添加一下lib:
+CMakeLists.txt中添加以下lib:
 
 ```txt
 libace_napi.z.so
 libnet_connection.so
-libhilog_ndk.z.so
 ```
 
 **头文件**
@@ -49,7 +48,6 @@ libhilog_ndk.z.so
 #include "napi/native_api.h"
 #include "network/netmanager/net_connection.h"
 #include "network/netmanager/net_connection_type.h"
-#include <time.h>
 ```
 
 ### 构建工程
@@ -93,10 +91,8 @@ static napi_value NetId(napi_env env, napi_callback_info info) {
 }
 ```
 
-```txt
-简要说明：
-    这两个函数是用于获取系统默认网络连接的相关信息的。其中，CodeNumber函数用于获取默认网络连接的句柄，如果返回值为0，则表示获取失败；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
-```
+简要说明：这两个函数是用于获取系统默认网络连接的相关信息的。其中，CodeNumber函数用于获取默认网络连接的句柄，如果返回值为0，则表示获取失败；而NetId函数则用于获取默认网络连接的ID。这些信息可以用于进一步的网络操作。
+
 
 2、将通过napi封装好的`napi_value`类型对象初始化导出，通过外部函数接口，将以上两个函数暴露给JavaScript使用。
 
@@ -177,7 +173,7 @@ struct Index {
   }
 
   CodeNumber() {
-    let testParam = 0;
+    let testParam = 0; 
     let codeNumber = testNetManager.CodeNumber(testParam);
     if (codeNumber === 0) {
       console.log("Test success. [" + codeNumber + "]");
@@ -191,13 +187,21 @@ struct Index {
 
 ```
 
+6、配置`CMakeLists.txt`，本模块需要用到的共享库是`libnet_connection.so`，在工程自动生成的`CMakeLists.txt`中的`target_link_libraries`中添加此共享库。
+
+注意：如图所示，在`add_library`中的`entry`是工程自动生成的`modename`，若要做修改，需和步骤3中`.nm_modname`保持一致；
+
+<div style="text-align:center;">
+  <img src="figures/netmanager-4.png">
+</div>
+
 经过以上步骤，整个工程的搭建已经完成，接下来就可以连接设备运行工程进行日志查看了。
 
 ## 测试步骤
 
 1、连接设备，使用DevEco Studio打开搭建好的工程
 
-2、运行工程，设备上会弹出一下所示图片：
+2、运行工程，设备上会弹出以下所示图片：
 
 简要说明：
 
