@@ -111,7 +111,7 @@
         let message: string = JSON.stringify(want.parameters.routerDetail);
         hilog.info(DOMAIN_NUMBER, TAG, `UpdateForm formId: ${curFormId}, message: ${message}`);
         let formData: Record<string, string> = {
-          routerDetail: message + 'onNewWant UIAbility.', // 和卡片布局中对应
+          'routerDetail': message + 'onNewWant UIAbility.', // 和卡片布局中对应
         };
         let formMsg = formBindingData.createFormBindingData(formData);
         formProvider.updateForm(want.parameters[formInfo.FormParam.IDENTITY_KEY] + '', formMsg).then((data) => {
@@ -147,7 +147,6 @@
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formInfo from '@ohos.app.form.formInfo';
   import type Want from '@ohos.app.ability.Want';
   
   export default class WidgetCalleeFormAbility extends FormExtensionAbility {
