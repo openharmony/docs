@@ -249,13 +249,13 @@
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
-  - [getContext](js-apis-context-stage-getContext.md)
+  - [getContext](js-apis-getContext.md)
   - arkui
-    - [BuilderNode](./js-apis-arkui-builderNode.md)
-    - [FrameNode](./js-apis-arkui-frameNode.md)
-    - [Graphics](./js-apis-arkui-graphics.md)
-    - [NodeController](./js-apis-arkui-nodeController.md)
-    - [RenderNode](./js-apis-arkui-renderNode.md)
+    - [BuilderNode](js-apis-arkui-builderNode.md)
+    - [FrameNode](js-apis-arkui-frameNode.md)
+    - [Graphics](js-apis-arkui-graphics.md)
+    - [NodeController](js-apis-arkui-nodeController.md)
+    - [RenderNode](js-apis-arkui-renderNode.md)
 
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
