@@ -1,13 +1,15 @@
-# Application Window Development (Stage Mode)
+# Application Window Development (Stage Model)
 
 
 ## Basic Concepts
 
-- Immersive window: System windows such as the status bar and navigation bar are controlled in such a way that they are unobtrusive on the entire screen, thereby engaging users more deeply with the content displayed.
-  The immersive window feature is valid only when the main window of an application is displayed in full-screen mode. It does not apply to a main window in free window mode or a subwindow (for example, a dialog box or a floating window).
+- Immersive window: a window display mode where the system windows (generally the status bar and navigation bar) are hidden to allow users to fully engage with the content.
 
-- Floating window: a special application window that can still be displayed in the foreground when the main window and corresponding ability are running the background.
-  The floating window can be used to continue playing a video in a small window after the application returns to the background, or offer a quick entry (for example, bubbles) to a specific application. Before creating a floating window, an application must apply for the required permission.
+  The immersive window feature is applicable only to the main window of an application in full-screen mode. It does not apply to a main window in freeform window mode or a subwindow (for example, a dialog box or a floating window).
+
+- Floating window: a special application window that can still be displayed in the foreground when the main window and corresponding ability are running in the background.
+  
+  The floating window can be used to continue playing a video after the application is switched to the background, or offer a quick entry (for example, bubbles) to the application. Before creating a floating window, an application must apply for the required permission.
 
 
 ## When to Use
@@ -29,10 +31,10 @@ The table below lists the common APIs used for application window development. F
 | Instance        | API                                                      | Description                                                        |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | WindowStage    | getMainWindow(callback: AsyncCallback&lt;Window&gt;): void   | Obtains the main window of this window stage.<br>This API can be used only in the stage model.|
-| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to the main window in this window stage.<br>This API can be used only in the stage model.|
+| WindowStage    | loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads content to the main window in this window stage.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.<br/>This API can be used only in the stage model. |
 | WindowStage    | createSubWindow(name: string, callback: AsyncCallback&lt;Window&gt;): void | Creates a subwindow.<br>This API can be used only in the stage model.            |
-| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a system window.<br>**config** specifies the parameters used for creating the window.            |
-| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.                                    |
+| Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a system window.<br>**config**: parameters used for creating the window.            |
+| Window         | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the content of a page, with its path in the current project specified, to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project in the stage model.                                    |
 | Window         | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | Sets the background color for this window.                                          |
 | Window         | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.                                            |
 | Window         | setWindowTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void | Sets whether this window is touchable.                                    |
@@ -42,7 +44,7 @@ The table below lists the common APIs used for application window development. F
 | Window         | setWindowSystemBarEnable(names: Array&lt;'status'\|'navigation'&gt;): Promise&lt;void&gt; | Sets whether to display the status bar and navigation bar in this window.                                |
 | Window         | setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void | Sets the properties of the status bar and navigation bar in this window.<br>**systemBarProperties**: properties of the status bar and navigation bar.|
 | Window         | showWindow(callback: AsyncCallback\<void>): void             | Shows this window.                                              |
-| Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Enables listening for click events outside this window.                          |
+| Window         | on(type: 'touchOutside', callback: Callback&lt;void&gt;): void | Subscribes to touch events outside this window.                          |
 | Window         | destroyWindow(callback: AsyncCallback&lt;void&gt;): void     | Destroys this window.                                              |
 
 
@@ -60,9 +62,9 @@ In the stage model, the main window of an application is created and maintained 
 
    You can set multiple properties of the main window, such as the background color, brightness, and whether the main window is touchable. The code snippet below uses the **touchable** property as an example.
 
-3. Load content for the main window.
+3. Load content to the main window.
 
-   Call **loadContent** to load the page content to the main window.
+   Call **loadContent** to load content to the main window.
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -92,7 +94,7 @@ export default class EntryAbility extends UIAbility {
         console.info('Succeeded in setting the window to be touchable.');
       })
     })
-    // 3. Load the page content to the main window.
+    // 3. Load content to the main window.
     windowStage.loadContent("pages/page2", (err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
@@ -119,9 +121,9 @@ You can create an application subwindow, such as a dialog box, and set its prope
 
    After the subwindow is created, you can set its properties, such as the size, position, background color, and brightness.
 
-3. Load content for the subwindow and show it.
+3. Load content to and show the subwindow.
 
-   Call **setUIContent** and **showWindow** to load and display the content in the subwindow.
+   Call **setUIContent** to load content to the subwindow and **showWindow** to show the subwindow.
 
 4. Destroy the subwindow.
 
@@ -167,7 +169,7 @@ export default class EntryAbility extends UIAbility {
           }
           console.info('Succeeded in changing the window size.');
         });
-        // 3. Load the page content to the subwindow.
+        // 3.1 Load content to the subwindow.
         sub_windowClass.setUIContent("pages/page3", (err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
@@ -175,7 +177,7 @@ export default class EntryAbility extends UIAbility {
             return;
           }
           console.info('Succeeded in loading the content.');
-          // 3. Show the subwindow.
+          // 3.2 Show the subwindow.
           (sub_windowClass as window.Window).showWindow((err: BusinessError) => {
             let errCode: number = err.code;
             if (errCode) {
@@ -203,12 +205,12 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     windowStage_ = windowStage;
-    // Create a subwindow when it is needed, for example, when a click event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
+    // Create a subwindow when it is needed, for example, when a touch event occurs in the main window. Calling onWindowStageCreate is not always necessary. The code here is for reference only.
     this.showSubWindow();
   }
 
   onWindowStageDestroy() {
-    // Destroy the subwindow when it is no longer needed, for example, when the Close button in the subwindow is clicked. Calling onWindowStageDestroy is not always necessary. The code here is for reference only.
+    // Destroy the subwindow when it is no longer needed, for example, when the Close button in the subwindow is touched. Calling onWindowStageDestroy is not always necessary. The code here is for reference only.
     this.destroySubWindow();
   }
 };
@@ -216,7 +218,7 @@ export default class EntryAbility extends UIAbility {
 
 ## Experiencing the Immersive Window Feature
 
-To create a better video watching and gaming experience, you can use the immersive window feature to hide the system windows, including the status bar and navigation bar. This feature is available only for the main window of an application. Since API version 10, the immersive window has the same size as the full screen by default; its layout is controlled by the component module; the background color of its status bar and navigation bar is transparent, and the text color is black. When an application window calls **setWindowLayoutFullScreen**, with **true** passed in, the component module controls the immersive full-screen layout of the status bar and navigation bar. If **false** is passed in, the component module controls the non-immersive full-screen layout of the status bar and navigation bar.
+To create a better video watching and gaming experience, you can use the immersive window feature to hide the status bar and navigation bar. This feature is available only for the main window of an application. Since API version 10, the immersive window has the same size as the full screen by default; its layout is controlled by the component module; the background color of its status bar and navigation bar is transparent, and the text color is black. When an application window calls **setWindowLayoutFullScreen**, with **true** passed in, an immersive window layout is used. If **false** is passed in, a non-immersive window layout is used.
 
 
 ### How to Develop
@@ -229,11 +231,11 @@ To create a better video watching and gaming experience, you can use the immersi
 
    - Method 1: When the main window of the application is a full-screen window, call **setWindowSystemBarEnable** to hide the status bar and navigation bar.
 
-   - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the status bar and navigation bar to ensure that their display effect is consistent with that of the main window.
+   - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the status bar and navigation bar to create a display effect consistent with that of the main window.
 
-3. Load content for the immersive window and show it.
+3. Load content to the immersive window.
 
-   Call **loadContent** to load the content to the immersive window.
+   Call **loadContent** to load content to the immersive window.
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -253,7 +255,7 @@ export default class EntryAbility extends UIAbility {
       windowClass = data;
       console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
 
-      // 2. Use method 1 to implement the immersive effect.
+      // 2. Implement the immersive effect by hiding the status bar and navigation bar.
       let names: Array<'status' | 'navigation'> = [];
       windowClass.setWindowSystemBarEnable(names, (err: BusinessError) => {
         let errCode: number = err.code;
@@ -263,7 +265,7 @@ export default class EntryAbility extends UIAbility {
         }
         console.info('Succeeded in setting the system bar to be visible.');
       });
-      // 2. Use method 2 to implement the immersive effect.
+      // 2. Alternatively, implement the immersive effect by setting the properties of the status bar and navigation bar.
       let isLayoutFullScreen = true;
       windowClass.setWindowLayoutFullScreen(isLayoutFullScreen, (err: BusinessError) => {
         let errCode: number = err.code;
@@ -289,7 +291,7 @@ export default class EntryAbility extends UIAbility {
         console.info('Succeeded in setting the system bar properties.');
       });
     })
-    // 3. Load the page content to the immersive window.
+    // 3. Load content to the immersive window.
     windowStage.loadContent("pages/page2", (err: BusinessError) => {
       let errCode: number = err.code;
       if (errCode) {
@@ -315,13 +317,13 @@ A floating window is created based on an existing task. It is always displayed i
 
    Call **window.createWindow** to create a floating window.
 
-2. Set properties for the floating window.
+2. Set properties of the floating window.
 
    After the floating window is created, you can set its properties, such as the size, position, background color, and brightness.
 
-3. Load content for the floating window and show it.
+3. Load content to and show the floating window.
 
-   Call **setUIContent** and **showWindow** to load and display the content in the floating window.
+   Call **setUIContent** to load content to the floating window and **showWindow** to show the window.
 
 4. Destroy the floating window.
 
@@ -347,7 +349,7 @@ export default class EntryAbility extends UIAbility {
       }
       console.info('Succeeded in creating the floatWindow. Data: ' + JSON.stringify(data));
       windowClass = data;
-      // 2. Set the position, size, and properties of the floating window.
+      // 2. Set the position, size, and other properties of the floating window.
       windowClass.moveWindowTo(300, 300, (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -364,7 +366,7 @@ export default class EntryAbility extends UIAbility {
         }
         console.info('Succeeded in changing the window size.');
       });
-      // 3. Load the page content to the floating window.
+      // 3.1 Load content to the floating window.
       windowClass.setUIContent("pages/page4", (err: BusinessError) => {
         let errCode: number = err.code;
         if (errCode) {
@@ -372,7 +374,7 @@ export default class EntryAbility extends UIAbility {
           return;
         }
         console.info('Succeeded in loading the content.');
-        // 3. Show the floating window.
+        // 3.2 Show the floating window.
         (windowClass as window.Window).showWindow((err: BusinessError) => {
           let errCode: number = err.code;
           if (errCode) {
