@@ -376,7 +376,7 @@ client.on('message', (value: socket.LocalSocketMessageInfo) => {
     messageView = String.fromCharCode(uintArray[i]);
   }
   console.log('total receive: ' + JSON.stringify(value));
-  console.log('message infomation: ' + messageView);
+  console.log('message information: ' + messageView);
 });
 client.on('connect', () => {
   console.log("on connect");
@@ -468,7 +468,7 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
       messageView = String.fromCharCode(uintArray[i]);
     }
     console.log('total: ' + JSON.stringify(value));
-    console.log('message infomation: ' + messageView);
+    console.log('message information: ' + messageView);
   });
 
   connection.on('error', (err) => {
