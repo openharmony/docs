@@ -303,7 +303,7 @@ let addr : socket.NetAddress = {
 }
 
 // 加入多播组
-multicast.addMembership(addr, (err) => {
+multicast.addMembership(addr, (err: Object) => {
   if (err) {
     console.info('add err: ' + JSON.stringify(err));
     return;
@@ -323,7 +323,7 @@ multicast.on('message', (data) => {
 })
 
 // 发送数据
-multicast.send({ data:'Hello12345', address: addr }, (err) => {
+multicast.send({ data:'Hello12345', address: addr }, (err: Object) => {
   if (err) {
     console.info('发送失败: ' + JSON.stringify(err));
     return;
@@ -335,7 +335,7 @@ multicast.send({ data:'Hello12345', address: addr }, (err) => {
 multicast.off('message')
 
 // 退出多播组
-multicast.dropMembership(addr, (err) => {
+multicast.dropMembership(addr, (err: Object) => {
   if (err) {
     console.info('drop err ' + JSON.stringify(err));
     return;
