@@ -8,7 +8,7 @@ The **DefaultAppManager** module provides APIs to query whether the current appl
 
 ## Modules to Import
 
-```
+```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 ```
 
@@ -329,7 +329,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void;
+setDefaultApplication(type: string, elementName: ElementName, userId: number, callback: AsyncCallback\<void>) : void
 
 Sets the default application for a user based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
 
@@ -390,7 +390,7 @@ defaultAppMgr.setDefaultApplication("image/png", {
 
 ## defaultAppMgr.setDefaultApplication
 
-setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void;
+setDefaultApplication(type: string, elementName: ElementName, callback: AsyncCallback\<void>) : void
 
 Sets the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
 
@@ -498,7 +498,7 @@ defaultAppMgr.resetDefaultApplication("image/png", userId)
 
 ## defaultAppMgr.resetDefaultApplication
 
-resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void;
+resetDefaultApplication(type: string, userId: number, callback: AsyncCallback\<void>) : void
 
 Resets the default application for a user based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
 
@@ -549,7 +549,7 @@ defaultAppMgr.resetDefaultApplication("image/png", userId, (err, data) => {
 
 ## defaultAppMgr.resetDefaultApplication
 
-resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void;
+resetDefaultApplication(type: string, callback: AsyncCallback\<void>) : void
 
 Resets the default application based on a system-defined application type or a file type that complies with the media type format (either specified by **type** or **subtype**). This API uses an asynchronous callback to return the result.
 

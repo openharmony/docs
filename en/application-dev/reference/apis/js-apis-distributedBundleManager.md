@@ -10,7 +10,7 @@ The **distributedBundle** module provides APIs for managing distributed bundles.
 
 ## Modules to Import
 
-```
+``` ts
 import distributedBundle from '@ohos.bundle.distributedBundleManager';
 ```
 
@@ -28,7 +28,7 @@ For details, see [Permission Levels](../../security/accesstoken-overview.md#perm
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAbilityInfo>): void;
+getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAbilityInfo>): void
 
 Obtains information about the remote ability that matches the given element name. This API uses an asynchronous callback to return the result.
 
@@ -79,7 +79,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>;
+getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>
 
 Obtains information about the remote ability that matches the given element name. This API uses a promise to return the result.
 
@@ -133,7 +133,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void;
+getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void
 
 Obtains information about the remote abilities that match the given element names. This API uses an asynchronous callback to return the result.
 
@@ -191,7 +191,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteAbilityInfo>>;
+getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteAbilityInfo>>
 
 Obtains information about the remote abilities that match the given element names. This API uses a promise to return the result.
 
@@ -252,7 +252,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCallback\<RemoteAbilityInfo>): void;
+getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCallback\<RemoteAbilityInfo>): void
 
 Obtains information about the remote ability that matches the given element name and locale. This API uses an asynchronous callback to return the result.
 
@@ -304,7 +304,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteAbilityInfo>;
+getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteAbilityInfo>
 
 Obtains information about the remote ability that matches the given element name and locale. This API uses a promise to return the result.
 
@@ -359,7 +359,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void;
+getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void
 
 Obtains information about the remote abilities that match the given element names and locale. This API uses an asynchronous callback to return the result.
 
@@ -418,7 +418,7 @@ try {
 
 ## distributedBundle.getRemoteAbilityInfo
 
-getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise\<Array\<RemoteAbilityInfo>>;
+getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise\<Array\<RemoteAbilityInfo>>
 
 Obtains information about the remote abilities that match the given element names and locale. This API uses a promise to return the result.
 

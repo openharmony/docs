@@ -15,7 +15,7 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void;
+getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void
 
 Obtains the launcher ability information based on the given bundle name and user ID. This API uses an asynchronous callback to return the result.
 
@@ -66,7 +66,7 @@ try {
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>;
+getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>
 
 Obtains the launcher ability information based on the given bundle name and user ID. This API uses a promise to return the result.
 
@@ -116,7 +116,7 @@ try {
 
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void;
+getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void
 
 Obtains the launcher ability information of all applications based on the given user ID. This API uses an asynchronous callback to return the result.
 
@@ -131,12 +131,7 @@ Obtains the launcher ability information of all applications based on the given 
 | Name| Type  | Mandatory| Description        |
 | ------ | ------ | ---- | -------------- |
 | userId | number | Yes  | User ID.|
-
-**Return value**
-
-| Type                               | Description                                                   |
-| ----------------------------------- | ------------------------------------------------------- |
-| AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>> | Callback used to return the array of **LauncherAbilityInfo** objects obtained.|
+| callback | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>> | Yes| Callback used to return the array of **LauncherAbilityInfo** objects obtained.|
 
 **Error codes**
 
@@ -164,7 +159,7 @@ try {
 ```
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>;
+getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>
 
 Obtains the launcher ability information of all applications based on the given user ID. This API uses a promise to return the result.
 
@@ -212,7 +207,7 @@ try {
 
 ## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
-getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>) : void;
+getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>) : void
 
 Obtains the shortcut information of the current user based on the given bundle name. This API uses an asynchronous callback to return the result.
 
@@ -222,15 +217,12 @@ Obtains the shortcut information of the current user based on the given bundle n
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
 
+**Parameters**
+
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name of the application.|
-
-**Return value**
-
-| Type                                                        | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| AsyncCallback\<Array<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>> | Callback used to return the **ShortcutInfo** object obtained.|
+| callback | AsyncCallback\<Array<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>> | Yes| Callback used to return the **ShortcutInfo** object obtained.|
 
 **Error codes**
 
@@ -259,7 +251,7 @@ try {
 
 ## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
-getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>;
+getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>
 
 Obtains the shortcut information of the current user based on the given bundle name. This API uses a promise to return the result.
 
