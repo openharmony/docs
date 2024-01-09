@@ -8,5 +8,5 @@
   - [视频编码(C/C++)](../media/video-encoding.md)
   - [视频解码(C/C++)](../media/video-decoding.md)
 - 文件解析封装
-  - [音视频封装(C/C++)](audio-video-encapsulation.md)
-  - [音视频解封装(C/C++)](audio-video-decapsulation.md)
+  - [音视频封装(C/C++)](../media/audio-video-encapsulation.md)
+  - [音视频解封装(C/C++)](../media/audio-video-decapsulation.md)
