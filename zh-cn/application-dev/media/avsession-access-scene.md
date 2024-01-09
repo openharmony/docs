@@ -1,14 +1,14 @@
-# 本地应用AVSession接入流程
+# 应用接入AVSession场景介绍
 
-音视频应用在实现音视频功能的同时，需要接入媒体会话即[AVSession Kit](../kit-readme/Readme-Avsession-Kit.md)，下文将提供一些典型的接入AVSession的展示和控制场景，方便开发者根据场景进行适配。 
+音视频应用在实现音视频功能的同时，需要接入媒体会话即[AVSession Kit](../kit-readme/Readme-Avsession-Kit.md)，下文将提供一些典型的接入AVSession的展示和控制场景，方便开发者根据场景进行适配。
 
 对于不同的场景，将会在系统的播控中心看到不同的UI呈现。同时，在不同的场景下，应用的接入处理也需要遵循不同的规范约束。
 
 ## 哪些场景下需要接入AVSession
 
-AVSession会对后台的音频播放、VOIP通话做约束，所以通常来说，长音频应用、听书类应用、长视频应用、VOIP类应用等都需要接入AVSession。当应用在没有创建接入AVSession的情况下进行了上述业务，那么系统会在检测到应用后台时，停止对应的音频播放，静音通话声音，以达到约束应用行为的目的。这种约束，应用上架前在本地便可以验证到。
+AVSession会对后台的音频播放、VOIP通话做约束，所以通常来说，长音频应用、听书类应用、长视频应用、VOIP类应用等都需要接入AVSession。当应用在没有创建接入AVSession的情况下进行了上述业务，那么系统会在检测到应用后台时，停止对应的音频播放，静音通话声音，以达到约束应用行为的目的。这种约束，应用上架前在本地就可以验证。
 
-对于其他使用到音频播放的应用，比如浏览器，游戏，直播等场景，接入AVSession不是必选项，只是可选，前提是应用有后台播放的使用诉求。若应用需要后台播放，那么接入AVSession仍然是必须的，否则业务的正常功能会受到限制。
+对于其他使用到音频播放的应用，比如浏览器，游戏，直播等场景，接入AVSession不是必选项，只是可选，取决于应用是否有后台播放的使用诉求。若应用需要后台播放，那么接入AVSession仍然是必须的，否则业务的正常功能会受到限制。
 
 当应用需要实现后台播放等功能时，需要使用[BackgroundTasks Kit](../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免进入挂起（Suspend）状态。
 
@@ -18,27 +18,27 @@ AVSession会对后台的音频播放、VOIP通话做约束，所以通常来说�
 
 如果不需要在播控中心展示：
 
-1. 确定应用需要创建的会话类型，创建对应的会话，不同类型决定了播控中心展示的控制模板样式；
-2. 按需创建后台任务；
-3. 设置播放状态为PLAYBACK_STATE_STOP；
+1. 确定应用需要创建的会话类型，[创建对应的会话](#创建不同类型的会话)，不同类型决定了播控中心展示的控制模板样式。
+2. 按需[创建后台任务](#创建后台任务)。
+3. 将[播放状态设置为PLAYBACK_STATE_STOP](#设置是否在播控中心展示)，不在系统播控中心显示。
 4. 应用退出或者无对应业务时，注销会话。
 
 如果需要在播控中心展示：
 
-1. 确定应用需要创建的会话类型，创建对应的会话，不同类型决定了播控中心展示的控制模板样式；
-2. 按需创建后台任务；
-3. 设置必要的Metadata，以在播控中心展示响应的信息，包括不限于：当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等属性；
-4. 设置播放相关的状态，包括不限于：当前媒体的播放状态（state）、播放位置（position）、播放倍速（speed）、缓冲时间（bufferedTime）、循环模式（loopMode）、是否收藏（isFavorite）、正在播放的媒体Id（activeItemId）、自定义媒体数据（extras）等属性；
-5. 按需注册不同的控制命令，包括不限于：播放/暂停、上下一首、快进快退、收藏、循环模式、进度条；
+1. 确定应用需要创建的会话类型，[创建对应的会话](#创建不同类型的会话)，不同类型决定了播控中心展示的控制模板样式。
+2. 按需[创建后台任务](#创建后台任务)。
+3. [设置必要的元数据（Metadata）](#设置元数据)，以在播控中心展示响应的信息，包括不限于：当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等属性。
+4. [设置播放相关的状态](#设置播放状态)，包括不限于：当前媒体的播放状态（state）、播放位置（position）、播放倍速（speed）、缓冲时间（bufferedTime）、循环模式（loopMode）、是否收藏（isFavorite）、正在播放的媒体Id（activeItemId）、自定义媒体数据（extras）等属性。
+5. 按需[注册不同的控制命令](#注册控制命令)，包括不限于：播放/暂停、上下一首、快进快退、收藏、循环模式、进度条。
 6. 应用退出或者无对应业务时，注销会话。
 
-### 不同类型的会话
+## 创建不同类型的会话
 
 AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../reference/apis/js-apis-avsession.md#avsessiontype10) 定义，不同的类型代表了不同场景的控制能力，对于播控中心来说，会展示不同的控制模版。
 
-- audio类型，播控中心的控制样式为：收藏，上一首，播放/暂停，下一首，循环模式；
+- audio类型，播控中心的控制样式为：收藏，上一首，播放/暂停，下一首，循环模式。
 
-- video类型，播控中心的控制样式为：快退，上一首，播放/暂停，下一首，快进；
+- video类型，播控中心的控制样式为：快退，上一首，播放/暂停，下一首，快进。
 
 - voice_all类型，播控中心的页面不做展示。
 
@@ -58,16 +58,15 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
   }
 ```
 
-### 后台任务
+## 创建后台任务
 
 当应用需要实现后台播放等功能时，需要使用[BackgroundTasks Kit](../task-management/background-task-overview.md)（后台任务管理）的能力，申请对应的长时任务，避免进入挂起（Suspend）状态。
 
 对媒体类播放来说，需要申请[AUDIO_PLAYBACK BackgroundMode](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundmode)的长时任务。
 
+## 设置是否在播控中心展示
 
-### 是否在播控中心展示
-
-如果应用仅希望支持后台播放，但是又不希望在系统的播控中心展示，系统会提供如下的方式来支持，可以设置 PLAYBACK_STATE_STOP 状态，系统读到此状态，不会把应用的信息在播控中心的卡片进行展示。
+如果应用仅希望支持后台播放，但是又不希望在系统的播控中心展示，系统会提供如下的方式来支持，可以设置PLAYBACK_STATE_STOP状态，系统读到此状态，不会把应用的信息在播控中心的卡片进行展示。
 
 ```ts
   import AVSessionManager from '@ohos.multimedia.avsession';
@@ -92,9 +91,9 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
   }
 ```
 
-### 元数据
+## 设置元数据
 
-#### 通用元数据
+### 通用元数据
 
 应用可以通过setAVMetadata把会话的一些元数据信息设置给系统，从而在播控中心界面进行展示，包括不限制：当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等。
 
@@ -120,7 +119,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
    }
 ```
 
-#### 歌词
+### 歌词
 
 对于长音频来说，播控中心提供了歌词的展示页面，对于应用来说，接入也比较简单，只需要把歌词内容设置给系统。播控中心会解析歌词内容，并根据播放进度进行同步的刷新。
 
@@ -147,12 +146,13 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
   }
 ```
 
-#### 历史歌单
+### 历史歌单
 
 历史歌单的接入，需要应用先接入意图框架支持MUSIC_PLAYBACK的能力，参考意图框架。
 接入意图框架后，当启动历史歌单时，应用同样会在意图框架的MUSIC_PLAYBACK的意图接口中获取到启动参数。
 
 音乐类应用在播放内容时，可以通过setAVMetadata接口进行歌单的设置，歌单由这几个信息组成：
+
 - avQueueName: 歌单的名称
 - avQueueId: 歌单的唯一标识
 - avQueueImage: 歌单的图片资源
@@ -185,9 +185,9 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
   }
 ```
 
-### 播放状态
+## 设置播放状态
 
-#### 通用播放状态
+### 通用播放状态
 
 应用可以通过[setAVPlaybackState](../reference/apis/js-apis-avsession.md#setavplaybackstate10)。把当前的播放状态设置给系统，以在播控中心界面进行展示。
 播放状态一般是在资源播放后会进行变化的内容，包括：当前媒体的播放状态（state）、播放位置（position）、播放倍速（speed）、缓冲时间（bufferedTime）、循环模式（loopMode）、是否收藏（isFavorite）、正在播放的媒体Id（activeItemId）、自定义媒体数据（extras）等。
@@ -216,7 +216,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
    }
 ```
 
-#### 进度条
+### 进度条
 
 应用如果支持在播控中心展示进度，那么在媒体资源播放中，需要设置资源的时长、播放状态（暂停、播放）、播放位置、倍速，播控中心会使用这些信息进行进度的展示：
 
@@ -252,9 +252,9 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 
 系统的播控中心会根据应用设置的信息自行进行播放进度的计算，而不需要应用实时更新播放进度；
 但是应用需要如下状态发生变化的时候，更新AVPlaybackState，否则系统会发生计算错误：
+
 - playbackState
 - speed
-
 
 关于进度条有一些特殊情况需要处理：
 
@@ -272,8 +272,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
     - 播放广告时，单独设置广告的时长 duration
     - 当进入到正片播放的时候，则重新设置一次新的时长，以与广告进行区分。
 
-
-### 控制命令
+## 注册控制命令
 
 应用接入AVSession，可以通过注册不同的控制命令来实现播控中心界面上的控制操作，即通过on接口注册不同的控制命令参数，即可实现对应的功能。
 具体的接口参考[接口注册](../reference/apis/js-apis-avsession.md#onplay10)。
@@ -306,8 +305,7 @@ AVSession在构造方法中支持不同的类型参数，由 [AVSessionType](../
 | hangUp    | 通话挂断的命令。 |
 | toggleCallMute    | 通话静音或解除静音的命令。 |
 
-
-#### 不支持的命令的处理
+### 不支持命令的处理
 
 系统支持的控制命令对于不支持的控制，比如应用不支持“上一首”的命令处理，只需要使用off 接口注销对应的控制命令，系统的播控中心会相应的对该控制界面进行置灰处理，以明确告知用户此控制命令不支持。
 
@@ -329,7 +327,7 @@ async function unregisterSessionListener() {
 }
 ```
 
-#### 快进快退
+### 快进快退
 
 系统支持三种快进快退的时长，应用可以通过接口进行设置；同时注册快进快退的回调命令，以响应控制。
 
@@ -364,7 +362,7 @@ async function unregisterSessionListener() {
 }
 ```
 
-#### 收藏
+### 收藏
 
 音乐类应用实现收藏功能，那么需要注册收藏的控制响应[on('toggleFavorite')](../reference/apis/js-apis-avsession.md#ontogglefavorite10)。
 
@@ -394,7 +392,7 @@ async function unregisterSessionListener() {
   }
 ```
 
-#### 循环模式
+### 循环模式
 
 针对音乐类应用，系统的播控中心界面会默认展示循环模式的控制操作，目前系统支持四种固定的循环模式控制，参考: [LoopMode](../reference/apis/js-apis-avsession.md#loopmode10)。
 
@@ -431,7 +429,7 @@ async function unregisterSessionListener() {
   }
 ```
 
-#### 进度控制
+### 进度控制
 
 应用如果支持进度显示，进一步也可以支持进度控制。应用需要响应seek的控制命令，那么当用户在播控中心的界面上进行拖动操作时，应用就会收到对应的回调。参考实现：
 
@@ -479,10 +477,11 @@ async function unregisterSessionListener() {
   }
 ```
 
-### 媒体通知的适配
+## 媒体通知的适配
 
 当前系统不直接向应用提供主动发送媒体控制通知的接口，那么当应用进入播放状态时，系统会自动发送通知，同时在通知和锁屏界面进行展示。
 
 > **说明：**
+>
 > 1. 目前仅audio类型的媒体会话会在通知入口展示，video类型暂时不支持展示。
 > 2. 通知中心、锁屏下的播控卡片的展示，由系统进行发送，并控制相应的生命周期。
