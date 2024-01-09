@@ -108,9 +108,9 @@ let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts).then((pixelMap) => {
   effectKit.createColorPicker(pixelMap, (error, colorPicker) => {
     if (error) {
-      console.log('Failed to create color picker.');
+      console.error('Failed to create color picker.');
     } else {
-      console.log('Succeeded in creating color picker.');
+      console.info('Succeeded in creating color picker.');
     }
   })
 })
@@ -151,10 +151,10 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 
 ```js
 colorPicker.getMainColor().then(color => {
-    console.log('Succeeded in getting main color.');
+    console.info('Succeeded in getting main color.');
     console.info(`color[ARGB]=${color.alpha},${color.red},${color.green},${color.blue}`);
 }).catch(error => {
-    console.log('Failed to get main color.');
+    console.error('Failed to get main color.');
 })
 ```
 
@@ -176,7 +176,7 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 
 ```js
 let color = colorPicker.getMainColorSync();
-console.log('get main color =' + color);
+console.info('get main color =' + color);
 ```
 ![en-us_image_Main_Color.png](figures/en-us_image_Main_Color.png)
 
@@ -313,3 +313,4 @@ image.createPixelMap(color, opts).then((pixelMap) => {
   let pixel = effectKit.createEffect(pixelMap).grayscale().getPixelMap();
 })
 ```
+

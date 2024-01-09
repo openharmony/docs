@@ -422,7 +422,7 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
+Obtains the top window of the current application. This API uses an asynchronous callback to return the result. If no subwindow is available, the main window of the application is returned.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -445,18 +445,27 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-let windowClass = null;
-try {
-    window.getLastWindow(this.context, (err, data) => {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+class myAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass = undefined;
+    try {
+      window.getLastWindow(this.context, (err, data) => {
         if (err.code) {
-            console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-            return;
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
         }
         windowClass = data;
         console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-    });
-} catch (exception) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+  }
 }
 ```
 
@@ -464,7 +473,7 @@ try {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-Obtains the top window of the current application. This API uses a promise to return the result.
+Obtains the top window of the current application. This API uses a promise to return the result. If no subwindow is available, the main window of the application is returned.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -492,17 +501,26 @@ For details about the error codes, see [Window Error Codes](../errorcodes/errorc
 **Example**
 
 ```js
-let windowClass = null;
-try {
-    let promise = window.getLastWindow(this.context);
-    promise.then((data)=> {
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+
+class myAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass = undefined;
+    try {
+      let promise = window.getLastWindow(this.context);
+      promise.then((data) => {
         windowClass = data;
         console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-    }).catch((err)=>{
+      }).catch((err) => {
         console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-    });
-} catch (exception) {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+  };
 }
 ```
 
@@ -2263,7 +2281,7 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 | Name| Type| Mandatory| Description|
 | -------- | ------------------------- | -- | -------------------- |
-| path     | string                    | Yes| Path of the page from which the content will be loaded.|
+| path     | string                    | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.         |
 
 **Error codes**
@@ -2303,7 +2321,7 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 | Name| Type| Mandatory| Description|
 | ---- | ------ | -- | ------------------ |
-| path | string | Yes| Path of the page from which the content will be loaded.|
+| path | string | Yes| Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 
 **Return value**
 
@@ -2349,7 +2367,7 @@ Loads content from a page associated with a local storage to this window. This A
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
+| path     | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.                                        |
 | storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
@@ -2395,7 +2413,7 @@ Loads content from a page associated with a local storage to this window. This A
 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
+| path    | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.                                        |
 | storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
@@ -5117,7 +5135,7 @@ Loads content from a page to this window. This API uses an asynchronous callback
 
 | Name  | Type                     | Mandatory| Description                |
 | -------- | ------------------------- | ---- | -------------------- |
-| path     | string                    | Yes  | Path of the page from which the content will be loaded.|
+| path     | string                    | Yes  | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Example**
@@ -5148,7 +5166,7 @@ Loads content from a page to this window. This API uses a promise to return the 
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| path   | string | Yes  | Path of the page from which the content will be loaded.|
+| path   | string | Yes  | Path of the page from which the content will be loaded. In the stage model, the path is configured in the **main_pages.json** file of the project. In the FA model, the path is configured in the **config.json** file of the project.|
 
 **Return value**
 
@@ -6375,7 +6393,7 @@ Loads content from a page associated with a local storage to the main window in 
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
+| path     | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.                                       |
 | storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 | callback | AsyncCallback&lt;void&gt;                       | Yes  | Callback used to return the result.                                                  |
 
@@ -6428,7 +6446,7 @@ Loads content from a page associated with a local storage to the main window in 
 
 | Name | Type                                           | Mandatory| Description                                                        |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path    | string                                          | Yes  | Path of the page from which the content will be loaded.                                        |
+| path    | string                                          | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.                                        |
 | storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | No  | A storage unit, which provides storage for variable state properties and non-variable state properties of an application.|
 
 **Return value**
@@ -6485,7 +6503,7 @@ Loads content from a page to this window stage. This API uses an asynchronous ca
 
 | Name  | Type                     | Mandatory| Description                |
 | -------- | ------------------------- | ---- | -------------------- |
-| path     | string                    | Yes  | Path of the page from which the content will be loaded.|
+| path     | string                    | Yes  | Path of the page from which the content will be loaded. The path is configured in the **main_pages.json** file of the project.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.          |
 
 **Error codes**
