@@ -132,10 +132,10 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码
 | -------- | -------- |
 | SET_BUFFER_GEOMETRY | 设置本地窗口缓冲区几何图形， 函数中的可变参数是 [输入]int32_t width ，[输入] int32_t height。 |
 | GET_BUFFER_GEOMETRY | 获取本地窗口缓冲区几何图形， 函数中的可变参数是 [输出] int32_t \*height， [输出] int32_t \*width。 |
-| GET_FORMAT | 获取本地窗口缓冲区格式， 函数中的可变参数是 [输出] int32_t \*format。 |
-| SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format。 |
-| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] int32_t \*usage。 |
-| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] int32_t usage。 |
+| GET_FORMAT | 获取本地窗口缓冲区格式， 函数中的可变参数是 [输出] int32_t \*format，获取类型详细请参见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format)。 |
+| SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format，设置类型详细请参见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format)。 |
+| GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] int32_t \*usage，获取类型详细请参见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage)。 |
+| SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] int32_t usage，设置类型详细请参见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage)。 |
 | SET_STRIDE | 设置本地窗口缓冲区步幅， 函数中的可变参数是 [输入] int32_t stride。 |
 | GET_STRIDE | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride。 |
 | SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔， 函数中的可变参数是 [输入] int32_t interval。 |
