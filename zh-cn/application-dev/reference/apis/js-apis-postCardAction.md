@@ -5,7 +5,7 @@ postCardAction(component: Object, action: Object): void
 用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片中可以调用。
 
 > **说明：** 
-> 本接口从API version 11开始支持。
+> 本接口从API version 9开始支持。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
