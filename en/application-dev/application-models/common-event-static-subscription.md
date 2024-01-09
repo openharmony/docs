@@ -20,11 +20,15 @@ Subscribing to a common event in static mode is achieved by configuring a declar
 
    ```ts
    import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
-   import commonEventManager from '@ohos.commonEventManager';
+   import type commonEventManager from '@ohos.commonEventManager';
+   import Logger from '../utils/Logger';
+   
+   const TAG: string = 'StaticSubscriber';
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
-     onReceiveEvent(event: commonEventManager.CommonEventData) {
-       console.info('onReceiveEvent, event: ' + event.event);
+     onReceiveEvent(event: commonEventManager.CommonEventData): void {
+       Logger.info(TAG, 'onReceiveEvent, event: ' + event.event);
+       ...
      }
    }
    ```
@@ -36,6 +40,7 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    ```json
    {
      "module": {
+   	...
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
@@ -44,15 +49,15 @@ Subscribing to a common event in static mode is achieved by configuring a declar
            "icon": "$media:icon",
            "label": "$string:StaticSubscriber_label",
            "type": "staticSubscriber",
-           "exported": true,
            "metadata": [
              {
                "name": "ohos.extension.staticSubscriber",
-               "resource": "$profile:subscribe"
+               "resource": "$profile:staticsubscriber"
              }
            ]
          }
-       ]
+       ],
+   	...
      }
    }
    ```
@@ -74,10 +79,10 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    {
      "commonEvents": [
        {
-         "name": "xxx",
-         "permission": "xxx",
-         "events":[
-           "xxx"
+         "name": "StaticSubscriber",
+         "permission": "",
+         "events": [
+           "usual.event.AIRPLANE_MODE"
          ]
        }
      ]
@@ -100,9 +105,9 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    [
      ...
      {
-       "bundleName": "com.example.myapplication", // Bundle name.
+       "bundleName": "com.samples.stageprocessthread", // Bundle name.
        "app_signature": ["****"], // Fingerprint information.
-       "allowCommonEvent": ["usual.event.A", "usual.event.B"] // Type of common event that can be started by static broadcast.
+       "allowCommonEvent": ["usual.event.AIRPLANE_MODE"] // Type of common event that can be started by static broadcast.
      }
    ]
    ```
@@ -111,3 +116,4 @@ Subscribing to a common event in static mode is achieved by configuring a declar
    >
    > The **install_list_capability.json** file is available only for preinstalled applications.
 
+<!--no_check-->
