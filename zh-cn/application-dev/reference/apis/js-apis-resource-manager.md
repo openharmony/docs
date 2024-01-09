@@ -6,7 +6,6 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
 ## 导入模块
 
 ```js
@@ -34,7 +33,7 @@ export default class EntryAbility extends UIAbility {
 
 getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
-获取当前应用的资源管理对象，使用callback形式返回ResourceManager对象。
+获取当前应用的资源管理对象，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -44,7 +43,7 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                            |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | callback方式返回ResourceManager对象 |
+| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    |返回资源管理ResourceManager对象。 |
 
 **示例：** 
   ```js
@@ -64,12 +63,11 @@ getResourceManager(callback: AsyncCallback&lt;ResourceManager&gt;): void
   ```
 注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
-
 ## resourceManager.getResourceManager
 
 getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManager&gt;): void
 
-获取指定应用的资源管理对象，使用callback形式返回ResourceManager对象。
+获取指定应用的资源管理对象，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -79,21 +77,21 @@ getResourceManager(bundleName: string, callback: AsyncCallback&lt;ResourceManage
 
 | 参数名        | 类型                                       | 必填   | 说明                            |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
-| bundleName | string                                   | 是    | 指定应用的Bundle名称                 |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | callback方式返回ResourceManager对象 |
+| bundleName | string                                   | 是    | 应用的Bundle名称。                 |
+| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | 是    | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
+
   ```js
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
   ```
 
-
 ## resourceManager.getResourceManager
 
 getResourceManager(): Promise&lt;ResourceManager&gt;
 
-获取当前应用的资源管理对象，使用Promise形式返回ResourceManager对象。
+获取当前应用的资源管理对象，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -103,7 +101,7 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
 
 | 类型                                       | 说明                |
 | ---------------------------------------- | ----------------- |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise方式返回资源管理对象 |
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
   ```js
@@ -124,12 +122,11 @@ getResourceManager(): Promise&lt;ResourceManager&gt;
   ```
 注：示例代码中的0x1000000表示资源对应的id, 其可在编译后的文件ResourceTable.txt中找到。
 
-
 ## resourceManager.getResourceManager
 
 getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
-获取指定应用的资源管理对象，使用Promise形式返回ResourceManager对象。
+获取指定应用的资源管理对象，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -139,13 +136,13 @@ getResourceManager(bundleName: string): Promise&lt;ResourceManager&gt;
 
 | 参数名        | 类型     | 必填   | 说明            |
 | ---------- | ------ | ---- | ------------- |
-| bundleName | string | 是    | 指定应用的Bundle名称 |
+| bundleName | string | 是    | 应用的Bundle名称。 |
 
 **返回值：**
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise方式返回的资源管理对象 |
+| Promise&lt;[ResourceManager](#resourcemanager)&gt; | 返回资源管理ResourceManager对象。 |
 
 **示例：** 
   ```js
@@ -169,7 +166,7 @@ getSystemResourceManager(): ResourceManager
 
 | 类型                                       | 说明                 |
 | ---------------------------------------- | ------------------ |
-| [Resourcemanager](#resourcemanager) | 返回系统资源的管理对象 |
+| [Resourcemanager](#resourcemanager) | 返回系统资源的管理对象。 |
 
 **错误码：**
 
@@ -198,7 +195,6 @@ import { BusinessError } from '@ohos.base';
   }
   ```
 
-
 ## Direction
 
 用于表示设备屏幕方向。
@@ -207,8 +203,8 @@ import { BusinessError } from '@ohos.base';
 
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
-| DIRECTION_VERTICAL   | 0    | 竖屏   |
-| DIRECTION_HORIZONTAL | 1    | 横屏   |
+| DIRECTION_VERTICAL   | 0    | 竖屏。   |
+| DIRECTION_HORIZONTAL | 1    | 横屏。   |
 
 
 ## DeviceType
@@ -219,10 +215,10 @@ import { BusinessError } from '@ohos.base';
 
 | 名称                   | 值  | 说明   |
 | -------------------- | ---- | ---- |
-| DEVICE_TYPE_TABLET   | 0x01 | 平板   |
-| DEVICE_TYPE_CAR      | 0x02 | 汽车   |
-| DEVICE_TYPE_TV       | 0x04 | 电视   |
-| DEVICE_TYPE_WEARABLE | 0x06 | 穿戴   |
+| DEVICE_TYPE_TABLET   | 0x01 | 平板。   |
+| DEVICE_TYPE_CAR      | 0x02 | 汽车。   |
+| DEVICE_TYPE_TV       | 0x04 | 电视。  |
+| DEVICE_TYPE_WEARABLE | 0x06 | 穿戴。   |
 
 
 ## ScreenDensity
@@ -233,12 +229,12 @@ import { BusinessError } from '@ohos.base';
 
 | 名称             | 值  | 说明         |
 | -------------- | ---- | ---------- |
-| SCREEN_SDPI    | 120  | 小规模的屏幕密度   |
-| SCREEN_MDPI    | 160  | 中规模的屏幕密度   |
-| SCREEN_LDPI    | 240  | 大规模的屏幕密度   |
-| SCREEN_XLDPI   | 320  | 特大规模的屏幕密度  |
-| SCREEN_XXLDPI  | 480  | 超大规模的屏幕密度  |
-| SCREEN_XXXLDPI | 640  | 超特大规模的屏幕密度 |
+| SCREEN_SDPI    | 120  | 小规模的屏幕密度。  |
+| SCREEN_MDPI    | 160  | 中规模的屏幕密度。   |
+| SCREEN_LDPI    | 240  | 大规模的屏幕密度。   |
+| SCREEN_XLDPI   | 320  | 特大规模的屏幕密度。  |
+| SCREEN_XXLDPI  | 480  | 超大规模的屏幕密度。  |
+| SCREEN_XXXLDPI | 640  | 超特大规模的屏幕密度。 |
 
 
 ## Configuration
@@ -251,8 +247,8 @@ import { BusinessError } from '@ohos.base';
 
 | 名称        | 类型                    | 可读   | 可写   | 说明       |
 | --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | 是    | 否    | 当前设备屏幕方向 |
-| locale    | string                  | 是    | 否    | 当前系统语言   |
+| direction | [Direction](#direction) | 是    | 否    | 当前设备屏幕方向。 |
+| locale    | string                  | 是    | 否    | 当前系统语言。   |
 
 
 ## DeviceCapability
@@ -265,8 +261,8 @@ import { BusinessError } from '@ohos.base';
 
 | 名称            | 类型                            | 可读   | 可写   | 说明       |
 | ------------- | ------------------------------- | ---- | ---- | -------- |
-| screenDensity | [ScreenDensity](#screendensity) | 是    | 否    | 当前设备屏幕密度 |
-| deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型   |
+| screenDensity | [ScreenDensity](#screendensity) | 是    | 否    | 当前设备屏幕密度。 |
+| deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型。   |
 
 
 ## RawFileDescriptor<sup>8+</sup>
@@ -279,9 +275,9 @@ import { BusinessError } from '@ohos.base';
 
 | 名称     | 类型    | 可读   | 可写  | 说明           |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | 是    | 否 | rawfile所在hap的文件描述符 |
-| offset | number  | 是    | 否 | rawfile的起始偏移量      |
-| length | number  | 是    | 否 | rawfile的文件长度       |
+| fd     | number  | 是    | 否 | rawfile所在hap的文件描述符。 |
+| offset | number  | 是    | 否 | rawfile的起始偏移量。      |
+| length | number  | 是    | 否 | rawfile的文件长度。       |
 
 ## Resource<sup>9+</sup>
 
@@ -293,12 +289,11 @@ import { BusinessError } from '@ohos.base';
 
 | 名称         | 类型     | 可读   | 可写  |说明          |
 | ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | 是    | 否 | 应用的bundle名称 |
-| moduleName | string | 是    | 否 | 应用的module名称 |
-| id         | number | 是    | 否 | 资源的id值      |
-| params     | any[] | 是    | 否 | 其他资源参数（可选）      |
-| type       | number | 是    | 否 | 资源的类型（可选）      |
-
+| bundleName | string | 是    | 否 | 应用的bundle名称。 |
+| moduleName | string | 是    | 否 | 应用的module名称。 |
+| id         | number | 是    | 否 | 资源的id值。      |
+| params     | any[] | 是    | 否 | 其他资源参数（可选）。      |
+| type       | number | 是    | 否 | 资源的类型（可选）。      |
 
 ## ResourceManager
 
@@ -310,13 +305,20 @@ import { BusinessError } from '@ohos.base';
 >
 > - 资源文件在工程的resources目录中定义，id可通过$r(资源地址).id的方式获取，例如$r('app.string.test').id。
 >
-> - 对于本应用包资源，通过指定资源ID或资源名称进行访问。对于应用内跨包资源，通过指定[resource对象](#resource9)或对应包的[context](../../application-models/application-context-stage.md#创建其他应用或其他module的context)进行访问，通过对应包context访问跨包资源与访问本应用包资源的逻辑一致，推荐开发者使用对应包的context方法。
+> - 对于本应用包资源，通过.context().resourceManager 的方法获取特定资源ID或资源名称的资源。
+>
+> - 对于应用内跨包资源有两种访问
+方式，第一种是通过resource对象；第二种是创建对应module的context，通过 .context().createModuleContext().resourceManager 方式获取。
+>
+> - 对于跨应用包，通过.context.createModuleContext(bundleName:'bundleName name',moduleName:'module name').resourceManager方法获取，该方法仅支持系统应用使用。
+>
+> - Context的更多使用信息请参考[应用上下文Context](../../application-models/application-context-stage.md)。
 
 ### getStringSync<sup>9+</sup>
 
 getStringSync(resId: number): string
 
-用户获取指定资源ID对应的字符串，使用同步方式返回字符串。
+用户获取指定资源ID对应的字符串，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -324,13 +326,13 @@ getStringSync(resId: number): string
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| string | 资源ID值对应的字符串 |
+| string | 资源ID值对应的字符串。 |
 
 **错误码：**
 
@@ -359,7 +361,7 @@ getStringSync(resId: number): string
 
 getStringSync(resId: number, ...args: Array<string | number>): string
 
-用户获取指定资源ID对应的字符串，根据args参数进行格式化，使用同步方式返回相应字符串。
+用户获取指定资源ID对应的字符串，根据args参数进行格式化，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -367,14 +369,14 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| resId | number | 是    | 资源ID值。 |
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
 
 **返回值：**
 
 | 类型     | 说明          |
 | ------ | ---------------------------- |
-| string | 资源ID值对应的格式化字符串|
+| string | 资源ID值对应的格式化字符串。|
 
 **错误码：**
 
@@ -414,13 +416,13 @@ getStringSync(resource: Resource): string
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型     | 说明               |
 | ------ | ---------------- |
-| string | resource对象对应的字符串 |
+| string | resource对象对应的字符串。 |
 
 **错误码：**
 
@@ -465,14 +467,14 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
 
 **返回值：**
 
 | 类型     | 说明          |
 | ------ | ---------------------------- |
-| string | resource对象对应的格式化字符串|
+| string | resource对象对应的格式化字符串。|
 
 **错误码：**
 
@@ -516,13 +518,13 @@ getStringByNameSync(resName: string): string
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| string | 资源名称对应的字符串 |
+| string | 资源名称对应的字符串。 |
 
 **错误码：**
 
@@ -559,14 +561,14 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
+| resName | string | 是    | 资源名称。 |
+| args | Array<string \| number> | 否    | 格式化字符串资源参数。 <br> 支持参数类型：<br /> %d、%f、%s、%% <br> 说明：%%转译符，转译%<br>举例：%%d格式化后为%d字符串|
 
 **返回值：**
 
 | 类型     | 说明          |
 | ------ | ---------------------------- |
-| string | 资源名称对应的格式化字符串|
+| string | 资源名称对应的格式化字符串。|
 
 **错误码：**
 
@@ -596,7 +598,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的字符串，使用callback形式返回字符串。
+用户获取指定资源ID对应的字符串，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -604,8 +606,8 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resId    | number                      | 是    | 资源ID值           |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| resId    | number                      | 是    | 资源ID值。           |
+| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的字符串。 |
 
 **错误码：**
 
@@ -640,7 +642,7 @@ getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 getStringValue(resId: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的字符串，使用Promise形式返回字符串。
+用户获取指定资源ID对应的字符串，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -648,13 +650,13 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | 资源ID值对应的字符串 |
+| Promise&lt;string&gt; | 资源ID值对应的字符串。 |
 
 **错误码：**
 
@@ -687,7 +689,7 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的字符串，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -697,8 +699,8 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resource | [Resource](#resource9)      | 是    | 资源信息            |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| resource | [Resource](#resource9)      | 是    | 资源信息。            |
+| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的字符串。 |
 
 **错误码：**
 
@@ -739,7 +741,7 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
 getStringValue(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的字符串，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -749,13 +751,13 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型                    | 说明               |
 | --------------------- | ---------------- |
-| Promise&lt;string&gt; | resource对象对应的字符串 |
+| Promise&lt;string&gt; | resource对象对应的字符串。 |
 
 **错误码：**
 
@@ -794,7 +796,7 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源名称对应的字符串，使用callback形式返回字符串。
+用户获取指定资源名称对应的字符串，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -802,8 +804,8 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resName  | string                      | 是    | 资源名称            |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| resName  | string                      | 是    | 资源名称。            |
+| callback | AsyncCallback&lt;string&gt; | 是    |返回获取的字符串。 |
 
 **错误码：**
 
@@ -838,7 +840,7 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
 getStringByName(resName: string): Promise&lt;string&gt;
 
-用户获取指定资源名称对应的字符串，使用Promise形式返回字符串。
+用户获取指定资源名称对应的字符串，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -846,13 +848,13 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型                    | 说明         |
 | --------------------- | ---------- |
-| Promise&lt;string&gt; | 资源名称对应的字符串 |
+| Promise&lt;string&gt; | 资源名称对应的字符串。 |
 
 **错误码：**
 
@@ -885,7 +887,7 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
-用户获取指定资源ID对应的字符串数组，使用同步方式返回字符串数组。
+用户获取指定资源ID对应的字符串数组，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -893,13 +895,13 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | 资源ID值对应的字符串数组 |
+| Array&lt;string&gt; | 资源ID值对应的字符串数组。 |
 
 **错误码：**
 
@@ -928,7 +930,7 @@ getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
-用户获取指定resource对象对应的字符串数组，使用同步方式返回字符串数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串数组，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -938,13 +940,13 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | resource对象对应的字符串数组 |
+| Array&lt;string&gt; | resource对象对应的字符串数组。 |
 
 **错误码：**
 
@@ -979,7 +981,7 @@ getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
-用户获取指定资源名称对应的字符串数组，使用同步方式返回字符串数组。
+用户获取指定资源名称对应的字符串数组，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -987,13 +989,13 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Array&lt;string&gt; | 对应资源名称的字符串数组 |
+| Array&lt;string&gt; | 对应资源名称的字符串数组。 |
 
 **错误码：**
 
@@ -1020,7 +1022,7 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定资源ID对应的字符串数组，使用callback形式返回字符串数组。
+用户获取指定资源ID对应的字符串数组，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1028,8 +1030,8 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
-| resId    | number                                   | 是    | 资源ID值             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
+| resId    | number                                   | 是    | 资源ID值。             |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
 
 **错误码：**
 
@@ -1064,7 +1066,7 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 
 getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定资源ID对应的字符串数组，使用Promise形式返回字符串数组。
+用户获取指定资源ID对应的字符串数组，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1078,7 +1080,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                                 | 说明            |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组 |
+| Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组。 |
 
 **错误码：**
 
@@ -1111,7 +1113,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定resource对象对应的字符串数组，使用callback形式返回回字符串数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串数组，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 **系统能力**：SystemCapability.Global.ResourceManager
 
 **模型约束**：此接口仅可在Stage模型下使用。
@@ -1120,8 +1122,8 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
-| resource | [Resource](#resource9)                   | 是    | 资源信息              |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
+| resource | [Resource](#resource9)                   | 是    | 资源信息。              |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。|
 
 **错误码：**
 
@@ -1162,7 +1164,7 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 
 getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定resource对象对应的字符串数组，使用Promise形式返回字符串数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的字符串数组，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1172,13 +1174,13 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型                                 | 说明                 |
 | ---------------------------------- | ------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | resource对象对应的字符串数组 |
+| Promise&lt;Array&lt;string&gt;&gt; | resource对象对应的字符串数组。 |
 
 **错误码：**
 
@@ -1217,7 +1219,7 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定资源名称对应的字符串数组，使用callback形式返回字符串数组。
+用户获取指定资源名称对应的字符串数组，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1225,8 +1227,8 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
-| resName  | string                                   | 是    | 资源名称              |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
+| resName  | string                                   | 是    | 资源名称。              |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
 
 **错误码：**
 
@@ -1261,7 +1263,7 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 
 getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定资源名称对应的字符串数组，使用Promise形式返回字符串数组。
+用户获取指定资源名称对应的字符串数组，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1269,13 +1271,13 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型                                 | 说明           |
 | ---------------------------------- | ------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | 资源名称对应的字符串数组 |
+| Promise&lt;Array&lt;string&gt;&gt; | 资源名称对应的字符串数组。 |
 
 **错误码：**
 
@@ -1308,9 +1310,9 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 getPluralStringValueSync(resId: number, num: number): string
 
-根据指定数量获取指定ID字符串表示的单复数字符串，使用同步方式返回字符串。
+根据指定数量获取指定ID字符串表示的单复数字符串，使用同步方式返回。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -1320,14 +1322,14 @@ getPluralStringValueSync(resId: number, num: number): string
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| num   | number | 是    | 数量值   |
+| resId | number | 是    | 资源ID值。 |
+| num   | number | 是    | 数量值。   |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | -------- | ----------- |
-| string   | 根据指定数量获取指定ID字符串表示的单复数字符串 |
+| string   | 根据指定数量获取指定ID字符串表示的单复数字符串。 |
 
 **错误码：**
 
@@ -1356,9 +1358,9 @@ getPluralStringValueSync(resId: number, num: number): string
 
 getPluralStringValueSync(resource: Resource, num: number): string
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+根据指定数量获取指定resource对象表示的单复数字符串，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -1370,14 +1372,14 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
-| num      | number                 | 是    | 数量值   |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
+| num      | number                 | 是    | 数量值。   |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| string | 根据指定数量获取指定resource对象表示的单复数字符串 |
+| string | 根据指定数量获取指定resource对象表示的单复数字符串。 |
 
 **错误码：**
 
@@ -1412,9 +1414,9 @@ getPluralStringValueSync(resource: Resource, num: number): string
 
 getPluralStringByNameSync(resName: string, num: number): string
 
-根据指定数量获取指定资源名称表示的单复数字符串，使用同步方式返回字符串。
+根据指定数量获取指定资源名称表示的单复数字符串，使用同步方式返回。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -1424,14 +1426,14 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resName | string | 是    | 资源名称 |
-| num      | number                 | 是    | 数量值   |
+| resName | string | 是    | 资源名称。 |
+| num      | number                 | 是    | 数量值。   |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| string | 根据指定数量获取指定资源名称表示的单复数字符串 |
+| string | 根据指定数量获取指定资源名称表示的单复数字符串。 |
 
 **错误码：**
 
@@ -1460,9 +1462,9 @@ getPluralStringByNameSync(resName: string, num: number): string
 
 getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-根据指定数量获取指定ID字符串表示的单复数字符串，使用callback形式返回字符串。
+根据指定数量获取指定ID字符串表示的单复数字符串，使用callback异步回调。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -1472,9 +1474,9 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 | 参数名      | 类型                          | 必填   | 说明                              |
 | -------- | --------------------------- | ---- | ------------------------------- |
-| resId    | number                      | 是    | 资源ID值                           |
-| num      | number                      | 是    | 数量值                             |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串 |
+| resId    | number                      | 是    | 资源ID值。                           |
+| num      | number                      | 是    | 数量值。                             |
+| callback | AsyncCallback&lt;string&gt; | 是    | 根据指定数量，获取指定ID字符串表示的单复数字符串。 |
 
 **错误码：**
 
@@ -1509,9 +1511,9 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 
 getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
-根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise形式返回字符串。
+根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise异步回调。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -1521,14 +1523,14 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| num   | number | 是    | 数量值   |
+| resId | number | 是    | 资源ID值。 |
+| num   | number | 是    | 数量值。  |
 
 **返回值：**
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
+| Promise&lt;string&gt; | 根据提供的数量，获取对应ID字符串表示的单复数字符串。 |
 
 **错误码：**
 
@@ -1561,9 +1563,9 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 
 getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-根据指定数量获取指定resource对象表示的单复数字符串，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+根据指定数量获取指定resource对象表示的单复数字符串，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -1575,9 +1577,9 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 | 参数名      | 类型                          | 必填   | 说明                                   |
 | -------- | --------------------------- | ---- | ------------------------------------ |
-| resource | [Resource](#resource9)      | 是    | 资源信息                                 |
-| num      | number                      | 是    | 数量值                                  |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定resource对象表示的单复数字符串 |
+| resource | [Resource](#resource9)      | 是    | 资源信息。                                 |
+| num      | number                      | 是    | 数量值。                                  |
+| callback | AsyncCallback&lt;string&gt; | 是    | 根据指定数量，获取指定resource对象表示的单复数字符串。 |
 
 **错误码：**
 
@@ -1618,9 +1620,9 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 
 getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
-根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+根据指定数量获取对指定resource对象表示的单复数字符串，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -1632,14 +1634,14 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
-| num      | number                 | 是    | 数量值  |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
+| num      | number                 | 是    | 数量值。  |
 
 **返回值：**
 
 | 类型                    | 说明                             |
 | --------------------- | ------------------------------ |
-| Promise&lt;string&gt; | 根据提供的数量获取对应resource对象表示的单复数字符串 |
+| Promise&lt;string&gt; | 根据提供的数量，获取对应resource对象表示的单复数字符串。 |
 
 **错误码：**
 
@@ -1678,9 +1680,9 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-根据传入的数量值，获取资源名称对应的字符串资源，使用callback形式返回字符串。
+根据传入的数量值，获取资源名称对应的字符串资源，使用callback异步回调。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -1690,9 +1692,9 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 | 参数名      | 类型                          | 必填   | 说明                            |
 | -------- | --------------------------- | ---- | ----------------------------- |
-| resName  | string                      | 是    | 资源名称                          |
-| num      | number                      | 是    | 数量值                           |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据传入的数量值获取资源名称对应的字符串资源 |
+| resName  | string                      | 是    | 资源名称。                          |
+| num      | number                      | 是    | 数量值。                           |
+| callback | AsyncCallback&lt;string&gt; | 是    | 根据传入的数量值，获取资源名称对应的字符串资源。 |
 
 **错误码：**
 
@@ -1727,9 +1729,9 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 
 getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
-根据传入的数量值，获取资源名称对应的字符串资源，使用Promise形式返回字符串。
+根据传入的数量值，获取资源名称对应的字符串资源，使用Promise异步回调。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -1739,14 +1741,14 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
-| num     | number | 是    | 数量值  |
+| resName | string | 是    | 资源名称。 |
+| num     | number | 是    | 数量值。  |
 
 **返回值：**
 
 | 类型                    | 说明                     |
 | --------------------- | ---------------------- |
-| Promise&lt;string&gt; | 根据传入的数量值获取资源名称对应的字符串资源 |
+| Promise&lt;string&gt; | 根据传入的数量值，获取资源名称对应的字符串资源。 |
 
 **错误码：**
 
@@ -1779,7 +1781,7 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 
 getMediaContentSync(resId: number, density?: number): Uint8Array
 
-用户获取指定资源ID对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回字节数组。
+用户获取指定资源ID对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1787,14 +1789,14 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
+| resId | number | 是    | 资源ID值。 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | -------- | ----------- |
-| Uint8Array   | 资源ID对应的媒体文件内容 |
+| Uint8Array   | 资源ID对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -1830,7 +1832,7 @@ getMediaContentSync(resId: number, density?: number): Uint8Array
 
 getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
-用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1840,14 +1842,14 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
-| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Uint8Array | resource对象对应的媒体文件内容 |
+| Uint8Array | resource对象对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -1889,7 +1891,7 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 getMediaByNameSync(resName: string, density?: number): Uint8Array
 
-用户获取指定资源名称对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回字节数组。
+用户获取指定资源名称对应的默认或指定的屏幕密度媒体文件内容，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1897,14 +1899,14 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resName | string | 是    | 资源名称 |
-| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
+| resName | string | 是    | 资源名称。 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Uint8Array | 对应资源名称的媒体文件内容 |
+| Uint8Array | 对应资源名称的媒体文件内容。 |
 
 **错误码：**
 
@@ -1940,7 +1942,7 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源ID对应的媒体文件内容，使用callback形式返回字节数组。
+用户获取指定资源ID对应的媒体文件内容，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1948,8 +1950,8 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
-| resId    | number                          | 是    | 资源ID值              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+| resId    | number                          | 是    | 资源ID值。              |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -1983,7 +1985,7 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -1991,9 +1993,9 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
-| resId    | number                          | 是    | 资源ID值              |
-| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+| resId    | number                          | 是    | 资源ID值。              |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -2027,7 +2029,7 @@ getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8
 
 getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源ID对应的媒体文件内容，使用Promise形式返回字节数组。
+用户获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2035,13 +2037,13 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
+| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2073,7 +2075,7 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
+用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2081,14 +2083,14 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| resId | number | 是    | 资源ID值。 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
 
 **返回值：**
 
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
+| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2120,7 +2122,7 @@ getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的媒体文件内容，使用callback形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的媒体文件内容，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2130,8 +2132,8 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
-| resource | [Resource](#resource9)          | 是    | 资源信息               |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+| resource | [Resource](#resource9)          | 是    | 资源信息。               |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -2171,7 +2173,7 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 
 getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2181,9 +2183,9 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
-| resource | [Resource](#resource9)          | 是    | 资源信息               |
-| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+| resource | [Resource](#resource9)          | 是    | 资源信息。               |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -2223,7 +2225,7 @@ getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;
 
 getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的媒体文件内容，使用Promise形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的媒体文件内容，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2233,13 +2235,13 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型                        | 说明                  |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容 |
+| Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2277,7 +2279,7 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2287,14 +2289,14 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
-| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
 
 **返回值：**
 
 | 类型                        | 说明                  |
 | ------------------------- | ------------------- |
-| Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容 |
+| Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2332,7 +2334,7 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源名称对应的媒体文件内容，使用callback形式返回字节数组。
+用户获取指定资源名称对应的媒体文件内容，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2340,8 +2342,8 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
-| resName  | string                          | 是    | 资源名称               |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+| resName  | string                          | 是    | 资源名称。               |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -2375,7 +2377,7 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2383,9 +2385,9 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
-| resName  | string                          | 是    | 资源名称               |
-| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+| resName  | string                          | 是    | 资源名称。               |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **错误码：**
 
@@ -2419,7 +2421,7 @@ getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint
 
 getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源名称对应的媒体文件内容，使用Promise形式返回字节数组。
+用户获取指定资源名称对应的媒体文件内容，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2427,13 +2429,13 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型                        | 说明            |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容 |
+| Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2465,7 +2467,7 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
+用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2473,14 +2475,14 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
-| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| resName | string | 是    | 资源名称。 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
 
 **返回值：**
 
 | 类型                        | 说明            |
 | ------------------------- | ------------- |
-| Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容 |
+| Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容。 |
 
 **错误码：**
 
@@ -2512,7 +2514,7 @@ getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 getMediaContentBase64Sync(resId: number, density?: number): string
 
-用户获取指定资源ID对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回字符串。
+用户获取指定资源ID对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2520,14 +2522,14 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
+| resId | number | 是    | 资源ID值。 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | -------- | ----------- |
-| string   | 资源ID对应的图片资源Base64编码 |
+| string   | 资源ID对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2563,7 +2565,7 @@ getMediaContentBase64Sync(resId: number, density?: number): string
 
 getMediaContentBase64Sync(resource: Resource, density?: number): string
 
-用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2573,14 +2575,14 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
-| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| string | resource对象对应的图片资源Base64编码 |
+| string | resource对象对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2622,7 +2624,7 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 getMediaBase64ByNameSync(resName: string, density?: number): string
 
-用户获取指定资源名称对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回字符串。
+用户获取指定资源名称对应的默认或指定的屏幕密度图片资源Base64编码，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2630,14 +2632,14 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resName | string | 是    | 资源名称 |
-| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
+| resName | string | 是    | 资源名称。 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| string | 资源名称对应的图片资源Base64编码 |
+| string | 资源名称对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2673,7 +2675,7 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的图片资源Base64编码，使用callback形式返回字符串。
+用户获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2681,8 +2683,8 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resId    | number                      | 是    | 资源ID值                    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+| resId    | number                      | 是    | 资源ID值。                    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2716,7 +2718,7 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 
 getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
+用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2724,9 +2726,9 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resId    | number                      | 是    | 资源ID值                    |
-| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+| resId    | number                      | 是    | 资源ID值。                    |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2760,7 +2762,7 @@ getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt
 
 getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的图片资源Base64编码，使用Promise形式返回字符串。
+用户获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2768,13 +2770,13 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
+| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2806,7 +2808,7 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
+用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2814,14 +2816,14 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| resId | number | 是    | 资源ID值。 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
 
 **返回值：**
 
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
+| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2853,7 +2855,7 @@ getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的图片资源Base64编码，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的图片资源Base64编码，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2863,8 +2865,8 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resource | [Resource](#resource9)      | 是    | 资源信息                     |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+| resource | [Resource](#resource9)      | 是    | 资源信息。                     |
+| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2904,7 +2906,7 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 
 getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2914,9 +2916,9 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resource | [Resource](#resource9)      | 是    | 资源信息                     |
-| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+| resource | [Resource](#resource9)      | 是    | 资源信息。                     |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -2956,7 +2958,7 @@ getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallba
 
 getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的图片资源Base64编码，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的图片资源Base64编码，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -2966,13 +2968,13 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | resource对象对应的图片资源Base64编码 |
+| Promise&lt;string&gt; | resource对象对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3010,7 +3012,7 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
 
-用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3020,14 +3022,14 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
-| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
 
 **返回值：**
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | resource对象对应的图片资源Base64编码 |
+| Promise&lt;string&gt; | resource对象对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3065,7 +3067,7 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源名称对应的图片资源Base64编码，使用callback形式返回字符串。
+用户获取指定资源名称对应的图片资源Base64编码，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3073,8 +3075,8 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resName  | string                      | 是    | 资源名称                     |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+| resName  | string                      | 是    | 资源名称。                     |
+| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3108,7 +3110,7 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 
 getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
+用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3116,9 +3118,9 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resName  | string                      | 是    | 资源名称                     |
-| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+| resName  | string                      | 是    | 资源名称。                     |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3152,7 +3154,7 @@ getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&l
 
 getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
-用户获取指定资源名称对应的图片资源Base64编码，使用Promise形式返回字符串。
+用户获取指定资源名称对应的图片资源Base64编码，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3160,13 +3162,13 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 |
+| Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码。 |
 
 **错误码：**
 
@@ -3198,7 +3200,7 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
-用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
+用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3206,14 +3208,14 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
-| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| resName | string | 是    | 资源名称。 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度。    |
 
 **返回值：**
 
 | 类型                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 |
+| Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 。|
 
 **错误码：**
 
@@ -3245,7 +3247,7 @@ getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
 
-用户获取指定资源ID对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
+用户获取指定资源ID对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3253,15 +3255,15 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
-| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源 |
+| resId | number | 是    | 资源ID值。 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
+| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源。 |
 
 **返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
+| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。|
 
 **错误码：**
 
@@ -3303,7 +3305,7 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 
 getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
 
-用户获取指定resource对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3313,15 +3315,15 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
-| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
-| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
+| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源。 |
 
 **返回值：**
 
 | 类型      | 说明                |
 | ------- | ----------------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
+| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。 |
 
 **错误码：**
 
@@ -3369,7 +3371,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
 
 getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
 
-用户获取指定资源名称对应的DrawableDescriptor对象，使用同步方式返回资源对应的DrawableDescriptor，用于图标的显示。
+用户获取指定资源名称对应的DrawableDescriptor对象，用于图标的显示，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3377,15 +3379,15 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
-| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度 |
-| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源 |
+| resName | string | 是    | 资源名称。 |
+| [density](#screendensity) | number | 否    | 资源获取需要的屏幕密度，0或缺省表示默认屏幕密度。 |
+| type<sup>11+</sup> | number | 否    | 1表示用于取主题资源包中应用的分层图标资源，0或缺省表示取应用自身图标资源。 |
 
 **返回值：**
 
 | 类型     | 说明        |
 | ------ | --------- |
-| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
+| DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象。 |
 
 **错误码：**
 
@@ -3435,13 +3437,13 @@ getBoolean(resId: number): boolean
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型      | 说明           |
 | ------- | ------------ |
-| boolean | 资源ID值对应的布尔结果 |
+| boolean | 资源ID值对应的布尔结果。 |
 
 **错误码：**
 
@@ -3479,13 +3481,13 @@ getBoolean(resource: Resource): boolean
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型      | 说明                |
 | ------- | ----------------- |
-| boolean | resource对象对应的布尔结果 |
+| boolean | resource对象对应的布尔结果。 |
 
 **错误码：**
 
@@ -3520,7 +3522,7 @@ getBoolean(resource: Resource): boolean
 
 getBooleanByName(resName: string): boolean
 
-使用同步方式，返回获取指定资源名称对应的布尔结果
+使用同步方式，返回获取指定资源名称对应的布尔结果。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3528,13 +3530,13 @@ getBooleanByName(resName: string): boolean
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型      | 说明          |
 | ------- | ----------- |
-| boolean | 资源名称对应的布尔结果 |
+| boolean | 资源名称对应的布尔结果。 |
 
 **错误码：**
 
@@ -3563,7 +3565,7 @@ getBooleanByName(resName: string): boolean
 
 getNumber(resId: number): number
 
-用户获取指定资源ID对应的integer数值或者float数值，使用同步方式返回资源对应的数值。
+用户获取指定资源ID对应的integer数值或者float数值，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3571,13 +3573,13 @@ getNumber(resId: number): number
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- | 
-| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码 |
+| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码。 |
 
 **错误码：**
 
@@ -3614,7 +3616,7 @@ getNumber(resId: number): number
 
 getNumber(resource: Resource): number
 
-用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回资源对应的数值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的integer数值或者float数值，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3624,13 +3626,13 @@ getNumber(resource: Resource): number
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值, 具体参考示例代码 |
+| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值, 具体参考示例代码。 |
 
 **错误码：**
 
@@ -3665,7 +3667,7 @@ getNumber(resource: Resource): number
 
 getNumberByName(resName: string): number
 
-用户获取指定资源名称对应的integer数值或者float数值，使用同步方式资源对应的数值。
+用户获取指定资源名称对应的integer数值或者float数值，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3673,13 +3675,13 @@ getNumberByName(resName: string): number
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 资源名称对应的数值 |
+| number | 资源名称对应的数值。 |
 
 **错误码：**
 
@@ -3716,7 +3718,7 @@ getNumberByName(resName: string): number
 
 getColorSync(resId: number) : number;
 
-用户获取指定资源ID对应的颜色值，使用同步方式返回其对应的颜色值。
+用户获取指定资源ID对应的颜色值，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3724,13 +3726,13 @@ getColorSync(resId: number) : number;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | 资源ID值对应的颜色值（十进制） |
+| number | 资源ID值对应的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -3759,7 +3761,7 @@ getColorSync(resId: number) : number;
 
 getColorSync(resource: Resource): number
 
-用户获取指定resource对象对应的颜色值，使用同步方式返回其对应的颜色值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的颜色值，使用同步方式返回。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3769,13 +3771,13 @@ getColorSync(resource: Resource): number
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型     | 说明               |
 | ------ | ---------------- |
-| number | resource对象对应的颜色值（十进制） |
+| number | resource对象对应的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -3810,7 +3812,7 @@ getColorSync(resource: Resource): number
 
 getColorByNameSync(resName: string) : number;
 
-用户获取指定资源名称对应的颜色值，使用同步方式返回其对应的颜色值。
+用户获取指定资源名称对应的颜色值，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3818,13 +3820,13 @@ getColorByNameSync(resName: string) : number;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| number | 资源名称对应的颜色值（十进制） |
+| number | 资源名称对应的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -3853,7 +3855,7 @@ getColorByNameSync(resName: string) : number;
 
 getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
-用户获取指定资源ID对应的颜色值，使用callback形式返回其对应的颜色值。
+用户获取指定资源ID对应的颜色值，使用callback异步回调。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -3861,8 +3863,8 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resId    | number                      | 是    | 资源ID值           |
-| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制） |
+| resId    | number                      | 是    | 资源ID值。           |
+| callback | AsyncCallback&lt;number&gt; | 是    | 返回获取的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -3897,7 +3899,7 @@ getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
 
 getColor(resId: number): Promise&lt;number&gt;
 
-用户获取指定资源ID对应的颜色值，使用Promise形式返回对应其对应的颜色值。
+用户获取指定资源ID对应的颜色值，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -3905,13 +3907,13 @@ getColor(resId: number): Promise&lt;number&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Promise&lt;number&gt; | 资源ID值对应的颜色值（十进制） |
+| Promise&lt;number&gt; | 资源ID值对应的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -3944,7 +3946,7 @@ getColor(resId: number): Promise&lt;number&gt;
 
 getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
-用户获取指定resource对象对应的颜色值，使用callback形式返回其对应的颜色值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的颜色值，使用callback异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -3954,8 +3956,8 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resource | [Resource](#resource9)      | 是    | 资源信息            |
-| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制） |
+| resource | [Resource](#resource9)      | 是    | 资源信息。            |
+| callback | AsyncCallback&lt;number&gt; | 是    | 返回获取的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -3996,7 +3998,7 @@ getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
 
 getColor(resource: Resource): Promise&lt;number&gt;;
 
-用户获取指定resource对象对应的颜色值，使用Promise形式返回其对应的颜色值。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
+用户获取指定resource对象对应的颜色值，使用Promise异步回调。此接口用于多工程应用内跨包访问，会创建对应module的context进而获取资源。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4006,13 +4008,13 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型                    | 说明               |
 | --------------------- | ---------------- |
-| Promise&lt;number&gt; | resource对象对应的颜色值（十进制） |
+| Promise&lt;number&gt; | resource对象对应的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -4051,7 +4053,7 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
-用户获取指定资源名称对应的颜色值，使用callback形式返回其对应的颜色值。
+用户获取指定资源名称对应的颜色值，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4059,8 +4061,8 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resName  | string                      | 是    | 资源名称            |
-| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制） |
+| resName  | string                      | 是    | 资源名称。            |
+| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -4095,7 +4097,7 @@ getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
 
 getColorByName(resName: string): Promise&lt;number&gt;
 
-用户获取指定资源名称对应的颜色值，使用Promise形式返回其对应的颜色值。
+用户获取指定资源名称对应的颜色值，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4103,13 +4105,13 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型                    | 说明         |
 | --------------------- | ---------- |
-| Promise&lt;number&gt; | 资源名称对应的颜色值（十进制） |
+| Promise&lt;number&gt; | 资源名称对应的颜色值（十进制）。 |
 
 **错误码：**
 
@@ -4142,7 +4144,7 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 getRawFileContentSync(path: string): Uint8Array
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用同步形式返回字节数组。
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用同步形式返回。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4150,13 +4152,13 @@ getRawFileContentSync(path: string): Uint8Array
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | 是    | rawfile文件路径             |
+| path     | string                          | 是    | rawfile文件路径。             |
 
 **返回值：**
 
 | 类型                    | 说明         |
 | --------------------- | ---------- |
-| Uint8Array | 返回获取的rawfile文件内容 |
+| Uint8Array | 返回获取的rawfile文件内容。 |
 
 **错误码：**
 
@@ -4183,7 +4185,7 @@ getRawFileContentSync(path: string): Uint8Array
 
 getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback形式返回字节数组。
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4191,8 +4193,8 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | 是    | rawfile文件路径             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容 |
+| path     | string                          | 是    | rawfile文件路径。             |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的rawfile文件内容。 |
 
 **错误码：**
 
@@ -4225,7 +4227,7 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise形式返回字节数组。
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4233,13 +4235,13 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | rawfile文件内容 |
+| Promise&lt;Uint8Array&gt; | rawfile文件内容。 |
 
 **错误码：**
 
@@ -4268,9 +4270,13 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 ### getRawFileListSync<sup>10+</sup>
 
-getRawFileListSync(path: string): Array\<string\>
+getRawFileListSync(path: string): Array\<string>
 
-用户获取resources/rawfile目录下文件夹及文件列表，使用同步形式返回文件列表的字符串数组。
+用户获取resources/rawfile目录下文件夹及文件列表，使用同步形式返回。
+
+>**说明**
+>
+> 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
@@ -4278,13 +4284,13 @@ getRawFileListSync(path: string): Array\<string\>
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | 是    | rawfile文件夹路径             |
+| path     | string                          | 是    | rawfile文件夹路径。             |
 
 **返回值：**
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Array\<string\> | rawfile文件夹下的列表（包含子文件夹和文件） |
+| Array\<string> | rawfile文件目录下的文件夹及文件列表。 |
 
 **错误码：**
 
@@ -4311,7 +4317,11 @@ getRawFileListSync(path: string): Array\<string\>
 
 getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): void;
 
-用户获取resources/rawfile目录下文件夹及文件列表，使用callback形式返回文件列表的字符串数组。
+用户获取resources/rawfile目录下文件夹及文件列表，使用callback异步回调。
+
+>**说明**
+>
+> 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4319,8 +4329,8 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | 是    | rawfile文件夹路径             |
-| callback | AsyncCallback&lt;Array\<string\>&gt; | 是 | 异步回调，用于返回获取rawfile文件目录下的文件列表 |
+| path     | string                          | 是    | rawfile文件夹路径。             |
+| callback | AsyncCallback&lt;Array\<string\>&gt; | 是 | rawfile文件目录下的文件夹及文件列表。 |
 
 **错误码：**
 
@@ -4353,7 +4363,11 @@ getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): vo
 
 getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
-用户获取resources/rawfile目录下文件夹及文件列表，使用Promise形式返回文件列表字符串数组。
+用户获取resources/rawfile目录下文件夹及文件列表，使用Promise异步回调。
+
+>**说明**
+>
+> 若文件夹中无文件，则不返回；若文件夹中有文件，则返回文件夹及文件列表。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4361,13 +4375,13 @@ getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件夹路径 |
+| path | string | 是    | rawfile文件夹路径。 |
 
 **返回值：**
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Promise&lt;Array\<string\>&gt; | rawfile文件目录下的文件列表 |
+| Promise&lt;Array\<string\>&gt; | rawfile文件目录下的文件夹及文件列表。 |
 
 **错误码：**
 
@@ -4406,13 +4420,13 @@ getRawFdSync(path: string): RawFileDescriptor
 
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | 是    | rawfile文件路径                      |
+| path     | string                                   | 是    | rawfile文件路径。                     |
 
 **返回值：**
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件的descriptor |
+| [RawFileDescriptor](#rawfiledescriptor8) | rawfile文件的descriptor。 |
 
 **错误码：**
 
@@ -4439,7 +4453,7 @@ getRawFdSync(path: string): RawFileDescriptor
 
 getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback形式返回。
+用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4447,8 +4461,8 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | 是    | rawfile文件路径                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+| path     | string                                   | 是    | rawfile文件路径。                      |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 返回获取的rawfile文件的descriptor。 |
 
 **错误码：**
 
@@ -4483,7 +4497,7 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise形式返回。
+用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4491,13 +4505,13 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor。 |
 
 **错误码：**
 
@@ -4538,7 +4552,7 @@ closeRawFdSync(path: string): void
 
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | 是    | rawfile文件路径 |
+| path     | string                    | 是    | rawfile文件路径 。|
 
 **错误码：**
 
@@ -4565,7 +4579,7 @@ closeRawFdSync(path: string): void
 
 closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback形式返回。
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4573,8 +4587,8 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | 是    | rawfile文件路径 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
+| path     | string                    | 是    | rawfile文件路径。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调。        |
 
 **错误码：**
 
@@ -4605,7 +4619,7 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise形式返回。
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4613,13 +4627,13 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| Promise&lt;void&gt; | 无返回值 |
+| Promise&lt;void&gt; | 无返回结果的promise对象。 |
 
 **错误码：**
 
@@ -4646,7 +4660,7 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 getConfigurationSync(): Configuration
 
-用户获取设备的Configuration，使用同步形式返回Configuration对象。
+用户获取设备的Configuration，使用同步形式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4654,7 +4668,7 @@ getConfigurationSync(): Configuration
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| [Configuration](#configuration) | 设备的Configuration |
+| [Configuration](#configuration) | 设备的Configuration。 |
 
 **示例：** 
   ```ts
@@ -4671,7 +4685,7 @@ getConfigurationSync(): Configuration
 
 getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
-用户获取设备的Configuration，使用callback形式返回Configuration对象。
+用户获取设备的Configuration，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4679,7 +4693,7 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                        |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | 是    | 异步回调，用于返回设备的Configuration |
+| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | 是    | 返回设备的Configuration。 |
 
 **示例：** 
   ```ts
@@ -4701,7 +4715,7 @@ getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
 
 getConfiguration(): Promise&lt;Configuration&gt;
 
-用户获取设备的Configuration，使用Promise形式返回Configuration对象。
+用户获取设备的Configuration，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4709,7 +4723,7 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 | 类型                                       | 说明               |
 | ---------------------------------------- | ---------------- |
-| Promise&lt;[Configuration](#configuration)&gt; | 设备的Configuration |
+| Promise&lt;[Configuration](#configuration)&gt; | 设备的Configuration。 |
 
 **示例：** 
   ```ts
@@ -4731,7 +4745,7 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 getDeviceCapabilitySync(): DeviceCapability
 
-用户获取设备的DeviceCapability，使用同步形式返回DeviceCapability对象。
+用户获取设备的DeviceCapability，使用同步形式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4739,7 +4753,7 @@ getDeviceCapabilitySync(): DeviceCapability
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| [DeviceCapability](#devicecapability) | 设备的DeviceCapability |
+| [DeviceCapability](#devicecapability) | 设备的DeviceCapability。 |
 
 **示例：** 
   ```ts
@@ -4756,7 +4770,7 @@ getDeviceCapabilitySync(): DeviceCapability
 
 getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
-用户获取设备的DeviceCapability，使用callback形式返回DeviceCapability对象。
+用户获取设备的DeviceCapability，使用callback异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4764,7 +4778,7 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                           |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | 是    | 异步回调，用于返回设备的DeviceCapability |
+| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | 是    | 返回设备的DeviceCapability。 |
 
 **示例：** 
   ```ts
@@ -4786,7 +4800,7 @@ getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
 
 getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
-用户获取设备的DeviceCapability，使用Promise形式返回DeviceCapability对象。
+用户获取设备的DeviceCapability，使用Promise异步回调。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4794,7 +4808,7 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[DeviceCapability](#devicecapability)&gt; | 设备的DeviceCapability |
+| Promise&lt;[DeviceCapability](#devicecapability)&gt; | 设备的DeviceCapability。 |
 
 **示例：** 
   ```ts
@@ -4831,7 +4845,7 @@ release()
 
 ### addResource<sup>10+</sup>
 
-addResource(path: string) : void;
+addResource(path: string) : void
 
 应用运行时，加载指定的资源路径，实现资源覆盖。
 
@@ -4841,7 +4855,7 @@ addResource(path: string) : void;
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| path | string | 是    | 资源路径 |
+| path | string | 是    | 资源路径。 |
 
 **错误码：**
 
@@ -4867,7 +4881,7 @@ addResource(path: string) : void;
 
 ### removeResource<sup>10+</sup>
 
-removeResource(path: string) : void;
+removeResource(path: string) : void
 
 用户运行时，移除指定的资源路径，还原被覆盖前的资源。
 
@@ -4877,7 +4891,7 @@ removeResource(path: string) : void;
 
 | 参数名      | 类型            | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| path | string | 是    | 资源路径 |
+| path | string | 是    | 资源路径。 |
 
 **错误码：**
 
@@ -4913,13 +4927,13 @@ getLocales(includeSystem?: boolean): Array\<string>
 
 | 参数名         | 类型    | 必填   | 说明       |
 | -------------- | ------- | ------ | -------------------- |
-| includeSystem  | boolean |  否    | 是否包含系统资源，默认值为false <br> false：表示仅获取应用资源的语言列表 <br>true：表示获取系统资源和应用资源的语言列表 <br>当系统资源管理对象获取语言列表时，includeSystem值无效，返回获取系统资源语言列表 |
+| includeSystem  | boolean |  否    | 是否包含系统资源，默认值为false。 <br> false：表示仅获取应用资源的语言列表。 <br>true：表示获取系统资源和应用资源的语言列表。 <br>当系统资源管理对象获取语言列表时，includeSystem值无效，返回获取系统资源语言列表 。|
 
 **返回值：**
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Array\<string> | 返回获取的语言列表，列表中的字符串由语言、脚本(可选)、地区(可选)，按照顺序使用中划线"-"连接组成|
+| Array\<string> | 返回获取的语言列表，列表中的字符串由语言、脚本(可选)、地区(可选)，按照顺序使用中划线"-"连接组成。|
 
 **示例：**
   ```ts
@@ -4952,9 +4966,10 @@ getLocales(includeSystem?: boolean): Array\<string>
   ```
 
 ### getSymbol<sup>11+</sup>
+
 getSymbol(resId: number):number
 
-用户获取指定资源ID对应的符号值，是用同步方式返回其对应的符号值。
+用户获取指定资源ID对应的符号值，是用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -4962,13 +4977,13 @@ getSymbol(resId: number):number
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | 资源ID值对应的符号值（十进制） |
+| number | 资源ID值对应的符号值（十进制）。 |
 
 **错误码：**
 
@@ -4996,7 +5011,7 @@ getSymbol(resId: number):number
 ### getSymbol<sup>11+</sup>
 getSymbol(resource: Resource): number
 
-用户获取指定resource对象对应的符号值，是用同步方式返回其对应的符号值。
+用户获取指定resource对象对应的符号值，是用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5006,13 +5021,13 @@ getSymbol(resource: Resource): number
 
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | 是    | 资源信息 |
+| resource | [Resource](#resource9) | 是    | 资源信息。 |
 
 **返回值：**
 
 | 类型     | 说明          |
 | ------ | ----------- |
-| number | resource对象对应的符号值（十进制） |
+| number | resource对象对应的符号值（十进制）。 |
 
 **错误码：**
 
@@ -5047,7 +5062,7 @@ getSymbol(resource: Resource): number
 
 getSymbolByName(resName: string) : number;
 
-用户获取指定资源名称对应的符号值，使用同步方式返回其对应的符号值。
+用户获取指定资源名称对应的符号值，使用同步方式返回。
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
@@ -5055,13 +5070,13 @@ getSymbolByName(resName: string) : number;
 
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
-| resName | string | 是    | 资源名称 |
+| resName | string | 是    | 资源名称。 |
 
 **返回值：**
 
 | 类型     | 说明         |
 | ------ | ---------- |
-| number | 资源名称对应的符号值（十进制） |
+| number | 资源名称对应的符号值（十进制）。 |
 
 **错误码：**
 
@@ -5090,7 +5105,7 @@ getSymbolByName(resName: string) : number;
 
 getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的字符串，使用callback形式返回字符串。
+用户获取指定资源ID对应的字符串，使用callback异步回调。
 
 从API version 9开始不再维护，建议使用[getStringValue](#getstringvalue9)代替。
 
@@ -5100,8 +5115,8 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| resId    | number                      | 是    | 资源ID值           |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
+| resId    | number                      | 是    | 资源ID值。           |
+| callback | AsyncCallback&lt;string&gt; | 是    | 返回获取的字符串。 |
 
 **示例：**
   ```ts
@@ -5121,7 +5136,7 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 getString(resId: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的字符串，使用Promise形式返回字符串。
+用户获取指定资源ID对应的字符串，使用Promise异步回调。
 
 从API version 9开始不再维护，建议使用[getStringValue](#getstringvalue9-1)代替。
 
@@ -5131,13 +5146,13 @@ getString(resId: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                    | 说明          |
 | --------------------- | ----------- |
-| Promise&lt;string&gt; | 资源ID值对应的字符串 |
+| Promise&lt;string&gt; | 资源ID值对应的字符串。 |
 
 **示例：** 
   ```ts
@@ -5157,7 +5172,7 @@ getString(resId: number): Promise&lt;string&gt;
 
 getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-用户获取指定资源ID对应的字符串数组，使用callback形式返回字符串数组。
+用户获取指定资源ID对应的字符串数组，使用callback异步回调。
 
 从API version 9开始不再维护，建议使用[getStringArrayValue](#getstringarrayvalue9)代替。
 
@@ -5167,8 +5182,8 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 
 | 参数名      | 类型                                       | 必填   | 说明                |
 | -------- | ---------------------------------------- | ---- | ----------------- |
-| resId    | number                                   | 是    | 资源ID值             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
+| resId    | number                                   | 是    | 资源ID值。             |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 返回获取的字符串数组。 |
 
 **示例：** 
   ```ts
@@ -5188,7 +5203,7 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 
 getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-用户获取指定资源ID对应的字符串数组，使用Promise形式返回字符串数组。
+用户获取指定资源ID对应的字符串数组，使用Promise异步回调。
 
 从API version 9开始不再维护，建议使用[getStringArrayValue](#getstringarrayvalue9-1)代替。
 
@@ -5198,13 +5213,13 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                                 | 说明            |
 | ---------------------------------- | ------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组 |
+| Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组。 |
 
 **示例：** 
   ```ts
@@ -5224,7 +5239,7 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取指定资源ID对应的媒体文件内容，使用callback形式返回字节数组。
+用户获取指定资源ID对应的媒体文件内容，使用callback异步回调。
 
 从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9)代替。
 
@@ -5234,8 +5249,8 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 参数名      | 类型                              | 必填   | 说明                 |
 | -------- | ------------------------------- | ---- | ------------------ |
-| resId    | number                          | 是    | 资源ID值              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+| resId    | number                          | 是    | 资源ID值。              |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 返回获取的媒体文件内容。 |
 
 **示例：** 
   ```ts
@@ -5250,12 +5265,11 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
   });
   ```
 
-
 ### getMedia<sup>(deprecated)</sup>
 
 getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
-用户获取指定资源ID对应的媒体文件内容，使用Promise形式返回字节数组。
+用户获取指定资源ID对应的媒体文件内容，使用Promise异步回调。
 
 从API version 9开始不再维护，建议使用[getMediaContent](#getmediacontent9-1)代替。
 
@@ -5291,7 +5305,7 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
-用户获取指定资源ID对应的图片资源Base64编码，使用callback形式返回字符串。
+用户获取指定资源ID对应的图片资源Base64编码，使用callback异步回调。
 
 从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649)代替。
 
@@ -5322,7 +5336,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 getMediaBase64(resId: number): Promise&lt;string&gt;
 
-用户获取指定资源ID对应的图片资源Base64编码，使用Promise形式返回字符串。
+用户获取指定资源ID对应的图片资源Base64编码，使用Promise异步回调。
 
 从API version 9开始不再维护，建议使用[getMediaContentBase64](#getmediacontentbase649-1)代替。
 
@@ -5358,9 +5372,9 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
-根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise形式返回字符串。
+根据指定数量获取对指定ID字符串表示的单复数字符串，使用Promise异步回调。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -5399,9 +5413,9 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-根据指定数量获取指定ID字符串表示的单复数字符串，使用callback形式返回字符串。
+根据指定数量获取指定ID字符串表示的单复数字符串，使用callback异步回调。
 
-**说明**
+>**说明**
 >
 > 中文环境下，字符串不区分单复数；英文环境下，字符串区分单复数。
 
@@ -5435,7 +5449,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback形式返回字节数组。
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用callback异步回调。
 
 从API version 9开始不再维护，建议使用[getRawFileContent](#getrawfilecontent9)代替。
 
@@ -5466,7 +5480,7 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
-用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise形式返回字节数组。
+用户获取resources/rawfile目录下对应的rawfile文件内容，使用Promise异步回调。
 
 从API version 9开始不再维护，建议使用[getRawFileContent](#getrawfilecontent9-1)代替。
 
@@ -5502,7 +5516,7 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback形式返回。
+用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用callback异步回调。
 
 从API version 9开始不再维护，建议使用[getRawFd](#getrawfd9)代替。
 
@@ -5534,7 +5548,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
-用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise形式返回。
+用户获取resources/rawfile目录下对应rawfile文件的descriptor，使用Promise异步回调。
 
 从API version 9开始不再维护，建议使用[getRawFd](#getrawfd9-1)代替。
 
@@ -5571,7 +5585,7 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback形式返回。
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用callback异步回调。
 
 从API version 9开始不再维护，建议使用[closeRawFd](#closerawfd9)代替。
 
@@ -5599,7 +5613,7 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
-用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise形式返回。
+用户关闭resources/rawfile目录下rawfile文件的descriptor，使用Promise异步回调。
 
 从API version 9开始不再维护，建议使用[closeRawFd](#closerawfd9-1)代替。
 
