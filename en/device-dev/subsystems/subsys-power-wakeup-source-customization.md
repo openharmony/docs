@@ -134,6 +134,10 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
 ### Debugging and Verification
 
+> **Note:**
+> 
+> Currently, the Double-tap to wake feature is not supported. That is, **enable** in **touchscreen** can only be set to **false**. This feature will be provided in later versions.
+
 1. Customize wakeup sources in the `power_wakeup.json` file.
     ```json
     {
