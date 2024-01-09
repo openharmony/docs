@@ -23,16 +23,17 @@ GridCol(option?:{span?: number | GridColColumnOption, offset?: number | GridColC
 | offset | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 栅格子组件相对于原本位置偏移的列数。<br/>默认值：0。           |
 | order  | number \| [GridColColumnOption](#gridcolcolumnoption) | 否   | 元素的序号，根据栅格子组件的序号，从小到大对栅格子组件做排序。<br/>默认值：0。<br/>**说明：**<br/>当子组件不设置order或者设置相同的order, 子组件按照代码顺序展示。<br/>当子组件部分设置order，部分不设置order时，未设置order的子组件依次排序靠前，设置了order的子组件按照数值从小到大排列。 |
 
->  **说明：**
->
->  `span`、`offset`、`order`属性按照`xs`、`sm`、`md`、`lg`、`xl`、`xxl`的顺序具有“继承性”，未设置值的断点将会从前一个断点取值。
->
->  在不同宽度设备类型上的默认值为：
->  |参数\断点 |xs|sm|md|lg|xl|xxl|
->  |---|---|---|---|---|---|---|
->  |span   |2  |2  |3  |3  |4  |4  |
->  |offset |2  |2  |3  |5  |5  |5  |
->  |order  |20 |20 |20 |3  |3  |3  |
+**说明：**
+
+`span`、`offset`、`order`属性按照`xs`、`sm`、`md`、`lg`、`xl`、`xxl`的顺序具有“继承性”，未设置值的断点将会从前一个断点取值。
+
+在不同宽度设备类型上的默认值为：
+
+|参数\断点 |xs|sm|md|lg|xl|xxl|
+|---|---|---|---|---|---|---|
+|span   |2  |2  |3  |3  |4  |4  |
+|offset |2  |2  |3  |5  |5  |5  |
+|order  |20 |20 |20 |3  |3  |3  |
 
 ## 属性
 
