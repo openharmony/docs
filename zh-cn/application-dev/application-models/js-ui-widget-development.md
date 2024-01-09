@@ -635,12 +635,12 @@ export default class EntryFormAbility extends FormExtensionAbility {
         let params: Record<string, Object> = JSON.parse(JSON.stringify(want.parameters.params));
         // 获取router事件中传递的info参数
         if (params.info === 'router info') {
-          // do something
+          // 执行业务逻辑
           hilog.info(DOMAIN_NUMBER, TAG, `router info: ${params.info}`);
         }
         // 获取router事件中传递的message参数
         if (params.message === 'router message') {
-          // do something
+          // 执行业务逻辑
           hilog.info(DOMAIN_NUMBER, TAG, `router message: ${params.message}`);
         }
       }
@@ -665,7 +665,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
       // 获取message事件中传递的detail参数
       let msg: Record<string, string> = JSON.parse(message);
       if (msg.detail === 'message detail') {
-        // do something
+        // 执行业务逻辑
         hilog.info(DOMAIN_NUMBER, TAG, 'message info:' + msg.detail);
       }
     }

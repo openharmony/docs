@@ -6,38 +6,10 @@
 ## 动态卡片事件能力说明
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
 
-`postCardAction()`接口示例代码：
-
-```ts
-Button('跳转')
-  .width('40%')
-  .height('20%')
-  .onClick(() => {
-    postCardAction(this, {
-      action: 'router',
-      bundleName: 'com.example.myapplication',
-      abilityName: 'EntryAbility',
-      params: {
-        message: 'testForRouter' // 自定义要发送的message
-      }
-    });
-  })
-
-Button('拉至后台')
-  .width('40%')
-  .height('20%')
-  .onClick(() => {
-    postCardAction(this, {
-      action: 'call',
-      bundleName: 'com.example.myapplication',
-      abilityName: 'EntryAbility',
-      params: {
-        method: 'fun', // 自定义调用的方法名，必填
-        message: 'testForCall' // 自定义要发送的message
-      }
-    });
-  })
-```
+动态卡片事件包括三种类型：
+- [使用router事件跳转到指定UIAbility](arkts-ui-widget-event-router.md)
+- [使用call事件拉起指定UIAbility到后台](arkts-ui-widget-event-call.md)
+- [通过message事件刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
 
 ## 静态卡片事件能力说明
 请参见[FormLink](../reference/arkui-ts/ts-container-formlink.md)
