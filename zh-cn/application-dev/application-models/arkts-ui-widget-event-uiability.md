@@ -227,6 +227,7 @@
   
   ```ts
   import type AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import type Base from '@ohos.base';
   import formBindingData from '@ohos.app.form.formBindingData';
   import formProvider from '@ohos.app.form.formProvider';
   import hilog from '@ohos.hilog';
@@ -276,7 +277,7 @@
       let formMsg: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(curFormId, formMsg).then((data) => {
         hilog.info(DOMAIN_NUMBER, TAG, `updateForm success. ${JSON.stringify(data)}`);
-      }).catch((error) => {
+      }).catch((error: Base.BusinessError) => {
         hilog.error(DOMAIN_NUMBER, TAG, `updateForm failed: ${JSON.stringify(error)}`);
       });
     }
