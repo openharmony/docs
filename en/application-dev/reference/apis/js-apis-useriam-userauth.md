@@ -2,7 +2,8 @@
 
 The **userIAM.userAuth** module provides user authentication capabilities in identity authentication scenarios, such as device unlocking, payment, and app login.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
@@ -34,7 +35,7 @@ Defines the user authentication parameters.
 | Name          | Type                              | Mandatory| Description                                                        |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | challenge      | Uint8Array                         | Yes  | Challenge value, which is used to prevent replay attacks. It cannot exceed 32 bytes and can be passed in **Uint8Array([])** format.|
-| authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type list, which specifies the types of authentication provided on the user authentication page.          |
+| authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type list, which specifies the types of authentication provided on the user authentication page. |
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.                                              |
 
 ## WidgetParam<sup>10+</sup>
@@ -754,11 +755,10 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 
 Subscribes to the user authentication events of the specified type.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10.
-
-> **NOTE**<br>
-> Use the [AuthInstance](#authinstancedeprecated) instance obtained to call this API.
+> **NOTE**
+>
+> - This API is supported since API version 9 and deprecated since API version 10.
+> - Use the [AuthInstance](#authinstancedeprecated) instance obtained to call this API.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -825,11 +825,8 @@ off : (name : AuthEventKey) => void
 Unsubscribes from the user authentication events of the specific type.
 
 >**NOTE**
->
->- This API is supported since API version 9 and deprecated since API version 10.
->- The [AuthInstance](#authinstancedeprecated) instance used to call this API must be the one used to subscribe to the events.
-
-
+> - This API is supported since API version 9 and deprecated since API version 10.
+> - The [AuthInstance](#authinstancedeprecated) instance used to call this API must be the one used to subscribe to the events.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -881,9 +878,10 @@ start : () => void
 Starts authentication.
 
 > **NOTE**
->
+> 
 > - This API is supported since API version 9 and deprecated since API version 10.
 > - Use the [AuthInstance](#authinstancedeprecated) instance obtained to call this API.
+
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -932,11 +930,9 @@ cancel : () => void
 Cancels this authentication.
 
 > **NOTE**
->
-> - This API is supported since API version 9 and deprecated since API version 10.
-> - Use the [AuthInstance](#authinstancedeprecated) instance obtained to call this API. The [AuthInstance](#authinstancedeprecated) instance must be the instance being authenticated.
-
-
+> 
+>- This API is supported since API version 9 and deprecated since API version 10.
+>- Use the [AuthInstance](#authinstancedeprecated) instance obtained to call this API. The [AuthInstance](#authinstancedeprecated) instance must be the instance being authenticated.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -977,11 +973,9 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 Obtains an **AuthInstance** instance for user authentication.
 
 > **NOTE**
->
-> - This API is supported since API version 9 and deprecated since API version 10. Use [getUserAuthInstance](#getuserauthinstance10) instead.
-> - An **AuthInstance** instance can be used for an authentication only once.
-
-
+> 
+>- This API is supported since API version 9 and deprecated since API version 10. Use [getUserAuthInstance](#getuserauthinstance10) instead.
+>- An **AuthInstance** instance can be used for an authentication only once.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -1402,7 +1396,7 @@ Represents the authentication result object.
 Enumerates the authentication result codes.
 
 > **NOTE**<br>
-> This object is deprecated since API version 9. Use [UserAuthResultCode](#userauthresultcode9) instead.
+> This enum is deprecated since API version 9. Use [UserAuthResultCode](#userauthresultcode9) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -1478,7 +1472,7 @@ Enumerates the trust levels of the authentication result.
 | Name| Value   | Description                                                        |
 | ---- | ----- | ------------------------------------------------------------ |
 | ATL1 | 10000 | Authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data.|
-| ATL2 | 20000 | Authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as application logins and keeping the unlocking state of a device.|
+| ATL2 | 20000 | Authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as logins to apps and keeping a device in unlocked state. |
 | ATL3 | 30000 | Authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device.|
 | ATL4 | 40000 | Authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment.|
 
@@ -1534,7 +1528,7 @@ Starts user authentication. This API uses asynchronous callback to return the re
 | level    | SecureLevel  | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
 | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result.   |
 
-Parameters returned in callback
+**Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
