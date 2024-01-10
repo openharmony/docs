@@ -31,7 +31,7 @@
 
 ## 开发步骤
 
-1. [使能通知开关](notification-enable.md)，获得用户授权后，才能使用通知功能。
+1. [请求通知授权](notification-enable.md)，获得用户授权后，才能使用通知功能。
 
 2. 导入模块。
    
@@ -132,11 +132,11 @@
       import image from '@ohos.multimedia.image';
 
       let imagePixelMap: image.PixelMap | undefined = undefined; // 需要获取图片PixelMap信息
-      let color = new ArrayBuffer(0);
+      let color = new ArrayBuffer(4);
       image.createPixelMap(color, {
         size: {
-          height: 0,
-          width: 0
+          height: 1,
+          width: 1
         }
       }).then((data: image.PixelMap) => {
         imagePixelMap = data;
