@@ -13,7 +13,7 @@ GridObjectSortComponent是用于网格对象的编辑排序组件。
 
 ```ets
 import { 
-	GridObjectSortComponent,
+    GridObjectSortComponent,
     GridObjectSortComponentItem,
     GridObjectSortComponentOptions,
     GridObjectSortComponentType
@@ -24,7 +24,15 @@ import {
 
 无
 
-## Component
+
+
+## 属性
+
+支持[通用属性](ts-universal-attributes-size.md)
+
+## GridObjectSortComponent
+
+GridObjectSortComponent({options: GridObjectSortComponentOptions, dataList: Array<GridObjectSortComponentItem>, onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => void, onCancel: () => void })
 
 **装饰器类型：**\@Component
 
@@ -41,63 +49,52 @@ import {
 | options  | GridObjectSortComponentOptions | @Prop      | 是   | 组件配置信息 |
 | dataList | Array<GridObjectSortComponentItem> | -     | 是   | 传入的元数据，最大长度为50，数据长度超过50，只会取前50的数据 |
 
+
 ##  GridObjectSortComponentOptions
-
-GridObjectSortComponentOptions定义GridObjectSortComponent组件的类型及参数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称           | 类型                      | 必填 | 说明                                                   |
 | -------------- | ------------------------- | ---- | ------------------------------------------------------ |
 | type           | GridObjectSortComponentType | 否   | 组件展示形态：文字\|图片+文字，默认：GridObjectSortComponentType.text |
 | imageSize      | number \| Resource         | 否   | 图片的尺寸，默认：56                                   |
-| normalTitle | ResourceStr    | 否   | 未编辑状态下显示的标题，默认：频道                     |
-| showAreaTitle | ResourceStr    | 否   | 展示区域标题，第一个子标题，默认：长按拖动排序      |
-| addAreaTitle | ResourceStr    | 否   | 添加区域标题，第二个子标题，默认：点击添加                    |
-| editTitle      | ResourceStr    | 否   | 编辑状态下头部标题显示，默认：编辑                     |
+| normalTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 未编辑状态下显示的标题，默认：频道                     |
+| showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 展示区域标题，第一个子标题，默认：长按拖动排序      |
+| addAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | 否   | 添加区域标题，第二个子标题，默认：点击添加                    |
+| editTitle      | [ResourceStr](ts-types.md#resourcestr)     | 否   | 编辑状态下头部标题显示，默认：编辑                     |
+
 
 ## GridObjectSortComponentType 
-
-GridObjectSortComponentType 定义GridObjectSortComponentOptions组件的枚举类型及参数。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型   | 值           | 说明         |
 | -------- | ------ | ------------ | ------------ |
 | IMAGE_TE | string | 'image_text' | 图片文字类型 |
 | TEXT     | string | 'text'       | 文字类型     |
 
+
 ## GridObjectSortComponentItem
-
-GridObjectSortComponentItem定义GridObjectSortComponent的元数据。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型             | 必填 | 说明                                                         |
 | -------- | ---------------- | ---- | ------------------------------------------------------------ |
 | id       | string \| number | 是   | 数据id序号，不可重复                                         |
-| text     | ResourceStr      | 是   | 显示文本信息                                                 |
+| text     | [ResourceStr](ts-types.md#resourcestr)      | 是   | 显示文本信息                                                 |
 | selected | boolean          | 是   | 是否已经被添加，添加：true，未添加：false                    |
-| url      | ResourceStr      | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址 |
+| url      | [ResourceStr](ts-types.md#resourcestr)      | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址 |
 | order    | number           | 是   | 顺序序号                                                     |
 
 ##  事件
-
 | 名称                                                         | 功能描述                                 |
 | :----------------------------------------------------------- | ---------------------------------------- |
 | onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) =>  void | 保存编辑排序的回调函数，返回编辑后的数据 |
 | onCancel: () => void                                         | 取消保存数据时的回调                     |
 
 ## 示例1
-
 ### 示例1：文本形态
 
-```ets
+```ts
 import { 
 	GridObjectSortComponent, 
 	GridObjectSortComponentItem, 
 	GridObjectSortComponentOptions, 
-	GridObjectSortComponentType, 
+	GridObjectSortComponentType
 } from '@ohos.arkui.advanced.GridObjectSortComponent';
 
 
@@ -167,14 +164,13 @@ struct Index {
     }
   ]
 
-  // 该option中的选项都是非必传项
   @State option: GridObjectSortComponentOptions = {
     type: GridObjectSortComponentType.TEXT,
     imageSize: 56,
     normalTitle: '频道',
     editTitle: '编辑',
     showAreaTitle: '长按拖动排序',
-    addAreaTitle: '点击添加',
+    addAreaTitle: '点击添加'
   }
 
   build() {
@@ -203,7 +199,7 @@ import {
 	GridObjectSortComponent, 
 	GridObjectSortComponentItem, 
 	GridObjectSortComponentOptions, 
-	GridObjectSortComponentType, 
+	GridObjectSortComponentType
 } from '@ohos.arkui.advanced.GridObjectSortComponent';
 
 
@@ -282,7 +278,7 @@ struct Index {
     normalTitle: '',
     editTitle: '',
     showAreaTitle: '长按拖动排序',
-    addAreaTitle: '点击添加',
+    addAreaTitle: '点击添加'
   }
   
   build() {
@@ -290,7 +286,7 @@ struct Index {
       GridObjectSortComponent({
       		options: this.option, 
       		dataList: this.dataList, 
-      			onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => {
+      		onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => {
                 // save ToDo
             },
          	onCancel: () =>{
