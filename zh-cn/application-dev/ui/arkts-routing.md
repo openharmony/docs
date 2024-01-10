@@ -244,9 +244,19 @@ import router from '@ohos.router';
 
 ```ts
 import router from '@ohos.router';
-onPageShow() {
-  const params:Record<string,Object> = {'':router.getParams()}; // 获取传递过来的参数对象
-  const info:Object = params['']; // 获取info属性的值
+
+@Entry
+@Component
+struct Home {
+  @State message: string = 'Hello World';
+
+  onPageShow() {
+    const params = router.getParams() as Record<string, string>; // 获取传递过来的参数对象
+    if (params) {
+      const info: string = params.info as string; // 获取info属性的值
+    }
+  }
+  ...
 }
 ```
 
