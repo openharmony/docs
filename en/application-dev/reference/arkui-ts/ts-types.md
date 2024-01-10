@@ -132,7 +132,7 @@ The **ResourceColor** type is used to describe the color types of resources.
 | string                              | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**|
 | [Resource](#resource)               | Color referenced from system or application resources.             |
 
-## ColoringStrategy
+## ColoringStrategy<sup>10+</sup>
 
 The **ColoringStrategy** type is used to describe the foreground colors.
 
@@ -219,7 +219,7 @@ The **ColorFilter** type is used to create a color filter with a 4 x 5 matrix.
 
 | Name         | Type      | Mandatory  | Description                                      |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | Yes   | Constructor for creating a color filter with a 4 x 5 matrix. The input parameter is [m*n], which is the matrix value in row m and column n. The value range is [0, 1]. The matrix is row-first.|
+| constructor | number[] | Yes   | Constructor for creating a color filter with a 4 x 5 matrix. The input parameter is [m*n], which is the matrix value in row m and column n. The matrix is row-first.|
 
 
 ## CustomBuilder<sup>8+</sup>

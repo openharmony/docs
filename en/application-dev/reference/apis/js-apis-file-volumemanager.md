@@ -9,7 +9,7 @@ The **volumeManager** module provides APIs for volume and disk management, inclu
 
 ## Modules to Import
 
-```js
+```ts
 import volumemanager from "@ohos.file.volumeManager";
 ```
 
@@ -25,8 +25,8 @@ Obtains information about all volumes of this external storage device. This API 
 
 **Return value**
 
-  | Type                              | Description                      |
-  | ---------------------------------- | -------------------------- |
+| Type                              | Description                      |
+| ---------------------------------- | -------------------------- |
   | Promise&lt;[Volume](#volume)[]&gt; | Promise used to return information about all available volumes.|
 
 **Error codes**
@@ -39,14 +39,14 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
-  volumemanager.getAllVolumes().then((volumes: volumemanager.Volume) => {
-    // Do something.
+  volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
+    // Do something with the volume array.
   }).catch((error: BusinessError) => {
     console.info("getAllVolumes failed");
   });
@@ -64,9 +64,9 @@ Obtains information about all volumes of this external storage device. This API 
 
 **Parameters**
 
-  | Name  | Type                                             | Mandatory| Description                                |
-  | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return information about all available volumes.|
+| Name  | Type                                             | Mandatory| Description                                |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return information about all available volumes.|
 
 **Error codes**
 
@@ -78,14 +78,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 202 | The caller is not a system application. |
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
-  let uuid: string = "";
-  volumemanager.getAllVolumes((error: BusinessError, volumes: volumemanager.Volume) => {
+  volumemanager.getAllVolumes((error: BusinessError, volumes: Array<volumemanager.Volume>) => {
     // Do something.
   });
   ```
@@ -102,15 +101,15 @@ Asynchronously mounts a volume. This API uses a promise to return the result. Cu
 
 **Parameters**
 
-  | Name  | Type  | Mandatory| Description|
-  | -------- | ------ | ---- | ---- |
-  | volumeId | string | Yes  | Volume ID.|
+| Name  | Type  | Mandatory| Description|
+| -------- | ------ | ---- | ---- |
+| volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
-  | Type                  | Description      |
-  | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                  | Description      |
+| ---------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -126,11 +125,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600003 | Failed to mount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   volumemanager.mount(volumeId).then(() => {
@@ -152,10 +151,10 @@ Asynchronously mounts a volume. This API uses an asynchronous callback to return
 
 **Parameters**
 
-  | Name  | Type                                 | Mandatory| Description                |
-  | -------- | ------------------------------------- | ---- | -------------------- |
-  | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+| Name  | Type                                 | Mandatory| Description                |
+| -------- | ------------------------------------- | ---- | -------------------- |
+| volumeId | string                                | Yes  | Volume ID.                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Error codes**
 
@@ -171,11 +170,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600003 | Failed to mount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   volumemanager.mount(volumeId, (error: BusinessError) => {
@@ -195,15 +194,15 @@ Asynchronously unmounts a volume. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name  | Type  | Mandatory| Description|
-  | -------- | ------ | ---- | ---- |
-  | volumeId | string | Yes  | Volume ID.|
+| Name  | Type  | Mandatory| Description|
+| -------- | ------ | ---- | ---- |
+| volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
-  | Type                  | Description      |
-  | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                  | Description      |
+| ---------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -219,11 +218,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600004 | Failed to unmount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   volumemanager.unmount(volumeId).then(() => {
@@ -245,10 +244,10 @@ Asynchronously unmounts a volume. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-  | Name  | Type                                 | Mandatory| Description                |
-  | -------- | ------------------------------------- | ---- | -------------------- |
-  | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+| Name  | Type                                 | Mandatory| Description                |
+| -------- | ------------------------------------- | ---- | -------------------- |
+| volumeId | string                                | Yes  | Volume ID.                |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
 **Error codes**
 
@@ -264,11 +263,11 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600004 | Failed to unmount. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   volumemanager.unmount(volumeId, (error: BusinessError) => {
@@ -288,14 +287,14 @@ Obtains information about a volume based on the universally unique identifier (U
 
 **Parameters**
 
-  | Name  | Type  | Mandatory| Description|
-  | -------- | ------ | ---- | ---- |
-  | uuid | string | Yes  | UUID of the volume.|
+| Name  | Type  | Mandatory| Description|
+| -------- | ------ | ---- | ---- |
+| uuid | string | Yes  | UUID of the volume.|
 
 **Return value**
 
-  | Type                              | Description                      |
-  | ---------------------------------- | -------------------------- |
+| Type                              | Description                      |
+| ---------------------------------- | -------------------------- |
   | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
 
 **Error codes**
@@ -309,17 +308,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
   volumemanager.getVolumeByUuid(uuid).then((volume: volumemanager.Volume) => {
     console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
-    console.info("getVolumeByUuid failed with error:"+ error);
+    console.info("getVolumeByUuid failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -335,10 +334,10 @@ Obtains information about a volume based on the UUID. This API uses an asynchron
 
 **Parameters**
 
-  | Name   | Type                                                | Mandatory| Description                |
-  | -------- | ------------------------------------------------ | ---- | -------------------- |
-  | uuid | string                                                 | Yes  | UUID of the volume.                |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+| Name   | Type                                                | Mandatory| Description                |
+| -------- | ------------------------------------------------ | ---- | -------------------- |
+| uuid | string                                                 | Yes  | UUID of the volume.                |
+| callback | AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
 
 **Error codes**
 
@@ -351,15 +350,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
   volumemanager.getVolumeByUuid(uuid, (error: BusinessError, volume: volumemanager.Volume) => {
-    // Do something.
+    // Do something.   
   });
   ```
 
@@ -375,14 +374,14 @@ Obtains information about a volume based on the volume ID. This API uses a promi
 
 **Parameters**
 
-  | Name   | Type   | Mandatory | Description|
-  | -------- | ------ | ---- | ---- |
-  | volumeId | string | Yes  | Volume ID.|
+| Name   | Type   | Mandatory | Description|
+| -------- | ------ | ---- | ---- |
+| volumeId | string | Yes  | Volume ID.|
 
 **Return value**
 
-  | Type                              | Description                      |
-  | ---------------------------------- | -------------------------- |
+| Type                              | Description                      |
+| ---------------------------------- | -------------------------- |
   | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
 
 **Error codes**
@@ -396,16 +395,17 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
+  import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   volumemanager.getVolumeById(volumeId).then((volume: volumemanager.Volume) => {
     console.info("getVolumeById successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
-    console.info("getVolumeById failed with error:"+ error);
+    console.info("getVolumeById failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -421,10 +421,10 @@ Obtains information about a volume based on the volume ID. This API uses an asyn
 
 **Parameters**
 
-  | Name  | Type                     | Mandatory| Description                         |
-  | -------- | ------------------------- | ---- | ----------------------------- |
-  | volumeId | string                    | Yes  | Volume ID.               |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
+| Name  | Type                     | Mandatory| Description                         |
+| -------- | ------------------------- | ---- | ----------------------------- |
+| volumeId | string                    | Yes  | Volume ID.               |
+| callback | AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
 
 **Error codes**
 
@@ -437,15 +437,15 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   volumemanager.getVolumeById(volumeId, (error: BusinessError, volume: volumemanager.Volume) => {
-    // Do something.
+    // Do something.   
   });
   ```
 
@@ -461,16 +461,16 @@ Sets volume description. This API uses a promise to return the result.
 
 **Parameters**
 
-  | Name    | Type  | Mandatory| Description|
-  | --------- | ------ | ---- | ---- |
-  | uuid      | string | Yes  | UUID of the volume.|
-  | description | string | Yes  | Volume description to set.|
+| Name    | Type  | Mandatory| Description|
+| --------- | ------ | ---- | ---- |
+| uuid      | string | Yes  | UUID of the volume.|
+| description | string | Yes  | Volume description to set.|
 
 **Return value**
 
-  | Type                   | Description                      |
-  | ---------------------- | -------------------------- |
-  | Promise&lt;void&gt; | Promise that returns no value.                 |
+| Type                   | Description                      |
+| ---------------------- | -------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.                 |
 
 **Error codes**
 
@@ -485,18 +485,18 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
   let description: string = "";
   volumemanager.setVolumeDescription(uuid, description).then(() => {
     console.info("setVolumeDescription successfully");
   }).catch((error: BusinessError) => {
-    console.info("setVolumeDescription failed with error:"+ error);
+    console.info("setVolumeDescription failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -512,11 +512,11 @@ Sets volume description. This API uses an asynchronous callback to return the re
 
 **Parameters**
 
-  | Name     | Type                                    | Mandatory| Description             |
-  | ---------- | --------------------------------------- | ---- | ---------------- |
-  | uuid       | string                                  | Yes  | UUID of the volume.           |
-  | description | string                                 | Yes  | Volume description to set.           |
-  | callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.|
+| Name     | Type                                    | Mandatory| Description             |
+| ---------- | --------------------------------------- | ---- | ---------------- |
+| uuid       | string                                  | Yes  | UUID of the volume.           |
+| description | string                                 | Yes  | Volume description to set.           |
+| callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.|
 
 **Error codes**
 
@@ -531,16 +531,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let uuid: string = "";
   let description: string = "";
   volumemanager.setVolumeDescription(uuid, description, (error: BusinessError) => {
-    // Do something.
+    // Do something.   
   });
   ```
 
@@ -556,16 +556,16 @@ Formats a volume. This API uses a promise to return the result. Currently, only 
 
 **Parameters**
 
-  | Name      | Type  | Mandatory| Description|
-  | ----------- | ------ | ---- | ---- |
-  | volumeId    | string | Yes  | Volume ID.|
-  | fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
+| Name      | Type  | Mandatory| Description|
+| ----------- | ------ | ---- | ---- |
+| volumeId    | string | Yes  | Volume ID.|
+| fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
 
 **Return value**
 
-  | Type                  | Description      |
-  | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | Promise that returns no value.|
+| Type                  | Description      |
+| ---------------------- | ---------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -580,18 +580,18 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   let fsType: string = "";
   volumemanager.format(volumeId, fsType).then(() => {
     console.info("format successfully");
   }).catch((error: BusinessError) => {
-    console.info("format failed with error:"+ error);
+    console.info("format failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -607,11 +607,11 @@ Formats a volume. This API uses an asynchronous callback to return the result. C
 
 **Parameters**
 
-  | Name  | Type                     | Mandatory| Description                         |
-  | -------- | ------------------------- | ---- | ----------------------------- |
-  | volumeId | string                    | Yes  | Volume ID.               |
-  | fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
-  | callback | AsyncCallback&lt;void&gt;  | Yes  | Callback that returns no value. |
+| Name  | Type                     | Mandatory| Description                         |
+| -------- | ------------------------- | ---- | ----------------------------- |
+| volumeId | string                    | Yes  | Volume ID.               |
+| fsType    | string | Yes  | File system type, which can be VFAT or exFAT.|
+| callback | AsyncCallback&lt;void&gt;  | Yes  | Callback that returns no value. |
 
 **Error codes**
 
@@ -626,16 +626,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let volumeId: string = "";
   let fsType: string = "";
   volumemanager.format(volumeId, fsType, (error: BusinessError) => {
-    // Do something.
+    // Do something.   
   });
   ```
 
@@ -651,16 +651,16 @@ Partitions a disk. This API uses a promise to return the result. The system supp
 
 **Parameters**
 
-  | Name      | Type  | Mandatory| Description|
-  | ----------- | ------ | ---- | ---- |
-  | diskId    | string | Yes  | ID of the disk to partition.|
-  | type      | number | Yes  | Partition type.   |
+| Name      | Type  | Mandatory| Description|
+| ----------- | ------ | ---- | ---- |
+| diskId    | string | Yes  | ID of the disk to partition.|
+| type      | number | Yes  | Partition type.   |
 
 **Return value**
 
-  | Type                     | Description                      |
-   | --------------------- | ----------------------- |
-  | Promise&lt;void&gt;   | Promise that returns no value.             |
+| Type                     | Description                      |
+| --------------------- | ----------------------- |
+| Promise&lt;void&gt;   | Promise that returns no value.             |
 
 **Error codes**
 
@@ -673,18 +673,18 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let diskId: string = "";
   let type: number = 0;
   volumemanager.partition(diskId, type).then(() => {
     console.info("partition successfully");
   }).catch((error: BusinessError) => {
-    console.info("partition failed with error:"+ error);
+    console.info("partition failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -700,11 +700,11 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
 
 **Parameters**
 
-  | Name     | Type                                  | Mandatory| Description             |
-  | -------- | --------------------------------------- | ---- | ---------------- |
-  | diskId   | string                                  | Yes  | ID of the disk to partition.     |
-  | type     | number                                  | Yes  | Partition type.          |
-  | callback | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.     |
+| Name     | Type                                  | Mandatory| Description             |
+| -------- | --------------------------------------- | ---- | ---------------- |
+| diskId   | string                                  | Yes  | ID of the disk to partition.     |
+| type     | number                                  | Yes  | Partition type.          |
+| callback | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.     |
 
 **Error codes**
 
@@ -717,16 +717,16 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
-| 13900032 | Unknown error. |
+| 13900042 | Unknown error. |
 
 **Example**
 
-  ```js
+  ```ts
   import { BusinessError } from '@ohos.base';
   let diskId: string = "";
   let type: number = 0;
   volumemanager.partition(diskId, type, (error: BusinessError) => {
-    // Do something.
+    // Do something.   
   });
   ```
 
@@ -743,5 +743,5 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | diskId      | string  | Yes| No| ID of the disk to which the volume belongs. A disk can have one or more volumes. The disk ID is in the disk-{Primary device ID}-{Secondary device ID} format, which is similar to the volume ID.       |
 | description | string  | Yes| No| Description of the volume.          |
 | removable   | boolean | Yes| No| Whether the volume can be removed. Currently, only removable storage devices are supported.|
-| state       | number  | Yes| No| Volume status.<br>**0**: The volume is unmounted.<br> **1**: The volume is being checked.<br> **2**: The volume is mounted.<br> **3**: The volume is being ejected.         |
-| path        | string  | Yes| No| Path of the volume mounted. Generally, the path is **/mnt/external/{uuid}**.        |
+| state       | number  | Yes| No| Volume status.<br>**0**: The volume is unmounted.<br>**1**: The volume is being checked.<br>**2**: The volume is mounted.<br>**3**: The volume is being ejected.         |
+| path        | string  | Yes| No| Path of the volume mounted. Generally, the path is **/mnt/data/external/{uuid}**.        |

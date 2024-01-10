@@ -642,19 +642,6 @@ copyToArray(array: Array&lt;T&gt;): void
 | -------- | -------- | -------- | -------- |
 | array | Array&lt;T&gt; | 是 | 指定数组。 |
 
-**示例：**
-
-```ts
-let vector : Vector<number> = new Vector();
-let array :Array<number> = new Array();
-vector.add(2);
-vector.add(4);
-vector.add(5);
-vector.add(4);
-vector.copyToArray(array);
-console.log("array: ",array)
-```
-
 ### getFirstElement
 
 getFirstElement(): T
@@ -846,18 +833,6 @@ set(index: number, element: T): T
   | 类型 | 说明 |
   | -------- | -------- |
   | T | 返回替换后的元素。 |
-
-**示例：**
-
-```ts
-let vector : Vector<number> = new Vector();
-vector.add(2);
-vector.add(4);
-vector.add(5);
-vector.add(4);
-let result = vector.set(3,66);
-console.log("vector: ",vector)
-```
 
 ### [Symbol.iterator]
 

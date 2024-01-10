@@ -36,7 +36,7 @@ Defines the user authentication parameters.
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | challenge      | Uint8Array                         | Yes  | Challenge value, which is used to prevent replay attacks. It cannot exceed 32 bytes and can be passed in **Uint8Array([])** format.|
 | authType       | [UserAuthType](#userauthtype8)[]   | Yes  | Authentication type list, which specifies the types of authentication provided on the user authentication page. |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.                                        |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.                                              |
 
 ## WidgetParam<sup>10+</sup>
 
@@ -52,13 +52,13 @@ Represents the information presented on the user authentication page.
 
 ## UserAuthResult<sup>10+</sup>
 
-Defines the user authentication result. If the authentication is successful, the authentication type and information about the token that has passed the authentication are returned.
+Defines the user authentication result. If the authentication is successful, the authentication type and token information are returned.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Name    | Type                          | Mandatory| Description                                                        |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
-| result   | number                         | Yes  | User authentication result. If the operation is successful, **0** is returned. If the operation fails, an error code is returned. For details about the error codes, see [User Authentication Error Codes](../errorcodes/errorcode-useriam.md).|
+| result   | number                         | Yes  | User authentication result. If the operation is successful, **SUCCESS** is returned. If the operation fails, an error code is returned. For details, see [UserAuthResultCode](#userauthresultcode9).|
 | token    | Uint8Array                     | No  | Token that has passed the authentication.                |
 | authType | [UserAuthType](#userauthtype8) | No  | Type of the authentication.                          |
 
@@ -104,13 +104,13 @@ try {
   });
   console.log('auth on success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
 ## UserAuthInstance<sup>10+</sup>
 
-Provides APIs for user authentication. The user authentication widget is supported.
+Provides APIs for user authentication. The user authentication widget is also supported.
 Before using the APIs, you need to obtain a **UserAuthInstance** instance by using [getUserAuthInstance](#getuserauthinstance10).
 
 ### on<sup>10+</sup>
@@ -125,7 +125,7 @@ Subscribes to the user authentication result.
 
 | Name  | Type                             | Mandatory| Description                                      |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result. |
+| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result.|
 | callback | [IAuthCallback](#iauthcallback10) | Yes  | Callback invoked to return the user authentication result.    |
 
 **Error codes**
@@ -160,7 +160,7 @@ try {
   });
   console.log('auth on success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -170,9 +170,7 @@ off(type: 'result', callback?: IAuthCallback): void
 
 Unsubscribes from the user authentication result.
 
-> **NOTE**
->
-> You need to use the [UserAuthInstance](#userauthinstance10) instance that has successfully subscribed to the event to call this API.
+> **NOTE**<br>The [UserAuthInstance](#userauthinstance10) instance used to call this API must be the one used to subscribe to the event.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -180,7 +178,7 @@ Unsubscribes from the user authentication result.
 
 | Name  | Type                             | Mandatory| Description                                      |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| type     | 'result'                         | Yes  | Event type. The value is **result**, which indicates the authentication result. |
+| type     | 'result'                          | Yes  | Event type. The value is **result**, which indicates the authentication result.|
 | callback | [IAuthCallback](#iauthcallback10) | No  | Callback for the user authentication result.    |
 
 **Error codes**
@@ -215,7 +213,7 @@ try {
   });
   console.log('auth off success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -267,7 +265,7 @@ try {
   userAuthInstance.start();
   console.log('auth start success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -310,7 +308,7 @@ try {
   userAuthInstance.cancel();
   console.log('auth cancel success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -318,10 +316,9 @@ try {
 
 getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance
 
-Obtains a [UserAuthInstance](#userauthinstance10) instance for user authentication. The user authentication widget is supported.
+Obtains a [UserAuthInstance](#userauthinstance10) instance for user authentication. The user authentication widget is also supported.
 
-> **NOTE**
->
+> **NOTE**<br>
 > A **UserAuthInstance** instance can be used for an authentication only once.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
@@ -337,7 +334,7 @@ Obtains a [UserAuthInstance](#userauthinstance10) instance for user authenticati
 
 | Type                                   | Description                      |
 | --------------------------------------- | -------------------------- |
-| [UserAuthInstance](#userauthinstance10) | **UserAuthInstance**  instance that supports UI.|
+| [UserAuthInstance](#userauthinstance10) | **UserAuthInstance** instance that supports UI.|
 
 **Error codes**
 
@@ -367,7 +364,7 @@ try {
   let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.log('get userAuth instance success');
 } catch (error) {
-  console.log('auth catch error: ' + JSON.stringify(error));
+  console.error('auth catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -441,7 +438,7 @@ try {
   userAuth.sendNotice(noticeType, jsonEventData);
   console.log('sendNotice success');
 } catch (error) {
-  console.log('sendNotice catch error: ' + JSON.stringify(error));
+  console.error('sendNotice catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -453,7 +450,7 @@ Provides APIs for managing the user authentication widget. You can use the APIs 
 
 on(type: 'command', callback: IAuthWidgetCallback): void
 
-Subscribes to commands from the user authentication framework.
+Subscribes to commands from the user authentication framework for the user authentication widget.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -464,7 +461,7 @@ Subscribes to commands from the user authentication framework.
 | Name  | Type                                         | Mandatory| Description                                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'command'                                     | Yes  | Event type. The vlaue is **command**, which indicates the command sent from the user authentication framework to the user authentication widget. |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | Yes  | Callback invoked to send the command from the user authentication framework to the user authentication widget.|
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | Yes  | Callback invoked to return the command from the user authentication framework to the user authentication widget.|
 
 **Error codes**
 
@@ -491,7 +488,7 @@ try {
   })
   console.log('subscribe authentication event success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -537,7 +534,7 @@ try {
   })
   console.log('cancel subscribe authentication event success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -589,7 +586,7 @@ try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
   console.log('get userAuthWidgetMgr instance success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -611,7 +608,7 @@ Called to return the command sent from the user authentication framework to the 
 
 | Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | ---------------------------------- |
-| cmdData | string | Yes  | Command sent from the user identity authentication framework to the user authentication widget.|
+| cmdData | string | Yes  | Command sent from the user authentication framework to the user authentication widget.|
 
 **Example**
 
@@ -629,7 +626,7 @@ try {
   })
   console.log('subscribe authentication event success');
 } catch (error) {
-  console.log('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
 }
 ```
 
@@ -644,7 +641,7 @@ Defines the authentication result.
 | result        | number | Yes  | Authentication result.      |
 | token        | Uint8Array | No  | Token that has passed the user identity authentication.|
 | remainAttempts  | number     | No  | Number of remaining authentication attempts.|
-| lockoutDuration | number     | No  | Lock duration of the authentication operation, in milliseconds.|
+| lockoutDuration | number     | No  | Lock duration of the authentication operation, in ms.|
 
 ## TipInfo<sup>9+</sup>
 
@@ -719,7 +716,7 @@ try {
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
-  console.log('authV9 error = ' + error);
+  console.error('authV9 error = ' + error);
   // do error
 }
 // Obtain the authentication tip information through a callback.
@@ -729,7 +726,7 @@ try {
     callback : (result : userIAM_userAuth.TipInfo) => {
       switch (result.tip) {
         case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_BRIGHT:
-          // Do something;
+          // Do something.
         case userIAM_userAuth.FaceTips.FACE_AUTH_TIP_TOO_DARK:
           // Do something.
         default:
@@ -740,7 +737,7 @@ try {
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
-  console.log('authV9 error = ' + error);
+  console.error('authV9 error = ' + error);
   // do error
 }
 ```
@@ -758,11 +755,10 @@ on : (name : AuthEventKey, callback : AuthEvent) => void
 
 Subscribes to the user authentication events of the specified type.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10.
-
-> **NOTE**<br>
-> Use the [AuthInstance](#authinstancedeprecated) instance obtained to invoke this API to subscribe to events.
+> **NOTE**
+>
+> - This API is supported since API version 9 and deprecated since API version 10.
+> - Use the [AuthInstance](#authinstancedeprecated) instance obtained to call this API.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -817,7 +813,7 @@ try {
   auth.start();
   console.log('authV9 start success');
 } catch (error) {
-  console.log('authV9 error = ' + error);
+  console.error('authV9 error = ' + error);
   // do error
 }
 ```
@@ -828,16 +824,15 @@ off : (name : AuthEventKey) => void
 
 Unsubscribes from the user authentication events of the specific type.
 
->**NOTE**<br>
->This API is supported since API version 9 and deprecated since API version 10.
->
->Use the [AuthInstance](#authinstancedeprecated) instance obtained to invoke this API to unsubscribe from events.
+>**NOTE**
+> - This API is supported since API version 9 and deprecated since API version 10.
+> - The [AuthInstance](#authinstancedeprecated) instance used to call this API must be the one used to subscribe to the events.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Name   | Type                       | Mandatory| Description                      |
 | --------- | -------------------------- | ---- | ------------------------- |
-| name    | [AuthEventKey](#autheventkey9)      | Yes  | Type of the authentication event to unsubscribe from. If the value is **result**, the authentication result is unsubscribed from. If the value is **tip**, the authentication tip information is unsubscribed from.|
+| name    | [AuthEventKey](#autheventkey9)      | Yes  | Authentication event type. If the value is **result**, the authentication result is unsubscribed from. If the value is **tip**, the authentication tip information is unsubscribed from.|
 
 **Error codes**
 
@@ -871,7 +866,7 @@ try {
   auth.off('result');
   console.info('cancel subscribe authentication event success');
 } catch (error) {
-  console.info('cancel subscribe authentication event failed, error =' + error);
+  console.error('cancel subscribe authentication event failed, error =' + error);
   // do error
 }
 ```
@@ -882,10 +877,11 @@ start : () => void
 
 Starts authentication.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10.
->
-> Use the [AuthInstance](#authinstancedeprecated) instance obtained to invoke this API.
+> **NOTE**
+> 
+> - This API is supported since API version 9 and deprecated since API version 10.
+> - Use the [AuthInstance](#authinstancedeprecated) instance obtained to call this API.
+
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -923,7 +919,7 @@ try {
   auth.start();
   console.info('authV9 start auth success');
 } catch (error) {
-  console.info('authV9 start auth failed, error = ' + error);
+  console.error('authV9 start auth failed, error = ' + error);
 }
 ```
 
@@ -933,10 +929,10 @@ cancel : () => void
 
 Cancels this authentication.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10.
->
-> Use the [AuthInstance](#authinstancedeprecated) instance obtained to invoke this API. The [AuthInstance](#authinstancedeprecated) instance must be the instance being authenticated.
+> **NOTE**
+> 
+>- This API is supported since API version 9 and deprecated since API version 10.
+>- Use the [AuthInstance](#authinstancedeprecated) instance obtained to call this API. The [AuthInstance](#authinstancedeprecated) instance must be the instance being authenticated.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -966,7 +962,7 @@ try {
   auth.cancel();
   console.info('cancel auth success');
 } catch (error) {
-  console.info('cancel auth failed, error = ' + error);
+  console.error('cancel auth failed, error = ' + error);
 }
 ```
 
@@ -976,10 +972,10 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 
 Obtains an **AuthInstance** instance for user authentication.
 
-> **NOTE**<br>
-> This API is supported since API version 9 and deprecated since API version 10. Use [getUserAuthInstance](#getuserauthinstance10) instead.
->
-> An **AuthInstance** instance can be used for an authentication only once.
+> **NOTE**
+> 
+>- This API is supported since API version 9 and deprecated since API version 10. Use [getUserAuthInstance](#getuserauthinstance10) instead.
+>- An **AuthInstance** instance can be used for an authentication only once.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -988,7 +984,7 @@ Obtains an **AuthInstance** instance for user authentication.
 | Name        | Type                                    | Mandatory| Description                    |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | Yes  | Challenge value. It cannot exceed 32 bytes and can be passed in Uint8Array([]) format.|
-| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, only **FACE** is supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Authentication trust level.              |
 
 **Return value**
@@ -1021,7 +1017,7 @@ try {
   let auth = userIAM_userAuth.getAuthInstance(challenge, authType, authTrustLevel);
   console.info('let auth instance success');
 } catch (error) {
-  console.info('get auth instance success failed, error = ' + error);
+  console.error('get auth instance success failed, error = ' + error);
 }
 ```
 
@@ -1064,7 +1060,7 @@ try {
   userIAM_userAuth.getAvailableStatus(userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLevel.ATL1);
   console.info('current auth trust level is supported');
 } catch (error) {
-  console.info('current auth trust level is not supported, error = ' + error);
+  console.error('current auth trust level is not supported, error = ' + error);
 }
 ```
 
@@ -1153,7 +1149,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel) : n
 Checks whether the specified authentication capability is supported.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getAvailableStatus](#useriam_userauthgetavailablestatus9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [getAvailableStatus](#useriam_userauthgetavailablestatus9) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -1163,7 +1159,7 @@ Checks whether the specified authentication capability is supported.
 
 | Name        | Type                              | Mandatory| Description                      |
 | -------------- | ---------------------------------- | ---- | -------------------------- |
-| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)     | Yes  | Authentication type. Currently, only **FACE** is supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | Yes  | Authentication trust level.      |
 
 **Return value**
@@ -1190,7 +1186,7 @@ if (checkCode == userIAM_userAuth.ResultCode.SUCCESS) {
 
 auth(challenge: Uint8Array, authType: UserAuthType, authTrustLevel: AuthTrustLevel, callback: IUserAuthCallback): Uint8Array
 
-Performs user authentication. This API uses a callback to return the result.
+Starts user authentication. This API uses a callback to return the result.
 
 > **NOTE**<br>
 > This API is supported since API version 8 and deprecated since API version 9. Use [start](#startdeprecated) instead.
@@ -1204,9 +1200,9 @@ Performs user authentication. This API uses a callback to return the result.
 | Name        | Type                                    | Mandatory| Description                    |
 | -------------- | ---------------------------------------- | ---- | ------------------------ |
 | challenge      | Uint8Array                               | Yes  | Challenge value, which can be passed in Uint8Array([]) format.|
-| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Only **FACE** is supported.|
+| authType       | [UserAuthType](#userauthtype8)           | Yes  | Authentication type. Currently, only **FACE** is supported.|
 | authTrustLevel | [AuthTrustLevel](#authtrustlevel8)       | Yes  | Authentication trust level.            |
-| callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | Yes  | Callback used to return the result.       |
+| callback       | [IUserAuthCallback](#iuserauthcallbackdeprecated) | Yes  | Callback invoked to return the result.       |
 
 **Return value**
 
@@ -1231,8 +1227,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       } else {
         // Add the logic to be executed when the authentication fails.
       }
-    } catch (e) {
-      console.info('auth onResult error = ' + e);
+    } catch (error) {
+      console.error('auth onResult error = ' + error);
     }
   }
 });
@@ -1284,7 +1280,7 @@ if (cancelCode == userIAM_userAuth.ResultCode.SUCCESS) {
 Provides callbacks to return the authentication result.
 
 > **NOTE**<br>
-> This object is supported since API version 8 and deprecated since API version 9. You are advised to use [AuthEvent](#authevent9).
+> This object is supported since API version 8 and deprecated since API version 9. Use [AuthEvent](#authevent9) instead.
 
 ### onResult<sup>(deprecated)</sup>
 
@@ -1293,7 +1289,7 @@ onResult: (result : number, extraInfo : AuthResult) => void
 Called to return the authentication result.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [callback](#callback9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [callback](#callback9) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -1321,8 +1317,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       }  else {
         // Add the logic to be executed when the authentication fails.
       }
-    } catch (e) {
-      console.info('auth onResult error = ' + e);
+    } catch (error) {
+      console.error('auth onResult error = ' + error);
     }
   }
 });
@@ -1335,7 +1331,7 @@ onAcquireInfo ?: (module : number, acquire : number, extraInfo : any) => void
 Called to acquire authentication tip information. This API is optional.
 
 > **NOTE**<br>
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [callback](#callback9).
+> This API is supported since API version 8 and deprecated since API version 9. Use [callback](#callback9) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -1364,8 +1360,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       }  else {
         // Add the logic to be executed when the authentication fails.
       }
-    } catch (e) {
-      console.info('auth onResult error = ' + e);
+    } catch (error) {
+      console.error('auth onResult error = ' + error);
     }
   },
   onAcquireInfo: (module, acquire, extraInfo : userIAM_userAuth.AuthResult) => {
@@ -1373,8 +1369,8 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
       console.info('auth onAcquireInfo module = ' + module);
       console.info('auth onAcquireInfo acquire = ' + acquire);
       console.info('auth onAcquireInfo extraInfo = ' + JSON.stringify(extraInfo));
-    } catch (e) {
-      console.info('auth onAcquireInfo error = ' + e);
+    } catch (error) {
+      console.error('auth onAcquireInfo error = ' + error);
     }
   }
 });
@@ -1385,7 +1381,7 @@ auth.auth(challenge, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTr
 Represents the authentication result object.
 
 > **NOTE**<br>
-> This object is supported since API version 8 and deprecated since API version 9. You are advised to use [AuthResultInfo](#authresultinfo9).
+> This object is supported since API version 8 and deprecated since API version 9. Use [AuthResultInfo](#authresultinfo9) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -1400,7 +1396,7 @@ Represents the authentication result object.
 Enumerates the authentication result codes.
 
 > **NOTE**<br>
-> This object is deprecated since API version 9. You are advised to use [UserAuthResultCode](#userauthresultcode9).
+> This enum is deprecated since API version 9. Use [UserAuthResultCode](#userauthresultcode9) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -1475,10 +1471,10 @@ Enumerates the trust levels of the authentication result.
 
 | Name| Value   | Description                                                        |
 | ---- | ----- | ------------------------------------------------------------ |
-| ATL1 | 10000 | Authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data. |
+| ATL1 | 10000 | Authentication trust level 1. The authentication of this level can identify individual users and provides limited liveness detection capabilities. It is usually used in service risk control and query of general personal data.|
 | ATL2 | 20000 | Authentication trust level 2. The authentication of this level can accurately identify individual users and provides regular liveness detection capabilities. It is usually used in scenarios such as logins to apps and keeping a device in unlocked state. |
-| ATL3 | 30000 | Authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device. |
-| ATL4 | 40000 | Authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment. |
+| ATL3 | 30000 | Authentication trust level 3. The authentication of this level can accurately identify individual users and provides strong liveness detection capabilities. It is usually used in scenarios such as unlocking a device.|
+| ATL4 | 40000 | Authentication trust level 4. The authentication of this level can accurately identify individual users and provides powerful liveness detection capabilities. It is usually used in scenarios such as small-amount payment.|
 
 ## userIAM_userAuth.getAuthenticator<sup>(deprecated)</sup>
 
@@ -1487,7 +1483,7 @@ getAuthenticator(): Authenticator
 Obtains an **Authenticator** instance for user authentication.
 
 > **NOTE**<br>
-> This API is deprecated since API version 8. You are advised to use [constructor](#constructordeprecated).
+> This API is deprecated since API version 8. Use [constructor](#constructordeprecated) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
@@ -1515,10 +1511,10 @@ Defines the **Authenticator** object.
 
 execute(type: AuthType, level: SecureLevel, callback: AsyncCallback&lt;number&gt;): void
 
-Performs user authentication. This API uses asynchronous callback to return the result.
+Starts user authentication. This API uses asynchronous callback to return the result.
 
 > **NOTE**<br>
-> This API is deprecated since API version 8. You are advised to use [auth](#authdeprecated).
+> This API is deprecated since API version 8. Use [auth](#authdeprecated) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -1528,11 +1524,11 @@ Performs user authentication. This API uses asynchronous callback to return the 
 
 | Name  | Type                       | Mandatory| Description                     |
 | -------- | --------------------------- | ---- | -------------------------- |
-| type     | AuthType                      | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
+| type     | AuthType                      | Yes  | Authentication type. Currently, only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
 | level    | SecureLevel  | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the result.   |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the result.   |
 
-Parameters returned in callback
+**Return value**
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
@@ -1558,10 +1554,10 @@ authenticator.execute('FACE_ONLY', 'S2', (error, code)=>{
 
 execute(type : AuthType, level : SecureLevel): Promise&lt;number&gt;
 
-Performs user authentication. This API uses a promise to return the result.
+Starts user authentication. This API uses a promise to return the result.
 
 > **NOTE**<br>
-> This API is deprecated since API version 8. You are advised to use [auth](#authdeprecated).
+> This API is deprecated since API version 8. Use [auth](#authdeprecated) instead.
 
 **Required permissions**: ohos.permission.ACCESS_BIOMETRIC
 
@@ -1571,7 +1567,7 @@ Performs user authentication. This API uses a promise to return the result.
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| type   | AuthType | Yes  | Authentication type. Only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
+| type   | AuthType | Yes  | Authentication type. Currently, only **FACE_ONLY** is supported.<br>**ALL** is reserved and not supported by the current version.|
 | level  | SecureLevel | Yes  | Security level of the authentication. It can be **S1** (lowest), **S2**, **S3**, or **S4** (highest).<br>Devices capable of 3D facial recognition support S3 and lower-level authentication.<br>Devices capable of 2D facial recognition support S2 and lower-level authentication.|
 
 **Return value**
@@ -1600,7 +1596,7 @@ try {
 Enumerates the authentication results.
 
 > **NOTE**<br>
-> This object is discarded since API version 8. You are advised to use [ResultCode](#resultcodedeprecated).
+> This object is deprecated since API version 8. Use [ResultCode](#resultcodedeprecated) instead.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 

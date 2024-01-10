@@ -60,20 +60,20 @@
    import UIAbility from '@ohos.app.ability.UIAbility';
    import { BusinessError } from '@ohos.base';
    import window from '@ohos.window';
-   
+
    let preferences: dataPreferences.Preferences | null = null;
-   
+
    class EntryAbility extends UIAbility {
-       onWindowStageCreate(windowStage: window.WindowStage) {
-           try {
-               let options: dataPreferences.Options = { name: 'myStore' };
-               preferences = dataPreferences.getPreferencesSync(this.context, options);
-           } catch (err) {
-               let code = (err as BusinessError).code;
-         		let message = (err as BusinessError).message;
-         		console.error(`Failed to get preferences. Code:${code},message:${message}`);
-           }
+     onWindowStageCreate(windowStage: window.WindowStage) {
+       try {
+         let options: dataPreferences.Options = { name: 'myStore' };
+         preferences = dataPreferences.getPreferencesSync(this.context, options);
+       } catch (err) {
+         let code = (err as BusinessError).code;
+         let message = (err as BusinessError).message;
+         console.error(`Failed to get preferences. Code:${code},message:${message}`);
        }
+     }
    }
    ```
 
@@ -180,9 +180,10 @@
      应用订阅数据变更需要指定observer作为回调方法。订阅的Key值发生变更后，当执行flush()方法时，observer被触发回调。示例代码如下所示：
      
    ```ts
-   preferences.on('change', (key: string) => {
+   let observer = (key: string) => {
      console.info('The key' + key + 'changed.');
-   });
+   }
+   preferences.on('change', observer);
    // 数据产生变更，由'auto'变为'manual'
    preferences.put('startup', 'manual', (err: BusinessError) => {
      if (err) {

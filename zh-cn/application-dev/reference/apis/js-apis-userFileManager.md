@@ -1,6 +1,6 @@
 # @ohos.filemanagement.userFileManager (用户数据管理)
 
-该模块提供用户数据管理能力，包括访问、修改用户等用户公共媒体数据信息等常用功能。
+该模块提供用户数据管理能力，包括访问、修改用户公共媒体数据信息等常用功能。
 
 > **说明：**
 >
@@ -17,7 +17,7 @@ import userFileManager from '@ohos.filemanagement.userFileManager';
 
 getUserFileMgr(context: Context): UserFileManager
 
-获取用户数据管理模块的实例，用于访问和修改用户等用户公共媒体数据信息（如音频、视频、图片、文档等）。
+获取用户数据管理模块的实例，用于访问和修改用户公共媒体数据信息（如音频、视频、图片、文档等）。
 
 **模型约束**： 此接口仅可在Stage模型下使用。
 
@@ -1412,12 +1412,7 @@ getPhotoIndex(photoUri: string, albumUri: string, options: FetchOptions, callbac
 | photoUri | string | 是   | 所查询的图库资源的uri。 |
 | albumUri | string | 是   | 相册uri，可以为空字符串，为空字符串时默认查询全部图库资源。   |
 | options  | [FetchOptions](#fetchoptions)       | 是   |  检索选项，predicates中必须设置一种检索排序方式，不设置或多设置均会导致接口调用异常。      |
-
-**返回值：**
-
-| 类型                                    | 说明              |
-| --------------------------------------- | ----------------- |
-| AsyncCallback&lt;number&gt;| 返回相册中资源的索引。 |
+| callback | AsyncCallback&lt;number&gt;| 是   | callback返回相册中资源的索引。 |
 
 **错误码：**
 
@@ -1542,7 +1537,7 @@ async function example() {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-释放UserFileManager实例。
+释放UserFileManager实例，使用callback方式返回结果。
 当后续不需要使用UserFileManager实例中的方法时调用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -1572,7 +1567,7 @@ async function example() {
 
 release(): Promise&lt;void&gt;
 
-释放UserFileManager实例。
+释放UserFileManager实例，使用Promise方式返回结果。
 当后续不需要使用UserFileManager 实例中的方法时调用。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -1610,7 +1605,7 @@ on(uri: string, forSubUri: boolean, callback: Callback&lt;ChangeData&gt;) : void
 | 参数名    | 类型                                        | 必填 | 说明                                                         |
 | --------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri       | string                                      | 是   | FileAsset的uri, Album的uri或[DefaultChangeUri](#defaultchangeuri10)的值。 |
-| forSubUri | boolean                                     | 是   | 是否模糊监听，uri为相册uri时，forSubUri 为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为fileAsset时，forSubUri 为true、false没有区别，uri为DefaultChangeUri时，forSubUri必须为true，如果为false将找不到该uri，收不到任何消息。 |
+| forSubUri | boolean                                     | 是   | 是否模糊监听，uri为相册uri时，forSubUri 为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为fileAsset时，forSubUri 为true、false没有区别。uri为DefaultChangeUri时，forSubUri必须为true，如果为false将找不到该uri，收不到任何消息。 |
 | callback  | Callback&lt;[ChangeData](#changedata10)&gt; | 是   | 返回要监听的[ChangeData](#changedata10)。注：uri可以注册多个不同的callback监听，[off<sup>10+</sup>](#off10)可以关闭该uri所有监听，也可以关闭指定callback的监听。 |
 
 **错误码：**
@@ -1845,7 +1840,7 @@ get(member: string): MemberType;
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：ImageVideoKey.URI。 |
+| member | string | 是    | 成员参数名称例如：ImageVideoKey.DISPLAY_NAME。在get时，除了uri、photoType和displayName三个属性之外，其他的属性都需要在fetchColumns中填入需要get的PhotoKeys，例如：get title属性fetchColumns: ['title']。 |
 
 **示例：**
 
@@ -1883,8 +1878,8 @@ set(member: string, value: string): void;
 
 | 参数名      | 类型                        | 必填   | 说明    |
 | -------- | ------------------------- | ---- | ----- |
-| member | string | 是    | 成员参数名称例如：ImageVideoKey.URI。 |
-| value | string | 是    | 设置成员参数名称，只能修改ImageVideoKey.DISPLAY_NAME的值。 |
+| member | string | 是    | 成员参数名称例如：ImageVideoKey.DISPLAY_NAME。 |
+| value | string | 是    | 设置成员参数名称，只能修改DISPLAY_NAME和TITLE的值。 |
 
 **示例：**
 
@@ -1942,11 +1937,13 @@ async function example() {
   let displayName: string = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
   let fileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
   console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
-  fileAsset.set(displayName, 'newDisplayName2');
+  let newFileAssetDisplayName = 'new' + fileAssetDisplayName;
+  console.info('fileAsset newFileAssetDisplayName = ', newFileAssetDisplayName);
+  fileAsset.set(displayName, newFileAssetDisplayName);
   fileAsset.commitModify((err) => {
     if (err == undefined) {
-      let newFileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
-      console.info('fileAsset get newFileAssetDisplayName = ', newFileAssetDisplayName);
+      let commitModifyDisplayName = fileAsset.get(displayName);
+      console.info('fileAsset commitModify successfully, commitModifyDisplayName = ', commitModifyDisplayName);
     } else {
       console.error('commitModify failed, message =', err);
     }
@@ -1985,15 +1982,17 @@ async function example() {
   let fetchResult: userFileManager.FetchResult<userFileManager.FileAsset> = await mgr.getPhotoAssets(fetchOption);
   let fileAsset: userFileManager.FileAsset = await fetchResult.getFirstObject();
   let displayName = userFileManager.ImageVideoKey.DISPLAY_NAME.toString();
-  let newFileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
+  let fileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
   console.info('fileAsset get fileAssetDisplayName = ', fileAssetDisplayName);
-  fileAsset.set(displayName, 'newDisplayName3');
+  let newFileAssetDisplayName = 'new' + fileAssetDisplayName;
+  console.info('fileAsset newFileAssetDisplayName = ', newFileAssetDisplayName);
+  fileAsset.set(displayName, newFileAssetDisplayName);
   try {
     await fileAsset.commitModify();
-    let newFileAssetDisplayName: userFileManager.MemberType = fileAsset.get(displayName);
-    console.info('fileAsset get newFileAssetDisplayName = ', newFileAssetDisplayName);
+    let commitModifyDisplayName = fileAsset.get(displayName);
+    console.info('fileAsset commitModify successfully, commitModifyDisplayName = ', commitModifyDisplayName);
   } catch (err) {
-    console.error('release failed. message = ', err);
+    console.error('commitModify failed. message = ', err);
   }
 }
 ```
@@ -2506,7 +2505,7 @@ getExif(): Promise&lt;string&gt;
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与ImageVideoKey.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[ImageVideoKey.USER_COMMENT](#imagevideokey)组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2596,7 +2595,7 @@ getExif(callback: AsyncCallback&lt;string&gt;): void
 
 返回jpg格式图片Exif标签组成的json格式的字符串，该方法使用Promise方式返回结果。
 
-**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与ImageVideoKey.USER_COMMENT组成，fetchColumns需要传入这两个字段。
+**注意**：此接口返回的是exif标签组成的json格式的字符串，完整exif信息由all_exif与[ImageVideoKey.USER_COMMENT](#imagevideokey)组成，fetchColumns需要传入这两个字段。
 
 **系统接口**：此接口为系统接口。
 
@@ -2958,9 +2957,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(callback: AsyncCallback&lt;T&gt;): void
+getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 获取文件检索结果中的下一个文件资产。此方法使用callback形式返回结果。
+在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -2968,7 +2968,7 @@ async function example() {
 
 | 参数名    | 类型                                          | 必填 | 说明                                      |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;T&gt; | 是   | 异步返回结果集中下一个之后的回调。 |
+| callback | AsyncCallback&lt;T&gt; | 是   | 异步返回结果集中下一个之后的回调。 |
 
 **示例：**
 
@@ -2998,9 +2998,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(): Promise&lt;T&gt;
+getNextObject(): Promise&lt;T&gt;
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回。
+在调用此方法之前，必须使用[isAfterLast()](#isafterlast)来检查当前位置是否为最后一行。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -4132,7 +4133,8 @@ import { BusinessError } from '@ohos.base';
 
 async function example() {
   console.info('privateAlbumDeleteDemoPromise');
-  let albumListlet albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum>let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let albumList: userFileManager.FetchResult<userFileManager.PrivateAlbum> = await mgr.getPrivateAlbum(userFileManager.PrivateAlbumType.TYPE_TRASH);
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
   let fetchOption: userFileManager.FetchOptions = {
     fetchColumns: [],
     predicates: predicates
@@ -4316,9 +4318,9 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- |  ---- |  ---- |
-| LOCAL |  1 |  文件只存在于本端设备。 |
+| LOCAL |  1 |  文件只存在于本地。 |
 | CLOUD |  2 |  文件只存在于云端。 |
-| BOTH |  3 |  文件在本地和云中都存在。 |
+| BOTH |  3 |  文件在本地和云端中都存在。 |
 
 ## AlbumType<sup>10+</sup>
 
@@ -4438,7 +4440,7 @@ async function example() {
 
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）。示例：<br />fetchColumns: ['uri', 'title']。 |
+| fetchColumns           | Array&lt;string&gt; | 是   | 是   | 检索条件，指定列名查询，如果该参数为空时默认查询uri、name、fileType（具体字段名称以检索对象定义为准）且使用[get](#get)接口去获取当前对象的其他属性时将会报错。示例：<br />fetchColumns: ['uri', 'title']。 |
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件。 |
 
 ## AlbumFetchOptions

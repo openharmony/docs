@@ -37,11 +37,11 @@
   
     build() {
       Column() {
-        Web({ src: $rawfile('index.html'), controller: this.webviewController})
         Button('runJavaScript')
           .onClick(() => {
              this.webviewController.runJavaScript('htmlTest()');
           })
+        Web({ src: $rawfile('index.html'), controller: this.webviewController})
       }
     }
   }

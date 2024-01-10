@@ -46,72 +46,94 @@
 
 | 事件                                                         | 功能描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onEnter(event: (type?:&nbsp;RouteType,&nbsp;progress?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到入场动画结束，progress从0变化到1。 |
-| onExit(event: (type?:&nbsp;RouteType,&nbsp;progress?:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到退场动画结束，progress从0变化到1。 |
+| onEnter(event: (type:&nbsp;[RouteType](#routetype枚举说明),&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前入场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到入场动画结束，progress从0变化到1。 |
+| onExit(event: (type:&nbsp;[RouteType](#routetype枚举说明),&nbsp;progress:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 回调入参为当前退场动画的归一化进度[0&nbsp;-&nbsp;1]。<br/>-&nbsp;type：跳转方法。<br/>-&nbsp;progress：当前进度。<br/>触发该事件的条件：<br/>逐帧回调，直到退场动画结束，progress从0变化到1。 |
 
 
 ## 示例
 
-自定义方式1：配置了当前页面的入场动画为淡入，退场动画为缩小。
+自定义方式1：通过不同的退入场类型配置不同的退场，入场动画。
 
 ```ts
 // index.ets
+import router from '@ohos.router'
+
 @Entry
 @Component
-struct PageTransitionExample1 {
+struct Index {
   @State scale1: number = 1
   @State opacity1: number = 1
 
   build() {
     Column() {
-      Navigator({ target: 'pages/page1', type: NavigationType.Push }) {
-        Image($r('app.media.bg1')).width('100%').height('100%')    // 图片存放在media文件夹下
-      }
-    }.scale({ x: this.scale1 }).opacity(this.opacity1)
+      Image($r("app.media.transition_image1")).width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
+    .scale({ x: this.scale1 })
+    .opacity(this.opacity1)
+    .onClick(() => {
+      router.pushUrl({ url: 'pages/Page1' })
+    })
   }
-  // 自定义方式1：完全自定义转场过程的效果
+
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type?: RouteType, progress?: number) => {
-        this.scale1 = 1
-        this.opacity1 = progress as number
-      }) // 进场过程中会逐帧触发onEnter回调，入参为动效的归一化进度(0% -- 100%)
+      .onEnter((type: RouteType, progress: number) => {
+        if (type == RouteType.Push||type == RouteType.Pop) {
+          this.scale1 = progress
+          this.opacity1 = progress
+        }
+      })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type?: RouteType, progress?: number) => {
-        this.scale1 = 1 - (progress as number)
-        this.opacity1 = 1
-      }) // 退场过程中会逐帧触发onExit回调，入参为动效的归一化进度(0% -- 100%)
+      .onExit((type: RouteType, progress: number) => {
+        if (type == RouteType.Push) {
+          this.scale1 = 1 - progress
+          this.opacity1 = 1 - progress
+        }
+      })
   }
 }
 ```
 
 ```ts
 // page1.ets
+import router from '@ohos.router'
+
 @Entry
 @Component
-struct AExample {
+struct Page1 {
   @State scale2: number = 1
   @State opacity2: number = 1
 
   build() {
     Column() {
-      Navigator({ target: 'pages/index', type: NavigationType.Push }) {
-        Image($r('app.media.bg2')).width('100%').height('100%')   // 图片存放在media文件夹下
-      }
-    }.width('100%').height('100%').scale({ x: this.scale2 }).opacity(this.opacity2)
+      Image($r("app.media.transition_image2")).width('100%').height('100%') // 图片存放在media文件夹下
+    }
+    .width('100%')
+    .height('100%')
+    .scale({ x: this.scale2 })
+    .opacity(this.opacity2)
+    .onClick(() => {
+      router.pushUrl({ url: 'pages/Index' })
+    })
   }
-  // 自定义方式1：完全自定义转场过程的效果
+
   pageTransition() {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
-      .onEnter((type?: RouteType, progress?: number) => {
-        this.scale2 = 1
-        this.opacity2 = progress as number
-      }) // 进场过程中会逐帧触发onEnter回调，入参为动效的归一化进度(0% -- 100%)
+      .onEnter((type: RouteType, progress: number) => {
+        if(type==RouteType.Push || type == RouteType.Pop)
+          this.scale2 = progress
+        this.opacity2 = progress
+
+      })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
-      .onExit((type?: RouteType, progress?: number) => {
-        this.scale2 = 1 - (progress as number)
-        this.opacity2 = 1
-      }) // 退场过程中会逐帧触发onExit回调，入参为动效的归一化进度(0% -- 100%)
+      .onExit((type: RouteType, progress: number) => {
+        if (type == RouteType.Pop) {
+          this.scale2 = 1 - progress
+          this.opacity2 = 1 - progress
+        }
+      })
   }
 }
 ```

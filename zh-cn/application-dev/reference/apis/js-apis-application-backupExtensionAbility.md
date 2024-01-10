@@ -1,4 +1,4 @@
-# @ohos.application.BackupExtensionAbility (BackupExtensionAbility)
+# @ohos.application.BackupExtensionAbility (备份恢复扩展能力)
 
 BackupExtensionAbility模块提供备份恢复服务相关扩展能力，为应用提供扩展的备份恢复能力。
 
@@ -62,7 +62,8 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
 **示例：**
 
   ```ts
-  import type { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+  import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+  
   class BackupExt extends BackupExtension {
     async onRestore(bundleVersion : BundleVersion) {
       console.log(`onRestore ok ${JSON.stringify(bundleVersion)}`);

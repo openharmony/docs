@@ -107,7 +107,7 @@ struct OH_Huks_Result OH_Huks_DeleteKeyItem (const struct OH_Huks_Blob * keyAlia
   | 名称 | 描述 | 
 | -------- | -------- |
 | keyAlias | 待删除密钥的别名，应与密钥生成时使用的别名相同。  | 
-| paramSet | 删除密钥需要属性参数（默认传空）。  | 
+| paramSet | 用于删除时指定密钥的属性TAG，比如删除的密钥范围（全量/单个），当删除单个时，TAG字段可传空。  | 
 
 **返回:**
 
@@ -321,7 +321,7 @@ struct OH_Huks_Result OH_Huks_IsKeyItemExist (const struct OH_Huks_Blob * keyAli
   | 名称 | 描述 | 
 | -------- | -------- |
 | keyAlias | 要查找的密钥的别名。  | 
-| paramSet | 查询密钥需要的属性TAG（默认传空）。  | 
+| paramSet | 用于查询时指定密钥的属性TAG，比如查询的密钥范围（全量/单个），当查询单个时，TAG字段可传空。  | 
 
 **返回:**
 

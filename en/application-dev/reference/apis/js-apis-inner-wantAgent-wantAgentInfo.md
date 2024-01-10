@@ -18,8 +18,8 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 
 | Name          | Type                           | Mandatory| Description                  |
 | -------------- | ------------------------------- | ---- | ---------------------- |
-| wants          | Array\<[Want](js-apis-application-want.md)\>                   | Yes  | Array of all **Want** objects. Currently, only one Want is supported. The array is reserved for future capability expansion. If multiple values are passed in, only the first member in the array is used.   |
-| operationType  | [wantAgent.OperationType](js-apis-app-ability-wantAgent.md#operationtype)         | Yes  | Operation type.              |
+| wants          | Array\<[Want](js-apis-app-ability-want.md)\>                   | Yes  | Array of all **Want** objects. Currently, only one Want is supported. The array is reserved for future capability expansion. If multiple values are passed in, only the first member in the array is used.   |
+| operationType  | [wantAgent.OperationType](js-apis-wantAgent.md#operationtype)         | No  | Operation type.              |
 | requestCode    | number                          | Yes  | Request code defined by the user.|
 | wantAgentFlags | Array<[wantAgent.WantAgentFlags](js-apis-app-ability-wantAgent.md#wantagentflags)> | No  | Array of flags for using the **WantAgent** object.          |
 | extraInfo      | {[key: string]: any}            | No  | Extra information.              |

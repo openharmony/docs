@@ -340,7 +340,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -354,7 +354,7 @@ try {
     }
     windowClass = data;
     console.info('Succeeded in creating the window. Data: ' + JSON.stringify(data));
-    windowClass.resetSize(500, 1000);
+    windowClass.resize(500, 1000);
   });
 } catch (exception) {
   console.error('Failed to create the window. Cause: ' + JSON.stringify(exception));
@@ -397,7 +397,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "alertWindow",
   windowType: window.WindowType.TYPE_SYSTEM_ALERT
@@ -446,7 +446,7 @@ findWindow(name: string): Window
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 try {
   windowClass = window.findWindow('alertWindow');
 } catch (exception) {
@@ -458,7 +458,7 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最后显示的窗口，使用callback异步回调。
+获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -481,25 +481,29 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
-try {
-  class BaseContext {
-      stageMode: boolean = false;
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      window.getLastWindow(this.context, (err: BusinessError, data) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+          return;
+        }
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
     }
-    let context: BaseContext = { stageMode: false };
-  window.getLastWindow(context, (err: BusinessError, data) => {
-    const errCode: number = err.code;
-    if (errCode) {
-      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-      return;
-    }
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+  }
 }
 ```
 
@@ -507,7 +511,7 @@ try {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-获取当前应用内最后显示的窗口，使用Promise异步回调。
+获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -535,23 +539,27 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 **示例：**
 
 ```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
-class BaseContext {
-  stageMode: boolean = false;
-}
-let context: BaseContext = { stageMode: false };
-try {
-  let promise = window.getLastWindow(context);
-  promise.then((data) => {
-    windowClass = data;
-    console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-  }).catch((err: BusinessError) => {
-    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
-  });
-} catch (exception) {
-  console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    try {
+      let promise = window.getLastWindow(this.context);
+      promise.then((data) => {
+        windowClass = data;
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+      });
+    } catch (exception) {
+      console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+    }
+  }
 }
 ```
 
@@ -1262,7 +1270,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('first', window.WindowType.TYPE_APP, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1306,7 +1314,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('first', window.WindowType.TYPE_APP);
 promise.then((data) => {
   windowClass = data;
@@ -1342,7 +1350,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT, (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1386,7 +1394,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.create('alertWindow', window.WindowType.TYPE_SYSTEM_ALERT);
 promise.then((data) => {
   windowClass = data;
@@ -1420,7 +1428,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.find('alertWindow', (err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1461,7 +1469,7 @@ find(id: string): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.find('alertWindow');
 promise.then((data) => {
   windowClass = data;
@@ -1496,7 +1504,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 window.getTopWindow((err: BusinessError, data) => {
   const errCode: number = err.code;
   if (errCode) {
@@ -1533,7 +1541,7 @@ getTopWindow(): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data)=> {
     windowClass = data;
@@ -1567,7 +1575,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -1606,7 +1614,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 import { BusinessError } from '@ohos.base';
 
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let promise = window.getTopWindow();
 promise.then((data) => {
   windowClass = data;
@@ -2117,11 +2125,14 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 改变当前窗口大小，使用callback异步回调。
 
-应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
 
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
-设置的宽度与高度受到此约束限制。
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 全屏模式窗口不支持该操作。
 
@@ -2170,11 +2181,14 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
 
-应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
 
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
-设置的宽度与高度受到此约束限制。
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 全屏模式窗口不支持该操作。
 
@@ -2843,7 +2857,7 @@ export default class EntryAbility extends UIAbility {
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-为当前窗口加载具体页面内容，使用callback异步回调。
+根据当前工程中某个页面的路径为窗口加载具体页面内容，使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2851,7 +2865,7 @@ setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------- | -- | -------------------- |
-| path     | string                    | 是 | 设置加载页面的路径。 |
+| path     | string                    | 是 | 要加载到窗口中的页面内容的路径，Stage模型下该路径需添加到工程的main_pages.json文件中，FA模型下该路径需添加到工程的config.json文件中。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。          |
 
 **错误码：**
@@ -2887,7 +2901,7 @@ try {
 
 setUIContent(path: string): Promise&lt;void&gt;
 
-为当前窗口加载具体页面内容，使用Promise异步回调。
+根据当前工程中某个页面的路径为窗口加载具体页面内容，使用Promise异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2895,7 +2909,7 @@ setUIContent(path: string): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ------ | -- | ------------------ |
-| path | string | 是 | 设置加载页面的路径。 |
+| path | string | 是 | 要加载到窗口中的页面内容的路径，Stage模型下该路径需添加到工程的main_pages.json文件中，FA模型下该路径需添加到工程的config.json文件中。 |
 
 **返回值：**
 
@@ -2934,7 +2948,7 @@ try {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-为当前窗口加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
+根据当前工程中某个页面的路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -2944,8 +2958,8 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| path     | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。                                         |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -2997,7 +3011,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
-为当前窗口加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
+根据当前工程中某个页面的路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3007,8 +3021,8 @@ loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| path    | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。                                        |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 
 **返回值：**
 
@@ -3544,7 +3558,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = { name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG };
 try {
   window.createWindow(config, (err: BusinessError, data) => {
@@ -3633,7 +3647,7 @@ class TestRemoteObject extends rpc.RemoteObject {
 }
 
 let token: TestRemoteObject = new TestRemoteObject('testObject');
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "dialogWindow",
   windowType: window.WindowType.TYPE_DIALOG
@@ -3698,7 +3712,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -3772,7 +3786,7 @@ import { BusinessError } from '@ohos.base';
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onRequest(want: Want, startId: number) {
     console.info('onRequest');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let config: window.Configuration = {
       name: "dialogWindow", windowType: window.WindowType.TYPE_DIALOG
     };
@@ -3989,6 +4003,7 @@ getWindowColorSpace(): ColorSpace
 **示例：**
 
 ```ts
+let windowClass: window.Window = window.findWindow("test");
 let colorSpace = windowClass.getWindowColorSpace();
 ```
 
@@ -4110,6 +4125,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 import { BusinessError } from '@ohos.base';
 
 let brightness: number = 1;
+let windowClass: window.Window = window.findWindow("test");
 try {
   let promise = windowClass.setWindowBrightness(brightness);
   promise.then(() => {
@@ -5549,9 +5565,10 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 // 将windowClass调整到targetWindow之上
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
-let windowClass: window.Window = window.findWindow("test");
 windowClass.raiseAboveTarget(targetId, (err) => {
     if (err.code) {
         console.error('Failed to raise the subWindow to target subWindow top. Cause: ' + JSON.stringify(err));
@@ -5598,6 +5615,8 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 ```ts
 // 将windowClass调整到targetWindow之上
+let windowClass: window.Window | undefined = undefined;
+let targetWindow: window.Window = windowClass;
 let properties = targetWindow.getWindowProperties();
 let targetId = properties.id;
 let promise = windowClass.raiseAboveTarget(targetId);
@@ -6177,11 +6196,14 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 改变当前窗口大小，使用callback异步回调。
 
-应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
 
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
-设置的宽度与高度受到此约束限制。
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 全屏模式窗口不支持该操作。
 
@@ -6221,11 +6243,14 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 改变当前窗口大小，使用Promise异步回调。
 
-应用主窗口与子窗口存在大小限制，宽度范围：[320, 2560]，高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 2560]，默认高度范围：[240, 2560]，单位为vp。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准。
 
 系统窗口存在大小限制，宽度范围：[0, 2560]，高度范围：[0, 2560]，单位为vp。
 
-设置的宽度与高度受到此约束限制。
+设置的宽度与高度受到此约束限制，规则：
+若所设置的窗口宽/高尺寸小于窗口最小宽/高限值，则窗口最小宽/高限值生效；
+若所设置的窗口宽/高尺寸大于窗口最大宽/高限值，则窗口最大宽/高限值生效。
 
 全屏模式窗口不支持该操作。
 
@@ -6820,7 +6845,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                 |
 | -------- | ------------------------- | ---- | -------------------- |
-| path     | string                    | 是   | 设置加载页面的路径。 |
+| path     | string                    | 是   | 要加载到窗口中的页面内容的路径，Stage模型下该路径需添加到工程的main_pages.json文件中，FA模型下该路径需添加到工程的config.json文件中。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
 **示例：**
@@ -6855,7 +6880,7 @@ loadContent(path: string): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| path   | string | 是   | 设置加载页面的路径。 |
+| path   | string | 是   | 要加载到窗口中的页面内容的路径，Stage模型下该路径需添加到工程的main_pages.json文件中，FA模型下该路径需添加到工程的config.json文件中。|
 
 **返回值：**
 
@@ -7876,7 +7901,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
       if (errCode) {
@@ -7927,7 +7952,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     let promise = windowStage.getMainWindow();
     promise.then((data) => {
       windowClass = data;
@@ -8022,7 +8047,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
         const errCode: number = err.code;
@@ -8036,7 +8061,7 @@ export default class EntryAbility extends UIAbility {
           console.info('Failed to load the content. Cause: windowClass is null');
         }
         else {
-          (windowClass as window.Window).resetSize(500, 1000);
+          (windowClass as window.Window).resize(500, 1000);
         }
       });
 
@@ -8089,7 +8114,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('onWindowStageCreate');
-    let windowClass: window.Window = window.findWindow("test");
+    let windowClass: window.Window | undefined = undefined;
     try {
       let promise = windowStage.createSubWindow('mySubWindow');
       promise.then((data) => {
@@ -8205,7 +8230,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-为当前WindowStage的主窗口加载与LocalStorage相关联的具体页面内容，使用callback异步回调。
+为当前WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -8215,8 +8240,8 @@ loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void
 
 | 参数名   | 类型                                            | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path     | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| path     | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。                                         |
+| storage  | [LocalStorage](../../quick-start/arkts-localstorage.md) | 是   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 | callback | AsyncCallback&lt;void&gt;                       | 是   | 回调函数。                                                   |
 
 **错误码：**
@@ -8263,7 +8288,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-为当前WindowStage的主窗口加载与LocalStorage相关联的具体页面内容，使用Promise异步回调。
+为当前WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -8273,8 +8298,8 @@ loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
 | 参数名  | 类型                                            | 必填 | 说明                                                         |
 | ------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| path    | string                                          | 是   | 设置加载页面的路径。                                         |
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。 |
+| path    | string                                          | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。                                         |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否   | 页面级UI状态存储单元，这里用于为加载到窗口的页面内容传递状态属性。 |
 
 **返回值：**
 
@@ -8335,7 +8360,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                 |
 | -------- | ------------------------- | ---- | -------------------- |
-| path     | string                    | 是   | 设置加载页面的路径。 |
+| path     | string                    | 是   | 要加载到窗口中的页面内容的路径，该路径需添加到工程的main_pages.json文件中。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
 
 **错误码：**
@@ -8588,7 +8613,7 @@ completeTransition(isCompleted: boolean): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -8640,7 +8665,7 @@ animationForShown(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context : window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({
@@ -8686,7 +8711,7 @@ animationForHidden(context: TransitionContext): void
 **示例：**
 
 ```ts
-let windowClass: window.Window = window.findWindow("test");
+let windowClass: window.Window | undefined = undefined;
 (context: window.TransitionContext) => {
   let toWindow: window.Window = context.toWindow;
   animateTo({

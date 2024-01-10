@@ -10,7 +10,7 @@
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| foregroundColor | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[ColoringStrategy](ts-types.md#coloringstrategy) | 设置组件的前景颜色或者根据智能取色策略设置前景颜色。 |
+| foregroundColor | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[ColoringStrategy<sup>10+</sup>](ts-types.md#coloringstrategy10) | 设置组件的前景颜色或者根据智能取色策略设置前景颜色。 |
 
 ## 示例
 

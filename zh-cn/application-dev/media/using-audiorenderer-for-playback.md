@@ -1,4 +1,4 @@
-# 使用AudioRenderer开发音频播放功能
+# 使用AudioRenderer开发音频播放功能(ArkTS)
 
 AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音频数据，相比AVPlayer而言，可以在输入前添加数据预处理，更适合有音频开发经验的开发者，以实现更灵活的播放功能。
 
@@ -10,7 +10,7 @@ AudioRenderer是音频渲染器，用于播放PCM（Pulse Code Modulation）音�
 
 为保证UI线程不被阻塞，大部分AudioRenderer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用callback函数。
 
-**图1** AudioRenderer状态变化示意图  
+**图1** AudioRenderer状态变化示意图
 
 ![AudioRenderer status change](figures/audiorenderer-status-change.png)
 
@@ -41,7 +41,6 @@ let audioStreamInfo: audio.AudioStreamInfo = {
 };
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_SPEECH,
   usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
   rendererFlags: 0
 };
@@ -65,6 +64,8 @@ audio.createAudioRenderer(audioRendererOptions, (err, data) => {
 2. 调用start()方法进入running状态，开始渲染音频。
      
 ```ts
+import { BusinessError } from '@ohos.base';
+
 audioRenderer.start((err: BusinessError) => {
   if (err) {
     console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
@@ -95,6 +96,8 @@ async function read() {
 4. 调用stop()方法停止渲染。
      
 ```ts
+import { BusinessError } from '@ohos.base';
+
 audioRenderer.stop((err: BusinessError) => {
   if (err) {
     console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -107,6 +110,8 @@ audioRenderer.stop((err: BusinessError) => {
 5. 调用release()方法销毁实例，释放资源。
      
 ```ts
+import { BusinessError } from '@ohos.base';
+
 audioRenderer.release((err: BusinessError) => {
   if (err) {
     console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
@@ -135,8 +140,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_MUSIC, // 媒体类型
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // 音频流使用类型
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型
   rendererFlags: 0 // 音频渲染器标志
 }
 let audioRendererOptions: audio.AudioRendererOptions = {
@@ -201,9 +205,8 @@ async function start() {
       // buf是要写入缓冲区的音频数据，在调用AudioRenderer.write()方法前可以进行音频数据的预处理，实现个性化的音频播放功能，AudioRenderer会读出写入缓冲区的音频数据进行渲染
       
       let writeSize: number = await (renderModel as audio.AudioRenderer).write(buf);
-        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为released，停止渲染
+        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // 如果渲染器状态为released，关闭资源
         fs.close(file);
-        await (renderModel as audio.AudioRenderer).stop();
       }
       if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RUNNING) {
         if (i === len - 1) { // 如果音频文件已经被读取完，停止渲染

@@ -1,4 +1,4 @@
-# 服务卡片开发指导
+# 服务卡片开发指导（FA模型）
 
 
 ## 卡片概述
@@ -13,7 +13,7 @@
 
 - 卡片管理服务：用于管理系统中所添加卡片的常驻代理服务，包括卡片对象的管理与使用，以及卡片周期性刷新等。
 
-- 卡片提供方：提供卡片显示内容原子化服务，控制卡片的显示内容、控件布局以及控件点击事件。
+- 卡片提供方：提供卡片显示内容元服务，控制卡片的显示内容、控件布局以及控件点击事件。
 
 
 ## 运作机制
@@ -116,6 +116,7 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
   import formProvider from '@ohos.app.form.formProvider';
   import dataPreferences from '@ohos.data.preferences';
   import Want from '@ohos.app.ability.Want';
+  import featureAbility from '@ohos..ability.featureAbility';
   ```
 
 2. 在form.ts中，实现卡片生命周期接口
@@ -254,7 +255,6 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
          "type": "service",
          "srcLanguage": "ets",
          "formsEnabled": true,
-         "formConfigAbility": "ability://com.example.entry.EntryAbility",
          "forms": [{
              "colorMode": "auto",
              "defaultDimension": "2*2",
@@ -266,7 +266,8 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
              "scheduledUpdateTime": "10:30",
              "supportDimensions": ["2*2"],
              "type": "JS",
-             "updateEnabled": true
+             "updateEnabled": true,
+             "formConfigAbility": "ability://com.example.entry.EntryAbility"
          }]
      }]
   ```
@@ -274,12 +275,12 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 
 ### 卡片信息的持久化
 
-因大部分卡片提供方都不是常驻服务，只有在需要使用时才会被拉起获取卡片信息，且卡片管理服务支持对卡片进行多实例管理，卡片ID对应实例ID，因此若卡片提供方支持对卡片数据进行配置，则需要对卡片的业务数据按照卡片ID进行持久化管理，以便在后续获取、更新以及拉起时能获取到正确的卡片业务数据。
+因大部分卡片提供方都不是常驻服务，只有在需要使用时才会被拉起获取卡片信息，且卡片管理服务支持对卡片进行多实例管理，卡片ID对应实例ID，因此若卡片提供方支持对卡片数据进行配置，则需要对卡片的业务数据按照卡片ID进行持久化管理，以便在后续获取、更新以及拉起时能获取到正确的卡片业务数据。且需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
 
 
 ```ts
-const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
-let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: Context) => {
+const DATA_STORAGE_PATH: string = "form_store";
+let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context) => {
   // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
   let formInfo: Record<string, string | number | boolean> = {
     "formName": formName,
@@ -297,35 +298,7 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
   }
 }
 
-...
-    onCreate(want: Want) {
-      console.info('FormAbility onCreate');
-
-      if (want.parameters) {
-        let formId = String(want.parameters["ohos.extra.param.key.form_identity"]);
-        let formName = String(want.parameters["ohos.extra.param.key.form_name"]);
-        let tempFlag = Boolean(want.parameters["ohos.extra.param.key.form_temporary"]);
-        // 将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
-        // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-        storeFormInfo(formId, formName, tempFlag, this.context);
-      }
-
-      let obj: Record<string, string> = {
-        "title": "titleOnCreate",
-        "detail": "detailOnCreate"
-      };
-      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-      return formData;
-    }
-...
-```
-
-且需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
-
-
-```ts
-const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
-let deleteFormInfo = async (formId: string, context: Context) => {
+let deleteFormInfo = async (formId: string, context) => {
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info
@@ -338,11 +311,33 @@ let deleteFormInfo = async (formId: string, context: Context) => {
 }
 
 ...
+    onCreate(want: Want) {
+      console.info('FormAbility onCreate');
+      let context = featureAbility.getContext();
+
+      if (want.parameters) {
+        let formId = String(want.parameters["ohos.extra.param.key.form_identity"]);
+        let formName = String(want.parameters["ohos.extra.param.key.form_name"]);
+        let tempFlag = Boolean(want.parameters["ohos.extra.param.key.form_temporary"]);
+        // 将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
+        // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
+        storeFormInfo(formId, formName, tempFlag, context);
+      }
+
+      let obj: Record<string, string> = {
+        "title": "titleOnCreate",
+        "detail": "detailOnCreate"
+      };
+      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+      return formData;
+    },
+    // 适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
     onDestroy(formId: string) {
       console.info('FormAbility onDestroy');
+      let context = featureAbility.getContext();
       // 删除之前持久化的卡片实例数据
       // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-      deleteFormInfo(formId, this.context);
+      deleteFormInfo(formId, context);
     }
 ...
 ```

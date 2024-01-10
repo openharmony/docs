@@ -21,7 +21,7 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        { "createPixelMaptest", nullptr, CreatePixelMaptest, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "createPixelMapTest", nullptr, CreatePixelMapTest, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "createAlphaPixelMap", nullptr, CreateAlphaPixelMap, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "transform", nullptr, Transform, nullptr, nullptr, nullptr, napi_default, nullptr },
     };
@@ -43,13 +43,13 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
 
     #include <multimedia/image_framework/image_mdk_common.h>
     #include <multimedia/image_framework/image_pixel_map_mdk.h>
-    #include <memory>
+    #include <stdlib.h>
     
 1. Create a **PixelMap** object.
     ```c++
-    napi_value CreatePixelMaptest(napi_env env, napi_callback_info info) {
+    napi_value CreatePixelMapTest(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
-        napi_value pixelmap = nullptr;
+        napi_value pixelMap = nullptr;
 
         struct OhosPixelMapCreateOps createOps;
         createOps.width = 4;
@@ -63,22 +63,22 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
         for (int i = 0; i < 96; i++) {
             *(cc++) = (char)i;
         }
-        int32_t res = OH_PixelMap_CreatePixelMap(env, createOps, (uint8_t *)buff, bufferSize, &pixelmap);
-        if (res != IMAGE_RESULT_SUCCESS || pixelmap == nullptr) {
+        int32_t res = OH_PixelMap_CreatePixelMap(env, createOps, (uint8_t *)buff, bufferSize, &pixelMap);
+        if (res != IMAGE_RESULT_SUCCESS || pixelMap == nullptr) {
             return udfVar;
         }
-        return pixelmap;
+        return pixelMap;
     }
     ```
 2. Create a **PixelMap** object that contains only alpha channel information.
     ```c++
-    napi_value CreateAlphaPixelMap(napi_env, napi_callback_info info) {
+    napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info) {
         napi_value udfVar = nullptr;
         napi_value thisVar = nullptr;
         napi_value argValue[1] = {0};
         size_t argCount = 1;
 
-        napi_value alphaPixelmap = nullptr;
+        napi_value alphaPixelMap = nullptr;
 
         napi_get_undefined(env, &udfVar);
 
@@ -86,11 +86,11 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
             argValue[0] == nullptr) {
             return udfVar;
         }
-        int32_t res = OH_PixelMap_CreateAlphaPixelMap(env, argValue[0], &alphaPixelmap);
-        if (res != IMAGE_RESULT_SUCCESS || alphaPixelmap == nulllptr) {
+        int32_t res = OH_PixelMap_CreateAlphaPixelMap(env, argValue[0], &alphaPixelMap);
+        if (res != IMAGE_RESULT_SUCCESS || alphaPixelMap == nullptr) {
             return udfVar;
         }
-        return alphaPixelmap;
+        return alphaPixelMap;
     }
     ```
 3. Process the **PixelMap** object.
@@ -114,8 +114,8 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
         }
 
         // Obtain image information.
-        struct OhosPixelMapInfos pixelmapInfo;
-        OH_PixelMap_GetImageInfo(native, &pixelmapInfo);
+        struct OhosPixelMapInfos pixelMapInfo;
+        OH_PixelMap_GetImageInfo(native, &pixelMapInfo);
 
         // Obtain the number of bytes per row of the PixelMap object.
         int32_t rowBytes;
@@ -168,7 +168,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
         // flipY: whether to flip the image vertically. The value 1 means to flip the image and 0 means the opposite.
         int32_t flipX = 0;
         int32_t flipY = 1;
-        OH_PixelMap_Flip(native, filpX, filpY);
+        OH_PixelMap_Flip(native, flipX, flipY);
 
         // Crop the image.
         // cropX: x-axis coordinate of the start point for cropping.
@@ -200,7 +200,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
     ```js
     import image from '@ohos.multimedia.image'
 
-    export const createPixelMaptest: () => image.PixelMap;
+    export const createPixelMapTest: () => image.PixelMap;
     export const transform: (a: image.PixelMap) => image.PixelMap;
     ```
     
@@ -223,7 +223,7 @@ Obtain the JS resource object from the **hello.cpp** file and convert it to a na
                 .height(100)
                 .onClick(() => {
                     console.log("com.example.native_ndk_api10 button click in");
-                    this._pixelMap = testNapi.createPixelMaptest();
+                    this._pixelMap = testNapi.createPixelMapTest();
                     testNapi.transform(this._pixelMap);
                 })
                 Image(this._pixelMap)

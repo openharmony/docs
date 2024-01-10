@@ -106,7 +106,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 static getSystemLanguages(): Array&lt;string&gt;
 
-获取系统支持的语言列表。语言的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统支持的语言列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -132,7 +132,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 static getSystemCountries(language: string): Array&lt;string&gt;
 
-获取针对输入语言系统支持的国家或地区列表。国家或地区的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取针对输入语言系统支持的国家或地区列表。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -213,7 +213,7 @@ static isSuggested(language: string, region?: string): boolean
 
 static getSystemLanguage(): string
 
-获取系统语言。语言的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统语言。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -277,7 +277,7 @@ static setSystemLanguage(language: string): void
 
 static getSystemRegion(): string
 
-获取系统地区。地区的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统地区。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -341,7 +341,7 @@ static setSystemRegion(region: string): void
 
 static getSystemLocale(): string
 
-获取系统区域。区域的详细说明参见[实例化Locale对象](../../internationalization/intl-guidelines.md#开发步骤)。
+获取系统区域。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -691,7 +691,7 @@ static getUsingLocalDigit(): boolean
   ```
 
 
-## I18n.isRTL<sup>7+</sup>
+## I18n.isRTL
 
 isRTL(locale: string): boolean
 
@@ -1512,7 +1512,7 @@ isBoundary(offset: number): boolean
   ```
 
 
-## I18n.getTimeZone<sup>7+</sup>
+## I18n.getTimeZone
 
 getTimeZone(zoneID?: string): TimeZone
 
@@ -1602,7 +1602,7 @@ getRawOffset(): number
 
 | 类型     | 说明                  |
 | ------ | ------------------- |
-| number | 时区对象表示的时区与UTC时区的偏差。 |
+| number | 时区对象表示的时区与UTC时区的偏差，单位是毫秒。 |
 
 **示例：**
   ```ts
@@ -1623,13 +1623,13 @@ getOffset(date?: number): number
 
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
-| date | number | 否    | 待计算偏差的时刻。 |
+| date | number | 否    | 待计算偏差的时刻，单位是毫秒。默认值：系统时间。 |
 
 **返回值：**
 
 | 类型     | 说明                      |
 | ------ | ----------------------- |
-| number | 某一时刻时区对象表示的时区与UTC时区的偏差。默认值：系统时间。 |
+| number | 某一时刻时区对象表示的时区与UTC时区的偏差。 |
 
 **示例：**
   ```ts
@@ -2757,7 +2757,7 @@ getFirstPreferredLanguage(): string
 
 ### unitConvert<sup>(deprecated)</sup>
 
-static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
+unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: string, style?: string): string
 
 将fromUnit的单位转换为toUnit的单位，并根据区域与风格进行格式化。
 
@@ -2787,7 +2787,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 
 ### isDigit<sup>(deprecated)</sup>
 
-static isDigit(char: string): boolean
+isDigit(char: string): boolean
 
 判断字符串char是否是数字。
 
@@ -2810,7 +2810,7 @@ static isDigit(char: string): boolean
 
 ### isSpaceChar<sup>(deprecated)</sup>
 
-static isSpaceChar(char: string): boolean
+isSpaceChar(char: string): boolean
 
 判断字符串char是否是空格符。
 
@@ -2833,7 +2833,7 @@ static isSpaceChar(char: string): boolean
 
 ### isWhitespace<sup>(deprecated)</sup>
 
-static isWhitespace(char: string): boolean
+isWhitespace(char: string): boolean
 
 判断字符串char是否是空白符。
 
@@ -2856,7 +2856,7 @@ static isWhitespace(char: string): boolean
 
 ### isRTL<sup>(deprecated)</sup>
 
-static isRTL(char: string): boolean
+isRTL(char: string): boolean
 
 判断字符串char是否是从右到左语言的字符。
 
@@ -2879,7 +2879,7 @@ static isRTL(char: string): boolean
 
 ### isIdeograph<sup>(deprecated)</sup>
 
-static isIdeograph(char: string): boolean
+isIdeograph(char: string): boolean
 
 判断字符串char是否是表意文字。
 
@@ -2902,7 +2902,7 @@ static isIdeograph(char: string): boolean
 
 ### isLetter<sup>(deprecated)</sup>
 
-static isLetter(char: string): boolean
+isLetter(char: string): boolean
 
 判断字符串char是否是字母。
 
@@ -2925,7 +2925,7 @@ static isLetter(char: string): boolean
 
 ### isLowerCase<sup>(deprecated)</sup>
 
-static isLowerCase(char: string): boolean
+isLowerCase(char: string): boolean
 
 判断字符串char是否是小写字母。
 
@@ -2948,7 +2948,7 @@ static isLowerCase(char: string): boolean
 
 ### isUpperCase<sup>(deprecated)</sup>
 
-static isUpperCase(char: string): boolean
+isUpperCase(char: string): boolean
 
 判断字符串char是否是大写字母。
 
@@ -2971,7 +2971,7 @@ static isUpperCase(char: string): boolean
 
 ### getType<sup>(deprecated)</sup>
 
-static getType(char: string): string
+getType(char: string): string
 
 获取输入字符串的一般类别值。
 

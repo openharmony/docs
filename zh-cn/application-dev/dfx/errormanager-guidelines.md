@@ -6,7 +6,7 @@
 
 ## 接口说明
 
-应用错误管理接口由errorManager模块提供，开发者可以通过import引入，详见[开发示例](#开发示例)。
+应用错误管理接口由[errorManager](../reference/apis/js-apis-app-ability-errorManager.md)模块提供，开发者可以通过import引入，详见[开发示例](#开发示例)。
 
 **错误管理接口功能介绍：**
 
@@ -60,44 +60,44 @@ let abilityWant: Want;
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("[Demo] EntryAbility onCreate")
+        console.log("[Demo] EntryAbility onCreate");
         registerId = errorManager.on("error", callback);
         abilityWant = want;
     }
 
     onDestroy() {
-        console.log("[Demo] EntryAbility onDestroy")
+        console.log("[Demo] EntryAbility onDestroy");
         errorManager.off("error", registerId, (result) => {
-            console.log("[Demo] result " + result.code + ";" + result.message)
+            console.log("[Demo] result " + result.code + ";" + result.message);
         });
     }
 
     onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] EntryAbility onWindowStageCreate")
+        console.log("[Demo] EntryAbility onWindowStageCreate");
 
         windowStage.loadContent("pages/index", (err, data) => {
             if (err.code) {
                 console.error('Failed to load the content. Cause:' + JSON.stringify(err));
                 return;
             }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
         });
     }
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] EntryAbility onWindowStageDestroy")
+        console.log("[Demo] EntryAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] EntryAbility onForeground")
+        console.log("[Demo] EntryAbility onForeground");
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] EntryAbility onBackground")
+        console.log("[Demo] EntryAbility onBackground");
     }
 };
 ```

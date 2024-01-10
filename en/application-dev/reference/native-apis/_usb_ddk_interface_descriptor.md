@@ -46,7 +46,7 @@ Endpoint descriptor contained in the interface.
 
 
 ```
-uint8_t* UsbDdkInterfaceDescriptor::extra
+const uint8_t* UsbDdkInterfaceDescriptor::extra
 ```
 
 **Description**

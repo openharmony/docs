@@ -16,7 +16,6 @@ import securityLabel from '@ohos.file.securityLabel';
 
 使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：
 
-**Stage模型**
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -30,24 +29,14 @@ import securityLabel from '@ohos.file.securityLabel';
   }
   ```
 
-**FA模型**
+使用该功能模块对文件/目录进行操作前，需要先获取其应用沙箱路径，获取方式及其接口用法请参考：[应用上下文Context-获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
-FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## securityLabel.setSecurityLabel
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
-以异步方法设置数据标签，以promise形式返回结果。
+以异步方法设置数据标签，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
@@ -87,7 +76,7 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
   securityLabel.setSecurityLabel(filePath, "s0").then(() => {
     console.info("setSecurityLabel successfully");
   }).catch((err: BusinessError) => {
-    console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -129,7 +118,7 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0", (err: BusinessError) => {
     if (err) {
-      console.info("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("setSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("setSecurityLabel successfully.");
     }
@@ -177,7 +166,7 @@ securityLabel.setSecurityLabelSync(filePath, "s0");
 
 getSecurityLabel(path:string):Promise&lt;string&gt;
 
-异步方法获取数据标签，以promise形式返回结果。
+异步方法获取数据标签，以Promise形式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 

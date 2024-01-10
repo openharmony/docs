@@ -11,14 +11,14 @@
 
 服务端由FA模型升级到Stage模型后，会导致FA模型的客户端在API 9(含)之后的版本上无法访问服务端。
 
-为了解决上述问题，OpenHarmony在框架侧提供了一个解决方案，让开发者平滑过渡到API 9(含)之后的版本。
+为了解决上述问题，系统在框架侧提供了一个解决方案，让开发者平滑过渡到API 9(含)之后的版本。
 
 
 ## 基本原理
 
 一种兼容方法是DataAbilityHelper根据传入的URI的前缀是DataAbility还是DataShare来决定是否调DataShareHelper的接口。但是这种方法需要开发者修改原客户端代码的URI，做不到无感知切换。
 
-因此DataAbilityHelper不能仅依赖URI的前缀决定访问DataAbility还是DataShareExtensionAbility，OpenHarmony采用的方法是：
+因此DataAbilityHelper不能仅依赖URI的前缀决定访问DataAbility还是DataShareExtensionAbility，当前采用的方法是：
 
 1. 先按照传入的URI拉起DataAbility；如果拉起失败，再将传入的URI的前缀转换成DataShare再去尝试拉起DataShareExtensionAbility。
 

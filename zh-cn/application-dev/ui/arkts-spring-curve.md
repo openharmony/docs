@@ -133,10 +133,10 @@ struct Motion {
 export struct SpringDemo {
   @State dRotate: number = 0;
   private springs: Spring[] = [
-    new Spring('springMotion()', '(springMotion(1, 0.25): \n\n周期2, 阻尼0.25)', {interpolate: curves.springMotion(1, 0.25).interpolate}),
-    new Spring('responsiveSpringMotion()', 'responsiveSpringMotion(1, 0.25): \n\n默认弹性跟手曲线', {interpolate: curves.responsiveSpringMotion(1, 0.25).interpolate}),
-    new Spring('interpolatingSpring()', '(interpolatingSpring(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', {interpolate: curves.interpolatingSpring(10, 1, 228, 30).interpolate}),
-    new Spring('springCurve()', '(springCurve(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', {interpolate: curves.springCurve(10, 1, 228, 30).interpolate})
+    new Spring('springMotion()', '(springMotion(1, 0.25): \n\n周期2, 阻尼0.25)', curves.springMotion(1, 0.25)),
+    new Spring('responsiveSpringMotion()', 'responsiveSpringMotion(1, 0.25): \n\n默认弹性跟手曲线', curves.responsiveSpringMotion(1, 0.25)),
+    new Spring('interpolatingSpring()', '(interpolatingSpring(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', curves.interpolatingSpring(10, 1, 228, 30)),
+    new Spring('springCurve()', '(springCurve(10, 1, 228, 30): \n\n初始速度100， 质量1， 剛度228， 阻尼30)', curves.springCurve(10, 1, 228, 30))
   ];
 
   build() {

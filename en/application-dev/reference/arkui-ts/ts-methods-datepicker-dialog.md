@@ -16,25 +16,34 @@ show(options?: DatePickerDialogOptions)
 
 Shows a date picker dialog box.
 
-**DatePickerDialogOptions**
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                       | Mandatory| Description                      |
+| ------- | ----------------------------------------------------------- | ---- | -------------------------- |
+| options | [DatePickerDialogOptions](#datepickerdialogoptions) | No  | Parameters of the date picker dialog box.|
+
+## DatePickerDialogOptions
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | start | Date | No| Start date of the picker.<br>Default value: **Date('1970-1-1')**|
 | end | Date | No| End date of the picker.<br>Default value: **Date('2100-12-31')**|
 | selected | Date | No| Selected date.<br>Default value: current system date|
-| lunar | boolean | No| Whether to display the lunar calendar.<br>Default value: **false**|
-| showTime<sup>10+</sup> | boolean | No| Whether to display the time item.<br>Default value: **false**|
-| useMilitaryTime<sup>10+</sup> | boolean | No| Whether to display time in 24-hour format.<br>Default value: **false**<br>**NOTE**<br>When in the 12-hour format, the AM/PM zone does not change depending on the hour portion.|
+| lunar | boolean | No| Whether to display the lunar calendar. The value **true** means to display the lunar calendar, and **false** means the opposite.<br>Default value: **false**|
+| showTime<sup>10+</sup> | boolean | No| Whether to display the time item. The value **true** means to display the time item, and **false** means the opposite.<br>Default value: **false**|
+| useMilitaryTime<sup>10+</sup> | boolean | No| Whether to display time in 24-hour format. The value **true** means to display time in 24-hour format, and **false** means the opposite.<br>Default value: **false**<br>**NOTE**<br>When in the 12-hour format, the AM/PM zone does not change depending on the hour portion.|
+| lunarSwitch | boolean | No| Whether to display the lunar calendar switch. The value **true** means to display the lunar calendar switch, and **false** means the opposite.<br>Default value: **false**|
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>} |
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} |
 | alignment<sup>10+</sup>  | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
-| offset<sup>10+</sup>     | [Offset](ts-types.md#offset) | No    | Offset of the dialog box based on the **alignment** settings.<br>Default value: **{ dx: 0 , dy: 0 }**|
-| maskRect<sup>10+</sup>| [Rectangle](ts-methods-alert-dialog-box.md#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
-| onAccept<sup>(deprecated)</sup> | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 10. You are advised to use **onDateAccept** instead.|
+| offset<sup>10+</sup>     | [Offset](ts-types.md#offset) | No    | Offset of the dialog box based on the **alignment** settings.<br>Default value: **{ dx: 0 , dy: -56 }**|
+| maskRect<sup>10+</sup>| [Rectangle](ts-methods-alert-dialog-box.md#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| onAccept<sup>(deprecated)</sup> | (value: [DatePickerResult](ts-basic-components-datepicker.md#datepickerresult)) => void | No| Callback invoked when the OK button in the dialog box is clicked.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 10. You are advised to use **onDateAccept** instead.|
 | onCancel | () => void | No| Callback invoked when the Cancel button in the dialog box is clicked.|
-| onChange<sup>(deprecated)</sup> | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult)) => void | No| Callback invoked when the selected item in the picker changes.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 10. You are advised to use **onDateChange** instead.|
+| onChange<sup>(deprecated)</sup> | (value: [DatePickerResult](ts-basic-components-datepicker.md#datepickerresult)) => void | No| Callback invoked when the selected item in the picker changes.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 10. You are advised to use **onDateChange** instead.|
 | onDateAccept<sup>10+</sup> | (value:  Date) => void | No| Callback invoked when the OK button in the dialog box is clicked.<br>**NOTE**<br>When **showTime** is set to **true**, the hour and minute in the value returned by the callback are the hour and minute selected in the picker. Otherwise, the hour and minute are the hour and minute of the system time.|
 | onDateChange<sup>10+</sup> | (value:  Date) => void | No| Callback invoked when the selected item in the picker changes.<br>**NOTE**<br>When **showTime** is set to **true**, the hour and minute in the value returned by the callback are the hour and minute selected in the picker. Otherwise, the hour and minute are the hour and minute of the system time.|
 

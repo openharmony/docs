@@ -83,6 +83,12 @@ Publishes a notification. This API uses a promise to return the result.
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 
+**Return value**
+
+| Type    | Description| 
+| ------- |--|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -206,6 +212,12 @@ Publishes a notification to a specified user. This API uses a promise to return 
 | request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | userId   | number                                      | Yes  | User ID.                          |
 
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -237,9 +249,7 @@ let notificationRequest: notificationManager.NotificationRequest = {
         }
     }
 };
-
 let userId: number = 1;
-
 notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
 }).catch((err: Base.BusinessError) => {
@@ -305,6 +315,12 @@ Cancels a notification with the specified ID and optional label. This API uses a
 | ----- | ------ | ---- | -------- |
 | id    | number | Yes  | Notification ID.  |
 | label | string | No  | Notification label. This parameter is left empty by default.|
+
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -375,7 +391,7 @@ notificationManager.cancel(0, cancelCallback);
 
 cancelAll(callback: AsyncCallback\<void\>): void
 
-Cancels all notifications. This API uses an asynchronous callback to return the result.
+Cancels all notifications of this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -415,9 +431,15 @@ notificationManager.cancelAll(cancelAllCallback);
 
 cancelAll(): Promise\<void\>
 
-Cancels all notifications. This API uses a promise to return the result.
+Cancels all notifications of this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -509,6 +531,12 @@ Adds a notification slot. This API uses a promise to return the result.
 | ---- | ---------------- | ---- | -------------------- |
 | slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot to add.|
 
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -592,6 +620,12 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 | ---- | -------- | ---- | ---------------------- |
 | type | [SlotType](#slottype) | Yes  | Type of the notification slot to add.|
 
+**Return value**
+
+| Type    | Description       | 
+| ------- |-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -665,7 +699,6 @@ let notificationSlot: notificationManager.NotificationSlot = {
 // NotificationSlotArray object
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
-
 notificationManager.addSlots(notificationSlotArray, addSlotsCallBack);
 ```
 
@@ -686,6 +719,12 @@ Adds an array of notification slots. This API uses a promise to return the resul
 | Name | Type                     | Mandatory| Description                    |
 | ----- | ------------------------- | ---- | ------------------------ |
 | slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Notification slots to add.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -710,7 +749,6 @@ let notificationSlot: notificationManager.NotificationSlot = {
 // NotificationSlotArray object
 let notificationSlotArray: notificationManager.NotificationSlot[] = new Array();
 notificationSlotArray[0] = notificationSlot;
-
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
 }).catch((err: Base.BusinessError) => {
@@ -778,7 +816,7 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<NotificationSlot\> | Promise used to return the result.|
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Promise used to return the result.|
 
 **Error codes**
 
@@ -796,7 +834,6 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 import Base from '@ohos.base';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
-
 notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
     console.info("getSlot success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -814,13 +851,14 @@ Obtains all notification slots of this application. This API uses an asynchronou
 
 **Parameters**
 
-For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
-
 | Name    | Type                             | Mandatory| Description                |
 | -------- | --------------------------------- | ---- | -------------------- |
 | callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Yes  | Callback used to return all notification slots of the current application.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
+
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -884,7 +922,7 @@ notificationManager.getSlots().then((data: Array<notificationManager.Notificatio
 
 removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
-Removes a notification slot of a specified type. This API uses an asynchronous callback to return the result.
+Removes a notification slot of a specified type for this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -926,7 +964,7 @@ notificationManager.removeSlot(slotType, removeSlotCallback);
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
-Removes a notification slot of a specified type. This API uses a promise to return the result.
+Removes a notification slot of a specified type for this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -935,6 +973,12 @@ Removes a notification slot of a specified type. This API uses a promise to retu
 | Name    | Type    | Mandatory| Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
 | slotType | [SlotType](#slottype) | Yes  | Type of the notification slot, which can be used for social communication, service information, content consultation, and other purposes.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -963,7 +1007,7 @@ notificationManager.removeSlot(slotType).then(() => {
 
 removeAllSlots(callback: AsyncCallback\<void\>): void
 
-Removes all notification slots. This API uses an asynchronous callback to return the result.
+Removes all notification slots for this application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1002,9 +1046,15 @@ notificationManager.removeAllSlots(removeAllCallBack);
 
 removeAllSlots(): Promise\<void\>
 
-Removes all notification slots. This API uses a promise to return the result.
+Removes all notification slots for this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1096,6 +1146,12 @@ Sets whether to enable notification for a specified application. This API uses a
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -1126,7 +1182,7 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-Checks whether notification is enabled for a specified application. This API uses an asynchronous callback to return the result.
+Checks whether notification is enabled for the specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1164,11 +1220,9 @@ let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): vo
         console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
-
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.isNotificationEnabled(bundle, isNotificationEnabledCallback);
 ```
 
@@ -1348,9 +1402,7 @@ let isNotificationEnabledCallback = (err: Base.BusinessError, data: boolean): vo
         console.info(`isNotificationEnabled success, data is ${JSON.stringify(data)}`);
     }
 }
-
 let userId: number = 1;
-
 notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback);
 ```
 
@@ -1407,7 +1459,7 @@ notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 
 displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-Sets whether to enable the notification badge for a specified application. This API uses an asynchronous callback to return the result.
+Sets whether to enable the notification badge for the specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1470,6 +1522,12 @@ Sets whether to enable the notification badge for a specified application. This 
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | enable | boolean      | Yes  | Whether to enable notification.  |
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -1610,6 +1668,12 @@ Sets the notification badge number. This API uses a promise to return the result
 | ----------- | ------ | ---- | ---------- |
 | badgeNumber | number | Yes  | Notification badge number to set.|
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 | ID| Error Message                           |
@@ -1671,7 +1735,6 @@ let setBadgeNumberCallback = (err: Base.BusinessError): void => {
         console.info("displayBadge success");
     }
 }
-
 let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 ```
@@ -1747,6 +1810,12 @@ Sets the notification slot for a specified application. This API uses a promise 
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle of the application.|
 | slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Yes  | Notification slot.|
 
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
+
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
@@ -1766,11 +1835,9 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 let notificationSlot: notificationManager.NotificationSlot = {
     type: notificationManager.SlotType.SOCIAL_COMMUNICATION
 };
-
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -1782,7 +1849,7 @@ notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
-Obtains the notification slots of a specified application. This API uses an asynchronous callback to return the result.
+Obtains the notification slots of the specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1869,7 +1936,6 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -1919,11 +1985,9 @@ let getSlotNumByBundleCallback = (err: Base.BusinessError, data: number): void =
         console.info(`getSlotNumByBundle success data is ${JSON.stringify(data)}`);
     }
 }
-
 let bundle: notificationManager.BundleOption = {
   bundle: "bundleName1",
 };
-
 notificationManager.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 ```
 
@@ -1998,6 +2062,8 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 | callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2097,7 +2163,6 @@ let getActiveNotificationCountCallback = (err: Base.BusinessError, data: number)
         console.info(`getActiveNotificationCount success, data is ${JSON.stringify(data)}`);
     }
 }
-
 notificationManager.getActiveNotificationCount(getActiveNotificationCountCallback);
 ```
 
@@ -2173,7 +2238,6 @@ let getActiveNotificationsCallback = (err: Base.BusinessError, data: Array<notif
         console.info("getActiveNotifications success");
     }
 }
-
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 ```
 
@@ -2250,9 +2314,7 @@ let cancelGroupCallback = (err: Base.BusinessError): void => {
         console.info("cancelGroup success");
     }
 }
-
 let groupName: string = "GroupName";
-
 notificationManager.cancelGroup(groupName, cancelGroupCallback);
 ```
 
@@ -2269,6 +2331,12 @@ Cancels notifications under a notification group of this application. This API u
 | Name     | Type  | Mandatory| Description          |
 | --------- | ------ | ---- | -------------- |
 | groupName | string | Yes  | Name of the notification group.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2297,7 +2365,7 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
-Removes notifications under a notification group of a specified application. This API uses an asynchronous callback to return the result.
+Removes notifications under a notification group of the specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2336,10 +2404,8 @@ let removeGroupByBundleCallback = (err: Base.BusinessError): void => {
         console.info("removeGroupByBundle success");
     }
 }
-
 let bundleOption: notificationManager.BundleOption = { bundle: "Bundle" };
 let groupName: string = "GroupName";
-
 notificationManager.removeGroupByBundle(bundleOption, groupName, removeGroupByBundleCallback);
 ```
 
@@ -2361,6 +2427,12 @@ Removes notifications under a notification group of a specified application. Thi
 | --------- | ------------ | ---- | -------------- |
 | bundle    | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.    |
 | groupName | string       | Yes  | Name of the notification group.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2430,13 +2502,11 @@ let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
         console.info("setDoNotDisturbDate success");
     }
 }
-
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
-
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCallback);
 ```
 
@@ -2457,6 +2527,13 @@ Sets the DND time. This API uses a promise to return the result.
 | Name| Type            | Mandatory| Description          |
 | ---- | ---------------- | ---- | -------------- |
 | date | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
+
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2531,15 +2608,12 @@ let setDoNotDisturbDateCallback = (err: Base.BusinessError): void => {
         console.info("setDoNotDisturbDate success");
     }
 }
-
 let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     type: notificationManager.DoNotDisturbType.TYPE_ONCE,
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
-
 let userId: number = 1;
-
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDisturbDateCallback);
 ```
 
@@ -2561,6 +2635,12 @@ Sets the DND time for a specified user. This API uses a promise to return the re
 | ------ | ---------------- | ---- | -------------- |
 | date   | [DoNotDisturbDate](#donotdisturbdate) | Yes  | DND time to set.|
 | userId | number           | Yes  | ID of the user for whom you want to set the DND time.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -2584,9 +2664,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
     begin: new Date(),
     end: new Date(2021, 11, 15, 18, 0)
 };
-
 let userId: number = 1;
-
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
 }).catch((err: Base.BusinessError) => {
@@ -2636,7 +2714,6 @@ let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationMa
         console.info(`getDoNotDisturbDate success, data is ${JSON.stringify(data)}`);
     }
 }
-
 notificationManager.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 ```
 
@@ -2725,9 +2802,7 @@ let getDoNotDisturbDateCallback = (err: Base.BusinessError, data: notificationMa
         console.info(`getDoNotDisturbDate success, data is ${JSON.stringify(data)}`);
     }
 }
-
 let userId: number = 1;
-
 notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 ```
 
@@ -2773,7 +2848,6 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 import Base from '@ohos.base';
 
 let userId: number = 1;
-
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -2798,9 +2872,11 @@ Checks whether DND mode is supported. This API uses an asynchronous callback to 
 
 | Name    | Type                    | Mandatory| Description                            |
 | -------- | ------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite.|
 
 **Error codes**
+
+For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
@@ -2820,7 +2896,6 @@ let isSupportDoNotDisturbModeCallback = (err: Base.BusinessError, data: boolean)
         console.info("isSupportDoNotDisturbMode success");
     }
 }
-
 notificationManager.isSupportDoNotDisturbMode(isSupportDoNotDisturbModeCallback);
 ```
 
@@ -2840,7 +2915,7 @@ Checks whether DND mode is supported. This API uses a promise to return the resu
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that DND mode is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2877,7 +2952,7 @@ Checks whether a specified template is supported. This API uses an asynchronous 
 | Name      | Type                    | Mandatory| Description                      |
 | ------------ | ------------------------ | ---- | -------------------------- |
 | templateName | string                   | Yes  | Template name.                  |
-| callback     | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback     | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that the specified template is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2902,7 +2977,6 @@ let isSupportTemplateCallback = (err: Base.BusinessError, data: boolean): void =
         console.info("isSupportTemplate success");
     }
 }
-
 notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 ```
 
@@ -2924,7 +2998,7 @@ Checks whether a specified template is supported. This API uses a promise to ret
 
 | Type              | Description           |
 | ------------------ | --------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the specified template is supported, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2986,7 +3060,6 @@ let requestEnableNotificationCallback = (err: Base.BusinessError): void => {
         console.info("requestEnableNotification success");
     }
 };
-
 notificationManager.requestEnableNotification(requestEnableNotificationCallback);
 ```
 
@@ -2997,6 +3070,12 @@ requestEnableNotification(): Promise\<void\>
 Requests notification to be enabled for this application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -3064,7 +3143,6 @@ class MyAbility extends UIAbility {
         console.info("requestEnableNotification success");
       }
     };
-
     notificationManager.requestEnableNotification(this.context, requestEnableNotificationCallback);
   }
 }
@@ -3085,6 +3163,12 @@ Requests notification to be enabled for this application in a modal. This API us
 | Name  | Type                    | Mandatory| Description                |
 | -------- | ------------------------ | ---- |--------------------|
 | context | UIAbilityContext | Yes  | Ability context bound to the notification dialog box.|
+
+**Return value**
+
+| Type     | Description       | 
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -3119,7 +3203,7 @@ class MyAbility extends UIAbility {
 
 setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
-Sets whether this device supports distributed notifications. This API uses an asynchronous callback to return the result.
+Sets whether to enable distributed notification on this device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3131,7 +3215,7 @@ Sets whether this device supports distributed notifications. This API uses an as
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.|
+| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -3157,9 +3241,7 @@ let setDistributedEnableCallback = (err: Base.BusinessError): void => {
         console.info("setDistributedEnable success");
     }
 };
-
 let enable: boolean = true;
-
 notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 ```
 
@@ -3167,7 +3249,7 @@ notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 
 setDistributedEnable(enable: boolean): Promise\<void>
 
-Sets whether this device supports distributed notifications. This API uses a promise to return the result.
+Sets whether to enable distributed notification on this device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3179,7 +3261,7 @@ Sets whether this device supports distributed notifications. This API uses a pro
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.|
+| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3198,21 +3280,18 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 import Base from '@ohos.base';
 
 let enable: boolean = true;
-
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: Base.BusinessError) => {
-    console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
 });
 ```
-
-## notificationManager.requestEnableNotification<sup>10+<sup>
 
 ## notificationManager.isDistributedEnabled
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-Checks whether this device supports distributed notifications. This API uses an asynchronous callback to return the result.
+Checks whether distributed notification is enabled on this device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3220,7 +3299,7 @@ Checks whether this device supports distributed notifications. This API uses an 
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3245,7 +3324,6 @@ let isDistributedEnabledCallback = (err: Base.BusinessError, data: boolean): voi
         console.info("isDistributedEnabled success " + JSON.stringify(data));
     }
 };
-
 notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 ```
 
@@ -3255,7 +3333,7 @@ notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 
 isDistributedEnabled(): Promise\<boolean>
 
-Checks whether this device supports distributed notifications. This API uses a promise to return the result.
+Checks whether distributed notification is enabled on this device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3263,7 +3341,7 @@ Checks whether this device supports distributed notifications. This API uses a p
 
 | Type              | Description                                         |
 | ------------------ | --------------------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3294,7 +3372,7 @@ notificationManager.isDistributedEnabled()
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
-Sets whether a specified application supports distributed notifications. This API uses an asynchronous callback to return the result.
+Sets whether to enable distributed notification for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3307,7 +3385,7 @@ Sets whether a specified application supports distributed notifications. This AP
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                  |
-| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                      |
+| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.|
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -3334,13 +3412,10 @@ let setDistributedEnableByBundleCallback = (err: Base.BusinessError): void => {
         console.info("enableDistributedByBundle success");
     }
 };
-
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 let enable: boolean = true;
-
 notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedEnableByBundleCallback);
 ```
 
@@ -3350,7 +3425,7 @@ notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedE
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
-Sets whether a specified application supports distributed notifications. This API uses a promise to return the result.
+Sets whether to enable distributed notification for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3363,7 +3438,7 @@ Sets whether a specified application supports distributed notifications. This AP
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.               |
-| enable   | boolean                  | Yes  | Whether the device supports distributed notifications.                 |
+| enable   | boolean                  | Yes  | Whether to enable distributed notification. The value **true** means to enable distributed notification, and **false** means the opposite.                 |
 
 **Error codes**
 
@@ -3385,9 +3460,7 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 let enable: boolean = true;
-
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -3399,7 +3472,7 @@ notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
-Checks whether a specified application supports distributed notifications. This API uses an asynchronous callback to return the result.
+Checks whether distributed notification is enabled for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3412,7 +3485,7 @@ Checks whether a specified application supports distributed notifications. This 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                    |
-| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\> | Yes  | Callback used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3438,11 +3511,9 @@ let isDistributedEnabledByBundleCallback = (err: Base.BusinessError, data: boole
         console.info("isDistributedEnabledByBundle success" + JSON.stringify(data));
     }
 };
-
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.isDistributedEnabledByBundle(bundle, isDistributedEnabledByBundleCallback);
 ```
 
@@ -3450,7 +3521,7 @@ notificationManager.isDistributedEnabledByBundle(bundle, isDistributedEnabledByB
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
-Checks whether a specified application supports distributed notifications. This API uses a promise to return the result.
+Checks whether distributed notification is enabled for a specified application. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3468,7 +3539,7 @@ Checks whether a specified application supports distributed notifications. This 
 
 | Type              | Description                                             |
 | ------------------ | ------------------------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that distributed notification is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3490,7 +3561,6 @@ import Base from '@ohos.base';
 let bundle: notificationManager.BundleOption = {
     bundle: "bundleName1",
 };
-
 notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 }).catch((err: Base.BusinessError) => {
@@ -3539,7 +3609,6 @@ let getDeviceRemindTypeCallback = (err: Base.BusinessError, data: notificationMa
         console.info(`getDeviceRemindType success, data is ${JSON.stringify(data)}`);
     }
 };
-
 notificationManager.getDeviceRemindType(getDeviceRemindTypeCallback);
 ```
 
@@ -3603,7 +3672,7 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 | request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                      |
 | userId               | number                                      | Yes  | User ID.                                |
-| callback             | AsyncCallback                               | Yes  | Callback used to return the result.                |
+| callback             | AsyncCallback\<void\>                        | Yes  | Callback used to return the result.                |
 
 **Error codes**
 
@@ -3649,7 +3718,6 @@ let request: notificationManager.NotificationRequest = {
         }
     }
 };
-
 notificationManager.publishAsBundle(request, representativeBundle, userId, callback);
 ```
 
@@ -3673,6 +3741,12 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 | request              | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
 | representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
 | userId               | number                                      | Yes  | User ID.                           |
+
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -3710,7 +3784,6 @@ let request: notificationManager.NotificationRequest = {
         }
     }
 };
-
 notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -3725,8 +3798,6 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number, callbac
 Cancels a notification published by the reminder agent. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -3770,7 +3841,6 @@ let cancelAsBundleCallback = (err: Base.BusinessError): void => {
 let representativeBundle: string = "com.example.demo";
 // User ID
 let userId: number = 100;
-
 notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
 ```
 
@@ -3781,8 +3851,6 @@ cancelAsBundle(id: number, representativeBundle: string, userId: number): Promis
 Cancels a notification published by the reminder agent. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
@@ -3795,6 +3863,12 @@ Cancels a notification published by the reminder agent. This API uses a promise 
 | id                   | number | Yes  | Notification ID.          |
 | representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.|
 | userId               | number | Yes  | User ID.|
+
+**Return value**
+
+| Type             | Description       | 
+|-----------------|-----------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -3817,7 +3891,6 @@ import Base from '@ohos.base';
 let representativeBundle: string = "com.example.demo";
 // User ID
 let userId: number = 100;
-
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: Base.BusinessError) => {
@@ -3829,7 +3902,7 @@ notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
-Sets whether to enable a specified notification slot type for a specified application. This API uses an asynchronous callback to return the result.
+Sets the enabled status of a notification slot type for a specified application. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3843,7 +3916,7 @@ Sets whether to enable a specified notification slot type for a specified applic
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
-| enable   | boolean                       | Yes  | Whether to enable notification.            |
+| enable   | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.            |
 | callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -3870,7 +3943,6 @@ let setNotificationEnableSlotCallback = (err: Base.BusinessError): void => {
         console.info("setNotificationEnableSlot success");
     }
 };
-
 notificationManager.setNotificationEnableSlot(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
@@ -3896,7 +3968,7 @@ Sets whether to enable a specified notification slot type for a specified applic
 | ------ | ----------------------------- | ---- | -------------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.  |
 | type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
-| enable | boolean                       | Yes  | Whether to enable notification.    |
+| enable | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.    |
 
 **Error codes**
 
@@ -3943,7 +4015,7 @@ Checks whether a specified notification slot type is enabled for a specified app
 | -------- | ----------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Yes  | Bundle information of the application.          |
 | type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
-| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3969,7 +4041,6 @@ let getEnableSlotCallback = (err: Base.BusinessError, data: boolean): void => {
         console.info(`isNotificationSlotEnabled success, data is ${JSON.stringify(data)}`);
     }
 };
-
 notificationManager.isNotificationSlotEnabled(
     { bundle: "ohos.samples.notification", },
     notificationManager.SlotType.SOCIAL_COMMUNICATION,
@@ -3999,7 +4070,7 @@ Checks whether a specified notification slot type is enabled for a specified app
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification slot type is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -4044,7 +4115,7 @@ Sets whether to enable the notification sync feature for devices where the appli
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
-| enable | boolean | Yes  | Whether the feature is enabled.  |
+| enable | boolean | Yes  | Whether to enable the notification sync feature. The value **true** means to enable the feature, and **false** means the opposite.  |
 | callback | AsyncCallback\<void\>    | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -4065,7 +4136,6 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 let enable: boolean = true;
-
 let callback = (err: Base.BusinessError): void => {
     if (err) {
         console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
@@ -4073,7 +4143,6 @@ let callback = (err: Base.BusinessError): void => {
         console.info("setSyncNotificationEnabledWithoutApp success");
     }
 }
-
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
 ```
 
@@ -4095,7 +4164,7 @@ Sets whether to enable the notification sync feature for devices where the appli
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
-| enable | boolean | Yes  | Whether the feature is enabled.  |
+| enable | boolean | Yes  | Whether to enable the notification sync feature. The value **true** means to enable the feature, and **false** means the opposite.  |
 
 **Return value**
 
@@ -4121,7 +4190,6 @@ import Base from '@ohos.base';
 
 let userId: number = 100;
 let enable: boolean = true;
-
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err: Base.BusinessError) => {
@@ -4147,7 +4215,7 @@ Obtains whether the notification sync feature is enabled for devices where the a
 | Name| Type                         | Mandatory| Description          |
 | ------ | ----------------------------- | ---- | -------------- |
 | userId | number | Yes  | User ID.  |
-| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -4166,7 +4234,6 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 import Base from '@ohos.base';
 
 let userId: number = 100;
-
 let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, data: boolean): void => {
     if (err) {
         console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
@@ -4174,7 +4241,6 @@ let getSyncNotificationEnabledWithoutAppCallback = (err: Base.BusinessError, dat
         console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
     }
 }
-
 notificationManager.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
 ```
 
@@ -4201,7 +4267,7 @@ Obtains whether the notification sync feature is enabled for devices where the a
 
 | Type              | Description                                                        |
 | ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.|
+| Promise\<boolean\> | Promise used to return the result. The value **true** means that the notification sync feature is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -4220,7 +4286,6 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 import Base from '@ohos.base';
 
 let userId: number = 100;
-
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
   console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
 }).catch((err: Base.BusinessError) => {
@@ -4242,10 +4307,10 @@ Subscribes to notification events. The notification service sends the notificati
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| type | string | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)    | Yes  | Pointer to the notification verification function.|
+| Name| Type                                                                                                                     | Mandatory| Description          |
+| ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | Yes  | Pointer to the notification verification function.|
 
 **Error codes**
 
@@ -4260,7 +4325,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```ts
 import Base from '@ohos.base';
 
-let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
+let onCheckNotification = (info : notificationManager.NotificationCheckInfo): notificationManager.NotificationCheckResult => {
     console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
     if(info.notificationId == 1){
         let result: notificationManager.NotificationCheckResult =  { code: 1, message: "testMsg1"};
@@ -4271,9 +4336,9 @@ let OnCheckNotification = (info : notificationManager.NotificationCheckInfo): no
     }
 }
 try{
-    notificationManager.on("checkNotification", OnCheckNotification);
+    notificationManager.on("checkNotification", onCheckNotification);
 } catch (error){
-    console.info(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
+    console.error(`notificationManager.on error: ${JSON.stringify(error as Base.BusinessError)}`);
 }
 ```
 
@@ -4291,10 +4356,10 @@ Unsubscribes from notification events.
 
 **Parameters**
 
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| type | string                                                       | Yes  | Event type. The value is fixed to **'checkNotification'**.|
-| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10)  | No  | Callback used to return the result. This parameter is left empty by default.|
+| Name| Type                                                                                                                     | Mandatory| Description          |
+| ------ |-------------------------------------------------------------------------------------------------------------------------| ---- | -------------- |
+| type | string                                                                                                                  | Yes  | Event type. The value is fixed to **'checkNotification'**.|
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo10)) =>  [NotificationCheckResult](#notificationcheckresult10) | No  | Callback used to return the result. This parameter is left empty by default.|
 
 **Error codes**
 

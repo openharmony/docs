@@ -57,11 +57,11 @@ Video组件支持加载本地视频和网络视频。
   export struct VideoPlayer{
      private controller:VideoController | undefined;
      private previewUris: Resource = $r ('app.media.preview');
-     private videosrc: string= 'dataability://device_id/com.domainname.dataability.videodata/video/10'
+     private videoSrc: string = 'dataability://device_id/com.domainname.dataability.videodata/video/10'
      build(){
        Column() {
          Video({
-           src: this.videosrc,
+           src: this.videoSrc,
            previewUri: this.previewUris,
            controller: this.controller
          })
@@ -72,18 +72,18 @@ Video组件支持加载本地视频和网络视频。
 
 ### 加载沙箱路径视频
 
-支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源，需要保证应用沙箱目录路径下的文件存在并且有可读权限。
+支持file://data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源，需要保证应用沙箱目录路径下的文件存在并且有可读权限。
 
 ```ts
 @Component
 export struct VideoPlayer {
   private controller: VideoController | undefined;
-  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+  private videoSrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
     Column() {
       Video({
-        src: this.videosrc,
+        src: this.videoSrc,
         controller: this.controller
       })
     }
@@ -102,11 +102,11 @@ export struct VideoPlayer {
 export struct VideoPlayer{
    private controller:VideoController | undefined;
    private previewUris: Resource = $r ('app.media.preview');
-   private videosrc: string= 'https://www.example.com/example.mp4' // 使用时请替换为实际视频加载网址
+   private videoSrc: string = 'https://www.example.com/example.mp4' // 使用时请替换为实际视频加载网址
    build(){
      Column() {
        Video({
-         src: this.videosrc,
+         src: this.videoSrc,
          previewUri: this.previewUris,
          controller: this.controller
        })

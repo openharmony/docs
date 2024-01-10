@@ -12,7 +12,7 @@
 
 | 名称 | 说明 | 
 | -------- | -------- |
-| NONE_DEVICES_FLAG<sup>9+</sup> | 无。此接口为系统接口。 | 
+| NONE_DEVICES_FLAG<sup>9+</sup> | 无设备。此接口为系统接口。 | 
 | OUTPUT_DEVICES_FLAG | 本地输出设备。 | 
 | INPUT_DEVICES_FLAG | 本地输入设备。 | 
 | ALL_DEVICES_FLAG | 本地输入输出设备。 | 

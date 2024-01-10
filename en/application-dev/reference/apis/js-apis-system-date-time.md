@@ -12,6 +12,17 @@ The **systemDateTime** module provides system time and time zone features. You c
 import systemDateTime from '@ohos.systemDateTime';
 ```
 
+## TimeType<sup>10+</sup>
+
+Enumerates the types of time to obtain.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+| Name   | Value  | Description                                            |
+| ------- | ---- | ------------------------------------------------ |
+| STARTUP | 0    | Number of milliseconds elapsed since system startup, including the deep sleep time.  |
+| ACTIVE  | 1    | Number of milliseconds elapsed since system startup, excluding the deep sleep time.|
+
 ## systemDateTime.setTime
 
 setTime(time : number, callback : AsyncCallback&lt;void&gt;) : void
@@ -407,11 +418,82 @@ try {
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.getTime<sup>10+</sup>
+
+getTime(isNanoseconds?: boolean): number
+
+ Obtains the time elapsed since the Unix epoch. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name       | Type   | Mandatory| Description                                                        |
+| ------------- | ------- | ---- | ------------------------------------------------------------ |
+| isNanoseconds | boolean | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.<br>Default value: **false**|
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| number | Time elapsed since the Unix epoch.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let time = systemDateTime.getTime(true)
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get time. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getUptime<sup>10+</sup>
+
+getUptime(timeType: TimeType, isNanoseconds?: boolean): number
+
+Obtains the time elapsed since system startup. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Parameters**
+
+| Name       | Type                   | Mandatory| Description                                                        |
+| ------------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| timeType      | [TimeType](#timetype10) | Yes  | Type of the time to obtain.                                            |
+| isNanoseconds | boolean                 | No  | Whether the time to return is in nanoseconds.<br>- **true**: The time to return is in nanoseconds.<br>- **false**: The time to return is in milliseconds.<br>Default value: **false**|
+
+**Return value**
+
+| Type  | Description                      |
+| ------ | -------------------------- |
+| number | Time elapsed since system startup.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let time = systemDateTime.getUptime(systemDateTime.TimeType.ACTIVE, false);
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get uptime. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the system date. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [systemDateTime.setTime](#systemdatetimesettime) instead.
 
 **System API**: This is a system API.
 
@@ -446,11 +528,15 @@ try {
 }
 ```
 
-## systemDateTime.setDate
+## systemDateTime.setDate<sup>(deprecated)</sup>
 
 setDate(date: Date): Promise&lt;void&gt;
 
 Sets the system date. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use [systemDateTime.setTime](#systemdatetimesettime) instead.
 
 **System API**: This is a system API.
 
@@ -488,11 +574,15 @@ try {
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(callback: AsyncCallback&lt;Date&gt;): void
 
 Obtains the current system date. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -521,11 +611,15 @@ try {
 }
 ```
 
-## systemDateTime.getDate
+## systemDateTime.getDate<sup>(deprecated)</sup>
 
 getDate(): Promise&lt;Date&gt;
 
 Obtains the current system date. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 10. You are advised to use **new Date()** instead, which returns a **Date** object.
 
 **System capability**: SystemCapability.MiscServices.Time
 
@@ -689,6 +783,33 @@ try {
   }).catch((error: BusinessError) => {
     console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
   });
+} catch(e) {
+  let error = e as BusinessError;
+  console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+}
+```
+
+## systemDateTime.getTimezoneSync<sup>10+</sup>
+
+getTimezoneSync(): string
+
+Obtain the system time zone. This API returns the result synchronously.
+
+**System capability**: SystemCapability.MiscServices.Time
+
+**Return value**
+
+| Type  | Description                                                      |
+| ------ | ---------------------------------------------------------- |
+| string | System time zone. For details, see [Supported System Time Zones](#supported-system-time-zones).|
+
+**Example**
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+try {
+  let timezone = systemDateTime.getTimezoneSync();
 } catch(e) {
   let error = e as BusinessError;
   console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);

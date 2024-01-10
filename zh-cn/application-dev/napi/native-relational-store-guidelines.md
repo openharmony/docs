@@ -44,19 +44,20 @@ RelationalStore提供了一套完整的对本地数据库进行管理的机制�
 **添加动态链接库**
 
 CMakeLists.txt中添加以下lib。
+
 ```txt
-native_rdb_ndk_header.so
+libnative_rdb_ndk.z.so
 ```
 
 **头文件**
-```c++
-#include <oh_cursor.h>
-#include <oh_predicates.h>
-#include <oh_value_object.h>
-#include <oh_values_bucket.h>
-#include <relational_store.h>
-#include <relational_store_error_code.h>
 
+```c++
+#include <database/rdb/oh_cursor.h>
+#include <database/rdb/oh_predicates.h>
+#include <database/rdb/oh_value_object.h>
+#include <database/rdb/oh_values_bucket.h>
+#include <database/rdb/relational_store.h>
+#include <database/rdb/relational_store_error_code.h>
 ```
 
 1. 获取OH_Rdb_Store实例，创建数据库文件。其中dataBaseDir变量为应用沙箱路径，Stage模式下建议使用数据库目录，参考[Context](../reference/apis/js-apis-inner-application-context.md)的databaseDir属性。FA模式下，由于没有接口获取数据库沙箱路径，可使用应用程序的文件目录，可参考[Context](../reference/apis/js-apis-inner-app-context.md)的getFilesDir接口。示例代码如下所示：

@@ -1,6 +1,6 @@
 # @ohos.data.preferences (User Preferences)
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, and supports persistence of the KV pairs when required, as well as modification and query of the data.
+The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs, including querying, modifying, and persisting KV pairs.
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
@@ -13,7 +13,7 @@ The key is of the string type, and the value can be a number, a string, a Boolea
 ## Modules to Import
 
 ```ts
-import data_preferences from '@ohos.data.preferences';
+import dataPreferences from '@ohos.data.preferences';
 ```
 
 ## Constants
@@ -26,7 +26,7 @@ import data_preferences from '@ohos.data.preferences';
 | MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 8192 bytes.|
 
 
-## data_preferences.getPreferences
+## dataPreferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -52,10 +52,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base';
 
 let context = featureAbility.getContext();
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 try {
-    data_preferences.getPreferences(context, 'myStore', (err: BusinessError, val: data_preferences.Preferences) => {
+    dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -77,12 +77,12 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: data_preferences.Preferences) => {
+            dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
                 if (err) {
                 console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                 return;
@@ -99,7 +99,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferences
+## dataPreferences.getPreferences
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
@@ -131,10 +131,10 @@ import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 try {
-    let promise = data_preferences.getPreferences(context, 'myStore');
-    promise.then((object: data_preferences.Preferences) => {
+    let promise = dataPreferences.getPreferences(context, 'myStore');
+    promise.then((object: dataPreferences.Preferences) => {
         preferences = object;
         console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
@@ -154,13 +154,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let promise = data_preferences.getPreferences(this.context, 'myStore');
-            promise.then((object: data_preferences.Preferences) => {
+            let promise = dataPreferences.getPreferences(this.context, 'myStore');
+            promise.then((object: dataPreferences.Preferences) => {
                 preferences = object;
                 console.info("Succeeded in getting preferences.");
             }).catch((err: BusinessError) => {
@@ -175,7 +175,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferences<sup>10+</sup>
+## dataPreferences.getPreferences<sup>10+</sup>
 
 getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Preferences&gt;): void
 
@@ -210,11 +210,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 try {
-    let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    data_preferences.getPreferences(context, options, (err: BusinessError, val: data_preferences.Preferences) => {
+    let options: dataPreferences.Options = { name: 'myStore' };
+    dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -237,13 +237,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            data_preferences.getPreferences(this.context, options, (err: BusinessError, val: data_preferences.Preferences) => {
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
                 if (err) {
                     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -260,7 +260,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferences<sup>10+</sup>
+## dataPreferences.getPreferences<sup>10+</sup>
 
 getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
@@ -300,11 +300,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 try {
-    let options: data_preferences.Options =  { name: 'myStore' };
-    let promise = data_preferences.getPreferences(context, options);
-    promise.then((object: data_preferences.Preferences) => {
+    let options: dataPreferences.Options =  { name: 'myStore' };
+    let promise = dataPreferences.getPreferences(context, options);
+    promise.then((object: dataPreferences.Preferences) => {
         preferences = object;
         console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
@@ -324,14 +324,14 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options =  { name: 'myStore', dataGroupId:'myId' };
-            let promise = data_preferences.getPreferences(this.context, options);
-            promise.then((object: data_preferences.Preferences) => {
+            let options: dataPreferences.Options =  { name: 'myStore', dataGroupId:'myId' };
+            let promise = dataPreferences.getPreferences(this.context, options);
+            promise.then((object: dataPreferences.Preferences) => {
                 preferences = object;
                 console.info("Succeeded in getting preferences.");
             }).catch((err: BusinessError) => {
@@ -346,11 +346,11 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.getPreferencesSync<sup>10+</sup>
+## dataPreferences.getPreferencesSync<sup>10+</sup>
 
 getPreferencesSync(context: Context, options: Options): Preferences
 
-Obtains the **Preferences** instance. This API is a synchronous interface.
+Obtains a **Preferences** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -386,11 +386,11 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 try {
-    let options: data_preferences.Options =  { name: 'myStore' };
-    preferences = data_preferences.getPreferencesSync(context, options);
+    let options: dataPreferences.Options =  { name: 'myStore' };
+    preferences = dataPreferences.getPreferencesSync(context, options);
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
@@ -405,13 +405,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base'
 import window from '@ohos.window';
 
-let preferences: data_preferences.Preferences | null = null;
+let preferences: dataPreferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            preferences = data_preferences.getPreferencesSync(this.context, options);
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            preferences = dataPreferences.getPreferencesSync(this.context, options);
         } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
@@ -421,7 +421,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences
+## dataPreferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -459,7 +459,7 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
 try {
-    data_preferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
+    dataPreferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
         if (err) {
             console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -483,7 +483,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            data_preferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
+            dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -499,7 +499,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences
+## dataPreferences.deletePreferences
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
@@ -542,7 +542,7 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
 try {
-    let promise = data_preferences.deletePreferences(context, 'myStore');
+    let promise = dataPreferences.deletePreferences(context, 'myStore');
     promise.then(() => {
         console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
@@ -565,7 +565,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try{
-            let promise = data_preferences.deletePreferences(this.context, 'myStore');
+            let promise = dataPreferences.deletePreferences(this.context, 'myStore');
             promise.then(() => {
                 console.info("Succeeded in deleting preferences.");
             }).catch((err: BusinessError) => {
@@ -580,7 +580,7 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.deletePreferences<sup>10+</sup>
+## dataPreferences.deletePreferences<sup>10+</sup>
 
 deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
@@ -620,8 +620,8 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
 try {
-    let options: data_preferences.Options = { name: 'myStore' };
-    data_preferences.deletePreferences(context, options, (err: BusinessError) => {
+    let options: dataPreferences.Options = { name: 'myStore' };
+    dataPreferences.deletePreferences(context, options, (err: BusinessError) => {
         if (err) {
             console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -645,8 +645,8 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            data_preferences.deletePreferences(this.context, options, (err: BusinessError) => {
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -663,7 +663,7 @@ class EntryAbility extends UIAbility {
 ```
 
 
-## data_preferences.deletePreferences<sup>10+</sup>
+## dataPreferences.deletePreferences<sup>10+</sup>
 
 deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
@@ -708,8 +708,8 @@ import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 
 try {
-    let options: data_preferences.Options = { name: 'myStore' };
-    let promise = data_preferences.deletePreferences(context, options);
+    let options: dataPreferences.Options = { name: 'myStore' };
+    let promise = dataPreferences.deletePreferences(context, options);
     promise.then(() => {
         console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
@@ -732,8 +732,8 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try{
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            let promise = data_preferences.deletePreferences(this.context, options);
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let promise = dataPreferences.deletePreferences(this.context, options);
             promise.then(() => {
                 console.info("Succeeded in deleting preferences.");
             }).catch((err: BusinessError) => {
@@ -749,13 +749,13 @@ class EntryAbility extends UIAbility {
 ```
 
 
-## data_preferences.removePreferencesFromCache
+## dataPreferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
 Removes a **Preferences** instance from the cache. This API uses an asynchronous callback to return the result.
 
-After an application calls [getPreferences](#data_preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#data_preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
 After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
 
@@ -780,7 +780,7 @@ import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 try {
-    data_preferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
+    dataPreferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
         if (err) {
             console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -804,7 +804,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            data_preferences.removePreferencesFromCache(this.context, 'myStore', (err: BusinessError) => {
+            dataPreferences.removePreferencesFromCache(this.context, 'myStore', (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -820,13 +820,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.removePreferencesFromCache
+## dataPreferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 Removes a **Preferences** instance from the cache. This API uses a promise to return the result.
 
-After an application calls [getPreferences](#data_preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#data_preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
 After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
 
@@ -856,7 +856,7 @@ import { BusinessError } from '@ohos.base'
 
 let context = featureAbility.getContext();
 try {
-    let promise = data_preferences.removePreferencesFromCache(context, 'myStore');
+    let promise = dataPreferences.removePreferencesFromCache(context, 'myStore');
     promise.then(() => {
         console.info("Succeeded in removing preferences.");
     }).catch((err: BusinessError) => {
@@ -879,7 +879,7 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let promise = data_preferences.removePreferencesFromCache(this.context, 'myStore');
+            let promise = dataPreferences.removePreferencesFromCache(this.context, 'myStore');
             promise.then(() => {
                 console.info("Succeeded in removing preferences.");
             }).catch((err: BusinessError) => {
@@ -894,13 +894,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.removePreferencesFromCacheSync<sup>10+</sup>
+## dataPreferences.removePreferencesFromCacheSync<sup>10+</sup>
 
 removePreferencesFromCacheSync(context: Context, name: string): void
 
 Removes a **Preferences** instance from the cache. This API returns the result synchronously.
 
-After an application calls [getPreferences](#data_preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#data_preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
 After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
 
@@ -920,9 +920,10 @@ FA model:
 ```ts
 // Obtain the context.
 import featureAbility from '@ohos.ability.featureAbility';
+import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 try {
-    data_preferences.removePreferencesFromCacheSync(context, 'myStore');
+    dataPreferences.removePreferencesFromCacheSync(context, 'myStore');
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
@@ -934,11 +935,13 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base'
+import window from '@ohos.window';
 
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            data_preferences.removePreferencesFromCacheSync(this.context, 'myStore');
+            dataPreferences.removePreferencesFromCacheSync(this.context, 'myStore');
         } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
@@ -948,13 +951,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.removePreferencesFromCache<sup>10+</sup>
+## dataPreferences.removePreferencesFromCache<sup>10+</sup>
 
 removePreferencesFromCache(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
 Removes a **Preferences** instance from the cache. This API uses an asynchronous callback to return the result.
 
-After an application calls [getPreferences](#data_preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#data_preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
 After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
 
@@ -987,8 +990,8 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 try {
-    let options: data_preferences.Options = { name: 'myStore' };
-    data_preferences.removePreferencesFromCache(context, options, (err: BusinessError) => {
+    let options: dataPreferences.Options = { name: 'myStore' };
+    dataPreferences.removePreferencesFromCache(context, options, (err: BusinessError) => {
         if (err) {
             console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -1012,8 +1015,8 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            data_preferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
                 if (err) {
                     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -1029,13 +1032,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.removePreferencesFromCache<sup>10+</sup>
+## dataPreferences.removePreferencesFromCache<sup>10+</sup>
 
 removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&gt;
 
 Removes a **Preferences** instance from the cache. This API uses a promise to return the result.
 
-After an application calls [getPreferences](#data_preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#data_preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
 After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
 
@@ -1073,8 +1076,8 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { BusinessError } from '@ohos.base'
 let context = featureAbility.getContext();
 try {
-    let options: data_preferences.Options = { name: 'myStore' };
-    let promise = data_preferences.removePreferencesFromCache(context, options);
+    let options: dataPreferences.Options = { name: 'myStore' };
+    let promise = dataPreferences.removePreferencesFromCache(context, options);
     promise.then(() => {
         console.info("Succeeded in removing preferences.");
     }).catch((err: BusinessError) => {
@@ -1097,8 +1100,8 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            let promise = data_preferences.removePreferencesFromCache(this.context, options);
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            let promise = dataPreferences.removePreferencesFromCache(this.context, options);
             promise.then(() => {
                 console.info("Succeeded in removing preferences.");
             }).catch((err: BusinessError) => {
@@ -1113,13 +1116,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## data_preferences.removePreferencesFromCacheSync<sup>10+</sup>
+## dataPreferences.removePreferencesFromCacheSync<sup>10+</sup>
 
 removePreferencesFromCacheSync(context: Context, options: Options):void
 
 Removes a **Preferences** instance from the cache. This API returns the result synchronously.
 
-After an application calls [getPreferences](#data_preferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#data_preferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#datapreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#datapreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
 
 After the **Preferences** instance is removed, do not use it to perform data operations. Otherwise, data inconsistency may be caused. For this purpose, set the removed **Preferences** instance to null. The system will reclaim the removed **Preferences** instances in a unified manner.
 
@@ -1150,8 +1153,8 @@ FA model:
 import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 try {
-    let options: data_preferences.Options = { name: 'myStore' };
-    data_preferences.removePreferencesFromCacheSync(context, options);
+    let options: dataPreferences.Options = { name: 'myStore' };
+    dataPreferences.removePreferencesFromCacheSync(context, options);
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
@@ -1168,8 +1171,8 @@ import window from '@ohos.window';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
         try {
-            let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-            data_preferences.removePreferencesFromCacheSync(this.context, options);
+            let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+            dataPreferences.removePreferencesFromCacheSync(this.context, options);
         } catch (err) {
             let code = (err as BusinessError).code;
             let message = (err as BusinessError).message;
@@ -1194,14 +1197,14 @@ Represents the configuration options of a **Preferences** instance.
 
 Provides APIs for obtaining and modifying the stored data.
 
-Before calling any method of **Preferences**, you must obtain a **Preferences** instance by using [data_preferences.getPreferences](#data_preferencesgetpreferences).
+Before calling any API of **Preferences**, you must obtain a **Preferences** instance by using [dataPreferences.getPreferences](#datapreferencesgetpreferences).
 
 
 ### get
 
 get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;): void
 
-Obtains the value corresponding to the specified key from the cached **Preferences** instance. This API uses an asynchronous callback to return the result. If the value is null or is not of the default value type, **defValue** is returned.
+Obtains the value of a key from this **Preferences** instance. This API uses an asynchronous callback to return the result. If the value is null or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1210,14 +1213,14 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 | Name  | Type                                        | Mandatory| Description                                                        |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                                       | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| defValue | [ValueType](#valuetype)                      | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 | callback | AsyncCallback&lt;[ValueType](#valuetype)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the value obtained. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
 try {
-    preferences.get('startup', 'default', (err: BusinessError, val: data_preferences.ValueType) => {
+    preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
         if (err) {
             console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
             return;
@@ -1236,7 +1239,7 @@ try {
 
 get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
-Obtains the value corresponding to the specified key from the cached **Preferences** instance. This API uses a promise to return the result. If the value is null or is not of the default value type, **defValue** is returned.
+Obtains the value of a key from this **Preferences** instance. This API uses a promise to return the result. If the value is null or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1245,7 +1248,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 
 **Return value**
 
@@ -1258,7 +1261,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 ```ts
 try {
     let promise = preferences.get('startup', 'default');
-    promise.then((data: data_preferences.ValueType) => {
+    promise.then((data: dataPreferences.ValueType) => {
         console.info("Got the value of 'startup'. Data: " + data);
     }).catch((err: BusinessError) => {
         console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1274,7 +1277,7 @@ try {
 
 getSync(key: string, defValue: ValueType): ValueType
 
-Obtains the value corresponding to the specified key from the cached **Preferences** instance. This API returns the result synchronously. If the value is null or is not of the default value type, **defValue** is returned.
+Obtains the value of a key from this **Preferences** instance. This API returns the result synchronously. If the value is null or is not of the default value type, **defValue** is returned.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1283,7 +1286,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                  | Yes  | Key of the data to obtain. It cannot be empty.                             |
-| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| defValue | [ValueType](#valuetype) | Yes  | Default value to be returned. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 
 **Return value**
 
@@ -1295,7 +1298,7 @@ Obtains the value corresponding to the specified key from the cached **Preferenc
 
 ```ts
 try {
-    let value: data_preferences.ValueType = preferences.getSync('startup', 'default');
+    let value: dataPreferences.ValueType = preferences.getSync('startup', 'default');
     console.info("Succeeded in getting value of 'startup'. Data: " + value);
 } catch (err) {
     let code = (err as BusinessError).code;
@@ -1308,7 +1311,7 @@ try {
 
 getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
-Obtains all KV pairs from the cached **Preferences** instance. This API uses an asynchronous callback to return the result.
+Obtains all KV pairs from this **Preferences** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1350,7 +1353,7 @@ try {
 
 getAll(): Promise&lt;Object&gt;
 
-Obtains all KV pairs from the cached **Preferences** instance. This API uses a promise to return the result.
+Obtains all KV pairs from this **Preferences** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1390,7 +1393,7 @@ try {
 
 getAllSync(): Object
 
-Obtains all KV pairs from the cached **Preferences** instance. This API returns the result synchronously.
+Obtains all KV pairs from this **Preferences** instance. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1426,7 +1429,7 @@ try {
 
 put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
-Writes data to the cached **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Writes data to this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1435,7 +1438,7 @@ Writes data to the cached **Preferences** instance. This API uses an asynchronou
 | Name  | Type                     | Mandatory| Description                                                        |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------ |
 | key      | string                    | Yes  | Key of the data. It cannot be empty.                               |
-| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| value    | [ValueType](#valuetype)   | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If data is written successfully, **err** is **undefined**. Otherwise, **err** is an error object.    |
 
 **Example**
@@ -1461,7 +1464,7 @@ try {
 
 put(key: string, value: ValueType): Promise&lt;void&gt;
 
-Writes data to the cached **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1470,7 +1473,7 @@ Writes data to the cached **Preferences** instance. This API uses a promise to r
 | Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 
 **Return value**
 
@@ -1500,7 +1503,7 @@ try {
 
 putSync(key: string, value: ValueType): void
 
-Writes data to the cached **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
+Writes data to this **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1509,7 +1512,7 @@ Writes data to the cached **Preferences** instance. This API returns the result 
 | Name| Type                   | Mandatory| Description                                                        |
 | ------ | ----------------------- | ---- | ------------------------------------------------------------ |
 | key    | string                  | Yes  | Key of the data. It cannot be empty.                               |
-| value  | [ValueType](#valuetype) | Yes  | Value to write. The value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.|
+| value  | [ValueType](#valuetype) | Yes  | Value to write. The value supports the following types: number, string, boolean, Array\<number>, Array\<string>, and Array\<boolean>.|
 
 **Example**
 
@@ -1528,7 +1531,7 @@ try {
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether the cached **Preferences** instance contains the KV pair of the given key. This API uses an asynchronous callback to return the result.
+Checks whether this **Preferences** instance contains the KV pair of the given key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1566,7 +1569,7 @@ try {
 
 has(key: string): Promise&lt;boolean&gt;
 
-Checks whether the cached **Preferences** instance contains the KV pair of the given key. This API uses a promise to return the result.
+Checks whether this **Preferences** instance contains the KV pair of the given key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1608,7 +1611,7 @@ try {
 
 hasSync(key: string): boolean
 
-Checks whether the cached **Preferences** instance contains the KV pair of the given key. This API returns the result synchronously.
+Checks whether this **Preferences** instance contains the KV pair of the given key. This API returns the result synchronously.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1646,7 +1649,7 @@ try {
 
 delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes the KV pair from the cached **Preferences** instance based on the specified key. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Deletes a KV pair from this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1680,7 +1683,7 @@ try {
 
 delete(key: string): Promise&lt;void&gt;
 
-Deletes a KV pair from the cached **Preferences** instance based on the specified key. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Deletes a KV pair from this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1718,7 +1721,7 @@ try {
 
 deleteSync(key: string): void
 
-Deletes a KV pair from the cached **Preferences** instance based on the specified key. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
+Deletes a KV pair from this **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1745,7 +1748,7 @@ try {
 
 flush(callback: AsyncCallback&lt;void&gt;): void
 
-Flushes the data in the cached **Preferences** instance to the persistent file. This API uses an asynchronous callback to return the result.
+Flushes the data in this **Preferences** instance to the persistent file. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1778,7 +1781,7 @@ try {
 
 flush(): Promise&lt;void&gt;
 
-Flushes the data in the cached **Preferences** instance to the persistent file. This API uses a promise to return the result.
+Flushes the data in this **Preferences** instance to the persistent file. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1810,7 +1813,7 @@ try {
 
 clear(callback: AsyncCallback&lt;void&gt;): void
 
-Clears all data in the cached **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Clears this **Preferences** instance. This API uses an asynchronous callback to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1843,7 +1846,7 @@ try {
 
 clear(): Promise&lt;void&gt;
 
-Clears all data in the cached **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
+Clears this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1875,7 +1878,7 @@ try {
 
 clearSync(): void
 
-Clears all data in the cached **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
+Clears this **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1904,21 +1907,22 @@ Subscribes to data changes. A callback will be triggered to return the new value
 
 | Name  | Type    | Mandatory| Description                                    |
 | -------- | -------- | ---- | ---------------------------------------- |
-| type     | string   | Yes  | Event type. The value is **change**, which indicates data changes.|
-| callback | Function | Yes  | Callback invoked to return the data change.<br>**key** indicates the key whose value is changed.    |
+| type     | string   | Yes  | Event type. The value **change** indicates data changes.|
+| callback | Function | Yes  | Callback invoked to return the result.<br>**key** is the key whose value is changed.    |
 
 **Example**
 
 ```ts
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+}
 try {
-    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
+    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: string) => {
-            console.info("The key " + key + " changed.");
-        });
+        preferences.on('change', observer);
         preferences.put('startup', 'manual', (err: BusinessError) => {
             if (err) {
             console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -1948,7 +1952,7 @@ on(type: 'multiProcessChange', callback: ( key : string ) => void): void
 
 Subscribes to inter-process data changes. For the multiple processes holding the same preference file, if the value of the subscribed key changes in any process, the callback in this API will be invoked after [flush()](#flush) is executed.
 
-This API can be used with [removePreferencesFromCache](#data_preferencesremovepreferencesfromcache) to update the **Preferences** instance in the callback when detecting that a process updates a file. For details, see example 2.
+This API can be used with [removePreferencesFromCache](#datapreferencesremovepreferencesfromcache) to update the **Preferences** instance in the callback when detecting that a process updates a file. For details, see example 2.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1957,7 +1961,7 @@ This API can be used with [removePreferencesFromCache](#data_preferencesremovepr
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Function | Yes  | Callback invoked to return data changes between processes.<br>**key** indicates the key whose value is changed.                        |
+| callback | Function | Yes  | Callback invoked to return the result.<br>**key** is the key whose value is changed.                        |
 
 **Error codes**
 
@@ -1970,16 +1974,17 @@ For details about the error codes, see [User Preference Error Codes](../errorcod
 **Example 1**
 
 ```ts
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+}
 try {
-    let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
+    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+    dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: string) => {
-            console.info("The key " + key + " changed.");
-        });
+        preferences.on('multiProcessChange', observer);
         preferences.put('startup', 'manual', (err: BusinessError) => {
             if (err) {
                 console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -2005,46 +2010,47 @@ try {
 **Example 2**
 
 ```ts
+let options: dataPreferences.Options = { name: 'myStore' };
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+    try {
+        dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
+            if (err) {
+                console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
+                return;
+            }
+            preferences = null;
+            console.info("Succeeded in removing preferences.");
+        })
+    } catch (err) {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error("Failed to remove preferences. code =" + code + ", message =" + message);
+    }
+
+    try {
+        dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
+            if (err) {
+                console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
+                return;
+            }
+            preferences = val;
+            console.info("Succeeded in getting preferences.");
+        })
+    } catch (err) {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error("Failed to get preferences. code =" + code + ", message =" + message);
+    }
+}
 try {
-    let options: data_preferences.Options = { name: 'myStore' };
-    data_preferences.getPreferences(this.context, options, (err: BusinessError, val: data_preferences.Preferences) => {
+    dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
         preferences = val;
-        preferences.on('multiProcessChange', (key: string) => {
-            console.info("The key " + key + " changed.");
-            try {
-                data_preferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
-                    if (err) {
-                        console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-                        return;
-                    }
-                    preferences = null;
-                    console.info("Succeeded in removing preferences.");
-                })
-            } catch (err) {
-                let code = (err as BusinessError).code;
-                let message = (err as BusinessError).message;
-                console.error("Failed to remove preferences. code =" + code + ", message =" + message);
-            }
-
-            try {
-                data_preferences.getPreferences(this.context, options, (err: BusinessError, val: data_preferences.Preferences) => {
-                    if (err) {
-                        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-                        return;
-                    }
-                    preferences = val;
-                    console.info("Succeeded in getting preferences.");
-                })
-            } catch (err) {
-                let code = (err as BusinessError).code;
-                let message = (err as BusinessError).message;
-                console.error("Failed to get preferences. code =" + code + ", message =" + message);
-            }
-        });
+        preferences.on('multiProcessChange', observer);
         preferences.put('startup', 'manual', (err: BusinessError) => {
             if (err) {
                 console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -2082,22 +2088,22 @@ Unsubscribes from data changes.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The value is **change**, which indicates data changes.                |
-| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered.<br>**key** indicates the key whose value is changed.|
+| type     | string   | Yes  | Event type. The value **change** indicates data changes.                    |
+| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for data changes will be unregistered.<br>**key** is the key whose value is changed.|
 
 **Example**
 
 ```ts
-
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+}
 try {
-    data_preferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: data_preferences.Preferences) => {
+    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, preferences: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('change', (key: string) => {
-            console.info("The key " + key + " changed.");
-        });
+        preferences.on('change', observer);
         preferences.put('startup', 'auto', (err: BusinessError) => {
             if (err) {
                 console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -2112,9 +2118,7 @@ try {
                 }
                 console.info("Successfully flushed data.");
             })
-            preferences.off('change', (key: string) => {
-                console.info("The key " + key + " changed.");
-            });
+            preferences.off('change', observer);
         })
     })
 } catch (err) {
@@ -2137,21 +2141,22 @@ Unsubscribes from inter-process data changes.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type. The value is **multiProcessChange**, which indicates data changes between multiple processes.|
-| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for the **multiProcessChange** event will be unregistered.<br>**key** indicates the key whose value is changed.|
+| callback | Function | No  | Callback to unregister. If this parameter is left blank, all callbacks for inter-process data changes will be unregistered.<br>**key** is the key whose value is changed. |
 
 **Example**
 
 ```ts
+let observer = (key: string) => {
+    console.info("The key " + key + " changed.");
+}
 try {
-    let options: data_preferences.Options = { name: 'myStore', dataGroupId:'myId' };
-    data_preferences.getPreferences(this.context, options, (err: BusinessError, preferences: data_preferences.Preferences) => {
+    let options: dataPreferences.Options = { name: 'myStore', dataGroupId:'myId' };
+    dataPreferences.getPreferences(this.context, options, (err: BusinessError, preferences: dataPreferences.Preferences) => {
         if (err) {
             console.error("Failed to get preferences.");
             return;
         }
-        preferences.on('multiProcessChange', (key: string) => {
-            console.info("The key " + key + " changed.");
-        });
+        preferences.on('multiProcessChange', observer);
         preferences.put('startup', 'auto', (err: BusinessError) => {
             if (err) {
                 console.error("Failed to put the value of 'startup'. Cause: " + err);
@@ -2166,9 +2171,7 @@ try {
                 }
                 console.info("Successfully flushed data.");
             })
-            preferences.off('multiProcessChange', (key: string) => {
-                console.info("The key " + key + " changed.");
-            });
+            preferences.off('multiProcessChange', observer);
         })
     })
 } catch (err) {
@@ -2187,7 +2190,7 @@ Enumerates the value types.
 | --------------- | ------------------------------ |
 | number          | The value is a number.            |
 | string          | The value is a string.          |
-| boolean         | The value is of Boolean type.          |
+| boolean         | The value is true or false.          |
 | Array\<number>  | The value is an array of numbers.  |
 | Array\<boolean> | The value is a Boolean array.  |
 | Array\<string>  | The value is an array of strings.|

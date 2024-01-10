@@ -4,7 +4,7 @@
 $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系统内置组件的内部状态保持同步。
 
 
-内部状态具体指什么取决于组件。例如，[bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md)属性方法的show参数。
+内部状态具体指什么取决于组件。例如，[TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)组件的text参数。
 
 
 ## 使用规则
@@ -37,7 +37,6 @@ $$运算符为系统内置组件提供TS变量的引用，使得TS变量和系�
   | [Select](../reference/arkui-ts/ts-basic-components-select.md) | selected、value | 10          |
   | [BindSheet](../reference/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 10          |
   | [BindContentCover](../reference/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 10          |
-  | [bindPopup](../reference/arkui-ts/ts-universal-attributes-popup.md) | show | 8 |
   | [Refresh](../reference/arkui-ts/ts-container-refresh.md) | refreshing | 8 |
 
 - $$绑定的变量变化时，会触发UI的同步刷新。

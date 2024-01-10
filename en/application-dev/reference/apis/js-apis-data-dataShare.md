@@ -50,11 +50,13 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, (err, data) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -70,7 +72,7 @@ try {
 ```
 
 ## dataShare.createDataShareHelper<sup>10+</sup>
-createDataShareHelper(context: Context, uri: string, options: DataShareHelperOptions, callback: AsyncCallback&lt;DataShareHelper&gt;): void
+createDataShareHelper(context: Context, uri: string, options: DataShareHelperOptions, callback: AsyncCallback&lt;DataShareHelper&gt;): void 
 
 Creates a **DataShareHelper** instance. This API uses an asynchronous callback to return the result.
 
@@ -101,11 +103,13 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}, (err, data) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err, data) => {
     if (err !== undefined) {
       console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
       return;
@@ -158,11 +162,13 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 ```ts
 import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+let context = getContext(UIAbility);
 try {
-  dataShare.createDataShareHelper(this.context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
+  dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
     console.info("createDataShareHelper succeed, data : " + data);
     dataShareHelper = data;
   }). catch((err: BusinessError) => {
@@ -761,7 +767,7 @@ For details about the error codes, see [DataShare Error Codes](../errorcodes/err
 
 **Example**
 
-```ts
+```ts 
 if (dataShareHelper != undefined) {
   let publishedData: Promise<Array<dataShare.PublishedItem>> = (dataShareHelper as dataShare.DataShareHelper).getPublishedData("com.acts.ohos.data.datasharetest");
 }
@@ -1066,7 +1072,7 @@ Updates data in the database. This API uses an asynchronous callback to return t
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                 |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
 **Example**
@@ -1121,7 +1127,7 @@ Updates data in the database. This API uses a promise to return the result.
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates.|
-| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data.                                          |
+| value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                  |
 
 **Return value**
 

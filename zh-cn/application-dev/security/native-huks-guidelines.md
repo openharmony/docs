@@ -315,6 +315,19 @@ struct HksImportWrappedKeyTestParams {
     uint32_t keyMaterialLen;
 };
 
+static const uint32_t IV_SIZE = 16;
+static uint8_t IV[IV_SIZE] = {0};
+OH_Huks_Result MallocAndCheckBlobData(struct OH_Huks_Blob *blob, const uint32_t blobSize) {
+    struct OH_Huks_Result ret;
+    ret.errorCode = OH_HUKS_SUCCESS;
+
+    blob->data = (uint8_t *)malloc(blobSize);
+    if (blob->data == NULL) {
+        ret.errorCode = OH_HUKS_ERR_CODE_INTERNAL_ERROR;
+    }
+
+    return ret;
+}
 static const uint32_t WRAPPED_KEY_IV_SIZE = 16;
 static uint8_t WRAPPED_KEY_IV[IV_SIZE] = "bababababababab";  // this is a test value, for real use the iv should be different every time 
 

@@ -10,16 +10,18 @@ The entire lifecycle of the [InputMethodExtensionAbility](../reference/apis/js-a
 
 ## Implementing an Input Method Application
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required.
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) provides the **onCreate()** and **onDestroy()** callbacks, as described below. Override them as required.  
 
-- **onCreate**
+- **onCreate()**
+
   This callback is triggered when a service is created for the first time. You can perform initialization operations, for example, registering a common event listener.
 
   > **NOTE**
   >
   > If a service has been created, starting it again does not trigger the **onCreate()** callback.
 
-- **onDestroy**
+- **onDestroy()**
+
   This callback is triggered when the service is no longer used and the instance is ready for destruction. You can clear resources in this callback, for example, deregister the listener.
 
 
@@ -27,15 +29,9 @@ The entire lifecycle of the [InputMethodExtensionAbility](../reference/apis/js-a
 
 To implement an input method application, manually create an InputMethodExtensionAbility component in DevEco Studio. The procedure is as follows:
 
-In the **ets** directory of the target module, right-click and choose **New** > **Extension Ability** > **InputMethod** to a minimum template of InputMethodExtensionAbility.
+1. In the **ets** directory of the target module, right-click and choose **New > Directory** to create a directory named **InputMethodExtensionAbility**.
 
-> **NOTE**
-> 
-> When compiling the input method application, use the signature at the system_basic level. Otherwise, the application will not be able to start the keyboard.
-
-The minimum template implements an input method application with the most basic features, such as starting the keyboard, entering text, and deleting input. You can diversify the feature set of the application by, for example, adding the feature to hide the keyboard.
-
-The minimum template contains four files: **KeyboardController.ts**, **InputMethodService.ts**, **Index.ets**, and **KeyboardKeyData.ts**. The file directory is as follows:
+2. Right-click the **InputMethodExtensionAbility** directory, choose **New** > **File**, and create four files: **KeyboardController.ts**, **InputMethodService.ts**, **Index.ets**, and **KeyboardKeyData.ts**. The file directory is as follows:
 
 ```
 /src/main/
@@ -136,7 +132,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
        let nonBarPosition = dHeight - keyHeight;
        let panelInfo: inputMethodEngine.PanelInfo = {
          type: inputMethodEngine.PanelType.SOFT_KEYBOARD,
-         flag: inputMethodEngine.PanelFlag.FLG_FLOATING
+         flag: inputMethodEngine.PanelFlag.FLG_FIXED
        };
        inputMethodAbility.createPanel(this.mContext, panelInfo).then(async (inputPanel: inputMethodEngine.Panel) => {
          this.panel = inputPanel;
@@ -352,11 +348,17 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    }
    ```
 
+## Verification
 
+1. Run the hdc command to display the dialog box for switching between input methods: **hdc shell aa start ability -a InputMethod -b cn.openharmonyinputmethodchoosedialog**
 
-## Restrictions
+2. In the dialog box for switching between input methods, switch the input method to the demo application.
 
-To reduce the risk of abuse of the InputMethodExtensionAbility by third-party applications, the invoking of APIs in the following modules is restricted in the InputMethodExtensionAbility:
+3. When you touch any edit box, the demo application should start.
+
+## Constraints
+
+To the InputMethodExtensionAbility against abuse, the invoking of APIs in the modules listed below is restricted in the InputMethodExtensionAbility.
 
 > **NOTE**
 >
@@ -366,7 +368,7 @@ To reduce the risk of abuse of the InputMethodExtensionAbility by third-party ap
 >   - Recording-related services are allowed only when the InputMethodExtensionAbility is in the foreground. For example, perform recording only when the soft keyboard is in the foreground and the user is proactively using the voice input method; stop recording when the application is switched to the background.
 >   - Applications will see increasingly stringent measures against violations with the preceding rules, and any violation may result in function exceptions.
 
-**Restricted modules:**
+**Module list:**
 
 - [@ohos.ability.featureAbility (FeatureAbility)](../reference/apis/js-apis-ability-featureAbility.md)
 - [@ohos.ability.particleAbility (ParticleAbility)](../reference/apis/js-apis-ability-particleAbility.md)

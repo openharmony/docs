@@ -144,7 +144,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor) => {
+avSession.getAllSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor[]) => {
   console.info(`getAllSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
   if(descriptors.length > 0 ){
     console.info(`getAllSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
@@ -187,7 +187,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getAllSessionDescriptors((err: BusinessError, descriptors: avSession.AVSessionDescriptor) => {
+avSession.getAllSessionDescriptors((err: BusinessError, descriptors: avSession.AVSessionDescriptor[]) => {
   if (err) {
     console.error(`GetAllSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -238,7 +238,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getHistoricalSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor) => {
+avSession.getHistoricalSessionDescriptors().then((descriptors: avSession.AVSessionDescriptor[]) => {
   console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors.length : ${descriptors.length}`);
   if(descriptors.length > 0 ){
     console.info(`getHistoricalSessionDescriptors : SUCCESS : descriptors[0].isActive : ${descriptors[0].isActive}`);
@@ -284,7 +284,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avSession.getHistoricalSessionDescriptors(1, (err: BusinessError, descriptors: avSession.AVSessionDescriptor) => {
+avSession.getHistoricalSessionDescriptors(1, (err: BusinessError, descriptors: avSession.AVSessionDescriptor[]) => {
   if (err) {
     console.error(`getHistoricalSessionDescriptors BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -322,7 +322,7 @@ Creates a session controller based on the session ID. Multiple session controlle
 
 | Type                                                 | Description                                                        |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<[AVSessionController](#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID, send commands and events to sessions, and obtain metadata and playback state information.|
+| Promise<[AVSessionController](#avsessioncontroller10)\> | Promise used to return the session controller created, which can be used to obtain the session ID,<br>send commands and events to sessions, and obtain metadata and playback state information.|
 
 **Error codes**
 
@@ -2708,7 +2708,7 @@ import { BusinessError } from '@ohos.base';
 let aVCastController: avSession.AVCastController;
 currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
   aVCastController = avcontroller;
-  console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
+  console.info(`getAVCastController : SUCCESS`);
 }).catch((err: BusinessError) => {
   console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -2748,7 +2748,7 @@ currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSessio
     console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     aVCastController = avcontroller;
-    console.info(`getAVCastController : SUCCESS : sessionid : ${aVCastController.sessionId}`);
+    console.info(`getAVCastController : SUCCESS`);
   }
 });
 ```
@@ -2782,7 +2782,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 import { BusinessError } from '@ohos.base';
 
 currentAVSession.getOutputDevice().then((outputDeviceInfo: avSession.OutputDeviceInfo) => {
-  console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
+  console.info(`GetOutputDevice : SUCCESS : devices length : ${outputDeviceInfo.devices.length}`);
 }).catch((err: BusinessError) => {
   console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
 })
@@ -2820,7 +2820,7 @@ currentAVSession.getOutputDevice((err: BusinessError, outputDeviceInfo: avSessio
   if (err) {
     console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`GetOutputDevice : SUCCESS : isRemote : ${outputDeviceInfo.isRemote}`);
+    console.info(`GetOutputDevice : SUCCESS : devices length : ${outputDeviceInfo.devices.length}`);
   }
 });
 ```
@@ -4125,7 +4125,19 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 **Example**
 
 ```ts
-aVCastController.setDisplaySurface().then(() => {
+import media from '@ohos.multimedia.media';
+let surfaceID: string = '';
+media.createAVRecorder().then((avRecorder) => {
+  avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
+    if (err == null) {
+      console.info('getInputSurface success');
+      surfaceID = surfaceId;
+    } else {
+      console.error('getInputSurface failed and error is ' + err.message);
+    }
+  });
+})
+aVCastController.setDisplaySurface(surfaceID).then(() => {
   console.info(`setDisplaySurface : SUCCESS`);
 });
 ```
@@ -4158,8 +4170,19 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 
 ```ts
 import { BusinessError } from '@ohos.base';
-
-aVCastController.setDisplaySurface((err: BusinessError) => {
+import media from '@ohos.multimedia.media';
+let surfaceID: string = '';
+media.createAVRecorder().then((avRecorder) => {
+  avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
+    if (err == null) {
+      console.info('getInputSurface success');
+      surfaceID = surfaceId;
+    } else {
+      console.error('getInputSurface failed and error is ' + err.message);
+    }
+  });
+})
+aVCastController.setDisplaySurface(surfaceID, (err: BusinessError) => {
   if (err) {
     console.info(`setDisplaySurface BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
@@ -6141,7 +6164,7 @@ For details about the error codes, see [AVSession Management Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-avsessionController.getValidCommands.then((validCommands: avSession.AVControlCommandType[]) => {
+avsessionController.getValidCommands().then((validCommands: avSession.AVControlCommandType[]) => {
   console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
 }).catch((err: BusinessError) => {
   console.error(`GetValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);

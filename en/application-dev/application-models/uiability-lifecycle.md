@@ -37,11 +37,11 @@ export default class EntryAbility extends UIAbility {
 >
 > [Want](../reference/apis/js-apis-app-ability-want.md) is used as the carrier to transfer information between application components. For details, see [Want](want-overview.md).
 
-### WindowStageCreate and WindowStageDestory
+### WindowStageCreate and WindowStageDestroy
 
 After the UIAbility instance is created but before it enters the **Foreground** state, the system creates a WindowStage instance and triggers the **onWindowStageCreate()** callback. You can set UI loading and WindowStage event subscription in the callback.
 
-**Figure 2** WindowStageCreate and WindowStageDestory
+**Figure 2** WindowStageCreate and WindowStageDestroy 
 
 ![Ability-Life-Cycle-WindowStage](figures/Ability-Life-Cycle-WindowStage.png)  
 
@@ -111,7 +111,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageDestroy() {
-    // Release UIresources.
+    // Release UI resources.
     // Unsubscribe from the WindowStage events such as having or losing focus in the onWindowStageDestroy() callback.
     try {
       if (this.windowStage) {

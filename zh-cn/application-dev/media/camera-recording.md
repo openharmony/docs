@@ -1,4 +1,4 @@
-# 录像
+# 录像(ArkTS)
 
 录像也是相机应用的最重要功能之一，录像是循环帧的捕获。对于录像的流畅度，开发者可以参考[拍照](camera-shooting.md)中的步骤4，设置分辨率、闪光灯、焦距、照片质量及旋转角度等信息。
 
@@ -19,7 +19,7 @@
 
    ```ts
    async function getVideoSurfaceId(aVRecorderConfig: media.AVRecorderConfig): Promise<string | undefined> {  // aVRecorderConfig可参考下一章节
-     let avRecorder: media.AVRecorder | undefined;
+     let avRecorder: media.AVRecorder | undefined = undefined;
      try {
        avRecorder = await media.createAVRecorder();
      } catch (error) {
@@ -31,9 +31,9 @@
      }
      avRecorder.prepare(aVRecorderConfig, (err: BusinessError) => {
        if (err == null) {
-         console.log('prepare success');
+         console.info('prepare success');
        } else {
-         console.log('prepare failed and error is ' + err.message);
+         console.error('prepare failed and error is ' + err.message);
        }
      });
      let videoSurfaceId = await avRecorder.getInputSurface();
@@ -62,14 +62,14 @@
        videoFrameWidth : 640,  // 视频分辨率的宽
        videoFrameHeight : 480, // 视频分辨率的高
        videoFrameRate : 30 // 视频帧率
-     }
+     };
      // 创建视频录制的参数，预览流与录像输出流的分辨率的宽(videoFrameWidth)高(videoFrameHeight)比要保持一致
      let aVRecorderConfig: media.AVRecorderConfig = {
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
        url: 'fd://35',
        rotation: 90 // 90°为默认竖屏显示角度，如果由于设备原因或应用期望以其他方式显示等原因，请根据实际情况调整该参数
-     }
+     };
      // 创建avRecorder
      let avRecorder: media.AVRecorder | undefined = undefined;
      try {

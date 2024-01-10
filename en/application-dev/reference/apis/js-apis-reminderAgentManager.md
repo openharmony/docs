@@ -10,7 +10,7 @@ The **reminderAgentManager** module provides APIs related to agent-powered remin
 ## Modules to Import
 
 ```ts
-import reminderAgentManager from'@ohos.reminderAgentManager';
+import reminderAgentManager from '@ohos.reminderAgentManager';
 ```
 
 ## reminderAgentManager.publishReminder
@@ -53,8 +53,8 @@ let timer: reminderAgentManager.ReminderRequestTimer = {
 }
 
 reminderAgentManager.publishReminder(timer, (err: BusinessError, reminderId: number) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("callback, reminderId = " + reminderId);
   }
@@ -106,7 +106,7 @@ let timer: reminderAgentManager.ReminderRequestTimer = {
 reminderAgentManager.publishReminder(timer).then((reminderId: number) => {
   console.log("promise, reminderId = " + reminderId);
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -141,9 +141,9 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 import { BusinessError } from '@ohos.base';
 
 let reminderId: number = 1;
-reminderAgentManager.cancelReminder(reminderId, (err: BusinessError, data: void) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+reminderAgentManager.cancelReminder(reminderId, (err: BusinessError) => {
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("cancelReminder callback");
   }
@@ -188,7 +188,7 @@ let reminderId: number = 1;
 reminderAgentManager.cancelReminder(reminderId).then(() => {
   console.log("cancelReminder promise");
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -220,8 +220,8 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<reminderAgentManager.ReminderRequest>) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("callback, getValidReminders length = " + reminders.length);
     for (let i = 0; i < reminders.length; i++) {
@@ -302,7 +302,7 @@ reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentMan
     console.log("getValidReminders, slotType = " + reminders[i].slotType);
   }
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 }); 
 ```
 
@@ -333,9 +333,9 @@ For details about the error codes, see [reminderAgentManager Error Codes](../err
 ```ts
 import { BusinessError } from '@ohos.base';
 
-reminderAgentManager.cancelAllReminders((err: BusinessError, data: void) =>{
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+reminderAgentManager.cancelAllReminders((err: BusinessError) =>{
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("cancelAllReminders callback")
   }
@@ -372,7 +372,7 @@ import { BusinessError } from '@ohos.base';
 reminderAgentManager.cancelAllReminders().then(() => {
   console.log("cancelAllReminders promise")
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -402,9 +402,9 @@ let mySlot: notification.NotificationSlot = {
   type: notification.SlotType.SOCIAL_COMMUNICATION
 }
 
-reminderAgentManager.addNotificationSlot(mySlot, (err: BusinessError, data: void) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+reminderAgentManager.addNotificationSlot(mySlot, (err: BusinessError) => {
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("addNotificationSlot callback");
   }
@@ -444,7 +444,7 @@ let mySlot: notification.NotificationSlot = {
 reminderAgentManager.addNotificationSlot(mySlot).then(() => {
   console.log("addNotificationSlot promise");
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -471,9 +471,9 @@ import notification from '@ohos.notificationManager'
 import { BusinessError } from '@ohos.base';
 
 reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION,
-  (err: BusinessError, data: void) => {
-  if (err) {
-    console.log("callback err code:" + err.code + " message:" + err.message);
+  (err: BusinessError) => {
+  if (err.code) {
+    console.error("callback err code:" + err.code + " message:" + err.message);
   } else {
     console.log("removeNotificationSlot callback");
   }
@@ -510,7 +510,7 @@ import { BusinessError } from '@ohos.base';
 reminderAgentManager.removeNotificationSlot(notification.SlotType.CONTENT_INFORMATION).then(() => {
   console.log("removeNotificationSlot promise");
 }).catch((err: BusinessError) => {
-  console.log("promise err code:" + err.code + " message:" + err.message);
+  console.error("promise err code:" + err.code + " message:" + err.message);
 });
 ```
 
@@ -588,16 +588,16 @@ Defines the request for publishing a reminder.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
-| actionButton<sup></sup> | [ActionButton](#actionbutton) | No| Buttons displayed for the reminder in the notification panel.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
+| actionButton | [[ActionButton?, ActionButton?, ActionButton?]](#actionbutton) | No| Buttons displayed for the reminder in the notification panel.<br>- For common applications, a maximum of two buttons are supported.<br>- For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
 | wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the reminder is clicked.|
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is started automatically and displayed in full-screen mode when the reminder arrives. If the device is in use, only a notification banner is displayed.<br> This API is reserved.|
 | ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
-| snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**.|
-| timeInterval | number | No| Reminder snooze interval, in seconds. The minimum value is 5 minutes.|
+| snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**. (It is not applicable to countdown reminders.)|
+| timeInterval | number | No| Reminder snooze interval, in seconds. The minimum value is 5 minutes. (It is not applicable to countdown reminders.)|
 | title | string | No| Reminder title.|
 | content | string | No| Reminder content.|
 | expiredContent | string | No| Content to be displayed after the reminder expires.|
-| snoozeContent | string | No| Content to be displayed when the reminder is snoozing.|
+| snoozeContent | string | No| Content to be displayed when the reminder is snoozing. (It is not applicable to countdown reminders.)|
 | notificationId | number | No| Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
 | slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
 | tapDismissed<sup>10+</sup> | boolean | No| Whether the reminder is automatically cleared. For details, see [NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest). |

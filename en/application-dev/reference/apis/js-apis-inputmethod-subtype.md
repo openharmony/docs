@@ -1,6 +1,6 @@
 # @ohos.InputMethodSubtype (Input Method Subtype)
 
-The **InputMethodSubtype** module provides APIs for managing the attributes of input method subtypes. Different attribute settings result in different subtypes.
+The **InputMethodSubtype** module provides APIs for managing the attributes of input method subtypes. The input method subtype allows the input method to switch to a specific mode or language, for example, the Chinese or English keyboard.
 
 > **NOTE**
 >
@@ -8,7 +8,7 @@ The **InputMethodSubtype** module provides APIs for managing the attributes of i
 
 ## Modules to Import
 
-```
+```ts
 import InputMethodSubtype from '@ohos.InputMethodSubtype';
 ```
 
@@ -21,12 +21,12 @@ import InputMethodSubtype from '@ohos.InputMethodSubtype';
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | label | string | Yes| No| Optional. Label of the input method subtype.|
-| labelId<sup>10+</sup> | string | Yes| No| Optional. Label ID of the input method subtype.|
-| name | string | Yes| No| Mandatory. Bundle name of the input method.|
+| labelId<sup>10+</sup> | number | Yes| No| Optional. Label ID of the input method subtype.|
+| name | string | Yes| No| Mandatory. Bundle name of the application to which the input method subtype belongs.|
 | id | string | Yes| No| Mandatory. ID of the input method subtype.|
 | mode | string | Yes| No| Optional. Mode of the input method subtype, including **upper** (uppercase) and **lower** (lowercase).|
 | locale | string | Yes| No| Mandatory. Locale of the input method subtype.|
 | language | string | Yes| No| Mandatory. Language of the input method subtype.|
 | icon | string | Yes| No| Optional. Icon of the input method subtype. It can be obtained by using **iconId**. This parameter is reserved.|
 | iconId | number | Yes| No| Optional. Icon ID of the input method subtype.|
-| extra | object | Yes| Yes| Optional. Extra information of the input method subtype. This parameter is reserved and currently has no specific meaning.<br>**NOTE**<br>This parameter is optional since API version 10.|
+| extra | object | Yes| Yes| Mandatory. Extra information of the input method subtype.<br>**NOTE**<br>- This parameter is optional since API version 10.<br>- This parameter is reserved and currently has no specific meaning.|

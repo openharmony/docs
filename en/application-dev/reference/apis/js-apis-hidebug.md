@@ -171,7 +171,7 @@ Obtains system service information.
 
 **Error codes**
 
-For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hiviewdfx-hidebug.md).
+For details about the error codes, see [HiDebug Error Codes](../errorcodes/errorcode-hiviewdfx-hidebug.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
@@ -181,31 +181,39 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs'
-import hidebug from '@ohos.hidebug'
-import common from '@ohos.app.ability.common'
-import { BusinessError } from '@ohos.base'
+import UIAbility from '@ohos.app.ability.UIAbility';
+import fs from '@ohos.file.fs';
+import hidebug from '@ohos.hidebug';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
-let applicationContext: common.Context | null = null;
-try {
-  applicationContext = this.context.getApplicationContext();
-} catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+export default class HidebugTest extends UIAbility {
+  public testfunc() {
+    let applicationContext: common.Context | null = null;
+    try {
+      applicationContext = this.context.getApplicationContext();
+    } catch (error) {
+      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+    }
+
+    let filesDir: string = applicationContext!.filesDir;
+    let path: string = filesDir + "/serviceInfo.txt";
+    console.info("output path: " + path);
+    let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    let serviceId: number = 10;
+    let args: Array<string> = new Array("allInfo");
+
+    try {
+      hidebug.getServiceDump(serviceId, file.fd, args);
+    } catch (error) {
+      console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+    }
+    fs.closeSync(file);
+  }
 }
 
-let filesDir: string = applicationContext!.filesDir;
-let path: string = filesDir + "/serviceInfo.txt";
-console.info("output path: " + path);
-let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-let serviceId: number = 10;
-let args: Array<string> = new Array("allInfo");
-
-try {
-  hidebug.getServiceDump(serviceId, file.fd, args);
-} catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
-}
-fs.closeSync(file);
+let t = new HidebugTest();
+t.testfunc();
 ```
 
 ## hidebug.startJsCpuProfiling<sup>9+</sup>
@@ -224,7 +232,7 @@ Starts the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` 
 
 **Error codes**
 
-For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
@@ -233,8 +241,8 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 **Example**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -262,8 +270,8 @@ Stops the profiling method. `startJsCpuProfiling()` and `stopJsCpuProfiling()` a
 **Example**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.startJsCpuProfiling("cpu_profiling");
@@ -290,7 +298,7 @@ Exports the heap data.
 
 **Error codes**
 
-For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
 
 | ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
@@ -299,8 +307,8 @@ For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/er
 **Example**
 
 ```ts
-import hidebug from '@ohos.hidebug'
-import { BusinessError } from '@ohos.base'
+import hidebug from '@ohos.hidebug';
+import { BusinessError } from '@ohos.base';
 
 try {
   hidebug.dumpJsHeapData("heapData");

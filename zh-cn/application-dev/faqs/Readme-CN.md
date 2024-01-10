@@ -11,6 +11,7 @@
   - [ArkUI路由/导航开发常见问题(ArkTS)](faqs-arkui-route-nav.md)
   - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs-arkui-animation-interactive-event.md)
 - [ArkUI框架开发常见问题(JS)](faqs-arkui-js.md)
+- [ArkTS语言基础类库开发常见问题](faqs-arkts-utils.md)
 - [Web开发常见问题](faqs-arkui-web.md)
 - [包管理开发常见问题](faqs-bundle-management.md)
 - [资源管理开发常见问题](faqs-globalization.md)

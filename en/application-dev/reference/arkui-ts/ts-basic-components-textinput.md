@@ -294,7 +294,7 @@ struct TextInputExample {
         .width(380)
         .height(60)
         .showError('Error')
-        .showUnit(this.itemEnd)
+        .showUnit(this.itemEnd.bind(this))
 
       Text (`User name: ${this.Text}`)
         .width('95%')

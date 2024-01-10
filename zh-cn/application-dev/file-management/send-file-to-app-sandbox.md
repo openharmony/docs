@@ -36,12 +36,12 @@ hdc file send ${待推送文件的本地路径} /data/app/el1/bundle/public/com.
 推送文件完成后，需要将文件的user_id、group_id设置为应用的user_id。应用的user_id查询命令如下，其中所在进程行第一列为该应用进程user_id：
 
 ```
-ps -ef | grep com.ohos.example
+hdc shell ps -ef | grep com.ohos.example
 ```
 
-设置文件user_id、group_id命令如下：
+使用应用进程的user_id设置文件的user_id和group_id，命令如下：
 ```
-chown ${user_id}:${user_id} ${文件路径}
+hdc shell chown ${user_id}:${user_id} ${文件路径}
 ```
 
 ## 切换应用沙箱视角

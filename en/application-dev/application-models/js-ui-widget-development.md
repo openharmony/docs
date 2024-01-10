@@ -47,25 +47,25 @@ The widget provider consists of the following modules:
 
 The **FormExtensionAbility** class has the following APIs. For details, see [FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md).
 
-| Name| Description|
+| Name                                                                                             | Description|
 | -------- | -------- |
-| onAddForm(want: Want): formBindingData.FormBindingData | Called to notify the widget provider that a widget is being created.|
-| onCastToNormalForm(formId: string): void | Called to notify the widget provider that a temporary widget is being converted to a normal one.|
-| onUpdateForm(formId: string): void | Called to notify the widget provider that a widget is being updated.|
+| onAddForm(want: Want): formBindingData.FormBindingData                                 | Called to notify the widget provider that a widget is being created.|
+| onCastToNormalForm(formId: string): void                                               | Called to notify the widget provider that a temporary widget is being converted to a normal one.|
+| onUpdateForm(formId: string): void                                                     | Called to notify the widget provider that a widget is being updated.|
 | onChangeFormVisibility(newStatus: { [key: string]: number }): void | Called to notify the widget provider that the widget visibility status is being changed.|
-| onFormEvent(formId: string, message: string): void | Called to instruct the widget provider to process a widget event.|
-| onRemoveForm(formId: string): void | Called to notify the widget provider that a widget is being destroyed.|
-| onConfigurationUpdate(config: Configuration): void | Called when the configuration of the environment where the widget is running is being updated.|
-| onShareForm?(formId: string): { [key: string]: Object } | Called to notify the widget provider that the widget host is sharing the widget data.|
+| onFormEvent(formId: string, message: string): void                                     | Called to instruct the widget provider to process a widget event.|
+| onRemoveForm(formId: string): void                                                     | Called to notify the widget provider that a widget is being destroyed.|
+| onConfigurationUpdate(newConfig: Configuration): void                                  | Called when the configuration of the environment where the widget is running is being updated.|
+| onShareForm?(formId: string): { [key: string]: Object }                                | Called to notify the widget provider that the widget host is sharing the widget data.|
 
 The **FormProvider** class has the following APIs. For details, see [FormProvider](../reference/apis/js-apis-app-form-formProvider.md).
 
 | Name| Description|
 | -------- | -------- |
-| setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void; | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
-| setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;; | Sets the next refresh time for a widget. This API uses a promise to return the result.|
-| updateForm(formId: string, formBindingData: FormBindingData, callback: AsyncCallback&lt;void&gt;): void; | Updates a widget. This API uses an asynchronous callback to return the result.|
-| updateForm(formId: string, formBindingData: FormBindingData): Promise&lt;void&gt;; | Updates a widget. This API uses a promise to return the result.|
+| setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void | Sets the next refresh time for a widget. This API uses an asynchronous callback to return the result.|
+| setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt; | Sets the next refresh time for a widget. This API uses a promise to return the result.|
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData, callback: AsyncCallback&lt;void&gt;): void | Updates a widget. This API uses an asynchronous callback to return the result.|
+| updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt; | Updates a widget. This API uses a promise to return the result.|
 
 The **FormBindingData** class has the following APIs. For details, see [FormBindingData](../reference/apis/js-apis-app-form-formBindingData.md).
 
@@ -93,7 +93,7 @@ The widget provider development based on the [stage model](stage-model-developme
 
 ### Creating a FormExtensionAbility Instance
 
-To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. Generate a widget template and then perform the following:
+To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. Create a widget template in DevEco Studio and then perform the following:
 
 1. Import related modules to **EntryFormAbility.ets**.
 
@@ -103,7 +103,6 @@ To create a widget in the stage model, you need to implement the lifecycle callb
    import formBindingData from '@ohos.app.form.formBindingData';
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
-   import dataPreferences from '@ohos.data.preferences';
    import Want from '@ohos.app.ability.Want';
    import Base from '@ohos.base';
    ```
@@ -204,7 +203,7 @@ To create a widget in the stage model, you need to implement the lifecycle callb
    | colorMode | Color mode of the widget.<br>- **auto**: auto-adaptive color mode<br>- **dark**: dark color mode<br>- **light**: light color mode| String| Yes (initial value: **auto**)|
    | supportDimensions | Grid styles supported by the widget.<br>- **1 * 2**: indicates a grid with one row and two columns.<br>- **2 * 2**: indicates a grid with two rows and two columns.<br>- **2 * 4**: indicates a grid with two rows and four columns.<br>- **4 * 4**: indicates a grid with four rows and four columns.| String array| No|
    | defaultDimension | Default grid style of the widget. The value must be available in the **supportDimensions** array of the widget.| String| No|
-   | updateEnabled | Whether the widget can be updated periodically.<br>- **true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.<br>- **false**: The widget cannot be updated periodically.| Boolean| No|
+   | updateEnabled | Whether the widget can be updated periodically.<br>- **true**: The widget can be updated at a specified interval (**updateDuration**) or at the scheduled time (**scheduledUpdateTime**). **updateDuration** takes precedence over **scheduledUpdateTime**.<br>- **false**: The widget cannot be updated periodically.| Boolean| No|
    | scheduledUpdateTime | Scheduled time to update the widget. The value is in 24-hour format and accurate to minute.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| String| Yes (initial value: **0:0**)|
    | updateDuration | Interval to update the widget. The value is a natural number, in the unit of 30 minutes.<br>If the value is **0**, this field does not take effect.<br>If the value is a positive integer *N*, the interval is calculated by multiplying *N* and 30 minutes.<br>**updateDuration** takes precedence over **scheduledUpdateTime**. If both are specified, the value specified by **updateDuration** is used.| Number| Yes (initial value: **0**)|
    | formConfigAbility | Link to a specific page of the application. The value is a URI.| String| Yes (initial value: left empty)|
@@ -252,7 +251,6 @@ import dataPreferences from '@ohos.data.preferences';
 import Want from '@ohos.app.ability.Want';
 import Base from '@ohos.base';
 import common from '@ohos.app.ability.common'
-
 
 const DATA_STORAGE_PATH: string = "/data/storage/el2/base/haps/form_store";
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: common.FormExtensionContext): Promise<void> => {
@@ -328,7 +326,7 @@ export default class EntryFormAbility extends FormExtensionAbility {
 }
 ```
 
-For details about how to implement persistent data storage, see [Application Data Persistence](../database/app-data-persistence-overview.md).
+For details about how to implement data persistence, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 

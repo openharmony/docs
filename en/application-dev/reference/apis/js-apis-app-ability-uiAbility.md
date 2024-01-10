@@ -1,6 +1,6 @@
 # @ohos.app.ability.UIAbility (UIAbility)
 
-UIAbility is an application component that has the UI. The **UIAbility** module provides lifecycle callbacks such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
+UIAbility is an application component that has the UI. The **UIAbility** module, inherited from [Ability](js-apis-app-ability-ability.md), provides lifecycle callbacks such as component creation, destruction, and foreground/background switching. It also provides the following capabilities related to component collaboration:
 
 - [Caller](#caller): an object returned by [startAbilityByCall](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartabilitybycall). The CallerAbility (caller) uses this object to communicate with the CalleeAbility (callee).
 - [Callee](#callee): an internal object of UIAbility. The CalleeAbility (callee) uses this object to communicate with the CallerAbility (caller).
@@ -29,7 +29,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 
 ## UIAbility.onCreate
 
-onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void;
+onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 Called to initialize the service logic when a UIAbility instance in the completely closed state is created. In other words, a UIAbility instance enters this lifecycle callback from a [cold start](../../application-models/uiability-intra-device-interaction.md#cold-starting-uiability).
 
@@ -136,7 +136,7 @@ Called when the **WindowStage** is restored during the migration of this UIAbili
 
 ## UIAbility.onDestroy
 
-onDestroy(): void | Promise&lt;void&gt;;
+onDestroy(): void | Promise&lt;void&gt;
 
 Called when this UIAbility is destroyed to clear resources.
 
@@ -170,7 +170,7 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onForeground
 
-onForeground(): void;
+onForeground(): void
 
 Called when this UIAbility is switched from the background to the foreground.
 
@@ -191,7 +191,7 @@ Called when this UIAbility is switched from the background to the foreground.
 
 ## UIAbility.onBackground
 
-onBackground(): void;
+onBackground(): void
 
 Called when this UIAbility is switched from the foreground to the background.
 
@@ -212,9 +212,9 @@ Called when this UIAbility is switched from the foreground to the background.
 
 ## UIAbility.onContinue
 
-onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult;
+onContinue(wantParam: { [key: string]: Object }): AbilityConstant.OnContinueResult
 
-Called to save data during the ability migration preparation process.
+Called to save data during the UIAbility migration preparation process.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -248,9 +248,9 @@ Called to save data during the ability migration preparation process.
 
 ## UIAbility.onNewWant
 
-onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void;
+onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
-Called when a UIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background In other words, a UIAbility instance enters this lifecycle callback from a [hot start](../../application-models/uiability-intra-device-interaction.md#hot-starting-uiability).
+Called when a UIAbility instance that has undergone the following states is started again: started in the foreground, running in the foreground, and switched to the background. In other words, a UIAbility instance enters this lifecycle callback from a [hot start](../../application-models/uiability-intra-device-interaction.md#hot-starting-uiability).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -266,6 +266,7 @@ Called when a UIAbility instance that has undergone the following states is star
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import Want from '@ohos.app.ability.Want';
 
   class MyUIAbility extends UIAbility {
       onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -277,9 +278,9 @@ Called when a UIAbility instance that has undergone the following states is star
 
 ## UIAbility.onDump
 
-onDump(params: Array\<string>): Array\<string>;
+onDump(params: Array\<string>): Array\<string>
 
-Dumps client information.
+Called to dump the client information. This API can be used to dump non-sensitive information.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -305,7 +306,7 @@ Dumps client information.
 
 ## UIAbility.onSaveState
 
-onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult;
+onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: Object}): AbilityConstant.OnSaveResult
 
 Called when the framework automatically saves the UIAbility state in the case of an application fault. This API is used together with [appRecovery](js-apis-app-ability-appRecovery.md). If automatic state saving is enabled, **onSaveState** is called to save the state of this UIAbility.
 
@@ -341,7 +342,7 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onShare<sup>10+</sup>
 
-onShare(wantParam:{ [key: string]: Object }): void;
+onShare(wantParam:{ [key: string]: Object }): void
 
 Called by this UIAbility to set data to share in the cross-device sharing scenario.
 
@@ -369,9 +370,9 @@ class MyUIAbility extends UIAbility {
 
 ## UIAbility.onPrepareToTerminate<sup>10+</sup>
 
-onPrepareToTerminate(): boolean;
+onPrepareToTerminate(): boolean
 
-Triggered when this UIAbility is about to terminate in case that the system parameter **persist.sys.prepare_terminate** is set to **true**. You can define an operation in this callback to determine whether to continue terminating the UIAbility. If a confirmation from the user is required, you can define a pre-termination operation in the callback and use it together with [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), for example, displaying a dialog box to ask the user whether to terminate the UIAbility. The UIAbility termination process is canceled when **persist.sys.prepare_terminate** is set to **true**.
+Called when this UIAbility is about to terminate in case that the system parameter **persist.sys.prepare_terminate** is set to **true**. You can define an operation in this callback to determine whether to continue terminating the UIAbility. If a confirmation from the user is required, you can define a pre-termination operation in the callback and use it together with [terminateSelf](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself), for example, displaying a dialog box to ask the user whether to terminate the UIAbility. The UIAbility termination process is canceled when **persist.sys.prepare_terminate** is set to **true**.
 
 **Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
 
@@ -419,7 +420,7 @@ Triggered when this UIAbility is about to terminate in case that the system para
 
 ## UIAbility.onBackPressed<sup>10+</sup>
 
-onBackPressed(): boolean;
+onBackPressed(): boolean
 
 Called when an operation of going back to a previous page is triggered on this UIAbility. The return value determines whether to destroy the UIAbility instance. By default, the UIAbility instance is destroyed.
 
@@ -536,7 +537,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.callWithResult
 
-callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;;
+callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;
 
 Sends sequenceable data to the target ability and obtains the sequenceable data returned by the target ability.
 
@@ -605,11 +606,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
         deviceId: ''
       }).then((obj) => {
         caller = obj;
-        let msg = new MyMessageAble(1, 'world');
+        let msg = new MyMessageAble('msg', 'world');
         caller.callWithResult(method, msg)
           .then((data) => {
             console.log('Caller callWithResult() called');
-            let retmsg = new MyMessageAble(0, '');
+            let retmsg = new MyMessageAble('msg', 'world');
             data.readParcelable(retmsg);
           })
           .catch((callErr: BusinessError) => {
@@ -625,7 +626,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.release
 
-release(): void;
+release(): void
 
 Releases the caller interface of the target ability.
 
@@ -671,9 +672,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.onRelease
 
- onRelease(callback: OnReleaseCallback): void;
+ onRelease(callback: OnReleaseCallback): void
 
-Registers a callback that is invoked when the stub on the target ability is disconnected.
+Called when the stub on the target ability is disconnected.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -724,9 +725,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.onRemoteStateChange<sup>10+</sup>
 
-onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 
-Registers a callback that is invoked when the remote ability state changes in the collaboration scenario.
+Called when the remote ability state changes in the collaboration scenario.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -778,9 +779,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.on
 
-on(type: 'release', callback: OnReleaseCallback): void;
+on(type: 'release', callback: OnReleaseCallback): void
 
-Registers a callback that is invoked when the stub on the target ability is disconnected.
+Called when the stub on the target ability is disconnected.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -788,14 +789,13 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is fixed at **release**.|
+| type | string | Yes| Event type. The value is fixed at **'release'**.|
 | callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
 **Error codes**
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
 | 16200001 | Caller released. The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -833,7 +833,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.off
 
-off(type: 'release', callback: OnReleaseCallback): void;
+off(type: 'release', callback: OnReleaseCallback): void
 
 Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved.
 
@@ -843,14 +843,8 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is fixed at **release**.|
+| type | string | Yes| Event type. The value is fixed at **'release'**.|
 | callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
 
 **Example**
 
@@ -887,7 +881,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 
 ## Caller.off
 
-off(type: 'release'): void;
+off(type: 'release'): void
 
 Deregisters a callback that is invoked when the stub on the target ability is disconnected. This capability is reserved.
 
@@ -897,7 +891,7 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type. The value is fixed at **release**.|
+| type | string | Yes| Event type. The value is fixed at **'release'**.|
 
 **Example**
 
@@ -938,7 +932,7 @@ Implements callbacks for caller notification registration and deregistration.
 
 ## Callee.on
 
-on(method: string, callback: CalleeCallback): void;
+on(method: string, callback: CalleeCallback): void
 
 Registers a caller notification callback, which is invoked when the target ability registers a function.
 
@@ -1010,7 +1004,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Callee.off
 
-off(method: string): void;
+off(method: string): void
 
 Deregisters a caller notification callback, which is invoked when the target ability registers a function.
 
@@ -1054,7 +1048,11 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## OnReleaseCallback
 
-(msg: string): void;
+
+(msg: string): void
+
+Defines the callback that is invoked when the stub on the target UIAbility is disconnected.
+
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1064,7 +1062,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
-(msg: string): void;
+(msg: string): void
+
+Defines the callback that is invoked when the remote ability state changes in the collaboration scenario.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -1075,6 +1075,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ## CalleeCallback
 
 (indata: rpc.MessageSequence): rpc.Parcelable;
+
+Defines the callback of the registration message notification of the UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 

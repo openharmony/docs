@@ -1,111 +1,93 @@
 # wukong稳定性工具使用指导
 
+## 功能介绍
 
-## 概述
-
-为支撑OpenHarmony操作系统或者单应用稳定性、健壮性的测试，我们向用户提供了符合功能需求并且可靠、易用的稳定性测试工具。支持开发者针对应用进行相应的稳定性测试。
-
-本指南重点介绍wukong稳定性工具的主要功能，同时介绍wukong命令行的使用方法。
-
-## 简介
-
-OpenHarmony稳定性测试工具wukong，作为OpenHarmony工具集的重要组成部分，实现了Ability的随机事件注入、控件注入、异常捕获、报告生成以及对Ability的数据遍历截图等应用稳定性测试基础能力。
+wukong是系统自带的一种命令行工具，支持Ability的随机事件注入、控件注入、异常捕获、报告生成和对Ability数据遍历截图等特性。通过模拟用户行为，对系统或应用进行稳定性压力测试。<br>
+wukong分为随机测试和专项测试。随机测试是指随机测试界面内容，支持的能力包括：shell启动、拉起整机应用、多种注入方式、设置随机种子、打印运行日志和生成报告。专项测试主要提供对指定应用控件进行测试，支持的能力包括：shell启动、顺序遍历及截图、测试休眠睡醒、录制回放、打印运行日志和生成报告。
 
 ## 实现原理
 
-工具主要分为两大部分：随机测试和专项测试。
+wukong部件架构图以及部件内子模块职责如下所述。
+ ![](figures/wukongRandomTestFlow.png)
 
-- 随机测试
-
-  随机测试是wukong稳定性工具的主要部分，提供了最基本的启动、运行及结果汇总的能力。主要功能如下图所示：
-
-  ![](figures/wukongRandomTest.png)
-
-  随机测试的基础运行流程如下图所示，依赖hdc命令
-
-  ![](figures/wukongRandomTestFlow.png)
-
-- 专项测试
-
-  专项测试主要提供了对指定应用的控件顺序遍历以及录制回放、休眠睡醒等测试能力。
-
-  专项测试的主要功能如下图所示：
-
-  ![](figures/wukongSpecialTest.png)
-
-随机测试、专项测试相关命令可具体参考[对应使用说明。](https://gitee.com/openharmony/ostest_wukong/blob/master/README_zh.md)
+- 命令行解析：支持命令行获取参数并解析命令行参数。
+- 运行环境管理：根据命令行初始化wukong整体运行环境。
+- 系统接口管理：检查并获取指定的mgr，注册controller和dfx的faultlog的回调函数。
+- 随机事件生成：通过random函数生成指定种子数的随机序列，生成事件。
+- 事件注入：根据支持的事件类型向系统注入事件，依赖窗口、多模、安全等子系统。
+- 异常捕获处理/报告生成：通过DFX子系统获取运行中的异常信息并记录log，生成报告。
 
 ## 约束与限制
 
-1. wukong在3.2系统版本后开始预置使用。
+1. wukong测试工具在API 9版本开始预置使用。
 
-2. wukong在3.2系统版本之前的版本不随版本编译，使用时需自行编译后推送至被测OpenHarmony设备，步骤如下：        
-    构建方式
-    ```
-    ./build.sh --product-name rk3568 --build-target wukong
-    ```
-    推送方式
-    ```
-    hdc_std shell mount -o rw,remount /
-    hdc_std file send wukong /
-    hdc_std shell chmod a+x /wukong
-    hdc_std shell mv /wukong /bin/
-    ```
+2. 在低于API 9版本，不能随版本编译，使用时需自行编译后推送至被检测设备，具体步骤如下。
 
-## 环境准备
+   ```
+    // 构建
+     ./build.sh --product-name rk3568 --build-target wukong
 
-命令行执行需要PC连接OpenHarmony设备，如RK3568开发板等。
+   // 推送
+    hdc shell mount -o rw,remount /
+    hdc file send wukong /
+    hdc shell chmod a+x /wukong
+    hdc shell mv /wukong /bin/
+   ```
 
-## 执行稳定性测试
+3. PC被检测设备连接后，才可执行命令行，支持单个和多个设备。
 
-**wukong exec 随机测试使用示例**
+## 随机测试
 
-进入shell，执行随机测试命令：
-```
-# wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
-```
-随机测试示例解析：
-| 命令           | 参数值           | 说明                                           |
-| -------------- | -------------- | ---------------------------------------------- |
-| wukong exec | -           | 主命令。                             |
-| -s     | 10           | 参数设置随机种子，10为种子值。            |
-| -i  | 1000           | 参数设置应用拉起间隔为1000ms。 |
-| -a  | 0.28          | 参数设置应用随机拉起测试比例28%。          |
-| -t  | 0.72           | 参数设置屏幕随机touch测试比例为72%。    |
-| -c  | 100           | 参数设置执行次数为100次。                |
+1. 打开shell界面。<br>检测单个设备时，使用"hdc shell"命令打开；检测多个设备时，使用"hdc -t sn shell"命令打开，其中sn是设备的编号，可以通过"hdc list targets"获取。
 
-**wukong special 专项测试使用示例**
+2.执行随机测试命令，命令示例如下：
+  ```
+   # wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
+  ```
+  命令中各参数含义：
+  | 命令           | 参数值           | 说明                                           |
+  | -------------- | -------------- | ---------------------------------------------- |
+  | wukong exec | -           | 主命令。                             |
+  | -s     | 10           | 参数设置随机种子，10为种子值。            |
+  | -i  | 1000           | 参数设置应用拉起间隔为1000ms。 |
+  | -a  | 0.28          | 参数设置应用随机拉起测试比例28%。          |
+  | -t  | 0.72           | 参数设置屏幕随机touch测试比例为72%。    |
+  | -c  | 100           | 参数设置执行次数为100次。                |
 
-进入shell，执行专项顺序遍历测试命令：
-```bash
-# wukong special -C [bundlename] -p
-```
-专项测试示例解析：
-| 命令           | 参数值           | 说明                                           |
-| -------------- |-------------- | ---------------------------------------------- |
-| wukong special | -  | 主命令。                             |
-| -C [bundlename]    |[bundlename] | 控件顺序遍历测试参数设置，bundlename为测试应用名称。            |
-| -p | -  | 表示截图。                             |
+## 专项测试
+
+1. 打开shell界面。<br>检测单个设备时，使用"hdc shell"命令打开；检测多个设备时，使用"hdc -t sn shell"命令打开，其中sn是设备的编号，可以通过"hdc list targets"获取。
+2. 执行专项顺序遍历测试命令：
+
+  ```bash
+   # wukong special -C [bundlename] -p
+  ```
+ 命令中各参数含义：
+ | 命令           | 参数值           | 说明                                           |
+ | -------------- |-------------- | ---------------------------------------------- |
+ | wukong special | -  | 主命令。                             |
+ | -C [bundlename]    |[bundlename] | 控件顺序遍历测试参数设置，bundlename为测试应用名称。            |
+ | -p | p  | 表示截图。                             |
 
 ## 查看测试结果
 
-当执行完测试指令，会自动生成测试结果。
+**测试结果输出路径**
 
-**测试结果输出根路径如下：**
-```
-2022/9/22之前的版本报告存放路径：/data/local/wukong/report/xxxxxxxx_xxxxxx/
-2022/9/22之后的版本报告存放路径：/data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/
-```
->**说明：** 测试报告文件目录将自动生成。
+执行完测试指令后，会自动生成测试结果，测试结果输出根路径如下：
+- 2022/9/22之前的IDE版本，结果存放路径为：/data/local/wukong/report/xxxxxxxx_xxxxxx/
+- 2022/9/22之后的IDE版本，结果存放路径为：/data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/
 
-该目录中包含以下几类结果：
+**测试报告文件目录**
+
 | 类型                                 | 描述               |
 | ------------------------------------ | ------------------ |
-| exception/                           | 存放本次测试产生的异常文件 |
-| screenshot/                          | 存放专项测试顺序遍历的截图  |
-| wukong_report.csv                    | 测试报告统计汇总       |
+| exception/                           | 存放本次测试产生的异常文件。 |
+| screenshot/                          | 存放专项测试顺序遍历的截图。  |
+| wukong_report.csv                    | 测试报告统计汇总。       |
 
-**wukong执行日志**
+**执行日志**
+
+wukong支持通过日志的方式查看操作历程。
 ```
-reports/xxxxxxxx_xxxxxx/wukong.log
+ reports/xxxxxxxx_xxxxxx/wukong.log
 ```

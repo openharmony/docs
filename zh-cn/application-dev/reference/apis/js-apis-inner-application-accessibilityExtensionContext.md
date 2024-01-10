@@ -14,14 +14,12 @@ AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，�
 在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContex的实例。
 
 ```ts
-import AccessibilityExtensionAbility, {
-  AccessibilityExtensionContext,
-} from '@ohos.application.AccessibilityExtensionAbility';
-
-let axContext: AccessibilityExtensionContext;
+import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
 
 class EntryAbility extends AccessibilityExtensionAbility {
-  axContext = this.context;
+  onConnect(): void {
+    let axContext = this.context; 
+  } 
 }
 ```
 

@@ -6,7 +6,6 @@ The **photoAccessHelper** module provides APIs for album management, including c
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
-
 ## Modules to Import
 
 ```ts
@@ -22,8 +21,6 @@ Obtains a **PhotoAccessHelper** instance for accessing and modifying media files
 **Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **Parameters**
 
@@ -49,7 +46,7 @@ For details about the error codes, see [Universal Error Codes](../errorcodes/err
 
 ```ts
 // The phAccessHelper instance obtained is a global object. It is used by default in subsequent operations. If the code snippet is not added, an error will be reported indicating that phAccessHelper is not defined.
-const context = getContext(this);
+let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 ```
 
@@ -57,7 +54,7 @@ let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 ### getAssets
 
-getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void;
+getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void
 
 Obtains image and video assets. This API uses an asynchronous callback to return the result.
 
@@ -74,11 +71,14 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOptions.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -94,10 +94,10 @@ async function example() {
   };
 
   phAccessHelper.getAssets(fetchOptions, async (err, fetchResult) => {
-    if (fetchResult != undefined) {
+    if (fetchResult !== undefined) {
       console.info('fetchResult success');
       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset.displayName : ' + photoAsset.displayName);
       }
     } else {
@@ -109,7 +109,7 @@ async function example() {
 
 ### getAssets
 
-getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
+getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 Obtains image and video assets. This API uses a promise to return the result.
 
@@ -131,11 +131,14 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOptions.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -151,10 +154,10 @@ async function example() {
   };
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    if (fetchResult != undefined) {
+    if (fetchResult !== undefined) {
       console.info('fetchResult success');
       let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset.displayName :' + photoAsset.displayName);
       }
     }
@@ -166,7 +169,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void;
+createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): void
 
 Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
 
@@ -185,13 +188,16 @@ Creates an image or video asset with the specified file name. This API uses an a
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if type displayName is not string.         |
-| 14000001   | if type of displayName is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -200,7 +206,7 @@ async function example() {
   console.info('createAssetDemo');
   let testFileName: string = 'testFile' + Date.now() + '.jpg';
   phAccessHelper.createAsset(testFileName, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
@@ -212,7 +218,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string): Promise&lt;PhotoAsset&gt;;
+createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name. This API uses a promise to return the result.
 
@@ -236,13 +242,16 @@ Creates an image or video asset with the specified file name. This API uses a pr
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if type displayName or albumUri is not string.         |
-| 14000001   | if type of displayName is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -262,7 +271,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void;
+createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCallback&lt;PhotoAsset&gt;): void
 
 Creates an image or video asset with the specified file name and options. This API uses an asynchronous callback to return the result.
 
@@ -282,13 +291,16 @@ Creates an image or video asset with the specified file name and options. This A
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if type displayName is not string.         |
-| 14000001   | if type displayName invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -300,7 +312,7 @@ async function example() {
     subtype: photoAccessHelper.PhotoSubtype.DEFAULT
   }
   phAccessHelper.createAsset(testFileName, createOption, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('createAsset file displayName' + photoAsset.displayName);
       console.info('createAsset successfully');
     } else {
@@ -312,7 +324,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;;
+createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoAsset&gt;
 
 Creates an image or video asset with the specified file name and options. This API uses a promise to return the result.
 
@@ -337,13 +349,16 @@ Creates an image or video asset with the specified file name and options. This A
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md) and [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if type displayName is not string.         |
-| 14000001   | if type of displayName is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -366,7 +381,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void;
+createAsset(photoType: PhotoType, extension: string, options: CreateOptions, callback: AsyncCallback&lt;string&gt;): void
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses an asynchronous callback to return the result.
 
@@ -387,11 +402,14 @@ If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permis
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type createOption is wrong.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -404,7 +422,7 @@ async function example() {
     title: 'testPhoto'
   }
   phAccessHelper.createAsset(photoType, extension, options, (err, uri) => {
-    if (uri != undefined) {
+    if (uri !== undefined) {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
@@ -416,7 +434,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;string&gt;): void;
+createAsset(photoType: PhotoType, extension: string, callback: AsyncCallback&lt;string&gt;): void
 
 Creates an image or video asset with the specified file type and file name extension. This API uses an asynchronous callback to return the result.
 
@@ -436,11 +454,14 @@ If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permis
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type createOption is wrong.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -450,7 +471,7 @@ async function example() {
   let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
   let extension: string = 'jpg';
   phAccessHelper.createAsset(photoType, extension, (err, uri) => {
-    if (uri != undefined) {
+    if (uri !== undefined) {
       console.info('createAsset uri' + uri);
       console.info('createAsset successfully');
     } else {
@@ -462,7 +483,7 @@ async function example() {
 
 ### createAsset
 
-createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;;
+createAsset(photoType: PhotoType, extension: string, options?: CreateOptions): Promise&lt;string&gt;
 
 Creates an image or video asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
 
@@ -488,11 +509,14 @@ If the application does not have the **ohos.permission.WRITE_IMAGEVIDEO** permis
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type createOption is wrong.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -516,13 +540,13 @@ async function example() {
 
 ### createAlbum
 
-createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void;
+createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 
 Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -541,12 +565,16 @@ The album name must meet the following requirements:
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900015       |  File exists.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -566,13 +594,13 @@ async function example() {
 
 ### createAlbum
 
-createAlbum(name: string): Promise&lt;Album&gt;;
+createAlbum(name: string): Promise&lt;Album&gt;
 
 Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name is a string of 1 to 255 characters.
-- The album name cannot contain any of the following characters:<br>.. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -596,12 +624,16 @@ The album name must meet the following requirements:
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900015       |  File exists.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -621,7 +653,7 @@ async function example() {
 
 ### deleteAlbums
 
-deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAlbums(albums: Array&lt;Album&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes albums. This API uses an asynchronous callback to return the result.
 
@@ -642,12 +674,15 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -678,7 +713,7 @@ async function example() {
 
 ### deleteAlbums
 
-deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;;
+deleteAlbums(albums: Array&lt;Album&gt;): Promise&lt;void&gt;
 
 Deletes albums. This API uses a promise to return the result.
 
@@ -704,12 +739,15 @@ Ensure that the albums to be deleted exist. Only user albums can be deleted.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -739,7 +777,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 Obtains albums based on the specified options and album type. This API uses an asynchronous callback to return the result.
 
@@ -760,11 +798,14 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOption.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -785,7 +826,7 @@ async function example() {
       console.error('getAlbumsCallback failed with err: ' + err);
       return;
     }
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
@@ -798,7 +839,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void
 
 Obtains albums by type. This API uses an asynchronous callback to return the result.
 
@@ -818,11 +859,14 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOption.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -835,7 +879,7 @@ async function example() {
       console.error('getAlbumsCallback failed with err: ' + err);
       return;
     }
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsCallback fetchResult is undefined');
       return;
     }
@@ -848,7 +892,7 @@ async function example() {
 
 ### getAlbums
 
-getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;;
+getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
 Obtains albums based on the specified options and album type. This API uses a promise to return the result.
 
@@ -874,11 +918,14 @@ Before the operation, ensure that the albums to obtain exist.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOption.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -896,7 +943,7 @@ async function example() {
     predicates: predicates
   };
   phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, fetchOptions).then( async (fetchResult) => {
-    if (fetchResult == undefined) {
+    if (fetchResult === undefined) {
       console.error('getAlbumsPromise fetchResult is undefined');
       return;
     }
@@ -911,9 +958,9 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAssets(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-Deletes media files. This API uses an asynchronous callback to return the result. The deleted files are moved to the trash.
+Deletes media assets. This API uses an asynchronous callback to return the result. The deleted assets are moved to the trash.
 
 **System API**: This is a system API.
 
@@ -930,12 +977,16 @@ Deletes media files. This API uses an asynchronous callback to return the result
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000002       | Invalid uri.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -952,28 +1003,28 @@ async function example() {
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
     phAccessHelper.deleteAssets([asset.uri], (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('deleteAssets successfully');
       } else {
         console.error('deleteAssets failed with error: ' + err);
       }
     });
   } catch (err) {
-    console.info('fetch failed, message =', err);
+    console.error('fetch failed, message =', err);
   }
 }
 ```
 
 ### deleteAssets
 
-deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
+deleteAssets(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
-Deletes media files. This API uses a promise to return the result. The deleted files are moved to the trash.
+Deletes media assets. This API uses a promise to return the result. The deleted assets are moved to the trash.
 
 **System API**: This is a system API.
 
@@ -995,12 +1046,16 @@ Deletes media files. This API uses a promise to return the result. The deleted f
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202   |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000002       | Invalid uri.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1015,9 +1070,9 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
@@ -1035,8 +1090,6 @@ registerChange(uri: string, forChildUris: boolean, callback: Callback&lt;ChangeD
 
 Registers listening for the specified URI. This API uses a callback to return the result.
 
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -1049,11 +1102,13 @@ Registers listening for the specified URI. This API uses a callback to return th
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
 
 **Example**
 
@@ -1069,7 +1124,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  if (photoAsset != undefined) {
+  if (photoAsset !== undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
   let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
@@ -1086,7 +1141,7 @@ async function example() {
   phAccessHelper.registerChange(photoAsset.uri, false, onCallback2);
 
   photoAsset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
       console.error('setFavorite failed with error:' + err);
@@ -1101,8 +1156,6 @@ unRegisterChange(uri: string, callback?: Callback&lt;ChangeData&gt;): void
 
 Unregisters listening for the specified URI. Multiple callbacks can be registered for a URI for listening. You can use this API to unregister the listening of the specified callbacks or all callbacks.
 
-**Required permissions**: ohos.permission.READ_IMAGEVIDEO
-
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Parameters**
@@ -1114,11 +1167,13 @@ Unregisters listening for the specified URI. Multiple callbacks can be registere
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
 
 **Example**
 
@@ -1134,7 +1189,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-  if (photoAsset != undefined) {
+  if (photoAsset !== undefined) {
     console.info('photoAsset.displayName : ' + photoAsset.displayName);
   }
   let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
@@ -1150,7 +1205,7 @@ async function example() {
   // Unregister the listening of onCallback1.
   phAccessHelper.unRegisterChange(photoAsset.uri, onCallback1);
   photoAsset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setFavorite successfully');
     } else {
       console.error('setFavorite failed with error:' + err);
@@ -1161,7 +1216,7 @@ async function example() {
 
 ### createDeleteRequest
 
-createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void;
+createDeleteRequest(uriList: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Creates a dialog box for deleting media files. This API uses an asynchronous callback to return the result. The deleted media files are moved to the trash.
 
@@ -1178,11 +1233,14 @@ Creates a dialog box for deleting media files. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1197,14 +1255,14 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
     phAccessHelper.createDeleteRequest([asset.uri], (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('createDeleteRequest successfully');
       } else {
         console.error('createDeleteRequest failed with error: ' + err);
@@ -1218,7 +1276,7 @@ async function example() {
 
 ### createDeleteRequest
 
-createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;;
+createDeleteRequest(uriList: Array&lt;string&gt;): Promise&lt;void&gt;
 
 Creates a dialog box for deleting media files. This API uses a promise to return the result. The deleted media files are moved to the trash.
 
@@ -1240,11 +1298,14 @@ Creates a dialog box for deleting media files. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1259,9 +1320,9 @@ async function example() {
     predicates: predicates
   };
   try {
-    const fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    if (asset == undefined) {
+    if (asset === undefined) {
       console.error('asset not exist');
       return;
     }
@@ -1291,21 +1352,20 @@ Obtains the index of an image or video in an album. This API uses an asynchronou
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
-| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
-
-**Return value**
-
-| Type                                   | Description             |
-| --------------------------------------- | ----------------- |
-| AsyncCallback&lt;number&gt;| Promise used to return the index obtained.|
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
+| callback | AsyncCallback&lt;number&gt;| Yes  | Callback invoked to return the index obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 202     |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1335,7 +1395,7 @@ async function example() {
     let photoAsset: photoAccessHelper.PhotoAsset = await photoFetchResult.getObjectByPosition(expectIndex);
 
     phAccessHelper.getPhotoIndex(photoAsset.uri, album.albumUri, fetchOptions, (err, index) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info(`getPhotoIndex successfully and index is : ${index}`);
       } else {
         console.info(`getPhotoIndex failed;`);
@@ -1365,7 +1425,7 @@ Obtains the index of an image or video in an album. This API uses a promise to r
 | -------- | ------------------------- | ---- | ---------- |
 | photoUri | string | Yes  | URI of the media asset whose index is to be obtained.|
 | albumUri | string | Yes  | Album URI, which can be an empty string. If it is an empty string, all the media assets in the Gallery are obtained by default.  |
-| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search conditions or sorting modes are set, the API cannot be called successfully.     |
+| options  | [FetchOptions](#fetchoptions)       | Yes  |  Fetch options. Only one search condition or sorting mode must be set in **predicates**. If no value is set or multiple search criteria or sorting modes are set, the API cannot be called successfully.     |
 
 **Return value**
 
@@ -1375,11 +1435,15 @@ Obtains the index of an image or video in an album. This API uses a promise to r
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 202     |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1423,7 +1487,7 @@ async function example() {
 
 release(callback: AsyncCallback&lt;void&gt;): void
 
-Releases the **PhotoAccessHelper** instance. This API uses an asynchronous callback to return the result.
+Releases this **PhotoAccessHelper** instance. This API uses an asynchronous callback to return the result.
 Call this API when the APIs of the **PhotoAccessHelper** instance are no longer used.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -1436,11 +1500,13 @@ Call this API when the APIs of the **PhotoAccessHelper** instance are no longer 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042    | Unknown error.         |
+| 401      |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1448,7 +1514,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 async function example() {
   console.info('releaseDemo');
   phAccessHelper.release((err) => {
-    if (err != undefined) {
+    if (err !== undefined) {
       console.error('release failed. message = ', err);
     } else {
       console.info('release ok.');
@@ -1461,7 +1527,7 @@ async function example() {
 
 release(): Promise&lt;void&gt;
 
-Releases the **PhotoAccessHelper** instance. This API uses a promise to return the result.
+Releases this **PhotoAccessHelper** instance. This API uses a promise to return the result.
 Call this API when the APIs of the **PhotoAccessHelper** instance are no longer used.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -1474,11 +1540,13 @@ Call this API when the APIs of the **PhotoAccessHelper** instance are no longer 
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042    | Unknown error.         |
+| 401      |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1504,7 +1572,7 @@ Provides APIs for encapsulating file asset attributes.
 
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
-| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#media-file-uri).        |
+| uri                       | string                   | Yes  | No  | Media asset URI, for example, **file://media/Photo/1/IMG_datetime_0001/displayName.jpg**. For details, see [Media File URI](../../file-management/user-file-uri-intro.md#media-file-uri).        |
 | photoType   | [PhotoType](#phototype) | Yes  | No  | Type of the file.                                              |
 | displayName               | string                   | Yes  | No  | File name, including the file name extension, to display.                                |
 
@@ -1526,15 +1594,17 @@ Obtains a **PhotoAsset** member parameter.
 
 | Type               | Description                             |
 | ------------------- | --------------------------------- |
-| [MemberType](#membertype) | Returns the **PhotoAsset** member parameter obtained.|
+| [MemberType](#membertype) | **PhotoAsset** member parameter obtained.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000014     | Member is not a valid PhotoKey.         |
 
 **Example**
 
@@ -1562,7 +1632,7 @@ async function example() {
 
 ### set
 
-set(member: string, value: string): void;
+set(member: string, value: string): void
 
 Sets a **PhotoAsset** member parameter.
 
@@ -1577,11 +1647,13 @@ Sets a **PhotoAsset** member parameter.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000014     | Member is not a valid PhotoKey.         |
 
 **Example**
 
@@ -1624,11 +1696,15 @@ Commits the modification on the file metadata to the database. This API uses an 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1649,7 +1725,7 @@ async function example() {
   console.info('photoAsset get photoAssetTitle = ', photoAssetTitle);
   photoAsset.set(title, 'newTitle2');
   photoAsset.commitModify((err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       let newPhotoAssetTitle: photoAccessHelper.MemberType = photoAsset.get(title);
       console.info('photoAsset get newPhotoAssetTitle = ', newPhotoAssetTitle);
     } else {
@@ -1677,11 +1753,15 @@ Commits the modification on the file metadata to the database. This API uses a p
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401    | if values to commit is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000001      | Invalid display name.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1717,7 +1797,7 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file asset. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**<br>A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
 
 **System API**: This is a system API.
 
@@ -1729,27 +1809,30 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| mode     | string                      | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
+| mode     | string                      | Yes   | Mode for opening the file, which can be **'r'** (read-only), **'w'** (write-only), or **'rw'** (read/write).|
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor (FD) of the file opened.                           |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202     |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
 async function example() {
   console.info('openDemo');
-   let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
   photoAsset.open('rw', (err, fd) => {
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
@@ -1765,7 +1848,7 @@ open(mode: string): Promise&lt;number&gt;
 
 Opens this file asset. This API uses a promise to return the result.
 
-> **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to close the file.
+> **NOTE**<br>A file can be opened in only one mode at a time. Use **close()** to close the FD returned when it is not required.
 
 **System API**: This is a system API.
 
@@ -1777,22 +1860,25 @@ Opens this file asset. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description                                 |
 | ---- | ------ | ---- | ----------------------------------- |
-| mode | string | Yes   | File open mode, which can be **r** (read-only), **w** (write-only), or **rw** (read-write).|
+| mode | string | Yes   | Mode for opening the file, which can be **'r'** (read-only), **'w'** (write-only), or **'rw'** (read/write).|
 
 **Return value**
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+| Promise&lt;number&gt; | Promise used to return the FD of the file opened.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202     |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1801,9 +1887,9 @@ async function example() {
   console.info('openDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
-    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
     let fd: number = await photoAsset.open('rw');
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
@@ -1821,7 +1907,7 @@ getReadOnlyFd(callback: AsyncCallback&lt;number&gt;): void
 
 Opens this file in read-only mode. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>After the read operation is complete, call **close** to close the file.
+> **NOTE**<br>The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -1831,25 +1917,28 @@ Opens this file in read-only mode. This API uses an asynchronous callback to ret
 
 | Name     | Type                         | Mandatory  | Description                                 |
 | -------- | --------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the file descriptor of the file opened.                           |
+| callback | AsyncCallback&lt;number&gt; | Yes   | Callback invoked to return the FD of the file opened.                           |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
 ```ts
 async function example() {
   console.info('getReadOnlyFdDemo');
-   let testFileName: string = 'testFile' + Date.now() + '.jpg';
-  const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+  let testFileName: string = 'testFile' + Date.now() + '.jpg';
+  let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
   photoAsset.getReadOnlyFd((err, fd) => {
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
@@ -1865,7 +1954,7 @@ getReadOnlyFd(): Promise&lt;number&gt;
 
 Opens this file in read-only mode. This API uses a promise to return the result.
 
-> **NOTE**<br>After the read operation is complete, call **close** to close the file.
+> **NOTE**<br>The returned FD must be closed when it is not required.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
@@ -1875,15 +1964,18 @@ Opens this file in read-only mode. This API uses a promise to return the result.
 
 | Type                   | Description           |
 | --------------------- | ------------- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+| Promise&lt;number&gt; | Promise used to return the FD of the file opened.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1892,9 +1984,9 @@ async function example() {
   console.info('getReadOnlyFdDemo');
   try {
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
-    const photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
+    let photoAsset: photoAccessHelper.PhotoAsset = await phAccessHelper.createAsset(testFileName);
     let fd: number = await photoAsset.getReadOnlyFd();
-    if (fd != undefined) {
+    if (fd !== undefined) {
       console.info('File fd' + fd);
       photoAsset.close(fd);
     } else {
@@ -1918,16 +2010,18 @@ Closes a file. This API uses an asynchronous callback to return the result.
 
 | Name     | Type                       | Mandatory  | Description   |
 | -------- | ------------------------- | ---- | ----- |
-| fd       | number                    | Yes   | File descriptor of the file to close.|
+| fd       | number                    | Yes   | FD of the file to close.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.|
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -1943,11 +2037,11 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    const photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let fd: number = await photoAsset.open('rw');
     console.info('file fd', fd);
     photoAsset.close(fd, (err) => {
-      if (err == undefined) {
+      if (err === undefined) {
         console.info('asset close succeed.');
       } else {
         console.error('close failed, message = ' + err);
@@ -1971,7 +2065,7 @@ Closes a file. This API uses a promise to return the result.
 
 | Name | Type    | Mandatory  | Description   |
 | ---- | ------ | ---- | ----- |
-| fd   | number | Yes   | File descriptor of the file to close.|
+| fd   | number | Yes   | FD of the file to close.|
 
 **Return value**
 
@@ -1981,11 +2075,13 @@ Closes a file. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2001,7 +2097,7 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-    const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let fd = await asset.open('rw');
     console.info('file fd', fd);
     await asset.close(fd);
@@ -2030,11 +2126,14 @@ Obtains the thumbnail of this file. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2049,10 +2148,10 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+  let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail((err, pixelMap) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
       console.error('getThumbnail fail', err);
@@ -2080,11 +2179,14 @@ Obtains the file thumbnail of the given size. This API uses an asynchronous call
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2101,10 +2203,10 @@ async function example() {
   };
   let size: image.Size = { width: 720, height: 720 };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size, (err, pixelMap) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('getThumbnail successful ' + pixelMap);
     } else {
       console.error('getThumbnail fail', err);
@@ -2137,11 +2239,14 @@ Obtains the file thumbnail of the given size. This API uses a promise to return 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if parameter is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2159,7 +2264,7 @@ async function example() {
   };
   let size: image.Size = { width: 720, height: 720 };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   console.info('asset displayName = ', asset.displayName);
   asset.getThumbnail(size).then((pixelMap) => {
     console.info('getThumbnail successful ' + pixelMap);
@@ -2190,12 +2295,15 @@ Favorites or unfavorites this file. This API uses an asynchronous callback to re
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2210,9 +2318,9 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setFavorite(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('favorite successfully');
     } else {
       console.error('favorite failed with error:' + err);
@@ -2247,12 +2355,15 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2268,7 +2379,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setFavorite(true).then(() => {
     console.info('setFavorite successfully');
   }).catch((err: BusinessError) => {
@@ -2300,12 +2411,15 @@ Private files are stored in the private album. After obtaining private files fro
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2320,9 +2434,9 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setHidden(true, (err) => {
-    if (err == undefined) {
+    if (err === undefined) {
       console.info('setHidden successfully');
     } else {
       console.error('setHidden failed with error:' + err);
@@ -2359,12 +2473,15 @@ Private files are stored in the private album. After obtaining private files fro
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.         |
-| 401   | if parameter is invalid.         |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2381,9 +2498,9 @@ async function example() {
     predicates: predicates
   };
   let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.SYSTEM, photoAccessHelper.AlbumSubtype.HIDDEN);
-  const album = await albumList.getFirstObject();
+  let album = await albumList.getFirstObject();
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
-  const asset = await fetchResult.getFirstObject();
+  let asset = await fetchResult.getFirstObject();
   asset.setHidden(false).then(() => {
     console.info('setHidden successfully');
   }).catch((err: BusinessError) => {
@@ -2392,13 +2509,15 @@ async function example() {
 }
 ```
 
-### getExif<sup>10+</sup>
+### getExif
 
 getExif(): Promise&lt;string&gt;
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses a promise to return the result.
 
-**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **PhotoKeys.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+The EXIF tag information is provided by the [image](js-apis-image.md) module. For details about the EXIF tag information, see [image.PropertyKey](js-apis-image.md#propertykey7).
+
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2412,47 +2531,17 @@ Obtains a JSON string consisting of the EXIF tags of this JPG image. This API us
 | --------------------------------------- | ----------------- |
 | Promise&lt;string&gt; | Callback invoked to return the JSON string obtained.|
 
-**Supported EXIF tags**
+**Error codes**
 
-For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| Key Value                                   | Description             |
-| --------------------------------------- | ----------------- |
-| BitsPerSample | Number of bits per pixel.|
-| Orientation | Image orientation.|
-| ImageLength | Image length.|
-| ImageWidth | Image width.|
-| GPSLatitude | GPS latitude of the image.|
-| GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Longitude reference, for example, W or E.|
-| GPSLongitudeRef | Latitude reference, for example, N or S.|
-| DateTimeOriginal | Shooting time.|
-| ExposureTime | Exposure time.|
-| SceneType | Shooting scene type.|
-| ISOSpeedRatings | ISO sensitivity or speed.|
-| FNumber | f-number.|
-| DateTime | Date and time when the image was last modified.|
-| GPSTimeStamp | GPS timestamp.|
-| GPSDateStamp | GPS date stamp.|
-| ImageDescription | Image description.|
-| Make | Camera vendor.|
-| MakeNote | Camera vendor.|
-| Model | Model.|
-| PhotoMode | Photo mode.|
-| SensitivityType | Sensitivity type.|
-| StandardOutputSensitivity | Standard output sensitivity.|
-| RecommendedExposureIndex | Recommended exposure index.|
-| ApertureValue | Aperture value.|
-| MeteringMode | Metering mode.|
-| LightSource | Light source.|
-| Flash | Flash status.|
-| FocalLength | Focal length.|
-| UserComment | User comment.|
-| PixelXDimension | Pixel X dimension.|
-| PixelYDimension | Pixel Y dimension.|
-| WhiteBalance | White balance.|
-| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
-| ExposureBiasValue | Exposure compensation.|
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2468,8 +2557,8 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let exifMessage = await fileAsset.getExif();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let exifMessage = await photoAsset.getExif();
     let userCommentKey = 'UserComment';
     let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
     fetchResult.close();
@@ -2479,13 +2568,15 @@ async function example() {
 }
 ```
 
-### getExif<sup>10+</sup>
+### getExif
 
 getExif(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains a JSON string consisting of the EXIF tags of this JPG image. This API uses an asynchronous callback to return the result.
 
-**CAUTION**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and **PhotoKeys.USER_COMMENT**. These two fields must be passed in via **fetchColumns**.
+The EXIF tag information is provided by the [image](js-apis-image.md) module. For details about the EXIF tag information, see [image.PropertyKey](js-apis-image.md#propertykey7).
+
+> **NOTE**<br>This API returns a JSON string consisting of EXIF tags. The complete EXIF information consists of **all_exif** and [PhotoKeys.USER_COMMENT](#photokeys). These two fields must be passed in via **fetchColumns**.
 
 **System API**: This is a system API.
 
@@ -2499,47 +2590,17 @@ Obtains a JSON string consisting of the EXIF tags of this JPG image. This API us
 | -------- | ------------------------- | ---- | ---------- |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the JSON string obtained.|
 
-**Supported EXIF tags**
+**Error codes**
 
-For details about the EXIF tags, see [image.PropertyKey](js-apis-image.md#propertykey7).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
-| Key Value                                   | Description             |
-| --------------------------------------- | ----------------- |
-| BitsPerSample | Number of bits per pixel.|
-| Orientation | Image orientation.|
-| ImageLength | Image length.|
-| ImageWidth | Image width.|
-| GPSLatitude | GPS latitude of the image.|
-| GPSLongitude | GPS longitude of the image.|
-| GPSLatitudeRef | Longitude reference, for example, W or E.|
-| GPSLongitudeRef | Latitude reference, for example, N or S.|
-| DateTimeOriginal | Shooting time.|
-| ExposureTime | Exposure time.|
-| SceneType | Shooting scene type.|
-| ISOSpeedRatings | ISO sensitivity or speed.|
-| FNumber | f-number.|
-| DateTime | Date and time when the image was last modified.|
-| GPSTimeStamp | GPS timestamp.|
-| GPSDateStamp | GPS date stamp.|
-| ImageDescription | Image description.|
-| Make | Camera vendor.|
-| MakeNote | Camera vendor.|
-| Model | Model.|
-| PhotoMode | Photo mode.|
-| SensitivityType | Sensitivity type.|
-| StandardOutputSensitivity | Standard output sensitivity.|
-| RecommendedExposureIndex | Recommended exposure index.|
-| ApertureValue | Aperture value.|
-| MeteringMode | Metering mode.|
-| LightSource | Light source.|
-| Flash | Flash status.|
-| FocalLength | Focal length.|
-| UserComment | User comment.|
-| PixelXDimension | Pixel X dimension.|
-| PixelYDimension | Pixel Y dimension.|
-| WhiteBalance | White balance.|
-| FocalLengthIn35mmFilm | Focal length in 35 mm film.|
-| ExposureBiasValue | Exposure compensation.|
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2556,11 +2617,11 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getExifDemo fileAsset displayName: ' + JSON.stringify(fileAsset.displayName));
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    console.info('getExifDemo photoAsset displayName: ' + JSON.stringify(photoAsset.displayName));
     let userCommentKey = 'UserComment';
-    fileAsset.getExif((err, exifMessage) => {
-      if (exifMessage != undefined) {
+    photoAsset.getExif((err, exifMessage) => {
+      if (exifMessage !== undefined) {
         let userComment = JSON.stringify(JSON.parse(exifMessage), [userCommentKey]);
         console.info('getExifDemo userComment: ' + JSON.stringify(userComment));
       } else {
@@ -2574,7 +2635,7 @@ async function example() {
 }
 ```
 
-### setUserComment<sup>10+</sup>
+### setUserComment
 
 setUserComment(userComment: string): Promise&lt;void&gt;
 
@@ -2600,6 +2661,18 @@ Sets user comment information of an image or video. This API uses a promise to r
 | --------------------------------------- | ----------------- |
 |Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
+
 **Example**
 
 ```ts
@@ -2614,16 +2687,16 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let userComment = 'test_set_user_comment';
-    await fileAsset.setUserComment(userComment);
+    await photoAsset.setUserComment(userComment);
   } catch (err) {
     console.error('setUserCommentDemoCallback failed with error: ' + err);
   }
 }
 ```
 
-### setUserComment<sup>10+</sup>
+### setUserComment
 
 setUserComment(userComment: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -2644,6 +2717,18 @@ Sets user comment information of an image or video. This API uses an asynchronou
 | userComment | string | Yes  | User comment information to set, which cannot exceed 140 characters.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202        |  Called by non-system application.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
+
 **Example**
 
 ```ts
@@ -2658,9 +2743,9 @@ async function example() {
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let fileAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
+    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     let userComment = 'test_set_user_comment';
-    fileAsset.setUserComment(userComment, (err) => {
+    photoAsset.setUserComment(userComment, (err) => {
       if (err === undefined) {
         console.info('setUserComment successfully');
       } else {
@@ -2675,7 +2760,7 @@ async function example() {
 
 ## PhotoViewPicker
 
-Provides APIs for selecting images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
+Provides APIs for the user to select images and videos. Before using the APIs of **PhotoViewPicker**, you need to create a **PhotoViewPicker** instance.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2691,7 +2776,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses a promise to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
-> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#using-a-media-file-uri).
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2706,6 +2791,15 @@ Starts a **photoPicker** page for the user to select one or more images or video
 | Type                           | Description   |
 | ----------------------------- | :---- |
 | Promise&lt;[PhotoSelectResult](#photoselectresult)&gt; | Promise return information about the images or videos selected.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 13900042      | Unknown error.         |
 
 **Example**
 
@@ -2735,7 +2829,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
-> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#using-a-media-file-uri).
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2745,6 +2839,15 @@ Starts a **photoPicker** page for the user to select one or more images or video
 | ------- | ------- | ---- | -------------------------- |
 | option | [PhotoSelectOptions](#photoselectoptions) | Yes  | Options for selecting images or videos.|
 | callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 13900042      | Unknown error.         |
 
 **Example**
 
@@ -2776,7 +2879,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
 Starts a **photoPicker** page for the user to select one or more images or videos. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../../application-dev/file-management/user-file-uri-intro.md#using-a-media-file-uri).
+> **NOTE**<br>The **photoUris** in the **PhotoSelectResult** object returned by this API can be used only by calling [photoAccessHelper.getAssets()](#getassets) with temporary authorization. For details, see [Using a Media File URI](../../file-management/user-file-uri-intro.md#using-a-media-file-uri).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -2785,6 +2888,15 @@ Starts a **photoPicker** page for the user to select one or more images or video
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
 | callback | AsyncCallback&lt;[PhotoSelectResult](#photoselectresult)&gt;      | Yes  | Callback invoked to return information about the images or videos selected.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401      |  if parameter is invalid.         |
+| 13900042      | Unknown error.         |
 
 **Example**
 
@@ -2827,11 +2939,13 @@ Obtains the total number of files in the result set.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2846,7 +2960,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchCount = fetchResult.getCount();
   console.info('fetchCount = ', fetchCount);
 }
 ```
@@ -2867,11 +2981,13 @@ Checks whether the cursor is in the last row of the result set.
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2885,7 +3001,7 @@ async function example() {
     predicates: predicates
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  const fetchCount = fetchResult.getCount();
+  let fetchCount = fetchResult.getCount();
   console.info('count:' + fetchCount);
   let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
   if (fetchResult.isAfterLast()) {
@@ -2900,17 +3016,19 @@ async function example() {
 
 close(): void
 
-Releases this **FetchFileResult** instance to invalidate it. After this instance is released, the APIs in this instance cannot be invoked.
+Closes this **FetchFileResult** instance to invalidate it. After this instance is closed, the APIs in this instance cannot be invoked.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2950,11 +3068,13 @@ Obtains the first file asset in the result set. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -2970,7 +3090,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getFirstObject((err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err:' + err);
@@ -2995,11 +3115,13 @@ Obtains the first file asset in the result set. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3021,9 +3143,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(callback: AsyncCallback&lt;T&gt;): void
+getNextObject(callback: AsyncCallback&lt;T&gt;): void
 
 Obtains the next file asset in the result set. This API uses an asynchronous callback to return the result.
+Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the end of the result set.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3031,15 +3154,17 @@ Obtains the next file asset in the result set. This API uses an asynchronous cal
 
 | Name   | Type                                         | Mandatory| Description                                     |
 | --------- | --------------------------------------------- | ---- | ----------------------------------------- |
-| callbacke | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
+| callback | AsyncCallback&lt;T&gt; | Yes  | Callback invoked to return the next file asset.|
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3055,9 +3180,9 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     fetchResult.getNextObject((err, photoAsset) => {
-      if (photoAsset != undefined) {
+      if (photoAsset !== undefined) {
         console.info('photoAsset displayName: ', photoAsset.displayName);
       } else {
         console.error('photoAsset failed with err: ' + err);
@@ -3069,9 +3194,10 @@ async function example() {
 
 ### getNextObject
 
- getNextObject(): Promise&lt;T&gt;
+getNextObject(): Promise&lt;T&gt;
 
 Obtains the next file asset in the result set. This API uses a promise to return the result.
+Before using this API, you must use [isAfterLast()](#isafterlast) to check whether the current position is the end of the result set.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3083,11 +3209,13 @@ Obtains the next file asset in the result set. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3103,7 +3231,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   await fetchResult.getFirstObject();
-  if (fetchResult.isAfterLast()) {
+  if (!fetchResult.isAfterLast()) {
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getNextObject();
     console.info('photoAsset displayName: ', photoAsset.displayName);
   }
@@ -3126,11 +3254,13 @@ Obtains the last file asset in the result set. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3146,7 +3276,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getLastObject((err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err: ' + err);
@@ -3171,11 +3301,13 @@ Obtains the last file asset in the result set. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042   | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3212,11 +3344,13 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401    | if type index is not number.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3232,7 +3366,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getObjectByPosition(0, (err, photoAsset) => {
-    if (photoAsset != undefined) {
+    if (photoAsset !== undefined) {
       console.info('photoAsset displayName: ', photoAsset.displayName);
     } else {
       console.error('photoAsset failed with err: ' + err);
@@ -3263,11 +3397,13 @@ Obtains a file asset with the specified index in the result set. This API uses a
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type index is not number.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3303,11 +3439,13 @@ Obtains all the file assets in the result set. This API uses an asynchronous cal
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042    | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3323,7 +3461,7 @@ async function example() {
   };
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
   fetchResult.getAllObjects((err, photoAssetList) => {
-    if (photoAssetList != undefined) {
+    if (photoAssetList !== undefined) {
       console.info('photoAssetList length: ', photoAssetList.length);
     } else {
       console.error('photoAssetList failed with err:' + err);
@@ -3348,11 +3486,13 @@ Obtains all the file assets in the result set. This API uses a promise to return
 
 **Error codes**
 
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13900042    | Unknown error.         |
+| 401       |  if parameter is invalid.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3391,7 +3531,7 @@ Provides APIs to manage albums.
 
 ### getAssets
 
-getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void;
+getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;PhotoAsset&gt;&gt;): void
 
 Obtains image and video assets. This API uses an asynchronous callback to return the result.
 
@@ -3408,11 +3548,14 @@ Obtains image and video assets. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOptions.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3430,10 +3573,10 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption, (err, albumFetchResult) => {
-    if (albumFetchResult != undefined) {
+    if (albumFetchResult !== undefined) {
       console.info('album getAssets successfully, getCount: ' + albumFetchResult.getCount());
     } else {
       console.error('album getAssets failed with error: ' + err);
@@ -3444,7 +3587,7 @@ async function example() {
 
 ### getAssets
 
-getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;;
+getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 Obtains image and video assets. This API uses a promise to return the result.
 
@@ -3466,11 +3609,14 @@ Obtains image and video assets. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if type options is not FetchOptions.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3490,8 +3636,8 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.getAssets(fetchOption).then((albumFetchResult) => {
     console.info('album getPhotoAssets successfully, getCount: ' + albumFetchResult.getCount());
   }).catch((err: BusinessError) => {
@@ -3502,7 +3648,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(callback: AsyncCallback&lt;void&gt;): void;
+commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 Commits the modification on the album attributes to the database. This API uses an asynchronous callback to return the result.
 
@@ -3518,11 +3664,14 @@ Commits the modification on the album attributes to the database. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if value to modify is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3536,11 +3685,11 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify((err) => {
-    if (err != undefined) {
+    if (err !== undefined) {
       console.error('commitModify failed with error: ' + err);
     } else {
       console.info('commitModify successfully');
@@ -3551,7 +3700,7 @@ async function example() {
 
 ### commitModify
 
-commitModify(): Promise&lt;void&gt;;
+commitModify(): Promise&lt;void&gt;
 
 Commits the modification on the album attributes to the database. This API uses a promise to return the result.
 
@@ -3567,11 +3716,14 @@ Commits the modification on the album attributes to the database. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if value to modify is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3586,8 +3738,8 @@ async function example() {
     fetchColumns: [],
     predicates: predicates
   };
-  const albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
-  const album: photoAccessHelper.Album = await albumList.getFirstObject();
+  let albumList: photoAccessHelper.FetchResult<photoAccessHelper.Album> = await phAccessHelper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+  let album: photoAccessHelper.Album = await albumList.getFirstObject();
   album.albumName = 'hello';
   album.commitModify().then(() => {
     console.info('commitModify successfully');
@@ -3599,7 +3751,7 @@ async function example() {
 
 ### addAssets
 
-addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+addAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses an asynchronous callback to return the result.
 
@@ -3616,11 +3768,14 @@ Adds image and video assets to an album. Before the operation, ensure that the i
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if PhotoAssets is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3654,7 +3809,7 @@ async function example() {
 
 ### addAssets
 
-addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+addAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Adds image and video assets to an album. Before the operation, ensure that the image and video assets to add and the album exist. This API uses a promise to return the result.
 
@@ -3676,11 +3831,14 @@ Adds image and video assets to an album. Before the operation, ensure that the i
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if PhotoAssets is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3713,7 +3871,7 @@ async function example() {
 
 ### removeAssets
 
-removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+removeAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Removes image and video assets from an album. The album and file resources must exist. This API uses an asynchronous callback to return the result.
 
@@ -3730,11 +3888,14 @@ Removes image and video assets from an album. The album and file resources must 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if PhotoAssets is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3768,7 +3929,7 @@ async function example() {
 
 ### removeAssets
 
-removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+removeAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Removes image and video assets from an album. The album and file resources must exist. This API uses a promise to return the result.
 
@@ -3790,11 +3951,14 @@ Removes image and video assets from an album. The album and file resources must 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 401   | if PhotoAssets is invalid.         |
+| 401       |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3827,7 +3991,7 @@ async function example() {
 
 ### recoverAssets
 
-recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
@@ -3846,12 +4010,15 @@ Recovers image or video assets from the trash. Before the operation, ensure that
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   |  if PhotoAssets is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3885,7 +4052,7 @@ async function example() {
 
 ### recoverAssets
 
-recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+recoverAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Recovers image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
@@ -3909,12 +4076,15 @@ Recovers image or video assets from the trash. Before the operation, ensure that
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   |  if PhotoAssets is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -3947,7 +4117,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void;
+deleteAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses an asynchronous callback to return the result.
 
@@ -3968,12 +4138,15 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   | if PhotoAssets is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -4007,7 +4180,7 @@ async function example() {
 
 ### deleteAssets
 
-deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;;
+deleteAssets(assets: Array&lt;PhotoAsset&gt;): Promise&lt;void&gt;
 
 Deletes image or video assets from the trash. Before the operation, ensure that the image or video assets exist in the trash. This API uses a promise to return the result.
 
@@ -4033,12 +4206,15 @@ Deletes image or video assets from the trash. Before the operation, ensure that 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   | if PhotoAssets is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -4071,7 +4247,7 @@ async function example() {
 
 ### setCoverUri
 
-setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void;
+setCoverUri(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the album cover. This API uses an asynchronous callback to return the result.
 
@@ -4092,12 +4268,15 @@ Sets the album cover. This API uses an asynchronous callback to return the resul
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   | if parameter is invalid.         |
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 
 **Example**
 
@@ -4131,7 +4310,7 @@ async function example() {
 
 ### setCoverUri
 
-setCoverUri(uri: string): Promise&lt;void&gt;;
+setCoverUri(uri: string): Promise&lt;void&gt;
 
 Sets the album cover. This API uses a promise to return the result.
 
@@ -4157,21 +4336,24 @@ Sets the album cover. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcodes/errorcode-universal.md) and [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 202   | Called by non-system application.                |
-| 401   | if parameter is invalid.         |
-
+| 202      |  Called by non-system application.         |
+| 401      |  if parameter is invalid.         |
+| 13900012     | Permission denied.         |
+| 13900020     | Invalid argument.         |
+| 14000011       | System inner fail.         |
 **Example**
 
 ```ts
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { BusinessError } from '@ohos.base';
 
 async function example() {
   try {
-    console.info('setCoverUriDemoCallback');
+    console.info('setCoverUriDemoPromise');
     let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
     let fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -4181,15 +4363,13 @@ async function example() {
     let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await album.getAssets(fetchOption);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    album.setCoverUri(asset.uri, (err) => {
-      if (err === undefined) {
-        console.info('album setCoverUri successfully');
-      } else {
-        console.error('album setCoverUri failed with error: ' + err);
-      }
+    album.setCoverUri(asset.uri).then(() => {
+      console.info('album setCoverUri successfully');
+    }).catch((err: BusinessError) => { 
+      console.error('album setCoverUri failed with error: ' + err);
     });
   } catch (err) {
-    console.error('setCoverUriDemoCallback failed with error: ' + err);
+    console.error('setCoverUriDemoPromise failed with error: ' + err);
   }
 }
 ```
@@ -4283,7 +4463,7 @@ Defines the key information about an image or video file.
 | PHOTO_TYPE    | 'media_type'           | Type of the file.                                             |
 | DISPLAY_NAME  | 'display_name'        | File name displayed.                                                  |
 | SIZE          | 'size'                | File size.                                                  |
-| DATE_ADDED    | 'date_added'          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
+| DATE_ADDED    | 'date_added'          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time (00:00:00 UTC on January 1, 1970).            |
 | DATE_MODIFIED | 'date_modified'       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
 | DURATION      | 'duration'            | Duration, in ms.                                   |
 | WIDTH         | 'width'               | Image width, in pixels.                                   |
@@ -4293,13 +4473,10 @@ Defines the key information about an image or video file.
 | FAVORITE      | 'is_favorite'            | Whether the file is added to favorites.                                                   |
 | TITLE         | 'title'               | Title in the file.                                                  |
 | POSITION  | 'position'            | File location type.<br>**System API**: This is a system API.                              |
-| DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds between the time when the file is deleted and January 1, 1970.<br>**System API**: This is a system API.                |
+| DATE_TRASHED  | 'date_trashed'  | Date when the file was deleted. The value is the number of seconds elapsed since the Epoch time.<br>**System API**: This is a system API.                |
 | HIDDEN  | 'hidden'            | Whether the file is hidden.<br>**System API**: This is a system API.                              |
 | CAMERA_SHOT_KEY  | 'camera_shot_key'  | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br>**System API**: This is a system API.           |
 | USER_COMMENT<sup>10+</sup>  | 'user_comment'            | User comment information.<br>**System API**: This is a system API.          |
-| DATE_YEAR<sup>11+</sup>  | 'date_year'            | Year when the file was created.<br>**System API**: This is a system API.          |
-| DATE_MONTH<sup>11+</sup>  | 'date_month'            | Month when the file was created.<br>**System API**: This is a system API.          |
-| DATE_DAY<sup>11+</sup>  | 'date_day'            | Date when the file was created.<br>**System API**: This is a system API.          |
 
 ## AlbumKeys
 
@@ -4316,12 +4493,14 @@ Enumerates the key album attributes.
 
 Defines the options for creating an image or video asset.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                  | Type               | Mandatory| Description                                             |
 | ---------------------- | ------------------- | ---- | ------------------------------------------------ |
-| subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video.<br>**System API**: This is a system API. |
-| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)<br>**System API**: This is a system API.  |
+| subtype           | [PhotoSubtype](#photosubtype) | No | Subtype of the image or video. |
+| cameraShotKey           | string | No | Key for the Ultra Snapshot feature, which allows the camera to take photos or record videos with the screen off. (This parameter is available only for the system camera, and the key value is defined by the system camera.)  |
 
 ## CreateOptions
 
@@ -4341,8 +4520,8 @@ Defines the options for fetching media files.
 
 | Name                  | Type               | Readable| Writable| Description                                             |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
-| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Column names used for retrieval. If this parameter is left empty, the media files are fetched by **uri**, **name**, and **photoType** by default. The specific field names are subject to the definition of the search object. Example:<br>fetchColumns: ['uri', 'title']|
-| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | Yes  | Yes  | Predicates that specify the fetch criteria.|
+| fetchColumns           | Array&lt;string&gt; | Yes  | Yes  | Options for fetching files based on the attributes in columns.<br>If this parameter is left empty, files are fetched by URI, name, and type (the specific field names vary with the file asset or album object) by default. In addition, an error will be reported if [get](#get) is called to obtain other attributes of this object.<br>Example: fetchColumns: ['uri', 'title']|
+| predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Yes  | Predicates that specify the fetch criteria.|
 
 ## ChangeData
 
@@ -4378,8 +4557,8 @@ Enumerates the **DefaultChangeUri** subtypes.
 
 | Name             | Value                     | Description                                                        |
 | ----------------- | ----------------------- | ------------------------------------------------------------ |
-| DEFAULT_PHOTO_URI | 'file://media/Photo'      | Default **PhotoAsset** URI. The **PhotoAsset** change notifications are received based on this parameter and **forSubUri{true}**.|
-| DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | Default album URI. Album change notifications are received based on this parameter and **forSubUri{true}**. |
+| DEFAULT_PHOTO_URI | 'file://media/Photo'      | Default **PhotoAsset** URI, which must be used with **forChildUris{true}** to subscribe to change notifications of all photo assets.|
+| DEFAULT_ALBUM_URI | 'file://media/PhotoAlbum' | Default album URI, which must be used with **forChildUris{true}** to subscribe to change notifications of all albums.|
 
 ## PhotoViewMIMETypes
 
@@ -4412,5 +4591,5 @@ Defines information about the images or videos selected.
 
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
-| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the media files selected.|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.|
+| photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the images or videos selected. The URI array can be used only by calling [photoAccessHelper.getAssets](#getassets) with temporary authorization. For details about how to use the media file URI, see [Using a Media File URI] (../../file-management/user-file-uri-intro.md#using-a-media-file-uri).|
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media asset is the original image.|

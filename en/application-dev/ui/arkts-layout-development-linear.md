@@ -29,7 +29,7 @@ Linear layout is the most frequently used layout in development, built with the 
 - Spacing: distance between child elements.
 
 
-## Spacing of Layout Child Elements in Arrangement Direction
+## Spacing of Child Elements in Arrangement Direction
 
 In the layout container, use the **space** attribute to equally space child elements in the arrangement direction.
 
@@ -72,16 +72,16 @@ Row({ space: 35 }) {
 ![en-us_image_0000001562700509](figures/en-us_image_0000001562700509.png)
 
 
-## Alignment of Layout Child Elements Along Cross Axis
+## Alignment of Child Elements Along Cross Axis
 
 In the layout container, use the **alignItems** attribute to set the alignment mode of child elements along the cross axis. The alignment performance is consistent across screens of various sizes. The value is of the [VerticalAlign Type](../reference/arkui-ts/ts-appendix-enums.md#verticalalign) type when the cross axis is in the vertical direction and the [HorizontalAlign](../reference/arkui-ts/ts-appendix-enums.md#horizontalalign) type when the cross axis is in the horizontal direction.
 
 The layout container also provides the **alignSelf** attribute to control the alignment mode of a single child element along the cross axis. This attribute has a higher priority than the **alignItems** attribute. This means that, if **alignSelf** is set, it will overwrite the **alignItems** setting on the corresponding child element.
 
 
-### Horizontal Alignment of Layout Child Elements in \<Column> Container
+### Horizontal Alignment of Child Elements in \<Column> Container
 
-  **Figure 5** Horizontal alignment of layout child elements in the \<Column> container 
+  **Figure 5** Horizontal alignment of child elements in the \<Column> container 
 
 ![horizontal-arrangement-child-column](figures/horizontal-arrangement-child-column.png)
 
@@ -137,9 +137,9 @@ The layout container also provides the **alignSelf** attribute to control the al
   ![en-us_image_0000001511421348](figures/en-us_image_0000001511421348.png)
 
 
-### Vertical Alignment of Layout Child Elements in \<Row> Container
+### Vertical Alignment of Child Elements in \<Row> Container
 
-  **Figure 6** Vertical alignment of layout child elements in \<Row> container 
+  **Figure 6** Vertical alignment of child elements in \<Row> container 
 
 ![horizontal-arrangement-child-row](figures/horizontal-arrangement-child-row.png)
 
@@ -195,18 +195,18 @@ The layout container also provides the **alignSelf** attribute to control the al
   ![en-us_image_0000001563060781](figures/en-us_image_0000001563060781.png)
 
 
-## Arrangement of Layout Child Elements Along Main Axis
+## Arrangement of Child Elements Along Main Axis
 
 In the layout container, you can use the **justifyContent** attribute to set the arrangement mode of child elements along the main axis. The arrangement may begin from the start point or end point of the main axis, or the space of the main axis can be evenly divided.
 
 
 ### In \<Column> Container
 
-  **Figure 7** Arrangement of layout child elements along main axis in the \<Column> container
+  **Figure 7** Vertical alignment of child elements in the \<Column> container
 
 ![vertial-arrangement-child-column](figures/vertial-arrangement-child-column.png)
 
-- **justifyContent(FlexAlign.Start)**: The items are aligned with each other toward the start edge of the container along the main axis.
+- **justifyContent(FlexAlign.Start)**: The items are vertically aligned with each other toward the start edge of the container.
 
   ```ts
   Column({}) {
@@ -223,7 +223,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001562700501](figures/en-us_image_0000001562700501.png)
 
-- **justifyContent(FlexAlign.Center)**: The elements are aligned with each other toward the center of the container along the main axis. The space between the first component and the main-start is the same as that between the last component and the main-end.
+- **justifyContent(FlexAlign.Center)**: The elements are vertically aligned with each other toward the center of the container. The space between the first component and the start edge is the same as that between the last component and the end edge.
 
   ```ts
   Column({}) {
@@ -240,7 +240,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001562700517](figures/en-us_image_0000001562700517.png)
 
-- **justifyContent(FlexAlign.End)**: The elements are aligned with each other toward the end edge of the container along the main axis.
+- **justifyContent(FlexAlign.End)**: The elements are vertically aligned with each other toward the end edge of the container.
 
   ```ts
   Column({}) {
@@ -257,7 +257,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001562940585](figures/en-us_image_0000001562940585.png)
 
-- **justifyContent(FlexAlign.Spacebetween)**: The elements are evenly distributed along the main axis. The space between any two adjacent elements is the same. The first element is aligned with the main-start, the last element is aligned with the main-end, and the remaining elements are distributed so that the space between any two adjacent elements is the same.
+- **justifyContent(FlexAlign.SpaceBetween)**: The elements are evenly distributed vertically. The space between any two adjacent elements is the same. The first element is aligned with the start edge, the last element is aligned with the end edge, and the remaining elements are distributed so that the space between any two adjacent elements is the same.
 
   ```ts
   Column({}) {
@@ -274,7 +274,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001511900532](figures/en-us_image_0000001511900532.png)
 
-- **justifyContent(FlexAlign.SpaceAround)**: The elements are evenly distributed along the main axis. The space between any two adjacent elements is the same. The space between the first element and main-start, and that between the last element and cross-main are both half the size of the space between two adjacent elements.
+- **justifyContent(FlexAlign.SpaceAround)**: The elements are evenly distributed vertically. The space between any two adjacent elements is the same. The space between the first element and start edge, and that between the last element and end edge are both half the size of the space between two adjacent elements.
 
   ```ts
   Column({}) {
@@ -291,7 +291,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001562700525](figures/en-us_image_0000001562700525.png)
 
-- **justifyContent(FlexAlign.SpaceEvenly)**: The elements are evenly distributed along the main axis. The space between the first element and main-start, the space between the last element and main-end, and the space between any two adjacent elements are the same.
+- **justifyContent(FlexAlign.SpaceEvenly)**: The elements are evenly distributed vertically. The space between the first element and start edge, the space between the last element and end edge, and the space between any two adjacent elements are the same.
 
   ```ts
   Column({}) {
@@ -311,11 +311,11 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
 ### In \<Row> Container
 
-  **Figure 8** Arrangement of layout child elements along main axis in the \<Row> container 
+  **Figure 8** Horizontal alignment of child elements in the \<Row> container 
 
 ![vertial-arrangement-child-row](figures/vertial-arrangement-child-row.png)
 
-- **justifyContent(FlexAlign.Start)**: The items are aligned with each other toward the start edge of the container along the main axis.
+- **justifyContent(FlexAlign.Start)**: The items are horizontally aligned with each other toward the start edge of the container.
 
   ```ts
   Row({}) {
@@ -332,7 +332,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001511421356](figures/en-us_image_0000001511421356.png)
 
-- **justifyContent(FlexAlign.Center)**: The elements are aligned with each other toward the center of the container along the main axis. The space between the first component and the main-start is the same as that between the last component and the main-end.
+- **justifyContent(FlexAlign.Center)**: The elements are horizontally aligned with each other toward the center of the container. The space between the first component and the start edge is the same as that between the last component and the end edge.
 
   ```ts
   Row({}) {
@@ -349,7 +349,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001511900516](figures/en-us_image_0000001511900516.png)
 
-- **justifyContent(FlexAlign.End)**: The elements are aligned with each other toward the end edge of the container along the main axis.
+- **justifyContent(FlexAlign.End)**: The elements are horizontally aligned with each other toward the end edge of the container.
 
   ```ts
   Row({}) {
@@ -366,7 +366,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001562940601](figures/en-us_image_0000001562940601.png)
 
-- **justifyContent(FlexAlign.Spacebetween)**: The elements are evenly distributed along the main axis. The space between any two adjacent elements is the same. The first element is aligned with the main-start, the last element is aligned with the main-end, and the remaining elements are distributed so that the space between any two adjacent elements is the same.
+- **justifyContent(FlexAlign.SpaceBetween)**: The elements are evenly distributed horizontally. The space between any two adjacent elements is the same. The first element is aligned with the start edge, the last element is aligned with the end edge, and the remaining elements are distributed so that the space between any two adjacent elements is the same.
 
   ```ts
   Row({}) {
@@ -383,7 +383,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001562700521](figures/en-us_image_0000001562700521.png)
 
-- **justifyContent(FlexAlign.SpaceAround)**: The elements are evenly distributed along the main axis. The space between any two adjacent elements is the same. The space between the first element and main-start, and that between the last element and cross-main are both half the size of the space between two adjacent elements.
+- **justifyContent(FlexAlign.SpaceAround)**: The elements are evenly distributed horizontally. The space between any two adjacent elements is the same. The space between the first element and start edge, and that between the last element and end edge are both half the size of the space between two adjacent elements.
 
   ```ts
   Row({}) {
@@ -400,7 +400,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
 
   ![en-us_image_0000001562820893](figures/en-us_image_0000001562820893.png)
 
-- **justifyContent(FlexAlign.SpaceEvenly)**: The elements are evenly distributed along the main axis. The space between the first element and main-start, the space between the last element and main-end, and the space between any two adjacent elements are the same.
+- **justifyContent(FlexAlign.SpaceEvenly)**: The elements are evenly distributed horizontally. The space between the first element and start edge, the space between the last element and end edge, and the space between any two adjacent elements are the same.
 
   ```ts
   Row({}) {
@@ -418,7 +418,7 @@ In the layout container, you can use the **justifyContent** attribute to set the
   ![en-us_image_0000001511421352](figures/en-us_image_0000001511421352.png)
 
 
-## Adaptive Scaling
+## Adaptive Stretching
 
 In linear layout, adaptive stretching is achieved by using the [\<Blank>](../reference/arkui-ts/ts-basic-components-blank.md) component, which automatically fills the empty spaces in the container – **\<Row>** or **\<Column>** – along the main axis. Just add the width and height as a percentage, and then adaptive scaling will take effect once the screen width and height change.
 
@@ -474,9 +474,9 @@ Adaptive scaling means that the size of a child element is automatically adjuste
           }.layoutWeight(2).backgroundColor(0xD2B48C).height('100%')
 
           Column() {
-            Text('layoutWeight(6)')
+            Text('layoutWeight(3)')
               .textAlign(TextAlign.Center)
-          }.layoutWeight(6).backgroundColor(0xF5DEB3).height('100%')
+          }.layoutWeight(3).backgroundColor(0xF5DEB3).height('100%')
 
         }.backgroundColor(0xffd306).height('30%')
 
@@ -554,7 +554,7 @@ Adaptive extension allows users to drag the scrollbar to display the page conten
 
 - [Add a scrollbar to a \<List> component](arkts-layout-development-create-list.md#adding-a-scrollbar): If the list items cannot be fully displayed on one screen, you can place the child elements in different components and employ a scrollbar to display them. Use the **scrollBar** attribute to set the scrollbar status and the **edgeEffect** attribute to set the rebound effect when the scrollbar has reached the edge.
 
-- Use a **\<Scroll>** component: When one screen is not able to accommodate the full content, you can wrap a **\<Scroll>** component at the outer layer of the **\<Column>** or **\<Row>** component to implement.
+- Use a **\<Scroll>** component: When one screen is not able to accommodate the full content, you can wrap a **\<Scroll>** component at the outer layer of the **\<Column>** or **\<Row>** component to implement a scrollable linear layout.
     Example of using a **\<Scroll>** component in the vertical layout:
 
   ```ts

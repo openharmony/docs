@@ -345,9 +345,9 @@
   ```ts
   let SWh:Record<string,number|string> = { 'width': '90%', 'height': 80 }
   Flex({ alignItems: ItemAlign.Stretch }) {  
-    Text('1').width('33%').height(30).backgroundColor(0xF5DEB3)  
-    Text('2').width('33%').height(40).backgroundColor(0xD2B48C)  
-    Text('3').width('33%').height(50).backgroundColor(0xF5DEB3)
+    Text('1').width('33%').backgroundColor(0xF5DEB3)  
+    Text('2').width('33%').backgroundColor(0xD2B48C)  
+    Text('3').width('33%').backgroundColor(0xF5DEB3)
   }
   .size(SWh)
   .padding(10)
@@ -376,9 +376,7 @@
 
 ### 子元素设置交叉轴对齐
 
-子元素的[alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md)属性也可以设置子元素在父容器交叉轴的对齐格式，且会覆盖Flex布局容器中alignItems配置。如下例所示：
-
-
+子元素的[alignSelf](../reference/arkui-ts/ts-universal-attributes-flex-layout.md#属性)属性也可以设置子元素在父容器交叉轴的对齐格式，且会覆盖Flex布局容器中alignItems配置。如下例所示：
 
 ```ts
 Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器组件设置子元素居中
@@ -410,7 +408,7 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 ### 内容对齐
 
-可以通过[alignContent](../reference/arkui-ts/ts-container-flex.md)参数设置子元素各行在交叉轴剩余空间内的对齐方式，只在多行的Flex布局中生效，可选值有：
+可以通过[alignContent](../reference/arkui-ts/ts-container-flex.md#接口)参数设置子元素各行在交叉轴剩余空间内的对齐方式，只在多行的Flex布局中生效，可选值有：
 
 - FlexAlign.Start：子元素各行与交叉轴起点对齐。
 
@@ -525,13 +523,13 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
 
 在弹性布局父组件尺寸过小时，通过子元素的以下属性设置其在父容器的占比，达到自适应布局。
 
-- flexBasis：设置子元素在父容器主轴方向上的基准尺寸。如果设置了该值，则子项占用的空间为设置的值；如果没设置该属性，那子项的空间为width/height的值。
+- flexBasis：设置子元素在父容器主轴方向上的基准尺寸。如果设置了该属性，则子项占用的空间为该属性所设置的值；如果没设置该属性，那子项的空间为width/height的值。
 
 
   ```ts
   Flex() {
     Text('flexBasis("auto")')
-      .flexBasis('auto') // 未设置width以及flexBasis值为auto，内容自身宽松
+      .flexBasis('auto') // 未设置width以及flexBasis值为auto，内容自身宽度
       .height(100)
       .backgroundColor(0xF5DEB3)
     Text('flexBasis("auto")'+' width("40%")')
@@ -574,12 +572,12 @@ Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) { // 容器
       .width(100)
       .height(100)
       .backgroundColor(0xF5DEB3)
-  }.width(400).height(120).padding(10).backgroundColor(0xAFEEEE)
+  }.width(420).height(120).padding(10).backgroundColor(0xAFEEEE)
   ```
   
   ![zh-cn_image_0000001562700449](figures/zh-cn_image_0000001562700449.png)
   
-  父容器宽度400vp，三个子元素原始宽度为100vp，总和300vp，剩余空间100vp根据flexGrow值的占比分配给子元素，未设置flexGrow的子元素不参与“瓜分”。
+  父容器宽度420vp，三个子元素原始宽度为100vp，左右padding为20vp，总和320vp，剩余空间100vp根据flexGrow值的占比分配给子元素，未设置flexGrow的子元素不参与“瓜分”。
   
   第一个元素以及第二个元素以2:3分配剩下的100vp。第一个元素为100vp+100vp * 2/5=140vp，第二个元素为100vp+100vp * 3/5=160vp。
   

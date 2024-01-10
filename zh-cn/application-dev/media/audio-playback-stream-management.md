@@ -1,4 +1,4 @@
-# 音频播放流管理
+# 音频播放流管理(ArkTS)
 
 对于播放音频类的应用，开发者需要关注该应用的音频流的状态以做出相应的操作，比如监听到状态为播放中/暂停时，及时改变播放按钮的UI显示。
 
@@ -9,6 +9,8 @@
 - 方法1：直接查看AudioRenderer的[state](../reference/apis/js-apis-audio.md#属性)：
     
   ```ts
+  import audio from '@ohos.multimedia.audio';
+  
   let audioRendererState: audio.AudioState = audioRenderer.state;
   console.info(`Current state is: ${audioRendererState }`)
   ```
@@ -16,6 +18,8 @@
 - 方法2：注册stateChange监听AudioRenderer的状态变化：
     
   ```ts
+  import audio from '@ohos.multimedia.audio';
+  
   audioRenderer.on('stateChange', (rendererState: audio.AudioState) => {
     console.info(`State change to: ${rendererState}`)
   });
@@ -46,7 +50,7 @@
 
    ```ts
    import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
+   
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
@@ -55,6 +59,7 @@
      
    ```ts
    import audio from '@ohos.multimedia.audio';
+   
    audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
      for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
        let AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
@@ -92,6 +97,8 @@
    
    ```ts
    import audio from '@ohos.multimedia.audio';
+   import { BusinessError } from '@ohos.base';
+   
    async function getCurrentAudioRendererInfoArray(): Promise<void> {
      await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
        console.info(`getCurrentAudioRendererInfoArray  Get Promise is called `);

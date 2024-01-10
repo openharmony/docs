@@ -1,6 +1,6 @@
-# @ohos.multimodalInput.inputEventClient (按键注入)
+# @ohos.multimodalInput.inputEventClient (输入事件注入)
 
-按键注入模块，提供按键注入能力。
+输入事件注入模块，提供输入事件注入能力。
 
 > **说明：**
 >
@@ -41,7 +41,13 @@ try {
     keyDownDuration: 0,
     isIntercepted: false
   }
-  inputEventClient.injectEvent({ KeyEvent: backKeyDown });
+
+  class EventDown {
+    KeyEvent: inputEventClient.KeyEvent | null = null
+  }
+
+  let eventDown: EventDown = { KeyEvent: backKeyDown }
+  inputEventClient.injectEvent(eventDown);
 
   let backKeyUp: inputEventClient.KeyEvent = {
     isPressed: false,
@@ -49,7 +55,13 @@ try {
     keyDownDuration: 0,
     isIntercepted: false
   };
-  inputEventClient.injectEvent({ KeyEvent: backKeyUp });
+
+  class EventUp {
+    KeyEvent: inputEventClient.KeyEvent | null = null
+  }
+
+  let eventUp: EventUp = { KeyEvent: backKeyUp }
+  inputEventClient.injectEvent(eventUp);
 } catch (error) {
   console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }

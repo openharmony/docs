@@ -25,25 +25,34 @@ import common from '@ohos.app.ability.common';
 **示例：**
 
   ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
   import common from '@ohos.app.ability.common';
   import Want from '@ohos.app.ability.Want';
+  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import bundleManager from '@ohos.bundle.bundleManager';
+  import rpc from '@ohos.rpc';
 
-  let want: Want = {
+  let connectWant: Want = {
     bundleName: 'com.example.myapp',
     abilityName: 'MyAbility'
   };
 
   let connectOptions: common.ConnectOptions = {
-    onConnect(elementName, remote) { 
-        console.log('onConnect elementName: ${elementName}');
+    onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+      console.log(`onConnect elementName: ${elementName}`);
     },
-    onDisconnect(elementName) { 
-        console.log('onDisconnect elementName: ${elementName}');
+    onDisconnect(elementName: bundleManager.ElementName) {
+      console.log(`onDisconnect elementName: ${elementName}`);
     },
-    onFailed(code) { 
-        console.error('onFailed code: ${code}');
+    onFailed(code: number) {
+      console.error(`onFailed code: ${code}`);
     }
   };
 
-  let connection: number = this.context.connectAbility(want, connectOptions);
+
+  class EntryAbility extends UIAbility {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+      let connection: number = this.context.connectServiceExtensionAbility(connectWant, connectOptions);
+    }
+  }
   ```

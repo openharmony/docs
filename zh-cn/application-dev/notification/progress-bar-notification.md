@@ -1,7 +1,7 @@
 # 发布进度条类型通知
 
 
-进度条通知也是常见的通知类型，主要应用于文件下载、事务处理进度显示。OpenHarmony提供了进度条模板，发布通知应用设置好进度条模板的属性值，如模板名、模板数据，通过通知子系统发送到通知栏显示。
+进度条通知也是常见的通知类型，主要应用于文件下载、事务处理进度显示。系统提供了进度条模板，发布通知应用设置好进度条模板的属性值，如模板名、模板数据，通过通知子系统发送到通知栏显示。
 
 目前系统模板仅支持进度条模板，通知模板[NotificationTemplate](../reference/apis/js-apis-inner-notification-notificationTemplate.md)中的data参数为用户自定义数据，用于显示与模块相关的数据，效果示意如下图所示。
 
@@ -27,18 +27,18 @@
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. 查询系统是否支持进度条模板，查询结果为支持downloadTemplate模板类通知。
    
    ```ts
    notificationManager.isSupportTemplate('downloadTemplate').then((data:boolean) => {
-     console.info(`[ANS] isSupportTemplate success`);
-     console.info('Succeeded in supporting download template notification.');
-     let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持支持downloadTemplate模板类通知，false表示不支持
-     // ...
+     logger.info(`[ANS] isSupportTemplate success`);
+     logger.info('Succeeded in supporting download template notification.');
+     let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持downloadTemplate模板类通知，false表示不支持
    }).catch((err:Base.BusinessError) => {
-     console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
+     logger.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
    
@@ -49,9 +49,9 @@
    
    ```ts
    let notificationRequest: notificationManager.NotificationRequest = {
-     id: 1,
+     id: 5,
      content: {
-       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
        normal: {
          title: 'test_title',
          text: 'test_text',
@@ -68,9 +68,9 @@
    // 发布通知
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in publishing notification.');
+     logger.info('Succeeded in publishing notification.');
    });
    ```

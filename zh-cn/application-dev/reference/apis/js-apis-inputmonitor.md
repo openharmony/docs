@@ -36,6 +36,7 @@ on(type: 'touch', receiver: TouchEventReceiver): void
 **示例：**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -98,6 +99,7 @@ off(type: 'touch', receiver?: TouchEventReceiver): void
 **示例：**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 // 取消监听单个回调函数
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -113,6 +115,7 @@ try {
 ```
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 // 取消监听所有回调函数
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -147,6 +150,7 @@ off(type: 'mouse', receiver?: Callback&lt;MouseEvent&gt;): void
 **示例：**
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 // 取消监听单个回调函数
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -162,6 +166,7 @@ try {
 ```
 
 ```js
+import { MouseEvent } from '@ohos.multimodalInput.mouseEvent';
 // 取消监听所有回调函数
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -199,6 +204,7 @@ try {
 **示例：**
 
 ```js
+import { TouchEvent } from '@ohos.multimodalInput.touchEvent';
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) { // 当前有三个手指按下
@@ -231,6 +237,7 @@ on(type: 'pinch', receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gesturee
   **示例：**
 
 ```js
+import type { Pinch } from '@ohos.multimodalInput.gestureEvent';
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);

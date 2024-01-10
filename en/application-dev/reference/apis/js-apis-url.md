@@ -1,5 +1,7 @@
 # @ohos.url (URL String Parsing)
 
+The **url** module provides APIs for constructing [URLParams](#urlparams9) and [URL](#url) instances to process URL strings.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -10,6 +12,8 @@
 import Url from '@ohos.url' 
 ```
 ## URLParams<sup>9+</sup>
+
+Defines APIs for handling URL query strings.
 
 ### constructor<sup>9+</sup>
 
@@ -141,7 +145,7 @@ for (let pair of arrayValue) { // Show keyName/valueName pairs
 
 ### forEach<sup>9+</sup>
 
-forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
+forEach(callbackFn: (value: string, key: string, searchParams: URLParams) => void, thisArg?: Object): void
 
 Traverses the key-value pairs in the **URLSearchParams** instance by using a callback.
 
@@ -160,7 +164,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 | -------- | -------- | -------- | -------- |
 | value | string | Yes| Value that is currently traversed.|
 | key | string | Yes| Key that is currently traversed.|
-| searchParams | Object | Yes| Instance that invokes the **forEach** method.|
+| searchParams | [URLParams](#urlparams9) | Yes| Instance that invokes the **forEach** method.|
 
 **Example**
 
@@ -373,6 +377,8 @@ console.log(params.toString());
 
 ## URL
 
+Provides APIs for parsing, constructing, and encoding URL strings.
+
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
@@ -511,6 +517,10 @@ let result = url.toJSON();
 ```
 
 ## URLSearchParams<sup>(deprecated)</sup>
+
+Defines APIs for handling URL query strings.
+
+This class is deprecated since API version 9. You are advised to use [URLParams](#urlparams9) instead.
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -658,7 +668,7 @@ for (let pair of pairs) { // Show keyName/valueName pairs
 
 ### forEach<sup>(deprecated)</sup>
 
-forEach(callbackFn: (value: string, key: string, searchParams: this) => void, thisArg?: Object): void
+forEach(callbackFn: (value: string, key: string, searchParams: URLSearchParams) => void, thisArg?: Object): void
 
 Traverses the key-value pairs in the **URLSearchParams** instance by using a callback.
 
@@ -681,7 +691,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 | -------- | -------- | -------- | -------- |
 | value | string | Yes| Value that is currently traversed.|
 | key | string | Yes| Key that is currently traversed.|
-| searchParams | Object | Yes| Instance that invokes the **forEach** method.|
+| searchParams | [URLSearchParams](#urlsearchparamsdeprecated) | Yes| Instance that invokes the **forEach** method.|
 
 **Example**
 

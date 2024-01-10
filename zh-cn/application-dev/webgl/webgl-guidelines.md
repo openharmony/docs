@@ -550,11 +550,11 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
    }
    
    /**
-    * Creates a program object and makes it as the current object.
-    * @param gl Indicates the WebGL context.
-    * @param vshader Indicates a vertex shader program (string).
-    * @param fshader Indicates a fragment shader program (string).
-    * @return Returns true if the WebGLProgram object was created and successfully made as the current object; returns false otherwise. 
+    * 创建并使能一个program对象
+    * @param gl 表示 WebGL上下文对
+    * @param vshader 表示顶点着色器
+    * @param fshader 表示片段着色器
+    * @return 如果WebGLProgram对象被创建并成功作为当前对象，则返回true；否则返回false 
     */
    function initShaders(gl, vshader, fshader) {
        var program = createProgram(gl, vshader, fshader);
@@ -571,15 +571,15 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
    }
    
    /**
-    * Creates a linked program object.
-    * @param gl Indicates the WebGL context.
-    * @param vshader Indicates a vertex shader program (string).
-    * @param fshader Indicates a fragment shader program (string).
-    * @return Returns the created program object if the operation is successful; returns null otherwise. 
+    * 创建一个linked program对象
+    * @param gl 表示 WebGL上下文对象
+    * @param vshader 表示顶点着色器
+    * @param fshader 表示片段着色器
+    * @return 如果创建program成功，则返回创建的program；否则返回null
     */
    function createProgram(gl, vshader, fshader) {
        console.log("======createProgram start======");
-       // Create shader object
+       // 创建shader对象
        var vertexShader = loadShader(gl, gl.VERTEX_SHADER, vshader);
        console.log("======vertexShader: " + vertexShader);
        var fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fshader);
@@ -587,7 +587,7 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
            return null;
        }
    
-       // Create a program object.
+       // 创建program对象
        var program = gl.createProgram();
        console.log("======createProgram program: " + program);
    
@@ -595,14 +595,14 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
            return null;
        }
    
-       // Attach the shader objects.
+       // 将着色器附加到对象
        gl.attachShader(program, vertexShader);
        gl.attachShader(program, fragmentShader);
    
-       // Link the program object.
+       // 连接程序对象
        gl.linkProgram(program);
    
-       // Check the result of linking.
+       // 检查连接对象的结果
        var linked = gl.getProgramParameter(program, 0x8B82);
        console.log("======getProgramParameter linked: " + linked);
    
@@ -618,28 +618,28 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
    }
    
    /**
-     * Creates a shader object.
-     * @param gl Indicates the WebGL context.
-     * @param type Indicates the type of the shader object to be created.
-     * @param source Indicates the shader program (string). 
-     * @return Returns the created shader object if the operation is successful; returns false otherwise. 
+     * 创建一个shader对象
+     * @param gl 表示 WebGL上下文对象
+     * @param type 表示shader类型
+     * @param source 表示shader的源码 
+     * @return 如果操作成功，返回创建的着色器对象；否则返回false
      */ 
    function loadShader(gl, type, source) {
        console.log("======into loadShader====");
-       // Create shader object
+       // 创建shader对象
        var shader = gl.createShader(type);
        if (shader == null) {
            console.log('Failed to create the shader.');
            return null;
        }
    
-       // Set the shader program.
+       // 设置shader program
        gl.shaderSource(shader, source);
    
-       // Compile the shader.
+       // 编译shader
        gl.compileShader(shader);
    
-       // Check the result of compilation.
+       // 检查shader编译结果
        var compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
        if (!compiled) {
            var error = gl.getShaderInfoLog(shader);
@@ -693,7 +693,7 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
            // 绘制三角形
            gl.drawArrays(gl.TRIANGLES, 0, n);
    
-           //清buffer
+           // 清buffer
            gl.flush();
        }
    }

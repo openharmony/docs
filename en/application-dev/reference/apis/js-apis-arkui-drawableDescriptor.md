@@ -76,7 +76,7 @@ Obtains this **pixelMap** object.
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **pixelMap** object.|
+| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object.|
 
 **Example**
   ```ts
@@ -98,7 +98,7 @@ Obtains the **pixelMap** object where the foreground, background, and mask are b
 
 | Type                                      | Description      |
 | ---------------------------------------- | -------- |
-| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **pixelMap** object.|
+| [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **PixelMap** object.|
 
 **Example**
   ```ts
@@ -188,9 +188,22 @@ Obtains the built-in clipping path parameters of the system. It is a static meth
 | string | String of the clipping path.|
 
 **Example**
+
   ```ts
+// xxx.ets
 import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
-Image($r('app.media.icon'))
-    .width('200px').height('200px')
-    .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.icon'))
+          .width('200px').height('200px')
+          .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+      }.height('50%')
+    }.width('50%')
+  }
+}
   ```

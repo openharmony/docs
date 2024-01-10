@@ -4,10 +4,10 @@
 You may want your application to behave differently based on the device environment where the application is running, for example, switching to dark mode or a specific language. In this case, you need Environment for device environment query.
 
 
-Environment is a singleton object created by the ArkUI framework at application start. It provides a range of application state attributes to AppStorage that describe the device environment in which the application is running. Environment and its attributes are immutable. All property values are of simple type only.
+Environment is a singleton object created by the ArkUI framework at application startup. It provides a range of application state attributes to AppStorage that describe the device environment in which the application is running. Environment and its attributes are immutable. All property values are of simple types only.
 
 
-## Application Scenarios
+## Use Scenarios
 
 
 ### Accessing Environment Parameters from UI
@@ -35,7 +35,6 @@ The chain of updates is as follows: Environment > AppStorage > Component.
 ```ts
 // Save the device language code to AppStorage.
 Environment.envProp('languageCode', 'en');
-let enable: undefined = AppStorage.get<undefined>('languageCode');
 
 @Entry
 @Component
@@ -66,7 +65,7 @@ const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode')
 if (lang.get() === 'en') {
   console.info('Hi');
 } else {
-  console.info('Hello!');
+  console.info('Bonjour');
 }
 ```
 
@@ -74,7 +73,7 @@ if (lang.get() === 'en') {
 ## Restrictions
 
 
-Environment can be called only when the [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext), which can be obtained through [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask), is specified. If Environment is called otherwise, no device environment data can be obtained.
+Environment can be called only when the [UIContext](../reference/apis/js-apis-arkui-UIContext.md#uicontext) is specified. The UIContext is specified when [runScopedTask](../reference/apis/js-apis-arkui-UIContext.md#runscopedtask) is called. If Environment is called otherwise, no device environment data can be obtained.
 
 
 ```ts

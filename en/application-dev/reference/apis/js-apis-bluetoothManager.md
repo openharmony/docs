@@ -13,7 +13,6 @@ The **Bluetooth** module provides classic Bluetooth capabilities and Bluetooth L
 
 ```js
 import bluetoothManager from '@ohos.bluetoothManager';
-import { BusinessError } from '@ohos.base';
 ```
 
 
@@ -42,6 +41,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.enableBluetooth();
 } catch (err) {
@@ -75,6 +75,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.disableBluetooth();
 } catch (err) {
@@ -114,6 +115,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let localName: string = bluetoothManager.getLocalName();
 } catch (err) {
@@ -153,6 +155,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let state: bluetoothManager.BluetoothState = bluetoothManager.getState();
 } catch (err) {
@@ -193,6 +196,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let connectionState: bluetoothManager.ProfileConnectionState = bluetoothManager.getBtConnectionState();
 } catch (err) {
@@ -233,6 +237,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.setLocalName('device_name');
 } catch (err) {
@@ -273,6 +278,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     // The address can be scanned.
     bluetoothManager.pairDevice("XX:XX:XX:XX:XX:XX");
@@ -321,6 +327,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let result: bluetoothManager.ProfileConnectionState = bluetoothManager.getProfileConnectionState(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE);
 } catch (err) {
@@ -363,6 +370,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.cancelPairedDevice("XX:XX:XX:XX:XX:XX");
 } catch (err) {
@@ -409,6 +417,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let remoteDeviceName: string = bluetoothManager.getRemoteDeviceName("XX:XX:XX:XX:XX:XX");
 } catch (err) {
@@ -455,6 +464,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let remoteDeviceClass: bluetoothManager.DeviceClass  = bluetoothManager.getRemoteDeviceClass("XX:XX:XX:XX:XX:XX");
 } catch (err) {
@@ -495,6 +505,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let devices: Array<string> = bluetoothManager.getPairedDevices();
 } catch (err) {
@@ -536,6 +547,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     // The device can be discovered and connected only when the discoverable and connectable mode is used.
     bluetoothManager.setBluetoothScanMode(bluetoothManager.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
@@ -577,6 +589,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let scanMode: bluetoothManager.ScanMode = bluetoothManager.getBluetoothScanMode();
 } catch (err) {
@@ -611,6 +624,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let deviceId: Array<string>;
 function onReceiveEvent(data: Array<string>) {
     deviceId = data;
@@ -650,6 +664,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.stopBluetoothDiscovery();
 } catch (err) {
@@ -691,6 +706,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Subscribe to the pinRequired event and configure the pairing confirmation after receiving a pairing request from the remote device.
 function onReceivePinRequiredEvent(data: bluetoothManager.PinRequiredParam) { // data is the input parameter for the pairing request.
     console.info('pin required  = '+ JSON.stringify(data));
@@ -735,6 +751,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<string>) { // data is an array of Bluetooth device addresses.
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -777,6 +794,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<string>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -820,6 +838,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.PinRequiredParam) { // data is the pairing request parameter.
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -862,6 +881,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.PinRequiredParam) {
     console.info('pin required = '+ JSON.stringify(data));
 }
@@ -905,6 +925,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.BondStateParam) { // data, as the input parameter of the callback, indicates the pairing state.
     console.info('pair state = '+ JSON.stringify(data));
 }
@@ -947,6 +968,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.BondStateParam) {
     console.info('bond state = '+ JSON.stringify(data));
 }
@@ -990,6 +1012,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -1032,6 +1055,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.BluetoothState) {
     console.info('bluetooth state = '+ JSON.stringify(data));
 }
@@ -1079,6 +1103,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -1129,6 +1154,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -1189,10 +1215,11 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1237,6 +1264,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let serverNumber = -1;
 function serverSocket(code: BusinessError, number: number) {
   console.log('bluetooth error code: ' + code.code);
@@ -1283,9 +1311,10 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1330,9 +1359,10 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1381,9 +1411,10 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1424,9 +1455,10 @@ Unsubscribes from the SPP read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let clientNumber = -1;
 function clientSocket(code: BusinessError, number: number) {
-  if (code.code != 0) {
+  if (code.code != 0 || code == null) {
     return;
   }
   console.log('bluetooth serverSocket Number: ' + number);
@@ -1463,6 +1495,7 @@ Obtains a profile instance. API version 9 is added with **HidHostProfile** and *
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHost: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST);
 } catch (err) {
@@ -1523,6 +1556,7 @@ Creates a **GattClientDevice** instance.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device: bluetoothManager.GattClientDevice = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
 } catch (err) {
@@ -1563,6 +1597,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let result: Array<string>  = bluetoothManager.BLE.getConnectedBLEDevices();
 } catch (err) {
@@ -1604,6 +1639,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<bluetoothManager.ScanResult>) {
     console.info('BLE scan device find result = '+ JSON.stringify(data));
 }
@@ -1652,6 +1688,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     bluetoothManager.BLE.stopBLEScan();
 } catch (err) {
@@ -1691,6 +1728,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<bluetoothManager.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1733,6 +1771,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: Array<bluetoothManager.ScanResult>) {
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
@@ -1783,6 +1822,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let retArray: Array<string> = a2dpSrc.getConnectionDevices();
@@ -1830,6 +1870,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let ret: bluetoothManager.ProfileConnectionState = a2dpSrc.getDeviceState('XX:XX:XX:XX:XX:XX');
@@ -1880,6 +1921,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     a2dpSrc.connect('XX:XX:XX:XX:XX:XX');
@@ -1922,6 +1964,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     a2dpSrc.disconnect('XX:XX:XX:XX:XX:XX');
@@ -1956,11 +1999,16 @@ No value is returned.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
+try {
 let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
 ```
 
 
@@ -1989,12 +2037,17 @@ No value is returned.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('a2dp state = '+ JSON.stringify(data));
 }
+try {
 let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
 a2dpSrc.on('connectionStateChange', onReceiveEvent);
 a2dpSrc.off('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
 ```
 
 
@@ -2035,6 +2088,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let a2dpSrc: bluetoothManager.A2dpSourceProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_A2DP_SOURCE) as bluetoothManager.A2dpSourceProfile;
     let state: bluetoothManager.PlayingState  = a2dpSrc.getPlayingState('XX:XX:XX:XX:XX:XX');
@@ -2085,6 +2139,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
     hfpAg.connect('XX:XX:XX:XX:XX:XX');
@@ -2127,6 +2182,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as bluetoothManager.HandsFreeAudioGatewayProfile;
     hfpAg.disconnect('XX:XX:XX:XX:XX:XX');
@@ -2157,12 +2213,17 @@ Subscribes to the HFP connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
+try {
 let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
   bluetoothManager.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2187,13 +2248,18 @@ Unsubscribes from the HFP connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('hfp state = '+ JSON.stringify(data));
 }
+try {
 let hfpAg: bluetoothManager.HandsFreeAudioGatewayProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HANDS_FREE_AUDIO_GATEWAY) as
   bluetoothManager.HandsFreeAudioGatewayProfile;
 hfpAg.on('connectionStateChange', onReceiveEvent);
 hfpAg.off('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2237,6 +2303,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
@@ -2281,6 +2348,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let hidHostProfile: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -2311,11 +2379,16 @@ Subscribes to the HidHost connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
+try {
 let hidHost: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2340,12 +2413,17 @@ Unsubscribes from the HidHost connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
+try {
 let hidHost: bluetoothManager.HidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2392,6 +2470,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
@@ -2422,11 +2501,16 @@ Subscribes to the PAN connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('pan state = '+ JSON.stringify(data));
 }
+try {
 let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2451,12 +2535,17 @@ Unsubscribes from the PAN connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function onReceiveEvent(data: bluetoothManager.StateChangeParam) {
     console.info('pan state = '+ JSON.stringify(data));
 }
+try {
 let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -2495,6 +2584,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.setTethering(true);
@@ -2526,6 +2616,7 @@ Obtains the network sharing status.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let panProfile: bluetoothManager.PanProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.isTetheringOn();
@@ -2577,6 +2668,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let manufactureValueBuffer = new Uint8Array(4);
 manufactureValueBuffer[0] = 1;
 manufactureValueBuffer[1] = 2;
@@ -2648,6 +2740,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server = bluetoothManager.BLE.createGattServer();
 try {
     server.stopAdvertising();
@@ -2689,6 +2782,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create descriptors.
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2755,6 +2849,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server = bluetoothManager.BLE.createGattServer();
 try {
     server.removeService('00001810-0000-1000-8000-00805F9B34FB');
@@ -2790,6 +2885,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let server = bluetoothManager.BLE.createGattServer();
 try {
     server.close();
@@ -2832,6 +2928,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create descriptors.
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let arrayBuffer = new ArrayBuffer(8);
@@ -2887,6 +2984,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 /* send response */
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
@@ -2931,6 +3029,7 @@ Subscribes to the characteristic read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1123;
@@ -2977,8 +3076,13 @@ Unsubscribes from the characteristic read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("characteristicRead");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3005,6 +3109,7 @@ Subscribes to the characteristic write request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferCCC = new ArrayBuffer(8);
 let cccValue = new Uint8Array(arrayBufferCCC);
 function WriteCharacteristicReq(characteristicWriteRequest: bluetoothManager.CharacteristicWriteRequest) {
@@ -3054,8 +3159,13 @@ Unsubscribes from the characteristic write request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("characteristicWrite");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3082,6 +3192,7 @@ Subscribes to the descriptor read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1101;
@@ -3128,8 +3239,13 @@ Unsubscribes from the descriptor read request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("descriptorRead");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3156,6 +3272,7 @@ Subscribes to the descriptor write request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let arrayBufferDesc = new ArrayBuffer(8);
 let descValue = new Uint8Array(arrayBufferDesc);
 function WriteDescriptorReq(descriptorWriteRequest: bluetoothManager.DescriptorWriteRequest) {
@@ -3205,8 +3322,13 @@ Unsubscribes from the descriptor write request events.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("descriptorWrite");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3233,13 +3355,17 @@ Subscribes to the BLE connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function Connected(BLEConnectChangedState: bluetoothManager.BLEConnectChangedState) {
   let deviceId: string = BLEConnectChangedState.deviceId;
   let status: bluetoothManager.ProfileConnectionState  = BLEConnectChangedState.state;
 }
-
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.on("connectStateChange", Connected);
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3266,8 +3392,13 @@ Unsubscribes from the BLE connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
+try {
 let gattServer = bluetoothManager.BLE.createGattServer();
 gattServer.off("connectStateChange");
+} catch (err) {
+    console.error("errCode:" + (err as BusinessError).code + ",errMessage:" + (err as BusinessError).message);
+}
 ```
 
 
@@ -3305,6 +3436,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.connect();
@@ -3340,6 +3472,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.disconnect();
@@ -3375,6 +3508,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.close();
@@ -3417,6 +3551,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Callback
 function getServices(code: BusinessError, gattServices: Array<bluetoothManager.GattService>) {
   if (code.code == 0) {
@@ -3471,6 +3606,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Promise
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
@@ -3517,6 +3653,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function readCcc(code: BusinessError, BLECharacteristic: bluetoothManager.BLECharacteristic) {
     if (code.code != 0) {
         return;
@@ -3589,6 +3726,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -3647,6 +3785,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function readDesc(code: BusinessError, BLEDescriptor: bluetoothManager.BLEDescriptor) {
     if (code.code != 0) {
         return;
@@ -3712,6 +3851,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 11;
@@ -3762,6 +3902,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
@@ -3819,6 +3960,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 let bufferDesc = new ArrayBuffer(8);
 let descV = new Uint8Array(bufferDesc);
 descV[0] = 22;
@@ -3868,6 +4010,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.setBLEMtuSize(128);
@@ -3909,6 +4052,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // Create descriptors.
 let descriptors: Array<bluetoothManager.BLEDescriptor> = [];
 let bufferDesc = new ArrayBuffer(8);
@@ -3958,6 +4102,7 @@ Subscribes to the BLE characteristic changes. The client can receive a notificat
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
     let serviceUuid: string = characteristicChangeReq.serviceUuid;
     let characteristicUuid: string = characteristicChangeReq.characteristicUuid;
@@ -3995,6 +4140,7 @@ Unsubscribes from the BLE characteristic changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLECharacteristicChange');
@@ -4027,6 +4173,7 @@ Subscribes to the BLE connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 function ConnectStateChanged(state: bluetoothManager.BLEConnectChangedState) {
     console.log('bluetooth connect state changed');
     let connectState: bluetoothManager.ProfileConnectionState = state.state;
@@ -4063,6 +4210,7 @@ Unsubscribes from the BLE connection state changes.
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 try {
     let device = bluetoothManager.BLE.createGattClientDevice('XX:XX:XX:XX:XX:XX');
     device.off('BLEConnectionStateChange');
@@ -4103,6 +4251,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callback
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -4148,6 +4297,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // promise
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -4191,6 +4341,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // callback
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");
@@ -4235,6 +4386,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 // promise
 try {
     let gattClient = bluetoothManager.BLE.createGattClientDevice("XX:XX:XX:XX:XX:XX");

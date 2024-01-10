@@ -70,7 +70,7 @@ Stack({ alignContent: Alignment.BottomStart }) {
 
 ![en-us_image_0000001511900544](figures/en-us_image_0000001511900544.png)
 
-In the following figure, the size of the stacked element 3 is greater than that of all the elements before it. Therefore, the first two elements are completely hidden. To show these elements, modify their **zIndex** attribute settings.
+In the preceding figure, the size of the stacked element 3 is greater than that of all the elements before it. Therefore, the first two elements are completely hidden. To show these elements, modify their **zIndex** attribute settings.
 
 
 ```ts

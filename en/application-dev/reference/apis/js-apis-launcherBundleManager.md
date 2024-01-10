@@ -1,6 +1,6 @@
 # @ohos.bundle.launcherBundleManager (launcherBundleManager)
 
-The **bundle.launcherBundleManager** module providers APIs for the **Home Screen** application to obtain the launcher ability information and shortcut information.
+The **bundle.launcherBundleManager** module providers APIs for the **Home Screen** application to obtain the [launcher ability information](js-apis-bundleManager-launcherAbilityInfo.md) and [shortcut information](js-apis-bundleManager-shortcutInfo.md).
 
 > **NOTE**
 >
@@ -13,7 +13,7 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 ```
 
 
-## launcherBundlemanager.getLauncherAbilityInfo<sup>9+</sup>
+## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
 getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void;
 
@@ -69,7 +69,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getLauncherAbilityInfo<sup>9+</sup>
+## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
 getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>;
 
@@ -123,7 +123,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getLauncherAbilityInfoSync<sup>10+</sup>
+## launcherBundleManager.getLauncherAbilityInfoSync<sup>10+</sup>
 
 getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>;
 
@@ -173,7 +173,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
+## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
 getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>) : void;
 
@@ -226,7 +226,7 @@ try {
     console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
-## launcherBundlemanager.getAllLauncherAbilityInfo<sup>9+</sup>
+## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
 getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)>>;
 
@@ -278,7 +278,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getShortcutInfo<sup>9+</sup>
+## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
 getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>) : void;
 
@@ -330,7 +330,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getShortcutInfo<sup>9+</sup>
+## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
 getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>>;
 
@@ -380,7 +380,7 @@ try {
 }
 ```
 
-## launcherBundlemanager.getShortcutInfoSync<sup>10+</sup>
+## launcherBundleManager.getShortcutInfoSync<sup>10+</sup>
 
 getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo.md)>;
 

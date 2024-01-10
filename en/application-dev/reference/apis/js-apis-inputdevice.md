@@ -257,7 +257,7 @@ getDeviceIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;): void
 
 Obtains the IDs of all input devices. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
+> This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -285,7 +285,7 @@ getDeviceIds(): Promise&lt;Array&lt;number&gt;&gt;
 
 Obtains the IDs of all input devices. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
+> This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceList](#inputdevicegetdevicelist9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -309,7 +309,7 @@ getDevice(deviceId: number, callback: AsyncCallback&lt;InputDeviceData&gt;): voi
 
 Obtains information about an input device. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
+> This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -339,7 +339,7 @@ getDevice(deviceId: number): Promise&lt;InputDeviceData&gt;
 
 Obtains information about an input device. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
+> This API is deprecated since API version 9. You are advised to use [inputDevice.getDeviceInfo](#inputdevicegetdeviceinfo9) instead.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -377,7 +377,7 @@ Obtains the key codes supported by the input device. This API uses an asynchrono
 | Name    | Type                                     | Mandatory| Description                                                  |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number                                    | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt;                      | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)                      | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
 | callback | AsyncCallback&lt;Array&lt;boolean&gt;&gt; | Yes  | Callback used to return the result.                          |
 
 **Example**
@@ -406,7 +406,7 @@ Obtains the key codes supported by the input device. This API uses a promise to 
 | Name    | Type                | Mandatory| Description                                                  |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt; | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
 
 **Return value**
 
@@ -440,7 +440,7 @@ Checks whether the input device supports the specified keycode value.
 | Name    | Type                | Mandatory| Description                                                  |
 | -------- | -------------------- | ---- | ------------------------------------------------------ |
 | deviceId | number               | Yes  | Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
-| keys     | Array&lt;KeyCode&gt; | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
+| keys     | Array[&lt;KeyCode&gt;](js-apis-keycode.md#keycode)  | Yes  | Key codes to be queried. A maximum of five key codes can be specified.               |
 
 **Return value**
 
@@ -496,7 +496,7 @@ try {
 
 getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
-Obtains the keyboard type of an input device. This API uses an asynchronous callback to return the result.
+Obtains the keyboard type of an input device. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -819,7 +819,7 @@ Defines the listener for hot swap events of an input device.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| type     | [ChangedType](#changedtype) | Yes| No| Device change type, which indicates whether an input device is inserted or removed.|
+| type     | [ChangedType](#changedtype9) | Yes| No| Device change type, which indicates whether an input device is inserted or removed.|
 | deviceId | number                      | Yes| No| Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
 
 ## InputDeviceData
@@ -832,7 +832,7 @@ Defines the information about an input device.
 | --------- | ------ | ---- | ---- | ------- |
 | id                   | number                                 | Yes| No| Unique ID of the input device. If the same physical device is repeatedly inserted and removed, its ID changes.|
 | name                 | string                                 | Yes| No| Name of the input device.                                            |
-| sources              | Array&lt;[SourceType](#sourcetype)&gt; | Yes| No| Source type of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
+| sources              | Array&lt;[SourceType](#sourcetype9)&gt; | Yes| No| Source type of the input device. For example, if a keyboard is attached with a touchpad, the device has two input sources: keyboard and touchpad.|
 | axisRanges           | Array&lt;[AxisRange](#axisrange)&gt;  | Yes| No| Axis information of the input device.                                          |
 | bus<sup>9+</sup>     | number                                 | Yes| No| Bus type of the input device.                                        |
 | product<sup>9+</sup> | number                                 | Yes| No| Product information of the input device.                                        |
@@ -867,7 +867,7 @@ Defines the axis range of an input device.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| source                  | [SourceType](#sourcetype) | Yes| No| Input source type of the axis.|
+| source                  | [SourceType](#sourcetype9) | Yes| No| Input source type of the axis.|
 | axis                    | [AxisType](#axistype9)    | Yes| No| Axis type.   |
 | max                     | number                    | Yes| No| Maximum value of the axis.  |
 | min                     | number                    | Yes| No| Minimum value of the axis.  |

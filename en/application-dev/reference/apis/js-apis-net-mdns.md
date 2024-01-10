@@ -11,7 +11,7 @@ Multicast DNS (mDNS) provides functions such as adding, removing, discovering, a
 import mdns from '@ohos.net.mdns'
 ```
 
-## mdns.addLocalService<sup>10+</sup>
+## mdns.addLocalService
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
@@ -48,38 +48,9 @@ Stage model:
 ```ts
 // Obtain the context.
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -91,13 +62,13 @@ let localServiceInfo: mdns.LocalServiceInfo = {
   serviceAttribute: [{key: "111", value: [1]}]
 }
 
-mdns.addLocalService(context as Context, localServiceInfo, (error:BusinessError, data:mdns.LocalServiceInfo) =>  {
+mdns.addLocalService(context, localServiceInfo, (error:BusinessError, data:mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
 
-## mdns.addLocalService<sup>10+</sup>
+## mdns.addLocalService
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
@@ -139,38 +110,9 @@ Stage model:
 ```ts
 // Obtain the context.
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -182,12 +124,12 @@ let localServiceInfo: mdns.LocalServiceInfo = {
   serviceAttribute: [{key: "111", value: [1]}]
 }
 
-mdns.addLocalService(context as Context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
+mdns.addLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
 
-## mdns.removeLocalService<sup>10+</sup>
+## mdns.removeLocalService
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
@@ -224,38 +166,9 @@ Stage model:
 ```ts
 // Obtain the context.
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -267,13 +180,13 @@ let localServiceInfo: mdns.LocalServiceInfo = {
   serviceAttribute: [{key: "111", value: [1]}]
 }
 
-mdns.removeLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
 
-## mdns.removeLocalService<sup>10+</sup>
+## mdns.removeLocalService
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
@@ -314,39 +227,9 @@ Stage model:
 
 ```ts
 import mdns from '@ohos.net.mdns'
-// Obtain the context.
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -358,12 +241,12 @@ let localServiceInfo: mdns.LocalServiceInfo = {
   serviceAttribute: [{key: "111", value: [1]}]
 }
 
-mdns.removeLocalService(context as Context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
+mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
 
-## mdns.createDiscoveryService<sup>10+</sup>
+## mdns.createDiscoveryService
 
 createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
@@ -397,44 +280,15 @@ Stage model:
 ```ts
 // Obtain the context.
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 
 let serviceType = "_print._tcp";
-let discoveryService : Object = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService : Object = mdns.createDiscoveryService(context, serviceType);
 ```
 
-## mdns.resolveLocalService<sup>10+</sup>
+## mdns.resolveLocalService
 
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
@@ -471,38 +325,9 @@ Stage model:
 ```ts
 // Obtain the context.
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -514,13 +339,13 @@ let localServiceInfo: mdns.LocalServiceInfo = {
   serviceAttribute: [{key: "111", value: [1]}]
 }
 
-mdns.resolveLocalService(context as Context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
+mdns.resolveLocalService(context, localServiceInfo, (error: BusinessError, data: mdns.LocalServiceInfo) =>  {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
 
-## mdns.resolveLocalService<sup>10+</sup>
+## mdns.resolveLocalService
 
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
@@ -562,38 +387,9 @@ Stage model:
 ```ts
 // Obtain the context.
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -605,15 +401,15 @@ let localServiceInfo: mdns.LocalServiceInfo = {
   serviceAttribute: [{key: "111", value: [1]}]
 }
 
-mdns.resolveLocalService(context as Context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
+mdns.resolveLocalService(context, localServiceInfo).then((data: mdns.LocalServiceInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
-## DiscoveryService<sup>10+</sup>
+## DiscoveryService
 
 Defines a **DiscoveryService** object for discovering mDNS services of the specified type.
 
-### startSearchingMDNS<sup>10+</sup>
+### startSearchingMDNS
 
 startSearchingMDNS(): void
 
@@ -628,44 +424,15 @@ Stage model:
 ```ts
 // Obtain the context.
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 ```
 
-### stopSearchingMDNS<sup>10+</sup>
+### stopSearchingMDNS
 
 stopSearchingMDNS(): void
 
@@ -680,46 +447,17 @@ Stage model:
 ```ts
 // Obtain the context.
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('discoveryStart')<sup>10+</sup>
+### on('discoveryStart')
 
-on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
+on(type: 'discoveryStart', callback: Callback<DiscoveryEventInfo>): void
 
 Enables listening for **discoveryStart** events.
 
@@ -736,58 +474,24 @@ Enables listening for **discoveryStart** events.
 
 ```ts
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
-
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
 
 // See mdns.createDiscoveryService.
-class DataServiceInfo{
-  serviceInfo: mdns.LocalServiceInfo|null = null
-  errorCode?: mdns.MdnsError = 0
-}
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-discoveryService.on('discoveryStart', (data: DataServiceInfo) => {
+discoveryService.on('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 ```
 
-### off('discoveryStart')<sup>10+</sup>
+### off('discoveryStart')
 
-off(type: 'discoveryStart', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void
+off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 
 Disables listening for **discoveryStart** events.
 
@@ -804,61 +508,28 @@ Disables listening for **discoveryStart** events.
 
 ```ts
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
 // See mdns.createDiscoveryService.
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-interface Data {
-  serviceInfo: mdns.LocalServiceInfo,
-  errorCode?: mdns.MdnsError
-}
-discoveryService.on('discoveryStart', (data: Data) => {
+discoveryService.on('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('discoveryStart', (data: Data) => {
+discoveryService.off('discoveryStart', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
 
-### on('discoveryStop')<sup>10+</sup>
+### on('discoveryStop')
 
-on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
+on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 
 Enables listening for **discoveryStop** events.
 
@@ -875,57 +546,24 @@ Enables listening for **discoveryStop** events.
 
 ```ts
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
 // See mdns.createDiscoveryService.
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-interface Data {
-  serviceInfo: mdns.LocalServiceInfo,
-  errorCode?: mdns.MdnsError
-}
-discoveryService.on('discoveryStop', (data: Data) => {
+discoveryService.on('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 ```
 
-### off('discoveryStop')<sup>10+</sup>
+### off('discoveryStop')
 
-off(type: 'discoveryStop', callback?: Callback<{ serviceInfo: LocalServiceInfo, errorCode?: MdnsError }>): void
+off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 
 Disables listening for **discoveryStop** events.
 
@@ -942,59 +580,26 @@ Disables listening for **discoveryStop** events.
 
 ```ts
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
 // See mdns.createDiscoveryService.
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
-interface Data {
-  serviceInfo: mdns.LocalServiceInfo,
-  errorCode?: mdns.MdnsError
-}
-discoveryService.on('discoveryStop', (data: Data) => {
+discoveryService.on('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
 
-discoveryService.off('discoveryStop', (data: Data) => {
+discoveryService.off('discoveryStop', (data: mdns.DiscoveryEventInfo) => {
   console.log(JSON.stringify(data));
 });
 ```
 
-### on('serviceFound')<sup>10+</sup>
+### on('serviceFound')
 
 on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
@@ -1013,41 +618,12 @@ Enables listening for **serviceFound** events.
 
 ```ts
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
 // See mdns.createDiscoveryService.
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
@@ -1057,7 +633,7 @@ discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### off('serviceFound')<sup>10+</sup>
+### off('serviceFound')
 
 off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
@@ -1076,41 +652,12 @@ Disables listening for **serviceFound** events.
 
 ```ts
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
 // See mdns.createDiscoveryService.
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
@@ -1124,7 +671,7 @@ discoveryService.off('serviceFound', (data: mdns.LocalServiceInfo) => {
 });
 ```
 
-### on('serviceLost')<sup>10+</sup>
+### on('serviceLost')
 
 on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
@@ -1143,41 +690,12 @@ Enables listening for **serviceLost** events.
 
 ```ts
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
 // See mdns.createDiscoveryService.
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceLost', (data: mdns.LocalServiceInfo) => {
@@ -1187,7 +705,7 @@ discoveryService.on('serviceLost', (data: mdns.LocalServiceInfo) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### off('serviceLost')<sup>10+</sup>
+### off('serviceLost')
 
 off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
@@ -1206,41 +724,12 @@ Disables listening for **serviceLost** events.
 
 ```ts
 import mdns from '@ohos.net.mdns'
-import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
 
-export class GlobalContext {
-  private constructor() {}
-  private static instance: GlobalContext;
-  private _objects = new Map<string, Object>();
-
-  public static getContext(): GlobalContext {
-    if (!GlobalContext.instance) {
-      GlobalContext.instance = new GlobalContext();
-    }
-    return GlobalContext.instance;
-  }
-
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
-  }
-
-  setObject(key: string, objectClass: Object): void {
-    this._objects.set(key, objectClass);
-  }
-}
-
-class EntryAbility extends UIAbility {
-  value:number = 0;
-  onWindowStageCreate(windowStage:window.WindowStage): void{
-    GlobalContext.getContext().setObject("value", this.value);
-  }
-}
 // See mdns.createDiscoveryService.
-let context = GlobalContext.getContext().getObject("value");
+let context = getContext(this) as Context;
 let serviceType = "_print._tcp";
-let discoveryService = mdns.createDiscoveryService(context as Context, serviceType);
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceLost', (data: mdns.LocalServiceInfo) => {
@@ -1254,7 +743,7 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 });
 ```
 
-## LocalServiceInfo<sup>10+</sup>
+## LocalServiceInfo
 
 Defines the mDNS service information.
 
@@ -1268,7 +757,7 @@ Defines the mDNS service information.
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the mDNS service. The IP address is not effective when an mDNS service is added or removed.              |
 | serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  No|  mDNS service attribute information.              |
 
-## ServiceAttribute<sup>10+</sup>
+## ServiceAttribute
 
 Defines the mDNS service attribute information.
 

@@ -1,9 +1,9 @@
 # Animation Smoothing
 
 
-When running animations, the UI is also interacting with users in real time. It must respond immediately to changes in user behavior. For example, if the user swipes up to exit in the midst of an application launch process, the UI should immediately transit from the startup animation to the exit animation, rather than finishing the startup animation before exiting. In the scenario where the animation triggered when the user lifts their fingers off the screen, the initial velocity of the animation must inherit the gesture speed, so as to avoid pauses caused by speed disconnection. For the preceding and similar scenarios, OpenHarmony provides efficient APIs for smoothing between animations and between animations and gestures.
+When running animations, the UI is also interacting with users in real time. It must respond immediately to changes in user behavior. For example, if the user swipes up to exit in the midst of an application launch process, the UI should immediately transit from the startup animation to the exit animation, rather than finishing the startup animation before exiting. In the scenario where the animation triggered when the user lifts their fingers off the screen, the initial velocity of the animation must inherit the gesture speed, so as to avoid pauses caused by speed disconnection. For the preceding and similar scenarios, the system provides efficient APIs for smoothing between animations and between animations and gestures.
 
-Assume that there is a running animation for an animatable attribute. If the end value of the attribute changes due to an operation on the UI, just change the attribute value in the **animateTo** closure or change the input parameter value of the **animation** API to create an animation. OpenHarmony then automatically connects the previous animation with the current animation – the created animation.
+Assume that there is a running animation for an animatable property. If the end value of the property changes due to an operation on the UI, just change the property value in the **animateTo** closure or change the input parameter value of the **animation** API to create an animation. The system then automatically connects the previous animation with the current animation – the created animation.
 
 
 ```ts
@@ -21,9 +21,9 @@ let CurAn:Record<string,curves> = {'curve':curves.springMotion()}
 ...
 Column() {
   Button()
-    // Step 2: Set the declared state variable to the related animatable attribute API.
+    // Step 2: Set the declared state variable to the related animatable property API.
     .scale(this.scaleToggle ? 1 : 0.5)
-    // Step 3: Change the state variable value through the click event, which then changes the attribute value.
+    // Step 3: Change the state variable value through the click event, which then changes the property value.
     .onclick(() => {
       let sets = new SetSlt()
       sets.set()
@@ -34,7 +34,7 @@ Column() {
 ...
 ```
 
-A complete example is as follows: By clicking **click**, you change the **scale** attribute of the red square. When you click **click** repeatedly, the end value of the **scale** attribute changes continuously, and the current animation smoothly moves towards the new end value of the **scale** attribute.
+A complete example is as follows: By clicking **click**, you change the **scale** property of the red square. When you click **click** repeatedly, the end value of the **scale** property changes continuously, and the current animation smoothly moves towards the new end value of the **scale** property.
 
 
 ```ts
@@ -83,11 +83,11 @@ struct AnimationToAnimationDemo {
 
 ## Smoothing Between Gestures and Animations
 
-In scenarios where gestures are used, an attribute change is generally triggered when the user places or moves their finger (or fingers) on the screen, and continues after the user lifts their finger (or fingers) off the screen until the end value of the attributes is reached.
+In scenarios where gestures are used, a property change is generally triggered when the user places or moves their finger (or fingers) on the screen, and continues after the user lifts their finger (or fingers) off the screen until the end value of the propertys is reached.
 
-The initial velocity of the attribute change after the user lifts their finger (or fingers) should be consistent with the velocity of the attribute change at the moment before the user lifts their finger (or fingers). If the former is **0**, it feels like a running car stops suddenly, an unusual abrupt change not welcomed by users.
+The initial velocity of the property change after the user lifts their finger (or fingers) should be consistent with the velocity of the property change at the moment before the user lifts their finger (or fingers). If the former is **0**, it feels like a running car stops suddenly, an unusual abrupt change not welcomed by users.
 
-In cases where smoothing between gestures and animations is required, for example, when scrolling a list, you can apply a responsive spring curve for the attribute animation running when the user places or moves their finger (or fingers) on the screen; and apply a spring curve for the attribute animation running after the user lifts their finger (or fingers) off the screen. For the animation that uses the [springMotion](../reference/apis/js-apis-curve.md#curvesspringmotion9) curve, the attribute animation running when the user places or moves their finger (or fingers) on the screen automatically inherits the previous velocity and starts from where the previous animation leaves off.
+In cases where smoothing between gestures and animations is required, for example, when scrolling a list, you can apply a responsive spring curve for the property animation running when the user places or moves their finger (or fingers) on the screen; and apply a spring curve for the property animation running after the user lifts their finger (or fingers) off the screen. For the animation that uses the [springMotion](../reference/apis/js-apis-curve.md#curvesspringmotion9) curve, the property animation running when the user places or moves their finger (or fingers) on the screen automatically inherits the previous velocity and starts from where the previous animation leaves off.
 
 
 ```ts
@@ -107,7 +107,7 @@ targetOffsetX: number = 100;
 targetOffsetY: number = 100;
 ...
 Column() 
-  // Step 2: Set the declared state variables to the related animatable attribute APIs.
+  // Step 2: Set the declared state variables to the related animatable property APIs.
   .translate({ x: this.offsetX, y: this.offsetY})
   .gesture(
     PanGesture({})
@@ -160,8 +160,8 @@ struct SpringMotionDemo {
                 // When the user places or moves their finger on the screen, use the responsiveSpringMotion curve.
                 animateTo({ curve: curves.responsiveSpringMotion() }, () => {
                   // Subtract the radius so that the center of the ball moves to where the finger is placed.
-                  this.positionX = event.touches[0].screenX - this.diameter / 2;
-                  this.positionY = event.touches[0].screenY - this.diameter / 2;
+                  this.positionX = event.touches[0].windowX - this.diameter / 2;
+                  this.positionY = event.touches[0].windowY - this.diameter / 2;
                   console.info(`move, animateTo x:${this.positionX}, y:${this.positionY}`);
                 })
               } else if (event.type === TouchType.Up) {

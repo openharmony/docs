@@ -178,7 +178,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
       // 1. Obtain the transition animation controller.
       let controller: window.TransitionController = windowClass.getTransitionController();
       // 2. Configure the animation to be played.
-      controller.animationForShown = (context: window.TransitionContext) => {
+      (context: window.TransitionContext) => {
         let toWindow: window.Window = context.toWindow
         // Set the animation attributes.
         animateTo({
@@ -202,6 +202,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
           console.info('toWindow translate end');
         })
         console.info('complete transition end');
+        controller.animationForHidden(context);
       }
 
       windowClass.loadContent("pages/page_volume", (err: BusinessError) => {
@@ -235,7 +236,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
     // 1. Obtain the transition animation controller.
     let controller: window.TransitionController = (windowClass as window.Window).getTransitionController();
     // 2. Configure the animation to be played.
-    controller.animationForHidden = (context: window.TransitionContext) => {
+    (context: window.TransitionContext) => {
       let toWindow: window.Window = context.toWindow
       // Set the animation attributes.
       animateTo({
@@ -262,6 +263,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
         console.info('toWindow opacity end');
       })
       console.info('complete transition end');
+      controller.animationForHidden(context);
     }
       // 4. Hide the window and play the animation during the process.
     (windowClass as window.Window).hideWithAnimation((err: BusinessError) => {

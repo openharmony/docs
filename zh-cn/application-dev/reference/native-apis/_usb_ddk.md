@@ -39,18 +39,6 @@
 | [UsbRequestPipe](_usb_request_pipe.md) | 请求管道。 |
 | [UsbDeviceMemMap](_usb_device_mem_map.md) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
 
-
-### 类型定义
-
-| 名称 | 描述 |
-| -------- | -------- |
-| [UsbDdkEndpointDescriptor](#usbddkendpointdescriptor) | 端点描述符。 |
-| [UsbDdkInterfaceDescriptor](#usbddkinterfacedescriptor) | 接口描述符。 |
-| [UsbDdkInterface](#usbddkinterface) | USB接口，是特定接口下备用设置的集合。 |
-| [UsbDdkConfigDescriptor](#usbddkconfigdescriptor) | 配置描述符。 |
-| [UsbDeviceMemMap](#usbdevicememmap) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
-
-
 ### 枚举
 
 | 名称 | 描述 |
@@ -77,69 +65,10 @@
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | 创建缓冲区。请在缓冲区使用完后，调用[OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap)销毁缓冲区，否则会造成资源泄露。 |
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。 |
 
+#### 函数参数deviceId说明
 
-## 类型定义说明
-
-
-### UsbDdkConfigDescriptor
-
-
-```
-typedef struct UsbDdkConfigDescriptor UsbDdkConfigDescriptor
-```
-
-**描述:**
-
-配置描述符。
-
-
-### UsbDdkEndpointDescriptor
-
-
-```
-typedef struct UsbDdkEndpointDescriptor UsbDdkEndpointDescriptor
-```
-
-**描述:**
-
-端点描述符。
-
-
-### UsbDdkInterface
-
-
-```
-typedef struct UsbDdkInterface UsbDdkInterface
-```
-
-**描述:**
-
-USB接口，是特定接口下备用设置的集合。
-
-
-### UsbDdkInterfaceDescriptor
-
-
-```
-typedef struct UsbDdkInterfaceDescriptor UsbDdkInterfaceDescriptor
-```
-
-**描述:**
-
-接口描述符。
-
-
-### UsbDeviceMemMap
-
-
-```
-typedef struct UsbDeviceMemMap UsbDeviceMemMap
-```
-
-**描述:**
-
-设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。
-
+设备ID（deviceId）的获取可通过外设查询接口queryDevices()查询。
+具体请查阅[扩展外设管理开发指导](../../device/externaldevice-guidelines.md)。
 
 ## 枚举类型说明
 
@@ -246,7 +175,7 @@ void OH_Usb_DestroyDeviceMemMap (UsbDeviceMemMap * devMmap)
 
 
 ```
-void OH_Usb_FreeConfigDescriptor (const struct UsbDdkConfigDescriptor *const config)
+void OH_Usb_FreeConfigDescriptor (struct UsbDdkConfigDescriptor *const config)
 ```
 
 **描述:**

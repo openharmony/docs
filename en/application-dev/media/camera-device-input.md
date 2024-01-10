@@ -11,14 +11,14 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```ts
    import camera from '@ohos.multimedia.camera';
    import { BusinessError } from '@ohos.base';
-   import featureAbility from '@ohos.ability.featureAbility';
+   import common from '@ohos.app.ability.common';
    ```
 
 2. Call **getCameraManager()** to obtain a **CameraManager** object.
 
-   There are different [types of contexts](../application-models/application-context-stage.md).
+   For details about how to obtain the BaseContext, see [BaseContext](../reference/apis/js-apis-inner-application-baseContext.md).
    ```ts
-   function getCameraManager(context: featureAbility.Context): camera.CameraManager {
+   function getCameraManager(context: common.BaseContext): camera.CameraManager {
      let cameraManager: camera.CameraManager = camera.getCameraManager(context);
      return cameraManager;
    }
@@ -33,18 +33,17 @@ Read [Camera](../reference/apis/js-apis-camera.md) for the API reference.
    ```ts
    function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {
      let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
-     if (cameraArray != undefined && cameraArray.length > 0) {
-       for (let index = 0; index < cameraArray.length; index++) {
-         console.info('cameraId : ' + cameraArray[index].cameraId);  // Obtain the camera ID.
-         console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // Obtain the camera position.
-         console.info('cameraType : ' + cameraArray[index].cameraType);  // Obtain the camera type.
-         console.info('connectionType : ' + cameraArray[index].connectionType);  // Obtain the camera connection type.
-       }
-       return cameraArray;
-     } else {
+     if (cameraArray != undefined && cameraArray.length <= 0) {
        console.error("cameraManager.getSupportedCameras error");
        return [];
      }
+     for (let index = 0; index < cameraArray.length; index++) {
+       console.info('cameraId : ' + cameraArray[index].cameraId);  // Obtain the camera ID.
+       console.info('cameraPosition : ' + cameraArray[index].cameraPosition);  // Obtain the camera position.
+       console.info('cameraType : ' + cameraArray[index].cameraType);  // Obtain the camera type.
+       console.info('connectionType : ' + cameraArray[index].connectionType);  // Obtain the camera connection type.
+     }
+     return cameraArray;
    }
    ```
 

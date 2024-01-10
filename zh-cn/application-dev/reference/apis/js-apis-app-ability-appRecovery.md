@@ -60,7 +60,7 @@ enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 枚举类型，发生对应故障时是否重启，默认为不重启。 |
+| restart | [RestartFlag](#apprecoveryrestartflag) | 否 | 枚举类型，发生对应故障时是否重启，默认为重启。 |
 | saveOccasion | [SaveOccasionFlag](#apprecoverysaveoccasionflag) | 否 | 枚举类型，状态保存时机，默认为故障时保存。 |
 | saveMode | [SaveModeFlag](#apprecoverysavemodeflag) | 否 | 枚举类型，状态保存方式， 默认为文件缓存。 |
 
@@ -169,7 +169,7 @@ saveAppState(context?: UIAbilityContext): boolean;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| 否 | UIAbility上下文环境。 |
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)| 否 | 需要保存状态的UIAbility所对应的context。 |
 
 **返回值：**
 

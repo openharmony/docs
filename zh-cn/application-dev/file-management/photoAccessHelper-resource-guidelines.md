@@ -279,7 +279,7 @@ struct Index {
 1. 建立检索条件，用于获取图片资源。
 2. 调用[PhotoAccessHelper.getAssets](../reference/apis/js-apis-photoAccessHelper.md#getassets-1)接口获取目标图片资源。
 3. 调用[FetchResult.getFirstObject](../reference/apis/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片，即要重命名的图片对象。
-4. 调用PhotoAsset.set接口将图片重命名为新的名字。
+4. 调用[PhotoAsset.set](../reference/apis/js-apis-photoAccessHelper.md#set)接口将图片重命名为新的名字。
 5. 调用PhotoAsset.commitModify接口将修改的图片属性更新到数据库中完成修改。
 
 ```ts

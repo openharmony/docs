@@ -7,7 +7,7 @@ You can implement lifecycle logic specific to your application in the **app.js**
 
 - **onCreate()**: called when an application is created
 
-- **onDestory()**: called when an application is destroyed
+- **onDestroy()**: called when an application is destroyed
 
 
 In the following example, logs are printed only in the lifecycle functions.

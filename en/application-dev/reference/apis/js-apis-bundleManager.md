@@ -99,12 +99,12 @@ Enumerates the types of ExtensionAbilities.
 
 | Name| Value| Description|
 |:----------------:|:---:|-----|
-| FORM             | 0   | [FormExtensionAbility](../../application-models/service-widget-overview.md): provides APIs for widget development.|
-| WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../../task-management/work-scheduler.md): enables applications to execute non-real-time tasks when the system is idle.|
+| FORM             | 0   | [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md): provides APIs for widget development.|
+| WORK_SCHEDULER   | 1   | provides APIs for widget development.: enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
-| SERVICE          | 3   | [ServiceExtensionAbility](../../application-models/serviceextensionability.md): enables applications to run in the background and provide services.|
+| SERVICE          | 3   | [ServiceExtensionAbility](js-apis-app-ability-serviceExtensionAbility.md): enables applications to run in the background and provide services.|
 | ACCESSIBILITY    | 4   | [AccessibilityExtensionAbility](js-apis-application-accessibilityExtensionAbility.md): provides accessibility for access to and operations on the UI.|
-| DATA_SHARE       | 5   | [DataShareExtensionAbility](../../database/share-data-by-datashareextensionability.md): enables applications to read and write data.|
+| DATA_SHARE       | 5   | [DataShareExtensionAbility](js-apis-application-dataShareExtensionAbility.md): enables applications to read and write data.|
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved.|
 | STATIC_SUBSCRIBER| 7   | [StaticSubscriberExtensionAbility](js-apis-application-staticSubscriberExtensionAbility.md): provides APIs for processing static events, such as the startup event.|
 | WALLPAPER        | 8   | WallpaperExtensionAbility: provides APIs to implement the home screen wallpaper. This ability is reserved.|
@@ -116,7 +116,7 @@ Enumerates the types of ExtensionAbilities.
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
 | SHARE<sup>10+</sup> | 16 | [ShareExtensionAbility](js-apis-app-ability-shareExtensionAbility.md): provides sharing service templates based on UIExtensionAbilities.|
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved.|
-| DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility: provides APIs for the peripheral driver. This type of ability is not supported yet.|
+| DRIVER<sup>10+</sup> | 18 | [DriverExtensionAbility](js-apis-app-ability-driverExtensionAbility.md): provides APIs for the peripheral driver. This type of ability is not supported yet.|
 | ACTION<sup>10+</sup> | 19 | [ActionExtensionAbility](js-apis-app-ability-actionExtensionAbility.md): provides custom action service templates based on UIExtensionAbilities.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of ExtensionAbilities.|
 
@@ -1192,7 +1192,7 @@ try {
 
 queryAbilityInfoSync(want: Want, abilityFlags: [number](#abilityflag), userId?: number): Array\<[AbilityInfo](js-apis-bundleManager-abilityInfo.md)>;
 
-Obtains the ability information based on the given want, ability flags, and user ID. This API is a synchronous API.
+Obtains the ability information based on the given want, ability flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1485,7 +1485,7 @@ try {
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: [ExtensionAbilityType](#extensionabilitytype), extensionAbilityFlags: [number](#extensionabilityflag), userId?: number): Array\<[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)>;
 
-Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API is a synchronous API.
+Obtains the ExtensionAbility information based on the given want, ExtensionAbility type, ExtensionAbility flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1668,7 +1668,7 @@ try {
 
 getBundleNameByUidSync(uid: number): string;
 
-Obtains the bundle name based on the given UID. This API is a synchronous API.
+Obtains the bundle name based on the given UID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1821,7 +1821,7 @@ try {
 
 getBundleArchiveInfoSync(hapFilePath: string, bundleFlags: number): BundleInfo;
 
-Obtains the bundle information based on the given HAP file path and bundle flags. This API is a synchronous API.
+Obtains the bundle information based on the given HAP file path and bundle flags. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2078,7 +2078,7 @@ try {
 
 setApplicationEnabledSync(bundleName: string, isEnabled: boolean): void;
 
-Enables or disables an application. This API is a synchronous API.
+Enables or disables an application. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2135,7 +2135,7 @@ Enables or disables an ability. This API uses an asynchronous callback to return
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the application.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -2199,7 +2199,7 @@ Enables or disables an ability. This API uses a promise to return the result.
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.                  |
-| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the application.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
 
 **Return value**
 
@@ -2253,7 +2253,7 @@ try {
 
 setAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md), isEnabled: boolean): void;
 
-Enables or disables an ability. This API is a synchronous API.
+Enables or disables an ability. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2266,7 +2266,7 @@ Enables or disables an ability. This API is a synchronous API.
 | Name   | Type       | Mandatory| Description                                 |
 | -------- | ----------- | ---- | ------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes  | Information about the target ability.             |
-| isEnabled| boolean     | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means to disable the application.|
+| isEnabled| boolean     | Yes  | Whether to enable the ability. The value **true** means to enable the ability, and **false** means to disable the ability.|
 
 **Error codes**
 
@@ -2413,7 +2413,7 @@ try {
 
 isApplicationEnabledSync(bundleName: string): boolean;
 
-Checks whether an application is enabled. This API is a synchronous API.
+Checks whether an application is enabled. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2585,7 +2585,7 @@ try {
 
 isAbilityEnabledSync(info: [AbilityInfo](js-apis-bundleManager-abilityInfo.md)): boolean;
 
-Checks whether an ability is enabled. This API is a synchronous API.
+Checks whether an ability is enabled. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2811,7 +2811,7 @@ try {
 
 getLaunchWantForBundleSync(bundleName: string, userId?: number): Want;
 
-Obtains the Want used to launch the bundle based on the given bundle name and user ID. This API is a synchronous API.
+Obtains the Want used to launch the bundle based on the given bundle name and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -2882,7 +2882,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void;
 
-Obtains the JSON strings of the configuration file based on the given module name, ability name, and metadata name. This API uses an asynchronous callback to return the result.
+Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -2935,7 +2935,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
-Obtains the JSON strings of the configuration file based on the given module name, ability name, and metadata name. This API uses a promise to return the result.
+Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3009,7 +3009,7 @@ try {
 
 getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: string): Array\<string\>;
 
-Obtains the JSON strings of the configuration file based on the given module name, ability name, and metadata name. This API is a synchronous API.
+Obtains the JSON strings of the profile based on the given module name, ability name, and metadata name. This API returns the result synchronously.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3077,7 +3077,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void;
 
-Obtains the JSON strings of the configuration file based on the given module name, ExtensionAbility name, and metadata name. This API uses an asynchronous callback to return the result.
+Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3129,7 +3129,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>;
 
-Obtains the JSON strings of the configuration file based on the given module name, ExtensionAbility name, and metadata name. This API uses a promise to return the result.
+Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3195,7 +3195,7 @@ try {
 
 getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: string, metadataName?: string): Array\<string\>;
 
-Obtains the JSON strings of the configuration file based on the given module name, ExtensionAbility name, and metadata name. This API is a synchronous API.
+Obtains the JSON strings of the profile based on the given module name, ExtensionAbility name, and metadata name. This API returns the result synchronously.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -3354,7 +3354,7 @@ try {
 
 getPermissionDefSync(permissionName: string): [PermissionDef](js-apis-bundleManager-permissionDef.md);
 
-Obtains the **PermissionDef** struct based on the given permission name. This API is a synchronous API.
+Obtains the **PermissionDef** struct based on the given permission name. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3390,7 +3390,7 @@ import { BusinessError } from '@ohos.base';
 import hilog from '@ohos.hilog';
 let permissionName = "ohos.permission.GET_BUNDLE_INFO";
 try {
-    let PermissionDef = bundleManager.getPermissionDefSync(permission);
+    let PermissionDef = bundleManager.getPermissionDefSync(permissionName);
     hilog.info(0x0000, 'testTag', 'getPermissionDefSync successfully. Data: %{public}s', JSON.stringify(PermissionDef));
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -3519,7 +3519,7 @@ try {
 
 getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string): string;
 
-Obtains the ability label based on the given bundle name, module name, and ability name. This API is a synchronous API.
+Obtains the ability label based on the given bundle name, module name, and ability name. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3576,7 +3576,7 @@ try {
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
-Obtains the application information based on the given bundle name, application flags, and user ID. This API is a synchronous API.
+Obtains the application information based on the given bundle name, application flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3631,7 +3631,7 @@ try {
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number) : [ApplicationInfo](js-apis-bundleManager-applicationInfo.md);
 
-Obtains the application information based on the given bundle name and application flags. This API is a synchronous API.
+Obtains the application information based on the given bundle name and application flags. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3683,7 +3683,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag), userId: number): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
-Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API is a synchronous API.
+Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3738,7 +3738,7 @@ try {
 
 getBundleInfoSync(bundleName: string, bundleFlags: [number](#bundleflag)): [BundleInfo](js-apis-bundleManager-bundleInfo.md);
 
-Obtains the bundle information based on the given bundle name and bundle flags. This API is a synchronous API.
+Obtains the bundle information based on the given bundle name and bundle flags. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -3972,7 +3972,7 @@ try {
 
 getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
 
-Obtains the provision configuration file information based on the given bundle name. This API uses an asynchronous callback to return the result.
+Obtains the provision profile based on the given bundle name. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3985,7 +3985,7 @@ Obtains the provision configuration file information based on the given bundle n
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | Yes  | Bundle name.|
-| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision configuration file information obtained.|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
 
 **Error codes**
 
@@ -4021,7 +4021,7 @@ try {
 
 getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>): void;
 
-Obtains the provision configuration file information based on the given bundle name and user ID. This API uses an asynchronous callback to return the result.
+Obtains the provision profile based on the given bundle name and user ID. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4035,7 +4035,7 @@ Obtains the provision configuration file information based on the given bundle n
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | Yes  | Bundle name.|
 | userId | number | Yes| User ID, which can be obtained by calling [getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9).|
-| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision configuration file information obtained.|
+| callback | AsyncCallback\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the provision profile obtained.|
 
 
 **Error codes**
@@ -4074,7 +4074,7 @@ try {
 
 getAppProvisionInfo(bundleName: string, userId?: number): Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\>;
 
-Obtains the provision configuration file information based on the given bundle name and user ID. This API uses a promise to return the result.
+Obtains the provision profile based on the given bundle name and user ID. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -4094,7 +4094,7 @@ Obtains the provision configuration file information based on the given bundle n
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Promise used to return the provision configuration file obtained.|
+| Promise\<[AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)\> | Promise used to return the provision profile obtained.|
 
 **Error codes**
 
@@ -4141,7 +4141,7 @@ try {
 
 getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo;
 
-Obtains the provision configuration file information based on the given bundle name and user ID. This API is a synchronous API.
+Obtains the provision profile based on the given bundle name and user ID. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -4161,7 +4161,7 @@ Obtains the provision configuration file information based on the given bundle n
 
 | Type                                                        | Description                               |
 | ------------------------------------------------------------ | ----------------------------------- |
-| [AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md) | Provision configuration file.|
+| [AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md) | Provision profile.|
 
 **Error codes**
 

@@ -33,7 +33,7 @@ once(type: string, callback: Callback\<void\>): void
 | 参数名  | 类型              | 必填 | 说明                  |
 | ------- | ---------------- | ---- | -------------------- |
 | type     | string          | 是   | Web事件的类型，目前支持："webInited"（Web初始化完成）。      |
-| headers | Callback\<void\> | 是   | 所订阅的回调函数。 |
+| callback | Callback\<void\> | 是   | 所订阅的回调函数。 |
 
 **示例：**
 
@@ -241,6 +241,18 @@ onMessageEventExt(callback: (result: WebMessageExt) => void): void
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
+class TestObj {
+  test(str: string): ArrayBuffer {
+    let buf = new ArrayBuffer(str.length);
+    let buff = new Uint8Array(buf);
+
+    for (let i = 0; i < str.length; i++) {
+      buff[i] = str.charCodeAt(i);
+    }
+    return buf;
+  }
+}
+
 // 应用与网页互发消息的示例：使用"init_web_messageport"的通道，通过端口0在应用侧接受网页发送的消息，通过端口1在网页侧接受应用发送的消息。
 @Entry
 @Component
@@ -251,22 +263,115 @@ struct WebComponent {
   @State msg1: string = "";
   @State msg2: string = "";
   message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
+  @State testObjtest: TestObj = new TestObj();
 
   build() {
     Column() {
       Text(this.msg1).fontSize(16)
       Text(this.msg2).fontSize(16)
-      Button('SendToH5')
+      Button('SendToH5 setString').margin({
+        right: 800,
+      })
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
             console.log("In ArkTS side send true start");
             if (this.nativePort) {
               this.message.setString("helloFromEts");
+              this.message.setType(2);
               this.nativePort.postMessageEventExt(this.message);
             }
           }
           catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setNumber').margin({
+        top: 10,
+        right: 800,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setNumber(12345);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setBoolean').margin({
+        top: -90,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setBoolean(true);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setArrayBuffer').margin({
+        top: 10,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setArrayBuffer(this.testObjtest.test("Name=test&Password=test"));
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setArray').margin({
+        top: -90,
+        left: 800,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            if (this.nativePort) {
+              this.message.setArray([1,2,3]);
+              this.nativePort.postMessageEventExt(this.message);
+            }
+          }
+          catch (error) {
+            let e: business_error.BusinessError = error as business_error.BusinessError;
+            console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
+          }
+        })
+        Button('SendToH5 setError').margin({
+        top: 10,
+        left: 800,
+      })
+        .onClick(() => {
+          // 使用本侧端口发送消息给HTML5
+          try {
+            console.log("In ArkTS side send true start");
+            throw new ReferenceError("ReferenceError");
+          }
+          catch (error) {
+            if (this.nativePort) {
+              this.message.setError(error);
+              this.nativePort.postMessageEventExt(this.message);
+            }
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.log("In ArkTS side send message catch error:" + e.code + ", msg:" + e.message);
           }
@@ -956,7 +1061,7 @@ accessBackward(): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1047,7 +1152,7 @@ onActive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1092,7 +1197,7 @@ onInactive(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1136,7 +1241,7 @@ refresh(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1193,7 +1298,7 @@ accessStep(step: number): boolean
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1240,7 +1345,7 @@ clearHistory(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1291,7 +1396,7 @@ getHitTest(): WebHitTestType
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1345,7 +1450,7 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1354,16 +1459,41 @@ registerJavaScriptProxy(object: object, name: string, methodList: Array\<string>
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
-  test(): string {
-    return "ArkUI Web Component";
+  test(testStr:string): string {
+    console.log('Web Component str' + testStr);
+    return testStr;
   }
 
   toString(): void {
     console.log('Web Component toString');
+  }
+
+  testNumber(testNum:number): number {
+    console.log('Web Component number' + testNum);
+    return testNum;
+  }
+
+  testBool(testBol:boolean): boolean {
+    console.log('Web Component boolean' + testBol);
+    return testBol;
+  }
+}
+
+class WebObj {
+  constructor() {
+  }
+
+  webTest(): string {
+    console.log('Web test');
+    return "Web test";
+  }
+
+  webString(): void {
+    console.log('Web test toString');
   }
 }
 
@@ -1371,7 +1501,8 @@ class testObj {
 @Component
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
+  @State testObjtest: TestObj = new TestObj();
+  @State webTestObj: WebObj = new WebObj();
   build() {
     Column() {
       Button('refresh')
@@ -1386,7 +1517,8 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
-            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber", "testBool"]);
+            this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
             console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -1408,12 +1540,21 @@ struct Index {
     <body>
       <button type="button" onclick="htmlTest()">Click Me!</button>
       <p id="demo"></p>
+      <p id="webDemo"></p>
     </body>
     <script type="text/javascript">
     function htmlTest() {
-      let str=objName.test();
+      // This function call expects to return "ArkUI Web Component"
+      let str=objName.test("webtest data");
+      objName.testNumber(1);
+      objName.testBool(true);
       document.getElementById("demo").innerHTML=str;
       console.log('objName.test result:'+ str)
+
+      // This function call expects to return "Web test"
+      let webStr = objTestName.webTest();
+      document.getElementById("webDemo").innerHTML=webStr;
+      console.log('objTestName.webTest result:'+ webStr)
     }
 </script>
 </html>
@@ -1440,7 +1581,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1530,7 +1671,7 @@ runJavaScript(script: string): Promise\<string>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1609,7 +1750,7 @@ runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1735,7 +1876,7 @@ runJavaScriptExt(script: string): Promise\<JsMessageExt>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -1846,7 +1987,7 @@ deleteJavaScriptRegister(name: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100008 | Cannot delete JavaScriptProxy.                               |
 
 **示例：**
@@ -1856,7 +1997,7 @@ deleteJavaScriptRegister(name: string): void
 import web_webview from '@ohos.web.webview';
 import business_error from '@ohos.base';
 
-class testObj {
+class TestObj {
   constructor() {
   }
 
@@ -1873,7 +2014,7 @@ class testObj {
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State testObjtest: testObj = new testObj();
+  @State testObjtest: TestObj = new TestObj();
   @State name: string = 'objName';
   build() {
     Column() {
@@ -1935,7 +2076,7 @@ struct WebComponent {
 
 zoom(factor: number): void
 
-调整当前网页的缩放比例。
+调整当前网页的缩放比例，[zoomAccess](../arkui-ts/ts-basic-components-web.md#zoomaccess)需为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1951,7 +2092,7 @@ zoom(factor: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 | 17100004 | Function not enable.                                         |
 
 **示例：**
@@ -1979,6 +2120,7 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+        .zoomAccess(true)
     }
   }
 }
@@ -2004,7 +2146,7 @@ searchAllAsync(searchString: string): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2067,7 +2209,7 @@ clearMatches(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2120,7 +2262,7 @@ searchNext(forward: boolean): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2167,7 +2309,7 @@ clearSslCache(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2212,7 +2354,7 @@ clearClientAuthenticationCache(): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -2261,7 +2403,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 类型                   | 说明              |
 | ---------------------- | ----------------- |
-| [WebMessagePort](#webmessageport) | web消息端口列表。 |
+| Array\<[WebMessagePort](#webmessageport)> | web消息端口列表。 |
 
 **错误码：**
 
@@ -2365,7 +2507,7 @@ struct WebComponent {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2442,7 +2584,7 @@ window.addEventListener('message', function (event) {
               } else if (typeof(result) == "object") {
                 if (result instanceof ArrayBuffer) {
                   console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                  msg = msg + "lenght is " + result.byteLength;
+                  msg = msg + "length is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
@@ -2908,8 +3050,8 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 
 | 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| baseName | string                | 是   | 文件存储路径，该值不能为空。                                 |
-| autoName | boolean               | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
+| baseName | string                | 是   | 生成的离线网页存储位置，该值不能为空。                                 |
+| autoName | boolean               | 是   | 决定是否自动生成文件名。如果为false，则按baseName的文件名存储；如果为true，则根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
 | callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保存网页失败会返回null。                   |
 
 **错误码：**
@@ -2970,8 +3112,8 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 
 | 参数名   | 类型 | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| baseName | string   | 是   | 文件存储路径，该值不能为空。                                 |
-| autoName | boolean  | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
+| baseName | string   | 是   | 生成的离线网页存储位置，该值不能为空。                                 |
+| autoName | boolean  | 是   | 决定是否自动生成文件名。如果为false，则按baseName的文件名存储；如果为true，则根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
 
 **返回值：**
 
@@ -3599,7 +3741,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -3656,7 +3798,7 @@ hasImage(): Promise\<boolean>
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -3745,7 +3887,7 @@ struct WebComponent {
 
 ### pageUp
 
-pageUp(top:boolean): void
+pageUp(top: boolean): void
 
 将Webview的内容向上滚动半个视框大小或者跳转到页面最顶部，通过top入参控制。
 
@@ -3796,7 +3938,7 @@ struct WebComponent {
 
 ### pageDown
 
-pageDown(bottom:boolean): void
+pageDown(bottom: boolean): void
 
 将Webview的内容向下滚动半个视框大小或者跳转到页面最底部，通过bottom入参控制。
 
@@ -3962,7 +4104,6 @@ struct WebComponent {
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4049,7 +4190,6 @@ struct WebComponent {
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
-import web_webview from '@ohos.web.webview';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 
@@ -4297,7 +4437,7 @@ getCertificate(callback: AsyncCallback<Array<cert.X509Cert>>): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例：**
 
@@ -4577,12 +4717,12 @@ import Want from '@ohos.app.ability.Want';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
+        console.log("EntryAbility onCreate");
+        web_webview.WebviewController.initializeWebEngine();
         // 预连接时，需要將'https://www.example.com'替换成一个真实的网站地址。
         web_webview.WebviewController.prepareForPageLoad("https://www.example.com", true, 2);
-        AppStorage.setOrCreate("abilityWant", want)
-        console.log("EntryAbility onCreate done")
+        AppStorage.setOrCreate("abilityWant", want);
+        console.log("EntryAbility onCreate done");
     }
 }
 ```
@@ -4591,7 +4731,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-设置自定义用户代理。
+设置自定义用户代理，会覆盖系统的用户代理。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -4919,7 +5059,7 @@ static putAcceptCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | :----------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收cookie的权限，默认为true。 |
 
 **示例：**
 
@@ -5000,7 +5140,7 @@ static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限。 |
+| accept | boolean | 是   | 设置是否拥有发送和接收第三方cookie的权限，默认为false。 |
 
 **示例：**
 
@@ -5081,7 +5221,7 @@ static existCookie(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限。 |
+| boolean | true表示存在cookie，false表示不存在cookie。 |
 
 **示例：**
 
@@ -5179,7 +5319,7 @@ struct WebComponent {
 
 ### deleteOrigin
 
-static deleteOrigin(origin : string): void
+static deleteOrigin(origin: string): void
 
 清除指定源所使用的存储。
 
@@ -5277,7 +5417,7 @@ struct WebComponent {
 
 ### getOrigins
 
-static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>) : void
+static getOrigins(callback: AsyncCallback\<Array\<WebStorageOrigin>>): void
 
 以回调方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -5342,7 +5482,7 @@ struct WebComponent {
 
 ### getOrigins
 
-static getOrigins() : Promise\<Array\<WebStorageOrigin>>
+static getOrigins(): Promise\<Array\<WebStorageOrigin>>
 
 以Promise方式异步获取当前使用Web SQL数据库的所有源的信息。
 
@@ -5407,7 +5547,7 @@ struct WebComponent {
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginQuota(origin: string, callback: AsyncCallback\<number>): void
 
 使用callback回调异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
@@ -5470,7 +5610,7 @@ struct WebComponent {
 
 ### getOriginQuota
 
-static getOriginQuota(origin : string) : Promise\<number>
+static getOriginQuota(origin: string): Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储配额，配额以字节为单位。
 
@@ -5538,7 +5678,7 @@ struct WebComponent {
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string, callback : AsyncCallback\<number>) : void
+static getOriginUsage(origin: string, callback: AsyncCallback\<number>): void
 
 以回调方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
@@ -5601,7 +5741,7 @@ struct WebComponent {
 
 ### getOriginUsage
 
-static getOriginUsage(origin : string) : Promise\<number>
+static getOriginUsage(origin: string): Promise\<number>
 
 以Promise方式异步获取指定源的Web SQL数据库的存储量，存储量以字节为单位。
 
@@ -6168,7 +6308,7 @@ struct WebComponent {
           try {
             web_webview.GeolocationPermissions.getStoredGeolocation((error, origins) => {
               if (error) {
-                console.log('getStoredGeolocationAsync error: ' + JSON.stringify(error));
+                console.error(`getStoredGeolocationAsync error, ErrorCode: ${e.code},  Message: ${e.message}`);
                 return;
               }
               let origins_str: string = origins.join();
@@ -6221,7 +6361,7 @@ struct WebComponent {
                 let origins_str: string = origins.join();
                 console.log('getStoredGeolocationPromise origins: ' + origins_str);
               }).catch((error : business_error.BusinessError) => {
-              console.log('getStoredGeolocationPromise error: ' + JSON.stringify(error));
+              console.error(`getStoredGeolocationPromise error, ErrorCode: ${e.code},  Message: ${e.message}`);
             });
           } catch (error) {
             let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -6271,6 +6411,7 @@ struct WebComponent {
 }
 ```
 ## WebHeader
+
 Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -6282,14 +6423,16 @@ Web组件返回的请求/响应头对象。
 
 ## WebHitTestType
 
+[getHitTest](#gethittest)接口用于指示游标节点。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
 | EditText      | 0 |可编辑的区域。                            |
 | Email         | 1 |电子邮件地址。                            |
-| HttpAnchor    | 2 |超链接，其src为http。                     |
-| HttpAnchorImg | 3 |带有超链接的图片，其中超链接的src为http。 |
+| HttpAnchor    | 2 |超链接，其中src为http。                     |
+| HttpAnchorImg | 3 |带有超链接的图片，其中src为http + HTML::img。 |
 | Img           | 4 |HTML::img标签。                           |
 | Map           | 5 |地理地址。                                |
 | Phone         | 6 |电话号码。                                |
@@ -6297,7 +6440,7 @@ Web组件返回的请求/响应头对象。
 
 ##  HitTestValue
 
-提供点击区域的元素信息。示例代码参考getHitTestValue。
+提供点击区域的元素信息。示例代码参考[getHitTestValue](#gethittestvalue)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6356,7 +6499,7 @@ Web组件返回的请求/响应头对象。
 
 getType(): JsMessageType
 
-获取数据对象的类型。
+获取数据对象的类型。完整示例代码参考[runJavaScriptExt](#runjavascriptext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6466,7 +6609,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 
@@ -6484,7 +6627,7 @@ getArray(): Array\<string | number | boolean\>
 
 getType(): WebMessageType
 
-获取数据对象的类型。
+获取数据对象的类型。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6565,6 +6708,7 @@ getBoolean(): boolean
 getArrayBuffer(): ArrayBuffer
 
 获取数据对象的原始二进制数据。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -6593,7 +6737,7 @@ getArray(): Array\<string | number | boolean\>
 
 | 类型           | 说明          |
 | --------------| ------------- |
-| Array\<string | number | boolean\> | 返回数组类型的数据。 |
+| Array\<string \| number \| boolean\> | 返回数组类型的数据。 |
 
 **错误码：**
 
@@ -6629,7 +6773,7 @@ getError(): Error
 
 setType(type: WebMessageType): void
 
-设置数据对象的类型。
+设置数据对象的类型。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6640,6 +6784,8 @@ setType(type: WebMessageType): void
 | type  | [WebMessageType](#webmessagetype10) | 是   | [webMessagePort](#webmessageport)接口所支持的数据类型。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -6661,6 +6807,8 @@ setString(message: string): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -6680,6 +6828,8 @@ setNumber(message: number): void
 | message  | number | 是   | 数值类型数据。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -6701,6 +6851,8 @@ setBoolean(message: boolean): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -6720,6 +6872,8 @@ setArrayBuffer(message: ArrayBuffer): void
 | message  | ArrayBuffer | 是   | 原始二进制类型数据。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -6741,6 +6895,8 @@ setArray(message: Array\<string | number | boolean\>): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
+
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
 | 17100014 | The type does not match with the value of the web message. |
@@ -6760,6 +6916,8 @@ setError(message: Error): void
 | message  | Error | 是   | 错误对象类型数据。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |

@@ -17,7 +17,7 @@ FA模型与Stage模型不同之处在于HAP内部文件存放位置不同，FA�
 
 - js文件夹中存放的是编译后的代码文件。
 
-- pack.info是Bundle中用于描述每个HAP属性的文件，例如app中的bundleName和versionCode信息、module中的name、type和abilities等信息，由IDE工具生成Bundle包时自动生成。
+- pack.info是Bundle中用于描述每个HAP属性的文件，例如app中的bundleName和versionCode信息、module中的name、type和abilities等信息，由IDE工具构建Bundle包时自动生成。
 
 **图1** 应用程序包结构（FA模型）  
 ![app-pack-fa](figures/app-pack-fa.png)

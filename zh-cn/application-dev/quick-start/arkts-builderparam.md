@@ -14,7 +14,7 @@
 
 ### 初始化\@BuilderParam装饰的方法
 
-\@BuildParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
+\@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
 
 - 使用所属自定义组件的自定义构建函数或者全局的自定义构建函数，在本地初始化\@BuilderParam。
 
@@ -31,7 +31,7 @@
   }
   ```
 
-- 用父组件自定义构建函数初始化子组件\@BuildParam装饰的方法。
+- 用父组件自定义构建函数初始化子组件\@BuilderParam装饰的方法。
 
   ```ts
   @Component
@@ -60,13 +60,14 @@
     }
   }
   ```
+  **图1** 示例效果图
 
-  ![f1b703f7-2f2d-43af-b11d-fdc9542d8361](figures/f1b703f7-2f2d-43af-b11d-fdc9542d8361.png)
+  ![builderparam-demo1](figures/builderparam-demo1.png)
 
 
 - 需注意this指向正确。
 
-  以下示例中，Parent组件在调用this.componentBuilder()时，this.label指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this.label指向在Child的label，即“Child”。对于\@BuilderParam aBuilder1，在将this.componentBuilder传给aBuilder1时，调用bind绑定了this，因此其this.label指向Parent的label。
+  以下示例中，Parent组件在调用this.componentBuilder()时，this指向其所属组件，即“Parent”。\@Builder componentBuilder()传给子组件\@BuilderParam aBuilder0，在Child组件中调用this.aBuilder0()时，this指向在Child的label，即“Child”。对于\@BuilderParam aBuilder1，在将this.componentBuilder传给aBuilder1时，调用bind绑定了this，因此其this.label指向Parent的label。
 
    >  **说明：**
    >
@@ -106,8 +107,9 @@
     }
   }
   ```
+ **图2** 示例效果图
 
-  ![3f17235e-57e6-4058-8729-a19127a3b007](figures/3f17235e-57e6-4058-8729-a19127a3b007.png)
+ ![builderparam-demo2](figures/builderparam-demo2.png)
 
 
 ## 使用场景
@@ -126,7 +128,7 @@ class Tmp{
   Text($$.label)
     .width(400)
     .height(50)
-    .backgroundColor(Color.Blue)
+    .backgroundColor(Color.Green)
 }
 
 @Component
@@ -163,8 +165,9 @@ struct Parent {
   }
 }
 ```
+**图3** 示例效果图
 
-![3869e265-4d12-44ff-93ef-e84473c68c97](figures/3869e265-4d12-44ff-93ef-e84473c68c97.png)
+![builderparam-demo3](figures/builderparam-demo3.png)
 
 
 ### 尾随闭包初始化组件
@@ -173,7 +176,9 @@ struct Parent {
 
 > **说明：**
 >
-> 此场景下自定义组件内有且仅有一个使用\@BuilderParam装饰的属性。
+>  - 此场景下自定义组件内有且仅有一个使用\@BuilderParam装饰的属性。
+> 
+>  - 此场景下自定义组件不支持使用通用属性。
 
 开发者可以将尾随闭包内的内容看做\@Builder装饰的函数传给\@BuilderParam。示例如下：
 
@@ -225,5 +230,6 @@ struct CustomContainerUser {
   }
 }
 ```
+**图4** 示例效果图
 
-![7ae8ed5e-fc23-49ea-be3b-08a672a7b817](figures/7ae8ed5e-fc23-49ea-be3b-08a672a7b817.png)
+![builderparam-demo4](figures/builderparam-demo4.png)

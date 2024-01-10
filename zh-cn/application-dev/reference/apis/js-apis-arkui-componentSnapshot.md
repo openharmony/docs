@@ -32,7 +32,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
 | id       | string                              | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
 
 **错误码：** 
 
@@ -61,9 +61,13 @@ struct SnapshotExample {
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
-                 this.pixmap = pixmap
-                 // save pixmap to file
-                 // ....
+                if(error){
+                  console.log("error: " + JSON.stringify(error))
+                  return;
+                }
+                this.pixmap = pixmap
+                // save pixmap to file
+                // ....
              })
         })
     }
@@ -131,8 +135,14 @@ struct SnapshotExample {
               this.pixmap = pixmap
               // save pixmap to file
               // ....
-            })
+            }).catch((err:Error) => {
+            console.log("error: " + err)
+          })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }
     .width('80%')
     .margin({ left: 10, top: 5, bottom: 5 })
@@ -162,8 +172,8 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
-| callback | AsyncCallback&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
+| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
+| callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 
 **错误码：** 
 
@@ -208,6 +218,10 @@ struct OffscreenSnapshotExample {
         .onClick(() => {
           componentSnapshot.createFromBuilder(()=>{this.RandomBuilder()},
             (error: Error, pixmap: image.PixelMap) => {
+              if(error){
+                  console.log("error: " + JSON.stringify(error))
+                  return;
+              }
               this.pixmap = pixmap
               // save pixmap to file
               // ....
@@ -216,6 +230,10 @@ struct OffscreenSnapshotExample {
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
   }
@@ -240,7 +258,7 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
 | 参数名     | 类型                                       | 必填   | 说明         |
 | ------- | ---------------------------------------- | ---- | ---------- |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
+| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
 
 **返回值：**
 
@@ -297,7 +315,9 @@ struct OffscreenSnapshotExample {
               // get component size and location
               let info = componentUtils.getRectangleById("builder")
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
-            })
+            }).catch((err:Error) => {
+            console.log("error: " + err)
+          })
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })

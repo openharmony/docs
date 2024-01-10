@@ -17,7 +17,7 @@ import util from '@ohos.util';
 
 format(format: string,  ...args: Object[]): string
 
-Formats the specified values and inserts them into the string by replacing the wildcard in the string.
+Formats a string by replacing the placeholders in it.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -25,21 +25,83 @@ Formats the specified values and inserts them into the string by replacing the w
 
 | Name | Type    | Mandatory| Description          |
 | ------- | -------- | ---- | -------------- |
-| format  | string   | Yes  | String.|
-| ...args | Object[] | No  | Values to format. The formatted values will replace the wildcard in the string. If this parameter is not set, the first parameter is returned by default.|
+| format  | string   | Yes  | Format string. This string contains zero or more placeholders, which specify the position and format of the arguments to be inserted.|
+| ...args | Object[] | No  | Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default.|
 
 **Return value**
 
-| Type  | Description                        |
-| ------ | ---------------------------- |
-| string | String containing the formatted values.|
+| Type  | Description             |
+| ------ | -----------------|
+| string | Formatted string.|
+
+
+**Format Specifiers**
+
+| Specifier| Description                         |
+| ------ | -------------------------------- |
+| %s     | Converts a parameter into a string for all values except **Object**, **BigInt**, and **-0**.|
+| %d     | Converts a parameter into a decimal integer for all values except **Symbol** and **BigInt**.|
+| %i     | Converts a string into a decimal integer for all values except **Symbol** and **BigInt**.|
+| %f     | Converts a string into a floating point number for all values except **Symbol** and **BigInt**.|
+| %j     | Converts a JavaScript object into a JSON string.|
+| %o     | Converts a JavaScript object into a string, without containing the prototype chain information of the object.|
+| %O     | Converts a JavaScript object into a string.|
+| %c     | Valid only in the browser. It is ignored in other environments.|
+| %%     | Placeholder for escaping the percent sign.|
 
 **Example**
 
-  ```ts
-  let res = util.format("%s", "hello world!");
-  console.log(res);
-  ```
+```ts
+let name = 'John';
+let age = 20;
+let formattedString = util.format('My name is %s and I am %s years old', name, age);
+console.log(formattedString);
+// Output: My name is John and I am 20 years old
+let num = 10.5;
+formattedString = util.format('The number is %d', num);
+console.log(formattedString);
+// Output: The number is 10.5.
+num = 100.5;
+formattedString = util.format('The number is %i', num);
+console.log(formattedString);
+// Output: The number is 100.
+const pi = 3.141592653;
+formattedString = util.format('The value of pi is %f', pi);
+console.log(formattedString);
+// Output: The value of pi is 3.141592653
+const obj = { name: 'John', age: 20 };
+formattedString = util.format('The object is %j', obj);
+console.log(formattedString);
+// Output: The object is {"name":"John","age":20}.
+const person = {
+  name: 'John',
+  age: 20,
+  address: {
+    city: 'New York',
+    country: 'USA'
+  }
+};
+console.log(util.format('Formatted object using %%O: %O', person));
+console.log(util.format('Formatted object using %%o: %o', person));
+/*
+Output:
+Formatted object using %O: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+Formatted object using %o: { name: 'John',
+  age: 20,
+  address:
+  { city: 'New York',
+    country: 'USA' } }
+*/
+const percentage = 80;
+let arg = 'homework';
+formattedString = util.format('John finished %d%% of the %s', percentage, arg);
+console.log(formattedString);
+// Output: John finished 80% of the homework
+```
 
 ## util.errnoToString<sup>9+</sup>
 
@@ -64,9 +126,9 @@ Obtains detailed information about a system error code.
 **Example**
 
 ```ts
-  let errnum = -1; // -1 is a system error code.
-  let result = util.errnoToString(errnum);
-  console.log("result = " + result);
+let errnum = -1; // -1 is a system error code.
+let result = util.errnoToString(errnum);
+console.log("result = " + result);
 ```
 
 **Some error code and message examples**
@@ -105,16 +167,16 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 
 **Example**
 
-  ```ts
-  async function fn() {
-    return 'hello world';
-  }
-  let cb = util.callbackWrapper(fn);
-  cb(1, (err : Object, ret : string) => {
-    if (err) throw new Error;
-    console.log(ret);
-  });
-  ```
+```ts
+async function fn() {
+  return 'hello world';
+}
+let cb = util.callbackWrapper(fn);
+cb(1, (err : Object, ret : string) => {
+  if (err) throw new Error;
+  console.log(ret);
+});
+```
 
 ## util.promisify<sup>9+</sup>
 
@@ -138,25 +200,20 @@ Processes an asynchronous function and returns a promise.
 
 **Example**
 
-  ```ts
-  function fun(num, callback) {
-    if (typeof num === 'number') {
-        callback(null, num + 3);
-    } else {
-        callback("type err");
-    }
+```ts
+async function fn() {
+  return 'hello world';
+}
+const addCall = util.promisify(util.callbackWrapper(fn));
+(async () => {
+  try {
+    let res: string = await addCall();
+    console.log(res);
+  } catch (err) {
+    console.log(err);
   }
-
-  const addCall = util.promisify(fun);
-  (async () => {
-    try {
-        let res = await addCall(2);
-        console.log(res);
-    } catch (err) {
-        console.log(err);
-    }
-  })();
-  ```
+})();
+```
 
 ## util.generateRandomUUID<sup>9+</sup>
 
@@ -180,12 +237,11 @@ Uses a secure random number generator to generate a random universally unique id
 
 **Example**
 
-  ```ts
-  let uuid = util.generateRandomUUID(true);
-  console.log("RFC 4122 Version 4 UUID:" + uuid);
-  // Output:
-  // RFC 4122 Version 4 UUID:88368f2a-d5db-47d8-a05f-534fab0a0045
-  ```
+```ts
+let uuid = util.generateRandomUUID(true);
+console.log("RFC 4122 Version 4 UUID:" + uuid);
+// Output a random UUID.
+```
 
 ## util.generateRandomBinaryUUID<sup>9+</sup>
 
@@ -209,18 +265,18 @@ Uses a secure random number generator to generate a random UUID of the Uint8Arra
 
 **Example**
 
-  ```ts
-  let uuid = util.generateRandomBinaryUUID(true);
-  console.log(JSON.stringify(uuid));
-  // Output:
-  // 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
-  ```
+```ts
+let uuid = util.generateRandomBinaryUUID(true);
+console.log(JSON.stringify(uuid));
+// Output:
+// 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+```
 
 ## util.parseUUID<sup>9+</sup>
 
 parseUUID(uuid: string): Uint8Array
 
-Converts the UUID of the string type generated by **generateRandomUUID** to the UUID of the **Uint8Array** type generated by **generateRandomBinaryUUID**, as described in RFC 4122 version 4.
+Converts a UUID of the string type generated by **generateRandomUUID** to a UUID of the Uint8Array type generated by **generateRandomBinaryUUID**, as described in RFC 4122 version 4.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -238,18 +294,18 @@ Converts the UUID of the string type generated by **generateRandomUUID** to the 
 
 **Example**
 
-  ```ts
-  let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-  console.log(JSON.stringify(uuid));
-  // Output:
-  // 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
-  ```
+```ts
+let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
+console.log(JSON.stringify(uuid));
+// Output:
+// 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+```
 
 ## util.printf<sup>(deprecated)</sup>
 
 printf(format: string,  ...args: Object[]): string
 
-Formats the specified values and inserts them into the string by replacing the wildcard in the string.
+Formats a string by replacing the placeholders in it.
 
 > **NOTE**
 >
@@ -261,8 +317,8 @@ Formats the specified values and inserts them into the string by replacing the w
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| format | string | Yes| String.|
-| ...args | Object[] | No| Values to format. The formatted values will replace the wildcard in the string. If this parameter is not set, the first parameter is returned by default.|
+| format | string | Yes| Format string.|
+| ...args | Object[] | No| Data used to replace the placeholders in **format**. If **null** is passed in, the first argument is returned by default.|
 
 **Return value**
 
@@ -272,10 +328,10 @@ Formats the specified values and inserts them into the string by replacing the w
 
 **Example**
 
-  ```ts
-  let res = util.printf("%s", "hello world!");
-  console.log(res);
-  ```
+```ts
+let res = util.printf("%s", "hello world!");
+console.log(res);
+```
 
 
 ## util.getErrorString<sup>(deprecated)</sup>
@@ -304,11 +360,11 @@ Obtains detailed information about a system error code.
 
 **Example**
 
-  ```ts
-  let errnum = -1; // -1 is a system error code.
-  let result = util.getErrorString(errnum);
-  console.log("result = " + result);
-  ```
+```ts
+let errnum = -1; // -1 is a system error code.
+let result = util.getErrorString(errnum);
+console.log("result = " + result);
+```
 
 ## util.promiseWrapper<sup>(deprecated)</sup>
 
@@ -357,9 +413,15 @@ A constructor used to create a **TextDecoder** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Example**
+
+```ts
+let result = new util.TextDecoder();
+let retStr = result.encoding;
+```
 ### create<sup>9+</sup>
 
-create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder;
+create(encoding?: string, options?: { fatal?: boolean; ignoreBOM?: boolean }): TextDecoder
 
 Creates a **TextDecoder** object. It provides the same function as the deprecated argument constructor.
 
@@ -370,7 +432,7 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 | Name  | Type  | Mandatory| Description                                            |
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | No  | Encoding format. The default format is **'utf-8'**.                     |
-| options  | Object | No  | Encoding-related options, which include **fatal** and **ignoreBOM**.|
+| options  | object | No  | Decoding-related options, which include **fatal** and **ignoreBOM**.|
 
 **Table 1.1** options
 
@@ -382,15 +444,15 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 **Example**
 
 ```ts
-  let result = util.TextDecoder.create('utf-8', { ignoreBOM : true })
-  let retStr = result.encoding
+let result = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+let retStr = result.encoding;
 ```
 
 ### decodeWithStream<sup>9+</sup>
 
 decodeWithStream(input: Uint8Array, options?: { stream?: boolean }): string
 
-Decodes the input content.
+Decodes the input content into a string.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -398,8 +460,8 @@ Decodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | Uint8Array | Yes| Uint8Array to decode.|
-| options | Object | No| Options related to decoding.|
+| input | Uint8Array | Yes| Uint8Array object to decode.|
+| options | object | No| Decoding-related options.|
 
 **Table 2** options
 
@@ -411,23 +473,23 @@ Decodes the input content.
 
 | Type| Description|
 | -------- | -------- |
-| string | Data decoded.|
+| string | String obtained.|
 
 **Example**
 
-  ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  let result = new Uint8Array(6);
-  result[0] = 0xEF;
-  result[1] = 0xBB;
-  result[2] = 0xBF;
-  result[3] = 0x61;
-  result[4] = 0x62;
-  result[5] = 0x63;
-  console.log("input num:");
-  let retStr = textDecoder.decodeWithStream( result , {stream: false});
-  console.log("retStr = " + retStr);
-  ```
+```ts
+let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM : true });
+let result = new Uint8Array(6);
+result[0] = 0xEF;
+result[1] = 0xBB;
+result[2] = 0xBF;
+result[3] = 0x61;
+result[4] = 0x62;
+result[5] = 0x63;
+console.log("input num:");
+let retStr = textDecoder.decodeWithStream( result , {stream: false});
+console.log("retStr = " + retStr);
+```
 
 ### constructor<sup>(deprecated)</sup>
 
@@ -446,7 +508,7 @@ A constructor used to create a **TextDecoder** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | encoding | string | No| Encoding format. The default format is **'utf-8'**.|
-| options | Object | No| Encoding-related options, which include **fatal** and **ignoreBOM**.|
+| options | object | No| Decoding-related options, which include **fatal** and **ignoreBOM**.|
 
   **Table 1** options
 
@@ -457,15 +519,15 @@ A constructor used to create a **TextDecoder** object.
 
 **Example**
 
-  ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  ```
+```ts
+let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+```
 
 ### decode<sup>(deprecated)</sup>
 
 decode(input: Uint8Array, options?: { stream?: false }): string
 
-Decodes the input content.
+Decodes the input content into a string.
 
 > **NOTE**
 >
@@ -477,8 +539,8 @@ Decodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | Uint8Array | Yes| Uint8Array to decode.|
-| options | Object | No| Options related to decoding.|
+| input | Uint8Array | Yes| Uint8Array object to decode.|
+| options | object | No| Decoding-related options.|
 
 **Table 2** options
 
@@ -490,23 +552,23 @@ Decodes the input content.
 
 | Type| Description|
 | -------- | -------- |
-| string | Data decoded.|
+| string | String obtained.|
 
 **Example**
 
-  ```ts
-  let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-  let result = new Uint8Array(6);
-  result[0] = 0xEF;
-  result[1] = 0xBB;
-  result[2] = 0xBF;
-  result[3] = 0x61;
-  result[4] = 0x62;
-  result[5] = 0x63;
-  console.log("input num:");
-  let retStr = textDecoder.decode( result , {stream: false});
-  console.log("retStr = " + retStr);
-  ```
+```ts
+let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
+let result = new Uint8Array(6);
+result[0] = 0xEF;
+result[1] = 0xBB;
+result[2] = 0xBF;
+result[3] = 0x61;
+result[4] = 0x62;
+result[5] = 0x63;
+console.log("input num:");
+let retStr = textDecoder.decode( result , {stream: false});
+console.log("retStr = " + retStr);
+```
 
 ## TextEncoder
 
@@ -531,9 +593,9 @@ A constructor used to create a **TextEncoder** object.
 
 **Example**
 
-  ```ts
-  let textEncoder = new util.TextEncoder();
-  ```
+```ts
+let textEncoder = new util.TextEncoder();
+```
 
 ### constructor<sup>9+</sup>
 
@@ -551,15 +613,15 @@ A constructor used to create a **TextEncoder** object.
 
 **Example**
 
-  ```ts
-  let textEncoder = new util.TextEncoder("utf-8");
-  ```
+```ts
+let textEncoder = new util.TextEncoder("utf-8");
+```
 
 ### encodeInto<sup>9+</sup>
 
 encodeInto(input?: string): Uint8Array
 
-Encodes the input content.
+Encodes the input content into a Uint8Array object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -573,22 +635,22 @@ Encodes the input content.
 
 | Type      | Description              |
 | ---------- | ------------------ |
-| Uint8Array | Encoded text.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
-  ```ts
-  let textEncoder = new util.TextEncoder();
-  let buffer = new ArrayBuffer(20);
-  let result = new Uint8Array(buffer);
-  result = textEncoder.encodeInto("\uD800¥¥");
-  ```
+```ts
+let textEncoder = new util.TextEncoder();
+let buffer = new ArrayBuffer(20);
+let result = new Uint8Array(buffer);
+result = textEncoder.encodeInto("\uD800¥¥");
+```
 
 ### encodeIntoUint8Array<sup>9+</sup>
 
 encodeIntoUint8Array(input: string, dest: Uint8Array): { read: number; written: number }
 
-Stores the UTF-8 encoded text.
+Encodes the input content into a Uint8Array object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -597,23 +659,23 @@ Stores the UTF-8 encoded text.
 | Name| Type      | Mandatory| Description                                                   |
 | ------ | ---------- | ---- | ------------------------------------------------------- |
 | input  | string     | Yes  | String to encode.                                     |
-| dest   | Uint8Array | Yes  | **Uint8Array** instance used to store the UTF-8 encoded text.|
+| dest   | Uint8Array | Yes  | Uint8Array object used to store the UTF-8 encoded text.|
 
 **Return value**
 
-| Type      | Description              |
-| ---------- | ------------------ |
-| Uint8Array | Encoded text.|
+| Type     | Description              |
+| --------- | ------------------ |
+| object | Object obtained. **read** indicates the number of encoded characters, and **write** indicates the number of bytes in the encoded characters.|
 
 **Example**
 
-  ```ts
-  let that = new util.TextEncoder()
-  let buffer = new ArrayBuffer(4)
-  let dest = new Uint8Array(buffer)
-  let result = new Object()
-  result = that.encodeIntoUint8Array('abcd', dest)
-  ```
+```ts
+let that = new util.TextEncoder();
+let buffer = new ArrayBuffer(4);
+let dest = new Uint8Array(buffer);
+let result = new Object();
+result = that.encodeIntoUint8Array('abcd', dest);
+```
 
 ### encodeInto<sup>(deprecated)</sup>
 
@@ -632,28 +694,29 @@ Stores the UTF-8 encoded text.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | input | string | Yes| String to encode.|
-| dest | Uint8Array | Yes| **Uint8Array** instance used to store the UTF-8 encoded text.|
+| dest | Uint8Array | Yes| Uint8Array object used to store the UTF-8 encoded text.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Encoded text.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
-  ```ts
-  let that = new util.TextEncoder()
-  let buffer = new ArrayBuffer(4)
-  let dest = new Uint8Array(buffer)
-  let result = new Object()
-  result = that.encodeInto('abcd', dest)
-  ```
+
+```ts
+let that = new util.TextEncoder();
+let buffer = new ArrayBuffer(4);
+let dest = new Uint8Array(buffer);
+let result = new Object();
+result = that.encodeInto('abcd', dest);
+```
 
 ### encode<sup>(deprecated)</sup>
 
 encode(input?: string): Uint8Array
 
-Encodes the input content.
+Encodes the input content in to a Uint8Array object.
 
 > **NOTE**
 >
@@ -671,15 +734,16 @@ Encodes the input content.
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Encoded text.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
-  ```ts
-  let textEncoder = new util.TextEncoder();
-  let buffer = new ArrayBuffer(20);
-  let result = new Uint8Array(buffer);
-  result = textEncoder.encode("\uD800¥¥");
-  ```
+
+```ts
+let textEncoder = new util.TextEncoder();
+let buffer = new ArrayBuffer(20);
+let result = new Uint8Array(buffer);
+result = textEncoder.encode("\uD800¥¥");
+```
 
 ## RationalNumber<sup>8+</sup>
 
@@ -696,14 +760,14 @@ A constructor used to create a **RationalNumber** object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber();
+let rationalNumber = new util.RationalNumber();
 ```
 
 ### parseRationalNumber<sup>9+</sup>
 
 parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
-Parses a rational number. Previously, this processing is an internal action of the deprecated constructor.
+Create a **RationalNumber** instance with a given numerator and denominator.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -717,7 +781,7 @@ Parses a rational number. Previously, this processing is an internal action of t
 **Example**
 
 ```ts
-  let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 ```
 
 ### createRationalFromString<sup>8+</sup>
@@ -738,20 +802,19 @@ Creates a **RationalNumber** object based on the given string.
 
 | Type| Description|
 | -------- | -------- |
-| object | **RationalNumber** object created.|
+| Object | **RationalNumber** object obtained.|
 
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
+let rational = util.RationalNumber.createRationalFromString("3/4");
 ```
 
 ### compare<sup>9+</sup>
 
 compare​(another: RationalNumber): number​
 
-Compares this **RationalNumber** object with a given object.
+Compares this **RationalNumber** object with another **RationalNumber** object.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -759,7 +822,7 @@ Compares this **RationalNumber** object with a given object.
 
 | Name | Type          | Mandatory| Description              |
 | ------- | -------------- | ---- | ------------------ |
-| another | RationalNumber | Yes  | Object used to compare with this **RationalNumber** object.|
+| another | [RationalNumber](#rationalnumber8) | Yes  | Object used to compare with this **RationalNumber** object.|
 
 **Return value**
 
@@ -769,11 +832,13 @@ Compares this **RationalNumber** object with a given object.
 
 **Example**
 
-  ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.compare(rational);
-  ```
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compare(rational);
+console.log("result = " + result);
+// Output: result = -1
+```
 
 ### valueOf<sup>8+</sup>
 
@@ -792,8 +857,17 @@ Obtains the value of this **RationalNumber** object as an integer or a floating-
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.valueOf();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.valueOf();
+console.log("result = " + result);
+// Output: result = 0.5
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.valueOf();
+console.log("result = " + result);
+// Output: result = 0.5
 ```
 
 ### equals<sup>8+</sup>
@@ -819,9 +893,19 @@ Checks whether this **RationalNumber** object equals the given object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.equals(rational);
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.equals(rational);
+console.log("result = " + result);
+// Output: result = false
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.equals(rational);
+console.log("result = " + result);
+// Output: result = false
 ```
 
 ### getCommonFactor<sup>9+</sup>
@@ -848,8 +932,9 @@ Obtains the greatest common divisor of two specified integers.
 **Example**
 
 ```ts
-let rationalNumber = new util.RationalNumber(1,2);
 let result = util.RationalNumber.getCommonFactor(4,6);
+console.log("result = " + result);
+// Output: result = 2
 ```
 
 ### getNumerator<sup>8+</sup>
@@ -869,8 +954,17 @@ Obtains the numerator of this **RationalNumber** object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.getNumerator();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.getNumerator();
+console.log("result = " + result);
+// Output: result = 1
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.getNumerator();
+console.log("result = " + result);
+// Output: result = 1
 ```
 
 ### getDenominator<sup>8+</sup>
@@ -890,8 +984,17 @@ Obtains the denominator of this **RationalNumber** object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.getDenominator();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.getDenominator();
+console.log("result = " + result);
+// Output: result = 2
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2)
+let result = rationalNumber.getDenominator();
+console.log("result = " + result);
+// Output: result = 2
 ```
 
 ### isZero<sup>8+</sup>
@@ -911,8 +1014,17 @@ Checks whether this **RationalNumber** object is **0**.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isZero();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isZero();
+console.log("result = " + result);
+// Output: result = false
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isZero();
+console.log("result = " + result);
+// Output: result = false
 ```
 
 ### isNaN<sup>8+</sup>
@@ -932,8 +1044,17 @@ Checks whether this **RationalNumber** object is a Not a Number (NaN).
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isNaN();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isNaN();
+console.log("result = " + result);
+// Output: result = false
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isNaN();
+console.log("result = " + result);
+// Output: result = false
 ```
 
 ### isFinite<sup>8+</sup>
@@ -953,8 +1074,17 @@ Checks whether this **RationalNumber** object represents a finite value.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.isFinite();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.isFinite();
+console.log("result = " + result);
+// Output: result = true
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.isFinite();
+console.log("result = " + result);
+// Output: result = true
 ```
 
 ### toString<sup>8+</sup>
@@ -969,13 +1099,22 @@ Obtains the string representation of this **RationalNumber** object.
 
 | Type| Description|
 | -------- | -------- |
-| string | Returns **NaN** if the numerator and denominator of this object are both **0**; returns a string in Numerator/Denominator format otherwise, for example, **3/5**.|
+| string | Returns a string in Numerator/Denominator format in normal cases, for example, 3/5; returns **0/1** if the numerator of this object is **0**; returns **Infinity** if the denominator is **0**; Returns **NaN** if the numerator and denominator are both **0**.|
 
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = rationalNumber.toString();
+let rationalNumber = new util.RationalNumber(1,2);
+let result = rationalNumber.toString();
+console.log("result = " + result);
+// Output: result = 1/2
+```
+You are advised to use the following code snippet for API version 9 and later versions:
+```ts
+let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
+let result = rationalNumber.toString();
+console.log("result = " + result);
+// Output: result = 1/2
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -986,7 +1125,7 @@ A constructor used to create a **RationalNumber** object.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [constructor<sup>9+</sup>](#constructor9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [parserationalnumber<sup>9+</sup>](#parserationalnumber9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1000,7 +1139,7 @@ A constructor used to create a **RationalNumber** object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
+let rationalNumber = new util.RationalNumber(1,2);
 ```
 
 ### compareTo<sup>(deprecated)</sup>
@@ -1030,9 +1169,9 @@ Compares this **RationalNumber** object with a given object.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let rational = util.RationalNumber.createRationalFromString("3/4");
-  let result = rationalNumber.compareTo(rational);
+let rationalNumber = new util.RationalNumber(1,2);
+let rational = util.RationalNumber.createRationalFromString("3/4");
+let result = rationalNumber.compareTo(rational);
 ```
 
 ### getCommonDivisor<sup>(deprecated)</sup>
@@ -1063,8 +1202,8 @@ Obtains the greatest common divisor of two specified integers.
 **Example**
 
 ```ts
-  let rationalNumber = new util.RationalNumber(1,2);
-  let result = util.RationalNumber.getCommonDivisor(4,6);
+let rationalNumber = new util.RationalNumber(1,2);
+let result = util.RationalNumber.getCommonDivisor(4,6);
 ```
 
 ## LRUCache<sup>9+</sup>
@@ -1081,11 +1220,11 @@ Provides APIs to discard the least recently used data to make rooms for new elem
 
 **Example**
 
-```ts 
-  let  pro : util.LRUCache<number, number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.put(1,8);
-  let result = pro.length;
+```ts
+let  pro : util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.put(1,8);
+let result = pro.length;
 ```
 
 ### constructor<sup>9+</sup>
@@ -1100,12 +1239,12 @@ A constructor used to create a **LruCache** instance. The default capacity of th
 
 | Name  | Type  | Mandatory| Description                        |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | No  | Capacity of the **LruCache** to create. The default value is **64**.|
+| capacity | number | No  | Capacity of the cache to create. The default value is **64**.|
 
 **Example**
 
 ```ts
-  let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
+let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 ```
 
 
@@ -1113,7 +1252,7 @@ A constructor used to create a **LruCache** instance. The default capacity of th
 
 updateCapacity(newCapacity: number): void
 
-Changes the **LruCache** capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
+Changes the cache capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1121,21 +1260,20 @@ Changes the **LruCache** capacity. If the new capacity is less than or equal to 
 
 | Name     | Type  | Mandatory| Description                        |
 | ----------- | ------ | ---- | ---------------------------- |
-| newCapacity | number | Yes  | New capacity of the **LruCache**.|
+| newCapacity | number | Yes  | New capacity of the cache.|
 
 **Example**
 
 ```ts
-  let pro : util.LRUCache<number,number>= new util.LRUCache();
-  pro.updateCapacity(100);
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.updateCapacity(100);
 ```
-
 
 ### toString<sup>9+</sup>
 
 toString(): string
 
-Obtains the string representation of this **LruCache** object.
+Obtains the string representation of this cache.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1143,18 +1281,19 @@ Obtains the string representation of this **LruCache** object.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| string | String representation of this **LruCache** object.|
+| string | String representation of this cache.|
 
 **Example**
 
 ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.get(2);
-  pro.remove(20);
-  let result = pro.toString();
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+pro.get(3);
+console.log(pro.toString());
+// Output: LRUCache[ maxSize = 64, hits = 1, misses = 1, hitRate = 50% ]
+// maxSize: maximum size of the cache. hits: number of matched queries. misses: number of mismatched queries. hitRate: matching rate.
 ```
-
 
 ### getCapacity<sup>9+</sup>
 
@@ -1168,15 +1307,14 @@ Obtains the capacity of this cache.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| number | Capacity of this cache.|
+| number | Capacity of the cache.|
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  let result = pro.getCapacity();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+let result = pro.getCapacity();
+```
 
 ### clear<sup>9+</sup>
 
@@ -1188,36 +1326,46 @@ Clears key-value pairs from this cache. The **afterRemoval()** method will be ca
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.length;
-  pro.clear();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.length;
+pro.clear();
+```
 
 ### getCreateCount<sup>9+</sup>
 
 getCreateCount(): number
 
-Obtains the number of return values for **createDefault()**.
+Obtains the number of times that an object is created.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
 
-| Type  | Description                             |
-| ------ | --------------------------------- |
-| number | Number of return values for **createDefault()**.|
+| Type  | Description               |
+| ------ | -------------------|
+| number | Number of times that objects are created.|
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(1,8);
-  let result = pro.getCreateCount();
-  ```
+```ts
+// Create the ChildLruBuffer class that inherits LruCache, and override createDefault() to return a non-undefined value.
+class ChildLruBuffer extends util.LRUCache<number, number> {
+  constructor() {
+    super();
+  }
 
+  createDefault(key: number): number {
+    return key;
+  }
+}
+let lru = new ChildLruBuffer();
+lru.put(2,10);
+lru.get(3);
+lru.get(5);
+let res = lru.getCreateCount();
+```
 
 ### getMissCount<sup>9+</sup>
 
@@ -1235,19 +1383,18 @@ Obtains the number of times that the queried values are mismatched.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.get(2);
-  let result = pro.getMissCount();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.get(2);
+let result = pro.getMissCount();
+```
 
 ### getRemovalCount<sup>9+</sup>
 
 getRemovalCount(): number
 
-Obtains the number of removals from this cache.
+Obtains the number of times that key-value pairs in the cache are recycled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1255,18 +1402,17 @@ Obtains the number of removals from this cache.
 
 | Type  | Description                      |
 | ------ | -------------------------- |
-| number | Number of removals from the cache.|
+| number | Number of times that key-value pairs in the cache are recycled.|
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  pro.updateCapacity(2);
-  pro.put(50,22);
-  let result = pro.getRemovalCount();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.updateCapacity(2);
+pro.put(50,22);
+let result = pro.getRemovalCount();
+```
 
 ### getMatchCount<sup>9+</sup>
 
@@ -1285,12 +1431,11 @@ Obtains the number of times that the queried values are matched.
 **Example**
 
   ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
+  let pro: util.LRUCache<number, number> = new util.LRUCache();
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
   ```
-
 
 ### getPutCount<sup>9+</sup>
 
@@ -1308,12 +1453,11 @@ Obtains the number of additions to this cache.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.getPutCount();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.getPutCount();
+```
 
 ### isEmpty<sup>9+</sup>
 
@@ -1331,12 +1475,11 @@ Checks whether this cache is empty.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.isEmpty();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.isEmpty();
+```
 
 ### get<sup>9+</sup>
 
@@ -1360,12 +1503,11 @@ Obtains the value of the specified key.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result  = pro.get(2);
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result  = pro.get(2);
+```
 
 ### put<sup>9+</sup>
 
@@ -1386,14 +1528,14 @@ Adds a key-value pair to this cache.
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| V    | Returns the existing value if the key already exists; returns the value added otherwise. If the key or value is null, an exception will be thrown. |
+| V    | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  let result = pro.put(2,10);
-  ```
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+let result = pro.put(2,10);
+```
 
 ### values<sup>9+</sup>
 
@@ -1411,14 +1553,13 @@ Obtains all values in this cache, listed from the most to the least recently acc
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number|string,number|string> = new util.LRUCache();
-  pro.put(2,10);
-  pro.put(2,"anhu");
-  pro.put("afaf","grfb");
-  let result = pro.values();
-  ```
-
+```ts
+let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
+pro.put(2,10);
+pro.put(2,"anhu");
+pro.put("afaf","grfb");
+let result = pro.values();
+```
 
 ### keys<sup>9+</sup>
 
@@ -1436,12 +1577,11 @@ Obtains all keys in this cache, listed from the most to the least recently acces
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number>= new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.keys();
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.keys();
+```
 
 ### remove<sup>9+</sup>
 
@@ -1461,16 +1601,15 @@ Removes the specified key and its value from this cache.
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns **undefined** if the key does not exist; throws an error if **null** is passed in for **key**.|
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number>= new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.remove(20);
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+let result = pro.remove(20);
+```
 
 ### afterRemoval<sup>9+</sup>
 
@@ -1484,31 +1623,30 @@ Performs subsequent operations after a value is removed.
 
 | Name  | Type   | Mandatory| Description                                                        |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| isEvict  | boolean | Yes  | Whether the cache capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.   |
+| isEvict  | boolean | Yes  | Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.   |
 | key      | K       | Yes  | Key removed.                                              |
 | value    | V       | Yes  | Value removed.                                              |
 | newValue | V       | Yes  | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
 
 **Example**
 
-  ```ts
-  let arr : Object[] = [];
-  class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
-    constructor() {
-      super();
-    }
+```ts
+let arr : Object[] = [];
+class ChildLruBuffer<K, V> extends util.LRUCache<K, V> {
+  constructor() {
+    super();
+  }
 
-    afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
-    {
-      if (isEvict === false) {
-        arr = [key, value, newValue];
-      }
+  afterRemoval(isEvict: boolean, key: K, value: V, newValue: V) : void
+  {
+    if (isEvict === false) {
+      arr = [key, value, newValue];
     }
   }
-  let lru : ChildLruBuffer<number,number|null>= new ChildLruBuffer();
-  lru.afterRemoval(false,10,30,null);
-  ```
-
+}
+let lru : ChildLruBuffer<number, number>= new ChildLruBuffer();
+lru.afterRemoval(false, 10, 30, 50);
+```
 
 ### contains<sup>9+</sup>
 
@@ -1532,16 +1670,15 @@ Checks whether this cache contains the specified key.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number|object,number> = new util.LRUCache();
-  pro.put(2,10);
-  class Lru{
-  s : string = ""
-  }
-  let obj : Lru = {s : "key" }
-  let result = pro.contains(obj);
-  ```
-
+```ts
+let pro : util.LRUCache<number | object, number> = new util.LRUCache();
+pro.put(2,10);
+class Lru{
+s : string = "";
+}
+let obj : Lru = {s : "key" };
+let result = pro.contains(obj);
+```
 
 ### createDefault<sup>9+</sup>
 
@@ -1565,11 +1702,10 @@ Creates a value if the value of the specified key is not available.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  let result = pro.createDefault(50);
-  ```
-
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+let result = pro.createDefault(50);
+```
 
 ### entries<sup>9+</sup>
 
@@ -1587,17 +1723,26 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro.entries();
-  ```
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro.entries();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
+```
 
 ### [Symbol.iterator]<sup>9+</sup>
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 Obtains a two-dimensional array in key-value pairs.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1609,11 +1754,16 @@ Obtains a two-dimensional array in key-value pairs.
 
 **Example**
 
-  ```ts
-  let pro : util.LRUCache<number,number> = new util.LRUCache();
-  pro.put(2,10);
-  let result = pro[Symbol.iterator]();
-  ```
+```ts
+let pro: util.LRUCache<number, number> = new util.LRUCache();
+pro.put(2,10);
+pro.put(3,15);
+let pair:Iterable<Object[]> = pro[Symbol.iterator]();
+let arrayValue = Array.from(pair);
+for (let value of arrayValue) {
+  console.log(value[0]+ ', '+ value[1]);
+}
+```
 
 ## ScopeComparable<sup>8+</sup>
 
@@ -1623,7 +1773,7 @@ The values of the **ScopeComparable** type are used to implement the **compareTo
 
 ### compareTo<sup>8+</sup>
 
-compareTo(other: ScopeComparable): boolean;
+compareTo(other: ScopeComparable): boolean
 
 Compares two values and returns a Boolean value.
 
@@ -1646,21 +1796,21 @@ Compares two values and returns a Boolean value.
 Create a class to implement the **compareTo** method. The **Temperature** class is used as an example in the following sample code.
 
 ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 ```
 
 ## ScopeType<sup>8+</sup>
@@ -1695,27 +1845,26 @@ A constructor used to create a **ScopeHelper** object with the specified upper a
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  ```
-
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+```
 
 ### toString<sup>9+</sup>
 
@@ -1733,29 +1882,28 @@ Obtains a string representation that contains this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.toString();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.toString();
+```
 
 ### intersect<sup>9+</sup>
 
@@ -1775,36 +1923,35 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 
 | Type                          | Description                          |
 | ------------------------------ | ------------------------------ |
-| [ScopeHelper9+](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
+| [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-  range.intersect(rangeFir);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+range.intersect(rangeFir);
+```
 
 ### intersect<sup>9+</sup>
 
@@ -1829,31 +1976,30 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.intersect(tempMiDF, tempMidS);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.intersect(tempMiDF, tempMidS);
+```
 
 ### getUpper<sup>9+</sup>
 
@@ -1871,29 +2017,28 @@ Obtains the upper limit of this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.getUpper();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getUpper();
+```
 
 ### getLower<sup>9+</sup>
 
@@ -1911,29 +2056,28 @@ Obtains the lower limit of this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.getLower();
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.getLower();
+```
 
 ### expand<sup>9+</sup>
 
@@ -1958,31 +2102,30 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.expand(tempMiDF, tempMidS);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF, tempMidS);
+```
 
 ### expand<sup>9+</sup>
 
@@ -2006,32 +2149,31 @@ Obtains the union set of this **Scope** and the given **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
-  let result = range.expand(rangeFir);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
+let result = range.expand(rangeFir);
+```
 
 ### expand<sup>9+</sup>
 
@@ -2055,30 +2197,29 @@ Obtains the union set of this **Scope** and the given value.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.expand(tempMiDF);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.expand(tempMiDF);
+```
 
 ### contains<sup>9+</sup>
 
@@ -2102,30 +2243,29 @@ Checks whether a value is within this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.contains(tempMiDF);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.contains(tempMiDF);
+```
 
 ### contains<sup>9+</sup>
 
@@ -2149,32 +2289,31 @@ Checks whether a range is within this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let tempLess = new Temperature(20);
-  let tempMore = new Temperature(45);
-  let rangeSec = new util.ScopeHelper(tempLess, tempMore);
-  let result = range.contains(rangeSec);
-  ```
-
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let tempLess = new Temperature(20);
+let tempMore = new Temperature(45);
+let rangeSec = new util.ScopeHelper(tempLess, tempMore);
+let result = range.contains(rangeSec);
+```
 
 ### clamp<sup>9+</sup>
 
@@ -2198,29 +2337,29 @@ Limits a value to this **Scope**.
 
 **Example**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature{
+  private readonly _temp: number;
+  constructor(value : number) {
+    this._temp = value;
   }
+  compareTo(value : Temperature ) {
+    return this._temp >= value.getTemp();
+  }
+  getTemp() {
+    return this._temp;
+  }
+  toString() : string {
+    return this._temp.toString();
+  }
+}
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.ScopeHelper(tempLower, tempUpper);
-  let result = range.clamp(tempMiDF);
-  ```
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.ScopeHelper(tempLower, tempUpper);
+let result = range.clamp(tempMiDF);
+```
 
 ## Base64Helper<sup>9+</sup>
 
@@ -2244,7 +2383,7 @@ A constructor used to create a **Base64Helper** instance.
 
 encodeSync(src: Uint8Array): Uint8Array
 
-Encodes the input content.
+Encodes the input content into a Uint8Array object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2252,13 +2391,13 @@ Encodes the input content.
 
 | Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | Yes  | Uint8Array to encode.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| Uint8Array | Uint8Array encoded.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -2273,7 +2412,7 @@ Encodes the input content.
 
 encodeToStringSync(src: Uint8Array, options?: Type): string
 
-Encodes the input content.
+Encodes the input content into a string. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2281,14 +2420,14 @@ Encodes the input content.
 
 | Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | Yes  | Uint8Array to encode.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
 | options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the output contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | String encoded from the Uint8Array.|
+| string | String obtained.|
 
 **Example**
 
@@ -2303,7 +2442,7 @@ Encodes the input content.
 
 decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
-Decodes the input content.
+Decodes a string into a Uint8Array object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2311,14 +2450,14 @@ Decodes the input content.
 
 | Name| Type                          | Mandatory| Description                         |
 | ------ | ------------------------------ | ---- | ----------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array or string to decode.|
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
 | options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the input contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
 | Type      | Description                         |
 | ---------- | ----------------------------- |
-| Uint8Array | Uint8Array decoded.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -2333,7 +2472,7 @@ Decodes the input content.
 
 encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
-Encodes the input content asynchronously.
+Encodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2341,13 +2480,13 @@ Encodes the input content asynchronously.
 
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | Yes  | Uint8Array to encode asynchronously.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
 
 **Return value**
 
 | Type                     | Description                             |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous encoding.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
@@ -2357,7 +2496,7 @@ Encodes the input content asynchronously.
   let rarray = new Uint8Array([99,122,69,122]);
   that.encode(array).then(val=>{
     for (let i = 0; i < rarray.length; i++) {
-      console.log(val[i].toString())
+      console.log(val[i].toString());
     }
   })
   ```
@@ -2367,7 +2506,7 @@ Encodes the input content asynchronously.
 
 encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
-Encodes the input content asynchronously.
+Encodes the input content into a string. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2375,14 +2514,14 @@ Encodes the input content asynchronously.
 
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | Yes  | Uint8Array to encode asynchronously.|
+| src    | Uint8Array | Yes  | Uint8Array object to encode.|
 | options<sup>10+</sup>    | [Type](#type10) | No  |  Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The output can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the output contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
 | Type                 | Description                    |
 | --------------------- | ------------------------ |
-| Promise&lt;string&gt; | String obtained after asynchronous encoding.|
+| Promise&lt;string&gt; | Promise used to return the string obtained.|
 
 **Example**
 
@@ -2399,7 +2538,7 @@ Encodes the input content asynchronously.
 
 decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
-Decodes the input content asynchronously.
+Decodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2407,14 +2546,14 @@ Decodes the input content asynchronously.
 
 | Name| Type                          | Mandatory| Description                             |
 | ------ | ------------------------------ | ---- | --------------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array or string to decode asynchronously.|
+| src    | Uint8Array&nbsp;\|&nbsp;string | Yes  | Uint8Array object or string to decode.|
 | options<sup>10+</sup>    | [Type](#type10) | No  | Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default value): The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). There is no carriage return or line feed character.<br>- **util.Type.MIME**: The input can contain 64 printable characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). Each line of the input contains a maximum of 76 characters, ended with '\r\n'.|
 
 **Return value**
 
 | Type                     | Description                             |
 | ------------------------- | --------------------------------- |
-| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous decoding.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
@@ -2433,10 +2572,10 @@ Enumerates the Base64 encoding formats.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name  | Value                    | Description            |
-| -------- | ------------------------ | ---------------- |
+| Name  |Value| Description              |
+| ----- |---| ----------------- |
 | BASIC | 0 | Basic format.|
-| MIME | 1 | MIME format.|
+| MIME  | 1 | MIME format.|
 
 
 ## types<sup>8+</sup>
@@ -2462,7 +2601,7 @@ A constructor used to create a **Types** object.
 
 isAnyArrayBuffer(value: Object): boolean
 
-Checks whether the input value is of the **ArrayBuffer** type.
+Checks whether the input value is of the ArrayBuffer type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2476,7 +2615,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
@@ -2490,9 +2629,9 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 isArrayBufferView(value: Object): boolean
 
-Checks whether the input value is of the **ArrayBufferView** type.
+Checks whether the input value is of the ArrayBufferView type.
 
-**ArrayBufferView** is a helper type representing any of the following: **Int8Array**, **Int16Array**, **Int32Array**, **Uint8Array**, **Uint8ClampedArray**, **Uint32Array**, **Float32Array**, **Float64Array**, and **DataView**.
+**ArrayBufferView** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint32Array, Float32Array, **Float64Array**, and DataView.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2506,7 +2645,7 @@ Checks whether the input value is of the **ArrayBufferView** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **ArrayBufferView** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBufferView type; returns **false** otherwise.|
 
 **Example**
 
@@ -2520,7 +2659,7 @@ Checks whether the input value is of the **ArrayBufferView** type.
 
 isArgumentsObject(value: Object): boolean
 
-Checks whether the input value is of the **arguments** type.
+Checks whether the input value is of the arguments type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2534,7 +2673,7 @@ Checks whether the input value is of the **arguments** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **arguments** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the arguments type; returns **false** otherwise.|
 
 **Example**
 
@@ -2551,7 +2690,7 @@ Checks whether the input value is of the **arguments** type.
 
 isArrayBuffer(value: Object): boolean
 
-Checks whether the input value is of the **ArrayBuffer** type.
+Checks whether the input value is of the ArrayBuffer type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2565,7 +2704,7 @@ Checks whether the input value is of the **ArrayBuffer** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **ArrayBuffer** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
@@ -2607,7 +2746,7 @@ Checks whether the input value is an asynchronous function.
 
 isBooleanObject(value: Object): boolean
 
-Checks whether the input value is of the **Boolean** type.
+Checks whether the input value is of the Boolean type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2621,7 +2760,7 @@ Checks whether the input value is of the **Boolean** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Boolean** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Boolean type; returns **false** otherwise.|
 
 **Example**
 
@@ -2635,7 +2774,7 @@ Checks whether the input value is of the **Boolean** type.
 
 isBoxedPrimitive(value: Object): boolean
 
-Checks whether the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type.
+Checks whether the input value is of the Boolean, Number, String, or Symbol type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2649,7 +2788,7 @@ Checks whether the input value is of the **Boolean**, **Number**, **String**, or
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Boolean**, **Number**, **String**, or **Symbol** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Boolean, Number, String, or Symbol type; returns **false** otherwise.|
 
 **Example**
 
@@ -2663,7 +2802,7 @@ Checks whether the input value is of the **Boolean**, **Number**, **String**, or
 
 isDataView(value: Object): boolean
 
-Checks whether the input value is of the **DataView** type.
+Checks whether the input value is of the DataView type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2677,7 +2816,7 @@ Checks whether the input value is of the **DataView** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **DataView** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the DataView type; returns **false** otherwise.|
 
 **Example**
 
@@ -2692,7 +2831,7 @@ Checks whether the input value is of the **DataView** type.
 
 isDate(value: Object): boolean
 
-Checks whether the input value is of the **Date** type.
+Checks whether the input value is of the Date type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2706,7 +2845,7 @@ Checks whether the input value is of the **Date** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Date** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Date type; returns **false** otherwise.|
 
 **Example**
 
@@ -2720,7 +2859,7 @@ Checks whether the input value is of the **Date** type.
 
 isExternal(value: Object): boolean
 
-Checks whether the input value is of the **native external** type.
+Checks whether the input value is of the native external type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2734,7 +2873,7 @@ Checks whether the input value is of the **native external** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **native external** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the native external type; returns **false** otherwise.|
 
 **Example**
 
@@ -2748,7 +2887,7 @@ Checks whether the input value is of the **native external** type.
 
 isFloat32Array(value: Object): boolean
 
-Checks whether the input value is of the **Float32Array** type.
+Checks whether the input value is of the Float32Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2762,7 +2901,7 @@ Checks whether the input value is of the **Float32Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Float32Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Float32Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -2776,7 +2915,7 @@ Checks whether the input value is of the **Float32Array** type.
 
 isFloat64Array(value: Object): boolean
 
-Checks whether the input value is of the **Float64Array** type.
+Checks whether the input value is of the Float64Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2790,7 +2929,7 @@ Checks whether the input value is of the **Float64Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Float64Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Float64Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -2805,6 +2944,10 @@ Checks whether the input value is of the **Float64Array** type.
 isGeneratorFunction(value: Object): boolean
 
 Checks whether the input value is a generator function.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2834,6 +2977,10 @@ isGeneratorObject(value: Object): boolean
 
 Checks whether the input value is a generator object.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -2851,8 +2998,9 @@ Checks whether the input value is a generator object.
 **Example**
 
   ```ts
+  // This API cannot be used in .ets files.
   let that = new util.types();
-  function* foo() {}
+  function* foo() {};
   const generator = foo();
   let result = that.isGeneratorObject(generator);
   ```
@@ -2862,7 +3010,7 @@ Checks whether the input value is a generator object.
 
 isInt8Array(value: Object): boolean
 
-Checks whether the input value is of the **Int8Array** type.
+Checks whether the input value is of the Int8Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2876,7 +3024,7 @@ Checks whether the input value is of the **Int8Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Int8Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Int8Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -2890,7 +3038,7 @@ Checks whether the input value is of the **Int8Array** type.
 
 isInt16Array(value: Object): boolean
 
-Checks whether the input value is of the **Int16Array** type.
+Checks whether the input value is of the Int16Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2904,7 +3052,7 @@ Checks whether the input value is of the **Int16Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Int16Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Int16Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -2918,7 +3066,7 @@ Checks whether the input value is of the **Int16Array** type.
 
 isInt32Array(value: Object): boolean
 
-Checks whether the input value is of the **Int32Array** type.
+Checks whether the input value is of the Int32Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2932,7 +3080,7 @@ Checks whether the input value is of the **Int32Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Int32Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Int32Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -2946,7 +3094,7 @@ Checks whether the input value is of the **Int32Array** type.
 
 isMap(value: Object): boolean
 
-Checks whether the input value is of the **Map** type.
+Checks whether the input value is of the Map type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2960,7 +3108,7 @@ Checks whether the input value is of the **Map** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Map** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Map type; returns **false** otherwise.|
 
 **Example**
 
@@ -2974,7 +3122,7 @@ Checks whether the input value is of the **Map** type.
 
 isMapIterator(value: Object): boolean
 
-Checks whether the input value is of the **MapIterator** type.
+Checks whether the input value is of the MapIterator type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2989,7 +3137,7 @@ Checks whether the input value is of the **MapIterator** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **MapIterator** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the MapIterator type; returns **false** otherwise.|
 
 **Example**
 
@@ -3004,7 +3152,7 @@ Checks whether the input value is of the **MapIterator** type.
 
 isNativeError(value: Object): boolean
 
-Checks whether the input value is of the **Error** type.
+Checks whether the input value is of the Error type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3018,7 +3166,7 @@ Checks whether the input value is of the **Error** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Error** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Error type; returns **false** otherwise.|
 
 **Example**
 
@@ -3120,7 +3268,7 @@ Checks whether the input value is a proxy.
 
 isRegExp(value: Object): boolean
 
-Checks whether the input value is of the **RegExp** type.
+Checks whether the input value is of the RegExp type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3134,7 +3282,7 @@ Checks whether the input value is of the **RegExp** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **RegExp** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the RegExp type; returns **false** otherwise.|
 
 **Example**
 
@@ -3148,7 +3296,7 @@ Checks whether the input value is of the **RegExp** type.
 
 isSet(value: Object): boolean
 
-Checks whether the input value is of the **Set** type.
+Checks whether the input value is of the Set type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3162,7 +3310,7 @@ Checks whether the input value is of the **Set** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Set** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Set type; returns **false** otherwise.|
 
 **Example**
 
@@ -3177,7 +3325,7 @@ Checks whether the input value is of the **Set** type.
 
 isSetIterator(value: Object): boolean
 
-Checks whether the input value is of the **SetIterator** type.
+Checks whether the input value is of the SetIterator type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3191,7 +3339,7 @@ Checks whether the input value is of the **SetIterator** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **SetIterator** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the SetIterator type; returns **false** otherwise.|
 
 **Example**
 
@@ -3236,6 +3384,10 @@ isSymbolObject(value: Object): boolean
 
 Checks whether the input value is a symbol object.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -3253,6 +3405,7 @@ Checks whether the input value is a symbol object.
 **Example**
 
   ```ts
+  // This API cannot be used in .ets files.
   let that = new util.types();
   const symbols = Symbol('foo');
   let result = that.isSymbolObject(Object(symbols));
@@ -3263,9 +3416,9 @@ Checks whether the input value is a symbol object.
 
 isTypedArray(value: Object): boolean
 
-Checks whether the input value is of the **TypedArray** type.
+Checks whether the input value is of the TypedArray type.
 
-**TypedArray** is a helper type representing any of the following: **Int8Array**, **Int16Array**, **Int32Array**, **Uint8Array**, **Uint8ClampedArray**, **Uint16Array**, **Uint32Array**, **Float32Array**, **Float64Array**, and **DataView**.
+**TypedArray** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Float32Array, Float64Array, and DataView.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3279,7 +3432,7 @@ Checks whether the input value is of the **TypedArray** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **TypedArray** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the TypedArray type; returns **false** otherwise.|
 
 **Example**
 
@@ -3293,7 +3446,7 @@ Checks whether the input value is of the **TypedArray** type.
 
 isUint8Array(value: Object): boolean
 
-Checks whether the input value is of the **Uint8Array** type.
+Checks whether the input value is of the Uint8Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3307,7 +3460,7 @@ Checks whether the input value is of the **Uint8Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Uint8Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint8Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3321,7 +3474,7 @@ Checks whether the input value is of the **Uint8Array** type.
 
 isUint8ClampedArray(value: Object): boolean
 
-Checks whether the input value is of the **Uint8ClampedArray** type.
+Checks whether the input value is of the Uint8ClampedArray type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3335,7 +3488,7 @@ Checks whether the input value is of the **Uint8ClampedArray** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Uint8ClampedArray** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint8ClampedArray type; returns **false** otherwise.|
 
 **Example**
 
@@ -3349,7 +3502,7 @@ Checks whether the input value is of the **Uint8ClampedArray** type.
 
 isUint16Array(value: Object): boolean
 
-Checks whether the input value is of the **Uint16Array** type.
+Checks whether the input value is of the Uint16Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3363,7 +3516,7 @@ Checks whether the input value is of the **Uint16Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Uint16Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint16Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3377,7 +3530,7 @@ Checks whether the input value is of the **Uint16Array** type.
 
 isUint32Array(value: Object): boolean
 
-Checks whether the input value is of the **Uint32Array** type.
+Checks whether the input value is of the Uint32Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3391,7 +3544,7 @@ Checks whether the input value is of the **Uint32Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **Uint32Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the Uint32Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3405,7 +3558,7 @@ Checks whether the input value is of the **Uint32Array** type.
 
 isWeakMap(value: Object): boolean
 
-Checks whether the input value is of the **WeakMap** type.
+Checks whether the input value is of the WeakMap type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3419,13 +3572,13 @@ Checks whether the input value is of the **WeakMap** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **WeakMap** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the WeakMap type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
   let that = new util.types();
-  let value : WeakMap<object,number> = new WeakMap();
+  let value : WeakMap<object, number> = new WeakMap();
   let result = that.isWeakMap(value);
   ```
 
@@ -3434,7 +3587,7 @@ Checks whether the input value is of the **WeakMap** type.
 
 isWeakSet(value: Object): boolean
 
-Checks whether the input value is of the **WeakSet** type.
+Checks whether the input value is of the WeakSet type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3448,7 +3601,7 @@ Checks whether the input value is of the **WeakSet** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **WeakSet** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the WeakSet type; returns **false** otherwise.|
 
 **Example**
 
@@ -3462,7 +3615,7 @@ Checks whether the input value is of the **WeakSet** type.
 
 isBigInt64Array(value: Object): boolean
 
-Checks whether the input value is of the **BigInt64Array** type.
+Checks whether the input value is of the BigInt64Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3476,7 +3629,7 @@ Checks whether the input value is of the **BigInt64Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **BigInt64Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the BigInt64Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3490,7 +3643,7 @@ Checks whether the input value is of the **BigInt64Array** type.
 
 isBigUint64Array(value: Object): boolean
 
-Checks whether the input value is of the **BigUint64Array** type.
+Checks whether the input value is of the BigUint64Array type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3504,7 +3657,7 @@ Checks whether the input value is of the **BigUint64Array** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **BigUint64Array** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the BigUint64Array type; returns **false** otherwise.|
 
 **Example**
 
@@ -3519,6 +3672,10 @@ Checks whether the input value is of the **BigUint64Array** type.
 isModuleNamespaceObject(value: Object): boolean
 
 Checks whether the input value is a module namespace object.
+
+> **NOTE**
+>
+> This API cannot be used in .ets files.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3537,6 +3694,7 @@ Checks whether the input value is a module namespace object.
 **Example**
 
   ```ts
+  // This API cannot be used in .ets files.
   import url from '@ohos.url'
   let that = new util.types();
   let result = that.isModuleNamespaceObject(url);
@@ -3547,7 +3705,7 @@ Checks whether the input value is a module namespace object.
 
 isSharedArrayBuffer(value: Object): boolean
 
-Checks whether the input value is of the **SharedArrayBuffer** type.
+Checks whether the input value is of the SharedArrayBuffer type.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3561,7 +3719,7 @@ Checks whether the input value is of the **SharedArrayBuffer** type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the **SharedArrayBuffer** type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the SharedArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
@@ -3582,7 +3740,7 @@ Checks whether the input value is of the **SharedArrayBuffer** type.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| length | number | Yes| No| Total number of values in this buffer.|
+| length | number | Yes| No| Total number of values in this cache.|
 
 **Example**
 
@@ -3597,7 +3755,7 @@ Checks whether the input value is of the **SharedArrayBuffer** type.
 
 constructor(capacity?: number)
 
-A constructor used to create a **LruBuffer** instance. The default capacity of the buffer is 64.
+A constructor used to create a **LruBuffer** instance. The default capacity of the cache is 64.
 
 > **NOTE**
 >
@@ -3609,7 +3767,7 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| capacity | number | No| Capacity of the **LruBuffer** to create. The default value is **64**.|
+| capacity | number | No| Capacity of the cache to create. The default value is **64**.|
 
 **Example**
 
@@ -3621,7 +3779,7 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 
 updateCapacity(newCapacity: number): void
 
-Changes the **LruBuffer** capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
+Changes the cache capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
 
 > **NOTE**
 >
@@ -3633,20 +3791,20 @@ Changes the **LruBuffer** capacity. If the new capacity is less than or equal to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| newCapacity | number | Yes| New capacity of the **LruBuffer**.|
+| newCapacity | number | Yes| New capacity of the cache.|
 
 **Example**
 
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
-  let result = pro.updateCapacity(100);
+  pro.updateCapacity(100);
   ```
 
 ### toString<sup>(deprecated)</sup>
 
 toString(): string
 
-Obtains the string representation of this **LruBuffer** object.
+Obtains the string representation of this cache.
 
 > **NOTE**
 >
@@ -3658,7 +3816,7 @@ Obtains the string representation of this **LruBuffer** object.
 
 | Type| Description|
 | -------- | -------- |
-| string | String representation of this **LruBuffer** object.|
+| string | String representation of this cache.|
 
 **Example**
 
@@ -3674,7 +3832,7 @@ Obtains the string representation of this **LruBuffer** object.
 
 getCapacity(): number
 
-Obtains the capacity of this buffer.
+Obtains the capacity of this cache.
 
 > **NOTE**
 >
@@ -3686,7 +3844,7 @@ Obtains the capacity of this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| number | Capacity of this buffer.|
+| number | Capacity of the cache.|
 
 **Example**
 
@@ -3699,7 +3857,7 @@ Obtains the capacity of this buffer.
 
 clear(): void
 
-Clears key-value pairs from this buffer. The **afterRemoval()** method will be called to perform subsequent operations.
+Clears key-value pairs from this cache. The **afterRemoval()** method will be called to perform subsequent operations.
 
 > **NOTE**
 >
@@ -3773,7 +3931,7 @@ Obtains the number of times that the queried values are mismatched.
 
 getRemovalCount(): number
 
-Obtains the number of removals from this buffer.
+Obtains the number of removals from this cache.
 
 > **NOTE**
 >
@@ -3785,7 +3943,7 @@ Obtains the number of removals from this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of removals from the buffer.|
+| number | Number of removals from the cache.|
 
 **Example**
 
@@ -3828,7 +3986,7 @@ Obtains the number of times that the queried values are matched.
 
 getPutCount(): number
 
-Obtains the number of additions to this buffer.
+Obtains the number of additions to this cache.
 
 > **NOTE**
 >
@@ -3840,7 +3998,7 @@ Obtains the number of additions to this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| number | Number of additions to the buffer.|
+| number | Number of additions to the cache.|
 
 **Example**
 
@@ -3854,7 +4012,7 @@ Obtains the number of additions to this buffer.
 
 isEmpty(): boolean
 
-Checks whether this buffer is empty.
+Checks whether this cache is empty.
 
 > **NOTE**
 >
@@ -3898,7 +4056,7 @@ Obtains the value of the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the buffer; returns **undefined** otherwise.|
+| V&nbsp;\|&nbsp;undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise.|
 
 **Example**
 
@@ -3912,7 +4070,7 @@ Obtains the value of the specified key.
 
 put(key: K,value: V): V
 
-Adds a key-value pair to this buffer.
+Adds a key-value pair to this cache.
 
 > **NOTE**
 >
@@ -3931,7 +4089,7 @@ Adds a key-value pair to this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| V | Returns the existing value if the key already exists; returns the value added otherwise. If the key or value is null, an exception will be thrown. |
+| V | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
 
 **Example**
 
@@ -3944,7 +4102,7 @@ Adds a key-value pair to this buffer.
 
 values(): V[]
 
-Obtains all values in this buffer, listed from the most to the least recently accessed.
+Obtains all values in this cache, listed from the most to the least recently accessed.
 
 > **NOTE**
 >
@@ -3956,7 +4114,7 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 
 | Type| Description|
 | -------- | -------- |
-| V&nbsp;[] | All values in the buffer, listed from the most to the least recently accessed.|
+| V&nbsp;[] | All values in the cache, listed from the most to the least recently accessed.|
 
 **Example**
 
@@ -3972,7 +4130,7 @@ Obtains all values in this buffer, listed from the most to the least recently ac
 
 keys(): K[]
 
-Obtains all keys in this buffer, listed from the most to the least recently accessed.
+Obtains all keys in this cache, listed from the most to the least recently accessed.
 
 > **NOTE**
 >
@@ -3984,7 +4142,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 
 | Type| Description|
 | -------- | -------- |
-| K&nbsp;[] | All keys in the buffer, listed from the most to the least recently accessed.|
+| K&nbsp;[] | All keys in the cache, listed from the most to the least recently accessed.|
 
 **Example**
 
@@ -3998,7 +4156,7 @@ Obtains all keys in this buffer, listed from the most to the least recently acce
 
 remove(key: K): V | undefined
 
-Removes the specified key and its value from this buffer.
+Removes the specified key and its value from this cache.
 
 > **NOTE**
 >
@@ -4016,7 +4174,7 @@ Removes the specified key and its value from this buffer.
 
 | Type| Description|
 | -------- | -------- |
-| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the buffer; returns an empty **Optional** object otherwise. If the key is null, an exception will be thrown.|
+| V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns an empty **Optional** object otherwise; throws an error if **null** is passed in for **key**.|
 
 **Example**
 
@@ -4042,7 +4200,7 @@ Performs subsequent operations after a value is removed.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isEvict | boolean | Yes| Whether the buffer capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.|
+| isEvict | boolean | Yes| Whether the capacity is insufficient. If the value is **true**, this API is called due to insufficient capacity.|
 | key | K | Yes| Key removed.|
 | value | V | Yes| Value removed.|
 | newValue | V | Yes| New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
@@ -4073,7 +4231,7 @@ Performs subsequent operations after a value is removed.
 
 contains(key: K): boolean
 
-Checks whether this buffer contains the specified key.
+Checks whether this cache contains the specified key.
 
 
 > **NOTE**
@@ -4092,7 +4250,7 @@ Checks whether this buffer contains the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the buffer contains the specified key; returns **false** otherwise.|
+| boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise.|
 
 **Example**
 
@@ -4802,7 +4960,7 @@ A constructor used to create a **Base64** object.
 
 encodeSync(src: Uint8Array): Uint8Array
 
-Encodes the input content.
+Encodes the input content into a Uint8Array object. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -4814,13 +4972,13 @@ Encodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array to encode.|
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Uint8Array encoded.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -4834,7 +4992,7 @@ Encodes the input content.
 
 encodeToStringSync(src: Uint8Array): string
 
-Encodes the input content.
+Encodes the input content into a string. This API returns the result synchronously.
 
 > **NOTE**
 >
@@ -4846,13 +5004,13 @@ Encodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array to encode.|
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| string | String encoded from the Uint8Array.|
+| string | String obtained.|
 
 **Example**
 
@@ -4866,7 +5024,7 @@ Encodes the input content.
 
 decodeSync(src: Uint8Array | string): Uint8Array
 
-Decodes the input content.
+Decodes the input content into a Uint8Array object.
 
 > **NOTE**
 >
@@ -4878,13 +5036,13 @@ Decodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode.|
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array object or string to decode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Uint8Array | Uint8Array decoded.|
+| Uint8Array | Uint8Array object obtained.|
 
 **Example**
 
@@ -4898,7 +5056,7 @@ Decodes the input content.
 
 encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 
-Encodes the input content asynchronously.
+Encodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -4910,13 +5068,13 @@ Encodes the input content asynchronously.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous encoding.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
@@ -4935,7 +5093,7 @@ Encodes the input content asynchronously.
 
 encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
-Encodes the input content asynchronously.
+Encodes the input content into a string. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -4947,13 +5105,13 @@ Encodes the input content asynchronously.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array | Yes| Uint8Array to encode asynchronously.|
+| src | Uint8Array | Yes| Uint8Array object to encode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | String obtained after asynchronous encoding.|
+| Promise&lt;string&gt; | Promise used to return the string obtained.|
 
 **Example**
 
@@ -4970,7 +5128,7 @@ Encodes the input content asynchronously.
 
 decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
-Decodes the input content asynchronously.
+Decodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -4982,13 +5140,13 @@ Decodes the input content asynchronously.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array or string to decode asynchronously.|
+| src | Uint8Array&nbsp;\|&nbsp;string | Yes| Uint8Array object or string to decode.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;Uint8Array&gt; | Uint8Array obtained after asynchronous decoding.|
+| Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
 **Example**
 
@@ -4998,7 +5156,7 @@ Decodes the input content asynchronously.
   let rarray = new Uint8Array([115,49,51]);
   that.decode(array).then(val=>{    
       for (let i = 0; i < rarray.length; i++) {        
-          console.log(val[i].toString())
+          console.log(val[i].toString());
       }
   })
   ```

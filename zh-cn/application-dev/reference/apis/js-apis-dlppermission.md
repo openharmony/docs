@@ -141,7 +141,7 @@ import { BusinessError } from '@ohos.base';
 try {
   let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内
   if (inSandbox) {
-    let res: dlpPermission.DLPPermissionInfo = dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息
+    let res: Promise<dlpPermission.DLPPermissionInfo> = dlpPermission.getDLPPermissionInfo(); // 获取当前权限信息
     console.info('res', JSON.stringify(res));
   }
 } catch (err) {
@@ -288,7 +288,7 @@ on(type: 'openDLPFile', listener: Callback&lt;AccessedDLPFileInfo&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'openDLPFile' | 是 | 监听事件类型。'openDLPFile'：打开DLP文件。 |
+| type | 'openDLPFile' | 是 | 监听事件类型。固定值为'openDLPFile'：打开DLP文件事件。 |
 | listener | Callback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | 是 | DLP文件打开事件的回调。在当前应用的沙箱应用打开DLP文件时，通知当前应用。 |
 
 **错误码：**
@@ -328,7 +328,7 @@ off(type: 'openDLPFile', listener?: Callback&lt;AccessedDLPFileInfo&gt;): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'openDLPFile' | 是 | 监听事件类型。'openDLPFile'：打开DLP文件。 |
+| type | 'openDLPFile' | 是 | 监听事件类型。固定值为'openDLPFile'：打开DLP文件事件。 |
 | listener | Callback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | 否 | DLP文件被打开的事件的回调。在当前应用的沙箱应用打开DLP文件时，取消通知当前应用。默认为空，表示取消该类型事件的所有回调。 |
 
 **错误码：**
@@ -429,7 +429,7 @@ try {
     if (err) {
       console.error('isInSandbox error,', err.code, err.message);
     } else {
-      console.info('isInSandbox, data');
+      console.info('isInSandbox, data', JSON.stringify(data));
     }
   }); // 是否在沙箱内
 } catch (err) {
@@ -521,7 +521,7 @@ try {
 
 setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
-设置沙箱保留状态。使用Promise方式异步返回结果。
+打开DLP文件时自动安装沙箱，关闭DLP文件时自动卸载沙箱。设置沙箱保留状态时DLP文件关闭时自动卸载暂时失效。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -554,6 +554,7 @@ setRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   let inSandbox = dlpPermission.isInSandbox(); // 是否在沙箱内
   if (inSandbox) {
@@ -568,7 +569,7 @@ try {
 
 setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-设置沙箱保留状态。使用callback方式异步返回结果。
+打开DLP文件时自动安装沙箱，关闭DLP文件时自动卸载沙箱。设置沙箱保留状态时DLP文件关闭时自动卸载暂时失效。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -596,12 +597,14 @@ setRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.setRetentionState([uri], (err, res) => {
     if (err != undefined) {
       console.error('setRetentionState error,', err.code, err.message);
     } else {
       console.info('setRetentionState success');
+      console.info('res', JSON.stringify(res));
     }
   }); // 设置沙箱保留
 } catch (err) {
@@ -613,7 +616,7 @@ try {
 
 cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 
-取消沙箱保留状态。使用Promise方式异步返回结果。
+取消沙箱保留状态即恢复DLP文件关闭时自动卸载沙箱策略。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -645,6 +648,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;): Promise&lt;void&gt;
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.cancelRetentionState([uri]); // 取消沙箱保留
 } catch (err) {
@@ -656,7 +660,7 @@ try {
 
 cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): void
 
-取消沙箱保留状态。使用callback方式异步返回结果。
+取消沙箱保留状态即恢复DLP文件关闭时自动卸载沙箱策略。使用callback方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -683,6 +687,7 @@ cancelRetentionState(docUris: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.cancelRetentionState([uri], (err, res) => {
     if (err != undefined) {
@@ -714,7 +719,7 @@ getRetentionSandboxList(bundleName?: string): Promise&lt;Array&lt;RetentionSandb
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | Promise对象。返回查询的沙箱信息列表。 |
+| Promise&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | Promise对象。返回查询的沙箱信息列表。 |
 
 **错误码：**
 
@@ -734,7 +739,7 @@ import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let res: Array<dlpPermission.RetentionSandboxInfo> = dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
+  let res: Promise<Array<dlpPermission.RetentionSandboxInfo>> = dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
   console.info('res', JSON.stringify(res))
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -754,7 +759,7 @@ getRetentionSandboxList(bundleName: string, callback: AsyncCallback&lt;Array&lt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 指定应用包名。 |
-| callback | AsyncCallback&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -798,7 +803,7 @@ getRetentionSandboxList(callback: AsyncCallback&lt;Array&lt;RetentionSandboxInfo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[RetentionSandboxInfo](#retentionsandboxinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -842,7 +847,7 @@ getDLPFileAccessRecords(): Promise&lt;Array&lt;AccessedDLPFileInfo&gt;&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | Promise对象。返回最近访问的DLP文件列表。 |
+| Promise&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | Promise对象。返回最近访问的DLP文件列表。 |
 
 **错误码：**
 
@@ -861,7 +866,7 @@ import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let res: Array<dlpPermission.AccessedDLPFileInfo> = dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
+  let res: Promise<Array<dlpPermission.AccessedDLPFileInfo>> = dlpPermission.getDLPFileAccessRecords(); // 获取DLP访问列表
   console.info('res', JSON.stringify(res))
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -880,7 +885,7 @@ getDLPFileAccessRecords(callback: AsyncCallback&lt;Array&lt;AccessedDLPFileInfo&
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[AccessedDLPFileInfo](#accesseddlpfileinfo)&gt;&gt; | 是 | 回调函数。err为undefine时表示查询成功；否则为错误对象。 |
 
 **错误码：**
 
@@ -948,7 +953,7 @@ import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
 try {
-  let res: dlpPermission.GatheringPolicyType = dlpPermission.getDLPGatheringPolicy(); // 获取沙箱聚合策略
+  let res: Promise<dlpPermission.GatheringPolicyType> = dlpPermission.getDLPGatheringPolicy(); // 获取沙箱聚合策略
   console.info('res', JSON.stringify(res));
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -1049,8 +1054,9 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let res: dlpPermission.DLPSandboxInfo = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // 安装DLP沙箱
+  let res: Promise<dlpPermission.DLPSandboxInfo> = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // 安装DLP沙箱
   console.info('res', JSON.stringify(res));
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
@@ -1097,6 +1103,7 @@ installDLPSandbox(bundleName: string, access: DLPFileAccess, userId: number, uri
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
   dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri, (err, res) => {
     if (err != undefined) {
@@ -1127,7 +1134,7 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number): Promi
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用包名。 |
-| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系统帐号ID，默认主用户ID：100 | 
+| userId | number | 是 | 当前的用户ID，通过帐号子系统获取的系统帐号ID，默认主用户ID：100 |
 | appIndex | number | 是 | DLP沙箱号。 |
 
 **返回值：**
@@ -1154,10 +1161,12 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number): Promi
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let res: dlpPermission.DLPSandboxInfo = dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // 安装DLP沙箱
-  console.info('res', JSON.stringify(res));
-  dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // 卸载DLP沙箱
+  dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri).then((res)=>{
+    console.info('res', JSON.stringify(res));
+    dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex); // 卸载DLP沙箱
+  }); // 安装DLP沙箱
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -1202,16 +1211,18 @@ uninstallDLPSandbox(bundleName: string, userId: number, appIndex: number, callba
 import dlpPermission from '@ohos.dlpPermission';
 import { BusinessError } from '@ohos.base';
 
+let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 try {
-  let res: dlpPermission.DLPSandboxInfo = await dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri); // 安装DLP沙箱
-  console.info('res', JSON.stringify(res));
-  dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex, (err, res) => {
-    if (err != undefined) {
-      console.error('uninstallDLPSandbox error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.installDLPSandbox('com.ohos.note', dlpPermission.DLPFileAccess.READ_ONLY, 100, uri).then((res)=>{
+    console.info('res', JSON.stringify(res));
+    dlpPermission.uninstallDLPSandbox('com.ohos.note', 100, res.appIndex, (err, res) => {
+      if (err != undefined) {
+        console.error('uninstallDLPSandbox error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // 安装DLP沙箱
 } catch (err) {
   console.error('uninstallDLPSandbox error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1232,7 +1243,7 @@ on(type: 'uninstallDLPSandbox', listener: Callback&lt;DLPSandboxState&gt;): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。 |
+| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox':DLP沙箱卸载事件 |
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | 是 | 沙箱应用卸载事件的回调。 |
 
 **错误码：**
@@ -1277,7 +1288,7 @@ off(type: 'uninstallDLPSandbox', listener?: Callback&lt;DLPSandboxState&gt;): vo
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。 |
+| type | 'uninstallDLPSandbox' | 是 | 监听事件类型。固定值为'uninstallDLPSandbox':DLP沙箱卸载事件 |
 | listener | Callback&lt;[DLPSandboxState](#dlpsandboxstate)&gt; | 否 | 沙箱应用卸载事件的回调。默认为空，表示取消该类型事件的所有回调。 |
 
 **错误码：**
@@ -1368,9 +1379,10 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-  dlpFile.closeDLPFile(); //关闭DLP对象
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.closeDLPFile(); //关闭DLP对象
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -1419,19 +1431,19 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
-    if (err != undefined) {
-      console.error('addDLPLinkFile error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); //关闭DLP对象
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link', async (err, res) => {
+      if (err != undefined) {
+        console.error('addDLPLinkFile error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); //关闭DLP对象
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // 打开DLP文件
 } catch (err) {
   console.error('addDLPLinkFile error,', (err as BusinessError).code, (err as BusinessError).message);
 }
-
 ```
 
 ### stopFuseLink
@@ -1474,10 +1486,11 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-  dlpFile.stopFuseLink(); // 暂停link读写
-  dlpFile.closeDLPFile(); //关闭DLP对象
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.stopFuseLink(); // 暂停link读写
+    dlpFile.closeDLPFile(); //关闭DLP对象
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -1525,16 +1538,17 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-  dlpFile.stopFuseLink(async (err, res) => {
-    if (err != undefined) {
-      console.error('stopFuseLink error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); //关闭DLP对象
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.stopFuseLink(async (err, res) => {
+      if (err != undefined) {
+        console.error('stopFuseLink error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); //关闭DLP对象
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // 打开DLP文件
 } catch (err) {
   console.error('stopFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1580,11 +1594,12 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-  dlpFile.stopFuseLink(); // 暂停link读写
-  dlpFile.resumeFuseLink(); // 恢复link读写
-  dlpFile.closeDLPFile(); //关闭DLP对象
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.stopFuseLink(); // 暂停link读写
+    dlpFile.resumeFuseLink(); // 恢复link读写
+    dlpFile.closeDLPFile(); //关闭DLP对象
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -1632,17 +1647,18 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-  dlpFile.stopFuseLink(); // 暂停link读写
-  dlpFile.resumeFuseLink(async (err, res) => {
-    if (err != undefined) {
-      console.error('resumeFuseLink error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); //关闭DLP对象
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.stopFuseLink(); // 暂停link读写
+    dlpFile.resumeFuseLink(async (err, res) => {
+      if (err != undefined) {
+        console.error('resumeFuseLink error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); //关闭DLP对象
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // 打开DLP文件
 } catch (err) {
   console.error('resumeFuseLink error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1695,12 +1711,13 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-  dlpFile.stopFuseLink(); // 暂停link读写
-  dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // 替换link文件
-  dlpFile.resumeFuseLink(); // 恢复link读写
-  dlpFile.closeDLPFile(); //关闭DLP对象
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.stopFuseLink(); // 暂停link读写
+    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link'); // 替换link文件
+    dlpFile.resumeFuseLink(); // 恢复link读写
+    dlpFile.closeDLPFile(); //关闭DLP对象
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -1749,18 +1766,19 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-  dlpFile.stopFuseLink(); // 暂停link读写
-  dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // 替换link文件
-    if (err != undefined) {
-      console.error('replaceDLPLinkFile error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); //关闭DLP对象
-    } else {
-      console.info('res', JSON.stringify(res));
-      await dlpFile.resumeFuseLink(); // 恢复link读写
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.stopFuseLink(); // 暂停link读写
+    dlpFile.replaceDLPLinkFile('test_new.txt.dlp.link', async (err, res) => { // 替换link文件
+      if (err != undefined) {
+        console.error('replaceDLPLinkFile error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); //关闭DLP对象
+      } else {
+        console.info('res', JSON.stringify(res));
+        await dlpFile.resumeFuseLink(); // 恢复link读写
+      }
+    });
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1813,10 +1831,11 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-  dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // 删除link文件
-  dlpFile.closeDLPFile(); //关闭DLP对象
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.deleteDLPLinkFile('test.txt.dlp.link'); // 删除link文件
+    dlpFile.closeDLPFile(); //关闭DLP对象
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -1865,16 +1884,17 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
-  dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件
-    if (err != undefined) {
-      console.error('deleteDLPLinkFile error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); //关闭DLP对象
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.addDLPLinkFile('test.txt.dlp.link'); // 添加link文件
+    dlpFile.deleteDLPLinkFile('test.txt.dlp.link', async (err, res) => { // 删除link文件
+      if (err != undefined) {
+        console.error('deleteDLPLinkFile error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); //关闭DLP对象
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -1934,9 +1954,10 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let destFile = fs.openSync("destUri");
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.recoverDLPFile(destFile.fd); // 还原DLP文件
-  dlpFile.closeDLPFile(); //关闭DLP对象
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.recoverDLPFile(destFile.fd); // 还原DLP文件
+    dlpFile.closeDLPFile(); //关闭DLP对象
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -1993,15 +2014,16 @@ let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 let destFile = fs.openSync("destUri");
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // 还原DLP文件
-    if (err != undefined) {
-      console.error('recoverDLPFile error,', err.code, err.message);
-      await dlpFile.closeDLPFile(); //关闭DLP对象
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.recoverDLPFile(destFile.fd, async (err, res) => { // 还原DLP文件
+      if (err != undefined) {
+        console.error('recoverDLPFile error,', err.code, err.message);
+        await dlpFile.closeDLPFile(); //关闭DLP对象
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+    });
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
 }
@@ -2051,8 +2073,9 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.closeDLPFile(); //关闭DLP对象
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.closeDLPFile(); //关闭DLP对象
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -2103,15 +2126,16 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件
-    if (err != undefined) {
-      console.error('closeDLPFile error,', err.code, err.message);
-    } else {
-      console.info('res', JSON.stringify(res));
-    }
-    fs.closeSync(file);
-  });
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.closeDLPFile((err, res) => { // 关闭DLP文件
+      if (err != undefined) {
+        console.error('closeDLPFile error,', err.code, err.message);
+      } else {
+        console.info('res', JSON.stringify(res));
+      }
+      fs.closeSync(file);
+    });
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error,', (err as BusinessError).code, (err as BusinessError).message);
   fs.closeSync(file);
@@ -2182,8 +2206,9 @@ try {
     ownerAccountID: 'xxxxxxx',
     everyoneAccessList: []
   };
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty); // 生成DLP文件
-  dlpFile.closeDLPFile(); //关闭DLP对象
+  dlpPermission.generateDLPFile(file.fd, dlp.fd, dlpProperty).then((dlpFile)=>{
+    dlpFile.closeDLPFile(); //关闭DLP对象
+  }); // 生成DLP文件
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -2315,8 +2340,9 @@ import { BusinessError } from '@ohos.base';
 let uri = "file://docs/storage/Users/currentUser/Desktop/test.txt.dlp";
 let file = fs.openSync(uri);
 try {
-  let dlpFile: dlpPermission.DLPFile = dlpPermission.openDLPFile(file.fd); // 打开DLP文件
-  dlpFile.closeDLPFile(); //关闭DLP对象
+  dlpPermission.openDLPFile(file.fd).then((dlpFile)=>{
+    dlpFile.closeDLPFile(); //关闭DLP对象
+  }); // 打开DLP文件
 } catch (err) {
   console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
 }
@@ -2424,7 +2450,7 @@ DLP文件授权类型的枚举。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读 | 
+| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读 |
 | flags | number | 是 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
 
 ## AccessedDLPFileInfo

@@ -30,7 +30,7 @@ These parameters are used to control the playback volume, number of loops, and p
 | leftVolume  | number | No | Volume of the left channel. The value ranges from 0 to 1.                                   |
 | rightVolume | number  | No | Volume of the right channel. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.)|
 | priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority.     |
-| parallelPlayFlag | boolean | No  | Whether the sound can be played in parallel with other active audio streams. The value **true** means that the sound can be played in parallel with other active audio streams, without preempting the audio focus, and **false** means the opposite.|
+| parallelPlayFlag | boolean | No  | Whether the sound can be played in parallel with other active audio streams. The value **true** means that the sound can be played in parallel with other active audio streams, without preempting the audio focus, and **false** means the opposite.<br>This is a system API.|
 
 ## SoundPool
 
@@ -63,22 +63,40 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-let uri:string = "";
+```ts
+import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
-// Obtain the URI starting with fd://.
-await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
-  console.info("file fd: " + file.fd);
-  uri = 'fd://' + (file.fd).toString()
-}); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
-
-soundPool.load(uri, (error, soundId_: number) => {
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    console.info(`load soundPool Success` + JSON.stringify(soundId_))
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let uri:string = "";
+    let file: fs.File;
+    // Obtain the URI starting with fd://.
+    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+      file = file_;
+      console.info("file fd: " + file.fd);
+      uri = 'fd://' + (file.fd).toString()
+      soundPool.load(uri, (error: BusinessError, soundId_: number) => {
+        if (error) {
+          console.error(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        } else {
+          console.info(`load soundPool Success` + JSON.stringify(soundId_))
+        }
+      });
+    }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
   }
-})
+});
 ```
 
 ### load
@@ -101,23 +119,51 @@ Loads a sound. This API uses a promise to obtain the sound ID. The input paramet
 | -------------- | ------------------------------------------ |
 | Promise\<number> | Promise used to return the ID of the sound loaded. A valid value must be greater than 0.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise.|
+| 5400103  | I/O error. Return by promise. |
+| 5400105  | Service died. Return by promise. |
+
 **Example**
 
-```js
-let uri:string = "";
-let soundID: number;
+```ts
+import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
-// Obtain the URI starting with fd://.
-await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
-  console.info("file fd: " + file.fd);
-  uri = 'fd://' + (file.fd).toString()
-}); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
-
-soundPool.load(uri).then((soundId: number) => {
-  console.info('soundPool load uri success');
-  soundID = soundId;
-}).catch((err) => {
-  console.error('soundPool load failed and catch error is ' + err.message);
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let uri:string = "";
+    let soundID: number = 0;
+    let file: fs.File;
+    // Obtain the URI starting with fd://.
+    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+      file = file_;
+      console.info("file fd: " + file.fd);
+      uri = 'fd://' + (file.fd).toString()
+      soundPool.load(uri).then((soundId: number) => {
+        console.info('soundPool load uri success');
+        soundID = soundId;
+      }, (err: BusinessError) => {
+        console.error('soundPool load failed and catch error is ' + err.message);
+      });
+    }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
+  }
 });
 
 ```
@@ -146,34 +192,48 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400103  |I/O error. Return by callback. |
+| 5400103  | I/O error. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **Example**
 
-```js
-let fd: number;
-let soundID: number;
-let fileSize: number;
-let maxOffset: number;
+```ts
+import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
-// Obtain the FD.
-await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
-  console.info("file fd: " + file.fd);
-  uri = 'fd://' + (file.fd).toString()
-}); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
-let stat: Stat = await fs.stat('/test_01.mp3');
-fileSize = stat.size;
-maxOffset = stat.size;
-
-soundPool.load(fd, 0, fileSize, (error, soundId_: number) => {
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    soundID = soundId_;
-    console.info('load success soundid:' + soundId_);
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let file: fs.File;
+    let soundID: number = 0;
+    let fileSize: number = 1; // Obtain the size through fs.stat().
+    let uri: string = "";
+    // Obtain the FD.
+    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+      file = file_;
+      console.info("file fd: " + file.fd);
+      uri = 'fd://' + (file.fd).toString()
+      soundPool.load(file.fd, 0, fileSize, (error: BusinessError, soundId_: number) => {
+        if (error) {
+          console.error(`load soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+        } else {
+          soundID = soundId_;
+          console.info('load success soundid:' + soundId_);
+        }
+      });
+    }); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
   }
-})
+});
 
 ```
 
@@ -199,29 +259,54 @@ Loads a sound. This API uses a promise to obtain the sound ID. The input paramet
 | ---------------- | -------------------------------- |
 | Promise\<number> | Promise used to return the sound ID. A valid value must be greater than 0.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise.|
+| 5400103  | I/O error. Return by promise. |
+| 5400105  | Service died. Return by promise. |
+
 **Example**
 
-```js
-let fd: number;
-let soundID: number;
-let fileSize: number;
-let maxOffset: number;
+```ts
+import fs from '@ohos.file.fs';
+import { BusinessError } from '@ohos.base';
 
-// Obtain the FD.
-await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
-  console.info("file fd: " + file.fd);
-  uri = 'fd://' + (file.fd).toString()
-}); // '/test_01.mp3' here is only an example. You need to pass in the actual URI.
-let stat = await fs.stat('/test_01.mp3');
-fileSize = stat.size;
-maxOffset = stat.size;
-
-soundPool.load(fd, 0, fileSize).then((soundId: number) => {
-  console.info('load success');
-  soundID = soundId;
-}).catch((err) => {
-  console.error('soundpool load failed and catch error is ' + err.message);
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let file: fs.File;
+    let soundID: number = 0;
+    let fileSize: number = 1; // Obtain the size through fs.stat().
+    let uri: string = "";
+    // Obtain the FD.
+    fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file_: fs.File) => {
+      file = file_;
+      console.info("file fd: " + file.fd);
+      uri = 'fd://' + (file.fd).toString()
+      soundPool.load(file.fd, 0, fileSize).then((soundId: number) => {
+        console.info('load success');
+        soundID = soundId;
+      }, (err: BusinessError) => {
+        console.error('soundpool load failed and catch error is ' + err.message);
+      });
+    });
+  }
 });
+
 ```
 
 ### play
@@ -246,29 +331,47 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **Example**
 
 ```js
-let soundID: number;
-let streamID: number;
-let PlayParameters: media.PlayParameters = {
-    loop: number = 3, // The sound is played four times (three loops).
-    rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
-    leftVolume: number = 0.5, // range = 0.0-1.0
-    rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0 // The sound playback has the lowest priority.
-    parallelPlayFlag: boolean = false // The sound is not played in parallel with other active audio streams.
-  }
-soundPool.play(soundID, PlayParameters, (error, streamId: number) => {
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    streamID = streamId;
-    console.info('play success soundid:' + streamId);
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let soundID: number = 0;
+    let streamID: number = 0;
+    let playParameters: media.PlayParameters = {
+      loop: 3, // The sound loops three times.
+      rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
+      leftVolume: 0.5, // range = 0.0-1.0
+      rightVolume: 0.5, // range = 0.0-1.0
+      priority: 0, // The sound playback has the lowest priority.
+    }
+    soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
+      if (error) {
+        console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        streamID = streamId;
+        console.info('play success soundid:' + streamId);
+      }
+    });
   }
-})
+});
+
 ```
 
 ### play
@@ -292,21 +395,40 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **Example**
 
 ```js
-let soundID: number;
-let streamID: number;
-soundPool.play(soundID,  (error, streamId: number) => {
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    streamID = streamId;
-    console.info('play success soundid:' + streamId);
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let soundID: number = 0;
+    let streamID: number = 0;
+    soundPool.play(soundID,  (error: BusinessError, streamId: number) => {
+      if (error) {
+        console.error(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        streamID = streamId;
+        console.info('play success soundid:' + streamId);
+      }
+    });
   }
-})
+});
+
 ```
 
 ### play
@@ -330,26 +452,52 @@ Plays a sound. This API uses a promise to obtain the audio stream ID.
 | ---------------- | -------------------------------- |
 | Promise\<number> | Promise used to return the ID of the audio stream. A valid value must be greater than 0.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **Example**
 
 ```js
-let soundID: number;
-let streamID: number;
-let PlayParameters: media.PlayParameters = {
-    loop: number = 3, // The sound is played four times (three loops).
-    rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
-    leftVolume: number = 0.5, // range = 0.0-1.0
-    rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0 // The sound playback has the lowest priority.
-    parallelPlayFlag: boolean = false // The sound is not played in parallel with other active audio streams.
-  }
+import { BusinessError } from '@ohos.base';
 
-soundPool.play(soundID, PlayParameters).then((streamId: number) => {
-  console.info('play success');
-  streamID = streamId;
-}).catch((err) => {
-  console.error('soundpool play failed and catch error is ' + err.message);
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let soundID: number = 0;
+    let streamID: number = 0;
+    let playParameters: media.PlayParameters = {
+      loop: 3, // The sound is played four times (three loops).
+      rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
+      leftVolume: 0.5, // range = 0.0-1.0
+      rightVolume: 0.5, // range = 0.0-1.0
+      priority: 0, // The sound playback has the lowest priority.
+    }
+
+    soundPool.play(soundID, playParameters).then((streamId: number) => {
+      console.info('play success');
+      streamID = streamId;
+    },(err: BusinessError) => {
+      console.error('soundpool play failed and catch error is ' + err.message);
+    });
+  }
 });
+
 ```
 
 ### stop
@@ -373,20 +521,38 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **Example**
 
 ```js
-let streamID: number;
-// Call play() to obtain the stream ID.
-soundPool.stop(streamID, (error) => {
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`stop sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    console.info('stop success');
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    // Call play() to obtain the stream ID.
+    soundPool.stop(streamID, (error: BusinessError) => {
+      if (error) {
+        console.error(`stop sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        console.info('stop success');
+      }
+    })
   }
-})
+});
 
 ```
 
@@ -410,16 +576,41 @@ Stops playing a sound. This API uses a promise to return the result.
 | ---------------- | -------------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **Example**
 
 ```js
-let streamID: number;
-// Call play() to obtain the stream ID.
+import { BusinessError } from '@ohos.base';
 
-soundPool.stop(streamID).then(() => {
-  console.info('stop success');
-}).catch((err) => {
-  console.error('soundpool load stop and catch error is ' + err.message);
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    // Call play() to obtain the stream ID.
+    soundPool.stop(streamID).then(() => {
+      console.info('stop success');
+    }, (err: BusinessError) => {
+      console.error('soundpool load stop and catch error is ' + err.message);
+    });
+  }
 });
 ```
 
@@ -445,22 +636,40 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **Example**
 
 ```js
-let streamID: number;
-// Call play() to obtain the stream ID.
-// Set the number of loops to 2.
-soundPool.setLoop(streamID, 2, (error) => {
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`setLoop soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    console.info('setLoop success streamID:' + streamID);
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    // Call play() to obtain the stream ID.
+    // Set the number of loops to 2.
+    soundPool.setLoop(streamID, 2, (error: BusinessError) => {
+      if (error) {
+        console.error(`setLoop soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        console.info('setLoop success streamID:' + streamID);
+      }
+    });
   }
-})
+});
+
 ```
 
 ### setLoop
@@ -484,17 +693,44 @@ Sets the loop mode for an audio stream. This API uses a promise to return the re
 | ---------------- | -------------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **Example**
 
 ```js
-let streamID: number;
-// Call play() to obtain the stream ID.
-// Set the number of loops to 1.
-soundPool.setLoop(streamID, 1).then(() => {
-  console.info('setLoop success streamID:' + streamID);
-}).catch((err) => {
-  console.error('soundpool setLoop failed and catch error is ' + err.message);
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    // Call play() to obtain the stream ID.
+    // Set the number of loops to 1.
+    soundPool.setLoop(streamID, 1).then(() => {
+      console.info('setLoop success streamID:' + streamID);
+    }).catch((err: BusinessError) => {
+      console.error('soundpool setLoop failed and catch error is ' + err.message);
+    });
+  }
 });
+
 ```
 
 ### setPriority
@@ -519,22 +755,39 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **Example**
 
 ```js
-let streamID: number;
-// Call play() to obtain the stream ID.
-// Set the priority to 1.
-soundPool.setPriority(streamID, 1, (error) => {
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`setPriority soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    console.info('setPriority success streamID:' + streamID);
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    // Call play() to obtain the stream ID.
+    // Set the priority to 1.
+    soundPool.setPriority(streamID, 1, (error: BusinessError) => {
+      if (error) {
+        console.error(`setPriority soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        console.info('setPriority success streamID:' + streamID);
+      }
+    });
   }
-})
+});
 
 ```
 
@@ -559,18 +812,45 @@ Sets the priority for an audio stream. This API uses a promise to return the res
 | ---------------- | -------------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **Example**
 
 ```js
-let streamID: number;
-// Call play() to obtain the stream ID.
-// Set the priority to 1.
+import { BusinessError } from '@ohos.base';
 
-soundPool.setPriority(streamID, 1).then(() => {
-  console.info('setPriority success');
-}).catch((err) => {
-  console.error('soundpool setPriority failed and catch error is ' + err.message);
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    // Call play() to obtain the stream ID.
+    // Set the priority to 1.
+
+    soundPool.setPriority(streamID, 1).then(() => {
+      console.info('setPriority success');
+    }, (err: BusinessError) => {
+      console.error('soundpool setPriority failed and catch error is ' + err.message);
+    });
+  }
 });
+
 ```
 
 ### setRate
@@ -578,6 +858,9 @@ soundPool.setPriority(streamID, 1).then(() => {
 setRate(streamID: number, rate: audio.AudioRendererRate, callback: AsyncCallback\<void>): void
 
 Sets the playback rate for an audio stream. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+> This API is available in OpenHarmony 4.0. The function implementation depends on the device. Currently, only the RK3568 development board supports the playback rate setting.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -595,23 +878,39 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **Example**
 
 ```js
-let streamID: number;
-let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // The sound is played at the original frequency.
-// Call play() to obtain the stream ID.
+import { BusinessError } from '@ohos.base';
 
-soundPool.setRate(streamID, selectedAudioRendererRate, (error) => {
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`setRate soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    console.info('setRate success streamID:' + streamID);
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // The sound is played at the original frequency.
+    // Call play() to obtain the stream ID.
+    soundPool.setRate(streamID, selectedAudioRendererRate, (error: BusinessError) => {
+      if (error) {
+        console.error(`setRate soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        console.info('setRate success streamID:' + streamID);
+      }
+    })
   }
-})
+});
 
 ```
 
@@ -620,6 +919,9 @@ soundPool.setRate(streamID, selectedAudioRendererRate, (error) => {
 setRate(streamID: number, rate: audio.AudioRendererRate): Promise\<void>
 
 Sets the playback rate for an audio stream. This API uses a promise to return the result.
+
+> **NOTE**
+> This API is available in OpenHarmony 4.0. The function implementation depends on the device. Currently, only the RK3568 development board supports the playback rate setting.
 
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
@@ -636,18 +938,44 @@ Sets the playback rate for an audio stream. This API uses a promise to return th
 | ---------------- | -------------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **Example**
 
 ```js
-let streamID: number;
-let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // The sound is played at the original frequency.
-// Call play() to obtain the stream ID.
+import { BusinessError } from '@ohos.base';
 
-soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
-  console.info('setRate success');
-}).catch((err) => {
-  console.error('soundpool setRate failed and catch error is ' + err.message);
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // The sound is played at the original frequency.
+    // Call play() to obtain the stream ID.
+    soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
+      console.info('setRate success');
+    }, (err: BusinessError) => {
+      console.error('soundpool setRate failed and catch error is ' + err.message);
+    });
+  }
 });
+
 ```
 
 ### setVolume
@@ -673,28 +1001,45 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
-| 5400102  | Operate not permit. Return by callback. |
+| 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **Example**
 
 ```js
-let streamID: number;
-// Call play() to obtain the stream ID.
-// Set the volume to 0.5.
-soundPool.setVolume(streamID, 0.5, 0.5, (error) => {
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`setVolume soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    console.info('setVolume success streamID:' + streamID);
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    // Call play() to obtain the stream ID.
+    // Set the volume to 0.5.
+    soundPool.setVolume(streamID, 0.5, 0.5, (error: BusinessError) => {
+      if (error) {
+        console.error(`setVolume soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        console.info('setVolume success streamID:' + streamID);
+      }
+    })
   }
-})
+});
 
 ```
 
 ### setVolume
 
-setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise<void>
+setVolume(streamID: number, leftVolume: number, rightVolume: number): Promise\<void>
 
 Sets the volume for an audio stream. This API uses a promise to return the result.
 
@@ -714,18 +1059,44 @@ Sets the volume for an audio stream. This API uses a promise to return the resul
 | ---------------- | -------------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **Example**
 
 ```js
-let streamID: number;
-selectedAudioRendererRate: number = 0; // The sound plays at the original frequency.
-// Call play() to obtain the stream ID.
+import { BusinessError } from '@ohos.base';
 
-soundPool.setVolume(streamID, 0.5, 0.5).then(() => {
-  console.info('setVolume success');
-}).catch((err) => {
-  console.error('soundpool setVolume failed and catch error is ' + err.message);
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let streamID: number = 0;
+    // Call play() to obtain the stream ID.
+
+    soundPool.setVolume(streamID, 0.5, 0.5).then(() => {
+      console.info('setVolume success');
+    }, (err: BusinessError) => {
+      console.error('soundpool setVolume failed and catch error is ' + err.message);
+    });
+  }
 });
+
 ```
 
 ### unload
@@ -756,15 +1127,32 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-let soundID: number;
-// Call load() to obtain the sound ID.
-soundPool.unload(soundID, (error) => {
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`unload soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    console.info('unload success:');
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let soundID: number = 0;
+    // Call load() to obtain the sound ID.
+    soundPool.unload(soundID, (error: BusinessError) => {
+      if (error) {
+        console.error(`unload soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        console.info('unload success:');
+      }
+    })
   }
-})
+});
 
 ```
 
@@ -788,17 +1176,45 @@ Unloads a sound. This API uses a promise to return the result.
 | ---------------- | -------------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | I/O error. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+
 **Example**
 
 ```js
-let soundID: number;
-// Call load() to obtain the sound ID.
+import { BusinessError } from '@ohos.base';
 
-soundPool.unload(soundID).then(() => {
-  console.info('unload success');
-}).catch((err) => {
-  console.error('soundpool unload failed and catch error is ' + err.message);
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    let soundID: number = 0;
+    // Call load() to obtain the sound ID.
+
+    soundPool.unload(soundID).then(() => {
+      console.info('unload success');
+    }, (err: BusinessError) => {
+      console.error('soundpool unload failed and catch error is ' + err.message);
+    });
+  }
 });
+
 ```
 
 ### release
@@ -826,14 +1242,31 @@ For details about the error codes, see [Media Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 
-soundPool.release((error) => {
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
   if (error) {
-    console.info(`release soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+    console.error(`createSoundPool failed`)
+    return;
   } else {
-    console.info('release success');
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    soundPool.release((error: BusinessError) => {
+      if (error) {
+        console.error(`release soundPool Error: errCode is ${error.code}, errMessage is ${error.message}`)
+      } else {
+        console.info('release success');
+      }
+    })
   }
-})
+});
+
 
 ```
 
@@ -851,20 +1284,45 @@ Releases this **SoundPool** instance. This API uses a promise to return the resu
 | ---------------- | -------------------------------- |
 | Promise\<void> | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
+
+| ID| Error Message                               |
+| -------- | --------------------------------------- |
+| 5400105  | Service died. Return by promise.       |
+
 **Example**
 
 ```js
+import { BusinessError } from '@ohos.base';
 
-soundPool.release().then(() => {
-  console.info('release success');
-}).catch((err) => {
-  console.error('soundpool release failed and catch error is ' + err.message);
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    soundPool.release().then(() => {
+      console.info('release success');
+    }, (err: BusinessError) => {
+      console.error('soundpool release failed and catch error is ' + err.message);
+    });
+  }
 });
+
 ```
 
 ### on('loadComplete')
 
-on(type: 'loadComplete', callback: Callback<number>): void
+on(type: 'loadComplete', callback: Callback\<number>): void
 
 Subscribes to events indicating that a sound finishes loading.
 
@@ -877,21 +1335,30 @@ Subscribes to events indicating that a sound finishes loading.
 | type     | string   | Yes  | Event type, which is **'loadComplete'** in this case. This event is triggered when a sound is loaded.|
 | callback | Callback\<number> | Yes  | ID of the sound that has been loaded.                              |
 
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
-
-| ID| Error Message                               |
-| -------- | --------------------------------------- |
-| 5400103  | IO error. Return by callback. |
-| 5400105  | Service died. Return by callback.       |
-
 **Example**
 
 ```js
-soundPool.on('loadComplete', (soundId: number) => {
-  console.info('loadComplete success, soundId: ' + soundId)
-})
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    soundPool.on('loadComplete', (soundId: number) => {
+      console.info('loadComplete success, soundId: ' + soundId)
+    })
+  }
+});
+
 ```
 
 ### off('loadComplete')
@@ -911,12 +1378,30 @@ Unsubscribes from events indicating that a sound finishes loading.
 **Example**
 
 ```js
-soundPool.off('loadComplete')
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    soundPool.off('loadComplete')
+  }
+});
+
 ```
 
 ### on('playFinished')
 
-on(type: 'playFinished', callback: Callback<void>): void
+on(type: 'playFinished', callback: Callback\<void>): void
 
 Subscribes to events indicating that a sound finishes playing.
 
@@ -929,21 +1414,30 @@ Subscribes to events indicating that a sound finishes playing.
 | type     | string   | Yes  | Event type, which is **'playFinished'** in this case. This event is triggered when a sound finishes playing.|
 | callback | Callback\<void> | Yes  |  Callback used to return the result.       |
 
-**Error codes**
-
-For details about the error codes, see [Media Error Codes](../errorcodes/errorcode-media.md).
-
-| ID| Error Message                               |
-| -------- | --------------------------------------- |
-| 5400103  | IO error. Return by callback. |
-| 5400105  | Service died. Return by callback.       |
-
 **Example**
 
 ```js
-soundPool.on('playFinished', () => {
-  console.info('playFinished success')
-})
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    soundPool.on('playFinished', () => {
+      console.info('playFinished success')
+    });
+  }
+});
+
 ```
 
 ### off('playFinished')
@@ -963,7 +1457,25 @@ Unsubscribes from events indicating that a sound finishes playing.
 **Example**
 
 ```js
-soundPool.off('playFinished')
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    soundPool.off('playFinished')
+  }
+});
+
 ```
 
 ### on('error')
@@ -979,7 +1491,7 @@ Subscribes to error events of this **SoundPool** instance. This event is used on
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'error'** in this case. This event can be triggered by both user operations and the system.|
-| callback | function | Yes  | Callback used to return the error code ID and error message.|
+| callback | ErrorCallback | Yes  | Callback used to return the error code ID and error message.|
 
 The **SoundPool** class provides the following error types<a name = error_info></a>:
 
@@ -995,10 +1507,28 @@ The **SoundPool** class provides the following error types<a name = error_info><
 **Example**
 
 ```js
-soundPool.on('error', (error) => {
-  console.error('error happened,and error message is :' + error.message)
-  console.error('error happened,and error code is :' + error.code)
-})
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    soundPool.on('error', (error: BusinessError) => {
+      console.info('error happened,and error message is :' + error.message)
+      console.info('error happened,and error code is :' + error.code)
+    })
+  }
+});
+
 ```
 
 ### off('error')
@@ -1018,5 +1548,22 @@ Unsubscribes from error events of this **SoundPool** instance.
 **Example**
 
 ```js
-soundPool.off('error')
+import { BusinessError } from '@ohos.base';
+
+// Create a SoundPool instance.
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`createSoundPool failed`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`createSoundPool success`)
+    soundPool.off('error')
+  }
+});
 ```

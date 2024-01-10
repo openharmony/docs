@@ -1,8 +1,8 @@
 # FormExtensionContext
 
-The **FormExtensionContext** module, inherited from **ExtensionContext**, provides context for FormExtensionAbilities.
+The FormExtensionContext module, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md), provides the context environment for the [FormExtensionAbility](js-apis-app-form-formExtensionAbility.md).
 
-You can use the APIs of this module to start FormExtensionAbilities.
+You can use the APIs of this module to start a FormExtensionAbility.
 
 > **NOTE**
 >
@@ -33,7 +33,6 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
@@ -105,7 +104,6 @@ Starts an ability. This API uses a promise to return the result.
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
-| 16500101 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 
 For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
@@ -132,7 +130,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
     this.context.startAbility(want).then(() => {
       console.info('StartAbility Success');
     }).catch((error: Base.BusinessError) => {
-      console.error('StartAbility failed');
+      console.error('StartAbility failed, error.code: ${error.code}, error.message: ${error.message}');
     });
   }
 };
@@ -140,7 +138,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.connectServiceExtensionAbility<sup>10+</sup>
 
-connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
+connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 Connects this ability to a ServiceExtensionAbility.
 
@@ -184,7 +182,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import Want from '@ohos.app.ability.Want';
 import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
+import Base from '@ohos.base';
 
 let commRemote: rpc.IRemoteObject | null = null;
 export default class MyFormExtensionAbility extends FormExtensionAbility {
@@ -221,7 +219,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
-disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
+disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt;void&gt;): void
 
 Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses an asynchronous callback to return the result. 
 
@@ -233,8 +231,8 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Connection ID returned after **connectServiceExtensionAbility** is called.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+| connection | number | Yes| Number returned after [connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10) is called.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the ability is disconnected, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -250,7 +248,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
 import Base from '@ohos.base';
 
 // commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.
@@ -265,8 +262,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         commRemote = null;
         if (error.code) {
           // Process service logic errors.
-          console.error(
-            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+          console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
           return;
         }
         // Carry out normal service processing.
@@ -283,7 +279,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
 
 ## FormExtensionContext.disconnectServiceExtensionAbility<sup>10+</sup>
 
-disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
+disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 Disconnects this ability from a ServiceExtensionAbility and after the successful disconnection, sets the remote object returned upon the connection to void. This API uses a promise to return the result. 
 
@@ -295,13 +291,13 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Connection ID returned after **connectServiceExtensionAbility** is called.|
+| connection | number | Yes| Number returned after [connectServiceExtensionAbility](#formextensioncontextconnectserviceextensionability10) is called.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt; | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -317,7 +313,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import rpc from '@ohos.rpc';
-import common from '@ohos.app.ability.common';
 import Base from '@ohos.base';
 
 // commRemote is the remote object returned in the onConnect() callback. The value null is meaningless and is only an example.
@@ -337,8 +332,7 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
         .catch((error: Base.BusinessError) => {
           commRemote = null;
           // Process service logic errors.
-          console.error(
-            `disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
+          console.error(`disconnectServiceExtensionAbility failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
     } catch (paramError) {
       commRemote = null;

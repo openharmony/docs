@@ -12,12 +12,12 @@ The following scenarios are common for native purgeable memory development:
 
 ## Available APIs
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| OH_PurgeableMemory \*OH_PurgeableMemory_Create(size_t size, OH_PurgeableMemory_ModifyFunc func, void \*funcPara) | Creates a **PurgeableMemory** object. A new **PurgeableMemory** object is generated each time this API is called.|
-| bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory \*purgObj) | Destroys a **PurgeableMemory** object.|
-| bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory \*purgObj) | Begins a read operation on a **PurgeableMemory** object.|
-| void OH_PurgeableMemory_EndRead(OH_PurgeableMemory \*purgObj) | Ends a read operation on a **PurgeableMemory** object and decreases the reference count of the object by 1. When the reference count reaches 0, the object can be reclaimed by the system.|
+| OH_PurgeableMemory \*OH_PurgeableMemory_Create(size_t size, OH_PurgeableMemory_ModifyFunc func, void \*funcPara) | Creates a **PurgeableMemory** object. A new **PurgeableMemory** object is generated each time this API is called.| 
+| bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory \*purgObj) | Destroys a **PurgeableMemory** object.| 
+| bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory \*purgObj) | Begins a read operation on a **PurgeableMemory** object.| 
+| void OH_PurgeableMemory_EndRead(OH_PurgeableMemory \*purgObj) | Ends a read operation on a **PurgeableMemory** object and decreases the reference count of the object by 1. When the reference count reaches 0, the object can be reclaimed by the system.| 
 |bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory \*purgObj) | Begins a write operation on a **PurgeableMemory** object.|
 |void OH_PurgeableMemory_EndWrite(OH_PurgeableMemory \*purgObj)|Ends a write operation on a **PurgeableMemory** object and decreases the reference count of the object by 1. When the reference count reaches 0, the object can be reclaimed by the system.|
 |void \*OH_PurgeableMemory_GetContent(OH_PurgeableMemory \*purgObj)|Obtains the memory data of a **PurgeableMemory** object.|
@@ -27,7 +27,7 @@ The following scenarios are common for native purgeable memory development:
 
 ## How to Develop
 
-The following steps describe how to use the native purgeable memory APIs to apply for a **PurgeableMemory** object, write data to the object, and read data from the object.
+The following walks you through on how to use the native purgeable memory APIs to apply for a **PurgeableMemory** object, write data to the object, and read data from the object.
 
 1. Declare the rules for creating a **PurgeableMemory** object.
     ```c++
@@ -45,6 +45,7 @@ The following steps describe how to use the native purgeable memory APIs to appl
         int i = pdata->start;
         while(i<pdata->end){
             *oriData *= i;
+            i++;
         }
         return ret;
     }
@@ -89,7 +90,7 @@ The following steps describe how to use the native purgeable memory APIs to appl
     // Obtain the object content.
     ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
 
-    // End a read operation on the object.
+    // End the read operation on the object.
     OH_PurgeableMemory_EndRead(pPurgmem);
     ```
 

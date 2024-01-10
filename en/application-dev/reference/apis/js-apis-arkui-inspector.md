@@ -37,7 +37,7 @@ Creates an observer for the specified component.
 **Example**
 
 ```ts
-let listener:inspector = inspector.createComponentObserver('COMPONENT_ID'); // Listen for callback events of the component whose ID is COMPONENT_ID.
+let listener:inspector.ComponentObserver = inspector.createComponentObserver('COMPONENT_ID'); // Listen for callback events of the component whose ID is COMPONENT_ID.
 ```
 
 ## ComponentObserver

@@ -580,6 +580,7 @@ getImage(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.PixelMap
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -619,6 +620,7 @@ getImage(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 wallpaper.getImage(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getImage: ${JSON.stringify(data)}`);
@@ -1383,6 +1385,7 @@ getPixelMap(wallpaperType: WallpaperType, callback: AsyncCallback&lt;image.Pixel
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error: BusinessError, data: image.PixelMap) => {
     if (error) {
@@ -1425,6 +1428,7 @@ getPixelMap(wallpaperType: WallpaperType): Promise&lt;image.PixelMap&gt;
 
 ```ts
 import { BusinessError } from '@ohos.base';
+import image from '@ohos.multimedia.image';
 
 wallpaper.getPixelMap(wallpaper.WallpaperType.WALLPAPER_SYSTEM).then((data: image.PixelMap) => {
     console.log(`success to getPixelMap : ${JSON.stringify(data)}`);

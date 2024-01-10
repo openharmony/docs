@@ -5,11 +5,12 @@
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 部分参数返回值为default的，会在正式发布的版本中配置。
 
 ## 导入模块
 
 ```ts
-import deviceInfo from '@ohos.deviceInfo'
+import deviceInfo from '@ohos.deviceInfo';
 ```
 
 ## 属性
@@ -58,7 +59,7 @@ import deviceInfo from '@ohos.deviceInfo'
 **示例**
 
 ```ts
-    import deviceinfo from '@ohos.deviceInfo'
+    import deviceinfo from '@ohos.deviceInfo';
 
     let deviceTypeInfo: string = deviceinfo.deviceType;
     console.info('the value of the deviceType is :' + deviceTypeInfo);

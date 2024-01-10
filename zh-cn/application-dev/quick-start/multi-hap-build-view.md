@@ -4,7 +4,7 @@
 IDE支持在一个应用工程中进行多个HAP的开发与构建，如下图所示。
 
 
-  **图1** 多HAP构建视图  
+**图1** 多HAP构建视图
 ![hap-multi-view](figures/hap-multi-view.png)
 
 
@@ -15,7 +15,7 @@ IDE支持在一个应用工程中进行多个HAP的开发与构建，如下图�
 
          **说明：**
          - 该目录由IDE自动生成，名称不可更改。
-         - AppScope目录下面的文件名与Entry、Feature模块下面的文件名不能重复，否则IDE会报错。
+         - AppScope目录与Entry、Feature模块目录下如果存在同名文件，打包后只会保留AppScope目录下的文件。
    - entry或者feature目录（名称可由开发者自定义）
       - 由IDE引导开发者创建的Module，在该Module中实现应用的业务逻辑；可以创建多个Module，图中entry和feature即是创建的两个Module。
       - resources目录：放置该Module中所使用到的资源。

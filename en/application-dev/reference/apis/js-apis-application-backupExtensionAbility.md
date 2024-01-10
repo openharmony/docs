@@ -1,17 +1,17 @@
-# @ohos.ability.BackupExtensionAbility (BackupExtensionAbility)
+# @ohos.application.BackupExtensionAbility (BackupExtensionAbility)
 
 The **BackupExtensionAbility** module provides extended backup and restore capabilities for applications.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs of this module can be used only in the stage model.
+> - The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
 ```ts
-import BackupExtension from '@ohos.ability.BackupExtensionAbility';
+import BackupExtension from '@ohos.application.BackupExtensionAbility';
 ```
 
 ## BundleVersion
@@ -62,6 +62,8 @@ Called when data is being restored. You need to implement extended data restore 
 **Example**
 
   ```ts
+  import { BundleVersion } from '@ohos.application.BackupExtensionAbility';
+  
   class BackupExt extends BackupExtension {
     async onRestore(bundleVersion : BundleVersion) {
       console.log(`onRestore ok ${JSON.stringify(bundleVersion)}`);

@@ -5,6 +5,7 @@ The **notificationSubscribe** module provides APIs for notification subscription
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -12,7 +13,7 @@ The **notificationSubscribe** module provides APIs for notification subscription
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
-## NotificationSubscribe.subscribe
+## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void\>): void
 
@@ -28,15 +29,15 @@ Subscribes to a notification with the subscription information specified. This A
 
 | Name      | Type                     | Mandatory| Description            |
 | ---------- | ------------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | Yes  | Notification subscriber.    |
-| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | Yes  | Notification subscription information.|
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | Yes  | Notification subscriber.    |
+| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | No  | Notification subscription information.|
 | callback   | AsyncCallback\<void\>     | Yes  | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Notification Error Codes](../errorcodes/errorcode-notification.md).
 
-| ID| Error Message                           |
+| ID| Error Message                            |
 | -------- | ----------------------------------- |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
@@ -62,13 +63,14 @@ let onConsumeCallback = (data: notificationSubscribe.SubscribeCallbackData) => {
 let subscriber: notificationSubscribe.NotificationSubscriber = {
   onConsume: onConsumeCallback
 };
+// Bundle names are not verified. You need to determine the target bundle names.
 let info: notificationSubscribe.NotificationSubscribeInfo = {
   bundleNames: ["bundleName1","bundleName2"]
 };
 notificationSubscribe.subscribe(subscriber, info, subscribeCallback);
 ```
 
-## NotificationSubscribe.subscribe
+## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
@@ -84,7 +86,7 @@ Subscribes to notifications of all applications under this user. This API uses a
 
 | Name      | Type                  | Mandatory| Description            |
 | ---------- | ---------------------- | ---- | ---------------- |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | Yes  | Notification subscriber.    |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | Yes  | Notification subscriber.    |
 | callback   | AsyncCallback\<void\>  | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -121,7 +123,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 
 
-## NotificationSubscribe.subscribe
+## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise\<void\>
 
@@ -137,8 +139,14 @@ Subscribes to a notification with the subscription information specified. This A
 
 | Name      | Type                     | Mandatory| Description        |
 | ---------- | ------------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber)    | Yes  | Notification subscriber.|
-| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | No  | Notification subscription information. This parameter is left empty by default.  |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber)    | Yes  | Notification subscriber.|
+| info       | [NotificationSubscribeInfo](js-apis-notification.md#notificationsubscribeinfo) | No  | Notification subscription information. By default, this parameter is left empty, which means to subscribe to notifications of all applications under this user.  |
+
+**Return value**
+
+| Type    | Description              | 
+| ------- |------------------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -171,7 +179,7 @@ notificationSubscribe.subscribe(subscriber).then(() => {
 
 
 
-## NotificationSubscribe.unsubscribe
+## notificationSubscribe.unsubscribe
 
 unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): void
 
@@ -187,7 +195,7 @@ Unsubscribes from a notification. This API uses an asynchronous callback to retu
 
 | Name      | Type                  | Mandatory| Description                |
 | ---------- | ---------------------- | ---- | -------------------- |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | Yes  | Notification subscriber.        |
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | Yes  | Notification subscriber.        |
 | callback   | AsyncCallback\<void\>  | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -221,7 +229,7 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
 ```
 
-## NotificationSubscribe.unsubscribe
+## notificationSubscribe.unsubscribe
 
 unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
@@ -237,7 +245,13 @@ Unsubscribes from a notification. This API uses a promise to return the result.
 
 | Name      | Type                  | Mandatory| Description        |
 | ---------- | ---------------------- | ---- | ------------ |
-| subscriber | [NotificationSubscriber](js-apis-notification.md#notificationsubscriber) | Yes  | Notification subscriber.|
+| subscriber | [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md#notificationsubscriber) | Yes  | Notification subscriber.|
+
+**Return value**
+
+| Type    | Description        | 
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -267,11 +281,11 @@ notificationSubscribe.unsubscribe(subscriber).then(() => {
 });
 ```
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-Removes a notification for a specified application. This API uses an asynchronous callback to return the result.
+Removes a notification based on the bundle information and notification key. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -326,11 +340,11 @@ notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 
 
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveReason): Promise\<void\>
 
-Removes a notification for a specified application. This API uses a promise to return the result.
+Removes a notification based on the specified bundle information and notification key. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -345,6 +359,12 @@ Removes a notification for a specified application. This API uses a promise to r
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)    | Yes  | Bundle information of the application.|
 | notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.  |
 | reason          | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
+
+**Return value**
+
+| Type    | Description        | 
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -379,11 +399,11 @@ notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 });
 ```
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
-Removes a specified notification. This API uses an asynchronous callback to return the result.
+Removes a notification based on the specified unique notification ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -416,7 +436,6 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 import Base from '@ohos.base';
 
 let hashCode: string = 'hashCode';
-
 let removeCallback = (err: Base.BusinessError) => {
   if (err) {
     console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
@@ -428,11 +447,11 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
 
-## NotificationSubscribe.remove
+## notificationSubscribe.remove
 
 remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
-Removes a specified notification. This API uses a promise to return the result.
+Removes a notification based on the specified unique notification ID. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -446,6 +465,12 @@ Removes a specified notification. This API uses a promise to return the result.
 | -------- | ---------- | ---- | ---------- |
 | hashCode | string | Yes  | Unique notification ID.|
 | reason   | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
+
+**Return value**
+
+| Type    | Description| 
+| ------- |--|
+| Promise\<void\> | Promise that returns no value.| 
 
 **Error codes**
 
@@ -471,7 +496,7 @@ notificationSubscribe.remove(hashCode, reason).then(() => {
   console.error("remove fail: " + JSON.stringify(err));
 });
 ```
-## NotificationSubscribe.remove<sup>10+<sup>
+## notificationSubscribe.remove<sup>10+<sup>
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason, callback: AsyncCallback\<void\>): void
 
@@ -507,7 +532,6 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 import Base from '@ohos.base';
 
 let hashCodes: string[] = ['hashCode1', 'hashCode2'];
-
 let removeCallback = (err: Base.BusinessError) => {
   if (err) {
     console.error(`remove failed, code is ${err.code}, message is ${err.message}`);
@@ -519,7 +543,7 @@ let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveRea
 notificationSubscribe.remove(hashCodes, reason, removeCallback);
 ```
 
-## NotificationSubscribe.remove<sup>10+<sup>
+## notificationSubscribe.remove<sup>10+<sup>
 
 remove(hashCodes: Array\<String\>, reason: RemoveReason): Promise\<void\>
 
@@ -537,6 +561,12 @@ Removes specified notifications. This API uses a promise to return the result.
 |-----------|-------------------------------| ---- |-------------|
 | hashCodes | Array\<String\>               | Yes  | Array of unique notification IDs.|
 | reason    | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.    |
+
+**Return value**
+
+| Type    | Description              | 
+| ------- |------------------|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Error codes**
 
@@ -562,7 +592,7 @@ notificationSubscribe.remove(hashCodes, reason).then(() => {
 });
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
@@ -610,7 +640,7 @@ let bundle: notificationSubscribe.BundleOption = {
 notificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(callback: AsyncCallback\<void\>): void
 
@@ -650,11 +680,10 @@ let removeAllCallback = (err: Base.BusinessError) => {
         console.info("removeAll success");
     }
 }
-
 notificationSubscribe.removeAll(removeAllCallback);
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(bundle?: BundleOption): Promise\<void\>
 
@@ -671,6 +700,12 @@ Removes all notifications for a specified application. This API uses a promise t
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | No  | Bundle information of the application. By default, this parameter is left empty, indicating that all notifications will be removed.|
+
+**Return value**
+
+| Type    | Description        | 
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|  
 
 **Error codes**
 
@@ -696,7 +731,7 @@ notificationSubscribe.removeAll().then(() => {
 });
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(userId: number, callback: AsyncCallback\<void>): void
 
@@ -738,13 +773,11 @@ let removeAllCallback = (err: Base.BusinessError) => {
     console.info("removeAll success");
   }
 }
-
 let userId: number = 1;
-
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
-## NotificationSubscribe.removeAll
+## notificationSubscribe.removeAll
 
 removeAll(userId: number): Promise\<void>
 
@@ -778,17 +811,12 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 ```ts
 import Base from '@ohos.base';
 
-let removeAllCallback = (err: Base.BusinessError) => {
-  if (err) {
-    console.error(`removeAll failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("removeAll success");
-  }
-}
-
 let userId: number = 1;
-
-notificationSubscribe.removeAll(userId, removeAllCallback);
+notificationSubscribe.removeAll(userId).then(() => {
+	console.info("removeAll success");
+}).catch((err: Base.BusinessError) => {
+  console.error("removeAll fail: " + JSON.stringify(err));
+});
 ```
 
 ## NotificationKey

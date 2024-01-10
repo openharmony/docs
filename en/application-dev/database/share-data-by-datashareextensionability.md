@@ -67,9 +67,9 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    import Want from '@ohos.app.ability.Want';
    import { BusinessError } from '@ohos.base'
    ```
-   
+
 4. Implement the data provider services. For example, implement data storage of the data provider by using a database, reading and writing files, or accessing the network.
-   
+
    ```ts
    const DB_NAME = 'DB00.db';
    const TBL_NAME = 'TBL00';
@@ -126,7 +126,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 5. Define **DataShareExtensionAbility** in **module.json5**.
 
      **Table 1** Fields in module.json5
-   
+
    | Field| Description| Mandatory|
    | -------- | -------- | -------- |
    | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes|
@@ -138,7 +138,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | metadata   | Configuration for silent access, including the **name** and **resource** fields.<br>The **name** field identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br>The **resource** field has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**. | **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
    **module.json5 example**
-   
+
    ```json
    "extensionAbilities": [
      {
@@ -147,19 +147,19 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",
        "type": "dataShare",
-       "uri": "datashareproxy://com.samples.datasharetest.DataShare",
+       "uri": "datashare://com.samples.datasharetest.DataShare",
        "exported": true,
        "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
      }
    ]
    ```
-   
+
    **Table 2** Fields in the data_share_config.json file
 
    | Field         | Description                                    | Mandatory  |
    | ------------- | ---------------------------------------- | ---- |
    | tableConfig   | Label configuration.                                   | Yes   |
-   | uri           | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *****: indicates all databases and tables.<br>- **datashareproxy://{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashareproxy://{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table. | Yes   |
+   | uri           | Range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br>- *****: indicates all databases and tables.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}**: specifies a database.<br>- **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**: specifies a table.<br>If URIs of different formats are configured, only the URI with higher priority takes effect. | Yes   |
    | crossUserMode | Whether data is shared by multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite. | Yes   |
 
    **data_share_config.json Example**
@@ -171,11 +171,11 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
       "crossUserMode": 1
     },
     {
-      "uri": "datashareproxy://com.acts.datasharetest/entry/DB00",
+      "uri": "datashare:///com.acts.datasharetest/entry/DB00",
       "crossUserMode": 1
     },
     {
-      "uri": "datashareproxy://com.acts.datasharetest/entry/DB00/TBL00",
+      "uri": "datashare:///com.acts.datasharetest/entry/DB00/TBL00",
       "crossUserMode": 2
     }
    ]
@@ -185,7 +185,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
 ### Data Consumer Application
 
 1. Import the dependencies.
-   
+
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import dataShare from '@ohos.data.dataShare';
@@ -195,14 +195,14 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    ```
 
 2. Define the URI string for communicating with the data provider.
-   
+
    ```ts
    // Different from the URI defined in the module.json5 file, the URI passed in the parameter has an extra slash (/), because there is a DeviceID parameter between the second and the third slash (/).
-   let dseUri = ('datashareproxy://com.samples.datasharetest.DataShare');
+   let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
    ```
 
 3. Create a **DataShareHelper** instance.
-   
+
    ```ts
    let dsHelper: dataShare.DataShareHelper | undefined = undefined;
    let abilityContext: Context;
@@ -218,7 +218,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    ```
 
 4. Use the APIs provided by **DataShareHelper** to access the services provided by the provider, for example, adding, deleting, modifying, and querying data.
-   
+
    ```ts
    // Construct a piece of data.
    let key1 = 'name';

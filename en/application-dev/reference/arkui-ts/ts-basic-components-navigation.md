@@ -1,6 +1,6 @@
 # Navigation
 
-The **\<Navigation>** component typically functions as the root container of a page and displays the title bar, toolbar, and navigation bar based on the attribute settings.
+The **\<Navigation>** component is the root view container for navigation. It typically functions as the root container of a page and includes a title bar, content area, and toolbar. The content area switches between the home page content (child components of **\<Navigation>**) and non-home page content (child components of [\<NavDestination>](ts-basic-components-navdestination.md)) through routing.
 
 > **NOTE**
 >
@@ -12,6 +12,8 @@ The **\<Navigation>** component typically functions as the root container of a p
 Supported
 
 Since API version 9, it is recommended that this component be used together with the **[\<NavRouter>](ts-basic-components-navrouter.md)** component.
+
+Since API version 10, it is recommended that this component be used together with the **[\<NavPathStack>](#navpathstack10)** component and **navDestination** attribute.
 
 ## APIs
 
@@ -82,14 +84,14 @@ Pushes the navigation destination page specified by **info** to the navigation s
 
 pushPathByName(name: string, param: unknown): void
 
-Pushes the navigation destination page specified by **name** to the navigation stack.
+Pushes the navigation destination page specified by **name**, with the data specified by **param**, to the navigation stack.
 
 **Parameters**
 
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | unknown | Yes   | Parameter information of the navigation destination page.|
+| param | unknown | Yes   | Detailed parameters of the navigation destination page.|
 
 ### pop<sup>10+</sup>
 
@@ -126,7 +128,7 @@ Returns the navigation stack to the first navigation destination page that match
 
 popToIndex(index: number): void
 
-Returns the navigation stack to the navigation destination page that matches the value of **index**.
+Returns the navigation stack to the page specified by **index**.
 
 **Parameters**
 
@@ -262,15 +264,15 @@ constructor(name: string, param: unknown)
 | Name   | Type     | Mandatory  | Description                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | unknown | No   | Parameter information of the navigation destination page.|
+| param | unknown | No   | Detailed parameters of the navigation destination page.|
 
 ## NavigationMenuItem
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
-| value  | string        | Yes   | Text of a menu item.  |
-| icon   | string        | No   | Icon path of a menu item.|
-| action | () =&gt; void | No   | Callback invoked when a menu item is selected.  |
+| value  | string        | Yes   | Text of the menu item. Its visibility varies by the API version.<br>API version 9: visible.<br>API version 10: invisible. |
+| icon   | string        | No   | Icon path of the menu item.|
+| action | () =&gt; void | No   | Callback invoked when the menu item is selected.  |
 
 ## object
 

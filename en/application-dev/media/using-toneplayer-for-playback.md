@@ -46,6 +46,7 @@ To implement audio playback with the TonePlayer, perform the following steps:
    
    ```ts
    import audio from '@ohos.multimedia.audio';
+   
    let audioRendererInfo: audio.AudioRendererInfo = {
      usage : audio.StreamUsage.STREAM_USAGE_DTMF,
      rendererFlags : 0
@@ -100,7 +101,6 @@ To prevent the UI thread from being blocked, most **TonePlayer** calls are async
 ```ts
 import audio from '@ohos.multimedia.audio';
 import { BusinessError } from '@ohos.base';
-
 
 let timerPro : number;
 // Promise mode.

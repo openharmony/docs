@@ -10,10 +10,9 @@ The Network Sharing module allows you to share your device's Internet connection
 
 ```js
 import sharing from '@ohos.net.sharing';
-import { BusinessError } from '@ohos.base';
 ```
 
-## sharing.isSharingSupported<sup>9+</sup>
+## sharing.isSharingSupported
 
 isSharingSupported(callback: AsyncCallback\<boolean>): void
 
@@ -44,13 +43,16 @@ Checks whether network sharing is supported. This API uses an asynchronous callb
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing.isSharingSupported((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.isSharingSupported<sup>9+</sup>
+## sharing.isSharingSupported
 
 isSharingSupported(): Promise\<boolean>
 
@@ -81,6 +83,9 @@ Checks whether network sharing is supported. This API uses a promise to return t
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing
   .isSharingSupported()
   .then((data: boolean) => {
@@ -91,7 +96,7 @@ sharing
   });
 ```
 
-## sharing.isSharing<sup>9+</sup>
+## sharing.isSharing
 
 isSharing(callback: AsyncCallback\<boolean>): void
 
@@ -122,13 +127,16 @@ Checks whether network sharing is in progress. This API uses an asynchronous cal
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing.isSharing((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.isSharing<sup>9+</sup>
+## sharing.isSharing
 
 isSharing(): Promise\<boolean>
 
@@ -159,6 +167,9 @@ Checks whether network sharing is in progress. This API uses a promise to return
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing
   .isSharing()
   .then((data: boolean) => {
@@ -169,7 +180,7 @@ sharing
   });
 ```
 
-## sharing.startSharing<sup>9+</sup>
+## sharing.startSharing
 
 startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
@@ -207,7 +218,8 @@ Starts network sharing of a specified type. This API uses an asynchronous callba
 **Example**
 
 ```js
-import SharingIfaceType from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error: BusinessError) => {
@@ -215,7 +227,7 @@ sharing.startSharing(SHARING_WIFI, (error: BusinessError) => {
 });
 ```
 
-## sharing.startSharing<sup>9+</sup>
+## sharing.startSharing
 
 startSharing(type: SharingIfaceType): Promise\<void>
 
@@ -258,7 +270,8 @@ Starts network sharing of a specified type. This API uses a promise to return th
 **Example**
 
 ```js
-import SharingIfaceType from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
 sharing
@@ -271,7 +284,7 @@ sharing
   });
 ```
 
-## sharing.stopSharing<sup>9+</sup>
+## sharing.stopSharing
 
 stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
@@ -308,7 +321,8 @@ Stops network sharing of a specified type. This API uses an asynchronous callbac
 **Example**
 
 ```js
-import SharingIfaceType from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error: BusinessError) => {
@@ -316,7 +330,7 @@ sharing.stopSharing(SHARING_WIFI, (error: BusinessError) => {
 });
 ```
 
-## sharing.stopSharing<sup>9+</sup>
+## sharing.stopSharing
 
 stopSharing(type: SharingIfaceType): Promise\<void>
 
@@ -358,7 +372,8 @@ Stops network sharing of a specified type. This API uses a promise to return the
 **Example**
 
 ```js
-import SharingIfaceType from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
 sharing
@@ -371,7 +386,7 @@ sharing
   });
 ```
 
-## sharing.getStatsRxBytes<sup>9+</sup>
+## sharing.getStatsRxBytes
 
 getStatsRxBytes(callback: AsyncCallback\<number>): void
 
@@ -402,13 +417,16 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing.getStatsRxBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getStatsRxBytes<sup>9+</sup>
+## sharing.getStatsRxBytes
 
 getStatsRxBytes(): Promise\<number>
 
@@ -439,6 +457,9 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing
   .getStatsRxBytes()
   .then((data: number) => {
@@ -449,7 +470,7 @@ sharing
   });
 ```
 
-## sharing.getStatsTxBytes<sup>9+</sup>
+## sharing.getStatsTxBytes
 
 getStatsTxBytes(callback: AsyncCallback\<number>): void
 
@@ -480,13 +501,16 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing.getStatsTxBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getStatsTxBytes<sup>9+</sup>
+## sharing.getStatsTxBytes
 
 getStatsTxBytes(): Promise\<number>
 
@@ -517,6 +541,9 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing
   .getStatsTxBytes()
   .then((data: number) => {
@@ -527,7 +554,7 @@ sharing
   });
 ```
 
-## sharing.getStatsTotalBytes<sup>9+</sup>
+## sharing.getStatsTotalBytes
 
 getStatsTotalBytes(callback: AsyncCallback\<number>): void
 
@@ -558,13 +585,16 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing.getStatsTotalBytes((error: BusinessError, data: number) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getStatsTotalBytes<sup>9+</sup>
+## sharing.getStatsTotalBytes
 
 getStatsTotalBytes(): Promise\<number>
 
@@ -595,6 +625,9 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
+
 sharing
   .getStatsTotalBytes()
   .then((data: number) => {
@@ -605,7 +638,7 @@ sharing
   });
 ```
 
-## sharing.getSharingIfaces<sup>9+</sup>
+## sharing.getSharingIfaces
 
 getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<string>>): void
 
@@ -638,7 +671,8 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 **Example**
 
 ```js
-import SharingIfaceState from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error: BusinessError, data: string[]) => {
@@ -647,7 +681,7 @@ sharing.getSharingIfaces(SHARING_BLUETOOTH, (error: BusinessError, data: string[
 });
 ```
 
-## sharing.getSharingIfaces<sup>9+</sup>
+## sharing.getSharingIfaces
 
 getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 
@@ -685,7 +719,8 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 **Example**
 
 ```js
-import SharingIfaceState from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_BLUETOOTH = 2;
 sharing
@@ -698,9 +733,9 @@ sharing
   });
 ```
 
-## sharing.getSharingState<sup>9+</sup>
+## sharing.getSharingState
 
-getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState>): void
+getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceState\>): void
 
 Obtains the network sharing state of the specified type. This API uses an asynchronous callback to return the result.
 
@@ -731,18 +766,19 @@ Obtains the network sharing state of the specified type. This API uses an asynch
 **Example**
 
 ```js
-import SharingIfaceType from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
-sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: object) => {
+sharing.getSharingState(SHARING_WIFI, (error: BusinessError, data: sharing.SharingIfaceState) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.getSharingState<sup>9+</sup>
+## sharing.getSharingState
 
-getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
+getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState\>
 
 Obtains the network sharing state of the specified type. This API uses a promise to return the result.
 
@@ -778,12 +814,13 @@ Obtains the network sharing state of the specified type. This API uses a promise
 **Example**
 
 ```js
-import SharingIfaceType from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
 sharing
   .getSharingState(SHARING_WIFI)
-  .then((data: object) => {
+  .then((data: sharing.SharingIfaceState) => {
     console.log(JSON.stringify(data));
   })
   .catch((error: BusinessError) => {
@@ -791,9 +828,9 @@ sharing
   });
 ```
 
-## sharing.getSharableRegexes<sup>9+</sup>
+## sharing.getSharableRegexes
 
-getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string>>): void
+getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<string\>\>): void
 
 Obtains regular expressions of NICs of a specified type. This API uses an asynchronous callback to return the result.
 
@@ -824,7 +861,8 @@ Obtains regular expressions of NICs of a specified type. This API uses an asynch
 **Example**
 
 ```js
-import SharingIfaceType from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error: BusinessError, data: string[]) => {
@@ -833,7 +871,7 @@ sharing.getSharableRegexes(SHARING_WIFI, (error: BusinessError, data: string[]) 
 });
 ```
 
-## sharing.getSharableRegexes<sup>9+</sup>
+## sharing.getSharableRegexes
 
 getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 
@@ -871,7 +909,8 @@ Obtains regular expressions of NICs of a specified type. This API uses a promise
 **Example**
 
 ```js
-import SharingIfaceType from '@ohos.net.sharing';
+import sharing from '@ohos.net.sharing';
+import { BusinessError } from '@ohos.base';
 
 let SHARING_WIFI = 0;
 sharing
@@ -884,7 +923,7 @@ sharing
   });
 ```
 
-## sharing.on('sharingStateChange')<sup>9+</sup>
+## sharing.on('sharingStateChange')
 
 on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
@@ -914,12 +953,14 @@ Subscribes to network sharing state changes. This API uses an asynchronous callb
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+
 sharing.on('sharingStateChange', (data: boolean) => {
   console.log('on sharingStateChange: ' + JSON.stringify(data));
 });
 ```
 
-## sharing.off('sharingStateChange')<sup>9+</sup>
+## sharing.off('sharingStateChange')
 
 off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
@@ -949,12 +990,14 @@ Unsubscribes from network sharing state changes. This API uses an asynchronous c
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+
 sharing.off('sharingStateChange', (data: boolean) => {
   console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.on('interfaceSharingStateChange')<sup>9+</sup>
+## sharing.on('interfaceSharingStateChange')
 
 on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state:
 SharingIfaceState }>): void
@@ -972,7 +1015,7 @@ Subscribes to network sharing state changes of a specified NIC. This API uses an
 | Name  | Type                                                                                                                        | Mandatory| Description                                 |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------- | ---- | ------------------------------------- |
 | type     | string                                                                                                                       | Yes  | Event name.                           |
-| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: SharingIfaceState(#sharingifacestate) }> | Yes  | Callback invoked when the network sharing state of the specified NIC changes.|
+| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: [SharingIfaceState](#sharingifacestate) }> | Yes  | Callback invoked when the network sharing state of the specified NIC changes.|
 
 **Error codes**
 
@@ -985,12 +1028,14 @@ Subscribes to network sharing state changes of a specified NIC. This API uses an
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+
 sharing.on('interfaceSharingStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange:' + JSON.stringify(data));
 });
 ```
 
-## sharing.off('interfaceSharingStateChange')<sup>9+</sup>
+## sharing.off('interfaceSharingStateChange')
 
 off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state:
 SharingIfaceState }>): void
@@ -1008,7 +1053,7 @@ Unsubscribes from network sharing status changes of a specified NIC. This API us
 | Name  | Type                                                                                                                        | Mandatory| Description                                    |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                                                                                                       | Yes  | Event name.                              |
-| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: SharingIfaceState(#sharingifacestate) }> | No  | Callback used to return the result.|
+| callback | AsyncCallback\<{ type: [SharingIfaceType](#sharingifacetype), iface: string, state: [SharingIfaceState](#sharingifacestate) }> | No  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1021,12 +1066,14 @@ Unsubscribes from network sharing status changes of a specified NIC. This API us
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+
 sharing.off('interfaceSharingStateChange', (data: object) => {
   console.log(JSON.stringify(data));
 });
 ```
 
-## sharing.on('sharingUpstreamChange')<sup>9+</sup>
+## sharing.on('sharingUpstreamChange')
 
 on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
@@ -1056,12 +1103,14 @@ Subscribes to upstream network changes. This API uses an asynchronous callback t
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+
 sharing.on('sharingUpstreamChange', (data: object) => {
   console.log('on sharingUpstreamChange:' + JSON.stringify(data));
 });
 ```
 
-## sharing.off('sharingUpstreamChange')<sup>9+</sup>
+## sharing.off('sharingUpstreamChange')
 
 off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
@@ -1091,12 +1140,14 @@ Unsubscribes from upstream network changes. This API uses an asynchronous callba
 **Example**
 
 ```js
+import sharing from '@ohos.net.sharing';
+
 sharing.off('sharingUpstreamChange', (data: object) => {
   console.log(JSON.stringify(data));
 });
 ```
 
-## SharingIfaceState<sup>9+</sup>
+## SharingIfaceState
 
 Enumerates the network sharing states of an NIC.
 
@@ -1110,7 +1161,7 @@ Enumerates the network sharing states of an NIC.
 | SHARING_NIC_CAN_SERVER | 2   | Network sharing is supported.|
 | SHARING_NIC_ERROR      | 3   | An error occurred during network sharing.  |
 
-## SharingIfaceType<sup>9+</sup>
+## SharingIfaceType
 
 Enumerates the network sharing types of an NIC.
 

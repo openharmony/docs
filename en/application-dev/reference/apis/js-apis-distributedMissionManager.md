@@ -1,6 +1,6 @@
 # @ohos.distributedMissionManager (Distributed Mission Management)
 
-The **distributedMissionManager** module implements mission management across devices. You can use the APIs provided by this module to register or deregister a mission status listener, start or stop synchronizing a remote mission list, and continue a mission on a remote device by mission ID or bundle name.
+The **distributedMissionManager** module implements mission management across devices. You can use the APIs provided by this module to register or unregister a mission status listener, start or stop synchronizing a remote mission list, and continue a mission on a remote device by mission ID or bundle name.
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ The **distributedMissionManager** module implements mission management across de
 ## Modules to Import
 
 ```js
-import distributedMissionManager from '@ohos.distributedMissionManager'
+import distributedMissionManager from '@ohos.distributedMissionManager';
 ```
 
 ## distributedMissionManager.registerMissionListener
@@ -30,13 +30,15 @@ Registers a mission status listener. This API uses an asynchronous callback to r
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | Yes   | Information about the device to listen for.|
 | options   | [MissionCallback](#missioncallback)     | Yes   | Callback to register.|
-| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the listener is registered, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the listener is registered, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+  
+  // Implement a callback function.
   function NotifyMissionsChanged(deviceId: string): void {
     console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
@@ -49,6 +51,7 @@ Registers a mission status listener. This API uses an asynchronous callback to r
     console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
+    // Call registerMissionListener.
     distributedMissionManager.registerMissionListener(
       { deviceId: "" },
       {
@@ -57,13 +60,14 @@ Registers a mission status listener. This API uses an asynchronous callback to r
         notifyNetDisconnect: NotifyNetDisconnect
       },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('registerMissionListener finished')
+        console.info('registerMissionListener finished');
       });
   } catch (error) {
-    console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+    console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
   }
   ```
 ## distributedMissionManager.registerMissionListener
@@ -92,8 +96,10 @@ Registers a mission status listener. This API uses a promise to return the resul
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
+  // Implement a callback function.
   function NotifyMissionsChanged(deviceId: string): void {
     console.log('NotifyMissionsChanged deviceId ' + JSON.stringify(deviceId));
   }
@@ -106,19 +112,20 @@ Registers a mission status listener. This API uses a promise to return the resul
     console.log('NotifyNetDisconnect state ' + JSON.stringify(state));
   }
   try {
+      // Call registerMissionListener.
       distributedMissionManager.registerMissionListener(
         { deviceId: "" },
         {
           notifyMissionsChanged: NotifyMissionsChanged,
           notifySnapshot: NotifySnapshot,
           notifyNetDisconnect: NotifyNetDisconnect
-        }).then((data: void) => {
-          console.info('registerMissionListener finished, ' + JSON.stringify(data));
+        }).then(() => {
+          console.info('registerMissionListener finished. ');
       }).catch((error: BusinessError) => {
           console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
       })
   } catch (error) {
-      console.error('registerMissionListener failed, cause: ' + JSON.stringify(error))
+      console.error('registerMissionListener failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -126,7 +133,7 @@ Registers a mission status listener. This API uses a promise to return the resul
 
 unRegisterMissionListener(parameter: MissionDeviceInfo, callback: AsyncCallback&lt;void&gt;): void;
 
-Deregisters a mission status listener. This API uses an asynchronous callback to return the result.
+Unregisters a mission status listener. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_MISSIONS
 
@@ -137,24 +144,26 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
 | Name      | Type                                     | Mandatory  | Description       |
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | Yes   | Information about the device to listen for.   |
-| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the listener is deregistered, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the listener is unregistered, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.unRegisterMissionListener(
       { deviceId: "" },
       (error: BusinessError) => {
-        if (error.code != 0) {
-            console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+        if (error) {
+            console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
+            return;
         }
-        console.info('unRegisterMissionListener finished')
+        console.info('unRegisterMissionListener finished');
     })
   } catch (error) {
-      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -162,7 +171,7 @@ Deregisters a mission status listener. This API uses an asynchronous callback to
 
 unRegisterMissionListener(parameter: MissionDeviceInfo): Promise&lt;void&gt;
 
-Deregisters a mission status listener. This API uses a promise to return the result.
+Unregisters a mission status listener. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_MISSIONS
 
@@ -183,8 +192,9 @@ Deregisters a mission status listener. This API uses a promise to return the res
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.unRegisterMissionListener({deviceId: ""}).then(() => {
       console.info('unRegisterMissionListener finished successfully');
@@ -192,7 +202,7 @@ Deregisters a mission status listener. This API uses a promise to return the res
         console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
     })
   } catch (error) {
-      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error))
+      console.error('unRegisterMissionListener failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -211,13 +221,14 @@ Starts to synchronize the remote mission list. This API uses an asynchronous cal
 | Name      | Type                                   | Mandatory  | Description       |
 | --------- | ------------------------------------- | ---- | --------- |
 | parameter | [MissionParameter](#missionparameter) | Yes   | Parameters required for synchronization.    |
-| callback  | AsyncCallback&lt;void&gt;             | Yes   | Callback used to return the result. If the synchronization is started, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback  | AsyncCallback&lt;void&gt;             | Yes   | Callback used to return the result. If the synchronization is started, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.startSyncRemoteMissions(
       {
@@ -226,13 +237,14 @@ Starts to synchronize the remote mission list. This API uses an asynchronous cal
         tag: 0
       },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('startSyncRemoteMissions finished')}
+        console.info('startSyncRemoteMissions finished');}
     )
   } catch (error) {
-    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -261,8 +273,9 @@ Starts to synchronize the remote mission list. This API uses a promise to return
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.startSyncRemoteMissions(
       {
@@ -276,7 +289,7 @@ Starts to synchronize the remote mission list. This API uses a promise to return
       console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
     })
   } catch (error) {
-    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('startSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -295,26 +308,28 @@ Stops synchronizing the remote mission list. This API uses an asynchronous callb
 | Name      | Type                                     | Mandatory  | Description       |
 | --------- | --------------------------------------- | ---- | --------- |
 | parameter | [MissionDeviceInfo](#missiondeviceinfo) | Yes   | Parameters required for synchronization.    |
-| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the synchronization is stopped, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback  | AsyncCallback&lt;void&gt;               | Yes   | Callback used to return the result. If the synchronization is stopped, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.stopSyncRemoteMissions(
       {
         deviceId: ""
       },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('stopSyncRemoteMissions finished')}
+        console.info('stopSyncRemoteMissions finished');}
     )
   } catch (error) {
-    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -343,19 +358,20 @@ Stops synchronizing the remote mission list. This API uses a promise to return t
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.stopSyncRemoteMissions(
       {
         deviceId: ""
-      }).then((data: void) => {
+      }).then(() => {
         console.info('stopSyncRemoteMissions finished successfully');
       }).catch((error: BusinessError) => {
       console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
     })
   } catch (error) {
-    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error))
+    console.error('stopSyncRemoteMissions failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -375,7 +391,7 @@ Continues a mission on a remote device, with the mission ID specified. This API 
 | --------- | --------------------------------------- | ---- | ----- |
 | parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
 | options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the mission is continued, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the mission is continued, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -393,12 +409,15 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
+  // Implement a callback function.
   function onContinueDone(resultCode: number): void {
     console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
+    // Call continueMission.
     distributedMissionManager.continueMission(
       {
         srcDeviceId: "",
@@ -408,13 +427,14 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
       },
       { onContinueDone: onContinueDone },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('continueMission failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('continueMission failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('continueMission finished')
+        console.info('continueMission finished');
     })
   } catch (error) {
-    console.error('continueMission failed, cause: ' + JSON.stringify(error))
+    console.error('continueMission failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -457,12 +477,15 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
+  // Implement a callback function.
   function onContinueDone(resultCode: number): void {
     console.log('onContinueDone resultCode: ' + JSON.stringify(resultCode));
   };
   try {
+    // Call continueMission.
     distributedMissionManager.continueMission(
       {
         srcDeviceId: "",
@@ -476,7 +499,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
       console.error('continueMission failed, cause: ' + JSON.stringify(error));
     })
   } catch (error) {
-    console.error('continueMission failed, cause: ' + JSON.stringify(error))
+    console.error('continueMission failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -495,7 +518,7 @@ Continues a mission on a remote device, with the bundle name specified. This API
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
 | parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | Yes   | Parameters required for mission continuation.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the mission is continued, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the mission is continued, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -513,8 +536,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
     distributedMissionManager.continueMission(
       {
@@ -524,13 +548,14 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
         wantParam: {"key": "value"}
       },
       (error: BusinessError) => {
-        if (error.code != 0) {
-          console.error('continueMission failed, cause: ' + JSON.stringify(error))
+        if (error) {
+          console.error('continueMission failed, cause: ' + JSON.stringify(error));
+          return;
         }
-        console.info('continueMission finished')
+        console.info('continueMission finished');
     })
   } catch (error) {
-    console.error('continueMission failed, cause: ' + JSON.stringify(error))
+    console.error('continueMission failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -572,8 +597,9 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
 **Example**
 
   ```ts
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
   import { BusinessError } from '@ohos.base';
+
   try {
       distributedMissionManager.continueMission(
         {
@@ -588,7 +614,7 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
           console.error('continueMission failed, cause: ' + JSON.stringify(error));
       })
   } catch (error) {
-      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+      console.error('continueMission failed, cause: ' + JSON.stringify(error));
   }
   ```
 
@@ -612,7 +638,8 @@ Subscribes to continuation state change events of the current mission.
 **Example**
 
 ```js
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
+
   try {
     distributedMissionManager.on('continueStateChange', (data) => {
       console.info("continueStateChange on:" + JSON.stringify(data));
@@ -637,18 +664,19 @@ Unsubscribes from continuation state change events of the current mission.
 | Name      | Type                                      | Mandatory  | Description      |
 | --------- | ---------------------------------------- | ---- | -------- |
 | type | string  | Yes   | Event type. The value **'continueStateChange'** indicates the continuation state change event of the current mission.    |
-| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | No   | Callback used to return the continuation state and information of the current mission.<br>If the callback is unspecified, all subscriptions to the specified event are canceled.   |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | No   | Callback used for unsubscription.<br>If the callback is unspecified, all subscriptions to the specified event are canceled.   |
 
 **Example**
 
 ```js
-  import distributedMissionManager from '@ohos.distributedMissionManager'
+  import distributedMissionManager from '@ohos.distributedMissionManager';
+
   try {
     distributedMissionManager.off('continueStateChange', (data) => {
       console.info("continueStateChange off:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("continueStateChange err: " + JSON.stringify(error));
+    console.error("continueStateChange err: " + JSON.stringify(err));
   }
   ```
 
@@ -676,7 +704,7 @@ Defines the parameters required for mission synchronization.
 
 | Name         | Type   | Readable  | Writable  | Description         |
 | ----------- | ------- | ---- | ---- | ----------- |
-| deviceId    | string  | Yes   | Yes   | Device ID.    |
+| deviceId    | string  | Yes   | Yes   | Device ID. For details, see [getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).    |
 | fixConflict | boolean | Yes   | Yes   | Whether a version conflict occurs.|
 | tag         | number  | Yes   | Yes   | Tag of the mission.   |
 
@@ -690,7 +718,7 @@ Defines the parameters required for registering a listener.
 
 | Name      | Type  | Readable  | Writable  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
-| deviceId | string | Yes   | Yes   | Device ID.|
+| deviceId | string | Yes   | Yes   | Device ID. For details, see [getAvailableDeviceListSync](js-apis-distributedDeviceManager.md#getavailabledevicelistsync).|
 
 ## ContinueState<sup>10+</sup>
 

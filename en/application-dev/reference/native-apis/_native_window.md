@@ -126,7 +126,7 @@ Enumerates the operation codes in the **OH_NativeWindow_NativeWindowHandleOpt** 
 
 | Value| Description|
 | -------- | -------- |
-| SET_BUFFER_GEOMETRY | Setting the geometry for the local window buffer.<br>Variable arguments in the function: [Input] int32_t height and [Input] int32_t width.|
+| SET_BUFFER_GEOMETRY | Setting the geometry for the local window buffer.<br>Variable arguments in the function: [Input] int32_t width and [Input] int32_t height.|
 | GET_BUFFER_GEOMETRY | Obtaining the geometry of the local window buffer.<br>Variable arguments in the function: [Output] int32_t *height and [Output] int32_t *width.|
 | GET_FORMAT | Obtaining the format of the local window buffer.<br>Variable argument in the function: [Output] int32_t *format.|
 | SET_FORMAT | Setting the format for the local window buffer.<br>Variable argument in the function: [Input] int32_t format.|

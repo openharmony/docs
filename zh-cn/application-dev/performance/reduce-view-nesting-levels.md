@@ -2,7 +2,7 @@
 
 ## 背景介绍
 
-应用开发中的用户界面（UI）布局是用户与应用程序交互的关键部分。使用不同类型的布局可以将页面排布的更加美观，但也容易带来不合理的布局。不合理的布局虽然能在界面显示上达到相同效果，但是过渡的布局计算，界面嵌套带来了渲染和计算的大量开销，造成性能的衰退，本文重点介绍了几种常见的布局功能和适用场景，同时提供了几种优化布局结构的方法。
+应用开发中的用户界面（UI）布局是用户与应用程序交互的关键部分。使用不同类型的布局可以将页面排布的更加美观，但也容易带来不合理的布局。不合理的布局虽然能在界面显示上达到相同效果，但是过度的布局计算，界面嵌套带来了渲染和计算的大量开销，造成性能的衰退，本文重点介绍了几种常见的布局功能和适用场景，同时提供了几种优化布局结构的方法。
 
 ## 常用布局
 
@@ -128,8 +128,7 @@ struct MyComponent {
       Column() {  
         Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {  
           Text('张')  
-          // 属性参数参考见正例  
-          ...  
+          // 属性参数见正例  
         }  
         .width("40vp")  
         .height("40vp")  
@@ -141,11 +140,11 @@ struct MyComponent {
             justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {  
             //Phone number or first name  
             Text('张三')  
-             ...   
+             // 属性参数见正例  
 
             //Date Time  
             Text('2分钟前')  
-             ...  
+             // 属性参数见正例 
              }  
           .width("100%").height(22)  
   
@@ -288,7 +287,7 @@ struct MyComponent {
 
 ![输入图片说明](figures/layout-relative-introduce.png)
 
-使用扁平化布局推荐使用[RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md)、[绝对定位](../reference/arkui-ts/ts-universal-attributes-location.md)、[自定义布局](h../reference/arkui-ts/ts-custom-component-lifecycle.md)、[Grid组件](../reference/arkui-ts/ts-container-grid.md)等
+使用扁平化布局推荐使用[RelativeContainer](../reference/arkui-ts/ts-container-relativecontainer.md)、[绝对定位](../reference/arkui-ts/ts-universal-attributes-location.md)、[自定义布局](../reference/arkui-ts/ts-custom-component-lifecycle.md)、[Grid组件](../reference/arkui-ts/ts-container-grid.md)等
 
 ### 使用高性能布局组件
 

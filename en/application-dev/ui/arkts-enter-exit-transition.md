@@ -15,7 +15,7 @@ You can use [transition](../reference/arkui-ts/ts-transition-animation-component
 | rotate | Applies a rotation transition effect.| The component appears by rotating from the position set by the **rotate** API to the default position (value **0**), and disappears by rotating from the default position (value **0**) to the position set by the **rotate** API.|
 | opacity | Applies an opacity transition effect.| The component appears by changing the opacity from the set value to **1** (default value) and disappears by changing the opacity from **1** to the set value.|
 | move | Applies a transition effect by specifying which edge the component slides in and out of through [TransitionEdge](../reference/arkui-ts/ts-appendix-enums.md#transitionedge10).| The component appears by sliding in from the edge specified by **TransitionEdge** and disappears by sliding out of the same edge.|
-| asymmetric | Applies an asymmetric transition effect.<br>**appear**: transition effect for appearance.<br>**disappear**: transition effect for disappearance.| The component appears by applying the transition effect specified by **appear** and disappears by applying the transition effect specified by **disappear**.|
+| asymmetric | Applies an asymmetric transition effect.<br>- **appear**: transition effect for appearance.<br>- **disappear**: transition effect for disappearance.| The component appears by applying the transition effect specified by **appear** and disappears by applying the transition effect specified by **disappear**.|
 | combine | Combines with other transition effects.| The component appears and disappears by combing with other transition effects.|
 | animation | Defines the animation settings for the transition effect.<br>- If animation settings are not specified here, the animation settings of **animateTo** will be used.<br>- Animation settings cannot be configured through the **animation** API of the component.<br>- The **onFinish** callback of the **animation** parameter in **TransitionEffect** does not take effect.| The API call sequence is from top to bottom. This means that the **animation** settings of **TransitionEffect** at the upper level also take effect on **TransitionEffect** at the lower level .|
 
@@ -51,23 +51,23 @@ You can use [transition](../reference/arkui-ts/ts-transition-animation-component
    ```ts
    @state isPresent: boolean = true;
    ...
-   if (isPresent) {
+   if (this.isPresent) {
      Text('test')
        .transition(effect)
    }
    ...
    // Control the addition or deletion of the component.
    // Method 1: Place the control variable in the animateTo closure. In this case, the transition effect for which the animation API is not call will follow the animation settings of animateTo.
-   animateTo({curve: curves.springMotion()}) {
+   animateTo({curve: curves.springMotion()}, ()=> {
      this.isPresent = false;
-   }
+   })
    
    // Method 2: Directly delete or add the component. In this case, the transition effects follow the animation settings specified by animation.
    this.isPresent = false;
    ```
 
 
-  Below is the complete sample code and effect.
+ Below is the complete sample code and effect. In the example, the transition is triggered by deleting or adding a component. It can also be triggered by changing the variables in the **animateTo** closure.
 
 ```ts
 import curves from '@ohos.curves';

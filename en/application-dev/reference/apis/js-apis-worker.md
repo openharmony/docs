@@ -1,10 +1,12 @@
-# @ohos.worker (Worker Startup)
+# @ohos.worker (Starting the Worker)
 
 The worker thread is an independent thread running in parallel with the main thread. The thread that creates the worker thread is referred to as the host thread. The URL file passed in during worker creation is executed in the worker thread. The worker thread can process time-consuming operations, but cannot directly operate the UI.
 
 With the **Worker** module, you can provide a multithreading environment for an application, so that the application can perform a time-consuming operation in a background thread. This greatly prevents a computing-intensive or high-latency task from blocking the running of the main thread. A **Worker** instance will not be proactively destroyed once it is created. It consumes resources to keep running. Therefore, you should call the API to terminate it in a timely manner.
 
 The **Context** object of the worker thread is different from that of the main thread. The worker thread does not support UI operations.
+
+For details about the precautions for using **Worker**, see [Precautions for Worker](../../arkts-utils/worker-introduction.md#precautions-for-worker).
 
 > **NOTE**
 >
@@ -21,10 +23,10 @@ import worker from '@ohos.worker';
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name                             | Type                                                     | Readable| Writable| Description                                                        |
-| --------------------------------- | --------------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)      | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.                        |
-| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscope) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead.|
+| Name                             | Type                                                        | Readable| Writable| Description                                                        |
+| --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| workerPort<sup>9+</sup>           | [ThreadWorkerGlobalScope](#threadworkerglobalscope9)         | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.                        |
+| parentPort<sup>(deprecated)</sup> | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Yes  | Object of the worker thread used to communicate with the host thread.<br>This attribute is supported since API version 7 and deprecated since API version 9.<br>You are advised to use **workerPort<sup>9+</sup>** instead.|
 
 
 ## WorkerOptions
@@ -33,11 +35,11 @@ Provides options that can be set for the **Worker** instance to create.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read-only| Mandatory| Description|
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | Yes  | Yes| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**.|
-| name | string   | Yes  | Yes| Name of the worker thread. The default value is **undefined**.|
-| shared | boolean | Yes  | Yes| Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported.|
+| type | "classic" \| "module" | Yes  | No| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**.|
+| name | string   | Yes  | No| Name of the worker thread. The default value is **undefined**.|
+| shared | boolean | Yes  | No| Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported.|
 
 
 ## ThreadWorker<sup>9+</sup>
@@ -80,8 +82,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 import worker from '@ohos.worker';
-// Create a Worker instance.
 
+// Create a Worker instance.
 // In the FA model, the workers directory is at the same level as the pages directory in the entry module.
 const workerFAModel01 = new worker.ThreadWorker("workers/worker.ts", {name:"first worker in FA model"});
 // In the FA model, the workers directory is at the same level as the parent directory of the pages directory in the entry module.
@@ -384,10 +386,10 @@ workerInstance.onexit = () => {
 }
 
 // onexit is executed in either of the following ways:
-// Main thread:
+// Main thread
 workerInstance.terminate();
 
-// Worker thread:
+// Worker thread
 //workerPort.close()
 ```
 
@@ -601,6 +603,8 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is n
 The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 // Usage 1:
@@ -668,6 +672,8 @@ workerInstance.removeAllListener();
 ```
 
 ## WorkerEventTarget<sup>9+</sup>
+
+Processes worker listening events.
 
 ### addEventListener<sup>9+</sup>
 
@@ -776,6 +782,8 @@ workerInstance.dispatchEvent({type:"eventType", timeStamp:0}); // timeStamp is n
 The **dispatchEvent** API can be used together with the **on**, **once**, and **addEventListener** APIs. The sample code is as follows:
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
 // Usage 1:
@@ -875,7 +883,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -885,7 +894,8 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     let buffer = new ArrayBuffer(8);
@@ -921,7 +931,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -931,7 +942,8 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.postMessage("receive data from main thread");
@@ -960,12 +972,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     workerPort.close()
@@ -1002,13 +1016,15 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
@@ -1045,12 +1061,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 ```
 
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
@@ -1130,12 +1148,14 @@ Defines the event handler to be called when an exception occurs during worker ex
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts")
 ```
 
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const workerPort = worker.workerPort
 workerPort.onerror = () => {
     console.log("worker.ts onerror")
@@ -1155,7 +1175,7 @@ Holds the data transferred between worker threads.
 ## Worker<sup>(deprecated)</sup>
 
 
-Before using the following APIs, you must create a **Worker** instance. The **Worker** class inherits from [EventTarget](#eventtarget).
+Before using the following APIs, you must create a **Worker** instance. The **Worker** class inherits from [EventTarget](#eventtargetdeprecated).
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorker<sup>9+</sup>](#threadworker9) instead.
@@ -1188,6 +1208,7 @@ A constructor used to create a **Worker** instance.
 
 ```ts
 import worker from '@ohos.worker';
+
 // Create a Worker instance.
 
 // In the FA model, the workers directory is at the same level as the pages directory.
@@ -1322,10 +1343,10 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description            |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | Yes  | Type of the event to listen for.|
-| listener | [EventListener](#eventlistener) | Yes  | Callback to invoke when an event of the specified type occurs.      |
+| Name  | Type                                     | Mandatory| Description            |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | Yes  | Type of the event to listen for.|
+| listener | [EventListener](#eventlistenerdeprecated) | Yes  | Callback to invoke when an event of the specified type occurs.      |
 
 **Example**
 
@@ -1350,10 +1371,10 @@ Adds an event listener for the worker thread and removes the event listener afte
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description            |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | Yes  | Type of the event to listen for.|
-| listener | [EventListener](#eventlistener) | Yes  | Callback to invoke when an event of the specified type occurs.      |
+| Name  | Type                                     | Mandatory| Description            |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | Yes  | Type of the event to listen for.|
+| listener | [EventListener](#eventlistenerdeprecated) | Yes  | Callback to invoke when an event of the specified type occurs.      |
 
 **Example**
 
@@ -1378,10 +1399,10 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description                |
-| -------- | ------------------------------- | ---- | -------------------- |
-| type     | string                          | Yes  | Type of the event for which the event listener is to be removed.|
-| listener | [EventListener](#eventlistener) | No  | Callback of the event listener to remove.    |
+| Name  | Type                                     | Mandatory| Description                |
+| -------- | ----------------------------------------- | ---- | -------------------- |
+| type     | string                                    | Yes  | Type of the event for which the event listener is to be removed.|
+| listener | [EventListener](#eventlistenerdeprecated) | No  | Callback of the event listener to remove.    |
 
 **Example**
 
@@ -1437,10 +1458,10 @@ workerInstance.onexit = () => {
 }
 
 // onexit is executed in either of the following ways:
-// Main thread:
+// Main thread
 workerInstance.terminate();
 
-// Worker thread:
+// Worker thread
 //parentPort.close()
 ```
 
@@ -1485,13 +1506,15 @@ Defines the event handler to be called when the host thread receives a message s
 
 **Parameters**
 
-| Name| Type                          | Mandatory| Description                  |
-| ------ | ------------------------------ | ---- | ---------------------- |
-| event  | [MessageEvent](#messageeventt)| Yes  | Message received.|
+| Name| Type                              | Mandatory| Description                  |
+| ------ | ---------------------------------- | ---- | ---------------------- |
+| event  | [MessageEvent](#messageeventt) | Yes  | Message received.|
 
 **Example**
 
 ```ts
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.onmessage = (e: MessageEvents): void => {
     console.log("onmessage");
@@ -1512,9 +1535,9 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Parameters**
 
-| Name| Type                          | Mandatory| Description      |
-| ------ | ------------------------------ | ---- | ---------- |
-| event  | [MessageEvent](#messageeventt)| Yes  | Error data.|
+| Name| Type                              | Mandatory| Description      |
+| ------ | ---------------------------------- | ---- | ---------- |
+| event  | [MessageEvent](#messageeventt) | Yes  | Error data.|
 
 **Example**
 
@@ -1543,10 +1566,10 @@ Adds an event listener for the worker thread. This API provides the same functio
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description            |
-| -------- | ------------------------------- | ---- | ---------------- |
-| type     | string                          | Yes  | Type of the event to listen for.|
-| listener | [EventListener](#eventlistener) | Yes  | Callback to invoke when an event of the specified type occurs.    |
+| Name  | Type                                     | Mandatory| Description            |
+| -------- | ----------------------------------------- | ---- | ---------------- |
+| type     | string                                    | Yes  | Type of the event to listen for.|
+| listener | [EventListener](#eventlistenerdeprecated) | Yes  | Callback to invoke when an event of the specified type occurs.    |
 
 **Example**
 
@@ -1571,10 +1594,10 @@ Removes an event listener for the worker thread. This API provides the same func
 
 **Parameters**
 
-| Name  | Type                           | Mandatory| Description                    |
-| -------- | ------------------------------- | ---- | ------------------------ |
-| type     | string                          | Yes  | Type of the event for which the event listener is to be removed.|
-| callback | [EventListener](#eventlistener) | No  | Callback of the event listener to remove.        |
+| Name  | Type                                     | Mandatory| Description                    |
+| -------- | ----------------------------------------- | ---- | ------------------------ |
+| type     | string                                    | Yes  | Type of the event for which the event listener is to be removed.|
+| callback | [EventListener](#eventlistenerdeprecated) | No  | Callback of the event listener to remove.        |
 
 **Example**
 
@@ -1683,14 +1706,14 @@ workerInstance.removeAllListener();
 
 ## DedicatedWorkerGlobalScope<sup>(deprecated)</sup>
 
-Implements communication between the worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the worker thread. This class inherits from [WorkerGlobalScope](#workerglobalscope).
+Implements communication between the worker thread and the host thread. The **postMessage** API is used to send messages to the host thread, and the **close** API is used to terminate the worker thread. This class inherits from [WorkerGlobalScope](#workerglobalscopedeprecated).
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9) instead.
 
 ### postMessage<sup>(deprecated)</sup>
 
-postMessage(messageObject: Object, transfer: Transferable[]): void;
+postMessage(messageObject: Object, transfer: Transferable[]): void
 
 Used by the worker thread to send a message to the host thread by transferring object ownership.
 
@@ -1708,7 +1731,7 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 ### postMessage<sup>9+</sup>
 
-postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
+postMessage(messageObject: Object, transfer: ArrayBuffer[]): void
 
 Used by the worker thread to send a message to the host thread by transferring object ownership.
 
@@ -1729,7 +1752,8 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1739,7 +1763,8 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 workerPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1770,7 +1795,8 @@ Used by the worker thread to send a message to the host thread by transferring o
 
 ```ts
 // Main thread
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 workerInstance.onmessage = (e: MessageEvents): void => {
@@ -1780,7 +1806,8 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     // let data = e.data;
@@ -1804,11 +1831,13 @@ Terminates the worker thread to stop it from receiving messages.
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     parentPort.close()
@@ -1832,19 +1861,21 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                                                        | Mandatory| Description                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.        |
-| ev     | [MessageEvent](#messageeventt)                              | Yes  | Message received.|
+| ev     | [MessageEvent](#messageeventt)                           | Yes  | Message received.|
 
 **Example**
 
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 workerInstance.postMessage("hello world");
 ```
 ```ts
 // worker.ts
-import worker from '@ohos.worker';
+import worker, { MessageEvents } from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessage = (e: MessageEvents): void => {
     console.log("receive main thread message");
@@ -1865,21 +1896,23 @@ Defines the event handler to be called when the worker thread receives a message
 
 **Parameters**
 
-| Name| Type                          | Mandatory| Description      |
-| ------ | ------------------------------ | ---- | ---------- |
+| Name| Type                                                        | Mandatory| Description            |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.|
-| ev     | [MessageEvent](#messageeventt)| Yes  | Error data.|
+| ev     | [MessageEvent](#messageeventt)                           | Yes  | Error data.      |
 
 **Example**
 
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts");
 ```
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const parentPort = worker.parentPort;
 parentPort.onmessageerror = () => {
     console.log("worker.ts onmessageerror")
@@ -1895,7 +1928,7 @@ Defines the object for which the ownership is to be transferred during data tran
 
 | Name    | Type    | Readable| Writable| Description                             |
 | -------- | -------- | ---- | ---- | --------------------------------- |
-| transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership. The array cannot contain **null**.|
+| transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership. The array cannot be **null**.|
 
 
 ## Event
@@ -1971,7 +2004,7 @@ Holds the data transferred between worker threads.
 
 ## WorkerGlobalScope<sup>(deprecated)</sup>
 
-Implements the running environment of the worker thread. The **WorkerGlobalScope** class inherits from [EventTarget](#eventtarget).
+Implements the running environment of the worker thread. The **WorkerGlobalScope** class inherits from [EventTarget](#eventtargetdeprecated).
 
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>](#globalscope9) instead.
@@ -2008,11 +2041,13 @@ Defines the event handler to be called when an exception occurs during worker ex
 ```ts
 // Main thread
 import worker from '@ohos.worker';
+
 const workerInstance = new worker.Worker("workers/worker.ts")
 ```
 ```ts
 // worker.ts
 import worker from '@ohos.worker';
+
 const parentPort = worker.parentPort
 parentPort.onerror = () => {
     console.log("worker.ts onerror")
@@ -2033,6 +2068,7 @@ Exception: When an object created through a custom class is passed, no serializa
 ```ts
 // Main thread
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 workerInstance.postMessage("message from main thread to worker");
 workerInstance.onmessage = (d: MessageEvents): void => {
@@ -2043,6 +2079,7 @@ workerInstance.onmessage = (d: MessageEvents): void => {
 ```ts
 // worker.ts
 import worker, { MessageEvents } from '@ohos.worker';
+
 const workerPort = worker.workerPort;
 class MyModel {
     name = "undefined"
@@ -2083,12 +2120,13 @@ Each actor concurrently processes tasks of the main thread. For each actor, ther
 
 ## Sample Code
 > **NOTE**<br>
-> Two projects of API version 9 are used as an example. <br>Only the FA model is supported in API version 8 and earlier versions. If you want to use API version 8 or earlier, change the API for constructing the **Worker** instance and the API for creating an object in the worker thread for communicating with the main thread.
+> Two projects of API version 9 are used as an example.<br>Only the FA model is supported in API version 8 and earlier versions. If you want to use API version 8 or earlier, change the API for constructing the **Worker** instance and the API for creating an object in the worker thread for communicating with the main thread.
 ### FA Model
 
 ```ts
 // Main thread (The following assumes that the workers directory and pages directory are at the same level.)
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
+
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("workers/worker.ts");
 
@@ -2108,6 +2146,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // Call onexit().
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts
@@ -2145,7 +2187,7 @@ Configuration of the **build-profile.json5** file:
 ### Stage Model
 ```ts
 // Main thread (The following assumes that the workers directory and pages directory are at different levels.)
-import worker, { MessageEvents } from '@ohos.worker';
+import worker, { MessageEvents, ErrorEvent } from '@ohos.worker';
 
 // Create a Worker instance in the main thread.
 const workerInstance = new worker.ThreadWorker("entry/ets/pages/workers/worker.ts");
@@ -2165,6 +2207,10 @@ workerInstance.onmessage = (e: MessageEvents): void => {
 // Call onexit().
 workerInstance.onexit = () => {
     console.log("main thread terminate");
+}
+
+workerInstance.onerror = (err: ErrorEvent) => {
+    console.log("main error message " + err.message);
 }
 ```
 ```ts

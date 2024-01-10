@@ -58,15 +58,15 @@ import { BusinessError } from '@ohos.base';
 
 let myReason = 'test requestSuspendDelay';
 try {
-let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-    console.info("Request suspension delay will time out.");
-})
-let id = delayInfo.requestId;
-let time = delayInfo.actualDelayTime;
-console.info("The requestId is: " + id);
-console.info("The actualDelayTime is: " + time);
+    let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+        console.info("Request suspension delay will time out.");
+    })
+    let id = delayInfo.requestId;
+    let time = delayInfo.actualDelayTime;
+    console.info("The requestId is: " + id);
+    console.info("The actualDelayTime is: " + time);
 } catch (error) {
-console.error(`requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+    console.error(`requestSuspendDelay failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
 }
 ```
 

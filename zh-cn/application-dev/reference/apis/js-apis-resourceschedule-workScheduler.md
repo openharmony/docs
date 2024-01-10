@@ -178,7 +178,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 | 类型                              | 说明                                       |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | Promise对象，如果workId有效，则返回从WorkSchedulerService获取的任务。 |
+| Promise\<[WorkInfo](#workinfo)> | Promise对象，如果workId有效，则返回从WorkSchedulerService获取的任务，否则抛出异常。 |
 
 **错误码**：
 

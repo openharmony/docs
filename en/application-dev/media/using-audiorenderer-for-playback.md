@@ -1,4 +1,4 @@
-# Using AudioRenderer for Audio Playback
+# Using AudioRenderer for Audio Playback (ArkTS)
 
 The AudioRenderer is used to play Pulse Code Modulation (PCM) audio data. Unlike the AVPlayer, the AudioRenderer can perform data preprocessing before audio input. Therefore, the AudioRenderer is more suitable if you have extensive audio development experience and want to implement more flexible playback features.
 
@@ -10,7 +10,7 @@ The figure below shows the state changes of the AudioRenderer. After an **AudioR
 
 To prevent the UI thread from being blocked, most **AudioRenderer** calls are asynchronous. Each API provides the callback and promise functions. The following examples use the callback functions.
 
-**Figure 1** AudioRenderer state transition 
+**Figure 1** AudioRenderer state transition
 
 ![AudioRenderer state transition](figures/audiorenderer-status-change.png)
 
@@ -41,7 +41,6 @@ During application development, you are advised to use **on('stateChange')** to 
    };
    
    let audioRendererInfo: audio.AudioRendererInfo = {
-     content: audio.ContentType.CONTENT_TYPE_SPEECH,
      usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
      rendererFlags: 0
    };
@@ -65,6 +64,8 @@ During application development, you are advised to use **on('stateChange')** to 
 2. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+   
    audioRenderer.start((err: BusinessError) => {
      if (err) {
        console.error(`Renderer start failed, code is ${err.code}, message is ${err.message}`);
@@ -95,6 +96,8 @@ During application development, you are advised to use **on('stateChange')** to 
 4. Call **stop()** to stop rendering.
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+   
    audioRenderer.stop((err: BusinessError) => {
      if (err) {
        console.error(`Renderer stop failed, code is ${err.code}, message is ${err.message}`);
@@ -107,6 +110,8 @@ During application development, you are advised to use **on('stateChange')** to 
 5. Call **release()** to release the instance.
 
    ```ts
+   import { BusinessError } from '@ohos.base';
+   
    audioRenderer.release((err: BusinessError) => {
      if (err) {
        console.error(`Renderer release failed, code is ${err.code}, message is ${err.message}`);
@@ -135,8 +140,7 @@ let audioStreamInfo: audio.AudioStreamInfo = {
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // Encoding format.
 }
 let audioRendererInfo: audio.AudioRendererInfo = {
-  content: audio.ContentType.CONTENT_TYPE_MUSIC, // Media type.
-  usage: audio.StreamUsage.STREAM_USAGE_MEDIA, // Audio stream usage type.
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type.
   rendererFlags: 0 // AudioRenderer flag.
 }
 let audioRendererOptions: audio.AudioRendererOptions = {
@@ -201,9 +205,8 @@ async function start() {
       // buf indicates the audio data to be written to the buffer. Before calling AudioRenderer.write(), you can preprocess the audio data for personalized playback. The AudioRenderer reads the audio data written to the buffer for rendering.
       
       let writeSize: number = await (renderModel as audio.AudioRenderer).write(buf);
-        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // The rendering stops if the AudioRenderer is in the released state.
+        if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RELEASED) { // Release the instance if the AudioRenderer is in the released state.
         fs.close(file);
-        await (renderModel as audio.AudioRenderer).stop();
       }
       if ((renderModel as audio.AudioRenderer).state.valueOf() === audio.AudioState.STATE_RUNNING) {
         if (i === len - 1) { // The rendering stops if the file finishes reading.

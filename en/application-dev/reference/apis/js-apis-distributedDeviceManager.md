@@ -85,8 +85,10 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
   ```ts
   import { BusinessError } from '@ohos.base'
+  import deviceManager from '@ohos.distributedDeviceManager'
 
   try {
+    let dmInstance = deviceManager.createDeviceManager("ohos.samples.jshelloworld");
     deviceManager.releaseDeviceManager(dmInstance);
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -155,7 +157,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
   import { BusinessError } from '@ohos.base'
 
   try {
-    let deviceInfoList: Array<deviceManager.eviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+    let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error("getAvailableDeviceListSync errCode:" + e.code + ",errMessage:" + e.message);
@@ -529,15 +531,11 @@ For details about the error codes, see [Device Management Error Codes](../errorc
     authorizationType: number
   }
 
-  let discoverParam: DiscoverParam = {
-    discoverTargetType: 1
+  let discoverParam: Record<string, number> = {
+    'discoverTargetType': 1
   };
-
-  let filterOptions: FilterOptions = {
-    availableStatus: 1,
-    discoverDistance: 50,
-    authenticationStatus: 0,
-    authorizationType: 0
+  let filterOptions: Record<string, number> = {
+    'availableStatus': 0
   };
 
   try {
@@ -616,23 +614,16 @@ For details about the error codes, see [Device Management Error Codes](../errorc
     deviceId: string = ""
   }
 
-  interface BindParam {
-    bindType: number, // Authentication type. The value 1 means PIN authentication.
-    targetPkgName: string,
-    appName: string,
-    appOperation: string,
-    customDescription: string
-  }
-
   // Information about the device to authenticate. The information can be obtained from the device discovery result.
   let deviceId = "XXXXXXXX";
-  let bindParam: BindParam = {
+  let bindParam: Record<string, string | number> = {
     'authType': 1, // Authentication type. The value 1 means PIN authentication.
     targetPkgName: 'xxxx',
     appName: 'xxxx',
     appOperation: 'xxxx',
     customDescription: 'xxxx'
   }
+
   try {
     dmInstance.bindTarget(deviceId, bindParam, (err: BusinessError, data: Data) => {
       if (err) {
@@ -880,12 +871,12 @@ Unsubscribes from changes in the device state.
   }
 
   try {
-    dmInstance.off('deviceStatusChange', (data: Data) => {
-      console.info('deviceStatusChange' + JSON.stringify(data));
+    dmInstance.off('deviceStateChange', (data: Data) => {
+      console.info('deviceStateChange' + JSON.stringify(data));
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error("deviceStatusChange errCode:" + e.code + ",errMessage:" + e.message);
+    console.error("deviceStateChange errCode:" + e.code + ",errMessage:" + e.message);
   }
   ```
 

@@ -126,7 +126,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| SET_BUFFER_GEOMETRY | 设置本地窗口缓冲区几何图形， 函数中的可变参数是 [输入] int32_t height，[输入] int32_t width。 |
+| SET_BUFFER_GEOMETRY | 设置本地窗口缓冲区几何图形， 函数中的可变参数是 [输入]int32_t width ，[输入] int32_t height。 |
 | GET_BUFFER_GEOMETRY | 获取本地窗口缓冲区几何图形， 函数中的可变参数是 [输出] int32_t \*height， [输出] int32_t \*width。 |
 | GET_FORMAT | 获取本地窗口缓冲区格式， 函数中的可变参数是 [输出] int32_t \*format。 |
 | SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format。 |
@@ -235,6 +235,10 @@ OHNativeWindow* OH_NativeWindow_CreateNativeWindow (void * pSurface)
 
 返回一个指针，指向OHNativeWindow的结构体实例
 
+> **说明:**
+>
+> 此接口不支持使用，可通过[OH_NativeImage_AcquireNativeWindow](_o_h___native_image.md#oh_nativeimage_acquirenativewindow)获取，或通过XComponent创建。
+
 
 ### OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer()
 
@@ -259,6 +263,9 @@ OHNativeWindowBuffer* OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer 
 
 返回一个指针，指向OHNativeWindowBuffer的结构体实例
 
+> **说明:**
+>
+> 此接口不支持使用。
 
 ### OH_NativeWindow_DestroyNativeWindow()
 

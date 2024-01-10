@@ -3,7 +3,7 @@
 
 ## 历史记录导航
 
-使用者在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis/js-apis-webview.md#forward)和[backward()](../reference/apis/js-apis-webview.md#backward)接口向前/向后浏览上一个/下一个历史记录。
+在前端页面点击网页中的链接时，Web组件默认会自动打开并加载目标网址。当前端页面替换为新的加载链接时，会自动记录已经访问的网页地址。可以通过[forward()](../reference/apis/js-apis-webview.md#forward)和[backward()](../reference/apis/js-apis-webview.md#backward)接口向前/向后浏览上一个/下一个历史记录。
 
   在下面的示例中，点击应用的按钮来触发前端页面的后退操作。
 
@@ -35,11 +35,11 @@ struct WebComponent {
 
 ## 页面跳转
 
-当点击网页中的链接需要跳转到应用内其他页面时，可以通过使用Web组件的[onUrlLoadIntercept()](../reference/arkui-ts/ts-basic-components-web.md#onurlloadintercept)接口来实现。
+当点击网页中的链接需要跳转到应用内其他页面时，可以通过使用Web组件的[onLoadIntercept()](../reference/arkui-ts/ts-basic-components-web.md#onloadintercept10)接口来实现。
 
 在下面的示例中，应用首页Index.ets加载前端页面route.html，在前端route.html页面点击超链接，可跳转到应用的ProfilePage.ets页面。
 
-- 应用首页index.ets页面代码。
+- 应用首页Index.ets页面代码。
   
   ```ts
   // index.ets
@@ -53,9 +53,9 @@ struct WebComponent {
     build() {
       Column() {
         Web({ src: $rawfile('route.html'), controller: this.webviewController })
-          .onUrlLoadIntercept((event) => {
+          .onLoadIntercept((event) => {
             if (event) {
-              let url: string = event.data as string;
+              let url: string = event.data.toString();
               if (url.indexOf('native://') === 0) {
                 // 跳转其他界面
                 router.pushUrl({ url:url.substring(9) })
@@ -121,10 +121,10 @@ Web组件可以实现点击前端页面超链接跳转到其他应用。
   
     build() {
       Column() {
-        Web({ src: $rawfile('xxx.html'), controller: this.webviewController})
-          .onUrlLoadIntercept((event) => {
+        Web({ src: $rawfile('call.html'), controller: this.webviewController})
+          .onLoadIntercept((event) => {
             if (event) {
-              let url: string = event.data as string;
+              let url: string = event.data.toString();
               // 判断链接是否为拨号链接
               if (url.indexOf('tel://') === 0) {
                 // 跳转拨号界面

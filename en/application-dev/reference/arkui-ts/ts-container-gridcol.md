@@ -50,7 +50,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| xs  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the mininum-width device.   |
+| xs  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the minimum-width device.   |
 | sm  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the small-width device.     |
 | md  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the medium-width device.   |
 | lg  | number | No   | Number of grid columns occupied by the **\<GridCol>** component on the large-width device.     |

@@ -9,18 +9,16 @@
 
 ## 需要权限
 
-使用网络时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
+跳转的目标应用使用网络时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[权限申请声明](../../security/accesstoken-guidelines.md)。
 
 ## 子组件
 
-可以包含子组件。
+可以包含Image子组件。
 
 
 ## 接口
 
 Hyperlink(address: string | Resource, content?: string | Resource)
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -31,7 +29,7 @@ Hyperlink(address: string | Resource, content?: string | Resource)
 
 ## 属性
 
-仅支持以下属性：
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |

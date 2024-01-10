@@ -33,7 +33,7 @@ Obtains the device screen-off time through the specified device administrator ap
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;number&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the device screen-off time obtained. Otherwise, **err** is an error object.      |
+| callback | AsyncCallback&lt;number&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the screen-off time in ms. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -84,7 +84,7 @@ Obtains the device screen-off time through the specified device administrator ap
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise used to return the device screen-off time. |
+| Promise&lt;number&gt; | Promise used to return the screen-off time, in ms. |
 
 **Error codes**
 

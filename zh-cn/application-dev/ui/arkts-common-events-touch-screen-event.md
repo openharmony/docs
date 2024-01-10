@@ -52,7 +52,10 @@ struct IfElseTransition {
   }
 }
 ```
+**图2**  通过按钮的点击事件控制图片的显示和隐藏
 
+
+![ClickEventControl.gif](figures/ClickEventControl.gif)
 
 ## 拖拽事件
 
@@ -244,7 +247,7 @@ struct Index {
   }
 }
 ```
-
+![zh-cn_image_drag_drop](figures/zh-cn_image_drag_drop.gif)
 
 ## 触摸事件
 

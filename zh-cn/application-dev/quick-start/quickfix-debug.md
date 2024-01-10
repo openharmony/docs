@@ -1,6 +1,6 @@
 # 快速修复命令行调试开发指导
 
-当前阶段，OpenHarmony为开发者提供了命令行的调试开发工具可供使用。比如，包名为com.ohos.quickfix的示例应用，版本号为1000000。该应用的当前版本运行中有某问题需要修复，此时，开发者可参考如下指导使用快速修复能力解决应用问题。
+当前阶段，系统为开发者提供了命令行的调试开发工具可供使用。比如，包名为com.ohos.quickfix的示例应用，版本号为1000000。该应用的当前版本运行中有某问题需要修复，此时，开发者可参考如下指导使用快速修复能力解决应用问题。
 
 ## 编写配置文件patch.json
 
@@ -21,14 +21,14 @@
             "default",
             "tablet"
         ],
-        "originalModuleHash" : "11223344556677889900" // 待修复hap包的sha256值
+        "originalModuleHash" : "11223344556677889900" // 待修复HAP包的SHA256值，可采用SHA256生成器自行生成
     }
 }
 ```
 
 ## 生成快速修复文件
-### 快速修复TS文件的代码
-* 在DevEco Studio中修改TS文件后，编译HAP，可以在工程目录下找到对应的abc文件，如`build\default\cache\default\LegacyCompileETS\jsbundle\temporary\pages\index.abc`。
+### 快速修复ArkTS文件的代码
+* 在DevEco Studio中修改ArkTS文件后，编译HAP，可以在工程目录下找到对应的abc文件，如`build\default\cache\default\LegacyCompileETS\jsbundle\temporary\pages\index.abc`。
 
 ### 快速修复C++中的代码
 
@@ -52,14 +52,14 @@ $ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path li
 命令行参数介绍：
 | 命令 |说明  | 备注|
 | --- | --- |---|
-| mode  |模式  | 必选|
-| json-path|patch.json路径|必选|
-| lib-path|.so快速修复文件路径，该路径可参考[快速修复包结构](quickfix-principles.md#快速修复包结构)|可选|
-| ets-path|.abc快速修复文件路径|可选|
+| mode  | 打包的模式。  | 必选|
+| json-path|patch.json的路径。|必选|
+| lib-path|.so快速修复文件所在的文件夹路径，该路径可参考[快速修复包结构](quickfix-principles.md#快速修复包结构)。|可选|
+| ets-path|.abc快速修复文件所在的文件夹路径。|可选|
 
 ## 快速修复包的签名
 
-签名与hap签名相同，将上述生成的entry-default-unsigned.hqf包，通过[签名工具](../security/hapsigntool-guidelines.md)进行签名。可以使用本地OpenHarmony SDK路径的`toolchains`文件夹下的`hap-sign-tool.jar`，命令如下：
+签名与HAP签名相同，将上述生成的entry-default-unsigned.hqf包，通过[签名工具](../security/hapsigntool-guidelines.md)进行签名。可以使用本地OpenHarmony SDK路径的`toolchains`文件夹下的`hap-sign-tool.jar`，命令如下：
 
 ```shell
 $ java -jar hap-sign-tool.jar sign-app -keyAlias "OpenHarmony Application Release" -signAlg "SHA256withECDSA" -mode "localSign" -appCertFile "OpenHarmonyApplication.pem" -profileFile "ohos_provision_release.p7b" -inFile "entry-default-unsigned.hqf" -keystoreFile "OpenHarmony.p12" -outFile "entry-signed-release.hqf" -keyPwd "123456" -keystorePwd "123456"

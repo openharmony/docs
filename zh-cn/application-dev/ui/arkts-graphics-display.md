@@ -67,7 +67,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   调用方式：
 
   ```
-  Image($rawfile('example1'))
+  Image($rawfile('example1.png'))
   ```
 
 - 媒体库file://data/storage
@@ -145,7 +145,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
 1. 创建PixelMap状态变量。
 
    ```ts
-   @State image: PixelMap = undefined;
+   @State image: PixelMap | undefined = undefined;
    ```
 
 2. 引用多媒体。
@@ -176,7 +176,8 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
        ```ts
        let code: http.ResponseCode | number = OutData.responseCode
        if (ResponseCode.ResponseCode.OK === code) {
-         let imageSource: image.ImageSource = image.createImageSource(OutData.result.toString());
+         let imageData: ArrayBuffer = OutData.result as ArrayBuffer;
+         let imageSource: image.ImageSource = image.createImageSource(imageData);
        
          class tmp {
            height: number = 100
@@ -193,7 +194,7 @@ PixelMap是图片解码后的像素图，具体用法请参考[图片开发指�
          } // 创建图片大小
        
          class imagetmp {
-           image: PixelMap
+           image: PixelMap | undefined = undefined
        
            set(val: PixelMap) {
              this.image = val

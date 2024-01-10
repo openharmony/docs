@@ -63,16 +63,22 @@ onHover(event: (isHover?: boolean) => void)
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered: boolean = false;
+  @State hoverText: string = 'Not Hover';
+  @State Color: Color = Color.Gray;
 
   build() {
     Column() {
-      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+      Button(this.hoverText)
         .width(200).height(100)
-        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .backgroundColor(this.Color)
         .onHover((isHover?: boolean) => { // 使用onHover接口监听鼠标是否悬浮在Button组件上
-          if(isHover){
-            this.isHovered = isHover;
+          if (isHover) {
+            this.hoverText = 'Hovered!';
+            this.Color = Color.Green;
+          }
+          else {
+            this.hoverText = 'Not Hover';
+            this.Color = Color.Gray;
           }
         })
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
@@ -101,10 +107,10 @@ onMouse(event: (event?: MouseEvent) => void)
 ```
 
 
-鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常用于开发者自定义的鼠标行为逻辑处理。
+鼠标事件回调。绑定该API的组件每当鼠标指针在该组件内产生行为（MouseAction）时，触发事件回调，参数为[MouseEvent](../reference/arkui-ts/ts-universal-mouse-key.md#mouseevent对象说明)对象，表示触发此次的鼠标事件。该事件支持自定义冒泡设置，默认父子冒泡。常用于开发者自定义的鼠标行为逻辑处理。
 
 
-开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（displayX/displayY/windowX/windowY/x/y）、按键（[MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)）、行为（[MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)）、时间戳（timestamp）、交互组件的区域（[EventTarget](../reference/arkui-ts/ts-universal-events-click.md)）、事件来源（[SourceType](../reference/arkui-ts/ts-gesture-settings.md)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
+开发者可以通过回调中的MouseEvent对象获取触发事件的坐标（displayX/displayY/windowX/windowY/x/y）、按键（[MouseButton](../reference/arkui-ts/ts-appendix-enums.md#mousebutton)）、行为（[MouseAction](../reference/arkui-ts/ts-appendix-enums.md#mouseaction)）、时间戳（timestamp）、交互组件的区域（[EventTarget](../reference/arkui-ts/ts-universal-events-click.md#eventtarget8对象说明)）、事件来源（[SourceType](../reference/arkui-ts/ts-gesture-settings.md#sourcetype枚举说明)）等。MouseEvent的回调函数stopPropagation用于设置当前事件是否阻止冒泡。
 
 
 >**说明：**
@@ -118,28 +124,34 @@ onMouse(event: (event?: MouseEvent) => void)
 @Entry
 @Component
 struct MouseExample {
-  @State isHovered: boolean = false;
   @State buttonText: string = '';
   @State columnText: string = '';
+  @State hoverText: string = 'Not Hover';
+  @State Color: Color = Color.Gray;
 
   build() {
     Column() {
-      Button(this.isHovered ? 'Hovered!' : 'Not Hover')
+      Button(this.hoverText)
         .width(200)
         .height(100)
-        .backgroundColor(this.isHovered ? Color.Green : Color.Gray)
+        .backgroundColor(this.Color)
         .onHover((isHover?: boolean) => {
-          if(isHover){
-            this.isHovered = isHover
+          if (isHover) {
+            this.hoverText = 'Hovered!';
+            this.Color = Color.Green;
+          }
+          else {
+            this.hoverText = 'Not Hover';
+            this.Color = Color.Gray;
           }
         })
-       .onMouse((event?: MouseEvent) => {    // 设置Button的onMouse回调
-          if(event){
+        .onMouse((event?: MouseEvent) => { // 设置Button的onMouse回调
+          if (event) {
             this.buttonText = 'Button onMouse:\n' + '' +
-            'button = ' + event.button + '\n' +
-            'action = ' + event.action + '\n' +
-            'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
-            'windowXY=(' + event.windowX + ',' + event.windowY + ')';
+              'button = ' + event.button + '\n' +
+              'action = ' + event.action + '\n' +
+              'x,y = (' + event.x + ',' + event.y + ')' + '\n' +
+              'windowXY=(' + event.windowX + ',' + event.windowY + ')';
           }
         })
       Divider()
@@ -152,8 +164,8 @@ struct MouseExample {
     .justifyContent(FlexAlign.Center)
     .borderWidth(2)
     .borderColor(Color.Red)
-    .onMouse((event?: MouseEvent) => {    // Set the onMouse callback for the column.
-      if(event){
+    .onMouse((event?: MouseEvent) => { // Set the onMouse callback for the column.
+      if (event) {
         this.columnText = 'Column onMouse:\n' + '' +
           'button = ' + event.button + '\n' +
           'action = ' + event.action + '\n' +
@@ -334,6 +346,7 @@ struct KeyEventExample {
   build() {
     Column() {
       Button('onKeyEvent')
+        .defaultFocus(true)
         .width(140).height(70)
         .onKeyEvent((event?: KeyEvent) => { // 给Button设置onKeyEvent事件
           if(event){
@@ -375,7 +388,7 @@ struct KeyEventExample {
 ```
 
 
-上述示例中给组件Button和其父容器Column绑定onKeyEvent。应用打开页面加载后，组件树上第一个可获焦的非容器组件自动获焦，该应用只有一个Button组件，因此该组件会自动获焦，由于Button是Column的子节点，Button获焦也同时意味着Column获焦。获焦机制见[焦点事件](arkts-common-events-focus-event.md)。
+上述示例中给组件Button和其父容器Column绑定onKeyEvent。应用打开页面加载后，组件树上第一个可获焦的非容器组件自动获焦，设置Button为当前页面的默认焦点，由于Button是Column的子节点，Button获焦也同时意味着Column获焦。获焦机制见[焦点事件](arkts-common-events-focus-event.md)。
 
 
 ![zh-cn_image_0000001511421324](figures/zh-cn_image_0000001511421324.gif)
@@ -394,45 +407,59 @@ struct KeyEventExample {
 
 
 ```ts
-class butypef{
-  buttonType:string = ''
-  set(val:string){
-    this.buttonType = val
-  }
-  get(){
-    return this.buttonType
-  }
-}
+// xxx.ets
 @Entry
 @Component
-struct MouseExample {
+struct KeyEventExample {
+  @State buttonText: string = '';
+  @State buttonType: string = '';
+  @State columnText: string = '';
+  @State columnType: string = '';
+
   build() {
     Column() {
       Button('onKeyEvent')
+        .defaultFocus(true)
         .width(140).height(70)
         .onKeyEvent((event?: KeyEvent) => {
           // 通过stopPropagation阻止事件冒泡
           if(event){
-            if(event.stopPropagation) {
+            if(event.stopPropagation){
               event.stopPropagation();
             }
             if (event.type === KeyType.Down) {
-              let butset = new butypef()
-              butset.set('Down')
+              this.buttonType = 'Down';
             }
             if (event.type === KeyType.Up) {
-              let butset = new butypef()
-              butset.set('Up')
+              this.buttonType = 'Up';
             }
-            let butfset = new butypef()
-            let butset = new butypef()
-            butfset.set('Button: \n' +
-              'KeyType:' + butset.get() + '\n' +
+            this.buttonText = 'Button: \n' +
+              'KeyType:' + this.buttonType + '\n' +
               'KeyCode:' + event.keyCode + '\n' +
-              'KeyText:' + event.keyText)
+              'KeyText:' + event.keyText;
           }
         })
-    }
+
+      Divider()
+      Text(this.buttonText).fontColor(Color.Green)
+
+      Divider()
+      Text(this.columnText).fontColor(Color.Red)
+    }.width('100%').height('100%').justifyContent(FlexAlign.Center)
+    .onKeyEvent((event?: KeyEvent) => { // 给父组件Column设置onKeyEvent事件
+      if(event){
+        if (event.type === KeyType.Down) {
+          this.columnType = 'Down';
+        }
+        if (event.type === KeyType.Up) {
+          this.columnType = 'Up';
+        }
+        this.columnText = 'Column: \n' +
+          'KeyType:' + this.buttonType + '\n' +
+          'KeyCode:' + event.keyCode + '\n' +
+          'KeyText:' + event.keyText;
+      }
+    })
   }
 }
 ```

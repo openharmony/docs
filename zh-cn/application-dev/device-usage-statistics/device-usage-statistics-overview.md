@@ -36,5 +36,4 @@
   解除注册应用分组变化回调监听。
 
 ## 设备使用信息统计使用权限
-- 设备使用信息统计的isIdleState、queryBundleEvents、queryBundleStatsInfos、queryBundleStatsInfoByInterval、queryDeviceEventStats、queryNotificationEventStats、queryAppGroup(bundleName)、setAppGroup、registerAppGroupCallBack、unregisterAppGroupCallBack、queryModuleUsageRecords和queryModuleUsageRecords(maxnum)接口为系统api，调用前需要申请ohos.permission.BUNDLE_ACTIVE_INFO权限。
-- 设备使用信息统计的queryCurrentBundleEvents、queryAppGroup()接口为三方api，调用时不需要申请权限。
+- 设备使用信息统计的接口为系统api，调用前需要申请ohos.permission.BUNDLE_ACTIVE_INFO权限。

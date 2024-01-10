@@ -48,7 +48,7 @@ struct ComponentDemo {
 
 ## 打造组件定制化动效
 
-部分组件支持通过[属性动画](arkts-attribute-animation-overview.md)和[转场动画](arkts-transition-overview.md)自定义组件子Item的动效，实现定制化动画效果。例如，[Scorll](../reference/arkui-ts/ts-container-scroll.md)组件中可对各个子组件在滑动时的动画效果进行定制。
+部分组件支持通过[属性动画](arkts-attribute-animation-overview.md)和[转场动画](arkts-transition-overview.md)自定义组件子Item的动效，实现定制化动画效果。例如，[Scroll](../reference/arkui-ts/ts-container-scroll.md)组件中可对各个子组件在滑动时的动画效果进行定制。
 
 - 在滑动或者点击操作时通过改变各个Scroll子组件的仿射属性来实现各种效果。
 
@@ -56,7 +56,7 @@ struct ComponentDemo {
 
 - 在滑动回调onScrollStop或手势结束回调中对滑动的最终位置进行微调。
 
-定制Scroll组件子组件滑动动效示例代码和效果如下。
+定制Scroll组件滑动动效示例代码和效果如下。
 
 
 ```ts
@@ -103,9 +103,9 @@ export class WindowManager {
       }
 
       let winWidth = this.getMainWindowWidth();
-      AppStorage.SetOrCreate<number>('mainWinWidth', winWidth)
+      AppStorage.setOrCreate<number>('mainWinWidth', winWidth)
       let winHeight = this.getMainWindowHeight();
-      AppStorage.SetOrCreate<number>('mainWinHeight', winHeight)
+      AppStorage.setOrCreate<number>('mainWinHeight', winHeight)
       let context:UIAbility = new UIAbility()
       context.context.eventHub.emit("windowSizeChange", winWidth, winHeight)
     })
@@ -119,10 +119,10 @@ export class WindowManager {
   }
 
   private onPortrait(mediaQueryResult: mediaquery.MediaQueryResult) {
-    if (mediaQueryResult.matches == AppStorage.Get<boolean>('isLandscape')) {
+    if (mediaQueryResult.matches == AppStorage.get<boolean>('isLandscape')) {
       return
     }
-    AppStorage.SetOrCreate<boolean>('isLandscape', mediaQueryResult.matches)
+    AppStorage.setOrCreate<boolean>('isLandscape', mediaQueryResult.matches)
     this.loadDisplayInfo()
   }
 
@@ -138,8 +138,8 @@ export class WindowManager {
 
   private loadDisplayInfo() {
     this.displayInfo = display.getDefaultDisplaySync()
-    AppStorage.SetOrCreate<number>('displayWidth', this.getDisplayWidth())
-    AppStorage.SetOrCreate<number>('displayHeight', this.getDisplayHeight())
+    AppStorage.setOrCreate<number>('displayWidth', this.getDisplayWidth())
+    AppStorage.setOrCreate<number>('displayHeight', this.getDisplayHeight())
   }
 
   /**
@@ -262,29 +262,27 @@ export struct TaskSwitchMainPage {
       // 滑动组件
       Scroll(this.scroller) {
         Row({ space: this.cardSpace }) {
-          ForEach(taskDataArr, (item:TaskData, index:number|undefined) => {
-            if(index){
-              Column()
-                .width(this.cardWidth)
-                .height(this.cardHeight)
-                .backgroundColor(item.bgColor)
-                .borderStyle(BorderStyle.Solid)
-                .borderWidth(1)
-                .borderColor(0xAFEEEE)
-                .borderRadius(15)
-                  // 计算子组件的仿射属性
-                .scale((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ?
-                  {
-                    x: 1.1 - Math.abs(0.5 - this.getProgress(index)),
-                    y: 1.1 - Math.abs(0.5 - this.getProgress(index))
-                  } :
-                  { x: 1, y: 1 })
-                .animation({ curve: Curve.Smooth })
-                  // 滑动动画
-                .translate({ x: this.cardOffset })
-                .animation({ curve: curves.springMotion() })
-                .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
-            }
+          ForEach(taskDataArr, (item:TaskData, index) => {
+            Column()
+              .width(this.cardWidth)
+              .height(this.cardHeight)
+              .backgroundColor(item.bgColor)
+              .borderStyle(BorderStyle.Solid)
+              .borderWidth(1)
+              .borderColor(0xAFEEEE)
+              .borderRadius(15)
+                // 计算子组件的仿射属性
+              .scale((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ?
+                {
+                  x: 1.1 - Math.abs(0.5 - this.getProgress(index)),
+                  y: 1.1 - Math.abs(0.5 - this.getProgress(index))
+                } :
+                { x: 1, y: 1 })
+              .animation({ curve: Curve.Smooth })
+                // 滑动动画
+              .translate({ x: this.cardOffset })
+              .animation({ curve: curves.springMotion() })
+              .zIndex((this.getProgress(index) >= 0.4 && this.getProgress(index) <= 0.6) ? 2 : 1)
           }, (item:TaskData) => item.toString())
         }
         .width((this.cardWidth + this.cardSpace) * (taskDataArr.length + 1))

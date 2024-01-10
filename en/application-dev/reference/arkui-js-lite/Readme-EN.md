@@ -4,7 +4,8 @@
   - [File Organization](js-framework-file.md)
   - ["js" Tag](js-framework-js-tag.md)
   - [app.js](js-framework-js-file.md)
-
+  - [Lifecycle](js-framework-lifecycle.md)
+  - [Multi-Language Capability](js-framework-localization.md)
   - Syntax
     - [HML](js-framework-syntax-hml.md)
     - [CSS](js-framework-syntax-css.md)

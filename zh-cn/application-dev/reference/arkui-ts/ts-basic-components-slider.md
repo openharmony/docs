@@ -24,8 +24,8 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | -------- | -------- | -------- | -------- |
 | value | number | 否 | 当前进度值。<br/>默认值：参数min<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
-| max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min/max，靠近min取min，靠近max取max。 |
-| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0或百分比的值时，按默认值显示。 |
+| max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
+| step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0的值时，按默认值显示。 |
 | style | [SliderStyle](#sliderstyle枚举说明) | 否 | 设置Slider的滑块与滑轨显示样式。<br/>默认值：SliderStyle.OutSet |
 | direction<sup>8+</sup> | [Axis](ts-appendix-enums.md#axis) | 否 | 设置滑动条滑动方向为水平或竖直方向。<br/>默认值：Axis.Horizontal |
 | reverse<sup>8+</sup> | boolean | 否 | 设置滑动条取值范围是否反向，横向Slider默认为从左往右滑动，竖向Slider默认为从上往下滑动。<br/>默认值：false |
@@ -39,23 +39,25 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | OutSet | 滑块在滑轨上。 |
 | InSet | 滑块在滑轨内。 |
 
-支持除触摸热区以外的通用属性设置。
+## 属性
+
+支持除触摸热区以外的[通用属性](ts-universal-attributes-size.md)。
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockColor`可设置默认圆形滑块颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无填充，设置`blockColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockColor`可设置自定义形状的填充颜色。 |
-| trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| blockColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块的颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>默认值：'#ffffff'。<br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockColor`可设置默认圆形滑块颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无填充，设置`blockColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockColor`可设置自定义形状的填充颜色。 |
+| trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>默认值：'#19182431'。|
+| selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>默认值：'#007dff'。 |
 | showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | showTips | value: boolean,<br/>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | value：设置滑动时是否显示气泡提示。<br/>默认值：false <br/>content：设置气泡提示的文本内容，默认显示当前百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距或者边距比较小时，tip会被截断。|
 | trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp<br/>从APIversion9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于等于0的值时，按默认值显示。 |
-| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。<br/>**说明：** <br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderColor`可设置默认圆形滑块描边颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderColor`可设置自定义形状中线的颜色。 |
+| blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。<br/>**说明：** <br/>默认值：'#000000'。<br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderColor`可设置默认圆形滑块描边颜色；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderColor`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderColor`可设置自定义形状中线的颜色。 |
 | blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | 设置滑块描边粗细。<br/>**说明：** <br/>当滑块形状设置为`SliderBlockType.DEFAULT`时，`blockBorderWidth`可设置默认圆形滑块描边粗细；<br/>当滑块形状设置为`SliderBlockType.IMAGE`时，滑块无描边，设置`blockBorderWidth`不生效；<br/>当滑块形状设置为`SliderBlockType.SHAPE`时，`blockBorderWidth`可设置自定义形状中线的粗细。 |
-| stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置刻度颜色。 |
-| trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | 设置底板圆角半径。 |
-| blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | 设置滑块大小。 |
-| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10) | 设置滑块形状参数。 |
-| stepSize<sup>10+</sup> | [Length](ts-types.md#length) | 设置刻度大小（直径）。 |
+| stepColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置刻度颜色。<br/>**说明：** <br/>默认值：'#19182431'。 |
+| trackBorderRadius<sup>10+</sup> | [Length](ts-types.md#length) | 设置底板圆角半径。<br/>**说明：** <br/>默认值：'2vp'。 |
+| blockSize<sup>10+</sup> | [SizeOptions](ts-types.md#sizeoptions) | 设置滑块大小。 <br/>**说明：** <br/>默认值：'16vp'。|
+| blockStyle<sup>10+</sup> | [SliderBlockStyle](#sliderblockstyle10对象说明) | 设置滑块形状参数。<br/>**说明：** <br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
+| stepSize<sup>10+</sup> | [Length](ts-types.md#length) | 设置刻度大小（直径）。 <br/>**说明：** <br/>默认值：'4vp'|
 
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
@@ -63,9 +65,9 @@ Slider组件滑块形状参数。
 
 | 名称  | 类型                                                         | 必填 | 说明                                                         |
 | ----- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type  | [SliderBlockType](#sliderblocktype10)                        | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
+| type  | [SliderBlockType](#sliderblocktype10枚举说明)                | 是   | 设置滑块形状。<br/>默认值：SliderBlockType.DEFAULT，使用圆形滑块。 |
 | image | [ResourceStr](ts-types.md#resourcestr)                       | 否   | 设置滑块图片资源。<br />图片显示区域大小由blockSize属性控制，请勿输入尺寸过大的图片。 |
-| shape | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp; | 否   | 设置滑块使用的自定义形状。                                              |
+| shape | [Circle](ts-drawing-components-circle.md)&nbsp;\|&nbsp;[Ellipse](ts-drawing-components-ellipse.md)&nbsp;\|&nbsp;[Path](ts-drawing-components-path.md)&nbsp;\|&nbsp;[Rect](ts-drawing-components-rect.md)&nbsp; | 否   | 设置滑块使用的自定义形状。                                   |
 
 ## SliderBlockType<sup>10+</sup>枚举说明
 

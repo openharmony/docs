@@ -17,12 +17,6 @@ import common from '@ohos.app.ability.common';
 
 Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
 
-```ts
-import common from '@ohos.app.ability.common';
-
-let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
-```
-
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
 
 on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): **number**;
@@ -99,7 +93,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'abilityLifecycle', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'abilityLifecycle', callbackId: **number**,  callback: AsyncCallback\<void>): void
 
 Deregisters the listener that monitors the ability lifecycle of the application.
 
@@ -217,7 +211,7 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number, callback: AsyncCallback\<void>)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environment', callbackId: **number**,  callback: AsyncCallback\<void>): void
 
 Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result.
 
@@ -254,9 +248,9 @@ export default class EntryAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'environment', callbackId: number)
 
-off(type: 'environment', callbackId: **number**,  callback: AsyncCallback<**void**>): **void**;
+off(type: 'environment', callbackId: **number**): **void**;
 
-Deregisters the listener for system environment changes. This API uses an asynchronous callback to return the result.
+Deregisters the listener for system environment changes.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -266,6 +260,7 @@ Deregisters the listener for system environment changes. This API uses an asynch
 | ------------- | -------- | ---- | -------------------------- |
 | type | 'environment' | Yes  | Event type.|
 | callbackId    | number   | Yes  | ID of the listener to deregister.  |
+| callback      | AsyncCallback\<void> | Yes  | Callback unsed for unregistration. |
 
 **Example**
 
@@ -284,7 +279,7 @@ export default class MyAbility extends Ability {
 
 ## ApplicationContext.on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback)<sup>10+</sup>
 
-on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): **void**;
+on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): void
 
 Registers a listener for application foreground/background state changes. This API uses an asynchronous callback to return the result.
 
@@ -326,7 +321,7 @@ export default class MyAbility extends UIAbility {
 
 ## ApplicationContext.off(type: 'applicationStateChange')<sup>10+</sup>
 
-off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback):  **void**;
+off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): void
 
 Deregisters all the listeners for application foreground/background state changes.
 
@@ -352,7 +347,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation
 
 getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 
@@ -393,7 +388,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.getRunningProcessInformation<sup>9+</sup>
+## ApplicationContext.getRunningProcessInformation
 
 getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>>): void;
 
@@ -401,11 +396,11 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**Return value**
+**Parameters**
 
-| Type| Description|
-| -------- | -------- |
-|AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | Callback used to return the API call result and the process running information. You can perform error handling or custom processing in this callback.|
+| Name       | Type    | Mandatory| Description                      |
+| ------------- | -------- | ---- | -------------------------- |
+| callback    | AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>>   | Yes  | Callback used to return the process information.|
 
 **Error codes**
 
@@ -435,7 +430,7 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.killAllProcesses<sup>9+</sup>
+## ApplicationContext.killAllProcesses
 
 killAllProcesses(): Promise\<void\>;
 
@@ -470,19 +465,19 @@ export default class MyAbility extends UIAbility {
 }
 ```
 
-## ApplicationContext.killAllProcesses<sup>9+</sup>
+## ApplicationContext.killAllProcesses
 
-killAllProcesses(callback: AsyncCallback\<void\>);
+killAllProcesses(callback: AsyncCallback\<void\>): void
 
 Kills all the processes where the application is located. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**Return value**
+**Parameters**
 
-| Type| Description|
-| -------- | -------- |
-|AsyncCallback\<void\> | Callback used to return the result.|
+| Name       | Type    | Mandatory| Description                      |
+| ------------- | -------- | ---- | -------------------------- |
+| callback    | AsyncCallback\<void\>   | Yes  | Callback used to return the result.|
 
 **Error codes**
 

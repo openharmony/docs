@@ -14,7 +14,7 @@ HTTP数据请求功能主要由http模块提供。
 
 涉及的接口如下表，具体的接口说明请参考[API文档](../reference/apis/js-apis-http.md)。
 
-| 接口名                                    | 功能描述                            |
+| 接口名                                    | 描述                                |
 | ----------------------------------------- | ----------------------------------- |
 | createHttp()                              | 创建一个http请求。                  |
 | request()                                 | 根据URL地址，发起HTTP网络请求。     |
@@ -172,5 +172,3 @@ httpRequest.requestInStream(
 - [上传和下载（ArkTS）(API10)](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Connectivity/UploadAndDownLoad)
 
 - [Http（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Release/code/BasicFeature/Connectivity/Http)
-
-- [新闻数据加载（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/NewsDataArkTS)

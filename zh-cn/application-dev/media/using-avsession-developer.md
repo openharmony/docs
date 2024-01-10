@@ -43,9 +43,9 @@
    // 创建session
    let context: Context = getContext(this);
    async function createSession() {
-   let type: AVSessionManager.AVSessionType = 'audio';
-   let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
-   await session.activate();
+     let type: AVSessionManager.AVSessionType = 'audio';
+     let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+     await session.activate();
      console.info(`session create done : sessionId : ${session.sessionId}`);
    }
    ```
@@ -67,7 +67,7 @@
      // 播放器逻辑··· 引发媒体信息与播放状态的变更
      // 设置必要的媒体信息
      let metadata: AVSessionManager.AVMetadata = {
-       assetId: '0',
+       assetId: '0', // 由应用指定，用于标识应用媒体库里的媒体
        title: 'TITLE',
        artist: 'ARTIST'
      };
@@ -211,9 +211,9 @@
 
 6. 注册播控命令事件监听，便于响应用户通过媒体会话控制方，例如播控中心，下发的播控命令。
 
-   在session侧注册的监听分为`固定播控命令`和`高级播控事件`两种。
+   在Session侧注册的监听分为`固定播控命令`和`高级播控事件`两种。
 
-   4.1 固定控制命令的监听
+   6.1 固定控制命令的监听
 
    > **说明：**
    >
@@ -279,7 +279,7 @@
    }
    ```
 
-   4.2 高级播控事件的监听
+   6.2 高级播控事件的监听
 
    Session侧的可以注册的高级播控事件主要包括：
 

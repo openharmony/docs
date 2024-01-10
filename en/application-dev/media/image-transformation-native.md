@@ -4,7 +4,6 @@ You will learn how to use native image APIs to process images.
 
 ## How to Develop
 
-
 **Adding Dependencies**
 
 Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libpixelmap_ndk.z.so** of the image and **libhilog_ndk.z.so** of the log to the **target_link_libraries** dependency.
@@ -39,6 +38,11 @@ EXTERN_C_END
 For details about the APIs, see [Image API Reference](../reference/native-apis/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs. The sample code is as follows:
+
+Open **src/main/cpp/hello.cpp**, and add the reference file.
+```c++
+#include<multimedia/image_framework/image_pixel_map_napi.h>
+```
     
 1. Obtain the **PixelMap** information and store the information to the **OhosPixelMapInfo** struct.
    ```c++

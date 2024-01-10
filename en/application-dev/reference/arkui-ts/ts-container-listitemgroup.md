@@ -28,13 +28,13 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 | header              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Header of the list item group.                                 |
 | footer              | [CustomBuilder](ts-types.md#custombuilder8)         | No  | Footer of the list item group.                                 |
 | space               | number \| string                          | No  | Spacing between list items. This parameter is valid only between list items, but not between the header and list item or between the footer and list item.|
-| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the default card style, the parent **\<List>** component has its **listDirection** attribute fixed at **Axis.Vertical** and its **alignListItem** attribute defaulted at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group.|
+| style<sup>10+</sup> | [ListItemGroupStyle](#listitemgroupstyle10) | No  | Style of the list item group.<br>Default value: **ListItemGroupStyle.NONE**<br>If this parameter is set to **ListItemGroupStyle.NONE**, no style is applied.<br>If this parameter is set to **ListItemGroupStyle.CARD**, the default card style is applied, but only when **ListItemStyle.CARD** is set for [\<ListItem>](ts-container-listitem.md).<br>In the default card style, list items can be in focus, hover, press, selected, or disable style depending on their state.<br>**NOTE**<br>In the default card style, the parent **\<List>** component has its **listDirection** attribute fixed at **Axis.Vertical** and its **alignListItem** attribute defaulted at **ListItemAlign.Center**; the **header** and **footer** parameters cannot be set for the list item group.<br>If **ListItemGroupStyle.CARD** is set and **ListItemStyle.CARD** is not, only some card styles and functions are available.|
 
 ## Attributes
 
 | Name| Type|  Description|
 | -------- | -------- | -------- |
-| divider | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start of the list.<br>- **endMargin**: distance between the divider and the end of the list.|
+| divider | {<br>strokeWidth: [Length](ts-types.md#length),<br>color?: [ResourceColor](ts-types.md#resourcecolor),<br>startMargin?: [Length](ts-types.md#length),<br>endMargin?: [Length](ts-types.md#length)<br>} \| null | Style of the divider for the list items. By default, there is no divider.<br>- **strokeWidth**: stroke width of the divider.<br>- **color**: color of the divider.<br>- **startMargin**: distance between the divider and the start of the list.<br>- **endMargin**: distance between the divider and the end of the list.<br>**strokeWidth**, **startMargin**, and **endMargin** cannot be set in percentage.|
 
 ## ListItemGroupStyle<sup>10+</sup>
 
@@ -61,7 +61,7 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 @Entry
 @Component
 struct ListItemGroupExample {
-  private timetable: TimeTable[] = [
+  private timeTable: TimeTable[] = [
     {
       title: 'Monday',
       projects: ['Language', 'Math', 'English']
@@ -101,7 +101,7 @@ struct ListItemGroupExample {
   build() {
     Column() {
       List({ space: 20 }) {
-        ForEach(this.timetable, (item: TimeTable) => {
+        ForEach(this.timeTable, (item: TimeTable) => {
           ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
             ForEach(item.projects, (project: string) => {
               ListItem() {

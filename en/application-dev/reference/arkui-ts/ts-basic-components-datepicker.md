@@ -71,7 +71,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | onChange(callback: (value: DatePickerResult) =&gt; void)<sup>(deprecated)</sup> | Triggered when a date is selected.<br>**NOTE**<br>This API is supported since API version 8 and deprecated since API version 10. You are advised to use **onDateChange(callback: (value: Date) => void)** instead.|
-| onDateChange(callback: (value: Date) => void)<sup>10+</sup>  | Triggered when a date is selected.                                      |
+| onDateChange(callback: (value: Date) => void)<sup>10+</sup>  | Triggered when a date is selected.<br>**Date**: selected time, where the year, month, and day portions are subject to the selection, the hour and minute portions are subject to the current system time, and the second portion is always **00**.|
 
 ## DatePickerResult
 

@@ -36,6 +36,7 @@ import Want from '@ohos.app.ability.Want';
   ```ts
   import common from '@ohos.app.ability.common';
   import Want from '@ohos.app.ability.Want';
+  import { BusinessError } from '@ohos.base';
 
   let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   let want: Want = {
@@ -44,8 +45,8 @@ import Want from '@ohos.app.ability.Want';
     abilityName: 'FuncAbility',
     moduleName: 'entry' // moduleName非必选
   };
-  
-  context.startAbility(want, (err) => {
+
+  context.startAbility(want, (err: BusinessError) => {
     // 显式拉起Ability，通过bundleName、abilityName和moduleName可以唯一确定一个Ability
     console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
   });
@@ -57,6 +58,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -66,8 +68,8 @@ import Want from '@ohos.app.ability.Want';
             keyForString: 'str',
           },
         };
-        
-        context.startAbility(want, (err) => {
+
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -75,6 +77,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -85,8 +88,8 @@ import Want from '@ohos.app.ability.Want';
             keyForDouble: 99.99,
           },
         };
-        
-        context.startAbility(want, (err) => {
+
+        context.startAbility(want: BusinessError, (err) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -94,6 +97,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -103,8 +107,8 @@ import Want from '@ohos.app.ability.Want';
             keyForBool: true,
           },
         };
-        
-        context.startAbility(want, (err) => {
+
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -112,6 +116,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -126,8 +131,8 @@ import Want from '@ohos.app.ability.Want';
             },
           },
         };
-        
-        context.startAbility(want, (err) => {
+
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
@@ -135,6 +140,7 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
@@ -147,20 +153,20 @@ import Want from '@ohos.app.ability.Want';
             keyForArrayObject: [{ obj1: 'aaa' }, { obj2: 100 }],
           },
         };
-        
-        context.startAbility(want, (err) => {
+
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
     * 文件描述符（FD）
       ```ts
-        import fs from '@ohos.file.fs';        
+        import fs from '@ohos.file.fs';
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
         import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
-        
+
         let fd: number = 0;
         try {
           fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
@@ -178,32 +184,36 @@ import Want from '@ohos.app.ability.Want';
             'keyFd': { 'type': 'FD', 'value': fd } // {'type':'FD', 'value':fd}是固定用法，用于表示该数据是FD
           }
         };
-        
-        context.startAbility(want, (err) => {
+
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
-    - parameter参数用法：以ability.params.backToOtherMissionStack为例，ServiceExtension在拉起UIAbility的时候，可以支持跨任务链返回。
+    - parameter参数用法：
+
+      * 以ability.params.backToOtherMissionStack为例，ServiceExtension在拉起UIAbility的时候，可以支持跨任务链返回。
 
       ```ts
         // (1) UIAbility1启动一个ServiceExtension
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want: Want = {
           bundleName: 'com.example.myapplication1',
           abilityName: 'ServiceExtensionAbility',
         };
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
-    
+
       ```ts
         // (2) 该ServiceExtension去启动另一个UIAbility2，并在启动的时候携带参数ability.params.backToOtherMissionStack为true
         import common from '@ohos.app.ability.common';
         import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
 
         let context = getContext(this) as common.ServiceExtensionContext; // ServiceExtensionContext
         let want: Want = {
@@ -214,9 +224,43 @@ import Want from '@ohos.app.ability.Want';
           },
         };
 
-        context.startAbility(want, (err) => {
+        context.startAbility(want, (err: BusinessError) => {
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
       ```
 
-    > 说明：上例中，如果ServiceExtension启动UIAbility2时不携带ability.params.backToOtherMissionStack参数，或者携带的ability.params.backToOtherMissionStack参数为false，则UIAbility1和UIAbility2不在同一个任务栈里面，在UIAbility2的界面点back键，不会回到UIAbility1的界面。如果携带的ability.params.backToOtherMissionStack参数为true，则表示支持跨任务链返回，此时在UIAbility2的界面点back键，会回到UIAbility1的界面。
+      > 说明：上例中，如果ServiceExtension启动UIAbility2时不携带ability.params.backToOtherMissionStack参数，或者携带的ability.params.backToOtherMissionStack参数为false，则UIAbility1和UIAbility2不在同一个任务栈里面，在UIAbility2的界面点back键，不会回到UIAbility1的界面。如果携带的ability.params.backToOtherMissionStack参数为true，则表示支持跨任务链返回，此时在UIAbility2的界面点back键，会回到UIAbility1的界面。
+
+      * parameter携带开发者自定义参数，由UIAbilityA传递给UIAbilityB，并在UIAbilityB中进行获取。
+
+      ```ts
+        // (1) UIAbilityA通过startability启动UIAbilityB
+        import common from '@ohos.app.ability.common';
+        import Want from '@ohos.app.ability.Want';
+        import { BusinessError } from '@ohos.base';
+
+        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+        let want: Want = {
+          bundleName: 'com.example.myapplication',
+          abilityName: 'UIAbilityB',
+          parameters: {
+            developerParameters: 'parameters',
+          },
+        };
+        context.startAbility(want, (err: BusinessError) => {
+          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        });
+      ```
+
+      ```ts
+        // (2) 以UIAbilityB实例首次启动为例，会进入到UIAbilityB的onCreate生命周期
+        import UIAbility from '@ohos.app.ability.UIAbility';
+        import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+        import Want from '@ohos.app.ability.Want';
+
+        class UIAbilityB extends UIAbility {
+            onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+                console.log(`onCreate, want parameters: ${want.parameters.developerParameters}`);
+            }
+        }
+      ```

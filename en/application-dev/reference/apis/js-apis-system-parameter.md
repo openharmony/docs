@@ -36,13 +36,13 @@ Obtains the value of the system parameter with the specified key.
 
 | Type| Description|
 | -------- | -------- |
-| string | Value of the system parameter.<br>If the specified key exists, the set value is returned.<br>If the specified key does not exist and **def** is set to a valid value, the set value is returned. If the specified key does not exist and **def** is set to an invalid value (such as **undefined**) or is not set, an empty string is returned.|
+| string | Value of the system parameter.<br> If the specified key exists, the set value is returned.<br> If the specified key does not exist and **def** is set to a valid value, the set value is returned. If the specified key does not exist and **def** is set to an invalid value (such as **undefined**) or is not set, an empty string is returned.|
 
 **Example**
 
 ```ts
 try {
-    let info = systemparameter.getSync("const.ohos.apiversion");
+    let info: string = systemparameter.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
 } catch(e) {
     console.log("getSync unexpected error: " + e);
@@ -142,7 +142,7 @@ Obtains the value of the system parameter with the specified key. This API uses 
 import { BusinessError } from '@ohos.base';
 
 try {
-    let p = systemparameter.get("const.ohos.apiversion");
+    let p: Promise<string> = systemparameter.get("const.ohos.apiversion");
     p.then((value: string) => {
         console.log("get test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {
@@ -251,7 +251,7 @@ Sets a value for the system parameter with the specified key. This API uses a pr
 import { BusinessError } from '@ohos.base';
 
 try {
-    let p = systemparameter.set("test.parameter.key", "testValue");
+    let p: Promise<void> = systemparameter.set("test.parameter.key", "testValue");
     p.then((value: void) => {
         console.log("set test.parameter.key success: " + value);
     }).catch((err: BusinessError) => {

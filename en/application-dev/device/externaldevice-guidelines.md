@@ -5,6 +5,8 @@
 
 Peripheral devices (or simply peripherals) are auxiliary devices connected to a device through physical ports, such as handwriting tablets, printers, and scanners. Applications can query and bind peripherals by using the peripheral management capabilities, so that the device can use the customized capabilities provided by the peripheral drivers, such as the printer software.
 
+Currently, devices such as PCs and tablets are supported, but mobile phones are not supported.
+
 
 ## Available APIs
 
@@ -30,7 +32,7 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
-  import type { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   let matchDevice : deviceManager.USBDevice | null = null;
   try {
@@ -57,22 +59,25 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
-  import type { BusinessError } from '@ohos.base';
-  import type rpc from '@ohos.rpc'
+  import { BusinessError } from '@ohos.base';
+  import rpc from '@ohos.rpc'
 
   let remoteObject : rpc.IRemoteObject;
   try {
     // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
-    deviceManager.bindDevice(12345678, (error : BusinessError, data) => {
+    deviceManager.bindDevice(12345678, (error : BusinessError, data : number) => {
       console.error('Device is disconnected');
-    }, (error : BusinessError, data) => {
+    }, (error : BusinessError, data : {
+        deviceId : number;
+        remote : rpc.IRemoteObject;
+    }) => {
       if (error) {
         console.error(`bindDevice async fail. Code is ${error.code}, message is ${error.message}`);
         return;
       }
     console.info('bindDevice success');
     remoteObject = data.remote;
-  });
+    });
   } catch (error) {
     let errCode = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -81,12 +86,12 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
   if (!remoteObject) {
     console.error('Bind device failed');
   }
-   ```
+  ```
 
 3. Use the capabilities provided by the peripheral device driver.
 
   ```ts
-  import type { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
   import rpc from '@ohos.rpc'
 
   let option : rpc.MessageOption = new rpc.MessageOption();
@@ -97,7 +102,7 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
   // The remoteObject application can be obtained by binding the device.
   let remoteObject : rpc.IRemoteObject;
   // The code and data content varies depending on the interface provided by the driver.
-  remoteObject.sendMessageRequest(code, data, reply, option)
+  remoteObject.sendMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption)
     .then(() => {
       console.info('sendMessageRequest finish.');
     }).catch((error : BusinessError) => {
@@ -110,11 +115,11 @@ You can use the APIs to query and bind peripheral devices so as to use the custo
 
   ```ts
   import deviceManager from '@ohos.driver.deviceManager';
-  import type { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@ohos.base';
 
   try {
     // For example, deviceId is 12345678. You can use queryDevices() to obtain the deviceId.
-    deviceManager.unbindDevice(12345678, (error : BusinessError, data) => {
+    deviceManager.unbindDevice(12345678, (error : BusinessError, data : number) => {
       if (error) {
         let errCode = (error as BusinessError).code;
         let message = (error as BusinessError).message;

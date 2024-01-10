@@ -5,7 +5,7 @@
 > **说明：**
 > 
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口仅可在FA模型下使用。
+> 本模块接口仅可在FA模型下使用，Stage模型下需使用[dataAbility模块](js-apis-data-ability.md)和[dataShare模块](js-apis-data-dataShare.md)。
 
 ## 导入模块
 
@@ -18,7 +18,7 @@ import ability from '@ohos.ability.ability';
 使用前根据具体情况引入如下模块
 ```ts
 import ohos_data_ability from '@ohos.data.dataAbility';
-import relationalStore from '@ohos.data.relationalStore'
+import relationalStore from '@ohos.data.relationalStore';
 ```
 
 ## DataAbilityHelper.openFile
@@ -28,6 +28,8 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 打开指定uri对应的文件，返回文件描述符（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[FileAccessHelper.openFile](js-apis-fileAccess.md#openfile-1)。
 
 **参数：**
 
@@ -63,6 +65,8 @@ openFile(uri: string, mode: string): Promise\<number>
 打开指定uri对应的文件，返回文件描述符（promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[FileAccessHelper.openFile](js-apis-fileAccess.md#openfile)。
 
 **参数：**
 
@@ -100,6 +104,8 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.on('dataChange')](js-apis-data-dataShare.md#ondatachange)。
+
 **参数：**
 
 | 参数名     | 类型                 | 必填 | 说明                     |
@@ -131,9 +137,11 @@ DAHelper.on(
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
-注消观察者以停止监听uri指定数据的数据变化通知。
+注销观察者以停止监听uri指定数据的数据变化通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.off('dataChange')](js-apis-data-dataShare.md#offdatachange)。
 
 **参数：**
 
@@ -310,6 +318,8 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.normalizeUri](js-apis-data-dataShare.md#normalizeuri)。
+
 **参数：**
 
 | 参数名     | 类型                   | 必填 | 说明                                                         |
@@ -342,6 +352,8 @@ normalizeUri(uri: string): Promise\<string>
 将引用数据功能的给定uri转换为规范化uri（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.normalizeUri](js-apis-data-dataShare.md#normalizeuri-1)。
 
 **参数：**
 
@@ -377,6 +389,8 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.denormalizeUri](js-apis-data-dataShare.md#denormalizeuri)。
+
 **参数：**
 
 | 参数名     | 类型                   | 必填 | 说明                                                |
@@ -409,6 +423,8 @@ denormalizeUri(uri: string): Promise\<string>
 将由normalizeUri（uri）生成的给定规范化uri转换为非规范化uri（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.denormalizeUri](js-apis-data-dataShare.md#denormalizeuri-1)。
 
 **参数：**
 
@@ -444,6 +460,8 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.notifyChange](js-apis-data-dataShare.md#notifychange)。
+
 **参数：**
 
 | 参数名     | 类型                 | 必填 | 说明                     |
@@ -476,6 +494,8 @@ notifyChange(uri: string): Promise\<void>
 通知注册的观察者，uri指定数据的数据变化（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.notifyChange](js-apis-data-dataShare.md#notifychange-1)。
 
 **参数：**
 
@@ -510,6 +530,8 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 将单个数据记录插入数据库（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.insert](js-apis-data-dataShare.md#insert)。
 
 **参数：**
 
@@ -551,6 +573,8 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 将单个数据记录插入数据库（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.insert](js-apis-data-dataShare.md#insert-1)。
 
 **参数：**
 
@@ -594,6 +618,8 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.batchInsert](js-apis-data-dataShare.md#batchinsert)。
+
 **参数：**
 
 | 参数名         | 类型                    | 必填 | 说明                             |
@@ -631,6 +657,8 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 将多个数据记录插入数据库（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.batchInsert](js-apis-data-dataShare.md#batchinsert-1)。
 
 **参数：**
 
@@ -671,6 +699,8 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.delete](js-apis-data-dataShare.md#delete)。
+
 **参数：**
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
@@ -701,11 +731,13 @@ DAHelper.delete('dataability:///com.example.DataAbility', da, (error, data) => {
 
 ## DataAbilityHelper.delete
 
-delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
+delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
 从数据库中删除一个或多个数据记录（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.delete](js-apis-data-dataShare.md#delete-1)。
 
 **参数：**
 
@@ -744,6 +776,8 @@ predicates筛选条件为空，自定义数据库删除数据记录的处理逻�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.delete](js-apis-data-dataShare.md#delete)。
+
 **参数：**
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
@@ -756,7 +790,6 @@ predicates筛选条件为空，自定义数据库删除数据记录的处理逻�
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
@@ -777,6 +810,8 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 更新数据库中的数据记录（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.update](js-apis-data-dataShare.md#update)。
 
 **参数：**
 
@@ -816,11 +851,13 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da, (error, data) 
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>;
+update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
 更新数据库中的数据记录（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.update](js-apis-data-dataShare.md#update-1)。
 
 **参数：**
 
@@ -867,6 +904,8 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑（callbac
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.update](js-apis-data-dataShare.md#update)。
+
 **参数：**
 
 | 参数名         | 类型                              | 必填 | 说明                                             |
@@ -880,7 +919,6 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑（callbac
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 import rdb from '@ohos.data.rdb';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
@@ -909,13 +947,15 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
+
 **参数：**
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>                | 是   | 表示要查询的列。如果此参数为空，则查询所有列。   |
-| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
 | callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
 
 **示例：**
@@ -943,9 +983,11 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, da, (error, data)
 
 query(uri: string, callback: AsyncCallback\<ResultSet>): void
 
-predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+查询数据库中的数据（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
 
 **参数：**
 
@@ -959,7 +1001,6 @@ predicates筛选条件为空，自定义查询数据库中数据的处理逻辑�
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
@@ -977,9 +1018,11 @@ DAHelper.query('dataability:///com.example.DataAbility', (error, data) => {
 
 query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>): void
 
-predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+查询数据库中的数据（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
 
 **参数：**
 
@@ -994,7 +1037,6 @@ predicates筛选条件为空，自定义查询数据库中数据的处理逻辑�
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
-import ohos_data_ability from '@ohos.data.dataAbility';
 
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
@@ -1013,16 +1055,18 @@ DAHelper.query('dataability:///com.example.DataAbility', cars, (error, data) => 
 
 query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<ResultSet>): void
 
-predicates筛选条件为空，自定义查询数据库中数据的处理逻辑（callback形式）。
+查询数据库中的数据（callback形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query)。
 
 **参数：**
 
 | 参数名       | 类型                              | 必填 | 说明                                             |
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
-| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
 | callback   | AsyncCallback\<ResultSet>         | 是   | 表示数据查询的回调方法，返回查询结果。                         |
 
 **示例：**
@@ -1047,11 +1091,13 @@ DAHelper.query('dataability:///com.example.DataAbility', da, (error, data) => {
 
 ## DataAbilityHelper.query
 
-query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>;
+query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilityPredicates): Promise\<ResultSet>
 
 查询数据库中的数据（Promise形式）。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+**说明**：本接口仅可在FA模型下使用，Stage模型下需使用[DataShareHelper.query](js-apis-data-dataShare.md#query-1)。
 
 **参数：**
 
@@ -1059,7 +1105,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 | ---------- | --------------------------------- | ---- | ------------------------------------------------ |
 | uri        | string                            | 是   | 表示要查询数据的uri。                         |
 | columns    | Array\<string>               | 否   | 表示要查询的列。如果此参数为空，则查询所有列。   |
-| predicates | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
+| predicates | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，自定义查询数据库中数据的处理逻辑。 |
 
 **返回值：**
 
@@ -1164,7 +1210,7 @@ dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
 
 ## DataAbilityHelper.executeBatch
 
-executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void;
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: AsyncCallback\<Array\<DataAbilityResult>>): void
 
 批量操作数据库中的数据。
 
@@ -1200,7 +1246,7 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ## DataAbilityHelper.executeBatch
 
-executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>;
+executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Array\<DataAbilityResult>>
 
 批量操作数据库中的数据。
 
@@ -1239,12 +1285,14 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ```
 
-## PacMap
+## PacMap<sup>11+</sup>
 
-[key: string]: number | string | boolean | Array\<string | number | boolean> | null;
+[key: string]: number | string | boolean | Array\<string | number | boolean> | null
+
+用于存储数据的PacMap类型。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 参数名 | 参数类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------ |
-| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| 数据存储在键值对中。|
+| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | 是 | 数据存储在键值对中。|

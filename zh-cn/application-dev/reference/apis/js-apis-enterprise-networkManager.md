@@ -259,7 +259,7 @@ networkManager.getMac(wantTemp, 'eth0', (err, result) => {
 
 ## networkManager.getMac
 
-getMac(admin: Want, networkInterface: string): Promise\<string>;
+getMac(admin: Want, networkInterface: string): Promise\<string>
 
 指定设备管理应用根据网络接口获取设备MAC地址。使用Promise异步回调。
 
@@ -756,7 +756,7 @@ let wantTemp: Want = {
 };
 let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -821,7 +821,7 @@ let wantTemp: Want = {
 };
 let filterRule: networkManager.AddFilterRule = {
   "ruleNo": 1,
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -877,7 +877,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let filterRule: networkManager.RemoveFilterRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",
@@ -940,7 +940,7 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let filterRule: networkManager.RemoveFilterRule = {
-  "srcAddr": "192.168.1.1-192.188.22.66",
+  "srcAddr": "192.168.1.1-192.168.255.255",
   "destAddr": "10.1.1.1",
   "srcPort": "8080",
   "destPort": "8080",

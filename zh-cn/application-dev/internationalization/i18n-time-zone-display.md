@@ -1,0 +1,20 @@
+# 本地化时区名称
+
+## 使用场景
+
+多语言环境下，不同地区用户对时区的称呼可能存在差异，例如在中文环境下，中部时区称为中部时区，在英文环境下，中部时区称为Central Time Zone。为了确保时区展示当地人语言使用习惯，需要本地化时区名称。
+
+## 开发步骤
+
+接口具体使用方法和说明请参考[getDisplayName](../reference/apis/js-apis-i18n.md#getdisplayname8)的API接口文档。
+
+1. 导入模块。
+   ```ts
+   import I18n from '@ohos.i18n';
+   ```
+
+2. 本地化时区名称，以美国/圣保罗为例。
+   ```ts
+   let timezone = I18n.getTimeZone("America/Sao_Paulo");
+   let timeZoneName = timezone.getDisplayName("zh-Hans", true); // 巴西利亚标准时间
+   ```

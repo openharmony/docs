@@ -38,18 +38,19 @@ measureText(options: MeasureOptions): number
 
 ```ts
 import measure from '@ohos.measure'
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-  @State textWidth : number = measure.measureText({
+  @State textWidth: number = measure.measureText({
     textContent: "Hello word",
     fontSize: '50px'
   })
+
   build() {
     Row() {
       Column() {
-        Text("The width of 'Hello World': " + this.textWidth)
+        Text(`The width of 'Hello World': ${this.textWidth}`)
       }
       .width('100%')
     }
@@ -62,7 +63,7 @@ struct Index {
 
 measureTextSize(options: MeasureOptions): SizeOptions
 
-计算指定文本单行布局下的宽度。
+计算指定文本单行布局下的宽度和高度。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -86,7 +87,6 @@ import measure from '@ohos.measure'
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
   textSize : SizeOptions = measure.measureTextSize({
     textContent: "Hello word",
     fontSize: '50px'
@@ -94,8 +94,8 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text("The width of 'Hello World': " + this.textSize.width)
-        Text("The height of 'Hello World': " + this.textSize.height)
+        Text(`The width of 'Hello World': ${this.textSize.width}`)
+        Text(`The height of 'Hello World': ${this.textSize.height}`)
       }
       .width('100%')
     }

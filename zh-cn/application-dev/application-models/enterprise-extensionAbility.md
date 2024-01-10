@@ -33,8 +33,8 @@ onBundleRemoved: 企业应用管理场景下，企业管理员订阅应用卸载
 ### 开发步骤
 
 1. 在工程Module对应的ets目录下，右键选择“New > Directory”，新建一个目录并命名为EnterpriseExtAbility。
-2. 在EnterpriseExtAbility目录，右键选择“New > TypeScript File”，新建一个TypeScript文件并命名为EnterpriseExtAbility.ts。
-3. 打开EnterpriseExtAbility.ts文件，导入EnterpriseAdminExtensionAbility模块，自定义类继承EnterpriseAdminExtensionAbility并加上需要的应用通知回调方法，如onAdminEnabled()、onAdminDisabled()等回调方法。当设备管理员应用被激活或者去激活时，则可以在对应回调方法中接受系统发送通知。
+2. 在EnterpriseExtAbility目录，右键选择“New > ArkTS File”，新建一个文件并命名为EnterpriseExtAbility.ets。
+3. 打开EnterpriseExtAbility.ets文件，导入EnterpriseAdminExtensionAbility模块，自定义类继承EnterpriseAdminExtensionAbility并加上需要的应用通知回调方法，如onAdminEnabled()、onAdminDisabled()等回调方法。当设备管理员应用被激活或者去激活时，则可以在对应回调方法中接受系统发送通知。
 
 ```ts
 import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility';
@@ -66,7 +66,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
         "name": "ohos.samples.enterprise_admin_ext_ability",
         "type": "enterpriseAdmin",
         "exported": true,
-        "srcEntry": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
+        "srcEntry": "./ets/enterpriseextability/EnterpriseAdminAbility.ets"
       }
     ]
 ```

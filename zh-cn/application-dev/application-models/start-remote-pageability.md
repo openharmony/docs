@@ -4,7 +4,7 @@
 启动远程PageAbility同样通过featureAbility中的startAbility接口实现。
 
 
-除引入'\@ohos.ability.featureAbility'外，还需引入'\@ohos.distributedHardware.deviceManager'，通过DeviceManager（该组件在OpenHarmony上提供帐号无关的分布式设备的认证组网能力）的getTrustedDeviceListSync接口（获取信任设备列表）获取远端的deviceId，写入want中，用于启动远程PageAbility。
+除引入'\@ohos.ability.featureAbility'外，还需引入'\@ohos.distributedHardware.deviceManager'，通过DeviceManager（该组件提供帐号无关的分布式设备的认证组网能力）的getTrustedDeviceListSync接口（获取信任设备列表）获取远端的deviceId，写入want中，用于启动远程PageAbility。
 
 
 由于当前DeviceManager的getTrustedDeviceListSync接口仅对系统应用开放，故现阶段非系统应用无法获取其他设备信息，无远程启动设备选择入口，远程启动Ability开发。

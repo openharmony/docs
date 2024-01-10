@@ -7,6 +7,8 @@ The **OAID** module provides APIs for obtaining and resetting Open Anonymous Dev
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> To use the APIs for obtaining OAIDs, you must [request the ohos.permission.APP_TRACKING_CONSENT permission](../../security/accesstoken-guidelines.md).
 
 
 ## Modules to Import
@@ -18,11 +20,9 @@ import identifier from '@ohos.identifier.oaid';
 
 ## identifier.getOAID
 
-getOAID():Promise&lt;string&gt;
+getOAID(): Promise&lt;string&gt;
 
 Obtains an OAID. This API uses a promise to return the result.
-
-**Model restriction**: This API can be used only in the stage model.
 
 **Required permissions**: ohos.permission.APP_TRACKING_CONSENT
 
@@ -32,7 +32,7 @@ Obtains an OAID. This API uses a promise to return the result.
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;string&gt; | Promise used to return the OAID.|
+| Promise&lt;string&gt; | Promise used to return the OAID. If the operation is successful, an OAID is returned. If the operation fails, 00000000-0000 00000000-0000-0000-0000-000000000000 is returned.|
 
 **Error codes**
 
@@ -51,12 +51,12 @@ import { BusinessError } from '@ohos.base';
 try {  
   identifier.getOAID().then((data) => {
     const oaid: string = data;
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
+    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise success, oaid: ${oaid}`);
   }).catch((err: BusinessError) => {
-    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${err.message}`);
+    hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by promise failed, code: ${err.code}, message: ${err.message}`);
   })
-} catch (err: BusinessError) {
-  hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
+} catch (err) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by promise catch error: ${err.code} ${err.message}`);
 }
 ```
 
@@ -67,8 +67,6 @@ getOAID(callback: AsyncCallback&lt;string&gt;): void
 
 Obtains an OAID. This API uses an asynchronous callback to return the result.
 
-**Model restriction**: This API can be used only in the stage model.
-
 **Required permissions**: ohos.permission.APP_TRACKING_CONSENT
 
 **System capability**: SystemCapability.Advertising.OAID
@@ -78,7 +76,7 @@ Obtains an OAID. This API uses an asynchronous callback to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the OAID.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the OAID. If the operation is successful, an OAID is returned. If the operation fails, 00000000-0000 00000000-0000-0000-0000-000000000000 is returned.|
 
 
 **Error codes**
@@ -99,16 +97,16 @@ import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
  
 try {
-  identifier.getOAID((err: BusinessError, data) => {
+  identifier.getOAID((err: BusinessError, data: string) => {
     if (err.code) {
-      hilog.info(0x0000, 'testTag', '%{public}s', `get oaid failed, message: ${err.message}`);
+      hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by callback failed, error: ${err.code} ${err.message}`);
     } else {
       const oaid: string = data;
-      hilog.info(0x0000, 'testTag', '%{public}s', `get oaid by callback success`);
+      hilog.info(0x0000, 'testTag', '%{public}s', 'get oaid by callback success');
     }
    });
-} catch (err: BusinessError) {
-  hilog.error(0x0000, 'testTag', 'get oaid catch error: %{public}d %{public}s', err.code, err.message);
+} catch (err) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `get oaid by callback catch error: ${err.code} ${err.message}`);
 }
 ```
 
@@ -120,10 +118,6 @@ resetOAID(): void
 Resets an OAID.
 
 **System API**: This is a system API.
-
-**Model restriction**: This API can be used only in the stage model.
-
-**Required permissions**: ohos.permission.APP_TRACKING_CONSENT
 
 **System capability**: SystemCapability.Advertising.OAID
 
@@ -139,11 +133,10 @@ For details about the following error codes, see [OAID Error Codes](../errorcode
 ```
 import identifier from '@ohos.identifier.oaid';
 import hilog from '@ohos.hilog'; 
-import { BusinessError } from '@ohos.base';
 
 try {
   identifier.resetOAID();
-} catch (err: BusinessError) {
-  hilog.error(0x0000, 'testTag', 'reset oaid catch error: %{public}d %{public}s', err.code, err.message);
+} catch (err) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `reset oaid catch error: ${err.code} ${err.message}`);
 }
 ```

@@ -11,17 +11,21 @@ The **\<Tabs>** component is a container component that allows users to switch b
 
 Only the [\<TabContent>](ts-container-tabcontent.md) child component is supported.
 
+>  **NOTE**
+>
+>  If the child component has the **visibility** attribute set to **None** or **Hidden**, it is hidden but takes up space in the layout.
+
 
 ## APIs
 
-Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsController](#tabscontroller)})
+Tabs(value?: {barPosition?: [BarPosition](#barposition), index?: number, controller?: [TabsController](#tabscontroller)})
 
 **Parameters**
 
 | Name        | Type                             | Mandatory  | Description                                    |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition | [BarPosition](#barposition)| No   | Position of the **\<Tabs>** component.<br>Default value: **BarPosition.Start**  |
-| index       | number                            | No   | Initial tab index.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **\<TabContent>** subnodes minus 1.<br>When this parameter is set to different values, the slide animation for tab switching is enabled by default. To disable the animation, set **animationDuration** to **0**.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables. |
+| index       | number                            | No   | Index of the currently displayed tab.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **\<TabContent>** subnodes minus 1.<br>When this parameter is set to different values, the slide animation for tab switching is enabled by default. To disable the animation, set **animationDuration** to **0**.<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | controller  | [TabsController](#tabscontroller) | No   | Tab controller.                              |
 
 ## BarPosition
@@ -41,9 +45,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | vertical                         | boolean                                  | Whether to use vertical tabs. The value **true** means to use vertical tabs, and **false** means to use horizontal tabs.<br>Default value: **false**|
 | scrollable                       | boolean                                  | Whether the tabs are scrollable. The value **true** means that the tabs are scrollable, and **false** means the opposite.<br>Default value: **true**|
 | barMode                          | [BarMode](#barmode),[ScrollableBarModeOptions](#scrollablebarmodeoptions10) | Tab bar layout mode. **BarMode** is mandatory, and **ScrollableBarModeOptions** is optional. For details, see **BarMode** and **ScrollableBarModeOptions**. Since API version 10, the optional **ScrollableBarModeOptions** parameter is supported. It is effective only when the tab bar is in scrollable mode.<br>Default value: **BarMode.Fixed**|
-| barWidth                         | number \| Length<sup>8+</sup>  | Width of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is **96vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>**NOTE**<br>A value less than 0 or greater than the width of the **\<Tabs>** component evaluates to the default value. |
-| barHeight                        | number \| Length<sup>8+</sup>  | Height of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is **56vp**.<br>**NOTE**<br>A value less than 0 or greater than the height of the **\<Tabs>** component evaluates to the default value. |
-| animationDuration                | number                                   | Duration of the slide animation for tab switching. If this parameter is set, the tab switching animation is played when the user switches between tabs by sliding or clicking. If this parameter is not set, the tab switching animation is played only when the user switches between tabs by sliding.<br>Default value: **300**<br>**NOTE**<br>A value less than 0 or in percentage evaluates to the default value. |
+| barWidth                         | number \| Length<sup>8+</sup>  | Width of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have [SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle) or [BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle) specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and does not have **SubTabBarStyle** or **BottomTabBarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is **96vp**.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is the width of the **\<Tabs>** component.<br>**NOTE**<br>A value less than 0 or greater than the width of the **\<Tabs>** component evaluates to the default value.|
+| barHeight                        | number \| Length<sup>8+</sup>  | Height of the tab bar.<br>The default value varies.<br>If the tab bar has the **vertical** attribute set to **false** and does not have a style specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and does not have a style specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **SubTabbarStyle** specified, the default value is **56vp**.<br>If the tab bar has the **vertical** attribute set to **true** and **SubTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **true** and **BottomTabbarStyle** specified, the default value is the height of the **\<Tabs>** component.<br>If the tab bar has the **vertical** attribute set to **false** and **BottomTabbarStyle** specified, the default value is **56vp**.<br>**NOTE**<br>A value less than 0 or greater than the height of the **\<Tabs>** component evaluates to the default value.|
+| animationDuration                | number                                   | Length of time required to complete the tab switching animation that is initiated by clicking a specific tab. If this parameter is not set, no tab switching animation is displayed when a specific tab is clicked.<br>Default value: **300**<br>**NOTE**<br>This parameter cannot be set in percentage. A value less than 0 evaluates to the default value **300**.|
 | divider<sup>10+</sup>            | [DividerStyle](#dividerstyle10) \| null | Whether the divider is displayed for the **\<TabBar>** and **\<TabContent>** components and the divider style. By default, the divider is not displayed.<br> **DividerStyle**: divider style.<br> **null**: The divider is not displayed.|
 | fadingEdge<sup>10+</sup>         | boolean                                  | Whether the tab fades out when it exceeds the container width.<br>Default value: **true**        |
 | barOverlap<sup>10+</sup>         | boolean                                  | Whether the tab bar is superimposed on the **\<TabContent>** component after having its background blurred.<br>Default value: **false**|
@@ -120,7 +124,7 @@ Switches to the specified tab.
 
 | Name  | Type  | Mandatory  | Description                                    |
 | ----- | ------ | ---- | ---------------------------------------- |
-| value | number | Yes   | Index of the tab. The value starts from 0.<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the maximum number, the event will be invalid.|
+| value | number | Yes   | Index of the tab. The value starts from 0.<br>**NOTE**<br>If this parameter is set to a value less than 0 or greater than the maximum number, the default value **0** is used.|
 
 
 ## Example
@@ -137,7 +141,7 @@ struct TabsExample {
   @State currentIndex: number = 0
   private controller: TabsController = new TabsController()
 
-  @Builder TabBuilder(index: number, name: string) {
+  @Builder tabBuilder(index: number, name: string) {
     Column() {
       Text(name)
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
@@ -157,19 +161,19 @@ struct TabsExample {
       Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#00CB87')
-        }.tabBar(this.TabBuilder(0, 'green'))
+        }.tabBar(this.tabBuilder(0, 'green'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#007DFF')
-        }.tabBar(this.TabBuilder(1, 'blue'))
+        }.tabBar(this.tabBuilder(1, 'blue'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#FFBF00')
-        }.tabBar(this.TabBuilder(2, 'yellow'))
+        }.tabBar(this.tabBuilder(2, 'yellow'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor('#E67C92')
-        }.tabBar(this.TabBuilder(3, 'pink'))
+        }.tabBar(this.tabBuilder(3, 'pink'))
       }
       .vertical(false)
       .barMode(BarMode.Fixed)

@@ -6,7 +6,7 @@
 
 ## 布局与约束
 
-Swiper作为一个容器组件，在自身尺寸属性未被设置时，会自动根据子组件的大小设置自身的尺寸。如果开发者对Swiper组件设置了固定的尺寸，则在轮播显示过程中均以该尺寸生效；否则，在轮播过程中，会根据子组件的大小自动调整自身的尺寸。
+Swiper作为一个容器组件，如果设置了自身尺寸属性，则在轮播显示过程中均以该尺寸生效。如果自身尺寸属性未被设置，则分两种情况：如果设置了prevMargin或者nextMargin属性，则Swiper自身尺寸会跟随其父组件；如果未设置prevMargin或者nextMargin属性，则会自动根据子组件的大小设置自身的尺寸。
 
 
 ## 循环播放
@@ -19,7 +19,7 @@ Swiper作为一个容器组件，在自身尺寸属性未被设置时，会自�
 
 ```ts
 ...
-export let swiperController: SwiperController = new SwiperController()
+private swiperController: SwiperController = new SwiperController()
 ...
 Swiper(this.swiperController) {
   Text("0")
@@ -156,7 +156,7 @@ Swiper(this.swiperController) {
 导航点直径设为30vp，左边距为0，导航点颜色设为红色。
 
 ```ts
-let swco:Record<string,number|Color> = {'size':30,'left':0,'color':Color.Red}
+let swco:Record<string, number | Color> = {'size':30,'left':0,'color':Color.Red}
 Swiper(this.swiperController) {
   Text("0")
     .width('90%')
@@ -179,7 +179,16 @@ Swiper(this.swiperController) {
     .textAlign(TextAlign.Center)
     .fontSize(30)
 }
-.indicatorStyle(swco)
+.indicator(
+  Indicator.dot()
+    .left(0)
+    .itemWidth(15)
+    .itemHeight(15)
+    .selectedItemWidth(30)
+    .selectedItemHeight(15)
+    .color(Color.Red)
+    .selectedColor(Color.Blue)
+)
 ```
 
 ![ind](figures/ind.PNG)

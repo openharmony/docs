@@ -36,7 +36,7 @@ Describes a **FormBindingData** object.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | data | Object | Yes| Data to be displayed on the JS widget. The value can be an object containing multiple key-value pairs or a string in JSON format.|
-| proxies<sup>10+</sup> | Array<[ProxyData](#proxydata)> | No| Subscription information of the widget update by proxy. The default value is an empty array.<br>**Model restriction**: This API can be used only in the stage model.<br>|
+| proxies<sup>10+</sup> | Array<[proxyData](#proxydata10)> | No| Subscription information of the widget update by proxy. The default value is an empty array.<br>**Model restriction**: This API can be used only in the stage model.<br>|
 
 ## createFormBindingData
 
@@ -69,12 +69,13 @@ import Base from '@ohos.base';
 
 try {
   let fd = fs.openSync('/path/to/form.png');
-
-  let createFormBindingDataParam = new Map<string, string | Object>();
-  let formImagesParam = new Map<string, Object>();
-  formImagesParam.set('image', fd);
-  createFormBindingDataParam.set("name", '21°');
-  createFormBindingDataParam.set('formImages', formImagesParam);
+  let formImagesParam: Record<string, object> = {
+    'image': fd
+  };
+  let createFormBindingDataParam: Record<string, string | Object> = {
+    'name': '21°',
+    'formImages': formImagesParam
+  };
 
   formBindingData.createFormBindingData(createFormBindingDataParam);
 } catch (error) {

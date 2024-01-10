@@ -10,7 +10,7 @@ The visibility attribute controls whether a component is visible.
 
 | Name        | Type                       | Description                                        |
 | ---------- | ---------------------------- | ------------------------------------------ |
-| visibility | [Visibility](ts-appendix-enums.md#visibility) | Whether the component is visible. Note that even if a component is invisible, it still needs to be re-created when the page is refreshed. Therefore, you are advised to use [conditional rendering](../../quick-start/arkts-rendering-control-ifelse.md) instead under scenarios where consistently high performance is required.<br>Default value: **Visibility.Visible**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| visibility | [Visibility](ts-appendix-enums.md#visibility) | Whether the component is visible. When appropriate, consider using [conditional rendering](../../quick-start/arkts-rendering-control-ifelse.md) as a substitute.<br>Default value: **Visibility.Visible**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 
 ## Example

@@ -98,8 +98,19 @@ let options: AnimatorOptions = {
   begin: 200.0,
   end: 400.0
 };
+let optionsNew: AnimatorOptions = {
+  duration: 1500,
+  easing: "friction",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 5,
+  begin: 200.0,
+  end: 400.0
+};
 try {
-  animator.reset(options);
+  let animatorResult:AnimatorResult|undefined = animator.create(options)
+  animatorResult.reset(optionsNew);
 } catch(error) {
   let message = (error as BusinessError).message
   let code = (error as BusinessError).code

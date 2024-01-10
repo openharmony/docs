@@ -127,7 +127,7 @@ Options for conversion.
 
 | Name             | Type| Mandatory| Description                                                       |
 | ----------------- | -------- | ---- | ----------------------------------------------------------- |
-| trim              | boolean  | Yes  | Whether to trim the whitespace characters before and after the text. The default value is **false**.                |
+| trim              | boolean  | Yes  | Whether to trim the whitespace characters before and after the text.                |
 | ignoreDeclaration | boolean  | No  | Whether to ignore the XML declaration. The default value is **false**.                       |
 | ignoreInstruction | boolean  | No  | Whether to ignore the XML processing instruction. The default value is **false**.                     |
 | ignoreAttributes  | boolean  | No  | Whether to print attributes across multiple lines and indent attributes. The default value is **false**.                  |
@@ -135,14 +135,14 @@ Options for conversion.
 | ignoreCDATA       | boolean  | No  | Whether to ignore the element's CDATA information. The default value is **false**.                       |
 | ignoreDoctype     | boolean  | No  | Whether to ignore the element's Doctype information. The default value is **false**.                     |
 | ignoreText        | boolean  | No  | Whether to ignore the element's text information. The default value is **false**.                        |
-| declarationKey    | string   | Yes  | Name of the attribute key for **declaration** in the output object. The default value is **_declaration**.|
-| instructionKey    | string   | Yes  | Name of the attribute key for **instruction** in the output object. The default value is **_instruction**.|
-| attributesKey     | string   | Yes  | Name of the attribute key for **attributes** in the output object. The default value is **_attributes**.  |
-| textKey           | string   | Yes  | Name of the attribute key for **text** in the output object. The default value is **_text**.              |
-| cdataKey          | string   | Yes  | Name of the attribute key for **CDATA** in the output object. The default value is **_cdata**.            |
-| doctypeKey        | string   | Yes  | Name of the attribute key for **Doctype** in the output object. The default value is **_doctype**.        |
-| commentKey        | string   | Yes  | Name of the attribute key for **comment** in the output object. The default value is **_comment**.        |
-| parentKey         | string   | Yes  | Name of the attribute key for **parent** in the output object. The default value is **_parent**.          |
-| typeKey           | string   | Yes  | Name of the attribute key for **type** in the output object. The default value is **_type**.              |
-| nameKey           | string   | Yes  | Name of the attribute key for **name** in the output object. The default value is **_name**.              |
-| elementsKey       | string   | Yes  | Name of the attribute key for **elements** in the output object. The default value is **_elements**.      |
+| declarationKey    | string   | Yes  | Name of the attribute key for **declaration** in the output object.|
+| instructionKey    | string   | Yes  | Name of the attribute key for **instruction** in the output object.|
+| attributesKey     | string   | Yes  | Name of the attribute key for **attributes** in the output object.  |
+| textKey           | string   | Yes  | Name of the attribute key for **text** in the output object.              |
+| cdataKey          | string   | Yes  | Name of the attribute key for **cdata** in the output object.            |
+| doctypeKey        | string   | Yes  | Name of the attribute key for **doctype** in the output object.        |
+| commentKey        | string   | Yes  | Name of the attribute key for **comment** in the output object.        |
+| parentKey         | string   | Yes  | Name of the attribute key for **parent** in the output object.          |
+| typeKey           | string   | Yes  | Name of the attribute key for **type** in the output object.              |
+| nameKey           | string   | Yes  | Name of the attribute key for **name** in the output object.              |
+| elementsKey       | string   | Yes  | Name of the attribute key for **elements** in the output object.      |

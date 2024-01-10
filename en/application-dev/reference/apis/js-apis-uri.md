@@ -1,5 +1,7 @@
 # @ohos.uri (URI String Parsing)
 
+The **uri** module provides APIs related to URI string parsing.
+
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -12,6 +14,8 @@ import uri from '@ohos.uri'
 ```
 
 ## URI
+
+Implements a URI, which provides APIs for determining whether objects are equal as well as standard paths.
 
 ### Attributes
 
@@ -60,8 +64,8 @@ console.log(result1.query) // null
 const result2 = new uri.URI("gopher://spinaltap.micro.umn.edu/00/Weather/California/Los%20Angeles#fragment");
 console.log(result2.host) // spinaltap.micro.umn.edu
 console.log(result2.fragment) // fragment
-console.log(result2.path) // /dddd/eee.txt
-console.log(result2.scheme) // ftp
+console.log(result2.path) // /00/Weather/California/Los Angeles
+console.log(result2.scheme) // gopher
 console.log(result2.userInfo) // null
 console.log(result2.port) //-1
 console.log(result2.query) // null

@@ -44,7 +44,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | popupPosition | [Position](ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:60.0, y:48.0}。 |
 | popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分选中文字色。 <br/>默认值：#FF182431 |
 | popupUnselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分未选中文字色。 <br/>默认值：#FF182431 |
-| popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | 设置提示弹窗非字母部分字体样式。 <br/>默认值：<br/>{<br/>size:24,<br/>style:FontStyle.Medium<br/>}|
+| popupItemFont<sup>10+</sup> | [Font](ts-types.md#font) | 设置提示弹窗非字母部分字体样式。 <br/>默认值：<br/>{<br/>size:24,<br/>weight:FontWeight.Medium<br/>}|
 | popupItemBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分背景色。 <br/>默认值：#FFFFFF |
 
 ## IndexerAlign枚举说明
@@ -93,7 +93,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: string) => item)
 
           ForEach(this.arrayB, (item: string) => {
@@ -103,7 +103,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: string) => item)
 
           ForEach(this.arrayC, (item: string) => {
@@ -113,7 +113,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: string) => item)
 
           ForEach(this.arrayL, (item: string) => {
@@ -123,7 +123,7 @@ struct AlphabetIndexerSample {
                 .height('5%')
                 .fontSize(30)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
           }, (item: string) => item)
         }
         .width('50%')

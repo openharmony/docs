@@ -22,7 +22,7 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import TreeMap from '@ohos.util.TreeMap';  
+import TreeMap from '@ohos.util.TreeMap';
 ```
 
 ## TreeMap
@@ -312,7 +312,7 @@ map.forEach((value ?: number, key ?: string) : void => {
 
 set(key: K, value: V): Object
 
-Adds an element to this container.
+Adds or updates an element in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -387,7 +387,7 @@ let result = treeMap.remove("sparrow");
 
 getLowerKey(key: K): K
 
-Obtains the key that is placed in front of the input key in this container.
+Obtains the key that is equal to placed in front of the input key in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -426,7 +426,7 @@ let result = treeMap.getLowerKey("sparrow");
 
 getHigherKey(key: K): K
 
-Obtains the key that is placed next to the input key in this container.
+Obtains the key that is equal to or placed next to the input key in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -552,10 +552,10 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-let it = treeMap.values();
-let t: IteratorResult<number> = it.next();
+let it = treeMap.keys();
+let t: IteratorResult<string> = it.next();
 while(!t.done) {
-  console.log("TreeMap" + t.value);
+  console.log("TreeMap " + t.value);
   t = it.next()
 }
 ```
@@ -683,6 +683,10 @@ while(!t.done) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
+> **NOTE**
+>
+> This API cannot be used in .ets files.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -701,7 +705,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 **Example**
 
 ```ts
-let treeMap = new TreeMap();
+let treeMap : TreeMap<string, number> = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
 

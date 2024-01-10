@@ -1,6 +1,6 @@
 # 为通知添加行为意图
 
-[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)提供了封装行为意图的能力，该行为意图是指拉起指定的应用组件及发布公共事件等能力。OpenHarmony支持以通知的形式，将[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)从发布方传递至接收方，从而在接收方触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)中指定的意图。例如在通知消息的发布者发布通知时，通常期望用户可以通过通知栏点击拉起目标应用组件。为了达成这一目标，开发者可以将[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)封装至通知消息中，当系统接收到[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)后，在用户点击通知栏时触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)的意图，从而拉起目标应用组件。
+[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)提供了封装行为意图的能力，该行为意图是指拉起指定的应用组件及发布公共事件等能力。支持以通知的形式，将[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)从发布方传递至接收方，从而在接收方触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)中指定的意图。例如在通知消息的发布者发布通知时，通常期望用户可以通过通知栏点击拉起目标应用组件。为了达成这一目标，开发者可以将[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)封装至通知消息中，当系统接收到[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)后，在用户点击通知栏时触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)的意图，从而拉起目标应用组件。
 
 为通知添加行为意图的实现方式如下图所示：发布通知的应用向应用组件管理服务AMS（Ability Manager Service）申请[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)，然后随其他通知信息一起发送给桌面，当用户在桌面通知栏上点击通知时，触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)动作。
 
@@ -32,6 +32,7 @@
    import wantAgent from '@ohos.app.ability.wantAgent';
    import { WantAgent } from '@ohos.app.ability.wantAgent';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. 创建WantAgentInfo信息。
@@ -46,8 +47,8 @@
      wants: [
        {
          deviceId: '',
-         bundleName: 'com.example.myapplication',
-         abilityName: 'EntryAbility',
+         bundleName: 'com.samples.notification',
+         abilityName: 'SecondAbility',
          action: '',
          entities: [],
          uri: '',
@@ -85,10 +86,10 @@
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err:Base.BusinessError, data:WantAgent) => {
      if (err) {
-       console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in geting want agent.');
+     logger.info('Succeeded in getting want agent.');
      wantAgentObj = data;
    });
    ```
@@ -99,24 +100,24 @@
    // 构造NotificationRequest对象
    let notificationRequest: notificationManager.NotificationRequest = {
      content: {
-       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
        normal: {
          title: 'Test_Title',
          text: 'Test_Text',
          additionalText: 'Test_AdditionalText',
        },
      },
-     id: 1,
+     id: 6,
      label: 'TEST',
      wantAgent: wantAgentObj,
    }
    
    notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
      if (err) {
-       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info('Succeeded in publishing notification.');
+     logger.info('Succeeded in publishing notification.');
    });
    ```
 

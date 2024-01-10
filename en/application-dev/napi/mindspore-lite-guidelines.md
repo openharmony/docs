@@ -114,13 +114,13 @@ The development process consists of the following main steps:
     OH_AI_ContextAddDeviceInfo(context, cpu_device_info);
     ```
 
-    Scenario 2: The neural network runtime (NNRT) and CPU heterogeneous inference contexts are created.
+    Scenario 2: The neural network runtime (NNRt) and CPU heterogeneous inference contexts are created.
 
-    NNRT is the runtime for cross-chip inference computing in the AI field. Generally, the acceleration hardware connected to NNRT, such as the NPU, has strong inference capabilities but supports only a limited number of operators, whereas the general-purpose CPU has weak inference capabilities but supports a wide range of operators. MindSpore Lite supports NNRT/CPU heterogeneous inference. Model operators are preferentially scheduled to NNRT inference. If certain operators are not supported by NNRT, then they are scheduled to the CPU for inference. The following is the sample code for configuring NNRT/CPU heterogeneous inference:
+    NNRt is the runtime for cross-chip inference computing in the AI field. Generally, the acceleration hardware connected to NNRt, such as the NPU, has strong inference capabilities but supports only a limited number of operators, whereas the general-purpose CPU has weak inference capabilities but supports a wide range of operators. MindSpore Lite supports NNRt/CPU heterogeneous inference. Model operators are preferentially scheduled to NNRt inference. If certain operators are not supported by NNRt, then they are scheduled to the CPU for inference. The following is the sample code for configuring NNRt/CPU heterogeneous inference:
 
    > **NOTE**
    >
-   > NNRT/CPU heterogeneous inference requires access of NNRT hardware. For details, see [OpenHarmony/ai_neural_network_runtime](https://gitee.com/openharmony/ai_neural_network_runtime).
+   > NNRt/CPU heterogeneous inference requires access of NNRt hardware. For details, see [OpenHarmony/ai_neural_network_runtime](https://gitee.com/openharmony/ai_neural_network_runtime).
 
     ```c
     // Create a context, and set the number of runtime threads to 2 and the thread affinity mode to 1 (big cores first).
@@ -129,15 +129,15 @@ The development process consists of the following main steps:
       printf("OH_AI_ContextCreate failed.\n");
       return OH_AI_STATUS_LITE_ERROR;
     }
-    // Preferentially use NNRT inference.
-    // Use the NNRT hardware of the first ACCELERATORS class to create the NNRT device information and configure the high-performance inference mode for the NNRT hardware. You can also use OH_AI_GetAllNNRTDeviceDescs() to obtain the list of NNRT devices in the current environment, search for a specific device by device name or type, and use the device as the NNRT inference hardware.
-    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATORS);
+    // Preferentially use NNRt inference.
+    // Use the NNRt hardware of the first ACCELERATORS class to create the NNRt device information and configure the high-performance inference mode for the NNRt hardware. You can also use OH_AI_GetAllNNRTDeviceDescs() to obtain the list of NNRt devices in the current environment, search for a specific device by device name or type, and use the device as the NNRt inference hardware.
+    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATOR);
     if (nnrt_device_info == NULL) {
       printf("OH_AI_DeviceInfoCreate failed.\n");
       OH_AI_ContextDestroy(&context);
       return OH_AI_STATUS_LITE_ERROR;
     }
-    OH_AI_DeviceInfoSetPerformaceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
+    OH_AI_DeviceInfoSetPerformanceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
     OH_AI_ContextAddDeviceInfo(context, nnrt_device_info);
 
     // Configure CPU inference.
@@ -280,3 +280,7 @@ The development process consists of the following main steps:
     output data is:
     0.000018 0.000012 0.000026 0.000194 0.000156 0.001501 0.000240 0.000825 0.000016 0.000006 0.000007 0.000004 0.000004 0.000004 0.000015 0.000099 0.000011 0.000013 0.000005 0.000023 0.000004 0.000008 0.000003 0.000003 0.000008 0.000014 0.000012 0.000006 0.000019 0.000006 0.000018 0.000024 0.000010 0.000002 0.000028 0.000372 0.000010 0.000017 0.000008 0.000004 0.000007 0.000010 0.000007 0.000012 0.000005 0.000015 0.000007 0.000040 0.000004 0.000085 0.000023 
     ```
+
+## Samples
+The following sample is provided to help you better understand how to use MindSpore Lite:
+- [Simple MindSpore Lite Tutorial](https://gitee.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)

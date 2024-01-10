@@ -126,7 +126,7 @@ Obtains the power model. This API uses an asynchronous callback to return the re
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power model obtained. If **err** is not **0**, an error has occurred.|
+  | callback | AsyncCallback&lt;[PowerModel](#powermodel)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the power model obtained. If the operation fails, **err** is not **0**.|
 
 
 ## wifiext.setPowerModel

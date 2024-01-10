@@ -62,7 +62,7 @@ MyMenu(){
       content: "菜单选项",
       endIcon: $r("app.media.arrow_right_filled"),
       // 当builder参数进行配置时，表示与menuItem项绑定了子菜单。鼠标hover在该菜单项时，会显示子菜单。
-      builder: this.SubMenu.bind(this),
+      builder: this.SubMenu
     })
     MenuItemGroup({ header: '小标题' }) {
       MenuItem({ content: "菜单选项" })
@@ -77,7 +77,7 @@ MyMenu(){
         startIcon: $r("app.media.view_list_filled"),
         content: "菜单选项",
         endIcon: $r("app.media.arrow_right_filled"),
-        builder: this.SubMenu.bind(this)
+        builder: this.SubMenu
       })
     }
     MenuItem({

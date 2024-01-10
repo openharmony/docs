@@ -35,7 +35,7 @@ onPageShow?(): void
 
 onPageHide?(): void
 
-页面每次隐藏时触发一次，包括路由过程、应用进入前后台等场景，仅\@Entry装饰的自定义组件生效。
+页面每次隐藏时触发一次，包括路由过程、应用进入后台等场景，仅\@Entry装饰的自定义组件生效。
 
 
 ## onBackPress

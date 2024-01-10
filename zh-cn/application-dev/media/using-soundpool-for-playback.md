@@ -1,4 +1,4 @@
-# 使用SoundPool开发音频播放功能
+# 使用SoundPool开发音频播放功能(ArkTS)
 
 使用SoundPool（音频池）提供的接口，可以实现低时延短音播放。
 
@@ -8,7 +8,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
 本开发指导将以SoundPool进行一次低时延播放音频的过程为例，向开发者讲解如何使用SoundPool。详细的API声明请参考[SoundPool API参考](../reference/apis/js-apis-inner-multimedia-soundPool.md)。
 
-过程包括：创建SoundPool实例，加载音频资源（包括资源的解封装与解码:解码格式参考[音频解码支持](audio-decoding.md#音频解码)），设置播放参数（倍速/循环模式/播放优先级等），播放控制（播放/停止），释放资源。
+过程包括：创建SoundPool实例，加载音频资源（包括资源的解封装与解码:解码格式参考[音频解码支持](audio-decoding.md#音频解码)），设置播放参数（循环模式/播放优先级等），播放控制（播放/停止），释放资源。
 
 在应用开发过程中，开发者应通过监听方法检查当前播放状态并按照一定顺序调用接口，执行对应操作，否则系统可能会抛出异常或生成其他未定义的行为。具体顺序可参考下列开发步骤及对应说明。
 
@@ -17,11 +17,14 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 1. 调用createSoundPool方法创建SoundPool实例。
 
     ```ts
+    import media from '@ohos.multimedia.media';
+    import audio from '@ohos.multimedia.audio';
+    import { BusinessError } from '@ohos.base';
+
     let soundPool: media.SoundPool;
     let audioRendererInfo: audio.AudioRendererInfo = {
-        content : audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION
-        usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-        rendererFlags : 1
+      usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+      rendererFlags : 0
     }
 
     media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
@@ -40,24 +43,30 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     可以传入uri或fd加载资源，此处使用传入uri的方式为例，更多方法请参考[API文档](../reference/apis/js-apis-inner-multimedia-soundPool.md#load)。
 
     ```ts
+    import { BusinessError } from '@ohos.base';
+    import fs from '@ohos.file.fs';
+   
     let soundID: number;
-    await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
-      console.info("file fd: " + file.fd);
-      uri = 'fd://' + (file.fd).toString()
-    }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
-    soundPool.load(uri).then((soundId: number) => {
-      console.info('soundPool load uri success');
-      soundID = soundId;
-    }).catch((err) => {
-      console.error('soundPool load failed and catch error is ' + err.message);
-    });
+    let uri: string;
+    async function load() {
+      await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+        console.info("file fd: " + file.fd);
+        uri = 'fd://' + (file.fd).toString()
+      }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
+      soundPool.load(uri).then((soundId: number) => {
+        console.info('soundPool load uri success');
+        soundID = soundId;
+      }).catch((err: BusinessError) => {
+        console.error('soundPool load failed and catch error is ' + err.message);
+      })
+    }
     ```
 
 3. 调用on('loadComplete')方法，用于监听“资源加载完成”。
 
     ```ts
-    soundPool.on('loadComplete', (soundId_: number) => {
-      console.info('loadComplete, soundId: ' + soundId_);
+    soundPool.on('loadComplete', (soundId: number) => {
+      console.info('loadComplete, soundId: ' + soundId);
     });
     ```
 
@@ -65,7 +74,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
      
     ```ts
     soundPool.on('playFinished', () => {
-      console.info("recive play finished message");
+      console.info("receive play finished message");
     });
     ```
 
@@ -83,14 +92,13 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     let soundID: number;
     let streamID: number;
     let playParameters: media.PlayParameters = {
-        loop = 0, // 循环0次
-        rate = 2, // 2倍速
-        leftVolume = 0.5, // range = 0.0-1.0
-        rightVolume = 0.5, // range = 0.0-1.0
-        priority = 0, // 最低优先级
-        parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
+        loop: 0, // 循环0次
+        rate: 2, // 2倍速
+        leftVolume: 0.5, // range = 0.0-1.0
+        rightVolume: 0.5, // range = 0.0-1.0
+        priority: 0, // 最低优先级
       }
-    soundPool.play(soundID, playParameters, (error: BusinessError, streamId: number) => {
+    soundPool.play(soundID, playParameters, (error, streamId: number) => {
       if (error) {
         console.info(`play sound Error: errCode is ${error.code}, errMessage is ${error.message}`)
       } else {
@@ -103,6 +111,8 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 7. 调用setLoop方法设置循环次数。
      
     ```ts
+    import { BusinessError } from '@ohos.base';
+   
     let streamID: number;
     soundPool.setLoop(streamID, 1).then(() => {
       console.info('setLoop success streamID:' + streamID);
@@ -118,23 +128,11 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     soundPool.setPriority(streamID, 1);
     ```
 
-9. 调用setRate方法设置播放倍速。
+9. 调用setVolume方法设置音量。
 
     ```ts
-    let streamID: number;
-    let selectedAudioRendererRate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL; // 默认正常速率
-    // 先调用play方法获取到对应资源的streamID
-
-    soundPool.setRate(streamID, selectedAudioRendererRate).then(() => {
-      console.info('setRate success');
-    }).catch((err: BusinessError) => {
-      console.error('soundpool setRate failed and catch error is ' + err.message);
-    });
-    ```
-
-10. 调用setVolume方法设置音量。
-
-    ```ts
+    import { BusinessError } from '@ohos.base';
+   
     let streamID: number;
     // 先调用play方法获取到对应资源的streamID
 
@@ -145,9 +143,11 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-11. 调用stop方法终止指定流的播放。
+10. 调用stop方法终止指定流的播放。
      
     ```ts
+    import { BusinessError } from '@ohos.base';
+    
     let streamID: number;
     //先调用play方法给拿到对应的streamID
 
@@ -158,9 +158,11 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-12. 调用unload方法卸载音频资源。
+11. 调用unload方法卸载音频资源。
 
     ```ts
+    import { BusinessError } from '@ohos.base';
+    
     let soundID: number;
     // 先调用load方法获取到对应资源的soundID
 
@@ -171,27 +173,29 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-13. 调用off('loadComplete')方法注销加载完成监听。
+12. 调用off('loadComplete')方法注销加载完成监听。
 
     ```ts
     soundPool.off('loadComplete');
     ```
 
-14. 调用off('playFinished')方法注销播放完成监听。
+13. 调用off('playFinished')方法注销播放完成监听。
 
     ```ts
     soundPool.off('playFinished');
     ```
 
-15. 调用off('error')方法注销错误错误类型监听。
+14. 调用off('error')方法注销错误错误类型监听。
 
     ```ts
     soundPool.off('error');
     ```
 
-16. 调用release方法释放SoundPool实例。
+15. 调用release方法释放SoundPool实例。
 
     ```ts
+    import { BusinessError } from '@ohos.base';
+    
     soundPool.release().then(() => {
       console.info('release success');
     }).catch((err: BusinessError) => {
@@ -204,89 +208,83 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 下面展示了使用SoundPool进行低时延播放的完整示例代码。
   
 ```ts
-
 import audio from '@ohos.multimedia.audio';
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs'
-struct Soundpool {
-  private soundPool: media.SoundPool;
-  private streamId: number = 0;
-  private soundId: number = 0;
-  private audioRendererInfo: audio.AudioRendererInfo = {
-    content: audio.ContentType.CONTENT_TYPE_SPEECH,
-    usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
-    rendererFlags: 1
-  }
-  private PlayParameters: media.PlayParameters = {
-    loop: number = 3, // 循环4次
-    rate: audio.AudioRendererRate = audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
-    leftVolume: number = 0.5, // range = 0.0-1.0
-    rightVolume: number = 0.5, // range = 0.0-1.0
-    priority: number = 0, // 最低优先级
-    parallelPlayFlag: boolean = false // 不和其它正在播放的音频并行播放
-  }
-  private uri: string = "";
-  async create(): Promise<void> {
-    //创建soundPool实例
-    this.soundPool = await media.createSoundPool(5, this.audioRendererInfo);
-    //注册监听
-    this.loadCallback();
-    this.finishPlayCallback();
-    this.setErrorCallback();
-    // 加载音频资源
-    await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
-      console.info("file fd: " + file.fd);
-      this.uri = 'fd://' + (file.fd).toString()
-    }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
-    this.soundId = await this.soundPool.load(this.uri);
-  }
-  async loadCallback(): Promise<void> {
-    // 加载完成回调
-    this.soundPool.on('loadComplete', (soundId_: number) => {
-      console.info('loadComplete, soundId: ' + soundId_);
-    })
-  }
-  //设置播放完成监听
-  async finishPlayCallback(): Promise<void> {
-    // 播放完成回调
-    this.soundPool.on('playFinished', () => {
-      console.info("recive play finished message");
-      // 可进行下次播放
-    })
-  }
-  //设置错误类型监听
-  setErrorCallback(): void {
-    this.soundPool.on('error', (error) => {
-      console.info('error happened,message is :' + error.message);
-    })
-  }
-  async PlaySoundPool(): Promise<void> {
-    // 开始播放,这边play也可带播放播放的参数PlayParameters
-    this.streamId = await this.soundPool.play(this.soundId);
-    // 设置循环播放次数
-    this.soundPool.setLoop(this.streamId, 2); // 播放3次
-    // 设置对应流的优先级
-    this.soundPool.setPriority(this.streamId, 1);
-    // 设置播放倍速
-    this.soundPool.setRate(this.streamId, audio.AudioRendererRate.RENDER_RATE_HALF); // 半倍速播放
-    // 设置音量
-    this.soundPool.setVolume(this.streamId, 0.5, 0.5);
-  }
-  async release(): Promise<void> {
-    // 终止指定流的播放
-    this.soundPool.stop(this.streamId);
-    // 卸载音频资源
-    await this.soundPool.unload(this.soundId);
-    //关闭监听
-    this.setOffCallback();
-    // 释放SoundPool
-    await this.soundPool.release();
-  }
+
+let soundPool: media.SoundPool;
+let streamId: number = 0;
+let soundId: number = 0;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+let PlayParameters: media.PlayParameters = {
+  loop: 3, // 循环4次
+  rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // 正常倍速
+  leftVolume: 0.5, // range = 0.0-1.0
+  rightVolume: 0.5, // range = 0.0-1.0
+  priority: 0, // 最低优先级
+}
+let uri: string = "";
+async function create() {
+  //创建soundPool实例
+  soundPool = await media.createSoundPool(5, audioRendererInfo);
+  //注册监听
+  loadCallback();
+  finishPlayCallback();
+  setErrorCallback();
+  // 加载音频资源
+  await fs.open('/test_01.mp3', fs.OpenMode.READ_ONLY).then((file: fs.File) => {
+    console.info("file fd: " + file.fd);
+    uri = 'fd://' + (file.fd).toString()
+  }); // '/test_01.mp3' 作为样例，使用时需要传入文件对应路径。
+  soundId = await soundPool.load(uri);
+}
+async function loadCallback() {
+  // 加载完成回调
+  soundPool.on('loadComplete', (soundId_: number) => {
+    console.info('loadComplete, soundId: ' + soundId_);
+  })
+}
+//设置播放完成监听
+async function finishPlayCallback() {
+  // 播放完成回调
+  soundPool.on('playFinished', () => {
+    console.info("recive play finished message");
+    // 可进行下次播放
+  })
+}
+//设置错误类型监听
+function setErrorCallback() {
+  soundPool.on('error', (error) => {
+    console.info('error happened,message is :' + error.message);
+  })
+}
+async function PlaySoundPool() {
+  // 开始播放,这边play也可带播放播放的参数PlayParameters
+  streamId = await soundPool.play(soundId);
+  // 设置循环播放次数
+  soundPool.setLoop(streamId, 2); // 播放3次
+  // 设置对应流的优先级
+  soundPool.setPriority(streamId, 1);
+  // 设置音量
+  soundPool.setVolume(streamId, 0.5, 0.5);
+}
+async function release() {
+  // 终止指定流的播放
+  soundPool.stop(streamId);
+  // 卸载音频资源
+  await soundPool.unload(soundId);
   //关闭监听
-  setOffCallback() {
-    this.soundPool.off('loadComplete');
-    this.soundPool.off('playFinished');
-    this.soundPool.off('error');
-  }
+  setOffCallback();
+  // 释放SoundPool
+  await soundPool.release();
+}
+//关闭监听
+function setOffCallback() {
+  soundPool.off('loadComplete');
+  soundPool.off('playFinished');
+  soundPool.off('error');
 }
 ```

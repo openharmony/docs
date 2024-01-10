@@ -14,9 +14,8 @@ import Hash from '@ohos.file.hash';
 
 ## Guidelines
 
-Before using the APIs provided by this module to perform operations on a file or directory, obtain the path of the file or directory in the application sandbox as follows:
+Before using the APIs provided by this module to perform operations on a file or directory, obtain the application sandbox path of the file or directory as follows:
 
-Stage Model
 
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
@@ -30,18 +29,8 @@ Stage Model
   }
   ```
 
-FA Model
+For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
-  ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  
-  let context = featureAbility.getContext();
-  context.getFilesDir().then((data) => {
-    let pathDir = data;
-  })
-  ```
-
-For details about how to obtain the FA model context, see [Context](js-apis-inner-app-context.md#context).
 
 ## Hash.hash
 
@@ -60,9 +49,9 @@ Calculates a hash value for a file. This API uses a promise to return the result
 
 **Return value**
 
-  | Type                   | Description                        |
-  | --------------------- | -------------------------- |
-  | Promise&lt;string&gt; | Promise used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
+| Type                   | Description                        |
+| --------------------- | -------------------------- |
+| Promise&lt;string&gt; | Promise used to return the hash value. The hash value is a hexadecimal string consisting of digits and uppercase letters.|
 
 **Error codes**
 
@@ -76,11 +65,12 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   Hash.hash(filePath, "sha256").then((str: string) => {
     console.info("calculate file hash succeed:" + str);
   }).catch((err: BusinessError) => {
-    console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -112,10 +102,11 @@ For details about the error codes, see [Basic File IO Error Codes](../errorcodes
 **Example**
 
   ```ts
+  import { BusinessError } from '@ohos.base';
   let filePath = pathDir + "/test.txt";
   Hash.hash(filePath, "sha256", (err: BusinessError, str: string) => {
     if (err) {
-      console.info("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("calculate file hash failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("calculate file hash succeed:" + str);
     }

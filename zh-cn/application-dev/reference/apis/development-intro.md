@@ -11,7 +11,7 @@ API参考采用两种方式标记组件或接口开始支持的版本号：
 
 ## 应用模型说明
 
-随着系统的演进发展，OpenHarmony先后提供了两种应用模型，FA模型和Stage模型，两者的差异说明可参考[应用模型解读](../../application-models/application-model-description.md)。
+随着系统的演进发展，先后提供了两种应用模型，FA模型和Stage模型，两者的差异说明可参考[应用模型解读](../../application-models/application-model-description.md)。
 
 - 如果某个模块的接口仅支持其中一种模型，会在文档开头说明：本模块接口仅可在FA模型/Stage模型下使用。
 - 如果某个接口仅支持其中一种模型，会在具体的接口描述中说明：此接口仅可在FA模型/Stage模型下使用。

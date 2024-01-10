@@ -15,7 +15,7 @@ import Ability from '@ohos.app.ability.Ability';
 
 ## Ability.onConfigurationUpdate
 
-onConfigurationUpdate(newConfig: Configuration): void;
+onConfigurationUpdate(newConfig: Configuration): void
 
 Called when the configuration of the environment where the ability is running is updated.
 
@@ -42,7 +42,7 @@ class MyUIAbility extends UIAbility {
 
 ## Ability.onMemoryLevel
 
-onMemoryLevel(level: AbilityConstant.MemoryLevel): void;
+onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 Called when the system adjusts the memory level.
 

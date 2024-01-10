@@ -151,3 +151,4 @@ The OpenHarmony N-API component optimizes the Node-API interface implementation 
 |Type|Symbol|Description|
 | --- | --- | --- |
 |FUNC|napi_queue_async_work_with_qos|Adds asynchronously working objects to the queue and schedules them based on the QoS priority.|
+|FUNC|napi_run_script_path|Runs an ABC file.|
