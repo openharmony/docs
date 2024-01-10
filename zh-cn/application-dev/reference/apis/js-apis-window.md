@@ -10053,34 +10053,67 @@ animationForShown(context: TransitionContext): void
 
 **示例：**
 
-```ts
-let controller = windowClass.getTransitionController();
-controller.animationForShown = (context : window.TransitionContext) => {
-	let toWindow = context.toWindow;
- 	animateTo({
-    	duration: 1000, // 动画时长
-        tempo: 0.5, // 播放速率
-        curve: Curve.EaseInOut, // 动画曲线
-        delay: 0, // 动画延迟
-        iterations: 1, // 播放次数
-        playMode: PlayMode.Normal, // 动画模式
-        onFinish: ()=> {
-            context.completeTransition(true)
-        }  
-      }, () => {
-        let obj : window.TranslateOptions = {
-          x : 100.0,
-          y : 0.0,
-          z : 0.0
-        };
-        toWindow.translate(obj);
-        console.info('toWindow translate end');
-      }
-    );
-    console.info('complete transition end');
-};
 ```
+// TS file
+export class AnimationConfig {
+    private animationForShownCallFunc_: Function = undefined;
+    ShowWindowWithCustomAnimation(win: window.Window, callback) {
+        if (!win) {
+            console.error('window is undefined');
+            return false;
+        }
+        try {
+            this.animationForShownCallFunc_ = callback;
+            let controller: window.TransitionController = win.getTransitionController();
+            controller.animationForShown = (context : window.TransitionContext)=> {
+                this.animationForShownCallFunc_(context);
+            };
+        } catch (error: Error) {
+            console.log('Set animation for shown error:' + JSON.stringify(error));
+        }
+        try {
+            win.showWithAnimation(()=>{
+                console.info('Show with animation success');
+            })
+        } catch (e) {
+            console.log('Show with animation failed. error: ' + JSON.stringify(e));
+        }
+    }
+}
 
+// ets file
+let animationConfig = new AnimationConfig();
+    let systemWindow = window.findWindow("systemWindow"); // need to get a window with system window type;
+    try {
+      animationConfig?.ShowWindowWithCustomAnimation(systemWindow, (context : window.TransitionContext)=>{
+        console.info('complete transition end');
+        let toWindow = context.toWindow;
+        animateTo({
+          duration: 1000, // 动画时长
+          tempo: 0.5, // 播放速率
+          curve: Curve.EaseInOut, // 动画曲线
+          delay: 0, // 动画延迟
+          iterations: 1, // 播放次数
+          playMode: PlayMode.Normal, // 动画模式
+          onFinish: ()=> {
+            console.info('onFinish in animation');
+            context.completeTransition(true)
+          }
+        }, () => {
+          let obj : window.TranslateOptions = {
+            x : 100.0,
+            y : 0.0,
+            z : 0.0
+          };
+          toWindow.translate(obj); // 设置动画过程中的属性转换
+          console.info('toWindow translate end in animation');
+        });
+        console.info('complete transition end');
+      });
+    } catch (e) {
+      console.info('ShowWindowWithCustomAnimation err : ' + JSON.stringify(e));
+    }
+```
 ### animationForHidden<sup>9+</sup>
 
 animationForHidden(context: TransitionContext): void
