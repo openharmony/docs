@@ -305,7 +305,7 @@ notificationManager.cancel(0, "label", cancelCallback);
 
 cancel(id: number, label?: string): Promise\<void\>
 
-取消与指定通知ID相匹配的已发布通知，label可以指定也可以不指定。使用Promise异步回调。
+通过通知ID和通知标签取消已发布的通知，若label为空表示取消与指定通知ID相匹配的已发布通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
