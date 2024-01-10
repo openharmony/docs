@@ -1136,6 +1136,7 @@
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
     - 数据管理
       - [@ohos.data.cloudData (端云协同)](reference/apis/js-apis-data-cloudData.md)
+      - [@ohos.data.commonType (数据通用类型)](reference/apis/js-apis-data-commonType.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
       - [@ohos.data.dataShare (数据共享)](reference/apis/js-apis-data-dataShare.md)
       - [@ohos.data.dataSharePredicates (数据共享谓词)](reference/apis/js-apis-data-dataSharePredicates.md)
@@ -2117,7 +2118,7 @@
         - [libc中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
         - [libc中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
         - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
-        - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
+        - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
         - [Native api中支持的Vulkan接口列表](reference/native-lib/third_party_vulkan/vulkan-symbol.md)
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
