@@ -17,7 +17,7 @@ import {
     GridObjectSortComponentItem,
     GridObjectSortComponentOptions,
     GridObjectSortComponentType
-} from '@ohos.arkui.advanced.GridObjectSortComponent';
+} from '@ohos.arkui.advanced.GridObjectSortComponent'
 ```
 
 ##  子组件
@@ -158,7 +158,7 @@ struct Index {
     },
     {
       id: 9,
-      text: '',
+      text: '明星',
       selected: true,
       order: 10
     }
@@ -183,7 +183,7 @@ struct Index {
       		    unselect: Array<GridObjectSortComponentItem>
       		) => {
                 // save ToDo
-                },
+            },
          	onCancel: () =>{
          		// cancel ToDo
          	}
@@ -294,7 +294,7 @@ struct Index {
       		    unselect: Array<GridObjectSortComponentItem>
       		) => {
                 // save ToDo
-                },
+            },
          	onCancel: () =>{
          		// cancel ToDo
          	}
