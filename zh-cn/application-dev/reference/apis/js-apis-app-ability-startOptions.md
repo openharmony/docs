@@ -25,28 +25,39 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager';
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  import Want from '@ohos.app.ability.Want';
+  import StartOptions from '@ohos.app.ability.StartOptions';
+  import { BusinessError } from '@ohos.base';
 
-  try {
-    missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error.code) {
-          console.log('getMissionInfos failed, error.code:' + JSON.stringify(error.code) +
-            'error.message:' + JSON.stringify(error.message));
-          return;
-      }
-      console.log('size = ' + missions.length);
-      console.log('missions = ' + JSON.stringify(missions));
-      let id = missions[0].missionId;
+  export default class EntryAbility extends UIAbility {
 
-      let startOptions = {
-          windowMode : 101,
-          displayId: 0
+    onForeground() {
+      let want: Want = {
+        deviceId: '',
+        bundleName: 'com.example.myapplication',
+        abilityName: 'EntryAbility'
       };
-      missionManager.moveMissionToFront(id, startOptions).then(() => {
-  	    console.log('moveMissionToFront is called ');
-      });
-    });
-  } catch (paramError) {
-    console.log('error: ' + paramError.code + ', ' + paramError.message);
+      let options: StartOptions = {
+        windowMode: 0
+      };
+
+      try {
+        this.context.startAbility(want, options, (err: BusinessError) => {
+          if (err.code) {
+            // 处理业务逻辑错误
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            return;
+          }
+          // 执行正常业务
+          console.info('startAbility succeed');
+        });
+      } catch (err) {
+        // 处理入参错误异常
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+      }
+    }
   }
   ```
