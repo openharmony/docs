@@ -68,13 +68,13 @@ GridObjectSortComponentItem定义GridObjectSortComponent的元数据。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 类型             | 必填 | 说明                                                         |
-| ----- | ---------------- | ---- | ------------------------------------------------------------ |
-| id    | string \| number | 是   | 数据id序号，不可重复                                         |
-| text  | ResourceStr      | 是   | 显示文本信息                                                 |
-| state | boolean          | 是   | 是否已经被添加，添加：true，未添加：false                    |
-| url   | ResourceStr      | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址 |
-| order | number           | 是   | 顺序序号                                                     |
+| 名称     | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| id       | string \| number | 是   | 数据id序号，不可重复                                         |
+| text     | ResourceStr      | 是   | 显示文本信息                                                 |
+| selected | boolean          | 是   | 是否已经被添加，添加：true，未添加：false                    |
+| url      | ResourceStr      | 否   | GridObjectSortComponentType类型为IMAGE_TEXT时，需要传入图片地址 |
+| order    | number           | 是   | 顺序序号                                                     |
 
 ##  事件
 
@@ -102,62 +102,62 @@ struct Index {
   @State dataList: GridObjectSortComponentItem[] = [
     {
       id: 0,
-      text: 'facebook',
-      state: true,
+      text: '科技',
+      selected: true,
       order: 3
     },
     {
       id: 1,
-      text: 'google',
-      state: true,
+      text: '教育',
+      selected: true,
       order: 9
     },
     {
       id: 2,
-      text: 'instagram',
-      state: false,
+      text: '影视',
+      selected: false,
       order: 1
     },
     {
       id: 3,
-      text: 'linkedin',
-      state: true,
+      text: '动漫',
+      selected: true,
       order: 4
     },
     {
       id: 4,
-      text: 'pinterestST',
-      state: false,
+      text: '美食',
+      selected: false,
       order: 5
     },
     {
       id: 5,
-      text: 'Twitter',
-      state: true,
+      text: '读书',
+      selected: true,
       order: 6
     },
     {
       id: 6,
-      text: 'youtube',
-      state: true,
+      text: '国漫',
+      selected: true,
       order: 7
     },
     {
       id: 7,
-      text: 'tumber',
-      state: true,
+      text: '鬼畜',
+      selected: true,
       order: 8
     },
     {
       id: 8,
-      text: 'vk',
-      state: false,
+      text: '军事',
+      selected: false,
       order: 9
     },
     {
       id: 9,
-      text: 'whatsapp',
-      state: true,
+      text: '',
+      selected: true,
       order: 10
     }
   ]
@@ -166,8 +166,8 @@ struct Index {
   @State option: GridObjectSortComponentOptions = {
     type: GridObjectSortComponentType.TEXT,
     imageSize: 56,
-    normalTitle: 'test001',
-    editTitle: 'test002',
+    normalTitle: '频道',
+    editTitle: '编辑',
     showAreaTitle: "长按拖动排序",
     addAreaTitle: "点击添加",
   }
@@ -210,70 +210,70 @@ struct Index {
       id: 0,
       url: $r('app.media.facebook'),
       text: 'facebook',
-      state: true,
+      selected: true,
       order: 3
     },
     {
       id: 1,
       url: $r('app.media.google'),
       text: 'google',
-      state: true,
+      selected: true,
       order: 9
     },
     {
       id: 2,
       url: $r('app.media.instagram'),
       text: 'instagram',
-      state: false,
+      selected: false,
       order: 1
     },
     {
       id: 3,
       url: $r('app.media.linkedin'),
       text: 'linkedin',
-      state: true,
+      selected: true,
       order: 4
     },
     {
       id: 4,
       url: $r('app.media.pinterestST'),
       text: 'pinterestST',
-      state: false,
+      selected: false,
       order: 5
     },
     {
       id: 5,
       url: $r('app.media.Twitter'),
       text: 'Twitter',
-      state: true,
+      selected: true,
       order: 6
     },
     {
       id: 6,
       url: $r('app.media.youtube'),
       text: 'youtube',
-      state: true,
+      selected: true,
       order: 7
     },
     {
       id: 7,
       url: $r('app.media.tumber'),
       text: 'tumber',
-      state: true,
+      selected: true,
       order: 8
     },
     {
       id: 8,
       url: $r('app.media.vk'),
       text: 'vk',
-      state: false,
+      selected: false,
       order: 9
     },
   ]
 
   @State option: GridObjectSortComponentOptions = {
     type: GridObjectSortComponentType.IMAGETEXT,
-    imageSize: 68,
+    imageSize: 45,
     normalTitle: '',
     editTitle: '',
     showAreaTitle: "长按拖动排序",
