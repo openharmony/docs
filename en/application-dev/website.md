@@ -491,8 +491,8 @@
         - [Audio Decoding](media/audio-decoding.md)
         - [Video Encoding](media/video-encoding.md)
         - [Video Decoding](media/video-decoding.md)
-        - [Audio/Video Muxer](media/audio-video-muxer.md)
-        - [Audio/Video Demuxer](media/audio-video-demuxer.md)
+        - [Audio/Video Encapsulation](media/audio-video-encapsulation.md)
+        - [Audio/Video Decapsulation](media/audio-video-decapsulation.md)
     - AVSession
       - [AVSession Overview](media/avsession-overview.md)
       - Local AVSession

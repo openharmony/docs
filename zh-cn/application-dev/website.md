@@ -491,8 +491,8 @@
         - [音频解码](media/audio-decoding.md)
         - [视频编码](media/video-encoding.md)
         - [视频解码](media/video-decoding.md)
-        - [音视频封装](media/audio-video-muxer.md)
-        - [音视频解封装](media/audio-video-demuxer.md)
+        - [音视频封装](media/audio-video-encapsulation.md)
+        - [音视频解封装](media/audio-video-decapsulation.md)
     - 媒体会话
       - [媒体会话概述](media/avsession-overview.md)
       - 本地媒体会话
