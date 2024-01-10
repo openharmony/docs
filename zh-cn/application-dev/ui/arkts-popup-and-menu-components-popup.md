@@ -13,8 +13,6 @@ Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、
 
 在Button组件上绑定Popup属性，每次点击Button按钮，handlePopup会切换布尔值，当值为true时，触发bindPopup弹出气泡。
 
-
-
 ```ts
 @Entry
 @Component
@@ -38,28 +36,57 @@ struct PopupExample {
 
 ![zh-cn_image_0000001511740524](figures/zh-cn_image_0000001511740524.png)
 
+## 添加气泡状态变化的事件
+
+通过onStateChange参数为气泡添加状态变化的事件回调，可以判断当前气泡的显示状态。
+
+```ts
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false
+
+  build() {
+    Column() {
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup
+        })
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with PopupOptions',
+          onStateChange: (e)=> { // 返回当前的气泡状态
+            if (!e.isVisible) {
+              this.handlePopup = false
+            }
+          }
+        })
+    }.width('100%').padding({ top: 5 })
+  }
+}
+```
+
+![PopupOnStateChange](figures/PopupOnStateChange.gif)
 
 ## 带按钮的提示气泡
 
 通过primaryButton、secondaryButton属性为气泡最多设置两个Button按钮，通过此按钮进行简单的交互，开发者可以通过配置action参数来设置想要触发的操作。
-
-
 
 ```ts
 @Entry
 @Component
 struct PopupExample22 {
   @State handlePopup: boolean = false
+
   build() {
     Column() {
-      Button('PopupOptions').margin({top:200})
+      Button('PopupOptions').margin({ top: 200 })
         .onClick(() => {
           this.handlePopup = !this.handlePopup
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
-          primaryButton:{
-            value:'Confirm',
+          primaryButton: {
+            value: 'Confirm',
             action: () => {
               this.handlePopup = !this.handlePopup
               console.info('confirm Button click')
@@ -71,6 +98,11 @@ struct PopupExample22 {
               this.handlePopup = !this.handlePopup
             }
           },
+          onStateChange: (e) => {
+            if (!e.isVisible) {
+              this.handlePopup = false
+            }
+          }
         })
     }.width('100%').padding({ top: 5 })
   }
@@ -84,8 +116,6 @@ struct PopupExample22 {
 ## 自定义气泡
 
 开发者可以使用构建器CustomPopupOptions创建自定义气泡，\@Builder中可以放自定义的内容。除此之外，还可以通过popupColor等参数控制气泡样式。
-
-
 
 ```ts
 @Entry
@@ -109,7 +139,13 @@ struct Index {
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder, // 气泡的内容
           placement:Placement.Bottom, // 气泡的弹出位置
-          popupColor:Color.Pink // 气泡的背景色
+          popupColor:Color.Pink, // 气泡的背景色
+          onStateChange: (e) => {
+            console.info(JSON.stringify(e.isVisible))
+            if (!e.isVisible) {
+              this.customPopup = false
+            }
+          }
         })
     }
     .height('100%')
