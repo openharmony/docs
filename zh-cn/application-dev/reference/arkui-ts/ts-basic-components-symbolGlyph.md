@@ -56,19 +56,19 @@ struct Index {
             Text("细")
             SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Lighter)
-              .fontSize(100)
+              .fontSize(96)
           }
           Column(){
             Text("标准")
             SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Normal)
-              .fontSize(100)
+              .fontSize(96)
           }
           Column(){
             Text("粗")
             SymbolGlyph($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Bold)
-              .fontSize(100)
+              .fontSize(96)
           }
         }
 
@@ -76,21 +76,21 @@ struct Index {
           Column(){
             Text("统一")
             SymbolGlyph($r('sys.symbol.ohos_lungs'))
-              .fontSize(100)
+              .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.SINGLE)
               .fontColor([Color.Blue,Color.Grey,Color.Green])
           }
           Column(){
             Text("多色")
             SymbolGlyph($r('sys.symbol.ohos_lungs'))
-              .fontSize(100)
+              .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
               .fontColor([Color.Blue,Color.Grey,Color.Green])
           }
           Column(){
             Text("不同透明度")
             SymbolGlyph($r('sys.symbol.ohos_lungs'))
-              .fontSize(100)
+              .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
               .fontColor([Color.Blue,Color.Grey,Color.Green])
           }
@@ -99,19 +99,19 @@ struct Index {
           Column(){
             Text("无动效")
             SymbolGlyph($r('sys.symbol.ohos_wifi'))
-              .fontSize(100)
+              .fontSize(96)
               .effectStrategy(SymbolEffectStrategy.NONE)
           }
           Column(){
             Text("整体缩放动效")
             SymbolGlyph($r('sys.symbol.ohos_wifi'))
-              .fontSize(100)
+              .fontSize(96)
               .effectStrategy(SymbolEffectStrategy.SCALE)
           }
           Column(){
             Text("层级动效")
             SymbolGlyph($r('sys.symbol.ohos_wifi'))
-              .fontSize(100)
+              .fontSize(96)
               .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
           }
         }

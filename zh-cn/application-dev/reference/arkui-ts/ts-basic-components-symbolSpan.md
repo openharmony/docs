@@ -57,7 +57,7 @@ struct Index {
           Text(){
             SymbolSpan($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Lighter)
-              .fontSize(90)
+              .fontSize(96)
           }
         }
         Column(){
@@ -65,7 +65,7 @@ struct Index {
           Text(){
             SymbolSpan($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Normal)
-              .fontSize(90)
+              .fontSize(96)
           }
         }
         Column(){
@@ -73,7 +73,7 @@ struct Index {
           Text(){
             SymbolSpan($r('sys.symbol.ohos_lungs'))
               .fontWeight(FontWeight.Bold)
-              .fontSize(90)
+              .fontSize(96)
           }
         }
       }
@@ -83,7 +83,7 @@ struct Index {
           Text("单色")
           Text(){
             SymbolSpan($r('sys.symbol.ohos_lungs'))
-              .fontSize(90)
+              .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.SINGLE)
               .fontColor([Color.Blue,Color.Grey,Color.Green])
           }
@@ -92,7 +92,7 @@ struct Index {
           Text("多色")
           Text(){
             SymbolSpan($r('sys.symbol.ohos_lungs'))
-              .fontSize(90)
+              .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
               .fontColor([Color.Blue,Color.Grey,Color.Green])
           }
@@ -101,7 +101,7 @@ struct Index {
           Text("透明度")
           Text(){
             SymbolSpan($r('sys.symbol.ohos_lungs'))
-              .fontSize(90)
+              .fontSize(96)
               .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
               .fontColor([Color.Blue,Color.Grey,Color.Green])
           }
@@ -112,7 +112,7 @@ struct Index {
           Text("无动效")
           Text() {
             SymbolSpan($r('sys.symbol.ohos_wifi'))
-              .fontSize(90)
+              .fontSize(96)
               .effectStrategy(SymbolEffectStrategy.NONE)
           }
         }
@@ -120,7 +120,7 @@ struct Index {
           Text("整体缩放动效")
           Text(){
             SymbolSpan($r('sys.symbol.ohos_wifi'))
-              .fontSize(90)
+              .fontSize(96)
               .effectStrategy(SymbolEffectStrategy.SCALE)
           }
         }
@@ -128,7 +128,7 @@ struct Index {
           Text("层级动效")
           Text(){
             SymbolSpan($r('sys.symbol.ohos_wifi'))
-              .fontSize(90)
+              .fontSize(96)
               .effectStrategy(SymbolEffectStrategy.HIERARCHICAL)
           }
         }
