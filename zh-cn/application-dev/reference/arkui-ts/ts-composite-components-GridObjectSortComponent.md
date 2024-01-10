@@ -278,8 +278,8 @@ struct Index {
   @State option: GridObjectSortComponentOptions = {
     type: GridObjectSortComponentType.IMAGE_TEXT,
     imageSize: 45,
-    normalTitle: '',
-    editTitle: '',
+    normalTitle: '菜单',
+    editTitle: '编辑',
     showAreaTitle: '长按拖动排序',
     addAreaTitle: '点击添加'
   }
