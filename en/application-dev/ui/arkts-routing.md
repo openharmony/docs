@@ -169,16 +169,20 @@ On the target page, you can call the [getParams()](../reference/apis/js-apis-rou
 
 ```ts
 import router from '@ohos.router';
-class infoTmp{
-  age:number = 0
+
+class InfoTmp {
+  age: number = 0
 }
-class rouTmp{
-  id:object = ()=>{}
-  info:infoTmp = new infoTmp()
+
+class RouTmp {
+  id: object = () => {
+  }
+  info: InfoTmp = new InfoTmp()
 }
-const params:rouTmp = router.getParams() as rouTmp; // Obtain the passed parameter object.
-const id:object = params.id // Obtain the value of the id attribute.
-const age:number = params.info.age; // Obtain the value of the age attribute.
+
+const params: RouTmp = router.getParams() as RouTmp; // Obtain the passed parameter object.
+const id: object = params.id // Obtain the value of the id attribute.
+const age: number = params.info.age // Obtain the value of the age attribute.
 ```
 
 
