@@ -1,6 +1,6 @@
 # @ohos.notificationManager (NotificationManager模块)
 
-本模块提供通知管理的能力，包括发布、取消发布通知，创建、获取、移除通知通道，获取通知的使能状态、角标使能状态，获取通知的相关信息等。
+本模块提供通知管理的能力，包括发布、取消发布通知，创建、获取、移除通知渠道，获取通知的使能状态、角标使能状态，获取通知的相关信息等。
 
 > **说明：**
 >
@@ -16,7 +16,7 @@ import notificationManager from '@ohos.notificationManager';
 
 publish(request: NotificationRequest, callback: AsyncCallback\<void\>): void
 
-发布通知（callback形式）。
+发布通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -78,7 +78,7 @@ notificationManager.publish(notificationRequest, publishCallback);
 
 publish(request: NotificationRequest): Promise\<void\>
 
-发布通知（Promise形式）。
+发布通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -142,7 +142,7 @@ notificationManager.publish(notificationRequest).then(() => {
 
 publish(request: NotificationRequest, userId: number, callback: AsyncCallback\<void\>): void
 
-发布通知给指定的用户（callback形式）。
+发布通知给指定的用户。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -212,7 +212,7 @@ notificationManager.publish(notificationRequest, userId, publishCallback);
 
 publish(request: NotificationRequest, userId: number): Promise\<void\>
 
-发布通知给指定的用户（Promise形式）。
+发布通知给指定的用户。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -284,7 +284,7 @@ notificationManager.publish(notificationRequest, userId).then(() => {
 
 cancel(id: number, label: string, callback: AsyncCallback\<void\>): void
 
-通过通知ID和通知标签取消已发布的通知（callback形式）。
+通过通知ID和通知标签取消已发布的通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -327,7 +327,7 @@ notificationManager.cancel(0, "label", cancelCallback);
 
 cancel(id: number, label?: string): Promise\<void\>
 
-通过通知ID和通知标签取消已发布的通知，若label为空表示取消与指定通知ID相匹配的已发布通知（Promise形式）。
+通过通知ID和通知标签取消已发布的通知，若label为空表示取消与指定通知ID相匹配的已发布通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -371,7 +371,7 @@ notificationManager.cancel(0).then(() => {
 
 cancel(id: number, callback: AsyncCallback\<void\>): void
 
-取消与指定通知ID相匹配的已发布通知（callback形式）。
+取消与指定通知ID相匹配的已发布通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -413,7 +413,7 @@ notificationManager.cancel(0, cancelCallback);
 
 cancelAll(callback: AsyncCallback\<void\>): void
 
-取消当前应用所有已发布的通知（callback形式）。
+取消当前应用所有已发布的通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -453,7 +453,7 @@ notificationManager.cancelAll(cancelAllCallback);
 
 cancelAll(): Promise\<void\>
 
-取消当前应用所有已发布的通知（Promise形式）。
+取消当前应用所有已发布的通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -489,7 +489,7 @@ notificationManager.cancelAll().then(() => {
 
 addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
-创建通知通道（callback形式）。
+创建通知渠道。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -501,7 +501,7 @@ addSlot(slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | 是   | 要创建的通知通道对象。 |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)       | 是   | 要创建的通知渠道对象。 |
 | callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。 |
 
 **错误码：**
@@ -539,7 +539,7 @@ notificationManager.addSlot(notificationSlot, addSlotCallBack);
 
 addSlot(slot: NotificationSlot): Promise\<void\>
 
-创建通知通道（Promise形式）。
+创建通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -551,7 +551,7 @@ addSlot(slot: NotificationSlot): Promise\<void\>
 
 | 参数名 | 类型             | 必填 | 说明                 |
 | ---- | ---------------- | ---- | -------------------- |
-| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 要创建的通知通道对象。 |
+| slot | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 要创建的通知渠道对象。 |
 
 **返回值：**
 
@@ -590,7 +590,7 @@ notificationManager.addSlot(notificationSlot).then(() => {
 
 addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
-创建指定类型的通知通道（callback形式）。
+创建指定类型的通知渠道。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -598,7 +598,7 @@ addSlot(type: SlotType, callback: AsyncCallback\<void\>): void
 
 | 参数名     | 类型                  | 必填 | 说明                   |
 | -------- | --------------------- | ---- | ---------------------- |
-| type     | [SlotType](#slottype)              | 是   | 要创建的通知通道的类型。 |
+| type     | [SlotType](#slottype)              | 是   | 要创建的通知渠道的类型。 |
 | callback | AsyncCallback\<void\> | 是   | 表示被指定通道的回调方法。   |
 
 **错误码：**
@@ -632,7 +632,7 @@ notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, a
 
 addSlot(type: SlotType): Promise\<void\>
 
-创建指定类型的通知通道（Promise形式）。
+创建指定类型的通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -640,7 +640,7 @@ addSlot(type: SlotType): Promise\<void\>
 
 | 参数名 | 类型     | 必填 | 说明                   |
 | ---- | -------- | ---- | ---------------------- |
-| type | [SlotType](#slottype) | 是   | 要创建的通知通道的类型。 |
+| type | [SlotType](#slottype) | 是   | 要创建的通知渠道的类型。 |
 
 **返回值：**
 
@@ -675,7 +675,7 @@ notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION).t
 
 addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): void
 
-创建多个通知通道（callback形式）。
+创建多个通知渠道。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -687,7 +687,7 @@ addSlots(slots: Array\<NotificationSlot\>, callback: AsyncCallback\<void\>): voi
 
 | 参数名     | 类型                      | 必填 | 说明                     |
 | -------- | ------------------------- | ---- | ------------------------ |
-| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知通道对象数组。 |
+| slots    | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知渠道对象数组。 |
 | callback | AsyncCallback\<void\>     | 是   | 表示被指定通道的回调方法。     |
 
 **错误码：**
@@ -729,7 +729,7 @@ notificationManager.addSlots(notificationSlotArray, addSlotsCallBack);
 
 addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
-创建多个通知通道（Promise形式）。
+创建多个通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -741,7 +741,7 @@ addSlots(slots: Array\<NotificationSlot\>): Promise\<void\>
 
 | 参数名  | 类型                      | 必填 | 说明                     |
 | ----- | ------------------------- | ---- | ------------------------ |
-| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知通道对象数组。 |
+| slots | Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 是   | 要创建的通知渠道对象数组。 |
 
 **返回值：**
 
@@ -784,7 +784,7 @@ notificationManager.addSlots(notificationSlotArray).then(() => {
 
 getSlot(slotType: SlotType, callback: AsyncCallback\<NotificationSlot\>): void
 
-获取一个指定类型的通知通道（callback形式）。
+获取一个指定类型的通知渠道。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -826,7 +826,7 @@ notificationManager.getSlot(slotType, getSlotCallback);
 
 getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
-获取一个指定类型的通知通道（Promise形式）。
+获取一个指定类型的通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -840,7 +840,7 @@ getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 以Promise形式返回获取一个通知通道。 |
+| Promise\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | 以Promise形式返回获取一个通知渠道。 |
 
 **错误码：**
 
@@ -870,7 +870,7 @@ notificationManager.getSlot(slotType).then((data: notificationManager.Notificati
 
 getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
-获取此应用程序的所有通知通道（callback形式）。
+获取此应用程序的所有通知渠道。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -878,7 +878,7 @@ getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 | 参数名     | 类型                              | 必填 | 说明                 |
 | -------- | --------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | 是   | 以callback形式返回获取此应用程序的所有通知通道的结果。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | 是   | 以callback形式返回获取此应用程序的所有通知渠道的结果。 |
 
 **错误码：**
 
@@ -911,7 +911,7 @@ notificationManager.getSlots(getSlotsCallback);
 
 getSlots(): Promise\<Array\<NotificationSlot>>
 
-获取此应用程序的所有通知通道（Promise形式）。
+获取此应用程序的所有通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -919,7 +919,7 @@ getSlots(): Promise\<Array\<NotificationSlot>>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | 以Promise形式返回获取此应用程序的所有通知通道的结果。 |
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | 以Promise形式返回获取此应用程序的所有通知渠道的结果。 |
 
 **错误码：**
 
@@ -947,7 +947,7 @@ notificationManager.getSlots().then((data: Array<notificationManager.Notificatio
 
 removeSlot(slotType: SlotType, callback: AsyncCallback\<void\>): void
 
-删除此应用程序指定类型的通知通道（callback形式）。
+删除此应用程序指定类型的通知渠道。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -989,7 +989,7 @@ notificationManager.removeSlot(slotType, removeSlotCallback);
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
-删除此应用程序指定类型的通知通道（Promise形式）。
+删除此应用程序指定类型的通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1032,7 +1032,7 @@ notificationManager.removeSlot(slotType).then(() => {
 
 removeAllSlots(callback: AsyncCallback\<void\>): void
 
-删除此应用程序所有通知通道（callback形式）。
+删除此应用程序所有通知渠道。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1071,7 +1071,7 @@ notificationManager.removeAllSlots(removeAllCallBack);
 
 removeAllSlots(): Promise\<void\>
 
-删除此应用程序所有通知通道（Promise形式）。
+删除此应用程序所有通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1107,7 +1107,7 @@ notificationManager.removeAllSlots().then(() => {
 
 setNotificationEnable(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-设定指定应用的通知使能状态（callback形式）。
+设定指定应用的通知使能状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1156,7 +1156,7 @@ notificationManager.setNotificationEnable(bundle, false, setNotificationEnableCa
 
 setNotificationEnable(bundle: BundleOption, enable: boolean): Promise\<void\>
 
-设定指定应用的通知使能状态（Promise形式）。
+设定指定应用的通知使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1207,7 +1207,7 @@ notificationManager.setNotificationEnable(bundle, false).then(() => {
 
 isNotificationEnabled(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的通知使能状态（callback形式）。
+获取指定应用的通知使能状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1257,7 +1257,7 @@ notificationManager.isNotificationEnabled(bundle, isNotificationEnabledCallback)
 
 isNotificationEnabled(bundle: BundleOption): Promise\<boolean\>
 
-获取指定应用的通知使能状态（Promise形式）。
+获取指定应用的通知使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1307,7 +1307,7 @@ notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 
 isNotificationEnabled(callback: AsyncCallback\<boolean\>): void
 
-获取通知使能状态（callback形式）。
+获取通知使能状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1349,7 +1349,7 @@ notificationManager.isNotificationEnabled(isNotificationEnabledCallback);
 
 isNotificationEnabled(): Promise\<boolean\>
 
-获取通知使能状态（Promise形式）。
+获取通知使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1387,7 +1387,7 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 
 isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
 
-获取指定用户ID下的通知使能状态（callback形式）。
+获取指定用户ID下的通知使能状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1435,7 +1435,7 @@ notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback)
 
 isNotificationEnabled(userId: number): Promise\<boolean\>
 
-获取制定用户下的通知使能状态（Promise形式）。
+获取制定用户下的通知使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1484,7 +1484,7 @@ notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 
 displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void\>): void
 
-设定指定应用的角标使能状态（callback形式）。
+设定指定应用的角标使能状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1533,7 +1533,7 @@ notificationManager.displayBadge(bundle, false, displayBadgeCallback);
 
 displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
-设定指定应用的角标使能状态（Promise形式）。
+设定指定应用的角标使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1584,7 +1584,7 @@ notificationManager.displayBadge(bundle, false).then(() => {
 
 isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的角标使能状态（callback形式）。
+获取指定应用的角标使能状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1632,7 +1632,7 @@ notificationManager.isBadgeDisplayed(bundle, isBadgeDisplayedCallback);
 
 isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
-获取指定应用的角标使能状态（Promise形式）。
+获取指定应用的角标使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1683,7 +1683,7 @@ notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 
 setBadgeNumber(badgeNumber: number): Promise\<void\>
 
-设定角标个数，在应用的桌面图标上呈现（Promise形式）。
+设定角标个数，在应用的桌面图标上呈现。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1726,7 +1726,7 @@ notificationManager.setBadgeNumber(badgeNumber).then(() => {
 
 setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
-设定角标个数，在应用的桌面图标上呈现（callback形式）。
+设定角标个数，在应用的桌面图标上呈现。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1769,7 +1769,7 @@ notificationManager.setBadgeNumber(badgeNumber, setBadgeNumberCallback);
 
 setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
-设定指定应用的通知通道（Promise形式）。
+设定指定应用的通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1782,7 +1782,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| slotFlags   | number | 是   | 通知通道标识位。 |
+| slotFlags   | number | 是   | 通知渠道标识位。 |
 
 **返回值：**
 
@@ -1823,7 +1823,7 @@ notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
-设定指定应用的通知通道（callback形式）。
+设定指定应用的通知渠道。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1836,8 +1836,8 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)          | 是   | 指定应用的包信息。           |
-| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)      | 是   | 通知通道。             |
-| callback | AsyncCallback\<void\> | 是   | 设定通知通道回调函数。 |
+| slot     | [NotificationSlot](js-apis-inner-notification-notificationSlot.md)      | 是   | 通知渠道。             |
+| callback | AsyncCallback\<void\> | 是   | 设定通知渠道回调函数。 |
 
 **错误码：**
 
@@ -1875,7 +1875,7 @@ notificationManager.setSlotByBundle(bundle, notificationSlot, setSlotByBundleCal
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
-设定指定应用的通知通道（Promise形式）。
+设定指定应用的通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1888,7 +1888,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
 | bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
-| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 通知通道。 |
+| slot   | [NotificationSlot](js-apis-inner-notification-notificationSlot.md) | 是   | 通知渠道。 |
 
 **返回值：**
 
@@ -1931,7 +1931,7 @@ notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
-获取指定应用的通知通道标识位（Promise形式）。
+获取指定应用的通知渠道标识位。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1949,7 +1949,7 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-|  Promise\<number\>| 以Promise形式返回获取指定应用的通知通道标识位。 |
+|  Promise\<number\>| 以Promise形式返回获取指定应用的通知渠道标识位。 |
 
 **错误码：**
 
@@ -1981,7 +1981,7 @@ notificationManager.getSlotFlagsByBundle(bundle).then(() => {
 
 getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
-获取指定应用的所有通知通道（callback形式）。
+获取指定应用的所有通知渠道。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -1994,7 +1994,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 | 参数名     | 类型                                     | 必填 | 说明                 |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | 是   | 指定应用的包信息。           |
-| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 是   | 获取通知通道回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 是   | 获取通知渠道回调函数。 |
 
 **错误码：**
 
@@ -2029,7 +2029,7 @@ notificationManager.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 
 getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
-获取指定应用的所有通知通道（Promise形式）。
+获取指定应用的所有通知渠道。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2047,7 +2047,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 以Promise形式返回获取指定应用的通知通道。 |
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 以Promise形式返回获取指定应用的通知渠道。 |
 
 **错误码：**
 
@@ -2080,7 +2080,7 @@ notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManag
 
 getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): void
 
-获取指定应用的通知通道数量（callback形式）。
+获取指定应用的通知渠道数量。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2093,7 +2093,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 | 参数名     | 类型                      | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)              | 是   | 指定应用的包信息。             |
-| callback | AsyncCallback\<number\> | 是   | 获取通知通道数量回调函数。 |
+| callback | AsyncCallback\<number\> | 是   | 获取通知渠道数量回调函数。 |
 
 **错误码：**
 
@@ -2130,7 +2130,7 @@ notificationManager.getSlotNumByBundle(bundle, getSlotNumByBundleCallback);
 
 getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
-获取指定应用的通知通道数量（Promise形式）。
+获取指定应用的通知渠道数量。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2148,7 +2148,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<number\> | 以Promise形式返回获取指定应用的通知通道数量。 |
+| Promise\<number\> | 以Promise形式返回获取指定应用的通知渠道数量。 |
 
 **错误码：**
 
@@ -2182,7 +2182,7 @@ notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 
 getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
-获取当前未删除的所有通知（callback形式）。
+获取当前未删除的所有通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2226,7 +2226,7 @@ notificationManager.getAllActiveNotifications(getAllActiveNotificationsCallback)
 
 getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
 
-获取当前未删除的所有通知（Promise形式）。
+获取当前未删除的所有通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2266,7 +2266,7 @@ notificationManager.getAllActiveNotifications().then((data: Array<notificationMa
 
 getActiveNotificationCount(callback: AsyncCallback\<number\>): void
 
-获取当前应用未删除的通知数（callback形式）。
+获取当前应用未删除的通知数。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2306,7 +2306,7 @@ notificationManager.getActiveNotificationCount(getActiveNotificationCountCallbac
 
 getActiveNotificationCount(): Promise\<number\>
 
-获取当前应用未删除的通知数（Promise形式）。
+获取当前应用未删除的通知数。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2342,7 +2342,7 @@ notificationManager.getActiveNotificationCount().then((data: number) => {
 
 getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
-获取当前应用未删除的通知列表（callback形式）。
+获取当前应用未删除的通知列表。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2382,7 +2382,7 @@ notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 
 getActiveNotifications(): Promise\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>\>
 
-获取当前应用未删除的通知列表（Promise形式）。
+获取当前应用未删除的通知列表。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2532,7 +2532,7 @@ notificationManager.getActiveNotificationByFilter().then((filter: notificationRe
 
 cancelGroup(groupName: string, callback: AsyncCallback\<void\>): void
 
-取消本应用指定组下的通知（callback形式）。
+取消本应用指定组下的通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2575,7 +2575,7 @@ notificationManager.cancelGroup(groupName, cancelGroupCallback);
 
 cancelGroup(groupName: string): Promise\<void\>
 
-取消本应用指定组下的通知（Promise形式）。
+取消本应用指定组下的通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2618,7 +2618,7 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 removeGroupByBundle(bundle: BundleOption, groupName: string, callback: AsyncCallback\<void\>): void
 
-删除指定应用的指定组下的通知（callback形式）。
+删除指定应用的指定组下的通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2668,7 +2668,7 @@ notificationManager.removeGroupByBundle(bundleOption, groupName, removeGroupByBu
 
 removeGroupByBundle(bundle: BundleOption, groupName: string): Promise\<void\>
 
-删除指定应用的指定组下的通知（Promise形式）。
+删除指定应用的指定组下的通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2719,7 +2719,7 @@ notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 
 setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): void
 
-设置免打扰时间（callback形式）。
+设置免打扰时间。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2771,7 +2771,7 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate, setDoNotDisturbDateCal
 
 setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
-设置免打扰时间（Promise形式）。
+设置免打扰时间。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2825,7 +2825,7 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallback\<void\>): void
 
-指定用户设置免打扰时间（callback形式）。
+指定用户设置免打扰时间。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2881,7 +2881,7 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId, setDoNotDistur
 
 setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
-指定用户设置免打扰时间（Promise形式）。
+指定用户设置免打扰时间。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2939,7 +2939,7 @@ notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 
 getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
-查询免打扰时间（callback形式）。
+查询免打扰时间。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2984,7 +2984,7 @@ notificationManager.getDoNotDisturbDate(getDoNotDisturbDateCallback);
 
 getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
-查询免打扰时间（Promise形式）。
+查询免打扰时间。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3026,7 +3026,7 @@ notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotD
 
 getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>): void
 
-查询指定用户的免打扰时间（callback形式）。
+查询指定用户的免打扰时间。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3075,7 +3075,7 @@ notificationManager.getDoNotDisturbDate(userId, getDoNotDisturbDateCallback);
 
 getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
-查询指定用户的免打扰时间（Promise形式）。
+查询指定用户的免打扰时间。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3126,7 +3126,7 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
  isSupportDoNotDisturbMode(callback: AsyncCallback\<boolean\>): void
 
-查询是否支持免打扰功能（callback形式）。
+查询是否支持免打扰功能。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3170,7 +3170,7 @@ notificationManager.isSupportDoNotDisturbMode(isSupportDoNotDisturbModeCallback)
 
 isSupportDoNotDisturbMode(): Promise\<boolean\>
 
-查询是否支持免打扰功能（Promise形式）。
+查询是否支持免打扰功能。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3210,7 +3210,7 @@ notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-查询模板是否存在（callback形式）。
+查询模板是否存在。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3252,7 +3252,7 @@ notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
 
-查询模板是否存在（Promise形式）。
+查询模板是否存在。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3295,7 +3295,7 @@ notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
 
 requestEnableNotification(callback: AsyncCallback\<void\>): void
 
-应用请求通知使能（callback形式）。
+应用请求通知使能。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3336,7 +3336,7 @@ notificationManager.requestEnableNotification(requestEnableNotificationCallback)
 
 requestEnableNotification(): Promise\<void\>
 
-应用请求通知使能（Promise形式）。
+应用请求通知使能。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3374,7 +3374,7 @@ notificationManager.requestEnableNotification().then(() => {
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
-应用请求通知使能模态弹窗（callback形式）。
+应用请求通知使能模态弹窗。使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -3425,7 +3425,7 @@ class MyAbility extends UIAbility {
 
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
-应用请求通知使能模态弹窗（Promise形式）。
+应用请求通知使能模态弹窗。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -3478,7 +3478,7 @@ class MyAbility extends UIAbility {
 
 setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
-设置设备是否支持分布式通知（callback形式）。
+设置设备是否支持分布式通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3524,7 +3524,7 @@ notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 
 setDistributedEnable(enable: boolean): Promise\<void>
 
-设置设备是否支持分布式通知（Promise形式）。
+设置设备是否支持分布式通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3567,7 +3567,7 @@ notificationManager.setDistributedEnable(enable).then(() => {
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
 
-查询设备是否支持分布式通知（callback形式）。
+查询设备是否支持分布式通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3609,7 +3609,7 @@ notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 
 isDistributedEnabled(): Promise\<boolean>
 
-查询设备是否支持分布式通知（Promise形式）。
+查询设备是否支持分布式通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3648,7 +3648,7 @@ notificationManager.isDistributedEnabled()
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用是否支持分布式通知（callback形式）。
+设置指定应用是否支持分布式通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3701,7 +3701,7 @@ notificationManager.setDistributedEnableByBundle(bundle, enable, setDistributedE
 
 setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<void>
 
-设置指定应用是否支持分布式通知（Promise形式）。
+设置指定应用是否支持分布式通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3748,7 +3748,7 @@ notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
 
 isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<boolean>): void
 
-根据应用的包获取应用程序是否支持分布式通知（callback形式）。
+根据应用的包获取应用程序是否支持分布式通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3797,7 +3797,7 @@ notificationManager.isDistributedEnabledByBundle(bundle, isDistributedEnabledByB
 
 isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
-查询指定应用是否支持分布式通知（Promise形式）。
+查询指定应用是否支持分布式通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3849,7 +3849,7 @@ notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) =>
 
 getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
-获取通知的提醒方式（callback形式）。
+获取通知的提醒方式。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3892,7 +3892,7 @@ notificationManager.getDeviceRemindType(getDeviceRemindTypeCallback);
 
 getDeviceRemindType(): Promise\<DeviceRemindType\>
 
-获取通知的提醒方式（Promise形式）。
+获取通知的提醒方式。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3933,7 +3933,7 @@ notificationManager.getDeviceRemindType().then((data: notificationManager.Device
 
 publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
 
-发布代理通知（callback形式）。
+发布代理通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4001,7 +4001,7 @@ notificationManager.publishAsBundle(request, representativeBundle, userId, callb
 
 publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
 
-发布代理通知（Promise形式）。
+发布代理通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4071,7 +4071,7 @@ notificationManager.publishAsBundle(request, representativeBundle, userId).then(
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
 
-取消代理通知（callback形式）。
+取消代理通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4124,7 +4124,7 @@ notificationManager.cancelAsBundle(0, representativeBundle, userId, cancelAsBund
 
 cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
 
-取消代理通知（Promise形式）。
+取消代理通知。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4178,7 +4178,7 @@ notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 
 setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
 
-设置指定应用的指定渠道类型的使能状态（callback形式）。
+设置指定应用的指定渠道类型的使能状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4335,7 +4335,7 @@ notificationManager.setNotificationEnableSlot(
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
 
-获取指定应用的指定渠道类型的使能状态（callback形式）。
+获取指定应用的指定渠道类型的使能状态。使用callback异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4386,7 +4386,7 @@ notificationManager.isNotificationSlotEnabled(
 
 isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolean\>  
 
-获取指定应用的指定渠道类型的使能状态（Promise形式）。
+获取指定应用的指定渠道类型的使能状态。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
