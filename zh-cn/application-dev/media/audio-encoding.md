@@ -26,7 +26,7 @@
 
 ## 开发指导
 
-详细的API说明请参考[API文档](../reference/native-apis/_audio_codec.md)。
+详细的API说明请参考[API文档]../reference/native-apis/_audio_codec.md)。
 
 参考以下示例代码，完成音频编码的全流程，包括：创建编码器，设置编码参数（采样率/码率/声道数等），开始，刷新，重置，销毁资源。
 
@@ -48,11 +48,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 1. 添加头文件。
 
     ```cpp
-    #include <multimedia/player_framework/native_avcodec_audioencoder.h>
+    #include <multimedia/player_framework/native_avcodec_audiocodec.h>
     #include <multimedia/native_audio_channel_layout.h>
     #include <multimedia/player_framework/native_avcapability.h>
     #include <multimedia/player_framework/native_avcodec_base.h>
     #include <multimedia/player_framework/native_avformat.h>
+    #include <multimedia/player_framework/native_avbuffer.h>
     ```
 
 2. 创建编码器实例对象，OH_AVCodec *为编码器实例指针。
@@ -94,7 +95,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 3. 调用OH_AudioCodec_RegisterCallback()注册回调函数。  
-   注册回调函数指针集合OH_AVCodecAsyncCallback，包括：
+   注册回调函数指针集合OH_AVCodecCallback，包括：
 
    - OH_AVCodecOnError：编码器运行错误。
    - OH_AVCodecOnStreamChanged：码流信息变化，如声道变化等。
