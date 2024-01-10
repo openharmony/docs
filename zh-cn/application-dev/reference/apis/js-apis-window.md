@@ -5558,37 +5558,6 @@ try {
 
 ```ts
 let controller = windowClass.getTransitionController(); // 获取属性转换控制器
-controller.animationForHidden = (context : window.TransitionContext) => {
-  let toWindow = context.toWindow;
-  animateTo({
-    duration: 1000, // 动画时长
-    tempo: 0.5, // 播放速率
-    curve: Curve.EaseInOut, // 动画曲线
-    delay: 0, // 动画延迟
-    iterations: 1, // 播放次数
-    playMode: PlayMode.Normal, // 动画模式
-    onFinish: () => {
-      context.completeTransition(true)
-    }
-  }, () => {
-    let obj : window.TranslateOptions = {
-      x : 100.0,
-      y : 0.0,
-      z : 0.0
-    };
-    toWindow.translate(obj); // 设置动画过程中的属性转换
-    console.info('toWindow translate end');
-  }
-  );
-  console.info('complete transition end');
-};
-windowClass.hideWithAnimation((err, data) => {
-  if (err.code) {
-    console.error('Failed to hide the window with animation. Cause: ' + JSON.stringify(err));
-    return;
-  }
-  console.info('Succeeded in hiding the window with animation. Data: ' + JSON.stringify(data));
-});
 ```
 
 ### setBlur<sup>9+</sup>
@@ -10054,34 +10023,28 @@ animationForShown(context: TransitionContext): void
 **示例：**
 
 ```
-// testTs.ts
+// xxx.ts
 export class AnimationConfig {
-    private animationForShownCallFunc_: Function = undefined;
-    ShowWindowWithCustomAnimation(window: window.Window, callback) {
-        if (!window) {
-            console.error('window is undefined');
-            return false;
-        }
-        try {
-            this.animationForShownCallFunc_ = callback;
-            let controller: window.TransitionController = win.getTransitionController();
-            controller.animationForShown = (context : window.TransitionContext)=> {
-                this.animationForShownCallFunc_(context);
-            };
-        } catch (error: Error) {
-            console.error('Set animation for shown error:' + JSON.stringify(error));
-        }
-        try {
-            win.showWithAnimation(()=>{
-                console.info('Show with animation success');
-            })
-        } catch (error: Error) {
-            console.error('Show with animation failed. error: ' + JSON.stringify(e));
-        }
+  private animationForShownCallFunc_: Function = undefined;
+  ShowWindowWithCustomAnimation(windowClass: window.Window, callback) {
+    if (!windowClass) {
+      console.error('windowClass is undefined');
+      return false;
     }
+    this.animationForShownCallFunc_ = callback;
+    let controller: window.TransitionController = windowClass.getTransitionController();
+    controller.animationForShown = (context : window.TransitionContext)=> {
+      this.animationForShownCallFunc_(context);
+    };
+    windowClass.showWithAnimation(()=>{
+      console.info('Show with animation success');
+    })
+  }
 }
+```
 
-// EntryAbility.ets
+```
+// xxx.ets
 let animationConfig = new AnimationConfig();`这里输入代码`
 let systemTypeWindow = window.findWindow("systemTypeWindow"); // 此处需要获取一个系统类型窗口。
 try {
