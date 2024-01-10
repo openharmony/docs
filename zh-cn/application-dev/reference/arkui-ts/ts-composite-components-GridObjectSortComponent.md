@@ -1,20 +1,18 @@
 # @ohos.arkui.advanced.GridObjectSortComponent（网格对象的编辑排序组件）
 
+
 GridObjectSortComponent是用于网格对象的编辑排序组件。
+
 
 >  **说明：**
 >
 >  该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+
 ## 导入模块
 
 ```ets
-import { 
-	GridObjectSortComponent, 
-	GridObjectSortComponentItem, 
-	GridObjectSortComponentOptions, 
-	GridObjectSortComponentType,
-} from '@ohos.arkui.advanced.GridObjectSortComponent';
+import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType, } from '@ohos.arkui.advanced.GridObjectSortComponent';
 ```
 
 ##  子组件
@@ -23,13 +21,15 @@ import {
 
 ## Component
 
-**装饰器类型：**@Component
+**装饰器类型：**\@Component
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **组件能力**：编辑、拖动排序、新增、删除
 
+
 **参数**：
+
 
 | 名称     | 类型                             | 装饰器类型 | 必填 | 说明         |
 | -------- | -------------------------------- | ---------- | ---- | ------------ |
@@ -168,8 +168,8 @@ struct Index {
     imageSize: 56,
     normalTitle: '频道',
     editTitle: '编辑',
-    showAreaTitle: "长按拖动排序",
-    addAreaTitle: "点击添加",
+    showAreaTitle: '长按拖动排序',
+    addAreaTitle: '点击添加',
   }
 
   build() {
@@ -272,12 +272,12 @@ struct Index {
   ]
 
   @State option: GridObjectSortComponentOptions = {
-    type: GridObjectSortComponentType.IMAGETEXT,
+    type: GridObjectSortComponentType.IMAGE_TEXT,
     imageSize: 45,
     normalTitle: '',
     editTitle: '',
-    showAreaTitle: "长按拖动排序",
-    addAreaTitle: "点击添加",
+    showAreaTitle: '长按拖动排序',
+    addAreaTitle: '点击添加',
   }
   
   build() {
