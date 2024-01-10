@@ -1674,7 +1674,7 @@ export default class EntryAbility extends UIAbility {
     console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
-      windoe.getTopWindow(this.context, (err: BussinessError, data) => {
+      window.getTopWindow(this.context, (err: BussinessError, data) => {
         const errCode: number = err.code;
         if(errCode){
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
