@@ -50,12 +50,12 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 1. 添加头文件。
 
     ```cpp
-    #include <multimedia/player_framework/native_avcodec_audiocodec.h>
-    #include <multimedia/native_audio_channel_layout.h>
-    #include <multimedia/player_framework/native_avcapability.h>
-    #include <multimedia/player_framework/native_avcodec_base.h>
-    #include <multimedia/player_framework/native_avformat.h>
-    #include <multimedia/player_framework/native_avbuffer.h>
+    #include <multimedia/av_codec/native_avcodec_audiocodec.h>
+    #include <multimedia/media_foundation/native_audio_channel_layout.h>
+    #include <multimedia/av_codec/native_avcapability.h>
+    #include <multimedia/av_codec/native_avcodec_base.h>
+    #include <multimedia/media_foundation/native_avformat.h>
+    #include <multimedia/media_foundation/native_avbuffer.h>
     ```
 
 2. 创建解码器实例对象，OH_AVCodec *为解码器实例指针。
