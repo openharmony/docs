@@ -40,6 +40,28 @@
 ## 约束与限制
 
 设备需要支持加速度传感器。
+目前只提供了算法框架，api接口测试结果返回如下:
+data={"type":3,"value":-1};
+如需相对静止和绝对静止能力，则具体算法需要开发者自己在device_status/libs/src/algorithm实现，可参考案例如下：
+algoPara_.resultantAcc =
+   sqrt((algoPara_.x * algoPara_.x) + (algoPara_.y * algoPara_.y) + (algoPara_.z * algoPara_.z));
+FI_HILOGD("resultantAcc:%{public}f", algoPara_.resultantAcc);
+if ((algoPara_.resultantAcc > RESULTANT_ACC_LOW_THRHD) && (algoPara_.resultantAcc < RESULTANT_ACC_UP_THRHD)) {
+   if (state_ == STILL) {
+      return;
+   }
+   counter_--;
+   if (counter_ == 0) {
+      counter_ = COUNTER_THRESHOLD;
+      UpdateStateAndReport(VALUE_ENTER, STILL, TYPE_ABSOLUTE_STILL);
+   }
+} else {
+   counter_ = COUNTER_THRESHOLD;
+   if (state_ == UNSTILL) {
+      return;
+   }
+   UpdateStateAndReport(VALUE_EXIT, UNSTILL, TYPE_ABSOLUTE_STILL);
+}
 
 ## 开发步骤
 
