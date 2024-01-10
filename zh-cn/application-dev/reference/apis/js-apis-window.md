@@ -5567,7 +5567,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
     delay: 0, // 动画延迟
     iterations: 1, // 播放次数
     playMode: PlayMode.Normal, // 动画模式
-    onFinish: ()=> {
+    onFinish: () => {
       context.completeTransition(true)
     }
   }, () => {
@@ -10095,7 +10095,7 @@ try {
       delay: 0, // 动画延迟
       iterations: 1, // 播放次数
       playMode: PlayMode.Normal, // 动画模式
-      onFinish: ()=> {
+      onFinish: () => {
         console.info('onFinish in animation');
         context.completeTransition(true)
       }
@@ -10143,7 +10143,7 @@ controller.animationForHidden = (context : window.TransitionContext) => {
     delay: 0, // 动画延迟
     iterations: 1, // 播放次数
     playMode: PlayMode.Normal, // 动画模式
-    onFinish: ()=> {
+    onFinish: () => {
       context.completeTransition(true)
     }
   }, () => {
