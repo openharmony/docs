@@ -49,7 +49,7 @@
 | distributedOption<sup>8+<sup> | [DistributedOptions](#distributedoptions)                |   否  | 否  | 分布式通知的选项。                                                             |
 | deviceId<sup>8+<sup>          | string                                                   |   是  | 否  | 通知源的deviceId。<br>**系统接口**: 此接口为系统接口。                       |
 | notificationFlags<sup>8+<sup> | [NotificationFlags](js-apis-inner-notification-notificationFlags.md#notificationflags)                   |   是  | 否  | 获取NotificationFlags。                                                  |
-| removalWantAgent<sup>9+<sup>  | [WantAgent](js-apis-app-ability-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。                                          |
+| removalWantAgent<sup>9+<sup>  | [WantAgent](js-apis-app-ability-wantAgent.md)            |   否  | 否  | 当移除通知时，通知将被重定向到的WantAgent实例。产品已确定规格，当前不支持跳转应用界面UIAbility，只支持发布公共事件及跳转系统Service能力（WantAgent的OperationType >= 3）。                                          |
 | badgeNumber<sup>9+<sup>       | number                                                   |   否  | 否  | 应用程序图标上显示的通知数。                                                        |
 
 
