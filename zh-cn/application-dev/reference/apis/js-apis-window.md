@@ -10022,7 +10022,7 @@ animationForShown(context: TransitionContext): void
 
 **示例：**
 
-```
+```ts
 // xxx.ts
 export class AnimationConfig {
   private animationForShownCallFunc_: Function = undefined;
@@ -10043,7 +10043,7 @@ export class AnimationConfig {
 }
 ```
 
-```
+```ets
 // xxx.ets
 let animationConfig = new AnimationConfig();`这里输入代码`
 let systemTypeWindow = window.findWindow("systemTypeWindow"); // 此处需要获取一个系统类型窗口。
