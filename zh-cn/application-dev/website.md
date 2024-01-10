@@ -1612,7 +1612,7 @@
       - 附录
         - [Native api中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
         - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
-        - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
+        - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
         - [Native api中支持的OpenSL ES接口列表](reference/native-lib/third_party_opensles/opensles.md)
 - 常见问题
   - [如何编译full-SDK](quick-start/full-sdk-compile-guide.md)
