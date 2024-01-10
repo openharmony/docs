@@ -7,7 +7,7 @@
 
 当相关类型的数据进行跨应用、跨设备传输时，目标端应用/设备需要进行多方面的适配，才能够对数据内容进行相关处理，且存在无法识别的情况。
 
-标准化数据类型分为[预置数据类型](#预置数据类型)和[应用自定义数据类型](#应用自定义数据类型)。
+标准化数据类型分为[预置数据类型](#预置数据类型)和[应用自定义数据类型](#应用自定义数据类型)。并且支持从其他类型体系，如文件名后缀和MIME type转换为UTD标准类型。
 
 针对标准化数据类型，典型的应用场景有：文件管理中的图片预览、系统分享等。
 
@@ -31,7 +31,7 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 
 按照此分类原则，可以从两个维度对数据类型进行描述。如描述图片时，可以是一个图片对象，同时也可以是一个文件。
 
-并非所有的格式都具有两个维度，<font color="red">calendar的这个例子不太容易理解，能换个别的吗</font>如general.calendar，更多的注重calendar对象的功能性描述。
+并非所有的格式都具有两个维度，如general.calendar，更多的注重calendar对象的功能性描述。
 
 **图1** 物理标准化数据类型示意图
 
@@ -40,8 +40,6 @@ UTD中定义的标准化数据类型在设计原则上按物理和逻辑分为�
 **图2** 逻辑标准化数据类型示意图
 
 ![utd_type](figures/utd_type.png)
-
-UTD可分为预置的数据类型和应用自定义数据类型。并且支持从其他类型体系，如文件名后缀和MIME type转换为UTD标准类型。
 
 ## 标准化数据类型的定义
 
@@ -182,53 +180,50 @@ UTD可分为预置的数据类型和应用自定义数据类型。并且支持�
 下面以媒体类文件的归属类型查询场景为例，说明如何使用UTD。
 
 1. 导入`@ohos.data.uniformTypeDescriptor`模块。
-   
-   ```ts
-   import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
-   ```
 2. 可根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
-
 3. 可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
-
 4. 将上述步骤查询出来的数据类型进行比较，确认类型是否相等。
-
 5. 根据上述步骤中查询到的标准数据类型“general.mp3”与表示音频数据的已知标准数据类型“general.audio”做比较查询，确认是否存在归属关系。
 
-   ```ts
-   try {
-     // 可根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型的具体属性
-     let fileExtention = '.mp3';
-     let typeId1 = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
-     let typeObj1 = uniformTypeDescriptor.getTypeDescriptor(typeId1);
-     console.info('typeId:' + typeObj1.typeId);
-     console.info('belongingToTypes:' + typeObj1.belongingToTypes);
-     console.info('description:' + typeObj1.description);
-     console.info('referenceURL:' + typeObj1.referenceURL);
-   
-     // 可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
-     let mineType = 'audio/mp3';
-     let typeId2 = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
-     let typeObj2 = uniformTypeDescriptor.getTypeDescriptor(typeId2);
-     console.info('typeId:' + typeObj2.typeId);
-     console.info('belongingToTypes:' + typeObj2.belongingToTypes);
-     console.info('description:' + typeObj2.description);
-     console.info('referenceURL:' + typeObj2.referenceURL);
-   
-     // 数据类型进行比较，确认是否同一种数据类型
-     if(typeObj1 != null && typeObj2 !=null) {
-       let ret = typeObj1.equals(typeObj2);
-       console.info('typeObj1 equals typeObj2, ret:' + ret);
-     }
-   
-     // 将查询到的标准数据类型“general.mp3”与表示音频数据的已知标准数据类型“general.audio”做比较查询，确认是否存在归属关系。
-     if(typeObj1 != null) {
-       let ret = typeObj1.belongsTo('general.audio');
-       console.info('belongsTo, ret:' + ret);
-       let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
-       ret = mediaTypeObj.isHigherLevelType('general.audio');   // 确认是否存在归属关系
-       console.info('isHigherLevelType, ret:' + ret);
-     }
-   } catch (err) {
-     console.error('err message:' + err.message + ', err code:' + err.code);
-   }
-   ```
+```ts
+// 1.导入模块
+import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+
+try {
+  // 2.可根据 “.mp3” 文件后缀查询对应UTD数据类型，并查询对应UTD数据类型的具体属性
+  let fileExtention = '.mp3';
+  let typeId1 = uniformTypeDescriptor.getUniformDataTypeByFilenameExtension(fileExtention);
+  let typeObj1 = uniformTypeDescriptor.getTypeDescriptor(typeId1);
+  console.info('typeId:' + typeObj1.typeId);
+  console.info('belongingToTypes:' + typeObj1.belongingToTypes);
+  console.info('description:' + typeObj1.description);
+  console.info('referenceURL:' + typeObj1.referenceURL);
+
+  // 3.可根据 “audio/mp3” MIMEType查询对应UTD数据类型，并查询对应UTD数据类型的具体属性。
+  let mineType = 'audio/mp3';
+  let typeId2 = uniformTypeDescriptor.getUniformDataTypeByMIMEType(mineType);
+  let typeObj2 = uniformTypeDescriptor.getTypeDescriptor(typeId2);
+  console.info('typeId:' + typeObj2.typeId);
+  console.info('belongingToTypes:' + typeObj2.belongingToTypes);
+  console.info('description:' + typeObj2.description);
+  console.info('referenceURL:' + typeObj2.referenceURL);
+
+  // 4.将数据类型进行比较，确认是否同一种数据类型
+  if (typeObj1 != null && typeObj2 != null) {
+    let ret = typeObj1.equals(typeObj2);
+    console.info('typeObj1 equals typeObj2, ret:' + ret);
+  }
+
+  // 5.将查询到的标准数据类型“general.mp3”与表示音频数据的已知标准数据类型“general.audio”做比较查询，确认是否存在归属关系。
+  if (typeObj1 != null) {
+    let ret = typeObj1.belongsTo('general.audio');
+    console.info('belongsTo, ret:' + ret);
+    let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
+    ret = mediaTypeObj.isHigherLevelType('general.audio'); // 确认是否存在归属关系
+    console.info('isHigherLevelType, ret:' + ret);
+  }
+} catch (err) {
+  console.error('err message:' + err.message + ', err code:' + err.code);
+}
+```
+
