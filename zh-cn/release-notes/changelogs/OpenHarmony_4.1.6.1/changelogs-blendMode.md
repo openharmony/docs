@@ -22,7 +22,7 @@
 
 **变更发生版本**
 
-从Openharmony SDK 4.1.6.2 开始
+从Openharmony SDK 4.1.6.1 开始
 
 **变更的接口/组件**
 
@@ -34,19 +34,41 @@ blendMode接口枚举和接口行为进行非兼容性变更。
 2、由于接口行为发生改变，之前的接口内含两次离屏，第一次离屏用来绘制控件背景，第二次离屏用来绘制子节点内容。当前接口仅可支持一次离屏，需调用BlendApplyType.OFFSCREEN来触发离屏，接口默认无离屏。若想与原有接口行为保持一致，接口需调用两次来保持两次离屏。其中第一次离屏用来绘制控件背景，第二次离屏用来绘制子节点内容。<br>
 示例代码：
 ```ts
-// xxx.ets
+// xxx.ets 新接口，可通过调用BlendApplyType.OFFSCREEN触发一次离屏
 @Entry
 @Component
 struct Index {
   build() {
     Column() {
+      // 第二次离屏用来绘制子节点内容
       Text("test")
         .fontSize(144)
         .fontWeight(FontWeight.Bold)
         .fontColor('#ffff0101')
         .blendMode(BlendMode.SRC_IN, BlendApplyType.OFFSCREEN)
     }
+   // 第一次离屏用来绘制控件背景
     .blendMode(BlendMode.SRC_OVER, BlendApplyType.OFFSCREEN)
+    .height('100%')
+    .width('100%')
+    .backgroundColor('#ff08ff00')
+  }
+}
+
+// xxx.ets 旧接口，内部默认触发两次离屏
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      // 第二次离屏用来绘制子节点内容
+      Text("test")
+        .fontSize(144)
+        .fontWeight(FontWeight.Bold)
+        .fontColor('#ffff0101')
+    }
+    // 第一次离屏用来绘制控件背景
+    .blendMode(BlendMode.SRC_IN)
     .height('100%')
     .width('100%')
     .backgroundColor('#ff08ff00')
