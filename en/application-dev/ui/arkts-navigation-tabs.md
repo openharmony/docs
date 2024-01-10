@@ -133,9 +133,9 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 >**NOTE**
 >
-> - When the **vertical** attribute is set to **false**, the tab bar takes up the whole screen width by default. You need to set **barWidth** to a proper value.
+> - When the **vertical** attribute is set to **false**, the tab bar takes up the whole screen width by default. Set **barWidth** to a proper value.
 >
-> - When the **vertical** attribute is set to **true**, the tab bar takes up the actual content height by default. You need to set **barWidth** to a proper value.
+> - When the **vertical** attribute is set to **true**, the tab bar takes up the actual content height by default. Set **barWidth** to a proper value.
 
 
 ## Restricting the Scrolling of the Navigation Bar
@@ -235,7 +235,7 @@ To customize the navigation bar, use the **tabBar** parameter and pass in to it 
 
 
 ```ts
-@Builder TabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
+@Builder tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
   Column() {
     Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
       .size({ width: 25, height: 25 })
@@ -262,7 +262,7 @@ TabContent() {
   .height('100%')
   .backgroundColor('#007DFF')
 }
-.tabBar(this.TabBuilder('Me', 0, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
+.tabBar(this.tabBuilder('Me', 0, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
 ```
 
 
@@ -287,23 +287,23 @@ class Tmp{
   foo(val:number){
     this.currentIndex = val;
   }
-  tabfoo(){
+  tabFoo(){
     this.tabsController.changeIndex(this.currentIndex);
   }
 }
-private tabsController : object = new TabsController()
+private tabsController : TabsController = new TabsController()
 @State currentIndex:number = 0;
 
-@Builder TabBuilder(title: string, targetIndex: number) {
+@Builder tabBuilder(title: string, targetIndex: number) {
   Column() {
     Text(title)
       .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
   }
   ...
   .onClick(() => {
-    let Cur:Tmp = new Tmp()
-    Cur.foo(targetIndex)
-    Cur.tabfoo()
+    let cur:Tmp = new Tmp()
+    cur.foo(targetIndex)
+    cur.tabFoo()
   })
 }
 ```
@@ -317,20 +317,20 @@ When using a custom navigation bar, pass the corresponding \@Builder in the **ta
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent(){
     ...
-  }.tabBar (this.TabBuilder ('Home', 0))
+  }.tabBar(this.tabBuilder('Home',0))
 
   TabContent(){
     ...
-  }.tabBar (this.TabBuilder ('Discover', 1))
+  }.tabBar (this.tabBuilder ('Discover', 1))
 
   TabContent(){
     ...
-  }.tabBar (this.TabBuilder ('Recommended', 2))
+  }.tabBar (this.tabBuilder ('Recommended', 2))
 
   TabContent(){
     ...
   }
-  .tabBar (this.TabBuilder ('Me',3))
+  .tabBar(this.tabBuilder('Me', 3))
 }
 ```
 
@@ -360,23 +360,23 @@ class Tmp{
 Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
   TabContent() {
     ...
-  }.tabBar (this.TabBuilder ('Home', 0))
+  }.tabBar(this.tabBuilder('Home', 0))
 
   TabContent() {
     ...
-  }.tabBar (this.TabBuilder ('Found', 1))
+  }.tabBar(this.tabBuilder('Discover', 1))
 
   TabContent() {
     ...
-  }.tabBar (this.TabBuilder ('Recommended', 2))
+  }.tabBar(this.tabBuilder('Recommended', 2))
 
   TabContent() {
     ...
   }
-  .tabBar (this.TabBuilder ('Me', 3))
+  .tabBar(this.tabBuilder('Me', 3))
 }.onChange((index:number) => {
-  let Cur:Tmp = new Tmp()
-  Cur.foo(index)
+  let cur:Tmp = new Tmp()
+  cur.foo(index)
 })
 ```
 

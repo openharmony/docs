@@ -147,7 +147,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
 1. Create a **PixelMap** state variable.
 
    ```ts
-   @State image: PixelMap = undefined;
+   @State image: PixelMap | undefined = undefined;
    ```
 
 2. Reference multimedia.
@@ -196,7 +196,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [Im
          }  // Image size.
        
          class imagetmp {
-           image: PixelMap
+           image: PixelMap | undefined = undefined
        
            set(val: PixelMap) {
              this.image = val
