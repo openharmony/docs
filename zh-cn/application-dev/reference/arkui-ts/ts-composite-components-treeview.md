@@ -219,7 +219,6 @@ struct TreeViewDemo {
   private treeController: TreeController = new TreeController();
   private treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener();
   @State clickNodeId: number = 0;
-  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six'];
 
   aboutToDisappear(): void {
     this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
