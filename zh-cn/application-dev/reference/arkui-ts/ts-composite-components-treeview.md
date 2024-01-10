@@ -64,9 +64,6 @@ addNode(nodeParam?: NodeParam): void
 | -------- | -------- | -------- | -------- |
 | nodeParam | [NodeParam](#nodeparam) | 否 | 节点信息。 | 
 
-### 示例
-
-请参考[示例](#示例-10)
 
 ### removeNode
 
@@ -74,9 +71,6 @@ removeNode(): void
 
 点击某个节点后，调用该方法可以触发删除该节点
 
-### 示例
-
-请参考[示例](#示例-10)
 
 ### modifyNode
 
@@ -86,9 +80,6 @@ modifyNode(): void
 
 点击某个节点后，调用该方法可以触发修改该节点
 
-### 示例
-
-请参考[示例](#示例-10)
 
 ### buildDone
 
@@ -96,9 +87,6 @@ buildDone(): void
 
 建立树视图。节点增加完毕后，必须调用该方法，触发树信息的保存
 
-### 示例
-
-请参考[示例](#示例-10)
 
 ### refreshNode
 
@@ -112,9 +100,6 @@ refreshNode(parentId: number, parentSubTitle: ResourceStr, currentSubtitle: Reso
 | parentSubTitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 父节点副文本。 | 
 | currentSubtitle | [ResourceStr](ts-types.md#resourcestr) | 是 | 当前节点副文本。 | 
 
-### 示例
-
-请参考[示例](#示例-10)
 
 ## NodeParam
 
@@ -142,9 +127,6 @@ getInstance(): TreeListenerManager
 
 获取监听管理器单例对象
 
-### 示例
-
-请参考[示例](#示例-10)：
 
 ### getTreeListener
 
@@ -152,9 +134,6 @@ getTreeListener(): TreeListener
 
 获取监听器
 
-### 示例
-
-请参考[示例](#示例-10)
 
 ## TreeListener
 
@@ -174,9 +153,6 @@ on(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void): v
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
 | callbackParam | [CallbackParam](#callbackparam) | 是 | 节点信息。 | 
 
-### 示例
-
-请参考[示例](#示例-10)
 
 ### once
 
@@ -184,9 +160,6 @@ once(type: TreeListenType, callback: (callbackParam: CallbackParam) =&gt; void):
 
 注册一次监听
 
-### 示例
-
-请参考[示例](#示例-10)
 
 **参数：**
 
@@ -212,9 +185,6 @@ off(type: TreeListenType, callback?: (callbackParam: CallbackParam) =&gt; void):
 | type | [TreeListenType](#treelistentype) | 是 | 监听类型。 | 
 | nodeParam | [NodeParam](#nodeparam) | 是 | 节点信息。 |
 
-## 示例
-
-请参考[示例](#示例-10)
 
 ## TreeListenType
 
