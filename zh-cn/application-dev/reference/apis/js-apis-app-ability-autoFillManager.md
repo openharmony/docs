@@ -58,7 +58,7 @@ onFailure(): void
   Button('requestAutoSave')
     .onClick(() => {
       try {
-        // 手动触发保存请求
+        // 发起保存请求
         autoFillManager.requestAutoSave(uiContext, callback);
       } catch (error) {
         console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
@@ -75,7 +75,7 @@ onFailure(): void
 
 requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
-手动触发保存请求。使用callback异步回调。
+发起保存请求。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -157,8 +157,15 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
             let uiContext = AppStorage.get<UIContext>("uiContext");
             console.log("uiContext: ", JSON.stringify(uiContext));
             try {
-              // 手动触发保存请求
-              autoFillManager.requestAutoSave(uiContext);
+              // 发起保存请求
+              autoFillManager.requestAutoSave(uiContext, {
+                onSuccess: () => {
+                  console.log("save request on success");
+                },
+                onFailure: () => {
+                  console.log("save request on failure");
+                }
+              });
             } catch (error) {
               console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
             }
