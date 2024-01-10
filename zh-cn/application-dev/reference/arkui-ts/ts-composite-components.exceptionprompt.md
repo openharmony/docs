@@ -9,34 +9,20 @@ ExceptionPrompt适用于有离线内容可显示的情况。
 ## 导入模块
 
 ```ts
-import {
-     ExceptionPrompt,
-     PromptOptions,
-     MarginType
-} from '@ohos.arkui.advanced.ExceptionPrompt';
+import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt';
 ```
 
 ##  子组件
 
-无
-
-## 接口
-
-```
-ExceptionPrompt ({ options: this.options })
-```
-
-从API version 11开始，该接口支持在ArkTS卡片中使用。
+无。
 
 ##  Component
 
-**装饰器类型：**@Component
+**装饰器类型：**@Builde
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## 参数
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**参数：**
 
 | 名称        | 类型 | 必填        | 说明                            |
 | ----------- | ---------- | --------------------------------- | --------------------------------- |
@@ -45,6 +31,8 @@ ExceptionPrompt ({ options: this.options })
 ##  PromptOptions
 
 PromptOptions定义options的类型。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 类型        | 必填 | 说明                                            |
 | ---------- | ----------- | ---- | ----------------------------------------------- |
@@ -59,12 +47,14 @@ PromptOptions定义options的类型。
 
 MarginType定义marginState的类型
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型           | 说明                                                         |
 | :------------- | :----------------------------------------------------------- |
 | DEFAULT_MARGIN | 默认边距：边距1：引用ohos_id_card_margin_start，边距2：引用ohos_id_card_margin_end |
 | FIT_MARGIN     | 可适配边距： 边距1：引用ohos_id_max_padding_start，边距2：引用ohos_id_max_padding_end |
 
-## 默认系统资源配置
+## 属性
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
@@ -83,7 +73,9 @@ MarginType定义marginState的类型
 | onTipClick: () => void           | 点击左侧提示文本的回调函数 |
 | onActionTextClick: () =&gt; void | 点击右侧图标按钮的回调函数 |
 
-## 示例 1
+## 示例 
+
+### 示例1
 
 ```ts
 import {
@@ -121,11 +113,9 @@ struct Index {
 
 ```
 
-## 图例1
-
 ![ExceptionPrompt](figures/ExceptionPrompt.png)
 
-## 示例 2
+### 示例2
 
 ```
 import {
@@ -280,7 +270,5 @@ struct Index1 {
 
 export { Index1 }
 ```
-
-## 图例2
 
 ![ExceptionPrompt2](figures/ExceptionPrompt2.png)
