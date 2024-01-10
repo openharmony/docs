@@ -20,7 +20,8 @@ SymbolGlyph(value: Resource)
 | -------- | -------- | -------- | -------- |
 | value | [Resource](../arkui-ts/ts-types.md#resource)| 是 | SymbolGlyph组件的资源名,如 $r('sys.symbol.ohos_wifi')。 |
 
->  **说明：**<br>
+>  **说明：**
+>
 >  $r('sys.symbol.ohos_wifi')中引用的资源为系统预置，SymbolGlyph仅支持系统预置的symbol资源名，引用非symbol资源将显示异常。
 
 ## 属性
@@ -35,7 +36,8 @@ SymbolGlyph(value: Resource)
 | renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 设置SymbolGlyph组件渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。 |
 | effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 设置SymbolGlyph组件动效策略。<br/>默认值：SymbolEffectStrategy.NONE。 |
 
->  **说明：**<br>
+>  **说明：**
+>
 >  $r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式，仅ohos_wifi支持层级动效模式。
 
 ## 事件
