@@ -219,6 +219,7 @@ struct TreeViewDemo {
   private treeController: TreeController = new TreeController();
   private treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener();
   @State clickNodeId: number = 0;
+  @State numbers: string[] = ['one', 'two', 'three', 'four', 'five', 'six'];
 
   aboutToDisappear(): void {
     this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
@@ -247,6 +248,8 @@ struct TreeViewDemo {
   }
 
   aboutToAppear(): void {
+    this.treeListener.on(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
+    })
     this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
       this.clickNodeId = callbackParam.currentNodeId;
     })
@@ -283,17 +286,18 @@ struct TreeViewDemo {
         editIcon: editResource, primaryTitle: "目录7", secondaryTitle: "0" })
       .addNode({ parentNodeId:33, currentNodeId: 34, isFolder: false, primaryTitle: "项目8" })
       .addNode({ parentNodeId:-1, currentNodeId: 36, isFolder: false, primaryTitle: "项目9" })
-      .buildDone()
+      .buildDone();
     this.treeController.refreshNode(-1, "父节点", "子节点");
   }
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed)
-    {
-      TreeView({ treeController: this.treeController })
-      Row() {
-        Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
-        Column({ space: 30 }) {
+    Column(){
+      SideBarContainer(SideBarContainerType.Embed)
+      {
+        TreeView({ treeController: this.treeController })
+        Row() {
+          Divider().vertical(true).strokeWidth(2).color(0x000000).lineCap(LineCapStyle.Round)
+          Column({ space: 30 }) {
             Text('ClickNodeId=' + this.clickNodeId).fontSize('16fp')
             Button('Add', { type: ButtonType.Normal, stateEffect: true })
               .borderRadius(8).backgroundColor(0x317aff).width(90)
@@ -310,14 +314,14 @@ struct TreeViewDemo {
               .onClick((event: ClickEvent) => {
                 this.treeController.removeNode();
               })
-        }.height('100%').width('70%').alignItems(HorizontalAlign.Start).margin(10)
+          }.height('100%').width('70%').alignItems(HorizontalAlign.Start).margin(10)
+        }
       }
+      .focusable(true)
+      .showControlButton(false)
+      .showSideBar(true)
     }
-    .focusable(true)
-    .showControlButton(false)
-    .showSideBar(true)
-  }
-}
+  }}
 ```
 
 ![zh-cn_image_0000001664822257](figures/zh-cn_image_0000001664822257.png)
