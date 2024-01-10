@@ -176,15 +176,15 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // 配置音频精度（必须） SAMPLE_S16LE和SAMPLE_S24LE和SAMPLE_S32LE
     constexpr OH_BitsPerSample BITS_PER_CODED_SAMPLE = OH_BitsPerSample::SAMPLE_S24LE;
     // 配置最大输入长度（可选）
-    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024*DEFAULT_CHANNEL_COUNT *sizeof(float); // aac
+    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1024 * DEFAULT_CHANNEL_COUNT * sizeof(float); // aac
     OH_AVFormat *format = OH_AVFormat_Create();
     // 写入format
-    OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT,DEFAULT_CHANNEL_COUNT);
-    OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_SAMPLE_RATE,DEFAULT_SAMPLERATE);
+    OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_CHANNEL_COUNT, DEFAULT_CHANNEL_COUNT);
+    OH_AVFormat_SetIntValue(format,OH_MD_KEY_AUD_SAMPLE_RATE, DEFAULT_SAMPLERATE);
     OH_AVFormat_SetLongValue(format,OH_MD_KEY_BITRATE, DEFAULT_BITRATE);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT);
-    OH_AVFormat_SetLongValue(format,OH_MD_KEY_CHANNEL_LAYOUT,CHANNEL_LAYOUT);
-    OH_AVFormat_SetIntValue(format,OH_MD_KEY_MAX_INPUT_SIZE,DEFAULT_MAX_INPUT_SIZE);
+    OH_AVFormat_SetLongValue(format,OH_MD_KEY_CHANNEL_LAYOUT, CHANNEL_LAYOUT);
+    OH_AVFormat_SetIntValue(format,OH_MD_KEY_MAX_INPUT_SIZE, DEFAULT_MAX_INPUT_SIZE);
     // 配置编码器
     ret = OH_AudioCodec_Configure(audioEnc_, format);
     if (ret != AV_ERR_OK) {
