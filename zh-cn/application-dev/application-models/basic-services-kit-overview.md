@@ -35,7 +35,7 @@ Basic Services Kit为开发者提供了多种基础能力，满足开发者不�
 
 - 设备管理：
   - [设备信息](../reference/apis/js-apis-device-info.md)：提供查询产品信息的能力，比如查询设备类型、设备品牌名称、产品系列、产品版本号等。
-  - [设置数据项](../reference/apis/js-apis-settings.md)：提供查询系统设置的能力，比如查询是否启用飞行模式、是否启用触摸浏览等。
+  - [设置数据项](../reference/apis/js-apis-settings.md)：提供查询系统设置数据项的能力，比如查询是否启用飞行模式、是否启用触摸浏览等。
   - [电量信息查询](../reference/apis/js-apis-battery-info.md)：提供查询电量信息的能力。
   - [系统电源管理](../reference/apis/js-apis-power.md)：提供系统电源管理相关的能力，比如查询屏幕状态能力等。
   - [RunningLock锁操作](../reference/apis/js-apis-runninglock.md)：提供RunningLock锁相关操作的能力，包括创建、查询、持锁、释放锁等操作。
