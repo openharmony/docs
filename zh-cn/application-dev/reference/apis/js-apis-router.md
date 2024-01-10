@@ -505,7 +505,7 @@ try {
   });
 } catch(err) {
   console.error(`Invoke showAlertBeforeBackPage failed, code is ${err.code}, message is ${err.message}`);
-
+}
   ```
 ## EnableAlertOptions
 
