@@ -11,7 +11,7 @@ GridObjectSortComponent是用于网格对象的编辑排序组件。
 
 ## 导入模块
 
-```ets
+```ts
 import { 
     GridObjectSortComponent,
     GridObjectSortComponentItem,
@@ -95,7 +95,7 @@ import {
 	GridObjectSortComponentItem, 
 	GridObjectSortComponentOptions, 
 	GridObjectSortComponentType
-} from '@ohos.arkui.advanced.GridObjectSortComponent';
+} from '@ohos.arkui.advanced.GridObjectSortComponent'
 
 
 @Entry
@@ -178,9 +178,12 @@ struct Index {
       GridObjectSortComponent({
       		options: this.option, 
       		dataList: this.dataList, 
-      		onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => {
+      		onSave: (
+      		    select: Array<GridObjectSortComponentItem>,
+      		    unselect: Array<GridObjectSortComponentItem>
+      		) => {
                 // save ToDo
-            },
+                },
          	onCancel: () =>{
          		// cancel ToDo
          	}
@@ -194,13 +197,13 @@ struct Index {
 
 ### 示例2：图文形态
 
-```ets
+```ts
 import { 
 	GridObjectSortComponent, 
 	GridObjectSortComponentItem, 
 	GridObjectSortComponentOptions, 
 	GridObjectSortComponentType
-} from '@ohos.arkui.advanced.GridObjectSortComponent';
+} from '@ohos.arkui.advanced.GridObjectSortComponent'
 
 
 @Entry
@@ -286,9 +289,12 @@ struct Index {
       GridObjectSortComponent({
       		options: this.option, 
       		dataList: this.dataList, 
-      		onSave: (select: Array<GridObjectSortComponentItem>, unselect: Array<GridObjectSortComponentItem>) => {
+      		onSave: (
+      		    select: Array<GridObjectSortComponentItem>,
+      		    unselect: Array<GridObjectSortComponentItem>
+      		) => {
                 // save ToDo
-            },
+                },
          	onCancel: () =>{
          		// cancel ToDo
          	}
