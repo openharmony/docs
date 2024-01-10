@@ -128,4 +128,18 @@ c) 应用同时申请前台和后台权限
 
 **适配指导**
 
+1、应用在requestPermissionsFromUser接口中同时申请前台、后台位置权限
+
+    a) 排查应用是否需要后台权限，如需要，将接口申请权限行为更改为单独申请前台权限
+
+    b) 当用户点击弹窗授予前台权限后，应用通过弹窗、提示窗等形式告知用户前往设置界面
+
+    c) 用户在设置界面选择【始终允许】选项，手动授予后台位置权限
+
+2、应用仅在requestPermissionsFromUser接口中申请后台位置权限
+
+    a) 排查应用是否需要后台权限，如需要，需要先弹窗申请前台位置权限（后台权限仅在前台权限生效情况下才能够使用）
+
+    b) 参考情况1
+
 接口使用的示例代码可参考[requestPermissionsFromUser接口指导](../../../application-dev/reference/apis/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9)
