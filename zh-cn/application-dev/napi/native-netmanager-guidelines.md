@@ -6,7 +6,7 @@ NetConnection模块提供了常用网络信息查询的能力。
 
 ## 接口说明
 
-NetConnection常用接口如下表所示，详细的接口说明请参考[NetConnection](../reference/native_apis/_net_connection.md)
+NetConnection常用接口如下表所示，详细的接口说明请参考[NetConnection](../reference/native-apis/_net_connection.md)
 
 
 | 接口名 | 描述 |
