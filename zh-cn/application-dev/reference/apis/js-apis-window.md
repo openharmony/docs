@@ -10045,10 +10045,10 @@ export class AnimationConfig {
 
 ```ets
 // xxx.ets
-let animationConfig = new AnimationConfig();`这里输入代码`
+let animationConfig = new AnimationConfig();//`这里输入代码`
 let systemTypeWindow = window.findWindow("systemTypeWindow"); // 此处需要获取一个系统类型窗口。
 try {
-  animationConfig?.ShowWindowWithCustomAnimation(systemWindow, (context : window.TransitionContext)=>{
+  animationConfig?.ShowWindowWithCustomAnimation(systemTypeWindow, (context : window.TransitionContext)=>{
     console.info('complete transition end');
     let toWindow = context.toWindow;
     animateTo({
