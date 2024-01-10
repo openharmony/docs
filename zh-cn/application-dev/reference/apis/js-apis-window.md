@@ -533,7 +533,7 @@ import { BusinessError } from '@ohos.base';
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
       window.getLastWindow(this.context, (err: BusinessError, data) => {
@@ -591,7 +591,7 @@ import { BusinessError } from '@ohos.base';
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
       let promise = window.getLastWindow(this.context);
@@ -1671,7 +1671,7 @@ import { BusinessError } from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage:window.WindowStage){
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
       windoe.getTopWindow(this.context, (err: BussinessError, data) => {
@@ -3148,7 +3148,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = window.findWindow("test");
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
@@ -3216,7 +3216,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = window.findWindow("test");
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
@@ -3279,7 +3279,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
@@ -3362,7 +3362,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
     try {
       if (!windowClass) {
@@ -3449,7 +3449,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window = windowStage.getMainWindowSync(); // 获取应用主窗口
     let storage: LocalStorage = new LocalStorage();
     storage.setOrCreate('storageSimpleProp', 121);
@@ -10069,7 +10069,7 @@ export class AnimationConfig {
                 this.animationForShownCallFunc_(context);
             };
         } catch (error: Error) {
-            console.log('Set animation for shown error:' + JSON.stringify(error));
+            console.error('Set animation for shown error:' + JSON.stringify(error));
         }
         try {
             win.showWithAnimation(()=>{
