@@ -136,7 +136,7 @@ import { BusinessError } from '@ohos.base';
 
 function getShareFile() {
   try {
-    let want: Want = ...; // 获取分享方传递过来的want信息
+    let want: Want = {}; // 此处实际使用时应该修改为获取到的分享方传递过来的want信息
 
     // 从want信息中获取uri字段
     let uri = want.uri;
