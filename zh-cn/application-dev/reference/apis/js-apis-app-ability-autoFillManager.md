@@ -15,13 +15,13 @@ import autoFillManager from '@ohos.app.ability.autoFillManager';
 
 ## AutoSaveCallback
 
-当手动保存完成时所触发的回调接口。
+当保存请求完成时所触发的回调接口。
 
 ### AutoSaveCallback.onSuccess
 
 onSuccess(): void
 
-当手动保存成功时，该回调被调用。
+当保存请求成功时，该回调被调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -33,64 +33,49 @@ onSuccess(): void
 
 onFailure(): void
 
-当手动保存失败时，该回调被调用。
+当保存请求失败时，该回调被调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **示例：**
 
   ```ts
-  // 自定义的AutoSave拉起页面
+  // Index.ets, 含有账号、密码框等组件的页面
   import autoFillManager from '@ohos.app.ability.autoFillManager';
+  import { UIContext } from '@ohos.arkui.UIContext';
+  import Base from '@ohos.base';
 
-  @Entry
-  @Component
-  struct SavePage {
-    private storage = LocalStorage.getShared();
-    private callback = this.storage.get<autoFillManager.AutoSaveCallback>('callback')
-    @State message: string = 'Save Account?'
-
-    build() {
-      Row() {
-        Column() {
-          Text(this.message)
-            .fontSize(35)
-            .fontWeight(FontWeight.Bold)
-          Row() {
-            Button("OK")
-              .type(ButtonType.Capsule)
-              .fontSize(20)
-              .margin({ top:30 ,right: 30})
-              .onClick(()=>{
-                // 本例中采用手动方式触发失败回调，取消保存。请根据实际业务逻辑进行处理。
-                this.callback.onSuccess();
-              })
-            Button("No")
-              .type(ButtonType.Capsule)
-              .fontSize(20)
-              .margin({ top:30 ,left:30})
-              .onClick(()=>{
-                // 本例中采用手动方式触发失败回调，取消保存。请根据实际业务逻辑进行处理。
-                this.callback.onFailure();
-              })
-          }
-        }
-        .width('100%')
-      }
-      .height('100%')
+  let uiContext = AppStorage.get<UIContext>("uiContext");
+  let callback : autoFillManager.AutoSaveCallback = {
+    onSuccess: () => {
+      console.log("save request on success");
+    },
+    onFailure: () => {
+      console.log("save request on failure");
     }
   }
+  ...
+  Button('requestAutoSave')
+    .onClick(() => {
+      try {
+        // 发起保存请求
+        autoFillManager.requestAutoSave(uiContext, callback);
+      } catch (error) {
+        console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+      }
+  }
+  ...
   ```
 
 > **说明：**
 >
-> 示例中从LocalStorage中取得的AutoSaveCallback为预先在AutoFillAbility（自定义的AutoFillExtensionAbility）中OnSaveRequest生命周期获得，并存储到LocalStorage中，具体可参考[SaveRequestCallback](js-apis-inner-application-autoFillRequest.md#saverequestcallbackonsuccess)。
+> 示例中从AppStorage中取得的UiContext为预先在EntryAbility（拉起此页面的Ability）中OnWindowStageCreate生命周期获得，并存储到AppStorage中，具体可参考[requestAutoSave](#requestautosave)。
 
 ## requestAutoSave
 
 requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 
-触发手动保存请求。使用callback异步回调。
+发起保存请求。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -99,7 +84,7 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | context | [UIContext](js-apis-arkui-UIContext.md) | 是 | 将在其中执行保存操作的UI上下文。 |
-| callback | [AutoSaveCallback](#autosavecallback)  | 否 | 手动保存的回调函数。 |
+| callback | [AutoSaveCallback](#autosavecallback)  | 否 | 保存请求的回调函数。 |
 
 **错误码：**
 
@@ -172,7 +157,7 @@ requestAutoSave(context: UIContext, callback?: AutoSaveCallback): void
             let uiContext = AppStorage.get<UIContext>("uiContext");
             console.log("uiContext: ", JSON.stringify(uiContext));
             try {
-              // 传入UIContext和成功、失败回调，触发手动保存请求
+              // 发起保存请求
               autoFillManager.requestAutoSave(uiContext, {
                 onSuccess: () => {
                   console.log("save request on success");
