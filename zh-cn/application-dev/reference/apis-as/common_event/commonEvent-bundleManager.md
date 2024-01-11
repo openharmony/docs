@@ -32,7 +32,7 @@
 
 在设备上安装的应用程序包更新或者包的组件被禁用使能，将会触发事件通知服务发布该系统公共事件。
 
-与这个公共事件相关的接口：setApplicationEnabled 和 setAbilityEnabled，具体参看[接口文档](../js-apis-bundleManager.md#bundlemanagersetapplicationenabled)。
+与这个公共事件相关的接口：setApplicationEnabled 和 setAbilityEnabled，具体参看[接口文档](../../apis/js-apis-bundleManager.md#bundlemanagersetapplicationenabled)。
 
 ## COMMON_EVENT_PACKAGE_CACHE_CLEARED
 
@@ -43,4 +43,4 @@
 
 对设备上安装的应用程序包清除缓存时，将会触发事件通知服务发布该系统公共事件。
 
-与这个公共事件相关的接口：cleanBundleCacheFiles，具体参看[接口文档](../js-apis-bundleManager.md#bundlemanagercleanbundlecachefiles)。
+与这个公共事件相关的接口：cleanBundleCacheFiles，具体参看[接口文档](../../apis/js-apis-bundleManager.md#bundlemanagercleanbundlecachefiles)。

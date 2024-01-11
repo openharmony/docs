@@ -22,11 +22,11 @@ import appManager from '@ohos.app.ability.appManager';
 | uid | number | 是 | 否 | 用户ID。 |
 | processName | string | 是 | 否 | 进程名称。 |
 | bundleNames | Array&lt;string&gt; | 是 | 否 | 进程中所有运行的Bundle名称。 |
-| state<sup>10+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10)| 是 | 否 | 当前进程运行状态。|
+| state<sup>10+</sup> | [appManager.ProcessState](../apis/js-apis-app-ability-appManager.md#processstate10)| 是 | 否 | 当前进程运行状态。|
 
 ## 使用说明
 
-通过appManager的[getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9)来获取。
+通过appManager的[getRunningProcessInformation](../apis/js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation9)来获取。
 
 **示例：**
 
