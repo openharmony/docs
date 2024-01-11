@@ -138,6 +138,10 @@ finishAnimation(callback?: () => void): void
 | color              | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
 | selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
 
+>**说明：** 
+>
+>按压导航点时，导航点会放大至1.3倍显示，因此非按压态时导航点的可见范围边界至实际范围边界存在一定距离，该距离会随着itemWidth、itemHeight、selectedItemWidth、selectedItemHeight等参数变大而变大。
+
 ## DigitIndicator<sup>10+</sup>
 
 数字指示器属性及功能继承自Indicator。
