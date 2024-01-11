@@ -1369,7 +1369,7 @@ console.info("get account success");
 | endTime        | number                            | 否   | 是   | 日程结束时间。                                               |
 | isAllDay       | boolean                           | 否   | 否   | 是否为全天日程。当取值为true时，说明为全天日程；当取值为false时，说明不是全天日程，默认为非全天日程。 |
 | attendee       | [Attendee](#attendee)[]           | 否   | 否   | 日程参与者。不填时，默认为null。                             |
-| timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](js-apis-system-date-time.md#systemdatetimegettimezone)获取当前系统时区。 |
+| timeZone       | string                            | 否   | 否   | 日程时区。不填时，默认为当前所在时区，当需要创建与当前不一样的时区时，可填入对应的时区。可通过[getTimeZone()](../apis/js-apis-system-date-time.md#systemdatetimegettimezone)获取当前系统时区。 |
 | reminderTime   | number[]                          | 否   | 否   | 日程提醒时间。不填时，默认为不提醒。                           |
 | recurrenceRule | [RecurrenceRule](#recurrencerule) | 否   | 否   | 日程重复规则。不填时，默认为不重复。                           |
 | description    | string                            | 否   | 否   | 日程描述。不填时，默认为空字符串。                             |
