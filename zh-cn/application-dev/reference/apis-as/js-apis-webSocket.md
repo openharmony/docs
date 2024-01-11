@@ -4,8 +4,7 @@
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-
-使用WebSocket建立服务器与客户端的双向连接，需要先通过<span name="createWebSocket">[createWebSocket](#websocketcreatewebsocket)</span>方法创建<span name="WebSocket">[WebSocket](#websocket)</span>对象，然后通过<span name="connect">[connect](#connected)</span>方法连接到服务器。
+使用WebSocket建立服务器与客户端的双向连接，需要先通过<span name="createWebSocket">[createWebSocket](#websocketcreatewebsocket)</span>方法创建<span name="WebSocket">[WebSocket](#websocket)</span>对象，
 当连接成功后，客户端会收到<span name="open">[open](#onopen)</span>事件的回调，之后客户端就可以通过<span name="sended">[send](#send)</span>方法与服务器进行通信。
 当服务器发信息给客户端时，客户端会收到<span name="message">[message](#onmessage)</span>事件的回调。当客户端不要此连接时，可以通过调用<span name="closed">[close](#close)</span>方法主动断开连接，之后客户端会收到<span name="closes">[close](#onclose)</span>事件的回调。
 
