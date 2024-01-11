@@ -86,7 +86,7 @@ You can then reference the HML page based on the set element name. The sample co
 ### Referencing an HAR ArkTS Page  
 ArkTS is an extension of TypeScript. Therefore, the export and import syntax of ArkTS is the same as that of TypeScript. In the OpenHarmony ohpm module, use **export** to export an ArkTS page. The sample code is as follows:
 ```typescript
-// library/src/main/ets/components/MainPage/MainPage.ets
+// library/src/main/ets/components/mainpage/MainPage.ets
 @Entry
 @Component
 export struct MainPage {
