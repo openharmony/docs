@@ -38,33 +38,11 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 | 参数名   | 类型                                             | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| context  | Context            | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                                 |
+| context  | Context                                          | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | name     | string                                           | 是   | Preferences实例的名称。                                      |
 | callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误对象。 |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
-
-let context = featureAbility.getContext();
-let preferences: dataPreferences.Preferences | null = null;
-
-dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
-    if (err) {
-        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-        return;
-    }
-    preferences = val;
-    console.info("Succeeded in getting preferences.");
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -99,7 +77,7 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 | 参数名  | 类型                                  | 必填 | 说明                    |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
+| context | Context | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
 | name    | string                                | 是   | Preferences实例的名称。 |
 
 **返回值：**
@@ -109,27 +87,6 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 | Promise&lt;[Preferences](#preferences)&gt; | Promise对象，返回Preferences实例。 |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-
-let context = featureAbility.getContext();
-
-let preferences: dataPreferences.Preferences | null = null;
-let promise = dataPreferences.getPreferences(context, 'myStore');
-promise.then((object: dataPreferences.Preferences) => {
-    preferences = object;
-    console.info("Succeeded in getting preferences.");
-}).catch((err: BusinessError) => {
-    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -161,11 +118,11 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 
 **参数：**
 
-| 参数名   | 类型                                          | 必填 | 说明                                                                                                                                                                           |
-| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context  | Context                                       | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
-| options  | [Options](#options10)                              | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
-| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误对象。                                                                                    |
+| 参数名   | 类型                                             | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| context  | Context                                          | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| options  | [Options](#options10)                            | 是   | 与Preferences实例相关的配置选项。                            |
+| callback | AsyncCallback&lt;[Preferences](#preferences)&gt; | 是   | 回调函数。当获取Preferences实例成功，err为undefined，返回Preferences实例；否则err为错误对象。 |
 
 **错误码：**
 
@@ -177,30 +134,6 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 | 15501002 | The data group id is not valid.     |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-
-let context = featureAbility.getContext();
-let preferences: dataPreferences.Preferences | null = null;
-
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
-    if (err) {
-        console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-        return;
-    }
-    preferences = val;
-    console.info("Succeeded in getting preferences.");
-})
-```
-
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -236,7 +169,7 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 | 参数名  | 类型             | 必填 | 说明                                                                                                                                                                           |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context          | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
 
 **返回值：**
@@ -255,27 +188,6 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 | 15501002 | The data group id is not valid.     |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-let context = featureAbility.getContext();
-
-let preferences: dataPreferences.Preferences | null = null;
-let options: dataPreferences.Options =  { name: 'myStore' };
-let promise = dataPreferences.getPreferences(context, options);
-promise.then((object: dataPreferences.Preferences) => {
-    preferences = object;
-    console.info("Succeeded in getting preferences.");
-}).catch((err: BusinessError) => {
-    console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -310,7 +222,7 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 | 参数名  | 类型                  | 必填 | 说明                                                         |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context | Context               | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context               | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                            |
 
 **返回值：**
@@ -329,21 +241,6 @@ getPreferencesSync(context: Context, options: Options): Preferences
 | 15501002 | The data group id is not valid. |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-
-let context = featureAbility.getContext();
-let preferences: dataPreferences.Preferences | null = null;
-
-let options: dataPreferences.Options =  { name: 'myStore' };
-preferences = dataPreferences.getPreferencesSync(context, options);
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -373,7 +270,7 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 | 参数名   | 类型                                  | 必填 | 说明                                                 |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
+| context  | Context | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
 | name     | string                                | 是   | Preferences实例的名称。                              |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。 |
 
@@ -386,26 +283,6 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 | 15500010 | Failed to delete preferences file. |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-
-let context = featureAbility.getContext();
-
-dataPreferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
-    if (err) {
-        console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-        return;
-    }
-    console.info("Succeeded in deleting preferences." );
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -439,7 +316,7 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型                                  | 必填 | 说明                    |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
+| context | Context | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
 | name    | string                                | 是   | Preferences实例的名称。 |
 
 **返回值：**
@@ -457,25 +334,6 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 | 15500010 | Failed to delete preferences file. |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-
-let context = featureAbility.getContext();
-
-let promise = dataPreferences.deletePreferences(context, 'myStore');
-promise.then(() => {
-    console.info("Succeeded in deleting preferences.");
-}).catch((err: BusinessError) => {
-    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -508,7 +366,7 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 | 参数名   | 类型                      | 必填 | 说明                                                                                                                                                                           |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                   | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | options  | [Options](#options10)          | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。                                                                                                                           |
 
@@ -523,27 +381,6 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 | 15501002 | The data group id is not valid. |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-
-let context = featureAbility.getContext();
-
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.deletePreferences(context, options, (err: BusinessError) => {
-    if (err) {
-        console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-        return;
-    }
-    console.info("Succeeded in deleting preferences." );
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -579,7 +416,7 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 | 参数名  | 类型             | 必填 | 说明                                                                                                                                                                           |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context          | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
 
 **返回值：**
@@ -599,26 +436,6 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 | 15501002 | The data group id is not valid. |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-
-let context = featureAbility.getContext();
-
-let options: dataPreferences.Options = { name: 'myStore' };
-let promise = dataPreferences.deletePreferences(context, options);
-promise.then(() => {
-    console.info("Succeeded in deleting preferences.");
-}).catch((err: BusinessError) => {
-    console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -655,30 +472,11 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 | 参数名   | 类型                                  | 必填 | 说明                                                 |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
-| context  | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
+| context  | Context | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。                                         |
 | name     | string                                | 是   | Preferences实例的名称。                              |
 | callback | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。 |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-
-let context = featureAbility.getContext();
-dataPreferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
-    if (err) {
-        console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-        return;
-    }
-    console.info("Succeeded in removing preferences.");
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -714,7 +512,7 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型                                  | 必填 | 说明                    |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
+| context | Context | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
 | name    | string                                | 是   | Preferences实例的名称。 |
 
 **返回值：**
@@ -724,24 +522,6 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-
-let context = featureAbility.getContext();
-let promise = dataPreferences.removePreferencesFromCache(context, 'myStore');
-promise.then(() => {
-    console.info("Succeeded in removing preferences.");
-}).catch((err: BusinessError) => {
-    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -776,21 +556,10 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 
 | 参数名  | 类型                                  | 必填 | 说明                    |
 | ------- | ------------------------------------- | ---- | ----------------------- |
-| context | Context | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
+| context | Context | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。            |
 | name    | string                                | 是   | Preferences实例的名称。 |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-dataPreferences.removePreferencesFromCacheSync(context, 'myStore');
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -820,7 +589,7 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 | 参数名   | 类型                      | 必填 | 说明                                                                                                                                                                           |
 | -------- | ------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context  | Context                   | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context  | Context                   | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | options  | [Options](#options10)          | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当移除成功，err为undefined，否则为错误对象。                                                                                                                           |
 
@@ -834,25 +603,6 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 | 15501002 | The data group id is not valid.     |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-let context = featureAbility.getContext();
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.removePreferencesFromCache(context, options, (err: BusinessError) => {
-    if (err) {
-        console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-        return;
-    }
-    console.info("Succeeded in removing preferences.");
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -889,7 +639,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 | 参数名  | 类型             | 必填 | 说明                                                                                                                                                                           |
 | ------- | ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| context | Context          | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context          | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                                                                                                                                              |
 
 **返回值：**
@@ -908,24 +658,6 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 | 15501002 | The data group id is not valid.     |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
-let context = featureAbility.getContext();
-let options: dataPreferences.Options = { name: 'myStore' };
-let promise = dataPreferences.removePreferencesFromCache(context, options);
-promise.then(() => {
-    console.info("Succeeded in removing preferences.");
-}).catch((err: BusinessError) => {
-    console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
-})
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -961,7 +693,7 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 | 参数名  | 类型                  | 必填 | 说明                                                         |
 | ------- | --------------------- | ---- | ------------------------------------------------------------ |
-| context | Context               | 是   | 应用上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context | Context               | 是   | 应用上下文。<br>Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
 | options | [Options](#options10) | 是   | 与Preferences实例相关的配置选项。                            |
 
 **错误码：**
@@ -974,18 +706,6 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 | 15501002 | The data group id is not valid. |
 
 **示例：**
-
-FA模型示例：
-
-```ts
-// 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-let context = featureAbility.getContext();
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.removePreferencesFromCacheSync(context, options);
-```
-
-Stage模型示例：
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
@@ -1008,7 +728,7 @@ Preferences实例配置选项。
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | 是   | Preferences实例的名称。                                      |
-| dataGroupId | string\|null\|undefined | 否   | 应用组ID，需要向应用市场获取。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
+| dataGroupId | string\|null\|undefined | 否   | 应用组ID，需要向应用市场获取。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。 |
 
 ## Preferences
 
