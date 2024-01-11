@@ -126,7 +126,7 @@
        let err = error as BusinessError;
        console.error(`Failed to hasFlash. error: ${JSON.stringify(err)}`);
      }
-     console.info(`Promise returned with the flash light support status: ${flashStatus}`);
+     console.info(`returned with the flash light support status: ${flashStatus}`);
      if (flashStatus) {
        // 判断是否支持自动闪光灯模式
        let flashModeStatus: boolean = false;
@@ -217,7 +217,7 @@
   ```ts
   function onPhotoOutputCaptureStart(photoOutput: camera.PhotoOutput): void {
     photoOutput.on('captureStart', (err: BusinessError, captureId: number) => {
-      console.info(`photo capture stated, captureId : ${captureId}`);
+      console.info(`photo capture started, captureId : ${captureId}`);
     });
   }
   ```

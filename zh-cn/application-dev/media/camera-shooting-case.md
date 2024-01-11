@@ -226,7 +226,7 @@ async function cameraShootingCase(baseContext: common.BaseContext, surfaceId: st
     let err = error as BusinessError;
     console.error('Failed to hasFlash. errorCode = ' + err.code);
   }
-  console.info('Promise returned with the flash light support status:' + flashStatus);
+  console.info('returned with the flash light support status:' + flashStatus);
 
   if (flashStatus) {
     // 判断是否支持自动闪光灯模式
