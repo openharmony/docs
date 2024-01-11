@@ -6,7 +6,11 @@ ImageData对象可以存储canvas渲染的像素数据。
 >
 >  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## 接口
 
+constructor(width: number, height: number, data?: Uint8ClampedArray);
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 ## 属性
 
