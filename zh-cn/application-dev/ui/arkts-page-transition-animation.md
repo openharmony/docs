@@ -1,12 +1,18 @@
 # 页面转场动画
 
-
 两个页面间发生跳转，一个页面消失，另一个页面出现，这时可以配置各自页面的页面转场参数实现自定义的页面转场效果。[页面转场](../reference/arkui-ts/ts-page-transition-animation.md)效果写在pageTransition函数中，通过PageTransitionEnter和PageTransitionExit指定页面进入和退出的动画效果。
+
+pageTransition的函数为：
+
+```
+pageTransition() {
+  PageTransitionEnter()
+  PageTransitionExit()
+}
+```
 
 
 PageTransitionEnter的接口为：
-
-
 
 ```ts
 PageTransitionEnter({type?: RouteType,duration?: number,curve?: Curve | string,delay?: number})
@@ -14,8 +20,6 @@ PageTransitionEnter({type?: RouteType,duration?: number,curve?: Curve | string,d
 
 
 PageTransitionExit的接口为：
-
-
 
 ```ts
 PageTransitionExit({type?: RouteType,duration?: number,curve?: Curve | string,delay?: number})
