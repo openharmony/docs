@@ -501,7 +501,7 @@ getAbilityState(ability: UIAbility): number
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](js-apis-application-abilityDelegatorRegistry.md#AbilityLifecycleState)。 |
+| number | 指定ability的生命周期状态。状态枚举值使用[AbilityLifecycleState](../apis/js-apis-application-abilityDelegatorRegistry.md#AbilityLifecycleState)。 |
 
 **示例：**
 

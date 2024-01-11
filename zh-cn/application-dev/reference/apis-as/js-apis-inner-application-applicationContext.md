@@ -662,7 +662,7 @@ on(type: 'abilityAutoStartup', callback: AutoStartupCallback): void
 | 参数名   | 类型                | 必填 | 说明                                            |
 | -------- | ------------------- | ---- | ----------------------------------------------- |
 | type     | string              | 是   | 注册监听事件的类型,必须为"abilityAutoStartup"。 |
-| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | 是   | 注册监听应用开机自启动状态变化的回调对象。 |
+| callback | [AutoStartupCallback](../apis/js-apis-inner-application-autoStartupCallback.md) | 是   | 注册监听应用开机自启动状态变化的回调对象。 |
 
 **错误码**：
 
@@ -710,7 +710,7 @@ off(type: 'abilityAutoStartup', callback?: AutoStartupCallback): void
 | 参数名   | 类型                | 必填 | 说明                                            |
 | -------- | ------------------- | ---- | ----------------------------------------------- |
 | type     | string              | 是   | 注册监听事件的类型,必须为"abilityAutoStartup"。 |
-| callback | [AutoStartupCallback](js-apis-inner-application-autoStartupCallback.md) | 否   | 注销监听应用开机自启动状态变化的回调对象。 |
+| callback | [AutoStartupCallback](../apis/js-apis-inner-application-autoStartupCallback.md) | 否   | 注销监听应用开机自启动状态变化的回调对象。 |
 
 **错误码**：
 
@@ -757,7 +757,7 @@ setAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                | 必填 | 说明                       |
 | -------- | ------------------- | ---- | -------------------------- |
-| info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | 是   | 设置开机自启动的应用组件信息。 |
+| info     | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)     | 是   | 设置开机自启动的应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。当设置为开机自启动成功，err为undefined，否则为错误对象。   |
 
 **错误码**：
@@ -806,7 +806,7 @@ setAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 | 参数名 | 类型            | 必填 | 说明                       |
 | ------ | --------------- | ---- | -------------------------- |
-| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md) | 是   | 设置开机自启动的应用组件信息。 |
+| info   | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md) | 是   | 设置开机自启动的应用组件信息。 |
 
 **返回值：**
 
@@ -862,7 +862,7 @@ cancelAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>): void
 
 | 参数名   | 类型                | 必填 | 说明                       |
 | -------- | ------------------- | ---- | -------------------------- |
-| info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)     | 是   | 取消开机自启动的应用组件信息。 |
+| info     | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)     | 是   | 取消开机自启动的应用组件信息。 |
 | callback | AsyncCallback\<void\> | 是   | 回调函数。当取消开机自启动成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -911,7 +911,7 @@ cancelAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 | 参数名 | 类型            | 必填 | 说明                       |
 | ------ | --------------- | ---- | -------------------------- |
-| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md) | 是   | 取消开机自启动的应用组件信息。 |
+| info   | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md) | 是   | 取消开机自启动的应用组件信息。 |
 
 **返回值：**
 
@@ -967,7 +967,7 @@ isAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<boolean\>): void
 
 | 参数名   | 类型                   | 必填 | 说明                       |
 | -------- | ---------------------- | ---- | -------------------------- |
-| info     | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md)        | 是   | 查询是否开机启动的应用自身组件的信息。 |
+| info     | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md)        | 是   | 查询是否开机启动的应用自身组件的信息。 |
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。返回true表示查询的应用组件是开机自启动；返回false表示查询的应用组件不是开机自启动。 |
 
 **错误码**：
@@ -1014,7 +1014,7 @@ isAutoStartup(info: AutoStartupInfo): Promise\<boolean\>
 
 | 参数名 | 类型            | 必填 | 说明                       |
 | ------ | --------------- | ---- | -------------------------- |
-| info   | [AutoStartupInfo](js-apis-inner-application-autoStartupInfo.md) | 是   | 查询是否开机启动的应用自身组件的信息。 |
+| info   | [AutoStartupInfo](../apis/js-apis-inner-application-autoStartupInfo.md) | 是   | 查询是否开机启动的应用自身组件的信息。 |
 
 **返回值：**
 

@@ -1,6 +1,6 @@
 # AppVersionInfo
 
-应用版本信息，可以通过[getAppVersionInfo](js-apis-inner-app-context.md#contextgetappversioninfo7)获取当前应用的版本信息。
+应用版本信息，可以通过[getAppVersionInfo](../apis/js-apis-inner-app-context.md#contextgetappversioninfo7)获取当前应用的版本信息。
 
 > **说明：**
 >
