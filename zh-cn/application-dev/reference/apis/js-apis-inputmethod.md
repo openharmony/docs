@@ -312,7 +312,7 @@ try {
 }
 let currentImeSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-  inputMethod.switchInputMethod(currentIme.name, currentImeSubType).then(() => {
+  inputMethod.switchInputMethod(currentIme.name, currentImeSubType.id).then(() => {
     console.log('Succeeded in switching inputmethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to switchInputMethod: ${JSON.stringify(err)}`);
