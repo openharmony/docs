@@ -2,7 +2,7 @@
 
 该模块提供呼叫管理功能，包括拨打电话、跳转到拨号界面、获取通话状态、格式化电话号码等。
 
-如需订阅通话状态请使用[`observer.on('callStateChange')`](js-apis-observer.md#observeroncallstatechange)。
+如需订阅通话状态请使用[`observer.on('callStateChange')`](../apis/js-apis-observer.md#observeroncallstatechange)。
 
 >**说明：**
 >
@@ -6195,108 +6195,6 @@ call.cancelCallUpgrade(1).then(() => {
     console.log(`cancelCallUpgrade success.`);
 }).catch((err: BusinessError) => {
     console.error(`cancelCallUpgrade fail, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-## call.controlCamera<sup>11+</sup>
-
-controlCamera\(callId: number, cameraId: string\): Promise\<void\>
-
-设置使用指定的相机进行视频通话，cameraId为空表示关闭相机。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.SET_TELEPHONY_STATE
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名 | 类型                         | 必填 | 说明           |
-| ------ | ---------------------------- | ---- | -------------- |
-| callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| cameraId | string                     | 是   | 相机Id。cameraId获取方式可参考[相机管理](js-apis-camera.md#getsupportedcameras)。|
-
-**返回值：**
-
-| 类型                | 说明                        |
-| ------------------- | --------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回设置开启，关闭，切换相机结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
-
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-call.controlCamera(1, "1").then(() => {
-    console.log(`controlCamera success.`);
-}).catch((err: BusinessError) => {
-    console.error(`controlCamera fail, promise: err->${JSON.stringify(err)}`);
-});
-```
-
-## call.setPreviewSurface<sup>11+</sup>
-
-setPreviewSurface\(callId: number, surfaceId: string\): Promise\<void\>
-
-设置本端预览画面窗口。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限**：ohos.permission.SET_TELEPHONY_STATE
-
-**系统能力**：SystemCapability.Telephony.CallManager
-
-**参数：**
-
-| 参数名 | 类型                         | 必填 | 说明           |
-| ------ | ---------------------------- | ---- | -------------- |
-| callId | number                       | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。       |
-| surfaceId | string                    | 是   | 预览窗口Id。surfaceId获取方式可参考[XComponent](../arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid)。   |
-
-**返回值：**
-
-| 类型                | 说明                        |
-| ------------------- | --------------------------- |
-| Promise&lt;void&gt; | 以Promise形式异步返回设置本端预览画面窗口结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)和[通用错误码](../../reference/errorcodes/errorcode-universal.md)。
-
-| 错误码ID |                 错误信息                     |
-| -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
-| 401      | Parameter error.                             |
-| 8300001  | Invalid parameter value.                     |
-| 8300002  | Operation failed. Cannot connect to service. |
-| 8300003  | System internal error.                       |
-| 8300999  | Unknown error code.                          |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-call.setPreviewSurface(1, "surfaceId1").then(() => {
-    console.log(`setPreviewSurface success.`);
-}).catch((err: BusinessError) => {
-    console.error(`setPreviewSurface fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 

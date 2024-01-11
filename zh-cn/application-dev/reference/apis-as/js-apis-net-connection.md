@@ -2246,7 +2246,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>):
 
 | 参数名      | 类型                     | 必填 | 说明                            |
 | ----------- | ------------------------ | ---- | -------------------------------|
-| socketParam | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是 | 待绑定的TCPSocket或UDPSocket对象。|
+| socketParam | [TCPSocket](../apis/js-apis-socket.md#tcpsocket) \| [UDPSocket](../apis/js-apis-socket.md#udpsocket) | 是 | 待绑定的TCPSocket或UDPSocket对象。|
 | callback    | AsyncCallback\<void>      | 是   | 回调函数。当TCPSocket或UDPSocket成功绑定到当前网络，error为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2328,7 +2328,7 @@ bindSocket(socketParam: TCPSocket \| UDPSocket): Promise\<void>;
 
 | 参数名          | 类型                  | 必填  | 说明                           |
 | --------------- | --------------------- | ---- | ------------------------------ |
-| socketParam     | [TCPSocket](js-apis-socket.md#tcpsocket) \| [UDPSocket](js-apis-socket.md#udpsocket) | 是   | 待绑定的TCPSocket或UDPSocket对象。|
+| socketParam     | [TCPSocket](../apis/js-apis-socket.md#tcpsocket) \| [UDPSocket](../apis/js-apis-socket.md#udpsocket) | 是   | 待绑定的TCPSocket或UDPSocket对象。|
 
 **返回值：**
 
