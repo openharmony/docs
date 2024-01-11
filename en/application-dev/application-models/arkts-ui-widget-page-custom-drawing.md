@@ -6,7 +6,7 @@ You can apply custom drawing in your ArkTS widget to create a more vibrant exper
 ```ts
 @Entry
 @Component
-struct CanvasCard {
+struct CustomCanvasDrawingCard {
   private canvasWidth: number = 0;
   private canvasHeight: number = 0;
   // Initialize CanvasRenderingContext2D and RenderingContextSettings.
@@ -17,11 +17,9 @@ struct CanvasCard {
     Column() {
       Row() {
         Canvas(this.context)
-          .margin('5%')
-          .width('90%')
-          .height('90%')
+          .width('100%')
+          .height('100%')
           .onReady(() => {
-            console.info('[ArkTSCard] onReady for canvas draw content');
             // Obtain the actual width and height of the canvas in the onReady callback.
             this.canvasWidth = this.context.width;
             this.canvasHeight = this.context.height;

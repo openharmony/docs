@@ -10,15 +10,52 @@ A context menu – a vertical list of items – can be bound to a component and 
 >
 >  - The text in the context menu cannot be selected by long-pressing.
 
+## bindMenu
 
-## Attributes
+bindMenu(content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
 
+Menu bound to the component, which is displayed when the user clicks the component. A menu item can be a combination of text and icons or a custom component.
 
-| Name                          | Type                                    | Description                                      |
-| ---------------------------- | ---------------------------------------- | ---------------------------------------- |
-| bindMenu                     | content: Array<[MenuElement](#menuelement)&gt; \| [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [MenuOptions](#menuoptions10) | Menu bound to the component, which is displayed when the user clicks the component. A menu item can be a combination of text and icons or a custom component.<br>**content**: array of menu item icons and text, or custom component.<br>**options**: parameters of the context menu.|
-| bindMenu                     | isShow<sup>11+</sup>: boolean,<br>content: Array<[MenuElement](#menuelement)&gt; \| [CustomBuilder](ts-types.md#custombuilder8),<br>options?: [MenuOptions](#menuoptions10) | Menu bound to the component, which is displayed when the user clicks the component. A menu item can be a combination of text and icons or a custom component.<br>**isShow**: whether to show the menu. The default value is **false**. Menus can be displayed only after all pages are constructed. Therefore, this parameter cannot be set to **true** during page construction. Otherwise, display position and shape errors will occur. Two-Way binding is not supported.<br>**content**: array of menu item icons and text, or custom component.<br>**options**: parameters of the context menu.|
-| bindContextMenu<sup>8+</sup> | content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8)<br>options?: [ContextMenuOptions](#contextmenuoptions10) | Context menu bound to the component, which is displayed when the user long-presses or right-clicks the component. Only custom menu items are supported.<br>**responseType**: how the context menu is triggered, which can be long-press or right-click.<br>**options**: parameters of the context menu.|
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                        |
+| ------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
+| content | Array<[MenuElement](#menuelement)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Array of menu item icons and text, or custom component.|
+| options | [MenuOptions](#menuoptions10)                                | No  | Parameters of the context menu.                        |
+
+## bindMenu
+
+bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, options?: MenuOptions)
+
+Menu bound to the component, which is displayed when the user clicks the component. A menu item can be a combination of text and icons or a custom component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name              | Type                                                        | Mandatory| Description                                                        |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| isShow<sup>11+</sup> | boolean                                                      | Yes  | Whether to show the menu. The default value is **false**. Menus can be displayed only after all pages are constructed. Therefore, this parameter cannot be set to **true** during page construction. Otherwise, display position and shape errors will occur. Two-way binding is not supported.|
+| content              | Array<[MenuElement](#menuelement)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Array of menu item icons and text, or custom component.                |
+| options              | [MenuOptions](#menuoptions10)                                | No  | Parameters of the context menu.                                        |
+
+## bindContextMenu<sup>8+</sup>
+
+bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: ContextMenuOptions)
+
+Context menu bound to the component, which is displayed when the user long-presses or right-clicks the component. Only custom menu items are supported.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name      | Type                                              | Mandatory| Description                                        |
+| ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
+| content      | [CustomBuilder](ts-types.md#custombuilder8)        | Yes  | Array of menu item icons and text, or custom component.|
+| responseType | [ResponseType](ts-appendix-enums.md#responsetype8) | Yes  | How the context menu is triggered, which can be long-press or right-click.            |
+| options      | [MenuOptions](#menuoptions10)                      | No  | Parameters of the context menu.                        |
 
 ## MenuElement
 
@@ -48,8 +85,27 @@ A context menu – a vertical list of items – can be bound to a component and 
 | enableArrow           | boolean                                                      | No  | Whether to display an arrow. If the size and position of the context menu are insufficient for holding an arrow, no arrow is displayed.<br>Default value: **false**, indicating that no arrow is displayed<br>**NOTE**<br>When **enableArrow** is **true**, an arrow is displayed in the position specified by **placement**. If **placement** is not set or its value is invalid, the arrow is displayed above the target. If the position is insufficient for holding the arrow, it is automatically adjusted. When **enableArrow** is **undefined**, no arrow is displayed.|
 | arrowOffset           | [Length](ts-types.md#length)                                 | No  | Offset of the arrow relative to the context menu. When the arrow is placed in a horizontal position with the context menu: The value indicates the distance from the arrow to the leftmost; the arrow is centered by default. When the arrow is placed in a vertical position with the context menu: The value indicates the distance from the arrow to the top; the arrow is centered by default. The offset settings take effect only when the value is valid, can be converted to a number greater than 0, and does not cause the arrow to extend beyond the safe area of the context menu. The value of **placement** determines whether the offset is horizontal or vertical.|
 | preview<sup>11+</sup> | [MenuPreviewMode](ts-appendix-enums.md#menupreviewmode11)\| [CustomBuilder](ts-types.md#custombuilder8) | No  | Preview displayed when the context menu is triggered by a long-press. It can be a screenshot of the target component or custom content.<br>Default value: **MenuPreviewMode.NONE**, indicating no preview.<br>**NOTE**<br>- This parameter is effective only when **responseType** is set to **ResponseType.LongPress**.<br>- If **preview** is set to **MenuPreviewMode.NONE** or is not set, the **enableArrow** parameter is effective.<br>- If **preview** is set to **MenuPreviewMode.IMAGE** or **CustomBuilder**, no arrow will be displayed even when **enableArrow** is **true**.|
+| previewAnimationOptions<sup>11+</sup> | [ContextMenuAnimationOptions](#contextmenuanimationoptions11) | No   | Start scale ratio and end scale ratio (relative to the original preview image) of the preview animation displayed when the component is long pressed<br>Default value: **{scale: [0.95, 1.1]}**<br>**NOTE**<br>- If the value of this parameter is less than or equal to 0, this parameter does not take effect.<br>- This parameter takes effect only when **preview** is set to **MenuPreviewMode.IMAGE.**|
 | onAppear              | () =&gt; void                                      | No  | Callback triggered when the menu is displayed.                                      |
 | onDisappear           | () =&gt; void                                      | No  | Callback triggered when the menu is hidden.                                      |
+| aboutToAppear              | () =&gt; void                                      | No  | Callback triggered when the menu is about to appear.                                      |
+| aboutToDisappear           | () =&gt; void                                      | No  | Callback triggered when the menu is about to disappear.                                      |
+
+## ContextMenuAnimationOptions<sup>11+</sup>
+
+| Name | Type                                      | Mandatory| Description                                |
+| ----- | ------------------------------------------ | ---- | ------------------------------------ |
+| scale | [AnimationRange](#animationrange11)\<number> | No  | Scale ratio of the preview image when the animation starts and scale ratio when the animation ends.|
+
+## AnimationRange<sup>11+</sup>
+
+Describes the scale ratio of the preview image when the animation starts and scale ratio when the animation ends.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Value Range        | Description                                                                          |
+| ---------------- | ------------------------------------------------------------------------------ |
+| [from: T, to: T] | **from** indicates the scale ratio of the preview image when the animation starts, and **to** indicates the scale ratio when the animation ends.|
 
 ## Example
 
@@ -248,7 +304,9 @@ struct Index {
             .margin(100)
             .fontSize(30)
             .bindContextMenu(this.MyMenu, ResponseType.LongPress,
-              { preview: MenuPreviewMode.IMAGE })
+              { preview: MenuPreviewMode.IMAGE,
+                previewAnimationOptions: {scale: [0.8, 1.0]},
+              })
             .backgroundColor("#ff3df2f5")
         }
       }.width('100%')

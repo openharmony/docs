@@ -1,6 +1,10 @@
 ## ArkData
 
 - [ArkData简介](../database/data-mgmt-overview.md)
+- 标准化数据定义
+  - [标准化数据定义概述](../database/unified-data-definition-overview.md)
+  - [标准化数据类型](../database/uniform-data-type-descriptors.md)
+  - [标准化数据结构](../database/uniform-data-structure.md)
 - 应用数据持久化
   - [应用数据持久化概述](../database/app-data-persistence-overview.md)
   - [通过用户首选项实现数据持久化](../database/data-persistence-by-preferences.md)
@@ -18,7 +22,6 @@
   - [基于设备分类和数据分级的访问控制](../database/access-control-by-device-and-data-level.md)
 - 跨应用数据共享
   - [跨应用数据共享概述](../database/data-share-overview.md)
-  - [标准化数据定义](../database/unified-data-definition.md)
   - 一对多跨应用数据共享（仅对系统应用开放）
     - [通过DataShareExtensionAbility实现数据共享](../database/share-data-by-datashareextensionability.md)
     - [通过数据管理服务实现数据共享静默访问](../database/share-data-by-silent-access.md)

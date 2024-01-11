@@ -303,7 +303,7 @@ let addr : socket.NetAddress = {
 }
 
 // 加入多播组
-multicast.addMembership(addr, (err) => {
+multicast.addMembership(addr, (err: Object) => {
   if (err) {
     console.info('add err: ' + JSON.stringify(err));
     return;
@@ -312,7 +312,11 @@ multicast.addMembership(addr, (err) => {
 })
 
 // 开启监听消息数据，将接收到的ArrayBuffer类型数据转换为String
-multicast.on('message', (data) => {
+class SocketInfo {
+  message: ArrayBuffer = new ArrayBuffer(1);
+  remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+}
+multicast.on('message', (data: SocketInfo) => {
   console.info('接收的数据: ' + JSON.stringify(data))
   const uintArray = new Uint8Array(data.message)
   let str = ''
@@ -323,7 +327,7 @@ multicast.on('message', (data) => {
 })
 
 // 发送数据
-multicast.send({ data:'Hello12345', address: addr }, (err) => {
+multicast.send({ data:'Hello12345', address: addr }, (err: Object) => {
   if (err) {
     console.info('发送失败: ' + JSON.stringify(err));
     return;
@@ -335,7 +339,7 @@ multicast.send({ data:'Hello12345', address: addr }, (err) => {
 multicast.off('message')
 
 // 退出多播组
-multicast.dropMembership(addr, (err) => {
+multicast.dropMembership(addr, (err: Object) => {
   if (err) {
     console.info('drop err ' + JSON.stringify(err));
     return;
@@ -365,14 +369,14 @@ import socket from '@ohos.net.socket';
 
 // 创建一个LocalSocket连接，返回一个LocalSocket对象。
 let client = socket.constructLocalSocketInstance();
-client.on('message', (value) => {
+client.on('message', (value: socket.LocalSocketMessageInfo) => {
   const uintArray = new Uint8Array(value.message)
   let messageView = '';
   for (let i = 0; i < uintArray.length; i++) {
     messageView = String.fromCharCode(uintArray[i]);
   }
   console.log('total receive: ' + JSON.stringify(value));
-  console.log('message infomation: ' + messageView);
+  console.log('message information: ' + messageView);
 });
 client.on('connect', () => {
   console.log("on connect");
@@ -395,10 +399,10 @@ client.connect(connectOpt).then(() => {
   console.log('connect success')
   client.send(sendOpt).then(() => {
   console.log('send success')
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.log('send failed: ' + JSON.stringify(err))
   })
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('connect fail: ' + JSON.stringify(err));
 });
 
@@ -408,7 +412,7 @@ client.off('connect');
 client.off('close');
 client.close().then(() => {
   console.log('close client success')
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log('close client err: ' + JSON.stringify(err))
 })
 ```
@@ -447,7 +451,7 @@ let listenAddr: socket.LocalAddress = {
 }
 server.listen(listenAddr).then(() => {
   console.log("listen success");
-}).catch((err) => {
+}).catch((err: Object) => {
   console.log("listen fail: " + JSON.stringify(err));
 });
 
@@ -457,14 +461,14 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
   connection.on("error", (err) => {
     console.log("on error success");
   });
-  connection.on('message', (value: socket.MessageReceive) => {
+  connection.on('message', (value: socket.LocalSocketMessageInfo) => {
     const uintArray = new Uint8Array(value.message);
     let messageView = '';
     for (let i = 0; i < uintArray.length; i++) {
       messageView = String.fromCharCode(uintArray[i]);
     }
     console.log('total: ' + JSON.stringify(value));
-    console.log('message infomation: ' + messageView);
+    console.log('message information: ' + messageView);
   });
 
   connection.on('error', (err) => {
@@ -477,14 +481,14 @@ server.on("connect", (connection: socket.LocalSocketConnection) => {
   };
   connection.send(sendOpt).then(() => {
     console.log('send success');
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.log('send failed: ' + JSON.stringify(err));
   })
 
   // 关闭与客户端的连接
   connection.close().then(() => {
     console.log('close success');
-  }).catch((err) => {
+  }).catch((err: Object) => {
     console.log('close failed: ' + JSON.stringify(err));
   });
 

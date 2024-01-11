@@ -69,7 +69,7 @@ interface ExtraData {
 
 ### enableCloud
 
-static enableCloud(accountId: string, switches: { [bundleName: string]: boolean }, callback: AsyncCallback&lt;void&gt;): void
+static enableCloud(accountId: string, switches: Record<string, boolean>, callback: AsyncCallback&lt;void&gt;): void
 
 打开端云协同，使用callback异步回调。
 
@@ -82,7 +82,7 @@ static enableCloud(accountId: string, switches: { [bundleName: string]: boolean 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | 是   | 具体打开的云帐号ID。                                         |
-| switches  | {[bundleName: string]: boolean} | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                                                   |
 
 **示例：**
@@ -108,7 +108,7 @@ try {
 
 ### enableCloud
 
-static enableCloud(accountId: string, switches: { [bundleName: string]: boolean }): Promise&lt;void&gt;
+static enableCloud(accountId: string, switches: Record<string, boolean>): Promise&lt;void&gt;
 
 打开端云协同，使用Promise异步回调。
 
@@ -121,7 +121,7 @@ static enableCloud(accountId: string, switches: { [bundleName: string]: boolean 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | accountId | string                          | 是   | 具体打开的云帐号ID。                                         |
-| switches  | {[bundleName: string]: boolean} | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
 
@@ -516,7 +516,7 @@ try {
 
 ###  clear
 
-static clear(accountId: string, appActions: { [bundleName: string]: ClearAction },  callback: AsyncCallback&lt;void&gt;): void
+static clear(accountId: string, appActions: Record<string, ClearAction>,  callback: AsyncCallback&lt;void&gt;): void
 
 清除本地下载的云端数据，使用callback异步回调。
 
@@ -529,7 +529,7 @@ static clear(accountId: string, appActions: { [bundleName: string]: ClearAction 
 | 参数名     | 类型                                                | 必填 | 说明                             |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
 | accountId  | string                                              | 是   | 具体打开的云帐号ID。             |
-| appActions | {[bundleName: string]: [ClearAction](#clearaction)} | 是   | 要清除数据的应用信息及清除规则。 |
+| appActions | Record<string, [ClearAction](#clearaction)>         | 是   | 要清除数据的应用信息及清除规则。 |
 | callback   | AsyncCallback&lt;void&gt;                           | 是   | 回调函数。                       |
 
 **示例：**
@@ -559,7 +559,7 @@ try {
 
 ### clear
 
-static clear(accountId: string, appActions: { [bundleName: string]: ClearAction }): Promise&lt;void&gt;
+static clear(accountId: string, appActions: Record<string, ClearAction>): Promise&lt;void&gt;
 
 清除本地下载的云端数据，使用Promise异步回调。
 
@@ -572,7 +572,7 @@ static clear(accountId: string, appActions: { [bundleName: string]: ClearAction 
 | 参数名     | 类型                                                | 必填 | 说明                             |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
 | accountId  | string                                              | 是   | 具体打开的云帐号ID。             |
-| appActions | {[bundleName: string]: [ClearAction](#clearaction)} | 是   | 要清除数据的应用信息及清除规则。 |
+| appActions | Record<string, [ClearAction](#clearaction)>         | 是   | 要清除数据的应用信息及清除规则。 |
 
 **返回值：**
 

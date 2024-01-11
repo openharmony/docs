@@ -44,6 +44,7 @@
   - 本地媒体会话
     - [本地媒体会话概述](local-avsession-overview.md)
     - [媒体会话提供方(ArkTS)](using-avsession-developer.md)
+    - [应用接入AVSession场景介绍](avsession-access-scene.md)
     - [媒体会话控制方(ArkTS)](using-avsession-controller.md)
   - 分布式媒体会话
     - [分布式媒体会话概述](distributed-avsession-overview.md)
@@ -57,7 +58,7 @@
   - [音视频封装(C/C++)](audio-video-encapsulation.md)
   - [音视频解封装(C/C++)](audio-video-decapsulation.md)
 - Camera Kit（相机服务）
-  - [相机开发概述](camera-overview.md)
+  - [Camera Kit简介](camera-overview.md)
   - [开发准备](camera-preparation.md)
   - 相机开发指导(ArkTS)
     - [设备输入(ArkTS)](camera-device-input.md)

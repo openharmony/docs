@@ -14,7 +14,7 @@ You can set the text content and response callback for an alert dialog box.
 
 | Name   | Type | Description|
 | ---- | --------------- | -------- |
-| show | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](#alertdialogparamwithoptions10) | Defines and displays the **\<AlertDialog>** component.|
+| show | [AlertDialogParamWithConfirm](#alertdialogparamwithconfirm) \| [AlertDialogParamWithButtons](#alertdialogparamwithbuttons) \| [AlertDialogParamWithOptions](#alertdialogparamwithoptions10)<sup>10+</sup> | Defines and displays the **\<AlertDialog>** component.|
 
 ## AlertDialogParamWithConfirm
 | Name      | Type    | Mandatory    | Description        |
@@ -22,33 +22,15 @@ You can set the text content and response callback for an alert dialog box.
 | title      | [ResourceStr](ts-types.md#resourcestr) | No   | Title of the dialog box.|
 | subtitle<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | No| Subtitle of the dialog box.|
 | message    | [ResourceStr](ts-types.md#resourcestr) | Yes   | Content of the dialog box.|
-| autoCancel | boolean | No  | Whether to close the dialog box when the overlay is clicked.<br>Default value: **true**|
-| confirm    | {<br>enabled<sup>10+</sup>?: boolean,<br>defaultFocus<sup>10+</sup>?: boolean,<br>style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10),<br>value: [ResourceStr](ts-types.md#resourcestr),<br>fontColor?: [ResourceColor](ts-types.md#resourcecolor),<br>backgroundColor?:  [ResourceColor](ts-types.md#resourcecolor),<br>action: () =&gt; void<br>} | No  | Information about the confirm button.<br>**enabled**: whether to respond when the button is clicked.<br>Default value: **true**<br>**defaultFocus**: whether the button is the default focus.<br>Default value: **false**<br>**style**: button style.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**value**: text of the button.<br>**fontColor**: font color of the button.<br>**backgroundColor**: background color of the button.<br>**action**: callback when the button is selected.|
+| autoCancel | boolean | No  | Whether to close the dialog box when the overlay is clicked. The value **true** means to close the dialog box when the overlay is clicked, and **false** means the opposite.<br>Default value: **true**|
+| confirm    | {<br>enabled<sup>10+</sup>?: boolean,<br>defaultFocus<sup>10+</sup>?: boolean,<br>style<sup>10+</sup>?: [DialogButtonStyle](#dialogbuttonstyle10),<br>value: [ResourceStr](ts-types.md#resourcestr),<br>fontColor?: [ResourceColor](ts-types.md#resourcecolor),<br>backgroundColor?:  [ResourceColor](ts-types.md#resourcecolor),<br>action: () =&gt; void<br>} | No  | Information about the confirm button.<br>**enabled**: whether to respond when the button is clicked. The value **true** means to respond when the button is clicked, and **false** means the opposite.<br>Default value: **true**<br>**defaultFocus**: whether the button is the default focus. The value **true** means that the button is the default focus, and **false** means the opposite.<br>Default value: **false**<br>**style**: button style.<br>Default value: **DialogButtonStyle.DEFAULT**<br>**value**: text of the button.<br>**fontColor**: font color of the button.<br>**backgroundColor**: background color of the button.<br>**action**: callback when the button is selected.|
 | cancel     | () =&gt; void      | No    | Callback invoked when the dialog box is closed after the overlay is clicked.|
 | alignment  | [DialogAlignment](#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset     | [Offset](ts-types.md#offset) | No    | Offset of the dialog box relative to the alignment position.<br>Default value: **{ dx: 0 , dy: 0 }**|
 | gridCount  | number                       | No    | Number of grid columns occupied by the width of the dialog box.<br>Default value: **4**|
-| maskRect<sup>10+</sup>| [Rectangle](#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| maskRect<sup>10+</sup>| [Rectangle](#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
 | showInSubWindow<sup>11+</sup> | boolean | No| Whether to show the dialog box in a sub-window when the dialog box needs to be displayed outside the main window.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
 | isModal<sup>11+</sup> | boolean | No| Whether the dialog box is a modal. A modal dialog box has a mask applied, while a non-modal dialog box does not.<br>Default value: **true**|
-
-Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** > **style** > **defaultFocus**
-
-| backgroundColor | fontColor | style                       | defaultFocus | Effect    |
-| --------------- | --------- | --------------------------- | ------------ | -------- |
-| Green           | Red     | -                           | -            | Red text on green background|
-| Green           | -         | DialogButtonStyle.HIGHLIGHT | -            | White text on green background|
-| Green           | -         | DialogButtonStyle.DEFAULT   | -            | Blue text on green background|
-| Green           | -         | -                           | TRUE         | White text on green background|
-| Green           | -         | -                           | FALSE/-      | Blue text on green background|
-| -               | Red     | DialogButtonStyle.HIGHLIGHT | -            | Red text on blue background|
-| -               | Red     | DialogButtonStyle.DEFAULT   | -            | Red text on white background|
-| -               | Red     | -                           | TRUE         | Red text on blue background|
-| -               | Red     | -                           | FALSE/-      | Red text on white background|
-| -               | -         | DialogButtonStyle.HIGHLIGHT | -            | White text on blue background|
-| -               | -         | DialogButtonStyle.DEFAULT   | -            | Blue text on white background|
-| -               | -         | -                           | TRUE         | White text on blue background|
-| -               | -         | -                           | FALSE/-      | Blue text on white background|
 
 ## AlertDialogParamWithButtons
 | Name            | Type               | Mandatory    | Description                    |
@@ -63,7 +45,7 @@ Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** 
 | alignment       | [DialogAlignment](#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset          | [Offset](ts-types.md#offset) | No | Offset of the dialog box relative to the alignment position.|
 | gridCount       | number                       | No | Number of grid columns occupied by the width of the dialog box.|
-| maskRect<sup>10+</sup> | [Rectangle](#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| maskRect<sup>10+</sup> | [Rectangle](#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
 
 ## AlertDialogParamWithOptions<sup>10+</sup>
 | Name            | Type               | Mandatory    | Description                    |
@@ -76,7 +58,7 @@ Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** 
 | alignment       | [DialogAlignment](#dialogalignment) | No  | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
 | offset          | [Offset](ts-types.md#offset) | No | Offset of the dialog box relative to the alignment position.|
 | gridCount       | number                       | No | Number of grid columns occupied by the width of the dialog box.|
-| maskRect<sup>10+</sup>| [Rectangle](#rectangle10) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
+| maskRect<sup>10+</sup>| [Rectangle](#rectangle8) | No    | Mask area of the dialog box. Events outside the mask area are transparently transmitted, and events within the mask area are not.<br>Default value: **{ x: 0, y: 0, width: '100%', height: '100%' }**|
 | buttons<sup>10+</sup>       | Array&lt;[AlertDialogButtonOptions](#alertdialogbuttonoptions10)&gt;                 | No | Buttons in the dialog box.|
 |buttonDirection<sup>10+</sup>      | [DialogButtonDirection](#dialogbuttondirection10)| No | Direction in which buttons are laid out.<br>Default value: **DialogButtonDirection.AUTO**<br>When there are more than three buttons, the Auto mode (which automatically switches to the vertical layout when there are more than two buttons) is recommended. In non-Auto mode, buttons that extend beyond the display area are clipped.|
 
@@ -131,7 +113,7 @@ Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** 
 | BottomStart<sup>8+</sup> | Bottom left alignment.  |
 | BottomEnd<sup>8+</sup>   | Bottom right alignment.  |
 
-## Rectangle<sup>10+</sup>
+## Rectangle<sup>8+</sup>
 
 The **Rectangle** type is used to represent a mask area of a dialog box.
 
