@@ -1,6 +1,6 @@
 # Image
 
-Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../apis/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor)类型的数据源，支持png、jpg、bmp、svg和gif类型的图片格式。
+Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../apis/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp和gif类型的图片格式。
 
 > **说明：**
 >
@@ -234,68 +234,33 @@ struct ImageExample2 {
 
 
 ```ts
-class tmp{
-  width: number = 0
-  height: number = 0
-}
-let msg:tmp = new tmp()
 @Entry
 @Component
 struct ImageExample3 {
-  @State widthValue: number = 0;
-  @State heightValue: number = 0;
-  private on: Resource = $r('app.media.image_on');
-  private off: Resource = $r('app.media.image_off');
-  private on2off: Resource = $r('app.media.image_on2off');
-  private off2on: Resource = $r('app.media.image_off2on');
-  @State src: Resource = this.on;
+  private imageOne: Resource = $r('app.media.earth');
+  private imageTwo: Resource = $r('app.media.star');
+  private imageThree: Resource = $r('app.media.moveStar');
+  @State src: Resource = this.imageOne
+  @State src2: Resource = this.imageThree
+  build(){
+    Column(){
+      //为图片添加点击事件，点击完成后加载特定图片
+      Image(this.src)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          this.src = this.imageTwo
+        })
 
-  build() {
-    Column() {
-      Row({ space: 20 }) {
-        Column() {
-          Image($r('app.media.img_example1'))
-            .alt($r('app.media.ic_public_picture'))
-            .sourceSize({
-              width: 900,
-              height: 900
-            })
-            .objectFit(ImageFit.Cover)
-            .height(180).width(180)
-            // 图片加载完成后，获取图片尺寸。
-            .onComplete(msg => {
-              if(msg){
-                this.widthValue = msg.width
-                this.heightValue = msg.height
-              }
-            })
-            .onError(() => {
-              console.log('load image fail')
-            })
-            .overlay('\nwidth: ' + String(this.widthValue) + ' height: ' + String(this.heightValue), {
-              align: Alignment.Bottom,
-              offset: { x: 0, y: 20 }
-            })
-        }
-        // 为图片添加点击事件，点击完成后加载特定图片
-        Image(this.src)
-          .width(120).height(120)
-          .onClick(() => {
-            if (this.src == this.on || this.src == this.off2on) {
-              this.src = this.on2off
-            } else {
-              this.src = this.off2on
-            }
-          })
-          .onFinish(() => {
-            if (this.src == this.off2on) {
-              this.src = this.on
-            } else {
-              this.src = this.off
-            }
-          })
-      }
-    }.width('100%')
+      //当加载图片为SVG格式时
+      Image(this.src2)
+        .width(100)
+        .height(100)
+        .onClick(() => {
+          //SVG动效播放完成时加载另一张图片
+          this.src2 = this.imageOne
+        })
+    }.width('100%').height('100%')
   }
 }
 ```
