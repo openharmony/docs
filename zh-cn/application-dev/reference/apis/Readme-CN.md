@@ -247,6 +247,7 @@
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
   - [getContext](js-apis-getContext.md)
+  - [postCardAction](js-apis-postCardAction.md)
 
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
