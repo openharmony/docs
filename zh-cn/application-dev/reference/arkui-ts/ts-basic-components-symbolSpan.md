@@ -36,11 +36,11 @@ SymbolSpan(value: Resource)
 | renderingStrategy | [SymbolRenderingStrategy](ts-appendix-enums.md#symbolrenderingstrategy11)	| 否 | 设置SymbolSpan渲染策略。<br/>默认值：SymbolRenderingStrategy.SINGLE。<br/>说明：$r('sys.symbol.ohos_*')中引用的资源仅ohos_trash_circle、ohos_folder_badge_plus、ohos_lungs支持分层与多色模式。 |
 | effectStrategy | [SymbolEffectStrategy](ts-appendix-enums.md#symboleffectstrategy11)	| 否 | 设置SymbolSpan动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>说明：$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
 
-![renderingStrategy](figures/renderingStrategy.png)
-
 >  **说明：**
 >
->  多色模式下特殊组件的默认颜色展示图
+>  SymbolSpan多色模式下各个组件的默认颜色与层数展示图。
+
+![renderingStrategy](figures/renderingStrategy.png)
 
 ## 事件
 
