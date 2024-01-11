@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { ExceptionPrompt， PromptOptions， MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
 ```
 
 
