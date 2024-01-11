@@ -132,7 +132,7 @@
   - [oh_values_bucket.h](oh__values__bucket_8h.md)
   - [relational_store_error_code.h](relational__store__error__code_8h.md)
   - [relational_store.h](relational__store_8h.md)
-  - [sensor.h](sensor_8h.md)
+  - [sensor.h](oh_sensor_8h.md)
   - [vibrator.h](vibrator_8h.md)
   - [syscap_ndk.h](syscap__ndk_8h.md)
   - [purgeable_memory.h](purgeable__memory_8h.md)
@@ -303,4 +303,3 @@
   - [Vibrator_Type](vibrator_type_8h.md)
   - [Vibrator_Attribute](_vibrator_attribute.md)
   - [Vibrator_File_Description](_vibrator_file_description.md)
-
