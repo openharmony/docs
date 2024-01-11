@@ -225,8 +225,8 @@ let formattedNumber8 = numberFormat8.format(123400); // formattedNumber8: 304,92
 import I18n from '@ohos.i18n'
 
 // 设置要转换的单位和目标单位
-let fromUnit = {unit: 'cup', measureSystem: 'US'};
-let toUnit = {unit: 'liter', measureSystem: 'SI'};
+let fromUnit: I18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
+let toUnit: I18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
 // 以en-US区域参数转换度量衡
 let convertedUnit1 = I18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit1: 236.588 L

@@ -31,7 +31,7 @@
 
 | 接口名                                                       | 描述                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback<void>): void              | 发送文本或数据SMS消息。                                                      |
+| sendShortMessage(options: SendMessageOptions, callback: AsyncCallback\<void\>): void              | 发送文本或数据SMS消息。                                                      |
 | createMessage(pdu: Array\<number>, specification: string, callback: AsyncCallback\<ShortMessage>): void | 基于协议数据单元（PDU）和指定的SMS协议创建SMS消息实例。 |
 | getDefaultSmsSlotId(callback: AsyncCallback\<number>): void   | 获取用于发送短信的默认SIM卡。                                                |
 | setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void>): void | 根据指定的插槽ID设置短信服务中心的地址。                |
@@ -41,7 +41,7 @@
 ## 开发步骤
 
 1. 声明接口调用所需要的权限：
-   - 如果是想发送短信，则调用sendMessage接口，需要配置ohos.permission.SEND_MESSAGES权限，权限级别为system_basic。
+   - 如果是想发送短信，则调用sendShortMessage接口，需要配置ohos.permission.SEND_MESSAGES权限，权限级别为system_basic。
    - 如果是想设置短信服务中心地址，则调用setSmscAddr接口，需要配置ohos.permission.SET_TELEPHONY_STATE权限，权限级别为system_basic。
    - 如果是想获取短信服务中心地址，则调用getSmscAddr接口，需要配置ohos.permission.GET_TELEPHONY_STATE权限，权限级别为system_basic。
    在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。

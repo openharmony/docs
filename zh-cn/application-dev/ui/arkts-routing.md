@@ -1,7 +1,7 @@
 # 页面路由（router）
 
 
-页面路由指在应用程序中实现不同页面之间的跳转和数据传递。OpenHarmony提供了Router模块，通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
+页面路由指在应用程序中实现不同页面之间的跳转和数据传递。Router模块通过不同的url地址，可以方便地进行页面路由，轻松地访问不同的页面。本文将从[页面跳转](#页面跳转)、[页面返回](#页面返回)、[页面返回前增加一个询问框](#页面返回前增加一个询问框)和[命名路由](#命名路由)几个方面介绍Router模块提供的功能。
 
 Router适用于[模块](../quick-start/application-package-structure-stage.md)间与模块内页面切换，通过每个页面的url实现模块间解耦。模块内页面跳转时，为了实现更好的转场动效场景不建议使用该模块，推荐使用[Navigation](./arkts-navigation-navigation.md)。
 
@@ -14,7 +14,7 @@ Router适用于[模块](../quick-start/application-package-structure-stage.md)�
 
 Router模块提供了两种跳转模式，分别是[router.pushUrl()](../reference/apis/js-apis-router.md#routerpushurl9)和[router.replaceUrl()](../reference/apis/js-apis-router.md#routerreplaceurl9)。这两种模式决定了目标页面是否会替换当前页。
 
-- router.pushUrl()：目标页面不会替换当前页，而是压入[页面栈](../application-models/page-mission-stack.md)。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法返回到当前页。
+- router.pushUrl()：目标页面不会替换当前页，而是压入页面栈。这样可以保留当前页的状态，并且可以通过返回键或者调用[router.back()](../reference/apis/js-apis-router.md#routerback)方法返回到当前页。
 
 - router.replaceUrl()：目标页面会替换当前页，并销毁当前页。这样可以释放当前页的资源，并且无法返回到当前页。
 

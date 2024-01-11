@@ -1,4 +1,4 @@
-# 双路预览
+# 双路预览(ArkTS)
 
 相机应用通过控制相机，实现图像显示（预览）、照片保存（拍照）、视频录制（录像）等基础操作。相机开发模型为Surface模型，即应用通过Surface进行数据传递，通过ImageReceiver的surface获取拍照流的数据、通过XComponent的surface获取预览流的数据。
 
@@ -39,7 +39,7 @@
        let ImageReceiverSurfaceId: string = await receiver.getReceivingSurfaceId();
        console.info(`ImageReceived id: ${ImageReceiverSurfaceId}`);
      } else {
-       console.info('ImageReceiver is not ok');
+       console.error('ImageReceiver is not ok');
      }
      return ImageReceiverSurfaceId;
    }
@@ -122,7 +122,7 @@
      captureSession.addInput(cameraInput);
    
      // 把 预览流1 加入到会话
-     captureSession.addOutput(previewOutput)
+     captureSession.addOutput(previewOutput);
    
      // 把 预览流2 加入到会话
      captureSession.addOutput(previewOutput2);
@@ -152,13 +152,11 @@
            if (err || imgComponent === undefined) {
              return;
            }
-           let buffer: ArrayBuffer;
            if (imgComponent.byteBuffer as ArrayBuffer) {
-             buffer = imgComponent.byteBuffer;
+             // do something...
            } else {
              return;
            }
-           // do something...;
          })
        })
      })

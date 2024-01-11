@@ -20,11 +20,11 @@ Before developing features related to audio and video playback, you are advised 
 
 - Network protocols: HLS, HTTP, HTTPS, and more
 
-- Container formats: MP4, MKV, MPEG-TS, WebM, and more
+- Container formats: mp4, mkv, mpeg-ts, webm, and more
 
 - Encoding formats: H.263/H.264/H.265, MPEG4/MPEG2, and more
 
-## Introduction to Audio Streams 
+## Introduction to Audio Streams
 
 An audio stream is an independent audio data processing unit that has a specific audio format and audio usage scenario information. The audio stream can be used in playback and recording scenarios, and supports independent volume adjustment and audio device routing.
 
@@ -36,11 +36,9 @@ In addition to the basic information (which describes only audio data), an audio
 
 - Playback scenario
 
-  Information about the audio playback scenario is defined by using [StreamUsage](../reference/apis/js-apis-audio.md#streamusage) and [ContentType](../reference/apis/js-apis-audio.md#contenttype).
+  Information about the audio playback scenario is defined by [StreamUsage](../reference/apis/js-apis-audio.md#streamusage).
 
--  **StreamUsage** specifies the usage type of an audio stream, for example, used for media, voice communication, voice assistant, notification, and ringtone.
-
--  **ContentType** specifies the content type of data in an audio stream, for example, speech, music, movie, notification tone, and ringtone.
+  **StreamUsage** specifies the usage type of an audio stream, for example, used for media, voice communication, voice assistant, notification, and ringtone.
 
 - Recording scenario
 
@@ -56,7 +54,7 @@ Be familiar with the following about the audio format:
 
 - The common audio sampling rates are supported: 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, and 96000, in units of Hz. For details, see [AudioSamplingRate](../reference/apis/js-apis-audio.md#audiosamplingrate8).
   
-The sampling rate varies according to the device type.
+  The sampling rate varies according to the device type.
   
 - Mono and stereo are supported. For details, see [AudioChannel](../reference/apis/js-apis-audio.md#audiochannel8).
 

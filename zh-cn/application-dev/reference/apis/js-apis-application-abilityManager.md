@@ -125,8 +125,9 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 ```ts
 import abilityManager from '@ohos.application.abilityManager';
+import { BusinessError } from '@ohos.base';
 
-abilityManager.getAbilityRunningInfos((err,data) => { 
+abilityManager.getAbilityRunningInfos((err: BusinessError, data) => { 
     console.log(`getAbilityRunningInfos err: ${err}, data: ${JSON.stringify(data)}`);
 });
 ```

@@ -34,13 +34,14 @@
 
 ## 开发步骤
 
-1. [使能通知开关](notification-enable.md)，获得用户授权后，才能使用通知功能。
+1. [请求通知授权](notification-enable.md)，获得用户授权后，才能使用通知功能。
 
 2. 导入模块。
    
    ```ts
    import notificationManager from '@ohos.notificationManager';
    import Base from '@ohos.base';
+   import { logger } from '../util/Logger';
    ```
 
 3. 构造NotificationRequest对象，并发布通知。
@@ -61,10 +62,10 @@
       
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
 
@@ -74,7 +75,7 @@
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
+        id: 2,
         content: {
           contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // 长文本类型通知
           longText: {
@@ -91,10 +92,10 @@
       // 发布通知
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -104,14 +105,14 @@
      
       ```ts
       let notificationRequest: notificationManager.NotificationRequest = {
-        id: 1,
+        id: 3,
         content: {
           contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // 多行文本类型通知
           multiLine: {
             title: 'test_title',
             text: 'test_text',
             briefText: 'test_briefText',
-            longTitle: 'longTitle',
+            longTitle: 'test_longTitle',
             lines: ['line_01', 'line_02', 'line_03', 'line_04'],
           }
         }
@@ -120,10 +121,10 @@
       // 发布通知
       notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
         if (err) {
-          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
           return;
         }
-        console.info('Succeeded in publishing notification.');
+        logger.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -149,7 +150,7 @@
       
       if (imagePixelMap !== undefined) {
         let notificationRequest: notificationManager.NotificationRequest = {
-          id: 1,
+          id: 4,
           content: {
             contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
             picture: {
@@ -166,10 +167,10 @@
         // 发布通知
         notificationManager.publish(notificationRequest, (err:Base.BusinessError) => {
           if (err) {
-            console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+            logger.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
             return;
           }
-          console.info('Succeeded in publishing notification.');
+          logger.info('Succeeded in publishing notification.');
         });
       }
       ```

@@ -197,3 +197,47 @@ CAMERA_STATUS_UNAVAILABLE 3 相机不可用。
 
 参考文档：[CameraStatus](../reference/apis/js-apis-camera.md#oncamerastatus)
 
+## SoundPool播放的音频是否支持wmv格式？支持哪些格式？(API 10)
+**解决措施**
+
+WMV当前是不支持，支持的格式有AAC、MPEG(MP3)、Flac、Vorbis。
+
+**参考资料**
+
+soundpool支持的格式与底层一致，支持的格式可以参考文档：[音频解码](../media/audio-decoding.md)
+
+## 如何读取相机的预览图？(API 10)
+
+**解决措施**
+
+使用ImageReceiver.readLatestImage可获取相机的预览图。
+
+**参考资料**
+
+[readLatestImage](../reference/apis/js-apis-image.md#readlatestimage9)
+
+## 如何实现录音监听？(API 10)
+
+**解决措施**
+
+系统音频监听功能都在AudioStreamManager内，录音监听可以通过on(type: 'audioCapturerChange', callback: Callback<AudioCapturerChangeInfoArray>): void订阅接口实现。
+
+**参考资料**
+
+[onaudiocapturerchange](../reference/apis/js-apis-audio.md#onaudiocapturerchange9)
+
+## 音频处理哪些场景内置了3A处理的算法(AEC、ANC、AGC)？若内置了，有无音频3A处理的相关接口，如何调用？系统3A算法AEC、ANC、AGC是否支持独立开关？录音场景系统是否支持3A，如果不支持的话，解决方案是什么？例如：如何在播放音乐时，不影响音频录制的音质？(API 10)
+
+**解决措施**
+
+存在STREAM_USAGE_VOICE_COMMUNICATION配置的音频流运行时自动使能内置3A。暂未支持3A独立开关。录音场景支持3A，需要配置对应的AudioScene和SourceType类型进行使能。
+
+**参考资料**
+
+[AudioCapturer](../reference/apis/js-apis-audio.md#audiocapturer8)
+
+## 关于图片压缩API的质量参数quality与图片原始大小、压缩后大小，是什么关系？如果要设置压缩后的图片大小要如何实现？如果要把图片压缩在指定大小（如500k）以内，那么要怎么设置参数才能使无论多大的原始图片都被压缩至500k？(API 10)
+
+**解决措施**
+
+对于有损压缩格式，如jpeg，压缩质量越低，压缩后图片越小。如果需要指定大小，应用可尝试不同压缩质量。

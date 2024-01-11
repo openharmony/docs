@@ -1077,6 +1077,7 @@
       - [@ohos.promptAction (弹窗)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (页面路由)](reference/apis/js-apis-router.md)
       - [@ohos.uiAppearance (用户界面外观)](reference/apis/js-apis-uiappearance.md)
+      - [getContext](reference/apis/js-apis-getContext.md)
     - 图形图像
       - [@ohos.animation.windowAnimationManager (窗口动画管理)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](reference/apis/js-apis-application-windowExtensionAbility.md)
@@ -1929,6 +1930,7 @@
       - [Memory](reference/native-apis/memory.md)
       - [UsbDdk](reference/native-apis/_usb_ddk.md)
       - [Hitrace](reference/native-apis/_hitrace.md)
+      - [HiAppEvent](reference/native-apis/_hi_app_event.md)
       - [Vulkan](reference/native-apis/_vulkan.md)
       - [Bundle](reference/native-apis/_bundle.md)
     - 头文件
@@ -2002,6 +2004,10 @@
       - [usb_ddk_api.h](reference/native-apis/usb__ddk__api_8h.md)
       - [usb_ddk_types.h](reference/native-apis/usb__ddk__types_8h.md)
       - [trace.h](reference/native-apis/trace_8h.md)
+      - [hiappevent.h](reference/native-apis/hiappevent_8h.md)
+      - [hiappevent_cfg.h](reference/native-apis/hiappevent__cfg_8h.md)
+      - [hiappevent_event.h](reference/native-apis/hiappevent__event_8h.md)
+      - [hiappevent_param.h](reference/native-apis/hiappevent__param_8h.md)
       - [vulkan_ohos.h](reference/native-apis/vulkan__ohos_8h.md)
     - 结构体
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
@@ -2107,7 +2113,7 @@
         - [libc中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
         - [libc中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
         - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
-        - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
+        - [Native api中导出的OpenGL ES 3.2符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
         - [Native api中支持的Vulkan接口列表](reference/native-lib/third_party_vulkan/vulkan-symbol.md)
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)

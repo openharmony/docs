@@ -1,4 +1,8 @@
-# 录像实现方案
+# 录像实现方案(ArkTS)
+
+当前示例提供完整的录像流程介绍，方便开发者了解完整的接口调用顺序。
+
+在参考以下示例前，建议开发者查看[相机开发指导(ArkTS)](camera-preparation.md)的具体章节，了解[设备输入](camera-device-input.md)、[会话管理](camera-session-management.md)、[录像](camera-recording.md)等单个流程。
 
 ## 开发流程
 
@@ -8,7 +12,8 @@
 
 
 ## 完整示例
-[BaseContext获取方式](../reference/apis/js-apis-inner-application-baseContext.md)。
+Context获取方式请参考：[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 import camera from '@ohos.multimedia.camera';
 import { BusinessError } from '@ohos.base';
@@ -25,8 +30,8 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
 
   // 监听相机状态变化
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.log(`status: ${cameraStatusInfo.status}`);
+    console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.info(`status: ${cameraStatusInfo.status}`);
   });
 
   // 获取相机列表
@@ -39,7 +44,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
 
   if (cameraArray.length <= 0) {
-    console.error("cameraManager.getSupportedCameras error")
+    console.error("cameraManager.getSupportedCameras error");
     return;
   }
 
@@ -49,7 +54,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
     console.error("cameraManager.getSupportedOutputCapability error")
     return;
   }
-  console.log("outputCapability: " + JSON.stringify(cameraOutputCap));
+  console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
 
   let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
   if (!previewProfilesArray) {
@@ -135,7 +140,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // 监听视频输出错误信息
   videoOutput.on('error', (error: BusinessError) => {
-    console.log(`Preview output error code: ${error.code}`);
+    console.info(`Preview output error code: ${error.code}`);
   });
 
   //创建会话
@@ -151,7 +156,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   }
   // 监听session错误信息
   captureSession.on('error', (error: BusinessError) => {
-    console.log(`Capture session error code: ${error.code}`);
+    console.info(`Capture session error code: ${error.code}`);
   });
 
   // 开始配置会话
@@ -176,7 +181,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
   // 监听cameraInput错误信息
   let cameraDevice: camera.CameraDevice = cameraArray[0];
   cameraInput.on('error', cameraDevice, (error: BusinessError) => {
-    console.log(`Camera input error code: ${error.code}`);
+    console.info(`Camera input error code: ${error.code}`);
   });
 
   // 打开相机
@@ -245,7 +250,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
       console.error(`Failed to start the video output. error: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output start success.');
+    console.info('Callback invoked to indicate the video output start success.');
   });
 
   // 开始录像
@@ -262,7 +267,7 @@ async function videoRecording(baseContext: common.BaseContext, surfaceId: string
       console.error(`Failed to stop the video output. error: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Callback invoked to indicate the video output stop success.');
+    console.info('Callback invoked to indicate the video output stop success.');
   });
 
   // 停止录像

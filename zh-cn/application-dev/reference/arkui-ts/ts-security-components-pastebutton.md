@@ -31,7 +31,7 @@ PasteButton(option:{icon?: PasteIconStyle, text?: PasteDescription, buttonType?:
 | -------- | -------- | -------- | -------- |
 | icon | [PasteIconStyle](#pasteiconstyle枚举说明) | 否 | 设置粘贴按钮的图标风格。<br/>不传入该参数表示没有图标，icon和text至少存在一个。 |
 | text | [PasteDescription](#pastedescription枚举说明) | 否 | 设置粘贴按钮的文本描述。<br/>不传入该参数表示没有文字描述，icon和text至少存在一个。 |
-| buttonType | [ButtonType](ts-basic-components-button.md#ButtonType枚举说明) | 否 | 设置粘贴按钮的背景样式。<br/>不传入该参数表示没有背景。 |
+| buttonType | [ButtonType](ts-basic-components-button.md#buttontype枚举说明) | 否 | 设置粘贴按钮的背景样式。<br/>不传入该参数表示没有背景。 |
 
 
 ## 属性
@@ -41,24 +41,24 @@ PasteButton(option:{icon?: PasteIconStyle, text?: PasteDescription, buttonType?:
 
 ## PasteIconStyle枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| LINES | 粘贴按钮展示线条样式图标。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| LINES | 0 | 粘贴按钮展示线条样式图标。 |
 
 
 ## PasteDescription枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| PASTE | 粘贴按钮的文字描述为“粘贴”。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| PASTE | 0 | 粘贴按钮的文字描述为“粘贴”。 |
 
 
 ## PasteButtonOnClickResult枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| SUCCESS | 粘贴按钮点击成功。 |
-| TEMPORARY_AUTHORIZATION_FAILED | 粘贴按钮点击后权限授权失败。 |
+| 名称 | 枚举值 | 描述 |
+| -------- | -------- | -------- |
+| SUCCESS | 0 | 粘贴按钮点击成功。 |
+| TEMPORARY_AUTHORIZATION_FAILED | 1 | 粘贴按钮点击后权限授权失败。 |
 
 
 ## 事件
@@ -67,7 +67,7 @@ PasteButton(option:{icon?: PasteIconStyle, text?: PasteDescription, buttonType?:
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明)), result: [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。<br/>event：见ClickEvent对象说明。 |
+| onClick(event: (event: [ClickEvent](ts-universal-events-click.md#clickevent对象说明), result: [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)) =&gt; void) | 点击动作触发该回调。<br/>result：剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。<br/>event：见ClickEvent对象说明。 |
 
 
 ## 示例

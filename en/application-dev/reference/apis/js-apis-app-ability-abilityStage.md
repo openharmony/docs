@@ -54,7 +54,7 @@ Called when a specified ability is started.
 
   | Type| Description| 
   | -------- | -------- |
-  | string | Returns an ability ID. If this ability has been started, no new instance is created and the ability is placed at the top of the stack. Otherwise, a new instance is created and started.| 
+  | string | Ability ID. If the ability with this ID has been started, no new instance is created and the ability is placed at the top of the stack. Otherwise, a new instance is created and started.| 
 
 **Example**
     
@@ -136,3 +136,16 @@ Defines the context of **AbilityStage**.
 | Name     | Type                       | Description                                                        |
 | ----------- | --------------------------- | ------------------------------------------------------------ |
 | context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | The context is obtained in the callback invoked when initialization is performed during ability startup.|
+
+**Example**
+    
+```ts
+import AbilityStage from '@ohos.app.ability.AbilityStage';
+
+export default class MyAbilityStage extends AbilityStage {
+  onCreate() {
+    let abilityStageContext = this.context;
+    // ...
+  }
+}
+```

@@ -5,8 +5,8 @@
 >  **NOTE**
 >
 >  This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
-
+>
+>  There is a height limit of 64 vp on custom components.
 ## Child Components
 
 This component supports only one child component.
@@ -42,18 +42,16 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ## RefreshStatus
 
-| Name      | Description                  |
-| -------- | -------------------- |
-| Inactive | The component is not pulled down. This is the default value.            |
-| Drag     | The component is being pulled down, but the pulled distance is shorter than the minimum length required to trigger the refresh.     |
-| OverDrag | The component is being pulled down, and the pulled distance exceeds the minimum length required to trigger the refresh.     |
-| Refresh  | The pull-down ends, and the component rebounds to the minimum length required to trigger the refresh and enters the refresh state.|
-| Done     | The refresh is complete, and the component returns to the initial state (top).    |
+| Name      | Value      | Description                  |
+| -------- | -------- | -------------------- |
+| Inactive | 0 | The component is not pulled down. This is the default value.            |
+| Drag     | 1 | The component is being pulled down, but the pulled distance is shorter than the minimum length required to trigger the refresh.     |
+| OverDrag | 2 | The component is being pulled down, and the pulled distance exceeds the minimum length required to trigger the refresh.     |
+| Refresh  | 3 | The pull-down ends, and the component rebounds to the minimum length required to trigger the refresh and enters the refresh state.|
+| Done     | 4 | The refresh is complete, and the component returns to the initial state (top).    |
 
 
 ## Example
-### Example 1
-This example uses the **\<Refresh>** component with its default refresh style.
 
 ```ts
 // xxx.ets
@@ -61,99 +59,28 @@ This example uses the **\<Refresh>** component with its default refresh style.
 @Component
 struct RefreshExample {
   @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
+  @State counter: number = 0
 
   build() {
     Column() {
-      Refresh({ refreshing: $$this.isRefreshing}) {
-        List() {
-          ForEach(this.arr, (item: string) => {
-            ListItem() {
-              Text('' + item)
-                .width('100%').height(100).fontSize(16)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-            }
-          }, (item: string) => item)
-        }
-        .onScrollIndex((first: number) => {
-          console.info(first.toString())
-        })
-        .width('100%')
-        .height('100%')
-        .divider({strokeWidth:1,color:Color.Yellow,startMargin:10,endMargin:10})
-        .scrollBar(BarState.Off)
+      Refresh({ refreshing: $$this.isRefreshing, offset: 120, friction: 100 }) {
+        Text('Pull Down and refresh: ' + this.counter)
+          .fontSize(30)
+          .margin(10)
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
       .onRefreshing(() => {
         setTimeout(() => {
+          this.counter++
           this.isRefreshing = false
-        }, 2000)
+        }, 1000)
         console.log('onRefreshing test')
       })
-      .backgroundColor(0x89CFF0)
     }
   }
 }
 ```
 
-
-### Example 2
-This example uses a custom **\<Refresh>** component with a custom refresh style.
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct RefreshExample {
-  @State isRefreshing: boolean = false
-  @State arr: String[] = ['0', '1', '2', '3', '4','5','6','7','8','9','10']
-  @Builder
-  customRefreshComponent()
-  {
-    Stack()
-    {
-      Row()
-      {
-        LoadingProgress().height(32)
-        Text("Refreshing..").fontSize(16).margin({left:20})
-      }
-      .alignItems(VerticalAlign.Center)
-    }.width("100%").align(Alignment.Center)
-  }
-
-  build() {
-    Column() {
-      Refresh({ refreshing: $$this.isRefreshing,builder:this.customRefreshComponent()}) {
-        List() {
-          ForEach(this.arr, (item: string) => {
-            ListItem() {
-              Text('' + item)
-                .width('100%').height(100).fontSize(16)
-                .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-            }
-          }, (item: string) => item)
-        }
-        .onScrollIndex((first: number) => {
-          console.info(first.toString())
-        })
-        .width('100%')
-        .height('100%')
-        .divider({strokeWidth:1,color:Color.Yellow,startMargin:10,endMargin:10})
-        .scrollBar(BarState.Off)
-      }
-      .onStateChange((refreshStatus: RefreshStatus) => {
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
-      })
-      .onRefreshing(() => {
-        setTimeout(() => {
-          this.isRefreshing = false
-        }, 2000)
-        console.log('onRefreshing test')
-      })
-      .backgroundColor(0x89CFF0)
-    }
-  }
-}
-```
+![](figures/refresh.gif)

@@ -139,6 +139,10 @@ struct SnapshotExample {
             console.log("error: " + err)
           })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }
     .width('80%')
     .margin({ left: 10, top: 5, bottom: 5 })
@@ -168,7 +172,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 | 参数名      | 类型                                       | 必填   | 说明         |
 | -------- | ---------------------------------------- | ---- | ---------- |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
+| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
 | callback | [AsyncCallback](js-apis-base.md#asynccallback)&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。支持在回调中获取离屏组件绘制区域坐标和大小。 |
 
 **错误码：** 
@@ -226,6 +230,10 @@ struct OffscreenSnapshotExample {
               console.log(info.size.width + ' ' + info.size.height + ' ' + info.localOffset.x + ' ' + info.localOffset.y + ' ' + info.windowOffset.x + ' ' + info.windowOffset.y)
             })
         })
+      Image(this.pixmap)
+        .margin(10)
+        .height(100)
+        .width(100)
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
   }
@@ -250,7 +258,7 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
 | 参数名     | 类型                                       | 必填   | 说明         |
 | ------- | ---------------------------------------- | ---- | ---------- |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
+| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。<br/>**说明：** 不支持全局builder。 |
 
 **返回值：**
 

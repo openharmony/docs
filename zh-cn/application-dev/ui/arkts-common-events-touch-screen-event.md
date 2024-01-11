@@ -247,7 +247,7 @@ struct Index {
   }
 }
 ```
-
+![zh-cn_image_drag_drop](figures/zh-cn_image_drag_drop.gif)
 
 ## 触摸事件
 

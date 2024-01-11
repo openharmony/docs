@@ -4343,12 +4343,11 @@ getOpKey\(slotId: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-try {
-    let data: Promise<string> = sim.getOpKey(0);
+sim.getOpKey(0).then((data: string) => {
     console.log(`getOpKey success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.error(`getOpKey failed, promise: err->${JSON.stringify(error)}`);
-}
+}).catch((err: BusinessError) => {
+    console.error(`getOpKey failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 ## sim.getOpKeySync<sup>10+</sup>
@@ -4466,12 +4465,11 @@ getOpName\(slotId: number\): Promise\<string\>
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
 
-try {
-    let data: Promise<string> = sim.getOpName(0);
+sim.getOpName(0).then((data: string) => {
     console.log(`getOpName success, promise: data->${JSON.stringify(data)}`);
-} catch (error) {
-    console.error(`getOpName failed, promise: err->${JSON.stringify(error)}`);
-}
+}).catch((err: BusinessError) => {
+    console.error(`getOpName failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 ## sim.getOpNameSync<sup>10+</sup>

@@ -597,7 +597,7 @@ Subscribes to folding status change events of the foldable device.
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** indicates that the folding status of the device changes.|
+| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the folding status of the device changes.|
 | callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | Yes  | Callback used to return the folding status.|
 
 **Error codes**
@@ -875,7 +875,7 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 | alive | boolean | Yes| No| Whether the display is alive.                                                                                                    |
 | state | [DisplayState](#displaystate) | Yes| No| State of the display.                                                                                                     |
 | refreshRate | number | Yes| No| Refresh rate of the display. The value must be an integer.                                                                                            |
-| rotation | number | Yes| No| Screen rotation angle of the display.<br>The value **0** indicates that the screen of the display rotates by 0°.<br>The value **1** indicates that the screen of the display rotates by 90°.<br>The value **2** indicates that the screen of the display rotates by 180°.<br>The value **3** indicates that the screen of the display rotates by 270°.|
+| rotation | number | Yes| No| Clockwise rotation angle of the screen of the display.<br>The value **0** indicates that the screen of the display rotates clockwise by 0°.<br>The value **1** indicates that the screen of the display rotates clockwise by 90°.<br>The value **2** indicates that the screen of the display rotates clockwise by 180°.<br>The value **3** indicates that the screen of the display rotates clockwise by 270°.|
 | width | number | Yes| No| Width of the display, in pixels. The value must be an integer.                                                                                       |
 | height | number | Yes| No| Height of the display, in pixels. The value must be an integer.                                                                                       |
 | densityDPI | number | Yes| No| Screen density of the display, that is, the number of dots per inch. The value must be a floating point number. Generally, the value is **160.0** or **480.0**.                                                                  |

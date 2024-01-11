@@ -61,7 +61,7 @@ ListItemGroup(options?: {header?: CustomBuilder, footer?: CustomBuilder, space?:
 @Entry
 @Component
 struct ListItemGroupExample {
-  private timetable: TimeTable[] = [
+  private timeTable: TimeTable[] = [
     {
       title: 'Monday',
       projects: ['Language', 'Math', 'English']
@@ -101,7 +101,7 @@ struct ListItemGroupExample {
   build() {
     Column() {
       List({ space: 20 }) {
-        ForEach(this.timetable, (item: TimeTable) => {
+        ForEach(this.timeTable, (item: TimeTable) => {
           ListItemGroup({ header: this.itemHead(item.title), footer: this.itemFoot(item.projects.length) }) {
             ForEach(item.projects, (project: string) => {
               ListItem() {

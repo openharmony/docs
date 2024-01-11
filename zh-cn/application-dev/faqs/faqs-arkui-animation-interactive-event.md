@@ -271,3 +271,76 @@ struct ComponentChild2 {
 
 [组件内转场动画](../ui/arkts-enter-exit-transition.md)
 
+## 如何自定义处理父子组件间的事件传递
+
+适用于 OpenHarmony 4.0 Release  API 10
+
+**解决措施**
+
+1.系统会基于触摸测试来收集需要响应事件的控件，测试的顺序由父组件向子组件蔓延，后续手势的识别和竞争都基于测试结果进行；
+
+2.应用可通过改变组件上hitTestBehavior的值来改变系统对齐的触摸测试结果；
+
+3.可通过自定义事件和自定义手势判定能力来细化对手势识别和竞争结果的干预。
+
+**参考链接**
+
+1.[hitTestBehavior](../reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
+
+## 如何实现对列表的列表项进行拖动时，其他列表项自动补位和动态排列的效果
+
+适用于 OpenHarmony 4.0 Release  API 10
+ 
+**解决措施**
+
+1.为列表或宫格项(item)添加拖拽能力，使能draggable，并注册onDragStart； 
+
+2.在onDragStart回调中将所拖条目设置visibility为HIDDEN状态；
+
+2.在列表或宫格项(item)上注册onDragMove监听拖起的移动事件；
+
+3.拖动过程中，通过onDragMove的event参数获取到拖拽跟手点坐标；
+
+4.计算跟手点坐标与item中线的距离关系，当重合时，启动挤位动效；
+
+5.Item布局信息可通过componentUtils API获取到；
+
+6.挤位动效通过animateTo来改变datasource里的index，触发list的排序动效；
+
+7.落位动效可通过自定义动效完成。
+
+ **示例代码**
+
+```ts
+// 起拖时记录拖拽item
+  .onDragStart((event?: DragEvent, extraParams?: string) => {
+    this.dragIndex = Number(item.data)
+    this.dragItem = item
+  })
+  // 进入新的item时执行挤位效果
+  .onDragEnter((event?: DragEvent, extraParams?: string) => {
+    if (Number(item.data) != this.dragIndex) {
+      let current = this.dataSource.findIndex((element) => element.data === this.dragItem.data)
+      let index = this.dataSource.findIndex((element) => element.data === item.data)
+      animateTo({
+        curve: curves.interpolatingSpring(0, 1, 400, 38)
+      }, () => {
+        this.dataSource.splice(current, 1)
+        this.dataSource.splice(index, 0, this.dragItem)
+      })
+    }
+  })
+   // 释放时自定义落位动效，在释放位置开始对dragItem执行动效
+  .onDrop((dragEvent: DragEvent) => {
+    dragEvent.useCustomDropAnimation = true;
+    // 获取到落位位置
+    let downLocation = getInspectorByKey(item.data)
+    let currentLocation = dragEvent.getPreviewRect()
+    this.dragItem.scale = 1.05
+    animateTo({
+      curve: curves.interpolatingSpring(14, 1, 170, 17)
+    }, () => {
+      this.dragItem.scale = 1
+    })
+  })
+```

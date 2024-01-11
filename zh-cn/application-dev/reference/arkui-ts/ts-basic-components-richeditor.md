@@ -224,7 +224,7 @@ updateSpanStyle(value: RichEditorUpdateTextSpanStyleOptions | RichEditorUpdateIm
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdatetextspanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
+| value | [RichEditorUpdateTextSpanStyleOptions](#richeditorupdatetextspanstyleoptions) \| [RichEditorUpdateImageSpanStyleOptions](#richeditorupdateimagespanstyleoptions) | 是 | 文本或者图片的样式选项信息。 |
 
 
 ### getSpans
@@ -296,7 +296,7 @@ deleteSpans(value?: RichEditorRange): void
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | 否   | 添加文本的位置。省略时，添加到所有文本字符串的最后。 |
+| offset  | number   | 否   | 添加文本的位置。省略时，添加到所有文本字符串的最后。<br/>当值小于0时，放在字符串最前面；当值大于字符串长度时，放在字符串最后面。|
 | style  | [RichEditorTextStyle](#richeditortextstyle)   | 否   | 文本样式信息。省略时，使用系统默认文本信息。|
 
 ## RichEditorTextStyle
@@ -319,7 +319,7 @@ deleteSpans(value?: RichEditorRange): void
 
 | 名称 | 类型 | 必填 | 描述                               |
 | ------ | -------- | ---- | -------------------------------------- |
-| offset  | number   | 否   | 添加图片的位置。省略时，添加到所有文本字符串的最后。 |
+| offset  | number   | 否   | 添加图片的位置。省略时，添加到所有文本字符串的最后。<br/>当值小于0时，放在字符串最前面；当值大于字符串长度时，放在字符串最后面。|
 | imageStyle  | [RichEditorImageSpanStyle](#richeditorimagespanstyle)   | 否   | 图片样式信息。省略时，使用系统默认图片信息。|
 
 ## RichEditorImageSpanStyle
@@ -351,10 +351,10 @@ deleteSpans(value?: RichEditorRange): void
 @Entry
 @Component
 struct Index {
-  controller: RichEditorController = new RichEditorController();
-  options: RichEditorOptions = { controller: this.controller };
-  private start: number = -1;
-  private end: number = -1;
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+  private start: number = -1
+  private end: number = -1
   @State message: string = "[-1, -1]"
   @State content: string = ""
 
@@ -387,16 +387,16 @@ struct Index {
           })
         })
         Button("获取选择内容").onClick(() => {
-          this.content = "";
+          this.content = ""
           this.controller.getSpans({
             start: this.start,
             end: this.end
           }).forEach(item => {
             if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
-              this.content += (item as RichEditorImageSpanResult).valueResourceStr;
+              this.content += (item as RichEditorImageSpanResult).valueResourceStr
               this.content += "\n"
             } else {
-              this.content += (item as RichEditorTextSpanResult).value;
+              this.content += (item as RichEditorTextSpanResult).value
               this.content += "\n"
             }
           })
@@ -406,8 +406,8 @@ struct Index {
             start: this.start,
             end: this.end
           })
-          this.start = -1;
-          this.end = -1;
+          this.start = -1
+          this.end = -1
           this.message = "[" + this.start + ", " + this.end + "]"
         })
       }
@@ -444,15 +444,15 @@ struct Index {
               })
           })
           .onSelect((value: RichEditorSelection) => {
-            this.start = value.selection[0];
-            this.end = value.selection[1];
+            this.start = value.selection[0]
+            this.end = value.selection[1]
             this.message = "[" + this.start + ", " + this.end + "]"
           })
           .aboutToIMEInput((value: RichEditorInsertValue) => {
             console.log("---------------------- aboutToIMEInput ----------------------")
             console.log("insertOffset:" + value.insertOffset)
             console.log("insertValue:" + value.insertValue)
-            return true;
+            return true
           })
           .onIMEInputComplete((value: RichEditorTextSpanResult) => {
             console.log("---------------------- onIMEInputComplete ---------------------")
@@ -477,7 +477,7 @@ struct Index {
                 console.log("text:" + (item as RichEditorTextSpanResult).value)
               }
             })
-            return true;
+            return true
           })
           .onDeleteComplete(() => {
             console.log("---------------------- onDeleteComplete ------------------------")

@@ -10,8 +10,8 @@
 
 ## Modules to Import
 
-```ts
-import dragInteraction from '@ohos.deviceStatus.dragInteraction'
+```js
+import dragInteraction from '@ohos.deviceStatus.dragInteraction';
 ```
 
 ##  DragState
