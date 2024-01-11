@@ -12,12 +12,7 @@ GridObjectSortComponent是用于网格对象的编辑排序组件。
 ## 导入模块
 
 ```ts
-import { 
-    GridObjectSortComponent,
-    GridObjectSortComponentItem,
-    GridObjectSortComponentOptions,
-    GridObjectSortComponentType
-} from '@ohos.arkui.advanced.GridObjectSortComponent'
+import { GridObjectSortComponent, GridObjectSortComponentItem, GridObjectSortComponentOptions, GridObjectSortComponentType }from '@ohos.arkui.advanced.GridObjectSortComponent'
 ```
 
 ##  子组件
