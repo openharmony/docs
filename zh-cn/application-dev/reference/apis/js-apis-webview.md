@@ -4627,7 +4627,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomUserAgent(userAgent: string): void
 
-设置自定义用户代理。
+设置自定义用户代理，会覆盖系统的用户代理。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
