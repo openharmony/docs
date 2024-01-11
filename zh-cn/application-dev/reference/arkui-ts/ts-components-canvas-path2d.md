@@ -20,8 +20,8 @@ addPath(path: path2D, transform?:Matrix2D): void
 
 | 参数        | 类型       | 必填   | 默认值  | 描述              |
 | --------- | -------- | ---- | ---- | --------------- |
-| path      | path2D   | 是    | -    | 需要添加到当前路径的路径对象，路径单位：px。 |
-| transform | Matrix2D | 否    | null | 新增路径的变换矩阵对象。    |
+| path      | [path2D](ts-components-canvas-path2d.md)   | 是    | -    | 需要添加到当前路径的路径对象，路径单位：px。 |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md) | 否    | null | 新增路径的变换矩阵对象。    |
 
 
 **示例：**
