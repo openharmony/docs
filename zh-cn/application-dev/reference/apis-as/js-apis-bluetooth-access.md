@@ -1,6 +1,6 @@
 # @ohos.bluetooth.access (蓝牙access模块)
 
-access模块提供了打开和关闭蓝牙、获取蓝牙状态的方法。
+access模块提供了获取蓝牙开关状态的方法。
 
 > **说明：**
 >
