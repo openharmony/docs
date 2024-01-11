@@ -846,7 +846,7 @@ on(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): vo
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssFenceStatusChange”，表示订阅围栏事件上报。 |
   | request |  [GeofenceRequest](#geofencerequest) | 是 | 围栏的配置参数。 |
-  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
+  | want | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
 
 **错误码**：
 
@@ -905,7 +905,7 @@ off(type: 'gnssFenceStatusChange', request: GeofenceRequest, want: WantAgent): v
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 设置事件类型。type为“gnssFenceStatusChange”，表示订阅围栏事件上报。 |
   | request | [GeofenceRequest](#geofencerequest) | 是 | 围栏的配置参数。 |
-  | want | [WantAgent](js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
+  | want | [WantAgent](../apis/js-apis-app-ability-wantAgent.md) | 是 | 用于接收地理围栏事件上报（进出围栏）。 |
 
 **错误码**：
 
