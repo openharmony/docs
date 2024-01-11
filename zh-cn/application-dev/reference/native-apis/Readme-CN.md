@@ -49,6 +49,7 @@
   - [drawing_canvas.h](drawing__canvas_8h.md)
   - [drawing_color.h](drawing__color_8h.md)
   - [drawing_color_filter.h](drawing__color__filter_8h.md)
+  - [drawing_filter.h](drawing__filter_8h.md)
   - [drawing_font.h](drawing__font_8h.md) 
   - [drawing_font_collection.h](drawing__font__collection_8h.md)
   - [drawing_mask_filter.h](drawing__mask__filter_8h.md)
