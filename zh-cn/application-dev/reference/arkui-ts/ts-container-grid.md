@@ -39,7 +39,7 @@ Grid(scroller?: Scroller)
 
 | 参数名      | 参数类型                                     | 必填   | 参数描述                                     |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| scroller | [Scroller](ts-container-scroll.md#scroller) | 否    | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他[滚动类组件](ts-container-list.md)绑定同一个滚动控制对象。 |
+| scroller | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器，与可滚动组件绑定。<br/>**说明：** <br/>不允许和其他滚动类组件，如：[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[Scroll](ts-container-scroll.md)等绑定同一个滚动控制对象。 |
 
 ## 属性
 
