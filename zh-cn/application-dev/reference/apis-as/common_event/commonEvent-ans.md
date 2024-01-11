@@ -9,5 +9,5 @@
 
 通知设置里修改应用的渠道参数、渠道开关，或者开启、关闭通知使能开关时，都会触发通知服务发布这个系统公共事件。
 
-与这个公共事件相关的接口：setSlotByBundle、setNotificationEnableSlot、setNotificationEnable，这些为系统API，一般都是通知设置应用调用，具体参看[通知接口文档](../js-apis-notificationManager.md)。
+与这个公共事件相关的接口：setSlotByBundle、setNotificationEnableSlot、setNotificationEnable，这些为系统API，一般都是通知设置应用调用，具体参看[通知接口文档](../../apis/js-apis-notificationManager.md)。
 

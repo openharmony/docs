@@ -10,7 +10,7 @@
 
 在设备上指定用户下安装了新的应用程序，将会触发事件通知服务发布该系统公共事件。
 
-与这个公共事件相关的接口：install，具体参看[接口文档](../js-apis-installer.md#bundleinstallerinstall)。
+与这个公共事件相关的接口：install，具体参看[接口文档](../../apis/js-apis-installer.md#bundleinstallerinstall)。
 
 ## COMMON_EVENT_PACKAGE_REMOVED
 
@@ -21,7 +21,7 @@
 
 在设备指定用户下卸载指定的应用程序包，将会触发事件通知服务发布该系统公共事件。
 
-与这个公共事件相关的接口：uninstall，具体参看[接口文档](../js-apis-installer.md#bundleinstalleruninstall)。
+与这个公共事件相关的接口：uninstall，具体参看[接口文档](../../apis/js-apis-installer.md#bundleinstalleruninstall)。
 
 ## COMMON_EVENT_PACKAGE_CHANGED
 

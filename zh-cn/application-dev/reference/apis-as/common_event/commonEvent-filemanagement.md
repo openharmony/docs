@@ -13,14 +13,14 @@
 - 值： usual.event.data.VOLUME_UNMOUNTED
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
-当外部存储设备处于挂载状态时，用户选择通过调用[unmount](../js-apis-file-volumemanager.md)接口或者直接移除设备的方法弹出该设备，并且已将外部存储设备卸载成功后，会发送此公共事件。
+当外部存储设备处于挂载状态时，用户选择通过调用[unmount](../../apis/js-apis-file-volumemanager.md)接口或者直接移除设备的方法弹出该设备，并且已将外部存储设备卸载成功后，会发送此公共事件。
 
 ## COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>
 表示外部存储设备状态变更为挂载的公共事件。
 - 值： usual.event.data.VOLUME_MOUNTED
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
-当用户插入外部存储设备自动挂载成功或者将处于卸载状态的外部存储设备调用[mount](../js-apis-file-volumemanager.md)接口进行挂载成功后，会发送此公共事件。
+当用户插入外部存储设备自动挂载成功或者将处于卸载状态的外部存储设备调用[mount](../../apis/js-apis-file-volumemanager.md)接口进行挂载成功后，会发送此公共事件。
 
 ## COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>
 表示外部存储设备异常移除的公共事件。
@@ -34,4 +34,4 @@
 - 值： usual.event.data.VOLUME_EJECT
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
-当外部存储设备处于挂载状态时，用户选择通过调用[unmount](../js-apis-file-volumemanager.md)接口或者直接移除设备的方法弹出该设备时，会发送此公共事件。
+当外部存储设备处于挂载状态时，用户选择通过调用[unmount](../../apis/js-apis-file-volumemanager.md)接口或者直接移除设备的方法弹出该设备时，会发送此公共事件。
