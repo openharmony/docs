@@ -22,13 +22,9 @@ Ability信息，系统应用可以通过bundleManager.queryAbilityInfo获取Abil
 | iconId                | number                                                   | 是   | 否   | Ability的图标资源id。                       |
 | process               | string                                                   | 是   | 否   | Ability的进程，如果不设置，默认为包的名称。 |
 | exported             | boolean                                                  | 是   | 否   | 判断Ability是否可以被其他应用调用。         |
-| type                  | [AbilityType](js-apis-bundleManager.md#abilitytype)      | 是   | 否   | Ability类型<br />此属性仅可在FA模型下使用。 |
 | orientation           | [DisplayOrientation](js-apis-bundleManager.md#displayorientation)  | 是   | 否   | Ability的显示模式。                         |
 | launchType            | [LaunchType](js-apis-bundleManager.md#launchtype)        | 是   | 否   | Ability的启动模式。                         |
 | permissions           | Array\<string>                                           | 是   | 否   | 被其他应用Ability调用时需要申请的权限集合。 |
-| readPermission        | string                                                   | 是   | 否   | 读取Ability数据所需的权限<br />此属性仅可在FA模型下使用。 |
-| writePermission       | string                                                   | 是   | 否   | 向Ability写数据所需的权限<br />此属性仅可在FA模型下使用。 |
-| uri                   | string                                                   | 是   | 否   | 获取Ability的统一资源标识符（URI）<br />此属性仅可在FA模型下使用。 |
 | deviceTypes           | Array\<string>                                           | 是   | 否   | Ability支持的设备类型。                     |
 | applicationInfo       | ApplicationInfo     | 是   | 否   | 应用程序的配置信息。 |
 | metadata              | Array\<Metadata>           | 是   | 否   | Ability的元信息。 |
