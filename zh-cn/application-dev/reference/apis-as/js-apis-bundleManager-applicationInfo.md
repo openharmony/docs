@@ -3,7 +3,7 @@
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-应用程序信息，系统应用可以通过[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)获取自身或其他应用的应用程序信息，其中入参[appFlags](js-apis-bundleManager.md#applicationflag)指定返回的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)中所包含的信息。
+应用程序信息，系统应用可以通过bundleManager.getApplicationInfo获取自身或其他应用的应用程序信息。
 
 ## ApplicationInfo
 
@@ -20,10 +20,10 @@
 | icon                       | string                                                       | 是   | 否   | 应用程序的图标，使用示例："icon": "$media:icon"。                                                 |
 | iconId                     | number                                                       | 是   | 否   | 应用程序图标的资源id。                                               |
 | process                    | string                                                       | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称。                   |
-| permissions                | Array\<string>                                               | 是   | 否   | 访问应用程序所需的权限，通过调用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)接口，appFlags参数传入GET_APPLICATION_INFO_WITH_PERMISSION获取。 |
+| permissions                | Array\<string>                                               | 是   | 否   | 访问应用程序所需的权限 |
 | codePath                   | string                                                       | 是   | 否   | 应用程序的安装目录。                                             |
-| metadata<sup>(deprecated)<sup>  | Map\<string, Array\<[Metadata](js-apis-bundleManager-metadata.md)>> | 是   | 否   | 应用程序的元信息，通过调用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)接口，appFlags参数传入GET_APPLICATION_INFO_WITH_METADATA获取。<strong>注：</strong> 从API version 10开始不再维护，建议使用metadataArray替代。 |
-| metadataArray<sup>10+</sup>              | Array\<[ModuleMetadata](#modulemetadata10)> | 是   | 否   | 应用程序的元信息，通过调用[bundleManager.getApplicationInfo](js-apis-bundleManager.md#bundlemanagergetapplicationinfo)接口，appFlags参数传入GET_APPLICATION_INFO_WITH_METADATA获取。 |
+| metadata<sup>(deprecated)<sup>  | Map\<string, Array\<Metadata>> | 是   | 否   | 应用程序的元信息。<strong>注：</strong> 从API version 10开始不再维护，建议使用metadataArray替代。 |
+| metadataArray<sup>10+</sup>              | Array\<[ModuleMetadata](#modulemetadata10)> | 是   | 否   | 应用程序的元信息。 |
 | removable                  | boolean                                                      | 是   | 否   | 应用程序是否可以被移除。                                         |
 | accessTokenId             | number                                                       | 是   | 否   | 应用程序的accessTokenId。                                      |
 | uid                       | number                                                       | 是   | 否   | 应用程序的uid。                                                |
@@ -47,4 +47,4 @@
 | 名称      | 类型           | 可读 | 可写 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | moduleName<sup>10+</sup>| string         | 是   | 否   | 模块名。   |
-| metadata<sup>10+</sup>  | Array\<[Metadata](js-apis-bundleManager-metadata.md)>      | 是   | 否   | 该模块下的元数据信息列表。 |
+| metadata<sup>10+</sup>  | Array\<Metadata>      | 是   | 否   | 该模块下的元数据信息列表。 |
