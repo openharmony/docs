@@ -250,6 +250,7 @@
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
   - [getContext](js-apis-getContext.md)
+  - [postCardAction](js-apis-postCardAction.md)
   - arkui
     - [BuilderNode](js-apis-arkui-builderNode.md)
     - [FrameNode](js-apis-arkui-frameNode.md)
@@ -314,6 +315,7 @@
 - 数据管理
   - [@ohos.data.cloudData (端云协同)](js-apis-data-cloudData.md)
   - [@ohos.data.cloudExtension (端云共享Extension)](js-apis-data-cloudExtension.md)
+  - [@ohos.data.commonType (数据通用类型)](js-apis-data-commonType.md)
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)

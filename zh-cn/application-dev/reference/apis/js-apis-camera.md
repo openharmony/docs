@@ -1494,7 +1494,7 @@ function unregisterCameraInputError(cameraInput: camera.CameraInput, cameraDevic
 | -------------------------- | ---- | ------------ |
 | FOCUS_MODE_MANUAL          | 0    | 手动对焦。通过手动修改相机焦距来改变对焦位置，不支持对焦点设置。     |
 | FOCUS_MODE_CONTINUOUS_AUTO | 1    | 连续自动对焦。不支持对焦点设置。 |
-| FOCUS_MODE_AUTO            | 2    | 自动对焦。支持对焦点设置，可以使用[setFocusPoint](#setfocuspoint)设置对焦点，根据对焦点执行一次自动对焦。对焦动作完成后（无论对焦成功或是对焦失败），都进入对焦锁定。应用层需要再次调用CONTINUOUS_AUTO后才能再次进入连续自动对焦。    |
+| FOCUS_MODE_AUTO            | 2    | 自动对焦。支持对焦点设置，可以使用[setFocusPoint](#setfocuspoint)设置对焦点，根据对焦点执行一次自动对焦。    |
 | FOCUS_MODE_LOCKED          | 3    | 对焦锁定。不支持对焦点设置。     |
 
 ## FocusState
@@ -1654,12 +1654,11 @@ addInput(cameraInput: CameraInput): void
 
 以下错误码的详细介绍请参见[Camera错误码](../errorcodes/errorcode-camera.md)。
 
-| 错误码ID         | 错误信息        |
-| --------------- | --------------- |
-| 7400101                |  Parameter missing or parameter type incorrect        |
-| 7400102                |  Operation not allow.                                  |
-
-**示例：**
+| 错误码ID   | 错误信息                                          |
+|---------|-----------------------------------------------|
+| 7400101 | Parameter missing or parameter type incorrect |
+| 7400102 | Operation not allow                           |
+**示例：** 
 
 ```ts
 import { BusinessError } from '@ohos.base';
@@ -3484,9 +3483,9 @@ getPortraitEffect(): PortraitEffect
 **示例：**
 
 ```ts
-function getSupportedPortraitEffects(portraitSession: camera.PortraitSession): camera.PortraitEffect {
-  let portraitEffects: camera.PortraitEffect = portraitSession.getPortraitEffect();
-  return portraitEffects;
+function getPortraitEffect(portraitSession: camera.PortraitSession): camera.PortraitEffect {
+  let portraitEffect: camera.PortraitEffect = portraitSession.getPortraitEffect();
+  return portraitEffect;
 }
 ```
 
@@ -3987,12 +3986,12 @@ async function preview(context: common.BaseContext, cameraInfo: camera.CameraDev
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称      | 类型                            | 必填  | 说明              |
-| -------- | ------------------------------- | ---- | -----------------|
-| quality  | [QualityLevel](#qualitylevel)   | 否   | 图片质量(默认低)。         |
-| rotation | [ImageRotation](#imagerotation) | 否   | 图片旋转角度(默认0度，顺时针旋转)。      |
-| location | [Location](#location)           | 否   | 图片地理位置信息(默认以设备硬件信息为准)。   |
-| mirror   | boolean                         | 否   | 镜像使能开关(默认关)。 |
+| 名称      | 类型                            | 必填  | 说明                                                                   |
+| -------- | ------------------------------- | ---- |----------------------------------------------------------------------|
+| quality  | [QualityLevel](#qualitylevel)   | 否   | 图片质量(默认低)。                                                           |
+| rotation | [ImageRotation](#imagerotation) | 否   | 图片旋转角度(默认0度，顺时针旋转)。                                                  |
+| location | [Location](#location)           | 否   | 图片地理位置信息(默认以设备硬件信息为准)。                                               |
+| mirror   | boolean                         | 否   | 镜像使能开关(默认关)。使用之前需要使用[isMirrorSupported](#ismirrorsupported)进行判断是否支持。 |
 
 ## PhotoOutput
 

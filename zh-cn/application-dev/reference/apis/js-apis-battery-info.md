@@ -42,7 +42,7 @@ setBatteryConfig(sceneName: string, sceneValue: string): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4900101 | If connecting to the service failed. |
 
 **示例**：
 
@@ -84,7 +84,7 @@ getBatteryConfig(sceneName: string): string
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4900101 | If connecting to the service failed. |
 
 **示例**：
 
@@ -125,7 +125,7 @@ isBatteryConfigSupported(sceneName: string): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | If connecting to the service failed. |
+| 4900101 | If connecting to the service failed. |
 
 **示例**：
 

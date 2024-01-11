@@ -44,6 +44,7 @@
   - 本地媒体会话
     - [本地媒体会话概述](local-avsession-overview.md)
     - [媒体会话提供方(ArkTS)](using-avsession-developer.md)
+    - [应用接入AVSession场景介绍](avsession-access-scene.md)
     - [媒体会话控制方(ArkTS)](using-avsession-controller.md)
   - 分布式媒体会话
     - [分布式媒体会话概述](distributed-avsession-overview.md)

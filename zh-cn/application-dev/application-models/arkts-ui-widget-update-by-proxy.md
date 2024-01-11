@@ -80,7 +80,6 @@
   >
   > key可以是uri也可以是简单字符串，subscriberId默认值为当前formId，实际取值都依赖于数据发布方的定义。
   ```ts
-  import formInfo from '@ohos.app.form.formInfo';
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
   import hilog from '@ohos.hilog';
@@ -171,7 +170,6 @@
   import dataShare from '@ohos.data.dataShare';
   import type formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formInfo from '@ohos.app.form.formInfo';
   import type Want from '@ohos.app.ability.Want';
   
   export default class PersistentDataFormAbility extends FormExtensionAbility {
