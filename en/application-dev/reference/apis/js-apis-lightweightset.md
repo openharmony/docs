@@ -322,7 +322,7 @@ Obtains the position index of the element with the specified key in this contain
 
 | Type| Description|
 | -------- | -------- |
-| number | Position index of the element.|
+| number | Position index of the element. If the element does not exist, a negative value is returned. The negative value consists of a minus sign and the position where the element (if available) should be. The position starts from 1.|
 
 **Error codes**
 
@@ -588,14 +588,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
-callbackfn
+callbackFn
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | T | No| Value of the element that is currently traversed.|
+| value | T | No| Value of the element that is currently traversed. |
 | key| T | No| Key of the element that is currently traversed (same as **value**).|
-| set | LightWeightSet&lt;T&gt; | No| Instance that invokes the **forEach** method.|
+| set | LightWeightSet&lt;T&gt; | No| Instance that calls the **forEach** API. |
 
 **Error codes**
 

@@ -14,7 +14,6 @@ In the FA model, you can perform the following operations during application win
 
 - Experiencing the immersive window feature
 
-
 ## Available APIs
 
 The table below lists the common APIs used for application window development. For details about more APIs, see [Window](../reference/apis/js-apis-window.md).
@@ -23,7 +22,7 @@ The table below lists the common APIs used for application window development. F
 | -------- | -------- | -------- |
 | Window static method| createWindow(config: Configuration, callback: AsyncCallback\<Window>): void | Creates a subwindow.<br>**config** specifies the parameters used for creating the window.|
 | Window static method| findWindow(name: string): Window | Finds a window based on the name.|
-| Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.|
+| Window | setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void | Loads the page content to this window.<br>**path**: path of the page from which the content will be loaded. The path is configured in the **config.json** file of the project in the FA model.|
 | Window | moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void | Moves this window.|
 | Window | setWindowBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void | Sets the background color for this window.|
 | Window | setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void | Sets the brightness for this window.|
@@ -164,7 +163,7 @@ To create a better video watching and gaming experience, you can use the immersi
 
 2. Implement the immersive effect. You can use either of the following methods:
 
-   - Method 1: Call **setWindowSystemBarEnable** to hide the status bar and navigation bar.
+   - Method 1: Call **setWindowSystemBarEnable** to hide the navigation bar and status bar.
    - Method 2: Call **setWindowLayoutFullScreen** to enable the full-screen mode for the main window layout. Call **setWindowSystemBarProperties** to set the opacity, background color, text color, and highlighted icon of the status bar and navigation bar to ensure that their display effect is consistent with that of the main window.
 
    ```js

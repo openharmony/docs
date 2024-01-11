@@ -166,7 +166,7 @@ let result = plainArray.get(1);
 
 getIndexOfKey(key: number): number
 
-Obtains the index of the first occurrence of an element with the specified key in this container.
+Obtains the index of the element with the specified key in this container.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -380,7 +380,7 @@ plainArray.add(1, "squirrel");
 
 remove(key: number): T
 
-Removes an element with the specified key from this container.
+Removes a key-value pair with the specified key.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -394,7 +394,7 @@ Removes an element with the specified key from this container.
 
 | Type| Description|
 | -------- | -------- |
-| T | Value of the element removed.|
+| T | Value in the key-value pair removed.|
 
 **Error codes**
 
@@ -597,14 +597,14 @@ Uses a callback to traverse the elements in this container and obtain their posi
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the elements in the container.|
-| thisArg | Object | No| Value to use when the callback is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. |
 
-callbackfn
+callbackFn
 | Name| Type | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | value | T | Yes| Value of the element that is currently traversed.|
-| index | number | No| Key of the element that is currently traversed.|
-| PlainArray | PlainArray&lt;T&gt;| No| Instance that invokes the **forEach** API.|
+| index | number | No| Position index of the element that is currently traversed.|
+| PlainArray | PlainArray&lt;T&gt;| No| Instance that calls the **forEach** API. |
 
 **Error codes**
 
