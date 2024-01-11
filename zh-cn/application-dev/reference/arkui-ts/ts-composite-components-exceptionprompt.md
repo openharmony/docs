@@ -1,89 +1,80 @@
-#  @ohos.arkui.advanced.ExceptionPrompt（异常提示组件）
+# @ohos.arkui.advanced.ExceptionPrompt（异常提示）
 
-ExceptionPrompt适用于有离线内容可显示的情况。
 
-**说明：**
+异常提示，适用于有异常需要提示异常内容的情况。
 
-该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
+> **说明：**
+>
+> 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+
 
 ## 导入模块
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt';
+import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
 ```
 
-##  子组件
 
-无。
+## 子组件
 
-##  Component
+无
 
-**装饰器类型：**@Builde
+## 属性
+不支持[通用属性](ts-universal-attributes-size.md)
+
+## ExceptionPrompt
+
+ExceptionPrompt({ options: PromptOptions })
+
+**装饰器类型：**\@Component
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 名称        | 类型 | 必填        | 说明                            |
-| ----------- | ---------- | --------------------------------- | --------------------------------- |
-| options | PromptOptions | 是 | 指定当前ExceptionPrompt的配置信息 |
 
-##  PromptOptions
+| 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| options | PromptOptions | 否 | \@Prop | 指定当前异常提示的配置信息。 |
+| onTipClick | ()=>void | 否 | - | 点击左侧提示文本的回调函数。 |
+| onActionTextClick | ()=>void | 否 | - | 点击右侧图标按钮的回调函数。 |
+| build | ()=>void | 是 | - | 构建函数。 |
+
+## PromptOptions
 
 PromptOptions定义options的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称       | 类型        | 必填 | 说明                                            |
-| ---------- | ----------- | ---- | ----------------------------------------------- |
-| icon       | ResourceStr | 否   | 指定当前ExceptionPrompt的异常图标式样           |
-| tip        | ResourceStr | 否   | 指定当前ExceptionPrompt的文字提示内容           |
-| marginType | MarginType  | 是   | 指定当前ExceptionPrompt的边距样式               |
-| actionText | ResourceStr | 否   | 指定当前ExceptionPrompt的右侧图标按钮的文字内容 |
-| marginTop  | Dimension   | 是   | 指定当前ExceptionPrompt的距离顶部的位置         |
-| isShown    | boolean     | 否   | 指定当前ExceptionPrompt的显隐状态               |
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| icon | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的异常图标式样。 |
+| tip | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的文字提示内容。<br />支持默认内置四种状态文字资源如下：<br />-1.无网络状态：显示网络未连接：引用ohos_network_not_connected。<br />-2.网络差状态：显示网络连接不稳定，请点击重试：引用ohos_network_connected_unstable。<br />-3.连不上服务器状态：显示无法连接到服务器，请点击重试：引用ohos_unstable_connect_server。<br />-4.有网但是获取不到内容状态：显示无法获取位置，请点击重试：引用ohos_custom_network_tips_left。 |
+| marginType | MarginType | 是 | 指定当前异常提示的边距样式 。 |
+| actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。 |
+| marginTop | Dimension | 是 | 指定当前异常提示的距离顶部的位置。 |
+| isShown | boolean | 否 | 指定当前异常提示的显隐状态。 |
 
-## marginState
+## MarginType
 
-MarginType定义marginState的类型
+MarginType定义marginType的类型。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 类型           | 说明                                                         |
-| :------------- | :----------------------------------------------------------- |
-| DEFAULT_MARGIN | 默认边距：边距1：引用ohos_id_card_margin_start，边距2：引用ohos_id_card_margin_end |
-| FIT_MARGIN     | 可适配边距： 边距1：引用ohos_id_max_padding_start，边距2：引用ohos_id_max_padding_end |
-
-## 属性
-
-| 类型                     | 说明                                                         |
-| ------------------------ | ------------------------------------------------------------ |
-| 无网络状态               | 网络未连接：引用ohos_network_not_connected                   |
-| 网络差状态               | 网络连接不稳定，请点击重试：引用ohos_network_connected_unstable |
-| 连不上服务器状态         | 无法连接到服务器，请点击重试：引用ohos_unstable_connect_server |
-| 有网但是获取不到内容状态 | 无法获取位置，请点击重试：引用ohos_custom_network_tips_left  |
-| 自定义提示文字内容状态   |                                                              |
-
-
+| 名称 | 说明 |
+| -------- | -------- |
+| DEFAULT_MARGIN | 默认边距：边距1：引用ohos_id_card_margin_start，边距2：引用ohos_id_card_margin_end。 |
+| FIT_MARGIN | 可适配边距： 边距1：引用ohos_id_max_padding_start，边距2：引用ohos_id_max_padding_end。 |
 
 ## 事件
+支持[通用事件](ts-universal-events-click.md)
 
-| 名称                             | 功能描述                   |
-| -------------------------------- | -------------------------- |
-| onTipClick: () => void           | 点击左侧提示文本的回调函数 |
-| onActionTextClick: () =&gt; void | 点击右侧图标按钮的回调函数 |
-
-## 示例 
-
+## 示例
 ### 示例1
 
 ```ts
-import {
-  ExceptionPrompt,
-  PromptOptions,
-  MarginType
-} from '@ohos.arkui.advanced.ExceptionPrompt'
-
+import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
 @Entry
 @Component
 struct Index {
@@ -110,21 +101,14 @@ struct Index {
     }
   }
 }
-
 ```
 
-![ExceptionPrompt](figures/ExceptionPrompt.png)
+![ExceptionPrompt1](figures/ExceptionPrompt1.gif)
 
 ### 示例2
 
-```
-import {
-  ExceptionPrompt,
-  PromptOptions,
-  MarginType
-} from '@ohos.arkui.advanced.ExceptionPrompt'
-
-
+```ts
+import { ExceptionPrompt, PromptOptions, MarginType } from '@ohos.arkui.advanced.ExceptionPrompt'
 @CustomDialog
 struct CustomDialogExample {
   @Link textValue: string
@@ -267,8 +251,6 @@ struct Index1 {
 
   }
 }
-
-export { Index1 }
 ```
 
-![ExceptionPrompt2](figures/ExceptionPrompt2.png)
+![ExceptionPrompt2](figures/ExceptionPrompt2.gif)
