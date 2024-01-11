@@ -10,7 +10,7 @@
 
 align(value: Alignment)
 
-设置元素内容在元素绘制区域内的对齐方式。
+设置容器元素绘制区域内的子元素的对齐方式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -20,13 +20,13 @@ align(value: Alignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置元素内容在元素绘制区域内的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、text、TextArea、TextInput中生效，其中和文本相关的组件Marquee、text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#属性)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、text、TextArea、TextInput中生效，其中和文本相关的组件Marquee、text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#属性)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center |
 
 ## direction
 
 direction(value: Direction)
 
-设置元素水平方向的布局。
+设置容器元素内主轴方向上的布局。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -36,13 +36,13 @@ direction(value: Direction)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                |
 | ------ | ------------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [Direction](ts-appendix-enums.md#direction) | 是   | 设置元素水平方向的布局。<br/>默认值：Direction.Auto |
+| value  | [Direction](ts-appendix-enums.md#direction) | 是   | 设置容器元素内主轴方向上的布局。<br/>例：Column组件的主轴为纵轴。<br/>默认值：Direction.Auto |
 
 ## position
 
 position(value: Position)
 
-绝对定位，设置元素左上角相对于父容器左上角偏移位置。
+绝对定位，设置子元素左上角相对于父容器左上角偏移位置。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -52,13 +52,13 @@ position(value: Position)
 
 | 参数名 | 类型                              | 必填 | 说明                                                         |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 绝对定位，设置元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不参与父容器布局，即不占位，仅在绘制时进行位置调整。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。 |
+| value  | [Position](ts-types.md#position8) | 是   | 绝对定位，设置子元素左上角相对于父容器左上角偏移位置。在布局容器中，设置该属性不参与父容器布局，即不占位，仅在绘制时进行位置调整。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。 |
 
 ## markAnchor
 
 markAnchor(value: Position)
 
-设置元素在位置定位时的锚点。
+设置子元素在位置定位时的锚点。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -68,13 +68,13 @@ markAnchor(value: Position)
 
 | 参数名 | 类型                              | 必填 | 说明                                                         |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 设置元素在位置定位时的锚点，以元素左上角作为基准点进行偏移。通常配合position和offset属性使用，单独使用时，效果类似offset<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
+| value  | [Position](ts-types.md#position8) | 是   | 设置子元素在位置定位时的锚点，以元素左上角作为基准点进行偏移。通常配合position和offset属性使用，单独使用时，效果类似offset<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
 
 ## offset
 
 offset(value: Position)
 
-相对定位，设置元素相对于自身的偏移量。
+相对定位，设置子元素相对于自身的额外偏移量。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -84,13 +84,13 @@ offset(value: Position)
 
 | 参数名 | 类型                              | 必填 | 说明                                                         |
 | ------ | --------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position8) | 是   | 相对定位，设置元素相对于自身的偏移量。设置该属性后子组件正常参与父容器布局，在绘制时基于父容器给予的offset做一次额外的偏移。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
+| value  | [Position](ts-types.md#position8) | 是   | 相对定位，设置子元素相对于自身的额外偏移量。设置该属性后，子组件正常参与父容器布局，依然会占位，在绘制时基于父容器给予的offset做一次额外的偏移。<br/>API version 9及以前，默认值为：<br/>{<br/>x: 0,<br/>y: 0<br/>}<br/>API version 10：无默认值。 |
 
 ## alignRules<sup>9+</sup>
 
 alignRules(value: AlignRuleOption)
 
-指定相对容器的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
+指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -100,7 +100,7 @@ alignRules(value: AlignRuleOption)
 
 | 参数名 | 类型                                        | 必填 | 说明                     |
 | ------ | ------------------------------------------- | ---- | ------------------------ |
-| value  | [AlignRuleOption](#alignruleoption对象说明) | 是   | 指定相对容器的对齐规则。 |
+| value  | [AlignRuleOption](#alignruleoption对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
 
 ## AlignRuleOption对象说明
 
